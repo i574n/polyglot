@@ -28,6 +28,7 @@ $targetDir = GetTargetDir $projectName
 (Get-Content "$targetDir/target/rs/$projectName.rs") `
     -replace "../../../../lib", "../../../lib" `
     -replace ".fsx`"]", ".rs`"]" `
+    | FixRust `
     | Set-Content "$projectName.rs"
 
 cargo fmt --

@@ -7554,6 +7554,7 @@ a.anchor-link {
 <span class="c1">#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.signalr.client/7.0.0/lib/net7.0/Microsoft.AspNetCore.SignalR.Client.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.signalr.client.core/7.0.0/lib/net7.0/Microsoft.AspNetCore.SignalR.Client.Core.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/fsharp.json/0.4.1/lib/netstandard2.0/FSharp.Json.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/system.management/7.0.0/lib/netstandard2.0/System.Management.dll"</span>
 </pre></div>
 </div>
 </div>
@@ -7830,11 +7831,44 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="startTokenRangeWatcher">startTokenRangeWatcher<a class="anchor-link" href="#startTokenRangeWatcher">¶</a></h2>
+<h2 id="getParentProcessId">getParentProcessId<a class="anchor-link" href="#getParentProcessId">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">getParentProcessId</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Diagnostics</span><span class="o">.</span><span class="n">Process</span><span class="o">.</span><span class="n">GetCurrentProcess</span><span class="p">()</span><span class="o">.</span><span class="n">Id</span>
+    <span class="n">let</span> <span class="n">query</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"SELECT ParentProcessId FROM Win32_Process WHERE ProcessId = </span><span class="si">{pid}</span><span class="s2">"</span>
+    <span class="n">use</span> <span class="n">searcher</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">Management</span><span class="o">.</span><span class="n">ManagementObjectSearcher</span> <span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">use</span> <span class="n">results</span> <span class="o">=</span> <span class="n">searcher</span><span class="o">.</span><span class="n">Get</span> <span class="p">()</span>
+    <span class="n">let</span> <span class="n">data</span> <span class="o">=</span> <span class="n">results</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">cast</span><span class="o">&lt;</span><span class="n">System</span><span class="o">.</span><span class="n">Management</span><span class="o">.</span><span class="n">ManagementObject</span><span class="o">&gt;</span>
+    <span class="k">if</span> <span class="n">data</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">isEmpty</span>
+    <span class="n">then</span> <span class="mi">0</span><span class="n">u</span>
+    <span class="k">else</span> <span class="n">data</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">head</span> <span class="o">|&gt;</span> <span class="p">(</span><span class="n">fun</span> <span class="n">mo</span> <span class="o">-&gt;</span> <span class="n">mo</span><span class="o">.</span><span class="p">[</span><span class="s2">"ParentProcessId"</span><span class="p">]</span> <span class="p">:</span><span class="err">?</span><span class="o">&gt;</span> <span class="n">uint32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="startTokenRangeWatcher">startTokenRangeWatcher<a class="anchor-link" href="#startTokenRangeWatcher">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7912,10 +7946,27 @@ a.anchor-link {
                         <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.startTokenRangeWatcher / iterAsyncParallel / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
                 <span class="p">})</span>
 
+            <span class="n">let</span> <span class="n">parentAsyncChild</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
+                <span class="n">let</span> <span class="n">parentProcessId</span> <span class="o">=</span> <span class="n">getParentProcessId</span> <span class="p">()</span>
+                <span class="n">trace</span> <span class="n">Verbose</span>
+                    <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"Eval.parentAsyncChild"</span><span class="p">)</span>
+                    <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"parentProcessId: </span><span class="si">{parentProcessId}</span><span class="s2"> / {getLocals ()}"</span><span class="p">)</span>
+                
+                <span class="k">if</span> <span class="n">parentProcessId</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="n">u</span> <span class="n">then</span>
+                    <span class="n">let</span> <span class="n">parentProcess</span> <span class="o">=</span> <span class="n">parentProcessId</span> <span class="o">|&gt;</span> <span class="nb">int</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">Diagnostics</span><span class="o">.</span><span class="n">Process</span><span class="o">.</span><span class="n">GetProcessById</span>
+                    <span class="n">do</span><span class="err">!</span> <span class="n">parentProcess</span><span class="o">.</span><span class="n">WaitForExitAsync</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
+                    <span class="n">trace</span> <span class="n">Verbose</span>
+                        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"Eval.parentAsyncChild / Parent process has exited. Performing cleanup..."</span><span class="p">)</span>
+                        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"{getLocals ()}"</span><span class="p">)</span>
+                    <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1000</span>
+                    <span class="n">System</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">Exit</span> <span class="mi">1</span>
+            <span class="p">}</span>
+
             <span class="k">async</span> <span class="p">{</span>
                 <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">3000</span>
                 <span class="n">existingFilesChild</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartImmediate</span>
                 <span class="n">streamAsyncChild</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Start</span>
+                <span class="n">parentAsyncChild</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Start</span>
             <span class="p">}</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Start</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
@@ -7929,7 +7980,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7939,7 +7990,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8000,7 +8051,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8010,7 +8061,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8181,7 +8232,7 @@ a.anchor-link {
                             <span class="k">else</span> <span class="n">fn</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span>
 
                         <span class="k">if</span> <span class="n">printCode</span>
-                        <span class="n">then</span> <span class="n">_trace</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">rustArgs</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">isSome</span> <span class="n">then</span> <span class="err">$</span><span class="s2">".fsx:</span><span class="se">\n</span><span class="si">{code}</span><span class="s2">"</span> <span class="k">else</span> <span class="n">code</span><span class="p">)</span>
+                        <span class="n">then</span> <span class="n">_trace</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">rustArgs</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">isSome</span> <span class="n">then</span> <span class="err">$</span><span class="s2">".fsx:</span><span class="se">\n</span><span class="si">{code}</span><span class="se">\n</span><span class="s2">"</span> <span class="k">else</span> <span class="n">code</span><span class="p">)</span>
 
                         <span class="n">let</span><span class="err">!</span> <span class="n">rustResult</span> <span class="o">=</span>
                             <span class="k">if</span> <span class="n">rustArgs</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">isNone</span> <span class="o">||</span> <span class="n">lastTopLevelIndex</span> <span class="o">=</span> <span class="kc">None</span>
@@ -8213,21 +8264,29 @@ a.anchor-link {
                                         <span class="n">Directory</span><span class="o">.</span><span class="n">CreateSymbolicLink</span> <span class="p">(</span><span class="n">libLinkPath</span><span class="p">,</span> <span class="n">libLinkTargetPath</span><span class="p">)</span>
                                         <span class="o">|&gt;</span> <span class="n">ignore</span>
 
+                                    <span class="n">let</span> <span class="n">repositoryRoot</span> <span class="o">=</span>
+                                        <span class="n">let</span> <span class="n">currentDir</span> <span class="o">=</span>
+                                            <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">GetCurrentDirectory</span> <span class="p">()</span>
+                                            <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">to_lower</span>
+                                        <span class="n">let</span> <span class="n">repositoryRoot</span> <span class="o">=</span> <span class="n">repositoryRoot</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">to_lower</span>
+                                        <span class="k">if</span> <span class="n">currentDir</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="n">repositoryRoot</span>
+                                        <span class="n">then</span> <span class="kc">None</span>
+                                        <span class="k">else</span> <span class="n">Some</span> <span class="n">repositoryRoot</span>
+
                                     <span class="o">//</span> <span class="k">try</span>
                                     <span class="o">//</span>     <span class="n">let</span> <span class="n">path</span> <span class="o">=</span>
                                     <span class="o">//</span>         <span class="n">repositoryRoot</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="o">@</span><span class="s2">"target/release/rust_builder{SpiralRuntime.get_executable_suffix ()}"</span>
                                     <span class="o">//</span>         <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
                                     <span class="o">//</span>     <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"</span><span class="si">{path}</span><span class="s2"> </span><span class="si">{fsprojPath}</span><span class="s2"> </span><span class="si">{outDir}</span><span class="s2">"</span>
                                     <span class="o">//</span>     <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span>
-                                    <span class="o">//</span>         <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">repositoryRoot</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
+                                    <span class="o">//</span>         <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">repositoryRoot</span><span class="p">)</span>
                                     <span class="o">//</span>     <span class="n">trace</span> <span class="n">Info</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval 1 / exitCode: </span><span class="si">{exitCode}</span><span class="s2"> / result: </span><span class="si">{result}</span><span class="s2">"</span><span class="p">)</span> <span class="n">getLocals</span>
                                     <span class="o">//</span> <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
                                     <span class="o">//</span>     <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval 1 / ex: </span><span class="si">{ex}</span><span class="s2">"</span><span class="p">)</span> <span class="n">getLocals</span>
-
                                     
                                     <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"dotnet fable ""</span><span class="si">{fsprojPath}</span><span class="s2">"" --optimize --lang rs --extension .rs --outDir ""</span><span class="si">{outDir}</span><span class="s2">"" "</span>
                                     <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span>
-                                        <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="n">repositoryRoot</span><span class="p">)</span>
+                                        <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">repositoryRoot</span><span class="p">)</span>
 
                                     <span class="k">if</span> <span class="n">exitCode</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span>
                                     <span class="n">then</span> <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Error</span> <span class="n">result</span><span class="p">)</span>
@@ -8267,6 +8326,9 @@ a.anchor-link {
 <span class="s2">inline_colorization = "~0.1"</span>
 <span class="s2">num-complex = "~0.4"</span>
 <span class="s2">pyo3 = "~0.21"</span>
+<span class="s2">async-std = "~1.12"</span>
+<span class="s2">futures-lite = "~2.3"</span>
+<span class="s2">async-walkdir = "~1.0"</span>
 
 <span class="s2">[features]</span>
 <span class="s2">default = ["fable_library_rust/default", "fable_library_rust/static_do_bindings"]</span>
@@ -8279,7 +8341,7 @@ a.anchor-link {
 
                                         <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"cargo run --release --manifest-path </span><span class="si">{cargoTomlPath}</span><span class="s2">"</span>
                                         <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span>
-                                            <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="n">repositoryRoot</span><span class="p">)</span>
+                                            <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">repositoryRoot</span><span class="p">)</span>
 
                                         <span class="k">if</span> <span class="n">exitCode</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
                                             <span class="k">try</span>

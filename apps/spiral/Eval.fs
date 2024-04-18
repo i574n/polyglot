@@ -111,14 +111,17 @@ module Eval =
     /// ## getParentProcessId
 
     let getParentProcessId () =
-        let pid = System.Diagnostics.Process.GetCurrentProcess().Id
-        let query = $"SELECT ParentProcessId FROM Win32_Process WHERE ProcessId = {pid}"
-        use searcher = new System.Management.ManagementObjectSearcher (query)
-        use results = searcher.Get ()
-        let data = results |> Seq.cast<System.Management.ManagementObject>
-        if data |> Seq.isEmpty
+        if SpiralRuntime.is_windows () |> not
         then 0u
-        else data |> Seq.head |> (fun mo -> mo.["ParentProcessId"] :?> uint32)
+        else
+            let pid = System.Diagnostics.Process.GetCurrentProcess().Id
+            let query = $"SELECT ParentProcessId FROM Win32_Process WHERE ProcessId = {pid}"
+            use searcher = new System.Management.ManagementObjectSearcher (query)
+            use results = searcher.Get ()
+            let data = results |> Seq.cast<System.Management.ManagementObject>
+            if data |> Seq.isEmpty
+            then 0u
+            else data |> Seq.head |> (fun mo -> mo.["ParentProcessId"] :?> uint32)
 
     /// ## startTokenRangeWatcher
 
