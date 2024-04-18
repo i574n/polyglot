@@ -86,41 +86,35 @@ and closure1 () (v0 : pyo3_PyErr) : std_string_String =
     v2
 and method10 () : (pyo3_PyErr -> std_string_String) =
     closure1()
-and method11 (v0 : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr>) : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr> =
-    v0
-and method12 () : string =
+and method11 () : string =
     let v0 : string = "fn"
     v0
-and method13 (v0 : pyo3_Bound<pyo3_types_PyModule>) : pyo3_Bound<pyo3_types_PyModule> =
+and method12 (v0 : pyo3_Bound<pyo3_types_PyModule>) : pyo3_Bound<pyo3_types_PyModule> =
     v0
 and closure2 () (v0 : pyo3_PyErr) : std_string_String =
     let v1 : string = @$"format!(""{{}}"", $0)"
     let v2 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v1
     v2
-and method14 () : (pyo3_PyErr -> std_string_String) =
+and method13 () : (pyo3_PyErr -> std_string_String) =
     closure2()
-and method15 (v0 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr>) : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> =
+and method14 (v0 : (bool * (float * float))) : (bool * (float * float)) =
     v0
-and method16 (v0 : (bool * (float * float))) : (bool * (float * float)) =
-    v0
-and method17 (v0 : pyo3_Bound<pyo3_PyAny>) : pyo3_Bound<pyo3_PyAny> =
+and method15 (v0 : pyo3_Bound<pyo3_PyAny>) : pyo3_Bound<pyo3_PyAny> =
     v0
 and closure3 () (v0 : pyo3_PyErr) : std_string_String =
     let v1 : string = @$"format!(""{{}}"", $0)"
     let v2 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v1
     v2
-and method18 () : (pyo3_PyErr -> std_string_String) =
+and method16 () : (pyo3_PyErr -> std_string_String) =
     closure3()
-and method19 (v0 : pyo3_Bound<pyo3_PyAny>) : pyo3_Bound<pyo3_PyAny> =
+and method17 (v0 : pyo3_Bound<pyo3_PyAny>) : pyo3_Bound<pyo3_PyAny> =
     v0
 and closure4 () (v0 : pyo3_PyErr) : std_string_String =
     let v1 : string = @$"format!(""{{}}"", $0)"
     let v2 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v1
     v2
-and method20 () : (pyo3_PyErr -> std_string_String) =
+and method18 () : (pyo3_PyErr -> std_string_String) =
     closure4()
-and method21 (v0 : Result<struct (float * float), pyo3_PyErr>) : Result<struct (float * float), pyo3_PyErr> =
-    v0
 and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : Result<num_complex_Complex<float>, std_string_String> =
     let v3 : string = $"import sys"
     let v4 : string = $"import traceback"
@@ -170,59 +164,55 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let v48 : string = "pyo3::types::PyModule::from_code_bound(v45, v47, \"\", \"\")"
     let v49 : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v48
     let v50 : (pyo3_PyErr -> std_string_String) = method10()
-    let v51 : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr> = method11(v49)
-    let v52 : string = "v51.map_err(|x| v50(x))"
-    let v53 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v52
-    let v54 : string = "$0.unwrap()"
-    let v55 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v53 v54
-    let v56 : string = method12()
-    let v57 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
-    let v58 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v56 v57
-    let v59 : pyo3_Bound<pyo3_types_PyModule> = method13(v55)
-    let v60 : string = "v59.getattr(v58)"
-    let v61 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v60
-    let v62 : (pyo3_PyErr -> std_string_String) = method14()
-    let v63 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = method15(v61)
-    let v64 : string = "v63.map_err(|x| v62(x))"
-    let v65 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v64
-    let v66 : string = "$0.unwrap()"
-    let v67 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v65 v66
-    let v68 : (bool * (float * float)) = method16(v44)
-    let v69 : pyo3_Bound<pyo3_PyAny> = method17(v67)
-    let v70 : string = "pyo3::prelude::PyAnyMethods::call(&v69, ((*v68).0, *(*v68).1), None)"
-    let v71 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v70
-    let v72 : (pyo3_PyErr -> std_string_String) = method18()
-    let v73 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = method15(v71)
-    let v74 : string = "v73.map_err(|x| v72(x))"
-    let v75 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v74
-    let v76 : string = "v75?"
-    let v77 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr () v76
-    let v78 : pyo3_Bound<pyo3_PyAny> = method19(v77)
-    let v79 : string = "v78.extract()"
-    let v80 : Result<struct (float * float), pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v79
-    let v81 : (pyo3_PyErr -> std_string_String) = method20()
-    let v82 : Result<struct (float * float), pyo3_PyErr> = method21(v80)
-    let v83 : string = "v82.map_err(|x| v81(x))"
-    let v84 : Result<struct (float * float), std_string_String> = Fable.Core.RustInterop.emitRustExpr () v83
-    let v85 : string = "v84?"
-    let struct (v86 : float, v87 : float) = Fable.Core.RustInterop.emitRustExpr () v85
-    let v88 : string = "num_complex::Complex::new($0, $1)"
-    let v89 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v86, v87) v88
-    let v90 : Result<num_complex_Complex<float>, std_string_String> = Ok v89
-    v90
-and method23 (v0 : Mut0) : bool =
+    let v51 : string = "$0.map_err(|x| $1(x))"
+    let v52 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v49, v50) v51
+    let v53 : string = "$0.unwrap()"
+    let v54 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v52 v53
+    let v55 : string = method11()
+    let v56 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v57 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v55 v56
+    let v58 : pyo3_Bound<pyo3_types_PyModule> = method12(v54)
+    let v59 : string = "v58.getattr(v57)"
+    let v60 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v59
+    let v61 : (pyo3_PyErr -> std_string_String) = method13()
+    let v62 : string = "$0.map_err(|x| $1(x))"
+    let v63 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v60, v61) v62
+    let v64 : string = "$0.unwrap()"
+    let v65 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v63 v64
+    let v66 : (bool * (float * float)) = method14(v44)
+    let v67 : pyo3_Bound<pyo3_PyAny> = method15(v65)
+    let v68 : string = "pyo3::prelude::PyAnyMethods::call(&v67, ((*v66).0, *(*v66).1), None)"
+    let v69 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v68
+    let v70 : (pyo3_PyErr -> std_string_String) = method16()
+    let v71 : string = "$0.map_err(|x| $1(x))"
+    let v72 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v69, v70) v71
+    let v73 : string = "$0?"
+    let v74 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v72 v73
+    let v75 : pyo3_Bound<pyo3_PyAny> = method17(v74)
+    let v76 : string = "v75.extract()"
+    let v77 : Result<struct (float * float), pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v76
+    let v78 : (pyo3_PyErr -> std_string_String) = method18()
+    let v79 : string = "$0.map_err(|x| $1(x))"
+    let v80 : Result<struct (float * float), std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v77, v78) v79
+    let v81 : string = "$0?"
+    let struct (v82 : float, v83 : float) = Fable.Core.RustInterop.emitRustExpr v80 v81
+    let v84 : string = "num_complex::Complex::new($0, $1)"
+    let v85 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v82, v83) v84
+    let v86 : Result<num_complex_Complex<float>, std_string_String> = Ok v85
+    v86
+and method20 (v0 : Mut0) : bool =
     let v1 : int32 = v0.l0
     let v2 : bool = v1 < 10000
     v2
-and method24 (v0 : int32, v1 : Mut2) : bool =
+and method21 (v0 : int32, v1 : Mut2) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and method25 (v0 : num_complex_Complex<float>) : num_complex_Complex<float> =
+and method22 (v0 : num_complex_Complex<float>) : num_complex_Complex<float> =
     v0
-and method26 (v0 : num_complex_Complex<float>) : num_complex_Complex<float> =
+and method23 (v0 : num_complex_Complex<float>) : num_complex_Complex<float> =
     v0
-and method27 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : Result<num_complex_Complex<float>, std_string_String> =
+and method24 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : Result<num_complex_Complex<float>, std_string_String> =
     let v3 : string = $"import sys"
     let v4 : string = $"import traceback"
     let v5 : string = $"import re"
@@ -271,51 +261,47 @@ and method27 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let v48 : string = "pyo3::types::PyModule::from_code_bound(v45, v47, \"\", \"\")"
     let v49 : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v48
     let v50 : (pyo3_PyErr -> std_string_String) = method10()
-    let v51 : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr> = method11(v49)
-    let v52 : string = "v51.map_err(|x| v50(x))"
-    let v53 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v52
-    let v54 : string = "$0.unwrap()"
-    let v55 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v53 v54
-    let v56 : string = method12()
-    let v57 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
-    let v58 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v56 v57
-    let v59 : pyo3_Bound<pyo3_types_PyModule> = method13(v55)
-    let v60 : string = "v59.getattr(v58)"
-    let v61 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v60
-    let v62 : (pyo3_PyErr -> std_string_String) = method14()
-    let v63 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = method15(v61)
-    let v64 : string = "v63.map_err(|x| v62(x))"
-    let v65 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v64
-    let v66 : string = "$0.unwrap()"
-    let v67 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v65 v66
-    let v68 : (bool * (float * float)) = method16(v44)
-    let v69 : pyo3_Bound<pyo3_PyAny> = method17(v67)
-    let v70 : string = "pyo3::prelude::PyAnyMethods::call(&v69, ((*v68).0, *(*v68).1), None)"
-    let v71 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v70
-    let v72 : (pyo3_PyErr -> std_string_String) = method18()
-    let v73 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = method15(v71)
-    let v74 : string = "v73.map_err(|x| v72(x))"
-    let v75 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v74
-    let v76 : string = "v75?"
-    let v77 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr () v76
-    let v78 : pyo3_Bound<pyo3_PyAny> = method19(v77)
-    let v79 : string = "v78.extract()"
-    let v80 : Result<struct (float * float), pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v79
-    let v81 : (pyo3_PyErr -> std_string_String) = method20()
-    let v82 : Result<struct (float * float), pyo3_PyErr> = method21(v80)
-    let v83 : string = "v82.map_err(|x| v81(x))"
-    let v84 : Result<struct (float * float), std_string_String> = Fable.Core.RustInterop.emitRustExpr () v83
-    let v85 : string = "v84?"
-    let struct (v86 : float, v87 : float) = Fable.Core.RustInterop.emitRustExpr () v85
-    let v88 : string = "num_complex::Complex::new($0, $1)"
-    let v89 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v86, v87) v88
-    let v90 : Result<num_complex_Complex<float>, std_string_String> = Ok v89
-    v90
+    let v51 : string = "$0.map_err(|x| $1(x))"
+    let v52 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v49, v50) v51
+    let v53 : string = "$0.unwrap()"
+    let v54 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v52 v53
+    let v55 : string = method11()
+    let v56 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v57 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v55 v56
+    let v58 : pyo3_Bound<pyo3_types_PyModule> = method12(v54)
+    let v59 : string = "v58.getattr(v57)"
+    let v60 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v59
+    let v61 : (pyo3_PyErr -> std_string_String) = method13()
+    let v62 : string = "$0.map_err(|x| $1(x))"
+    let v63 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v60, v61) v62
+    let v64 : string = "$0.unwrap()"
+    let v65 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v63 v64
+    let v66 : (bool * (float * float)) = method14(v44)
+    let v67 : pyo3_Bound<pyo3_PyAny> = method15(v65)
+    let v68 : string = "pyo3::prelude::PyAnyMethods::call(&v67, ((*v66).0, *(*v66).1), None)"
+    let v69 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v68
+    let v70 : (pyo3_PyErr -> std_string_String) = method16()
+    let v71 : string = "$0.map_err(|x| $1(x))"
+    let v72 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v69, v70) v71
+    let v73 : string = "$0?"
+    let v74 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v72 v73
+    let v75 : pyo3_Bound<pyo3_PyAny> = method17(v74)
+    let v76 : string = "v75.extract()"
+    let v77 : Result<struct (float * float), pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v76
+    let v78 : (pyo3_PyErr -> std_string_String) = method18()
+    let v79 : string = "$0.map_err(|x| $1(x))"
+    let v80 : Result<struct (float * float), std_string_String> = Fable.Core.RustInterop.emitRustExpr struct (v77, v78) v79
+    let v81 : string = "$0?"
+    let struct (v82 : float, v83 : float) = Fable.Core.RustInterop.emitRustExpr v80 v81
+    let v84 : string = "num_complex::Complex::new($0, $1)"
+    let v85 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v82, v83) v84
+    let v86 : Result<num_complex_Complex<float>, std_string_String> = Ok v85
+    v86
 and closure5 () (v0 : num_complex_Complex<float>) : US0 =
     US0_0(v0)
-and method28 () : (num_complex_Complex<float> -> US0) =
+and method25 () : (num_complex_Complex<float> -> US0) =
     closure5()
-and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_Complex<float> =
+and method19 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_Complex<float> =
     let v2 : string = "println!(\"zeta / count: {:?} / s: {:?}\", 0, $0)"
     Fable.Core.RustInterop.emitRustExpr v1 v2
     let v3 : num_complex_Complex<float> = method7(v1)
@@ -327,7 +313,7 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
         let v8 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v7
         let v9 : (int32 []) = Array.zeroCreate<int32> (10000)
         let v10 : Mut0 = {l0 = 0} : Mut0
-        while method23(v10) do
+        while method20(v10) do
             let v12 : int32 = v10.l0
             v9.[int v12] <- v12
             let v13 : int32 = v12 + 1
@@ -335,7 +321,7 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
             ()
         let v14 : int32 = v9.Length
         let v15 : Mut2 = {l0 = 0; l1 = v8} : Mut2
-        while method24(v14, v15) do
+        while method21(v14, v15) do
             let v17 : int32 = v15.l0
             let v18 : num_complex_Complex<float> = v15.l1
             let v19 : int32 = v9.[int v17]
@@ -344,8 +330,8 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
             let v22 : float = float v19
             let v23 : string = "num_complex::Complex::new($0, $1)"
             let v24 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v22, 0.0) v23
-            let v25 : num_complex_Complex<float> = method25(v24)
-            let v26 : num_complex_Complex<float> = method26(v1)
+            let v25 : num_complex_Complex<float> = method22(v24)
+            let v26 : num_complex_Complex<float> = method23(v1)
             let v27 : string = "num_complex::Complex::powc(v25, v26)"
             let v28 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v27
             let v29 : string = "v21 / v28"
@@ -365,10 +351,10 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
         let v38 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v36, v1) v37
         let v39 : string = $"        s = mpmath.gamma(s)"
         let v40 : num_complex_Complex<float> = method3(v38)
-        let v41 : Result<num_complex_Complex<float>, std_string_String> = method27(v0, v39, v40)
+        let v41 : Result<num_complex_Complex<float>, std_string_String> = method24(v0, v39, v40)
         let v42 : string = "v41.ok()"
         let v43 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v42
-        let v44 : (num_complex_Complex<float> -> US0) = method28()
+        let v44 : (num_complex_Complex<float> -> US0) = method25()
         let v45 : US0 = US0_1
         let v46 : US0 = v43 |> Option.map v44 |> Option.defaultValue v45 
         let v47 : string = "f64::NAN"
@@ -424,7 +410,7 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                     let v88 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v87
                     let v89 : (int32 []) = Array.zeroCreate<int32> (10000)
                     let v90 : Mut0 = {l0 = 0} : Mut0
-                    while method23(v90) do
+                    while method20(v90) do
                         let v92 : int32 = v90.l0
                         v89.[int v92] <- v92
                         let v93 : int32 = v92 + 1
@@ -432,7 +418,7 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                         ()
                     let v94 : int32 = v89.Length
                     let v95 : Mut2 = {l0 = 0; l1 = v88} : Mut2
-                    while method24(v94, v95) do
+                    while method21(v94, v95) do
                         let v97 : int32 = v95.l0
                         let v98 : num_complex_Complex<float> = v95.l1
                         let v99 : int32 = v89.[int v97]
@@ -441,8 +427,8 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                         let v102 : float = float v99
                         let v103 : string = "num_complex::Complex::new($0, $1)"
                         let v104 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v102, 0.0) v103
-                        let v105 : num_complex_Complex<float> = method25(v104)
-                        let v106 : num_complex_Complex<float> = method26(v75)
+                        let v105 : num_complex_Complex<float> = method22(v104)
+                        let v106 : num_complex_Complex<float> = method23(v75)
                         let v107 : string = "num_complex::Complex::powc(v105, v106)"
                         let v108 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v107
                         let v109 : string = "v101 / v108"
@@ -462,10 +448,10 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                     let v118 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v116, v75) v117
                     let v119 : string = $"        s = mpmath.gamma(s)"
                     let v120 : num_complex_Complex<float> = method3(v118)
-                    let v121 : Result<num_complex_Complex<float>, std_string_String> = method27(v0, v119, v120)
+                    let v121 : Result<num_complex_Complex<float>, std_string_String> = method24(v0, v119, v120)
                     let v122 : string = "v121.ok()"
                     let v123 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v122
-                    let v124 : (num_complex_Complex<float> -> US0) = method28()
+                    let v124 : (num_complex_Complex<float> -> US0) = method25()
                     let v125 : US0 = US0_1
                     let v126 : US0 = v123 |> Option.map v124 |> Option.defaultValue v125 
                     let v127 : string = "f64::NAN"
@@ -521,7 +507,7 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                 let v168 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v167
                                 let v169 : (int32 []) = Array.zeroCreate<int32> (10000)
                                 let v170 : Mut0 = {l0 = 0} : Mut0
-                                while method23(v170) do
+                                while method20(v170) do
                                     let v172 : int32 = v170.l0
                                     v169.[int v172] <- v172
                                     let v173 : int32 = v172 + 1
@@ -529,7 +515,7 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                     ()
                                 let v174 : int32 = v169.Length
                                 let v175 : Mut2 = {l0 = 0; l1 = v168} : Mut2
-                                while method24(v174, v175) do
+                                while method21(v174, v175) do
                                     let v177 : int32 = v175.l0
                                     let v178 : num_complex_Complex<float> = v175.l1
                                     let v179 : int32 = v169.[int v177]
@@ -538,8 +524,8 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                     let v182 : float = float v179
                                     let v183 : string = "num_complex::Complex::new($0, $1)"
                                     let v184 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v182, 0.0) v183
-                                    let v185 : num_complex_Complex<float> = method25(v184)
-                                    let v186 : num_complex_Complex<float> = method26(v155)
+                                    let v185 : num_complex_Complex<float> = method22(v184)
+                                    let v186 : num_complex_Complex<float> = method23(v155)
                                     let v187 : string = "num_complex::Complex::powc(v185, v186)"
                                     let v188 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v187
                                     let v189 : string = "v181 / v188"
@@ -559,10 +545,10 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                 let v198 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v196, v155) v197
                                 let v199 : string = $"        s = mpmath.gamma(s)"
                                 let v200 : num_complex_Complex<float> = method3(v198)
-                                let v201 : Result<num_complex_Complex<float>, std_string_String> = method27(v0, v199, v200)
+                                let v201 : Result<num_complex_Complex<float>, std_string_String> = method24(v0, v199, v200)
                                 let v202 : string = "v201.ok()"
                                 let v203 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v202
-                                let v204 : (num_complex_Complex<float> -> US0) = method28()
+                                let v204 : (num_complex_Complex<float> -> US0) = method25()
                                 let v205 : US0 = US0_1
                                 let v206 : US0 = v203 |> Option.map v204 |> Option.defaultValue v205 
                                 let v207 : string = "f64::NAN"
@@ -618,7 +604,7 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                             let v248 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v247
                                             let v249 : (int32 []) = Array.zeroCreate<int32> (10000)
                                             let v250 : Mut0 = {l0 = 0} : Mut0
-                                            while method23(v250) do
+                                            while method20(v250) do
                                                 let v252 : int32 = v250.l0
                                                 v249.[int v252] <- v252
                                                 let v253 : int32 = v252 + 1
@@ -626,7 +612,7 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                                 ()
                                             let v254 : int32 = v249.Length
                                             let v255 : Mut2 = {l0 = 0; l1 = v248} : Mut2
-                                            while method24(v254, v255) do
+                                            while method21(v254, v255) do
                                                 let v257 : int32 = v255.l0
                                                 let v258 : num_complex_Complex<float> = v255.l1
                                                 let v259 : int32 = v249.[int v257]
@@ -635,8 +621,8 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                                 let v262 : float = float v259
                                                 let v263 : string = "num_complex::Complex::new($0, $1)"
                                                 let v264 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v262, 0.0) v263
-                                                let v265 : num_complex_Complex<float> = method25(v264)
-                                                let v266 : num_complex_Complex<float> = method26(v235)
+                                                let v265 : num_complex_Complex<float> = method22(v264)
+                                                let v266 : num_complex_Complex<float> = method23(v235)
                                                 let v267 : string = "num_complex::Complex::powc(v265, v266)"
                                                 let v268 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v267
                                                 let v269 : string = "v261 / v268"
@@ -656,10 +642,10 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                             let v278 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v276, v235) v277
                                             let v279 : string = $"        s = mpmath.gamma(s)"
                                             let v280 : num_complex_Complex<float> = method3(v278)
-                                            let v281 : Result<num_complex_Complex<float>, std_string_String> = method27(v0, v279, v280)
+                                            let v281 : Result<num_complex_Complex<float>, std_string_String> = method24(v0, v279, v280)
                                             let v282 : string = "v281.ok()"
                                             let v283 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v282
-                                            let v284 : (num_complex_Complex<float> -> US0) = method28()
+                                            let v284 : (num_complex_Complex<float> -> US0) = method25()
                                             let v285 : US0 = US0_1
                                             let v286 : US0 = v283 |> Option.map v284 |> Option.defaultValue v285 
                                             let v287 : string = "f64::NAN"
@@ -715,7 +701,7 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                                         let v328 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v327
                                                         let v329 : (int32 []) = Array.zeroCreate<int32> (10000)
                                                         let v330 : Mut0 = {l0 = 0} : Mut0
-                                                        while method23(v330) do
+                                                        while method20(v330) do
                                                             let v332 : int32 = v330.l0
                                                             v329.[int v332] <- v332
                                                             let v333 : int32 = v332 + 1
@@ -723,7 +709,7 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                                             ()
                                                         let v334 : int32 = v329.Length
                                                         let v335 : Mut2 = {l0 = 0; l1 = v328} : Mut2
-                                                        while method24(v334, v335) do
+                                                        while method21(v334, v335) do
                                                             let v337 : int32 = v335.l0
                                                             let v338 : num_complex_Complex<float> = v335.l1
                                                             let v339 : int32 = v329.[int v337]
@@ -732,8 +718,8 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                                             let v342 : float = float v339
                                                             let v343 : string = "num_complex::Complex::new($0, $1)"
                                                             let v344 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v342, 0.0) v343
-                                                            let v345 : num_complex_Complex<float> = method25(v344)
-                                                            let v346 : num_complex_Complex<float> = method26(v315)
+                                                            let v345 : num_complex_Complex<float> = method22(v344)
+                                                            let v346 : num_complex_Complex<float> = method23(v315)
                                                             let v347 : string = "num_complex::Complex::powc(v345, v346)"
                                                             let v348 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v347
                                                             let v349 : string = "v341 / v348"
@@ -753,10 +739,10 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                                         let v358 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v356, v315) v357
                                                         let v359 : string = $"        s = mpmath.gamma(s)"
                                                         let v360 : num_complex_Complex<float> = method3(v358)
-                                                        let v361 : Result<num_complex_Complex<float>, std_string_String> = method27(v0, v359, v360)
+                                                        let v361 : Result<num_complex_Complex<float>, std_string_String> = method24(v0, v359, v360)
                                                         let v362 : string = "v361.ok()"
                                                         let v363 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v362
-                                                        let v364 : (num_complex_Complex<float> -> US0) = method28()
+                                                        let v364 : (num_complex_Complex<float> -> US0) = method25()
                                                         let v365 : US0 = US0_1
                                                         let v366 : US0 = v363 |> Option.map v364 |> Option.defaultValue v365 
                                                         let v367 : string = "f64::NAN"
@@ -806,8 +792,8 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                                         let v404 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v403
                                                         let v405 : string = "num_complex::Complex::new($0, $1)"
                                                         let v406 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v405
-                                                        let v407 : num_complex_Complex<float> = method25(v406)
-                                                        let v408 : num_complex_Complex<float> = method26(v315)
+                                                        let v407 : num_complex_Complex<float> = method22(v406)
+                                                        let v408 : num_complex_Complex<float> = method23(v315)
                                                         let v409 : string = "num_complex::Complex::powc(v407, v408)"
                                                         let v410 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v409
                                                         let v411 : string = "$0 * $1"
@@ -823,8 +809,8 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                             let v422 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v421
                                             let v423 : string = "num_complex::Complex::new($0, $1)"
                                             let v424 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v423
-                                            let v425 : num_complex_Complex<float> = method25(v424)
-                                            let v426 : num_complex_Complex<float> = method26(v235)
+                                            let v425 : num_complex_Complex<float> = method22(v424)
+                                            let v426 : num_complex_Complex<float> = method23(v235)
                                             let v427 : string = "num_complex::Complex::powc(v425, v426)"
                                             let v428 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v427
                                             let v429 : string = "$0 * $1"
@@ -840,8 +826,8 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                 let v440 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v439
                                 let v441 : string = "num_complex::Complex::new($0, $1)"
                                 let v442 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v441
-                                let v443 : num_complex_Complex<float> = method25(v442)
-                                let v444 : num_complex_Complex<float> = method26(v155)
+                                let v443 : num_complex_Complex<float> = method22(v442)
+                                let v444 : num_complex_Complex<float> = method23(v155)
                                 let v445 : string = "num_complex::Complex::powc(v443, v444)"
                                 let v446 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v445
                                 let v447 : string = "$0 * $1"
@@ -857,8 +843,8 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                     let v458 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v457
                     let v459 : string = "num_complex::Complex::new($0, $1)"
                     let v460 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v459
-                    let v461 : num_complex_Complex<float> = method25(v460)
-                    let v462 : num_complex_Complex<float> = method26(v75)
+                    let v461 : num_complex_Complex<float> = method22(v460)
+                    let v462 : num_complex_Complex<float> = method23(v75)
                     let v463 : string = "num_complex::Complex::powc(v461, v462)"
                     let v464 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v463
                     let v465 : string = "$0 * $1"
@@ -874,8 +860,8 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
         let v476 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v475
         let v477 : string = "num_complex::Complex::new($0, $1)"
         let v478 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v477
-        let v479 : num_complex_Complex<float> = method25(v478)
-        let v480 : num_complex_Complex<float> = method26(v1)
+        let v479 : num_complex_Complex<float> = method22(v478)
+        let v480 : num_complex_Complex<float> = method23(v1)
         let v481 : string = "num_complex::Complex::powc(v479, v480)"
         let v482 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v481
         let v483 : string = "$0 * $1"
@@ -887,7 +873,7 @@ and method22 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
         let v489 : string = "$0 * $1"
         let v490 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v488, v474) v489
         v490
-and method29 (v0 : bool) : bool =
+and method26 (v0 : bool) : bool =
     v0
 and method1 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -903,10 +889,10 @@ and method1 (v0 : pyo3_Python) : unit =
         let v12 : string = $"        s = mpmath.zeta(s)"
         let v13 : num_complex_Complex<float> = method3(v10)
         let v14 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v12, v13)
-        let v15 : num_complex_Complex<float> = method22(v0, v10)
+        let v15 : num_complex_Complex<float> = method19(v0, v10)
         let v16 : string = "v14.ok()"
         let v17 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v16
-        let v18 : (num_complex_Complex<float> -> US0) = method28()
+        let v18 : (num_complex_Complex<float> -> US0) = method25()
         let v19 : US0 = US0_1
         let v20 : US0 = v17 |> Option.map v18 |> Option.defaultValue v19 
         let v21 : string = "f64::NAN"
@@ -931,7 +917,7 @@ and method1 (v0 : pyo3_Python) : unit =
             if v34 then
                 true
             else
-                method29(v34)
+                method26(v34)
         let v37 : string = $"__expect / actual: %A{v32} / expected: %A{0.0}"
         let v38 : bool = v36 = false
         if v38 then
@@ -954,7 +940,7 @@ and method1 (v0 : pyo3_Python) : unit =
             if v47 then
                 true
             else
-                method29(v47)
+                method26(v47)
         let v50 : string = $"__expect / actual: %A{v45} / expected: %A{0.0001}"
         let v51 : bool = v49 = false
         if v51 then
@@ -963,7 +949,7 @@ and method1 (v0 : pyo3_Python) : unit =
         v7.l0 <- v52
         ()
     ()
-and method30 (v0 : Result<unit, pyo3_PyErr>) : Result<unit, pyo3_PyErr> =
+and method27 (v0 : Result<unit, pyo3_PyErr>) : Result<unit, pyo3_PyErr> =
     v0
 and method0 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
@@ -974,7 +960,7 @@ and method0 () : unit =
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2
     method1(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
-    let v5 : Result<unit, pyo3_PyErr> = method30(v4)
+    let v5 : Result<unit, pyo3_PyErr> = method27(v4)
     let v6 : string = "v5 }})"
     Fable.Core.RustInterop.emitRustExpr () v6
     let v7 : string = "{ //"
@@ -984,16 +970,16 @@ and method0 () : unit =
     let v10 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v9 v10
     ()
-and method32 (v0 : pyo3_Python) : unit =
+and method29 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, -2.0) v1
     let v3 : string = $"        s = mpmath.zeta(s)"
     let v4 : num_complex_Complex<float> = method3(v2)
     let v5 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v3, v4)
-    let v6 : num_complex_Complex<float> = method22(v0, v2)
+    let v6 : num_complex_Complex<float> = method19(v0, v2)
     let v7 : string = "v5.ok()"
     let v8 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v7
-    let v9 : (num_complex_Complex<float> -> US0) = method28()
+    let v9 : (num_complex_Complex<float> -> US0) = method25()
     let v10 : US0 = US0_1
     let v11 : US0 = v8 |> Option.map v9 |> Option.defaultValue v10 
     let v12 : string = "f64::NAN"
@@ -1026,7 +1012,7 @@ and method32 (v0 : pyo3_Python) : unit =
         if v29 then
             true
         else
-            method29(v29)
+            method26(v29)
     let v32 : string = $"__expect / actual: %A{v27} / expected: %A{0.001}"
     let v33 : bool = v31 = false
     if v33 then
@@ -1049,21 +1035,21 @@ and method32 (v0 : pyo3_Python) : unit =
         if v42 then
             true
         else
-            method29(v42)
+            method26(v42)
     let v45 : string = $"__expect / actual: %A{v40} / expected: %A{0.001}"
     let v46 : bool = v44 = false
     if v46 then
         failwith<unit> v45
-and method31 () : unit =
+and method28 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
     let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2
-    method32(v3)
+    method29(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
-    let v5 : Result<unit, pyo3_PyErr> = method30(v4)
+    let v5 : Result<unit, pyo3_PyErr> = method27(v4)
     let v6 : string = "v5 }})"
     Fable.Core.RustInterop.emitRustExpr () v6
     let v7 : string = "{ //"
@@ -1073,7 +1059,7 @@ and method31 () : unit =
     let v10 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v9 v10
     ()
-and method35 () : UH0 =
+and method32 () : UH0 =
     let v0 : UH0 = UH0_0
     let v1 : UH0 = UH0_1(-40.0, v0)
     let v2 : UH0 = UH0_1(-38.0, v1)
@@ -1095,7 +1081,7 @@ and method35 () : UH0 =
     let v18 : UH0 = UH0_1(-6.0, v17)
     let v19 : UH0 = UH0_1(-4.0, v18)
     UH0_1(-2.0, v19)
-and method36 (v0 : pyo3_Python, v1 : UH0) : unit =
+and method33 (v0 : pyo3_Python, v1 : UH0) : unit =
     match v1 with
     | UH0_1(v2, v3) -> (* Cons *)
         let v4 : string = "num_complex::Complex::new($0, $1)"
@@ -1103,10 +1089,10 @@ and method36 (v0 : pyo3_Python, v1 : UH0) : unit =
         let v6 : string = $"        s = mpmath.zeta(s)"
         let v7 : num_complex_Complex<float> = method3(v5)
         let v8 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v6, v7)
-        let v9 : num_complex_Complex<float> = method22(v0, v5)
+        let v9 : num_complex_Complex<float> = method19(v0, v5)
         let v10 : string = "v8.ok()"
         let v11 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v10
-        let v12 : (num_complex_Complex<float> -> US0) = method28()
+        let v12 : (num_complex_Complex<float> -> US0) = method25()
         let v13 : US0 = US0_1
         let v14 : US0 = v11 |> Option.map v12 |> Option.defaultValue v13 
         let v15 : string = "f64::NAN"
@@ -1131,7 +1117,7 @@ and method36 (v0 : pyo3_Python, v1 : UH0) : unit =
             if v28 then
                 true
             else
-                method29(v28)
+                method26(v28)
         let v31 : string = $"__expect / actual: %A{v26} / expected: %A{0.0}"
         let v32 : bool = v30 = false
         if v32 then
@@ -1146,27 +1132,27 @@ and method36 (v0 : pyo3_Python, v1 : UH0) : unit =
             if v37 then
                 true
             else
-                method29(v37)
+                method26(v37)
         let v40 : string = $"__expect / actual: %A{v35} / expected: %A{0.0}"
         let v41 : bool = v39 = false
         if v41 then
             failwith<unit> v40
-        method36(v0, v3)
+        method33(v0, v3)
     | UH0_0 -> (* Nil *)
         ()
-and method34 (v0 : pyo3_Python) : unit =
-    let v1 : UH0 = method35()
-    method36(v0, v1)
-and method33 () : unit =
+and method31 (v0 : pyo3_Python) : unit =
+    let v1 : UH0 = method32()
+    method33(v0, v1)
+and method30 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
     let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2
-    method34(v3)
+    method31(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
-    let v5 : Result<unit, pyo3_PyErr> = method30(v4)
+    let v5 : Result<unit, pyo3_PyErr> = method27(v4)
     let v6 : string = "v5 }})"
     Fable.Core.RustInterop.emitRustExpr () v6
     let v7 : string = "{ //"
@@ -1176,7 +1162,7 @@ and method33 () : unit =
     let v10 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v9 v10
     ()
-and method38 (v0 : pyo3_Python) : unit =
+and method35 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.5, 14.134725) v1
     let v3 : string = "num_complex::Complex::new($0, $1)"
@@ -1198,10 +1184,10 @@ and method38 (v0 : pyo3_Python) : unit =
         let v19 : string = $"        s = mpmath.zeta(s)"
         let v20 : num_complex_Complex<float> = method3(v18)
         let v21 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v19, v20)
-        let v22 : num_complex_Complex<float> = method22(v0, v18)
+        let v22 : num_complex_Complex<float> = method19(v0, v18)
         let v23 : string = "v21.ok()"
         let v24 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v23
-        let v25 : (num_complex_Complex<float> -> US0) = method28()
+        let v25 : (num_complex_Complex<float> -> US0) = method25()
         let v26 : US0 = US0_1
         let v27 : US0 = v24 |> Option.map v25 |> Option.defaultValue v26 
         let v28 : string = "f64::NAN"
@@ -1233,7 +1219,7 @@ and method38 (v0 : pyo3_Python) : unit =
             if v44 then
                 true
             else
-                method29(v44)
+                method26(v44)
         let v47 : string = $"__expect / actual: %A{v42} / expected: %A{0.0001}"
         let v48 : bool = v46 = false
         if v48 then
@@ -1255,7 +1241,7 @@ and method38 (v0 : pyo3_Python) : unit =
             if v56 then
                 true
             else
-                method29(v56)
+                method26(v56)
         let v59 : string = $"__expect / actual: %A{v54} / expected: %A{0.0001}"
         let v60 : bool = v58 = false
         if v60 then
@@ -1264,16 +1250,16 @@ and method38 (v0 : pyo3_Python) : unit =
         v15.l0 <- v61
         ()
     ()
-and method37 () : unit =
+and method34 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
     let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2
-    method38(v3)
+    method35(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
-    let v5 : Result<unit, pyo3_PyErr> = method30(v4)
+    let v5 : Result<unit, pyo3_PyErr> = method27(v4)
     let v6 : string = "v5 }})"
     Fable.Core.RustInterop.emitRustExpr () v6
     let v7 : string = "{ //"
@@ -1283,7 +1269,7 @@ and method37 () : unit =
     let v10 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v9 v10
     ()
-and method40 (v0 : pyo3_Python) : unit =
+and method37 (v0 : pyo3_Python) : unit =
     let v1 : (float []) = [|2.0; 3.0; 4.0; 5.0; 10.0; 20.0; 50.0|]
     let v2 : int32 = v1.Length
     let v3 : Mut0 = {l0 = 0} : Mut0
@@ -1295,10 +1281,10 @@ and method40 (v0 : pyo3_Python) : unit =
         let v9 : string = $"        s = mpmath.zeta(s)"
         let v10 : num_complex_Complex<float> = method3(v8)
         let v11 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v9, v10)
-        let v12 : num_complex_Complex<float> = method22(v0, v8)
+        let v12 : num_complex_Complex<float> = method19(v0, v8)
         let v13 : string = "v11.ok()"
         let v14 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v13
-        let v15 : (num_complex_Complex<float> -> US0) = method28()
+        let v15 : (num_complex_Complex<float> -> US0) = method25()
         let v16 : US0 = US0_1
         let v17 : US0 = v14 |> Option.map v15 |> Option.defaultValue v16 
         let v18 : string = "f64::NAN"
@@ -1323,7 +1309,7 @@ and method40 (v0 : pyo3_Python) : unit =
             if v31 then
                 true
             else
-                method29(v31)
+                method26(v31)
         let v34 : string = $"__expect / actual: %A{v29} / expected: %A{0.0}"
         let v35 : bool = v33 = false
         if v35 then
@@ -1338,7 +1324,7 @@ and method40 (v0 : pyo3_Python) : unit =
             if v40 then
                 true
             else
-                method29(v40)
+                method26(v40)
         let v43 : string = $"__expect / actual: %A{v38} / expected: %A{0.0}"
         let v44 : bool = v42 = false
         if v44 then
@@ -1347,16 +1333,16 @@ and method40 (v0 : pyo3_Python) : unit =
         v3.l0 <- v45
         ()
     ()
-and method39 () : unit =
+and method36 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
     let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2
-    method40(v3)
+    method37(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
-    let v5 : Result<unit, pyo3_PyErr> = method30(v4)
+    let v5 : Result<unit, pyo3_PyErr> = method27(v4)
     let v6 : string = "v5 }})"
     Fable.Core.RustInterop.emitRustExpr () v6
     let v7 : string = "{ //"
@@ -1366,16 +1352,16 @@ and method39 () : unit =
     let v10 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v9 v10
     ()
-and method42 (v0 : pyo3_Python) : unit =
+and method39 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v1
     let v3 : string = $"        s = mpmath.zeta(s)"
     let v4 : num_complex_Complex<float> = method3(v2)
     let v5 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v3, v4)
-    let v6 : num_complex_Complex<float> = method22(v0, v2)
+    let v6 : num_complex_Complex<float> = method19(v0, v2)
     let v7 : string = "v5.ok()"
     let v8 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v7
-    let v9 : (num_complex_Complex<float> -> US0) = method28()
+    let v9 : (num_complex_Complex<float> -> US0) = method25()
     let v10 : US0 = US0_1
     let v11 : US0 = v8 |> Option.map v9 |> Option.defaultValue v10 
     let v12 : string = "f64::NAN"
@@ -1400,7 +1386,7 @@ and method42 (v0 : pyo3_Python) : unit =
         if v25 then
             true
         else
-            method29(v25)
+            method26(v25)
     let v28 : string = $"__expect / actual: %A{v23} / expected: %A{infinity}"
     let v29 : bool = v27 = false
     if v29 then
@@ -1415,21 +1401,21 @@ and method42 (v0 : pyo3_Python) : unit =
         if v34 then
             true
         else
-            method29(v34)
+            method26(v34)
     let v37 : string = $"__expect / actual: %A{v32} / expected: %A{0.0}"
     let v38 : bool = v36 = false
     if v38 then
         failwith<unit> v37
-and method41 () : unit =
+and method38 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
     let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2
-    method42(v3)
+    method39(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
-    let v5 : Result<unit, pyo3_PyErr> = method30(v4)
+    let v5 : Result<unit, pyo3_PyErr> = method27(v4)
     let v6 : string = "v5 }})"
     Fable.Core.RustInterop.emitRustExpr () v6
     let v7 : string = "{ //"
@@ -1439,16 +1425,16 @@ and method41 () : unit =
     let v10 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v9 v10
     ()
-and method44 (v0 : pyo3_Python) : unit =
+and method41 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 10.0) v1
     let v3 : string = $"        s = mpmath.zeta(s)"
     let v4 : num_complex_Complex<float> = method3(v2)
     let v5 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v3, v4)
-    let v6 : num_complex_Complex<float> = method22(v0, v2)
+    let v6 : num_complex_Complex<float> = method19(v0, v2)
     let v7 : string = "v5.ok()"
     let v8 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v7
-    let v9 : (num_complex_Complex<float> -> US0) = method28()
+    let v9 : (num_complex_Complex<float> -> US0) = method25()
     let v10 : US0 = US0_1
     let v11 : US0 = v8 |> Option.map v9 |> Option.defaultValue v10 
     let v12 : string = "f64::NAN"
@@ -1475,10 +1461,10 @@ and method44 (v0 : pyo3_Python) : unit =
     let v30 : string = $"        s = mpmath.zeta(s)"
     let v31 : num_complex_Complex<float> = method3(v29)
     let v32 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v30, v31)
-    let v33 : num_complex_Complex<float> = method22(v0, v29)
+    let v33 : num_complex_Complex<float> = method19(v0, v29)
     let v34 : string = "v32.ok()"
     let v35 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v34
-    let v36 : (num_complex_Complex<float> -> US0) = method28()
+    let v36 : (num_complex_Complex<float> -> US0) = method25()
     let v37 : US0 = US0_1
     let v38 : US0 = v35 |> Option.map v36 |> Option.defaultValue v37 
     let v39 : string = "f64::NAN"
@@ -1508,7 +1494,7 @@ and method44 (v0 : pyo3_Python) : unit =
         if v57 then
             true
         else
-            method29(v57)
+            method26(v57)
     let v60 : string = $"__expect / actual: %A{v52} / expected: %A{v55}"
     let v61 : bool = v59 = false
     if v61 then
@@ -1526,21 +1512,21 @@ and method44 (v0 : pyo3_Python) : unit =
         if v69 then
             true
         else
-            method29(v69)
+            method26(v69)
     let v72 : string = $"__expect / actual: %A{v64} / expected: %A{v67}"
     let v73 : bool = v71 = false
     if v73 then
         failwith<unit> v72
-and method43 () : unit =
+and method40 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
     let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2
-    method44(v3)
+    method41(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
-    let v5 : Result<unit, pyo3_PyErr> = method30(v4)
+    let v5 : Result<unit, pyo3_PyErr> = method27(v4)
     let v6 : string = "v5 }})"
     Fable.Core.RustInterop.emitRustExpr () v6
     let v7 : string = "{ //"
@@ -1550,16 +1536,16 @@ and method43 () : unit =
     let v10 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v9 v10
     ()
-and method46 (v0 : pyo3_Python) : unit =
+and method43 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.01, 0.01) v1
     let v3 : string = $"        s = mpmath.zeta(s)"
     let v4 : num_complex_Complex<float> = method3(v2)
     let v5 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v3, v4)
-    let v6 : num_complex_Complex<float> = method22(v0, v2)
+    let v6 : num_complex_Complex<float> = method19(v0, v2)
     let v7 : string = "v5.ok()"
     let v8 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v7
-    let v9 : (num_complex_Complex<float> -> US0) = method28()
+    let v9 : (num_complex_Complex<float> -> US0) = method25()
     let v10 : US0 = US0_1
     let v11 : US0 = v8 |> Option.map v9 |> Option.defaultValue v10 
     let v12 : string = "f64::NAN"
@@ -1584,7 +1570,7 @@ and method46 (v0 : pyo3_Python) : unit =
         if v25 then
             true
         else
-            method29(v25)
+            method26(v25)
     let v28 : string = $"__expect / actual: %A{v23} / expected: %A{infinity}"
     let v29 : bool = v27 = false
     if v29 then
@@ -1599,21 +1585,21 @@ and method46 (v0 : pyo3_Python) : unit =
         if v34 then
             true
         else
-            method29(v34)
+            method26(v34)
     let v37 : string = $"__expect / actual: %A{v32} / expected: %A{infinity}"
     let v38 : bool = v36 = false
     if v38 then
         failwith<unit> v37
-and method45 () : unit =
+and method42 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
     let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2
-    method46(v3)
+    method43(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
-    let v5 : Result<unit, pyo3_PyErr> = method30(v4)
+    let v5 : Result<unit, pyo3_PyErr> = method27(v4)
     let v6 : string = "v5 }})"
     Fable.Core.RustInterop.emitRustExpr () v6
     let v7 : string = "{ //"
@@ -1623,14 +1609,14 @@ and method45 () : unit =
     let v10 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v9 v10
     ()
-and method49 () : (float []) =
+and method46 () : (float []) =
     let v0 : (float []) = [|10.0; 20.0; 30.0; 40.0; 50.0; 60.0; 70.0; 80.0; 90.0; 100.0|]
     v0
-and method50 (v0 : bool) : bool =
+and method47 (v0 : bool) : bool =
     let v1 : bool = v0 = false
     v1
-and method48 (v0 : pyo3_Python) : unit =
-    let v1 : (float []) = method49()
+and method45 (v0 : pyo3_Python) : unit =
+    let v1 : (float []) = method46()
     let v2 : int32 = v1.Length
     let v3 : Mut0 = {l0 = 0} : Mut0
     while method2(v2, v3) do
@@ -1641,10 +1627,10 @@ and method48 (v0 : pyo3_Python) : unit =
         let v9 : string = $"        s = mpmath.zeta(s)"
         let v10 : num_complex_Complex<float> = method3(v8)
         let v11 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v9, v10)
-        let v12 : num_complex_Complex<float> = method22(v0, v8)
+        let v12 : num_complex_Complex<float> = method19(v0, v8)
         let v13 : string = "v11.ok()"
         let v14 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v13
-        let v15 : (num_complex_Complex<float> -> US0) = method28()
+        let v15 : (num_complex_Complex<float> -> US0) = method25()
         let v16 : US0 = US0_1
         let v17 : US0 = v14 |> Option.map v15 |> Option.defaultValue v16 
         let v18 : string = "f64::NAN"
@@ -1665,12 +1651,12 @@ and method48 (v0 : pyo3_Python) : unit =
         let v30 : string = $"%A{v29}"
         System.Console.WriteLine v30
         let v31 : bool = v29 = 0.0
-        let v32 : bool = method50(v31)
+        let v32 : bool = method47(v31)
         let v34 : bool =
             if v32 then
                 true
             else
-                method29(v32)
+                method26(v32)
         let v35 : string = $"__expect / actual: %A{v29} / expected: %A{0.0}"
         let v36 : bool = v34 = false
         if v36 then
@@ -1681,12 +1667,12 @@ and method48 (v0 : pyo3_Python) : unit =
         let v40 : string = $"%A{v39}"
         System.Console.WriteLine v40
         let v41 : bool = v39 = 0.0
-        let v42 : bool = method50(v41)
+        let v42 : bool = method47(v41)
         let v44 : bool =
             if v42 then
                 true
             else
-                method29(v42)
+                method26(v42)
         let v45 : string = $"__expect / actual: %A{v39} / expected: %A{0.0}"
         let v46 : bool = v44 = false
         if v46 then
@@ -1695,16 +1681,16 @@ and method48 (v0 : pyo3_Python) : unit =
         v3.l0 <- v47
         ()
     ()
-and method47 () : unit =
+and method44 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
     let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2
-    method48(v3)
+    method45(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
-    let v5 : Result<unit, pyo3_PyErr> = method30(v4)
+    let v5 : Result<unit, pyo3_PyErr> = method27(v4)
     let v6 : string = "v5 }})"
     Fable.Core.RustInterop.emitRustExpr () v6
     let v7 : string = "{ //"
@@ -1714,7 +1700,7 @@ and method47 () : unit =
     let v10 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v9 v10
     ()
-and method52 (v0 : pyo3_Python) : unit =
+and method49 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.5, 14.134725) v1
     let v3 : string = "num_complex::Complex::new($0, $1)"
@@ -1734,10 +1720,10 @@ and method52 (v0 : pyo3_Python) : unit =
         let v17 : string = $"        s = mpmath.zeta(s)"
         let v18 : num_complex_Complex<float> = method3(v16)
         let v19 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v17, v18)
-        let v20 : num_complex_Complex<float> = method22(v0, v16)
+        let v20 : num_complex_Complex<float> = method19(v0, v16)
         let v21 : string = "v19.ok()"
         let v22 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v21
-        let v23 : (num_complex_Complex<float> -> US0) = method28()
+        let v23 : (num_complex_Complex<float> -> US0) = method25()
         let v24 : US0 = US0_1
         let v25 : US0 = v22 |> Option.map v23 |> Option.defaultValue v24 
         let v26 : string = "f64::NAN"
@@ -1758,12 +1744,12 @@ and method52 (v0 : pyo3_Python) : unit =
         let v38 : string = $"%A{v37}"
         System.Console.WriteLine v38
         let v39 : bool = v37 = 0.0
-        let v40 : bool = method50(v39)
+        let v40 : bool = method47(v39)
         let v42 : bool =
             if v40 then
                 true
             else
-                method29(v40)
+                method26(v40)
         let v43 : string = $"__expect / actual: %A{v37} / expected: %A{0.0}"
         let v44 : bool = v42 = false
         if v44 then
@@ -1774,12 +1760,12 @@ and method52 (v0 : pyo3_Python) : unit =
         let v48 : string = $"%A{v47}"
         System.Console.WriteLine v48
         let v49 : bool = v47 = 0.0
-        let v50 : bool = method50(v49)
+        let v50 : bool = method47(v49)
         let v52 : bool =
             if v50 then
                 true
             else
-                method29(v50)
+                method26(v50)
         let v53 : string = $"__expect / actual: %A{v47} / expected: %A{0.0}"
         let v54 : bool = v52 = false
         if v54 then
@@ -1788,16 +1774,16 @@ and method52 (v0 : pyo3_Python) : unit =
         v13.l0 <- v55
         ()
     ()
-and method51 () : unit =
+and method48 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
     let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2
-    method52(v3)
+    method49(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
-    let v5 : Result<unit, pyo3_PyErr> = method30(v4)
+    let v5 : Result<unit, pyo3_PyErr> = method27(v4)
     let v6 : string = "v5 }})"
     Fable.Core.RustInterop.emitRustExpr () v6
     let v7 : string = "{ //"
@@ -1807,7 +1793,7 @@ and method51 () : unit =
     let v10 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v9 v10
     ()
-and method54 (v0 : pyo3_Python) : unit =
+and method51 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.0, 4.0) v1
     let v3 : string = "num_complex::Complex::new($0, $1)"
@@ -1825,10 +1811,10 @@ and method54 (v0 : pyo3_Python) : unit =
         let v15 : string = $"        s = mpmath.zeta(s)"
         let v16 : num_complex_Complex<float> = method3(v14)
         let v17 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v15, v16)
-        let v18 : num_complex_Complex<float> = method22(v0, v14)
+        let v18 : num_complex_Complex<float> = method19(v0, v14)
         let v19 : string = "v17.ok()"
         let v20 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v19
-        let v21 : (num_complex_Complex<float> -> US0) = method28()
+        let v21 : (num_complex_Complex<float> -> US0) = method25()
         let v22 : US0 = US0_1
         let v23 : US0 = v20 |> Option.map v21 |> Option.defaultValue v22 
         let v24 : string = "f64::NAN"
@@ -1845,8 +1831,8 @@ and method54 (v0 : pyo3_Python) : unit =
                 v30
         let v33 : string = "num_complex::Complex::new($0, $1)"
         let v34 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v33
-        let v35 : num_complex_Complex<float> = method25(v34)
-        let v36 : num_complex_Complex<float> = method26(v14)
+        let v35 : num_complex_Complex<float> = method22(v34)
+        let v36 : num_complex_Complex<float> = method23(v14)
         let v37 : string = "num_complex::Complex::powc(v35, v36)"
         let v38 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v37
         let v39 : string = "num_complex::Complex::new($0, $1)"
@@ -1855,8 +1841,8 @@ and method54 (v0 : pyo3_Python) : unit =
         let v42 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v41
         let v43 : string = "$0 - $1"
         let v44 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v14, v42) v43
-        let v45 : num_complex_Complex<float> = method25(v40)
-        let v46 : num_complex_Complex<float> = method26(v44)
+        let v45 : num_complex_Complex<float> = method22(v40)
+        let v46 : num_complex_Complex<float> = method23(v44)
         let v47 : string = "num_complex::Complex::powc(v45, v46)"
         let v48 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v47
         let v49 : string = "$0 * $1"
@@ -1879,10 +1865,10 @@ and method54 (v0 : pyo3_Python) : unit =
         let v66 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v64, v14) v65
         let v67 : string = $"        s = mpmath.gamma(s)"
         let v68 : num_complex_Complex<float> = method3(v66)
-        let v69 : Result<num_complex_Complex<float>, std_string_String> = method27(v0, v67, v68)
+        let v69 : Result<num_complex_Complex<float>, std_string_String> = method24(v0, v67, v68)
         let v70 : string = "v69.ok()"
         let v71 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v70
-        let v72 : (num_complex_Complex<float> -> US0) = method28()
+        let v72 : (num_complex_Complex<float> -> US0) = method25()
         let v73 : US0 = US0_1
         let v74 : US0 = v71 |> Option.map v72 |> Option.defaultValue v73 
         let v75 : string = "f64::NAN"
@@ -1912,10 +1898,10 @@ and method54 (v0 : pyo3_Python) : unit =
         let v96 : string = $"        s = mpmath.zeta(s)"
         let v97 : num_complex_Complex<float> = method3(v95)
         let v98 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v96, v97)
-        let v99 : num_complex_Complex<float> = method22(v0, v95)
+        let v99 : num_complex_Complex<float> = method19(v0, v95)
         let v100 : string = "v98.ok()"
         let v101 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v100
-        let v102 : (num_complex_Complex<float> -> US0) = method28()
+        let v102 : (num_complex_Complex<float> -> US0) = method25()
         let v103 : US0 = US0_1
         let v104 : US0 = v101 |> Option.map v102 |> Option.defaultValue v103 
         let v105 : string = "f64::NAN"
@@ -1953,7 +1939,7 @@ and method54 (v0 : pyo3_Python) : unit =
             if v127 then
                 true
             else
-                method29(v127)
+                method26(v127)
         let v130 : string = $"__expect / actual: %A{v125} / expected: %A{0.0001}"
         let v131 : bool = v129 = false
         if v131 then
@@ -1979,7 +1965,7 @@ and method54 (v0 : pyo3_Python) : unit =
             if v143 then
                 true
             else
-                method29(v143)
+                method26(v143)
         let v146 : string = $"__expect / actual: %A{v141} / expected: %A{0.0001}"
         let v147 : bool = v145 = false
         if v147 then
@@ -1988,16 +1974,16 @@ and method54 (v0 : pyo3_Python) : unit =
         v11.l0 <- v148
         ()
     ()
-and method53 () : unit =
+and method50 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
     let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2
-    method54(v3)
+    method51(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
-    let v5 : Result<unit, pyo3_PyErr> = method30(v4)
+    let v5 : Result<unit, pyo3_PyErr> = method27(v4)
     let v6 : string = "v5 }})"
     Fable.Core.RustInterop.emitRustExpr () v6
     let v7 : string = "{ //"
@@ -2007,11 +1993,11 @@ and method53 () : unit =
     let v10 : string = "$0.unwrap()"
     Fable.Core.RustInterop.emitRustExpr v9 v10
     ()
-and method57 (v0 : int32, v1 : Mut3) : bool =
+and method54 (v0 : int32, v1 : Mut3) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and method56 (v0 : pyo3_Python) : unit =
+and method53 (v0 : pyo3_Python) : unit =
     let v1 : (float []) = [|2.0; 2.5; 3.0; 3.5; 4.0; 4.5; 5.0|]
     let v2 : (float []) = [|2.0; 3.0; 5.0; 7.0; 11.0; 13.0; 17.0; 19.0; 23.0; 29.0; 31.0; 37.0; 41.0; 43.0; 47.0; 53.0; 59.0; 61.0; 67.0; 71.0|]
     let v3 : int32 = v1.Length
@@ -2023,7 +2009,7 @@ and method56 (v0 : pyo3_Python) : unit =
         let v9 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v7, 0.0) v8
         let v10 : int32 = v2.Length
         let v11 : Mut3 = {l0 = 0; l1 = 1.0} : Mut3
-        while method57(v10, v11) do
+        while method54(v10, v11) do
             let v13 : int32 = v11.l0
             let v14 : float = v11.l1
             let v15 : float = v2.[int v13]
@@ -2039,10 +2025,10 @@ and method56 (v0 : pyo3_Python) : unit =
         let v22 : string = $"        s = mpmath.zeta(s)"
         let v23 : num_complex_Complex<float> = method3(v9)
         let v24 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v22, v23)
-        let v25 : num_complex_Complex<float> = method22(v0, v9)
+        let v25 : num_complex_Complex<float> = method19(v0, v9)
         let v26 : string = "v24.ok()"
         let v27 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v26
-        let v28 : (num_complex_Complex<float> -> US0) = method28()
+        let v28 : (num_complex_Complex<float> -> US0) = method25()
         let v29 : US0 = US0_1
         let v30 : US0 = v27 |> Option.map v28 |> Option.defaultValue v29 
         let v31 : string = "f64::NAN"
@@ -2075,7 +2061,7 @@ and method56 (v0 : pyo3_Python) : unit =
             if v48 then
                 true
             else
-                method29(v48)
+                method26(v48)
         let v51 : string = $"__expect / actual: %A{v46} / expected: %A{0.01}"
         let v52 : bool = v50 = false
         if v52 then
@@ -2090,7 +2076,7 @@ and method56 (v0 : pyo3_Python) : unit =
             if v57 then
                 true
             else
-                method29(v57)
+                method26(v57)
         let v60 : string = $"__expect / actual: %A{v55} / expected: %A{0.01}"
         let v61 : bool = v59 = false
         if v61 then
@@ -2099,16 +2085,16 @@ and method56 (v0 : pyo3_Python) : unit =
         v4.l0 <- v62
         ()
     ()
-and method55 () : unit =
+and method52 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
     let v1 : string = "let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2
-    method56(v3)
+    method53(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
-    let v5 : Result<unit, pyo3_PyErr> = method30(v4)
+    let v5 : Result<unit, pyo3_PyErr> = method27(v4)
     let v6 : string = "v5 }})"
     Fable.Core.RustInterop.emitRustExpr () v6
     let v7 : string = "{ //"
@@ -2132,67 +2118,67 @@ and closure0 () () : unit =
     let v7 : string = "test_zeta_at_2_minus2"
     let v8 : string = $"*/ #[test] fn " + v7 + "() { //"
     let v9 : bool = Fable.Core.RustInterop.emitRustExpr () v8
-    method31()
+    method28()
     let v10 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v10
     let v11 : string = "test_trivial_zero_at_negative_even___"
     let v12 : string = $"*/ #[test] fn " + v11 + "() { //"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12
-    method33()
+    method30()
     let v14 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v14
     let v15 : string = "test_non_trivial_zero___"
     let v16 : string = $"*/ #[test] fn " + v15 + "() { //"
     let v17 : bool = Fable.Core.RustInterop.emitRustExpr () v16
-    method37()
+    method34()
     let v18 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v18
     let v19 : string = "test_real_part_greater_than_one___"
     let v20 : string = $"*/ #[test] fn " + v19 + "() { //"
     let v21 : bool = Fable.Core.RustInterop.emitRustExpr () v20
-    method39()
+    method36()
     let v22 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v22
     let v23 : string = "test_zeta_at_1___"
     let v24 : string = $"*/ #[test] fn " + v23 + "() { //"
     let v25 : bool = Fable.Core.RustInterop.emitRustExpr () v24
-    method41()
+    method38()
     let v26 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v26
     let v27 : string = "test_symmetry_across_real_axis___"
     let v28 : string = $"*/ #[test] fn " + v27 + "() { //"
     let v29 : bool = Fable.Core.RustInterop.emitRustExpr () v28
-    method43()
+    method40()
     let v30 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v30
     let v31 : string = "test_behavior_near_origin___"
     let v32 : string = $"*/ #[test] fn " + v31 + "() { //"
     let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32
-    method45()
+    method42()
     let v34 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v34
     let v35 : string = "test_imaginary_axis"
     let v36 : string = $"*/ #[test] fn " + v35 + "() { //"
     let v37 : bool = Fable.Core.RustInterop.emitRustExpr () v36
-    method47()
+    method44()
     let v38 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v38
     let v39 : string = "test_critical_strip"
     let v40 : string = $"*/ #[test] fn " + v39 + "() { //"
     let v41 : bool = Fable.Core.RustInterop.emitRustExpr () v40
-    method51()
+    method48()
     let v42 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v42
     let v43 : string = "test_reflection_formula_for_specific_value"
     let v44 : string = $"*/ #[test] fn " + v43 + "() { //"
     let v45 : bool = Fable.Core.RustInterop.emitRustExpr () v44
-    method53()
+    method50()
     let v46 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v46
     let v47 : string = "test_euler_product_formula"
     let v48 : string = $"*/ #[test] fn " + v47 + "() { //"
     let v49 : bool = Fable.Core.RustInterop.emitRustExpr () v48
-    method55()
+    method52()
     let v50 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v50
     let v51 : string = "{ //"

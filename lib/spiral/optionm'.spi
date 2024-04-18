@@ -105,4 +105,4 @@ inl rc_upgrade forall t. (x : rust.weak_rc t) : option' (rust.rc t) =
 // // ## rc_into_inner
 
 inl rc_into_inner forall t. (x : rust.rc t) : option' t =
-    !\($'"std::rc::Rc::into_inner(!x)"')
+    !\\(x, $'"std::rc::Rc::into_inner($0)"')

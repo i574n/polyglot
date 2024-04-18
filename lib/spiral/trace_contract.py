@@ -11,7 +11,7 @@ from fable_modules.fable_library.util import (create_atom, equals, compare)
 
 State_trace_state: tuple[Mut0, Mut1, Mut1, Mut2, int64 | None] | None = create_atom(None)
 
-def _expr116() -> TypeInfo:
+def _expr115() -> TypeInfo:
     return record_type("Trace.Mut0", [], Mut0, lambda: [("l0", int64_type)])
 
 
@@ -19,9 +19,9 @@ def _expr116() -> TypeInfo:
 class Mut0(Record):
     l0: int64
 
-Mut0_reflection = _expr116
+Mut0_reflection = _expr115
 
-def _expr117() -> TypeInfo:
+def _expr116() -> TypeInfo:
     return record_type("Trace.Mut1", [], Mut1, lambda: [("l0", bool_type)])
 
 
@@ -29,9 +29,9 @@ def _expr117() -> TypeInfo:
 class Mut1(Record):
     l0: bool
 
-Mut1_reflection = _expr117
+Mut1_reflection = _expr116
 
-def _expr118() -> TypeInfo:
+def _expr117() -> TypeInfo:
     return union_type("Trace.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -47,9 +47,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr118
+US0_reflection = _expr117
 
-def _expr119() -> TypeInfo:
+def _expr118() -> TypeInfo:
     return record_type("Trace.Mut2", [], Mut2, lambda: [("l0", US0_reflection())])
 
 
@@ -57,9 +57,9 @@ def _expr119() -> TypeInfo:
 class Mut2(Record):
     l0: US0
 
-Mut2_reflection = _expr119
+Mut2_reflection = _expr118
 
-def _expr120() -> TypeInfo:
+def _expr119() -> TypeInfo:
     return union_type("Trace.US1", [], US1, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -75,9 +75,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr120
+US1_reflection = _expr119
 
-def _expr121() -> TypeInfo:
+def _expr120() -> TypeInfo:
     return union_type("Trace.US2", [], US2, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -93,7 +93,7 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr121
+US2_reflection = _expr120
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:
@@ -200,10 +200,10 @@ def closure5(unit_var: None, v0_1: int64) -> US2:
 
 
 def method3(__unit: None=None) -> Callable[[int64], US2]:
-    def _arrow122(v: int64) -> US2:
+    def _arrow121(v: int64) -> US2:
         return closure5(None, v)
 
-    return _arrow122
+    return _arrow121
 
 
 def method4(__unit: None=None) -> str:
@@ -254,35 +254,35 @@ def closure3(v0_1: US0, v1_1: Callable[[], str], v2: Callable[[], str]) -> None:
 
 
 def closure2(v0_1: US0, v1_1: Callable[[], str]) -> Callable[[Callable[[], str]], None]:
-    def _arrow123(v: Callable[[], str], v0_1: Any=v0_1, v1_1: Any=v1_1) -> None:
+    def _arrow122(v: Callable[[], str], v0_1: Any=v0_1, v1_1: Any=v1_1) -> None:
         closure3(v0_1, v1_1, v)
+
+    return _arrow122
+
+
+def closure1(unit_var: None, v0_1: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
+    def _arrow123(v: Callable[[], str], unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[Callable[[], str]], None]:
+        return closure2(v0_1, v)
 
     return _arrow123
 
 
-def closure1(unit_var: None, v0_1: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
-    def _arrow124(v: Callable[[], str], unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[Callable[[], str]], None]:
-        return closure2(v0_1, v)
-
-    return _arrow124
-
-
-def _arrow125(__unit: None=None) -> tuple[Mut0, Mut1, Mut1, Mut2, int64 | None]:
+def _arrow124(__unit: None=None) -> tuple[Mut0, Mut1, Mut1, Mut2, int64 | None]:
     return closure0(None, None)
 
 
-v0: Callable[[], tuple[Mut0, Mut1, Mut1, Mut2, int64 | None]] = _arrow125
+v0: Callable[[], tuple[Mut0, Mut1, Mut1, Mut2, int64 | None]] = _arrow124
 
 
 if equals(State_trace_state(), None):
     State_trace_state(v0(None))
 
 
-def _arrow126(v: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
+def _arrow125(v: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
     return closure1(None, v)
 
 
-v1: Callable[[US0, Callable[[], str], Callable[[], str]], None] = _arrow126
+v1: Callable[[US0, Callable[[], str], Callable[[], str]], None] = _arrow125
 
 def trace(x: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
     return v1(x)
