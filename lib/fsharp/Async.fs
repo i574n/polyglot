@@ -171,28 +171,8 @@ module Async =
         return x
     }
 
-    /// ## mergeCancellationTokenWithDefaultAsync
-
-    let inline mergeCancellationTokenWithDefaultAsync (token : System.Threading.CancellationToken) = async {
-        let! ct = Async.CancellationToken
-        let dct = Async.DefaultCancellationToken
-        let cts = System.Threading.CancellationTokenSource.CreateLinkedTokenSource [| ct; dct; token |]
-        return cts.Token
-    }
-
     /// ## withCancellationToken
 
     let inline withCancellationToken (ct : System.Threading.CancellationToken) fn =
         Async.StartImmediateAsTask (fn, ct)
         |> Async.AwaitTask
-
-    /// ## withTraceLevel
-
-    let inline withTraceLevel level fn = async {
-        let oldTraceLevel = traceLevel
-        try
-            traceLevel <- level
-            return! fn
-        finally
-            traceLevel <- oldTraceLevel
-    }

@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types, constant_identifier_names, non_constant_identifier_names, unnecessary_this
-import '../../fable_modules/fable_library/String.dart' as string;
 import '../../fable_modules/fable_library/Types.dart' as types;
 import '../../../../../../../../lib/spiral/lib.fsx' as lib;
+import '../../../../../../../../lib/spiral/trace.fsx' as trace_1;
 
 const nl = '\n';
 
@@ -58,33 +58,22 @@ bool TraceLevel__get_IsCritical(TraceLevel this$, void unitArg) {
     }
 }
 
-var traceEnabled = true;
-
-var traceCount = 0;
-
-TraceLevel traceLevel = const TraceLevel(/* Verbose */ 0);
-
-var traceDump = false;
-
-bool testTraceLevel(TraceLevel level) {
-    if (traceEnabled) {
-        return level.compareTo(traceLevel) >= 0;
-    } else {
-        return false;
+trace_1.US0 to_trace_level(TraceLevel _arg) {
+    switch (_arg.tag) {
+        case 1:
+            return const trace_1.US0(/* US0_1 */ 1);
+        case 2:
+            return const trace_1.US0(/* US0_2 */ 2);
+        case 3:
+            return const trace_1.US0(/* US0_3 */ 3);
+        case 4:
+            return const trace_1.US0(/* US0_4 */ 4);
+        default:
+            return const trace_1.US0(/* US0_0 */ 0);
     }
 }
-
-void traceRaw(TraceLevel level, String Function() fn) {
-    if (testTraceLevel(level)) {
-        traceCount = traceCount + 1;
-        final text = '${fn()}';
-        console.log(text);
-    }
-}
-
-types.Some<int>? replStart() => null;
 
 void trace(TraceLevel level, String Function() fn, String Function() getLocals) {
-    traceRaw(level, () => (lib.SpiralSm_trim_end([32, 47]))((lib.SpiralSm_trim_start(<int>[]))(string.toText(string.interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', ['', traceCount, level, fn(), getLocals()])))));
+    ((lib.SpiralTrace_trace(to_trace_level(level)))(fn))(getLocals);
 }
 

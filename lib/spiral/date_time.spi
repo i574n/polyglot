@@ -20,6 +20,14 @@ nominal local = $"chrono_Local"
 nominal naive_date_time = $"chrono_NaiveDateTime"
 nominal utc = $"chrono_Utc"
 
+// // ## date_time_milliseconds
+
+inl date_time_milliseconds
+    (year : int) (month : int) (day : int) (hour : int) (minute : int) (second : int) (millisecond : int)
+    : date_time
+    =
+    $'System.DateTime (!year, !month, !day, !hour, !minute, !second, !millisecond)'
+
 // // ## naive_utc
 
 inl naive_utc (date_time : date_time' utc) : naive_date_time =
@@ -141,10 +149,33 @@ inl utc_now () : date_time =
 
 nominal time_span = $'System.TimeSpan'
 
+inl time_span x : time_span =
+    $'`time_span !x '
+
 // // ## new_time_span
 
 inl new_time_span (a : date_time) (b : date_time) : time_span =
     $'!b - !a '
+
+// // ## hours
+
+inl hours (time_span : time_span) : i32 =
+    time_span |> $'_.Hours'
+
+// // ## milliseconds
+
+inl milliseconds (time_span : time_span) : i32 =
+    time_span |> $'_.Milliseconds'
+
+// // ## minutes
+
+inl minutes (time_span : time_span) : i32 =
+    time_span |> $'_.Minutes'
+
+// // ## seconds
+
+inl seconds (time_span : time_span) : i32 =
+    time_span |> $'_.Seconds'
 
 // // ## total_seconds
 

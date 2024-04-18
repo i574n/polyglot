@@ -1,20 +1,10 @@
 // // # common
 
-inl array x = x
-
 // // ## prototype
 
 prototype (~:>) r : forall t. t -> r
-prototype append t : t -> t -> t
-prototype of_string t : string -> t
-prototype to_string t : t -> string
 
 // // ## run_target
-
-// // ## emit
-
-inl emit forall t. (x : t) : t =
-    $'!x '
 
 // // ## upcast
 
@@ -26,11 +16,6 @@ inl upcast forall t u. (x : t) : u =
 inl downcast forall t u. (x : t) : u =
     $'!x :?> `u '
 
-// // ## null
-
-inl null forall t. () : t =
-    $"null |> unbox<`t>"
-
 // // ## unativeint
 
 nominal unativeint = $"unativeint"
@@ -38,32 +23,7 @@ nominal unativeint = $"unativeint"
 inl unativeint forall t {int}. (n : t) : unativeint =
     $"unativeint !n"
 
-// // ## i32
-
-inl i32 forall t. (x : t) : i32 =
-    $"int32 !x"
-
-// // ## i64
-
-inl i64 forall t. (x : t) : i64 =
-    $"int64 !x"
-
-// // ## f32
-
-inl f32 forall t. (x : t) : f32 =
-    $"float32 !x"
-
-// // ## f64
-
-inl f64 forall t. (x : t) : f64 =
-    $"float !x"
-
 // // ## pair
-
-type pair a b = $"(`a * `b)"
-
-inl pair x y =
-    x, y
 
 // // ## new_pair
 
@@ -81,101 +41,9 @@ inl from_pair forall a b. (pair : pair a b) : a * b =
 nominal lazy t = $'Lazy<`t>'
 
 inl memoize forall t. (fn : () -> t) : () -> t =
+    inl fn = join fn
     inl result : lazy t = $'lazy !fn ()'
     fun () => $'!result.Value'
-
-// // ## trace_level
-
-union trace_level =
-    | Verbose
-    | Debug
-    | Info
-    | Warning
-    | Critical
-
-instance to_string trace_level = function
-    | Verbose => "Verbose"
-    | Debug => "Debug"
-    | Info => "Info"
-    | Warning => "Warning"
-    | Critical => "Critical"
-
-instance of_string trace_level = function
-    | "Verbose" => Verbose
-    | "Debug" => Debug
-    | "Info" => Info
-    | "Warning" => Warning
-    | "Critical" => Critical
-
-// // ## get_locals
-
-inl get_locals () = ""
-
-// // ## trace_state
-
-inl trace_state () =
-    inl result =
-        fun () =>
-            {
-                enabled = mut true
-                count = mut 0i64
-                level = mut Debug
-                dump = mut false
-            }
-        |> memoize
-    result ()
-
-// // ## test_trace_level
-
-inl test_trace_level level =
-    inl state = trace_state ()
-    inl level' = *state.level
-    *state.enabled && $'!level >= !level' '
-
-// let private replStart =
-// #if INTERACTIVE || !FABLE_COMPILER
-//     fun () ->
-//         if System.Reflection.Assembly.GetEntryAssembly().GetName().Name <> "Microsoft.DotNet.Interactive.App"
-//         then Some System.DateTime.Now.Ticks
-//         else None
-//     |> memoize
-// #else
-//     fun () -> None : int64 option
-// #endif
-// 
-// inl repl_start () =
-//     run_target function
-//         | Fsharp (Native) => fun () =>
-//             get_temp_path ()
-//             </> ($'$"\!{!get_entry_assembly_name ()}"' : string)
-//             </> (date_time.now () |> date_time.new_guid_from_date_time |> sm'.obj_to_string)
-//         | target => fun () => null ()
-// 
-//     inl result : optionm'.option' t = $'None'
-//     $"let mutable _!result = !result"
-//     $"#if INTERACTIVE || !FABLE_COMPILER"
-//         fun () =>
-//             if get_entry_assembly_name () <> "Microsoft.DotNet.Interactive.App"
-//             then date_time.now () |> date_time.ticks
-//         |> memoize
-//     $"#else"
-//         fun () => None : option i64
-//     $"#endif"
-//     fn (Fsharp Wasm) () |> fun x => $"!x"
-//     $"#endif"
-//     $"|> fun x -> _!result <- Some x"
-//     $"_!result |> Option.get"
-
-inl xx () =
-    ()
-
-inl trace trace_level fn get_locals =
-    inl text = fn ()
-    console.write_line ($'$"{!text} / {!get_locals ()}"' : string)
-
-// // ## any
-
-nominal any = $"obj"
 
 // // ## to_any
 
@@ -183,16 +51,6 @@ inl to_any forall t. (obj : t) : any =
     $"!obj"
 
 instance (~:>) any = to_any
-
-// // ## (/@)
-
-inl (/@) a b =
-    b |> append a
-
-// // ## unbox
-
-inl unbox forall t u. (x : t) : u =
-    $"!x |> unbox<`u>"
 
 // // ## (+.)
 
@@ -261,12 +119,6 @@ inl get_environment_variable (var : string) : string =
 
 nominal disposable t = $"System.IDisposable"
 
-// // ## use
-
-inl use forall t. (x : t) : t =
-    $"use !x = !x " : ()
-    $'!x '
-
 // // ## dispose
 
 inl dispose (disposable : disposable _) : () =
@@ -281,29 +133,6 @@ inl new_disposable (fn : () -> ()) : disposable _ =
         //     fun () =>
                 // $'{ new System.IDisposable with member _.Dispose () = Fable.Core.RustInterop.emitRustExpr () "!fn()" }'
         | _ => fun () => null ()
-
-// // ## exn
-
-nominal exn = $"exn"
-
-// // ## try
-
-inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
-    inl none = None : option t
-    inl some (s : t) = Some s
-    $'try !fn () |> !some with ex -> !ex_fn ex '
-
-// // ## try_unit
-
-inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
-    $"try"
-    fn ()
-    |> ignore
-    $"with ex ->"
-    ex_fn $'ex'
-    |> ignore
-    $'(*'
-    $'*)'
 
 // // ## return
 
@@ -344,6 +173,6 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
 inl main () =
     inl new_disposable x : _ () = new_disposable x
     $"let new_disposable x = !new_disposable x" : ()
-    
+
     inl retry_fn (r : i32) (x : () -> _) : optionm'.option' () = retry_fn r x |> optionm'.box
     $"let retry_fn x = !retry_fn x" : ()

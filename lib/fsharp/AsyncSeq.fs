@@ -17,6 +17,8 @@ module AsyncSeq =
         System.Reactive.Linq.Observable.Select (observable, fun event -> map event.EventArgs)
         |> FSharp.Control.AsyncSeq.ofObservableBuffered
 
+    /// ## subscribeToken
+
     let subscribeToken (token : System.Threading.CancellationToken) =
         let tcs = new System.Threading.Tasks.TaskCompletionSource ()
         System.Action tcs.SetResult |> token.Register |> ignore

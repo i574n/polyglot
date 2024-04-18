@@ -232,7 +232,27 @@ inl unwrap_or forall t. (def : t) (x : option' t) : t =
 
 #!spiral
 
-inl rc_upgrade forall t. (x : rust.weak_rc t) : option (rust.rc t) =
+inl rc_upgrade forall t. (x : rust.weak_rc t) : option' (rust.rc t) =
     inl x = join x
     !\($'"std::rc::Weak::upgrade(&!x)"')
-    |> unbox
+
+#!markdown
+
+## rc_into_inner
+
+#!spiral
+
+inl rc_into_inner forall t. (x : rust.rc t) : option' t =
+    !\\(x, $'"std::rc::Rc::into_inner($0)"')
+
+#!spiral
+
+// // test
+// // rust=true
+// // print_code=false
+
+types ()
+rust.new_rc 0i32
+|> rc_into_inner
+|> unbox
+|> _assert_eq' (Some 0i32)

@@ -92,7 +92,8 @@ US1 closure4(void unitVar, US0 v0_1) => US1_US1_0(v0_1);
 
 US1 closure5(int v0_1, dynamic v1_1) {
     types.Some<void>? _v2;
-    _v2 = const types.Some(null);
+    null;
+    _v2 = types.Some(util.ignore());
     types.value(_v2);
     return const US1(/* US1_1 */ 1);
 }

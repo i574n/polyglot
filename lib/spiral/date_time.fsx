@@ -20,33 +20,34 @@ and closure2 () (v0 : System.Guid) : System.DateTime =
     let v2 : string = v1 v0
     let v3 : (string -> (string -> (string -> string))) = method0()
     let v4 : System.DateTime option = None
-    let mutable _v4 = v4
+    let v5 : bool = true in let mutable _v4 = v4
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v5 : System.DateTime = System.DateTime.Parse (v2.[..24] |> v3 "-" "")
-    v5 
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
     let v6 : System.DateTime = System.DateTime.Parse (v2.[..24] |> v3 "-" "")
-    v6 
-    #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
+    v6
+#endif
+    #if FABLE_COMPILER_RUST && WASM
     let v7 : System.DateTime = System.DateTime.Parse (v2.[..24] |> v3 "-" "")
-    v7 
-    #endif
+    v7
+#endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v8 : System.DateTime = System.DateTime.Parse (v2.[..24] |> v3 "-" "")
+    v8
+#endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v8 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v8 
-    #endif
-    #if FABLE_COMPILER_TYPESCRIPT
     let v9 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v9 
-    #endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof<System.DateTime>
-    #endif
-    |> fun x -> _v4 <- Some x
-    let v10 : System.DateTime = _v4 |> Option.get
+    v9
+#endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v10 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v10
+#endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v11 : System.DateTime = Unchecked.defaultof<System.DateTime>
+    v11
+#endif
+    |> fun x -> _v4 <- Some x
+    let v12 : System.DateTime = _v4.Value
+    v12
 and closure7 (v0 : System.Guid) (v1 : int64) : System.Guid =
     let v2 : (System.Guid -> string) = _.ToString()
     let v3 : string = v2 v0

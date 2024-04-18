@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
 
 #!markdown
 
@@ -201,7 +201,7 @@ inl eval py code (args : pair bool (pair f64 f64)) : _ (_ f64) sm'.std_string =
 
 inl call1_ log py s code =
     inl code = join (a code : _ i32 _) |> sm'.concat_array_trailing "\n"
-    
+
     inl s = new_pair (re s) (im s)
     inl args = new_pair log s
 
@@ -288,7 +288,7 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
 
         Ok ()
         |> resultm.box
-    
+
     join
         !\($'"pyo3::prepare_freethreaded_python()"') : ()
 
@@ -296,7 +296,7 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
 
         let x' = fn_ (!\($'"py"') : python)
         inl x' = join x'
-        
+
         inl closure_fix = 2u8, 1u8
         x' |> rust.fix_closure closure_fix
 
@@ -721,32 +721,43 @@ graph TD
 #!spiral
 
 inl tests () =
-    !\($'"}//"') : ()
+    rust.run_tests [
+    "test_zeta_at_known_values_", fun _ =>
+        test_zeta_at_known_values_ false
 
-    !\($'"#[test] fn test_zeta_at_known_values_() { //"') : ()
-    test_zeta_at_known_values_ false
-    !\($'"} #[test] fn test_zeta_at_2_minus2() { //"') : ()
-    test_zeta_at_2_minus2 false
-    !\($'"} #[test] fn test_trivial_zero_at_negative_even___() { //"') : ()
-    test_trivial_zero_at_negative_even___ false
-    !\($'"} #[test] fn test_non_trivial_zero___() { //"') : ()
-    test_non_trivial_zero___ false
-    !\($'"} #[test] fn test_real_part_greater_than_one___() { //"') : ()
-    test_real_part_greater_than_one___ false
-    !\($'"} #[test] fn test_zeta_at_1___() { //"') : ()
-    test_zeta_at_1___ false
-    !\($'"} #[test] fn test_symmetry_across_real_axis___() { //"') : ()
-    test_symmetry_across_real_axis___ false
-    !\($'"} #[test] fn test_behavior_near_origin___() { //"') : ()
-    test_behavior_near_origin___ false
-    !\($'"} #[test] fn test_imaginary_axis() { //"') : ()
-    test_imaginary_axis false
-    !\($'"} #[test] fn test_critical_strip() { //"') : ()
-    test_critical_strip false
-    !\($'"} #[test] fn test_reflection_formula_for_specific_value() { //"') : ()
-    test_reflection_formula_for_specific_value false
-    !\($'"} #[test] fn test_euler_product_formula() { //"') : ()
-    test_euler_product_formula false
+    "test_zeta_at_2_minus2", fun _ =>
+        test_zeta_at_2_minus2 false
+
+    "test_trivial_zero_at_negative_even___", fun _ =>
+        test_trivial_zero_at_negative_even___ false
+
+    "test_non_trivial_zero___", fun _ =>
+        test_non_trivial_zero___ false
+
+    "test_real_part_greater_than_one___", fun _ =>
+        test_real_part_greater_than_one___ false
+
+    "test_zeta_at_1___", fun _ =>
+        test_zeta_at_1___ false
+
+    "test_symmetry_across_real_axis___", fun _ =>
+        test_symmetry_across_real_axis___ false
+
+    "test_behavior_near_origin___", fun _ =>
+        test_behavior_near_origin___ false
+
+    "test_imaginary_axis", fun _ =>
+        test_imaginary_axis false
+
+    "test_critical_strip", fun _ =>
+        test_critical_strip false
+
+    "test_reflection_formula_for_specific_value", fun _ =>
+        test_reflection_formula_for_specific_value false
+
+    "test_euler_product_formula", fun _ =>
+        test_euler_product_formula false
+    ]
 
 #!spiral
 

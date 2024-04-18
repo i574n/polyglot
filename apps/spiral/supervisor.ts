@@ -1,4 +1,4 @@
-import * as crypto from "crypto"
+import * as crypto from "../../lib/spiral/crypto"
 import * as path from "path"
 import * as fs from "fs"
 
@@ -6,10 +6,28 @@ const fileExists = async (path: string) => !!(await fs.promises.stat(path).catch
 
 const sleep = async (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
-export const getFileTokenRange = async (targetDir: string, text: string) => {
-  const hash = crypto.createHash("sha256")
-  hash.update(text, "utf8")
-  const hashHex = hash.digest("hex")
+export function throttle<T extends (...args: any[]) => Promise<U>, U>(func: T, limit: number) {
+  let inThrottle: boolean
+  let lastResult: U
+
+  return async function (...args: Parameters<T>) {
+    if (!inThrottle) {
+      inThrottle = true
+      lastResult = await func(...args)
+      setTimeout(() => (inThrottle = false), limit)
+      return lastResult
+    }
+    return lastResult
+  }
+}
+
+export const getFileTokenRange = async (repositoryRoot: string, text: string) => {
+  const targetDir = path.join(repositoryRoot, 'target/polyglot/spiral_eval')
+  if (!fs.existsSync(targetDir)) {
+      fs.mkdirSync(targetDir, { recursive: true })
+  }
+
+  const hashHex = crypto.hash_text(text)
 
   const codeDir = path.join(targetDir, "packages", hashHex)
 

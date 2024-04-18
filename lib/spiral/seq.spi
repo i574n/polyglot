@@ -2,7 +2,7 @@
 
 // // ## seq'
 
-type seq' t = $"`t seq"
+nominal seq' t = $"`t seq"
 
 // // ## of_array'
 
@@ -12,10 +12,25 @@ inl of_array' forall dim t. (items : a dim t) : seq' t =
 inl of_array forall dim t. (items : a dim t) : seq' t =
     items |> $'Seq.ofArray'
 
+// // ## of_string
+
+inl of_string (s : string) : seq' char =
+    s |> unbox
+
 // // ## to_array'
 
 inl to_array' forall dim t. (items : seq' t) : a dim t =
-    $'!items |> Seq.toArray'
+    items |> $'Seq.toArray'
+
+// // ## to_list'
+
+inl to_list' forall t. (items : seq' t) : listm'.list' t =
+    items |> $'Seq.toList'
+
+// // ## rev'
+
+inl rev'' forall t u. (items : t) : seq' u =
+    items |> $'Seq.rev'
 
 // // ## seq
 

@@ -7558,24 +7558,6 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
-<span class="c1">#!import ../../lib/spiral/sm.fsx</span>
-<span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
-<span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
-<span class="c1">#!import ../../lib/spiral/lib.fsx</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#if !INTERACTIVE</span>
 <span class="nb">open</span> <span class="n">Lib</span>
 <span class="c1">#endif</span>
@@ -7584,7 +7566,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7599,7 +7581,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7614,7 +7596,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7624,7 +7606,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7641,7 +7623,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7651,7 +7633,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7667,13 +7649,19 @@ a.anchor-link {
     <span class="o">|</span> <span class="n">Critical</span>
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="s2">""</span>
-
-<span class="n">let</span> <span class="n">mutable</span> <span class="n">traceEnabled</span> <span class="o">=</span> <span class="n">true</span>
-<span class="n">let</span> <span class="n">mutable</span> <span class="n">traceCount</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">let</span> <span class="n">mutable</span> <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">Verbose</span>
-<span class="n">let</span> <span class="n">mutable</span> <span class="n">traceDump</span> <span class="o">=</span> <span class="n">false</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="trace">trace<a class="anchor-link" href="#trace">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7685,177 +7673,22 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">testTraceLevel</span> <span class="n">level</span> <span class="o">=</span>
-    <span class="n">traceEnabled</span> <span class="o">&amp;&amp;</span> <span class="n">level</span> <span class="o">&gt;=</span> <span class="n">traceLevel</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="traceRaw">traceRaw<a class="anchor-link" href="#traceRaw">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">rec</span> <span class="n">traceRaw</span> <span class="n">level</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="k">if</span> <span class="n">level</span> <span class="o">|&gt;</span> <span class="n">testTraceLevel</span> <span class="n">then</span>
-        <span class="n">traceCount</span> <span class="o">&lt;-</span> <span class="n">traceCount</span> <span class="o">+</span> <span class="mi">1</span>
-
-        <span class="n">let</span> <span class="n">text</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"</span><span class="si">%s</span><span class="s2">{fn ()}"</span>
-<span class="c1">#if FABLE_COMPILER_RUST</span>
-        <span class="n">Fable</span><span class="o">.</span><span class="n">Core</span><span class="o">.</span><span class="n">RustInterop</span><span class="o">.</span><span class="n">emitRustExpr</span> <span class="p">()</span> <span class="o">@</span><span class="s2">"println!(""</span><span class="si">{}</span><span class="s2">"", text)"</span>
-<span class="c1">#else</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span> <span class="n">text</span>
-<span class="c1">#endif</span>
-
-<span class="c1">#if !WASM &amp;&amp; !CONTRACT &amp;&amp; !FABLE_COMPILER</span>
-        <span class="k">if</span> <span class="n">traceDump</span> <span class="n">then</span>
-            <span class="k">try</span>
-                <span class="n">let</span> <span class="n">tmpPath</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetTempPath</span> <span class="p">()</span>
-                <span class="n">let</span> <span class="n">logDir</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">Combine</span> <span class="p">(</span><span class="n">tmpPath</span><span class="p">,</span> <span class="s2">"!polyglot"</span><span class="p">)</span>
-                <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="n">logDir</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-                <span class="n">let</span> <span class="n">logFile</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">Combine</span> <span class="p">(</span><span class="n">logDir</span><span class="p">,</span> <span class="err">$</span><span class="s2">"{SpiralDateTime.new_guid_from_date_time System.DateTime.Now}.txt"</span><span class="p">)</span>
-                <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">logFile</span> <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
-            <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                <span class="n">traceRaw</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"trace / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span>
-<span class="c1">#endif</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">traceRaw</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"test"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>test
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="trace">trace<a class="anchor-link" href="#trace">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">private</span> <span class="n">replStart</span> <span class="o">=</span>
-<span class="c1">#if INTERACTIVE || !FABLE_COMPILER</span>
-    <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-        <span class="k">if</span> <span class="n">System</span><span class="o">.</span><span class="n">Reflection</span><span class="o">.</span><span class="n">Assembly</span><span class="o">.</span><span class="n">GetEntryAssembly</span><span class="p">()</span><span class="o">.</span><span class="n">GetName</span><span class="p">()</span><span class="o">.</span><span class="n">Name</span> <span class="o">&lt;&gt;</span> <span class="s2">"Microsoft.DotNet.Interactive.App"</span>
-        <span class="n">then</span> <span class="n">Some</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">Now</span><span class="o">.</span><span class="n">Ticks</span>
-        <span class="k">else</span> <span class="kc">None</span>
-    <span class="o">|&gt;</span> <span class="n">memoize</span>
-<span class="c1">#else</span>
-    <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span> <span class="p">:</span> <span class="n">int64</span> <span class="n">option</span>
-<span class="c1">#endif</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">to_trace_level</span> <span class="o">=</span> <span class="n">function</span>
+    <span class="o">|</span> <span class="n">Verbose</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span>
+    <span class="o">|</span> <span class="n">Debug</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_1</span>
+    <span class="o">|</span> <span class="n">Info</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_2</span>
+    <span class="o">|</span> <span class="ne">Warning</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_3</span>
+    <span class="o">|</span> <span class="n">Critical</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_4</span>
 
 <span class="n">let</span> <span class="n">trace</span> <span class="n">level</span> <span class="n">fn</span> <span class="n">getLocals</span> <span class="o">=</span>
-    <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-        <span class="n">let</span> <span class="n">time</span> <span class="o">=</span>
-<span class="c1">#if WASM || CONTRACT</span>
-            <span class="s2">""</span>
-<span class="c1">#else</span>
-            <span class="k">match</span> <span class="n">replStart</span> <span class="p">()</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="n">Some</span> <span class="n">replStart</span> <span class="o">-&gt;</span>
-                <span class="n">let</span> <span class="n">t</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">Now</span><span class="o">.</span><span class="n">Ticks</span> <span class="o">-</span> <span class="n">replStart</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">TimeSpan</span>
-                <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">Hours</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">Minutes</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">Seconds</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">Milliseconds</span><span class="p">)</span>
-            <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">Now</span>
-            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">dateTime</span> <span class="o">-&gt;</span>
-<span class="c1">#if FABLE_COMPILER_RUST</span>
-                <span class="s2">"hh:mm:ss"</span>
-<span class="c1">#else</span>
-                <span class="s2">"HH:mm:ss"</span>
-<span class="c1">#endif</span>
-                <span class="o">|&gt;</span> <span class="n">dateTime</span><span class="o">.</span><span class="n">ToString</span>
-<span class="c1">#endif</span>
-        <span class="err">$</span><span class="s2">"</span><span class="si">{time}</span><span class="s2"> #</span><span class="si">{traceCount}</span><span class="s2"> [%A</span><span class="si">{level}</span><span class="s2">] </span><span class="si">%s</span><span class="s2">{fn ()} / </span><span class="si">%s</span><span class="s2">{getLocals ()}"</span>
-        <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim_start</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
-        <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim_end</span> <span class="p">[</span><span class="o">|</span> <span class="s1">' '</span><span class="p">;</span> <span class="s1">'/'</span> <span class="o">|</span><span class="p">]</span>
-    <span class="o">|&gt;</span> <span class="n">traceRaw</span> <span class="n">level</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">withTrace</span> <span class="n">enabled</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">oldTraceEnabled</span> <span class="o">=</span> <span class="n">traceEnabled</span>
-    <span class="k">try</span>
-        <span class="n">traceEnabled</span> <span class="o">&lt;-</span> <span class="n">enabled</span>
-        <span class="n">fn</span> <span class="p">()</span>
-    <span class="k">finally</span>
-        <span class="n">traceEnabled</span> <span class="o">&lt;-</span> <span class="n">oldTraceEnabled</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">withTraceEnabled</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">withTrace</span> <span class="n">true</span> <span class="n">fn</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">withTraceDisabled</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">withTrace</span> <span class="n">false</span> <span class="n">fn</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">withTraceLevel</span> <span class="n">level</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">oldTraceLevel</span> <span class="o">=</span> <span class="n">traceLevel</span>
-    <span class="k">try</span>
-        <span class="n">traceLevel</span> <span class="o">&lt;-</span> <span class="n">level</span>
-        <span class="n">fn</span> <span class="p">()</span>
-    <span class="k">finally</span>
-        <span class="n">traceLevel</span> <span class="o">&lt;-</span> <span class="n">oldTraceLevel</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">withTraceDump</span> <span class="n">dump</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">oldTraceDump</span> <span class="o">=</span> <span class="n">traceDump</span>
-    <span class="k">try</span>
-        <span class="n">traceDump</span> <span class="o">&lt;-</span> <span class="n">dump</span>
-        <span class="n">fn</span> <span class="p">()</span>
-    <span class="k">finally</span>
-        <span class="n">traceDump</span> <span class="o">&lt;-</span> <span class="n">oldTraceDump</span>
+    <span class="n">let</span> <span class="n">level</span> <span class="o">=</span> <span class="n">level</span> <span class="o">|&gt;</span> <span class="n">to_trace_level</span>
+    <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">trace</span> <span class="n">level</span> <span class="n">fn</span> <span class="n">getLocals</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7878,7 +7711,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #2 [Debug] test
+<pre>00:00:00 debug #1 test
 </pre>
 </div>
 </div>

@@ -21,11 +21,6 @@
 
 #!fsharp
 
-#!import ../../lib/spiral/common.fsx
-#!import ../../lib/spiral/sm.fsx
-#!import ../../lib/spiral/date_time.fsx
-#!import ../../lib/spiral/file_system.fsx
-#!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs
 #!import ../../lib/fsharp/Async.fs
@@ -107,7 +102,7 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
                 let path = getEventPath event.FullPath
                 ticks (), [
                     FileSystemChange.Created (path, None)
-                    if Runtime.isWindows () then
+                    if SpiralRuntime.is_windows () then
                         FileSystemChange.Changed (path, None)
                 ])
 

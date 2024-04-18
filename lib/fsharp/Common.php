@@ -1,13 +1,9 @@
 <?php
 namespace Polyglot\Common;
 
-require_once(__FABLE_LIBRARY__.'/BigInt.php');
-require_once(__FABLE_LIBRARY__.'/Date.php');
 require_once(__FABLE_LIBRARY__.'/FSharp.Core.php');
-require_once(__FABLE_LIBRARY__.'/String.php');
-require_once(__FABLE_LIBRARY__.'/TimeSpan.php');
-require_once(__FABLE_LIBRARY__.'/Util.php');
 require_once(__ROOT__.'/../../../../../lib/spiral/lib.fs.phpx');
+require_once(__ROOT__.'/../../../../../lib/spiral/trace.fs.phpx');
 
 use \FSharpUnion;
 use \IComparable;
@@ -152,54 +148,24 @@ function TraceLevel__get_IsCritical($this_, $unitArg) {
 }
 
 #8
-$GLOBALS['traceEnabled'] = true;
+function to_trace_level($_arg) {
+    switch ($_arg->get_Tag())
+    {
+        case 1:
+            return new \Trace\US0_US0_1();
+        case 2:
+            return new \Trace\US0_US0_2();
+        case 3:
+            return new \Trace\US0_US0_3();
+        case 4:
+            return new \Trace\US0_US0_4();
+        default:
+            return new \Trace\US0_US0_0();
+    }
+}
 
 #9
-$GLOBALS['traceCount'] = 0;
-
-#10
-$GLOBALS['traceLevel'] = new TraceLevel_Verbose();
-
-#11
-$GLOBALS['traceDump'] = false;
-
-#12
-function testTraceLevel($level) {
-    if ($GLOBALS['traceEnabled']) {
-        return \Util\compare($level, $GLOBALS['traceLevel']) >= 0;
-    } else {
-        return false;
-    }
-}
-
-#13
-function traceRaw($level, $fn) {
-    if (testTraceLevel($level)) {
-        $GLOBALS['traceCount'] = $GLOBALS['traceCount'] + 1;
-        $text = NULL;
-        return $console->log;
-    } else {
-        return NULL;
-    }
-}
-
-#14
-function replStart($unitVar) {
-    return NULL;
-}
-
-#15
 function trace($level, $fn, $getLocals) {
-    return traceRaw($level, function ($unitVar) use ($fn, $getLocals, $level, $replStart, $traceCount) { 
-        $time = (function ($matchValue) {         if (is_null($matchValue)) {
-            return \Date\now();
-        } else {
-            $replStart_1 = $matchValue;
-            $t = \TimeSpan\fromTicks(\BigInt\toInt64(\BigInt\op_Subtraction(\Date\getTicks(\Date\now()), $replStart_1)));
-            return \Date\create(1, 1, 1, $t->\TimeSpan\hours(), $t->\TimeSpan\minutes(), $t->\TimeSpan\seconds(), $t->\TimeSpan\milliseconds());
-        }
- })(replStart(NULL))->\Date\toString('HH:mm:ss');
-        return \lib\SpiralSm_trim_end([ ' ', '/' ])(\lib\SpiralSm_trim_start([  ])(\String\toText(\String\interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [ $time, $GLOBALS['traceCount'], $level, $fn(NULL), $getLocals(NULL) ]))));
-    });
+    return \lib\SpiralTrace_trace(to_trace_level($level))($fn, $getLocals);
 }
 

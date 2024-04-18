@@ -7584,7 +7584,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">seq</span><span class="s1">' t = $"`t seq"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">seq</span><span class="s1">' t = $"`t seq"</span>
 </pre></div>
 </div>
 </div>
@@ -7828,7 +7828,7 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="to_array'">to_array'<a class="anchor-link" href="#to_array'">¶</a></h2>
+<h2 id="of_string">of_string<a class="anchor-link" href="#of_string">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7840,8 +7840,8 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_array</span><span class="s1">' forall dim t. (items : seq'</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'!items |&gt; Seq.toArray'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">of_string</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">seq</span><span class="s1">' char =</span>
+    <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">unbox</span>
 </pre></div>
 </div>
 </div>
@@ -7862,6 +7862,87 @@ method0()
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="s2">"ab"</span>
+<span class="o">|&gt;</span> <span class="n">of_string</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>ab</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method0 () : char seq =
+    let v0 : string = "ab"
+    let v1 : char seq = v0 |&gt; unbox&lt;char seq&gt;
+    v1
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="to_array'">to_array'<a class="anchor-link" href="#to_array'">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_array</span><span class="s1">' forall dim t. (items : seq'</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">items</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Seq.toArray'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7908,29 +7989,30 @@ and method0 () : unit =
     let v1 : string = "b"
     let v2 : (string []) = [|v0; v1|]
     let v3 : string seq = seq { for i = 0 to v2.Length - 1 do yield v2.[i] }
-    let v4 : (string []) = v3 |&gt; Seq.toArray
-    let v5 : (string []) = [|v0; v1|]
-    let v6 : string = $"%A{v4}"
-    System.Console.WriteLine v6
-    let v7 : int32 = v4.Length
+    let v4 : (string seq -&gt; (string [])) = Seq.toArray
+    let v5 : (string []) = v4 v3
+    let v6 : (string []) = [|v0; v1|]
+    let v7 : string = $"%A{v5}"
+    System.Console.WriteLine v7
     let v8 : int32 = v5.Length
-    let v9 : bool = v7 = v8
-    let v10 : bool = v9 &lt;&gt; true
-    let v13 : bool =
-        if v10 then
+    let v9 : int32 = v6.Length
+    let v10 : bool = v8 = v9
+    let v11 : bool = v10 &lt;&gt; true
+    let v14 : bool =
+        if v11 then
             false
         else
-            let v11 : int32 = 0
-            method1(v4, v5, v11)
-    let v15 : bool =
-        if v13 then
+            let v12 : int32 = 0
+            method1(v5, v6, v12)
+    let v16 : bool =
+        if v14 then
             true
         else
-            method2(v13)
-    let v16 : string = $"__expect / actual: %A{v4} / expected: %A{v5}"
-    let v17 : bool = v15 = false
-    if v17 then
-        failwith&lt;unit&gt; v16
+            method2(v14)
+    let v17 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v18 : bool = v16 = false
+    if v18 then
+        failwith&lt;unit&gt; v17
 method0()
 
 [|"a"; "b"|]
@@ -7940,7 +8022,180 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="to_list'">to_list'<a class="anchor-link" href="#to_list'">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_list</span><span class="s1">' forall t. (items : seq'</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">listm</span><span class="s1">'.list'</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">items</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Seq.toList'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="s2">"ab"</span>
+<span class="o">|&gt;</span> <span class="n">of_string</span>
+<span class="o">|&gt;</span> <span class="n">to_list</span><span class="s1">'</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.unbox</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">([</span> <span class="s1">'a'</span><span class="p">;</span> <span class="s1">'b'</span> <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type UH0 =
+    | UH0_0
+    | UH0_1 of char * UH0
+let rec closure1 (v0 : char) (v1 : UH0) : UH0 =
+    UH0_1(v0, v1)
+and closure0 () (v0 : char) : (UH0 -&gt; UH0) =
+    closure1(v0)
+and method1 () : (char -&gt; (UH0 -&gt; UH0)) =
+    closure0()
+and method2 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : string = "ab"
+    let v1 : char seq = v0 |&gt; unbox&lt;char seq&gt;
+    let v2 : (char seq -&gt; char list) = Seq.toList
+    let v3 : char list = v2 v1
+    let v4 : ((char -&gt; (UH0 -&gt; UH0)) -&gt; (char list -&gt; (UH0 -&gt; UH0))) = List.foldBack
+    let v5 : (char -&gt; (UH0 -&gt; UH0)) = method1()
+    let v6 : (char list -&gt; (UH0 -&gt; UH0)) = v4 v5
+    let v7 : (UH0 -&gt; UH0) = v6 v3
+    let v8 : UH0 = UH0_0
+    let v9 : UH0 = v7 v8
+    let v10 : string = $"%A{v9}"
+    System.Console.WriteLine v10
+    let v24 : bool =
+        match v9 with
+        | UH0_1(v14, v15) -&gt; (* Cons *)
+            let v16 : bool = v14 = 'a'
+            if v16 then
+                match v15 with
+                | UH0_1(v17, v18) -&gt; (* Cons *)
+                    let v19 : bool = v17 = 'b'
+                    if v19 then
+                        match v18 with
+                        | UH0_0 -&gt; (* Nil *)
+                            true
+                        | _ -&gt;
+                            false
+                    else
+                        false
+                | _ -&gt;
+                    false
+            else
+                false
+        | _ -&gt;
+            false
+    let v26 : bool =
+        if v24 then
+            true
+        else
+            method2(v24)
+    let v27 : UH0 = UH0_0
+    let v28 : UH0 = UH0_1('b', v27)
+    let v29 : UH0 = UH0_1('a', v28)
+    let v30 : string = $"__expect / actual: %A{v9} / expected: %A{v29}"
+    let v31 : bool = v26 = false
+    if v31 then
+        failwith&lt;unit&gt; v30
+method0()
+
+UH0_1 ('a', UH0_1 ('b', UH0_0))
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="rev'">rev'<a class="anchor-link" href="#rev'">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rev</span><span class="s1">''</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">items</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">seq</span><span class="s1">' u =</span>
+    <span class="n">items</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Seq.rev'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7950,7 +8205,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7979,7 +8234,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7989,7 +8244,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8019,7 +8274,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8029,7 +8284,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8060,7 +8315,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8126,7 +8381,7 @@ US0_0 5
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8136,7 +8391,7 @@ US0_0 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8168,7 +8423,7 @@ US0_0 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8215,7 +8470,7 @@ US0_0 10
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8225,7 +8480,7 @@ US0_0 10
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8257,7 +8512,7 @@ US0_0 10
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8324,7 +8579,7 @@ US0_0 10
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8334,7 +8589,7 @@ US0_0 10
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8379,7 +8634,7 @@ US0_0 10
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8446,7 +8701,7 @@ US0_0 2
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8456,7 +8711,7 @@ US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8487,7 +8742,7 @@ US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8534,7 +8789,7 @@ US0_0 (5, 10)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8544,7 +8799,7 @@ US0_0 (5, 10)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8573,7 +8828,7 @@ US0_0 (5, 10)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8621,7 +8876,7 @@ struct (US0_0 5, US0_0 10)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8631,7 +8886,7 @@ struct (US0_0 5, US0_0 10)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8661,7 +8916,7 @@ struct (US0_0 5, US0_0 10)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8707,7 +8962,7 @@ US0_0 6
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8717,7 +8972,7 @@ US0_0 6
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8758,7 +9013,7 @@ US0_0 6
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8768,7 +9023,7 @@ US0_0 6
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8800,7 +9055,7 @@ US0_0 6
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8841,7 +9096,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8851,7 +9106,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8887,7 +9142,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8973,7 +9228,7 @@ UH0_1
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8983,7 +9238,7 @@ UH0_1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9015,7 +9270,7 @@ UH0_1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9084,7 +9339,7 @@ US0_0 2
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9094,7 +9349,7 @@ US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9134,7 +9389,7 @@ US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9448,7 +9703,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9458,7 +9713,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9491,7 +9746,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9531,7 +9786,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9604,7 +9859,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9614,7 +9869,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9647,7 +9902,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=66">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9777,7 +10032,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9931,7 +10186,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=60">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10134,7 +10389,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10144,7 +10399,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=70">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10190,7 +10445,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=71">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10372,7 +10627,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=72">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10382,7 +10637,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=73">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10415,7 +10670,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=66">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=74">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10452,7 +10707,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10485,7 +10740,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=76">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10543,7 +10798,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=69">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=77">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10573,7 +10828,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=70">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=78">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10611,7 +10866,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=71">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10621,7 +10876,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=72">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=80">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

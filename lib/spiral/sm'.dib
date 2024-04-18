@@ -286,6 +286,15 @@ inl into_boxed_str (s : std_string) : rust.box str =
 
 #!markdown
 
+## format''
+
+#!spiral
+
+inl format'' (format : string) : std_string =
+    !\($'@@$"format\!(" + !format + ")"')
+
+#!markdown
+
 ## format'
 
 #!spiral
@@ -371,11 +380,11 @@ instance to_string result t u = fun x =>
         | string * string =>
             match x with
             | Ok x => x
-            | Error x => $'"Error: " + !x + ""' : string
+            | Error x => $'"sm\'.to_string result / Error: " + !x + ""' : string
         | std_string * std_string =>
             match x with
             | Ok x => from_std_string x
-            | Error x => $'"Error: " + string !x + ""' : string
+            | Error x => $'"sm\'.to_string result / Error: " + string !x + ""' : string
         | _ => obj_to_string `u x
 
 #!markdown
@@ -556,7 +565,8 @@ types ()
 #!spiral
 
 inl concat (a : string) (b : seq.seq' _) : string =
-    $"!b |> String.concat !a"
+    inl a = join a
+    b |> $"String.concat" a
 
 #!markdown
 
@@ -646,7 +656,7 @@ inl split (separator : string) (str : string) : array_base string =
 inl split_string (separator : array_base string) (str : string) : array_base string =
     run_target function
         | Fsharp (Native) => fun () => $"!str.Split (!separator, System.StringSplitOptions.None)"
-        | _ => fun () => str |> split ((a separator : _ i32 _) |> seq.of_array |> concat (join ""))
+        | _ => fun () => str |> split ((a separator : _ i32 _) |> seq.of_array |> concat "")
 
 #!markdown
 
@@ -690,6 +700,31 @@ inl to_char_list (str : string) : list char =
 "abc"
 |> to_char_list
 |> _assert_eq ['a'; 'b'; 'c']
+
+#!spiral
+
+nominal encoding = $'System.Text.Encoding'
+
+inl encoding_utf8 () : encoding =
+    $'System.Text.Encoding.UTF8'
+
+#!markdown
+
+## utf8_get_bytes
+
+#!spiral
+
+inl utf8_get_bytes (s : string) : a i32 u8 =
+    s |> $'`encoding.UTF8.GetBytes'
+
+#!markdown
+
+## byte_to_string
+
+#!spiral
+
+inl byte_to_string (format : string) (x : u8) : string =
+    $'!x.ToString' format
 
 #!markdown
 

@@ -1,12 +1,102 @@
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-module SpiralDateTime =
-    let format x =
+module SpiralTrace =
+    let trace x =
 #if !INTERACTIVE
-        Date_time.format x
+        Trace.trace x
 #else
-        format x
+        trace x
 #endif
 
+    type TraceLevel =
+#if !INTERACTIVE
+        Trace.US0
+#else
+        US0
+#endif
+
+module SpiralCrypto =
+    let hash_text x =
+#if !INTERACTIVE
+        Crypto.hash_text x
+#else
+        hash_text x
+#endif
+
+#if !FABLE_COMPILER && !WASM && !CONTRACT
+
+module SpiralAsync =
+    let merge_cancellation_token_with_default_async x =
+#if !INTERACTIVE
+        Async_.merge_cancellation_token_with_default_async x
+#else
+        merge_cancellation_token_with_default_async x
+#endif
+
+module SpiralThreading =
+    let new_disposable_token x =
+#if !INTERACTIVE
+        Threading.new_disposable_token x
+#else
+        new_disposable_token x
+#endif
+
+module SpiralNetworking =
+    let test_port_open x =
+#if !INTERACTIVE
+        Networking.test_port_open x
+#else
+        test_port_open x
+#endif
+
+    let test_port_open_timeout x =
+#if !INTERACTIVE
+        Networking.test_port_open_timeout x
+#else
+        test_port_open_timeout x
+#endif
+
+    let wait_for_port_access x =
+#if !INTERACTIVE
+        Networking.wait_for_port_access x
+#else
+        wait_for_port_access x
+#endif
+
+    let get_available_port x =
+#if !INTERACTIVE
+        Networking.get_available_port x
+#else
+        get_available_port x
+#endif
+
+module SpiralRuntime =
+    let get_executable_suffix () =
+#if !INTERACTIVE
+        Runtime.get_executable_suffix ()
+#else
+        get_executable_suffix ()
+#endif
+
+    let is_windows () =
+#if !INTERACTIVE
+        Runtime.is_windows ()
+#else
+        is_windows ()
+#endif
+    let execute_async x =
+#if !INTERACTIVE
+        Runtime.execute_async x
+#else
+        execute_async x
+#endif
+
+    let execute_with_options_async x =
+#if !INTERACTIVE
+        Runtime.execute_with_options_async x
+#else
+        execute_with_options_async x
+#endif
+
+module SpiralDateTime =
     let format_iso8601 x =
 #if !INTERACTIVE
         Date_time.format_iso8601 x
@@ -19,6 +109,13 @@ module SpiralDateTime =
         Date_time.new_guid_from_date_time x
 #else
         new_guid_from_date_time x
+#endif
+
+    let format x =
+#if !INTERACTIVE
+        Date_time.format x
+#else
+        format x
 #endif
 
 #endif
@@ -137,6 +234,13 @@ module SpiralSm =
 #endif
 
 module SpiralFileSystem =
+    let get_repository_root () =
+#if !INTERACTIVE
+        File_system.get_repository_root ()
+#else
+        get_repository_root ()
+#endif
+
     let get_source_directory () =
 #if !INTERACTIVE
         File_system.get_source_directory ()
@@ -247,3 +351,61 @@ module SpiralFileSystem =
 #endif
 
 #endif
+
+let set_trace_level new_level =
+#if !INTERACTIVE
+
+    if File_system.State.trace_state = None then printfn "@1"
+    else
+        let struct (_, _, _, level, _) = File_system.State.trace_state |> Option.get
+        level.l0 <-
+            match new_level with
+            | Trace.US0_0 -> File_system.US0_0
+            | Trace.US0_1 -> File_system.US0_1
+            | Trace.US0_2 -> File_system.US0_2
+            | Trace.US0_3 -> File_system.US0_3
+            | Trace.US0_4 -> File_system.US0_4
+
+    if Networking.State.trace_state = None then printfn "@2"
+    else
+        let struct (_, _, _, level, _) = Networking.State.trace_state |> Option.get
+        level.l0 <-
+            match new_level with
+            | Trace.US0_0 -> Networking.US0_0
+            | Trace.US0_1 -> Networking.US0_1
+            | Trace.US0_2 -> Networking.US0_2
+            | Trace.US0_3 -> Networking.US0_3
+            | Trace.US0_4 -> Networking.US0_4
+
+    if Runtime.State.trace_state = None then printfn "@3"
+    else
+        let struct (_, _, _, level, _) = Runtime.State.trace_state |> Option.get
+        level.l0 <-
+            match new_level with
+            | Trace.US0_0 -> Runtime.US0_0
+            | Trace.US0_1 -> Runtime.US0_1
+            | Trace.US0_2 -> Runtime.US0_2
+            | Trace.US0_3 -> Runtime.US0_3
+            | Trace.US0_4 -> Runtime.US0_4
+
+    if Trace.State.trace_state = None then printfn "@4"
+    else
+        let struct (_, _, _, level, _) = Trace.State.trace_state |> Option.get
+#else
+    if State.trace_state = None then printfn "@5"
+    else
+        let struct (_, _, _, level, _) = State.trace_state |> Option.get
+#endif
+        level.l0 <- new_level
+
+let get_trace_level () =
+#if !INTERACTIVE
+    if Trace.State.trace_state = None then printfn "@6"; SpiralTrace.TraceLevel.US0_0
+    else
+        let struct (_, _, _, level, _) = Trace.State.trace_state |> Option.get
+#else
+    if State.trace_state = None then printfn "@7"; SpiralTrace.TraceLevel.US0_0
+    else
+        let struct (_, _, _, level, _) = State.trace_state |> Option.get
+#endif
+        level.l0

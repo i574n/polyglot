@@ -12,7 +12,6 @@ repository = "https://github.com/i574n/polyglot"
 license-file = "../LICENSE"
 
 [dependencies]
-curve25519-dalek = "=4.1.2"
 
 [dev-dependencies]
 
@@ -20,6 +19,7 @@ curve25519-dalek = "=4.1.2"
 chat_contract = { path = "./apps/chat/contract" }
 chat_contract_tests = { path = "./apps/chat/contract/tests" }
 plot = { path = "./apps/plot" }
+rust_builder = { path = "./apps/spiral/rust_builder" }
 spiral_temp_extension = { path = "./apps/spiral/temp/extension" }
 spiral_temp_test = { path = "./apps/spiral/temp/test" }
 exercism = { path = "./examples/rust/exercism" }

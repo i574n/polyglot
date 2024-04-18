@@ -35,15 +35,9 @@ module Builder =
         return!
             runtimes
             |> List.map (fun runtime -> async {
+                let command = $@"dotnet publish ""{path}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
                 let! exitCode, _result =
-                    Runtime.executeWithOptionsAsync
-                        {
-                            Command = $@"dotnet publish ""{path}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
-                            CancellationToken = None
-                            OnLine = None
-                            WorkingDirectory = Some fileDir
-                        }
-
+                    SpiralRuntime.execute_with_options_async struct (None, command, None, Some fileDir)
                 return exitCode
             })
             |> Async.Sequential
@@ -56,8 +50,7 @@ module Builder =
         let getLocals () = $"packages: {packages} / modules: {modules} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
         trace Debug (fun () -> "persistCodeProject") getLocals
 
-        let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
-
+        let repositoryRoot = SpiralFileSystem.get_repository_root ()
         let targetDir = repositoryRoot </> "target/polyglot/builder" </> name
         System.IO.Directory.CreateDirectory targetDir |> ignore
 

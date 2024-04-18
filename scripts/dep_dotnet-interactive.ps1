@@ -15,6 +15,10 @@ $path = "$HOME/.nuget/packages/microsoft.dotnet-interactive"
 $tools = Get-LastSortedItem -Path $path -Filter "tools"
 $netVersion = Get-LastSortedItem -Path $tools.FullName -Filter "any"
 
+if ((Get-ChildItem -Path $path -Directory).Count -gt 1) {
+    throw "More than one directory in $path"
+}
+
 Write-Output "Tool path: $netVersion"
 
 

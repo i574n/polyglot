@@ -8,26 +8,29 @@ $ErrorActionPreference = "Stop"
 . ../../lib/spiral/lib.ps1
 
 
+$projectName = "math"
+
 if (!$fast) {
-    { . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 math.dib`"" } | Invoke-Block -Retries ($fast -or !($env:CI) ? 1 : 3)
+    { . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 $projectName.dib`"" } | Invoke-Block -Retries ($fast -or !$env:CI ? 1 : 5)
 }
 
-{ . ../../apps/parser/dist/DibParser$(GetExecutableSuffix) math.dib spi } | Invoke-Block
+{ . ../../apps/parser/dist/DibParser$(GetExecutableSuffix) "$projectName.dib" spi } | Invoke-Block
 
-{ . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --build-file math.spi math.fsx --timeout 60000 } | Invoke-Block
+{ . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --build-file "$projectName.spi" "$projectName.fsx" --timeout 60000 } | Invoke-Block
 
-{ . ../../apps/builder/dist/Builder$(GetExecutableSuffix) math.fsx $($fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Fable.Core --modules lib/spiral/common.fsx lib/spiral/sm.fsx lib/spiral/date_time.fsx lib/spiral/file_system.fsx lib/spiral/lib.fsx lib/fsharp/Common.fs } | Invoke-Block
+$runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
+$builderArgs = @("$projectName.fsx", $runtime, "--packages", "Fable.Core", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs")
+{ . ../../apps/builder/dist/Builder$(GetExecutableSuffix) @builderArgs } | Invoke-Block
 
-$targetDir = "../../target/polyglot/builder/math"
+$targetDir = GetTargetDir $projectName
 
-{ dotnet fable $targetDir/math.fsproj --optimize --lang rs --extension .rs --outDir $targetDir/target/rs } | Invoke-Block
+{ BuildFable $targetDir $projectName "rs" } | Invoke-Block
 
-CopyTarget $targetDir ../../ "rs"
-
-(Get-Content $targetDir/target/rs/math.rs) `
+(Get-Content "$targetDir/target/rs/$projectName.rs") `
     -replace "../../../lib", "../lib" `
     -replace ".fsx`"]", ".rs`"]" `
-    | Set-Content math.rs
+    | FixRust `
+    | Set-Content "$projectName.rs"
 
 cargo fmt --
 

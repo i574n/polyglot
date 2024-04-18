@@ -246,15 +246,6 @@ inl vec_filter forall t. (fn : t -> bool) (ar : vec t) : vec t =
     inl ar = join ar
     !\($'"!ar.into_iter().filter(|x| !fn(x.clone().clone())).collect()"')
 
-// // ## enumerate
-
-inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
-    inl (a ar) = ar
-    inl ar = ar |> to_vec
-    !\($'"!ar.into_iter().enumerate().map(std::rc::Rc::new).collect()"')
-    |> vec_map from_pair
-    |> from_vec
-
 // // ## slice
 
 nominal slice t = $"Slice<`t>"

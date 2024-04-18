@@ -1,3 +1,25 @@
+// // # base
+
+inl array x = x
+
+// // ## prototype
+
+prototype append t : t -> t -> t
+prototype of_string t : string -> t
+prototype to_string t : t -> string
+
+// // ## (||>)
+
+inl (||>) (arg1, arg2) fn =
+    arg2 |> fn arg1
+
+// // ## (/@)
+
+inl (/@) a b =
+    b |> append a
+
+// // ## target
+
 union target_runtime =
     | Native
     | Wasm
@@ -8,26 +30,125 @@ union target =
     | Fsharp : target_runtime
     | TypeScript : target_runtime
 
-inl run_target forall t. (fn : target -> (() -> t)) : t =
-    inl result : optionm'.option' t = optionm'.none' ()
-    $"let mutable _!result = !result"
-    $"#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT"
-    fn (Rust Native) () |> fun x => $'!x '
-    $"#endif"
-    $"#if FABLE_COMPILER_RUST && WASM"
-    fn (Rust Wasm) () |> fun x => $'!x '
-    $"#endif"
-    $"#if FABLE_COMPILER_RUST && CONTRACT"
-    fn (Rust Contract) () |> fun x => $'!x '
-    $"#endif"
-    $"#if \!FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!FABLE_COMPILER_TYPESCRIPT && \!WASM && \!CONTRACT"
-    fn (Fsharp Native) () |> fun x => $'!x '
-    $"#endif"
-    $"#if FABLE_COMPILER_TYPESCRIPT"
-    fn (TypeScript Native) () |> fun x => $'!x '
-    $"#endif"
-    $"#if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART"
+// // ## defaultof
+
+inl defaultof forall t. () : t =
     $'Unchecked.defaultof<`t>'
-    $"#endif"
+
+// // ## emit
+
+inl emit forall t. (x : t) : t =
+    $'!x '
+
+// // ## unbox
+
+inl unbox forall t u. (x : t) : u =
+    $"!x |> unbox<`u>"
+
+// // ## run_target
+
+inl run_target forall t. (fn : target -> (() -> t)) : t =
+    inl close x =
+        $'!x\n#endif'
+    inl result : optionm'.option' t = optionm'.none' ()
+    ($"true in let mutable _!result = !result" : bool) |> ignore
+    $"#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT"
+    fn (Rust Native) () |> close
+    $"#if FABLE_COMPILER_RUST && WASM"
+    fn (Rust Wasm) () |> close
+    $"#if FABLE_COMPILER_RUST && CONTRACT"
+    fn (Rust Contract) () |> close
+    $"#if \!FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!FABLE_COMPILER_TYPESCRIPT && \!WASM && \!CONTRACT"
+    fn (Fsharp Native) () |> close
+    $"#if FABLE_COMPILER_TYPESCRIPT"
+    fn (TypeScript Native) () |> close
+    $"#if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART"
+    ((real defaultof `t ()) : t) |> close
     $"|> fun x -> _!result <- Some x"
-    $'_!result |> Option.get'
+    $'_!result.Value'
+
+// // ## exn
+
+nominal exn = $"exn"
+
+// // ## try
+
+inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
+    inl none = None : option t
+    inl some (s : t) = Some s
+    $'try !fn () |> !some with ex -> !ex_fn ex '
+
+// // ## try_unit
+
+inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
+    $"try"
+    fn ()
+    |> ignore
+    $"with ex ->"
+    ex_fn $'ex'
+    |> ignore
+    $'(*'
+    $'*)'
+
+// // ## try_finally
+
+inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
+    $"try"
+    fn ()
+    |> ignore
+    $"finally"
+    finally ()
+    |> ignore
+    $'(*'
+    $'*)'
+
+// // ## any
+
+nominal any = $"obj"
+
+
+// // ## i32
+
+inl i32 forall t. (x : t) : i32 =
+    $"int32 !x"
+
+// // ## i64
+
+inl i64 forall t. (x : t) : i64 =
+    $"int64 !x"
+
+// // ## f32
+
+inl f32 forall t. (x : t) : f32 =
+    $"float32 !x"
+
+// // ## f64
+
+inl f64 forall t. (x : t) : f64 =
+    $"float !x"
+
+// // ## pair
+
+type pair a b = $"(`a * `b)"
+
+inl pair x y =
+    x, y
+
+// // ## null
+
+inl null forall t. () : t =
+    $"null |> unbox<`t>"
+
+// // ## get_entry_assembly_name
+
+inl get_entry_assembly_name () : string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'
+        | target => fun () => null ()
+
+// // ## use
+
+inl use forall t. (x : t) : t =
+    $"use !x = !x " : ()
+    $'!x '

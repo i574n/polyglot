@@ -7558,12 +7558,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
-<span class="c1">#!import ../../lib/spiral/sm.fsx</span>
-<span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
-<span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
-<span class="c1">#!import ../../lib/spiral/lib.fsx</span>
-<span class="c1">#!import ../../lib/fsharp/Common.fs</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Common.fs</span>
 </pre></div>
 </div>
 </div>
@@ -7792,7 +7787,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #1 [Debug] runWithTimeoutAsync / timeout: 10
+<pre>00:00:00 debug #1 runWithTimeoutAsync / timeout: 10
 &lt;null&gt;
 </pre>
 </div>
@@ -7858,7 +7853,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #2 [Critical] runWithTimeoutAsync** / ex: System.Exception: error / timeout: 60
+<pre>00:00:00 critical #2 runWithTimeoutAsync** / ex: System.Exception: error / timeout: 60
 &lt;null&gt;
 </pre>
 </div>
@@ -7965,7 +7960,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #3 [Debug] runWithTimeoutChildAsync / timeout: 10
+<pre>00:00:01 debug #3 runWithTimeoutChildAsync / timeout: 10
 &lt;null&gt;
 </pre>
 </div>
@@ -8031,7 +8026,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #4 [Critical] runWithTimeoutChildAsync** / ex: System.Exception: error / timeout: 60
+<pre>00:00:01 critical #4 runWithTimeoutChildAsync** / ex: System.Exception: error / timeout: 60
 &lt;null&gt;
 </pre>
 </div>
@@ -8129,7 +8124,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #5 [Debug] runWithTimeoutStrict / timeout: 10
+<pre>00:00:01 debug #5 runWithTimeoutStrict / ex: System.TimeoutException: The operation has timed out. / timeout: 10
 &lt;null&gt;
 </pre>
 </div>
@@ -8195,8 +8190,8 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #6 [Critical] runWithTimeoutStrict / ex: System.Exception: error / timeout: 60
-00:00:00 #7 [Critical] runWithTimeoutStrict** / ex: System.AggregateException: One or more errors occurred. (error) / timeout: 60
+<pre>00:00:01 critical #6 runWithTimeoutStrict / ex: System.Exception: error / timeout: 60
+00:00:01 critical #7 runWithTimeoutStrict** / ex: System.AggregateException: One or more errors occurred. (error) / timeout: 60
 &lt;null&gt;
 </pre>
 </div>
@@ -8297,41 +8292,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="mergeCancellationTokenWithDefaultAsync">mergeCancellationTokenWithDefaultAsync<a class="anchor-link" href="#mergeCancellationTokenWithDefaultAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=36">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">mergeCancellationTokenWithDefaultAsync</span> <span class="p">(</span><span class="n">token</span> <span class="p">:</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationToken</span><span class="p">)</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">ct</span> <span class="o">=</span> <span class="n">Async</span><span class="o">.</span><span class="n">CancellationToken</span>
-    <span class="n">let</span> <span class="n">dct</span> <span class="o">=</span> <span class="n">Async</span><span class="o">.</span><span class="n">DefaultCancellationToken</span>
-    <span class="n">let</span> <span class="n">cts</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationTokenSource</span><span class="o">.</span><span class="n">CreateLinkedTokenSource</span> <span class="p">[</span><span class="o">|</span> <span class="n">ct</span><span class="p">;</span> <span class="n">dct</span><span class="p">;</span> <span class="n">token</span> <span class="o">|</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">cts</span><span class="o">.</span><span class="n">Token</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="withCancellationToken">withCancellationToken<a class="anchor-link" href="#withCancellationToken">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8347,7 +8312,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8394,38 +8359,6 @@ a.anchor-link {
       ResultValue: 0
       ErrorValue: A task was canceled.
 </pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="withTraceLevel">withTraceLevel<a class="anchor-link" href="#withTraceLevel">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=41">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">withTraceLevel</span> <span class="n">level</span> <span class="n">fn</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">oldTraceLevel</span> <span class="o">=</span> <span class="n">traceLevel</span>
-    <span class="k">try</span>
-        <span class="n">traceLevel</span> <span class="o">&lt;-</span> <span class="n">level</span>
-        <span class="k">return</span><span class="err">!</span> <span class="n">fn</span>
-    <span class="k">finally</span>
-        <span class="n">traceLevel</span> <span class="o">&lt;-</span> <span class="n">oldTraceLevel</span>
-<span class="p">}</span>
-</pre></div>
 </div>
 </div>
 </div>

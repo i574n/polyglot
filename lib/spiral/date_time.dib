@@ -42,6 +42,18 @@ nominal utc = $"chrono_Utc"
 
 #!markdown
 
+## date_time_milliseconds
+
+#!spiral
+
+inl date_time_milliseconds
+    (year : int) (month : int) (day : int) (hour : int) (minute : int) (second : int) (millisecond : int)
+    : date_time
+    =
+    $'System.DateTime (!year, !month, !day, !hour, !minute, !second, !millisecond)'
+
+#!markdown
+
 ## naive_utc
 
 #!spiral
@@ -315,6 +327,9 @@ inl utc_now () : date_time =
 
 nominal time_span = $'System.TimeSpan'
 
+inl time_span x : time_span =
+    $'`time_span !x '
+
 #!markdown
 
 ## new_time_span
@@ -323,6 +338,42 @@ nominal time_span = $'System.TimeSpan'
 
 inl new_time_span (a : date_time) (b : date_time) : time_span =
     $'!b - !a '
+
+#!markdown
+
+## hours
+
+#!spiral
+
+inl hours (time_span : time_span) : i32 =
+    time_span |> $'_.Hours'
+
+#!markdown
+
+## milliseconds
+
+#!spiral
+
+inl milliseconds (time_span : time_span) : i32 =
+    time_span |> $'_.Milliseconds'
+
+#!markdown
+
+## minutes
+
+#!spiral
+
+inl minutes (time_span : time_span) : i32 =
+    time_span |> $'_.Minutes'
+
+#!markdown
+
+## seconds
+
+#!spiral
+
+inl seconds (time_span : time_span) : i32 =
+    time_span |> $'_.Seconds'
 
 #!markdown
 

@@ -43,8 +43,8 @@ inl cons' forall t. (head : t) (tail : list' t) : list' t =
 #!spiral
 
 inl box forall t. (list : list t) : list' t =
-    (empty' (), list)
-    ||> listm.fold fun acc x =>
+    (list, empty' ())
+    ||> listm.foldBack fun x acc =>
         acc |> cons' x
 
 #!markdown
@@ -55,7 +55,13 @@ inl box forall t. (list : list t) : list' t =
 
 inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
     (init, list)
-    ||> $'List.fold' (fun acc x => Cons (fn x, acc))
+    ||> $'List.fold' join fun acc x => Cons (fn x, acc)
+
+#!spiral
+
+inl fold_back' forall t u. (fn : t -> u) (list : list' t) (init : list u) : list u =
+    (list, init)
+    ||> $'List.foldBack' join fun x acc => Cons (fn x, acc)
 
 #!markdown
 
@@ -64,8 +70,8 @@ inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
 #!spiral
 
 inl unbox forall t. (list : list' t) : list t =
-    (Nil, list)
-    ||> fold' id
+    (list, Nil)
+    ||> fold_back' id
 
 #!markdown
 
@@ -80,11 +86,11 @@ inl distinct' forall t. (list : list' t) : list' t =
 
 // // test
 
-[ ""; "" ]
+[ "1"; "2"; "2"; "3" ]
 |> box
 |> distinct'
 |> unbox
-|> _assert_eq [ "" ]
+|> _assert_eq [ "1"; "2"; "3" ]
 
 #!markdown
 

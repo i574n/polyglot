@@ -8,11 +8,6 @@
 
 #!fsharp
 
-#!import ../../lib/fsharp/Notebooks.dib
-#!import ../../lib/fsharp/Testing.dib
-
-#!fsharp
-
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
@@ -21,16 +16,15 @@
 
 #!fsharp
 
-#!import ../../lib/spiral/common.fsx
-#!import ../../lib/spiral/sm.fsx
-#!import ../../lib/spiral/date_time.fsx
-#!import ../../lib/spiral/file_system.fsx
-#!import ../../lib/spiral/lib.fsx
+#!import ../../lib/fsharp/Notebooks.dib
+#!import ../../lib/fsharp/Testing.dib
+
+#!fsharp
+
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs
 #!import ../../lib/fsharp/Async.fs
 #!import ../../lib/fsharp/AsyncSeq.fs
-#!import ../../lib/fsharp/Networking.fs
 #!import ../../lib/fsharp/Runtime.fs
 #!import ../../lib/fsharp/FileSystem.fs
 
@@ -73,15 +67,9 @@ let inline buildProject runtime outputDir path = async {
     return!
         runtimes
         |> List.map (fun runtime -> async {
+            let command = $@"dotnet publish ""{path}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
             let! exitCode, _result =
-                Runtime.executeWithOptionsAsync
-                    {
-                        Command = $@"dotnet publish ""{path}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
-                        CancellationToken = None
-                        OnLine = None
-                        WorkingDirectory = Some fileDir
-                    }
-
+                SpiralRuntime.execute_with_options_async struct (None, command, None, Some fileDir)
             return exitCode
         })
         |> Async.Sequential
@@ -98,8 +86,7 @@ let inline persistCodeProject packages modules name code = async {
     let getLocals () = $"packages: {packages} / modules: {modules} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
     trace Debug (fun () -> "persistCodeProject") getLocals
 
-    let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
-
+    let repositoryRoot = SpiralFileSystem.get_repository_root ()
     let targetDir = repositoryRoot </> "target/polyglot/builder" </> name
     System.IO.Directory.CreateDirectory targetDir |> ignore
 

@@ -14,6 +14,7 @@ nuget FSharp.Control.AsyncSeq ~> 3.2.0
 nuget FSharp.Core == 8.0.300-beta.24080.5
 nuget FSharp.Json ~> 0.4.0
 nuget Microsoft.AspNetCore.Connections.Abstractions == 7.0.0
+nuget System.Management == 7.0.0
 nuget Microsoft.AspNetCore.Http.Connections.Common == 7.0.0
 nuget Microsoft.AspNetCore.Http.Connections.Client == 7.0.0
 nuget Microsoft.AspNetCore.SignalR.Common == 7.0.0

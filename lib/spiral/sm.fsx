@@ -46,49 +46,58 @@ and method0 () : string =
     v0
 and closure18 (v0 : (string [])) (v1 : string) : (string []) =
     let v2 : (string []) option = None
-    let mutable _v2 = v2
+    let v3 : bool = true in let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v3 : ((string []) -> string seq) = Seq.ofArray
-    let v4 : string seq = v3 v0
-    let v5 : string = method0()
-    let v6 : string = v4 |> String.concat v5
-    let v7 : (string []) = v1.Split v6
-    v7 
-    #endif
+    let v4 : ((string []) -> string seq) = Seq.ofArray
+    let v5 : string seq = v4 v0
+    let v6 : string = method0()
+    let v7 : (string -> (string seq -> string)) = String.concat
+    let v8 : (string seq -> string) = v7 v6
+    let v9 : string = v8 v5
+    let v10 : (string []) = v1.Split v9
+    v10
+#endif
     #if FABLE_COMPILER_RUST && WASM
-    let v8 : ((string []) -> string seq) = Seq.ofArray
-    let v9 : string seq = v8 v0
-    let v10 : string = method0()
-    let v11 : string = v9 |> String.concat v10
-    let v12 : (string []) = v1.Split v11
-    v12 
-    #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
-    let v13 : ((string []) -> string seq) = Seq.ofArray
-    let v14 : string seq = v13 v0
-    let v15 : string = method0()
-    let v16 : string = v14 |> String.concat v15
+    let v11 : ((string []) -> string seq) = Seq.ofArray
+    let v12 : string seq = v11 v0
+    let v13 : string = method0()
+    let v14 : (string -> (string seq -> string)) = String.concat
+    let v15 : (string seq -> string) = v14 v13
+    let v16 : string = v15 v12
     let v17 : (string []) = v1.Split v16
-    v17 
-    #endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v18 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
-    v18 
-    #endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v19 : ((string []) -> string seq) = Seq.ofArray
-    let v20 : string seq = v19 v0
-    let v21 : string = method0()
-    let v22 : string = v20 |> String.concat v21
-    let v23 : (string []) = v1.Split v22
-    v23 
-    #endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof<(string [])>
-    #endif
-    |> fun x -> _v2 <- Some x
-    let v24 : (string []) = _v2 |> Option.get
+    v17
+#endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v18 : ((string []) -> string seq) = Seq.ofArray
+    let v19 : string seq = v18 v0
+    let v20 : string = method0()
+    let v21 : (string -> (string seq -> string)) = String.concat
+    let v22 : (string seq -> string) = v21 v20
+    let v23 : string = v22 v19
+    let v24 : (string []) = v1.Split v23
     v24
+#endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v25 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
+    v25
+#endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v26 : ((string []) -> string seq) = Seq.ofArray
+    let v27 : string seq = v26 v0
+    let v28 : string = method0()
+    let v29 : (string -> (string seq -> string)) = String.concat
+    let v30 : (string seq -> string) = v29 v28
+    let v31 : string = v30 v27
+    let v32 : (string []) = v1.Split v31
+    v32
+#endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v33 : (string []) = Unchecked.defaultof<(string [])>
+    v33
+#endif
+    |> fun x -> _v2 <- Some x
+    let v34 : (string []) = _v2.Value
+    v34
 and closure17 () (v0 : (string [])) : (string -> (string [])) =
     closure18(v0)
 and closure20 (v0 : string) (v1 : string) : bool =
@@ -157,40 +166,42 @@ and closure34 (v0 : int64) (v1 : string) : string =
         let v18 : (string []) = [|v13; v17; v16|]
         let v19 : ((string []) -> string seq) = Seq.ofArray
         let v20 : string seq = v19 v18
-        let v21 : string = ""
-        let v22 : string = v20 |> String.concat v21
-        v22
+        let v21 : string = method0()
+        let v22 : (string -> (string seq -> string)) = String.concat
+        let v23 : (string seq -> string) = v22 v21
+        v23 v20
 and closure33 () (v0 : int64) : (string -> string) =
     closure34(v0)
 and closure35 () (v0 : exn) : string =
     let v1 : string option = None
-    let mutable _v1 = v1
+    let v2 : bool = true in let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v2 : string = $"%A{v0}"
-    v2 
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
     let v3 : string = $"%A{v0}"
-    v3 
-    #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
+    v3
+#endif
+    #if FABLE_COMPILER_RUST && WASM
     let v4 : string = $"%A{v0}"
-    v4 
-    #endif
+    v4
+#endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v5 : string = $"%A{v0}"
+    v5
+#endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v5 : string = $"{v0.GetType ()}: {v0.Message}"
-    v5 
-    #endif
+    let v6 : string = $"{v0.GetType ()}: {v0.Message}"
+    v6
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
-    let v6 : string = $"%A{v0}"
-    v6 
-    #endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof<string>
-    #endif
-    |> fun x -> _v1 <- Some x
-    let v7 : string = _v1 |> Option.get
+    let v7 : string = $"%A{v0}"
     v7
+#endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v8 : string = Unchecked.defaultof<string>
+    v8
+#endif
+    |> fun x -> _v1 <- Some x
+    let v9 : string = _v1.Value
+    v9
 and method1 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
@@ -212,9 +223,13 @@ and closure37 (v0 : string) (v1 : (string [])) : string =
     v11
 and closure36 () (v0 : string) : ((string []) -> string) =
     closure37(v0)
+and method2 (v0 : string) : string =
+    v0
 and closure39 (v0 : string) (v1 : string seq) : string =
-    let v2 : string = v1 |> String.concat v0
-    v2
+    let v2 : string = method2(v0)
+    let v3 : (string -> (string seq -> string)) = String.concat
+    let v4 : (string seq -> string) = v3 v2
+    v4 v1
 and closure38 () (v0 : string) : (string seq -> string) =
     closure39(v0)
 and closure41 (v0 : string) (v1 : (string [])) : string =
@@ -222,7 +237,7 @@ and closure41 (v0 : string) (v1 : (string [])) : string =
     v2
 and closure40 () (v0 : string) : ((string []) -> string) =
     closure41(v0)
-and method2 (v0 : int32, v1 : Mut1) : bool =
+and method3 (v0 : int32, v1 : Mut1) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
@@ -230,7 +245,7 @@ and closure42 () (v0 : string) : (char []) =
     let v1 : int32 = v0.Length
     let v2 : (char []) = Array.zeroCreate<char> (v1)
     let v3 : Mut1 = {l0 = 0} : Mut1
-    while method2(v1, v3) do
+    while method3(v1, v3) do
         let v5 : int32 = v3.l0
         let v6 : char = v0.[int v5]
         v2.[int v5] <- v6

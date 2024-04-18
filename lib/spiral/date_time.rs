@@ -125,7 +125,7 @@ pub mod Date_time {
     }
     pub fn v0() -> Func1<Guid, Func1<DateTime, Guid>> {
         static v0: OnceInit<Func1<Guid, Func1<DateTime, Guid>>> = OnceInit::new();
-        v0.get_or_insert_with(|| Func1::new(move |v: Guid| Date_time::closure0((), v)))
+        v0.get_or_init(|| Func1::new(move |v: Guid| Date_time::closure0((), v)))
             .clone()
     }
     pub fn date_time_guid_from_date_time(x: Guid) -> Func1<DateTime, Guid> {
@@ -133,7 +133,7 @@ pub mod Date_time {
     }
     pub fn v1() -> Func1<Guid, DateTime> {
         static v1: OnceInit<Func1<Guid, DateTime>> = OnceInit::new();
-        v1.get_or_insert_with(|| Func1::new(move |v: Guid| Date_time::closure2((), v)))
+        v1.get_or_init(|| Func1::new(move |v: Guid| Date_time::closure2((), v)))
             .clone()
     }
     pub fn date_time_from_guid(x: Guid) -> DateTime {
@@ -141,7 +141,7 @@ pub mod Date_time {
     }
     pub fn v2() -> Func1<Guid, Func1<i64, Guid>> {
         static v2: OnceInit<Func1<Guid, Func1<i64, Guid>>> = OnceInit::new();
-        v2.get_or_insert_with(|| Func1::new(move |v: Guid| Date_time::closure6((), v)))
+        v2.get_or_init(|| Func1::new(move |v: Guid| Date_time::closure6((), v)))
             .clone()
     }
     pub fn timestamp_guid_from_timestamp(x: Guid) -> Func1<i64, Guid> {
@@ -149,7 +149,7 @@ pub mod Date_time {
     }
     pub fn v3() -> Func1<Guid, i64> {
         static v3: OnceInit<Func1<Guid, i64>> = OnceInit::new();
-        v3.get_or_insert_with(|| Func1::new(move |v: Guid| Date_time::closure8((), v)))
+        v3.get_or_init(|| Func1::new(move |v: Guid| Date_time::closure8((), v)))
             .clone()
     }
     pub fn timestamp_from_guid(x: Guid) -> i64 {
@@ -157,7 +157,7 @@ pub mod Date_time {
     }
     pub fn v4() -> Func1<DateTime, Guid> {
         static v4: OnceInit<Func1<DateTime, Guid>> = OnceInit::new();
-        v4.get_or_insert_with(|| Func1::new(move |v: DateTime| Date_time::closure9((), v)))
+        v4.get_or_init(|| Func1::new(move |v: DateTime| Date_time::closure9((), v)))
             .clone()
     }
     pub fn new_guid_from_date_time(x: DateTime) -> Guid {
@@ -165,7 +165,7 @@ pub mod Date_time {
     }
     pub fn v5() -> Func1<i64, Guid> {
         static v5: OnceInit<Func1<i64, Guid>> = OnceInit::new();
-        v5.get_or_insert_with(|| Func1::new(move |v: i64| Date_time::closure10((), v)))
+        v5.get_or_init(|| Func1::new(move |v: i64| Date_time::closure10((), v)))
             .clone()
     }
     pub fn new_guid_from_timestamp(x: i64) -> Guid {
@@ -173,7 +173,7 @@ pub mod Date_time {
     }
     pub fn v6() -> Func1<string, Func1<DateTime, string>> {
         static v6: OnceInit<Func1<string, Func1<DateTime, string>>> = OnceInit::new();
-        v6.get_or_insert_with(|| Func1::new(move |v: string| Date_time::closure11((), v)))
+        v6.get_or_init(|| Func1::new(move |v: string| Date_time::closure11((), v)))
             .clone()
     }
     pub fn format(x: string) -> Func1<DateTime, string> {
@@ -181,11 +181,11 @@ pub mod Date_time {
     }
     pub fn v7() -> Func1<DateTime, string> {
         static v7: OnceInit<Func1<DateTime, string>> = OnceInit::new();
-        v7.get_or_insert_with(|| Func1::new(move |v: DateTime| Date_time::closure13((), v)))
+        v7.get_or_init(|| Func1::new(move |v: DateTime| Date_time::closure13((), v)))
             .clone()
     }
     pub fn format_iso8601(x: DateTime) -> string {
         (Date_time::v7())(x)
     }
-    on_startup!((),);
+    on_startup!(());
 }

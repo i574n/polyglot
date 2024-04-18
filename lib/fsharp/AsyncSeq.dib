@@ -19,11 +19,6 @@
 
 #!fsharp
 
-#!import ../../lib/spiral/common.fsx
-#!import ../../lib/spiral/sm.fsx
-#!import ../../lib/spiral/date_time.fsx
-#!import ../../lib/spiral/file_system.fsx
-#!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/Async.fs
 
@@ -184,6 +179,10 @@ testEvent.Calls
     "RemoveHandler"
     "IObservable.Dispose"
 ]
+
+#!markdown
+
+## subscribeToken
 
 #!fsharp
 

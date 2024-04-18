@@ -5,6 +5,7 @@ param(
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
+. ../../lib/spiral/lib.ps1
 
 
 if (!$fast) {
@@ -13,7 +14,9 @@ if (!$fast) {
 
 { . ../parser/dist/DibParser$(GetExecutableSuffix) Supervisor.dib fs } | Invoke-Block
 
-{ . ../builder/dist/Builder$(GetExecutableSuffix) Supervisor.fs $($fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Argu FSharp.Control.AsyncSeq FSharp.Json Microsoft.AspNetCore.SignalR.Client System.CommandLine System.Reactive.Linq --modules lib/spiral/common.fsx lib/spiral/sm.fsx lib/spiral/date_time.fsx lib/spiral/file_system.fsx lib/spiral/lib.fsx lib/fsharp/Common.fs lib/fsharp/CommonFSharp.fs lib/fsharp/Threading.fs lib/fsharp/Crypto.fs lib/fsharp/Async.fs lib/fsharp/AsyncSeq.fs lib/fsharp/Networking.fs lib/fsharp/Runtime.fs lib/fsharp/FileSystem.fs } | Invoke-Block
+$runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
+$builderArgs = @("Supervisor.fs", $runtime, "--packages", "Argu", "FSharp.Control.AsyncSeq", "FSharp.Json", "Microsoft.AspNetCore.SignalR.Client", "System.CommandLine", "System.Reactive.Linq", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs", "lib/fsharp/CommonFSharp.fs", "lib/fsharp/Async.fs", "lib/fsharp/AsyncSeq.fs", "lib/fsharp/Runtime.fs", "lib/fsharp/FileSystem.fs")
+{ . ../builder/dist/Builder$(GetExecutableSuffix) @builderArgs } | Invoke-Block
 
 if (!$fast) {
     Invoke-Dib Eval.dib -Retries 3

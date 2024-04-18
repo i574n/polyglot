@@ -8420,453 +8420,457 @@ and closure0 () () : unit =
             let v34 : uint64 = v32.l0
             let struct (v35 : int32, v36 : string, v37 : (struct (string * string) -&gt; string)) = v29.[int v34]
             let v38 : unit option = None
-            let mutable _v38 = v38
+            let v39 : bool = true in let mutable _v38 = v38
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.GC.Collect ()
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_TYPESCRIPT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
             Unchecked.defaultof&lt;unit&gt;
-            #endif
+            ()
+#endif
             |&gt; fun x -&gt; _v38 &lt;- Some x
-            _v38 |&gt; Option.get
-            let v39 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
-            let v40 : System.Diagnostics.Stopwatch = v39 ()
-            v40.Start ()
-            let v41 : int64 = v40.ElapsedMilliseconds
-            let v42 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
-            let v43 : Mut1 = {l0 = 0} : Mut1
-            while method8(v43) do
-                let v45 : int32 = v43.l0
-                v42.[int v45] &lt;- v45
-                let v46 : int32 = v45 + 1
-                v43.l0 &lt;- v46
+            _v38.Value
+            let v40 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+            let v41 : System.Diagnostics.Stopwatch = v40 ()
+            v41.Start ()
+            let v42 : int64 = v41.ElapsedMilliseconds
+            let v43 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+            let v44 : Mut1 = {l0 = 0} : Mut1
+            while method8(v44) do
+                let v46 : int32 = v44.l0
+                v43.[int v46] &lt;- v46
+                let v47 : int32 = v46 + 1
+                v44.l0 &lt;- v47
                 ()
-            let v47 : ((int32 -&gt; string) -&gt; ((int32 []) -&gt; (string []))) = Array.Parallel.map
-            let v48 : (int32 -&gt; string) = closure3(v15, v16, v37)
-            let v49 : ((int32 []) -&gt; (string [])) = v47 v48
-            let v50 : (string []) = v49 v42
-            let v51 : int32 = v50.Length
-            let v52 : int32 = v51 - 1
-            let v53 : string = v50.[int v52]
-            let v54 : int64 = v40.ElapsedMilliseconds
-            let v55 : int64 = v54 - v41
-            let v56 : string = $"Test case {v35 + 1}. {v36}. Time: {v55}  "
-            System.Console.WriteLine v56
-            v31.[int v34] &lt;- struct (v53, v55)
-            let v57 : uint64 = v34 + 1UL
-            v32.l0 &lt;- v57
+            let v48 : ((int32 -&gt; string) -&gt; ((int32 []) -&gt; (string []))) = Array.Parallel.map
+            let v49 : (int32 -&gt; string) = closure3(v15, v16, v37)
+            let v50 : ((int32 []) -&gt; (string [])) = v48 v49
+            let v51 : (string []) = v50 v43
+            let v52 : int32 = v51.Length
+            let v53 : int32 = v52 - 1
+            let v54 : string = v51.[int v53]
+            let v55 : int64 = v41.ElapsedMilliseconds
+            let v56 : int64 = v55 - v42
+            let v57 : string = $"Test case {v35 + 1}. {v36}. Time: {v56}  "
+            System.Console.WriteLine v57
+            v31.[int v34] &lt;- struct (v54, v56)
+            let v58 : uint64 = v34 + 1UL
+            v32.l0 &lt;- v58
             ()
-        let v58 : uint64 = System.Convert.ToUInt64 v31.Length
-        let v59 : (string []) = Array.zeroCreate&lt;string&gt; (System.Convert.ToInt32(v58))
-        let v60 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v58, v60) do
-            let v62 : uint64 = v60.l0
-            let struct (v63 : string, v64 : int64) = v31.[int v62]
-            v59.[int v62] &lt;- v63
-            let v65 : uint64 = v62 + 1UL
-            v60.l0 &lt;- v65
+        let v59 : uint64 = System.Convert.ToUInt64 v31.Length
+        let v60 : (string []) = Array.zeroCreate&lt;string&gt; (System.Convert.ToInt32(v59))
+        let v61 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v59, v61) do
+            let v63 : uint64 = v61.l0
+            let struct (v64 : string, v65 : int64) = v31.[int v63]
+            v60.[int v63] &lt;- v64
+            let v66 : uint64 = v63 + 1UL
+            v61.l0 &lt;- v66
             ()
-        let v66 : uint64 = System.Convert.ToUInt64 v59.Length
-        let v67 : bool = v66 &lt;= 1UL
-        if v67 then
+        let v67 : uint64 = System.Convert.ToUInt64 v60.Length
+        let v68 : bool = v67 &lt;= 1UL
+        if v68 then
             ()
         else
-            let v68 : string = v59.[int 0UL]
-            let v69 : uint64 = 0UL
-            let v70 : bool = method9(v68, v59, v69)
-            if v70 then
+            let v69 : string = v60.[int 0UL]
+            let v70 : uint64 = 0UL
+            let v71 : bool = method9(v69, v60, v70)
+            if v71 then
                 ()
             else
-                let v71 : string = $"Challenge error: {v59}"
-                failwith&lt;unit&gt; v71
-        let v72 : string = $"%A{v17}"
-        let v73 : (string []) = Array.zeroCreate&lt;string&gt; (System.Convert.ToInt32(v58))
-        let v74 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v58, v74) do
-            let v76 : uint64 = v74.l0
-            let struct (v77 : string, v78 : int64) = v31.[int v76]
-            v73.[int v76] &lt;- v77
-            let v79 : uint64 = v76 + 1UL
-            v74.l0 &lt;- v79
+                let v72 : string = $"Challenge error: {v60}"
+                failwith&lt;unit&gt; v72
+        let v73 : string = $"%A{v17}"
+        let v74 : (string []) = Array.zeroCreate&lt;string&gt; (System.Convert.ToInt32(v59))
+        let v75 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v59, v75) do
+            let v77 : uint64 = v75.l0
+            let struct (v78 : string, v79 : int64) = v31.[int v77]
+            v74.[int v77] &lt;- v78
+            let v80 : uint64 = v77 + 1UL
+            v75.l0 &lt;- v80
             ()
-        let v80 : string = v73.[int 0UL]
-        let v81 : string = $"%A{v80}"
-        let v82 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v58))
-        let v83 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v58, v83) do
-            let v85 : uint64 = v83.l0
-            let struct (v86 : string, v87 : int64) = v31.[int v85]
-            v82.[int v85] &lt;- v87
-            let v88 : uint64 = v85 + 1UL
-            v83.l0 &lt;- v88
+        let v81 : string = v74.[int 0UL]
+        let v82 : string = $"%A{v81}"
+        let v83 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v59))
+        let v84 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v59, v84) do
+            let v86 : uint64 = v84.l0
+            let struct (v87 : string, v88 : int64) = v31.[int v86]
+            v83.[int v86] &lt;- v88
+            let v89 : uint64 = v86 + 1UL
+            v84.l0 &lt;- v89
             ()
-        v11.[int v14] &lt;- struct (v72, v18, v81, v82)
-        let v89 : uint64 = v14 + 1UL
-        v12.l0 &lt;- v89
+        v11.[int v14] &lt;- struct (v73, v18, v82, v83)
+        let v90 : uint64 = v14 + 1UL
+        v12.l0 &lt;- v90
         ()
-    let v90 : uint64 = System.Convert.ToUInt64 v11.Length
-    let v91 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v90))
-    let v92 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v90, v92) do
-        let v94 : uint64 = v92.l0
-        let struct (v95 : string, v96 : string, v97 : string, v98 : (int64 [])) = v11.[int v94]
-        let v99 : uint64 = System.Convert.ToUInt64 v98.Length
-        let v100 : UH3 = UH3_0
-        let v101 : Mut2 = {l0 = 0UL; l1 = v100; l2 = 0L} : Mut2
-        while method10(v99, v101) do
-            let v103 : uint64 = v101.l0
-            let struct (v104 : UH3, v105 : int64) = v101.l1, v101.l2
-            let v106 : int64 = v98.[int v103]
-            let v107 : int64 = v105 + 1L
-            let v108 : uint64 = v103 + 1UL
-            let v109 : UH3 = UH3_1(v105, v106, v104)
-            v101.l0 &lt;- v108
-            v101.l1 &lt;- v109
-            v101.l2 &lt;- v107
+    let v91 : uint64 = System.Convert.ToUInt64 v11.Length
+    let v92 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v91))
+    let v93 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v91, v93) do
+        let v95 : uint64 = v93.l0
+        let struct (v96 : string, v97 : string, v98 : string, v99 : (int64 [])) = v11.[int v95]
+        let v100 : uint64 = System.Convert.ToUInt64 v99.Length
+        let v101 : UH3 = UH3_0
+        let v102 : Mut2 = {l0 = 0UL; l1 = v101; l2 = 0L} : Mut2
+        while method10(v100, v102) do
+            let v104 : uint64 = v102.l0
+            let struct (v105 : UH3, v106 : int64) = v102.l1, v102.l2
+            let v107 : int64 = v99.[int v104]
+            let v108 : int64 = v106 + 1L
+            let v109 : uint64 = v104 + 1UL
+            let v110 : UH3 = UH3_1(v106, v107, v105)
+            v102.l0 &lt;- v109
+            v102.l1 &lt;- v110
+            v102.l2 &lt;- v108
             ()
-        let struct (v110 : UH3, v111 : int64) = v101.l1, v101.l2
-        let v112 : UH3 = UH3_0
-        let v113 : UH3 = method11(v110, v112)
-        let v114 : (struct (int64 * int64) []) = method12(v113)
-        let v115 : int32 = v114.Length
-        let v116 : (struct (int64 * int64) []) = Array.zeroCreate&lt;struct (int64 * int64)&gt; (v115)
-        let v117 : Mut1 = {l0 = 0} : Mut1
-        while method15(v115, v117) do
-            let v119 : int32 = v117.l0
-            let struct (v120 : int64, v121 : int64) = v114.[int v119]
-            let v122 : int64 = v120 + 1L
-            v116.[int v119] &lt;- struct (v122, v121)
-            let v123 : int32 = v119 + 1
-            v117.l0 &lt;- v123
+        let struct (v111 : UH3, v112 : int64) = v102.l1, v102.l2
+        let v113 : UH3 = UH3_0
+        let v114 : UH3 = method11(v111, v113)
+        let v115 : (struct (int64 * int64) []) = method12(v114)
+        let v116 : int32 = v115.Length
+        let v117 : (struct (int64 * int64) []) = Array.zeroCreate&lt;struct (int64 * int64)&gt; (v116)
+        let v118 : Mut1 = {l0 = 0} : Mut1
+        while method15(v116, v118) do
+            let v120 : int32 = v118.l0
+            let struct (v121 : int64, v122 : int64) = v115.[int v120]
+            let v123 : int64 = v121 + 1L
+            v117.[int v120] &lt;- struct (v123, v122)
+            let v124 : int32 = v120 + 1
+            v118.l0 &lt;- v124
             ()
-        let v124 : ((struct (int64 * int64) -&gt; int64) -&gt; ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) []))) = Array.sortBy
-        let v125 : (struct (int64 * int64) -&gt; int64) = closure4()
-        let v126 : ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) [])) = v124 v125
-        let v127 : (struct (int64 * int64) []) = v126 v116
-        let struct (v128 : int64, v129 : int64) = v127.[int 0]
-        let v130 : string = $"%A{struct (v128, v129)}"
-        let v131 : bool = v95 = v97
-        let v136 : US0 =
-            if v131 then
-                let v132 : System.ConsoleColor = System.ConsoleColor.DarkGreen
-                US0_0(v132)
+        let v125 : ((struct (int64 * int64) -&gt; int64) -&gt; ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) []))) = Array.sortBy
+        let v126 : (struct (int64 * int64) -&gt; int64) = closure4()
+        let v127 : ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) [])) = v125 v126
+        let v128 : (struct (int64 * int64) []) = v127 v117
+        let struct (v129 : int64, v130 : int64) = v128.[int 0]
+        let v131 : string = $"%A{struct (v129, v130)}"
+        let v132 : bool = v96 = v98
+        let v137 : US0 =
+            if v132 then
+                let v133 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+                US0_0(v133)
             else
-                let v134 : System.ConsoleColor = System.ConsoleColor.DarkRed
-                US0_0(v134)
-        let v137 : UH2 = UH2_0
-        let v138 : UH2 = UH2_1(v130, v137)
-        let v139 : UH2 = UH2_1(v97, v138)
-        let v140 : UH2 = UH2_1(v95, v139)
+                let v135 : System.ConsoleColor = System.ConsoleColor.DarkRed
+                US0_0(v135)
+        let v138 : UH2 = UH2_0
+        let v139 : UH2 = UH2_1(v131, v138)
+        let v140 : UH2 = UH2_1(v98, v139)
         let v141 : UH2 = UH2_1(v96, v140)
-        v91.[int v94] &lt;- struct (v141, v136)
-        let v142 : uint64 = v94 + 1UL
-        v92.l0 &lt;- v142
+        let v142 : UH2 = UH2_1(v97, v141)
+        v92.[int v95] &lt;- struct (v142, v137)
+        let v143 : uint64 = v95 + 1UL
+        v93.l0 &lt;- v143
         ()
-    let v143 : string = "Input"
-    let v144 : string = "Expected"
-    let v145 : string = "Result"
-    let v146 : string = "Best"
-    let v147 : UH2 = UH2_0
-    let v148 : UH2 = UH2_1(v146, v147)
-    let v149 : UH2 = UH2_1(v145, v148)
-    let v150 : UH2 = UH2_1(v144, v149)
-    let v151 : UH2 = UH2_1(v143, v150)
-    let v152 : US0 = US0_1
-    let v153 : string = "---"
-    let v154 : UH2 = UH2_0
-    let v155 : UH2 = UH2_1(v153, v154)
-    let v156 : UH2 = UH2_1(v153, v155)
-    let v157 : UH2 = UH2_1(v153, v156)
-    let v158 : UH2 = UH2_1(v153, v157)
-    let v159 : US0 = US0_1
-    let v160 : UH4 = UH4_0
-    let v161 : UH4 = UH4_1(v158, v159, v160)
-    let v162 : UH4 = UH4_1(v151, v152, v161)
-    let v163 : (struct (UH2 * US0) []) = method16(v162)
-    let v164 : uint64 = System.Convert.ToUInt64 v163.Length
-    let v165 : uint64 = System.Convert.ToUInt64 v91.Length
-    let v166 : uint64 = v164 + v165
-    let v167 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v166))
-    let v168 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v166, v168) do
-        let v170 : uint64 = v168.l0
-        let v171 : bool = v170 &lt; v164
-        let struct (v177 : UH2, v178 : US0) =
-            if v171 then
-                let struct (v172 : UH2, v173 : US0) = v163.[int v170]
-                struct (v172, v173)
+    let v144 : string = "Input"
+    let v145 : string = "Expected"
+    let v146 : string = "Result"
+    let v147 : string = "Best"
+    let v148 : UH2 = UH2_0
+    let v149 : UH2 = UH2_1(v147, v148)
+    let v150 : UH2 = UH2_1(v146, v149)
+    let v151 : UH2 = UH2_1(v145, v150)
+    let v152 : UH2 = UH2_1(v144, v151)
+    let v153 : US0 = US0_1
+    let v154 : string = "---"
+    let v155 : UH2 = UH2_0
+    let v156 : UH2 = UH2_1(v154, v155)
+    let v157 : UH2 = UH2_1(v154, v156)
+    let v158 : UH2 = UH2_1(v154, v157)
+    let v159 : UH2 = UH2_1(v154, v158)
+    let v160 : US0 = US0_1
+    let v161 : UH4 = UH4_0
+    let v162 : UH4 = UH4_1(v159, v160, v161)
+    let v163 : UH4 = UH4_1(v152, v153, v162)
+    let v164 : (struct (UH2 * US0) []) = method16(v163)
+    let v165 : uint64 = System.Convert.ToUInt64 v164.Length
+    let v166 : uint64 = System.Convert.ToUInt64 v92.Length
+    let v167 : uint64 = v165 + v166
+    let v168 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v167))
+    let v169 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v167, v169) do
+        let v171 : uint64 = v169.l0
+        let v172 : bool = v171 &lt; v165
+        let struct (v178 : UH2, v179 : US0) =
+            if v172 then
+                let struct (v173 : UH2, v174 : US0) = v164.[int v171]
+                struct (v173, v174)
             else
-                let v174 : uint64 = v170 - v164
-                let struct (v175 : UH2, v176 : US0) = v91.[int v174]
-                struct (v175, v176)
-        v167.[int v170] &lt;- struct (v177, v178)
-        let v179 : uint64 = v170 + 1UL
-        v168.l0 &lt;- v179
+                let v175 : uint64 = v171 - v165
+                let struct (v176 : UH2, v177 : US0) = v92.[int v175]
+                struct (v176, v177)
+        v168.[int v171] &lt;- struct (v178, v179)
+        let v180 : uint64 = v171 + 1UL
+        v169.l0 &lt;- v180
         ()
-    let v180 : uint64 = System.Convert.ToUInt64 v167.Length
-    let v181 : ((string []) []) = Array.zeroCreate&lt;(string [])&gt; (System.Convert.ToInt32(v180))
-    let v182 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v180, v182) do
-        let v184 : uint64 = v182.l0
-        let struct (v185 : UH2, v186 : US0) = v167.[int v184]
-        let v187 : (string []) = method19(v185)
-        v181.[int v184] &lt;- v187
-        let v188 : uint64 = v184 + 1UL
-        v182.l0 &lt;- v188
+    let v181 : uint64 = System.Convert.ToUInt64 v168.Length
+    let v182 : ((string []) []) = Array.zeroCreate&lt;(string [])&gt; (System.Convert.ToInt32(v181))
+    let v183 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v181, v183) do
+        let v185 : uint64 = v183.l0
+        let struct (v186 : UH2, v187 : US0) = v168.[int v185]
+        let v188 : (string []) = method19(v186)
+        v182.[int v185] &lt;- v188
+        let v189 : uint64 = v185 + 1UL
+        v183.l0 &lt;- v189
         ()
-    let v189 : (((string []) []) -&gt; ((string []) [])) = Array.transpose
-    let v190 : ((string []) []) = v189 v181
-    let v191 : uint64 = System.Convert.ToUInt64 v190.Length
-    let v192 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v191))
-    let v193 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v191, v193) do
-        let v195 : uint64 = v193.l0
-        let v196 : (string []) = v190.[int v195]
-        let v197 : uint64 = System.Convert.ToUInt64 v196.Length
-        let v198 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v197))
-        let v199 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v197, v199) do
-            let v201 : uint64 = v199.l0
-            let v202 : string = v196.[int v201]
-            let v203 : int64 = System.Convert.ToInt64 v202.Length
-            v198.[int v201] &lt;- v203
-            let v204 : uint64 = v201 + 1UL
-            v199.l0 &lt;- v204
+    let v190 : (((string []) []) -&gt; ((string []) [])) = Array.transpose
+    let v191 : ((string []) []) = v190 v182
+    let v192 : uint64 = System.Convert.ToUInt64 v191.Length
+    let v193 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v192))
+    let v194 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v192, v194) do
+        let v196 : uint64 = v194.l0
+        let v197 : (string []) = v191.[int v196]
+        let v198 : uint64 = System.Convert.ToUInt64 v197.Length
+        let v199 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v198))
+        let v200 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v198, v200) do
+            let v202 : uint64 = v200.l0
+            let v203 : string = v197.[int v202]
+            let v204 : int64 = System.Convert.ToInt64 v203.Length
+            v199.[int v202] &lt;- v204
+            let v205 : uint64 = v202 + 1UL
+            v200.l0 &lt;- v205
             ()
-        let v205 : ((int64 []) -&gt; (int64 [])) = Array.sortDescending
-        let v206 : (int64 []) = v205 v198
-        let v207 : (int32 -&gt; ((int64 []) -&gt; int64 option)) = Array.tryItem
-        let v208 : ((int64 []) -&gt; int64 option) = v207 0
-        let v209 : int64 option = v208 v206
-        let v210 : (int64 -&gt; US1) = method22()
-        let v211 : US1 = US1_1
-        let v212 : US1 = v209 |&gt; Option.map v210 |&gt; Option.defaultValue v211 
-        let v215 : int64 =
-            match v212 with
+        let v206 : ((int64 []) -&gt; (int64 [])) = Array.sortDescending
+        let v207 : (int64 []) = v206 v199
+        let v208 : (int32 -&gt; ((int64 []) -&gt; int64 option)) = Array.tryItem
+        let v209 : ((int64 []) -&gt; int64 option) = v208 0
+        let v210 : int64 option = v209 v207
+        let v211 : (int64 -&gt; US1) = method22()
+        let v212 : US1 = US1_1
+        let v213 : US1 = v210 |&gt; Option.map v211 |&gt; Option.defaultValue v212 
+        let v216 : int64 =
+            match v213 with
             | US1_1 -&gt; (* None *)
                 0L
-            | US1_0(v213) -&gt; (* Some *)
-                v213
-        v192.[int v195] &lt;- v215
-        let v216 : uint64 = v195 + 1UL
-        v193.l0 &lt;- v216
+            | US1_0(v214) -&gt; (* Some *)
+                v214
+        v193.[int v196] &lt;- v216
+        let v217 : uint64 = v196 + 1UL
+        v194.l0 &lt;- v217
         ()
-    let v217 : uint64 = System.Convert.ToUInt64 v192.Length
-    let v218 : UH5 = UH5_0
-    let v219 : Mut3 = {l0 = 0UL; l1 = v218; l2 = 0} : Mut3
-    while method23(v217, v219) do
-        let v221 : uint64 = v219.l0
-        let struct (v222 : UH5, v223 : int32) = v219.l1, v219.l2
-        let v224 : int64 = v192.[int v221]
-        let v225 : int32 = v223 + 1
-        let v226 : uint64 = v221 + 1UL
-        let v227 : UH5 = UH5_1(v223, v224, v222)
-        v219.l0 &lt;- v226
-        v219.l1 &lt;- v227
-        v219.l2 &lt;- v225
+    let v218 : uint64 = System.Convert.ToUInt64 v193.Length
+    let v219 : UH5 = UH5_0
+    let v220 : Mut3 = {l0 = 0UL; l1 = v219; l2 = 0} : Mut3
+    while method23(v218, v220) do
+        let v222 : uint64 = v220.l0
+        let struct (v223 : UH5, v224 : int32) = v220.l1, v220.l2
+        let v225 : int64 = v193.[int v222]
+        let v226 : int32 = v224 + 1
+        let v227 : uint64 = v222 + 1UL
+        let v228 : UH5 = UH5_1(v224, v225, v223)
+        v220.l0 &lt;- v227
+        v220.l1 &lt;- v228
+        v220.l2 &lt;- v226
         ()
-    let struct (v228 : UH5, v229 : int32) = v219.l1, v219.l2
-    let v230 : UH5 = UH5_0
-    let v231 : UH5 = method24(v228, v230)
-    let v232 : (struct (int32 * int64) []) = method25(v231)
-    let v233 : Map&lt;int32, int64&gt; = v232 |&gt; Array.map (fun (struct (a, b)) -&gt; a, b) |&gt; Map.ofArray
-    let v234 : (struct ((string []) * US0) []) = Array.zeroCreate&lt;struct ((string []) * US0)&gt; (System.Convert.ToInt32(v180))
-    let v235 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v180, v235) do
-        let v237 : uint64 = v235.l0
-        let struct (v238 : UH2, v239 : US0) = v167.[int v237]
-        let v240 : UH6 = UH6_0
-        let v241 : int32 = 0
-        let struct (v242 : UH6, v243 : int32) = method28(v238, v240, v241)
-        let v244 : UH6 = UH6_0
-        let v245 : UH6 = method29(v242, v244)
-        let v246 : UH2 = UH2_0
-        let v247 : UH2 = method30(v233, v245, v246)
-        let v248 : (string []) = method31(v247)
-        v234.[int v237] &lt;- struct (v248, v239)
-        let v249 : uint64 = v237 + 1UL
-        v235.l0 &lt;- v249
+    let struct (v229 : UH5, v230 : int32) = v220.l1, v220.l2
+    let v231 : UH5 = UH5_0
+    let v232 : UH5 = method24(v229, v231)
+    let v233 : (struct (int32 * int64) []) = method25(v232)
+    let v234 : Map&lt;int32, int64&gt; = v233 |&gt; Array.map (fun (struct (a, b)) -&gt; a, b) |&gt; Map.ofArray
+    let v235 : (struct ((string []) * US0) []) = Array.zeroCreate&lt;struct ((string []) * US0)&gt; (System.Convert.ToInt32(v181))
+    let v236 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v181, v236) do
+        let v238 : uint64 = v236.l0
+        let struct (v239 : UH2, v240 : US0) = v168.[int v238]
+        let v241 : UH6 = UH6_0
+        let v242 : int32 = 0
+        let struct (v243 : UH6, v244 : int32) = method28(v239, v241, v242)
+        let v245 : UH6 = UH6_0
+        let v246 : UH6 = method29(v243, v245)
+        let v247 : UH2 = UH2_0
+        let v248 : UH2 = method30(v234, v246, v247)
+        let v249 : (string []) = method31(v248)
+        v235.[int v238] &lt;- struct (v249, v240)
+        let v250 : uint64 = v238 + 1UL
+        v236.l0 &lt;- v250
         ()
     System.Console.WriteLine v2
-    let v250 : uint64 = System.Convert.ToUInt64 v234.Length
-    let v251 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v250, v251) do
-        let v253 : uint64 = v251.l0
-        let struct (v254 : (string []), v255 : US0) = v234.[int v253]
-        match v255 with
+    let v251 : uint64 = System.Convert.ToUInt64 v235.Length
+    let v252 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v251, v252) do
+        let v254 : uint64 = v252.l0
+        let struct (v255 : (string []), v256 : US0) = v235.[int v254]
+        match v256 with
         | US0_1 -&gt; (* None *)
-            let v258 : unit option = None
-            let mutable _v258 = v258
+            let v260 : unit option = None
+            let v261 : bool = true in let mutable _v260 = v260
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.Console.ResetColor ()
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_TYPESCRIPT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
             Unchecked.defaultof&lt;unit&gt;
-            #endif
-            |&gt; fun x -&gt; _v258 &lt;- Some x
-            _v258 |&gt; Option.get
             ()
-        | US0_0(v256) -&gt; (* Some *)
-            let v257 : unit option = None
-            let mutable _v257 = v257
+#endif
+            |&gt; fun x -&gt; _v260 &lt;- Some x
+            _v260.Value
+            ()
+        | US0_0(v257) -&gt; (* Some *)
+            let v258 : unit option = None
+            let v259 : bool = true in let mutable _v258 = v258
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            System.Console.ForegroundColor &lt;- v256
-            () 
-            #endif
+            System.Console.ForegroundColor &lt;- v257
+            ()
+#endif
             #if FABLE_COMPILER_TYPESCRIPT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
             Unchecked.defaultof&lt;unit&gt;
-            #endif
-            |&gt; fun x -&gt; _v257 &lt;- Some x
-            _v257 |&gt; Option.get
             ()
-        let v259 : string = "\t| "
-        let v260 : string = System.String.Join (v259, v254)
-        System.Console.WriteLine v260
-        let v261 : unit option = None
-        let mutable _v261 = v261
+#endif
+            |&gt; fun x -&gt; _v258 &lt;- Some x
+            _v258.Value
+            ()
+        let v262 : string = "\t| "
+        let v263 : string = System.String.Join (v262, v255)
+        System.Console.WriteLine v263
+        let v264 : unit option = None
+        let v265 : bool = true in let mutable _v264 = v264
         #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; WASM
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-        () 
-        #endif
+        ()
+#endif
         #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
         System.Console.ResetColor ()
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_TYPESCRIPT
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
         Unchecked.defaultof&lt;unit&gt;
-        #endif
-        |&gt; fun x -&gt; _v261 &lt;- Some x
-        _v261 |&gt; Option.get
-        let v262 : uint64 = v253 + 1UL
-        v251.l0 &lt;- v262
         ()
-    let v263 : ((float []) []) = Array.zeroCreate&lt;(float [])&gt; (System.Convert.ToInt32(v90))
-    let v264 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v90, v264) do
-        let v266 : uint64 = v264.l0
-        let struct (v267 : string, v268 : string, v269 : string, v270 : (int64 [])) = v11.[int v266]
-        let v271 : (int64 -&gt; float) = float
-        let v272 : uint64 = System.Convert.ToUInt64 v270.Length
-        let v273 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v272))
-        let v274 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v272, v274) do
-            let v276 : uint64 = v274.l0
-            let v277 : int64 = v270.[int v276]
-            let v278 : float = v271 v277
-            v273.[int v276] &lt;- v278
-            let v279 : uint64 = v276 + 1UL
-            v274.l0 &lt;- v279
+#endif
+        |&gt; fun x -&gt; _v264 &lt;- Some x
+        _v264.Value
+        let v266 : uint64 = v254 + 1UL
+        v252.l0 &lt;- v266
+        ()
+    let v267 : ((float []) []) = Array.zeroCreate&lt;(float [])&gt; (System.Convert.ToInt32(v91))
+    let v268 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v91, v268) do
+        let v270 : uint64 = v268.l0
+        let struct (v271 : string, v272 : string, v273 : string, v274 : (int64 [])) = v11.[int v270]
+        let v275 : (int64 -&gt; float) = float
+        let v276 : uint64 = System.Convert.ToUInt64 v274.Length
+        let v277 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v276))
+        let v278 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v276, v278) do
+            let v280 : uint64 = v278.l0
+            let v281 : int64 = v274.[int v280]
+            let v282 : float = v275 v281
+            v277.[int v280] &lt;- v282
+            let v283 : uint64 = v280 + 1UL
+            v278.l0 &lt;- v283
             ()
-        v263.[int v266] &lt;- v273
-        let v280 : uint64 = v266 + 1UL
-        v264.l0 &lt;- v280
+        v267.[int v270] &lt;- v277
+        let v284 : uint64 = v270 + 1UL
+        v268.l0 &lt;- v284
         ()
-    let v281 : (((float []) []) -&gt; ((float []) [])) = Array.transpose
-    let v282 : ((float []) []) = v281 v263
-    let v283 : uint64 = System.Convert.ToUInt64 v282.Length
-    let v284 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v283))
-    let v285 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v283, v285) do
-        let v287 : uint64 = v285.l0
-        let v288 : (float []) = v282.[int v287]
-        let v289 : ((float []) -&gt; float) = Array.average
-        let v290 : float = v289 v288
-        v284.[int v287] &lt;- v290
-        let v291 : uint64 = v287 + 1UL
-        v285.l0 &lt;- v291
+    let v285 : (((float []) []) -&gt; ((float []) [])) = Array.transpose
+    let v286 : ((float []) []) = v285 v267
+    let v287 : uint64 = System.Convert.ToUInt64 v286.Length
+    let v288 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v287))
+    let v289 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v287, v289) do
+        let v291 : uint64 = v289.l0
+        let v292 : (float []) = v286.[int v291]
+        let v293 : ((float []) -&gt; float) = Array.average
+        let v294 : float = v293 v292
+        v288.[int v291] &lt;- v294
+        let v295 : uint64 = v291 + 1UL
+        v289.l0 &lt;- v295
         ()
-    let v292 : (float -&gt; int64) = int64
-    let v293 : uint64 = System.Convert.ToUInt64 v284.Length
-    let v294 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v293))
-    let v295 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v293, v295) do
-        let v297 : uint64 = v295.l0
-        let v298 : float = v284.[int v297]
-        let v299 : int64 = v292 v298
-        v294.[int v297] &lt;- v299
-        let v300 : uint64 = v297 + 1UL
-        v295.l0 &lt;- v300
+    let v296 : (float -&gt; int64) = int64
+    let v297 : uint64 = System.Convert.ToUInt64 v288.Length
+    let v298 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v297))
+    let v299 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v297, v299) do
+        let v301 : uint64 = v299.l0
+        let v302 : float = v288.[int v301]
+        let v303 : int64 = v296 v302
+        v298.[int v301] &lt;- v303
+        let v304 : uint64 = v301 + 1UL
+        v299.l0 &lt;- v304
         ()
-    let v301 : uint64 = System.Convert.ToUInt64 v294.Length
-    let v302 : UH5 = UH5_0
-    let v303 : Mut3 = {l0 = 0UL; l1 = v302; l2 = 0} : Mut3
-    while method23(v301, v303) do
-        let v305 : uint64 = v303.l0
-        let struct (v306 : UH5, v307 : int32) = v303.l1, v303.l2
-        let v308 : int64 = v294.[int v305]
-        let v309 : int32 = v307 + 1
-        let v310 : uint64 = v305 + 1UL
-        let v311 : UH5 = UH5_1(v307, v308, v306)
-        v303.l0 &lt;- v310
-        v303.l1 &lt;- v311
-        v303.l2 &lt;- v309
+    let v305 : uint64 = System.Convert.ToUInt64 v298.Length
+    let v306 : UH5 = UH5_0
+    let v307 : Mut3 = {l0 = 0UL; l1 = v306; l2 = 0} : Mut3
+    while method23(v305, v307) do
+        let v309 : uint64 = v307.l0
+        let struct (v310 : UH5, v311 : int32) = v307.l1, v307.l2
+        let v312 : int64 = v298.[int v309]
+        let v313 : int32 = v311 + 1
+        let v314 : uint64 = v309 + 1UL
+        let v315 : UH5 = UH5_1(v311, v312, v310)
+        v307.l0 &lt;- v314
+        v307.l1 &lt;- v315
+        v307.l2 &lt;- v313
         ()
-    let struct (v312 : UH5, v313 : int32) = v303.l1, v303.l2
-    let v314 : UH5 = UH5_0
-    let v315 : UH5 = method24(v312, v314)
-    let v316 : (struct (int32 * int64) []) = method34(v315)
+    let struct (v316 : UH5, v317 : int32) = v307.l1, v307.l2
+    let v318 : UH5 = UH5_0
+    let v319 : UH5 = method24(v316, v318)
+    let v320 : (struct (int32 * int64) []) = method34(v319)
     System.Console.WriteLine v2
-    let v317 : string = "Average Ranking  "
-    System.Console.WriteLine v317
-    let v318 : ((struct (int32 * int64) -&gt; int64) -&gt; ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) []))) = Array.sortBy
-    let v319 : (struct (int32 * int64) -&gt; int64) = closure6()
-    let v320 : ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) [])) = v318 v319
-    let v321 : (struct (int32 * int64) []) = v320 v316
-    let v322 : uint64 = System.Convert.ToUInt64 v321.Length
-    let v323 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v322, v323) do
-        let v325 : uint64 = v323.l0
-        let struct (v326 : int32, v327 : int64) = v321.[int v325]
-        let v328 : string = $"Test case %d{v326 + 1}. Average Time: %A{v327}  "
-        System.Console.WriteLine v328
-        let v329 : uint64 = v325 + 1UL
-        v323.l0 &lt;- v329
+    let v321 : string = "Average Ranking  "
+    System.Console.WriteLine v321
+    let v322 : ((struct (int32 * int64) -&gt; int64) -&gt; ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) []))) = Array.sortBy
+    let v323 : (struct (int32 * int64) -&gt; int64) = closure6()
+    let v324 : ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) [])) = v322 v323
+    let v325 : (struct (int32 * int64) []) = v324 v320
+    let v326 : uint64 = System.Convert.ToUInt64 v325.Length
+    let v327 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v326, v327) do
+        let v329 : uint64 = v327.l0
+        let struct (v330 : int32, v331 : int64) = v325.[int v329]
+        let v332 : string = $"Test case %d{v330 + 1}. Average Time: %A{v331}  "
+        System.Console.WriteLine v332
+        let v333 : uint64 = v329 + 1UL
+        v327.l0 &lt;- v333
         ()
     ()
 and method0 () : unit =
@@ -8910,453 +8914,457 @@ and method0 () : unit =
             let v34 : uint64 = v32.l0
             let struct (v35 : int32, v36 : string, v37 : (struct (string * string) -&gt; string)) = v29.[int v34]
             let v38 : unit option = None
-            let mutable _v38 = v38
+            let v39 : bool = true in let mutable _v38 = v38
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.GC.Collect ()
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_TYPESCRIPT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
             Unchecked.defaultof&lt;unit&gt;
-            #endif
+            ()
+#endif
             |&gt; fun x -&gt; _v38 &lt;- Some x
-            _v38 |&gt; Option.get
-            let v39 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
-            let v40 : System.Diagnostics.Stopwatch = v39 ()
-            v40.Start ()
-            let v41 : int64 = v40.ElapsedMilliseconds
-            let v42 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
-            let v43 : Mut1 = {l0 = 0} : Mut1
-            while method8(v43) do
-                let v45 : int32 = v43.l0
-                v42.[int v45] &lt;- v45
-                let v46 : int32 = v45 + 1
-                v43.l0 &lt;- v46
+            _v38.Value
+            let v40 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+            let v41 : System.Diagnostics.Stopwatch = v40 ()
+            v41.Start ()
+            let v42 : int64 = v41.ElapsedMilliseconds
+            let v43 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+            let v44 : Mut1 = {l0 = 0} : Mut1
+            while method8(v44) do
+                let v46 : int32 = v44.l0
+                v43.[int v46] &lt;- v46
+                let v47 : int32 = v46 + 1
+                v44.l0 &lt;- v47
                 ()
-            let v47 : ((int32 -&gt; string) -&gt; ((int32 []) -&gt; (string []))) = Array.Parallel.map
-            let v48 : (int32 -&gt; string) = closure3(v15, v16, v37)
-            let v49 : ((int32 []) -&gt; (string [])) = v47 v48
-            let v50 : (string []) = v49 v42
-            let v51 : int32 = v50.Length
-            let v52 : int32 = v51 - 1
-            let v53 : string = v50.[int v52]
-            let v54 : int64 = v40.ElapsedMilliseconds
-            let v55 : int64 = v54 - v41
-            let v56 : string = $"Test case {v35 + 1}. {v36}. Time: {v55}  "
-            System.Console.WriteLine v56
-            v31.[int v34] &lt;- struct (v53, v55)
-            let v57 : uint64 = v34 + 1UL
-            v32.l0 &lt;- v57
+            let v48 : ((int32 -&gt; string) -&gt; ((int32 []) -&gt; (string []))) = Array.Parallel.map
+            let v49 : (int32 -&gt; string) = closure3(v15, v16, v37)
+            let v50 : ((int32 []) -&gt; (string [])) = v48 v49
+            let v51 : (string []) = v50 v43
+            let v52 : int32 = v51.Length
+            let v53 : int32 = v52 - 1
+            let v54 : string = v51.[int v53]
+            let v55 : int64 = v41.ElapsedMilliseconds
+            let v56 : int64 = v55 - v42
+            let v57 : string = $"Test case {v35 + 1}. {v36}. Time: {v56}  "
+            System.Console.WriteLine v57
+            v31.[int v34] &lt;- struct (v54, v56)
+            let v58 : uint64 = v34 + 1UL
+            v32.l0 &lt;- v58
             ()
-        let v58 : uint64 = System.Convert.ToUInt64 v31.Length
-        let v59 : (string []) = Array.zeroCreate&lt;string&gt; (System.Convert.ToInt32(v58))
-        let v60 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v58, v60) do
-            let v62 : uint64 = v60.l0
-            let struct (v63 : string, v64 : int64) = v31.[int v62]
-            v59.[int v62] &lt;- v63
-            let v65 : uint64 = v62 + 1UL
-            v60.l0 &lt;- v65
+        let v59 : uint64 = System.Convert.ToUInt64 v31.Length
+        let v60 : (string []) = Array.zeroCreate&lt;string&gt; (System.Convert.ToInt32(v59))
+        let v61 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v59, v61) do
+            let v63 : uint64 = v61.l0
+            let struct (v64 : string, v65 : int64) = v31.[int v63]
+            v60.[int v63] &lt;- v64
+            let v66 : uint64 = v63 + 1UL
+            v61.l0 &lt;- v66
             ()
-        let v66 : uint64 = System.Convert.ToUInt64 v59.Length
-        let v67 : bool = v66 &lt;= 1UL
-        if v67 then
+        let v67 : uint64 = System.Convert.ToUInt64 v60.Length
+        let v68 : bool = v67 &lt;= 1UL
+        if v68 then
             ()
         else
-            let v68 : string = v59.[int 0UL]
-            let v69 : uint64 = 0UL
-            let v70 : bool = method9(v68, v59, v69)
-            if v70 then
+            let v69 : string = v60.[int 0UL]
+            let v70 : uint64 = 0UL
+            let v71 : bool = method9(v69, v60, v70)
+            if v71 then
                 ()
             else
-                let v71 : string = $"Challenge error: {v59}"
-                failwith&lt;unit&gt; v71
-        let v72 : string = $"%A{v17}"
-        let v73 : (string []) = Array.zeroCreate&lt;string&gt; (System.Convert.ToInt32(v58))
-        let v74 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v58, v74) do
-            let v76 : uint64 = v74.l0
-            let struct (v77 : string, v78 : int64) = v31.[int v76]
-            v73.[int v76] &lt;- v77
-            let v79 : uint64 = v76 + 1UL
-            v74.l0 &lt;- v79
+                let v72 : string = $"Challenge error: {v60}"
+                failwith&lt;unit&gt; v72
+        let v73 : string = $"%A{v17}"
+        let v74 : (string []) = Array.zeroCreate&lt;string&gt; (System.Convert.ToInt32(v59))
+        let v75 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v59, v75) do
+            let v77 : uint64 = v75.l0
+            let struct (v78 : string, v79 : int64) = v31.[int v77]
+            v74.[int v77] &lt;- v78
+            let v80 : uint64 = v77 + 1UL
+            v75.l0 &lt;- v80
             ()
-        let v80 : string = v73.[int 0UL]
-        let v81 : string = $"%A{v80}"
-        let v82 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v58))
-        let v83 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v58, v83) do
-            let v85 : uint64 = v83.l0
-            let struct (v86 : string, v87 : int64) = v31.[int v85]
-            v82.[int v85] &lt;- v87
-            let v88 : uint64 = v85 + 1UL
-            v83.l0 &lt;- v88
+        let v81 : string = v74.[int 0UL]
+        let v82 : string = $"%A{v81}"
+        let v83 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v59))
+        let v84 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v59, v84) do
+            let v86 : uint64 = v84.l0
+            let struct (v87 : string, v88 : int64) = v31.[int v86]
+            v83.[int v86] &lt;- v88
+            let v89 : uint64 = v86 + 1UL
+            v84.l0 &lt;- v89
             ()
-        v11.[int v14] &lt;- struct (v72, v18, v81, v82)
-        let v89 : uint64 = v14 + 1UL
-        v12.l0 &lt;- v89
+        v11.[int v14] &lt;- struct (v73, v18, v82, v83)
+        let v90 : uint64 = v14 + 1UL
+        v12.l0 &lt;- v90
         ()
-    let v90 : uint64 = System.Convert.ToUInt64 v11.Length
-    let v91 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v90))
-    let v92 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v90, v92) do
-        let v94 : uint64 = v92.l0
-        let struct (v95 : string, v96 : string, v97 : string, v98 : (int64 [])) = v11.[int v94]
-        let v99 : uint64 = System.Convert.ToUInt64 v98.Length
-        let v100 : UH3 = UH3_0
-        let v101 : Mut2 = {l0 = 0UL; l1 = v100; l2 = 0L} : Mut2
-        while method10(v99, v101) do
-            let v103 : uint64 = v101.l0
-            let struct (v104 : UH3, v105 : int64) = v101.l1, v101.l2
-            let v106 : int64 = v98.[int v103]
-            let v107 : int64 = v105 + 1L
-            let v108 : uint64 = v103 + 1UL
-            let v109 : UH3 = UH3_1(v105, v106, v104)
-            v101.l0 &lt;- v108
-            v101.l1 &lt;- v109
-            v101.l2 &lt;- v107
+    let v91 : uint64 = System.Convert.ToUInt64 v11.Length
+    let v92 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v91))
+    let v93 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v91, v93) do
+        let v95 : uint64 = v93.l0
+        let struct (v96 : string, v97 : string, v98 : string, v99 : (int64 [])) = v11.[int v95]
+        let v100 : uint64 = System.Convert.ToUInt64 v99.Length
+        let v101 : UH3 = UH3_0
+        let v102 : Mut2 = {l0 = 0UL; l1 = v101; l2 = 0L} : Mut2
+        while method10(v100, v102) do
+            let v104 : uint64 = v102.l0
+            let struct (v105 : UH3, v106 : int64) = v102.l1, v102.l2
+            let v107 : int64 = v99.[int v104]
+            let v108 : int64 = v106 + 1L
+            let v109 : uint64 = v104 + 1UL
+            let v110 : UH3 = UH3_1(v106, v107, v105)
+            v102.l0 &lt;- v109
+            v102.l1 &lt;- v110
+            v102.l2 &lt;- v108
             ()
-        let struct (v110 : UH3, v111 : int64) = v101.l1, v101.l2
-        let v112 : UH3 = UH3_0
-        let v113 : UH3 = method11(v110, v112)
-        let v114 : (struct (int64 * int64) []) = method12(v113)
-        let v115 : int32 = v114.Length
-        let v116 : (struct (int64 * int64) []) = Array.zeroCreate&lt;struct (int64 * int64)&gt; (v115)
-        let v117 : Mut1 = {l0 = 0} : Mut1
-        while method15(v115, v117) do
-            let v119 : int32 = v117.l0
-            let struct (v120 : int64, v121 : int64) = v114.[int v119]
-            let v122 : int64 = v120 + 1L
-            v116.[int v119] &lt;- struct (v122, v121)
-            let v123 : int32 = v119 + 1
-            v117.l0 &lt;- v123
+        let struct (v111 : UH3, v112 : int64) = v102.l1, v102.l2
+        let v113 : UH3 = UH3_0
+        let v114 : UH3 = method11(v111, v113)
+        let v115 : (struct (int64 * int64) []) = method12(v114)
+        let v116 : int32 = v115.Length
+        let v117 : (struct (int64 * int64) []) = Array.zeroCreate&lt;struct (int64 * int64)&gt; (v116)
+        let v118 : Mut1 = {l0 = 0} : Mut1
+        while method15(v116, v118) do
+            let v120 : int32 = v118.l0
+            let struct (v121 : int64, v122 : int64) = v115.[int v120]
+            let v123 : int64 = v121 + 1L
+            v117.[int v120] &lt;- struct (v123, v122)
+            let v124 : int32 = v120 + 1
+            v118.l0 &lt;- v124
             ()
-        let v124 : ((struct (int64 * int64) -&gt; int64) -&gt; ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) []))) = Array.sortBy
-        let v125 : (struct (int64 * int64) -&gt; int64) = closure4()
-        let v126 : ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) [])) = v124 v125
-        let v127 : (struct (int64 * int64) []) = v126 v116
-        let struct (v128 : int64, v129 : int64) = v127.[int 0]
-        let v130 : string = $"%A{struct (v128, v129)}"
-        let v131 : bool = v95 = v97
-        let v136 : US0 =
-            if v131 then
-                let v132 : System.ConsoleColor = System.ConsoleColor.DarkGreen
-                US0_0(v132)
+        let v125 : ((struct (int64 * int64) -&gt; int64) -&gt; ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) []))) = Array.sortBy
+        let v126 : (struct (int64 * int64) -&gt; int64) = closure4()
+        let v127 : ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) [])) = v125 v126
+        let v128 : (struct (int64 * int64) []) = v127 v117
+        let struct (v129 : int64, v130 : int64) = v128.[int 0]
+        let v131 : string = $"%A{struct (v129, v130)}"
+        let v132 : bool = v96 = v98
+        let v137 : US0 =
+            if v132 then
+                let v133 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+                US0_0(v133)
             else
-                let v134 : System.ConsoleColor = System.ConsoleColor.DarkRed
-                US0_0(v134)
-        let v137 : UH2 = UH2_0
-        let v138 : UH2 = UH2_1(v130, v137)
-        let v139 : UH2 = UH2_1(v97, v138)
-        let v140 : UH2 = UH2_1(v95, v139)
+                let v135 : System.ConsoleColor = System.ConsoleColor.DarkRed
+                US0_0(v135)
+        let v138 : UH2 = UH2_0
+        let v139 : UH2 = UH2_1(v131, v138)
+        let v140 : UH2 = UH2_1(v98, v139)
         let v141 : UH2 = UH2_1(v96, v140)
-        v91.[int v94] &lt;- struct (v141, v136)
-        let v142 : uint64 = v94 + 1UL
-        v92.l0 &lt;- v142
+        let v142 : UH2 = UH2_1(v97, v141)
+        v92.[int v95] &lt;- struct (v142, v137)
+        let v143 : uint64 = v95 + 1UL
+        v93.l0 &lt;- v143
         ()
-    let v143 : string = "Input"
-    let v144 : string = "Expected"
-    let v145 : string = "Result"
-    let v146 : string = "Best"
-    let v147 : UH2 = UH2_0
-    let v148 : UH2 = UH2_1(v146, v147)
-    let v149 : UH2 = UH2_1(v145, v148)
-    let v150 : UH2 = UH2_1(v144, v149)
-    let v151 : UH2 = UH2_1(v143, v150)
-    let v152 : US0 = US0_1
-    let v153 : string = "---"
-    let v154 : UH2 = UH2_0
-    let v155 : UH2 = UH2_1(v153, v154)
-    let v156 : UH2 = UH2_1(v153, v155)
-    let v157 : UH2 = UH2_1(v153, v156)
-    let v158 : UH2 = UH2_1(v153, v157)
-    let v159 : US0 = US0_1
-    let v160 : UH4 = UH4_0
-    let v161 : UH4 = UH4_1(v158, v159, v160)
-    let v162 : UH4 = UH4_1(v151, v152, v161)
-    let v163 : (struct (UH2 * US0) []) = method16(v162)
-    let v164 : uint64 = System.Convert.ToUInt64 v163.Length
-    let v165 : uint64 = System.Convert.ToUInt64 v91.Length
-    let v166 : uint64 = v164 + v165
-    let v167 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v166))
-    let v168 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v166, v168) do
-        let v170 : uint64 = v168.l0
-        let v171 : bool = v170 &lt; v164
-        let struct (v177 : UH2, v178 : US0) =
-            if v171 then
-                let struct (v172 : UH2, v173 : US0) = v163.[int v170]
-                struct (v172, v173)
+    let v144 : string = "Input"
+    let v145 : string = "Expected"
+    let v146 : string = "Result"
+    let v147 : string = "Best"
+    let v148 : UH2 = UH2_0
+    let v149 : UH2 = UH2_1(v147, v148)
+    let v150 : UH2 = UH2_1(v146, v149)
+    let v151 : UH2 = UH2_1(v145, v150)
+    let v152 : UH2 = UH2_1(v144, v151)
+    let v153 : US0 = US0_1
+    let v154 : string = "---"
+    let v155 : UH2 = UH2_0
+    let v156 : UH2 = UH2_1(v154, v155)
+    let v157 : UH2 = UH2_1(v154, v156)
+    let v158 : UH2 = UH2_1(v154, v157)
+    let v159 : UH2 = UH2_1(v154, v158)
+    let v160 : US0 = US0_1
+    let v161 : UH4 = UH4_0
+    let v162 : UH4 = UH4_1(v159, v160, v161)
+    let v163 : UH4 = UH4_1(v152, v153, v162)
+    let v164 : (struct (UH2 * US0) []) = method16(v163)
+    let v165 : uint64 = System.Convert.ToUInt64 v164.Length
+    let v166 : uint64 = System.Convert.ToUInt64 v92.Length
+    let v167 : uint64 = v165 + v166
+    let v168 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v167))
+    let v169 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v167, v169) do
+        let v171 : uint64 = v169.l0
+        let v172 : bool = v171 &lt; v165
+        let struct (v178 : UH2, v179 : US0) =
+            if v172 then
+                let struct (v173 : UH2, v174 : US0) = v164.[int v171]
+                struct (v173, v174)
             else
-                let v174 : uint64 = v170 - v164
-                let struct (v175 : UH2, v176 : US0) = v91.[int v174]
-                struct (v175, v176)
-        v167.[int v170] &lt;- struct (v177, v178)
-        let v179 : uint64 = v170 + 1UL
-        v168.l0 &lt;- v179
+                let v175 : uint64 = v171 - v165
+                let struct (v176 : UH2, v177 : US0) = v92.[int v175]
+                struct (v176, v177)
+        v168.[int v171] &lt;- struct (v178, v179)
+        let v180 : uint64 = v171 + 1UL
+        v169.l0 &lt;- v180
         ()
-    let v180 : uint64 = System.Convert.ToUInt64 v167.Length
-    let v181 : ((string []) []) = Array.zeroCreate&lt;(string [])&gt; (System.Convert.ToInt32(v180))
-    let v182 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v180, v182) do
-        let v184 : uint64 = v182.l0
-        let struct (v185 : UH2, v186 : US0) = v167.[int v184]
-        let v187 : (string []) = method19(v185)
-        v181.[int v184] &lt;- v187
-        let v188 : uint64 = v184 + 1UL
-        v182.l0 &lt;- v188
+    let v181 : uint64 = System.Convert.ToUInt64 v168.Length
+    let v182 : ((string []) []) = Array.zeroCreate&lt;(string [])&gt; (System.Convert.ToInt32(v181))
+    let v183 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v181, v183) do
+        let v185 : uint64 = v183.l0
+        let struct (v186 : UH2, v187 : US0) = v168.[int v185]
+        let v188 : (string []) = method19(v186)
+        v182.[int v185] &lt;- v188
+        let v189 : uint64 = v185 + 1UL
+        v183.l0 &lt;- v189
         ()
-    let v189 : (((string []) []) -&gt; ((string []) [])) = Array.transpose
-    let v190 : ((string []) []) = v189 v181
-    let v191 : uint64 = System.Convert.ToUInt64 v190.Length
-    let v192 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v191))
-    let v193 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v191, v193) do
-        let v195 : uint64 = v193.l0
-        let v196 : (string []) = v190.[int v195]
-        let v197 : uint64 = System.Convert.ToUInt64 v196.Length
-        let v198 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v197))
-        let v199 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v197, v199) do
-            let v201 : uint64 = v199.l0
-            let v202 : string = v196.[int v201]
-            let v203 : int64 = System.Convert.ToInt64 v202.Length
-            v198.[int v201] &lt;- v203
-            let v204 : uint64 = v201 + 1UL
-            v199.l0 &lt;- v204
+    let v190 : (((string []) []) -&gt; ((string []) [])) = Array.transpose
+    let v191 : ((string []) []) = v190 v182
+    let v192 : uint64 = System.Convert.ToUInt64 v191.Length
+    let v193 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v192))
+    let v194 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v192, v194) do
+        let v196 : uint64 = v194.l0
+        let v197 : (string []) = v191.[int v196]
+        let v198 : uint64 = System.Convert.ToUInt64 v197.Length
+        let v199 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v198))
+        let v200 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v198, v200) do
+            let v202 : uint64 = v200.l0
+            let v203 : string = v197.[int v202]
+            let v204 : int64 = System.Convert.ToInt64 v203.Length
+            v199.[int v202] &lt;- v204
+            let v205 : uint64 = v202 + 1UL
+            v200.l0 &lt;- v205
             ()
-        let v205 : ((int64 []) -&gt; (int64 [])) = Array.sortDescending
-        let v206 : (int64 []) = v205 v198
-        let v207 : (int32 -&gt; ((int64 []) -&gt; int64 option)) = Array.tryItem
-        let v208 : ((int64 []) -&gt; int64 option) = v207 0
-        let v209 : int64 option = v208 v206
-        let v210 : (int64 -&gt; US1) = method22()
-        let v211 : US1 = US1_1
-        let v212 : US1 = v209 |&gt; Option.map v210 |&gt; Option.defaultValue v211 
-        let v215 : int64 =
-            match v212 with
+        let v206 : ((int64 []) -&gt; (int64 [])) = Array.sortDescending
+        let v207 : (int64 []) = v206 v199
+        let v208 : (int32 -&gt; ((int64 []) -&gt; int64 option)) = Array.tryItem
+        let v209 : ((int64 []) -&gt; int64 option) = v208 0
+        let v210 : int64 option = v209 v207
+        let v211 : (int64 -&gt; US1) = method22()
+        let v212 : US1 = US1_1
+        let v213 : US1 = v210 |&gt; Option.map v211 |&gt; Option.defaultValue v212 
+        let v216 : int64 =
+            match v213 with
             | US1_1 -&gt; (* None *)
                 0L
-            | US1_0(v213) -&gt; (* Some *)
-                v213
-        v192.[int v195] &lt;- v215
-        let v216 : uint64 = v195 + 1UL
-        v193.l0 &lt;- v216
+            | US1_0(v214) -&gt; (* Some *)
+                v214
+        v193.[int v196] &lt;- v216
+        let v217 : uint64 = v196 + 1UL
+        v194.l0 &lt;- v217
         ()
-    let v217 : uint64 = System.Convert.ToUInt64 v192.Length
-    let v218 : UH5 = UH5_0
-    let v219 : Mut3 = {l0 = 0UL; l1 = v218; l2 = 0} : Mut3
-    while method23(v217, v219) do
-        let v221 : uint64 = v219.l0
-        let struct (v222 : UH5, v223 : int32) = v219.l1, v219.l2
-        let v224 : int64 = v192.[int v221]
-        let v225 : int32 = v223 + 1
-        let v226 : uint64 = v221 + 1UL
-        let v227 : UH5 = UH5_1(v223, v224, v222)
-        v219.l0 &lt;- v226
-        v219.l1 &lt;- v227
-        v219.l2 &lt;- v225
+    let v218 : uint64 = System.Convert.ToUInt64 v193.Length
+    let v219 : UH5 = UH5_0
+    let v220 : Mut3 = {l0 = 0UL; l1 = v219; l2 = 0} : Mut3
+    while method23(v218, v220) do
+        let v222 : uint64 = v220.l0
+        let struct (v223 : UH5, v224 : int32) = v220.l1, v220.l2
+        let v225 : int64 = v193.[int v222]
+        let v226 : int32 = v224 + 1
+        let v227 : uint64 = v222 + 1UL
+        let v228 : UH5 = UH5_1(v224, v225, v223)
+        v220.l0 &lt;- v227
+        v220.l1 &lt;- v228
+        v220.l2 &lt;- v226
         ()
-    let struct (v228 : UH5, v229 : int32) = v219.l1, v219.l2
-    let v230 : UH5 = UH5_0
-    let v231 : UH5 = method24(v228, v230)
-    let v232 : (struct (int32 * int64) []) = method25(v231)
-    let v233 : Map&lt;int32, int64&gt; = v232 |&gt; Array.map (fun (struct (a, b)) -&gt; a, b) |&gt; Map.ofArray
-    let v234 : (struct ((string []) * US0) []) = Array.zeroCreate&lt;struct ((string []) * US0)&gt; (System.Convert.ToInt32(v180))
-    let v235 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v180, v235) do
-        let v237 : uint64 = v235.l0
-        let struct (v238 : UH2, v239 : US0) = v167.[int v237]
-        let v240 : UH6 = UH6_0
-        let v241 : int32 = 0
-        let struct (v242 : UH6, v243 : int32) = method28(v238, v240, v241)
-        let v244 : UH6 = UH6_0
-        let v245 : UH6 = method29(v242, v244)
-        let v246 : UH2 = UH2_0
-        let v247 : UH2 = method30(v233, v245, v246)
-        let v248 : (string []) = method31(v247)
-        v234.[int v237] &lt;- struct (v248, v239)
-        let v249 : uint64 = v237 + 1UL
-        v235.l0 &lt;- v249
+    let struct (v229 : UH5, v230 : int32) = v220.l1, v220.l2
+    let v231 : UH5 = UH5_0
+    let v232 : UH5 = method24(v229, v231)
+    let v233 : (struct (int32 * int64) []) = method25(v232)
+    let v234 : Map&lt;int32, int64&gt; = v233 |&gt; Array.map (fun (struct (a, b)) -&gt; a, b) |&gt; Map.ofArray
+    let v235 : (struct ((string []) * US0) []) = Array.zeroCreate&lt;struct ((string []) * US0)&gt; (System.Convert.ToInt32(v181))
+    let v236 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v181, v236) do
+        let v238 : uint64 = v236.l0
+        let struct (v239 : UH2, v240 : US0) = v168.[int v238]
+        let v241 : UH6 = UH6_0
+        let v242 : int32 = 0
+        let struct (v243 : UH6, v244 : int32) = method28(v239, v241, v242)
+        let v245 : UH6 = UH6_0
+        let v246 : UH6 = method29(v243, v245)
+        let v247 : UH2 = UH2_0
+        let v248 : UH2 = method30(v234, v246, v247)
+        let v249 : (string []) = method31(v248)
+        v235.[int v238] &lt;- struct (v249, v240)
+        let v250 : uint64 = v238 + 1UL
+        v236.l0 &lt;- v250
         ()
     System.Console.WriteLine v2
-    let v250 : uint64 = System.Convert.ToUInt64 v234.Length
-    let v251 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v250, v251) do
-        let v253 : uint64 = v251.l0
-        let struct (v254 : (string []), v255 : US0) = v234.[int v253]
-        match v255 with
+    let v251 : uint64 = System.Convert.ToUInt64 v235.Length
+    let v252 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v251, v252) do
+        let v254 : uint64 = v252.l0
+        let struct (v255 : (string []), v256 : US0) = v235.[int v254]
+        match v256 with
         | US0_1 -&gt; (* None *)
-            let v258 : unit option = None
-            let mutable _v258 = v258
+            let v260 : unit option = None
+            let v261 : bool = true in let mutable _v260 = v260
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.Console.ResetColor ()
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_TYPESCRIPT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
             Unchecked.defaultof&lt;unit&gt;
-            #endif
-            |&gt; fun x -&gt; _v258 &lt;- Some x
-            _v258 |&gt; Option.get
             ()
-        | US0_0(v256) -&gt; (* Some *)
-            let v257 : unit option = None
-            let mutable _v257 = v257
+#endif
+            |&gt; fun x -&gt; _v260 &lt;- Some x
+            _v260.Value
+            ()
+        | US0_0(v257) -&gt; (* Some *)
+            let v258 : unit option = None
+            let v259 : bool = true in let mutable _v258 = v258
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            System.Console.ForegroundColor &lt;- v256
-            () 
-            #endif
+            System.Console.ForegroundColor &lt;- v257
+            ()
+#endif
             #if FABLE_COMPILER_TYPESCRIPT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
             Unchecked.defaultof&lt;unit&gt;
-            #endif
-            |&gt; fun x -&gt; _v257 &lt;- Some x
-            _v257 |&gt; Option.get
             ()
-        let v259 : string = "\t| "
-        let v260 : string = System.String.Join (v259, v254)
-        System.Console.WriteLine v260
-        let v261 : unit option = None
-        let mutable _v261 = v261
+#endif
+            |&gt; fun x -&gt; _v258 &lt;- Some x
+            _v258.Value
+            ()
+        let v262 : string = "\t| "
+        let v263 : string = System.String.Join (v262, v255)
+        System.Console.WriteLine v263
+        let v264 : unit option = None
+        let v265 : bool = true in let mutable _v264 = v264
         #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; WASM
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-        () 
-        #endif
+        ()
+#endif
         #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
         System.Console.ResetColor ()
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_TYPESCRIPT
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
         Unchecked.defaultof&lt;unit&gt;
-        #endif
-        |&gt; fun x -&gt; _v261 &lt;- Some x
-        _v261 |&gt; Option.get
-        let v262 : uint64 = v253 + 1UL
-        v251.l0 &lt;- v262
         ()
-    let v263 : ((float []) []) = Array.zeroCreate&lt;(float [])&gt; (System.Convert.ToInt32(v90))
-    let v264 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v90, v264) do
-        let v266 : uint64 = v264.l0
-        let struct (v267 : string, v268 : string, v269 : string, v270 : (int64 [])) = v11.[int v266]
-        let v271 : (int64 -&gt; float) = float
-        let v272 : uint64 = System.Convert.ToUInt64 v270.Length
-        let v273 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v272))
-        let v274 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v272, v274) do
-            let v276 : uint64 = v274.l0
-            let v277 : int64 = v270.[int v276]
-            let v278 : float = v271 v277
-            v273.[int v276] &lt;- v278
-            let v279 : uint64 = v276 + 1UL
-            v274.l0 &lt;- v279
+#endif
+        |&gt; fun x -&gt; _v264 &lt;- Some x
+        _v264.Value
+        let v266 : uint64 = v254 + 1UL
+        v252.l0 &lt;- v266
+        ()
+    let v267 : ((float []) []) = Array.zeroCreate&lt;(float [])&gt; (System.Convert.ToInt32(v91))
+    let v268 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v91, v268) do
+        let v270 : uint64 = v268.l0
+        let struct (v271 : string, v272 : string, v273 : string, v274 : (int64 [])) = v11.[int v270]
+        let v275 : (int64 -&gt; float) = float
+        let v276 : uint64 = System.Convert.ToUInt64 v274.Length
+        let v277 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v276))
+        let v278 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v276, v278) do
+            let v280 : uint64 = v278.l0
+            let v281 : int64 = v274.[int v280]
+            let v282 : float = v275 v281
+            v277.[int v280] &lt;- v282
+            let v283 : uint64 = v280 + 1UL
+            v278.l0 &lt;- v283
             ()
-        v263.[int v266] &lt;- v273
-        let v280 : uint64 = v266 + 1UL
-        v264.l0 &lt;- v280
+        v267.[int v270] &lt;- v277
+        let v284 : uint64 = v270 + 1UL
+        v268.l0 &lt;- v284
         ()
-    let v281 : (((float []) []) -&gt; ((float []) [])) = Array.transpose
-    let v282 : ((float []) []) = v281 v263
-    let v283 : uint64 = System.Convert.ToUInt64 v282.Length
-    let v284 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v283))
-    let v285 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v283, v285) do
-        let v287 : uint64 = v285.l0
-        let v288 : (float []) = v282.[int v287]
-        let v289 : ((float []) -&gt; float) = Array.average
-        let v290 : float = v289 v288
-        v284.[int v287] &lt;- v290
-        let v291 : uint64 = v287 + 1UL
-        v285.l0 &lt;- v291
+    let v285 : (((float []) []) -&gt; ((float []) [])) = Array.transpose
+    let v286 : ((float []) []) = v285 v267
+    let v287 : uint64 = System.Convert.ToUInt64 v286.Length
+    let v288 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v287))
+    let v289 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v287, v289) do
+        let v291 : uint64 = v289.l0
+        let v292 : (float []) = v286.[int v291]
+        let v293 : ((float []) -&gt; float) = Array.average
+        let v294 : float = v293 v292
+        v288.[int v291] &lt;- v294
+        let v295 : uint64 = v291 + 1UL
+        v289.l0 &lt;- v295
         ()
-    let v292 : (float -&gt; int64) = int64
-    let v293 : uint64 = System.Convert.ToUInt64 v284.Length
-    let v294 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v293))
-    let v295 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v293, v295) do
-        let v297 : uint64 = v295.l0
-        let v298 : float = v284.[int v297]
-        let v299 : int64 = v292 v298
-        v294.[int v297] &lt;- v299
-        let v300 : uint64 = v297 + 1UL
-        v295.l0 &lt;- v300
+    let v296 : (float -&gt; int64) = int64
+    let v297 : uint64 = System.Convert.ToUInt64 v288.Length
+    let v298 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v297))
+    let v299 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v297, v299) do
+        let v301 : uint64 = v299.l0
+        let v302 : float = v288.[int v301]
+        let v303 : int64 = v296 v302
+        v298.[int v301] &lt;- v303
+        let v304 : uint64 = v301 + 1UL
+        v299.l0 &lt;- v304
         ()
-    let v301 : uint64 = System.Convert.ToUInt64 v294.Length
-    let v302 : UH5 = UH5_0
-    let v303 : Mut3 = {l0 = 0UL; l1 = v302; l2 = 0} : Mut3
-    while method23(v301, v303) do
-        let v305 : uint64 = v303.l0
-        let struct (v306 : UH5, v307 : int32) = v303.l1, v303.l2
-        let v308 : int64 = v294.[int v305]
-        let v309 : int32 = v307 + 1
-        let v310 : uint64 = v305 + 1UL
-        let v311 : UH5 = UH5_1(v307, v308, v306)
-        v303.l0 &lt;- v310
-        v303.l1 &lt;- v311
-        v303.l2 &lt;- v309
+    let v305 : uint64 = System.Convert.ToUInt64 v298.Length
+    let v306 : UH5 = UH5_0
+    let v307 : Mut3 = {l0 = 0UL; l1 = v306; l2 = 0} : Mut3
+    while method23(v305, v307) do
+        let v309 : uint64 = v307.l0
+        let struct (v310 : UH5, v311 : int32) = v307.l1, v307.l2
+        let v312 : int64 = v298.[int v309]
+        let v313 : int32 = v311 + 1
+        let v314 : uint64 = v309 + 1UL
+        let v315 : UH5 = UH5_1(v311, v312, v310)
+        v307.l0 &lt;- v314
+        v307.l1 &lt;- v315
+        v307.l2 &lt;- v313
         ()
-    let struct (v312 : UH5, v313 : int32) = v303.l1, v303.l2
-    let v314 : UH5 = UH5_0
-    let v315 : UH5 = method24(v312, v314)
-    let v316 : (struct (int32 * int64) []) = method34(v315)
+    let struct (v316 : UH5, v317 : int32) = v307.l1, v307.l2
+    let v318 : UH5 = UH5_0
+    let v319 : UH5 = method24(v316, v318)
+    let v320 : (struct (int32 * int64) []) = method34(v319)
     System.Console.WriteLine v2
-    let v317 : string = "Average Ranking  "
-    System.Console.WriteLine v317
-    let v318 : ((struct (int32 * int64) -&gt; int64) -&gt; ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) []))) = Array.sortBy
-    let v319 : (struct (int32 * int64) -&gt; int64) = closure6()
-    let v320 : ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) [])) = v318 v319
-    let v321 : (struct (int32 * int64) []) = v320 v316
-    let v322 : uint64 = System.Convert.ToUInt64 v321.Length
-    let v323 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v322, v323) do
-        let v325 : uint64 = v323.l0
-        let struct (v326 : int32, v327 : int64) = v321.[int v325]
-        let v328 : string = $"Test case %d{v326 + 1}. Average Time: %A{v327}  "
-        System.Console.WriteLine v328
-        let v329 : uint64 = v325 + 1UL
-        v323.l0 &lt;- v329
+    let v321 : string = "Average Ranking  "
+    System.Console.WriteLine v321
+    let v322 : ((struct (int32 * int64) -&gt; int64) -&gt; ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) []))) = Array.sortBy
+    let v323 : (struct (int32 * int64) -&gt; int64) = closure6()
+    let v324 : ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) [])) = v322 v323
+    let v325 : (struct (int32 * int64) []) = v324 v320
+    let v326 : uint64 = System.Convert.ToUInt64 v325.Length
+    let v327 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v326, v327) do
+        let v329 : uint64 = v327.l0
+        let struct (v330 : int32, v331 : int64) = v325.[int v329]
+        let v332 : string = $"Test case %d{v330 + 1}. Average Time: %A{v331}  "
+        System.Console.WriteLine v332
+        let v333 : uint64 = v329 + 1UL
+        v327.l0 &lt;- v333
         ()
     ()
 method0()
@@ -9366,21 +9374,21 @@ method0()
 Test: v0
 
 Solution: struct ("a", "a")  
-Test case 1. A. Time: 23  
-Test case 2. B. Time: 12  
+Test case 1. A. Time: 24  
+Test case 2. B. Time: 14  
 
 Solution: struct ("b", "b")  
-Test case 1. A. Time: 12  
-Test case 2. B. Time: 12  
+Test case 1. A. Time: 13  
+Test case 2. B. Time: 13  
 
 Input            	| Expected	| Result	| Best            
 ---              	| ---     	| ---   	| ---             
-struct ("a", "a")	| "a"     	| "a"   	| struct (2L, 12L)
-struct ("b", "b")	| "b"     	| "b"   	| struct (1L, 12L)
+struct ("a", "a")	| "a"     	| "a"   	| struct (2L, 14L)
+struct ("b", "b")	| "b"     	| "b"   	| struct (1L, 13L)
 
 Average Ranking  
-Test case 2. Average Time: 12L  
-Test case 1. Average Time: 17L  
+Test case 2. Average Time: 13L  
+Test case 1. Average Time: 18L  
 </pre>
 </div>
 </div>
@@ -9831,453 +9839,457 @@ and closure0 () () : unit =
             let v34 : uint64 = v32.l0
             let struct (v35 : int32, v36 : string, v37 : (float -&gt; float)) = v29.[int v34]
             let v38 : unit option = None
-            let mutable _v38 = v38
+            let v39 : bool = true in let mutable _v38 = v38
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.GC.Collect ()
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_TYPESCRIPT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
             Unchecked.defaultof&lt;unit&gt;
-            #endif
+            ()
+#endif
             |&gt; fun x -&gt; _v38 &lt;- Some x
-            _v38 |&gt; Option.get
-            let v39 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
-            let v40 : System.Diagnostics.Stopwatch = v39 ()
-            v40.Start ()
-            let v41 : int64 = v40.ElapsedMilliseconds
-            let v42 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
-            let v43 : Mut1 = {l0 = 0} : Mut1
-            while method8(v43) do
-                let v45 : int32 = v43.l0
-                v42.[int v45] &lt;- v45
-                let v46 : int32 = v45 + 1
-                v43.l0 &lt;- v46
+            _v38.Value
+            let v40 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+            let v41 : System.Diagnostics.Stopwatch = v40 ()
+            v41.Start ()
+            let v42 : int64 = v41.ElapsedMilliseconds
+            let v43 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+            let v44 : Mut1 = {l0 = 0} : Mut1
+            while method8(v44) do
+                let v46 : int32 = v44.l0
+                v43.[int v46] &lt;- v46
+                let v47 : int32 = v46 + 1
+                v44.l0 &lt;- v47
                 ()
-            let v47 : ((int32 -&gt; float) -&gt; ((int32 []) -&gt; (float []))) = Array.Parallel.map
-            let v48 : (int32 -&gt; float) = closure2(v20, v37)
-            let v49 : ((int32 []) -&gt; (float [])) = v47 v48
-            let v50 : (float []) = v49 v42
-            let v51 : int32 = v50.Length
-            let v52 : int32 = v51 - 1
-            let v53 : float = v50.[int v52]
-            let v54 : int64 = v40.ElapsedMilliseconds
-            let v55 : int64 = v54 - v41
-            let v56 : string = $"Test case {v35 + 1}. {v36}. Time: {v55}  "
-            System.Console.WriteLine v56
-            v31.[int v34] &lt;- struct (v53, v55)
-            let v57 : uint64 = v34 + 1UL
-            v32.l0 &lt;- v57
+            let v48 : ((int32 -&gt; float) -&gt; ((int32 []) -&gt; (float []))) = Array.Parallel.map
+            let v49 : (int32 -&gt; float) = closure2(v20, v37)
+            let v50 : ((int32 []) -&gt; (float [])) = v48 v49
+            let v51 : (float []) = v50 v43
+            let v52 : int32 = v51.Length
+            let v53 : int32 = v52 - 1
+            let v54 : float = v51.[int v53]
+            let v55 : int64 = v41.ElapsedMilliseconds
+            let v56 : int64 = v55 - v42
+            let v57 : string = $"Test case {v35 + 1}. {v36}. Time: {v56}  "
+            System.Console.WriteLine v57
+            v31.[int v34] &lt;- struct (v54, v56)
+            let v58 : uint64 = v34 + 1UL
+            v32.l0 &lt;- v58
             ()
-        let v58 : uint64 = System.Convert.ToUInt64 v31.Length
-        let v59 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v58))
-        let v60 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v58, v60) do
-            let v62 : uint64 = v60.l0
-            let struct (v63 : float, v64 : int64) = v31.[int v62]
-            v59.[int v62] &lt;- v63
-            let v65 : uint64 = v62 + 1UL
-            v60.l0 &lt;- v65
+        let v59 : uint64 = System.Convert.ToUInt64 v31.Length
+        let v60 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v59))
+        let v61 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v59, v61) do
+            let v63 : uint64 = v61.l0
+            let struct (v64 : float, v65 : int64) = v31.[int v63]
+            v60.[int v63] &lt;- v64
+            let v66 : uint64 = v63 + 1UL
+            v61.l0 &lt;- v66
             ()
-        let v66 : uint64 = System.Convert.ToUInt64 v59.Length
-        let v67 : bool = v66 &lt;= 1UL
-        if v67 then
+        let v67 : uint64 = System.Convert.ToUInt64 v60.Length
+        let v68 : bool = v67 &lt;= 1UL
+        if v68 then
             ()
         else
-            let v68 : float = v59.[int 0UL]
-            let v69 : uint64 = 0UL
-            let v70 : bool = method9(v68, v59, v69)
-            if v70 then
+            let v69 : float = v60.[int 0UL]
+            let v70 : uint64 = 0UL
+            let v71 : bool = method9(v69, v60, v70)
+            if v71 then
                 ()
             else
-                let v71 : string = $"Challenge error: {v59}"
-                failwith&lt;unit&gt; v71
-        let v72 : string = $"%A{v21}"
-        let v73 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v58))
-        let v74 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v58, v74) do
-            let v76 : uint64 = v74.l0
-            let struct (v77 : float, v78 : int64) = v31.[int v76]
-            v73.[int v76] &lt;- v77
-            let v79 : uint64 = v76 + 1UL
-            v74.l0 &lt;- v79
+                let v72 : string = $"Challenge error: {v60}"
+                failwith&lt;unit&gt; v72
+        let v73 : string = $"%A{v21}"
+        let v74 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v59))
+        let v75 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v59, v75) do
+            let v77 : uint64 = v75.l0
+            let struct (v78 : float, v79 : int64) = v31.[int v77]
+            v74.[int v77] &lt;- v78
+            let v80 : uint64 = v77 + 1UL
+            v75.l0 &lt;- v80
             ()
-        let v80 : float = v73.[int 0UL]
-        let v81 : string = $"%A{v80}"
-        let v82 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v58))
-        let v83 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v58, v83) do
-            let v85 : uint64 = v83.l0
-            let struct (v86 : float, v87 : int64) = v31.[int v85]
-            v82.[int v85] &lt;- v87
-            let v88 : uint64 = v85 + 1UL
-            v83.l0 &lt;- v88
+        let v81 : float = v74.[int 0UL]
+        let v82 : string = $"%A{v81}"
+        let v83 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v59))
+        let v84 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v59, v84) do
+            let v86 : uint64 = v84.l0
+            let struct (v87 : float, v88 : int64) = v31.[int v86]
+            v83.[int v86] &lt;- v88
+            let v89 : uint64 = v86 + 1UL
+            v84.l0 &lt;- v89
             ()
-        v16.[int v19] &lt;- struct (v72, v22, v81, v82)
-        let v89 : uint64 = v19 + 1UL
-        v17.l0 &lt;- v89
+        v16.[int v19] &lt;- struct (v73, v22, v82, v83)
+        let v90 : uint64 = v19 + 1UL
+        v17.l0 &lt;- v90
         ()
-    let v90 : uint64 = System.Convert.ToUInt64 v16.Length
-    let v91 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v90))
-    let v92 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v90, v92) do
-        let v94 : uint64 = v92.l0
-        let struct (v95 : string, v96 : string, v97 : string, v98 : (int64 [])) = v16.[int v94]
-        let v99 : uint64 = System.Convert.ToUInt64 v98.Length
-        let v100 : UH3 = UH3_0
-        let v101 : Mut2 = {l0 = 0UL; l1 = v100; l2 = 0L} : Mut2
-        while method10(v99, v101) do
-            let v103 : uint64 = v101.l0
-            let struct (v104 : UH3, v105 : int64) = v101.l1, v101.l2
-            let v106 : int64 = v98.[int v103]
-            let v107 : int64 = v105 + 1L
-            let v108 : uint64 = v103 + 1UL
-            let v109 : UH3 = UH3_1(v105, v106, v104)
-            v101.l0 &lt;- v108
-            v101.l1 &lt;- v109
-            v101.l2 &lt;- v107
+    let v91 : uint64 = System.Convert.ToUInt64 v16.Length
+    let v92 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v91))
+    let v93 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v91, v93) do
+        let v95 : uint64 = v93.l0
+        let struct (v96 : string, v97 : string, v98 : string, v99 : (int64 [])) = v16.[int v95]
+        let v100 : uint64 = System.Convert.ToUInt64 v99.Length
+        let v101 : UH3 = UH3_0
+        let v102 : Mut2 = {l0 = 0UL; l1 = v101; l2 = 0L} : Mut2
+        while method10(v100, v102) do
+            let v104 : uint64 = v102.l0
+            let struct (v105 : UH3, v106 : int64) = v102.l1, v102.l2
+            let v107 : int64 = v99.[int v104]
+            let v108 : int64 = v106 + 1L
+            let v109 : uint64 = v104 + 1UL
+            let v110 : UH3 = UH3_1(v106, v107, v105)
+            v102.l0 &lt;- v109
+            v102.l1 &lt;- v110
+            v102.l2 &lt;- v108
             ()
-        let struct (v110 : UH3, v111 : int64) = v101.l1, v101.l2
-        let v112 : UH3 = UH3_0
-        let v113 : UH3 = method11(v110, v112)
-        let v114 : (struct (int64 * int64) []) = method12(v113)
-        let v115 : int32 = v114.Length
-        let v116 : (struct (int64 * int64) []) = Array.zeroCreate&lt;struct (int64 * int64)&gt; (v115)
-        let v117 : Mut1 = {l0 = 0} : Mut1
-        while method15(v115, v117) do
-            let v119 : int32 = v117.l0
-            let struct (v120 : int64, v121 : int64) = v114.[int v119]
-            let v122 : int64 = v120 + 1L
-            v116.[int v119] &lt;- struct (v122, v121)
-            let v123 : int32 = v119 + 1
-            v117.l0 &lt;- v123
+        let struct (v111 : UH3, v112 : int64) = v102.l1, v102.l2
+        let v113 : UH3 = UH3_0
+        let v114 : UH3 = method11(v111, v113)
+        let v115 : (struct (int64 * int64) []) = method12(v114)
+        let v116 : int32 = v115.Length
+        let v117 : (struct (int64 * int64) []) = Array.zeroCreate&lt;struct (int64 * int64)&gt; (v116)
+        let v118 : Mut1 = {l0 = 0} : Mut1
+        while method15(v116, v118) do
+            let v120 : int32 = v118.l0
+            let struct (v121 : int64, v122 : int64) = v115.[int v120]
+            let v123 : int64 = v121 + 1L
+            v117.[int v120] &lt;- struct (v123, v122)
+            let v124 : int32 = v120 + 1
+            v118.l0 &lt;- v124
             ()
-        let v124 : ((struct (int64 * int64) -&gt; int64) -&gt; ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) []))) = Array.sortBy
-        let v125 : (struct (int64 * int64) -&gt; int64) = closure3()
-        let v126 : ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) [])) = v124 v125
-        let v127 : (struct (int64 * int64) []) = v126 v116
-        let struct (v128 : int64, v129 : int64) = v127.[int 0]
-        let v130 : string = $"%A{struct (v128, v129)}"
-        let v131 : bool = v95 = v97
-        let v136 : US0 =
-            if v131 then
-                let v132 : System.ConsoleColor = System.ConsoleColor.DarkGreen
-                US0_0(v132)
+        let v125 : ((struct (int64 * int64) -&gt; int64) -&gt; ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) []))) = Array.sortBy
+        let v126 : (struct (int64 * int64) -&gt; int64) = closure3()
+        let v127 : ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) [])) = v125 v126
+        let v128 : (struct (int64 * int64) []) = v127 v117
+        let struct (v129 : int64, v130 : int64) = v128.[int 0]
+        let v131 : string = $"%A{struct (v129, v130)}"
+        let v132 : bool = v96 = v98
+        let v137 : US0 =
+            if v132 then
+                let v133 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+                US0_0(v133)
             else
-                let v134 : System.ConsoleColor = System.ConsoleColor.DarkRed
-                US0_0(v134)
-        let v137 : UH2 = UH2_0
-        let v138 : UH2 = UH2_1(v130, v137)
-        let v139 : UH2 = UH2_1(v97, v138)
-        let v140 : UH2 = UH2_1(v95, v139)
+                let v135 : System.ConsoleColor = System.ConsoleColor.DarkRed
+                US0_0(v135)
+        let v138 : UH2 = UH2_0
+        let v139 : UH2 = UH2_1(v131, v138)
+        let v140 : UH2 = UH2_1(v98, v139)
         let v141 : UH2 = UH2_1(v96, v140)
-        v91.[int v94] &lt;- struct (v141, v136)
-        let v142 : uint64 = v94 + 1UL
-        v92.l0 &lt;- v142
+        let v142 : UH2 = UH2_1(v97, v141)
+        v92.[int v95] &lt;- struct (v142, v137)
+        let v143 : uint64 = v95 + 1UL
+        v93.l0 &lt;- v143
         ()
-    let v143 : string = "Input"
-    let v144 : string = "Expected"
-    let v145 : string = "Result"
-    let v146 : string = "Best"
-    let v147 : UH2 = UH2_0
-    let v148 : UH2 = UH2_1(v146, v147)
-    let v149 : UH2 = UH2_1(v145, v148)
-    let v150 : UH2 = UH2_1(v144, v149)
-    let v151 : UH2 = UH2_1(v143, v150)
-    let v152 : US0 = US0_1
-    let v153 : string = "---"
-    let v154 : UH2 = UH2_0
-    let v155 : UH2 = UH2_1(v153, v154)
-    let v156 : UH2 = UH2_1(v153, v155)
-    let v157 : UH2 = UH2_1(v153, v156)
-    let v158 : UH2 = UH2_1(v153, v157)
-    let v159 : US0 = US0_1
-    let v160 : UH4 = UH4_0
-    let v161 : UH4 = UH4_1(v158, v159, v160)
-    let v162 : UH4 = UH4_1(v151, v152, v161)
-    let v163 : (struct (UH2 * US0) []) = method16(v162)
-    let v164 : uint64 = System.Convert.ToUInt64 v163.Length
-    let v165 : uint64 = System.Convert.ToUInt64 v91.Length
-    let v166 : uint64 = v164 + v165
-    let v167 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v166))
-    let v168 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v166, v168) do
-        let v170 : uint64 = v168.l0
-        let v171 : bool = v170 &lt; v164
-        let struct (v177 : UH2, v178 : US0) =
-            if v171 then
-                let struct (v172 : UH2, v173 : US0) = v163.[int v170]
-                struct (v172, v173)
+    let v144 : string = "Input"
+    let v145 : string = "Expected"
+    let v146 : string = "Result"
+    let v147 : string = "Best"
+    let v148 : UH2 = UH2_0
+    let v149 : UH2 = UH2_1(v147, v148)
+    let v150 : UH2 = UH2_1(v146, v149)
+    let v151 : UH2 = UH2_1(v145, v150)
+    let v152 : UH2 = UH2_1(v144, v151)
+    let v153 : US0 = US0_1
+    let v154 : string = "---"
+    let v155 : UH2 = UH2_0
+    let v156 : UH2 = UH2_1(v154, v155)
+    let v157 : UH2 = UH2_1(v154, v156)
+    let v158 : UH2 = UH2_1(v154, v157)
+    let v159 : UH2 = UH2_1(v154, v158)
+    let v160 : US0 = US0_1
+    let v161 : UH4 = UH4_0
+    let v162 : UH4 = UH4_1(v159, v160, v161)
+    let v163 : UH4 = UH4_1(v152, v153, v162)
+    let v164 : (struct (UH2 * US0) []) = method16(v163)
+    let v165 : uint64 = System.Convert.ToUInt64 v164.Length
+    let v166 : uint64 = System.Convert.ToUInt64 v92.Length
+    let v167 : uint64 = v165 + v166
+    let v168 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v167))
+    let v169 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v167, v169) do
+        let v171 : uint64 = v169.l0
+        let v172 : bool = v171 &lt; v165
+        let struct (v178 : UH2, v179 : US0) =
+            if v172 then
+                let struct (v173 : UH2, v174 : US0) = v164.[int v171]
+                struct (v173, v174)
             else
-                let v174 : uint64 = v170 - v164
-                let struct (v175 : UH2, v176 : US0) = v91.[int v174]
-                struct (v175, v176)
-        v167.[int v170] &lt;- struct (v177, v178)
-        let v179 : uint64 = v170 + 1UL
-        v168.l0 &lt;- v179
+                let v175 : uint64 = v171 - v165
+                let struct (v176 : UH2, v177 : US0) = v92.[int v175]
+                struct (v176, v177)
+        v168.[int v171] &lt;- struct (v178, v179)
+        let v180 : uint64 = v171 + 1UL
+        v169.l0 &lt;- v180
         ()
-    let v180 : uint64 = System.Convert.ToUInt64 v167.Length
-    let v181 : ((string []) []) = Array.zeroCreate&lt;(string [])&gt; (System.Convert.ToInt32(v180))
-    let v182 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v180, v182) do
-        let v184 : uint64 = v182.l0
-        let struct (v185 : UH2, v186 : US0) = v167.[int v184]
-        let v187 : (string []) = method19(v185)
-        v181.[int v184] &lt;- v187
-        let v188 : uint64 = v184 + 1UL
-        v182.l0 &lt;- v188
+    let v181 : uint64 = System.Convert.ToUInt64 v168.Length
+    let v182 : ((string []) []) = Array.zeroCreate&lt;(string [])&gt; (System.Convert.ToInt32(v181))
+    let v183 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v181, v183) do
+        let v185 : uint64 = v183.l0
+        let struct (v186 : UH2, v187 : US0) = v168.[int v185]
+        let v188 : (string []) = method19(v186)
+        v182.[int v185] &lt;- v188
+        let v189 : uint64 = v185 + 1UL
+        v183.l0 &lt;- v189
         ()
-    let v189 : (((string []) []) -&gt; ((string []) [])) = Array.transpose
-    let v190 : ((string []) []) = v189 v181
-    let v191 : uint64 = System.Convert.ToUInt64 v190.Length
-    let v192 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v191))
-    let v193 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v191, v193) do
-        let v195 : uint64 = v193.l0
-        let v196 : (string []) = v190.[int v195]
-        let v197 : uint64 = System.Convert.ToUInt64 v196.Length
-        let v198 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v197))
-        let v199 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v197, v199) do
-            let v201 : uint64 = v199.l0
-            let v202 : string = v196.[int v201]
-            let v203 : int64 = System.Convert.ToInt64 v202.Length
-            v198.[int v201] &lt;- v203
-            let v204 : uint64 = v201 + 1UL
-            v199.l0 &lt;- v204
+    let v190 : (((string []) []) -&gt; ((string []) [])) = Array.transpose
+    let v191 : ((string []) []) = v190 v182
+    let v192 : uint64 = System.Convert.ToUInt64 v191.Length
+    let v193 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v192))
+    let v194 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v192, v194) do
+        let v196 : uint64 = v194.l0
+        let v197 : (string []) = v191.[int v196]
+        let v198 : uint64 = System.Convert.ToUInt64 v197.Length
+        let v199 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v198))
+        let v200 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v198, v200) do
+            let v202 : uint64 = v200.l0
+            let v203 : string = v197.[int v202]
+            let v204 : int64 = System.Convert.ToInt64 v203.Length
+            v199.[int v202] &lt;- v204
+            let v205 : uint64 = v202 + 1UL
+            v200.l0 &lt;- v205
             ()
-        let v205 : ((int64 []) -&gt; (int64 [])) = Array.sortDescending
-        let v206 : (int64 []) = v205 v198
-        let v207 : (int32 -&gt; ((int64 []) -&gt; int64 option)) = Array.tryItem
-        let v208 : ((int64 []) -&gt; int64 option) = v207 0
-        let v209 : int64 option = v208 v206
-        let v210 : (int64 -&gt; US1) = method22()
-        let v211 : US1 = US1_1
-        let v212 : US1 = v209 |&gt; Option.map v210 |&gt; Option.defaultValue v211 
-        let v215 : int64 =
-            match v212 with
+        let v206 : ((int64 []) -&gt; (int64 [])) = Array.sortDescending
+        let v207 : (int64 []) = v206 v199
+        let v208 : (int32 -&gt; ((int64 []) -&gt; int64 option)) = Array.tryItem
+        let v209 : ((int64 []) -&gt; int64 option) = v208 0
+        let v210 : int64 option = v209 v207
+        let v211 : (int64 -&gt; US1) = method22()
+        let v212 : US1 = US1_1
+        let v213 : US1 = v210 |&gt; Option.map v211 |&gt; Option.defaultValue v212 
+        let v216 : int64 =
+            match v213 with
             | US1_1 -&gt; (* None *)
                 0L
-            | US1_0(v213) -&gt; (* Some *)
-                v213
-        v192.[int v195] &lt;- v215
-        let v216 : uint64 = v195 + 1UL
-        v193.l0 &lt;- v216
+            | US1_0(v214) -&gt; (* Some *)
+                v214
+        v193.[int v196] &lt;- v216
+        let v217 : uint64 = v196 + 1UL
+        v194.l0 &lt;- v217
         ()
-    let v217 : uint64 = System.Convert.ToUInt64 v192.Length
-    let v218 : UH5 = UH5_0
-    let v219 : Mut3 = {l0 = 0UL; l1 = v218; l2 = 0} : Mut3
-    while method23(v217, v219) do
-        let v221 : uint64 = v219.l0
-        let struct (v222 : UH5, v223 : int32) = v219.l1, v219.l2
-        let v224 : int64 = v192.[int v221]
-        let v225 : int32 = v223 + 1
-        let v226 : uint64 = v221 + 1UL
-        let v227 : UH5 = UH5_1(v223, v224, v222)
-        v219.l0 &lt;- v226
-        v219.l1 &lt;- v227
-        v219.l2 &lt;- v225
+    let v218 : uint64 = System.Convert.ToUInt64 v193.Length
+    let v219 : UH5 = UH5_0
+    let v220 : Mut3 = {l0 = 0UL; l1 = v219; l2 = 0} : Mut3
+    while method23(v218, v220) do
+        let v222 : uint64 = v220.l0
+        let struct (v223 : UH5, v224 : int32) = v220.l1, v220.l2
+        let v225 : int64 = v193.[int v222]
+        let v226 : int32 = v224 + 1
+        let v227 : uint64 = v222 + 1UL
+        let v228 : UH5 = UH5_1(v224, v225, v223)
+        v220.l0 &lt;- v227
+        v220.l1 &lt;- v228
+        v220.l2 &lt;- v226
         ()
-    let struct (v228 : UH5, v229 : int32) = v219.l1, v219.l2
-    let v230 : UH5 = UH5_0
-    let v231 : UH5 = method24(v228, v230)
-    let v232 : (struct (int32 * int64) []) = method25(v231)
-    let v233 : Map&lt;int32, int64&gt; = v232 |&gt; Array.map (fun (struct (a, b)) -&gt; a, b) |&gt; Map.ofArray
-    let v234 : (struct ((string []) * US0) []) = Array.zeroCreate&lt;struct ((string []) * US0)&gt; (System.Convert.ToInt32(v180))
-    let v235 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v180, v235) do
-        let v237 : uint64 = v235.l0
-        let struct (v238 : UH2, v239 : US0) = v167.[int v237]
-        let v240 : UH6 = UH6_0
-        let v241 : int32 = 0
-        let struct (v242 : UH6, v243 : int32) = method28(v238, v240, v241)
-        let v244 : UH6 = UH6_0
-        let v245 : UH6 = method29(v242, v244)
-        let v246 : UH2 = UH2_0
-        let v247 : UH2 = method30(v233, v245, v246)
-        let v248 : (string []) = method31(v247)
-        v234.[int v237] &lt;- struct (v248, v239)
-        let v249 : uint64 = v237 + 1UL
-        v235.l0 &lt;- v249
+    let struct (v229 : UH5, v230 : int32) = v220.l1, v220.l2
+    let v231 : UH5 = UH5_0
+    let v232 : UH5 = method24(v229, v231)
+    let v233 : (struct (int32 * int64) []) = method25(v232)
+    let v234 : Map&lt;int32, int64&gt; = v233 |&gt; Array.map (fun (struct (a, b)) -&gt; a, b) |&gt; Map.ofArray
+    let v235 : (struct ((string []) * US0) []) = Array.zeroCreate&lt;struct ((string []) * US0)&gt; (System.Convert.ToInt32(v181))
+    let v236 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v181, v236) do
+        let v238 : uint64 = v236.l0
+        let struct (v239 : UH2, v240 : US0) = v168.[int v238]
+        let v241 : UH6 = UH6_0
+        let v242 : int32 = 0
+        let struct (v243 : UH6, v244 : int32) = method28(v239, v241, v242)
+        let v245 : UH6 = UH6_0
+        let v246 : UH6 = method29(v243, v245)
+        let v247 : UH2 = UH2_0
+        let v248 : UH2 = method30(v234, v246, v247)
+        let v249 : (string []) = method31(v248)
+        v235.[int v238] &lt;- struct (v249, v240)
+        let v250 : uint64 = v238 + 1UL
+        v236.l0 &lt;- v250
         ()
     System.Console.WriteLine v2
-    let v250 : uint64 = System.Convert.ToUInt64 v234.Length
-    let v251 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v250, v251) do
-        let v253 : uint64 = v251.l0
-        let struct (v254 : (string []), v255 : US0) = v234.[int v253]
-        match v255 with
+    let v251 : uint64 = System.Convert.ToUInt64 v235.Length
+    let v252 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v251, v252) do
+        let v254 : uint64 = v252.l0
+        let struct (v255 : (string []), v256 : US0) = v235.[int v254]
+        match v256 with
         | US0_1 -&gt; (* None *)
-            let v258 : unit option = None
-            let mutable _v258 = v258
+            let v260 : unit option = None
+            let v261 : bool = true in let mutable _v260 = v260
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.Console.ResetColor ()
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_TYPESCRIPT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
             Unchecked.defaultof&lt;unit&gt;
-            #endif
-            |&gt; fun x -&gt; _v258 &lt;- Some x
-            _v258 |&gt; Option.get
             ()
-        | US0_0(v256) -&gt; (* Some *)
-            let v257 : unit option = None
-            let mutable _v257 = v257
+#endif
+            |&gt; fun x -&gt; _v260 &lt;- Some x
+            _v260.Value
+            ()
+        | US0_0(v257) -&gt; (* Some *)
+            let v258 : unit option = None
+            let v259 : bool = true in let mutable _v258 = v258
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            System.Console.ForegroundColor &lt;- v256
-            () 
-            #endif
+            System.Console.ForegroundColor &lt;- v257
+            ()
+#endif
             #if FABLE_COMPILER_TYPESCRIPT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
             Unchecked.defaultof&lt;unit&gt;
-            #endif
-            |&gt; fun x -&gt; _v257 &lt;- Some x
-            _v257 |&gt; Option.get
             ()
-        let v259 : string = "\t| "
-        let v260 : string = System.String.Join (v259, v254)
-        System.Console.WriteLine v260
-        let v261 : unit option = None
-        let mutable _v261 = v261
+#endif
+            |&gt; fun x -&gt; _v258 &lt;- Some x
+            _v258.Value
+            ()
+        let v262 : string = "\t| "
+        let v263 : string = System.String.Join (v262, v255)
+        System.Console.WriteLine v263
+        let v264 : unit option = None
+        let v265 : bool = true in let mutable _v264 = v264
         #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; WASM
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-        () 
-        #endif
+        ()
+#endif
         #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
         System.Console.ResetColor ()
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_TYPESCRIPT
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
         Unchecked.defaultof&lt;unit&gt;
-        #endif
-        |&gt; fun x -&gt; _v261 &lt;- Some x
-        _v261 |&gt; Option.get
-        let v262 : uint64 = v253 + 1UL
-        v251.l0 &lt;- v262
         ()
-    let v263 : ((float []) []) = Array.zeroCreate&lt;(float [])&gt; (System.Convert.ToInt32(v90))
-    let v264 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v90, v264) do
-        let v266 : uint64 = v264.l0
-        let struct (v267 : string, v268 : string, v269 : string, v270 : (int64 [])) = v16.[int v266]
-        let v271 : (int64 -&gt; float) = float
-        let v272 : uint64 = System.Convert.ToUInt64 v270.Length
-        let v273 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v272))
-        let v274 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v272, v274) do
-            let v276 : uint64 = v274.l0
-            let v277 : int64 = v270.[int v276]
-            let v278 : float = v271 v277
-            v273.[int v276] &lt;- v278
-            let v279 : uint64 = v276 + 1UL
-            v274.l0 &lt;- v279
+#endif
+        |&gt; fun x -&gt; _v264 &lt;- Some x
+        _v264.Value
+        let v266 : uint64 = v254 + 1UL
+        v252.l0 &lt;- v266
+        ()
+    let v267 : ((float []) []) = Array.zeroCreate&lt;(float [])&gt; (System.Convert.ToInt32(v91))
+    let v268 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v91, v268) do
+        let v270 : uint64 = v268.l0
+        let struct (v271 : string, v272 : string, v273 : string, v274 : (int64 [])) = v16.[int v270]
+        let v275 : (int64 -&gt; float) = float
+        let v276 : uint64 = System.Convert.ToUInt64 v274.Length
+        let v277 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v276))
+        let v278 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v276, v278) do
+            let v280 : uint64 = v278.l0
+            let v281 : int64 = v274.[int v280]
+            let v282 : float = v275 v281
+            v277.[int v280] &lt;- v282
+            let v283 : uint64 = v280 + 1UL
+            v278.l0 &lt;- v283
             ()
-        v263.[int v266] &lt;- v273
-        let v280 : uint64 = v266 + 1UL
-        v264.l0 &lt;- v280
+        v267.[int v270] &lt;- v277
+        let v284 : uint64 = v270 + 1UL
+        v268.l0 &lt;- v284
         ()
-    let v281 : (((float []) []) -&gt; ((float []) [])) = Array.transpose
-    let v282 : ((float []) []) = v281 v263
-    let v283 : uint64 = System.Convert.ToUInt64 v282.Length
-    let v284 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v283))
-    let v285 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v283, v285) do
-        let v287 : uint64 = v285.l0
-        let v288 : (float []) = v282.[int v287]
-        let v289 : ((float []) -&gt; float) = Array.average
-        let v290 : float = v289 v288
-        v284.[int v287] &lt;- v290
-        let v291 : uint64 = v287 + 1UL
-        v285.l0 &lt;- v291
+    let v285 : (((float []) []) -&gt; ((float []) [])) = Array.transpose
+    let v286 : ((float []) []) = v285 v267
+    let v287 : uint64 = System.Convert.ToUInt64 v286.Length
+    let v288 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v287))
+    let v289 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v287, v289) do
+        let v291 : uint64 = v289.l0
+        let v292 : (float []) = v286.[int v291]
+        let v293 : ((float []) -&gt; float) = Array.average
+        let v294 : float = v293 v292
+        v288.[int v291] &lt;- v294
+        let v295 : uint64 = v291 + 1UL
+        v289.l0 &lt;- v295
         ()
-    let v292 : (float -&gt; int64) = int64
-    let v293 : uint64 = System.Convert.ToUInt64 v284.Length
-    let v294 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v293))
-    let v295 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v293, v295) do
-        let v297 : uint64 = v295.l0
-        let v298 : float = v284.[int v297]
-        let v299 : int64 = v292 v298
-        v294.[int v297] &lt;- v299
-        let v300 : uint64 = v297 + 1UL
-        v295.l0 &lt;- v300
+    let v296 : (float -&gt; int64) = int64
+    let v297 : uint64 = System.Convert.ToUInt64 v288.Length
+    let v298 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v297))
+    let v299 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v297, v299) do
+        let v301 : uint64 = v299.l0
+        let v302 : float = v288.[int v301]
+        let v303 : int64 = v296 v302
+        v298.[int v301] &lt;- v303
+        let v304 : uint64 = v301 + 1UL
+        v299.l0 &lt;- v304
         ()
-    let v301 : uint64 = System.Convert.ToUInt64 v294.Length
-    let v302 : UH5 = UH5_0
-    let v303 : Mut3 = {l0 = 0UL; l1 = v302; l2 = 0} : Mut3
-    while method23(v301, v303) do
-        let v305 : uint64 = v303.l0
-        let struct (v306 : UH5, v307 : int32) = v303.l1, v303.l2
-        let v308 : int64 = v294.[int v305]
-        let v309 : int32 = v307 + 1
-        let v310 : uint64 = v305 + 1UL
-        let v311 : UH5 = UH5_1(v307, v308, v306)
-        v303.l0 &lt;- v310
-        v303.l1 &lt;- v311
-        v303.l2 &lt;- v309
+    let v305 : uint64 = System.Convert.ToUInt64 v298.Length
+    let v306 : UH5 = UH5_0
+    let v307 : Mut3 = {l0 = 0UL; l1 = v306; l2 = 0} : Mut3
+    while method23(v305, v307) do
+        let v309 : uint64 = v307.l0
+        let struct (v310 : UH5, v311 : int32) = v307.l1, v307.l2
+        let v312 : int64 = v298.[int v309]
+        let v313 : int32 = v311 + 1
+        let v314 : uint64 = v309 + 1UL
+        let v315 : UH5 = UH5_1(v311, v312, v310)
+        v307.l0 &lt;- v314
+        v307.l1 &lt;- v315
+        v307.l2 &lt;- v313
         ()
-    let struct (v312 : UH5, v313 : int32) = v303.l1, v303.l2
-    let v314 : UH5 = UH5_0
-    let v315 : UH5 = method24(v312, v314)
-    let v316 : (struct (int32 * int64) []) = method34(v315)
+    let struct (v316 : UH5, v317 : int32) = v307.l1, v307.l2
+    let v318 : UH5 = UH5_0
+    let v319 : UH5 = method24(v316, v318)
+    let v320 : (struct (int32 * int64) []) = method34(v319)
     System.Console.WriteLine v2
-    let v317 : string = "Average Ranking  "
-    System.Console.WriteLine v317
-    let v318 : ((struct (int32 * int64) -&gt; int64) -&gt; ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) []))) = Array.sortBy
-    let v319 : (struct (int32 * int64) -&gt; int64) = closure5()
-    let v320 : ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) [])) = v318 v319
-    let v321 : (struct (int32 * int64) []) = v320 v316
-    let v322 : uint64 = System.Convert.ToUInt64 v321.Length
-    let v323 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v322, v323) do
-        let v325 : uint64 = v323.l0
-        let struct (v326 : int32, v327 : int64) = v321.[int v325]
-        let v328 : string = $"Test case %d{v326 + 1}. Average Time: %A{v327}  "
-        System.Console.WriteLine v328
-        let v329 : uint64 = v325 + 1UL
-        v323.l0 &lt;- v329
+    let v321 : string = "Average Ranking  "
+    System.Console.WriteLine v321
+    let v322 : ((struct (int32 * int64) -&gt; int64) -&gt; ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) []))) = Array.sortBy
+    let v323 : (struct (int32 * int64) -&gt; int64) = closure5()
+    let v324 : ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) [])) = v322 v323
+    let v325 : (struct (int32 * int64) []) = v324 v320
+    let v326 : uint64 = System.Convert.ToUInt64 v325.Length
+    let v327 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v326, v327) do
+        let v329 : uint64 = v327.l0
+        let struct (v330 : int32, v331 : int64) = v325.[int v329]
+        let v332 : string = $"Test case %d{v330 + 1}. Average Time: %A{v331}  "
+        System.Console.WriteLine v332
+        let v333 : uint64 = v329 + 1UL
+        v327.l0 &lt;- v333
         ()
     ()
 and method0 () : unit =
@@ -10322,453 +10334,457 @@ and method0 () : unit =
             let v34 : uint64 = v32.l0
             let struct (v35 : int32, v36 : string, v37 : (float -&gt; float)) = v29.[int v34]
             let v38 : unit option = None
-            let mutable _v38 = v38
+            let v39 : bool = true in let mutable _v38 = v38
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.GC.Collect ()
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_TYPESCRIPT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
             Unchecked.defaultof&lt;unit&gt;
-            #endif
+            ()
+#endif
             |&gt; fun x -&gt; _v38 &lt;- Some x
-            _v38 |&gt; Option.get
-            let v39 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
-            let v40 : System.Diagnostics.Stopwatch = v39 ()
-            v40.Start ()
-            let v41 : int64 = v40.ElapsedMilliseconds
-            let v42 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
-            let v43 : Mut1 = {l0 = 0} : Mut1
-            while method8(v43) do
-                let v45 : int32 = v43.l0
-                v42.[int v45] &lt;- v45
-                let v46 : int32 = v45 + 1
-                v43.l0 &lt;- v46
+            _v38.Value
+            let v40 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+            let v41 : System.Diagnostics.Stopwatch = v40 ()
+            v41.Start ()
+            let v42 : int64 = v41.ElapsedMilliseconds
+            let v43 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+            let v44 : Mut1 = {l0 = 0} : Mut1
+            while method8(v44) do
+                let v46 : int32 = v44.l0
+                v43.[int v46] &lt;- v46
+                let v47 : int32 = v46 + 1
+                v44.l0 &lt;- v47
                 ()
-            let v47 : ((int32 -&gt; float) -&gt; ((int32 []) -&gt; (float []))) = Array.Parallel.map
-            let v48 : (int32 -&gt; float) = closure2(v20, v37)
-            let v49 : ((int32 []) -&gt; (float [])) = v47 v48
-            let v50 : (float []) = v49 v42
-            let v51 : int32 = v50.Length
-            let v52 : int32 = v51 - 1
-            let v53 : float = v50.[int v52]
-            let v54 : int64 = v40.ElapsedMilliseconds
-            let v55 : int64 = v54 - v41
-            let v56 : string = $"Test case {v35 + 1}. {v36}. Time: {v55}  "
-            System.Console.WriteLine v56
-            v31.[int v34] &lt;- struct (v53, v55)
-            let v57 : uint64 = v34 + 1UL
-            v32.l0 &lt;- v57
+            let v48 : ((int32 -&gt; float) -&gt; ((int32 []) -&gt; (float []))) = Array.Parallel.map
+            let v49 : (int32 -&gt; float) = closure2(v20, v37)
+            let v50 : ((int32 []) -&gt; (float [])) = v48 v49
+            let v51 : (float []) = v50 v43
+            let v52 : int32 = v51.Length
+            let v53 : int32 = v52 - 1
+            let v54 : float = v51.[int v53]
+            let v55 : int64 = v41.ElapsedMilliseconds
+            let v56 : int64 = v55 - v42
+            let v57 : string = $"Test case {v35 + 1}. {v36}. Time: {v56}  "
+            System.Console.WriteLine v57
+            v31.[int v34] &lt;- struct (v54, v56)
+            let v58 : uint64 = v34 + 1UL
+            v32.l0 &lt;- v58
             ()
-        let v58 : uint64 = System.Convert.ToUInt64 v31.Length
-        let v59 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v58))
-        let v60 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v58, v60) do
-            let v62 : uint64 = v60.l0
-            let struct (v63 : float, v64 : int64) = v31.[int v62]
-            v59.[int v62] &lt;- v63
-            let v65 : uint64 = v62 + 1UL
-            v60.l0 &lt;- v65
+        let v59 : uint64 = System.Convert.ToUInt64 v31.Length
+        let v60 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v59))
+        let v61 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v59, v61) do
+            let v63 : uint64 = v61.l0
+            let struct (v64 : float, v65 : int64) = v31.[int v63]
+            v60.[int v63] &lt;- v64
+            let v66 : uint64 = v63 + 1UL
+            v61.l0 &lt;- v66
             ()
-        let v66 : uint64 = System.Convert.ToUInt64 v59.Length
-        let v67 : bool = v66 &lt;= 1UL
-        if v67 then
+        let v67 : uint64 = System.Convert.ToUInt64 v60.Length
+        let v68 : bool = v67 &lt;= 1UL
+        if v68 then
             ()
         else
-            let v68 : float = v59.[int 0UL]
-            let v69 : uint64 = 0UL
-            let v70 : bool = method9(v68, v59, v69)
-            if v70 then
+            let v69 : float = v60.[int 0UL]
+            let v70 : uint64 = 0UL
+            let v71 : bool = method9(v69, v60, v70)
+            if v71 then
                 ()
             else
-                let v71 : string = $"Challenge error: {v59}"
-                failwith&lt;unit&gt; v71
-        let v72 : string = $"%A{v21}"
-        let v73 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v58))
-        let v74 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v58, v74) do
-            let v76 : uint64 = v74.l0
-            let struct (v77 : float, v78 : int64) = v31.[int v76]
-            v73.[int v76] &lt;- v77
-            let v79 : uint64 = v76 + 1UL
-            v74.l0 &lt;- v79
+                let v72 : string = $"Challenge error: {v60}"
+                failwith&lt;unit&gt; v72
+        let v73 : string = $"%A{v21}"
+        let v74 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v59))
+        let v75 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v59, v75) do
+            let v77 : uint64 = v75.l0
+            let struct (v78 : float, v79 : int64) = v31.[int v77]
+            v74.[int v77] &lt;- v78
+            let v80 : uint64 = v77 + 1UL
+            v75.l0 &lt;- v80
             ()
-        let v80 : float = v73.[int 0UL]
-        let v81 : string = $"%A{v80}"
-        let v82 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v58))
-        let v83 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v58, v83) do
-            let v85 : uint64 = v83.l0
-            let struct (v86 : float, v87 : int64) = v31.[int v85]
-            v82.[int v85] &lt;- v87
-            let v88 : uint64 = v85 + 1UL
-            v83.l0 &lt;- v88
+        let v81 : float = v74.[int 0UL]
+        let v82 : string = $"%A{v81}"
+        let v83 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v59))
+        let v84 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v59, v84) do
+            let v86 : uint64 = v84.l0
+            let struct (v87 : float, v88 : int64) = v31.[int v86]
+            v83.[int v86] &lt;- v88
+            let v89 : uint64 = v86 + 1UL
+            v84.l0 &lt;- v89
             ()
-        v16.[int v19] &lt;- struct (v72, v22, v81, v82)
-        let v89 : uint64 = v19 + 1UL
-        v17.l0 &lt;- v89
+        v16.[int v19] &lt;- struct (v73, v22, v82, v83)
+        let v90 : uint64 = v19 + 1UL
+        v17.l0 &lt;- v90
         ()
-    let v90 : uint64 = System.Convert.ToUInt64 v16.Length
-    let v91 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v90))
-    let v92 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v90, v92) do
-        let v94 : uint64 = v92.l0
-        let struct (v95 : string, v96 : string, v97 : string, v98 : (int64 [])) = v16.[int v94]
-        let v99 : uint64 = System.Convert.ToUInt64 v98.Length
-        let v100 : UH3 = UH3_0
-        let v101 : Mut2 = {l0 = 0UL; l1 = v100; l2 = 0L} : Mut2
-        while method10(v99, v101) do
-            let v103 : uint64 = v101.l0
-            let struct (v104 : UH3, v105 : int64) = v101.l1, v101.l2
-            let v106 : int64 = v98.[int v103]
-            let v107 : int64 = v105 + 1L
-            let v108 : uint64 = v103 + 1UL
-            let v109 : UH3 = UH3_1(v105, v106, v104)
-            v101.l0 &lt;- v108
-            v101.l1 &lt;- v109
-            v101.l2 &lt;- v107
+    let v91 : uint64 = System.Convert.ToUInt64 v16.Length
+    let v92 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v91))
+    let v93 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v91, v93) do
+        let v95 : uint64 = v93.l0
+        let struct (v96 : string, v97 : string, v98 : string, v99 : (int64 [])) = v16.[int v95]
+        let v100 : uint64 = System.Convert.ToUInt64 v99.Length
+        let v101 : UH3 = UH3_0
+        let v102 : Mut2 = {l0 = 0UL; l1 = v101; l2 = 0L} : Mut2
+        while method10(v100, v102) do
+            let v104 : uint64 = v102.l0
+            let struct (v105 : UH3, v106 : int64) = v102.l1, v102.l2
+            let v107 : int64 = v99.[int v104]
+            let v108 : int64 = v106 + 1L
+            let v109 : uint64 = v104 + 1UL
+            let v110 : UH3 = UH3_1(v106, v107, v105)
+            v102.l0 &lt;- v109
+            v102.l1 &lt;- v110
+            v102.l2 &lt;- v108
             ()
-        let struct (v110 : UH3, v111 : int64) = v101.l1, v101.l2
-        let v112 : UH3 = UH3_0
-        let v113 : UH3 = method11(v110, v112)
-        let v114 : (struct (int64 * int64) []) = method12(v113)
-        let v115 : int32 = v114.Length
-        let v116 : (struct (int64 * int64) []) = Array.zeroCreate&lt;struct (int64 * int64)&gt; (v115)
-        let v117 : Mut1 = {l0 = 0} : Mut1
-        while method15(v115, v117) do
-            let v119 : int32 = v117.l0
-            let struct (v120 : int64, v121 : int64) = v114.[int v119]
-            let v122 : int64 = v120 + 1L
-            v116.[int v119] &lt;- struct (v122, v121)
-            let v123 : int32 = v119 + 1
-            v117.l0 &lt;- v123
+        let struct (v111 : UH3, v112 : int64) = v102.l1, v102.l2
+        let v113 : UH3 = UH3_0
+        let v114 : UH3 = method11(v111, v113)
+        let v115 : (struct (int64 * int64) []) = method12(v114)
+        let v116 : int32 = v115.Length
+        let v117 : (struct (int64 * int64) []) = Array.zeroCreate&lt;struct (int64 * int64)&gt; (v116)
+        let v118 : Mut1 = {l0 = 0} : Mut1
+        while method15(v116, v118) do
+            let v120 : int32 = v118.l0
+            let struct (v121 : int64, v122 : int64) = v115.[int v120]
+            let v123 : int64 = v121 + 1L
+            v117.[int v120] &lt;- struct (v123, v122)
+            let v124 : int32 = v120 + 1
+            v118.l0 &lt;- v124
             ()
-        let v124 : ((struct (int64 * int64) -&gt; int64) -&gt; ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) []))) = Array.sortBy
-        let v125 : (struct (int64 * int64) -&gt; int64) = closure3()
-        let v126 : ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) [])) = v124 v125
-        let v127 : (struct (int64 * int64) []) = v126 v116
-        let struct (v128 : int64, v129 : int64) = v127.[int 0]
-        let v130 : string = $"%A{struct (v128, v129)}"
-        let v131 : bool = v95 = v97
-        let v136 : US0 =
-            if v131 then
-                let v132 : System.ConsoleColor = System.ConsoleColor.DarkGreen
-                US0_0(v132)
+        let v125 : ((struct (int64 * int64) -&gt; int64) -&gt; ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) []))) = Array.sortBy
+        let v126 : (struct (int64 * int64) -&gt; int64) = closure3()
+        let v127 : ((struct (int64 * int64) []) -&gt; (struct (int64 * int64) [])) = v125 v126
+        let v128 : (struct (int64 * int64) []) = v127 v117
+        let struct (v129 : int64, v130 : int64) = v128.[int 0]
+        let v131 : string = $"%A{struct (v129, v130)}"
+        let v132 : bool = v96 = v98
+        let v137 : US0 =
+            if v132 then
+                let v133 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+                US0_0(v133)
             else
-                let v134 : System.ConsoleColor = System.ConsoleColor.DarkRed
-                US0_0(v134)
-        let v137 : UH2 = UH2_0
-        let v138 : UH2 = UH2_1(v130, v137)
-        let v139 : UH2 = UH2_1(v97, v138)
-        let v140 : UH2 = UH2_1(v95, v139)
+                let v135 : System.ConsoleColor = System.ConsoleColor.DarkRed
+                US0_0(v135)
+        let v138 : UH2 = UH2_0
+        let v139 : UH2 = UH2_1(v131, v138)
+        let v140 : UH2 = UH2_1(v98, v139)
         let v141 : UH2 = UH2_1(v96, v140)
-        v91.[int v94] &lt;- struct (v141, v136)
-        let v142 : uint64 = v94 + 1UL
-        v92.l0 &lt;- v142
+        let v142 : UH2 = UH2_1(v97, v141)
+        v92.[int v95] &lt;- struct (v142, v137)
+        let v143 : uint64 = v95 + 1UL
+        v93.l0 &lt;- v143
         ()
-    let v143 : string = "Input"
-    let v144 : string = "Expected"
-    let v145 : string = "Result"
-    let v146 : string = "Best"
-    let v147 : UH2 = UH2_0
-    let v148 : UH2 = UH2_1(v146, v147)
-    let v149 : UH2 = UH2_1(v145, v148)
-    let v150 : UH2 = UH2_1(v144, v149)
-    let v151 : UH2 = UH2_1(v143, v150)
-    let v152 : US0 = US0_1
-    let v153 : string = "---"
-    let v154 : UH2 = UH2_0
-    let v155 : UH2 = UH2_1(v153, v154)
-    let v156 : UH2 = UH2_1(v153, v155)
-    let v157 : UH2 = UH2_1(v153, v156)
-    let v158 : UH2 = UH2_1(v153, v157)
-    let v159 : US0 = US0_1
-    let v160 : UH4 = UH4_0
-    let v161 : UH4 = UH4_1(v158, v159, v160)
-    let v162 : UH4 = UH4_1(v151, v152, v161)
-    let v163 : (struct (UH2 * US0) []) = method16(v162)
-    let v164 : uint64 = System.Convert.ToUInt64 v163.Length
-    let v165 : uint64 = System.Convert.ToUInt64 v91.Length
-    let v166 : uint64 = v164 + v165
-    let v167 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v166))
-    let v168 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v166, v168) do
-        let v170 : uint64 = v168.l0
-        let v171 : bool = v170 &lt; v164
-        let struct (v177 : UH2, v178 : US0) =
-            if v171 then
-                let struct (v172 : UH2, v173 : US0) = v163.[int v170]
-                struct (v172, v173)
+    let v144 : string = "Input"
+    let v145 : string = "Expected"
+    let v146 : string = "Result"
+    let v147 : string = "Best"
+    let v148 : UH2 = UH2_0
+    let v149 : UH2 = UH2_1(v147, v148)
+    let v150 : UH2 = UH2_1(v146, v149)
+    let v151 : UH2 = UH2_1(v145, v150)
+    let v152 : UH2 = UH2_1(v144, v151)
+    let v153 : US0 = US0_1
+    let v154 : string = "---"
+    let v155 : UH2 = UH2_0
+    let v156 : UH2 = UH2_1(v154, v155)
+    let v157 : UH2 = UH2_1(v154, v156)
+    let v158 : UH2 = UH2_1(v154, v157)
+    let v159 : UH2 = UH2_1(v154, v158)
+    let v160 : US0 = US0_1
+    let v161 : UH4 = UH4_0
+    let v162 : UH4 = UH4_1(v159, v160, v161)
+    let v163 : UH4 = UH4_1(v152, v153, v162)
+    let v164 : (struct (UH2 * US0) []) = method16(v163)
+    let v165 : uint64 = System.Convert.ToUInt64 v164.Length
+    let v166 : uint64 = System.Convert.ToUInt64 v92.Length
+    let v167 : uint64 = v165 + v166
+    let v168 : (struct (UH2 * US0) []) = Array.zeroCreate&lt;struct (UH2 * US0)&gt; (System.Convert.ToInt32(v167))
+    let v169 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v167, v169) do
+        let v171 : uint64 = v169.l0
+        let v172 : bool = v171 &lt; v165
+        let struct (v178 : UH2, v179 : US0) =
+            if v172 then
+                let struct (v173 : UH2, v174 : US0) = v164.[int v171]
+                struct (v173, v174)
             else
-                let v174 : uint64 = v170 - v164
-                let struct (v175 : UH2, v176 : US0) = v91.[int v174]
-                struct (v175, v176)
-        v167.[int v170] &lt;- struct (v177, v178)
-        let v179 : uint64 = v170 + 1UL
-        v168.l0 &lt;- v179
+                let v175 : uint64 = v171 - v165
+                let struct (v176 : UH2, v177 : US0) = v92.[int v175]
+                struct (v176, v177)
+        v168.[int v171] &lt;- struct (v178, v179)
+        let v180 : uint64 = v171 + 1UL
+        v169.l0 &lt;- v180
         ()
-    let v180 : uint64 = System.Convert.ToUInt64 v167.Length
-    let v181 : ((string []) []) = Array.zeroCreate&lt;(string [])&gt; (System.Convert.ToInt32(v180))
-    let v182 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v180, v182) do
-        let v184 : uint64 = v182.l0
-        let struct (v185 : UH2, v186 : US0) = v167.[int v184]
-        let v187 : (string []) = method19(v185)
-        v181.[int v184] &lt;- v187
-        let v188 : uint64 = v184 + 1UL
-        v182.l0 &lt;- v188
+    let v181 : uint64 = System.Convert.ToUInt64 v168.Length
+    let v182 : ((string []) []) = Array.zeroCreate&lt;(string [])&gt; (System.Convert.ToInt32(v181))
+    let v183 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v181, v183) do
+        let v185 : uint64 = v183.l0
+        let struct (v186 : UH2, v187 : US0) = v168.[int v185]
+        let v188 : (string []) = method19(v186)
+        v182.[int v185] &lt;- v188
+        let v189 : uint64 = v185 + 1UL
+        v183.l0 &lt;- v189
         ()
-    let v189 : (((string []) []) -&gt; ((string []) [])) = Array.transpose
-    let v190 : ((string []) []) = v189 v181
-    let v191 : uint64 = System.Convert.ToUInt64 v190.Length
-    let v192 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v191))
-    let v193 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v191, v193) do
-        let v195 : uint64 = v193.l0
-        let v196 : (string []) = v190.[int v195]
-        let v197 : uint64 = System.Convert.ToUInt64 v196.Length
-        let v198 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v197))
-        let v199 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v197, v199) do
-            let v201 : uint64 = v199.l0
-            let v202 : string = v196.[int v201]
-            let v203 : int64 = System.Convert.ToInt64 v202.Length
-            v198.[int v201] &lt;- v203
-            let v204 : uint64 = v201 + 1UL
-            v199.l0 &lt;- v204
+    let v190 : (((string []) []) -&gt; ((string []) [])) = Array.transpose
+    let v191 : ((string []) []) = v190 v182
+    let v192 : uint64 = System.Convert.ToUInt64 v191.Length
+    let v193 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v192))
+    let v194 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v192, v194) do
+        let v196 : uint64 = v194.l0
+        let v197 : (string []) = v191.[int v196]
+        let v198 : uint64 = System.Convert.ToUInt64 v197.Length
+        let v199 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v198))
+        let v200 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v198, v200) do
+            let v202 : uint64 = v200.l0
+            let v203 : string = v197.[int v202]
+            let v204 : int64 = System.Convert.ToInt64 v203.Length
+            v199.[int v202] &lt;- v204
+            let v205 : uint64 = v202 + 1UL
+            v200.l0 &lt;- v205
             ()
-        let v205 : ((int64 []) -&gt; (int64 [])) = Array.sortDescending
-        let v206 : (int64 []) = v205 v198
-        let v207 : (int32 -&gt; ((int64 []) -&gt; int64 option)) = Array.tryItem
-        let v208 : ((int64 []) -&gt; int64 option) = v207 0
-        let v209 : int64 option = v208 v206
-        let v210 : (int64 -&gt; US1) = method22()
-        let v211 : US1 = US1_1
-        let v212 : US1 = v209 |&gt; Option.map v210 |&gt; Option.defaultValue v211 
-        let v215 : int64 =
-            match v212 with
+        let v206 : ((int64 []) -&gt; (int64 [])) = Array.sortDescending
+        let v207 : (int64 []) = v206 v199
+        let v208 : (int32 -&gt; ((int64 []) -&gt; int64 option)) = Array.tryItem
+        let v209 : ((int64 []) -&gt; int64 option) = v208 0
+        let v210 : int64 option = v209 v207
+        let v211 : (int64 -&gt; US1) = method22()
+        let v212 : US1 = US1_1
+        let v213 : US1 = v210 |&gt; Option.map v211 |&gt; Option.defaultValue v212 
+        let v216 : int64 =
+            match v213 with
             | US1_1 -&gt; (* None *)
                 0L
-            | US1_0(v213) -&gt; (* Some *)
-                v213
-        v192.[int v195] &lt;- v215
-        let v216 : uint64 = v195 + 1UL
-        v193.l0 &lt;- v216
+            | US1_0(v214) -&gt; (* Some *)
+                v214
+        v193.[int v196] &lt;- v216
+        let v217 : uint64 = v196 + 1UL
+        v194.l0 &lt;- v217
         ()
-    let v217 : uint64 = System.Convert.ToUInt64 v192.Length
-    let v218 : UH5 = UH5_0
-    let v219 : Mut3 = {l0 = 0UL; l1 = v218; l2 = 0} : Mut3
-    while method23(v217, v219) do
-        let v221 : uint64 = v219.l0
-        let struct (v222 : UH5, v223 : int32) = v219.l1, v219.l2
-        let v224 : int64 = v192.[int v221]
-        let v225 : int32 = v223 + 1
-        let v226 : uint64 = v221 + 1UL
-        let v227 : UH5 = UH5_1(v223, v224, v222)
-        v219.l0 &lt;- v226
-        v219.l1 &lt;- v227
-        v219.l2 &lt;- v225
+    let v218 : uint64 = System.Convert.ToUInt64 v193.Length
+    let v219 : UH5 = UH5_0
+    let v220 : Mut3 = {l0 = 0UL; l1 = v219; l2 = 0} : Mut3
+    while method23(v218, v220) do
+        let v222 : uint64 = v220.l0
+        let struct (v223 : UH5, v224 : int32) = v220.l1, v220.l2
+        let v225 : int64 = v193.[int v222]
+        let v226 : int32 = v224 + 1
+        let v227 : uint64 = v222 + 1UL
+        let v228 : UH5 = UH5_1(v224, v225, v223)
+        v220.l0 &lt;- v227
+        v220.l1 &lt;- v228
+        v220.l2 &lt;- v226
         ()
-    let struct (v228 : UH5, v229 : int32) = v219.l1, v219.l2
-    let v230 : UH5 = UH5_0
-    let v231 : UH5 = method24(v228, v230)
-    let v232 : (struct (int32 * int64) []) = method25(v231)
-    let v233 : Map&lt;int32, int64&gt; = v232 |&gt; Array.map (fun (struct (a, b)) -&gt; a, b) |&gt; Map.ofArray
-    let v234 : (struct ((string []) * US0) []) = Array.zeroCreate&lt;struct ((string []) * US0)&gt; (System.Convert.ToInt32(v180))
-    let v235 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v180, v235) do
-        let v237 : uint64 = v235.l0
-        let struct (v238 : UH2, v239 : US0) = v167.[int v237]
-        let v240 : UH6 = UH6_0
-        let v241 : int32 = 0
-        let struct (v242 : UH6, v243 : int32) = method28(v238, v240, v241)
-        let v244 : UH6 = UH6_0
-        let v245 : UH6 = method29(v242, v244)
-        let v246 : UH2 = UH2_0
-        let v247 : UH2 = method30(v233, v245, v246)
-        let v248 : (string []) = method31(v247)
-        v234.[int v237] &lt;- struct (v248, v239)
-        let v249 : uint64 = v237 + 1UL
-        v235.l0 &lt;- v249
+    let struct (v229 : UH5, v230 : int32) = v220.l1, v220.l2
+    let v231 : UH5 = UH5_0
+    let v232 : UH5 = method24(v229, v231)
+    let v233 : (struct (int32 * int64) []) = method25(v232)
+    let v234 : Map&lt;int32, int64&gt; = v233 |&gt; Array.map (fun (struct (a, b)) -&gt; a, b) |&gt; Map.ofArray
+    let v235 : (struct ((string []) * US0) []) = Array.zeroCreate&lt;struct ((string []) * US0)&gt; (System.Convert.ToInt32(v181))
+    let v236 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v181, v236) do
+        let v238 : uint64 = v236.l0
+        let struct (v239 : UH2, v240 : US0) = v168.[int v238]
+        let v241 : UH6 = UH6_0
+        let v242 : int32 = 0
+        let struct (v243 : UH6, v244 : int32) = method28(v239, v241, v242)
+        let v245 : UH6 = UH6_0
+        let v246 : UH6 = method29(v243, v245)
+        let v247 : UH2 = UH2_0
+        let v248 : UH2 = method30(v234, v246, v247)
+        let v249 : (string []) = method31(v248)
+        v235.[int v238] &lt;- struct (v249, v240)
+        let v250 : uint64 = v238 + 1UL
+        v236.l0 &lt;- v250
         ()
     System.Console.WriteLine v2
-    let v250 : uint64 = System.Convert.ToUInt64 v234.Length
-    let v251 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v250, v251) do
-        let v253 : uint64 = v251.l0
-        let struct (v254 : (string []), v255 : US0) = v234.[int v253]
-        match v255 with
+    let v251 : uint64 = System.Convert.ToUInt64 v235.Length
+    let v252 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v251, v252) do
+        let v254 : uint64 = v252.l0
+        let struct (v255 : (string []), v256 : US0) = v235.[int v254]
+        match v256 with
         | US0_1 -&gt; (* None *)
-            let v258 : unit option = None
-            let mutable _v258 = v258
+            let v260 : unit option = None
+            let v261 : bool = true in let mutable _v260 = v260
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.Console.ResetColor ()
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_TYPESCRIPT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
             Unchecked.defaultof&lt;unit&gt;
-            #endif
-            |&gt; fun x -&gt; _v258 &lt;- Some x
-            _v258 |&gt; Option.get
             ()
-        | US0_0(v256) -&gt; (* Some *)
-            let v257 : unit option = None
-            let mutable _v257 = v257
+#endif
+            |&gt; fun x -&gt; _v260 &lt;- Some x
+            _v260.Value
+            ()
+        | US0_0(v257) -&gt; (* Some *)
+            let v258 : unit option = None
+            let v259 : bool = true in let mutable _v258 = v258
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            () 
-            #endif
+            ()
+#endif
             #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            System.Console.ForegroundColor &lt;- v256
-            () 
-            #endif
+            System.Console.ForegroundColor &lt;- v257
+            ()
+#endif
             #if FABLE_COMPILER_TYPESCRIPT
-            () 
-            #endif
+            ()
+#endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
             Unchecked.defaultof&lt;unit&gt;
-            #endif
-            |&gt; fun x -&gt; _v257 &lt;- Some x
-            _v257 |&gt; Option.get
             ()
-        let v259 : string = "\t| "
-        let v260 : string = System.String.Join (v259, v254)
-        System.Console.WriteLine v260
-        let v261 : unit option = None
-        let mutable _v261 = v261
+#endif
+            |&gt; fun x -&gt; _v258 &lt;- Some x
+            _v258.Value
+            ()
+        let v262 : string = "\t| "
+        let v263 : string = System.String.Join (v262, v255)
+        System.Console.WriteLine v263
+        let v264 : unit option = None
+        let v265 : bool = true in let mutable _v264 = v264
         #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; WASM
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-        () 
-        #endif
+        ()
+#endif
         #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
         System.Console.ResetColor ()
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_TYPESCRIPT
-        () 
-        #endif
+        ()
+#endif
         #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
         Unchecked.defaultof&lt;unit&gt;
-        #endif
-        |&gt; fun x -&gt; _v261 &lt;- Some x
-        _v261 |&gt; Option.get
-        let v262 : uint64 = v253 + 1UL
-        v251.l0 &lt;- v262
         ()
-    let v263 : ((float []) []) = Array.zeroCreate&lt;(float [])&gt; (System.Convert.ToInt32(v90))
-    let v264 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v90, v264) do
-        let v266 : uint64 = v264.l0
-        let struct (v267 : string, v268 : string, v269 : string, v270 : (int64 [])) = v16.[int v266]
-        let v271 : (int64 -&gt; float) = float
-        let v272 : uint64 = System.Convert.ToUInt64 v270.Length
-        let v273 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v272))
-        let v274 : Mut0 = {l0 = 0UL} : Mut0
-        while method4(v272, v274) do
-            let v276 : uint64 = v274.l0
-            let v277 : int64 = v270.[int v276]
-            let v278 : float = v271 v277
-            v273.[int v276] &lt;- v278
-            let v279 : uint64 = v276 + 1UL
-            v274.l0 &lt;- v279
+#endif
+        |&gt; fun x -&gt; _v264 &lt;- Some x
+        _v264.Value
+        let v266 : uint64 = v254 + 1UL
+        v252.l0 &lt;- v266
+        ()
+    let v267 : ((float []) []) = Array.zeroCreate&lt;(float [])&gt; (System.Convert.ToInt32(v91))
+    let v268 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v91, v268) do
+        let v270 : uint64 = v268.l0
+        let struct (v271 : string, v272 : string, v273 : string, v274 : (int64 [])) = v16.[int v270]
+        let v275 : (int64 -&gt; float) = float
+        let v276 : uint64 = System.Convert.ToUInt64 v274.Length
+        let v277 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v276))
+        let v278 : Mut0 = {l0 = 0UL} : Mut0
+        while method4(v276, v278) do
+            let v280 : uint64 = v278.l0
+            let v281 : int64 = v274.[int v280]
+            let v282 : float = v275 v281
+            v277.[int v280] &lt;- v282
+            let v283 : uint64 = v280 + 1UL
+            v278.l0 &lt;- v283
             ()
-        v263.[int v266] &lt;- v273
-        let v280 : uint64 = v266 + 1UL
-        v264.l0 &lt;- v280
+        v267.[int v270] &lt;- v277
+        let v284 : uint64 = v270 + 1UL
+        v268.l0 &lt;- v284
         ()
-    let v281 : (((float []) []) -&gt; ((float []) [])) = Array.transpose
-    let v282 : ((float []) []) = v281 v263
-    let v283 : uint64 = System.Convert.ToUInt64 v282.Length
-    let v284 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v283))
-    let v285 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v283, v285) do
-        let v287 : uint64 = v285.l0
-        let v288 : (float []) = v282.[int v287]
-        let v289 : ((float []) -&gt; float) = Array.average
-        let v290 : float = v289 v288
-        v284.[int v287] &lt;- v290
-        let v291 : uint64 = v287 + 1UL
-        v285.l0 &lt;- v291
+    let v285 : (((float []) []) -&gt; ((float []) [])) = Array.transpose
+    let v286 : ((float []) []) = v285 v267
+    let v287 : uint64 = System.Convert.ToUInt64 v286.Length
+    let v288 : (float []) = Array.zeroCreate&lt;float&gt; (System.Convert.ToInt32(v287))
+    let v289 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v287, v289) do
+        let v291 : uint64 = v289.l0
+        let v292 : (float []) = v286.[int v291]
+        let v293 : ((float []) -&gt; float) = Array.average
+        let v294 : float = v293 v292
+        v288.[int v291] &lt;- v294
+        let v295 : uint64 = v291 + 1UL
+        v289.l0 &lt;- v295
         ()
-    let v292 : (float -&gt; int64) = int64
-    let v293 : uint64 = System.Convert.ToUInt64 v284.Length
-    let v294 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v293))
-    let v295 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v293, v295) do
-        let v297 : uint64 = v295.l0
-        let v298 : float = v284.[int v297]
-        let v299 : int64 = v292 v298
-        v294.[int v297] &lt;- v299
-        let v300 : uint64 = v297 + 1UL
-        v295.l0 &lt;- v300
+    let v296 : (float -&gt; int64) = int64
+    let v297 : uint64 = System.Convert.ToUInt64 v288.Length
+    let v298 : (int64 []) = Array.zeroCreate&lt;int64&gt; (System.Convert.ToInt32(v297))
+    let v299 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v297, v299) do
+        let v301 : uint64 = v299.l0
+        let v302 : float = v288.[int v301]
+        let v303 : int64 = v296 v302
+        v298.[int v301] &lt;- v303
+        let v304 : uint64 = v301 + 1UL
+        v299.l0 &lt;- v304
         ()
-    let v301 : uint64 = System.Convert.ToUInt64 v294.Length
-    let v302 : UH5 = UH5_0
-    let v303 : Mut3 = {l0 = 0UL; l1 = v302; l2 = 0} : Mut3
-    while method23(v301, v303) do
-        let v305 : uint64 = v303.l0
-        let struct (v306 : UH5, v307 : int32) = v303.l1, v303.l2
-        let v308 : int64 = v294.[int v305]
-        let v309 : int32 = v307 + 1
-        let v310 : uint64 = v305 + 1UL
-        let v311 : UH5 = UH5_1(v307, v308, v306)
-        v303.l0 &lt;- v310
-        v303.l1 &lt;- v311
-        v303.l2 &lt;- v309
+    let v305 : uint64 = System.Convert.ToUInt64 v298.Length
+    let v306 : UH5 = UH5_0
+    let v307 : Mut3 = {l0 = 0UL; l1 = v306; l2 = 0} : Mut3
+    while method23(v305, v307) do
+        let v309 : uint64 = v307.l0
+        let struct (v310 : UH5, v311 : int32) = v307.l1, v307.l2
+        let v312 : int64 = v298.[int v309]
+        let v313 : int32 = v311 + 1
+        let v314 : uint64 = v309 + 1UL
+        let v315 : UH5 = UH5_1(v311, v312, v310)
+        v307.l0 &lt;- v314
+        v307.l1 &lt;- v315
+        v307.l2 &lt;- v313
         ()
-    let struct (v312 : UH5, v313 : int32) = v303.l1, v303.l2
-    let v314 : UH5 = UH5_0
-    let v315 : UH5 = method24(v312, v314)
-    let v316 : (struct (int32 * int64) []) = method34(v315)
+    let struct (v316 : UH5, v317 : int32) = v307.l1, v307.l2
+    let v318 : UH5 = UH5_0
+    let v319 : UH5 = method24(v316, v318)
+    let v320 : (struct (int32 * int64) []) = method34(v319)
     System.Console.WriteLine v2
-    let v317 : string = "Average Ranking  "
-    System.Console.WriteLine v317
-    let v318 : ((struct (int32 * int64) -&gt; int64) -&gt; ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) []))) = Array.sortBy
-    let v319 : (struct (int32 * int64) -&gt; int64) = closure5()
-    let v320 : ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) [])) = v318 v319
-    let v321 : (struct (int32 * int64) []) = v320 v316
-    let v322 : uint64 = System.Convert.ToUInt64 v321.Length
-    let v323 : Mut0 = {l0 = 0UL} : Mut0
-    while method4(v322, v323) do
-        let v325 : uint64 = v323.l0
-        let struct (v326 : int32, v327 : int64) = v321.[int v325]
-        let v328 : string = $"Test case %d{v326 + 1}. Average Time: %A{v327}  "
-        System.Console.WriteLine v328
-        let v329 : uint64 = v325 + 1UL
-        v323.l0 &lt;- v329
+    let v321 : string = "Average Ranking  "
+    System.Console.WriteLine v321
+    let v322 : ((struct (int32 * int64) -&gt; int64) -&gt; ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) []))) = Array.sortBy
+    let v323 : (struct (int32 * int64) -&gt; int64) = closure5()
+    let v324 : ((struct (int32 * int64) []) -&gt; (struct (int32 * int64) [])) = v322 v323
+    let v325 : (struct (int32 * int64) []) = v324 v320
+    let v326 : uint64 = System.Convert.ToUInt64 v325.Length
+    let v327 : Mut0 = {l0 = 0UL} : Mut0
+    while method4(v326, v327) do
+        let v329 : uint64 = v327.l0
+        let struct (v330 : int32, v331 : int64) = v325.[int v329]
+        let v332 : string = $"Test case %d{v330 + 1}. Average Time: %A{v331}  "
+        System.Console.WriteLine v332
+        let v333 : uint64 = v329 + 1UL
+        v327.l0 &lt;- v333
         ()
     ()
 method0()
@@ -10778,22 +10794,22 @@ method0()
 Test: v0
 
 Solution: 0.0  
-Test case 1. A. Time: 25  
+Test case 1. A. Time: 22  
 
 Solution: 2.0  
-Test case 1. A. Time: 14  
+Test case 1. A. Time: 11  
 
 Solution: 5.0  
-Test case 1. A. Time: 13  
+Test case 1. A. Time: 12  
 
 Input	| Expected	| Result	| Best            
 ---  	| ---     	| ---   	| ---             
-0.0  	| 1.0     	| 1.0   	| struct (1L, 25L)
-2.0  	| 3.0     	| 3.0   	| struct (1L, 14L)
-5.0  	| 6.0     	| 6.0   	| struct (1L, 13L)
+0.0  	| 1.0     	| 1.0   	| struct (1L, 22L)
+2.0  	| 3.0     	| 3.0   	| struct (1L, 11L)
+5.0  	| 6.0     	| 6.0   	| struct (1L, 12L)
 
 Average Ranking  
-Test case 1. Average Time: 17L  
+Test case 1. Average Time: 15L  
 </pre>
 </div>
 </div>

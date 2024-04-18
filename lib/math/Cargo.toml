@@ -5,11 +5,12 @@ edition = "2021"
 workspace = "../.."
 
 [dependencies]
-fable_library_rust = { path = "../rust/fable/fable_modules/fable-library-rust", default-features = false, features = ["datetime", "guid"] }
+fable_library_rust = { path = "../rust/fable/fable_modules/fable-library-rust", default-features = false, features = ["static_do_bindings", "datetime", "guid", "threaded"] }
 num-complex = "~0.4"
 statrs = "~0.16"
 float-cmp = "~0.9"
-pyo3 = "~0.21.0-beta.0"
+pyo3 = "~0.21.1"
+inline_colorization = "~0.1"
 
 [dev-dependencies]
 

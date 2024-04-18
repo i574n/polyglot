@@ -7767,14 +7767,15 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
 
+
+
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.fsx:
+<pre>.fsx:
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;] type std_string_String = class end
 [&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;] type Ref&lt;'T&gt; = class end
 [&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;] type Str = class end
@@ -7863,6 +7864,29 @@ pub use module_ccfa04bf::*;
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
+UH2_1(
+    UH0_0,
+    "01",
+    US4_0(
+        US3_0,
+    ),
+    UH2_1(
+        UH0_0,
+        "02",
+        US4_0(
+            US3_0,
+        ),
+        UH2_1(
+            UH0_0,
+            "03",
+            US4_0(
+                US3_0,
+            ),
+            UH2_0,
+        ),
+    ),
+)
+
 
 </pre>
 </div>
@@ -7870,8 +7894,84 @@ pub use module_ccfa04bf::*;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.fsx:
+<pre>.fsx:
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;] type std_string_String = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;] type Ref&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;] type Str = class end
+type [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1
+    | US0_2
+    | US0_3
+    | US0_4
+    | US0_5
+    | US0_6
+    | US0_7
+    | US0_8
+    | US0_9
+    | US0_10
+    | US0_11
+and [&lt;Struct&gt;] US2 =
+    | US2_0
+    | US2_1
+and [&lt;Struct&gt;] US1 =
+    | US1_0 of f0_0 : US2
+and UH0 =
+    | UH0_0
+    | UH0_1 of int32 * US0 * int32 * US1 * UH0
+and [&lt;Struct&gt;] US3 =
+    | US3_0
+    | US3_1
+and [&lt;Struct&gt;] US6 =
+    | US6_0 of f0_0 : int32
+    | US6_1 of f1_0 : int32
+    | US6_2 of f2_0 : int32
+and [&lt;Struct&gt;] US8 =
+    | US8_0
+    | US8_1
+    | US8_2
+    | US8_3
+    | US8_4
+    | US8_5
+    | US8_6
+and [&lt;Struct&gt;] US7 =
+    | US7_0 of f0_0 : US8
+    | US7_1 of f1_0 : int32
+    | US7_2 of f2_0 : int32 * f2_1 : US0
+and UH1 =
+    | UH1_0
+    | UH1_1 of US7 * UH1
+and [&lt;Struct&gt;] US5 =
+    | US5_0 of f0_0 : US6
+    | US5_1 of f1_0 : UH1
+and [&lt;Struct&gt;] US4 =
+    | US4_0 of f0_0 : US3
+    | US4_1 of f1_0 : US5
+and UH2 =
+    | UH2_0
+    | UH2_1 of UH0 * string * US4 * UH2
+let rec method0 () : unit =
+    let v0 : UH0 = UH0_0
+    let v1 : string = "01"
+    let v2 : US3 = US3_0
+    let v3 : US4 = US4_0(v2)
+    let v4 : UH0 = UH0_0
+    let v5 : string = "02"
+    let v6 : US3 = US3_0
+    let v7 : US4 = US4_0(v6)
+    let v8 : UH0 = UH0_0
+    let v9 : string = "03"
+    let v10 : US3 = US3_0
+    let v11 : US4 = US4_0(v10)
+    let v12 : UH2 = UH2_0
+    let v13 : UH2 = UH2_1(v8, v9, v11, v12)
+    let v14 : UH2 = UH2_1(v4, v5, v7, v13)
+    let v15 : UH2 = UH2_1(v0, v1, v3, v14)
+    let v16 : string = "format!(\"{:#?}\", $0)"
+    let v17 : std_string_String = Fable.Core.RustInterop.emitRustExpr v15 v16
+    System.Console.WriteLine v17
+    ()
+method0()
 
 
 .rs:
@@ -7885,7 +7985,348 @@ pub use module_ccfa04bf::*;
 #![allow(unused_macros,)]
 #![allow(unused_parens,)]
 #![allow(unused_variables,)]
-mod module_ccfa04bf { }
+mod module_ccfa04bf {
+    pub mod Spiral_eval {
+        use super::*;
+        use fable_library_rust::Native_::LrcPtr;
+        use fable_library_rust::Native_::MutCell;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::String_::printfn;
+        use fable_library_rust::String_::string;
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        pub enum US0 {
+            US0_0,
+            US0_1,
+            US0_2,
+            US0_3,
+            US0_4,
+            US0_5,
+            US0_6,
+            US0_7,
+            US0_8,
+            US0_9,
+            US0_10,
+            US0_11,
+        }
+        impl Spiral_eval::US0 {
+            pub fn get_IsUS0_0(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_1(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_2(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_3(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_4(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_5(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_6(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_7(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_8(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_9(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_10(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;,
+                                unitArg: ()) -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_11(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;,
+                                unitArg: ()) -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::US0 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        pub enum US2 { US2_0, US2_1, }
+        impl Spiral_eval::US2 {
+            pub fn get_IsUS2_0(this_: &amp;MutCell&lt;Spiral_eval::US2&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS2_1(this_: &amp;MutCell&lt;Spiral_eval::US2&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::US2 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        pub enum US1 { US1_0(Spiral_eval::US2), }
+        impl Spiral_eval::US1 {
+            pub fn get_IsUS1_0(this_: &amp;MutCell&lt;Spiral_eval::US1&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::US1 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        pub enum UH0 {
+            UH0_0,
+            UH0_1(i32, Spiral_eval::US0, i32, Spiral_eval::US1,
+                  LrcPtr&lt;Spiral_eval::UH0&gt;),
+        }
+        impl Spiral_eval::UH0 {
+            pub fn get_IsUH0_0(this_: LrcPtr&lt;Spiral_eval::UH0&gt;, unitArg: ())
+             -&gt; bool {
+                if let Spiral_eval::UH0::UH0_0 = this_.as_ref() {
+                    true
+                } else { false }
+            }
+            pub fn get_IsUH0_1(this_: LrcPtr&lt;Spiral_eval::UH0&gt;, unitArg: ())
+             -&gt; bool {
+                if let Spiral_eval::UH0::UH0_1(this__1_0, this__1_1,
+                                               this__1_2, this__1_3,
+                                               this__1_4) = this_.as_ref() {
+                    true
+                } else { false }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::UH0 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        pub enum US3 { US3_0, US3_1, }
+        impl Spiral_eval::US3 {
+            pub fn get_IsUS3_0(this_: &amp;MutCell&lt;Spiral_eval::US3&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS3_1(this_: &amp;MutCell&lt;Spiral_eval::US3&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::US3 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        pub enum US6 { US6_0(i32), US6_1(i32), US6_2(i32), }
+        impl Spiral_eval::US6 {
+            pub fn get_IsUS6_0(this_: &amp;MutCell&lt;Spiral_eval::US6&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS6_1(this_: &amp;MutCell&lt;Spiral_eval::US6&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS6_2(this_: &amp;MutCell&lt;Spiral_eval::US6&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::US6 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        pub enum US8 { US8_0, US8_1, US8_2, US8_3, US8_4, US8_5, US8_6, }
+        impl Spiral_eval::US8 {
+            pub fn get_IsUS8_0(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS8_1(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS8_2(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS8_3(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS8_4(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS8_5(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS8_6(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::US8 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        pub enum US7 {
+            US7_0(Spiral_eval::US8),
+            US7_1(i32),
+            US7_2(i32, Spiral_eval::US0),
+        }
+        impl Spiral_eval::US7 {
+            pub fn get_IsUS7_0(this_: &amp;MutCell&lt;Spiral_eval::US7&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS7_1(this_: &amp;MutCell&lt;Spiral_eval::US7&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS7_2(this_: &amp;MutCell&lt;Spiral_eval::US7&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::US7 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        pub enum UH1 {
+            UH1_0,
+            UH1_1(Spiral_eval::US7, LrcPtr&lt;Spiral_eval::UH1&gt;),
+        }
+        impl Spiral_eval::UH1 {
+            pub fn get_IsUH1_0(this_: LrcPtr&lt;Spiral_eval::UH1&gt;, unitArg: ())
+             -&gt; bool {
+                if let Spiral_eval::UH1::UH1_0 = this_.as_ref() {
+                    true
+                } else { false }
+            }
+            pub fn get_IsUH1_1(this_: LrcPtr&lt;Spiral_eval::UH1&gt;, unitArg: ())
+             -&gt; bool {
+                if let Spiral_eval::UH1::UH1_1(this__1_0, this__1_1) =
+                       this_.as_ref() {
+                    true
+                } else { false }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::UH1 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        pub enum US5 {
+            US5_0(Spiral_eval::US6),
+            US5_1(LrcPtr&lt;Spiral_eval::UH1&gt;),
+        }
+        impl Spiral_eval::US5 {
+            pub fn get_IsUS5_0(this_: &amp;MutCell&lt;Spiral_eval::US5&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS5_1(this_: &amp;MutCell&lt;Spiral_eval::US5&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::US5 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        pub enum US4 { US4_0(Spiral_eval::US3), US4_1(Spiral_eval::US5), }
+        impl Spiral_eval::US4 {
+            pub fn get_IsUS4_0(this_: &amp;MutCell&lt;Spiral_eval::US4&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS4_1(this_: &amp;MutCell&lt;Spiral_eval::US4&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::US4 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        pub enum UH2 {
+            UH2_0,
+            UH2_1(LrcPtr&lt;Spiral_eval::UH0&gt;, string, Spiral_eval::US4,
+                  LrcPtr&lt;Spiral_eval::UH2&gt;),
+        }
+        impl Spiral_eval::UH2 {
+            pub fn get_IsUH2_0(this_: LrcPtr&lt;Spiral_eval::UH2&gt;, unitArg: ())
+             -&gt; bool {
+                if let Spiral_eval::UH2::UH2_0 = this_.as_ref() {
+                    true
+                } else { false }
+            }
+            pub fn get_IsUH2_1(this_: LrcPtr&lt;Spiral_eval::UH2&gt;, unitArg: ())
+             -&gt; bool {
+                if let Spiral_eval::UH2::UH2_1(this__1_0, this__1_1,
+                                               this__1_2, this__1_3) =
+                       this_.as_ref() {
+                    true
+                } else { false }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::UH2 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        pub fn method0() {
+            let v17: std::string::String =
+                format!("{:#?}", LrcPtr::new(Spiral_eval::UH2::UH2_1(LrcPtr::new(Spiral_eval::UH0::UH0_0),
+                                                                     string("01"),
+                                                                     Spiral_eval::US4::US4_0(Spiral_eval::US3::US3_0),
+                                                                     LrcPtr::new(Spiral_eval::UH2::UH2_1(LrcPtr::new(Spiral_eval::UH0::UH0_0),
+                                                                                                         string("02"),
+                                                                                                         Spiral_eval::US4::US4_0(Spiral_eval::US3::US3_0),
+                                                                                                         LrcPtr::new(Spiral_eval::UH2::UH2_1(LrcPtr::new(Spiral_eval::UH0::UH0_0),
+                                                                                                                                             string("03"),
+                                                                                                                                             Spiral_eval::US4::US4_0(Spiral_eval::US3::US3_0),
+                                                                                                                                             LrcPtr::new(Spiral_eval::UH2::UH2_0))))))));
+            printfn!("{0}", v17);
+            ()
+        }
+        on_startup!(Spiral_eval::method0());
+    }
+}
 pub use module_ccfa04bf::*;
 
 </pre>
@@ -7922,14 +8363,15 @@ pub use module_ccfa04bf::*;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
 "01"
+
+
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.fsx:
+<pre>.fsx:
 let rec method0 () : unit =
     let v0 : string = "01"
     let v1 : string = $"%A{v0}"

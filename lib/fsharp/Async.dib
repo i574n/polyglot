@@ -13,11 +13,6 @@
 
 #!fsharp
 
-#!import ../../lib/spiral/common.fsx
-#!import ../../lib/spiral/sm.fsx
-#!import ../../lib/spiral/date_time.fsx
-#!import ../../lib/spiral/file_system.fsx
-#!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 
 #!fsharp
@@ -317,19 +312,6 @@ init 1
 
 #!markdown
 
-## mergeCancellationTokenWithDefaultAsync
-
-#!fsharp
-
-let inline mergeCancellationTokenWithDefaultAsync (token : System.Threading.CancellationToken) = async {
-    let! ct = Async.CancellationToken
-    let dct = Async.DefaultCancellationToken
-    let cts = System.Threading.CancellationTokenSource.CreateLinkedTokenSource [| ct; dct; token |]
-    return cts.Token
-}
-
-#!markdown
-
 ## withCancellationToken
 
 #!fsharp
@@ -363,18 +345,3 @@ async {
 |> Async.RunSynchronously
 |> Result.mapError _.Message
 |> _assertEqual (Error ("A task was canceled."))
-
-#!markdown
-
-## withTraceLevel
-
-#!fsharp
-
-let inline withTraceLevel level fn = async {
-    let oldTraceLevel = traceLevel
-    try
-        traceLevel <- level
-        return! fn
-    finally
-        traceLevel <- oldTraceLevel
-}

@@ -70,7 +70,7 @@ pub mod Common {
             MutCell::new(None::<LrcPtr<dyn IDisposable>>);
         {
             let x: LrcPtr<dyn IDisposable> = interface_cast!(
-                defaultOf::<std::rc::Rc<dyn IDisposable>>(),
+                defaultOf::<std::sync::Arc<dyn IDisposable>>(),
                 Lrc<dyn IDisposable>,
             );
             _v1.set(Some(x))
@@ -147,7 +147,7 @@ pub mod Common {
     }
     pub fn v0() -> Func1<Func0<()>, LrcPtr<dyn IDisposable>> {
         static v0: OnceInit<Func1<Func0<()>, LrcPtr<dyn IDisposable>>> = OnceInit::new();
-        v0.get_or_insert_with(|| Func1::new(move |v: Func0<()>| Common::closure0((), v)))
+        v0.get_or_init(|| Func1::new(move |v: Func0<()>| Common::closure0((), v)))
             .clone()
     }
     pub fn new_disposable(x: Func0<()>) -> LrcPtr<dyn IDisposable> {
@@ -155,11 +155,11 @@ pub mod Common {
     }
     pub fn v1() -> Func1<i32, Func1<Func0<()>, Option<()>>> {
         static v1: OnceInit<Func1<i32, Func1<Func0<()>, Option<()>>>> = OnceInit::new();
-        v1.get_or_insert_with(|| Func1::new(move |v: i32| Common::closure1((), v)))
+        v1.get_or_init(|| Func1::new(move |v: i32| Common::closure1((), v)))
             .clone()
     }
     pub fn retry_fn(x: i32) -> Func1<Func0<()>, Option<()>> {
         (Common::v1())(x)
     }
-    on_startup!((),);
+    on_startup!(());
 }

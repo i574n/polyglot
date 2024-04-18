@@ -1,0 +1,194 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# threading
+
+#!spiral
+
+open rust_operators
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## cancellation_token
+
+#!spiral
+
+nominal cancellation_token = $'System.Threading.CancellationToken'
+
+#!markdown
+
+## cancellation_token_source
+
+#!spiral
+
+nominal cancellation_token_source = $'System.Threading.CancellationTokenSource'
+
+#!markdown
+
+## cancellation_token_registration
+
+#!spiral
+
+nominal cancellation_token_registration = $'System.Threading.CancellationTokenRegistration'
+
+#!markdown
+
+## cancellation_source_token
+
+#!spiral
+
+inl cancellation_source_token (x : cancellation_token_source) : cancellation_token =
+    $'!x.Token'
+
+#!markdown
+
+## cancellation_source_cancel
+
+#!spiral
+
+inl cancellation_source_cancel (x : cancellation_token_source) : () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!x.Cancel' ()
+        | _ => fun () => null ()
+
+#!markdown
+
+## create_linked_token_source
+
+#!spiral
+
+inl create_linked_token_source (x : array_base cancellation_token) : cancellation_token_source =
+    x |> $'System.Threading.CancellationTokenSource.CreateLinkedTokenSource'
+
+#!markdown
+
+## sleep
+
+#!spiral
+
+inl sleep (duration : date_time.duration) : () =
+    inl duration = join duration
+    !\($'"std::thread::sleep(!duration)"')
+
+#!markdown
+
+## concurrent_stack
+
+#!spiral
+
+nominal concurrent_stack t = $'System.Collections.Concurrent.ConcurrentStack<`t>'
+
+#!markdown
+
+## concurrent_stack_push
+
+#!spiral
+
+inl concurrent_stack_push forall t. (item : t) (stack : concurrent_stack t) : () =
+    $'!stack.Push' item
+
+#!markdown
+
+## token_none
+
+#!spiral
+
+inl token_none () : cancellation_token =
+    $'`cancellation_token.None'
+
+#!markdown
+
+## new_concurrent_stack
+
+#!spiral
+
+inl new_concurrent_stack forall t. () : concurrent_stack t =
+    $'System.Collections.Concurrent.ConcurrentStack<`t>' ()
+
+#!markdown
+
+## token_register
+
+#!spiral
+
+inl token_register (fn : () -> ()) (ct : cancellation_token) : cancellation_token_registration =
+    fn |> $'!ct.Register'
+
+#!markdown
+
+## new_cancellation_token_source
+
+#!spiral
+
+inl new_cancellation_token_source () : cancellation_token_source =
+    $'new `cancellation_token_source ()'
+
+#!spiral
+
+inl token_cancellation_requested (ct : cancellation_token) : bool =
+    $'!ct.IsCancellationRequested'
+
+#!markdown
+
+## new_disposable_token
+
+#!spiral
+
+inl new_disposable_token (merge_token : optionm'.option' cancellation_token) =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl cts = new_cancellation_token_source ()
+            inl cts =
+                match merge_token |> optionm'.unbox with
+                | None => cts
+                | Some merge_token =>
+                    create_linked_token_source ;[ cts |> cancellation_source_token; merge_token ]
+            inl disposable : _ () = new_disposable fun () =>
+                cts |> cancellation_source_cancel
+            cts |> cancellation_source_token, disposable
+        | _ => fun () => null ()
+
+#!spiral
+
+// // test
+
+inl run fn =
+    inl token, disposable = new_disposable_token (None |> optionm'.box)
+    disposable |> use |> ignore
+    fn token
+    fun () =>
+        fn token
+    |> async.new_async
+    |> async.start
+
+fun () =>
+    inl counter = mut 0i32
+
+    inl fn (token : cancellation_token) =
+        counter <- *counter + (if token |> token_cancellation_requested then 10 else 1)
+
+    join run fn
+    async.sleep 10 |> async.do
+    return *counter
+|> async.new_async_unit
+|> async.run_synchronously
+|> _assert_eq 11i32
+
+#!markdown
+
+## main
+
+#!spiral
+
+inl main () =
+    $"let new_disposable_token x = !new_disposable_token x" : ()

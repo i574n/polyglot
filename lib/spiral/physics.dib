@@ -1300,7 +1300,7 @@ let main () =
             x, y
         )
         |> listm.toArray : a i32 _
-        
+
     inl n = 0i32
 
     inl x, y = index frames n
@@ -1605,7 +1605,7 @@ let main () =
                 ($"$\"{!n}\"" : string), x, y
             ]
         )
-    
+
     plots |> stream.to_list |> listm.toArray : a i32 _
 
 #!markdown
