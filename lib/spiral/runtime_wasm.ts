@@ -827,13 +827,13 @@ export function closure9(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => st
     let _v9: Option<string> = void 0;
     const x: string = method9();
     _v9 = x;
-    const v60: string = value_2(_v9);
-    const v61: int64 = patternInput[0].l0;
-    const v71: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v73: Option<string> = void 0;
-    const x_1: string = v71.toLocaleLowerCase();
-    _v73 = x_1;
-    return trimEnd(trimStart(`${v60} ${value_2(_v73)} #${v61} ${v1_1()} / ${v2_1()}`), " ", "/");
+    const v61: string = value_2(_v9);
+    const v62: int64 = patternInput[0].l0;
+    const v72: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
+    let _v74: Option<string> = void 0;
+    const x_1: string = v72.toLocaleLowerCase();
+    _v74 = x_1;
+    return trimEnd(trimStart(`${v61} ${value_2(_v74)} #${v62} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
 export function method7(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
@@ -874,22 +874,22 @@ export function closure11(v0_1: Option<any>, v1_1: string, v2_1: Option<((arg0: 
     let _v7: Option<any> = void 0;
     const x: any = defaultOf();
     _v7 = x;
-    const v31: any = value_2(_v7);
-    let _v32: Option<void> = void 0;
+    const v32: any = value_2(_v7);
+    let _v33: Option<void> = void 0;
     defaultOf();
-    _v32 = some(void 0);
-    value_2(_v32);
+    _v33 = some(void 0);
+    value_2(_v33);
 }
 
 export function closure14(v0_1: Option<any>, v1_1: string, v2_1: Option<((arg0: [boolean, string, int32]) => any)>, v3_1: Option<string>, v4_1: void, v5: any, v6: void): void {
     let _v7: Option<any> = void 0;
     const x: any = defaultOf();
     _v7 = x;
-    const v32: any = value_2(_v7);
-    let _v33: Option<void> = void 0;
+    const v33: any = value_2(_v7);
+    let _v34: Option<void> = void 0;
     defaultOf();
-    _v33 = some(void 0);
-    value_2(_v33);
+    _v34 = some(void 0);
+    value_2(_v34);
 }
 
 export function closure15(unitVar: void, v0_1: any): US7_$union {
@@ -905,10 +905,10 @@ export function closure16(v0_1: void, unitVar: void): void {
     const x: boolean = defaultOf();
     _v1 = x;
     if (value_2(_v1) === false) {
-        let _v10: Option<void> = void 0;
+        let _v11: Option<void> = void 0;
         defaultOf();
-        _v10 = some(void 0);
-        value_2(_v10);
+        _v11 = some(void 0);
+        value_2(_v11);
     }
 }
 

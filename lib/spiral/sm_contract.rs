@@ -142,10 +142,10 @@ pub mod Sm {
     }
     pub fn closure18(v0_1: Array<string>, v1_1: string) -> Array<string> {
         let _v2: MutCell<Option<Array<string>>> = MutCell::new(None::<Array<string>>);
-        let v18_1: LrcPtr<dyn IEnumerable_1<string>> = ofArray(v0_1);
+        let v19_1: LrcPtr<dyn IEnumerable_1<string>> = ofArray(v0_1);
         {
             let x: Array<string> =
-                split_1(v1_1, join(Sm::method0(), toArray(v18_1)), -1_i32, 0_i32);
+                split_1(v1_1, join(Sm::method0(), toArray(v19_1)), -1_i32, 0_i32);
             _v2.set(Some(x))
         }
         getValue(_v2.get().clone())

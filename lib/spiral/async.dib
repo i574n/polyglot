@@ -79,7 +79,7 @@ type future_pin_send t = rust.pin (rust.box (rust.send (rust.dyn' (future t))))
 
 #!spiral
 
-inl block_on forall t. (fn : future_pin t) : () =
+inl block_on forall t. (fn : future_pin t) : t =
     !\($'"futures_lite::future::block_on(!fn)"')
 
 #!markdown
@@ -88,7 +88,7 @@ inl block_on forall t. (fn : future_pin t) : () =
 
 #!spiral
 
-inl spawn forall t. (fn : future_pin t) : () =
+inl spawn forall t. (fn : future_pin t) : t =
     !\($'"async_std::task::spawn(!fn)"')
 
 #!markdown
@@ -173,6 +173,30 @@ inl future_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future
         x' |> rust.fix_closure depth
 
         !\($'"__result"')
+
+#!markdown
+
+## new_future_move_init
+
+#!spiral
+
+inl new_future_move_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future_pin t =
+    future_init depth flag x
+    // join
+    //     !\($'"{Box::pin(async move { //"')
+    //     inl x' = x () |> fun x => join $'!x '
+    // 
+    //         inl depth = depth |> fst
+    //         if depth = 1
+    //         then !\($'"!x' })"')
+    //         elif depth = 2
+    //         then !\($'"!x' }})"')
+    //         elif depth = 3
+    //         then !\($'"!x' }}})"')
+    //         elif depth = 4
+    //         then !\($'"!x' }}}})"')
+
+    //         !\($'"// 1"')
 
 #!markdown
 

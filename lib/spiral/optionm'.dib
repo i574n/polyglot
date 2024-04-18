@@ -252,8 +252,7 @@ inl rc_into_inner forall t. (x : rust.rc t) : option' t =
 // // print_code=false
 
 types ()
-()
-|> new_rc
+rust.new_rc ()
 |> rc_into_inner
-|> optionm'.unbox
+|> unbox
 |> _assert_eq (Some ())

@@ -31,10 +31,10 @@ export function method1(): string {
 
 export function closure0(unitVar: void, v0_1: string): string {
     let _v1: Option<string> = void 0;
-    const v28: ICryptoCreateHash = crypto;
-    const v31: any = v28.createHash("sha256");
-    const v33: any = v31.update(v0_1, 'utf8');
-    const x: string = v33.digest("hex");
+    const v29: ICryptoCreateHash = crypto;
+    const v32: any = v29.createHash("sha256");
+    const v34: any = v32.update(v0_1, 'utf8');
+    const x: string = v34.digest("hex");
     _v1 = x;
     return value(_v1);
 }

@@ -6,34 +6,34 @@ and [<Struct>] US1 =
     | US1_1
 let rec closure0 () (v0 : (unit -> unit)) : System.IDisposable =
     let v1 : System.IDisposable option = None
-    let mutable _v1 = v1
+    let v2 : bool = true in let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v2 : System.IDisposable = null |> unbox<System.IDisposable>
-    v2 
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
     let v3 : System.IDisposable = null |> unbox<System.IDisposable>
-    v3 
-    #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
+    v3
+#endif
+    #if FABLE_COMPILER_RUST && WASM
     let v4 : System.IDisposable = null |> unbox<System.IDisposable>
-    v4 
-    #endif
+    v4
+#endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v5 : System.IDisposable = null |> unbox<System.IDisposable>
+    v5
+#endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v5 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v0 () }
-    v5 
-    #endif
+    let v6 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v0 () }
+    v6
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
-    let v6 : System.IDisposable = null |> unbox<System.IDisposable>
-    v6 
-    #endif
+    let v7 : System.IDisposable = null |> unbox<System.IDisposable>
+    v7
+#endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v7 : System.IDisposable = Unchecked.defaultof<System.IDisposable>
-    v7 
-    #endif
-    |> fun x -> _v1 <- Some x
-    let v8 : System.IDisposable = _v1.Value
+    let v8 : System.IDisposable = Unchecked.defaultof<System.IDisposable>
     v8
+#endif
+    |> fun x -> _v1 <- Some x
+    let v9 : System.IDisposable = _v1.Value
+    v9
 and closure3 (v0 : int32, v1 : (unit -> unit), v2 : int32) () : US0 =
     let v3 : bool = v2 < v0
     if v3 then
@@ -45,28 +45,28 @@ and closure4 () (v0 : US0) : US1 =
     US1_0(v0)
 and closure5 (v0 : int32) (v1 : exn) : US1 =
     let v2 : unit option = None
-    let mutable _v2 = v2
+    let v3 : bool = true in let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    () 
-    #endif
+    ()
+#endif
     #if FABLE_COMPILER_RUST && WASM
-    () 
-    #endif
+    ()
+#endif
     #if FABLE_COMPILER_RUST && CONTRACT
-    () 
-    #endif
+    ()
+#endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v3 : (int32 -> unit) = System.Threading.Thread.Sleep
-    v3 1
-    () 
-    #endif
+    let v4 : (int32 -> unit) = System.Threading.Thread.Sleep
+    v4 1
+    ()
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
-    () 
-    #endif
+    ()
+#endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
     Unchecked.defaultof<unit>
-    () 
-    #endif
+    ()
+#endif
     |> fun x -> _v2 <- Some x
     _v2.Value
     US1_1

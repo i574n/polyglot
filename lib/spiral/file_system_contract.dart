@@ -563,29 +563,29 @@ String closure18(US0 v0_1, String Function() v1_1, String Function() v2_1, void 
     final patternInput = types.value(State_trace_state);
     types.Some<String>? _v9;
     _v9 = const types.Some('');
-    final v60 = types.value(_v9);
-    final v61 = patternInput.item1.l0;
-    late final String v71;
+    final v61 = types.value(_v9);
+    final v62 = patternInput.item1.l0;
+    late final String v72;
     switch (v0_1.tag) {
         case 1:
-            v71 = 'Debug';
+            v72 = 'Debug';
             break;
         case 2:
-            v71 = 'Info';
+            v72 = 'Info';
             break;
         case 0:
-            v71 = 'Verbose';
+            v72 = 'Verbose';
             break;
         case 3:
-            v71 = 'Warning';
+            v72 = 'Warning';
             break;
         default:
-            v71 = 'Critical';
+            v72 = 'Critical';
     }
-    final v72 = v71.toLowerCase();
-    types.Some<String>? _v73;
-    _v73 = const types.Some('');
-    return string.trimEnd(string.trimStart('$v60 ${types.value(_v73)} #$v61 ${v1_1()} / ${v2_1()}', <int>[]), [32, 47]);
+    final v73 = v72.toLowerCase();
+    types.Some<String>? _v74;
+    _v74 = const types.Some('');
+    return string.trimEnd(string.trimStart('$v61 ${types.value(_v74)} #$v62 ${v1_1()} / ${v2_1()}', <int>[]), [32, 47]);
 }
 
 void method9(US0 v0_1, String Function() v1_1, String Function() v2_1) {
@@ -627,9 +627,9 @@ String closure22(void unitVar, void unitVar_1) => 'move_file_async';
 String method13(String v0_1, String v1_1, dynamic v2_1) {
     types.Some<String>? _v3;
     _v3 = const types.Some('');
-    final v10_1 = types.value(_v3);
-    String v11_1(String v) => closure3(util.ignore(), v);
-    return 'old_path: ${v11_1(v1_1)} / new_path: ${v11_1(v0_1)} / ex: $v10_1 / ${closure4(util.ignore(), util.ignore())}';
+    final v11_1 = types.value(_v3);
+    String v12_1(String v) => closure3(util.ignore(), v);
+    return 'old_path: ${v12_1(v1_1)} / new_path: ${v12_1(v0_1)} / ex: $v11_1 / ${closure4(util.ignore(), util.ignore())}';
 }
 
 String closure23(String v0_1, String v1_1, dynamic v2_1, void unitVar) => method13(v0_1, v1_1, v2_1);
@@ -697,14 +697,14 @@ String closure35(String v0_1, String v1_1, void unitVar) => 'temp_folder: $v0_1 
 void closure36(String v0_1, void unitVar) {
     types.Some<Async<int>>? _v1;
     _v1 = const types.Some(null);
-    final v9_1 = types.value(_v1);
-    types.Some<Async<void>>? _v10;
-    _v10 = const types.Some(null);
-    final v18 = types.value(_v10);
-    types.Some<void>? _v19;
+    final v10_1 = types.value(_v1);
+    types.Some<Async<void>>? _v11;
+    _v11 = const types.Some(null);
+    final v20 = types.value(_v11);
+    types.Some<void>? _v21;
     null;
-    _v19 = types.Some(util.ignore());
-    types.value(_v19);
+    _v21 = types.Some(util.ignore());
+    types.value(_v21);
 }
 
 types.Tuple2<String, types.IDisposable> closure34(void unitVar, void unitVar_1) {
@@ -732,10 +732,10 @@ bool closure42(void unitVar, String v0_1) {
 types.Some<String>? closure43(void unitVar, String v0_1) {
     types.Some<US8>? _v1;
     _v1 = const types.Some(null);
-    final US8 v41 = types.value(_v1);
-    if (v41.tag == /* US8_0 */ 0) {
-        final v41_1 = v41 as US8_US8_0;
-        return types.Some(v41_1.f0_0);
+    final US8 v43 = types.value(_v1);
+    if (v43.tag == /* US8_0 */ 0) {
+        final v43_1 = v43 as US8_US8_0;
+        return types.Some(v43_1.f0_0);
     } else {
         return null;
     }
@@ -759,14 +759,14 @@ String method21(String v0_1_mut, bool v1_1_mut, String v2_1_mut, String v3_1_mut
         if ((v1_1 ? ((String v) => closure41(util.ignore(), v)) : ((String v_1) => closure42(util.ignore(), v_1)))(types.value(_v4))) {
             return v3_1;
         } else {
-            final types.Some<String>? v39 = (method19())(v3_1);
-            final US8 v42 = option_2.defaultValue(const US8(/* US8_1 */ 1), option_2.map<String, US8>(method20(), v39));
-            if (v42.tag == /* US8_0 */ 0) {
+            final types.Some<String>? v40 = (method19())(v3_1);
+            final US8 v43 = option_2.defaultValue(const US8(/* US8_1 */ 1), option_2.map<String, US8>(method20(), v40));
+            if (v43.tag == /* US8_0 */ 0) {
                 v0_1_mut = v0_1;
                 v1_1_mut = v1_1;
                 v2_1_mut = v2_1;
-                final v42_1 = v42 as US8_US8_0;
-                v3_1_mut = v42_1.f0_0;
+                final v43_1 = v43 as US8_US8_0;
+                v3_1_mut = v43_1.f0_0;
                 continue method21;
             } else {
                 return throw Exception('No parent for ${v1_1 ? 'file' : 'dir'} \'$v0_1\' at \'$v2_1\' (until \'$v3_1\')');
@@ -781,11 +781,11 @@ String method18(String v0_1, bool v1_1, String v2_1) {
     if ((v1_1 ? ((String v) => closure41(util.ignore(), v)) : ((String v_1) => closure42(util.ignore(), v_1)))(types.value(_v3))) {
         return v2_1;
     } else {
-        final types.Some<String>? v38 = (method19())(v2_1);
-        final US8 v41 = option_2.defaultValue(const US8(/* US8_1 */ 1), option_2.map<String, US8>(method20(), v38));
-        if (v41.tag == /* US8_0 */ 0) {
-            final v41_1 = v41 as US8_US8_0;
-            return method21(v0_1, v1_1, v2_1, v41_1.f0_0);
+        final types.Some<String>? v39 = (method19())(v2_1);
+        final US8 v42 = option_2.defaultValue(const US8(/* US8_1 */ 1), option_2.map<String, US8>(method20(), v39));
+        if (v42.tag == /* US8_0 */ 0) {
+            final v42_1 = v42 as US8_US8_0;
+            return method21(v0_1, v1_1, v2_1, v42_1.f0_0);
         } else {
             return throw Exception('No parent for ${v1_1 ? 'file' : 'dir'} \'$v0_1\' at \'$v2_1\' (until \'$v2_1\')');
         }
@@ -814,19 +814,19 @@ String method27(String v0_1_mut, String v1_1_mut, String v2_1_mut) {
         final v2_1 = v2_1_mut;
         types.Some<String>? _v3;
         _v3 = const types.Some('');
-        final v32 = types.value(_v3);
-        types.Some<bool>? _v33;
-        _v33 = const types.Some(false);
-        if (types.value(_v33)) {
+        final v33 = types.value(_v3);
+        types.Some<bool>? _v34;
+        _v34 = const types.Some(false);
+        if (types.value(_v34)) {
             return v2_1;
         } else {
-            final types.Some<String>? v57 = (method19())(v2_1);
-            final US8 v60 = option_2.defaultValue(const US8(/* US8_1 */ 1), option_2.map<String, US8>(method20(), v57));
-            if (v60.tag == /* US8_0 */ 0) {
+            final types.Some<String>? v59 = (method19())(v2_1);
+            final US8 v62 = option_2.defaultValue(const US8(/* US8_1 */ 1), option_2.map<String, US8>(method20(), v59));
+            if (v62.tag == /* US8_0 */ 0) {
                 v0_1_mut = v0_1;
                 v1_1_mut = v1_1;
-                final v60_1 = v60 as US8_US8_0;
-                v2_1_mut = v60_1.f0_0;
+                final v62_1 = v62 as US8_US8_0;
+                v2_1_mut = v62_1.f0_0;
                 continue method27;
             } else {
                 return throw Exception('No parent for ${'dir'} \'$v0_1\' at \'$v1_1\' (until \'$v2_1\')');
@@ -838,17 +838,17 @@ String method27(String v0_1_mut, String v1_1_mut, String v2_1_mut) {
 String method26(String v0_1, String v1_1) {
     types.Some<String>? _v2;
     _v2 = const types.Some('');
-    final v31 = types.value(_v2);
-    types.Some<bool>? _v32;
-    _v32 = const types.Some(false);
-    if (types.value(_v32)) {
+    final v32 = types.value(_v2);
+    types.Some<bool>? _v33;
+    _v33 = const types.Some(false);
+    if (types.value(_v33)) {
         return v1_1;
     } else {
-        final types.Some<String>? v56 = (method19())(v1_1);
-        final US8 v59 = option_2.defaultValue(const US8(/* US8_1 */ 1), option_2.map<String, US8>(method20(), v56));
-        if (v59.tag == /* US8_0 */ 0) {
-            final v59_1 = v59 as US8_US8_0;
-            return method27(v0_1, v1_1, v59_1.f0_0);
+        final types.Some<String>? v58 = (method19())(v1_1);
+        final US8 v61 = option_2.defaultValue(const US8(/* US8_1 */ 1), option_2.map<String, US8>(method20(), v58));
+        if (v61.tag == /* US8_0 */ 0) {
+            final v61_1 = v61 as US8_US8_0;
+            return method27(v0_1, v1_1, v61_1.f0_0);
         } else {
             return throw Exception('No parent for ${'dir'} \'$v0_1\' at \'$v1_1\' (until \'$v1_1\')');
         }
@@ -860,10 +860,10 @@ String method28() => 'polyglot';
 String closure45(void unitVar, void unitVar_1) {
     types.Some<String>? _v1;
     _v1 = const types.Some('');
-    final v33 = method26(types.value(_v1), 'C:\\home\\git\\polyglot\\lib\\spiral');
-    types.Some<String>? _v34;
-    _v34 = const types.Some('');
-    return types.value(_v34);
+    final v34 = method26(types.value(_v1), 'C:\\home\\git\\polyglot\\lib\\spiral');
+    types.Some<String>? _v35;
+    _v35 = const types.Some('');
+    return types.value(_v35);
 }
 
 String closure47(String v0_1, String v1_1) {

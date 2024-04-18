@@ -611,13 +611,13 @@ def closure18(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_
     pattern_input: tuple[Mut0, Mut1, Mut1, Mut2, int64 | None] = value(State_trace_state())
     _v9: str | None = None
     _v9 = None
-    v60: str = value(_v9)
-    v61: int64 = pattern_input[0].l0
-    v71: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
-    v72: str = v71.lower()
-    _v73: str | None = None
-    _v73 = None
-    return trim_end(trim_start(((((((((("" + v60) + " ") + value(_v73)) + " #") + str(v61)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
+    v61: str = value(_v9)
+    v62: int64 = pattern_input[0].l0
+    v72: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
+    v73: str = v72.lower()
+    _v74: str | None = None
+    _v74 = None
+    return trim_end(trim_start(((((((((("" + v61) + " ") + value(_v74)) + " #") + str(v62)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
 
 
 def method9(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str]) -> None:
@@ -662,11 +662,11 @@ def closure22(unit_var: None, unit_var_1: None) -> str:
 def method13(v0_1: str, v1_1: str, v2_1: Exception) -> str:
     _v3: str | None = None
     _v3 = None
-    v10_1: str = value(_v3)
-    def v11_1(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> str:
+    v11_1: str = value(_v3)
+    def v12_1(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> str:
         return closure3(None, v)
 
-    return ((((((("old_path: " + v11_1(v1_1)) + " / new_path: ") + v11_1(v0_1)) + " / ex: ") + v10_1) + " / ") + closure4(None, None)) + ""
+    return ((((((("old_path: " + v12_1(v1_1)) + " / new_path: ") + v12_1(v0_1)) + " / ex: ") + v11_1) + " / ") + closure4(None, None)) + ""
 
 
 def closure23(v0_1: str, v1_1: str, v2_1: Exception, unit_var: None) -> str:
@@ -763,13 +763,13 @@ def closure35(v0_1: str, v1_1: str, unit_var: None) -> str:
 def closure36(v0_1: str, unit_var: None) -> None:
     _v1: Async[int64] | None = None
     _v1 = None
-    v9_1: Async[int64] = value(_v1)
-    _v10: Async[None] | None = None
-    _v10 = None
-    v18: Async[None] = value(_v10)
-    _v19: None | None = None
-    _v19 = some(None)
-    value(_v19)
+    v10_1: Async[int64] = value(_v1)
+    _v11: Async[None] | None = None
+    _v11 = None
+    v20: Async[None] = value(_v11)
+    _v21: None | None = None
+    _v21 = some(None)
+    value(_v21)
 
 
 def closure34(unit_var: None, unit_var_1: None) -> tuple[str, IDisposable]:
@@ -800,9 +800,9 @@ def closure43(unit_var: None, v0_1: str) -> str | None:
     _v1: US8 | None = None
     x: US8 = US8()
     _v1 = x
-    v41: US8 = value(_v1)
-    if v41.tag == 0:
-        return v41.fields[0]
+    v43: US8 = value(_v1)
+    if v43.tag == 0:
+        return v43.fields[0]
 
     else: 
         return None
@@ -842,13 +842,13 @@ def method21(v0_1_mut: str, v1_1_mut: bool, v2_1_mut: str, v3_1_mut: str) -> str
             return v3_1
 
         else: 
-            v39: str | None = method19()(v3_1)
-            v42: US8 = default_arg(map(method20(), v39), US8(1))
-            if v42.tag == 0:
+            v40: str | None = method19()(v3_1)
+            v43: US8 = default_arg(map(method20(), v40), US8(1))
+            if v43.tag == 0:
                 v0_1_mut = v0_1
                 v1_1_mut = v1_1
                 v2_1_mut = v2_1
-                v3_1_mut = v42.fields[0]
+                v3_1_mut = v43.fields[0]
                 continue
 
             else: 
@@ -871,10 +871,10 @@ def method18(v0_1: str, v1_1: bool, v2_1: str) -> str:
         return v2_1
 
     else: 
-        v38: str | None = method19()(v2_1)
-        v41: US8 = default_arg(map(method20(), v38), US8(1))
-        if v41.tag == 0:
-            return method21(v0_1, v1_1, v2_1, v41.fields[0])
+        v39: str | None = method19()(v2_1)
+        v42: US8 = default_arg(map(method20(), v39), US8(1))
+        if v42.tag == 0:
+            return method21(v0_1, v1_1, v2_1, v42.fields[0])
 
         else: 
             raise Exception(((((((("No parent for " + ("file" if v1_1 else "dir")) + " \'") + v0_1) + "\' at \'") + v2_1) + "\' (until \'") + v2_1) + "\')")
@@ -921,19 +921,19 @@ def method27(v0_1_mut: str, v1_1_mut: str, v2_1_mut: str) -> str:
         (v0_1, v1_1, v2_1) = (v0_1_mut, v1_1_mut, v2_1_mut)
         _v3: str | None = None
         _v3 = None
-        v32: str = value(_v3)
-        _v33: bool | None = None
-        _v33 = False
-        if value(_v33):
+        v33: str = value(_v3)
+        _v34: bool | None = None
+        _v34 = False
+        if value(_v34):
             return v2_1
 
         else: 
-            v57: str | None = method19()(v2_1)
-            v60: US8 = default_arg(map(method20(), v57), US8(1))
-            if v60.tag == 0:
+            v59: str | None = method19()(v2_1)
+            v62: US8 = default_arg(map(method20(), v59), US8(1))
+            if v62.tag == 0:
                 v0_1_mut = v0_1
                 v1_1_mut = v1_1
-                v2_1_mut = v60.fields[0]
+                v2_1_mut = v62.fields[0]
                 continue
 
             else: 
@@ -946,17 +946,17 @@ def method27(v0_1_mut: str, v1_1_mut: str, v2_1_mut: str) -> str:
 def method26(v0_1: str, v1_1: str) -> str:
     _v2: str | None = None
     _v2 = None
-    v31: str = value(_v2)
-    _v32: bool | None = None
-    _v32 = False
-    if value(_v32):
+    v32: str = value(_v2)
+    _v33: bool | None = None
+    _v33 = False
+    if value(_v33):
         return v1_1
 
     else: 
-        v56: str | None = method19()(v1_1)
-        v59: US8 = default_arg(map(method20(), v56), US8(1))
-        if v59.tag == 0:
-            return method27(v0_1, v1_1, v59.fields[0])
+        v58: str | None = method19()(v1_1)
+        v61: US8 = default_arg(map(method20(), v58), US8(1))
+        if v61.tag == 0:
+            return method27(v0_1, v1_1, v61.fields[0])
 
         else: 
             raise Exception(((((((("No parent for " + "dir") + " \'") + v0_1) + "\' at \'") + v1_1) + "\' (until \'") + v1_1) + "\')")
@@ -971,10 +971,10 @@ def method28(__unit: None=None) -> str:
 def closure45(unit_var: None, unit_var_1: None) -> str:
     _v1: str | None = None
     _v1 = None
-    v33: str = method26(value(_v1), "C:\\home\\git\\polyglot\\lib\\spiral")
-    _v34: str | None = None
-    _v34 = None
-    return value(_v34)
+    v34: str = method26(value(_v1), "C:\\home\\git\\polyglot\\lib\\spiral")
+    _v35: str | None = None
+    _v35 = None
+    return value(_v35)
 
 
 def closure47(v0_1: str, v1_1: str) -> str:

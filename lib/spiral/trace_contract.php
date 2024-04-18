@@ -385,30 +385,30 @@ function closure4($v0_1, $v1_1, $v2, $unitVar) {
     $_v9 = NULL;
     $x = \Util\defaultOf();
     $_v9 = $x;
-    $v60 = \Option\value($_v9);
-    $v61 = $patternInput[0]->l0;
+    $v61 = \Option\value($_v9);
+    $v62 = $patternInput[0]->l0;
     switch ($v0_1->get_Tag())
     {
         case 1:
-            $v71 = 'Debug';
+            $v72 = 'Debug';
             break;
         case 2:
-            $v71 = 'Info';
+            $v72 = 'Info';
             break;
         case 0:
-            $v71 = 'Verbose';
+            $v72 = 'Verbose';
             break;
         case 3:
-            $v71 = 'Warning';
+            $v72 = 'Warning';
             break;
         default:
-            $v71 = 'Critical';
+            $v72 = 'Critical';
             break;
     }
-    $v72 = $v71->toLocaleLowerCase;
-    $_v73 = NULL;
+    $v73 = $v72->toLocaleLowerCase;
+    $_v74 = NULL;
     $x_1 = \Util\defaultOf();
-    $_v73 = $x_1;
+    $_v74 = $x_1;
     return \String\trimEnd(\String\trimStart(NULL, [  ]), [ ' ', '/' ]);
 }
 

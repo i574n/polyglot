@@ -1,3 +1,14 @@
+function FixRust {
+    param (
+        [Parameter(Mandatory, ValueFromPipeline)]
+        $text
+    )
+    process {
+        $text `
+            -replace "get_or_insert_with", "get_or_init"
+    }
+}
+
 function CopyTarget {
     param (
         $TargetDir,
@@ -31,7 +42,7 @@ function CopyTarget {
             (Get-Content $to) `
                 -replace [regex]::Escape("),);"), "));" `
                 -replace [regex]::Escape("},);"), "});" `
-                -replace "get_or_insert_with", "get_or_init" `
+                | FixRust `
                 | Set-Content $to
 
             if ($name -in @("async_", "runtime", "threading", "networking", "file_system")) {

@@ -696,13 +696,13 @@ def closure9(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_v
     pattern_input: tuple[Mut0, Mut1, Mut1, Mut2, int64 | None] = value(State_trace_state())
     _v9: str | None = None
     _v9 = None
-    v60: str = value(_v9)
-    v61: int64 = pattern_input[0].l0
-    v71: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
-    v72: str = v71.lower()
-    _v73: str | None = None
-    _v73 = None
-    return trim_end(trim_start(((((((((("" + v60) + " ") + value(_v73)) + " #") + str(v61)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
+    v61: str = value(_v9)
+    v62: int64 = pattern_input[0].l0
+    v72: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
+    v73: str = v72.lower()
+    _v74: str | None = None
+    _v74 = None
+    return trim_end(trim_start(((((((((("" + v61) + " ") + value(_v74)) + " #") + str(v62)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
 
 
 def method7(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str]) -> None:
@@ -746,19 +746,19 @@ def closure13(v0_1: str, unit_var: None) -> str:
 def closure11(v0_1: CancellationToken | None, v1_1: str, v2_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v3_1: str | None, v4_1: None, v5: Any, v6: None) -> None:
     _v7: Async[None] | None = None
     _v7 = None
-    v31: Async[None] = value(_v7)
-    _v32: None | None = None
-    _v32 = some(None)
-    value(_v32)
+    v32: Async[None] = value(_v7)
+    _v33: None | None = None
+    _v33 = some(None)
+    value(_v33)
 
 
 def closure14(v0_1: CancellationToken | None, v1_1: str, v2_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v3_1: str | None, v4_1: None, v5: Any, v6: None) -> None:
     _v7: Async[None] | None = None
     _v7 = None
-    v32: Async[None] = value(_v7)
-    _v33: None | None = None
-    _v33 = some(None)
-    value(_v33)
+    v33: Async[None] = value(_v7)
+    _v34: None | None = None
+    _v34 = some(None)
+    value(_v34)
 
 
 def closure15(unit_var: None, v0_1: CancellationToken) -> US7:
@@ -776,9 +776,9 @@ def closure16(v0_1: None, unit_var: None) -> None:
     _v1: bool | None = None
     _v1 = False
     if value(_v1) == False:
-        _v10: None | None = None
-        _v10 = some(None)
-        value(_v10)
+        _v11: None | None = None
+        _v11 = some(None)
+        value(_v11)
 
 
 

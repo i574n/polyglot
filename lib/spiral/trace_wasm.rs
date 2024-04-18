@@ -260,38 +260,38 @@ pub mod Trace {
                 _v9.set(Some(x))
             }
             {
-                let v60: string = getValue(_v9.get().clone());
-                let v61: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v72: string = toLower(match &v0_1 {
+                let v61: string = getValue(_v9.get().clone());
+                let v62: i64 = (patternInput.0.clone()).l0.get().clone();
+                let v73: string = toLower(match &v0_1 {
                     Trace::US0::US0_1 => string("Debug"),
                     Trace::US0::US0_2 => string("Info"),
                     Trace::US0::US0_0 => string("Verbose"),
                     Trace::US0::US0_3 => string("Warning"),
                     _ => string("Critical"),
                 });
-                let _v73: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v112: &str = match &v0_1 {
+                let _v74: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v114: &str = match &v0_1 {
                     Trace::US0::US0_1 => inline_colorization::color_bright_blue,
                     Trace::US0::US0_2 => inline_colorization::color_bright_green,
                     Trace::US0::US0_0 => inline_colorization::color_bright_black,
                     Trace::US0::US0_3 => inline_colorization::color_bright_yellow,
                     _ => inline_colorization::color_bright_red,
                 };
-                let v114: &str = fable_library_rust::String_::LrcStr::as_str(&v72);
-                let v116: &str = inline_colorization::color_reset;
-                let v118: string = string("format!(\"{v112}{v114}{v116}\")");
-                let v119: std::string::String = format!("{v112}{v114}{v116}");
+                let v116: &str = fable_library_rust::String_::LrcStr::as_str(&v73);
+                let v118: &str = inline_colorization::color_reset;
+                let v120: string = string("format!(\"{v114}{v116}{v118}\")");
+                let v121: std::string::String = format!("{v114}{v116}{v118}");
                 {
-                    let x_1: string = fable_library_rust::String_::fromString(v119);
-                    _v73.set(Some(x_1))
+                    let x_1: string = fable_library_rust::String_::fromString(v121);
+                    _v74.set(Some(x_1))
                 }
                 trimEndChars(
                     trimStartChars(
                         sprintf!(
                             "{} {} #{} {} / {}",
-                            v60,
-                            getValue(_v73.get().clone()),
                             v61,
+                            getValue(_v74.get().clone()),
+                            v62,
                             v1_1(),
                             v2()
                         ),

@@ -8,11 +8,11 @@ def closure0(unit_var: None, v0_1: CancellationToken) -> Async[CancellationToken
     return value(_v1)
 
 
-def _arrow52(v: CancellationToken) -> Async[CancellationToken]:
+def _arrow48(v: CancellationToken) -> Async[CancellationToken]:
     return closure0(None, v)
 
 
-v0: Callable[[CancellationToken], Async[CancellationToken]] = _arrow52
+v0: Callable[[CancellationToken], Async[CancellationToken]] = _arrow48
 
 def merge_cancellation_token_with_default_async(x: CancellationToken) -> Async[CancellationToken]:
     return v0(x)

@@ -468,21 +468,29 @@ module Eval =
                                             Directory.CreateSymbolicLink (libLinkPath, libLinkTargetPath)
                                             |> ignore
 
+                                        let repositoryRoot =
+                                            let currentDir =
+                                                System.IO.Directory.GetCurrentDirectory ()
+                                                |> SpiralSm.to_lower
+                                            let repositoryRoot = repositoryRoot |> SpiralSm.to_lower
+                                            if currentDir |> SpiralSm.starts_with repositoryRoot
+                                            then None
+                                            else Some repositoryRoot
+
                                         // try
                                         //     let path =
                                         //         repositoryRoot </> $@"target/release/rust_builder{SpiralRuntime.get_executable_suffix ()}"
                                         //         |> System.IO.Path.GetFullPath
                                         //     let command = $"{path} {fsprojPath} {outDir}"
                                         //     let! exitCode, result =
-                                        //         SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, repositoryRoot |> Some)
+                                        //         SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, repositoryRoot)
                                         //     trace Info (fun () -> $"Eval.eval 1 / exitCode: {exitCode} / result: {result}") getLocals
                                         // with ex ->
                                         //     trace Critical (fun () -> $"Eval.eval 1 / ex: {ex}") getLocals
 
-
                                         let command = $@"dotnet fable ""{fsprojPath}"" --optimize --lang rs --extension .rs --outDir ""{outDir}"" "
                                         let! exitCode, result =
-                                            SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, Some repositoryRoot)
+                                            SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, repositoryRoot)
 
                                         if exitCode <> 0
                                         then return Some (Error result)
@@ -537,7 +545,7 @@ path = "{hash}.rs"
 
                                             let command = $@"cargo run --release --manifest-path {cargoTomlPath}"
                                             let! exitCode, result =
-                                                SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, Some repositoryRoot)
+                                                SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, repositoryRoot)
 
                                             if exitCode = 0 then
                                                 try

@@ -806,17 +806,17 @@ pub mod Runtime {
                 Option<i64>,
             ) = getValue(Runtime::State::trace_state().get().clone());
             let _v9: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let v12: Runtime::US5 = defaultValue(
+            let v13: Runtime::US5 = defaultValue(
                 Runtime::US5::US5_1,
                 map(Runtime::method8(), patternInput.4.clone()),
             );
-            let v30: DateTime = match &v12 {
-                Runtime::US5::US5_0(v12_0_0) => {
-                    let v18: TimeSpan = TimeSpan::new_ticks(
+            let v31: DateTime = match &v13 {
+                Runtime::US5::US5_0(v13_0_0) => {
+                    let v19: TimeSpan = TimeSpan::new_ticks(
                         {
                             let _arg: DateTime = DateTime::now();
                             _arg.ticks()
-                        } - match &v12 {
+                        } - match &v13 {
                             Runtime::US5::US5_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -825,51 +825,51 @@ pub mod Runtime {
                         1_i32,
                         1_i32,
                         1_i32,
-                        v18.hours(),
-                        v18.minutes(),
-                        v18.seconds(),
-                        v18.milliseconds(),
+                        v19.hours(),
+                        v19.minutes(),
+                        v19.seconds(),
+                        v19.milliseconds(),
                     )
                 }
                 _ => DateTime::now(),
             };
             {
-                let x: string = v30.toString(string("hh:mm:ss"));
+                let x: string = v31.toString(string("hh:mm:ss"));
                 _v9.set(Some(x))
             }
             {
-                let v60: string = getValue(_v9.get().clone());
-                let v61: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v72: string = toLower(match &v0_1 {
+                let v61: string = getValue(_v9.get().clone());
+                let v62: i64 = (patternInput.0.clone()).l0.get().clone();
+                let v73: string = toLower(match &v0_1 {
                     Runtime::US0::US0_1 => string("Debug"),
                     Runtime::US0::US0_2 => string("Info"),
                     Runtime::US0::US0_0 => string("Verbose"),
                     Runtime::US0::US0_3 => string("Warning"),
                     _ => string("Critical"),
                 });
-                let _v73: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v88: &str = match &v0_1 {
+                let _v74: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v90: &str = match &v0_1 {
                     Runtime::US0::US0_1 => inline_colorization::color_bright_blue,
                     Runtime::US0::US0_2 => inline_colorization::color_bright_green,
                     Runtime::US0::US0_0 => inline_colorization::color_bright_black,
                     Runtime::US0::US0_3 => inline_colorization::color_bright_yellow,
                     _ => inline_colorization::color_bright_red,
                 };
-                let v90: &str = fable_library_rust::String_::LrcStr::as_str(&v72);
-                let v92: &str = inline_colorization::color_reset;
-                let v94: string = string("format!(\"{v88}{v90}{v92}\")");
-                let v95: std::string::String = format!("{v88}{v90}{v92}");
+                let v92: &str = fable_library_rust::String_::LrcStr::as_str(&v73);
+                let v94: &str = inline_colorization::color_reset;
+                let v96: string = string("format!(\"{v90}{v92}{v94}\")");
+                let v97: std::string::String = format!("{v90}{v92}{v94}");
                 {
-                    let x_1: string = fable_library_rust::String_::fromString(v95);
-                    _v73.set(Some(x_1))
+                    let x_1: string = fable_library_rust::String_::fromString(v97);
+                    _v74.set(Some(x_1))
                 }
                 trimEndChars(
                     trimStartChars(
                         sprintf!(
                             "{} {} #{} {} / {}",
-                            v60,
-                            getValue(_v73.get().clone()),
                             v61,
+                            getValue(_v74.get().clone()),
+                            v62,
                             v1_1(),
                             v2_1()
                         ),
@@ -964,11 +964,11 @@ pub mod Runtime {
             _v7.set(Some(x))
         }
         {
-            let v31: Arc<Async<()>> = getValue(_v7.get().clone());
-            let _v32: MutCell<Option<()>> = MutCell::new(None::<()>);
+            let v32: Arc<Async<()>> = getValue(_v7.get().clone());
+            let _v33: MutCell<Option<()>> = MutCell::new(None::<()>);
             defaultOf::<()>();
-            _v32.set(Some(()));
-            getValue(_v32.get().clone());
+            _v33.set(Some(()));
+            getValue(_v33.get().clone());
             ()
         }
     }
@@ -987,11 +987,11 @@ pub mod Runtime {
             _v7.set(Some(x))
         }
         {
-            let v32: Arc<Async<()>> = getValue(_v7.get().clone());
-            let _v33: MutCell<Option<()>> = MutCell::new(None::<()>);
+            let v33: Arc<Async<()>> = getValue(_v7.get().clone());
+            let _v34: MutCell<Option<()>> = MutCell::new(None::<()>);
             defaultOf::<()>();
-            _v33.set(Some(()));
-            getValue(_v33.get().clone());
+            _v34.set(Some(()));
+            getValue(_v34.get().clone());
             ()
         }
     }
@@ -1008,10 +1008,10 @@ pub mod Runtime {
             _v1.set(Some(x))
         }
         if getValue(_v1.get().clone()) == false {
-            let _v10: MutCell<Option<()>> = MutCell::new(None::<()>);
+            let _v11: MutCell<Option<()>> = MutCell::new(None::<()>);
             defaultOf::<()>();
-            _v10.set(Some(()));
-            getValue(_v10.get().clone());
+            _v11.set(Some(()));
+            getValue(_v11.get().clone());
             ()
         }
     }

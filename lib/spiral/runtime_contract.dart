@@ -657,29 +657,29 @@ String closure9(US0 v0_1, String Function() v1_1, String Function() v2_1, void u
     final patternInput = types.value(State_trace_state);
     types.Some<String>? _v9;
     _v9 = const types.Some('');
-    final v60 = types.value(_v9);
-    final v61 = patternInput.item1.l0;
-    late final String v71;
+    final v61 = types.value(_v9);
+    final v62 = patternInput.item1.l0;
+    late final String v72;
     switch (v0_1.tag) {
         case 1:
-            v71 = 'Debug';
+            v72 = 'Debug';
             break;
         case 2:
-            v71 = 'Info';
+            v72 = 'Info';
             break;
         case 0:
-            v71 = 'Verbose';
+            v72 = 'Verbose';
             break;
         case 3:
-            v71 = 'Warning';
+            v72 = 'Warning';
             break;
         default:
-            v71 = 'Critical';
+            v72 = 'Critical';
     }
-    final v72 = v71.toLowerCase();
-    types.Some<String>? _v73;
-    _v73 = const types.Some('');
-    return string.trimEnd(string.trimStart('$v60 ${types.value(_v73)} #$v61 ${v1_1()} / ${v2_1()}', <int>[]), [32, 47]);
+    final v73 = v72.toLowerCase();
+    types.Some<String>? _v74;
+    _v74 = const types.Some('');
+    return string.trimEnd(string.trimStart('$v61 ${types.value(_v74)} #$v62 ${v1_1()} / ${v2_1()}', <int>[]), [32, 47]);
 }
 
 void method7(US0 v0_1, String Function() v1_1, String Function() v2_1) {
@@ -713,21 +713,21 @@ String closure13(String v0_1, void unitVar) => '> $v0_1';
 void closure11(types.Some<CancellationToken>? v0_1, String v1_1, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>? v2_1, types.Some<String>? v3_1, void v4_1, ConcurrentStack<String> v5, void v6) {
     types.Some<Async<void>>? _v7;
     _v7 = const types.Some(null);
-    final v31 = types.value(_v7);
-    types.Some<void>? _v32;
-    null;
-    _v32 = types.Some(util.ignore());
-    types.value(_v32);
-}
-
-void closure14(types.Some<CancellationToken>? v0_1, String v1_1, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>? v2_1, types.Some<String>? v3_1, void v4_1, ConcurrentStack<String> v5, void v6) {
-    types.Some<Async<void>>? _v7;
-    _v7 = const types.Some(null);
     final v32 = types.value(_v7);
     types.Some<void>? _v33;
     null;
     _v33 = types.Some(util.ignore());
     types.value(_v33);
+}
+
+void closure14(types.Some<CancellationToken>? v0_1, String v1_1, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>? v2_1, types.Some<String>? v3_1, void v4_1, ConcurrentStack<String> v5, void v6) {
+    types.Some<Async<void>>? _v7;
+    _v7 = const types.Some(null);
+    final v33 = types.value(_v7);
+    types.Some<void>? _v34;
+    null;
+    _v34 = types.Some(util.ignore());
+    types.value(_v34);
 }
 
 US7 closure15(void unitVar, CancellationToken v0_1) => US7_US7_0(v0_1);
@@ -738,10 +738,10 @@ void closure16(void v0_1, void unitVar) {
     types.Some<bool>? _v1;
     _v1 = const types.Some(false);
     if (types.value(_v1) == false) {
-        types.Some<void>? _v10;
+        types.Some<void>? _v11;
         null;
-        _v10 = types.Some(util.ignore());
-        types.value(_v10);
+        _v11 = types.Some(util.ignore());
+        types.value(_v11);
     }
 }
 

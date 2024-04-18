@@ -7863,81 +7863,81 @@ and method3 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : string option = None
-    let mutable _v0 = v0
+    let v1 : bool = true in let mutable _v0 = v0
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v1 : string = null |&gt; unbox&lt;string&gt;
-    v1 
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v2 : string = null |&gt; unbox&lt;string&gt;
-    v2 
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    v2
+#endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v3 : string = null |&gt; unbox&lt;string&gt;
-    v3 
-    #endif
+    v3
+#endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v4 : string = null |&gt; unbox&lt;string&gt;
+    v4
+#endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v4 : (unit -&gt; System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
-    let v5 : System.Security.Cryptography.SHA256 = v4 ()
-    use v5 = v5 
-    let v6 : System.Security.Cryptography.SHA256 = v5 
-    let v7 : (string -&gt; (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
-    let v8 : string = ""
-    let v9 : (uint8 []) = v7 v8
-    let v10 : ((uint8 []) -&gt; (uint8 [])) = v6.ComputeHash
-    let v11 : (uint8 []) = v10 v9
-    let v12 : int32 = v11.Length
-    let v13 : (string []) = Array.zeroCreate&lt;string&gt; (v12)
-    let v14 : Mut0 = {l0 = 0} : Mut0
-    while method1(v12, v14) do
-        let v16 : int32 = v14.l0
-        let v17 : uint8 = v11.[int v16]
-        let v18 : (string -&gt; string) = v17.ToString
-        let v19 : string = "x2"
-        let v20 : string = v18 v19
-        v13.[int v16] &lt;- v20
-        let v21 : int32 = v16 + 1
-        v14.l0 &lt;- v21
+    let v5 : (unit -&gt; System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
+    let v6 : System.Security.Cryptography.SHA256 = v5 ()
+    use v6 = v6 
+    let v7 : System.Security.Cryptography.SHA256 = v6 
+    let v8 : (string -&gt; (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
+    let v9 : string = ""
+    let v10 : (uint8 []) = v8 v9
+    let v11 : ((uint8 []) -&gt; (uint8 [])) = v7.ComputeHash
+    let v12 : (uint8 []) = v11 v10
+    let v13 : int32 = v12.Length
+    let v14 : (string []) = Array.zeroCreate&lt;string&gt; (v13)
+    let v15 : Mut0 = {l0 = 0} : Mut0
+    while method1(v13, v15) do
+        let v17 : int32 = v15.l0
+        let v18 : uint8 = v12.[int v17]
+        let v19 : (string -&gt; string) = v18.ToString
+        let v20 : string = "x2"
+        let v21 : string = v19 v20
+        v14.[int v17] &lt;- v21
+        let v22 : int32 = v17 + 1
+        v15.l0 &lt;- v22
         ()
-    let v22 : string seq = seq { for i = 0 to v13.Length - 1 do yield v13.[i] }
-    let v23 : string = method2()
-    let v24 : (string -&gt; (string seq -&gt; string)) = String.concat
-    let v25 : (string seq -&gt; string) = v24 v23
-    let v26 : string = v25 v22
-    v26 
-    #endif
+    let v23 : string seq = seq { for i = 0 to v14.Length - 1 do yield v14.[i] }
+    let v24 : string = method2()
+    let v25 : (string -&gt; (string seq -&gt; string)) = String.concat
+    let v26 : (string seq -&gt; string) = v25 v24
+    let v27 : string = v26 v23
+    v27
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
-    let v27 : string = "crypto"
-    let v28 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v27
-    let v29 : string = "v28.createHash($0)"
-    let v30 : string = "sha256"
-    let v31 : obj = Fable.Core.JsInterop.emitJsExpr v30 v29
-    let v32 : string = "$0.update($1, 'utf8')"
-    let v33 : obj = Fable.Core.JsInterop.emitJsExpr struct (v31, v8) v32
-    let v34 : string = "$0.digest($1)"
-    let v35 : string = "hex"
-    let v36 : string = Fable.Core.JsInterop.emitJsExpr struct (v33, v35) v34
-    v36 
-    #endif
+    let v28 : string = "crypto"
+    let v29 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v28
+    let v30 : string = "v29.createHash($0)"
+    let v31 : string = "sha256"
+    let v32 : obj = Fable.Core.JsInterop.emitJsExpr v31 v30
+    let v33 : string = "$0.update($1, 'utf8')"
+    let v34 : obj = Fable.Core.JsInterop.emitJsExpr struct (v32, v9) v33
+    let v35 : string = "$0.digest($1)"
+    let v36 : string = "hex"
+    let v37 : string = Fable.Core.JsInterop.emitJsExpr struct (v34, v36) v35
+    v37
+#endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v37 : string = Unchecked.defaultof&lt;string&gt;
-    v37 
-    #endif
+    let v38 : string = Unchecked.defaultof&lt;string&gt;
+    v38
+#endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
-    let v38 : string = _v0.Value
-    let v39 : string = $"%A{v38}"
-    System.Console.WriteLine v39
-    let v41 : bool = v38 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    let v43 : bool =
-        if v41 then
+    let v39 : string = _v0.Value
+    let v40 : string = $"%A{v39}"
+    System.Console.WriteLine v40
+    let v42 : bool = v39 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    let v44 : bool =
+        if v42 then
             true
         else
-            method3(v41)
-    let v44 : string = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    let v45 : string = $"__expect / actual: %A{v38} / expected: %A{v44}"
-    let v46 : bool = v43 = false
-    if v46 then
-        failwith&lt;unit&gt; v45
+            method3(v42)
+    let v45 : string = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    let v46 : string = $"__expect / actual: %A{v39} / expected: %A{v45}"
+    let v47 : bool = v44 = false
+    if v47 then
+        failwith&lt;unit&gt; v46
 method0()
 
 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -7984,81 +7984,81 @@ and method3 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : string option = None
-    let mutable _v0 = v0
+    let v1 : bool = true in let mutable _v0 = v0
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v1 : string = null |&gt; unbox&lt;string&gt;
-    v1 
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v2 : string = null |&gt; unbox&lt;string&gt;
-    v2 
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    v2
+#endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v3 : string = null |&gt; unbox&lt;string&gt;
-    v3 
-    #endif
+    v3
+#endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v4 : string = null |&gt; unbox&lt;string&gt;
+    v4
+#endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v4 : (unit -&gt; System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
-    let v5 : System.Security.Cryptography.SHA256 = v4 ()
-    use v5 = v5 
-    let v6 : System.Security.Cryptography.SHA256 = v5 
-    let v7 : (string -&gt; (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
-    let v8 : string = " "
-    let v9 : (uint8 []) = v7 v8
-    let v10 : ((uint8 []) -&gt; (uint8 [])) = v6.ComputeHash
-    let v11 : (uint8 []) = v10 v9
-    let v12 : int32 = v11.Length
-    let v13 : (string []) = Array.zeroCreate&lt;string&gt; (v12)
-    let v14 : Mut0 = {l0 = 0} : Mut0
-    while method1(v12, v14) do
-        let v16 : int32 = v14.l0
-        let v17 : uint8 = v11.[int v16]
-        let v18 : (string -&gt; string) = v17.ToString
-        let v19 : string = "x2"
-        let v20 : string = v18 v19
-        v13.[int v16] &lt;- v20
-        let v21 : int32 = v16 + 1
-        v14.l0 &lt;- v21
+    let v5 : (unit -&gt; System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
+    let v6 : System.Security.Cryptography.SHA256 = v5 ()
+    use v6 = v6 
+    let v7 : System.Security.Cryptography.SHA256 = v6 
+    let v8 : (string -&gt; (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
+    let v9 : string = " "
+    let v10 : (uint8 []) = v8 v9
+    let v11 : ((uint8 []) -&gt; (uint8 [])) = v7.ComputeHash
+    let v12 : (uint8 []) = v11 v10
+    let v13 : int32 = v12.Length
+    let v14 : (string []) = Array.zeroCreate&lt;string&gt; (v13)
+    let v15 : Mut0 = {l0 = 0} : Mut0
+    while method1(v13, v15) do
+        let v17 : int32 = v15.l0
+        let v18 : uint8 = v12.[int v17]
+        let v19 : (string -&gt; string) = v18.ToString
+        let v20 : string = "x2"
+        let v21 : string = v19 v20
+        v14.[int v17] &lt;- v21
+        let v22 : int32 = v17 + 1
+        v15.l0 &lt;- v22
         ()
-    let v22 : string seq = seq { for i = 0 to v13.Length - 1 do yield v13.[i] }
-    let v23 : string = method2()
-    let v24 : (string -&gt; (string seq -&gt; string)) = String.concat
-    let v25 : (string seq -&gt; string) = v24 v23
-    let v26 : string = v25 v22
-    v26 
-    #endif
+    let v23 : string seq = seq { for i = 0 to v14.Length - 1 do yield v14.[i] }
+    let v24 : string = method2()
+    let v25 : (string -&gt; (string seq -&gt; string)) = String.concat
+    let v26 : (string seq -&gt; string) = v25 v24
+    let v27 : string = v26 v23
+    v27
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
-    let v27 : string = "crypto"
-    let v28 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v27
-    let v29 : string = "v28.createHash($0)"
-    let v30 : string = "sha256"
-    let v31 : obj = Fable.Core.JsInterop.emitJsExpr v30 v29
-    let v32 : string = "$0.update($1, 'utf8')"
-    let v33 : obj = Fable.Core.JsInterop.emitJsExpr struct (v31, v8) v32
-    let v34 : string = "$0.digest($1)"
-    let v35 : string = "hex"
-    let v36 : string = Fable.Core.JsInterop.emitJsExpr struct (v33, v35) v34
-    v36 
-    #endif
+    let v28 : string = "crypto"
+    let v29 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v28
+    let v30 : string = "v29.createHash($0)"
+    let v31 : string = "sha256"
+    let v32 : obj = Fable.Core.JsInterop.emitJsExpr v31 v30
+    let v33 : string = "$0.update($1, 'utf8')"
+    let v34 : obj = Fable.Core.JsInterop.emitJsExpr struct (v32, v9) v33
+    let v35 : string = "$0.digest($1)"
+    let v36 : string = "hex"
+    let v37 : string = Fable.Core.JsInterop.emitJsExpr struct (v34, v36) v35
+    v37
+#endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v37 : string = Unchecked.defaultof&lt;string&gt;
-    v37 
-    #endif
+    let v38 : string = Unchecked.defaultof&lt;string&gt;
+    v38
+#endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
-    let v38 : string = _v0.Value
-    let v39 : string = $"%A{v38}"
-    System.Console.WriteLine v39
-    let v41 : bool = v38 = "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
-    let v43 : bool =
-        if v41 then
+    let v39 : string = _v0.Value
+    let v40 : string = $"%A{v39}"
+    System.Console.WriteLine v40
+    let v42 : bool = v39 = "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
+    let v44 : bool =
+        if v42 then
             true
         else
-            method3(v41)
-    let v44 : string = "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
-    let v45 : string = $"__expect / actual: %A{v38} / expected: %A{v44}"
-    let v46 : bool = v43 = false
-    if v46 then
-        failwith&lt;unit&gt; v45
+            method3(v42)
+    let v45 : string = "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
+    let v46 : string = $"__expect / actual: %A{v39} / expected: %A{v45}"
+    let v47 : bool = v44 = false
+    if v47 then
+        failwith&lt;unit&gt; v46
 method0()
 
 "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
@@ -8111,68 +8111,68 @@ and method1 () : string =
     v0
 and closure0 () (v0 : string) : string =
     let v1 : string option = None
-    let mutable _v1 = v1
+    let v2 : bool = true in let mutable _v1 = v1
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v2 : string = null |&gt; unbox&lt;string&gt;
-    v2 
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v3 : string = null |&gt; unbox&lt;string&gt;
-    v3 
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    v3
+#endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v4 : string = null |&gt; unbox&lt;string&gt;
-    v4 
-    #endif
+    v4
+#endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v5 : string = null |&gt; unbox&lt;string&gt;
+    v5
+#endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v5 : (unit -&gt; System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
-    let v6 : System.Security.Cryptography.SHA256 = v5 ()
-    use v6 = v6 
-    let v7 : System.Security.Cryptography.SHA256 = v6 
-    let v8 : (string -&gt; (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
-    let v9 : (uint8 []) = v8 v0
-    let v10 : ((uint8 []) -&gt; (uint8 [])) = v7.ComputeHash
-    let v11 : (uint8 []) = v10 v9
-    let v12 : int32 = v11.Length
-    let v13 : (string []) = Array.zeroCreate&lt;string&gt; (v12)
-    let v14 : Mut0 = {l0 = 0} : Mut0
-    while method0(v12, v14) do
-        let v16 : int32 = v14.l0
-        let v17 : uint8 = v11.[int v16]
-        let v18 : (string -&gt; string) = v17.ToString
-        let v19 : string = "x2"
-        let v20 : string = v18 v19
-        v13.[int v16] &lt;- v20
-        let v21 : int32 = v16 + 1
-        v14.l0 &lt;- v21
+    let v6 : (unit -&gt; System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
+    let v7 : System.Security.Cryptography.SHA256 = v6 ()
+    use v7 = v7 
+    let v8 : System.Security.Cryptography.SHA256 = v7 
+    let v9 : (string -&gt; (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
+    let v10 : (uint8 []) = v9 v0
+    let v11 : ((uint8 []) -&gt; (uint8 [])) = v8.ComputeHash
+    let v12 : (uint8 []) = v11 v10
+    let v13 : int32 = v12.Length
+    let v14 : (string []) = Array.zeroCreate&lt;string&gt; (v13)
+    let v15 : Mut0 = {l0 = 0} : Mut0
+    while method0(v13, v15) do
+        let v17 : int32 = v15.l0
+        let v18 : uint8 = v12.[int v17]
+        let v19 : (string -&gt; string) = v18.ToString
+        let v20 : string = "x2"
+        let v21 : string = v19 v20
+        v14.[int v17] &lt;- v21
+        let v22 : int32 = v17 + 1
+        v15.l0 &lt;- v22
         ()
-    let v22 : string seq = seq { for i = 0 to v13.Length - 1 do yield v13.[i] }
-    let v23 : string = method1()
-    let v24 : (string -&gt; (string seq -&gt; string)) = String.concat
-    let v25 : (string seq -&gt; string) = v24 v23
-    let v26 : string = v25 v22
-    v26 
-    #endif
+    let v23 : string seq = seq { for i = 0 to v14.Length - 1 do yield v14.[i] }
+    let v24 : string = method1()
+    let v25 : (string -&gt; (string seq -&gt; string)) = String.concat
+    let v26 : (string seq -&gt; string) = v25 v24
+    let v27 : string = v26 v23
+    v27
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
-    let v27 : string = "crypto"
-    let v28 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v27
-    let v29 : string = "v28.createHash($0)"
-    let v30 : string = "sha256"
-    let v31 : obj = Fable.Core.JsInterop.emitJsExpr v30 v29
-    let v32 : string = "$0.update($1, 'utf8')"
-    let v33 : obj = Fable.Core.JsInterop.emitJsExpr struct (v31, v0) v32
-    let v34 : string = "$0.digest($1)"
-    let v35 : string = "hex"
-    let v36 : string = Fable.Core.JsInterop.emitJsExpr struct (v33, v35) v34
-    v36 
-    #endif
+    let v28 : string = "crypto"
+    let v29 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v28
+    let v30 : string = "v29.createHash($0)"
+    let v31 : string = "sha256"
+    let v32 : obj = Fable.Core.JsInterop.emitJsExpr v31 v30
+    let v33 : string = "$0.update($1, 'utf8')"
+    let v34 : obj = Fable.Core.JsInterop.emitJsExpr struct (v32, v0) v33
+    let v35 : string = "$0.digest($1)"
+    let v36 : string = "hex"
+    let v37 : string = Fable.Core.JsInterop.emitJsExpr struct (v34, v36) v35
+    v37
+#endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v37 : string = Unchecked.defaultof&lt;string&gt;
-    v37 
-    #endif
-    |&gt; fun x -&gt; _v1 &lt;- Some x
-    let v38 : string = _v1.Value
+    let v38 : string = Unchecked.defaultof&lt;string&gt;
     v38
+#endif
+    |&gt; fun x -&gt; _v1 &lt;- Some x
+    let v39 : string = _v1.Value
+    v39
 let v0 : (string -&gt; string) = closure0()
 let hash_text x = v0 x
 ()

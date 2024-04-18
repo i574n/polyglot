@@ -48,26 +48,22 @@ inl unbox forall t u. (x : t) : u =
 // // ## run_target
 
 inl run_target forall t. (fn : target -> (() -> t)) : t =
+    inl close x =
+        $'!x\n#endif'
     inl result : optionm'.option' t = optionm'.none' ()
-    $"let mutable _!result = !result"
+    ($"true in let mutable _!result = !result" : bool) |> ignore
     $"#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT"
-    fn (Rust Native) () |> fun x => $'!x '
-    $"#endif"
+    fn (Rust Native) () |> close
     $"#if FABLE_COMPILER_RUST && WASM"
-    fn (Rust Wasm) () |> fun x => $'!x '
-    $"#endif"
+    fn (Rust Wasm) () |> close
     $"#if FABLE_COMPILER_RUST && CONTRACT"
-    fn (Rust Contract) () |> fun x => $'!x '
-    $"#endif"
+    fn (Rust Contract) () |> close
     $"#if \!FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!FABLE_COMPILER_TYPESCRIPT && \!WASM && \!CONTRACT"
-    fn (Fsharp Native) () |> fun x => $'!x '
-    $"#endif"
+    fn (Fsharp Native) () |> close
     $"#if FABLE_COMPILER_TYPESCRIPT"
-    fn (TypeScript Native) () |> fun x => $'!x '
-    $"#endif"
+    fn (TypeScript Native) () |> close
     $"#if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART"
-    ((real defaultof `t ()) : t) |> fun x => $'!x '
-    $"#endif"
+    ((real defaultof `t ()) : t) |> close
     $"|> fun x -> _!result <- Some x"
     $'_!result.Value'
 

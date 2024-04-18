@@ -754,13 +754,13 @@ export function closure18(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => s
     let _v9: Option<string> = void 0;
     const x: string = method11();
     _v9 = x;
-    const v60: string = value_3(_v9);
-    const v61: int64 = patternInput[0].l0;
-    const v71: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v73: Option<string> = void 0;
-    const x_1: string = v71.toLocaleLowerCase();
-    _v73 = x_1;
-    return trimEnd(trimStart(`${v60} ${value_3(_v73)} #${v61} ${v1_1()} / ${v2_1()}`), " ", "/");
+    const v61: string = value_3(_v9);
+    const v62: int64 = patternInput[0].l0;
+    const v72: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
+    let _v74: Option<string> = void 0;
+    const x_1: string = v72.toLocaleLowerCase();
+    _v74 = x_1;
+    return trimEnd(trimStart(`${v61} ${value_3(_v74)} #${v62} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
 export function method9(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
@@ -807,9 +807,9 @@ export function method13(v0_1: string, v1_1: string, v2_1: Error): string {
     let _v3: Option<string> = void 0;
     const x: string = toText(interpolate("%A%P()", [v2_1]));
     _v3 = x;
-    const v10_1: string = value_3(_v3);
-    const v11_1 = (v: string): string => closure3(void 0, v);
-    return `old_path: ${v11_1(v1_1)} / new_path: ${v11_1(v0_1)} / ex: ${v10_1} / ${closure4(void 0, void 0)}`;
+    const v11_1: string = value_3(_v3);
+    const v12_1 = (v: string): string => closure3(void 0, v);
+    return `old_path: ${v12_1(v1_1)} / new_path: ${v12_1(v0_1)} / ex: ${v11_1} / ${closure4(void 0, void 0)}`;
 }
 
 export function closure23(v0_1: string, v1_1: string, v2_1: Error, unitVar: void): string {
@@ -910,15 +910,15 @@ export function closure36(v0_1: string, unitVar: void): void {
     let _v1: Option<any> = void 0;
     const x: any = defaultOf();
     _v1 = x;
-    const v9_1: any = value_3(_v1);
-    let _v10: Option<any> = void 0;
+    const v10_1: any = value_3(_v1);
+    let _v11: Option<any> = void 0;
     const x_1: any = defaultOf();
-    _v10 = x_1;
-    const v18: any = value_3(_v10);
-    let _v19: Option<void> = void 0;
+    _v11 = x_1;
+    const v20: any = value_3(_v11);
+    let _v21: Option<void> = void 0;
     defaultOf();
-    _v19 = some(void 0);
-    value_3(_v19);
+    _v21 = some(void 0);
+    value_3(_v21);
 }
 
 export function closure34(unitVar: void, unitVar_1: void): [string, IDisposable] {
@@ -935,28 +935,28 @@ export function closure37(unitVar: void, unitVar_1: void): string {
 
 export function closure41(unitVar: void, v0_1: string): boolean {
     let _v1: Option<boolean> = void 0;
-    const v19: IFsExistsSync = fs;
-    const x: boolean = v19.existsSync(v0_1);
+    const v20: IFsExistsSync = fs;
+    const x: boolean = v20.existsSync(v0_1);
     _v1 = x;
     return value_3(_v1);
 }
 
 export function closure42(unitVar: void, v0_1: string): boolean {
     let _v1: Option<boolean> = void 0;
-    const v19: IFsExistsSync = fs;
-    const x: boolean = v19.existsSync(v0_1);
+    const v20: IFsExistsSync = fs;
+    const x: boolean = v20.existsSync(v0_1);
     _v1 = x;
     return value_3(_v1);
 }
 
 export function closure43(unitVar: void, v0_1: string): Option<string> {
     let _v1: Option<US8_$union> = void 0;
-    const v36: IPathDirname = path;
-    const x: US8_$union = US8_US8_0(v36.dirname(v0_1));
+    const v38: IPathDirname = path;
+    const x: US8_$union = US8_US8_0(v38.dirname(v0_1));
     _v1 = x;
-    const v41: US8_$union = value_3(_v1);
-    if (v41.tag === /* US8_0 */ 0) {
-        return v41.fields[0];
+    const v43: US8_$union = value_3(_v1);
+    if (v43.tag === /* US8_0 */ 0) {
+        return v43.fields[0];
     }
     else {
         return void 0;
@@ -980,22 +980,22 @@ export function method21(v0_1_mut: string, v1_1_mut: boolean, v2_1_mut: string, 
     while (true) {
         const v0_1: string = v0_1_mut, v1_1: boolean = v1_1_mut, v2_1: string = v2_1_mut, v3_1: string = v3_1_mut;
         let _v4: Option<string> = void 0;
-        const v27: IPathJoin = path;
-        const v28: string = method16(v3_1);
-        const v29: string = method17(v0_1);
-        const x: string = v27.join(v28, v29);
+        const v28: IPathJoin = path;
+        const v29: string = method16(v3_1);
+        const v30: string = method17(v0_1);
+        const x: string = v28.join(v29, v30);
         _v4 = x;
         if ((v1_1 ? ((v: string): boolean => closure41(void 0, v)) : ((v_1: string): boolean => closure42(void 0, v_1)))(value_3(_v4))) {
             return v3_1;
         }
         else {
-            const v39: Option<string> = method19()(v3_1);
-            const v42: US8_$union = defaultArg(map<string, US8_$union>(method20(), v39), US8_US8_1());
-            if (v42.tag === /* US8_0 */ 0) {
+            const v40: Option<string> = method19()(v3_1);
+            const v43: US8_$union = defaultArg(map<string, US8_$union>(method20(), v40), US8_US8_1());
+            if (v43.tag === /* US8_0 */ 0) {
                 v0_1_mut = v0_1;
                 v1_1_mut = v1_1;
                 v2_1_mut = v2_1;
-                v3_1_mut = v42.fields[0];
+                v3_1_mut = v43.fields[0];
                 continue method21;
             }
             else {
@@ -1008,19 +1008,19 @@ export function method21(v0_1_mut: string, v1_1_mut: boolean, v2_1_mut: string, 
 
 export function method18(v0_1: string, v1_1: boolean, v2_1: string): string {
     let _v3: Option<string> = void 0;
-    const v26: IPathJoin = path;
-    const v27: string = method16(v2_1);
-    const v28: string = method17(v0_1);
-    const x: string = v26.join(v27, v28);
+    const v27: IPathJoin = path;
+    const v28: string = method16(v2_1);
+    const v29: string = method17(v0_1);
+    const x: string = v27.join(v28, v29);
     _v3 = x;
     if ((v1_1 ? ((v: string): boolean => closure41(void 0, v)) : ((v_1: string): boolean => closure42(void 0, v_1)))(value_3(_v3))) {
         return v2_1;
     }
     else {
-        const v38: Option<string> = method19()(v2_1);
-        const v41: US8_$union = defaultArg(map<string, US8_$union>(method20(), v38), US8_US8_1());
-        if (v41.tag === /* US8_0 */ 0) {
-            return method21(v0_1, v1_1, v2_1, v41.fields[0]);
+        const v39: Option<string> = method19()(v2_1);
+        const v42: US8_$union = defaultArg(map<string, US8_$union>(method20(), v39), US8_US8_1());
+        if (v42.tag === /* US8_0 */ 0) {
+            return method21(v0_1, v1_1, v2_1, v42.fields[0]);
         }
         else {
             throw new Error(`No parent for ${v1_1 ? "file" : "dir"} '${v0_1}' at '${v2_1}' (until '${v2_1}')`);
@@ -1061,26 +1061,26 @@ export function method27(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string): 
     while (true) {
         const v0_1: string = v0_1_mut, v1_1: string = v1_1_mut, v2_1: string = v2_1_mut;
         let _v3: Option<string> = void 0;
-        const v26: IPathJoin = path;
-        const v27: string = method16(v2_1);
-        const v28: string = method17(v0_1);
-        const x: string = v26.join(v27, v28);
+        const v27: IPathJoin = path;
+        const v28: string = method16(v2_1);
+        const v29: string = method17(v0_1);
+        const x: string = v27.join(v28, v29);
         _v3 = x;
-        const v32: string = value_3(_v3);
-        let _v33: Option<boolean> = void 0;
-        const v51: IFsExistsSync = fs;
-        const x_1: boolean = v51.existsSync(v32);
-        _v33 = x_1;
-        if (value_3(_v33)) {
+        const v33: string = value_3(_v3);
+        let _v34: Option<boolean> = void 0;
+        const v53: IFsExistsSync = fs;
+        const x_1: boolean = v53.existsSync(v33);
+        _v34 = x_1;
+        if (value_3(_v34)) {
             return v2_1;
         }
         else {
-            const v57: Option<string> = method19()(v2_1);
-            const v60: US8_$union = defaultArg(map<string, US8_$union>(method20(), v57), US8_US8_1());
-            if (v60.tag === /* US8_0 */ 0) {
+            const v59: Option<string> = method19()(v2_1);
+            const v62: US8_$union = defaultArg(map<string, US8_$union>(method20(), v59), US8_US8_1());
+            if (v62.tag === /* US8_0 */ 0) {
                 v0_1_mut = v0_1;
                 v1_1_mut = v1_1;
-                v2_1_mut = v60.fields[0];
+                v2_1_mut = v62.fields[0];
                 continue method27;
             }
             else {
@@ -1093,24 +1093,24 @@ export function method27(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string): 
 
 export function method26(v0_1: string, v1_1: string): string {
     let _v2: Option<string> = void 0;
-    const v25: IPathJoin = path;
-    const v26: string = method16(v1_1);
-    const v27: string = method17(v0_1);
-    const x: string = v25.join(v26, v27);
+    const v26: IPathJoin = path;
+    const v27: string = method16(v1_1);
+    const v28: string = method17(v0_1);
+    const x: string = v26.join(v27, v28);
     _v2 = x;
-    const v31: string = value_3(_v2);
-    let _v32: Option<boolean> = void 0;
-    const v50: IFsExistsSync = fs;
-    const x_1: boolean = v50.existsSync(v31);
-    _v32 = x_1;
-    if (value_3(_v32)) {
+    const v32: string = value_3(_v2);
+    let _v33: Option<boolean> = void 0;
+    const v52: IFsExistsSync = fs;
+    const x_1: boolean = v52.existsSync(v32);
+    _v33 = x_1;
+    if (value_3(_v33)) {
         return v1_1;
     }
     else {
-        const v56: Option<string> = method19()(v1_1);
-        const v59: US8_$union = defaultArg(map<string, US8_$union>(method20(), v56), US8_US8_1());
-        if (v59.tag === /* US8_0 */ 0) {
-            return method27(v0_1, v1_1, v59.fields[0]);
+        const v58: Option<string> = method19()(v1_1);
+        const v61: US8_$union = defaultArg(map<string, US8_$union>(method20(), v58), US8_US8_1());
+        if (v61.tag === /* US8_0 */ 0) {
+            return method27(v0_1, v1_1, v61.fields[0]);
         }
         else {
             throw new Error(`No parent for ${"dir"} '${v0_1}' at '${v1_1}' (until '${v1_1}')`);
@@ -1124,26 +1124,26 @@ export function method28(): string {
 
 export function closure45(unitVar: void, unitVar_1: void): string {
     let _v1: Option<string> = void 0;
-    const v26: IPathJoin = path;
-    const v27: string = method24();
-    const v28: string = method25();
-    const x: string = v26.join(v27, v28);
+    const v27: IPathJoin = path;
+    const v28: string = method24();
+    const v29: string = method25();
+    const x: string = v27.join(v28, v29);
     _v1 = x;
-    let _v34: Option<string> = void 0;
-    const v56: IPathJoin = path;
-    const v57: string = method16(method26(value_3(_v1), "C:\\home\\git\\polyglot\\lib\\spiral"));
-    const v58: string = method28();
-    const x_1: string = v56.join(v57, v58);
-    _v34 = x_1;
-    return value_3(_v34);
+    let _v35: Option<string> = void 0;
+    const v58: IPathJoin = path;
+    const v59: string = method16(method26(value_3(_v1), "C:\\home\\git\\polyglot\\lib\\spiral"));
+    const v60: string = method28();
+    const x_1: string = v58.join(v59, v60);
+    _v35 = x_1;
+    return value_3(_v35);
 }
 
 export function closure47(v0_1: string, v1_1: string): string {
     let _v2: Option<string> = void 0;
-    const v25: IPathJoin = path;
-    const v26: string = method16(v0_1);
-    const v27: string = method17(v1_1);
-    const x: string = v25.join(v26, v27);
+    const v26: IPathJoin = path;
+    const v27: string = method16(v0_1);
+    const v28: string = method17(v1_1);
+    const x: string = v26.join(v27, v28);
     _v2 = x;
     return value_3(_v2);
 }

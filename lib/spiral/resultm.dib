@@ -118,8 +118,7 @@ inl map' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
 
 inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u =
     inl fn = join fn
-    inl source = join source
-    !\($'"!source.map_err(|x| !fn(x))"')
+    !\\((source, fn), $'"$0.map_err(|x| $1(x))"')
 
 #!markdown
 
@@ -145,21 +144,12 @@ inl box forall t u. (x : result t u) : result' t u =
 
 #!markdown
 
-## try
-
-#!spiral
-
-inl try forall t u. (x : result t u) : t =
-    !\($'"!x?"')
-
-#!markdown
-
 ## try'
 
 #!spiral
 
 inl try' forall t u. (x : result' t u) : t =
-    !\($'"!x?"')
+    !\\(x, $'"$0?"')
 
 #!markdown
 
@@ -168,8 +158,7 @@ inl try' forall t u. (x : result' t u) : t =
 #!spiral
 
 inl unwrap' forall t u. (x : result' t u) : t =
-    inl x = join x
-    !\($'"!x.unwrap()"')
+    !\\(x, $'"$0.unwrap()"')
 
 #!markdown
 
@@ -202,6 +191,15 @@ inl ok forall t. (x : result t _) : option t =
 
 #!markdown
 
+## transpose
+
+#!spiral
+
+inl transpose forall t u. (x : optionm'.option' (result' t u)) : result' (optionm'.option' t) u =
+    !\\(x, $'"$0.transpose()"')
+
+#!markdown
+
 ## rc_try_unwrap
 
 #!spiral
@@ -215,8 +213,7 @@ inl rc_try_unwrap forall t. (x : rust.rc t) : result' t (rust.rc t) =
 // // rust=true
 
 types ()
-()
-|> new_rc
+rust.new_rc ()
 |> rc_try_unwrap
-|> resultm.unbox
+|> unbox
 |> _assert_eq (Ok ())

@@ -55,10 +55,10 @@ let get_command () =
 #!spiral
 
 inl tests () =
-    !\($'"}//"') : ()
-
-    !\($'"#[test] fn verify_app() { //"') : ()
-    get_command () |> runtime.command_debug_assert
+    rust.run_tests [
+        "verify_app", fun _ =>
+            get_command () |> runtime.command_debug_assert
+    ]
 
 #!markdown
 

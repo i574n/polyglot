@@ -108,8 +108,8 @@ export function method0(): string {
 
 export function closure18(v0_1: string[], v1_1: string): string[] {
     let _v2: Option<string[]> = void 0;
-    const v26: Iterable<string> = ofArray<string>(v0_1);
-    const x: string[] = split_1(v1_1, [join(method0(), v26)], void 0, 0);
+    const v27: Iterable<string> = ofArray<string>(v0_1);
+    const x: string[] = split_1(v1_1, [join(method0(), v27)], void 0, 0);
     _v2 = x;
     return value_2(_v2);
 }

@@ -217,13 +217,13 @@ def closure4(v0_1: US0, v1_1: Callable[[], str], v2: Callable[[], str], unit_var
     pattern_input: tuple[Mut0, Mut1, Mut1, Mut2, int64 | None] = value(State_trace_state())
     _v9: str | None = None
     _v9 = None
-    v60: str = value(_v9)
-    v61: int64 = pattern_input[0].l0
-    v71: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
-    v72: str = v71.lower()
-    _v73: str | None = None
-    _v73 = None
-    return trim_end(trim_start(((((((((("" + v60) + " ") + value(_v73)) + " #") + str(v61)) + " ") + v1_1(None)) + " / ") + v2(None)) + ""), " ", "/")
+    v61: str = value(_v9)
+    v62: int64 = pattern_input[0].l0
+    v72: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
+    v73: str = v72.lower()
+    _v74: str | None = None
+    _v74 = None
+    return trim_end(trim_start(((((((((("" + v61) + " ") + value(_v74)) + " #") + str(v62)) + " ") + v1_1(None)) + " / ") + v2(None)) + ""), " ", "/")
 
 
 def method2(v0_1: US0, v1_1: Callable[[], str], v2: Callable[[], str]) -> None:

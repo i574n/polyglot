@@ -245,3 +245,18 @@ inl fix_closure depth' x' =
     then !\($'"{{{{{{{ //"')
     elif depth = 8
     then !\($'"{{{{{{{{ //"')
+
+// // ## run_tests
+
+inl run_tests tests =
+    (!\($'"true; () //"') : bool) |> ignore
+
+    tests
+    |> listm.iter fun name, fn =>
+        !\($'"} /* /*"')
+        (!\($'$"*/ #[test] fn " + !name + "() { //"') : bool) |> ignore
+        fn name |> ignore
+
+    tests
+    |> listm.iter fun name, fn =>
+        !\($'"{ //"') : ()

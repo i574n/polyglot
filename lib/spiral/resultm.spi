@@ -64,8 +64,7 @@ inl map' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
 
 inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u =
     inl fn = join fn
-    inl source = join source
-    !\($'"!source.map_err(|x| !fn(x))"')
+    !\\((source, fn), $'"$0.map_err(|x| $1(x))"')
 
 // // ## unbox
 
@@ -81,21 +80,15 @@ inl box forall t u. (x : result t u) : result' t u =
     | Ok x => $"Ok !x"
     | Error err => $"Error !err"
 
-// // ## try
-
-inl try forall t u. (x : result t u) : t =
-    !\($'"!x?"')
-
 // // ## try'
 
 inl try' forall t u. (x : result' t u) : t =
-    !\($'"!x?"')
+    !\\(x, $'"$0?"')
 
 // // ## unwrap'
 
 inl unwrap' forall t u. (x : result' t u) : t =
-    inl x = join x
-    !\($'"!x.unwrap()"')
+    !\\(x, $'"$0.unwrap()"')
 
 // // ## expect
 
@@ -113,6 +106,11 @@ inl ok forall t. (x : result t _) : option t =
     match x with
     | Ok x => Some x
     | Error _ => None
+
+// // ## transpose
+
+inl transpose forall t u. (x : optionm'.option' (result' t u)) : result' (optionm'.option' t) u =
+    !\\(x, $'"$0.transpose()"')
 
 // // ## rc_try_unwrap
 

@@ -472,13 +472,13 @@ export function closure4(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => st
     let _v9: Option<string> = void 0;
     const x: string = method4();
     _v9 = x;
-    const v60: string = value_1(_v9);
-    const v61: int64 = patternInput[0].l0;
-    const v71: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v73: Option<string> = void 0;
-    const x_1: string = v71.toLocaleLowerCase();
-    _v73 = x_1;
-    return trimEnd(trimStart(`${v60} ${value_1(_v73)} #${v61} ${v1_1()} / ${v2_1()}`), " ", "/");
+    const v61: string = value_1(_v9);
+    const v62: int64 = patternInput[0].l0;
+    const v72: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
+    let _v74: Option<string> = void 0;
+    const x_1: string = v72.toLocaleLowerCase();
+    _v74 = x_1;
+    return trimEnd(trimStart(`${v61} ${value_1(_v74)} #${v62} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
 export function method2(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
