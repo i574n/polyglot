@@ -69,8 +69,13 @@ let inline buildProject runtime outputDir path = async {
         runtimes
         |> List.map (fun runtime -> async {
             let command = $@"dotnet publish ""{path}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
-            let! exitCode, _result =
+            let! exitCode, result =
                 SpiralRuntime.execute_with_options_async struct (None, command, None, Some fileDir)
+            if exitCode > 0 then
+                let! text = fullPath |> SpiralFileSystem.read_all_text_async
+                trace Critical
+                    (fun () -> "buildProject")
+                    (fun () -> $"text: {text} / result: {result} / {_locals ()}")
             return exitCode
         })
         |> Async.Sequential

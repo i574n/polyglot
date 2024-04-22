@@ -78,4 +78,4 @@ Get-ChildItem -Path ../dist -Recurse -Force | Where-Object { $_.Name.StartsWith(
     Rename-Item -Path $_.FullName -NewName "_$($_.Name.Substring(1))"
 }
 
-{ . ../apps/dir-tree-html/dist/DirTreeHtml$(GetExecutableSuffix) --dir ../dist --html ../dist/index.html } | Invoke-Block
+{ . ../apps/dir-tree-html/dist/DirTreeHtml$(_exe) --dir ../dist --html ../dist/index.html } | Invoke-Block

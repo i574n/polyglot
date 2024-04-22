@@ -75,16 +75,16 @@ let inline catch a =
 
 #!markdown
 
-## runWithTimeoutAsync
+## runWithTimeoutChoiceAsync
 
 #!fsharp
 
-let inline runWithTimeoutAsync_ (timeout : int) fn =
+let inline runWithTimeoutChoiceAsync (timeout : int) fn =
     let _locals () = $"timeout: {timeout} / {_locals ()}"
 
     let timeoutTask = async {
         do! Async.Sleep timeout
-        trace Debug (fun () -> "runWithTimeoutAsync") _locals
+        trace Debug (fun () -> "runWithTimeoutChoiceAsync") _locals
         return None
     }
 
@@ -97,11 +97,14 @@ let inline runWithTimeoutAsync_ (timeout : int) fn =
             ex.InnerExceptions
             |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
             ->
-            let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
-            trace Warning (fun () -> "runWithTimeoutAsync") _locals
+            trace Warning
+                (fun () -> "runWithTimeoutChoiceAsync")
+                (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
             return None
         | ex ->
-            trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> SpiralSm.format_exception}") _locals
+            trace Critical
+                (fun () -> "runWithTimeoutChoiceAsync")
+                (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
             return None
     }
 
@@ -110,9 +113,9 @@ let inline runWithTimeoutAsync_ (timeout : int) fn =
 
 #!fsharp
 
-let inline runWithTimeout_ timeout fn =
+let inline runWithTimeoutChoice timeout fn =
     fn
-    |> runWithTimeoutAsync_ timeout
+    |> runWithTimeoutChoiceAsync timeout
     |> Async.RunSynchronously
 
 #!fsharp
@@ -120,7 +123,7 @@ let inline runWithTimeout_ timeout fn =
 //// test
 
 Async.Sleep 120
-|> runWithTimeout_ 10
+|> runWithTimeoutChoice 10
 |> _assertEqual None
 
 #!fsharp
@@ -128,7 +131,7 @@ Async.Sleep 120
 //// test
 
 Async.Sleep 10
-|> runWithTimeout_ 60
+|> runWithTimeoutChoice 60
 |> _assertEqual (Some ())
 
 #!fsharp
@@ -138,16 +141,16 @@ Async.Sleep 10
 async {
     raise (exn "error")
 }
-|> runWithTimeout_ 60
+|> runWithTimeoutChoice 60
 |> _assertEqual None
 
 #!markdown
 
-## runWithTimeoutChildAsync
+## runWithTimeoutAsync
 
 #!fsharp
 
-let inline runWithTimeoutChildAsync (timeout : int) fn = async {
+let inline runWithTimeoutAsync (timeout : int) fn = async {
     let _locals () = $"timeout: {timeout} / {_locals ()}"
     let! child = Async.StartChild (fn, timeout)
     return!
@@ -156,35 +159,27 @@ let inline runWithTimeoutChildAsync (timeout : int) fn = async {
         |> map (function
             | Ok result -> Some result
             | Error (:? System.TimeoutException as ex) ->
-                trace Debug (fun () -> $"runWithTimeoutChildAsync") _locals
+                trace Debug (fun () -> $"runWithTimeoutAsync") _locals
                 None
             | Error ex ->
-                trace Critical (fun () -> $"runWithTimeoutChildAsync** / ex: {ex |> SpiralSm.format_exception}") _locals
+                trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> SpiralSm.format_exception}") _locals
                 None
         )
 }
 
 #!fsharp
 
-let inline runWithTimeoutChild timeout fn =
-    fn
-    |> runWithTimeoutChildAsync timeout
-    |> Async.RunSynchronously
-
-#!fsharp
-
-let inline runWithTimeoutAsync timeout fn =
-    runWithTimeoutChildAsync timeout fn
-
 let inline runWithTimeout timeout fn =
-    runWithTimeoutChild timeout fn
+    fn
+    |> runWithTimeoutAsync timeout
+    |> Async.RunSynchronously
 
 #!fsharp
 
 //// test
 
 Async.Sleep 60
-|> runWithTimeoutChild 10
+|> runWithTimeout 10
 |> _assertEqual None
 
 #!fsharp
@@ -192,7 +187,7 @@ Async.Sleep 60
 //// test
 
 Async.Sleep 10
-|> runWithTimeoutChild 60
+|> runWithTimeout 60
 |> _assertEqual (Some ())
 
 #!fsharp
@@ -202,7 +197,7 @@ Async.Sleep 10
 async {
     raise (exn "error")
 }
-|> runWithTimeoutChild 60
+|> runWithTimeout 60
 |> _assertEqual None
 
 #!markdown
@@ -227,7 +222,9 @@ let inline runWithTimeoutStrict (timeout : int) fn =
             let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
             return None, _locals
         | ex ->
-            trace Critical (fun () -> $"runWithTimeoutStrict / ex: {ex |> SpiralSm.format_exception}") _locals
+            trace Critical
+                (fun () -> "runWithTimeoutStrict / async error")
+                (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
             return raise ex
     }
 
@@ -246,12 +243,14 @@ let inline runWithTimeoutStrict (timeout : int) fn =
         ex.InnerExceptions
         |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
         ->
-        let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
-        trace Warning (fun () -> "runWithTimeoutStrict") _locals
+        trace Warning
+            (fun () -> "runWithTimeoutStrict")
+            (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
         None
     | ex ->
-        let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
-        trace Critical (fun () -> "runWithTimeoutStrict**") _locals
+        trace Critical
+            (fun () -> "runWithTimeoutStrict / task error")
+            (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
         None
 
 #!fsharp

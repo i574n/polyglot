@@ -11,16 +11,16 @@ $ErrorActionPreference = "Stop"
 $projectName = "math"
 
 if (!$fast) {
-    { . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 $projectName.dib`"" } | Invoke-Block -Retries ($fast -or !$env:CI ? 1 : 5)
+    { . ../../apps/spiral/dist/Supervisor$(_exe) --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 $projectName.dib`"" } | Invoke-Block -Retries ($fast -or !$env:CI ? 1 : 5)
 }
 
-{ . ../../apps/parser/dist/DibParser$(GetExecutableSuffix) "$projectName.dib" spi } | Invoke-Block
+{ . ../../apps/parser/dist/DibParser$(_exe) "$projectName.dib" spi } | Invoke-Block
 
-{ . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --build-file "$projectName.spi" "$projectName.fsx" --timeout 60000 } | Invoke-Block
+{ . ../../apps/spiral/dist/Supervisor$(_exe) --build-file "$projectName.spi" "$projectName.fsx" --timeout 60000 } | Invoke-Block
 
 $runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
 $builderArgs = @("$projectName.fsx", $runtime, "--packages", "Fable.Core", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs")
-{ . ../../apps/builder/dist/Builder$(GetExecutableSuffix) @builderArgs } | Invoke-Block
+{ . ../../apps/builder/dist/Builder$(_exe) @builderArgs } | Invoke-Block
 
 $targetDir = GetTargetDir $projectName
 

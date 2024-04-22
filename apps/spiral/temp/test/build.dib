@@ -9,15 +9,15 @@
 
 #!pwsh
 
-{ . ../../../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --execute-command "pwsh -c `"../../../../scripts/invoke-dib.ps1 test.dib`"" } | Invoke-Block -Retries 5
+{ . ../../../../apps/spiral/dist/Supervisor$(_exe) --execute-command "pwsh -c `"../../../../scripts/invoke-dib.ps1 test.dib`"" } | Invoke-Block -Retries 5
 
 #!pwsh
 
-{ . ../../../../apps/parser/dist/DibParser$(GetExecutableSuffix) test.dib spi } | Invoke-Block
+{ . ../../../../apps/parser/dist/DibParser$(_exe) test.dib spi } | Invoke-Block
 
 #!pwsh
 
-{ . ../../../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --build-file test.spi test.fsx } | Invoke-Block
+{ . ../../../../apps/spiral/dist/Supervisor$(_exe) --build-file test.spi test.fsx } | Invoke-Block
 
 #!pwsh
 
@@ -44,4 +44,4 @@ $env:RUST_LOG="info"
 
 #!pwsh
 
-{ . $ScriptDir/../../../../target/release/spiral_temp_test$(GetExecutableSuffix) } | Invoke-Block
+{ . $ScriptDir/../../../../target/release/spiral_temp_test$(_exe) } | Invoke-Block

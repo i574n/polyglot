@@ -323,7 +323,7 @@ let inline buildFile timeout port cancellationToken path = async {
     let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
     let! _fileOpenResult = fileOpenObj |> sendObj serverPort
 
-    do! Async.Sleep 60
+    // do! Async.Sleep 60
 
     let buildFileObj = {| BuildFile = {| uri = fullPathUri; backend = "Fsharp" |} |}
     let! _buildFileResult = buildFileObj |> sendObj serverPort
@@ -697,7 +697,7 @@ let inline getFileTokenRange port cancellationToken path = async {
     let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
     let! _fileOpenResult = fileOpenObj |> sendObj serverPort
 
-    do! Async.Sleep 60
+    // do! Async.Sleep 60
 
     let fileTokenRangeObj =
         {|

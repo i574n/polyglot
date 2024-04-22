@@ -43,13 +43,13 @@ module Async =
             | Choice2Of2 ex -> Error ex
         )
 
-    /// ## runWithTimeoutAsync
-    let inline runWithTimeoutAsync_ (timeout : int) fn =
+    /// ## runWithTimeoutChoiceAsync
+    let inline runWithTimeoutChoiceAsync (timeout : int) fn =
         let _locals () = $"timeout: {timeout} / {_locals ()}"
 
         let timeoutTask = async {
             do! Async.Sleep timeout
-            trace Debug (fun () -> "runWithTimeoutAsync") _locals
+            trace Debug (fun () -> "runWithTimeoutChoiceAsync") _locals
             return None
         }
 
@@ -62,24 +62,27 @@ module Async =
                 ex.InnerExceptions
                 |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
                 ->
-                let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
-                trace Warning (fun () -> "runWithTimeoutAsync") _locals
+                trace Warning
+                    (fun () -> "runWithTimeoutChoiceAsync")
+                    (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
                 return None
             | ex ->
-                trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> SpiralSm.format_exception}") _locals
+                trace Critical
+                    (fun () -> "runWithTimeoutChoiceAsync")
+                    (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
                 return None
         }
 
         [ timeoutTask; task ]
         |> choice
 
-    let inline runWithTimeout_ timeout fn =
+    let inline runWithTimeoutChoice timeout fn =
         fn
-        |> runWithTimeoutAsync_ timeout
+        |> runWithTimeoutChoiceAsync timeout
         |> Async.RunSynchronously
 
-    /// ## runWithTimeoutChildAsync
-    let inline runWithTimeoutChildAsync (timeout : int) fn = async {
+    /// ## runWithTimeoutAsync
+    let inline runWithTimeoutAsync (timeout : int) fn = async {
         let _locals () = $"timeout: {timeout} / {_locals ()}"
         let! child = Async.StartChild (fn, timeout)
         return!
@@ -88,24 +91,18 @@ module Async =
             |> map (function
                 | Ok result -> Some result
                 | Error (:? System.TimeoutException as ex) ->
-                    trace Debug (fun () -> $"runWithTimeoutChildAsync") _locals
+                    trace Debug (fun () -> $"runWithTimeoutAsync") _locals
                     None
                 | Error ex ->
-                    trace Critical (fun () -> $"runWithTimeoutChildAsync** / ex: {ex |> SpiralSm.format_exception}") _locals
+                    trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> SpiralSm.format_exception}") _locals
                     None
             )
     }
 
-    let inline runWithTimeoutChild timeout fn =
-        fn
-        |> runWithTimeoutChildAsync timeout
-        |> Async.RunSynchronously
-
-    let inline runWithTimeoutAsync timeout fn =
-        runWithTimeoutChildAsync timeout fn
-
     let inline runWithTimeout timeout fn =
-        runWithTimeoutChild timeout fn
+        fn
+        |> runWithTimeoutAsync timeout
+        |> Async.RunSynchronously
 
     /// ## runWithTimeoutStrict
     let inline runWithTimeoutStrict (timeout : int) fn =
@@ -124,7 +121,9 @@ module Async =
                 let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
                 return None, _locals
             | ex ->
-                trace Critical (fun () -> $"runWithTimeoutStrict / ex: {ex |> SpiralSm.format_exception}") _locals
+                trace Critical
+                    (fun () -> "runWithTimeoutStrict / async error")
+                    (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
                 return raise ex
         }
 
@@ -143,12 +142,14 @@ module Async =
             ex.InnerExceptions
             |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
             ->
-            let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
-            trace Warning (fun () -> "runWithTimeoutStrict") _locals
+            trace Warning
+                (fun () -> "runWithTimeoutStrict")
+                (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
             None
         | ex ->
-            let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
-            trace Critical (fun () -> "runWithTimeoutStrict**") _locals
+            trace Critical
+                (fun () -> "runWithTimeoutStrict / task error")
+                (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
             None
 
     /// ## awaitValueTask

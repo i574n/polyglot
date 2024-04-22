@@ -11,16 +11,16 @@ $ErrorActionPreference = "Stop"
 $projectName = "rust_builder"
 
 if (!$fast -and !$SkipNotebook) {
-    { . ../dist/Supervisor$(GetExecutableSuffix) --execute-command "pwsh -c `"../../../scripts/invoke-dib.ps1 $projectName.dib`"" } | Invoke-Block -Retries 5
+    { . ../dist/Supervisor$(_exe) --execute-command "pwsh -c `"../../../scripts/invoke-dib.ps1 $projectName.dib`"" } | Invoke-Block -Retries 5
 }
 
-{ . ../../parser/dist/DibParser$(GetExecutableSuffix) "$projectName.dib" spi } | Invoke-Block
+{ . ../../parser/dist/DibParser$(_exe) "$projectName.dib" spi } | Invoke-Block
 
-{ . ../dist/Supervisor$(GetExecutableSuffix) --build-file "$projectName.spi" "$projectName.fsx" } | Invoke-Block
+{ . ../dist/Supervisor$(_exe) --build-file "$projectName.spi" "$projectName.fsx" } | Invoke-Block
 
 $runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
 $builderArgs = @("$projectName.fsx", "--persist-only", $runtime, "--packages", "Fable.Core", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs")
-{ . ../../builder/dist/Builder$(GetExecutableSuffix) @builderArgs } | Invoke-Block
+{ . ../../builder/dist/Builder$(_exe) @builderArgs } | Invoke-Block
 
 $targetDir = GetTargetDir $projectName
 

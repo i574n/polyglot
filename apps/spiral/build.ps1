@@ -12,14 +12,14 @@ if (!$fast) {
     Invoke-Dib Supervisor.dib -Retries 3
 }
 
-{ . ../parser/dist/DibParser$(GetExecutableSuffix) Supervisor.dib fs } | Invoke-Block
+{ . ../parser/dist/DibParser$(_exe) Supervisor.dib fs } | Invoke-Block
 
 $runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
 $builderArgs = @("Supervisor.fs", $runtime, "--packages", "Argu", "FSharp.Control.AsyncSeq", "FSharp.Json", "Microsoft.AspNetCore.SignalR.Client", "System.CommandLine", "System.Reactive.Linq", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs", "lib/fsharp/CommonFSharp.fs", "lib/fsharp/Async.fs", "lib/fsharp/AsyncSeq.fs", "lib/fsharp/Runtime.fs", "lib/fsharp/FileSystem.fs")
-{ . ../builder/dist/Builder$(GetExecutableSuffix) @builderArgs } | Invoke-Block
+{ . ../builder/dist/Builder$(_exe) @builderArgs } | Invoke-Block
 
 if (!$fast) {
     Invoke-Dib Eval.dib -Retries 3
 }
 
-{ . ../parser/dist/DibParser$(GetExecutableSuffix) Eval.dib fs } | Invoke-Block
+{ . ../parser/dist/DibParser$(_exe) Eval.dib fs } | Invoke-Block

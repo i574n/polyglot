@@ -200,7 +200,7 @@ function Search-Command {
     }
 }
 
-function GetExecutableSuffix {
+function _exe {
     if ($IsWindows) {
         return ".exe"
     } else {

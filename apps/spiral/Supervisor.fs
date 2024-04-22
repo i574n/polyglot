@@ -250,7 +250,7 @@ module Supervisor =
         let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
         let! _fileOpenResult = fileOpenObj |> sendObj serverPort
 
-        do! Async.Sleep 60
+        // do! Async.Sleep 60
 
         let buildFileObj = {| BuildFile = {| uri = fullPathUri; backend = "Fsharp" |} |}
         let! _buildFileResult = buildFileObj |> sendObj serverPort
@@ -331,7 +331,7 @@ modules:
         let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
         let! _fileOpenResult = fileOpenObj |> sendObj serverPort
 
-        do! Async.Sleep 60
+        // do! Async.Sleep 60
 
         let fileTokenRangeObj =
             {|
