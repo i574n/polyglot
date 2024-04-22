@@ -1,11 +1,9 @@
 // // # physics
-
 open listm'_operators
 
 // // ## init_series
 
 // // ## velocity_cf
-
 type mass = f64
 type time = f64
 type position = f64
@@ -21,7 +19,6 @@ inl velocity_cf m v0 fs =
     v
 
 // // ## derivative
-
 type derivative = (f64 -> f64) -> f64 -> f64
 
 inl derivative dt : derivative =
@@ -29,7 +26,6 @@ inl derivative dt : derivative =
         (x (t + dt / 2) - x (t - dt / 2)) / dt
 
 // // ## integration
-
 type integration = (f64 -> f64) -> f64 -> f64 -> f64
 
 inl integral dt : integration =
@@ -54,12 +50,10 @@ inl integral'' dt : integration =
         |> am'.sum
 
 // // ## anti_derivative
-
 inl anti_derivative dt v0 a t =
     v0 + integral' dt a 0 t
 
 // // ## velocity_ft
-
 type velocity_ft = mass -> velocity -> list (time -> force) -> (time -> velocity)
 
 inl velocity_ft dt : velocity_ft =
@@ -69,7 +63,6 @@ inl velocity_ft dt : velocity_ft =
         anti_derivative dt v0 a
 
 // // ## position_ft
-
 type position_ft = mass -> position -> velocity -> list (time -> force) -> (time -> position)
 
 inl position_ft dt : position_ft =
@@ -78,7 +71,6 @@ inl position_ft dt : position_ft =
         |> anti_derivative dt x0
 
 // // ## velocity_fv
-
 inl newton_second_v m fs v0 =
     fs |> listm.map (fun f => f v0) |> listm'.sum |> fun x => x / m
 
@@ -94,7 +86,6 @@ inl f_air drag rho area v =
     -drag * rho * area * abs v * v / 2
 
 // // ## velocity_ftv
-
 inl newton_second_tv m fs (t, v0) =
     inl f_net = fs |> listm.map (fun f => f (t, v0)) |> listm'.sum
     inl acc = f_net / m
@@ -111,7 +102,6 @@ inl velocity_ftv dt m tv0 fs t =
     |> optionm'.default_value 0
 
 // // ## velocity_ftxv
-
 nominal state_1d = time * position * velocity
 nominal rrr = f64 * f64 * f64
 
@@ -159,7 +149,6 @@ inl spring_force k (state_1d (_, x0, _)) =
     -k * x0
 
 // // ## shift
-
 type update_function s = s -> s
 
 type differential_equation s ds = s -> ds
@@ -221,7 +210,6 @@ inl of_state_1d (state_1d (t, x, v)) =
     t, x, v
 
 // // ## vec
-
 type vec =
     {
         x : f64
@@ -233,54 +221,44 @@ inl vec x y z : vec =
     { x y z }
 
 // // ### consts
-
 inl i_hat () = vec 1 0 0
 inl j_hat () = vec 0 1 0
 inl k_hat () = vec 0 0 1
 inl zero_vec () = vec 0 0 0
 
 // // ### ^+^
-
 inl (^+^) (a : vec) (b : vec) =
     vec (a.x + b.x) (a.y + b.y) (a.z + b.z)
 
 // // ### sum_vec
-
 inl sum_vec vs =
     vs |> listm.fold (^+^) (zero_vec ())
 
 // // ### *^
-
 inl (*^) c { x y z } =
     vec (c * x) (c * y) (c * z)
 
 // // ### ^*
-
 inl (^*) v c =
     (*^) c v
 
 // // ### ^/
-
 inl (^/) { x y z } c =
     vec (x / c) (y / c) (z / c)
 
 // // ### negate_vec
-
 inl negate_vec v =
     v ^* -1
 
 // // ### ^-^
-
 inl (^-^) a b =
     a ^+^ (negate_vec b)
 
 // // ### <.>
-
 inl (<.>) { x = ax y = ay z = az } { x = bx y = by z = bz } =
     ax * bx + ay * by + az * bz
 
 // // ### \>\<
-
 inl (><) (a : vec) (b : vec) =
     vec
         (a.y * b.z - a.z * b.y)
@@ -288,17 +266,14 @@ inl (><) (a : vec) (b : vec) =
         (a.x * b.y - a.y * b.x)
 
 // // ### magnitude
-
 inl magnitude v =
     v <.> v |> sqrt
 
 // // ### v1
-
 inl v1 t =
     2 *^ (t ** 2 *^ i_hat () ^+^ 3 *^ (t ** 3 *^ j_hat () ^+^ t ** 4 *^ k_hat ()))
 
 // // ### vec_derivative
-
 type vec_derivative = (f64 -> vec) -> f64 -> vec
 
 inl vec_derivative dt : vec_derivative =
@@ -306,7 +281,6 @@ inl vec_derivative dt : vec_derivative =
         (v (t + dt / 2) ^-^ v (t - dt / 2)) ^/ dt
 
 // // ## states_ps
-
 nominal particle_state =
     {
         mass : f64
@@ -402,7 +376,6 @@ inl trajectory sts =
     sts |> listm.map (fun (particle_state st) => st.pos_vec.y, st.pos_vec.z)
 
 // // ## relativity_ps
-
 inl relativity_ps fs (st : particle_state) =
     inl f_net = fs |> listm.map (fun f => f st) |> sum_vec
     inl c = 299792458

@@ -7,6 +7,7 @@
 [<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>] type Fn<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("Fn()")>] type FnUnit = class end
 [<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>] type FnOnce<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("Fn($0)")>] type ActionFn<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")>] type ActionFn2<'T, 'U> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("impl $0")>] type Impl<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("mut $0")>] type Mut<'T> = class end
@@ -44,6 +45,7 @@ and [<Struct>] US0 =
     | US0_3
     | US0_4
 and Mut2 = {mutable l0 : US0}
+and Mut3 = {mutable l0 : (string -> unit)}
 and [<Struct>] US1 =
     | US1_0 of f0_0 : int64
     | US1_1
@@ -62,98 +64,101 @@ and [<Struct>] US5 =
 and [<Struct>] US6 =
     | US6_0 of f0_0 : int32
     | US6_1
-let rec method0 (v0 : int64 option) : int64 option =
+let rec closure1 () (v0 : string) : unit =
+    ()
+and method0 (v0 : int64 option) : int64 option =
     v0
 and method1 (v0 : int64 option) : int64 option =
     v0
-and closure0 () () : struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option) =
+and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     let v0 : Mut1 = {l0 = true} : Mut1
     let v1 : Mut0 = {l0 = 0L} : Mut0
     let v2 : US0 = US0_0
     let v3 : Mut2 = {l0 = v2} : Mut2
-    let v4 : Mut1 = {l0 = false} : Mut1
-    let v5 : int64 option option = None
-    let mutable _v5 = v5
+    let v4 : (string -> unit) = closure1()
+    let v5 : Mut3 = {l0 = v4} : Mut3
+    let v6 : int64 option option = None
+    let mutable _v6 = v6
     #if INTERACTIVE || !FABLE_COMPILER
-    let v6 : string option = None
-    let v7 : bool = true in let mutable _v6 = v6
+    let v7 : string option = None
+    let v8 : bool = true in let mutable _v7 = v7
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v8 : string = null |> unbox<string>
-    v8
-#endif
-    #if FABLE_COMPILER_RUST && WASM
     let v9 : string = null |> unbox<string>
     v9
 #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
+    #if FABLE_COMPILER_RUST && WASM
     let v10 : string = null |> unbox<string>
     v10
 #endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v11 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v11 : string = null |> unbox<string>
     v11
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v12 : string = null |> unbox<string>
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v12 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v12
 #endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v13 : string = Unchecked.defaultof<string>
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v13 : string = null |> unbox<string>
     v13
 #endif
-    |> fun x -> _v6 <- Some x
-    let v14 : string = _v6.Value
-    let v16 : bool = v14 = "Microsoft.DotNet.Interactive.App"
-    let v17 : bool = v16 <> true
-    let v23 : US1 =
-        if v17 then
-            let v18 : System.DateTime = System.DateTime.Now
-            let v19 : (System.DateTime -> int64) = _.Ticks
-            let v20 : int64 = v19 v18
-            US1_0(v20)
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v14 : string = Unchecked.defaultof<string>
+    v14
+#endif
+    |> fun x -> _v7 <- Some x
+    let v15 : string = _v7.Value
+    let v17 : bool = v15 = "Microsoft.DotNet.Interactive.App"
+    let v18 : bool = v17 <> true
+    let v24 : US1 =
+        if v18 then
+            let v19 : System.DateTime = System.DateTime.Now
+            let v20 : (System.DateTime -> int64) = _.Ticks
+            let v21 : int64 = v20 v19
+            US1_0(v21)
         else
             US1_1
-    let v28 : int64 option =
-        match v23 with
+    let v29 : int64 option =
+        match v24 with
         | US1_1 -> (* None *)
-            let v26 : int64 option = None
+            let v27 : int64 option = None
+            v27
+        | US1_0(v25) -> (* Some *)
+            let v26 : int64 option = Some v25 
             v26
-        | US1_0(v24) -> (* Some *)
-            let v25 : int64 option = Some v24 
-            v25
-    let v29 : int64 option = method0(v28)
-    v29 
+    let v30 : int64 option = method0(v29)
+    v30 
     #else
-    let v30 : int64 option = None
-    let v31 : int64 option = method1(v30)
-    v31 
+    let v31 : int64 option = None
+    let v32 : int64 option = method1(v31)
+    v32 
     #endif
-    |> fun x -> _v5 <- Some x
-    let v32 : int64 option = _v5.Value
-    struct (v1, v4, v0, v3, v32)
-and closure2 (v0 : string) () : string =
+    |> fun x -> _v6 <- Some x
+    let v33 : int64 option = _v6.Value
+    struct (v1, v0, v3, v33, v5)
+and closure3 (v0 : string) () : string =
     let v1 : string = $"test_port_open / ex: {v0}"
     v1
-and closure3 () () : string =
+and closure4 () () : string =
     let v0 : string = ""
     v0
-and closure5 () (v0 : int64) : US2 =
+and closure6 () (v0 : int64) : US2 =
     US2_0(v0)
 and method3 () : (int64 -> US2) =
-    closure5()
+    closure6()
 and method4 () : string =
     let v0 : string = ""
     v0
-and closure4 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : string =
-    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure0()
-    if State.trace_state = None then State.trace_state <- v3 () |> Some
-    let struct (v4 : Mut0, v5 : Mut1, v6 : Mut1, v7 : Mut2, v8 : int64 option) = State.trace_state.Value
+and closure5 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : string =
+    let v3 : (unit -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
+    if State.trace_state.IsNone then State.trace_state <- v3 () |> Some
+    let struct (v4 : Mut0, v5 : Mut1, v6 : Mut2, v7 : int64 option, v8 : Mut3) = State.trace_state.Value
     let v9 : string option = None
     let v10 : bool = true in let mutable _v9 = v9
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v11 : (int64 -> US2) = method3()
     let v12 : US2 = US2_1
-    let v13 : US2 = v8 |> Option.map v11 |> Option.defaultValue v12 
+    let v13 : US2 = v7 |> Option.map v11 |> Option.defaultValue v12 
     let v31 : System.DateTime =
         match v13 with
         | US2_1 -> (* None *)
@@ -190,7 +195,7 @@ and closure4 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
     let v36 : (int64 -> US2) = method3()
     let v37 : US2 = US2_1
-    let v38 : US2 = v8 |> Option.map v36 |> Option.defaultValue v37 
+    let v38 : US2 = v7 |> Option.map v36 |> Option.defaultValue v37 
     let v56 : System.DateTime =
         match v38 with
         | US2_1 -> (* None *)
@@ -367,59 +372,65 @@ and closure4 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     let v153 : (char []) = [|' '; '/'|]
     let v154 : string = v152.TrimEnd v153
     v154
-and method2 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
-    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure0()
-    if State.trace_state = None then State.trace_state <- v3 () |> Some
-    let struct (v4 : Mut0, v5 : Mut1, v6 : Mut1, v7 : Mut2, v8 : int64 option) = State.trace_state.Value
-    if State.trace_state = None then State.trace_state <- v3 () |> Some
-    let struct (v9 : Mut0, v10 : Mut1, v11 : Mut1, v12 : Mut2, v13 : int64 option) = State.trace_state.Value
-    let v14 : US0 = v12.l0
-    let v15 : bool = v11.l0
-    let v17 : bool =
+and method5 (v0 : US0, v1 : (unit -> string)) : unit =
+    let v2 : (unit -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
+    if State.trace_state.IsNone then State.trace_state <- v2 () |> Some
+    let struct (v3 : Mut0, v4 : Mut1, v5 : Mut2, v6 : int64 option, v7 : Mut3) = State.trace_state.Value
+    if State.trace_state.IsNone then State.trace_state <- v2 () |> Some
+    let struct (v8 : Mut0, v9 : Mut1, v10 : Mut2, v11 : int64 option, v12 : Mut3) = State.trace_state.Value
+    let v13 : US0 = v10.l0
+    let v14 : bool = v9.l0
+    let v15 : bool = v14 = false
+    let v19 : bool =
         if v15 then
-            let v16 : bool = v0 >= v14 
-            v16
-        else
             false
-    if v17 then
-        let v18 : int64 = v4.l0
-        let v19 : int64 = v18 + 1L
-        v4.l0 <- v19
-        let v20 : (unit -> string) = closure4(v0, v1, v2)
-        let v21 : string = $"%s{v20 ()}"
-        let v22 : unit option = None
-        let v23 : bool = true in let mutable _v22 = v22
+        else
+            let v16 : int32 = [ US0_0, 0; US0_1, 1; US0_2, 2; US0_3, 3; US0_4, 4 ] |> Map |> Map.find v0
+            let v17 : int32 = [ US0_0, 0; US0_1, 1; US0_2, 2; US0_3, 3; US0_4, 4 ] |> Map |> Map.find v13
+            let v18 : bool = v16 >= v17
+            v18
+    if v19 then
+        let v20 : int64 = v3.l0
+        let v21 : int64 = v20 + 1L
+        v3.l0 <- v21
+        let v22 : string = $"%s{v1 ()}"
+        let v23 : unit option = None
+        let v24 : bool = true in let mutable _v23 = v23
         #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v24 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v21 v24
+        let v25 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v22 v25
         ()
 #endif
         #if FABLE_COMPILER_RUST && WASM
-        let v25 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v21 v25
+        let v26 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v22 v26
         ()
 #endif
         #if FABLE_COMPILER_RUST && CONTRACT
-        let v26 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v21 v26
+        let v27 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v22 v27
         ()
 #endif
         #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-        System.Console.WriteLine v21 
+        System.Console.WriteLine v22 
         ()
 #endif
         #if FABLE_COMPILER_TYPESCRIPT
-        System.Console.WriteLine v21 
+        System.Console.WriteLine v22 
         ()
 #endif
         #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
         Unchecked.defaultof<unit>
         ()
 #endif
-        |> fun x -> _v22 <- Some x
-        _v22.Value
-        ()
-and closure1 () (v0 : int32) : Async<bool> =
+        |> fun x -> _v23 <- Some x
+        _v23.Value
+        let v28 : (string -> unit) = v7.l0
+        v28 v22
+and method2 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
+    let v3 : (unit -> string) = closure5(v0, v1, v2)
+    method5(v0, v3)
+and closure2 () (v0 : int32) : Async<bool> =
     let v1 : Async<bool> option = None
     let v2 : bool = true in let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -511,8 +522,8 @@ and closure1 () (v0 : int32) : Async<bool> =
     |> fun x -> _v26 <- Some x
     let v34 : string = _v26.Value
     let v35 : US0 = US0_0
-    let v36 : (unit -> string) = closure2(v34)
-    let v37 : (unit -> string) = closure3()
+    let v36 : (unit -> string) = closure3(v34)
+    let v37 : (unit -> string) = closure4()
     method2(v35, v36, v37)
     return false 
     (*
@@ -533,21 +544,21 @@ and closure1 () (v0 : int32) : Async<bool> =
     |> fun x -> _v1 <- Some x
     let v42 : Async<bool> = _v1.Value
     v42
-and closure8 () (v0 : bool) : US4 =
+and closure9 () (v0 : bool) : US4 =
     US4_0(v0)
-and closure9 () (v0 : exn) : US4 =
+and closure10 () (v0 : exn) : US4 =
     US4_1(v0)
-and closure10 () () : string =
+and closure11 () () : string =
     let v0 : string = "run_with_timeout_async"
     v0
-and closure11 (v0 : int32) () : string =
-    let v1 : (unit -> string) = closure3()
+and closure12 (v0 : int32) () : string =
+    let v1 : (unit -> string) = closure4()
     let v2 : string = $"timeout: {v0} / {v1 ()}"
     v2
-and closure12 (v0 : string) () : string =
+and closure13 (v0 : string) () : string =
     let v1 : string = $"run_with_timeout_async** / ex: {v0}"
     v1
-and closure7 (v0 : int32) (v1 : int32) : Async<bool> =
+and closure8 (v0 : int32) (v1 : int32) : Async<bool> =
     let v2 : Async<bool> option = None
     let v3 : bool = true in let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -657,8 +668,8 @@ and closure7 (v0 : int32) (v1 : int32) : Async<bool> =
     |> fun x -> _v33 <- Some x
     let v41 : string = _v33.Value
     let v42 : US0 = US0_0
-    let v43 : (unit -> string) = closure2(v41)
-    let v44 : (unit -> string) = closure3()
+    let v43 : (unit -> string) = closure3(v41)
+    let v44 : (unit -> string) = closure4()
     method2(v42, v43, v44)
     return false 
     (*
@@ -805,8 +816,8 @@ and closure7 (v0 : int32) (v1 : int32) : Async<bool> =
     v92
 #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v93 : (bool -> US4) = closure8()
-    let v94 : (exn -> US4) = closure9()
+    let v93 : (bool -> US4) = closure9()
+    let v94 : (exn -> US4) = closure10()
     let v95 : US4 = match v87 with Choice1Of2 x -> v93 x | Choice2Of2 x -> v94 x
     v95
 #endif
@@ -906,8 +917,8 @@ and closure7 (v0 : int32) (v1 : int32) : Async<bool> =
             let v132 : bool = v130.Contains v131
             if v132 then
                 let v133 : US0 = US0_1
-                let v134 : (unit -> string) = closure10()
-                let v135 : (unit -> string) = closure11(v0)
+                let v134 : (unit -> string) = closure11()
+                let v135 : (unit -> string) = closure12(v0)
                 method2(v133, v134, v135)
                 US3_1
             else
@@ -940,8 +951,8 @@ and closure7 (v0 : int32) (v1 : int32) : Async<bool> =
                 |> fun x -> _v137 <- Some x
                 let v145 : string = _v137.Value
                 let v146 : US0 = US0_4
-                let v147 : (unit -> string) = closure12(v145)
-                let v148 : (unit -> string) = closure11(v0)
+                let v147 : (unit -> string) = closure13(v145)
+                let v148 : (unit -> string) = closure12(v0)
                 method2(v146, v147, v148)
                 US3_1
         | US5_0(v127) -> (* Ok *)
@@ -1015,20 +1026,20 @@ and closure7 (v0 : int32) (v1 : int32) : Async<bool> =
     |> fun x -> _v2 <- Some x
     let v171 : Async<bool> = _v2.Value
     v171
-and closure6 () (v0 : int32) : (int32 -> Async<bool>) =
-    closure7(v0)
-and closure16 () (v0 : int32) : US6 =
+and closure7 () (v0 : int32) : (int32 -> Async<bool>) =
+    closure8(v0)
+and closure17 () (v0 : int32) : US6 =
     US6_0(v0)
-and method6 () : (int32 -> US6) =
-    closure16()
-and closure17 () () : string =
+and method7 () : (int32 -> US6) =
+    closure17()
+and closure18 () () : string =
     let v0 : string = "wait_for_port_access"
     v0
-and closure18 (v0 : int32, v1 : int64) () : string =
-    let v2 : (unit -> string) = closure3()
+and closure19 (v0 : int32, v1 : int64) () : string =
+    let v2 : (unit -> string) = closure4()
     let v3 : string = $"port: {v0} / retry: {v1} / {v2 ()}"
     v3
-and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64> =
+and method6 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64> =
     let v4 : Async<int64> option = None
     let v5 : bool = true in let mutable _v4 = v4
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1047,7 +1058,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
     let v9 : Async<int64> option = None
     let mutable _v9 = v9
     async {
-    let v10 : (int32 -> US6) = method6()
+    let v10 : (int32 -> US6) = method7()
     let v11 : US6 = US6_1
     let v12 : US6 = v0 |> Option.map v10 |> Option.defaultValue v11 
     let v227 : Async<bool> =
@@ -1144,8 +1155,8 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
             |> fun x -> _v38 <- Some x
             let v46 : string = _v38.Value
             let v47 : US0 = US0_0
-            let v48 : (unit -> string) = closure2(v46)
-            let v49 : (unit -> string) = closure3()
+            let v48 : (unit -> string) = closure3(v46)
+            let v49 : (unit -> string) = closure4()
             method2(v47, v48, v49)
             return false 
             (*
@@ -1276,8 +1287,8 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
             |> fun x -> _v87 <- Some x
             let v95 : string = _v87.Value
             let v96 : US0 = US0_0
-            let v97 : (unit -> string) = closure2(v95)
-            let v98 : (unit -> string) = closure3()
+            let v97 : (unit -> string) = closure3(v95)
+            let v98 : (unit -> string) = closure4()
             method2(v96, v97, v98)
             return false 
             (*
@@ -1424,8 +1435,8 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
             v146
 #endif
             #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-            let v147 : (bool -> US4) = closure8()
-            let v148 : (exn -> US4) = closure9()
+            let v147 : (bool -> US4) = closure9()
+            let v148 : (exn -> US4) = closure10()
             let v149 : US4 = match v141 with Choice1Of2 x -> v147 x | Choice2Of2 x -> v148 x
             v149
 #endif
@@ -1525,8 +1536,8 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
                     let v186 : bool = v184.Contains v185
                     if v186 then
                         let v187 : US0 = US0_1
-                        let v188 : (unit -> string) = closure10()
-                        let v189 : (unit -> string) = closure11(v55)
+                        let v188 : (unit -> string) = closure11()
+                        let v189 : (unit -> string) = closure12(v55)
                         method2(v187, v188, v189)
                         US3_1
                     else
@@ -1559,8 +1570,8 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
                         |> fun x -> _v191 <- Some x
                         let v199 : string = _v191.Value
                         let v200 : US0 = US0_4
-                        let v201 : (unit -> string) = closure12(v199)
-                        let v202 : (unit -> string) = closure11(v55)
+                        let v201 : (unit -> string) = closure13(v199)
+                        let v202 : (unit -> string) = closure12(v55)
                         method2(v200, v201, v202)
                         US3_1
                 | US5_0(v181) -> (* Ok *)
@@ -1647,8 +1658,8 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
         let v231 : bool = v230 = 0L
         if v231 then
             let v232 : US0 = US0_0
-            let v233 : (unit -> string) = closure17()
-            let v234 : (unit -> string) = closure18(v2, v3)
+            let v233 : (unit -> string) = closure18()
+            let v234 : (unit -> string) = closure19(v2, v3)
             method2(v232, v233, v234)
         let v235 : Async<unit> option = None
         let v236 : bool = true in let mutable _v235 = v235
@@ -1681,7 +1692,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
         let v244 : Async<unit> = _v235.Value
         do! v244 
         let v245 : int64 = v3 + 1L
-        let v246 : Async<int64> = method5(v0, v1, v2, v245)
+        let v246 : Async<int64> = method6(v0, v1, v2, v245)
         return! v246 
         (*
         ()
@@ -1702,14 +1713,14 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
     |> fun x -> _v4 <- Some x
     let v250 : Async<int64> = _v4.Value
     v250
-and closure15 (v0 : int32 option, v1 : bool) (v2 : int32) : Async<int64> =
+and closure16 (v0 : int32 option, v1 : bool) (v2 : int32) : Async<int64> =
     let v3 : int64 = 0L
-    method5(v0, v1, v2, v3)
-and closure14 (v0 : int32 option) (v1 : bool) : (int32 -> Async<int64>) =
-    closure15(v0, v1)
-and closure13 () (v0 : int32 option) : (bool -> (int32 -> Async<int64>)) =
-    closure14(v0)
-and method7 (v0 : int32 option, v1 : int32) : Async<int32> =
+    method6(v0, v1, v2, v3)
+and closure15 (v0 : int32 option) (v1 : bool) : (int32 -> Async<int64>) =
+    closure16(v0, v1)
+and closure14 () (v0 : int32 option) : (bool -> (int32 -> Async<int64>)) =
+    closure15(v0)
+and method8 (v0 : int32 option, v1 : int32) : Async<int32> =
     let v2 : Async<int32> option = None
     let v3 : bool = true in let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1728,7 +1739,7 @@ and method7 (v0 : int32 option, v1 : int32) : Async<int32> =
     let v7 : Async<int32> option = None
     let mutable _v7 = v7
     async {
-    let v8 : (int32 -> US6) = method6()
+    let v8 : (int32 -> US6) = method7()
     let v9 : US6 = US6_1
     let v10 : US6 = v0 |> Option.map v8 |> Option.defaultValue v9 
     let v225 : Async<bool> =
@@ -1825,8 +1836,8 @@ and method7 (v0 : int32 option, v1 : int32) : Async<int32> =
             |> fun x -> _v36 <- Some x
             let v44 : string = _v36.Value
             let v45 : US0 = US0_0
-            let v46 : (unit -> string) = closure2(v44)
-            let v47 : (unit -> string) = closure3()
+            let v46 : (unit -> string) = closure3(v44)
+            let v47 : (unit -> string) = closure4()
             method2(v45, v46, v47)
             return false 
             (*
@@ -1957,8 +1968,8 @@ and method7 (v0 : int32 option, v1 : int32) : Async<int32> =
             |> fun x -> _v85 <- Some x
             let v93 : string = _v85.Value
             let v94 : US0 = US0_0
-            let v95 : (unit -> string) = closure2(v93)
-            let v96 : (unit -> string) = closure3()
+            let v95 : (unit -> string) = closure3(v93)
+            let v96 : (unit -> string) = closure4()
             method2(v94, v95, v96)
             return false 
             (*
@@ -2105,8 +2116,8 @@ and method7 (v0 : int32 option, v1 : int32) : Async<int32> =
             v144
 #endif
             #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-            let v145 : (bool -> US4) = closure8()
-            let v146 : (exn -> US4) = closure9()
+            let v145 : (bool -> US4) = closure9()
+            let v146 : (exn -> US4) = closure10()
             let v147 : US4 = match v139 with Choice1Of2 x -> v145 x | Choice2Of2 x -> v146 x
             v147
 #endif
@@ -2206,8 +2217,8 @@ and method7 (v0 : int32 option, v1 : int32) : Async<int32> =
                     let v184 : bool = v182.Contains v183
                     if v184 then
                         let v185 : US0 = US0_1
-                        let v186 : (unit -> string) = closure10()
-                        let v187 : (unit -> string) = closure11(v53)
+                        let v186 : (unit -> string) = closure11()
+                        let v187 : (unit -> string) = closure12(v53)
                         method2(v185, v186, v187)
                         US3_1
                     else
@@ -2240,8 +2251,8 @@ and method7 (v0 : int32 option, v1 : int32) : Async<int32> =
                         |> fun x -> _v189 <- Some x
                         let v197 : string = _v189.Value
                         let v198 : US0 = US0_4
-                        let v199 : (unit -> string) = closure12(v197)
-                        let v200 : (unit -> string) = closure11(v53)
+                        let v199 : (unit -> string) = closure13(v197)
+                        let v200 : (unit -> string) = closure12(v53)
                         method2(v198, v199, v200)
                         US3_1
                 | US5_0(v179) -> (* Ok *)
@@ -2325,7 +2336,7 @@ and method7 (v0 : int32 option, v1 : int32) : Async<int32> =
     else
         *) else
         let v228 : int32 = v1 + 1
-        let v229 : Async<int32> = method7(v0, v228)
+        let v229 : Async<int32> = method8(v0, v228)
         return! v229 
         (*
         ()
@@ -2346,18 +2357,18 @@ and method7 (v0 : int32 option, v1 : int32) : Async<int32> =
     |> fun x -> _v2 <- Some x
     let v233 : Async<int32> = _v2.Value
     v233
-and closure20 (v0 : int32 option) (v1 : int32) : Async<int32> =
-    method7(v0, v1)
-and closure19 () (v0 : int32 option) : (int32 -> Async<int32>) =
-    closure20(v0)
-let v0 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure0()
-if State.trace_state = None then State.trace_state <- v0 () |> Some
-let v1 : (int32 -> Async<bool>) = closure1()
+and closure21 (v0 : int32 option) (v1 : int32) : Async<int32> =
+    method8(v0, v1)
+and closure20 () (v0 : int32 option) : (int32 -> Async<int32>) =
+    closure21(v0)
+let v0 : (unit -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
+if State.trace_state.IsNone then State.trace_state <- v0 () |> Some
+let v1 : (int32 -> Async<bool>) = closure2()
 let test_port_open x = v1 x
-let v2 : (int32 -> (int32 -> Async<bool>)) = closure6()
+let v2 : (int32 -> (int32 -> Async<bool>)) = closure7()
 let test_port_open_timeout x = v2 x
-let v3 : (int32 option -> (bool -> (int32 -> Async<int64>))) = closure13()
+let v3 : (int32 option -> (bool -> (int32 -> Async<int64>))) = closure14()
 let wait_for_port_access x = v3 x
-let v4 : (int32 option -> (int32 -> Async<int32>)) = closure19()
+let v4 : (int32 option -> (int32 -> Async<int32>)) = closure20()
 let get_available_port x = v4 x
 ()

@@ -1,11 +1,9 @@
 // // # seq
 
 // // ## seq'
-
 nominal seq' t = $"`t seq"
 
 // // ## of_array'
-
 inl of_array' forall dim t. (items : a dim t) : seq' t =
     $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
 
@@ -13,43 +11,35 @@ inl of_array forall dim t. (items : a dim t) : seq' t =
     items |> $'Seq.ofArray'
 
 // // ## of_string
-
 inl of_string (s : string) : seq' char =
     s |> unbox
 
 // // ## to_array'
-
 inl to_array' forall dim t. (items : seq' t) : a dim t =
     items |> $'Seq.toArray'
 
 // // ## to_list'
-
 inl to_list' forall t. (items : seq' t) : listm'.list' t =
     items |> $'Seq.toList'
 
 // // ## rev'
-
 inl rev'' forall t u. (items : t) : seq' u =
     items |> $'Seq.rev'
 
 // // ## seq
-
 type seq dim el = dim -> option el
 
 // // ## try_item
-
 inl try_item n s =
     n |> s
 
 // // ## from_list
-
 inl from_list list =
     fun n =>
         list
         |> listm'.try_item n
 
 // // ## map
-
 inl map fn s =
     fun n =>
         n
@@ -57,7 +47,6 @@ inl map fn s =
         |> optionm.map fn
 
 // // ## mapi
-
 inl mapi fn s =
     fun n =>
         n
@@ -65,7 +54,6 @@ inl mapi fn s =
         |> optionm.map (fn n)
 
 // // ## choose
-
 inl choose forall dim {number} t u. (fn : t -> option u) (s : seq dim t) : seq dim u =
     fun n =>
         inl rec body fn s i i' =
@@ -86,25 +74,21 @@ inl choose forall dim {number} t u. (fn : t -> option u) (s : seq dim t) : seq d
         loop 0 0
 
 // // ## indexed
-
 inl indexed s =
     s
     |> mapi fun i x =>
         i, x
 
 // // ## zip
-
 inl zip n seq1 seq2 =
     seq1 n, seq2 n
 
 // // ## zip_with
-
 inl zip_with fn seq1 seq2 =
     fun n =>
         fn (seq1 n) (seq2 n)
 
 // // ## fold
-
 inl fold fn init seq =
     inl rec loop acc n =
         match seq n with
@@ -120,7 +104,6 @@ inl fold_ fn init seq =
     loop init 0
 
 // // ## sum
-
 inl sum seq =
     seq |> fold (+) 0
 
@@ -128,7 +111,6 @@ inl sum_ seq =
     seq |> fold_ (+) 0
 
 // // ## to_list
-
 inl to_list seq =
     seq
     |> fold (fun acc x => x :: acc) []
@@ -140,7 +122,6 @@ inl to_list_ seq =
     |> listm.rev
 
 // // ## from_array
-
 inl from_array forall dim {number; int} el. (array : a dim el) : seq dim el =
     fun n =>
         if n >= length array
@@ -148,7 +129,6 @@ inl from_array forall dim {number; int} el. (array : a dim el) : seq dim el =
         else index array n |> Some
 
 // // ## to_array
-
 inl to_array seq =
     inl ar = a ;[] |> mut
     ((), seq)
@@ -164,7 +144,6 @@ inl to_array_ seq =
     *ar
 
 // // ## take_while
-
 inl take_while cond seq =
     inl rec loop acc i =
         match seq i with
@@ -173,7 +152,6 @@ inl take_while cond seq =
     loop [] 0
 
 // // ## take_while_
-
 inl take_while_ cond seq =
     let rec loop acc i =
         match seq i with
@@ -182,7 +160,6 @@ inl take_while_ cond seq =
     loop [] 0
 
 // // ## memoize
-
 inl memoize seq =
     inl state = mut []
     fun n =>
@@ -204,7 +181,6 @@ inl memoize_ seq =
             new_state
 
 // // ## iterate
-
 inl iterate f x0 num_steps =
     inl rec loop x n =
         if n <= 0
@@ -224,7 +200,6 @@ inl iterate' f x0 num_steps =
     |> listm.fold (fun x _ => f x) x0
 
 // // ## find_last
-
 inl find_last forall item result. fold_fn fn target : option result =
     fold_fn (fun (item : item) (result : option result) =>
         match result with

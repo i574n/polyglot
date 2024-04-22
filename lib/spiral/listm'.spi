@@ -1,7 +1,6 @@
 // // # listm
 
 // // ## list'
-
 nominal list' t = $'`t list'
 
 inl empty' forall t. () : list' t =
@@ -11,14 +10,12 @@ inl cons' forall t. (head : t) (tail : list' t) : list' t =
     $'!head :: !tail '
 
 // // ## box
-
 inl box forall t. (list : list t) : list' t =
     (list, empty' ())
     ||> listm.foldBack fun x acc =>
         acc |> cons' x
 
 // // ## fold'
-
 inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
     (init, list)
     ||> $'List.fold' join fun acc x => Cons (fn x, acc)
@@ -28,63 +25,52 @@ inl fold_back' forall t u. (fn : t -> u) (list : list' t) (init : list u) : list
     ||> $'List.foldBack' join fun x acc => Cons (fn x, acc)
 
 // // ## unbox
-
 inl unbox forall t. (list : list' t) : list t =
     (list, Nil)
     ||> fold_back' id
 
 // // ## distinct'
-
 inl distinct' forall t. (list : list' t) : list' t =
     list |> $'List.distinct'
 
 // // ## append
-
 instance append list t =
     listm.append
 
 // // ## /@
-
 inl (/@) a b =
     b |> append a
 
 // // ## init_series
-
 inl init_series start end inc =
     inl total : f64 = conv ((end - start) / inc) + 1
     listm.init total (conv >> (*) inc >> (+) start)
 
 // // ## try_item
-
 inl rec try_item i = function
     | Cons (x, _) when i = 0 => Some x
     | Cons (_, xs) => try_item (i - 1) xs
     | Nil => None
 
 // // ## list_item
-
 inl item i =
     try_item i >> optionm.value
 
 // // ## try_item_
-
 let rec try_item_ i = function
     | Cons (x, _) when i = 0 => Some x
     | Cons (_, xs) => try_item_ (i - 1) xs
     | Nil => None
 
 // // ## item_
-
 inl item_ i =
     try_item_ i >> optionm.value
 
 // // ## sum
-
 inl sum list =
     list |> listm.fold (+) 0
 
 // // ## unzip
-
 inl unzip list =
     (([], []), list)
     ||> listm.fold fun (acc_x, acc_y) (x, y) =>
@@ -93,7 +79,6 @@ inl unzip list =
         x |> listm.rev, y |> listm.rev
 
 // // ## try_index_of
-
 inl try_index_of item list =
     inl rec loop i = function
         | [] => None
@@ -139,7 +124,6 @@ inl index_of__ item =
     try_index_of__ item >> optionm.value
 
 // // ## try_find
-
 inl try_find fn list =
     inl rec loop = function
         | [] => None
@@ -165,7 +149,6 @@ inl find_ x =
     try_find_ x >> optionm.value
 
 // // ## choose
-
 inl choose f l =
     (l, [])
     ||> listm.foldBack fun x acc =>
@@ -174,7 +157,6 @@ inl choose f l =
         | None => acc
 
 // // ## zip_with
-
 inl zip_with fn xs ys =
     inl rec loop acc xs ys =
         match xs, ys with
@@ -192,7 +174,6 @@ inl zip_with_ fn xs ys =
     loop [] xs ys
 
 // // ## zip
-
 inl zip xs ys =
     zip_with pair xs ys
 
@@ -200,7 +181,6 @@ inl zip_ xs ys =
     zip_with_ pair xs ys
 
 // // ## indexed
-
 inl indexed list =
     (([], 0), list)
     ||> listm.fold fun (acc, i) x =>
@@ -209,7 +189,6 @@ inl indexed list =
     |> listm.rev
 
 // // ## group_by
-
 inl group_by fn list =
     (list, [])
     ||> listm.foldBack fun x acc =>
@@ -225,21 +204,18 @@ inl group_by fn list =
         else (xk, [ x ]) :: new_acc
 
 // // ## forall'
-
 inl forall' fn (head :: tail) =
     (true, tail)
     ||> listm.fold fun acc x =>
         acc && x = head
 
 // // ## last
-
 inl last list =
     list
     |> listm.rev
     |> item 0i32
 
 // // ## try_pick
-
 inl try_pick fn list =
     inl rec body fn = function
         | [] => None

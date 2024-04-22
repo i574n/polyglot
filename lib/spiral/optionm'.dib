@@ -248,7 +248,7 @@ inl rc_into_inner forall t. (x : rust.rc t) : option' t =
 #!spiral
 
 // // test
-// // rust=true
+// // rust=
 // // print_code=false
 
 types ()

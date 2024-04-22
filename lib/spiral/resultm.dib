@@ -210,7 +210,7 @@ inl rc_try_unwrap forall t. (x : rust.rc t) : result' t (rust.rc t) =
 #!spiral
 
 // // test
-// // rust=true
+// // rust=
 
 types ()
 rust.new_rc ()

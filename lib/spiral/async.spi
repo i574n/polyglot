@@ -1,21 +1,19 @@
 // // # async
-
 open rust_operators
 
 // // ## types
-
 inl types () =
     global "#if FABLE_COMPILER // async.types"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type Future<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>] type TryJoinAll<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type std_future_Future<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>] type futures_future_TryJoinAll<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::vec::IntoIter<$0>\")>] type rayon_vec_IntoIter<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::iter::Map<$0, _>\")>] type rayon_iter_Map<'T> = class end"
     global "#endif // async.types"
 
 // // ## async
-
 nominal async t = $"Async<`t>"
 
 // // ## task
-
 nominal task t =
     `(
         typecase t with
@@ -24,49 +22,77 @@ nominal task t =
     )
 
 // // ## future
-
-nominal future t = $"Future<`t>"
+nominal future t = $"std_future_Future<`t>"
 
 // // ## future_pin
-
 type future_pin t = rust.pin (rust.box (rust.dyn' (future t)))
 
 // // ## future_pin_send
-
 type future_pin_send t = rust.pin (rust.box (rust.send (rust.dyn' (future t))))
 
 // // ## block_on
-
 inl block_on forall t. (fn : future_pin t) : t =
     !\($'"futures_lite::future::block_on(!fn)"')
 
-// // ## spawn
+// // ## block_on_send
+inl block_on_send forall t. (fn : future_pin_send t) : t =
+    !\($'"futures_lite::future::block_on(!fn)"')
 
+// // ## spawn
 inl spawn forall t. (fn : future_pin t) : t =
     !\($'"async_std::task::spawn(!fn)"')
 
 // // ## try_join_all
-
-nominal try_join_all t = $"TryJoinAll<`t>"
-
-// // ## try_join_all
+nominal try_join_all t = $"futures_future_TryJoinAll<`t>"
 
 inl try_join_all forall t. (x : am'.vec (future_pin (resultm.result' t sm'.std_string))) : try_join_all (future_pin (resultm.result' t sm'.std_string)) =
     inl x = join x
     !\($'"futures::future::try_join_all(!x)"')
 
-// // ## await'
+// // ## await_all
+inl await_all forall t. (x : try_join_all (future_pin (resultm.result' t sm'.std_string))) : resultm.result' (am'.vec t) sm'.std_string =
+    !\($'"!x.await"')
 
-inl await' forall t. (x : try_join_all (future_pin (resultm.result' t sm'.std_string))) : resultm.result' (am'.vec t) sm'.std_string =
+// // ## await_all_send
+inl await_all_send forall t. (x : try_join_all (future_pin_send (resultm.result' t sm'.std_string))) : resultm.result' (am'.vec t) sm'.std_string =
     !\($'"!x.await"')
 
 // // ## await
-
 inl await forall t. (x : future_pin t) : t =
     !\($'"!x.await"')
 
-// // ## new_future
+// // ## await
+inl await_send forall t. (x : future_pin_send t) : t =
+    !\($'"!x.await"')
 
+// // ## into_iter
+nominal into_iter t = $'rayon_vec_IntoIter<`t>'
+
+// // ## into_par_iter
+inl into_par_iter forall t. (x : am'.vec t) : into_iter t =
+    !\($'"rayon::iter::IntoParallelIterator::into_par_iter(!x)"')
+
+// // ## par_iter
+inl par_iter forall t. (x : am'.vec t) : into_iter t =
+    !\($'"rayon::iter::IntoParallelIterator::par_iter(!x)"')
+
+// // ## iter_map
+nominal iter_map t u = $'rayon_iter_Map<`t>'
+
+// // ## par_map
+inl par_map forall t u. (fn : t -> u) (ar : into_iter t) : iter_map (into_iter t) u =
+    !\\(fn, $'"rayon::iter::ParallelIterator::map(!ar, |x| $0(x))"')
+
+// // ## par_collect
+inl par_collect forall t u. (iter : iter_map (into_iter t) u) : am'.vec u =
+    !\($'"rayon::iter::ParallelIterator::collect(!iter)"')
+
+// // ## try_join_all_iter
+inl try_join_all_iter forall t. (x : am'.vec (future_pin_send (resultm.result' t sm'.std_string))) : try_join_all (future_pin_send (resultm.result' t sm'.std_string)) =
+    inl x = join x
+    !\($'"futures::future::try_join_all(!x)"')
+
+// // ## new_future
 inl new_future forall t. (x : () -> t) : future_pin t =
     join
         !\($'"{Box::pin(async { //"')
@@ -74,7 +100,6 @@ inl new_future forall t. (x : () -> t) : future_pin t =
         !\($'"}}) //"')
 
 // // ## new_future_move
-
 inl new_future_move forall t. (x : () -> t) : future_pin t =
     join
         !\($'"{Box::pin(async move { //"')
@@ -82,7 +107,6 @@ inl new_future_move forall t. (x : () -> t) : future_pin t =
         !\($'"}}) //"')
 
 // // ## future_init
-
 inl future_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future_pin t =
     // join
     //     if flag = 1
@@ -100,8 +124,25 @@ inl future_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future
 
         !\($'"__result"')
 
-// // ## new_future_move_init
+// // ## future_init_send
+inl future_init_send forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future_pin_send t =
+    // join
+    //     if flag = 1
+    //     then new_future_move x
+    //     else new_future x
+    join
+        if flag = 1
+        then !\($'"let __result = Box::pin(async move { //"')
+        else !\($'"let __result = Box::pin(async { //"')
 
+        let x' = x ()
+        inl x' = join x'
+
+        x' |> rust.fix_closure depth
+
+        !\($'"__result"')
+
+// // ## new_future_move_init
 inl new_future_move_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future_pin t =
     future_init depth flag x
     // join
@@ -121,7 +162,6 @@ inl new_future_move_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t)
     //         !\($'"// 1"')
 
 // // ## new_async_unit
-
 inl new_async_unit forall t. (fn : () -> ()) : async t =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -135,12 +175,10 @@ inl new_async_unit forall t. (fn : () -> ()) : async t =
         | _ => fun () => null ()
 
 // // ## new_async
-
 inl new_async forall t. (fn : () -> t) : async t =
     new_async_unit (fn >> ignore)
 
 // // ## new_task
-
 inl new_task forall t. (fn : () -> t) : task t =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -154,7 +192,6 @@ inl new_task forall t. (fn : () -> t) : task t =
         | _ => fun () => null ()
 
 // // ## await_task
-
 inl await_task forall t. (a : task t) : async t =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -162,7 +199,6 @@ inl await_task forall t. (a : task t) : async t =
         | _ => fun () => null ()
 
 // // ## ignore
-
 inl ignore forall t. (a : async t) : async () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -170,7 +206,6 @@ inl ignore forall t. (a : async t) : async () =
         | _ => fun () => null ()
 
 // // ## run_synchronously
-
 inl run_synchronously forall t. (a : async t) : t =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -178,7 +213,6 @@ inl run_synchronously forall t. (a : async t) : t =
         | _ => fun () => null ()
 
 // // ## start
-
 inl start (a : async ()) : () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -186,7 +220,6 @@ inl start (a : async ()) : () =
         | _ => fun () => null ()
 
 // // ## start_child
-
 inl start_child forall t. (a : async t) : async (async t) =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -194,7 +227,6 @@ inl start_child forall t. (a : async t) : async (async t) =
         | _ => fun () => null ()
 
 // // ## start_child_timeout
-
 inl start_child_timeout forall t. (timeout : i32) (a : async t) : async (async t) =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -202,7 +234,6 @@ inl start_child_timeout forall t. (timeout : i32) (a : async t) : async (async t
         | _ => fun () => null ()
 
 // // ## start_immediate
-
 inl start_immediate forall t. (a : async t) : () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -210,11 +241,9 @@ inl start_immediate forall t. (a : async t) : () =
         | _ => fun () => null ()
 
 // // ## task_canceled_exception
-
 nominal task_canceled_exception = $'System.Threading.Tasks.TaskCanceledException'
 
 // // ## sleep
-
 inl sleep (ms : i32) : async () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -222,28 +251,23 @@ inl sleep (ms : i32) : async () =
         | _ => fun () => null ()
 
 // // ## do
-
 inl do (a : async ()) : () =
     $'do\! !a '
 
 // // ## let'
-
 inl let' forall t. (a : async t) : t =
     $'let\! !a = !a '
     $'!a '
 
 // // ## return_await
-
 inl return_await forall t. (a : async t) : () =
     $'return\! !a '
 
 // // ## return_await'
-
 inl return_await' forall t. (a : async t) : t =
     $'return\! !a '
 
 // // ## map
-
 inl map forall t u. (fn : t -> u) (a : async t) : async u =
     fun () =>
         inl x = a |> let'
@@ -251,7 +275,6 @@ inl map forall t u. (fn : t -> u) (a : async t) : async u =
     |> new_async_unit
 
 // // ## choice
-
 union choice t1 t2 =
     | Choice1Of2 : t1
     | Choice2Of2 : t2
@@ -259,7 +282,6 @@ union choice t1 t2 =
 nominal choice' t1 t2 = $'Choice<`t1, `t2>'
 
 // // ## choice_unbox
-
 inl choice_unbox forall t1 t2. (choice : choice' t1 t2) : choice t1 t2 =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -269,7 +291,6 @@ inl choice_unbox forall t1 t2. (choice : choice' t1 t2) : choice t1 t2 =
         | _ => fun () => null ()
 
 // // ## catch'
-
 inl catch' forall t e. (a : async t) : async (choice' t e) =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -277,7 +298,6 @@ inl catch' forall t e. (a : async t) : async (choice' t e) =
         | _ => fun () => null ()
 
 // // ## catch
-
 inl catch forall t e. (a : async t) : async (result t e) =
     a
     |> catch'
@@ -287,39 +307,34 @@ inl catch forall t e. (a : async t) : async (result t e) =
         | Choice2Of2 ex => Error ex
 
 // // ## run_with_timeout_async
-
 inl run_with_timeout_async forall t. (timeout : i32) (fn : async t) : async (option t) =
     run_target function
         | Fsharp (Native) => fun () =>
             fun () =>
-                inl get_locals () = $'$"timeout: {!timeout} / {!get_locals ()}"' : string
+                inl _locals () = $'$"timeout: {!timeout} / {!_locals ()}"'
                 inl child = fn |> start_child_timeout timeout |> let'
                 child
                 |> catch
                 |> map function
                     | Ok result => Some result
                     | Error ex when ex |> sm'.format_debug |> sm'.contains "System.TimeoutException" =>
-                        trace Debug (fun () => $'"run_with_timeout_async"' : string) get_locals
+                        trace Debug (fun () => $'"run_with_timeout_async"') _locals
                         None
                     | Error (ex : exn) =>
                         inl ex = ex |> sm'.format_exception
-                        trace Critical (fun () => $'$"run_with_timeout_async** / ex: {!ex}"' : string) get_locals
+                        trace Critical (fun () => $'$"run_with_timeout_async** / ex: {!ex}"') _locals
                         None
                 |> return_await
-                // $'(*'
-                // $'*)'
             |> new_async_unit
         | _ => fun () => null ()
 
 // // ## run_with_timeout
-
 inl run_with_timeout timeout fn =
     fn
     |> run_with_timeout_async timeout
     |> run_synchronously
 
 // // ## cancellation_token
-
 inl cancellation_token () : async threading.cancellation_token =
     $'Async.CancellationToken'
 
@@ -327,7 +342,6 @@ inl default_cancellation_token () : threading.cancellation_token =
     $'Async.DefaultCancellationToken'
 
 // // ## merge_cancellation_token_with_default_async
-
 inl merge_cancellation_token_with_default_async
     (token : threading.cancellation_token)
     : async threading.cancellation_token
@@ -343,7 +357,6 @@ inl merge_cancellation_token_with_default_async
         | _ => fun () => null ()
 
 // // ## with_trace_level
-
 inl with_trace_level forall t. level fn : _ t = new_async fun () =>
     inl trace_state = get_trace_state ()
     inl old_trace_level = *trace_state.level
@@ -356,21 +369,17 @@ inl with_trace_level forall t. level fn : _ t = new_async fun () =>
             trace_level <- old_trace_level
 
 // // ## value_task
-
 nominal value_task = $'System.Threading.Tasks.ValueTask'
 
 // // ## value_task_as_task
-
 inl value_task_as_task (task : value_task) : task () =
     $'!task.AsTask' ()
 
 // // ## await_value_task_unit
-
 inl await_value_task_unit (task : value_task) : async () =
     task |> value_task_as_task |> await_task
 
 // // ## main
-
 inl main () =
     types ()
     $"let merge_cancellation_token_with_default_async x = !merge_cancellation_token_with_default_async x" : ()

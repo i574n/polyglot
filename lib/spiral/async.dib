@@ -24,8 +24,10 @@ open rust_operators
 
 inl types () =
     global "#if FABLE_COMPILER // async.types"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type Future<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>] type TryJoinAll<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type std_future_Future<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>] type futures_future_TryJoinAll<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::vec::IntoIter<$0>\")>] type rayon_vec_IntoIter<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::iter::Map<$0, _>\")>] type rayon_iter_Map<'T> = class end"
     global "#endif // async.types"
 
 #!markdown
@@ -55,7 +57,7 @@ nominal task t =
 
 #!spiral
 
-nominal future t = $"Future<`t>"
+nominal future t = $"std_future_Future<`t>"
 
 #!markdown
 
@@ -84,6 +86,15 @@ inl block_on forall t. (fn : future_pin t) : t =
 
 #!markdown
 
+## block_on_send
+
+#!spiral
+
+inl block_on_send forall t. (fn : future_pin_send t) : t =
+    !\($'"futures_lite::future::block_on(!fn)"')
+
+#!markdown
+
 ## spawn
 
 #!spiral
@@ -97,13 +108,7 @@ inl spawn forall t. (fn : future_pin t) : t =
 
 #!spiral
 
-nominal try_join_all t = $"TryJoinAll<`t>"
-
-#!markdown
-
-## try_join_all
-
-#!spiral
+nominal try_join_all t = $"futures_future_TryJoinAll<`t>"
 
 inl try_join_all forall t. (x : am'.vec (future_pin (resultm.result' t sm'.std_string))) : try_join_all (future_pin (resultm.result' t sm'.std_string)) =
     inl x = join x
@@ -111,11 +116,20 @@ inl try_join_all forall t. (x : am'.vec (future_pin (resultm.result' t sm'.std_s
 
 #!markdown
 
-## await'
+## await_all
 
 #!spiral
 
-inl await' forall t. (x : try_join_all (future_pin (resultm.result' t sm'.std_string))) : resultm.result' (am'.vec t) sm'.std_string =
+inl await_all forall t. (x : try_join_all (future_pin (resultm.result' t sm'.std_string))) : resultm.result' (am'.vec t) sm'.std_string =
+    !\($'"!x.await"')
+
+#!markdown
+
+## await_all_send
+
+#!spiral
+
+inl await_all_send forall t. (x : try_join_all (future_pin_send (resultm.result' t sm'.std_string))) : resultm.result' (am'.vec t) sm'.std_string =
     !\($'"!x.await"')
 
 #!markdown
@@ -126,6 +140,77 @@ inl await' forall t. (x : try_join_all (future_pin (resultm.result' t sm'.std_st
 
 inl await forall t. (x : future_pin t) : t =
     !\($'"!x.await"')
+
+#!markdown
+
+## await
+
+#!spiral
+
+inl await_send forall t. (x : future_pin_send t) : t =
+    !\($'"!x.await"')
+
+#!markdown
+
+## into_iter
+
+#!spiral
+
+nominal into_iter t = $'rayon_vec_IntoIter<`t>'
+
+#!markdown
+
+## into_par_iter
+
+#!spiral
+
+inl into_par_iter forall t. (x : am'.vec t) : into_iter t =
+    !\($'"rayon::iter::IntoParallelIterator::into_par_iter(!x)"')
+
+#!markdown
+
+## par_iter
+
+#!spiral
+
+inl par_iter forall t. (x : am'.vec t) : into_iter t =
+    !\($'"rayon::iter::IntoParallelIterator::par_iter(!x)"')
+
+#!markdown
+
+## iter_map
+
+#!spiral
+
+nominal iter_map t u = $'rayon_iter_Map<`t>'
+
+#!markdown
+
+## par_map
+
+#!spiral
+
+inl par_map forall t u. (fn : t -> u) (ar : into_iter t) : iter_map (into_iter t) u =
+    !\\(fn, $'"rayon::iter::ParallelIterator::map(!ar, |x| $0(x))"')
+
+#!markdown
+
+## par_collect
+
+#!spiral
+
+inl par_collect forall t u. (iter : iter_map (into_iter t) u) : am'.vec u =
+    !\($'"rayon::iter::ParallelIterator::collect(!iter)"')
+
+#!markdown
+
+## try_join_all_iter
+
+#!spiral
+
+inl try_join_all_iter forall t. (x : am'.vec (future_pin_send (resultm.result' t sm'.std_string))) : try_join_all (future_pin_send (resultm.result' t sm'.std_string)) =
+    inl x = join x
+    !\($'"futures::future::try_join_all(!x)"')
 
 #!markdown
 
@@ -158,6 +243,29 @@ inl new_future_move forall t. (x : () -> t) : future_pin t =
 #!spiral
 
 inl future_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future_pin t =
+    // join
+    //     if flag = 1
+    //     then new_future_move x
+    //     else new_future x
+    join
+        if flag = 1
+        then !\($'"let __result = Box::pin(async move { //"')
+        else !\($'"let __result = Box::pin(async { //"')
+
+        let x' = x ()
+        inl x' = join x'
+
+        x' |> rust.fix_closure depth
+
+        !\($'"__result"')
+
+#!markdown
+
+## future_init_send
+
+#!spiral
+
+inl future_init_send forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future_pin_send t =
     // join
     //     if flag = 1
     //     then new_future_move x
@@ -458,22 +566,20 @@ inl run_with_timeout_async forall t. (timeout : i32) (fn : async t) : async (opt
     run_target function
         | Fsharp (Native) => fun () =>
             fun () =>
-                inl get_locals () = $'$"timeout: {!timeout} / {!get_locals ()}"' : string
+                inl _locals () = $'$"timeout: {!timeout} / {!_locals ()}"'
                 inl child = fn |> start_child_timeout timeout |> let'
                 child
                 |> catch
                 |> map function
                     | Ok result => Some result
                     | Error ex when ex |> sm'.format_debug |> sm'.contains "System.TimeoutException" =>
-                        trace Debug (fun () => $'"run_with_timeout_async"' : string) get_locals
+                        trace Debug (fun () => $'"run_with_timeout_async"') _locals
                         None
                     | Error (ex : exn) =>
                         inl ex = ex |> sm'.format_exception
-                        trace Critical (fun () => $'$"run_with_timeout_async** / ex: {!ex}"' : string) get_locals
+                        trace Critical (fun () => $'$"run_with_timeout_async** / ex: {!ex}"') _locals
                         None
                 |> return_await
-                // $'(*'
-                // $'*)'
             |> new_async_unit
         | _ => fun () => null ()
 

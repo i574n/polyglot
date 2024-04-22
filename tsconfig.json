@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "esModuleInterop": true,
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "Bundler",
     "target": "ESNext",
     "module": "NodeNext",
     "strict": true,

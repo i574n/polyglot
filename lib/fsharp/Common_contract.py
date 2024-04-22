@@ -10,7 +10,7 @@ nl: str = "\n"
 
 q: str = "\""
 
-def _expr126() -> TypeInfo:
+def _expr131() -> TypeInfo:
     return union_type("Polyglot.Common.TraceLevel", [], TraceLevel, lambda: [[], [], [], [], []])
 
 
@@ -25,7 +25,7 @@ class TraceLevel(Union):
         return ["Verbose", "Debug", "Info", "Warning", "Critical"]
 
 
-TraceLevel_reflection = _expr126
+TraceLevel_reflection = _expr131
 
 def TraceLevel__get_IsVerbose(this: TraceLevel, unit_arg: None) -> bool:
     if this.tag == 0:
@@ -90,7 +90,7 @@ def to_trace_level(_arg: TraceLevel) -> US0:
 
 
 
-def trace(level: TraceLevel, fn: Callable[[], str], get_locals: Callable[[], str]) -> None:
-    SpiralTrace_trace(to_trace_level(level))(fn)(get_locals)
+def trace(level: TraceLevel, fn: Callable[[], str], locals: Callable[[], str]) -> None:
+    SpiralTrace_trace(to_trace_level(level))(fn)(locals)
 
 

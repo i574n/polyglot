@@ -86,7 +86,7 @@ inl repl_start () : optionm'.option' i64 =
 type trace_state =
     {
         count : mut i64
-        dump : mut bool
+        trace_file : mut (string -> ())
         enabled : mut bool
         level : mut trace_level
         repl_start : optionm'.option' i64
@@ -97,7 +97,7 @@ inl new_trace_state () =
         enabled = mut true
         count = mut 0i64
         level = mut Verbose
-        dump = mut false
+        trace_file = mut ignore
         repl_start = repl_start ()
     } : trace_state
 
@@ -109,7 +109,7 @@ inl new_trace_state () =
 
 inl init_trace_state () : () =
     global "module State = let mutable trace_state = None"
-    $"if State.trace_state = None then State.trace_state <- !new_trace_state () |> Some" : ()
+    $"if State.trace_state.IsNone then State.trace_state <- !new_trace_state () |> Some" : ()
 
 #!markdown
 
@@ -123,11 +123,11 @@ inl get_trace_state () : trace_state =
 
 #!markdown
 
-## get_locals
+## _locals
 
 #!spiral
 
-inl get_locals () = ""
+inl _locals () = ""
 
 #!markdown
 
@@ -138,7 +138,12 @@ inl get_locals () = ""
 inl test_trace_level level : bool =
     inl state = get_trace_state ()
     inl level' = *state.level
-    *state.enabled && $'!level >= !level' '
+    if *state.enabled |> not
+    then false
+    else
+        inl level : i32 = real real_core.union_tag level
+        inl level' : i32 = real real_core.union_tag level'
+        level >= level'
 
 #!spiral
 
@@ -147,13 +152,19 @@ inl test_trace_level level : bool =
 test_trace_level Critical |> _assert_eq true
 test_trace_level Verbose |> _assert_eq true
 
+inl level = get_trace_state () .level
+level <- Debug
+test_trace_level Verbose |> _assert_eq false
+level <- Verbose
+test_trace_level Verbose |> _assert_eq true
+
 #!markdown
 
 ## trace_raw
 
 #!spiral
 
-inl trace_raw level fn =
+let rec trace_raw level fn =
     inl trace_state = get_trace_state ()
     if level |> test_trace_level then
         inl count = trace_state.count
@@ -167,30 +178,7 @@ inl trace_raw level fn =
         | _ => fun () =>
             $'System.Console.WriteLine !text '
 
-        // run_target function
-        // | Fsharp (Native) => fun () =>
-        //     if *trace_state.dump then
-        //         try_unit
-        //             fun () =>
-        //                 // open file_system_operators
-        //                 // inl tmp_path = file_system.get_temp_path ()
-        //                 // inl log_dir = tmp_path </> "!polyglot"
-        //                 // file_system.create_directory log_dir |> ignore
-        //                 // inl guid = date_time.new_guid_from_date_time (date_time.now ())
-        //                 // inl log_file = log_dir </> $'$"{!guid}.txt"'
-        //                 // file_system.write_all_text_async log_file text |> async.run_synchronously
-        //                 ()
-        //             fun ex =>
-        //                 inl ex = ex |> sm'.format_exception
-        //                 trace_raw Critical (fun () => $'$"trace / ex: {!ex}"')
-        // | _ => fun () => ()
-
-#!spiral
-
-// // test
-// // print_code=true
-
-trace_raw Debug fun () => "test"
+        *trace_state.trace_file text
 
 #!markdown
 
@@ -198,7 +186,7 @@ trace_raw Debug fun () => "test"
 
 #!spiral
 
-let trace (level : trace_level) (fn : () -> string) (get_locals : () -> string) =
+let trace (level : trace_level) (fn : () -> string) (locals : () -> string) =
     fun () =>
         inl trace_state = get_trace_state ()
         inl time =
@@ -244,7 +232,7 @@ let trace (level : trace_level) (fn : () -> string) (get_locals : () -> string) 
                 |> sm'.format''
                 |> sm'.from_std_string
             | _ => fun () => level_str
-        $'$"{!time} {!level_str} #{!count} %s{!fn ()} / %s{!get_locals ()}"'
+        $'$"{!time} {!level_str} #{!count} %s{!fn ()} / %s{!locals ()}"'
         |> sm'.trim_start ;[]
         |> sm'.trim_end ;[ ' '; '/' ]
     |> trace_raw level
@@ -254,8 +242,8 @@ let trace (level : trace_level) (fn : () -> string) (get_locals : () -> string) 
 // // test
 // // print_code=false
 
-trace Debug (fun () => "test") get_locals
-trace Debug (fun () => "test") get_locals
+trace Debug (fun () => "test") _locals
+trace Debug (fun () => "test") _locals
 
 #!spiral
 
@@ -264,8 +252,7 @@ trace Debug (fun () => "test") get_locals
 // // rust=
 
 types ()
-trace Debug (fun () => "test") get_locals
-// trace Debug (fun () => "test") get_locals
+trace Debug (fun () => "test") _locals
 
 #!markdown
 

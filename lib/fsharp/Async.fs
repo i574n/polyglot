@@ -11,7 +11,6 @@ module Async =
     open Common
 
     /// ## choice
-
     let inline choice asyncs = async {
         let e = Event<_> ()
         use cts = new System.Threading.CancellationTokenSource ()
@@ -30,14 +29,12 @@ module Async =
     }
 
     /// ## map
-
     let inline map fn a = async {
         let! x = a
         return fn x
     }
 
     /// ## catch
-
     let inline catch a =
         a
         |> Async.Catch
@@ -47,13 +44,12 @@ module Async =
         )
 
     /// ## runWithTimeoutAsync
-
     let inline runWithTimeoutAsync_ (timeout : int) fn =
-        let getLocals () = $"timeout: {timeout} / {getLocals ()}"
+        let _locals () = $"timeout: {timeout} / {_locals ()}"
 
         let timeoutTask = async {
             do! Async.Sleep timeout
-            trace Debug (fun () -> "runWithTimeoutAsync") getLocals
+            trace Debug (fun () -> "runWithTimeoutAsync") _locals
             return None
         }
 
@@ -66,11 +62,11 @@ module Async =
                 ex.InnerExceptions
                 |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
                 ->
-                let getLocals () = $"ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
-                trace Warning (fun () -> "runWithTimeoutAsync") getLocals
+                let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
+                trace Warning (fun () -> "runWithTimeoutAsync") _locals
                 return None
             | ex ->
-                trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> SpiralSm.format_exception}") getLocals
+                trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> SpiralSm.format_exception}") _locals
                 return None
         }
 
@@ -83,9 +79,8 @@ module Async =
         |> Async.RunSynchronously
 
     /// ## runWithTimeoutChildAsync
-
     let inline runWithTimeoutChildAsync (timeout : int) fn = async {
-        let getLocals () = $"timeout: {timeout} / {getLocals ()}"
+        let _locals () = $"timeout: {timeout} / {_locals ()}"
         let! child = Async.StartChild (fn, timeout)
         return!
             child
@@ -93,10 +88,10 @@ module Async =
             |> map (function
                 | Ok result -> Some result
                 | Error (:? System.TimeoutException as ex) ->
-                    trace Debug (fun () -> $"runWithTimeoutChildAsync") getLocals
+                    trace Debug (fun () -> $"runWithTimeoutChildAsync") _locals
                     None
                 | Error ex ->
-                    trace Critical (fun () -> $"runWithTimeoutChildAsync** / ex: {ex |> SpiralSm.format_exception}") getLocals
+                    trace Critical (fun () -> $"runWithTimeoutChildAsync** / ex: {ex |> SpiralSm.format_exception}") _locals
                     None
             )
     }
@@ -113,24 +108,23 @@ module Async =
         runWithTimeoutChild timeout fn
 
     /// ## runWithTimeoutStrict
-
     let inline runWithTimeoutStrict (timeout : int) fn =
-        let getLocals () = $"timeout: {timeout} / {getLocals ()}"
+        let _locals () = $"timeout: {timeout} / {_locals ()}"
 
         let timeoutTask = async {
             do! Async.Sleep timeout
-            return None, getLocals
+            return None, _locals
         }
 
         let task = async {
             try
-                return Async.RunSynchronously (fn, timeout) |> Some, getLocals
+                return Async.RunSynchronously (fn, timeout) |> Some, _locals
             with
             | :? System.TimeoutException as ex ->
-                let getLocals () = $"ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
-                return None, getLocals
+                let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
+                return None, _locals
             | ex ->
-                trace Critical (fun () -> $"runWithTimeoutStrict / ex: {ex |> SpiralSm.format_exception}") getLocals
+                trace Critical (fun () -> $"runWithTimeoutStrict / ex: {ex |> SpiralSm.format_exception}") _locals
                 return raise ex
         }
 
@@ -140,8 +134,8 @@ module Async =
             |> System.Threading.Tasks.Task.WhenAny
             |> fun task ->
                 match task.Result.Result with
-                | None, getLocals ->
-                    trace Debug (fun () -> "runWithTimeoutStrict") getLocals
+                | None, _locals ->
+                    trace Debug (fun () -> "runWithTimeoutStrict") _locals
                     None
                 | result, _ -> result
         with
@@ -149,16 +143,15 @@ module Async =
             ex.InnerExceptions
             |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
             ->
-            let getLocals () = $"ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
-            trace Warning (fun () -> "runWithTimeoutStrict") getLocals
+            let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
+            trace Warning (fun () -> "runWithTimeoutStrict") _locals
             None
         | ex ->
-            let getLocals () = $"ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
-            trace Critical (fun () -> "runWithTimeoutStrict**") getLocals
+            let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
+            trace Critical (fun () -> "runWithTimeoutStrict**") _locals
             None
 
     /// ## awaitValueTask
-
     let inline awaitValueTaskUnit (task : System.Threading.Tasks.ValueTask) =
         task.AsTask () |> Async.AwaitTask
 
@@ -166,13 +159,11 @@ module Async =
         task.AsTask () |> Async.AwaitTask
 
     /// ## init
-
     let inline init x = async {
         return x
     }
 
     /// ## withCancellationToken
-
     let inline withCancellationToken (ct : System.Threading.CancellationToken) fn =
         Async.StartImmediateAsTask (fn, ct)
         |> Async.AwaitTask

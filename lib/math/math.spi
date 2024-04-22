@@ -1,5 +1,4 @@
 // // # math
-
 open testing
 open rust_operators
 
@@ -17,7 +16,6 @@ inl types () =
     types ()
 
 // // ## complex
-
 nominal complex t = $"num_complex_Complex<`t>"
 nominal bound t = $"pyo3_Bound<`t>"
 nominal python = $"pyo3_Python"
@@ -29,7 +27,6 @@ inl complex forall t. ((re : t), (im : t)) : complex t =
     !\\((re, im), $'"num_complex::Complex::new($0, $1)"')
 
 // // ## complex_sin
-
 inl re forall t. (c : complex t) : t =
     inl c = join c
     !\($'"!c.re"')
@@ -84,7 +81,6 @@ inl conj forall t. (c : complex t) : complex t =
     !\($'"!c.conj()"')
 
 // // ## zeta
-
 inl zeta log (gamma : complex f64 -> complex f64) (s : complex f64) : complex f64 =
     inl rec zeta count gamma s =
         if log then
@@ -110,7 +106,6 @@ inl zeta log (gamma : complex f64 -> complex f64) (s : complex f64) : complex f6
     join zeta 0i32 gamma s
 
 // // ## eval
-
 inl module_from_code (py : python) (code : string) : _ (bound pymodule) _ =
     inl py = join py
     inl code = code |> sm'.as_str
@@ -213,7 +208,6 @@ inl zeta_ log py s =
     call1_ log "zeta_" py s $'$"        s = mpmath.zeta(s)"'
 
 // // ## run_test
-
 inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -> complex f64) -> ()) =
     inl fn_ (py : python) : resultm.result' () pyerr =
         inl nan () =
@@ -260,7 +254,6 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
         |> resultm.unwrap'
 
 // // ## test_zeta_at_known_values_
-
 inl test_zeta_at_known_values_ log = run_test log (3u8, 2u8) fun zeta, gamma =>
     ;[
         .^(2, 0), pi ** 2 / 6
@@ -274,7 +267,6 @@ inl test_zeta_at_known_values_ log = run_test log (3u8, 2u8) fun zeta, gamma =>
         re result - e |> abs |> _assert_lt 0.0001
 
 // // ## test_zeta_at_2_minus2
-
 inl test_zeta_at_2_minus2 log = run_test log (6u8, 5u8) fun zeta, gamma =>
     inl s = .^(2, -2)
     inl result = zeta s
@@ -283,7 +275,6 @@ inl test_zeta_at_2_minus2 log = run_test log (6u8, 5u8) fun zeta, gamma =>
     (im result - 0.2750) |> abs |> _assert_lt 0.001
 
 // // ## test_trivial_zero_at_negative_even___
-
 inl test_trivial_zero_at_negative_even___ log = run_test log (2u8, 1u8) fun zeta, gamma =>
     (join listm'.init_series -2f64 -40 -2)
     |> listm.iter fun n =>
@@ -294,7 +285,6 @@ inl test_trivial_zero_at_negative_even___ log = run_test log (2u8, 1u8) fun zeta
         result |> im |> _assert_eq 0
 
 // // ## test_non_trivial_zero___
-
 inl test_non_trivial_zero___ log = run_test log (3u8, 2u8) fun zeta, gamma =>
     ;[
         .^(0.5, 14.134725)
@@ -311,7 +301,6 @@ inl test_non_trivial_zero___ log = run_test log (3u8, 2u8) fun zeta, gamma =>
             result |> im |> abs |> _assert_lt 0.0001
 
 // // ## test_real_part_greater_than_one___
-
 inl test_real_part_greater_than_one___ log = run_test log (3u8, 2u8) fun zeta, gamma =>
     inl points = ;[2; 3; 4; 5; 10; 20; 50]
     (a points : _ i32 _)
@@ -322,7 +311,6 @@ inl test_real_part_greater_than_one___ log = run_test log (3u8, 2u8) fun zeta, g
         result |> im |> _assert_eq 0
 
 // // ## test_zeta_at_1___
-
 inl test_zeta_at_1___ log = run_test log (6u8, 5u8) fun zeta, gamma =>
     inl s = .^(1, 0)
     inl result = zeta s
@@ -330,7 +318,6 @@ inl test_zeta_at_1___ log = run_test log (6u8, 5u8) fun zeta, gamma =>
     result |> im |> _assert_eq 0
 
 // // ## test_symmetry_across_real_axis___
-
 inl test_symmetry_across_real_axis___ log = run_test log (8u8, 7u8) fun zeta, gamma =>
     inl s = .^(2, 10)
     inl result_positive_im = zeta s
@@ -340,7 +327,6 @@ inl test_symmetry_across_real_axis___ log = run_test log (8u8, 7u8) fun zeta, ga
     result_positive_im |> im |> _assert_eq (conj |> im)
 
 // // ## test_behavior_near_origin___
-
 inl test_behavior_near_origin___ log = run_test log (6u8, 5u8) fun zeta, gamma =>
     inl s = .^(0.01, 0.01)
     inl result = zeta s
@@ -348,7 +334,6 @@ inl test_behavior_near_origin___ log = run_test log (6u8, 5u8) fun zeta, gamma =
     result |> im |> _assert_lt limit.max
 
 // // ## test_imaginary_axis
-
 inl test_imaginary_axis log = run_test log (3u8, 2u8) fun zeta, gamma =>
     (join a ;[10; 20; 30; 40; 50; 60; 70; 80; 90; 100] : _ i32 _)
     |> am.iter fun s =>
@@ -358,7 +343,6 @@ inl test_imaginary_axis log = run_test log (3u8, 2u8) fun zeta, gamma =>
         result |> im |> _assert_ne 0
 
 // // ## test_critical_strip
-
 inl test_critical_strip log = run_test log (3u8, 2u8) fun zeta, gamma =>
     ;[
         .^(0.5, 14.134725)
@@ -374,7 +358,6 @@ inl test_critical_strip log = run_test log (3u8, 2u8) fun zeta, gamma =>
         result |> im |> _assert_ne 0
 
 // // ## test_reflection_formula_for_specific_value
-
 inl test_reflection_formula_for_specific_value log = run_test log (3u8, 2u8) fun zeta, gamma =>
     ;[
         .^(3, 4)
@@ -398,7 +381,6 @@ inl test_reflection_formula_for_specific_value log = run_test log (3u8, 2u8) fun
         im lhs - im rhs |> abs |> _assert_lt 0.0001
 
 // // ## test_euler_product_formula
-
 inl test_euler_product_formula log = run_test log (3u8, 2u8) fun zeta, gamma =>
     inl s_values = ;[2; 2.5; 3; 3.5; 4; 4.5; 5]
     inl primes = ;[2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47; 53; 59; 61; 67; 71]
@@ -417,7 +399,6 @@ inl test_euler_product_formula log = run_test log (3u8, 2u8) fun zeta, gamma =>
 // // ## graph
 
 // // ## tests
-
 inl tests () =
     rust.run_tests [
     "test_zeta_at_known_values_", fun _ =>

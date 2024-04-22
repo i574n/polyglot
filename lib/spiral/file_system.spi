@@ -1,15 +1,15 @@
 // // # file_system
-
 open sm'_operators
 open rust_operators
 
 // // ## types
-
 inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::FileType\")>] type std_fs_FileType = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>] type std_io_Error = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>] type std_path_Path = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::PathBuf\")>] type std_path_PathBuf = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::DirEntry\")>] type async_walkdir_DirEntry = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Filtering\")>] type async_walkdir_Filtering = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::WalkDir\")>] type async_walkdir_WalkDir = class end"
 
 inl types () =
@@ -20,7 +20,6 @@ inl types () =
     global "#endif // file_system.types"
 
 // // ## file_mode
-
 nominal file_mode' = $'System.IO.FileMode'
 
 union file_mode =
@@ -40,7 +39,6 @@ inl file_mode = function
     | Append => $'System.IO.FileMode.Append' : file_mode'
 
 // // ## file_access
-
 nominal file_access' = $'System.IO.FileAccess'
 
 union file_access =
@@ -54,7 +52,6 @@ inl file_access = function
     | AccessReadWrite => $'System.IO.FileAccess.ReadWrite' : file_access'
 
 // // ## file_share
-
 nominal file_share' = $'System.IO.FileShare'
 
 union file_share =
@@ -72,7 +69,6 @@ inl file_share = function
     | ShareDelete => $'System.IO.FileShare.Delete' : file_share'
 
 // // ## file_stream
-
 nominal file_stream' = $'System.IO.FileStream'
 
 inl file_stream (path : string) mode access share : file_stream' =
@@ -85,73 +81,61 @@ inl file_stream (path : string) mode access share : file_stream' =
         | _ => fun () => null ()
 
 // // ## path
-
 nominal path = $'std_path_Path'
 nominal path_buf = $'std_path_PathBuf'
 
 // // ## new_path_buf
-
 inl new_path_buf (path : string) : path_buf =
     open rust_operators
     inl path = path |> sm'.to_std_string
     !\\(path, $'"std::path::PathBuf::from($0)"')
 
 // // ## path_buf_from
-
 inl path_buf_from (path : rust.box path) : path_buf =
     open rust_operators
     !\\(path, $'"std::path::PathBuf::from($0)"')
 
 // // ## path_buf_join
-
 inl path_buf_join (s : string) (path_buf : path_buf) : path_buf =
     open rust_operators
     !\\((path_buf, s |> sm'.to_std_string), $'"$0.join($1)"')
 
 // // ## path_display
-
 inl path_display (path : rust.ref' path) : sm'.std_string =
     open rust_operators
     !\\(path, $'"$0.display().to_string()"')
 
 // // ## path_buf_file_name
-
 inl path_buf_file_name (path : path_buf) : optionm'.option' (rust.ref' sm'.os_str) =
     open rust_operators
     !\($'"!path.file_name()"')
 
 // // ## path_buf_display
-
 inl path_buf_display (path_buf : path_buf) : sm'.std_string =
     open rust_operators
     !\\(path_buf, $'"$0.display().to_string()"')
 
 // // ## path_buf_exists
-
 inl path_buf_exists (path_buf : path_buf) : bool =
     open rust_operators
     !\\(path_buf, $'"$0.exists()"')
 
 // // ## path_buf_is_dir
-
 inl path_buf_is_dir (path_buf : path_buf) : bool =
     open rust_operators
     !\\(path_buf, $'"$0.is_dir()"')
 
 // // ## path_buf_is_file
-
 inl path_buf_is_file (path_buf : path_buf) : bool =
     open rust_operators
     !\\(path_buf, $'"$0.is_file()"')
 
 // // ## path_buf_parent
-
 inl path_buf_parent (path_buf : path_buf) : optionm'.option' path_buf =
     open rust_operators
     !\\(path_buf, $'"$0.parent().map(std::path::PathBuf::from)"')
 
 // // ## ts_path_join
-
 inl ts_path_join (b : string) (a : string) : string =
     open ts_operators
     global "type IPathJoin = abstract join: [<System.ParamArray>] paths: string[] -> string"
@@ -162,7 +146,6 @@ inl ts_path_join (b : string) (a : string) : string =
     !\($'"!path.join(!a, !b)"')
 
 // // ## (< />)
-
 inl (</>) (a : string) (b : string) : string =
     run_target function
         | Rust (Native) => fun () =>
@@ -173,30 +156,109 @@ inl (</>) (a : string) (b : string) : string =
             a |> ts_path_join b
         | _ => fun () => null ()
 
-// // ## dir_entry
+// // ## directory_info
+nominal directory_info = $'System.IO.DirectoryInfo'
 
+inl directory_info (path : string) : directory_info =
+    path |> $'`directory_info '
+
+// // ## directory_info_exists
+inl directory_info_exists (info : directory_info) : bool =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!info.Exists'
+        | _ => fun () => null ()
+
+// // ## directory_info_creation_time
+inl directory_info_creation_time (info : directory_info) : date_time.date_time =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!info.CreationTime'
+        | _ => fun () => null ()
+
+// // ## directory_info_name
+inl directory_info_name (info : directory_info) : string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!info.Name'
+        | _ => fun () => null ()
+
+// // ## directory_info_full_name
+inl directory_info_full_name (info : directory_info) : string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!info.FullName'
+        | _ => fun () => null ()
+
+// // ## dir_entry
 nominal dir_entry = $'async_walkdir_DirEntry'
 
 // // ## walk_dir
-
 nominal walk_dir = $'async_walkdir_WalkDir'
 
-// // ## io_error
+// // ## async_walkdir_filtering
+nominal async_walkdir_filtering = $'async_walkdir_Filtering'
 
+// // ## io_error
 nominal io_error = $"std_io_Error"
 
-// // ## dir_entry_path
+// // ## filtering
+union filtering =
+    | Ignore
+    | IgnoreDir
+    | Continue
 
+// // ## stream_filter_map
+inl stream_filter_map forall t.
+    (fn : resultm.result' dir_entry io_error -> optionm'.option' t)
+    (stream : walk_dir)
+    : am'.vec t =
+
+    inl fn = join fn
+    inl result : am'.vec t =
+        !\($'"futures_lite::stream::StreamExt::collect(futures_lite::stream::StreamExt::filter_map(!stream, |x| !fn(x))).await"')
+    result
+
+// // ## new_walk_dir
+inl new_walk_dir (dir : string) : walk_dir =
+    !\\(dir, $'"async_walkdir::WalkDir::new(&*$0)"')
+    // inl walk_dir : walk_dir = walk_dir |> rust.to_mut
+    // (!\($'"true; let mut !walk_dir = !walk_dir"') : bool) |> ignore
+
+// // ## walk_dir_filter
+inl walk_dir_filter (fn : dir_entry -> async.future_pin_send filtering) (walk_dir : walk_dir) : walk_dir =
+    inl fn entry = async.future_init_send (2, 1) 0 fun () =>
+        inl result = fn entry |> async.await_send
+        inl filtering : async_walkdir_filtering =
+            match result with
+            | Ignore => !\($'"async_walkdir::Filtering::Ignore"')
+            | IgnoreDir => !\($'"async_walkdir::Filtering::IgnoreDir"')
+            | Continue => !\($'"async_walkdir::Filtering::Continue"')
+        filtering
+    !\\((walk_dir, fn), $'"async_walkdir::WalkDir::filter($0, |x| $1(x))"')
+
+// // ## file_type
+nominal file_type = $'std_fs_FileType'
+
+// // ## dir_entry_file_type
+inl dir_entry_file_type (dir_entry : dir_entry) : async.future_pin_send (resultm.result' file_type io_error) =
+    inl dir_entry = join dir_entry
+    !\($'"Box::pin(async_walkdir::DirEntry::file_type(&!dir_entry))"')
+
+// // ## file_type_is_dir
+inl file_type_is_dir (file_type : file_type) : bool =
+    inl file_type = join file_type
+    !\($'"std::fs::FileType::is_dir(&!file_type)"')
+
+// // ## dir_entry_path
 inl dir_entry_path (dir_entry : dir_entry) : path_buf =
     !\\(dir_entry, $'"async_walkdir::DirEntry::path(&$0)"')
 
 // // ## get_temp_path
-
 inl get_temp_path () : string =
     $'System.IO.Path.GetTempPath' ()
 
 // // ## get_file_name
-
 inl get_file_name (path : string) : string =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -204,7 +266,6 @@ inl get_file_name (path : string) : string =
         | _ => fun () => null ()
 
 // // ## get_full_path
-
 inl get_full_path (path : string) : string =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -220,7 +281,6 @@ inl get_full_path (path : string) : string =
         | _ => fun () => null ()
 
 // // ## get_current_directory
-
 inl get_current_directory () : string =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -235,7 +295,6 @@ inl get_current_directory () : string =
         | _ => fun () => null ()
 
 // // ## create_temp_directory_name
-
 inl create_temp_directory_name () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -244,60 +303,25 @@ inl create_temp_directory_name () =
             </> (date_time.now () |> date_time.new_guid_from_date_time |> sm'.obj_to_string)
         | target => fun () => null ()
 
-// // ## directory_info
-
-nominal directory_info = $'System.IO.DirectoryInfo'
-
-inl directory_info (path : string) : directory_info =
-    path |> $'`directory_info '
-
-// // ## directory_info_exists
-
-inl directory_info_exists (info : directory_info) : bool =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            $'!info.Exists'
-        | _ => fun () => null ()
-
-// // ## directory_info_creation_time
-
-inl directory_info_creation_time (info : directory_info) : date_time.date_time =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            $'!info.CreationTime'
-        | _ => fun () => null ()
-
-// // ## directory_info_name
-
-inl directory_info_name (info : directory_info) : string =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            $'!info.Name'
-        | _ => fun () => null ()
-
-// // ## directory_info_full_name
-
-inl directory_info_full_name (info : directory_info) : string =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            $'!info.FullName'
-        | _ => fun () => null ()
-
 // // ## get_source_directory
-
 inl get_source_directory () =
     $'__SOURCE_DIRECTORY__' : string
 
 // // ## create_directory
-
 inl create_directory (path : string) : directory_info =
     run_target function
         | Fsharp (Native) => fun () =>
             path |> $'System.IO.Directory.CreateDirectory'
         | _ => fun () => null ()
 
-// // ## directory_exists
+// // ## directory_get_files
+inl directory_get_files (path : string) : array_base string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.Directory.GetFiles'
+        | _ => fun () => null ()
 
+// // ## directory_exists
 inl directory_exists (path : string) : bool =
     run_target function
         | Rust (Native) => fun () =>
@@ -312,7 +336,6 @@ inl directory_exists (path : string) : bool =
         | _ => fun () => null ()
 
 // // ## directory_get_parent
-
 inl directory_get_parent (path : string) : optionm'.option' string =
     run_target function
         | Rust (Native) => fun () =>
@@ -336,7 +359,6 @@ inl directory_get_parent (path : string) : optionm'.option' string =
     |> optionm'.box
 
 // // ## file_delete
-
 inl file_delete (path : string) : () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -344,7 +366,6 @@ inl file_delete (path : string) : () =
         | _ => fun () => null ()
 
 // // ## file_move
-
 inl file_move (old_path : string) (new_path : string) : () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -352,7 +373,6 @@ inl file_move (old_path : string) (new_path : string) : () =
         | _ => fun () => null ()
 
 // // ## file_exists
-
 inl file_exists (path : string) : bool =
     run_target function
         | Rust (Native) => fun () =>
@@ -367,7 +387,6 @@ inl file_exists (path : string) : bool =
         | _ => fun () => null ()
 
 // // ## directory_delete
-
 inl directory_delete recursive (path : string) : () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -375,7 +394,6 @@ inl directory_delete recursive (path : string) : () =
         | _ => fun () => null ()
 
 // // ## read_all_text_async
-
 inl read_all_text_async (path : string) : _ string =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -383,7 +401,6 @@ inl read_all_text_async (path : string) : _ string =
         | _ => fun () => null ()
 
 // // ## file_exists_content
-
 inl file_exists_content path content : _ bool =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -399,7 +416,6 @@ inl file_exists_content path content : _ bool =
         | _ => fun () => null ()
 
 // // ## write_all_text
-
 inl write_all_text (path : string) (text : string) : () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -407,7 +423,6 @@ inl write_all_text (path : string) (text : string) : () =
         | _ => fun () => null ()
 
 // // ## write_all_text_async
-
 inl write_all_text_async (path : string) (text : string) : _ () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -415,7 +430,6 @@ inl write_all_text_async (path : string) (text : string) : _ () =
         | _ => fun () => null ()
 
 // // ## write_all_text_exists
-
 inl write_all_text_exists path contents =
     fun () =>
         inl exists' = contents |> file_exists_content path |> async.let'
@@ -424,7 +438,6 @@ inl write_all_text_exists path contents =
     |> async.new_async
 
 // // ## delete_directory_async
-
 inl delete_directory_async path : _ i64 =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -437,9 +450,9 @@ inl delete_directory_async path : _ i64 =
                         fun ex =>
                             if retry % 100i64 = 0 then
                                 inl ex = ex |> sm'.format_exception
-                                let get_locals () = $'$"path: {!path |> !get_file_name} / ex: {!ex} / {!get_locals ()}"' : string
-                                // trace Debug (fun () -> "delete_directory_async") getLocals
-                                console.write_line ($'$"delete_directory_async / {!get_locals ()}"' : string)
+                                trace Debug
+                                    fun () => "file_system.delete_directory_async"
+                                    fun () => $'$"path: {!path |> !get_file_name} / ex: {!ex} / {!_locals ()}"'
                             async.sleep 10i32 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
@@ -447,7 +460,6 @@ inl delete_directory_async path : _ i64 =
         | _ => fun () => null ()
 
 // // ## create_temp_directory
-
 inl create_temp_directory () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -458,10 +470,9 @@ inl create_temp_directory () =
             if not exists' then
                 inl creation_time = result |> directory_info_creation_time
                 inl result = ($'{| Exists = !exists'; CreationTime = !creation_time |}' : any) |> sm'.format_debug
-                inl get_locals () : string =
-                    $'$"temp_folder: {!temp_folder} / result: {!result} {!get_locals ()}"'
-                // trace Debug (fun () => "createTempDirectory") get_locals
-                console.write_line ($'$"create_temp_directory / {!get_locals ()}"' : string)
+                trace Debug
+                    fun () => "file_system.create_temp_directory"
+                    fun () => $'$"temp_folder: {!temp_folder} / result: {!result} {!_locals ()}"'
             inl disposable : _ () = new_disposable fun () =>
                 temp_folder
                 |> delete_directory_async
@@ -471,7 +482,6 @@ inl create_temp_directory () =
         | _ => fun () => null ()
 
 // // ## wait_for_file_access
-
 inl wait_for_file_access access path =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -493,9 +503,9 @@ inl wait_for_file_access access path =
                         fun ex =>
                             if retry > 0 && retry % 100i64 = 0 then
                                 inl ex = ex |> sm'.format_exception
-                                let get_locals () = $'$"path: {!path |> !get_file_name} / retry: {!retry} / ex: {!ex} / {!get_locals ()}"' : string
-                                // trace Debug (fun () -> "wait_for_file_access") getLocals
-                                console.write_line ($'$"wait_for_file_access / {!get_locals ()}"' : string)
+                                trace Debug
+                                    fun () => "file_system.wait_for_file_access"
+                                    fun () => $'$"path: {!path |> !get_file_name} / retry: {!retry} / ex: {!ex} / {!_locals ()}"'
                             async.sleep 10i32 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
@@ -510,7 +520,6 @@ inl wait_for_file_access_read path =
     ))
 
 // // ## read_all_text_retry_async
-
 inl read_all_text_retry_async full_path : async.async (optionm'.option' string) =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -529,8 +538,8 @@ inl read_all_text_retry_async full_path : async.async (optionm'.option' string) 
                         fun ex =>
                             if retry <> 0 then
                                 inl ex = ex |> sm'.format_exception
-                                let get_locals () = $'$"retry: {!retry} / ex: {!ex} / {!get_locals ()}"' : string
-                                trace Debug (fun () => $'"read_all_text_retry_async"' : string) get_locals
+                                let _locals () = $'$"retry: {!retry} / ex: {!ex} / {!_locals ()}"' : string
+                                trace Debug (fun () => $'"read_all_text_retry_async"' : string) _locals
                                 (None : _ string) |> optionm'.box |> return |> fun x => $'(*' : ()
                             else
                                 $'*) else' : ()
@@ -541,7 +550,6 @@ inl read_all_text_retry_async full_path : async.async (optionm'.option' string) 
         | _ => fun () => null ()
 
 // // ## delete_file_async
-
 inl delete_file_async path : _ i64 =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -553,9 +561,11 @@ inl delete_file_async path : _ i64 =
                             return retry
                         fun ex =>
                             if retry % 100 = 0 then
-                                inl ex = ex |> sm'.format_exception
-                                let getLocals () = $'$"path: {!path |> !get_file_name} / ex: {ex} / {!get_locals ()}"'
-                                trace Warning (fun () => "delete_file_async") get_locals
+                                trace Warning
+                                    fun () => "delete_file_async"
+                                    fun () =>
+                                        inl ex = ex |> sm'.format_exception
+                                        $'$"path: {!path |> !get_file_name} / ex: {!ex} / {!_locals ()}"'
                             async.sleep 10 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
@@ -563,7 +573,6 @@ inl delete_file_async path : _ i64 =
         | _ => fun () => null ()
 
 // // ## move_file_async
-
 inl move_file_async new_path old_path : _ i64 =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -575,10 +584,10 @@ inl move_file_async new_path old_path : _ i64 =
                             return retry
                         fun ex =>
                             if retry % 100 = 0 then
-                                let get_locals () =
+                                inl _locals () =
                                     inl ex = ex |> sm'.format_exception
-                                    $'$"old_path: {!old_path |> !get_file_name} / new_path: {!new_path |> !get_file_name} / ex: {!ex} / {!get_locals ()}"' : string
-                                trace Warning (fun () => "move_file_async") get_locals
+                                    $'$"old_path: {!old_path |> !get_file_name} / new_path: {!new_path |> !get_file_name} / ex: {!ex} / {!_locals ()}"'
+                                trace Warning (fun () => "move_file_async") _locals
                             async.sleep 10 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async_unit
@@ -586,7 +595,6 @@ inl move_file_async new_path old_path : _ i64 =
         | _ => fun () => null ()
 
 // // ## find_parent
-
 inl find_parent name is_file root_dir =
     let rec loop dir =
         if dir </> name |> (if is_file then file_exists else directory_exists)
@@ -599,14 +607,47 @@ inl find_parent name is_file root_dir =
     loop root_dir
 
 // // ## get_repository_root
-
 inl get_repository_root () =
     get_source_directory ()
     |> find_parent ("polyglot" </> ".paket") false
     |> fun root => root </> "polyglot"
 
-// // ## main
+// // ## normalize_path
+inl normalize_path (path : string) : string =
+    if runtime.is_windows () |> not
+    then path
+    else $'$"{!path.[0] |> System.Char.ToLower}{!path.[1..]}"' |> sm'.replace "\\" "/"
 
+// // ## new_file_uri
+inl new_file_uri (path : string) : string =
+    inl path = path |> sm'.trim_start ;[ '/' ]
+    $'$"file:///{!path}"'
+
+// // ## trace_file
+let rec trace_file text =
+    run_target function
+    | Fsharp (Native) => fun () =>
+        try_unit
+            fun () =>
+                inl assembly_name = get_entry_assembly_name ()
+                inl guid = date_time.now () |> date_time.new_guid_from_date_time
+                inl file_name = $'$"{!assembly_name}_{!guid}.txt"'
+                
+                inl repository_root = get_repository_root ()
+                inl trace_dir = repository_root </> "target/polyglot/trace"
+                trace_dir |> create_directory |> ignore
+                inl path = trace_dir </> file_name
+                text |> write_all_text_async path |> async.run_synchronously
+            fun ex =>
+                trace_file $'$"file_system.trace_file / ex: %A{!ex}"'
+    | _ => fun () => ()
+
+// // ## init_trace_file
+inl init_trace_file enabled =
+    inl state_trace_file = get_trace_state () .trace_file
+    state_trace_file <- if enabled then trace_file else ignore
+
+// // ## main
 inl main () =
     types ()
     init_trace_state ()
@@ -624,6 +665,9 @@ inl main () =
     $"let create_temp_directory () = !create_temp_directory ()" : ()
     $"let get_source_directory () = !get_source_directory ()" : ()
     $"let find_parent x = !find_parent x" : ()
+    $"let normalize_path x = !normalize_path x" : ()
+    $"let new_file_uri x = !new_file_uri x" : ()
     $"let get_repository_root () = !get_repository_root ()" : ()
+    $"let init_trace_file x = !init_trace_file x" : ()
     inl combine x = (</>) x
     $"let (</>) x = !combine x" : ()

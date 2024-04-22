@@ -466,6 +466,15 @@ inl vec_filter forall t. (fn : t -> bool) (ar : vec t) : vec t =
 
 #!markdown
 
+## vec_len
+
+#!spiral
+
+inl vec_len forall t. (vec : vec t) : unativeint =
+    !\\(vec, $'"$0.len()"')
+
+#!markdown
+
 ## slice
 
 #!spiral

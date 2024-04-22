@@ -1,11 +1,9 @@
 /// ## Perf (Polyglot)
-
 #if !INTERACTIVE
 open Lib
 #endif
 
 /// ## TestCaseResult
-
 type TestCaseResult =
     {
         Input: string
@@ -15,7 +13,6 @@ type TestCaseResult =
     }
 
 /// ## run
-
 let run count (solutions: (string * ('TInput -> 'TExpected)) list) (input, expected) =
     let inputStr =
         match box input with
@@ -67,7 +64,6 @@ let run count (solutions: (string * ('TInput -> 'TExpected)) list) (input, expec
     }
 
 /// ## runAll
-
 let runAll testName count (solutions: (string * ('TInput -> 'TExpected)) list) testCases =
     printfn ""
     printfn ""
@@ -77,7 +73,6 @@ let runAll testName count (solutions: (string * ('TInput -> 'TExpected)) list) t
     |> Seq.toList
 
 /// ## sortResultList
-
 let sortResultList resultList =
     let table =
         let rows =

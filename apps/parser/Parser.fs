@@ -7,7 +7,6 @@ module Parser =
     open Common
 
     /// ### TextInput
-
     type Position =
         {
             line : int
@@ -63,7 +62,6 @@ module Parser =
                 newState, Some char
 
     /// ### Parser
-
     type Input = InputState
     type ParserLabel = string
     type ParserError = string

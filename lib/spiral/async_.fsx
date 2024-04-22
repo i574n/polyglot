@@ -1,6 +1,8 @@
 #if FABLE_COMPILER // async.types
-[<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>] type Future<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>] type TryJoinAll<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>] type std_future_Future<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>] type futures_future_TryJoinAll<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter<$0>")>] type rayon_vec_IntoIter<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map<$0, _>")>] type rayon_iter_Map<'T> = class end
 #endif // async.types
 let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Threading.CancellationToken> =
     let v1 : Async<System.Threading.CancellationToken> option = None

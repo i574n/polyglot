@@ -6,6 +6,7 @@
 [<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>] type Fn<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("Fn()")>] type FnUnit = class end
 [<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>] type FnOnce<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("Fn($0)")>] type ActionFn<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")>] type ActionFn2<'T, 'U> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("impl $0")>] type Impl<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("mut $0")>] type Mut<'T> = class end

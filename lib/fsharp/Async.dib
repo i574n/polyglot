@@ -80,11 +80,11 @@ let inline catch a =
 #!fsharp
 
 let inline runWithTimeoutAsync_ (timeout : int) fn =
-    let getLocals () = $"timeout: {timeout} / {getLocals ()}"
+    let _locals () = $"timeout: {timeout} / {_locals ()}"
 
     let timeoutTask = async {
         do! Async.Sleep timeout
-        trace Debug (fun () -> "runWithTimeoutAsync") getLocals
+        trace Debug (fun () -> "runWithTimeoutAsync") _locals
         return None
     }
 
@@ -97,11 +97,11 @@ let inline runWithTimeoutAsync_ (timeout : int) fn =
             ex.InnerExceptions
             |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
             ->
-            let getLocals () = $"ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
-            trace Warning (fun () -> "runWithTimeoutAsync") getLocals
+            let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
+            trace Warning (fun () -> "runWithTimeoutAsync") _locals
             return None
         | ex ->
-            trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> SpiralSm.format_exception}") getLocals
+            trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> SpiralSm.format_exception}") _locals
             return None
     }
 
@@ -148,7 +148,7 @@ async {
 #!fsharp
 
 let inline runWithTimeoutChildAsync (timeout : int) fn = async {
-    let getLocals () = $"timeout: {timeout} / {getLocals ()}"
+    let _locals () = $"timeout: {timeout} / {_locals ()}"
     let! child = Async.StartChild (fn, timeout)
     return!
         child
@@ -156,10 +156,10 @@ let inline runWithTimeoutChildAsync (timeout : int) fn = async {
         |> map (function
             | Ok result -> Some result
             | Error (:? System.TimeoutException as ex) ->
-                trace Debug (fun () -> $"runWithTimeoutChildAsync") getLocals
+                trace Debug (fun () -> $"runWithTimeoutChildAsync") _locals
                 None
             | Error ex ->
-                trace Critical (fun () -> $"runWithTimeoutChildAsync** / ex: {ex |> SpiralSm.format_exception}") getLocals
+                trace Critical (fun () -> $"runWithTimeoutChildAsync** / ex: {ex |> SpiralSm.format_exception}") _locals
                 None
         )
 }
@@ -212,22 +212,22 @@ async {
 #!fsharp
 
 let inline runWithTimeoutStrict (timeout : int) fn =
-    let getLocals () = $"timeout: {timeout} / {getLocals ()}"
+    let _locals () = $"timeout: {timeout} / {_locals ()}"
 
     let timeoutTask = async {
         do! Async.Sleep timeout
-        return None, getLocals
+        return None, _locals
     }
 
     let task = async {
         try
-            return Async.RunSynchronously (fn, timeout) |> Some, getLocals
+            return Async.RunSynchronously (fn, timeout) |> Some, _locals
         with
         | :? System.TimeoutException as ex ->
-            let getLocals () = $"ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
-            return None, getLocals
+            let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
+            return None, _locals
         | ex ->
-            trace Critical (fun () -> $"runWithTimeoutStrict / ex: {ex |> SpiralSm.format_exception}") getLocals
+            trace Critical (fun () -> $"runWithTimeoutStrict / ex: {ex |> SpiralSm.format_exception}") _locals
             return raise ex
     }
 
@@ -237,8 +237,8 @@ let inline runWithTimeoutStrict (timeout : int) fn =
         |> System.Threading.Tasks.Task.WhenAny
         |> fun task ->
             match task.Result.Result with
-            | None, getLocals ->
-                trace Debug (fun () -> "runWithTimeoutStrict") getLocals
+            | None, _locals ->
+                trace Debug (fun () -> "runWithTimeoutStrict") _locals
                 None
             | result, _ -> result
     with
@@ -246,12 +246,12 @@ let inline runWithTimeoutStrict (timeout : int) fn =
         ex.InnerExceptions
         |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
         ->
-        let getLocals () = $"ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
-        trace Warning (fun () -> "runWithTimeoutStrict") getLocals
+        let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
+        trace Warning (fun () -> "runWithTimeoutStrict") _locals
         None
     | ex ->
-        let getLocals () = $"ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
-        trace Critical (fun () -> "runWithTimeoutStrict**") getLocals
+        let _locals () = $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}"
+        trace Critical (fun () -> "runWithTimeoutStrict**") _locals
         None
 
 #!fsharp

@@ -17,7 +17,7 @@
 
 #!pwsh
 
-{ . ../../../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --build-file test.spi test.fsx --timeout 10000 } | Invoke-Block
+{ . ../../../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --build-file test.spi test.fsx } | Invoke-Block
 
 #!pwsh
 

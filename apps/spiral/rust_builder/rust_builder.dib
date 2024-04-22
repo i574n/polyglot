@@ -73,7 +73,7 @@ inl main (args : array_base string) =
 
     trace Debug
         fun () => $'$"rust_builder.main"'
-        fun () => $'$"args: {!args} / repository_root: {!repository_root} / {!get_locals ()}"'
+        fun () => $'$"args: {!args} / repository_root: {!repository_root} / {!_locals ()}"'
 
     inl command = get_command ()
     inl arg_matches = command |> runtime.command_get_matches
@@ -83,7 +83,7 @@ inl main (args : array_base string) =
         fun () =>
             inl command = command |> sm'.format_pretty'
             inl arg_matches = arg_matches |> sm'.format_pretty'
-            $'$"command: {!command} / matches: {!arg_matches} / {!get_locals ()}"'
+            $'$"command: {!command} / matches: {!arg_matches} / {!_locals ()}"'
 
     0i32
 

@@ -1,9 +1,10 @@
 // ignore_for_file: camel_case_types, constant_identifier_names, non_constant_identifier_names, unnecessary_this
+import '../../fable_modules/fable_library/Map.dart' as map;
 import '../../fable_modules/fable_library/String.dart' as string;
 import '../../fable_modules/fable_library/Types.dart' as types;
 import '../../fable_modules/fable_library/Util.dart' as util;
 
-types.Some<types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?>>? State_trace_state;
+types.Some<types.Tuple5<Mut0, Mut1, Mut2, types.Some<int>?, Mut3>>? State_trace_state;
 
 class Mut0 implements types.Record, Comparable<Mut0> {
     int l0;
@@ -47,6 +48,11 @@ class Mut2 implements types.Record, Comparable<Mut2> {
     int get hashCode => l0.hashCode;
     @override
     int compareTo(Mut2 other) => l0.compareTo(other.l0);
+}
+
+class Mut3 implements types.Record {
+    void Function(String) l0;
+    Mut3(this.l0);
 }
 
 class US1 implements types.Union, Comparable<US1> {
@@ -177,28 +183,33 @@ bool US2__get_IsUS2_1(types.FSharpRef<US2, InOut> this$, void unitArg) {
     }
 }
 
+void closure1(void unitVar, String v0_1) {
+}
+
 types.Some<int>? method0(types.Some<int>? v0_1) => v0_1;
 
 types.Some<int>? method1(types.Some<int>? v0_1) => v0_1;
 
-types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> closure0(void unitVar, void unitVar_1) {
+types.Tuple5<Mut0, Mut1, Mut2, types.Some<int>?, Mut3> closure0(void unitVar, void unitVar_1) {
     final v0_1 = Mut1(true);
     final v1_1 = Mut0(0);
     final v3 = Mut2(const US0(/* US0_0 */ 0));
-    final v4 = Mut1(false);
-    types.Some<types.Some<int>?>? _v5;
+    final v5 = Mut3((String v) {
+        closure1(util.ignore(), v);
+    });
+    types.Some<types.Some<int>?>? _v6;
     final types.Some<int>? x = method1(null);
-    _v5 = types.Some(x);
-    return types.Tuple5(v1_1, v4, v0_1, v3, types.value(_v5));
+    _v6 = types.Some(x);
+    return types.Tuple5(v1_1, v0_1, v3, types.value(_v6), v5);
 }
 
-US2 closure5(void unitVar, int v0_1) => US2_US2_0(v0_1);
+US2 closure6(void unitVar, int v0_1) => US2_US2_0(v0_1);
 
-US2 Function(int) method3() => (int v) => closure5(util.ignore(), v);
+US2 Function(int) method3() => (int v) => closure6(util.ignore(), v);
 
 String method4() => '';
 
-String closure4(US0 v0_1, String Function() v1_1, String Function() v2, void unitVar) {
+String closure5(US0 v0_1, String Function() v1_1, String Function() v2, void unitVar) {
     if (State_trace_state == null) {
         State_trace_state = types.Some(closure0(util.ignore(), util.ignore()));
     }
@@ -230,41 +241,47 @@ String closure4(US0 v0_1, String Function() v1_1, String Function() v2, void uni
     return string.trimEnd(string.trimStart('$v61 ${types.value(_v74)} #$v62 ${v1_1()} / ${v2()}', <int>[]), [32, 47]);
 }
 
-void method2(US0 v0_1, String Function() v1_1, String Function() v2) {
-    types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> v3() => closure0(util.ignore(), util.ignore());
+void method5(US0 v0_1, String Function() v1_1) {
+    types.Tuple5<Mut0, Mut1, Mut2, types.Some<int>?, Mut3> v2() => closure0(util.ignore(), util.ignore());
     if (State_trace_state == null) {
-        State_trace_state = types.Some(v3());
+        State_trace_state = types.Some(v2());
     }
-    final v4 = types.value(State_trace_state).item1;
+    final patternInput = types.value(State_trace_state);
+    final v3 = patternInput.item1;
     if (State_trace_state == null) {
-        State_trace_state = types.Some(v3());
+        State_trace_state = types.Some(v2());
     }
     final patternInput_1 = types.value(State_trace_state);
-    final US0 v14 = patternInput_1.item4.l0;
-    if (patternInput_1.item3.l0 && (v0_1.compareTo(v14) >= 0)) {
-        final v19 = v4.l0 + 1;
-        v4.l0 = v19;
-        final v21 = '${closure4(v0_1, v1_1, v2, util.ignore())}';
-        types.Some<void>? _v22;
+    final US0 v13 = patternInput_1.item3.l0;
+    if ((patternInput_1.item2.l0 == false) ? false : (map.find<US0, int>(v0_1, map.ofSeq<US0, int>(const [types.Tuple2(US0(/* US0_0 */ 0), 0), types.Tuple2(US0(/* US0_1 */ 1), 1), types.Tuple2(US0(/* US0_2 */ 2), 2), types.Tuple2(US0(/* US0_3 */ 3), 3), types.Tuple2(US0(/* US0_4 */ 4), 4)], types.Comparer((US0 x, US0 y) => x.compareTo(y)))) >= map.find<US0, int>(v13, map.ofSeq<US0, int>(const [types.Tuple2(US0(/* US0_0 */ 0), 0), types.Tuple2(US0(/* US0_1 */ 1), 1), types.Tuple2(US0(/* US0_2 */ 2), 2), types.Tuple2(US0(/* US0_3 */ 3), 3), types.Tuple2(US0(/* US0_4 */ 4), 4)], types.Comparer((US0 x, US0 y) => x.compareTo(y)))))) {
+        final v21 = v3.l0 + 1;
+        v3.l0 = v21;
+        final v22 = '${v1_1()}';
+        types.Some<void>? _v23;
         null;
-        _v22 = types.Some(util.ignore());
-        types.value(_v22);
+        _v23 = types.Some(util.ignore());
+        types.value(_v23);
+        patternInput.item5.l0(v22);
     }
 }
 
-void closure3(US0 v0_1, String Function() v1_1, String Function() v2) {
+void method2(US0 v0_1, String Function() v1_1, String Function() v2) {
+    method5(v0_1, () => closure5(v0_1, v1_1, v2, util.ignore()));
+}
+
+void closure4(US0 v0_1, String Function() v1_1, String Function() v2) {
     method2(v0_1, v1_1, v2);
 }
 
-void Function(String Function()) closure2(US0 v0_1, String Function() v1_1) => (String Function() v) {
-    closure3(v0_1, v1_1, v);
+void Function(String Function()) closure3(US0 v0_1, String Function() v1_1) => (String Function() v) {
+    closure4(v0_1, v1_1, v);
 };
 
-void Function(String Function()) Function(String Function()) closure1(void unitVar, US0 v0_1) => (String Function() v) => closure2(v0_1, v);
+void Function(String Function()) Function(String Function()) closure2(void unitVar, US0 v0_1) => (String Function() v) => closure3(v0_1, v);
 
-types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> v0() => closure0(util.ignore(), util.ignore());
+types.Tuple5<Mut0, Mut1, Mut2, types.Some<int>?, Mut3> v0() => closure0(util.ignore(), util.ignore());
 
-void Function(String Function()) Function(String Function()) v1(US0 v) => closure1(util.ignore(), v);
+void Function(String Function()) Function(String Function()) v1(US0 v) => closure2(util.ignore(), v);
 
 void Function(String Function()) Function(String Function()) trace(US0 x) => v1(x);
 

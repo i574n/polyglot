@@ -1,5 +1,4 @@
 // // # am'
-
 open rust_operators
 
 inl types () =
@@ -8,34 +7,28 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>] type Vec<'T> = class end"
 
 // // ## length
-
 inl length forall dim {int} el. (a : a dim el) : dim =
     a |> length
 
 // // ## index
-
 inl index forall dim {int} el. (i : dim) (a : a dim el) : el =
     index a i
 
 // // ## append
-
 instance append a dim {int; number} t =
     am.append
 
 // // ## /@
-
 inl (/@) a b =
     b |> append a
 
 // // ## collect
-
 inl collect forall t r. (fn : t -> a i32 r) (items : a i32 t) : a i32 r =
     items
     |> am.map fn
     |> am.fold (/@) (a ;[])
 
 // // ## choose
-
 inl choose f l =
     (l, [])
     ||> am.foldBack fun x acc =>
@@ -45,25 +38,21 @@ inl choose f l =
     |> listm.toArray
 
 // // ## sum
-
 inl sum (a' : a _ _) =
     a' |> am.fold (+) 0
 
 // // ## init_series
-
 inl init_series start end inc =
     inl total = conv ((end - start) / inc) + 1
     am.init total (conv >> (*) inc >> (+) start) : a i32 _
 
 // // ## head
-
 inl head (ar : a _ _) =
     if var_is ar || length ar > 0
     then ar |> index 0
     else error_type "The length of the array should be greater than 0."
 
 // // ## last
-
 inl last (ar : a _ _) =
     inl len = length ar
     if var_is ar || len > 0
@@ -71,7 +60,6 @@ inl last (ar : a _ _) =
     else error_type "The length of the array should be greater than 0."
 
 // // ## try_pick
-
 inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
     (array, None)
     ||> am.foldBack fun x acc =>
@@ -80,7 +68,6 @@ inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
         | None => x |> fn
 
 // // ## indexed'
-
 inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a dim t) : a dim' (u * t) =
     ((0, a ;[]), ar)
     ||> am.fold fun (i, acc) x =>
@@ -88,14 +75,12 @@ inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a d
     |> snd
 
 // // ## map_base
-
 inl map_base forall t u. (fn : t -> u) (x : array_base t) : array_base u =
     a x
     |> am.map fn
     |> fun (a x : _ i64 _) => x
 
 // // ## average
-
 inl average forall el {number}. (a : a _ el) : el =
     a |> $'Array.average'
 
@@ -103,32 +88,26 @@ inl distinct forall dim el. (a : a dim el) : a dim el =
     a |> $'Array.distinct'
 
 // // ## parallel_map
-
 inl parallel_map forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
     a |> $'Array.Parallel.map' fn
 
 // // ## sort_by
-
 inl sort_by forall dim el. (fn : el -> _) (a : a dim el) : a dim el =
     a |> $'Array.sortBy' fn
 
 // // ## sort_descending
-
 inl sort_descending forall dim el. (a : a dim el) : a dim el =
     a |> $'Array.sortDescending'
 
 // // ## transpose
-
 inl transpose forall dim el. (a : a dim (a dim el)) : a dim (a dim el) =
     a |> $'Array.transpose'
 
 // // ## try_item
-
 inl try_item forall dim el. (i : i32) (a : a dim el) : option el =
     a |> $'Array.tryItem' i |> optionm'.unbox
 
 // // ## indexed
-
 inl indexed (array : a _ _) =
     (([], 0), array)
     ||> am.fold fun (acc, i) x =>
@@ -138,21 +117,17 @@ inl indexed (array : a _ _) =
     |> listm.toArray
 
 // // ## vec
-
 nominal vec t = $"Vec<`t>"
 
 // // ## from_vec
-
 inl from_vec forall dim el. (vec : vec el) : a dim el =
     !\\(vec, $'"fable_library_rust::NativeArray_::array_from($0)"')
 
 // // ## to_vec
-
 inl to_vec forall t. (ab : array_base t) : vec t =
     !\\(ab, $'"$0.to_vec()"')
 
 // // ## vec_push
-
 inl vec_push forall el. (el : el) (vec : vec el) : vec el =
     inl el = join el
     inl vec = join vec
@@ -162,7 +137,6 @@ inl vec_push forall el. (el : el) (vec : vec el) : vec el =
     !\($'"!vec"')
 
 // // ## vec_reverse
-
 inl vec_reverse forall el. (vec : vec el) : vec el =
     inl vec = join vec
     !\($'"let mut !vec = !vec"')
@@ -170,7 +144,6 @@ inl vec_reverse forall el. (vec : vec el) : vec el =
     !\($'"!vec"')
 
 // // ## vec_retain
-
 inl vec_retain forall el. (fn : el -> bool) (vec : vec el) : vec el =
     inl vec = join vec
     inl fn = join fn
@@ -180,7 +153,6 @@ inl vec_retain forall el. (fn : el -> bool) (vec : vec el) : vec el =
     !\($'"!vec"')
 
 // // ## vec_sort_by_key
-
 inl vec_sort_by_key forall el t. (fn : el -> t) (vec : vec el) : vec el =
     inl vec = join vec
     inl fn = join fn
@@ -190,7 +162,6 @@ inl vec_sort_by_key forall el t. (fn : el -> t) (vec : vec el) : vec el =
     !\($'"!vec"')
 
 // // ## vec_extend
-
 inl vec_extend forall el. (el : vec el) (vec : vec el) : vec el =
     inl el = join el
     inl vec = join vec
@@ -200,14 +171,12 @@ inl vec_extend forall el. (el : vec el) (vec : vec el) : vec el =
     !\($'"!vec"')
 
 // // ## vec_collect
-
 inl vec_collect fn vec =
     ((;[] |> to_vec), (vec |> from_vec : _ i32 _))
     ||> am.fold fun acc x =>
         acc |> vec_extend (fn x)
 
 // // ## vec_collect_option
-
 inl vec_collect_option vec =
     ((;[] |> to_vec |> Ok), (vec |> from_vec : _ i32 _))
     ||> am.fold fun acc x =>
@@ -220,7 +189,6 @@ inl vec_collect_option vec =
             | _ => acc
 
 // // ## vec_collect_into
-
 inl vec_collect_into forall (c : * -> * -> *) t e.
     (x : vec (c t e))
     : c (vec t) e
@@ -228,30 +196,29 @@ inl vec_collect_into forall (c : * -> * -> *) t e.
     !\($'"!x.into_iter().collect()"')
 
 // // ## vec_mapi
-
 inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : vec t) : vec u =
     inl fn = join fn
     inl ar = join ar
     !\($'"!ar.iter().enumerate().map(|(i, x)| !fn(i.try_into().unwrap())(x.clone())).collect()"')
 
 // // ## vec_map
-
 inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
     !\\((ar, fn), $'"$0.iter().map(|x| $1(x.clone())).collect()"')
 
 // // ## vec_filter
-
 inl vec_filter forall t. (fn : t -> bool) (ar : vec t) : vec t =
     inl fn = join fn
     inl ar = join ar
     !\($'"!ar.into_iter().filter(|x| !fn(x.clone().clone())).collect()"')
 
-// // ## slice
+// // ## vec_len
+inl vec_len forall t. (vec : vec t) : unativeint =
+    !\\(vec, $'"$0.len()"')
 
+// // ## slice
 nominal slice t = $"Slice<`t>"
 
 // // ## slice'
-
 nominal slice' t u = $"Slice'<`t, `u>"
 
 inl slice' forall dim el. (x : option el) : slice' el dim =
@@ -263,7 +230,6 @@ inl slice' forall dim el. (x : option el) : slice' el dim =
             // !\( : string) : slice' el i32 // !\($'"[]"')
 
 // // ## as_slice
-
 inl as_slice forall t. (x : array_base t) : rust.ref' (slice t) =
     inl x = x |> to_vec
     !\($'"!x.as_slice()"')

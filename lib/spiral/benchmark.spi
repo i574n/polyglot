@@ -1,5 +1,4 @@
 // // ## benchmark (Polyglot)
-
 inl (/@) x = listm'.(/@) x
 
 inl gc_collect () =
@@ -22,7 +21,6 @@ inl stopwatch_start (stopwatch : stopwatch) : () =
     $"!stopwatch.Start ()"
 
 // // ## test_case_result
-
 type test_case_result =
     {
         Input : string
@@ -32,7 +30,6 @@ type test_case_result =
     }
 
 // // ## run
-
 inl run forall input expected.
     count
     (solutions : list (string * (input -> expected)))
@@ -78,7 +75,6 @@ inl run forall input expected.
     }
 
 // // ## run_all
-
 inl run_all forall input expected.
     test_name
     count
@@ -93,7 +89,6 @@ inl run_all forall input expected.
     |> am.map (run count solutions)
 
 // // ## sort_result_list
-
 inl sort_result_list results =
     inl table =
         inl rows =

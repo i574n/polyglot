@@ -1,5 +1,4 @@
 // // # testing
-
 inl __expect fn log b a =
     if log then
         a |> sm'.format_debug |> console.write_line

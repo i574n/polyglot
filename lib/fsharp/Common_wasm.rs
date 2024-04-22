@@ -81,9 +81,9 @@ pub mod Polyglot {
         pub fn trace(
             level: LrcPtr<Polyglot::Common::TraceLevel>,
             r#fn: Func0<string>,
-            getLocals: Func0<string>,
+            locals: Func0<string>,
         ) {
-            (SpiralTrace::trace(Polyglot::Common::to_trace_level(level)))(r#fn)(getLocals);
+            (SpiralTrace::trace(Polyglot::Common::to_trace_level(level)))(r#fn)(locals);
         }
     }
 }

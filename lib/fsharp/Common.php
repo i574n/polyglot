@@ -165,7 +165,7 @@ function to_trace_level($_arg) {
 }
 
 #9
-function trace($level, $fn, $getLocals) {
-    return \lib\SpiralTrace_trace(to_trace_level($level))($fn, $getLocals);
+function trace($level, $fn, $locals) {
+    return \lib\SpiralTrace_trace(to_trace_level($level))($fn, $locals);
 }
 

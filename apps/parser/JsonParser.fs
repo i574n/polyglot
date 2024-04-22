@@ -8,7 +8,6 @@ module JsonParser =
     open Parser
 
     /// ## JsonParser
-
     (*
     // --------------------------------
     JSON spec from http://www.json.org/
@@ -33,7 +32,6 @@ module JsonParser =
     *)
 
     /// ### JValue
-
     type JValue =
         | JString of string
         | JNumber of float
@@ -45,14 +43,12 @@ module JsonParser =
     let jValue, jValueRef = createParserForwardedToRef<JValue> ()
 
     /// ### jNull
-
     let jNull =
         pstring "null"
         >>% JNull
         <?> "null"
 
     /// ### jBool
-
     let jBool =
         let jtrue =
             pstring "true"
@@ -65,12 +61,10 @@ module JsonParser =
         <?> "bool"
 
     /// ### jUnescapedChar
-
     let jUnescapedChar =
         satisfy (fun ch -> ch <> '\\' && ch <> '\"') "char"
 
     /// ### jEscapedChar
-
     let jEscapedChar =
         [
             ("\\\"",'\"')
@@ -89,7 +83,6 @@ module JsonParser =
         <?> "escaped char"
 
     /// ### jUnicodeChar
-
     let jUnicodeChar =
         let backslash = pchar '\\'
         let uChar = pchar 'u'
@@ -104,7 +97,6 @@ module JsonParser =
         |>> convertToChar
 
     /// ### jString
-
     let quotedString =
         let quote = pchar '\"' <?> "quote"
         let jchar = jUnescapedChar <|> jEscapedChar <|> jUnicodeChar
@@ -117,7 +109,6 @@ module JsonParser =
         <?> "quoted string"
 
     /// ### jNumber
-
     let jNumber =
         let optSign = opt (pchar '-')
 
@@ -174,7 +165,6 @@ module JsonParser =
         <?> "number"
 
     /// ### jArray
-
     let jArray =
         let left = pchar '[' .>> spaces
         let right = pchar ']' .>> spaces
@@ -188,7 +178,6 @@ module JsonParser =
         <?> "array"
 
     /// ### jObject
-
     let jObject =
         let left = spaces >>. pchar '{' .>> spaces
         let right = pchar '}' .>> spaces

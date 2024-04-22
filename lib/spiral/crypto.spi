@@ -1,19 +1,16 @@
 // // # crypto
 
 // // ## sha256
-
 nominal sha256 = $'System.Security.Cryptography.SHA256'
 
 inl sha256 () : sha256 =
     $'`sha256.Create' ()
 
 // // ## sha256_compute_hash
-
 inl sha256_compute_hash (x : sha256) (data : a i32 u8) : a i32 u8 =
     data |> $'!x.ComputeHash'
 
 // // ## create_hash
-
 inl create_hash (x : string) : any =
     open ts_operators
     global "type ICryptoCreateHash = abstract createHash: x: string -> obj"
@@ -21,19 +18,16 @@ inl create_hash (x : string) : any =
     !\\(x, $'"!crypto.createHash($0)"')
 
 // // ## hash_update
-
 inl hash_update (s : string) (x : any) : any =
     open ts_operators
     !\\((x, s), $'"$0.update($1, \'utf8\')"')
 
 // // ## hash_digest
-
 inl hash_digest (s : string) (x : any) : string =
     open ts_operators
     !\\((x, s), $'"$0.digest($1)"')
 
 // // ## hash_text
-
 inl hash_text (input : string) =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -51,6 +45,5 @@ inl hash_text (input : string) =
         | _ => fun () => null ()
 
 // // ## main
-
 inl main () =
     $"let hash_text x = !hash_text x" : ()

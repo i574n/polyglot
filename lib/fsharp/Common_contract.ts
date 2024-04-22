@@ -118,7 +118,7 @@ export function to_trace_level(_arg: TraceLevel_$union): US0_$union {
     }
 }
 
-export function trace(level: TraceLevel_$union, fn: (() => string), getLocals: (() => string)): void {
-    SpiralTrace_trace(to_trace_level(level))(fn)(getLocals);
+export function trace(level: TraceLevel_$union, fn: (() => string), locals: (() => string)): void {
+    SpiralTrace_trace(to_trace_level(level))(fn)(locals);
 }
 

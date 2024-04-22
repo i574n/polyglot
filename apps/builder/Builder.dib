@@ -50,8 +50,9 @@ let inline buildProject runtime outputDir path = async {
     let fileDir = fullPath |> System.IO.Path.GetDirectoryName
     let extension = fullPath |> System.IO.Path.GetExtension
 
-    let getLocals () = $"fullPath: {fullPath} / {getLocals ()}"
-    trace Debug (fun () -> "buildProject") getLocals
+    trace Debug
+        (fun () -> "buildProject")
+        (fun () -> $"fullPath: {fullPath} / {_locals ()}")
 
     match extension with
     | ".fsproj" -> ()
@@ -83,8 +84,9 @@ let inline buildProject runtime outputDir path = async {
 #!fsharp
 
 let inline persistCodeProject packages modules name code = async {
-    let getLocals () = $"packages: {packages} / modules: {modules} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
-    trace Debug (fun () -> "persistCodeProject") getLocals
+    trace Debug
+        (fun () -> "persistCodeProject")
+        (fun () -> $"packages: {packages} / modules: {modules} / name: {name} / code.Length: {code |> String.length} / {_locals ()}")
 
     let repositoryRoot = SpiralFileSystem.get_repository_root ()
     let targetDir = repositoryRoot </> "target/polyglot/builder" </> name

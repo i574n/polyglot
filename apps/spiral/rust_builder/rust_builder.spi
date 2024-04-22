@@ -1,11 +1,9 @@
 // // # rust_builder
-
 open file_system_operators
 open rust_operators
 open sm'_operators
 
 // // ## types
-
 inl types () =
     rust.types ()
     sm'.types ()
@@ -13,7 +11,6 @@ inl types () =
     runtime.types ()
 
 // // ## get_command
-
 let get_command () =
     ##"command"
     |> runtime.new_command
@@ -27,7 +24,6 @@ let get_command () =
     )
 
 // // ## tests
-
 inl tests () =
     rust.run_tests [
         "verify_app", fun _ =>
@@ -35,7 +31,6 @@ inl tests () =
     ]
 
 // // ## main
-
 // // rust=
 
 inl main (args : array_base string) =
@@ -43,7 +38,7 @@ inl main (args : array_base string) =
 
     trace Debug
         fun () => $'$"rust_builder.main"'
-        fun () => $'$"args: {!args} / repository_root: {!repository_root} / {!get_locals ()}"'
+        fun () => $'$"args: {!args} / repository_root: {!repository_root} / {!_locals ()}"'
 
     inl command = get_command ()
     inl arg_matches = command |> runtime.command_get_matches
@@ -53,7 +48,7 @@ inl main (args : array_base string) =
         fun () =>
             inl command = command |> sm'.format_pretty'
             inl arg_matches = arg_matches |> sm'.format_pretty'
-            $'$"command: {!command} / matches: {!arg_matches} / {!get_locals ()}"'
+            $'$"command: {!command} / matches: {!arg_matches} / {!_locals ()}"'
 
     0i32
 

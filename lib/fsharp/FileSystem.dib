@@ -63,7 +63,7 @@ type FileSystemChange =
 
 let inline watchDirectoryWithFilter filter shouldReadContent path =
     let fullPath = path |> System.IO.Path.GetFullPath
-    let getLocals () = $"filter: {filter} / {getLocals ()}"
+    let _locals () = $"filter: {filter} / {_locals ()}"
 
     let watcher =
         new System.IO.FileSystemWatcher (
@@ -161,7 +161,7 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
 
     let disposable =
         new_disposable (fun () ->
-            trace Debug (fun () -> "watchWithFilter / Disposing watch stream") getLocals
+            trace Debug (fun () -> "watchWithFilter / Disposing watch stream") _locals
             watcher.EnableRaisingEvents <- false
             watcher.Dispose ()
         )
@@ -229,8 +229,8 @@ let inline testEventsRaw
         |> List.rev
         |> List.map (fun (diff, n, event) -> $"{n} / {diff} / {event}" |> SpiralSm.ellipsis_end 100L)
         |> SpiralSm.concat "\n"
-    let getLocals () = $"eventsLog: \n{eventsLog} / {getLocals ()}"
-    trace Debug (fun () -> "testEventsRaw") getLocals
+    let _locals () = $"eventsLog: \n{eventsLog} / {_locals ()}"
+    trace Debug (fun () -> "testEventsRaw") _locals
 
     events
     |> Seq.toList

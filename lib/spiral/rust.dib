@@ -12,6 +12,10 @@
 
 open testing
 
+#!markdown
+
+## types
+
 #!spiral
 
 inl types () =
@@ -23,6 +27,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>] type Fn<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn()\")>] type FnUnit = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>] type FnOnce<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0)\")>] type ActionFn<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0, $1)\")>] type ActionFn2<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>] type Impl<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>] type Mut<'T> = class end"
@@ -47,6 +52,7 @@ nominal pin t = $"std_pin_Pin<`t>"
 nominal arc t = $"std_sync_Arc<`t>"
 nominal dyn' t = $"Dyn<`t>"
 nominal fn' t = $"Fn<`t>"
+nominal action_fn t = $"ActionFn<`t>"
 nominal action_fn2 t u = $"ActionFn2<`t, `u>"
 nominal fn_once t = $"FnOnce<`t>"
 nominal fn_unit = $"FnUnit"

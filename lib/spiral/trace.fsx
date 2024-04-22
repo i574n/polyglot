@@ -7,6 +7,7 @@
 [<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>] type Fn<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("Fn()")>] type FnUnit = class end
 [<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>] type FnOnce<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("Fn($0)")>] type ActionFn<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")>] type ActionFn2<'T, 'U> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("impl $0")>] type Impl<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("mut $0")>] type Mut<'T> = class end
@@ -41,98 +42,102 @@ and [<Struct>] US0 =
     | US0_3
     | US0_4
 and Mut2 = {mutable l0 : US0}
+and Mut3 = {mutable l0 : (string -> unit)}
 and [<Struct>] US1 =
     | US1_0 of f0_0 : int64
     | US1_1
 and [<Struct>] US2 =
     | US2_0 of f0_0 : int64
     | US2_1
-let rec method0 (v0 : int64 option) : int64 option =
+let rec closure1 () (v0 : string) : unit =
+    ()
+and method0 (v0 : int64 option) : int64 option =
     v0
 and method1 (v0 : int64 option) : int64 option =
     v0
-and closure0 () () : struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option) =
+and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     let v0 : Mut1 = {l0 = true} : Mut1
     let v1 : Mut0 = {l0 = 0L} : Mut0
     let v2 : US0 = US0_0
     let v3 : Mut2 = {l0 = v2} : Mut2
-    let v4 : Mut1 = {l0 = false} : Mut1
-    let v5 : int64 option option = None
-    let mutable _v5 = v5
+    let v4 : (string -> unit) = closure1()
+    let v5 : Mut3 = {l0 = v4} : Mut3
+    let v6 : int64 option option = None
+    let mutable _v6 = v6
     #if INTERACTIVE || !FABLE_COMPILER
-    let v6 : string option = None
-    let v7 : bool = true in let mutable _v6 = v6
+    let v7 : string option = None
+    let v8 : bool = true in let mutable _v7 = v7
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v8 : string = null |> unbox<string>
-    v8
-#endif
-    #if FABLE_COMPILER_RUST && WASM
     let v9 : string = null |> unbox<string>
     v9
 #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
+    #if FABLE_COMPILER_RUST && WASM
     let v10 : string = null |> unbox<string>
     v10
 #endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v11 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v11 : string = null |> unbox<string>
     v11
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v12 : string = null |> unbox<string>
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v12 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v12
 #endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v13 : string = Unchecked.defaultof<string>
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v13 : string = null |> unbox<string>
     v13
 #endif
-    |> fun x -> _v6 <- Some x
-    let v14 : string = _v6.Value
-    let v16 : bool = v14 = "Microsoft.DotNet.Interactive.App"
-    let v17 : bool = v16 <> true
-    let v23 : US1 =
-        if v17 then
-            let v18 : System.DateTime = System.DateTime.Now
-            let v19 : (System.DateTime -> int64) = _.Ticks
-            let v20 : int64 = v19 v18
-            US1_0(v20)
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v14 : string = Unchecked.defaultof<string>
+    v14
+#endif
+    |> fun x -> _v7 <- Some x
+    let v15 : string = _v7.Value
+    let v17 : bool = v15 = "Microsoft.DotNet.Interactive.App"
+    let v18 : bool = v17 <> true
+    let v24 : US1 =
+        if v18 then
+            let v19 : System.DateTime = System.DateTime.Now
+            let v20 : (System.DateTime -> int64) = _.Ticks
+            let v21 : int64 = v20 v19
+            US1_0(v21)
         else
             US1_1
-    let v28 : int64 option =
-        match v23 with
+    let v29 : int64 option =
+        match v24 with
         | US1_1 -> (* None *)
-            let v26 : int64 option = None
+            let v27 : int64 option = None
+            v27
+        | US1_0(v25) -> (* Some *)
+            let v26 : int64 option = Some v25 
             v26
-        | US1_0(v24) -> (* Some *)
-            let v25 : int64 option = Some v24 
-            v25
-    let v29 : int64 option = method0(v28)
-    v29 
+    let v30 : int64 option = method0(v29)
+    v30 
     #else
-    let v30 : int64 option = None
-    let v31 : int64 option = method1(v30)
-    v31 
+    let v31 : int64 option = None
+    let v32 : int64 option = method1(v31)
+    v32 
     #endif
-    |> fun x -> _v5 <- Some x
-    let v32 : int64 option = _v5.Value
-    struct (v1, v4, v0, v3, v32)
-and closure5 () (v0 : int64) : US2 =
+    |> fun x -> _v6 <- Some x
+    let v33 : int64 option = _v6.Value
+    struct (v1, v0, v3, v33, v5)
+and closure6 () (v0 : int64) : US2 =
     US2_0(v0)
 and method3 () : (int64 -> US2) =
-    closure5()
+    closure6()
 and method4 () : string =
     let v0 : string = ""
     v0
-and closure4 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : string =
-    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure0()
-    if State.trace_state = None then State.trace_state <- v3 () |> Some
-    let struct (v4 : Mut0, v5 : Mut1, v6 : Mut1, v7 : Mut2, v8 : int64 option) = State.trace_state.Value
+and closure5 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : string =
+    let v3 : (unit -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
+    if State.trace_state.IsNone then State.trace_state <- v3 () |> Some
+    let struct (v4 : Mut0, v5 : Mut1, v6 : Mut2, v7 : int64 option, v8 : Mut3) = State.trace_state.Value
     let v9 : string option = None
     let v10 : bool = true in let mutable _v9 = v9
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v11 : (int64 -> US2) = method3()
     let v12 : US2 = US2_1
-    let v13 : US2 = v8 |> Option.map v11 |> Option.defaultValue v12 
+    let v13 : US2 = v7 |> Option.map v11 |> Option.defaultValue v12 
     let v31 : System.DateTime =
         match v13 with
         | US2_1 -> (* None *)
@@ -169,7 +174,7 @@ and closure4 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
     let v36 : (int64 -> US2) = method3()
     let v37 : US2 = US2_1
-    let v38 : US2 = v8 |> Option.map v36 |> Option.defaultValue v37 
+    let v38 : US2 = v7 |> Option.map v36 |> Option.defaultValue v37 
     let v56 : System.DateTime =
         match v38 with
         | US2_1 -> (* None *)
@@ -346,66 +351,72 @@ and closure4 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     let v153 : (char []) = [|' '; '/'|]
     let v154 : string = v152.TrimEnd v153
     v154
-and method2 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
-    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure0()
-    if State.trace_state = None then State.trace_state <- v3 () |> Some
-    let struct (v4 : Mut0, v5 : Mut1, v6 : Mut1, v7 : Mut2, v8 : int64 option) = State.trace_state.Value
-    if State.trace_state = None then State.trace_state <- v3 () |> Some
-    let struct (v9 : Mut0, v10 : Mut1, v11 : Mut1, v12 : Mut2, v13 : int64 option) = State.trace_state.Value
-    let v14 : US0 = v12.l0
-    let v15 : bool = v11.l0
-    let v17 : bool =
+and method5 (v0 : US0, v1 : (unit -> string)) : unit =
+    let v2 : (unit -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
+    if State.trace_state.IsNone then State.trace_state <- v2 () |> Some
+    let struct (v3 : Mut0, v4 : Mut1, v5 : Mut2, v6 : int64 option, v7 : Mut3) = State.trace_state.Value
+    if State.trace_state.IsNone then State.trace_state <- v2 () |> Some
+    let struct (v8 : Mut0, v9 : Mut1, v10 : Mut2, v11 : int64 option, v12 : Mut3) = State.trace_state.Value
+    let v13 : US0 = v10.l0
+    let v14 : bool = v9.l0
+    let v15 : bool = v14 = false
+    let v19 : bool =
         if v15 then
-            let v16 : bool = v0 >= v14 
-            v16
-        else
             false
-    if v17 then
-        let v18 : int64 = v4.l0
-        let v19 : int64 = v18 + 1L
-        v4.l0 <- v19
-        let v20 : (unit -> string) = closure4(v0, v1, v2)
-        let v21 : string = $"%s{v20 ()}"
-        let v22 : unit option = None
-        let v23 : bool = true in let mutable _v22 = v22
+        else
+            let v16 : int32 = [ US0_0, 0; US0_1, 1; US0_2, 2; US0_3, 3; US0_4, 4 ] |> Map |> Map.find v0
+            let v17 : int32 = [ US0_0, 0; US0_1, 1; US0_2, 2; US0_3, 3; US0_4, 4 ] |> Map |> Map.find v13
+            let v18 : bool = v16 >= v17
+            v18
+    if v19 then
+        let v20 : int64 = v3.l0
+        let v21 : int64 = v20 + 1L
+        v3.l0 <- v21
+        let v22 : string = $"%s{v1 ()}"
+        let v23 : unit option = None
+        let v24 : bool = true in let mutable _v23 = v23
         #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v24 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v21 v24
+        let v25 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v22 v25
         ()
 #endif
         #if FABLE_COMPILER_RUST && WASM
-        let v25 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v21 v25
+        let v26 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v22 v26
         ()
 #endif
         #if FABLE_COMPILER_RUST && CONTRACT
-        let v26 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v21 v26
+        let v27 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v22 v27
         ()
 #endif
         #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-        System.Console.WriteLine v21 
+        System.Console.WriteLine v22 
         ()
 #endif
         #if FABLE_COMPILER_TYPESCRIPT
-        System.Console.WriteLine v21 
+        System.Console.WriteLine v22 
         ()
 #endif
         #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
         Unchecked.defaultof<unit>
         ()
 #endif
-        |> fun x -> _v22 <- Some x
-        _v22.Value
-        ()
-and closure3 (v0 : US0, v1 : (unit -> string)) (v2 : (unit -> string)) : unit =
+        |> fun x -> _v23 <- Some x
+        _v23.Value
+        let v28 : (string -> unit) = v7.l0
+        v28 v22
+and method2 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
+    let v3 : (unit -> string) = closure5(v0, v1, v2)
+    method5(v0, v3)
+and closure4 (v0 : US0, v1 : (unit -> string)) (v2 : (unit -> string)) : unit =
     method2(v0, v1, v2)
-and closure2 (v0 : US0) (v1 : (unit -> string)) : ((unit -> string) -> unit) =
-    closure3(v0, v1)
-and closure1 () (v0 : US0) : ((unit -> string) -> ((unit -> string) -> unit)) =
-    closure2(v0)
-let v0 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure0()
-if State.trace_state = None then State.trace_state <- v0 () |> Some
-let v1 : (US0 -> ((unit -> string) -> ((unit -> string) -> unit))) = closure1()
+and closure3 (v0 : US0) (v1 : (unit -> string)) : ((unit -> string) -> unit) =
+    closure4(v0, v1)
+and closure2 () (v0 : US0) : ((unit -> string) -> ((unit -> string) -> unit)) =
+    closure3(v0)
+let v0 : (unit -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
+if State.trace_state.IsNone then State.trace_state <- v0 () |> Some
+let v1 : (US0 -> ((unit -> string) -> ((unit -> string) -> unit))) = closure2()
 let trace x = v1 x
 ()

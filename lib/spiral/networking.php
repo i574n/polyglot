@@ -3,6 +3,8 @@ namespace Networking;
 
 require_once(__FABLE_LIBRARY__.'/BigInt.php');
 require_once(__FABLE_LIBRARY__.'/FSharp.Core.php');
+require_once(__FABLE_LIBRARY__.'/List.php');
+require_once(__FABLE_LIBRARY__.'/Map.php');
 require_once(__FABLE_LIBRARY__.'/Option.php');
 require_once(__FABLE_LIBRARY__.'/String.php');
 require_once(__FABLE_LIBRARY__.'/Util.php');
@@ -155,13 +157,31 @@ class Mut2 implements IComparable {
 }
 
 #5
+class Mut3 implements IComparable {
+    public $l0;
+    function __construct($l0) {
+        $this->l0 = $l0;
+    }
+    static function get_l0_Type() {
+        return '??? \'LambdaType (String, Unit)\'';
+    }
+    function CompareTo($other) {
+        $_cmp__9 = $this->l0->CompareTo($other->l0);
+        if ($_cmp__9 != 0) {
+            return $_cmp__9;
+        }        
+        return 0;
+    }
+}
+
+#6
 abstract class US1 implements FSharpUnion {
     static function allCases() {
         return [ '\\Networking\\US1_US1_0', '\\Networking\\US1_US1_1' ];
     }
 }
 
-#5
+#6
 class US1_US1_0 extends US1 implements IComparable {
     public $f0_0;
     function __construct($f0_0) {
@@ -177,19 +197,19 @@ class US1_US1_0 extends US1 implements IComparable {
         return 0;
     }
     function CompareTo($other) {
-        $_cmp__9 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        if ($_cmp__9 != 0) {
-            return $_cmp__9;
-        }        
-        $_cmp__10 = $this->f0_0 > $other->f0_0 ? 1 : ($this->f0_0 < $other->f0_0 ? -1 : 0);
+        $_cmp__10 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
         if ($_cmp__10 != 0) {
             return $_cmp__10;
+        }        
+        $_cmp__11 = $this->f0_0 > $other->f0_0 ? 1 : ($this->f0_0 < $other->f0_0 ? -1 : 0);
+        if ($_cmp__11 != 0) {
+            return $_cmp__11;
         }        
         return 0;
     }
 }
 
-#5
+#6
 class US1_US1_1 extends US1 implements IComparable {
     function __construct() {
     }
@@ -200,19 +220,19 @@ class US1_US1_1 extends US1 implements IComparable {
         return 1;
     }
     function CompareTo($other) {
-        $_cmp__11 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__11;
+        $_cmp__12 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__12;
     }
 }
 
-#6
+#7
 abstract class US2 implements FSharpUnion {
     static function allCases() {
         return [ '\\Networking\\US2_US2_0', '\\Networking\\US2_US2_1' ];
     }
 }
 
-#6
+#7
 class US2_US2_0 extends US2 implements IComparable {
     public $f0_0;
     function __construct($f0_0) {
@@ -228,19 +248,19 @@ class US2_US2_0 extends US2 implements IComparable {
         return 0;
     }
     function CompareTo($other) {
-        $_cmp__12 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        if ($_cmp__12 != 0) {
-            return $_cmp__12;
-        }        
-        $_cmp__13 = $this->f0_0 > $other->f0_0 ? 1 : ($this->f0_0 < $other->f0_0 ? -1 : 0);
+        $_cmp__13 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
         if ($_cmp__13 != 0) {
             return $_cmp__13;
+        }        
+        $_cmp__14 = $this->f0_0 > $other->f0_0 ? 1 : ($this->f0_0 < $other->f0_0 ? -1 : 0);
+        if ($_cmp__14 != 0) {
+            return $_cmp__14;
         }        
         return 0;
     }
 }
 
-#6
+#7
 class US2_US2_1 extends US2 implements IComparable {
     function __construct() {
     }
@@ -251,19 +271,19 @@ class US2_US2_1 extends US2 implements IComparable {
         return 1;
     }
     function CompareTo($other) {
-        $_cmp__14 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__14;
+        $_cmp__15 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__15;
     }
 }
 
-#7
+#8
 abstract class US3 implements FSharpUnion {
     static function allCases() {
         return [ '\\Networking\\US3_US3_0', '\\Networking\\US3_US3_1' ];
     }
 }
 
-#7
+#8
 class US3_US3_0 extends US3 implements IComparable {
     public $f0_0;
     function __construct($f0_0) {
@@ -279,19 +299,19 @@ class US3_US3_0 extends US3 implements IComparable {
         return 0;
     }
     function CompareTo($other) {
-        $_cmp__15 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        if ($_cmp__15 != 0) {
-            return $_cmp__15;
-        }        
-        $_cmp__16 = $this->f0_0->CompareTo($other->f0_0);
+        $_cmp__16 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
         if ($_cmp__16 != 0) {
             return $_cmp__16;
+        }        
+        $_cmp__17 = $this->f0_0->CompareTo($other->f0_0);
+        if ($_cmp__17 != 0) {
+            return $_cmp__17;
         }        
         return 0;
     }
 }
 
-#7
+#8
 class US3_US3_1 extends US3 implements IComparable {
     function __construct() {
     }
@@ -302,19 +322,19 @@ class US3_US3_1 extends US3 implements IComparable {
         return 1;
     }
     function CompareTo($other) {
-        $_cmp__17 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__17;
+        $_cmp__18 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__18;
     }
 }
 
-#8
+#9
 abstract class US4 implements FSharpUnion {
     static function allCases() {
         return [ '\\Networking\\US4_US4_0', '\\Networking\\US4_US4_1' ];
     }
 }
 
-#8
+#9
 class US4_US4_0 extends US4 implements IComparable {
     public $f0_0;
     function __construct($f0_0) {
@@ -330,19 +350,19 @@ class US4_US4_0 extends US4 implements IComparable {
         return 0;
     }
     function CompareTo($other) {
-        $_cmp__18 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        if ($_cmp__18 != 0) {
-            return $_cmp__18;
-        }        
-        $_cmp__19 = $this->f0_0->CompareTo($other->f0_0);
+        $_cmp__19 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
         if ($_cmp__19 != 0) {
             return $_cmp__19;
+        }        
+        $_cmp__20 = $this->f0_0->CompareTo($other->f0_0);
+        if ($_cmp__20 != 0) {
+            return $_cmp__20;
         }        
         return 0;
     }
 }
 
-#8
+#9
 class US4_US4_1 extends US4 implements IComparable {
     public $f1_0;
     function __construct($f1_0) {
@@ -358,26 +378,26 @@ class US4_US4_1 extends US4 implements IComparable {
         return 1;
     }
     function CompareTo($other) {
-        $_cmp__20 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        if ($_cmp__20 != 0) {
-            return $_cmp__20;
-        }        
-        $_cmp__21 = $this->f1_0->CompareTo($other->f1_0);
+        $_cmp__21 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
         if ($_cmp__21 != 0) {
             return $_cmp__21;
+        }        
+        $_cmp__22 = $this->f1_0->CompareTo($other->f1_0);
+        if ($_cmp__22 != 0) {
+            return $_cmp__22;
         }        
         return 0;
     }
 }
 
-#9
+#10
 abstract class US5 implements FSharpUnion {
     static function allCases() {
         return [ '\\Networking\\US5_US5_0', '\\Networking\\US5_US5_1' ];
     }
 }
 
-#9
+#10
 class US5_US5_0 extends US5 implements IComparable {
     public $f0_0;
     function __construct($f0_0) {
@@ -393,19 +413,19 @@ class US5_US5_0 extends US5 implements IComparable {
         return 0;
     }
     function CompareTo($other) {
-        $_cmp__22 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        if ($_cmp__22 != 0) {
-            return $_cmp__22;
-        }        
-        $_cmp__23 = $this->f0_0->CompareTo($other->f0_0);
+        $_cmp__23 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
         if ($_cmp__23 != 0) {
             return $_cmp__23;
+        }        
+        $_cmp__24 = $this->f0_0->CompareTo($other->f0_0);
+        if ($_cmp__24 != 0) {
+            return $_cmp__24;
         }        
         return 0;
     }
 }
 
-#9
+#10
 class US5_US5_1 extends US5 implements IComparable {
     public $f1_0;
     function __construct($f1_0) {
@@ -421,26 +441,26 @@ class US5_US5_1 extends US5 implements IComparable {
         return 1;
     }
     function CompareTo($other) {
-        $_cmp__24 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        if ($_cmp__24 != 0) {
-            return $_cmp__24;
-        }        
-        $_cmp__25 = $this->f1_0->CompareTo($other->f1_0);
+        $_cmp__25 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
         if ($_cmp__25 != 0) {
             return $_cmp__25;
+        }        
+        $_cmp__26 = $this->f1_0->CompareTo($other->f1_0);
+        if ($_cmp__26 != 0) {
+            return $_cmp__26;
         }        
         return 0;
     }
 }
 
-#10
+#11
 abstract class US6 implements FSharpUnion {
     static function allCases() {
         return [ '\\Networking\\US6_US6_0', '\\Networking\\US6_US6_1' ];
     }
 }
 
-#10
+#11
 class US6_US6_0 extends US6 implements IComparable {
     public $f0_0;
     function __construct($f0_0) {
@@ -456,19 +476,19 @@ class US6_US6_0 extends US6 implements IComparable {
         return 0;
     }
     function CompareTo($other) {
-        $_cmp__26 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        if ($_cmp__26 != 0) {
-            return $_cmp__26;
-        }        
-        $_cmp__27 = $this->f0_0 > $other->f0_0 ? 1 : ($this->f0_0 < $other->f0_0 ? -1 : 0);
+        $_cmp__27 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
         if ($_cmp__27 != 0) {
             return $_cmp__27;
+        }        
+        $_cmp__28 = $this->f0_0 > $other->f0_0 ? 1 : ($this->f0_0 < $other->f0_0 ? -1 : 0);
+        if ($_cmp__28 != 0) {
+            return $_cmp__28;
         }        
         return 0;
     }
 }
 
-#10
+#11
 class US6_US6_1 extends US6 implements IComparable {
     function __construct() {
     }
@@ -479,12 +499,12 @@ class US6_US6_1 extends US6 implements IComparable {
         return 1;
     }
     function CompareTo($other) {
-        $_cmp__28 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__28;
+        $_cmp__29 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__29;
     }
 }
 
-#11
+#12
 function US0__get_IsUS0_0($this_, $unitArg) {
     if ($this_->get_Tag() == 0) {
         return true;
@@ -493,7 +513,7 @@ function US0__get_IsUS0_0($this_, $unitArg) {
     }
 }
 
-#12
+#13
 function US0__get_IsUS0_1($this_, $unitArg) {
     if ($this_->get_Tag() == 1) {
         return true;
@@ -502,7 +522,7 @@ function US0__get_IsUS0_1($this_, $unitArg) {
     }
 }
 
-#13
+#14
 function US0__get_IsUS0_2($this_, $unitArg) {
     if ($this_->get_Tag() == 2) {
         return true;
@@ -511,7 +531,7 @@ function US0__get_IsUS0_2($this_, $unitArg) {
     }
 }
 
-#14
+#15
 function US0__get_IsUS0_3($this_, $unitArg) {
     if ($this_->get_Tag() == 3) {
         return true;
@@ -520,7 +540,7 @@ function US0__get_IsUS0_3($this_, $unitArg) {
     }
 }
 
-#15
+#16
 function US0__get_IsUS0_4($this_, $unitArg) {
     if ($this_->get_Tag() == 4) {
         return true;
@@ -529,7 +549,7 @@ function US0__get_IsUS0_4($this_, $unitArg) {
     }
 }
 
-#16
+#17
 function US1__get_IsUS1_0($this_, $unitArg) {
     if ($this_->get_Tag() == 0) {
         return true;
@@ -538,7 +558,7 @@ function US1__get_IsUS1_0($this_, $unitArg) {
     }
 }
 
-#17
+#18
 function US1__get_IsUS1_1($this_, $unitArg) {
     if ($this_->get_Tag() == 1) {
         return true;
@@ -547,7 +567,7 @@ function US1__get_IsUS1_1($this_, $unitArg) {
     }
 }
 
-#18
+#19
 function US2__get_IsUS2_0($this_, $unitArg) {
     if ($this_->get_Tag() == 0) {
         return true;
@@ -556,7 +576,7 @@ function US2__get_IsUS2_0($this_, $unitArg) {
     }
 }
 
-#19
+#20
 function US2__get_IsUS2_1($this_, $unitArg) {
     if ($this_->get_Tag() == 1) {
         return true;
@@ -565,7 +585,7 @@ function US2__get_IsUS2_1($this_, $unitArg) {
     }
 }
 
-#20
+#21
 function US3__get_IsUS3_0($this_, $unitArg) {
     if ($this_->get_Tag() == 0) {
         return true;
@@ -574,7 +594,7 @@ function US3__get_IsUS3_0($this_, $unitArg) {
     }
 }
 
-#21
+#22
 function US3__get_IsUS3_1($this_, $unitArg) {
     if ($this_->get_Tag() == 1) {
         return true;
@@ -583,7 +603,7 @@ function US3__get_IsUS3_1($this_, $unitArg) {
     }
 }
 
-#22
+#23
 function US4__get_IsUS4_0($this_, $unitArg) {
     if ($this_->get_Tag() == 0) {
         return true;
@@ -592,7 +612,7 @@ function US4__get_IsUS4_0($this_, $unitArg) {
     }
 }
 
-#23
+#24
 function US4__get_IsUS4_1($this_, $unitArg) {
     if ($this_->get_Tag() == 1) {
         return true;
@@ -601,7 +621,7 @@ function US4__get_IsUS4_1($this_, $unitArg) {
     }
 }
 
-#24
+#25
 function US5__get_IsUS5_0($this_, $unitArg) {
     if ($this_->get_Tag() == 0) {
         return true;
@@ -610,7 +630,7 @@ function US5__get_IsUS5_0($this_, $unitArg) {
     }
 }
 
-#25
+#26
 function US5__get_IsUS5_1($this_, $unitArg) {
     if ($this_->get_Tag() == 1) {
         return true;
@@ -619,7 +639,7 @@ function US5__get_IsUS5_1($this_, $unitArg) {
     }
 }
 
-#26
+#27
 function US6__get_IsUS6_0($this_, $unitArg) {
     if ($this_->get_Tag() == 0) {
         return true;
@@ -628,7 +648,7 @@ function US6__get_IsUS6_0($this_, $unitArg) {
     }
 }
 
-#27
+#28
 function US6__get_IsUS6_1($this_, $unitArg) {
     if ($this_->get_Tag() == 1) {
         return true;
@@ -637,57 +657,63 @@ function US6__get_IsUS6_1($this_, $unitArg) {
     }
 }
 
-#28
+#29
+function closure1($unitVar, $v0_1) {
+    return NULL;
+}
+
+#30
 function method0($v0_1) {
     return $v0_1;
 }
 
-#29
+#31
 function method1($v0_1) {
     return $v0_1;
 }
 
-#30
+#32
 function closure0($unitVar, $unitVar_1) {
     $v0_1 = new Mut1(true);
     $v1_1 = new Mut0(NULL);
     $v3_1 = new Mut2(new US0_US0_0());
-    $v4_1 = new Mut1(false);
-    $_v5 = NULL;
+    $v5 = new Mut3(function ($v) use ($closure1) {     return closure1(NULL, $v);
+ });
+    $_v6 = NULL;
     $x = method1(NULL);
-    $_v5 = $x;
-    return [ $v1_1, $v4_1, $v0_1, $v3_1, \Option\value($_v5) ];
-}
-
-#31
-function closure2($v0_1, $unitVar) {
-    return NULL;
-}
-
-#32
-function closure3($unitVar, $unitVar_1) {
-    return '';
+    $_v6 = $x;
+    return [ $v1_1, $v0_1, $v3_1, \Option\value($_v6), $v5 ];
 }
 
 #33
-function closure5($unitVar, $v0_1) {
-    return new US2_US2_0($v0_1);
+function closure3($v0_1, $unitVar) {
+    return NULL;
 }
 
 #34
-function method3($unitVar) {
-    return function ($v) use ($closure5) {     return closure5(NULL, $v);
- };
+function closure4($unitVar, $unitVar_1) {
+    return '';
 }
 
 #35
+function closure6($unitVar, $v0_1) {
+    return new US2_US2_0($v0_1);
+}
+
+#36
+function method3($unitVar) {
+    return function ($v) use ($closure6) {     return closure6(NULL, $v);
+ };
+}
+
+#37
 function method4($unitVar) {
     return '';
 }
 
-#36
-function closure4($v0_1, $v1_1, $v2_1, $unitVar) {
-    if (\Util\equals($GLOBALS['State_trace_state'], NULL)) {
+#38
+function closure5($v0_1, $v1_1, $v2_1, $unitVar) {
+    if (is_null($GLOBALS['State_trace_state'])) {
         $GLOBALS['State_trace_state'] = closure0(NULL, NULL);
     } else {
     }
@@ -722,192 +748,203 @@ function closure4($v0_1, $v1_1, $v2_1, $unitVar) {
     return \String\trimEnd(\String\trimStart(NULL, [  ]), [ ' ', '/' ]);
 }
 
-#37
-function method2($v0_1, $v1_1, $v2_1) {
-    $v3_1 = function ($arg10_0040) use ($closure0) {     return closure0(NULL, NULL);
+#39
+function method5($v0_1, $v1_1) {
+    $v2_1 = function ($arg10_0040) use ($closure0) {     return closure0(NULL, NULL);
  };
-    if (\Util\equals($GLOBALS['State_trace_state'], NULL)) {
-        $GLOBALS['State_trace_state'] = $v3_1(NULL);
+    if (is_null($GLOBALS['State_trace_state'])) {
+        $GLOBALS['State_trace_state'] = $v2_1(NULL);
     } else {
     }
-    $v4_1 = \Option\value($GLOBALS['State_trace_state'])[0];
-    if (\Util\equals($GLOBALS['State_trace_state'], NULL)) {
-        $GLOBALS['State_trace_state'] = $v3_1(NULL);
+    $patternInput = \Option\value($GLOBALS['State_trace_state']);
+    $v3_1 = $patternInput[0];
+    if (is_null($GLOBALS['State_trace_state'])) {
+        $GLOBALS['State_trace_state'] = $v2_1(NULL);
     } else {
     }
     $patternInput_1 = \Option\value($GLOBALS['State_trace_state']);
-    $v14 = $patternInput_1[3]->l0;
-    if ($patternInput_1[2]->l0 ? \Util\compare($v0_1, $v14) >= 0 : false) {
-        $v19 = \BigInt\toInt64(\BigInt\op_Addition($v4_1->l0, NULL));
-        $v4_1->l0 = $v19;
-        $v21 = NULL;
-        $_v22 = NULL;
+    $v13 = $patternInput_1[2]->l0;
+    if ($patternInput_1[1]->l0 === false ? false : \Map\find($v0_1, \Map\ofSeq(\FSharpList\cons([ new US0_US0_0(), 0 ], \FSharpList\cons([ new US0_US0_1(), 1 ], \FSharpList\cons([ new US0_US0_2(), 2 ], \FSharpList\cons([ new US0_US0_3(), 3 ], \FSharpList\cons([ new US0_US0_4(), 4 ], \FSharpList\_empty()))))), [ 'Compare' => function () {     return function ($x, $y) {     return \Util\compare($x, $y);
+ };
+ } ])) >= \Map\find($v13, \Map\ofSeq(\FSharpList\cons([ new US0_US0_0(), 0 ], \FSharpList\cons([ new US0_US0_1(), 1 ], \FSharpList\cons([ new US0_US0_2(), 2 ], \FSharpList\cons([ new US0_US0_3(), 3 ], \FSharpList\cons([ new US0_US0_4(), 4 ], \FSharpList\_empty()))))), [ 'Compare' => function () {     return function ($x_1, $y_1) {     return \Util\compare($x_1, $y_1);
+ };
+ } ]))) {
+        $v21 = \BigInt\toInt64(\BigInt\op_Addition($v3_1->l0, NULL));
+        $v3_1->l0 = $v21;
+        $v22 = NULL;
+        $_v23 = NULL;
         \Util\defaultOf();
-        $_v22 = NULL;
-        \Option\value($_v22);
-        return NULL;
+        $_v23 = NULL;
+        \Option\value($_v23);
+        return $patternInput[4]->l0($v22);
     } else {
         return NULL;
     }
 }
 
-#38
-function closure1($unitVar, $v0_1) {
+#40
+function method2($v0_1, $v1_1, $v2_1) {
+    return method5($v0_1, function ($arg10_0040) use ($closure5, $v0_1, $v1_1, $v2_1) {     return closure5($v0_1, $v1_1, $v2_1, NULL);
+ });
+}
+
+#41
+function closure2($unitVar, $v0_1) {
     $_v1 = NULL;
     $x = \Util\defaultOf();
     $_v1 = $x;
     return \Option\value($_v1);
 }
 
-#39
-function closure8($unitVar, $v0_1) {
+#42
+function closure9($unitVar, $v0_1) {
     return new US4_US4_0($v0_1);
 }
 
-#40
-function closure9($unitVar, $v0_1) {
+#43
+function closure10($unitVar, $v0_1) {
     return new US4_US4_1($v0_1);
 }
 
-#41
-function closure10($unitVar, $unitVar_1) {
+#44
+function closure11($unitVar, $unitVar_1) {
     return 'run_with_timeout_async';
 }
 
-#42
-function closure11($v0_1, $unitVar) {
-    return NULL;
-}
-
-#43
+#45
 function closure12($v0_1, $unitVar) {
     return NULL;
 }
 
-#44
-function closure7($v0_1, $v1_1) {
+#46
+function closure13($v0_1, $unitVar) {
+    return NULL;
+}
+
+#47
+function closure8($v0_1, $v1_1) {
     $_v2 = NULL;
     $x = \Util\defaultOf();
     $_v2 = $x;
     return \Option\value($_v2);
 }
 
-#45
-function closure6($unitVar, $v0_1) {
-    return function ($v) use ($closure7, $v0_1) {     return closure7($v0_1, $v);
- };
-}
-
-#46
-function closure16($unitVar, $v0_1) {
-    return new US6_US6_0($v0_1);
-}
-
-#47
-function method6($unitVar) {
-    return function ($v) use ($closure16) {     return closure16(NULL, $v);
- };
-}
-
 #48
-function closure17($unitVar, $unitVar_1) {
-    return 'wait_for_port_access';
+function closure7($unitVar, $v0_1) {
+    return function ($v) use ($closure8, $v0_1) {     return closure8($v0_1, $v);
+ };
 }
 
 #49
-function closure18($v0_1, $v1_1, $unitVar) {
-    return NULL;
+function closure17($unitVar, $v0_1) {
+    return new US6_US6_0($v0_1);
 }
 
 #50
-function method5($v0_1, $v1_1, $v2_1, $v3_1) {
+function method7($unitVar) {
+    return function ($v) use ($closure17) {     return closure17(NULL, $v);
+ };
+}
+
+#51
+function closure18($unitVar, $unitVar_1) {
+    return 'wait_for_port_access';
+}
+
+#52
+function closure19($v0_1, $v1_1, $unitVar) {
+    return NULL;
+}
+
+#53
+function method6($v0_1, $v1_1, $v2_1, $v3_1) {
     $_v4 = NULL;
     $x = \Util\defaultOf();
     $_v4 = $x;
     return \Option\value($_v4);
 }
 
-#51
-function closure15($v0_1, $v1_1, $v2_1) {
-    return method5($v0_1, $v1_1, $v2_1, NULL);
-}
-
-#52
-function closure14($v0_1, $v1_1) {
-    return function ($v) use ($closure15, $v0_1, $v1_1) {     return closure15($v0_1, $v1_1, $v);
- };
-}
-
-#53
-function closure13($unitVar, $v0_1) {
-    return function ($v) use ($closure14, $v0_1) {     return closure14($v0_1, $v);
- };
-}
-
 #54
-function method7($v0_1, $v1_1) {
+function closure16($v0_1, $v1_1, $v2_1) {
+    return method6($v0_1, $v1_1, $v2_1, NULL);
+}
+
+#55
+function closure15($v0_1, $v1_1) {
+    return function ($v) use ($closure16, $v0_1, $v1_1) {     return closure16($v0_1, $v1_1, $v);
+ };
+}
+
+#56
+function closure14($unitVar, $v0_1) {
+    return function ($v) use ($closure15, $v0_1) {     return closure15($v0_1, $v);
+ };
+}
+
+#57
+function method8($v0_1, $v1_1) {
     $_v2 = NULL;
     $x = \Util\defaultOf();
     $_v2 = $x;
     return \Option\value($_v2);
 }
 
-#55
-function closure20($v0_1, $v1_1) {
-    return method7($v0_1, $v1_1);
+#58
+function closure21($v0_1, $v1_1) {
+    return method8($v0_1, $v1_1);
 }
 
-#56
-function closure19($unitVar, $v0_1) {
-    return function ($v) use ($closure20, $v0_1) {     return closure20($v0_1, $v);
+#59
+function closure20($unitVar, $v0_1) {
+    return function ($v) use ($closure21, $v0_1) {     return closure21($v0_1, $v);
  };
 }
 
-#57
+#60
 $GLOBALS['v0'] = function ($arg10_0040) use ($closure0) { return closure0(NULL, NULL);
  };
 
-#58
-if (\Util\equals($GLOBALS['State_trace_state'], NULL)) {
+#61
+if (is_null($GLOBALS['State_trace_state'])) {
     $GLOBALS['State_trace_state'] = $GLOBALS['v0'](NULL);
 } else {
 }
 
-#59
-$GLOBALS['v1'] = function ($v) use ($closure1) { return closure1(NULL, $v);
+#62
+$GLOBALS['v1'] = function ($v) use ($closure2) { return closure2(NULL, $v);
  };
 
-#60
+#63
 function test_port_open($x) {
     return $GLOBALS['v1']($x);
 }
 
-#61
-$GLOBALS['v2'] = function ($v) use ($closure6) { return closure6(NULL, $v);
+#64
+$GLOBALS['v2'] = function ($v) use ($closure7) { return closure7(NULL, $v);
  };
 
-#62
+#65
 function test_port_open_timeout($x) {
     return $GLOBALS['v2']($x);
 }
 
-#63
-$GLOBALS['v3'] = function ($v) use ($closure13) { return closure13(NULL, $v);
+#66
+$GLOBALS['v3'] = function ($v) use ($closure14) { return closure14(NULL, $v);
  };
 
-#64
+#67
 function wait_for_port_access($x) {
     return $GLOBALS['v3']($x);
 }
 
-#65
-$GLOBALS['v4'] = function ($v) use ($closure19) { return closure19(NULL, $v);
+#68
+$GLOBALS['v4'] = function ($v) use ($closure20) { return closure20(NULL, $v);
  };
 
-#66
+#69
 function get_available_port($x) {
     return $GLOBALS['v4']($x);
 }
 
-#67
+#70
 

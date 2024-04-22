@@ -1,9 +1,10 @@
 // ignore_for_file: camel_case_types, constant_identifier_names, non_constant_identifier_names, unnecessary_this
+import '../../fable_modules/fable_library/Map.dart' as map;
 import '../../fable_modules/fable_library/String.dart' as string;
 import '../../fable_modules/fable_library/Types.dart' as types;
 import '../../fable_modules/fable_library/Util.dart' as util;
 
-types.Some<types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?>>? State_trace_state;
+types.Some<types.Tuple5<Mut0, Mut1, Mut2, types.Some<int>?, Mut3>>? State_trace_state;
 
 class Mut0 implements types.Record, Comparable<Mut0> {
     int l0;
@@ -47,6 +48,11 @@ class Mut2 implements types.Record, Comparable<Mut2> {
     int get hashCode => l0.hashCode;
     @override
     int compareTo(Mut2 other) => l0.compareTo(other.l0);
+}
+
+class Mut3 implements types.Record {
+    void Function(String) l0;
+    Mut3(this.l0);
 }
 
 class US1 implements types.Union, Comparable<US1> {
@@ -409,28 +415,33 @@ bool US7__get_IsUS7_1(types.FSharpRef<US7, InOut> this$, void unitArg) {
     }
 }
 
+void closure1(void unitVar, String v0_1) {
+}
+
 types.Some<int>? method0(types.Some<int>? v0_1) => v0_1;
 
 types.Some<int>? method1(types.Some<int>? v0_1) => v0_1;
 
-types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> closure0(void unitVar, void unitVar_1) {
+types.Tuple5<Mut0, Mut1, Mut2, types.Some<int>?, Mut3> closure0(void unitVar, void unitVar_1) {
     final v0_1 = Mut1(true);
     final v1_1 = Mut0(0);
     final v3_1 = Mut2(const US0(/* US0_0 */ 0));
-    final v4_1 = Mut1(false);
-    types.Some<types.Some<int>?>? _v5;
+    final v5 = Mut3((String v) {
+        closure1(util.ignore(), v);
+    });
+    types.Some<types.Some<int>?>? _v6;
     final types.Some<int>? x = method1(null);
-    _v5 = types.Some(x);
-    return types.Tuple5(v1_1, v4_1, v0_1, v3_1, types.value(_v5));
+    _v6 = types.Some(x);
+    return types.Tuple5(v1_1, v0_1, v3_1, types.value(_v6), v5);
 }
 
-bool closure1(void unitVar, void unitVar_1) {
+bool closure2(void unitVar, void unitVar_1) {
     types.Some<bool>? _v0;
     _v0 = const types.Some(false);
     return types.value(_v0);
 }
 
-String closure2(void unitVar, void unitVar_1) {
+String closure3(void unitVar, void unitVar_1) {
     types.Some<bool>? _v0;
     _v0 = const types.Some(false);
     if (types.value(_v0)) {
@@ -442,11 +453,11 @@ String closure2(void unitVar, void unitVar_1) {
 
 types.Tuple2<String, String> method2() => const types.Tuple2('', '');
 
-UH0 closure5(int v0_1, UH0 v1_1) => UH0_UH0_1(v0_1, v1_1);
+UH0 closure6(int v0_1, UH0 v1_1) => UH0_UH0_1(v0_1, v1_1);
 
-UH0 Function(UH0) closure4(void unitVar, int v0_1) => (UH0 v) => closure5(v0_1, v);
+UH0 Function(UH0) closure5(void unitVar, int v0_1) => (UH0 v) => closure6(v0_1, v);
 
-UH0 Function(UH0) Function(int) method3() => (int v) => closure4(util.ignore(), v);
+UH0 Function(UH0) Function(int) method3() => (int v) => closure5(util.ignore(), v);
 
 types.Tuple2<String, String> method4(String v0_1_mut, String v1_1_mut, UH0 v2_1_mut, US2 v3_1_mut) {
     method4:
@@ -634,23 +645,23 @@ types.Tuple2<String, String> method4(String v0_1_mut, String v1_1_mut, UH0 v2_1_
     }
 }
 
-US4 closure6(void unitVar, String v0_1) => US4_US4_0(v0_1);
+US4 closure7(void unitVar, String v0_1) => US4_US4_0(v0_1);
 
-US4 Function(String) method5() => (String v) => closure6(util.ignore(), v);
+US4 Function(String) method5() => (String v) => closure7(util.ignore(), v);
 
-String closure7(types.Some<CancellationToken>? v0_1, String v1_1, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>? v2_1, types.Some<String>? v3_1, void unitVar) => string.toText(string.interpolate('execute_with_options_async / options: %A%P()', [types.Tuple4(v0_1, v1_1, v2_1, v3_1)]));
+String closure8(types.Some<CancellationToken>? v0_1, String v1_1, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>? v2_1, types.Some<String>? v3_1, void unitVar) => string.toText(string.interpolate('execute_with_options_async / options: %A%P()', [types.Tuple4(v0_1, v1_1, v2_1, v3_1)]));
 
-String closure8(void unitVar, void unitVar_1) => '';
+String closure9(void unitVar, void unitVar_1) => '';
 
-String Function() method6() => () => closure8(util.ignore(), util.ignore());
+String Function() method6() => () => closure9(util.ignore(), util.ignore());
 
-US5 closure10(void unitVar, int v0_1) => US5_US5_0(v0_1);
+US5 closure11(void unitVar, int v0_1) => US5_US5_0(v0_1);
 
-US5 Function(int) method8() => (int v) => closure10(util.ignore(), v);
+US5 Function(int) method8() => (int v) => closure11(util.ignore(), v);
 
 String method9() => '';
 
-String closure9(US0 v0_1, String Function() v1_1, String Function() v2_1, void unitVar) {
+String closure10(US0 v0_1, String Function() v1_1, String Function() v2_1, void unitVar) {
     if (State_trace_state == null) {
         State_trace_state = types.Some(closure0(util.ignore(), util.ignore()));
     }
@@ -682,35 +693,41 @@ String closure9(US0 v0_1, String Function() v1_1, String Function() v2_1, void u
     return string.trimEnd(string.trimStart('$v61 ${types.value(_v74)} #$v62 ${v1_1()} / ${v2_1()}', <int>[]), [32, 47]);
 }
 
-void method7(US0 v0_1, String Function() v1_1, String Function() v2_1) {
-    types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> v3_1() => closure0(util.ignore(), util.ignore());
+void method10(US0 v0_1, String Function() v1_1) {
+    types.Tuple5<Mut0, Mut1, Mut2, types.Some<int>?, Mut3> v2_1() => closure0(util.ignore(), util.ignore());
     if (State_trace_state == null) {
-        State_trace_state = types.Some(v3_1());
+        State_trace_state = types.Some(v2_1());
     }
-    final v4_1 = types.value(State_trace_state).item1;
+    final patternInput = types.value(State_trace_state);
+    final v3_1 = patternInput.item1;
     if (State_trace_state == null) {
-        State_trace_state = types.Some(v3_1());
+        State_trace_state = types.Some(v2_1());
     }
     final patternInput_1 = types.value(State_trace_state);
-    final US0 v14 = patternInput_1.item4.l0;
-    if (patternInput_1.item3.l0 && (v0_1.compareTo(v14) >= 0)) {
-        final v19 = v4_1.l0 + 1;
-        v4_1.l0 = v19;
-        final v21 = '${closure9(v0_1, v1_1, v2_1, util.ignore())}';
-        types.Some<void>? _v22;
+    final US0 v13 = patternInput_1.item3.l0;
+    if ((patternInput_1.item2.l0 == false) ? false : (map.find<US0, int>(v0_1, map.ofSeq<US0, int>(const [types.Tuple2(US0(/* US0_0 */ 0), 0), types.Tuple2(US0(/* US0_1 */ 1), 1), types.Tuple2(US0(/* US0_2 */ 2), 2), types.Tuple2(US0(/* US0_3 */ 3), 3), types.Tuple2(US0(/* US0_4 */ 4), 4)], types.Comparer((US0 x, US0 y) => x.compareTo(y)))) >= map.find<US0, int>(v13, map.ofSeq<US0, int>(const [types.Tuple2(US0(/* US0_0 */ 0), 0), types.Tuple2(US0(/* US0_1 */ 1), 1), types.Tuple2(US0(/* US0_2 */ 2), 2), types.Tuple2(US0(/* US0_3 */ 3), 3), types.Tuple2(US0(/* US0_4 */ 4), 4)], types.Comparer((US0 x, US0 y) => x.compareTo(y)))))) {
+        final v21 = v3_1.l0 + 1;
+        v3_1.l0 = v21;
+        final v22 = '${v1_1()}';
+        types.Some<void>? _v23;
         null;
-        _v22 = types.Some(util.ignore());
-        types.value(_v22);
+        _v23 = types.Some(util.ignore());
+        types.value(_v23);
+        patternInput.item5.l0(v22);
     }
 }
 
-US6 closure12(void unitVar, Async<void> Function(types.Tuple3<bool, String, int>) v0_1) => US6_US6_0(v0_1);
+void method7(US0 v0_1, String Function() v1_1, String Function() v2_1) {
+    method10(v0_1, () => closure10(v0_1, v1_1, v2_1, util.ignore()));
+}
 
-US6 Function(Async<void> Function(types.Tuple3<bool, String, int>)) method10() => (Async<void> Function(types.Tuple3<bool, String, int>) v) => closure12(util.ignore(), v);
+US6 closure13(void unitVar, Async<void> Function(types.Tuple3<bool, String, int>) v0_1) => US6_US6_0(v0_1);
 
-String closure13(String v0_1, void unitVar) => '> $v0_1';
+US6 Function(Async<void> Function(types.Tuple3<bool, String, int>)) method11() => (Async<void> Function(types.Tuple3<bool, String, int>) v) => closure13(util.ignore(), v);
 
-void closure11(types.Some<CancellationToken>? v0_1, String v1_1, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>? v2_1, types.Some<String>? v3_1, void v4_1, ConcurrentStack<String> v5, void v6) {
+String closure14(String v0_1, void unitVar) => '> $v0_1';
+
+void closure12(types.Some<CancellationToken>? v0_1, String v1_1, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>? v2_1, types.Some<String>? v3_1, void v4_1, ConcurrentStack<String> v5, void v6) {
     types.Some<Async<void>>? _v7;
     _v7 = const types.Some(null);
     final v32 = types.value(_v7);
@@ -720,7 +737,7 @@ void closure11(types.Some<CancellationToken>? v0_1, String v1_1, types.Some<Asyn
     types.value(_v33);
 }
 
-void closure14(types.Some<CancellationToken>? v0_1, String v1_1, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>? v2_1, types.Some<String>? v3_1, void v4_1, ConcurrentStack<String> v5, void v6) {
+void closure15(types.Some<CancellationToken>? v0_1, String v1_1, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>? v2_1, types.Some<String>? v3_1, void v4_1, ConcurrentStack<String> v5, void v6) {
     types.Some<Async<void>>? _v7;
     _v7 = const types.Some(null);
     final v33 = types.value(_v7);
@@ -730,11 +747,11 @@ void closure14(types.Some<CancellationToken>? v0_1, String v1_1, types.Some<Asyn
     types.value(_v34);
 }
 
-US7 closure15(void unitVar, CancellationToken v0_1) => US7_US7_0(v0_1);
+US7 closure16(void unitVar, CancellationToken v0_1) => US7_US7_0(v0_1);
 
-US7 Function(CancellationToken) method11() => (CancellationToken v) => closure15(util.ignore(), v);
+US7 Function(CancellationToken) method12() => (CancellationToken v) => closure16(util.ignore(), v);
 
-void closure16(void v0_1, void unitVar) {
+void closure17(void v0_1, void unitVar) {
     types.Some<bool>? _v1;
     _v1 = const types.Some(false);
     if (types.value(_v1) == false) {
@@ -745,39 +762,39 @@ void closure16(void v0_1, void unitVar) {
     }
 }
 
-String closure17(dynamic v0_1, void unitVar) => string.toText(string.interpolate('execute_with_options_async / WaitForExitAsync / ex: %A%P()', [v0_1]));
+String closure18(dynamic v0_1, void unitVar) => string.toText(string.interpolate('execute_with_options_async / WaitForExitAsync / ex: %A%P()', [v0_1]));
 
-String method12() => '\n';
+String method13() => '\n';
 
-String closure18(int v0_1, String v1_1, void unitVar) => 'execute_with_options_async / exit_code: $v0_1 / output.Length: ${v1_1.length}';
+String closure19(int v0_1, String v1_1, void unitVar) => 'execute_with_options_async / exit_code: $v0_1 / output.Length: ${v1_1.length}';
 
-Async<types.Tuple2<int, String>> closure3(void unitVar, String v0_1) {
+Async<types.Tuple2<int, String>> closure4(void unitVar, String v0_1) {
     types.Some<Async<types.Tuple2<int, String>>>? _v4;
     _v4 = const types.Some(null);
     return types.value(_v4);
 }
 
-Async<types.Tuple2<int, String>> closure19(void unitVar, types.Tuple4<types.Some<CancellationToken>?, String, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>?, types.Some<String>?> _arg) {
+Async<types.Tuple2<int, String>> closure20(void unitVar, types.Tuple4<types.Some<CancellationToken>?, String, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>?, types.Some<String>?> _arg) {
     types.Some<Async<types.Tuple2<int, String>>>? _v4;
     _v4 = const types.Some(null);
     return types.value(_v4);
 }
 
-types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> v0() => closure0(util.ignore(), util.ignore());
+types.Tuple5<Mut0, Mut1, Mut2, types.Some<int>?, Mut3> v0() => closure0(util.ignore(), util.ignore());
 
-bool v1() => closure1(util.ignore(), util.ignore());
+bool v1() => closure2(util.ignore(), util.ignore());
 
 bool is_windows() => v1();
 
-String v2() => closure2(util.ignore(), util.ignore());
+String v2() => closure3(util.ignore(), util.ignore());
 
 String get_executable_suffix() => v2();
 
-Async<types.Tuple2<int, String>> v3(String v) => closure3(util.ignore(), v);
+Async<types.Tuple2<int, String>> v3(String v) => closure4(util.ignore(), v);
 
 Async<types.Tuple2<int, String>> execute_async(String x) => v3(x);
 
-Async<types.Tuple2<int, String>> v4(types.Tuple4<types.Some<CancellationToken>?, String, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>?, types.Some<String>?> arg10$0040) => closure19(util.ignore(), arg10$0040);
+Async<types.Tuple2<int, String>> v4(types.Tuple4<types.Some<CancellationToken>?, String, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>?, types.Some<String>?> arg10$0040) => closure20(util.ignore(), arg10$0040);
 
 Async<types.Tuple2<int, String>> execute_with_options_async(types.Tuple4<types.Some<CancellationToken>?, String, types.Some<Async<void> Function(types.Tuple3<bool, String, int>)>?, types.Some<String>?> x) => v4(x);
 

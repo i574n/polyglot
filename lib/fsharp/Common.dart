@@ -73,7 +73,7 @@ trace_1.US0 to_trace_level(TraceLevel _arg) {
     }
 }
 
-void trace(TraceLevel level, String Function() fn, String Function() getLocals) {
-    ((lib.SpiralTrace_trace(to_trace_level(level)))(fn))(getLocals);
+void trace(TraceLevel level, String Function() fn, String Function() locals) {
+    ((lib.SpiralTrace_trace(to_trace_level(level)))(fn))(locals);
 }
 

@@ -9628,30 +9628,30 @@ method0()
 
 
 .rs:
-#![allow(dead_code,)]
-#![allow(non_camel_case_types,)]
-#![allow(non_snake_case,)]
-#![allow(non_upper_case_globals,)]
-#![allow(unreachable_code,)]
-#![allow(unused_attributes,)]
-#![allow(unused_imports,)]
-#![allow(unused_macros,)]
-#![allow(unused_parens,)]
-#![allow(unused_variables,)]
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+#![allow(unreachable_code)]
+#![allow(unused_attributes)]
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
 mod module_ccfa04bf {
     pub mod Spiral_eval {
         use super::*;
-        use fable_library_rust::Native_::LrcPtr;
-        use fable_library_rust::Native_::MutCell;
-        use fable_library_rust::Native_::on_startup;
-        use fable_library_rust::NativeArray_::Array;
         use fable_library_rust::NativeArray_::count;
         use fable_library_rust::NativeArray_::new_array;
+        use fable_library_rust::NativeArray_::Array;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::Native_::LrcPtr;
+        use fable_library_rust::Native_::MutCell;
         use fable_library_rust::String_::append;
         use fable_library_rust::String_::printfn;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
-        #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq,)]
+        #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
         pub struct Mut0 {
             pub l0: MutCell&lt;i32&gt;,
             pub l1: MutCell&lt;string&gt;,
@@ -9664,19 +9664,22 @@ mod module_ccfa04bf {
         pub fn method1(v0: i32, v1: LrcPtr&lt;Spiral_eval::Mut0&gt;) -&gt; bool {
             v1.l0.get().clone() &lt; v0
         }
-        pub fn method2(v0: bool) -&gt; bool { v0 }
+        pub fn method2(v0: bool) -&gt; bool {
+            v0
+        }
         pub fn method0() {
-            let v3: Array&lt;string&gt; =
-                new_array(&amp;[string("1"), string("2"), string("3")]);
+            let v3: Array&lt;string&gt; = new_array(&amp;[string("1"), string("2"), string("3")]);
             let v4: i32 = count(v3.clone());
-            let v6: LrcPtr&lt;Spiral_eval::Mut0&gt; =
-                LrcPtr::new(Spiral_eval::Mut0{l0: MutCell::new(0_i32),
-                                              l1: MutCell::new(string("")),});
+            let v6: LrcPtr&lt;Spiral_eval::Mut0&gt; = LrcPtr::new(Spiral_eval::Mut0 {
+                l0: MutCell::new(0_i32),
+                l1: MutCell::new(string("")),
+            });
             while Spiral_eval::method1(v4, v6.clone()) {
                 let v8: i32 = v6.l0.get().clone();
-                let v12: string =
-                    append(append(append(v6.l1.get().clone(), v3[v8].clone()),
-                                  string("\n")), string(""));
+                let v12: string = append(
+                    append(append(v6.l1.get().clone(), v3[v8].clone()), string("\n")),
+                    string(""),
+                );
                 let v13: i32 = v8 + 1_i32;
                 v6.l0.set(v13);
                 v6.l1.set(v12);
@@ -9688,10 +9691,15 @@ mod module_ccfa04bf {
                 printfn!("{0}", v15);
                 {
                     let v17: bool = v14.clone() == string("1\n2\n3\n");
-                    if (if v17 { true } else { Spiral_eval::method2(v17) }) ==
-                           false {
-                        panic!("{}",
-                               sprintf!("__expect / actual: {:?} / expected: {:?}", v14, string("1\n2\n3\n")));
+                    if (if v17 { true } else { Spiral_eval::method2(v17) }) == false {
+                        panic!(
+                            "{}",
+                            sprintf!(
+                                "__expect / actual: {:?} / expected: {:?}",
+                                v14,
+                                string("1\n2\n3\n")
+                            ),
+                        );
                     }
                 }
             }
@@ -9822,16 +9830,16 @@ method0()
 
 
 .rs:
-#![allow(dead_code,)]
-#![allow(non_camel_case_types,)]
-#![allow(non_snake_case,)]
-#![allow(non_upper_case_globals,)]
-#![allow(unreachable_code,)]
-#![allow(unused_attributes,)]
-#![allow(unused_imports,)]
-#![allow(unused_macros,)]
-#![allow(unused_parens,)]
-#![allow(unused_variables,)]
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+#![allow(unreachable_code)]
+#![allow(unused_attributes)]
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
 mod module_ccfa04bf {
     pub mod Spiral_eval {
         use super::*;
@@ -9839,17 +9847,24 @@ mod module_ccfa04bf {
         use fable_library_rust::String_::printfn;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
-        pub fn method1(v0: bool) -&gt; bool { v0 }
+        pub fn method1(v0: bool) -&gt; bool {
+            v0
+        }
         pub fn method0() {
             let v7: string = string("1\n2\n3\n");
             let v8: string = sprintf!("{:?}", v7.clone());
             printfn!("{0}", v8);
             {
                 let v10: bool = v7.clone() == string("1\n2\n3\n");
-                if (if v10 { true } else { Spiral_eval::method1(v10) }) ==
-                       false {
-                    panic!("{}",
-                           sprintf!("__expect / actual: {:?} / expected: {:?}", v7, string("1\n2\n3\n")));
+                if (if v10 { true } else { Spiral_eval::method1(v10) }) == false {
+                    panic!(
+                        "{}",
+                        sprintf!(
+                            "__expect / actual: {:?} / expected: {:?}",
+                            v7,
+                            string("1\n2\n3\n")
+                        ),
+                    );
                 }
             }
         }
@@ -9965,6 +9980,7 @@ pub use module_ccfa04bf::*;
 [&lt;Fable.Core.Erase; Fable.Core.Emit("Fn() -&gt; $0")&gt;] type Fn&lt;'T&gt; = class end
 [&lt;Fable.Core.Erase; Fable.Core.Emit("Fn()")&gt;] type FnUnit = class end
 [&lt;Fable.Core.Erase; Fable.Core.Emit("FnOnce() -&gt; $0")&gt;] type FnOnce&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0)")&gt;] type ActionFn&lt;'T&gt; = class end
 [&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")&gt;] type ActionFn2&lt;'T, 'U&gt; = class end
 [&lt;Fable.Core.Erase; Fable.Core.Emit("impl $0")&gt;] type Impl&lt;'T&gt; = class end
 [&lt;Fable.Core.Erase; Fable.Core.Emit("mut $0")&gt;] type Mut&lt;'T&gt; = class end
@@ -10046,16 +10062,16 @@ method0()
 
 
 .rs:
-#![allow(dead_code,)]
-#![allow(non_camel_case_types,)]
-#![allow(non_snake_case,)]
-#![allow(non_upper_case_globals,)]
-#![allow(unreachable_code,)]
-#![allow(unused_attributes,)]
-#![allow(unused_imports,)]
-#![allow(unused_macros,)]
-#![allow(unused_parens,)]
-#![allow(unused_variables,)]
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+#![allow(unreachable_code)]
+#![allow(unused_attributes)]
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
 mod module_ccfa04bf {
     pub mod Spiral_eval {
         use super::*;
@@ -10063,37 +10079,56 @@ mod module_ccfa04bf {
         use fable_library_rust::String_::printfn;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
-        pub fn method1() -&gt; string { string("\n") }
-        pub fn method2() -&gt; string { string("") }
-        pub fn method3(v0: string) -&gt; string { v0 }
-        pub fn method4(v0: bool) -&gt; bool { v0 }
+        pub fn method1() -&gt; string {
+            string("\n")
+        }
+        pub fn method2() -&gt; string {
+            string("")
+        }
+        pub fn method3(v0: string) -&gt; string {
+            v0
+        }
+        pub fn method4(v0: bool) -&gt; bool {
+            v0
+        }
         pub fn method0() {
             let v0: string = Spiral_eval::method1();
             let v2: &amp;str = fable_library_rust::String_::LrcStr::as_str(&amp;v0);
             let v3: string = Spiral_eval::method2();
             let v5: &amp;str = fable_library_rust::String_::LrcStr::as_str(&amp;v3);
-            let v12: string =
-                Spiral_eval::method3(sprintf!("{}{}{}", String::from(v5),
-                                              fable_library_rust::String_::LrcStr::as_str(&amp;string("1")),
-                                              v2.clone()));
+            let v12: string = Spiral_eval::method3(sprintf!(
+                "{}{}{}",
+                String::from(v5),
+                fable_library_rust::String_::LrcStr::as_str(&amp;string("1")),
+                v2.clone()
+            ));
             let v14: &amp;str = fable_library_rust::String_::LrcStr::as_str(&amp;v12);
-            let v21: string =
-                Spiral_eval::method3(sprintf!("{}{}{}", String::from(v14),
-                                              fable_library_rust::String_::LrcStr::as_str(&amp;string("2")),
-                                              v2.clone()));
+            let v21: string = Spiral_eval::method3(sprintf!(
+                "{}{}{}",
+                String::from(v14),
+                fable_library_rust::String_::LrcStr::as_str(&amp;string("2")),
+                v2.clone()
+            ));
             let v23: &amp;str = fable_library_rust::String_::LrcStr::as_str(&amp;v21);
-            let v29: string =
-                sprintf!("{}{}{}", String::from(v23),
-                         fable_library_rust::String_::LrcStr::as_str(&amp;string("3")),
-                         v2);
+            let v29: string = sprintf!(
+                "{}{}{}",
+                String::from(v23),
+                fable_library_rust::String_::LrcStr::as_str(&amp;string("3")),
+                v2
+            );
             let v30: string = sprintf!("{:?}", v29.clone());
             printfn!("{0}", v30);
             {
                 let v32: bool = v29.clone() == string("1\n2\n3\n");
-                if (if v32 { true } else { Spiral_eval::method4(v32) }) ==
-                       false {
-                    panic!("{}",
-                           sprintf!("__expect / actual: {:?} / expected: {:?}", v29, string("1\n2\n3\n")));
+                if (if v32 { true } else { Spiral_eval::method4(v32) }) == false {
+                    panic!(
+                        "{}",
+                        sprintf!(
+                            "__expect / actual: {:?} / expected: {:?}",
+                            v29,
+                            string("1\n2\n3\n")
+                        ),
+                    );
                 }
             }
         }

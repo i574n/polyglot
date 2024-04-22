@@ -7565,7 +7565,18 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="types">types<a class="anchor-link" href="#types">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7574,50 +7585,8 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::string::String</span><span class="se">\"</span><span class="s2">)&gt;] type std_string_String = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">&amp;$0</span><span class="se">\"</span><span class="s2">)&gt;] type Ref&lt;'T&gt; = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">str</span><span class="se">\"</span><span class="s2">)&gt;] type Str = class end"</span>
-
-<span class="n">inl</span> <span class="n">emit_expr</span> <span class="n">forall</span> <span class="n">a</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="n">a</span><span class="p">)</span> <span class="p">(</span><span class="n">code</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="n">real</span>
-        <span class="err">$</span><span class="s2">"Fable.Core.RustInterop.emitRustExpr !args !code"</span> <span class="p">:</span> <span class="n">t</span>
-
-
-<span class="n">nominal</span> <span class="n">std_string</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_string_String"</span>
-<span class="n">nominal</span> <span class="n">ref</span><span class="s1">' t = $"Ref&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="nb">str</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"Str"</span>
-
-<span class="n">inl</span> <span class="n">format_debug</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-    <span class="n">real</span>
-        <span class="n">emit_expr</span> <span class="err">`</span><span class="n">t</span> <span class="err">`</span><span class="n">std_string</span> <span class="n">x</span> <span class="s2">"format!(</span><span class="se">\"</span><span class="s2">{:?}</span><span class="se">\"</span><span class="s2">, $0)"</span>
-
-<span class="n">inl</span> <span class="n">format_pretty</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-    <span class="n">real</span>
-        <span class="n">emit_expr</span> <span class="err">`</span><span class="n">t</span> <span class="err">`</span><span class="n">std_string</span> <span class="n">x</span> <span class="s2">"format!(</span><span class="se">\"</span><span class="s2">{:#?}</span><span class="se">\"</span><span class="s2">, $0)"</span>
-
-<span class="n">inl</span> <span class="n">to_std_string</span> <span class="p">(</span><span class="nb">str</span> <span class="p">:</span> <span class="n">ref</span><span class="s1">' str) : std_string =</span>
-    <span class="o">//</span> <span class="n">inl</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">join</span> <span class="nb">str</span>
-    <span class="o">//</span> <span class="o">//</span> <span class="n">emit_expr</span> <span class="p">()</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">!str.to_string()</span><span class="se">\"</span><span class="s2">"</span>
-    <span class="o">//</span> <span class="o">//</span> <span class="n">emit_expr</span> <span class="p">()</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">alloc::string::to_string(!str)</span><span class="se">\"</span><span class="s2">"</span>
-    <span class="o">//</span> <span class="n">emit_expr</span> <span class="nb">str</span> <span class="s2">"($0).to_string()"</span>
-    <span class="n">emit_expr</span> <span class="nb">str</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">String::from(core::ops::Deref::deref($0))</span><span class="se">\"</span><span class="s2">"</span>
-    <span class="o">//</span> <span class="n">emit_expr</span> <span class="nb">str</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">String::from(*$0)</span><span class="se">\"</span><span class="s2">"</span>
-    <span class="o">//</span> <span class="n">emit_expr</span> <span class="p">()</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">String::from(!str)</span><span class="se">\"</span><span class="s2">"</span>
-
-<span class="n">inl</span> <span class="nb">format</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-    <span class="n">real</span>
-        <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-            <span class="n">typecase</span> <span class="n">t</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="n">string</span> <span class="o">=&gt;</span> <span class="n">to_std_string</span> <span class="n">x</span>
-            <span class="o">|</span> <span class="n">std_string</span> <span class="o">=&gt;</span> <span class="n">x</span>
-            <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">format_pretty</span> <span class="err">`</span><span class="n">t</span> <span class="n">x</span>
-        <span class="n">result</span>
-
-<span class="n">inl</span> <span class="n">raw_string_literal</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">ref</span><span class="s1">' str =</span>
-    <span class="n">emit_expr</span> <span class="p">()</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">r#</span><span class="se">\\\"\"</span><span class="s2"> + !s + </span><span class="se">\"\\\"</span><span class="s2">#</span><span class="se">\"</span><span class="s2">"</span>
-
-<span class="n">inl</span> <span class="p">(</span><span class="o">~</span><span class="c1">#) (s : string) : ref' str =</span>
-    <span class="n">raw_string_literal</span> <span class="n">s</span>
+    <span class="n">rust</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">sm</span><span class="s1">'.types ()</span>
 </pre></div>
 </div>
 </div>
@@ -7637,7 +7606,18 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="task_name">task_name<a class="anchor-link" href="#task_name">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7646,17 +7626,128 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">task_name</span> <span class="o">=</span> <span class="n">string</span>
-
-<span class="n">union</span> <span class="n">manual_scheduling</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="manual_scheduling">manual_scheduling<a class="anchor-link" href="#manual_scheduling">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">manual_scheduling</span> <span class="o">=</span>
     <span class="o">|</span> <span class="n">WithSuggestion</span>
     <span class="o">|</span> <span class="n">WithoutSuggestion</span>
-
-<span class="n">union</span> <span class="n">recurrency_offset</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="recurrency_offset">recurrency_offset<a class="anchor-link" href="#recurrency_offset">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">recurrency_offset</span> <span class="o">=</span>
     <span class="o">|</span> <span class="n">Days</span> <span class="p">:</span> <span class="n">i32</span>
     <span class="o">|</span> <span class="n">Weeks</span> <span class="p">:</span> <span class="n">i32</span>
     <span class="o">|</span> <span class="n">Months</span> <span class="p">:</span> <span class="n">i32</span>
-
-<span class="n">union</span> <span class="n">day_of_week</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="day_of_week">day_of_week<a class="anchor-link" href="#day_of_week">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">day_of_week</span> <span class="o">=</span>
     <span class="o">|</span> <span class="n">Sunday</span>
     <span class="o">|</span> <span class="n">Monday</span>
     <span class="o">|</span> <span class="n">Tuesday</span>
@@ -7664,8 +7755,45 @@ a.anchor-link {
     <span class="o">|</span> <span class="n">Thursday</span>
     <span class="o">|</span> <span class="n">Friday</span>
     <span class="o">|</span> <span class="n">Saturday</span>
-
-<span class="n">union</span> <span class="n">month</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="month">month<a class="anchor-link" href="#month">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">month</span> <span class="o">=</span>
     <span class="o">|</span> <span class="n">January</span>
     <span class="o">|</span> <span class="n">February</span>
     <span class="o">|</span> <span class="n">March</span>
@@ -7678,46 +7806,417 @@ a.anchor-link {
     <span class="o">|</span> <span class="n">October</span>
     <span class="o">|</span> <span class="n">November</span>
     <span class="o">|</span> <span class="n">December</span>
-
-<span class="n">nominal</span> <span class="n">day</span> <span class="o">=</span> <span class="n">i32</span>
-<span class="n">nominal</span> <span class="n">year</span> <span class="o">=</span> <span class="n">i32</span>
-
-<span class="n">union</span> <span class="n">fixed_recurrency</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="day">day<a class="anchor-link" href="#day">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">day</span> <span class="o">=</span> <span class="n">i32</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="year">year<a class="anchor-link" href="#year">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">year</span> <span class="o">=</span> <span class="n">i32</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="fixed_recurrency">fixed_recurrency<a class="anchor-link" href="#fixed_recurrency">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">fixed_recurrency</span> <span class="o">=</span>
     <span class="o">|</span> <span class="n">Weekly</span> <span class="p">:</span> <span class="n">day_of_week</span>
     <span class="o">|</span> <span class="n">Monthly</span> <span class="p">:</span> <span class="n">day</span>
     <span class="o">|</span> <span class="n">Yearly</span> <span class="p">:</span> <span class="n">day</span> <span class="o">*</span> <span class="n">month</span>
-
-<span class="n">union</span> <span class="n">recurrency</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="recurrency">recurrency<a class="anchor-link" href="#recurrency">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">recurrency</span> <span class="o">=</span>
     <span class="o">|</span> <span class="n">Offset</span> <span class="p">:</span> <span class="n">recurrency_offset</span>
     <span class="o">|</span> <span class="n">Fixed</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">fixed_recurrency</span>
-
-<span class="n">union</span> <span class="n">scheduling</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="scheduling">scheduling<a class="anchor-link" href="#scheduling">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">scheduling</span> <span class="o">=</span>
     <span class="o">|</span> <span class="n">Manual</span> <span class="p">:</span> <span class="n">manual_scheduling</span>
     <span class="o">|</span> <span class="n">Recurrent</span> <span class="p">:</span> <span class="n">recurrency</span>
-
-<span class="nb">type</span> <span class="n">task</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="task">task<a class="anchor-link" href="#task">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">task</span> <span class="o">=</span>
     <span class="p">{</span>
         <span class="n">name</span> <span class="p">:</span> <span class="n">task_name</span>
         <span class="n">scheduling</span> <span class="p">:</span> <span class="n">scheduling</span>
     <span class="p">}</span>
-
-<span class="nb">type</span> <span class="n">date</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="date">date<a class="anchor-link" href="#date">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">date</span> <span class="o">=</span>
     <span class="p">{</span>
         <span class="n">year</span> <span class="p">:</span> <span class="n">year</span>
         <span class="n">month</span> <span class="p">:</span> <span class="n">month</span>
         <span class="n">day</span> <span class="p">:</span> <span class="n">day</span>
     <span class="p">}</span>
-
-<span class="n">union</span> <span class="n">status</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="status">status<a class="anchor-link" href="#status">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">status</span> <span class="o">=</span>
     <span class="o">|</span> <span class="n">Postponed</span> <span class="p">:</span> <span class="n">option</span> <span class="p">()</span>
-
-<span class="nb">type</span> <span class="n">event</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="event">event<a class="anchor-link" href="#event">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">event</span> <span class="o">=</span>
     <span class="p">{</span>
         <span class="n">date</span> <span class="p">:</span> <span class="n">date</span>
         <span class="n">status</span> <span class="p">:</span> <span class="n">status</span>
     <span class="p">}</span>
-
-<span class="nb">type</span> <span class="n">task_template</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="task_template">task_template<a class="anchor-link" href="#task_template">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">task_template</span> <span class="o">=</span>
     <span class="p">{</span>
         <span class="n">task</span> <span class="p">:</span> <span class="n">task</span>
         <span class="n">events</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">event</span>
@@ -7741,7 +8240,18 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="get_tasks-(test)">get_tasks (test)<a class="anchor-link" href="#get_tasks-(test)">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7750,75 +8260,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
-
-<span class="n">types</span> <span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.rs output:
-
-
-
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.fsx:
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;] type std_string_String = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;] type Ref&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;] type Str = class end
-let rec method0 () : unit =
-    ()
-method0()
-
-.rs:
-#![allow(dead_code,)]
-#![allow(non_camel_case_types,)]
-#![allow(non_snake_case,)]
-#![allow(non_upper_case_globals,)]
-#![allow(unreachable_code,)]
-#![allow(unused_attributes,)]
-#![allow(unused_imports,)]
-#![allow(unused_macros,)]
-#![allow(unused_parens,)]
-#![allow(unused_variables,)]
-mod module_ccfa04bf {
-    pub mod Spiral_eval {
-        use super::*;
-        use fable_library_rust::Native_::on_startup;
-        pub fn method0() { (); }
-        on_startup!(Spiral_eval::method0());
-    }
-}
-pub use module_ccfa04bf::*;
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
 
 <span class="n">inl</span> <span class="n">get_tasks</span> <span class="p">()</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">task_template</span> <span class="o">=</span>
     <span class="p">[</span>
@@ -7847,9 +8288,41 @@ pub use module_ccfa04bf::*;
             <span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="p">}</span>
     <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
 
 <span class="n">types</span> <span class="p">()</span>
-<span class="n">get_tasks</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">format_pretty</span> <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+<span class="n">inl</span> <span class="n">tasks</span> <span class="o">=</span> <span class="n">get_tasks</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_pretty'</span>
+<span class="n">trace</span> <span class="n">Verbose</span>
+    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"Tasks"</span>
+    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"tasks: {!tasks} / {!_locals ()}"'</span>
 </pre></div>
 </div>
 </div>
@@ -7863,7 +8336,7 @@ pub use module_ccfa04bf::*;
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-UH2_1(
+01:44:19 <span class="ansi-black-intense-fg">verbose</span> #1 Tasks / tasks: UH2_1(
     UH0_0,
     "01",
     US4_0(
@@ -7894,9 +8367,39 @@ UH2_1(
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx:
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;] type std_string_String = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func0&lt;$0&gt;")&gt;] type Func0&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func1&lt;$0, $1&gt;")&gt;] type Func0&lt;'T, 'U&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Box&lt;$0&gt;")&gt;] type Box&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("dyn $0")&gt;] type Dyn&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("$0 + Send")&gt;] type Send&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn() -&gt; $0")&gt;] type Fn&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn()")&gt;] type FnUnit = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("FnOnce() -&gt; $0")&gt;] type FnOnce&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0)")&gt;] type ActionFn&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")&gt;] type ActionFn2&lt;'T, 'U&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("impl $0")&gt;] type Impl&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("mut $0")&gt;] type Mut&lt;'T&gt; = class end
 [&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;] type Ref&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;'static $0")&gt;] type StaticRef&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("MutCell&lt;$0&gt;")&gt;] type MutCell&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::any::Any")&gt;] type std_any_Any = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell&lt;$0&gt;")&gt;] type std_cell_RefCell&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin&lt;$0&gt;")&gt;] type std_pin_Pin&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc&lt;$0&gt;")&gt;] type std_rc_Rc&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak&lt;$0&gt;")&gt;] type std_rc_Weak&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;] type std_sync_Arc&lt;'T&gt; = class end
 [&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;] type Str = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")&gt;] type base64_DecodeError = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")&gt;] type borsh_io_Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")&gt;] type js_sys_JsString = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")&gt;] type serde_json_Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")&gt;] type serde_json_Value = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")&gt;] type serde_wasm_bindgen_Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")&gt;] type std_ffi_OsStr = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")&gt;] type std_ffi_OsString = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")&gt;] type std_str_Utf8Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;] type std_string_String = class end
+module State = let mutable trace_state = None
 type [&lt;Struct&gt;] US0 =
     | US0_0
     | US0_1
@@ -7949,49 +8452,497 @@ and [&lt;Struct&gt;] US4 =
 and UH2 =
     | UH2_0
     | UH2_1 of UH0 * string * US4 * UH2
-let rec method0 () : unit =
-    let v0 : UH0 = UH0_0
-    let v1 : string = "01"
-    let v2 : US3 = US3_0
-    let v3 : US4 = US4_0(v2)
-    let v4 : UH0 = UH0_0
-    let v5 : string = "02"
-    let v6 : US3 = US3_0
-    let v7 : US4 = US4_0(v6)
-    let v8 : UH0 = UH0_0
-    let v9 : string = "03"
-    let v10 : US3 = US3_0
-    let v11 : US4 = US4_0(v10)
-    let v12 : UH2 = UH2_0
-    let v13 : UH2 = UH2_1(v8, v9, v11, v12)
-    let v14 : UH2 = UH2_1(v4, v5, v7, v13)
-    let v15 : UH2 = UH2_1(v0, v1, v3, v14)
-    let v16 : string = "format!(\"{:#?}\", $0)"
-    let v17 : std_string_String = Fable.Core.RustInterop.emitRustExpr v15 v16
-    System.Console.WriteLine v17
+and [&lt;Struct&gt;] US9 =
+    | US9_0
+    | US9_1
+    | US9_2
+    | US9_3
+    | US9_4
+and Mut0 = {mutable l0 : int64}
+and Mut1 = {mutable l0 : bool}
+and Mut2 = {mutable l0 : US9}
+and Mut3 = {mutable l0 : (string -&gt; unit)}
+and [&lt;Struct&gt;] US10 =
+    | US10_0 of f0_0 : int64
+    | US10_1
+and [&lt;Struct&gt;] US11 =
+    | US11_0 of f0_0 : int64
+    | US11_1
+let rec closure0 () () : string =
+    let v0 : string = "Tasks"
+    v0
+and closure2 () () : string =
+    let v0 : string = ""
+    v0
+and closure1 (v0 : std_string_String) () : string =
+    let v1 : (unit -&gt; string) = closure2()
+    let v2 : string = $"tasks: {v0} / {v1 ()}"
+    v2
+and closure5 () (v0 : string) : unit =
     ()
+and method2 (v0 : int64 option) : int64 option =
+    v0
+and method3 (v0 : int64 option) : int64 option =
+    v0
+and closure4 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
+    let v0 : Mut1 = {l0 = true} : Mut1
+    let v1 : Mut0 = {l0 = 0L} : Mut0
+    let v2 : US9 = US9_0
+    let v3 : Mut2 = {l0 = v2} : Mut2
+    let v4 : (string -&gt; unit) = closure5()
+    let v5 : Mut3 = {l0 = v4} : Mut3
+    let v6 : int64 option option = None
+    let mutable _v6 = v6
+    #if INTERACTIVE || !FABLE_COMPILER
+    let v7 : string option = None
+    let v8 : bool = true in let mutable _v7 = v7
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v9 : string = null |&gt; unbox&lt;string&gt;
+    v9
+#endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v10 : string = null |&gt; unbox&lt;string&gt;
+    v10
+#endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v11 : string = null |&gt; unbox&lt;string&gt;
+    v11
+#endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v12 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    v12
+#endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v13 : string = null |&gt; unbox&lt;string&gt;
+    v13
+#endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v14 : string = Unchecked.defaultof&lt;string&gt;
+    v14
+#endif
+    |&gt; fun x -&gt; _v7 &lt;- Some x
+    let v15 : string = _v7.Value
+    let v17 : bool = v15 = "Microsoft.DotNet.Interactive.App"
+    let v18 : bool = v17 &lt;&gt; true
+    let v24 : US10 =
+        if v18 then
+            let v19 : System.DateTime = System.DateTime.Now
+            let v20 : (System.DateTime -&gt; int64) = _.Ticks
+            let v21 : int64 = v20 v19
+            US10_0(v21)
+        else
+            US10_1
+    let v29 : int64 option =
+        match v24 with
+        | US10_1 -&gt; (* None *)
+            let v27 : int64 option = None
+            v27
+        | US10_0(v25) -&gt; (* Some *)
+            let v26 : int64 option = Some v25 
+            v26
+    let v30 : int64 option = method2(v29)
+    v30 
+    #else
+    let v31 : int64 option = None
+    let v32 : int64 option = method3(v31)
+    v32 
+    #endif
+    |&gt; fun x -&gt; _v6 &lt;- Some x
+    let v33 : int64 option = _v6.Value
+    struct (v1, v0, v3, v33, v5)
+and closure6 () (v0 : int64) : US11 =
+    US11_0(v0)
+and method4 () : (int64 -&gt; US11) =
+    closure6()
+and method5 () : string =
+    let v0 : string = ""
+    v0
+and closure3 (v0 : US9, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () : string =
+    let v3 : (unit -&gt; struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure4()
+    if State.trace_state.IsNone then State.trace_state &lt;- v3 () |&gt; Some
+    let struct (v4 : Mut0, v5 : Mut1, v6 : Mut2, v7 : int64 option, v8 : Mut3) = State.trace_state.Value
+    let v9 : string option = None
+    let v10 : bool = true in let mutable _v9 = v9
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v11 : (int64 -&gt; US11) = method4()
+    let v12 : US11 = US11_1
+    let v13 : US11 = v7 |&gt; Option.map v11 |&gt; Option.defaultValue v12 
+    let v31 : System.DateTime =
+        match v13 with
+        | US11_1 -&gt; (* None *)
+            let v29 : System.DateTime = System.DateTime.Now
+            v29
+        | US11_0(v14) -&gt; (* Some *)
+            let v15 : System.DateTime = System.DateTime.Now
+            let v16 : (System.DateTime -&gt; int64) = _.Ticks
+            let v17 : int64 = v16 v15
+            let v18 : int64 = v17 - v14
+            let v19 : System.TimeSpan = System.TimeSpan v18 
+            let v20 : (System.TimeSpan -&gt; int32) = _.Hours
+            let v21 : int32 = v20 v19
+            let v22 : (System.TimeSpan -&gt; int32) = _.Minutes
+            let v23 : int32 = v22 v19
+            let v24 : (System.TimeSpan -&gt; int32) = _.Seconds
+            let v25 : int32 = v24 v19
+            let v26 : (System.TimeSpan -&gt; int32) = _.Milliseconds
+            let v27 : int32 = v26 v19
+            let v28 : System.DateTime = System.DateTime (1, 1, 1, v21, v23, v25, v27)
+            v28
+    let v32 : string = "hh:mm:ss"
+    let v33 : string = v31.ToString v32 
+    v33
+#endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v34 : string = method5()
+    v34
+#endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v35 : string = method5()
+    v35
+#endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v36 : (int64 -&gt; US11) = method4()
+    let v37 : US11 = US11_1
+    let v38 : US11 = v7 |&gt; Option.map v36 |&gt; Option.defaultValue v37 
+    let v56 : System.DateTime =
+        match v38 with
+        | US11_1 -&gt; (* None *)
+            let v54 : System.DateTime = System.DateTime.Now
+            v54
+        | US11_0(v39) -&gt; (* Some *)
+            let v40 : System.DateTime = System.DateTime.Now
+            let v41 : (System.DateTime -&gt; int64) = _.Ticks
+            let v42 : int64 = v41 v40
+            let v43 : int64 = v42 - v39
+            let v44 : System.TimeSpan = System.TimeSpan v43 
+            let v45 : (System.TimeSpan -&gt; int32) = _.Hours
+            let v46 : int32 = v45 v44
+            let v47 : (System.TimeSpan -&gt; int32) = _.Minutes
+            let v48 : int32 = v47 v44
+            let v49 : (System.TimeSpan -&gt; int32) = _.Seconds
+            let v50 : int32 = v49 v44
+            let v51 : (System.TimeSpan -&gt; int32) = _.Milliseconds
+            let v52 : int32 = v51 v44
+            let v53 : System.DateTime = System.DateTime (1, 1, 1, v46, v48, v50, v52)
+            v53
+    let v57 : string = "HH:mm:ss"
+    let v58 : string = v56.ToString v57 
+    v58
+#endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v59 : string = method5()
+    v59
+#endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v60 : string = Unchecked.defaultof&lt;string&gt;
+    v60
+#endif
+    |&gt; fun x -&gt; _v9 &lt;- Some x
+    let v61 : string = _v9.Value
+    let v62 : int64 = v4.l0
+    let v72 : string =
+        match v0 with
+        | US9_4 -&gt; (* Critical *)
+            let v67 : string = "Critical"
+            v67
+        | US9_1 -&gt; (* Debug *)
+            let v64 : string = "Debug"
+            v64
+        | US9_2 -&gt; (* Info *)
+            let v65 : string = "Info"
+            v65
+        | US9_0 -&gt; (* Verbose *)
+            let v63 : string = "Verbose"
+            v63
+        | US9_3 -&gt; (* Warning *)
+            let v66 : string = "Warning"
+            v66
+    let v73 : string = v72.ToLower ()
+    let v74 : string option = None
+    let v75 : bool = true in let mutable _v74 = v74
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v90 : Ref&lt;Str&gt; =
+        match v0 with
+        | US9_4 -&gt; (* Critical *)
+            let v84 : string = "inline_colorization::color_bright_red"
+            let v85 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v84
+            v85
+        | US9_1 -&gt; (* Debug *)
+            let v78 : string = "inline_colorization::color_bright_blue"
+            let v79 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v78
+            v79
+        | US9_2 -&gt; (* Info *)
+            let v80 : string = "inline_colorization::color_bright_green"
+            let v81 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v80
+            v81
+        | US9_0 -&gt; (* Verbose *)
+            let v76 : string = "inline_colorization::color_bright_black"
+            let v77 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v76
+            v77
+        | US9_3 -&gt; (* Warning *)
+            let v82 : string = "inline_colorization::color_bright_yellow"
+            let v83 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v82
+            v83
+    let v91 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v92 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v73 v91
+    let v93 : string = "inline_colorization::color_reset"
+    let v94 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v93
+    let v95 : string = "\"{v90}{v92}{v94}\""
+    let v96 : string = @$"format!(" + v95 + ")"
+    let v97 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v96
+    let v98 : string = "fable_library_rust::String_::fromString($0)"
+    let v99 : string = Fable.Core.RustInterop.emitRustExpr v97 v98
+    v99
+#endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v114 : Ref&lt;Str&gt; =
+        match v0 with
+        | US9_4 -&gt; (* Critical *)
+            let v108 : string = "inline_colorization::color_bright_red"
+            let v109 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v108
+            v109
+        | US9_1 -&gt; (* Debug *)
+            let v102 : string = "inline_colorization::color_bright_blue"
+            let v103 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v102
+            v103
+        | US9_2 -&gt; (* Info *)
+            let v104 : string = "inline_colorization::color_bright_green"
+            let v105 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v104
+            v105
+        | US9_0 -&gt; (* Verbose *)
+            let v100 : string = "inline_colorization::color_bright_black"
+            let v101 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v100
+            v101
+        | US9_3 -&gt; (* Warning *)
+            let v106 : string = "inline_colorization::color_bright_yellow"
+            let v107 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v106
+            v107
+    let v115 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v116 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v73 v115
+    let v117 : string = "inline_colorization::color_reset"
+    let v118 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v117
+    let v119 : string = "\"{v114}{v116}{v118}\""
+    let v120 : string = @$"format!(" + v119 + ")"
+    let v121 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v120
+    let v122 : string = "fable_library_rust::String_::fromString($0)"
+    let v123 : string = Fable.Core.RustInterop.emitRustExpr v121 v122
+    v123
+#endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v138 : Ref&lt;Str&gt; =
+        match v0 with
+        | US9_4 -&gt; (* Critical *)
+            let v132 : string = "inline_colorization::color_bright_red"
+            let v133 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v132
+            v133
+        | US9_1 -&gt; (* Debug *)
+            let v126 : string = "inline_colorization::color_bright_blue"
+            let v127 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v126
+            v127
+        | US9_2 -&gt; (* Info *)
+            let v128 : string = "inline_colorization::color_bright_green"
+            let v129 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v128
+            v129
+        | US9_0 -&gt; (* Verbose *)
+            let v124 : string = "inline_colorization::color_bright_black"
+            let v125 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v124
+            v125
+        | US9_3 -&gt; (* Warning *)
+            let v130 : string = "inline_colorization::color_bright_yellow"
+            let v131 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v130
+            v131
+    let v139 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v140 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v73 v139
+    let v141 : string = "inline_colorization::color_reset"
+    let v142 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v141
+    let v143 : string = "\"{v138}{v140}{v142}\""
+    let v144 : string = @$"format!(" + v143 + ")"
+    let v145 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v144
+    let v146 : string = "fable_library_rust::String_::fromString($0)"
+    let v147 : string = Fable.Core.RustInterop.emitRustExpr v145 v146
+    v147
+#endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    v73
+#endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    v73
+#endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v148 : string = Unchecked.defaultof&lt;string&gt;
+    v148
+#endif
+    |&gt; fun x -&gt; _v74 &lt;- Some x
+    let v149 : string = _v74.Value
+    let v150 : string = $"{v61} {v149} #{v62} %s{v1 ()} / %s{v2 ()}"
+    let v151 : (char []) = [||]
+    let v152 : string = v150.TrimStart v151
+    let v153 : (char []) = [|' '; '/'|]
+    let v154 : string = v152.TrimEnd v153
+    v154
+and method6 (v0 : US9, v1 : (unit -&gt; string)) : unit =
+    let v2 : (unit -&gt; struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure4()
+    if State.trace_state.IsNone then State.trace_state &lt;- v2 () |&gt; Some
+    let struct (v3 : Mut0, v4 : Mut1, v5 : Mut2, v6 : int64 option, v7 : Mut3) = State.trace_state.Value
+    if State.trace_state.IsNone then State.trace_state &lt;- v2 () |&gt; Some
+    let struct (v8 : Mut0, v9 : Mut1, v10 : Mut2, v11 : int64 option, v12 : Mut3) = State.trace_state.Value
+    let v13 : US9 = v10.l0
+    let v14 : bool = v9.l0
+    let v15 : bool = v14 = false
+    let v19 : bool =
+        if v15 then
+            false
+        else
+            let v16 : int32 = [ US9_0, 0; US9_1, 1; US9_2, 2; US9_3, 3; US9_4, 4 ] |&gt; Map |&gt; Map.find v0
+            let v17 : int32 = [ US9_0, 0; US9_1, 1; US9_2, 2; US9_3, 3; US9_4, 4 ] |&gt; Map |&gt; Map.find v13
+            let v18 : bool = v16 &gt;= v17
+            v18
+    if v19 then
+        let v20 : int64 = v3.l0
+        let v21 : int64 = v20 + 1L
+        v3.l0 &lt;- v21
+        let v22 : string = $"%s{v1 ()}"
+        let v23 : unit option = None
+        let v24 : bool = true in let mutable _v23 = v23
+        #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+        let v25 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v22 v25
+        ()
+#endif
+        #if FABLE_COMPILER_RUST &amp;&amp; WASM
+        let v26 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v22 v26
+        ()
+#endif
+        #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+        let v27 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v22 v27
+        ()
+#endif
+        #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+        System.Console.WriteLine v22 
+        ()
+#endif
+        #if FABLE_COMPILER_TYPESCRIPT
+        System.Console.WriteLine v22 
+        ()
+#endif
+        #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+        Unchecked.defaultof&lt;unit&gt;
+        ()
+#endif
+        |&gt; fun x -&gt; _v23 &lt;- Some x
+        _v23.Value
+        let v28 : (string -&gt; unit) = v7.l0
+        v28 v22
+and method1 (v0 : US9, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) : unit =
+    let v3 : (unit -&gt; string) = closure3(v0, v1, v2)
+    method6(v0, v3)
+and method0 () : unit =
+    let v0 : string = @$"format!(""{{:#?}}"", $0)"
+    let v1 : UH0 = UH0_0
+    let v2 : string = "01"
+    let v3 : US3 = US3_0
+    let v4 : US4 = US4_0(v3)
+    let v5 : UH0 = UH0_0
+    let v6 : string = "02"
+    let v7 : US3 = US3_0
+    let v8 : US4 = US4_0(v7)
+    let v9 : UH0 = UH0_0
+    let v10 : string = "03"
+    let v11 : US3 = US3_0
+    let v12 : US4 = US4_0(v11)
+    let v13 : UH2 = UH2_0
+    let v14 : UH2 = UH2_1(v9, v10, v12, v13)
+    let v15 : UH2 = UH2_1(v5, v6, v8, v14)
+    let v16 : UH2 = UH2_1(v1, v2, v4, v15)
+    let v17 : std_string_String = Fable.Core.RustInterop.emitRustExpr v16 v0
+    let v18 : US9 = US9_0
+    let v19 : (unit -&gt; string) = closure0()
+    let v20 : (unit -&gt; string) = closure1(v17)
+    method1(v18, v19, v20)
 method0()
+
 
 .rs:
-#![allow(dead_code,)]
-#![allow(non_camel_case_types,)]
-#![allow(non_snake_case,)]
-#![allow(non_upper_case_globals,)]
-#![allow(unreachable_code,)]
-#![allow(unused_attributes,)]
-#![allow(unused_imports,)]
-#![allow(unused_macros,)]
-#![allow(unused_parens,)]
-#![allow(unused_variables,)]
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+#![allow(unreachable_code)]
+#![allow(unused_attributes)]
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
 mod module_ccfa04bf {
     pub mod Spiral_eval {
         use super::*;
+        use fable_library_rust::DateTime_::DateTime;
+        use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
+        use fable_library_rust::List_::ofArray;
+        use fable_library_rust::Map_::find;
+        use fable_library_rust::Map_::ofSeq;
+        use fable_library_rust::NativeArray_::new_array;
+        use fable_library_rust::NativeArray_::new_empty;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::Native_::Func0;
+        use fable_library_rust::Native_::Func1;
         use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::Native_::MutCell;
-        use fable_library_rust::Native_::on_startup;
-        use fable_library_rust::String_::printfn;
+        use fable_library_rust::Option_::defaultValue;
+        use fable_library_rust::Option_::getValue;
+        use fable_library_rust::Option_::map;
+        use fable_library_rust::Seq_::ofList;
+        use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        use fable_library_rust::String_::toLower;
+        use fable_library_rust::String_::trimEndChars;
+        use fable_library_rust::String_::trimStartChars;
+        use fable_library_rust::TimeSpan_::TimeSpan;
+        pub mod State {
+            use super::*;
+            use fable_library_rust::Native_::OnceInit;
+            pub fn trace_state() -&gt; LrcPtr&lt;
+                MutCell&lt;
+                    Option&lt;(
+                        LrcPtr&lt;Spiral_eval::Mut0&gt;,
+                        LrcPtr&lt;Spiral_eval::Mut1&gt;,
+                        LrcPtr&lt;Spiral_eval::Mut2&gt;,
+                        Option&lt;i64&gt;,
+                        LrcPtr&lt;Spiral_eval::Mut3&gt;,
+                    )&gt;,
+                &gt;,
+            &gt; {
+                static trace_state: OnceInit&lt;
+                    LrcPtr&lt;
+                        MutCell&lt;
+                            Option&lt;(
+                                LrcPtr&lt;Spiral_eval::Mut0&gt;,
+                                LrcPtr&lt;Spiral_eval::Mut1&gt;,
+                                LrcPtr&lt;Spiral_eval::Mut2&gt;,
+                                Option&lt;i64&gt;,
+                                LrcPtr&lt;Spiral_eval::Mut3&gt;,
+                            )&gt;,
+                        &gt;,
+                    &gt;,
+                &gt; = OnceInit::new();
+                trace_state
+                    .get_or_insert_with(|| {
+                        LrcPtr::new(MutCell::new(
+                            None::&lt;(
+                                LrcPtr&lt;Spiral_eval::Mut0&gt;,
+                                LrcPtr&lt;Spiral_eval::Mut1&gt;,
+                                LrcPtr&lt;Spiral_eval::Mut2&gt;,
+                                Option&lt;i64&gt;,
+                                LrcPtr&lt;Spiral_eval::Mut3&gt;,
+                            )&gt;,
+                        ))
+                    })
+                    .clone()
+            }
+        }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum US0 {
             US0_0,
             US0_1,
@@ -8007,53 +8958,89 @@ mod module_ccfa04bf {
             US0_11,
         }
         impl Spiral_eval::US0 {
-            pub fn get_IsUS0_0(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS0_0(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS0_1(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS0_1(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS0_2(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS0_2(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS0_3(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS0_3(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS0_4(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS0_4(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS0_5(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS0_5(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS0_6(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS0_6(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS0_7(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS0_7(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS0_8(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS0_8(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS0_9(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS0_9(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS0_10(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;,
-                                unitArg: ()) -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS0_10(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS0_11(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;,
-                                unitArg: ()) -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS0_11(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
         }
         impl core::fmt::Display for Spiral_eval::US0 {
@@ -8061,16 +9048,25 @@ mod module_ccfa04bf {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
-        pub enum US2 { US2_0, US2_1, }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        pub enum US2 {
+            US2_0,
+            US2_1,
+        }
         impl Spiral_eval::US2 {
-            pub fn get_IsUS2_0(this_: &amp;MutCell&lt;Spiral_eval::US2&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS2_0(this_: &amp;MutCell&lt;Spiral_eval::US2&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS2_1(this_: &amp;MutCell&lt;Spiral_eval::US2&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS2_1(this_: &amp;MutCell&lt;Spiral_eval::US2&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
         }
         impl core::fmt::Display for Spiral_eval::US2 {
@@ -8078,12 +9074,17 @@ mod module_ccfa04bf {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
-        pub enum US1 { US1_0(Spiral_eval::US2), }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        pub enum US1 {
+            US1_0(Spiral_eval::US2),
+        }
         impl Spiral_eval::US1 {
-            pub fn get_IsUS1_0(this_: &amp;MutCell&lt;Spiral_eval::US1&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS1_0(this_: &amp;MutCell&lt;Spiral_eval::US1&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
         }
         impl core::fmt::Display for Spiral_eval::US1 {
@@ -8091,26 +9092,38 @@ mod module_ccfa04bf {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum UH0 {
             UH0_0,
-            UH0_1(i32, Spiral_eval::US0, i32, Spiral_eval::US1,
-                  LrcPtr&lt;Spiral_eval::UH0&gt;),
+            UH0_1(
+                i32,
+                Spiral_eval::US0,
+                i32,
+                Spiral_eval::US1,
+                LrcPtr&lt;Spiral_eval::UH0&gt;,
+            ),
         }
         impl Spiral_eval::UH0 {
-            pub fn get_IsUH0_0(this_: LrcPtr&lt;Spiral_eval::UH0&gt;, unitArg: ())
-             -&gt; bool {
+            pub fn get_IsUH0_0(this_: LrcPtr&lt;Spiral_eval::UH0&gt;, unitArg: ()) -&gt; bool {
                 if let Spiral_eval::UH0::UH0_0 = this_.as_ref() {
                     true
-                } else { false }
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUH0_1(this_: LrcPtr&lt;Spiral_eval::UH0&gt;, unitArg: ())
-             -&gt; bool {
-                if let Spiral_eval::UH0::UH0_1(this__1_0, this__1_1,
-                                               this__1_2, this__1_3,
-                                               this__1_4) = this_.as_ref() {
+            pub fn get_IsUH0_1(this_: LrcPtr&lt;Spiral_eval::UH0&gt;, unitArg: ()) -&gt; bool {
+                if let Spiral_eval::UH0::UH0_1(
+                    this__1_0,
+                    this__1_1,
+                    this__1_2,
+                    this__1_3,
+                    this__1_4,
+                ) = this_.as_ref()
+                {
                     true
-                } else { false }
+                } else {
+                    false
+                }
             }
         }
         impl core::fmt::Display for Spiral_eval::UH0 {
@@ -8118,16 +9131,25 @@ mod module_ccfa04bf {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
-        pub enum US3 { US3_0, US3_1, }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        pub enum US3 {
+            US3_0,
+            US3_1,
+        }
         impl Spiral_eval::US3 {
-            pub fn get_IsUS3_0(this_: &amp;MutCell&lt;Spiral_eval::US3&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS3_0(this_: &amp;MutCell&lt;Spiral_eval::US3&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS3_1(this_: &amp;MutCell&lt;Spiral_eval::US3&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS3_1(this_: &amp;MutCell&lt;Spiral_eval::US3&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
         }
         impl core::fmt::Display for Spiral_eval::US3 {
@@ -8135,20 +9157,33 @@ mod module_ccfa04bf {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
-        pub enum US6 { US6_0(i32), US6_1(i32), US6_2(i32), }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        pub enum US6 {
+            US6_0(i32),
+            US6_1(i32),
+            US6_2(i32),
+        }
         impl Spiral_eval::US6 {
-            pub fn get_IsUS6_0(this_: &amp;MutCell&lt;Spiral_eval::US6&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS6_0(this_: &amp;MutCell&lt;Spiral_eval::US6&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS6_1(this_: &amp;MutCell&lt;Spiral_eval::US6&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS6_1(this_: &amp;MutCell&lt;Spiral_eval::US6&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS6_2(this_: &amp;MutCell&lt;Spiral_eval::US6&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS6_2(this_: &amp;MutCell&lt;Spiral_eval::US6&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
         }
         impl core::fmt::Display for Spiral_eval::US6 {
@@ -8156,36 +9191,65 @@ mod module_ccfa04bf {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
-        pub enum US8 { US8_0, US8_1, US8_2, US8_3, US8_4, US8_5, US8_6, }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        pub enum US8 {
+            US8_0,
+            US8_1,
+            US8_2,
+            US8_3,
+            US8_4,
+            US8_5,
+            US8_6,
+        }
         impl Spiral_eval::US8 {
-            pub fn get_IsUS8_0(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS8_0(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS8_1(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS8_1(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS8_2(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS8_2(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS8_3(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS8_3(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS8_4(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS8_4(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS8_5(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS8_5(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS8_6(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS8_6(this_: &amp;MutCell&lt;Spiral_eval::US8&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
         }
         impl core::fmt::Display for Spiral_eval::US8 {
@@ -8193,24 +9257,33 @@ mod module_ccfa04bf {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum US7 {
             US7_0(Spiral_eval::US8),
             US7_1(i32),
             US7_2(i32, Spiral_eval::US0),
         }
         impl Spiral_eval::US7 {
-            pub fn get_IsUS7_0(this_: &amp;MutCell&lt;Spiral_eval::US7&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS7_0(this_: &amp;MutCell&lt;Spiral_eval::US7&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS7_1(this_: &amp;MutCell&lt;Spiral_eval::US7&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS7_1(this_: &amp;MutCell&lt;Spiral_eval::US7&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS7_2(this_: &amp;MutCell&lt;Spiral_eval::US7&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS7_2(this_: &amp;MutCell&lt;Spiral_eval::US7&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
         }
         impl core::fmt::Display for Spiral_eval::US7 {
@@ -8218,24 +9291,25 @@ mod module_ccfa04bf {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum UH1 {
             UH1_0,
             UH1_1(Spiral_eval::US7, LrcPtr&lt;Spiral_eval::UH1&gt;),
         }
         impl Spiral_eval::UH1 {
-            pub fn get_IsUH1_0(this_: LrcPtr&lt;Spiral_eval::UH1&gt;, unitArg: ())
-             -&gt; bool {
+            pub fn get_IsUH1_0(this_: LrcPtr&lt;Spiral_eval::UH1&gt;, unitArg: ()) -&gt; bool {
                 if let Spiral_eval::UH1::UH1_0 = this_.as_ref() {
                     true
-                } else { false }
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUH1_1(this_: LrcPtr&lt;Spiral_eval::UH1&gt;, unitArg: ())
-             -&gt; bool {
-                if let Spiral_eval::UH1::UH1_1(this__1_0, this__1_1) =
-                       this_.as_ref() {
+            pub fn get_IsUH1_1(this_: LrcPtr&lt;Spiral_eval::UH1&gt;, unitArg: ()) -&gt; bool {
+                if let Spiral_eval::UH1::UH1_1(this__1_0, this__1_1) = this_.as_ref() {
                     true
-                } else { false }
+                } else {
+                    false
+                }
             }
         }
         impl core::fmt::Display for Spiral_eval::UH1 {
@@ -8243,19 +9317,25 @@ mod module_ccfa04bf {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum US5 {
             US5_0(Spiral_eval::US6),
             US5_1(LrcPtr&lt;Spiral_eval::UH1&gt;),
         }
         impl Spiral_eval::US5 {
-            pub fn get_IsUS5_0(this_: &amp;MutCell&lt;Spiral_eval::US5&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS5_0(this_: &amp;MutCell&lt;Spiral_eval::US5&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS5_1(this_: &amp;MutCell&lt;Spiral_eval::US5&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS5_1(this_: &amp;MutCell&lt;Spiral_eval::US5&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
         }
         impl core::fmt::Display for Spiral_eval::US5 {
@@ -8263,16 +9343,25 @@ mod module_ccfa04bf {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
-        pub enum US4 { US4_0(Spiral_eval::US3), US4_1(Spiral_eval::US5), }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        pub enum US4 {
+            US4_0(Spiral_eval::US3),
+            US4_1(Spiral_eval::US5),
+        }
         impl Spiral_eval::US4 {
-            pub fn get_IsUS4_0(this_: &amp;MutCell&lt;Spiral_eval::US4&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS4_0(this_: &amp;MutCell&lt;Spiral_eval::US4&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUS4_1(this_: &amp;MutCell&lt;Spiral_eval::US4&gt;, unitArg: ())
-             -&gt; bool {
-                if unreachable!() { true } else { false }
+            pub fn get_IsUS4_1(this_: &amp;MutCell&lt;Spiral_eval::US4&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
         }
         impl core::fmt::Display for Spiral_eval::US4 {
@@ -8280,26 +9369,32 @@ mod module_ccfa04bf {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum UH2 {
             UH2_0,
-            UH2_1(LrcPtr&lt;Spiral_eval::UH0&gt;, string, Spiral_eval::US4,
-                  LrcPtr&lt;Spiral_eval::UH2&gt;),
+            UH2_1(
+                LrcPtr&lt;Spiral_eval::UH0&gt;,
+                string,
+                Spiral_eval::US4,
+                LrcPtr&lt;Spiral_eval::UH2&gt;,
+            ),
         }
         impl Spiral_eval::UH2 {
-            pub fn get_IsUH2_0(this_: LrcPtr&lt;Spiral_eval::UH2&gt;, unitArg: ())
-             -&gt; bool {
+            pub fn get_IsUH2_0(this_: LrcPtr&lt;Spiral_eval::UH2&gt;, unitArg: ()) -&gt; bool {
                 if let Spiral_eval::UH2::UH2_0 = this_.as_ref() {
                     true
-                } else { false }
+                } else {
+                    false
+                }
             }
-            pub fn get_IsUH2_1(this_: LrcPtr&lt;Spiral_eval::UH2&gt;, unitArg: ())
-             -&gt; bool {
-                if let Spiral_eval::UH2::UH2_1(this__1_0, this__1_1,
-                                               this__1_2, this__1_3) =
-                       this_.as_ref() {
+            pub fn get_IsUH2_1(this_: LrcPtr&lt;Spiral_eval::UH2&gt;, unitArg: ()) -&gt; bool {
+                if let Spiral_eval::UH2::UH2_1(this__1_0, this__1_1, this__1_2, this__1_3) =
+                    this_.as_ref()
+                {
                     true
-                } else { false }
+                } else {
+                    false
+                }
             }
         }
         impl core::fmt::Display for Spiral_eval::UH2 {
@@ -8307,20 +9402,394 @@ mod module_ccfa04bf {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        pub enum US9 {
+            US9_0,
+            US9_1,
+            US9_2,
+            US9_3,
+            US9_4,
+        }
+        impl Spiral_eval::US9 {
+            pub fn get_IsUS9_0(this_: &amp;MutCell&lt;Spiral_eval::US9&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsUS9_1(this_: &amp;MutCell&lt;Spiral_eval::US9&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsUS9_2(this_: &amp;MutCell&lt;Spiral_eval::US9&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsUS9_3(this_: &amp;MutCell&lt;Spiral_eval::US9&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsUS9_4(this_: &amp;MutCell&lt;Spiral_eval::US9&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::US9 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
+        pub struct Mut0 {
+            pub l0: MutCell&lt;i64&gt;,
+        }
+        impl core::fmt::Display for Spiral_eval::Mut0 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
+        pub struct Mut1 {
+            pub l0: MutCell&lt;bool&gt;,
+        }
+        impl core::fmt::Display for Spiral_eval::Mut1 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        pub struct Mut2 {
+            pub l0: MutCell&lt;Spiral_eval::US9&gt;,
+        }
+        impl core::fmt::Display for Spiral_eval::Mut2 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub struct Mut3 {
+            pub l0: MutCell&lt;Func1&lt;string, ()&gt;&gt;,
+        }
+        impl core::fmt::Display for Spiral_eval::Mut3 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        pub enum US10 {
+            US10_0(i64),
+            US10_1,
+        }
+        impl Spiral_eval::US10 {
+            pub fn get_IsUS10_0(this_: &amp;MutCell&lt;Spiral_eval::US10&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsUS10_1(this_: &amp;MutCell&lt;Spiral_eval::US10&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::US10 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        pub enum US11 {
+            US11_0(i64),
+            US11_1,
+        }
+        impl Spiral_eval::US11 {
+            pub fn get_IsUS11_0(this_: &amp;MutCell&lt;Spiral_eval::US11&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsUS11_1(this_: &amp;MutCell&lt;Spiral_eval::US11&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::US11 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        pub fn closure0(unitVar: (), unitVar_1: ()) -&gt; string {
+            string("Tasks")
+        }
+        pub fn closure2(unitVar: (), unitVar_1: ()) -&gt; string {
+            string("")
+        }
+        pub fn closure1(v0: std::string::String, unitVar: ()) -&gt; string {
+            sprintf!("tasks: {} / {}", v0, Spiral_eval::closure2((), ()))
+        }
+        pub fn closure5(unitVar: (), v0: string) {
+            ();
+        }
+        pub fn method2(v0: Option&lt;i64&gt;) -&gt; Option&lt;i64&gt; {
+            v0
+        }
+        pub fn method3(v0: Option&lt;i64&gt;) -&gt; Option&lt;i64&gt; {
+            v0
+        }
+        pub fn closure4(
+            unitVar: (),
+            unitVar_1: (),
+        ) -&gt; (
+            LrcPtr&lt;Spiral_eval::Mut0&gt;,
+            LrcPtr&lt;Spiral_eval::Mut1&gt;,
+            LrcPtr&lt;Spiral_eval::Mut2&gt;,
+            Option&lt;i64&gt;,
+            LrcPtr&lt;Spiral_eval::Mut3&gt;,
+        ) {
+            let v0: LrcPtr&lt;Spiral_eval::Mut1&gt; = LrcPtr::new(Spiral_eval::Mut1 {
+                l0: MutCell::new(true),
+            });
+            let v1: LrcPtr&lt;Spiral_eval::Mut0&gt; = LrcPtr::new(Spiral_eval::Mut0 {
+                l0: MutCell::new(0_i64),
+            });
+            let v3: LrcPtr&lt;Spiral_eval::Mut2&gt; = LrcPtr::new(Spiral_eval::Mut2 {
+                l0: MutCell::new(Spiral_eval::US9::US9_0),
+            });
+            let v5: LrcPtr&lt;Spiral_eval::Mut3&gt; = LrcPtr::new(Spiral_eval::Mut3 {
+                l0: MutCell::new(Func1::new(move |v: string| Spiral_eval::closure5((), v))),
+            });
+            let _v6: MutCell&lt;Option&lt;Option&lt;i64&gt;&gt;&gt; = MutCell::new(None::&lt;Option&lt;i64&gt;&gt;);
+            {
+                let x: Option&lt;i64&gt; = Spiral_eval::method3(None::&lt;i64&gt;);
+                _v6.set(Some(x))
+            }
+            (v1, v0, v3, getValue(_v6.get().clone()), v5)
+        }
+        pub fn closure6(unitVar: (), v0: i64) -&gt; Spiral_eval::US11 {
+            Spiral_eval::US11::US11_0(v0)
+        }
+        pub fn method4() -&gt; Func1&lt;i64, Spiral_eval::US11&gt; {
+            Func1::new(move |v: i64| Spiral_eval::closure6((), v))
+        }
+        pub fn method5() -&gt; string {
+            string("")
+        }
+        pub fn closure3(
+            v0: Spiral_eval::US9,
+            v1: Func0&lt;string&gt;,
+            v2: Func0&lt;string&gt;,
+            unitVar: (),
+        ) -&gt; string {
+            if Spiral_eval::State::trace_state().get().clone().is_none() {
+                Spiral_eval::State::trace_state().set(Some(Spiral_eval::closure4((), ())));
+            }
+            {
+                let patternInput: (
+                    LrcPtr&lt;Spiral_eval::Mut0&gt;,
+                    LrcPtr&lt;Spiral_eval::Mut1&gt;,
+                    LrcPtr&lt;Spiral_eval::Mut2&gt;,
+                    Option&lt;i64&gt;,
+                    LrcPtr&lt;Spiral_eval::Mut3&gt;,
+                ) = getValue(Spiral_eval::State::trace_state().get().clone());
+                let _v9: MutCell&lt;Option&lt;string&gt;&gt; = MutCell::new(None::&lt;string&gt;);
+                let v13: Spiral_eval::US11 = defaultValue(
+                    Spiral_eval::US11::US11_1,
+                    map(Spiral_eval::method4(), patternInput.3.clone()),
+                );
+                let v31: DateTime = match &amp;v13 {
+                    Spiral_eval::US11::US11_0(v13_0_0) =&gt; {
+                        let v19: TimeSpan = TimeSpan::new_ticks(
+                            {
+                                let _arg: DateTime = DateTime::now();
+                                _arg.ticks()
+                            } - match &amp;v13 {
+                                Spiral_eval::US11::US11_0(x) =&gt; x.clone(),
+                                _ =&gt; unreachable!(),
+                            },
+                        );
+                        DateTime::new_ymdhms_milli(
+                            1_i32,
+                            1_i32,
+                            1_i32,
+                            v19.hours(),
+                            v19.minutes(),
+                            v19.seconds(),
+                            v19.milliseconds(),
+                        )
+                    }
+                    _ =&gt; DateTime::now(),
+                };
+                {
+                    let x: string = v31.toString(string("hh:mm:ss"));
+                    _v9.set(Some(x))
+                }
+                {
+                    let v61: string = getValue(_v9.get().clone());
+                    let v62: i64 = (patternInput.0.clone()).l0.get().clone();
+                    let v73: string = toLower(match &amp;v0 {
+                        Spiral_eval::US9::US9_1 =&gt; string("Debug"),
+                        Spiral_eval::US9::US9_2 =&gt; string("Info"),
+                        Spiral_eval::US9::US9_0 =&gt; string("Verbose"),
+                        Spiral_eval::US9::US9_3 =&gt; string("Warning"),
+                        _ =&gt; string("Critical"),
+                    });
+                    let _v74: MutCell&lt;Option&lt;string&gt;&gt; = MutCell::new(None::&lt;string&gt;);
+                    let v90: &amp;str = match &amp;v0 {
+                        Spiral_eval::US9::US9_1 =&gt; inline_colorization::color_bright_blue,
+                        Spiral_eval::US9::US9_2 =&gt; inline_colorization::color_bright_green,
+                        Spiral_eval::US9::US9_0 =&gt; inline_colorization::color_bright_black,
+                        Spiral_eval::US9::US9_3 =&gt; inline_colorization::color_bright_yellow,
+                        _ =&gt; inline_colorization::color_bright_red,
+                    };
+                    let v92: &amp;str = fable_library_rust::String_::LrcStr::as_str(&amp;v73);
+                    let v94: &amp;str = inline_colorization::color_reset;
+                    let v96: string = string("format!(\"{v90}{v92}{v94}\")");
+                    let v97: std::string::String = format!("{v90}{v92}{v94}");
+                    {
+                        let x_1: string = fable_library_rust::String_::fromString(v97);
+                        _v74.set(Some(x_1))
+                    }
+                    trimEndChars(
+                        trimStartChars(
+                            sprintf!(
+                                "{} {} #{} {} / {}",
+                                v61,
+                                getValue(_v74.get().clone()),
+                                v62,
+                                v1(),
+                                v2()
+                            ),
+                            new_empty::&lt;char&gt;(),
+                        ),
+                        new_array(&amp;[' ', '/']),
+                    )
+                }
+            }
+        }
+        pub fn method6(v0: Spiral_eval::US9, v1: Func0&lt;string&gt;) {
+            let v2 = Func0::new(move || Spiral_eval::closure4((), ()));
+            if Spiral_eval::State::trace_state().get().clone().is_none() {
+                Spiral_eval::State::trace_state().set(Some(v2()));
+            }
+            {
+                let patternInput: (
+                    LrcPtr&lt;Spiral_eval::Mut0&gt;,
+                    LrcPtr&lt;Spiral_eval::Mut1&gt;,
+                    LrcPtr&lt;Spiral_eval::Mut2&gt;,
+                    Option&lt;i64&gt;,
+                    LrcPtr&lt;Spiral_eval::Mut3&gt;,
+                ) = getValue(Spiral_eval::State::trace_state().get().clone());
+                let v3: LrcPtr&lt;Spiral_eval::Mut0&gt; = patternInput.0.clone();
+                if Spiral_eval::State::trace_state().get().clone().is_none() {
+                    Spiral_eval::State::trace_state().set(Some(v2()));
+                }
+                {
+                    let patternInput_1: (
+                        LrcPtr&lt;Spiral_eval::Mut0&gt;,
+                        LrcPtr&lt;Spiral_eval::Mut1&gt;,
+                        LrcPtr&lt;Spiral_eval::Mut2&gt;,
+                        Option&lt;i64&gt;,
+                        LrcPtr&lt;Spiral_eval::Mut3&gt;,
+                    ) = getValue(Spiral_eval::State::trace_state().get().clone());
+                    let v13: Spiral_eval::US9 = (patternInput_1.2.clone()).l0.get().clone();
+                    if if (patternInput_1.1.clone()).l0.get().clone() == false {
+                        false
+                    } else {
+                        find(
+                            v0,
+                            ofSeq(ofList(ofArray(new_array(&amp;[
+                                LrcPtr::new((Spiral_eval::US9::US9_0, 0_i32)),
+                                LrcPtr::new((Spiral_eval::US9::US9_1, 1_i32)),
+                                LrcPtr::new((Spiral_eval::US9::US9_2, 2_i32)),
+                                LrcPtr::new((Spiral_eval::US9::US9_3, 3_i32)),
+                                LrcPtr::new((Spiral_eval::US9::US9_4, 4_i32)),
+                            ])))),
+                        ) &gt;= find(
+                            v13,
+                            ofSeq(ofList(ofArray(new_array(&amp;[
+                                LrcPtr::new((Spiral_eval::US9::US9_0, 0_i32)),
+                                LrcPtr::new((Spiral_eval::US9::US9_1, 1_i32)),
+                                LrcPtr::new((Spiral_eval::US9::US9_2, 2_i32)),
+                                LrcPtr::new((Spiral_eval::US9::US9_3, 3_i32)),
+                                LrcPtr::new((Spiral_eval::US9::US9_4, 4_i32)),
+                            ])))),
+                        )
+                    } {
+                        let v21: i64 = v3.l0.get().clone() + 1_i64;
+                        v3.l0.set(v21);
+                        {
+                            let v22: string = sprintf!("{}", v1());
+                            let _v23: MutCell&lt;Option&lt;()&gt;&gt; = MutCell::new(None::&lt;()&gt;);
+                            println!("{}", v22.clone());
+                            _v23.set(Some(()));
+                            getValue(_v23.get().clone());
+                            ((patternInput.4.clone()).l0.get().clone())(v22)
+                        }
+                    }
+                }
+            }
+        }
+        pub fn method1(v0: Spiral_eval::US9, v1: Func0&lt;string&gt;, v2: Func0&lt;string&gt;) {
+            Spiral_eval::method6(
+                v0.clone(),
+                Func0::new({
+                    let v0 = v0.clone();
+                    let v1 = v1.clone();
+                    let v2 = v2.clone();
+                    move || Spiral_eval::closure3(v0.clone(), v1.clone(), v2.clone(), ())
+                }),
+            );
+        }
         pub fn method0() {
-            let v17: std::string::String =
-                format!("{:#?}", LrcPtr::new(Spiral_eval::UH2::UH2_1(LrcPtr::new(Spiral_eval::UH0::UH0_0),
-                                                                     string("01"),
-                                                                     Spiral_eval::US4::US4_0(Spiral_eval::US3::US3_0),
-                                                                     LrcPtr::new(Spiral_eval::UH2::UH2_1(LrcPtr::new(Spiral_eval::UH0::UH0_0),
-                                                                                                         string("02"),
-                                                                                                         Spiral_eval::US4::US4_0(Spiral_eval::US3::US3_0),
-                                                                                                         LrcPtr::new(Spiral_eval::UH2::UH2_1(LrcPtr::new(Spiral_eval::UH0::UH0_0),
-                                                                                                                                             string("03"),
-                                                                                                                                             Spiral_eval::US4::US4_0(Spiral_eval::US3::US3_0),
-                                                                                                                                             LrcPtr::new(Spiral_eval::UH2::UH2_0))))))));
-            printfn!("{0}", v17);
-            ()
+            let v17: std::string::String = format!(
+                "{:#?}",
+                LrcPtr::new(Spiral_eval::UH2::UH2_1(
+                    LrcPtr::new(Spiral_eval::UH0::UH0_0),
+                    string("01"),
+                    Spiral_eval::US4::US4_0(Spiral_eval::US3::US3_0),
+                    LrcPtr::new(Spiral_eval::UH2::UH2_1(
+                        LrcPtr::new(Spiral_eval::UH0::UH0_0),
+                        string("02"),
+                        Spiral_eval::US4::US4_0(Spiral_eval::US3::US3_0),
+                        LrcPtr::new(Spiral_eval::UH2::UH2_1(
+                            LrcPtr::new(Spiral_eval::UH0::UH0_0),
+                            string("03"),
+                            Spiral_eval::US4::US4_0(Spiral_eval::US3::US3_0),
+                            LrcPtr::new(Spiral_eval::UH2::UH2_0)
+                        ))
+                    ))
+                ))
+            );
+            Spiral_eval::method1(
+                Spiral_eval::US9::US9_0,
+                Func0::new(move || Spiral_eval::closure0((), ())),
+                Func0::new({
+                    let v17 = v17.clone();
+                    move || Spiral_eval::closure1(v17.clone(), ())
+                }),
+            )
         }
         on_startup!(Spiral_eval::method0());
     }
@@ -8332,7 +9801,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8377,18 +9846,19 @@ let rec method0 () : unit =
     let v2 : string = $"__expect / actual: %A{v0} / expected: %A{v0}"
     ()
 method0()
+
 
 .rs:
-#![allow(dead_code,)]
-#![allow(non_camel_case_types,)]
-#![allow(non_snake_case,)]
-#![allow(non_upper_case_globals,)]
-#![allow(unreachable_code,)]
-#![allow(unused_attributes,)]
-#![allow(unused_imports,)]
-#![allow(unused_macros,)]
-#![allow(unused_parens,)]
-#![allow(unused_variables,)]
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+#![allow(unreachable_code)]
+#![allow(unused_attributes)]
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
 mod module_ccfa04bf {
     pub mod Spiral_eval {
         use super::*;
@@ -8400,9 +9870,11 @@ mod module_ccfa04bf {
             let v1: string = sprintf!("{:?}", string("01"));
             printfn!("{0}", v1);
             {
-                let v2: string =
-                    sprintf!("__expect / actual: {:?} / expected: {:?}",
-                             string("01"), string("01"));
+                let v2: string = sprintf!(
+                    "__expect / actual: {:?} / expected: {:?}",
+                    string("01"),
+                    string("01")
+                );
                 ()
             }
         }
@@ -8410,38 +9882,6 @@ mod module_ccfa04bf {
     }
 }
 pub use module_ccfa04bf::*;
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    ()
-method0()
 
 </pre>
 </div>

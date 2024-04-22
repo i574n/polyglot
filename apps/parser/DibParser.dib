@@ -370,10 +370,21 @@ let a = 1"
 
 let inline formatBlocks output blocks =
     blocks
-    |> List.map (formatBlock output)
-    |> List.filter ((<>) "")
-    |> SpiralSm.concat "\n\n"
-    |> fun s -> s + "\n"
+    |> List.map (fun block ->
+        block, formatBlock output block
+    )
+    |> List.filter (snd >> (<>) "")
+    |> fun list ->
+        (list, (None, []))
+        ||> List.foldBack (fun (block, content) (lastMagic, acc) ->
+            let lineBreak =
+                if block.magic = "markdown" && lastMagic <> Some "markdown" && lastMagic <> None
+                then ""
+                else "\n"
+            Some block.magic, $"{content}{lineBreak}" :: acc
+        )
+    |> snd
+    |> SpiralSm.concat "\n"
 
 #!fsharp
 
@@ -425,11 +436,9 @@ let a = 3"
 /// b
 
 /// c
-
 let a = 1
 
 /// e
-
 let a = 3
 "
 
@@ -651,11 +660,9 @@ namespace TestNamespace
 module TestModule =
 
     /// ## ParserLibrary
-
     open System
 
     /// ### TextInput
-
     let str1 = "abc
 def"
 
@@ -728,7 +735,6 @@ example1
 |> _assertEqual "// // # TestModule (TestNamespace)
 
 // // ## ParserLibrary
-
 inl x = 0i32
 
 // // ### TextInput
@@ -741,8 +747,9 @@ inl x = 0i32
 #!fsharp
 
 let inline parseDibCode output file = async {
-    let getLocals () = $"output: {output} / file: {file} / {getLocals ()}"
-    trace Debug (fun () -> "parseDibCode") getLocals
+    trace Debug
+        (fun () -> "parseDibCode")
+        (fun () -> $"output: {output} / file: {file} / {_locals ()}")
     let! input = file |> SpiralFileSystem.read_all_text_async
     match parse output input with
     | Result.Ok blocks -> return blocks |> formatBlocks output
@@ -756,8 +763,9 @@ let inline parseDibCode output file = async {
 #!fsharp
 
 let inline writeDibCode output path = async {
-    let getLocals () = $"output: {output} / path: {path} / {getLocals ()}"
-    trace Debug (fun () -> "writeDibCode") getLocals
+    trace Debug
+        (fun () -> "writeDibCode")
+        (fun () -> $"output: {output} / path: {path} / {_locals ()}")
     let! result = parseDibCode output path
     let outputPath = path |> SpiralSm.replace ".dib" $".{output |> string |> SpiralSm.to_lower}"
     do! result |> SpiralFileSystem.write_all_text_async outputPath

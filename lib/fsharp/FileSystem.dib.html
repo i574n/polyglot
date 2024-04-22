@@ -7655,7 +7655,7 @@ a.anchor-link {
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">watchDirectoryWithFilter</span> <span class="nb">filter</span> <span class="n">shouldReadContent</span> <span class="n">path</span> <span class="o">=</span>
     <span class="n">let</span> <span class="n">fullPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
-    <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"filter: </span><span class="si">{filter}</span><span class="s2"> / {getLocals ()}"</span>
+    <span class="n">let</span> <span class="n">_locals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"filter: </span><span class="si">{filter}</span><span class="s2"> / {_locals ()}"</span>
 
     <span class="n">let</span> <span class="n">watcher</span> <span class="o">=</span>
         <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileSystemWatcher</span> <span class="p">(</span>
@@ -7753,7 +7753,7 @@ a.anchor-link {
 
     <span class="n">let</span> <span class="n">disposable</span> <span class="o">=</span>
         <span class="n">new_disposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-            <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"watchWithFilter / Disposing watch stream"</span><span class="p">)</span> <span class="n">getLocals</span>
+            <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"watchWithFilter / Disposing watch stream"</span><span class="p">)</span> <span class="n">_locals</span>
             <span class="n">watcher</span><span class="o">.</span><span class="n">EnableRaisingEvents</span> <span class="o">&lt;-</span> <span class="n">false</span>
             <span class="n">watcher</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
         <span class="p">)</span>
@@ -7838,8 +7838,8 @@ a.anchor-link {
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{n}</span><span class="s2"> / </span><span class="si">{diff}</span><span class="s2"> / </span><span class="si">{event}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">ellipsis_end</span> <span class="mi">100</span><span class="n">L</span><span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
-    <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"eventsLog: </span><span class="se">\n</span><span class="si">{eventsLog}</span><span class="s2"> / {getLocals ()}"</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"testEventsRaw"</span><span class="p">)</span> <span class="n">getLocals</span>
+    <span class="n">let</span> <span class="n">_locals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"eventsLog: </span><span class="se">\n</span><span class="si">{eventsLog}</span><span class="s2"> / {_locals ()}"</span>
+    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"testEventsRaw"</span><span class="p">)</span> <span class="n">_locals</span>
 
     <span class="n">events</span>
     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
@@ -7952,26 +7952,26 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:11 debug #1 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:11 debug #2 testEventsRaw / eventsLog: 
-0 / 638487812586194422 / Created ("file1.txt", Some "a1")
-1 / 638487812586194423 / Changed ("file1.txt", Some "a1")
-50991 / 638487812586245414 / Changed ("file1.txt", Some "a1")
-2823 / 638487812586248237 / Created ("file2.txt", Some "a2")
-1 / 638487812586248238 / Changed ("file2.txt", Some "a2")
-106 / 638487812586248344 / Changed ("file2.txt", Some "a2")
-2538239 / 638487812588786583 / Changed ("file1.txt", Some "b1")
-4688 / 638487812588791271 / Changed ("file1.txt", Some "b1")
-13376 / 638487812588804647 / Changed ("file2.txt", Some "b2")
-17374 / 638487812588822021 / Changed ("file2.txt", Some "b2")
-2803223 / 638487812591625244 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-50031 / 638487812591675275 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2769700 / 638487812594444975 / Changed ("file_1.txt", Some "c1")
-17119 / 638487812594462094 / Changed ("file_1.txt", Some "c1")
-14663 / 638487812594476757 / Changed ("file_2.txt", Some "c2")
-5317 / 638487812594482074 / Changed ("file_2.txt", Some "c2")
-2706335 / 638487812597188409 / Deleted "file_1.txt"
-7045 / 638487812597195454 / Deleted "file_2.txt"
+00:00:06 debug #1 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:06 debug #2 testEventsRaw / eventsLog: 
+0 / 638493557137833370 / Created ("file1.txt", Some "a1")
+1 / 638493557137833371 / Changed ("file1.txt", Some "a1")
+24669 / 638493557137858040 / Changed ("file1.txt", Some "a1")
+1074 / 638493557137859114 / Created ("file2.txt", Some "a2")
+1 / 638493557137859115 / Changed ("file2.txt", Some "a2")
+45 / 638493557137859160 / Changed ("file2.txt", Some "a2")
+2509365 / 638493557140368525 / Changed ("file1.txt", Some "b1")
+3804 / 638493557140372329 / Changed ("file1.txt", Some "b1")
+14040 / 638493557140386369 / Changed ("file2.txt", Some "b2")
+3076 / 638493557140389445 / Changed ("file2.txt", Some "b2")
+2575137 / 638493557142964582 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+9252 / 638493557142973834 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2445550 / 638493557145419384 / Changed ("file_1.txt", Some "c1")
+2021 / 638493557145421405 / Changed ("file_1.txt", Some "c1")
+8172 / 638493557145429577 / Changed ("file_2.txt", Some "c2")
+1979 / 638493557145431556 / Changed ("file_2.txt", Some "c2")
+2602451 / 638493557148034007 / Deleted "file_1.txt"
+8126 / 638493557148042133 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -8181,45 +8181,45 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:24 debug #3 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:24 debug #4 testEventsRaw / eventsLog: 
-0 / 638487812655155220 / Created
+00:00:15 debug #3 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:16 debug #4 testEventsRaw / eventsLog: 
+0 / 638493557172380949 / Created
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-1 / 638487812655155221 / Changed
+1 / 638493557172380950 / Changed
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-104581 / 638487812655259802 / Changed
+104137 / 638493557172485087 / Changed
   ("file1.tx...11111111111111111111111111111111111111111111111a")
-28419 / 638487812655288221 / Created
+15228 / 638493557172500315 / Created
   ("file2.txt...22222222222222222222222222222222222222222222222a")
-1 / 638487812655288222 / Changed
+1 / 638493557172500316 / Changed
   ("file2.txt",
  ...22222222222222222222222222222222222222222222222a")
-109128 / 638487812655397350 / Changed
-  ("file2.tx...22222222222222222222222222222222222222222222222a")
-15110709 / 638487812670508059 / Changed
+70759 / 638493557172571075 / Changed
+  ("file2.txt...22222222222222222222222222222222222222222222222a")
+15034768 / 638493557187605843 / Changed
   ("file1....11111111111111111111111111111111111111111111111b")
-136548 / 638487812670644607 / Changed
-  ("file1.tx...11111111111111111111111111111111111111111111111b")
-61970 / 638487812670706577 / Changed
+50763 / 638493557187656606 / Changed
+  ("file1.txt...11111111111111111111111111111111111111111111111b")
+19467 / 638493557187676073 / Changed
   ("file2.txt...22222222222222222222222222222222222222222222222b")
-107878 / 638487812670814455 / Changed
-  ("file2.tx...22222222222222222222222222222222222222222222222b")
-15106131 / 638487812685920586 / Renamed
+55047 / 638493557187731120 / Changed
+  ("file2.txt...22222222222222222222222222222222222222222222222b")
+15171835 / 638493557202902955 / Renamed
   ("file1....1111111111111111111111111111111111111111111111b"))
-4711 / 638487812685925297 / Renamed
+6974 / 638493557202909929 / Renamed
   ("file2.txt"...2222222222222222222222222222222222222222222222b"))
-15228414 / 638487812701153711 / Changed
+15101728 / 638493557218011657 / Changed
   ("file_1...11111111111111111111111111111111111111111111111c")
-136270 / 638487812701289981 / Changed
+267448 / 638493557218279105 / Changed
   ("file_1.t...11111111111111111111111111111111111111111111111c")
-91329 / 638487812701381310 / Changed
+60697 / 638493557218339802 / Changed
   ("file_2.tx...22222222222222222222222222222222222222222222222c")
-105394 / 638487812701486704 / Changed
+157995 / 638493557218497797 / Changed
   ("file_2.t...22222222222222222222222222222222222222222222222c")
-15189503 / 638487812716676207 / Deleted "file_1.txt"
-6321 / 638487812716682528 / Deleted "file_2.txt"
+14986696 / 638493557233484493 / Deleted "file_1.txt"
+4710 / 638493557233489203 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -8501,7 +8501,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:27 debug #5 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:18 debug #5 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -8600,7 +8600,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:32 debug #6 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:19 debug #6 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -8699,7 +8699,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:35 debug #7 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:21 debug #7 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -8812,7 +8812,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:39 debug #8 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:23 debug #8 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )

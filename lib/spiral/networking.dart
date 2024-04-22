@@ -1,9 +1,10 @@
 // ignore_for_file: camel_case_types, constant_identifier_names, non_constant_identifier_names, unnecessary_this
+import '../../fable_modules/fable_library/Map.dart' as map;
 import '../../fable_modules/fable_library/String.dart' as string;
 import '../../fable_modules/fable_library/Types.dart' as types;
 import '../../fable_modules/fable_library/Util.dart' as util;
 
-types.Some<types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?>>? State_trace_state;
+types.Some<types.Tuple5<Mut0, Mut1, Mut2, types.Some<int>?, Mut3>>? State_trace_state;
 
 class Mut0 implements types.Record, Comparable<Mut0> {
     int l0;
@@ -47,6 +48,11 @@ class Mut2 implements types.Record, Comparable<Mut2> {
     int get hashCode => l0.hashCode;
     @override
     int compareTo(Mut2 other) => l0.compareTo(other.l0);
+}
+
+class Mut3 implements types.Record {
+    void Function(String) l0;
+    Mut3(this.l0);
 }
 
 class US1 implements types.Union, Comparable<US1> {
@@ -343,32 +349,37 @@ bool US6__get_IsUS6_1(types.FSharpRef<US6, InOut> this$, void unitArg) {
     }
 }
 
+void closure1(void unitVar, String v0_1) {
+}
+
 types.Some<int>? method0(types.Some<int>? v0_1) => v0_1;
 
 types.Some<int>? method1(types.Some<int>? v0_1) => v0_1;
 
-types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> closure0(void unitVar, void unitVar_1) {
+types.Tuple5<Mut0, Mut1, Mut2, types.Some<int>?, Mut3> closure0(void unitVar, void unitVar_1) {
     final v0_1 = Mut1(true);
     final v1_1 = Mut0(0);
     final v3_1 = Mut2(const US0(/* US0_0 */ 0));
-    final v4_1 = Mut1(false);
-    types.Some<types.Some<int>?>? _v5;
+    final v5 = Mut3((String v) {
+        closure1(util.ignore(), v);
+    });
+    types.Some<types.Some<int>?>? _v6;
     final types.Some<int>? x = method1(null);
-    _v5 = types.Some(x);
-    return types.Tuple5(v1_1, v4_1, v0_1, v3_1, types.value(_v5));
+    _v6 = types.Some(x);
+    return types.Tuple5(v1_1, v0_1, v3_1, types.value(_v6), v5);
 }
 
-String closure2(String v0_1, void unitVar) => 'test_port_open / ex: $v0_1';
+String closure3(String v0_1, void unitVar) => 'test_port_open / ex: $v0_1';
 
-String closure3(void unitVar, void unitVar_1) => '';
+String closure4(void unitVar, void unitVar_1) => '';
 
-US2 closure5(void unitVar, int v0_1) => US2_US2_0(v0_1);
+US2 closure6(void unitVar, int v0_1) => US2_US2_0(v0_1);
 
-US2 Function(int) method3() => (int v) => closure5(util.ignore(), v);
+US2 Function(int) method3() => (int v) => closure6(util.ignore(), v);
 
 String method4() => '';
 
-String closure4(US0 v0_1, String Function() v1_1, String Function() v2_1, void unitVar) {
+String closure5(US0 v0_1, String Function() v1_1, String Function() v2_1, void unitVar) {
     if (State_trace_state == null) {
         State_trace_state = types.Some(closure0(util.ignore(), util.ignore()));
     }
@@ -400,97 +411,103 @@ String closure4(US0 v0_1, String Function() v1_1, String Function() v2_1, void u
     return string.trimEnd(string.trimStart('$v61 ${types.value(_v74)} #$v62 ${v1_1()} / ${v2_1()}', <int>[]), [32, 47]);
 }
 
-void method2(US0 v0_1, String Function() v1_1, String Function() v2_1) {
-    types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> v3_1() => closure0(util.ignore(), util.ignore());
+void method5(US0 v0_1, String Function() v1_1) {
+    types.Tuple5<Mut0, Mut1, Mut2, types.Some<int>?, Mut3> v2_1() => closure0(util.ignore(), util.ignore());
     if (State_trace_state == null) {
-        State_trace_state = types.Some(v3_1());
+        State_trace_state = types.Some(v2_1());
     }
-    final v4_1 = types.value(State_trace_state).item1;
+    final patternInput = types.value(State_trace_state);
+    final v3_1 = patternInput.item1;
     if (State_trace_state == null) {
-        State_trace_state = types.Some(v3_1());
+        State_trace_state = types.Some(v2_1());
     }
     final patternInput_1 = types.value(State_trace_state);
-    final US0 v14 = patternInput_1.item4.l0;
-    if (patternInput_1.item3.l0 && (v0_1.compareTo(v14) >= 0)) {
-        final v19 = v4_1.l0 + 1;
-        v4_1.l0 = v19;
-        final v21 = '${closure4(v0_1, v1_1, v2_1, util.ignore())}';
-        types.Some<void>? _v22;
+    final US0 v13 = patternInput_1.item3.l0;
+    if ((patternInput_1.item2.l0 == false) ? false : (map.find<US0, int>(v0_1, map.ofSeq<US0, int>(const [types.Tuple2(US0(/* US0_0 */ 0), 0), types.Tuple2(US0(/* US0_1 */ 1), 1), types.Tuple2(US0(/* US0_2 */ 2), 2), types.Tuple2(US0(/* US0_3 */ 3), 3), types.Tuple2(US0(/* US0_4 */ 4), 4)], types.Comparer((US0 x, US0 y) => x.compareTo(y)))) >= map.find<US0, int>(v13, map.ofSeq<US0, int>(const [types.Tuple2(US0(/* US0_0 */ 0), 0), types.Tuple2(US0(/* US0_1 */ 1), 1), types.Tuple2(US0(/* US0_2 */ 2), 2), types.Tuple2(US0(/* US0_3 */ 3), 3), types.Tuple2(US0(/* US0_4 */ 4), 4)], types.Comparer((US0 x, US0 y) => x.compareTo(y)))))) {
+        final v21 = v3_1.l0 + 1;
+        v3_1.l0 = v21;
+        final v22 = '${v1_1()}';
+        types.Some<void>? _v23;
         null;
-        _v22 = types.Some(util.ignore());
-        types.value(_v22);
+        _v23 = types.Some(util.ignore());
+        types.value(_v23);
+        patternInput.item5.l0(v22);
     }
 }
 
-Async<bool> closure1(void unitVar, int v0_1) {
+void method2(US0 v0_1, String Function() v1_1, String Function() v2_1) {
+    method5(v0_1, () => closure5(v0_1, v1_1, v2_1, util.ignore()));
+}
+
+Async<bool> closure2(void unitVar, int v0_1) {
     types.Some<Async<bool>>? _v1;
     _v1 = const types.Some(null);
     return types.value(_v1);
 }
 
-US4 closure8(void unitVar, bool v0_1) => US4_US4_0(v0_1);
+US4 closure9(void unitVar, bool v0_1) => US4_US4_0(v0_1);
 
-US4 closure9(void unitVar, dynamic v0_1) => US4_US4_1(v0_1);
+US4 closure10(void unitVar, dynamic v0_1) => US4_US4_1(v0_1);
 
-String closure10(void unitVar, void unitVar_1) => 'run_with_timeout_async';
+String closure11(void unitVar, void unitVar_1) => 'run_with_timeout_async';
 
-String closure11(int v0_1, void unitVar) => 'timeout: $v0_1 / ${closure3(util.ignore(), util.ignore())}';
+String closure12(int v0_1, void unitVar) => 'timeout: $v0_1 / ${closure4(util.ignore(), util.ignore())}';
 
-String closure12(String v0_1, void unitVar) => 'run_with_timeout_async** / ex: $v0_1';
+String closure13(String v0_1, void unitVar) => 'run_with_timeout_async** / ex: $v0_1';
 
-Async<bool> closure7(int v0_1, int v1_1) {
+Async<bool> closure8(int v0_1, int v1_1) {
     types.Some<Async<bool>>? _v2;
     _v2 = const types.Some(null);
     return types.value(_v2);
 }
 
-Async<bool> Function(int) closure6(void unitVar, int v0_1) => (int v) => closure7(v0_1, v);
+Async<bool> Function(int) closure7(void unitVar, int v0_1) => (int v) => closure8(v0_1, v);
 
-US6 closure16(void unitVar, int v0_1) => US6_US6_0(v0_1);
+US6 closure17(void unitVar, int v0_1) => US6_US6_0(v0_1);
 
-US6 Function(int) method6() => (int v) => closure16(util.ignore(), v);
+US6 Function(int) method7() => (int v) => closure17(util.ignore(), v);
 
-String closure17(void unitVar, void unitVar_1) => 'wait_for_port_access';
+String closure18(void unitVar, void unitVar_1) => 'wait_for_port_access';
 
-String closure18(int v0_1, int v1_1, void unitVar) => 'port: $v0_1 / retry: $v1_1 / ${closure3(util.ignore(), util.ignore())}';
+String closure19(int v0_1, int v1_1, void unitVar) => 'port: $v0_1 / retry: $v1_1 / ${closure4(util.ignore(), util.ignore())}';
 
-Async<int> method5(types.Some<int>? v0_1, bool v1_1, int v2_1, int v3_1) {
+Async<int> method6(types.Some<int>? v0_1, bool v1_1, int v2_1, int v3_1) {
     types.Some<Async<int>>? _v4;
     _v4 = const types.Some(null);
     return types.value(_v4);
 }
 
-Async<int> closure15(types.Some<int>? v0_1, bool v1_1, int v2_1) => method5(v0_1, v1_1, v2_1, 0);
+Async<int> closure16(types.Some<int>? v0_1, bool v1_1, int v2_1) => method6(v0_1, v1_1, v2_1, 0);
 
-Async<int> Function(int) closure14(types.Some<int>? v0_1, bool v1_1) => (int v) => closure15(v0_1, v1_1, v);
+Async<int> Function(int) closure15(types.Some<int>? v0_1, bool v1_1) => (int v) => closure16(v0_1, v1_1, v);
 
-Async<int> Function(int) Function(bool) closure13(void unitVar, types.Some<int>? v0_1) => (bool v) => closure14(v0_1, v);
+Async<int> Function(int) Function(bool) closure14(void unitVar, types.Some<int>? v0_1) => (bool v) => closure15(v0_1, v);
 
-Async<int> method7(types.Some<int>? v0_1, int v1_1) {
+Async<int> method8(types.Some<int>? v0_1, int v1_1) {
     types.Some<Async<int>>? _v2;
     _v2 = const types.Some(null);
     return types.value(_v2);
 }
 
-Async<int> closure20(types.Some<int>? v0_1, int v1_1) => method7(v0_1, v1_1);
+Async<int> closure21(types.Some<int>? v0_1, int v1_1) => method8(v0_1, v1_1);
 
-Async<int> Function(int) closure19(void unitVar, types.Some<int>? v0_1) => (int v) => closure20(v0_1, v);
+Async<int> Function(int) closure20(void unitVar, types.Some<int>? v0_1) => (int v) => closure21(v0_1, v);
 
-types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> v0() => closure0(util.ignore(), util.ignore());
+types.Tuple5<Mut0, Mut1, Mut2, types.Some<int>?, Mut3> v0() => closure0(util.ignore(), util.ignore());
 
-Async<bool> v1(int v) => closure1(util.ignore(), v);
+Async<bool> v1(int v) => closure2(util.ignore(), v);
 
 Async<bool> test_port_open(int x) => v1(x);
 
-Async<bool> Function(int) v2(int v) => closure6(util.ignore(), v);
+Async<bool> Function(int) v2(int v) => closure7(util.ignore(), v);
 
 Async<bool> Function(int) test_port_open_timeout(int x) => v2(x);
 
-Async<int> Function(int) Function(bool) v3(types.Some<int>? v) => closure13(util.ignore(), v);
+Async<int> Function(int) Function(bool) v3(types.Some<int>? v) => closure14(util.ignore(), v);
 
 Async<int> Function(int) Function(bool) wait_for_port_access(types.Some<int>? x) => v3(x);
 
-Async<int> Function(int) v4(types.Some<int>? v) => closure19(util.ignore(), v);
+Async<int> Function(int) v4(types.Some<int>? v) => closure20(util.ignore(), v);
 
 Async<int> Function(int) get_available_port(types.Some<int>? x) => v4(x);
 

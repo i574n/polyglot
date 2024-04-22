@@ -39,8 +39,8 @@ open SpiralFileSystem.Operators
 
 let repositoryRoot = SpiralFileSystem.get_repository_root ()
 let tmpSpiralPath = repositoryRoot </> "target/polyglot/plotting"
-let linePlotsDataPath = tmpSpiralPath </> "line-data"
-let linePlotsSvgPath = tmpSpiralPath </> "line-svg"
+let linePlotsDataPath = tmpSpiralPath </> "line_data"
+let linePlotsSvgPath = tmpSpiralPath </> "line_svg"
 
 [ tmpSpiralPath; linePlotsDataPath; linePlotsSvgPath ]
 |> List.iter (fun dir -> if Directory.Exists dir |> not then Directory.CreateDirectory dir |> ignore)
@@ -56,6 +56,13 @@ Formatter.Register<struct (string * string * string * struct (string * float arr
                 do! json |> SpiralFileSystem.write_all_text_async $"{linePlotsDataPath </> hashHex}.json"
 
                 let ct = Microsoft.DotNet.Interactive.KernelInvocationContext.Current.CancellationToken
+
+                let oldLevel = get_trace_level ()
+                SpiralTrace.TraceLevel.US0_2
+                |> set_trace_level
+                use _ = (new_disposable (fun () ->
+                    oldLevel |> set_trace_level
+                ))
 
                 let plotExePath = repositoryRoot </> $"target/release/plot{SpiralRuntime.get_executable_suffix ()}"
                 let! exitCode, result =

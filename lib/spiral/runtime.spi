@@ -1,11 +1,8 @@
 // // # runtime
-
 open rust_operators
-open file_system_operators
 open sm'_operators
 
 // // ## types
-
 inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Arg\")>] type clap_Arg = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Command\")>] type clap_Command = class end"
@@ -19,7 +16,6 @@ inl types () =
     global "#endif // runtime.types"
 
 // // ## os_platform
-
 nominal os_platform' = $'System.Runtime.InteropServices.OSPlatform'
 
 union os_platform =
@@ -29,12 +25,10 @@ inl os_platform = function
     | Windows => $'`os_platform'.Windows' : os_platform'
 
 // // ## is_os_platform
-
 inl is_os_platform (x : os_platform') : bool =
     x |> $'System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform'
 
 // // ## is_windows
-
 inl is_windows () : bool =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -42,14 +36,12 @@ inl is_windows () : bool =
         | _ => fun () => null ()
 
 // // ## get_executable_suffix
-
 inl get_executable_suffix () =
     if is_windows ()
     then ".exe"
     else ""
 
 // // ## split_command
-
 union quoted =
     | Quoted
     | NotQuoted
@@ -72,7 +64,6 @@ inl split_command (command : string) =
     loop (join "", "") (command |> seq.of_string |> seq.to_list' |> listm'.unbox) Start
 
 // // ## process
-
 nominal process = $'System.Diagnostics.Process'
 nominal process_start_info = $'System.Diagnostics.ProcessStartInfo'
 nominal data_received_event_args = $'System.Diagnostics.DataReceivedEventArgs'
@@ -120,7 +111,6 @@ inl event_data (e : data_received_event_args) : string =
     $'!e.Data'
 
 // // ## execute_async
-
 type execution_line =
     {
         process_id : int
@@ -143,7 +133,7 @@ inl execute_with_options_async (options : execution_options) : _ (i32 * string) 
                 inl file_name, arguments = options.command |> split_command
                 inl working_directory = options.working_directory |> optionm'.unbox |> optionm'.default_value ""
 
-                trace Debug (fun () => $'$"execute_with_options_async / options: %A{!options}"') (join get_locals)
+                trace Debug (fun () => $'$"execute_with_options_async / options: %A{!options}"') (join _locals)
 
                 inl utf8 = sm'.encoding_utf8 ()
                 inl start_info : process_start_info = $'System.Diagnostics.ProcessStartInfo (Arguments = !arguments, StandardOutputEncoding = !utf8, WorkingDirectory = !working_directory, FileName = !file_name, CreateNoWindow = true, RedirectStandardError = true, RedirectStandardOutput = true, UseShellExecute = false)'
@@ -165,7 +155,7 @@ inl execute_with_options_async (options : execution_options) : _ (i32 * string) 
                             |> async.do
                         | None => ()
 
-                        trace Verbose (fun () => $'$"> {!data}"') get_locals
+                        trace Verbose (fun () => $'$"> {!data}"') _locals
 
                         inl l = if error then "[" else ""
                         inl r = if error then "]" else ""
@@ -207,7 +197,7 @@ inl execute_with_options_async (options : execution_options) : _ (i32 * string) 
                                 inl ex' = ex |> sm'.format_exception
                                 output |> threading.concurrent_stack_push ex'
                                 inl ex : async.task_canceled_exception = ex |> unbox
-                                trace Warning (fun () => $'$"execute_with_options_async / WaitForExitAsync / ex: %A{!ex}"') (join get_locals)
+                                trace Warning (fun () => $'$"execute_with_options_async / WaitForExitAsync / ex: %A{!ex}"') (join _locals)
                                 (limit.min : i32) |> return
                     |> async.new_async_unit
                     |> async.let'
@@ -220,7 +210,7 @@ inl execute_with_options_async (options : execution_options) : _ (i32 * string) 
 
                 trace Debug (fun () =>
                     $'$"execute_with_options_async / exit_code: {!exit_code} / output.Length: {!output.Length}"'
-                ) (join get_locals)
+                ) (join _locals)
 
                 (exit_code, output) |> return
             |> async.new_async_unit
@@ -249,62 +239,50 @@ inl execution_options (fn : execution_options -> execution_options) : execution_
 nominal command = $'clap_Command'
 
 // // ## new_command
-
 inl new_command (s : rust.static_ref' sm'.str) : command =
     !\\(s, $'"clap::Command::new($0)"')
 
 // // ## arg
-
 nominal arg = $'clap_Arg'
 
 // // ## new_arg
-
 inl new_arg (s : rust.static_ref' sm'.str) : arg =
     !\\(s, $'"clap::Arg::new($0)"')
 
 // // ## command_arg
-
 inl command_arg (arg : arg) (command : command) : command =
     !\\((command, arg), $'"clap::Command::arg($0, $1)"')
 
 // // ## arg_required
-
 inl arg_required (value : bool) (arg : arg) : arg =
     !\\((arg, value), $'"$0.required($1)"')
 
 // // ## arg_index
-
 inl arg_index (value : i32) (arg : arg) : arg =
     !\\((arg, value), $'"$0.index($1)"')
 
 // // ## arg_index
-
 inl arg_index (value : i32) (arg : arg) : arg =
     !\\((arg, value), $'"$0.index($1)"')
 
 // // ## arg_matches
-
 nominal arg_matches = $'clap_ArgMatches'
 
 // // ## command_get_matches
-
 inl command_get_matches (command : command) : arg_matches =
     !\\(command, $'"clap::Command::get_matches($0)"')
 
 // // ## matches_get_one
-
 inl matches_get_one (x : string) (matches : arg_matches) : optionm'.option' sm'.std_string =
     inl x = join x
     inl x = x |> sm'.as_str
     !\($'"clap::ArgMatches::get_one(&!matches, !x).cloned()"')
 
 // // ## command_debug_assert
-
 inl command_debug_assert (command : command) : () =
     !\\(command, $'"clap::Command::debug_assert($0)"')
 
 // // ## main
-
 inl main () =
     types ()
     init_trace_state ()

@@ -1,26 +1,20 @@
 // // # threading
-
 open rust_operators
 
 // // ## cancellation_token
-
 nominal cancellation_token = $'System.Threading.CancellationToken'
 
 // // ## cancellation_token_source
-
 nominal cancellation_token_source = $'System.Threading.CancellationTokenSource'
 
 // // ## cancellation_token_registration
-
 nominal cancellation_token_registration = $'System.Threading.CancellationTokenRegistration'
 
 // // ## cancellation_source_token
-
 inl cancellation_source_token (x : cancellation_token_source) : cancellation_token =
     $'!x.Token'
 
 // // ## cancellation_source_cancel
-
 inl cancellation_source_cancel (x : cancellation_token_source) : () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -28,42 +22,34 @@ inl cancellation_source_cancel (x : cancellation_token_source) : () =
         | _ => fun () => null ()
 
 // // ## create_linked_token_source
-
 inl create_linked_token_source (x : array_base cancellation_token) : cancellation_token_source =
     x |> $'System.Threading.CancellationTokenSource.CreateLinkedTokenSource'
 
 // // ## sleep
-
 inl sleep (duration : date_time.duration) : () =
     inl duration = join duration
     !\($'"std::thread::sleep(!duration)"')
 
 // // ## concurrent_stack
-
 nominal concurrent_stack t = $'System.Collections.Concurrent.ConcurrentStack<`t>'
 
 // // ## concurrent_stack_push
-
 inl concurrent_stack_push forall t. (item : t) (stack : concurrent_stack t) : () =
     $'!stack.Push' item
 
 // // ## token_none
-
 inl token_none () : cancellation_token =
     $'`cancellation_token.None'
 
 // // ## new_concurrent_stack
-
 inl new_concurrent_stack forall t. () : concurrent_stack t =
     $'System.Collections.Concurrent.ConcurrentStack<`t>' ()
 
 // // ## token_register
-
 inl token_register (fn : () -> ()) (ct : cancellation_token) : cancellation_token_registration =
     fn |> $'!ct.Register'
 
 // // ## new_cancellation_token_source
-
 inl new_cancellation_token_source () : cancellation_token_source =
     $'new `cancellation_token_source ()'
 
@@ -71,7 +57,6 @@ inl token_cancellation_requested (ct : cancellation_token) : bool =
     $'!ct.IsCancellationRequested'
 
 // // ## new_disposable_token
-
 inl new_disposable_token (merge_token : optionm'.option' cancellation_token) =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -87,6 +72,5 @@ inl new_disposable_token (merge_token : optionm'.option' cancellation_token) =
         | _ => fun () => null ()
 
 // // ## main
-
 inl main () =
     $"let new_disposable_token x = !new_disposable_token x" : ()

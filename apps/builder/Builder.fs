@@ -12,14 +12,14 @@ module Builder =
     open SpiralFileSystem.Operators
 
     /// ## buildProject
-
     let inline buildProject runtime outputDir path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let fileDir = fullPath |> System.IO.Path.GetDirectoryName
         let extension = fullPath |> System.IO.Path.GetExtension
 
-        let getLocals () = $"fullPath: {fullPath} / {getLocals ()}"
-        trace Debug (fun () -> "buildProject") getLocals
+        trace Debug
+            (fun () -> "buildProject")
+            (fun () -> $"fullPath: {fullPath} / {_locals ()}")
 
         match extension with
         | ".fsproj" -> ()
@@ -45,10 +45,10 @@ module Builder =
     }
 
     /// ## persistCodeProject
-
     let inline persistCodeProject packages modules name code = async {
-        let getLocals () = $"packages: {packages} / modules: {modules} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
-        trace Debug (fun () -> "persistCodeProject") getLocals
+        trace Debug
+            (fun () -> "persistCodeProject")
+            (fun () -> $"packages: {packages} / modules: {modules} / name: {name} / code.Length: {code |> String.length} / {_locals ()}")
 
         let repositoryRoot = SpiralFileSystem.get_repository_root ()
         let targetDir = repositoryRoot </> "target/polyglot/builder" </> name
@@ -97,14 +97,12 @@ module Builder =
     }
 
     /// ## buildCode
-
     let inline buildCode runtime packages modules outputDir name code = async {
         let! fsprojPath = code |> persistCodeProject packages modules name
         return! fsprojPath |> buildProject runtime outputDir
     }
 
     /// ## readFile
-
     let inline readFile path = async {
         let! code = path |> SpiralFileSystem.read_all_text_async
 
@@ -122,7 +120,6 @@ module Builder =
     }
 
     /// ## buildFile
-
     let inline buildFile runtime packages modules path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let dir = fullPath |> System.IO.Path.GetDirectoryName
@@ -132,7 +129,6 @@ module Builder =
     }
 
     /// ## persistFile
-
     let inline persistFile packages modules path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let name = fullPath |> System.IO.Path.GetFileNameWithoutExtension
@@ -141,7 +137,6 @@ module Builder =
     }
 
     /// ## Arguments
-
     [<RequireQualifiedAccess>]
     type Arguments =
         | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce>] Path of path : string
@@ -160,7 +155,6 @@ module Builder =
                 | Persist_Only -> nameof Persist_Only
 
     /// ## main
-
     let main args =
         let argsMap = args |> Runtime.parseArgsMap<Arguments>
 

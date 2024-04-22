@@ -14,13 +14,11 @@ module Common =
     let inline cons head tail = head :: tail
 
     /// ## memoize
-
     let inline memoize fn =
         let result = lazy fn ()
         fun () -> result.Value
 
     /// ## TraceLevel
-
     type TraceLevel =
         | Verbose
         | Debug
@@ -28,10 +26,9 @@ module Common =
         | Warning
         | Critical
 
-    let inline getLocals () = ""
+    let inline _locals () = ""
 
     /// ## trace
-
     let to_trace_level = function
         | Verbose -> SpiralTrace.TraceLevel.US0_0
         | Debug -> SpiralTrace.TraceLevel.US0_1
@@ -39,6 +36,6 @@ module Common =
         | Warning -> SpiralTrace.TraceLevel.US0_3
         | Critical -> SpiralTrace.TraceLevel.US0_4
 
-    let trace level fn getLocals =
+    let trace level fn locals =
         let level = level |> to_trace_level
-        SpiralTrace.trace level fn getLocals
+        SpiralTrace.trace level fn locals

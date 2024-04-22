@@ -6,30 +6,40 @@ const fileExists = async (path: string) => !!(await fs.promises.stat(path).catch
 
 const sleep = async (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
-export function throttle<T extends (...args: any[]) => Promise<U>, U>(func: T, limit: number) {
-  let inThrottle: boolean
-  let lastResult: U
+export function throttle<T extends (...args: Parameters<T>) => Promise<Awaited<ReturnType<T>>>>(
+  func: T,
+  limit: number
+) {
+  let inThrottle = false
+  let lastResult: Awaited<ReturnType<T>>
+  let timeoutId: ReturnType<typeof setTimeout>
 
-  return async function (...args: Parameters<T>) {
+  return async function (...args: Parameters<T>): Promise<Awaited<ReturnType<T>>> {
     if (!inThrottle) {
       inThrottle = true
-      lastResult = await func(...args)
-      setTimeout(() => (inThrottle = false), limit)
-      return lastResult
+      try {
+        lastResult = await func(...args)
+      } catch (ex) {
+        console.error(`throttle / ex: ${ex}`)
+        inThrottle = false
+        clearTimeout(timeoutId)
+        throw ex
+      }
+      timeoutId = setTimeout(() => (inThrottle = false), limit)
     }
     return lastResult
   }
 }
 
 export const getFileTokenRange = async (repositoryRoot: string, text: string) => {
-  const targetDir = path.join(repositoryRoot, 'target/polyglot/spiral_eval')
+  const targetDir = path.join(repositoryRoot, "target/polyglot/spiral_eval")
   if (!fs.existsSync(targetDir)) {
-      fs.mkdirSync(targetDir, { recursive: true })
+    fs.mkdirSync(targetDir, { recursive: true })
   }
 
   const hashHex = crypto.hash_text(text)
 
-  const codeDir = path.join(targetDir, "packages", hashHex)
+  const codeDir = path.join(targetDir, "tokens", hashHex)
 
   if (!(await fileExists(codeDir))) {
     fs.mkdirSync(codeDir, { recursive: true })
@@ -47,15 +57,17 @@ export const getFileTokenRange = async (repositoryRoot: string, text: string) =>
   const timeout = 4000
   const start = Date.now()
   let tokensText = "[]"
-  const elapsed = Date.now() - start
-  while (elapsed < timeout) {
+  while (Date.now() - start < timeout) {
     if (await fileExists(tokensFile)) {
-      tokensText = await fs.promises.readFile(tokensFile, "utf8")
-      break
+      const text = await fs.promises.readFile(tokensFile, "utf8")
+      if (text.length > 0) {
+        tokensText = text
+        break
+      }
     }
     await sleep(60)
   }
-  console.log(`supervisor.getFileTokenRange / elapsed: ${Date.now() - start}`)
+  console.log(`supervisor.getFileTokenRange / elapsed: ${Date.now() - start} / tokensText.length: ${tokensText.length}`)
 
   const tokens = new Uint32Array(JSON.parse(tokensText))
 

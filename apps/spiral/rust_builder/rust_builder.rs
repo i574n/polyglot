@@ -14,10 +14,13 @@ mod module_4da4c295 {
     pub mod Rust_builder {
         use super::*;
         use fable_library_rust::DateTime_::DateTime;
+        use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
+        use fable_library_rust::List_::ofArray;
+        use fable_library_rust::Map_::find;
+        use fable_library_rust::Map_::ofSeq;
         use fable_library_rust::NativeArray_::new_array;
         use fable_library_rust::NativeArray_::new_empty;
         use fable_library_rust::NativeArray_::Array;
-        use fable_library_rust::Native_::compare;
         use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::Func1;
         use fable_library_rust::Native_::LrcPtr;
@@ -26,6 +29,7 @@ mod module_4da4c295 {
         use fable_library_rust::Option_::defaultValue;
         use fable_library_rust::Option_::getValue;
         use fable_library_rust::Option_::map;
+        use fable_library_rust::Seq_::ofList;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
         use fable_library_rust::String_::toLower;
@@ -66,9 +70,9 @@ mod module_4da4c295 {
                     Option<(
                         LrcPtr<Rust_builder::Mut0>,
                         LrcPtr<Rust_builder::Mut1>,
-                        LrcPtr<Rust_builder::Mut1>,
                         LrcPtr<Rust_builder::Mut2>,
                         Option<i64>,
+                        LrcPtr<Rust_builder::Mut3>,
                     )>,
                 >,
             > {
@@ -78,9 +82,9 @@ mod module_4da4c295 {
                             Option<(
                                 LrcPtr<Rust_builder::Mut0>,
                                 LrcPtr<Rust_builder::Mut1>,
-                                LrcPtr<Rust_builder::Mut1>,
                                 LrcPtr<Rust_builder::Mut2>,
                                 Option<i64>,
+                                LrcPtr<Rust_builder::Mut3>,
                             )>,
                         >,
                     >,
@@ -91,9 +95,9 @@ mod module_4da4c295 {
                             None::<(
                                 LrcPtr<Rust_builder::Mut0>,
                                 LrcPtr<Rust_builder::Mut1>,
-                                LrcPtr<Rust_builder::Mut1>,
                                 LrcPtr<Rust_builder::Mut2>,
                                 Option<i64>,
+                                LrcPtr<Rust_builder::Mut3>,
                             )>,
                         ))
                     })
@@ -199,6 +203,15 @@ mod module_4da4c295 {
             pub l0: MutCell<Rust_builder::US1>,
         }
         impl core::fmt::Display for Rust_builder::Mut2 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub struct Mut3 {
+            pub l0: MutCell<Func1<string, ()>>,
+        }
+        impl core::fmt::Display for Rust_builder::Mut3 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
@@ -488,21 +501,24 @@ mod module_4da4c295 {
                 Rust_builder::closure6((), ())
             )
         }
+        pub fn closure9(unitVar: (), v0_1: string) {
+            ();
+        }
         pub fn method14(v0_1: Option<i64>) -> Option<i64> {
             v0_1
         }
         pub fn method15(v0_1: Option<i64>) -> Option<i64> {
             v0_1
         }
-        pub fn closure7(
+        pub fn closure8(
             unitVar: (),
             unitVar_1: (),
         ) -> (
             LrcPtr<Rust_builder::Mut0>,
             LrcPtr<Rust_builder::Mut1>,
-            LrcPtr<Rust_builder::Mut1>,
             LrcPtr<Rust_builder::Mut2>,
             Option<i64>,
+            LrcPtr<Rust_builder::Mut3>,
         ) {
             let v0_1: LrcPtr<Rust_builder::Mut1> = LrcPtr::new(Rust_builder::Mut1 {
                 l0: MutCell::new(true),
@@ -513,54 +529,46 @@ mod module_4da4c295 {
             let v3: LrcPtr<Rust_builder::Mut2> = LrcPtr::new(Rust_builder::Mut2 {
                 l0: MutCell::new(Rust_builder::US1::US1_0),
             });
-            let v4: LrcPtr<Rust_builder::Mut1> = LrcPtr::new(Rust_builder::Mut1 {
-                l0: MutCell::new(false),
+            let v5: LrcPtr<Rust_builder::Mut3> = LrcPtr::new(Rust_builder::Mut3 {
+                l0: MutCell::new(Func1::new(move |v: string| Rust_builder::closure9((), v))),
             });
-            let _v5: MutCell<Option<Option<i64>>> = MutCell::new(None::<Option<i64>>);
+            let _v6: MutCell<Option<Option<i64>>> = MutCell::new(None::<Option<i64>>);
             {
                 let x: Option<i64> = Rust_builder::method15(None::<i64>);
-                _v5.set(Some(x))
+                _v6.set(Some(x))
             }
-            (v1_1, v4, v0_1, v3, getValue(_v5.get().clone()))
+            (v1_1, v0_1, v3, getValue(_v6.get().clone()), v5)
         }
-        pub fn closure9(unitVar: (), v0_1: i64) -> Rust_builder::US3 {
+        pub fn closure10(unitVar: (), v0_1: i64) -> Rust_builder::US3 {
             Rust_builder::US3::US3_0(v0_1)
         }
         pub fn method16() -> Func1<i64, Rust_builder::US3> {
-            Func1::new(move |v: i64| Rust_builder::closure9((), v))
+            Func1::new(move |v: i64| Rust_builder::closure10((), v))
         }
         pub fn method17() -> string {
             string("")
         }
-        pub fn closure8(
+        pub fn closure7(
             v0_1: Rust_builder::US1,
             v1_1: Func0<string>,
             v2: Func0<string>,
             unitVar: (),
         ) -> string {
-            if Rust_builder::State::trace_state().get().clone()
-                == None::<(
-                    LrcPtr<Rust_builder::Mut0>,
-                    LrcPtr<Rust_builder::Mut1>,
-                    LrcPtr<Rust_builder::Mut1>,
-                    LrcPtr<Rust_builder::Mut2>,
-                    Option<i64>,
-                )>
-            {
-                Rust_builder::State::trace_state().set(Some(Rust_builder::closure7((), ())));
+            if Rust_builder::State::trace_state().get().clone().is_none() {
+                Rust_builder::State::trace_state().set(Some(Rust_builder::closure8((), ())));
             }
             {
                 let patternInput: (
                     LrcPtr<Rust_builder::Mut0>,
                     LrcPtr<Rust_builder::Mut1>,
-                    LrcPtr<Rust_builder::Mut1>,
                     LrcPtr<Rust_builder::Mut2>,
                     Option<i64>,
+                    LrcPtr<Rust_builder::Mut3>,
                 ) = getValue(Rust_builder::State::trace_state().get().clone());
                 let _v9: MutCell<Option<string>> = MutCell::new(None::<string>);
                 let v13: Rust_builder::US3 = defaultValue(
                     Rust_builder::US3::US3_1,
-                    map(Rust_builder::method16(), patternInput.4.clone()),
+                    map(Rust_builder::method16(), patternInput.3.clone()),
                 );
                 let v31: DateTime = match &v13 {
                     Rust_builder::US3::US3_0(v13_0_0) => {
@@ -632,68 +640,84 @@ mod module_4da4c295 {
                 }
             }
         }
-        pub fn method13(v0_1: Rust_builder::US1, v1_1: Func0<string>, v2: Func0<string>) {
-            let v3 = Func0::new(move || Rust_builder::closure7((), ()));
-            if Rust_builder::State::trace_state().get().clone()
-                == None::<(
+        pub fn method18(v0_1: Rust_builder::US1, v1_1: Func0<string>) {
+            let v2 = Func0::new(move || Rust_builder::closure8((), ()));
+            if Rust_builder::State::trace_state().get().clone().is_none() {
+                Rust_builder::State::trace_state().set(Some(v2()));
+            }
+            {
+                let patternInput: (
                     LrcPtr<Rust_builder::Mut0>,
-                    LrcPtr<Rust_builder::Mut1>,
                     LrcPtr<Rust_builder::Mut1>,
                     LrcPtr<Rust_builder::Mut2>,
                     Option<i64>,
-                )>
-            {
-                Rust_builder::State::trace_state().set(Some(v3()));
-            }
-            {
-                let v4: LrcPtr<Rust_builder::Mut0> =
-                    (getValue(Rust_builder::State::trace_state().get().clone()))
-                        .0
-                        .clone();
-                if Rust_builder::State::trace_state().get().clone()
-                    == None::<(
-                        LrcPtr<Rust_builder::Mut0>,
-                        LrcPtr<Rust_builder::Mut1>,
-                        LrcPtr<Rust_builder::Mut1>,
-                        LrcPtr<Rust_builder::Mut2>,
-                        Option<i64>,
-                    )>
-                {
-                    Rust_builder::State::trace_state().set(Some(v3()));
+                    LrcPtr<Rust_builder::Mut3>,
+                ) = getValue(Rust_builder::State::trace_state().get().clone());
+                let v3: LrcPtr<Rust_builder::Mut0> = patternInput.0.clone();
+                if Rust_builder::State::trace_state().get().clone().is_none() {
+                    Rust_builder::State::trace_state().set(Some(v2()));
                 }
                 {
                     let patternInput_1: (
                         LrcPtr<Rust_builder::Mut0>,
                         LrcPtr<Rust_builder::Mut1>,
-                        LrcPtr<Rust_builder::Mut1>,
                         LrcPtr<Rust_builder::Mut2>,
                         Option<i64>,
+                        LrcPtr<Rust_builder::Mut3>,
                     ) = getValue(Rust_builder::State::trace_state().get().clone());
-                    let v14: Rust_builder::US1 = (patternInput_1.3.clone()).l0.get().clone();
-                    if if (patternInput_1.2.clone()).l0.get().clone() {
-                        compare(v0_1.clone(), v14) >= 0_i32
-                    } else {
+                    let v13: Rust_builder::US1 = (patternInput_1.2.clone()).l0.get().clone();
+                    if if (patternInput_1.1.clone()).l0.get().clone() == false {
                         false
+                    } else {
+                        find(
+                            v0_1,
+                            ofSeq(ofList(ofArray(new_array(&[
+                                LrcPtr::new((Rust_builder::US1::US1_0, 0_i32)),
+                                LrcPtr::new((Rust_builder::US1::US1_1, 1_i32)),
+                                LrcPtr::new((Rust_builder::US1::US1_2, 2_i32)),
+                                LrcPtr::new((Rust_builder::US1::US1_3, 3_i32)),
+                                LrcPtr::new((Rust_builder::US1::US1_4, 4_i32)),
+                            ])))),
+                        ) >= find(
+                            v13,
+                            ofSeq(ofList(ofArray(new_array(&[
+                                LrcPtr::new((Rust_builder::US1::US1_0, 0_i32)),
+                                LrcPtr::new((Rust_builder::US1::US1_1, 1_i32)),
+                                LrcPtr::new((Rust_builder::US1::US1_2, 2_i32)),
+                                LrcPtr::new((Rust_builder::US1::US1_3, 3_i32)),
+                                LrcPtr::new((Rust_builder::US1::US1_4, 4_i32)),
+                            ])))),
+                        )
                     } {
-                        let v19: i64 = v4.l0.get().clone() + 1_i64;
-                        v4.l0.set(v19);
+                        let v21: i64 = v3.l0.get().clone() + 1_i64;
+                        v3.l0.set(v21);
                         {
-                            let v21: string =
-                                sprintf!("{}", Rust_builder::closure8(v0_1, v1_1, v2, ()));
-                            let _v22: MutCell<Option<()>> = MutCell::new(None::<()>);
-                            println!("{}", v21);
-                            _v22.set(Some(()));
-                            getValue(_v22.get().clone());
-                            ()
+                            let v22: string = sprintf!("{}", v1_1());
+                            let _v23: MutCell<Option<()>> = MutCell::new(None::<()>);
+                            println!("{}", v22.clone());
+                            _v23.set(Some(()));
+                            getValue(_v23.get().clone());
+                            ((patternInput.4.clone()).l0.get().clone())(v22)
                         }
                     }
                 }
             }
         }
-        pub fn closure10(unitVar: (), unitVar_1: ()) -> string {
+        pub fn method13(v0_1: Rust_builder::US1, v1_1: Func0<string>, v2: Func0<string>) {
+            Rust_builder::method18(
+                v0_1.clone(),
+                Func0::new({
+                    let v0_1 = v0_1.clone();
+                    let v1_1 = v1_1.clone();
+                    let v2 = v2.clone();
+                    move || Rust_builder::closure7(v0_1.clone(), v1_1.clone(), v2.clone(), ())
+                }),
+            );
+        }
+        pub fn closure11(unitVar: (), unitVar_1: ()) -> string {
             string("rust_builder")
         }
-        pub fn closure11(v0_1: clap::Command, v1_1: clap::ArgMatches, unitVar: ()) -> string {
+        pub fn closure12(v0_1: clap::Command, v1_1: clap::ArgMatches, unitVar: ()) -> string {
             sprintf!(
                 "command: {} / matches: {} / {}",
                 format!("{:#?}", v0_1),
@@ -750,11 +774,11 @@ mod module_4da4c295 {
                         let v71: clap::ArgMatches = clap::Command::get_matches(v69.clone());
                         Rust_builder::method13(
                             Rust_builder::US1::US1_1,
-                            Func0::new(move || Rust_builder::closure10((), ())),
+                            Func0::new(move || Rust_builder::closure11((), ())),
                             Func0::new({
                                 let v69 = v69.clone();
                                 let v71 = v71.clone();
-                                move || Rust_builder::closure11(v69.clone(), v71.clone(), ())
+                                move || Rust_builder::closure12(v69.clone(), v71.clone(), ())
                             }),
                         );
                         0_i32

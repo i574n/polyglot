@@ -12,18 +12,15 @@ module DibParser =
     open FParsec
 
     /// ## magicMarker
-
     let magicMarker : Parser<string, unit> = pstring "#!"
 
     /// ## magicCommand
-
     let magicCommand =
         magicMarker
         >>. manyTill anyChar newline
         |>> (System.String.Concat >> SpiralSm.trim)
 
     /// ## content
-
     let content =
         (newline >>. magicMarker) <|> (eof >>. preturn "")
         |> attempt
@@ -32,7 +29,6 @@ module DibParser =
         |>> (System.String.Concat >> SpiralSm.trim)
 
     /// ## Block
-
     type Block =
         {
             magic : string
@@ -40,7 +36,6 @@ module DibParser =
         }
 
     /// ## block
-
     let block =
         pipe2
             magicCommand
@@ -52,13 +47,11 @@ module DibParser =
                 })
 
     /// ## blocks
-
     let blocks =
         skipMany newline
         >>. sepEndBy block (skipMany1 newline)
 
     /// ## Output
-
     type Output =
         | Fs
         | Md
@@ -73,7 +66,6 @@ module DibParser =
         | _ -> []
 
     /// ## formatBlock
-
     let inline formatBlock output (block : Block) =
         match output, block with
         | output, { magic = "markdown"; content = content } ->
@@ -108,16 +100,25 @@ module DibParser =
         | _ -> ""
 
     /// ## formatBlocks
-
     let inline formatBlocks output blocks =
         blocks
-        |> List.map (formatBlock output)
-        |> List.filter ((<>) "")
-        |> SpiralSm.concat "\n\n"
-        |> fun s -> s + "\n"
+        |> List.map (fun block ->
+            block, formatBlock output block
+        )
+        |> List.filter (snd >> (<>) "")
+        |> fun list ->
+            (list, (None, []))
+            ||> List.foldBack (fun (block, content) (lastMagic, acc) ->
+                let lineBreak =
+                    if block.magic = "markdown" && lastMagic <> Some "markdown" && lastMagic <> None
+                    then ""
+                    else "\n"
+                Some block.magic, $"{content}{lineBreak}" :: acc
+            )
+        |> snd
+        |> SpiralSm.concat "\n"
 
     /// ## parse
-
     let inline parse output input =
         match run blocks input with
         | Success (blocks, _, _) ->
@@ -214,10 +215,10 @@ module {moduleName} ="
         | Failure (errorMsg, _, _) -> Result.Error errorMsg
 
     /// ## parseDibCode
-
     let inline parseDibCode output file = async {
-        let getLocals () = $"output: {output} / file: {file} / {getLocals ()}"
-        trace Debug (fun () -> "parseDibCode") getLocals
+        trace Debug
+            (fun () -> "parseDibCode")
+            (fun () -> $"output: {output} / file: {file} / {_locals ()}")
         let! input = file |> SpiralFileSystem.read_all_text_async
         match parse output input with
         | Result.Ok blocks -> return blocks |> formatBlocks output
@@ -225,17 +226,16 @@ module {moduleName} ="
     }
 
     /// ## writeDibCode
-
     let inline writeDibCode output path = async {
-        let getLocals () = $"output: {output} / path: {path} / {getLocals ()}"
-        trace Debug (fun () -> "writeDibCode") getLocals
+        trace Debug
+            (fun () -> "writeDibCode")
+            (fun () -> $"output: {output} / path: {path} / {_locals ()}")
         let! result = parseDibCode output path
         let outputPath = path |> SpiralSm.replace ".dib" $".{output |> string |> SpiralSm.to_lower}"
         do! result |> SpiralFileSystem.write_all_text_async outputPath
     }
 
     /// ## Arguments
-
     [<RequireQualifiedAccess>]
     type Arguments =
         | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.Mandatory>]
@@ -247,7 +247,6 @@ module {moduleName} ="
                 | File _ -> nameof File
 
     /// ## main
-
     let main args =
         let argsMap = args |> Runtime.parseArgsMap<Arguments>
 

@@ -14,6 +14,18 @@ open testing
 
 #!markdown
 
+## types
+
+#!spiral
+
+inl types () =
+    global "#if FABLE_COMPILER // common.types"
+    rust.types ()
+    sm'.types ()
+    global "#endif // common.types"
+
+#!markdown
+
 ## prototype
 
 #!spiral
@@ -60,17 +72,6 @@ inl upcast forall t u. (x : t) : u =
 
 inl downcast forall t u. (x : t) : u =
     $'!x :?> `u '
-
-#!markdown
-
-## unativeint
-
-#!spiral
-
-nominal unativeint = $"unativeint"
-
-inl unativeint forall t {int}. (n : t) : unativeint =
-    $"unativeint !n"
 
 #!markdown
 
@@ -444,8 +445,10 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
                 then fn () |> Some
                 else None
             fun ex =>
-                inl get_locals () = $'$"retry: {!retry} / ex: {ex |> SpiralSm.format_exception} / {!get_locals ()}"' : string
-                // trace Warning (fun () => "retry_fn") getLocals
+                trace Warning
+                    fun () => "retry_fn"
+                    fun () =>
+                        $'$"retry: {!retry} / ex: %A{!ex} / {!_locals ()}"'
                 sleep 1
                 None
         |> function
@@ -485,6 +488,8 @@ fun () =>
 #!spiral
 
 inl main () =
+    types ()
+    init_trace_state ()
     inl new_disposable x : _ () = new_disposable x
     $"let new_disposable x = !new_disposable x" : ()
 

@@ -127,6 +127,13 @@ inl f32 forall t. (x : t) : f32 =
 inl f64 forall t. (x : t) : f64 =
     $"float !x"
 
+// // ## unativeint
+
+nominal unativeint = $"unativeint"
+
+inl unativeint forall t {int}. (n : t) : unativeint =
+    $"unativeint !n"
+
 // // ## pair
 
 type pair a b = $"(`a * `b)"

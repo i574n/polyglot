@@ -29,9 +29,9 @@ modules:
     networking
     benchmark
     stream
+    runtime
     file_system
     file_system_operators
-    runtime
     util
     physics
     leptos/
