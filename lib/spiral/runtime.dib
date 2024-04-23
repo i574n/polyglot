@@ -366,21 +366,17 @@ fun () =>
 // // test
 // // print_code=true
 
-inl temp_folder, disposable = file_system.create_temp_directory ()
+inl temp_dir, disposable = file_system.create_temp_directory ()
 disposable |> use |> ignore
-inl file_name = "test.txt"
-inl path = temp_folder </> file_name
-
-inl command = $'\@$"pwsh -c ""Get-Content {!path}"""'
-
 fun () =>
+    inl path = temp_dir </> "test.txt"
     "0" |> file_system.write_all_text_async path |> async.do
 
     inl cts = threading.new_cancellation_token_source ()
     trace Debug (fun () => "1") _locals
     inl result =
         execution_options fun x => { x with
-            command
+            $'\@$"pwsh -c ""Get-Content {!path}"""'
             cancellation_token = cts |> threading.cancellation_source_token |> Some |> optionm'.box
         }
         |> execute_with_options_async
