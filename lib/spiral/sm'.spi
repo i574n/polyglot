@@ -40,8 +40,8 @@ inl pad_left (total_width : i32) (padding_char : char) (s : string) : string =
     $"!s.PadLeft (!total_width, !padding_char)"
 
 // // ## pad_right
-inl pad_right (pad : i32) (s : string) : string =
-    $"!s.PadRight !pad"
+inl pad_right (total_width : i32) (padding_char : char) (s : string) : string =
+    $"!s.PadRight (!total_width, !padding_char)"
 
 // // ## replace
 inl replace (old_value : string) (new_value : string) (s : string) : string =

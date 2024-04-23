@@ -90,8 +90,16 @@ inl pad_left (total_width : i32) (padding_char : char) (s : string) : string =
 
 #!spiral
 
-inl pad_right (pad : i32) (s : string) : string =
-    $"!s.PadRight !pad"
+inl pad_right (total_width : i32) (padding_char : char) (s : string) : string =
+    $"!s.PadRight (!total_width, !padding_char)"
+
+#!spiral
+
+// // test
+
+"123"
+|> pad_right 6 ' '
+|> _assert_eq "123   "
 
 #!markdown
 

@@ -482,6 +482,24 @@ inl arg_required (value : bool) (arg : arg) : arg =
 
 #!markdown
 
+## arg_short
+
+#!spiral
+
+inl arg_short (value : char) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.short($1)"')
+
+#!markdown
+
+## arg_long
+
+#!spiral
+
+inl arg_long (value : rust.static_ref' sm'.str) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.long($1)"')
+
+#!markdown
+
 ## arg_index
 
 #!spiral

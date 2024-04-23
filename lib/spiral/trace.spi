@@ -139,7 +139,7 @@ let trace (level : trace_level) (fn : () -> string) (locals : () -> string) =
                         $'!date_time.ToString !format '
                 | _ => fun () => join ""
         inl count = *trace_state.count
-        inl level_str = level |> to_string |> sm'.to_lower
+        inl level_str = level |> to_string |> sm'.to_lower |> sm'.pad_right 7 ' '
         inl level_str =
             run_target function
             | Rust _ => fun () =>

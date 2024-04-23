@@ -490,7 +490,10 @@ module Eval =
                                             let rsCode =
                                                 if cached
                                                 then rsCode
-                                                else rsCode |> SpiralSm.replace "),);" "));"
+                                                else
+                                                    rsCode
+                                                    |> SpiralSm.replace "),);" "));"
+                                                    |> SpiralSm.replace "get_or_insert_with" "get_or_init"
 
                                             if printCode
                                             then _trace (fun () -> $".rs:\n{rsCode}")
@@ -510,7 +513,7 @@ edition = "2021"
 [workspace]
 
 [dependencies]
-fable_library_rust = {{ path = "fable_modules/fable-library-rust", optional = true, default-features = false, features = ["static_do_bindings"] }}
+fable_library_rust = {{ path = "fable_modules/fable-library-rust", default-features = false, features = ["static_do_bindings", "datetime", "threaded"] }}
 clap = "~4.5"
 inline_colorization = "~0.1"
 num-complex = "~0.4"
@@ -520,9 +523,6 @@ futures = "~0.3"
 futures-lite = "~2.3"
 async-walkdir = "~1.0"
 rayon = "~1.10"
-
-[features]
-default = ["fable_library_rust/default", "fable_library_rust/static_do_bindings"]
 
 [[bin]]
 name = "{hash}"

@@ -284,128 +284,129 @@ and closure11 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : stri
             let v66 : string = "Warning"
             v66
     let v73 : string = v72.ToLower ()
-    let v74 : string option = None
-    let v75 : bool = true in let mutable _v74 = v74
+    let v74 : string = v73.PadRight (7, ' ')
+    let v75 : string option = None
+    let v76 : bool = true in let mutable _v75 = v75
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v90 : Ref<Str> =
+    let v91 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v84 : string = "inline_colorization::color_bright_red"
-            let v85 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v84
-            v85
+            let v85 : string = "inline_colorization::color_bright_red"
+            let v86 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v85
+            v86
         | US0_1 -> (* Debug *)
-            let v78 : string = "inline_colorization::color_bright_blue"
-            let v79 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v78
-            v79
+            let v79 : string = "inline_colorization::color_bright_blue"
+            let v80 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v79
+            v80
         | US0_2 -> (* Info *)
-            let v80 : string = "inline_colorization::color_bright_green"
-            let v81 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v80
-            v81
+            let v81 : string = "inline_colorization::color_bright_green"
+            let v82 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v81
+            v82
         | US0_0 -> (* Verbose *)
-            let v76 : string = "inline_colorization::color_bright_black"
-            let v77 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v76
-            v77
+            let v77 : string = "inline_colorization::color_bright_black"
+            let v78 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v77
+            v78
         | US0_3 -> (* Warning *)
-            let v82 : string = "inline_colorization::color_bright_yellow"
-            let v83 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v82
-            v83
-    let v91 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
-    let v92 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v73 v91
-    let v93 : string = "inline_colorization::color_reset"
-    let v94 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v93
-    let v95 : string = "\"{v90}{v92}{v94}\""
-    let v96 : string = @$"format!(" + v95 + ")"
-    let v97 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v96
-    let v98 : string = "fable_library_rust::String_::fromString($0)"
-    let v99 : string = Fable.Core.RustInterop.emitRustExpr v97 v98
-    v99
+            let v83 : string = "inline_colorization::color_bright_yellow"
+            let v84 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v83
+            v84
+    let v92 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v93 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v74 v92
+    let v94 : string = "inline_colorization::color_reset"
+    let v95 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v94
+    let v96 : string = "\"{v91}{v93}{v95}\""
+    let v97 : string = @$"format!(" + v96 + ")"
+    let v98 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v97
+    let v99 : string = "fable_library_rust::String_::fromString($0)"
+    let v100 : string = Fable.Core.RustInterop.emitRustExpr v98 v99
+    v100
 #endif
     #if FABLE_COMPILER_RUST && WASM
-    let v114 : Ref<Str> =
+    let v115 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v108 : string = "inline_colorization::color_bright_red"
-            let v109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v108
-            v109
+            let v109 : string = "inline_colorization::color_bright_red"
+            let v110 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v109
+            v110
         | US0_1 -> (* Debug *)
-            let v102 : string = "inline_colorization::color_bright_blue"
-            let v103 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v102
-            v103
+            let v103 : string = "inline_colorization::color_bright_blue"
+            let v104 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v103
+            v104
         | US0_2 -> (* Info *)
-            let v104 : string = "inline_colorization::color_bright_green"
-            let v105 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v104
-            v105
+            let v105 : string = "inline_colorization::color_bright_green"
+            let v106 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v105
+            v106
         | US0_0 -> (* Verbose *)
-            let v100 : string = "inline_colorization::color_bright_black"
-            let v101 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v100
-            v101
+            let v101 : string = "inline_colorization::color_bright_black"
+            let v102 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v101
+            v102
         | US0_3 -> (* Warning *)
-            let v106 : string = "inline_colorization::color_bright_yellow"
-            let v107 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v106
-            v107
-    let v115 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
-    let v116 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v73 v115
-    let v117 : string = "inline_colorization::color_reset"
-    let v118 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v117
-    let v119 : string = "\"{v114}{v116}{v118}\""
-    let v120 : string = @$"format!(" + v119 + ")"
-    let v121 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v120
-    let v122 : string = "fable_library_rust::String_::fromString($0)"
-    let v123 : string = Fable.Core.RustInterop.emitRustExpr v121 v122
-    v123
+            let v107 : string = "inline_colorization::color_bright_yellow"
+            let v108 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v107
+            v108
+    let v116 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v117 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v74 v116
+    let v118 : string = "inline_colorization::color_reset"
+    let v119 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v118
+    let v120 : string = "\"{v115}{v117}{v119}\""
+    let v121 : string = @$"format!(" + v120 + ")"
+    let v122 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v121
+    let v123 : string = "fable_library_rust::String_::fromString($0)"
+    let v124 : string = Fable.Core.RustInterop.emitRustExpr v122 v123
+    v124
 #endif
     #if FABLE_COMPILER_RUST && CONTRACT
-    let v138 : Ref<Str> =
+    let v139 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v132 : string = "inline_colorization::color_bright_red"
-            let v133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v132
-            v133
+            let v133 : string = "inline_colorization::color_bright_red"
+            let v134 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v133
+            v134
         | US0_1 -> (* Debug *)
-            let v126 : string = "inline_colorization::color_bright_blue"
-            let v127 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v126
-            v127
+            let v127 : string = "inline_colorization::color_bright_blue"
+            let v128 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v127
+            v128
         | US0_2 -> (* Info *)
-            let v128 : string = "inline_colorization::color_bright_green"
-            let v129 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v128
-            v129
+            let v129 : string = "inline_colorization::color_bright_green"
+            let v130 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v129
+            v130
         | US0_0 -> (* Verbose *)
-            let v124 : string = "inline_colorization::color_bright_black"
-            let v125 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v124
-            v125
+            let v125 : string = "inline_colorization::color_bright_black"
+            let v126 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v125
+            v126
         | US0_3 -> (* Warning *)
-            let v130 : string = "inline_colorization::color_bright_yellow"
-            let v131 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v130
-            v131
-    let v139 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
-    let v140 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v73 v139
-    let v141 : string = "inline_colorization::color_reset"
-    let v142 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v141
-    let v143 : string = "\"{v138}{v140}{v142}\""
-    let v144 : string = @$"format!(" + v143 + ")"
-    let v145 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v144
-    let v146 : string = "fable_library_rust::String_::fromString($0)"
-    let v147 : string = Fable.Core.RustInterop.emitRustExpr v145 v146
-    v147
-#endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    v73
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    v73
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v148 : string = Unchecked.defaultof<string>
+            let v131 : string = "inline_colorization::color_bright_yellow"
+            let v132 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v131
+            v132
+    let v140 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v141 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v74 v140
+    let v142 : string = "inline_colorization::color_reset"
+    let v143 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v142
+    let v144 : string = "\"{v139}{v141}{v143}\""
+    let v145 : string = @$"format!(" + v144 + ")"
+    let v146 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v145
+    let v147 : string = "fable_library_rust::String_::fromString($0)"
+    let v148 : string = Fable.Core.RustInterop.emitRustExpr v146 v147
     v148
 #endif
-    |> fun x -> _v74 <- Some x
-    let v149 : string = _v74.Value
-    let v150 : string = $"{v61} {v149} #{v62} %s{v1 ()} / %s{v2 ()}"
-    let v151 : (char []) = [||]
-    let v152 : string = v150.TrimStart v151
-    let v153 : (char []) = [|' '; '/'|]
-    let v154 : string = v152.TrimEnd v153
-    v154
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    v74
+#endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    v74
+#endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v149 : string = Unchecked.defaultof<string>
+    v149
+#endif
+    |> fun x -> _v75 <- Some x
+    let v150 : string = _v75.Value
+    let v151 : string = $"{v61} {v150} #{v62} %s{v1 ()} / %s{v2 ()}"
+    let v152 : (char []) = [||]
+    let v153 : string = v151.TrimStart v152
+    let v154 : (char []) = [|' '; '/'|]
+    let v155 : string = v153.TrimEnd v154
+    v155
 and method6 (v0 : US0, v1 : (unit -> string)) : unit =
     let v2 : (unit -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
     if State.trace_state.IsNone then State.trace_state <- v2 () |> Some

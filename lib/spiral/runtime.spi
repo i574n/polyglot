@@ -257,6 +257,14 @@ inl command_arg (arg : arg) (command : command) : command =
 inl arg_required (value : bool) (arg : arg) : arg =
     !\\((arg, value), $'"$0.required($1)"')
 
+// // ## arg_short
+inl arg_short (value : char) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.short($1)"')
+
+// // ## arg_long
+inl arg_long (value : rust.static_ref' sm'.str) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.long($1)"')
+
 // // ## arg_index
 inl arg_index (value : i32) (arg : arg) : arg =
     !\\((arg, value), $'"$0.index($1)"')

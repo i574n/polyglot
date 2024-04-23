@@ -192,7 +192,7 @@ inl sort_result_list results =
                 row
                 |> listm'.indexed
                 |> listm.map fun (i, cell) =>
-                    cell |> sm'.pad_right (lengthMap |> mapm.item i |> conv)
+                    cell |> sm'.pad_right (lengthMap |> mapm.item i |> conv) ' '
                 |> listm.toArray
             newRow, color
 
