@@ -96,6 +96,13 @@ module SpiralRuntime =
         execute_with_options_async x
 #endif
 
+    let split_args x =
+#if !INTERACTIVE
+        Runtime.split_args x
+#else
+        split_args x
+#endif
+
 module SpiralDateTime =
     let format_iso8601 x =
 #if !INTERACTIVE
@@ -168,6 +175,13 @@ module SpiralSm =
         Sm.replace x
 #else
         replace x
+#endif
+
+    let replace_regex x =
+#if !INTERACTIVE
+        Sm.replace_regex x
+#else
+        replace_regex x
 #endif
 
     let slice x =

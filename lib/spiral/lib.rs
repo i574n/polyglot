@@ -79,6 +79,9 @@ pub mod Lib {
         pub fn replace(x: string) -> Func1<string, Func1<string, string>> {
             Sm::replace(x)
         }
+        pub fn replace_regex(x: string) -> Func1<string, Func1<string, string>> {
+            Sm::replace_regex(x)
+        }
         pub fn slice(x: i32) -> Func1<i32, Func1<string, string>> {
             Sm::slice(x)
         }

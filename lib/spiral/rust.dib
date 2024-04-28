@@ -19,27 +19,28 @@ open testing
 #!spiral
 
 inl types () =
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Func0<$0>\")>] type Func0<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Func1<$0, $1>\")>] type Func0<'T, 'U> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>] type Box<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>] type Dyn<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"$0 + Send\")>] type Send<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>] type Fn<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn()\")>] type FnUnit = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>] type FnOnce<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0)\")>] type ActionFn<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0, $1)\")>] type ActionFn2<'T, 'U> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>] type Impl<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>] type Mut<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"&'static $0\")>] type StaticRef<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"MutCell<$0>\")>] type MutCell<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::any::Any\")>] type std_any_Any = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::cell::RefCell<$0>\")>] type std_cell_RefCell<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>] type std_pin_Pin<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>] type std_rc_Rc<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Weak<$0>\")>] type std_rc_Weak<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>] type std_sync_Arc<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func0<$0>\")>]\n#endif\ntype Func0<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func1<$0, $1>\")>]\n#endif\ntype Func0<'T, 'U> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>]\n#endif\ntype Box<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>]\n#endif\ntype Dyn<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0 + Send\")>]\n#endif\ntype Send<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>]\n#endif\ntype Fn<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn()\")>]\n#endif\ntype FnUnit = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>]\n#endif\ntype FnOnce<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0)\")>]\n#endif\ntype ActionFn<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0, $1)\")>]\n#endif\ntype ActionFn2<'T, 'U> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>]\n#endif\ntype Impl<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>]\n#endif\ntype Mut<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>]\n#endif\ntype Ref<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"&'static $0\")>]\n#endif\ntype StaticRef<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"MutCell<$0>\")>]\n#endif\ntype MutCell<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::any::Any\")>]\n#endif\ntype std_any_Any = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::cell::RefCell<$0>\")>]\n#endif\ntype std_cell_RefCell<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>]\n#endif\ntype std_pin_Pin<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>]\n#endif\ntype std_rc_Rc<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Weak<$0>\")>]\n#endif\ntype std_rc_Weak<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>]\n#endif\ntype std_sync_Arc<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Mutex<$0>\")>]\n#endif\ntype std_sync_Mutex<'T> = class end"
 
 #!spiral
 
@@ -50,6 +51,7 @@ nominal box t = $"Box<`t>"
 nominal mut_cell t = $"MutCell<`t>"
 nominal pin t = $"std_pin_Pin<`t>"
 nominal arc t = $"std_sync_Arc<`t>"
+nominal mutex t = $"std_sync_Mutex<`t>"
 nominal dyn' t = $"Dyn<`t>"
 nominal fn' t = $"Fn<`t>"
 nominal action_fn t = $"ActionFn<`t>"
@@ -115,6 +117,15 @@ inl emit forall t. (x : t) : t =
 inl emit' forall t. (x : t) : t =
     !\\(x, $'"let !x = $0"')
     x
+
+#!markdown
+
+## clone
+
+#!spiral
+
+inl clone forall t. (x : t) : t =
+    !\($'"!x.clone()"')
 
 #!markdown
 
@@ -243,6 +254,25 @@ inl new_arc forall t. (x : t) : arc t =
 
 #!markdown
 
+## new_mutex
+
+#!spiral
+
+inl new_mutex forall t. (x : t) : mutex t =
+    // inl x = join x
+    !\\(x, $'"std::sync::Mutex::new($0)"')
+
+#!markdown
+
+## new_arc_mutex
+
+#!spiral
+
+inl new_arc_mutex forall t. (x : t) : arc (mutex t) =
+    x |> new_mutex |> new_arc
+
+#!markdown
+
 ## box_fn
 
 #!spiral
@@ -253,11 +283,11 @@ inl box_fn forall t. (x : () -> ()) : box t =
 
 #!markdown
 
-## new_pin
+## box_pin
 
 #!spiral
 
-inl new_pin forall t. (x : t) : pin (box t) =
+inl box_pin forall t. (x : t) : pin (box t) =
     inl x = join x
     !\($'"Box::pin(!x)"')
 
@@ -355,11 +385,11 @@ inl fix_closure depth' x' =
     then !\($'"!x' }}}})"')
     elif depth = 5
     then !\($'"!x' }}}}})"')
-    elif depth = 6 // , 4) // ?
+    elif depth = 6
     then !\($'"!x' }}}}}})"')
-    elif depth = 7 // , 5) // 7
+    elif depth = 7
     then !\($'"!x' }}}}}}})"')
-    elif depth = 8 // , 5) // 7
+    elif depth = 8
     then !\($'"!x' }}}}}}}})"')
 
     inl depth = depth' |> snd

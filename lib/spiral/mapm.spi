@@ -1,7 +1,7 @@
 open rust_operators
 
 inl types () =
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::HashMap<$0, $1>\")>] type std_collections_HashMap<'K, 'V> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::HashMap<$0, $1>\")>]\n#endif\ntype std_collections_HashMap<'K, 'V> = class end"
 
 nominal hash_map k v = $"std_collections_HashMap<`k, `v>"
 nominal map k v = $"Map<`k, `v>"

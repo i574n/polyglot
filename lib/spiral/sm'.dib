@@ -23,21 +23,20 @@ open rust_operators
 #!spiral
 
 inl types () =
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"base64::DecodeError\")>] type base64_DecodeError = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"borsh::io::Error\")>] type borsh_io_Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::JsString\")>] type js_sys_JsString = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Error\")>] type serde_json_Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>] type serde_json_Value = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_wasm_bindgen::Error\")>] type serde_wasm_bindgen_Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::OsStr\")>] type std_ffi_OsStr = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::OsString\")>] type std_ffi_OsString = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::str::Utf8Error\")>] type std_str_Utf8Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>]\n#endif\ntype Str = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"base64::DecodeError\")>]\n#endif\ntype base64_DecodeError = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"borsh::io::Error\")>]\n#endif\ntype borsh_io_Error = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::JsString\")>]\n#endif\ntype js_sys_JsString = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Error\")>]\n#endif\ntype serde_json_Error = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>]\n#endif\ntype serde_json_Value = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"serde_wasm_bindgen::Error\")>]\n#endif\ntype serde_wasm_bindgen_Error = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::OsStr\")>]\n#endif\ntype std_ffi_OsStr = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::OsString\")>]\n#endif\ntype std_ffi_OsString = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fmt::Display<$0>\")>]\n#endif\ntype std_fmt_Display<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::str::Utf8Error\")>]\n#endif\ntype std_str_Utf8Error = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>]\n#endif\ntype std_string_String = class end"
 
 #!spiral
-
-// // test
 
 inl types () =
     rust.types ()
@@ -45,6 +44,8 @@ inl types () =
 
 #!spiral
 
+nominal display t = $"std_fmt_Display<`t>"
+nominal str = $"Str"
 nominal base64_decode_error = $"base64_DecodeError"
 nominal borsh_io_error = $"borsh_io_Error"
 nominal utf8_error = $"std_str_Utf8Error"
@@ -52,7 +53,6 @@ nominal json_value = $"serde_json_Value"
 nominal json_error = $"serde_json_Error"
 nominal serde_wasm_bindgen_error = $"serde_wasm_bindgen_Error"
 nominal js_string = $"js_sys_JsString"
-nominal str = $"Str"
 nominal os_str = $"std_ffi_OsStr"
 nominal os_string = $"std_ffi_OsString"
 nominal std_string = $"std_string_String"
@@ -100,15 +100,6 @@ inl pad_right (total_width : i32) (padding_char : char) (s : string) : string =
 "123"
 |> pad_right 6 ' '
 |> _assert_eq "123   "
-
-#!markdown
-
-## replace
-
-#!spiral
-
-inl replace (old_value : string) (new_value : string) (s : string) : string =
-    $"!s.Replace (!old_value, !new_value)"
 
 #!markdown
 
@@ -175,12 +166,41 @@ inl trim_start (trim_chars : array_base char) (input : string) : string =
 
 #!markdown
 
+## length
+
+#!spiral
+
+inl length forall dim. (input : string) : dim =
+    $"!input |> String.length"
+
+#!markdown
+
 ## slice
 
 #!spiral
 
 inl slice from to s : string =
     sm.slice s { from to }
+
+#!markdown
+
+## range
+
+#!spiral
+
+union range dim =
+    | Start : dim
+    | End : dim -> dim
+
+inl range start end s =
+    inl start, end =
+        match start, end with
+        | Start start, End fn =>
+            start, s |> length |> fn
+        | End start_fn, End end_fn =>
+            inl len = s |> length
+            start_fn len, end_fn len
+    s |> slice start end
 
 #!markdown
 
@@ -217,33 +237,6 @@ inl include_str (path : string) : rust.ref' str =
 
 inl as_str (s : string) : rust.ref' str =
     !\\(s, $'"fable_library_rust::String_::LrcStr::as_str(&$0)"')
-
-#!markdown
-
-## as_os_ref
-
-#!spiral
-
-inl as_os_ref (s : os_string) : rust.ref' os_str =
-    !\\(s, $'"$0.as_ref()"')
-
-#!markdown
-
-## to_os_string
-
-#!spiral
-
-inl to_os_string (s : rust.ref' os_str) : os_string =
-    !\\(s, $'"$0.to_os_string()"')
-
-#!markdown
-
-## os_to_str
-
-#!spiral
-
-inl os_to_str (s : os_string) : optionm'.option' (rust.ref' str) =
-    !\\(s, $'"$0.to_str()"')
 
 #!markdown
 
@@ -294,6 +287,85 @@ inl into_boxed_str (s : std_string) : rust.box str =
 
 #!markdown
 
+## as_os_ref
+
+#!spiral
+
+inl as_os_ref (s : os_string) : rust.ref' os_str =
+    !\\(s, $'"$0.as_ref()"')
+
+#!markdown
+
+## to_os_string
+
+#!spiral
+
+inl to_os_string (s : rust.ref' os_str) : os_string =
+    !\\(s, $'"$0.to_os_string()"')
+
+#!markdown
+
+## os_to_str
+
+#!spiral
+
+inl os_to_str (s : os_string) : optionm'.option' (rust.ref' str) =
+    !\\(s, $'"$0.to_str()"')
+
+#!markdown
+
+## from_os_str_ref
+
+#!spiral
+
+inl from_os_str_ref s =
+    s
+    |> to_os_string
+    |> os_to_str
+    |> optionm'.unwrap
+    |> ref_to_std_string
+    |> from_std_string
+
+#!markdown
+
+## obj_to_string
+
+#!spiral
+
+inl obj_to_string x : string =
+    x |> $'_.ToString()'
+
+#!markdown
+
+## to_string any
+
+#!spiral
+
+instance to_string any =
+    obj_to_string
+
+#!markdown
+
+## to_string result t u
+
+#!spiral
+
+instance to_string result t u = fun x =>
+    real
+        open rust
+        typecase (t * u) with
+        | string * string =>
+            match x with
+            | Ok x => x
+            | Error x => $'"sm\'.to_string result / Error: " + !x + ""' : string
+        | std_string * std_string =>
+            match x with
+            | Ok x => from_std_string x
+            | Error x => $'"sm\'.to_string result / Error: " + string !x + ""' : string
+        | _ => obj_to_string `u x
+
+#!markdown
+
 ## format''
 
 #!spiral
@@ -308,7 +380,10 @@ inl format'' (format : string) : std_string =
 #!spiral
 
 inl format' x : std_string =
-    !\\(x, $'@@$"format\!(""{{}}"", $0)"')
+    run_target function
+        | Rust _ => fun () =>
+            !\\(x, $'@@$"format\!(""{{}}"", $0)"')
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -359,41 +434,50 @@ fun () => failwith "test"
 
 #!markdown
 
-## obj_to_string
+## replace
 
 #!spiral
 
-inl obj_to_string x : string =
-    x |> $'_.ToString()'
+inl replace (old_value : string) (new_value : string) (s : string) : string =
+    $"!s.Replace (!old_value, !new_value)"
 
 #!markdown
 
-## to_string any
+## replace_regex
 
 #!spiral
 
-instance to_string any =
-    obj_to_string
-
-#!markdown
-
-## to_string result t u
+inl replace_regex (pattern : string) (replacement : string) (s : string) : string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $"System.Text.RegularExpressions.Regex.Replace (!s, !pattern, !replacement)"
+        | Rust (Native) => fun () =>
+            open rust_operators
+            inl pattern = join pattern
+            inl s = join s
+            inl replacement = join replacement
+            !\\((pattern, s, replacement), $'$"&regex::Regex::new(&$0).unwrap().replace_all(&$1, &*$2)"')
+            |> ref_to_std_string
+            |> from_std_string
+        | _ => fun () => null ()
 
 #!spiral
 
-instance to_string result t u = fun x =>
-    real
-        open rust
-        typecase (t * u) with
-        | string * string =>
-            match x with
-            | Ok x => x
-            | Error x => $'"sm\'.to_string result / Error: " + !x + ""' : string
-        | std_string * std_string =>
-            match x with
-            | Ok x => from_std_string x
-            | Error x => $'"sm\'.to_string result / Error: " + string !x + ""' : string
-        | _ => obj_to_string `u x
+// // test
+
+" 123"
+|> replace_regex "\\s\\w2" ""
+|> _assert_eq "3"
+
+#!spiral
+
+// // test
+// // rust=
+
+types ()
+" 123"
+|> replace_regex "\\s\\w2" ""
+|> _assert_eq "3"
 
 #!markdown
 
@@ -736,25 +820,18 @@ inl byte_to_string (format : string) (x : u8) : string =
 
 #!markdown
 
-## to_string std_string
-
-#!spiral
-
-open rust
-instance to_string std_string = from_std_string
-
-#!markdown
-
 ## main
 
 #!spiral
 
 inl main () =
+    types ()
     $"let contains x = !contains x" : ()
     $"let ends_with x = !ends_with x" : ()
     $"let pad_left x = !pad_left x" : ()
     $"let pad_right x = !pad_right x" : ()
     $"let replace x = !replace x" : ()
+    $"let replace_regex x = !replace_regex x" : ()
     inl slice (a : i32) (b : i32) c = slice a b c
     $"let slice x = !slice x" : ()
     $"let split x = !split x" : ()
@@ -774,3 +851,12 @@ inl main () =
     $"let concat x = !concat x" : ()
     $"let join' x = !join' x" : ()
     $"let to_char_array x = !to_char_array x" : ()
+
+#!markdown
+
+## to_string std_string
+
+#!spiral
+
+open rust
+instance to_string std_string = from_std_string

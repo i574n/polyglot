@@ -12,6 +12,7 @@ repository = "https://github.com/i574n/polyglot"
 license-file = "../LICENSE"
 
 [dependencies]
+fable_library_rust = { path = "lib/rust/fable/fable_modules/fable-library-rust", default-features = false, features = ["static_do_bindings", "datetime", "guid", "threaded"] }
 
 [dev-dependencies]
 
@@ -26,7 +27,7 @@ exercism = { path = "./examples/rust/exercism" }
 math = { path = "./lib/math" }
 
 [lib]
-path = "./lib/rust/fable/fable-library-rust.rs"
+path = "./lib/spiral/lib_spiral.rs"
 
 [profile.release]
 codegen-units = 1

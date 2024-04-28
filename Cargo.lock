@@ -2380,11 +2380,13 @@ dependencies = [
 name = "math"
 version = "0.0.1"
 dependencies = [
+ "chrono",
  "fable_library_rust",
  "float-cmp",
  "inline_colorization",
  "num-complex",
  "pyo3",
+ "regex",
  "statrs",
 ]
 
@@ -3395,6 +3397,7 @@ dependencies = [
  "chat_contract",
  "chat_contract_tests",
  "exercism",
+ "fable_library_rust",
  "math",
  "plot",
  "rust_builder",
@@ -4032,9 +4035,11 @@ dependencies = [
 name = "rust_builder"
 version = "0.0.1"
 dependencies = [
+ "chrono",
  "clap 4.5.4",
  "fable_library_rust",
  "inline_colorization",
+ "regex",
 ]
 
 [[package]]

@@ -8,7 +8,7 @@ from ......lib.spiral.crypto import hash_text
 from ......lib.spiral.file_system import (get_repository_root, get_source_directory, find_parent, normalize_path, new_file_uri, create_temp_directory, create_temp_directory_name, State_trace_state, Mut0, Mut1, Mut2, Mut3, US0 as US0_1)
 from ......lib.spiral.networking import (State_trace_state as State_trace_state_1, Mut0 as Mut0_1, Mut1 as Mut1_1, Mut2 as Mut2_1, Mut3 as Mut3_1, US0 as US0_2)
 from ......lib.spiral.runtime import (State_trace_state as State_trace_state_2, Mut0 as Mut0_2, Mut1 as Mut1_2, Mut2 as Mut2_2, Mut3 as Mut3_2, US0 as US0_3)
-from ......lib.spiral.sm import (concat, contains, ellipsis, ellipsis_end, ends_with, format_exception, replace, slice, split, split_string, starts_with, substring, to_lower, trim, trim_start, trim_end)
+from ......lib.spiral.sm import (concat, contains, ellipsis, ellipsis_end, ends_with, format_exception, replace, replace_regex, slice, split, split_string, starts_with, substring, to_lower, trim, trim_start, trim_end)
 from ......lib.spiral.trace import (trace, US0, State_trace_state as State_trace_state_4, Mut0 as Mut0_4, Mut1 as Mut1_4, Mut2 as Mut2_4, Mut3 as Mut3_4)
 
 def SpiralTrace_trace(x: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
@@ -45,6 +45,10 @@ def SpiralSm_format_exception(x: Exception) -> str:
 
 def SpiralSm_replace(x: str) -> Callable[[str, str], str]:
     return replace(x)
+
+
+def SpiralSm_replace_regex(x: str) -> Callable[[str, str], str]:
+    return replace_regex(x)
 
 
 def SpiralSm_slice(x: int) -> Callable[[int, str], str]:

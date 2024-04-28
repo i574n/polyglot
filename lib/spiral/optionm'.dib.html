@@ -8381,7 +8381,7 @@ struct (US0_0 3, US0_1)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="try'">try'<a class="anchor-link" href="#try'">¶</a></h2>
+<h2 id="of_obj">of_obj<a class="anchor-link" href="#of_obj">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8393,8 +8393,303 @@ struct (US0_0 3, US0_1)
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">of_obj</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' t =</span>
+    <span class="p">(</span><span class="err">$</span><span class="s2">"true in let mutable _!x = None"</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="err">$</span><span class="s2">"#if \!FABLE_COMPILER &amp;&amp; \!WASM &amp;&amp; \!CONTRACT"</span>
+    <span class="p">((</span><span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Option.ofObj'</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' t)</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!x '</span>
+    <span class="err">$</span><span class="s2">"#else"</span>
+    <span class="err">$</span><span class="s1">'Some !x '</span>
+    <span class="err">$</span><span class="s2">"#endif"</span>
+    <span class="err">$</span><span class="s2">"|&gt; fun x -&gt; _!x &lt;- Some x"</span>
+    <span class="err">$</span><span class="s1">'_!x.Value'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">null</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">of_obj</span>
+<span class="o">|&gt;</span> <span class="n">unbox</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="kc">None</span> <span class="p">:</span> <span class="n">option</span> <span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type [&lt;Struct&gt;] US0 =
+    | US0_0 of f0_0 : string
+    | US0_1
+let rec closure0 () (v0 : string) : US0 =
+    US0_0(v0)
+and method1 () : (string -&gt; US0) =
+    closure0()
+and method2 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : string = null |&gt; unbox&lt;string&gt;
+    let v1 : bool = true in let mutable _v0 = None
+    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v2 : (string -&gt; string option) = Option.ofObj
+    let v3 : string option = v2 v0
+    v3 
+    #else
+    Some v0 
+    #endif
+    |&gt; fun x -&gt; _v0 &lt;- Some x
+    let v4 : string option = _v0.Value
+    let v5 : (string -&gt; US0) = method1()
+    let v6 : US0 = US0_1
+    let v7 : US0 = v4 |&gt; Option.map v5 |&gt; Option.defaultValue v6 
+    let v8 : string = $"%A{v7}"
+    System.Console.WriteLine v8
+    let v10 : bool =
+        match v7 with
+        | US0_1 -&gt; (* None *)
+            true
+        | _ -&gt;
+            false
+    let v12 : bool =
+        if v10 then
+            true
+        else
+            method2(v10)
+    let v13 : US0 = US0_1
+    let v14 : string = $"__expect / actual: %A{v7} / expected: %A{v13}"
+    let v15 : bool = v12 = false
+    if v15 then
+        failwith&lt;unit&gt; v14
+method0()
+
+US0_1
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+
+<span class="s2">""</span>
+<span class="o">|&gt;</span> <span class="n">of_obj</span>
+<span class="o">|&gt;</span> <span class="n">unbox</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (Some "")</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.rs output:
+US0_0("")
+
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx:
+type [&lt;Struct&gt;] US0 =
+    | US0_0 of f0_0 : string
+    | US0_1
+let rec closure0 () (v0 : string) : US0 =
+    US0_0(v0)
+and method1 () : (string -&gt; US0) =
+    closure0()
+and method2 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : string = ""
+    let v1 : bool = true in let mutable _v0 = None
+    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v2 : (string -&gt; string option) = Option.ofObj
+    let v3 : string option = v2 v0
+    v3 
+    #else
+    Some v0 
+    #endif
+    |&gt; fun x -&gt; _v0 &lt;- Some x
+    let v4 : string option = _v0.Value
+    let v5 : (string -&gt; US0) = method1()
+    let v6 : US0 = US0_1
+    let v7 : US0 = v4 |&gt; Option.map v5 |&gt; Option.defaultValue v6 
+    let v8 : string = $"%A{v7}"
+    System.Console.WriteLine v8
+    let v9 : US0 = US0_0(v0)
+    let v10 : bool = v7 = v9
+    let v12 : bool =
+        if v10 then
+            true
+        else
+            method2(v10)
+    let v13 : US0 = US0_0(v0)
+    let v14 : string = $"__expect / actual: %A{v7} / expected: %A{v13}"
+    let v15 : bool = v12 = false
+    if v15 then
+        failwith&lt;unit&gt; v14
+method0()
+
+
+.rs:
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+#![allow(unreachable_code)]
+#![allow(unused_attributes)]
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
+mod module_ccfa04bf {
+    pub mod Spiral_eval {
+        use super::*;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::Native_::Func1;
+        use fable_library_rust::Native_::MutCell;
+        use fable_library_rust::Option_::defaultValue;
+        use fable_library_rust::Option_::getValue;
+        use fable_library_rust::Option_::map;
+        use fable_library_rust::String_::printfn;
+        use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::string;
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        pub enum US0 {
+            US0_0(string),
+            US0_1,
+        }
+        impl Spiral_eval::US0 {
+            pub fn get_IsUS0_0(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsUS0_1(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+        }
+        impl core::fmt::Display for Spiral_eval::US0 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        pub fn closure0(unitVar: (), v0: string) -&gt; Spiral_eval::US0 {
+            Spiral_eval::US0::US0_0(v0)
+        }
+        pub fn method1() -&gt; Func1&lt;string, Spiral_eval::US0&gt; {
+            Func1::new(move |v: string| Spiral_eval::closure0((), v))
+        }
+        pub fn method2(v0: bool) -&gt; bool {
+            v0
+        }
+        pub fn method0() {
+            let _v0: MutCell&lt;Option&lt;Option&lt;string&gt;&gt;&gt; = MutCell::new(None::&lt;Option&lt;string&gt;&gt;);
+            _v0.set(Some(Some(string(""))));
+            {
+                let v4: Option&lt;string&gt; = getValue(_v0.get().clone());
+                let v7: Spiral_eval::US0 =
+                    defaultValue(Spiral_eval::US0::US0_1, map(Spiral_eval::method1(), v4));
+                let v8: string = sprintf!("{:?}", v7.clone());
+                printfn!("{0}", v8);
+                {
+                    let v10: bool = v7.clone() == Spiral_eval::US0::US0_0(string(""));
+                    if (if v10 { true } else { Spiral_eval::method2(v10) }) == false {
+                        panic!(
+                            "{}",
+                            sprintf!(
+                                "__expect / actual: {:?} / expected: {:?}",
+                                v7,
+                                Spiral_eval::US0::US0_0(string(""))
+                            ),
+                        );
+                    }
+                }
+            }
+        }
+        on_startup!(Spiral_eval::method0());
+    }
+}
+pub use module_ccfa04bf::*;
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="try'">try'<a class="anchor-link" href="#try'">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="k">try</span><span class="s1">' forall t. (x : option'</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0?"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"$0?"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8415,7 +8710,7 @@ struct (US0_0 3, US0_1)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8425,7 +8720,7 @@ struct (US0_0 3, US0_1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8457,93 +8752,13 @@ struct (US0_0 3, US0_1)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="unwrap">unwrap<a class="anchor-link" href="#unwrap">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unwrap</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' t) : t =</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x.unwrap()"'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="unwrap_or">unwrap_or<a class="anchor-link" href="#unwrap_or">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unwrap_or</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="k">def</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' t) : t =</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x.unwrap_or(!def)"'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="rc_upgrade">rc_upgrade<a class="anchor-link" href="#rc_upgrade">¶</a></h2>
+<h2 id="unwrap">unwrap<a class="anchor-link" href="#unwrap">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8555,9 +8770,8 @@ struct (US0_0 3, US0_1)
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rc_upgrade</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">weak_rc</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' (rust.rc t) =</span>
-    <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::rc::Weak::upgrade(&amp;!x)"'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unwrap</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' t) : t =</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"$0.unwrap()"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8584,7 +8798,7 @@ struct (US0_0 3, US0_1)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="rc_into_inner">rc_into_inner<a class="anchor-link" href="#rc_into_inner">¶</a></h2>
+<h2 id="unwrap_or">unwrap_or<a class="anchor-link" href="#unwrap_or">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8596,8 +8810,8 @@ struct (US0_0 3, US0_1)
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rc_into_inner</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">rc</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' t =</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::rc::Rc::into_inner($0)"'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unwrap_or</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="k">def</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' t) : t =</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!x.unwrap_or(!def)"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8617,7 +8831,88 @@ struct (US0_0 3, US0_1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="rc_upgrade">rc_upgrade<a class="anchor-link" href="#rc_upgrade">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rc_upgrade</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">weak_rc</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' (rust.rc t) =</span>
+    <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::rc::Weak::upgrade(&amp;!x)"'</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="rc_into_inner">rc_into_inner<a class="anchor-link" href="#rc_into_inner">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rc_into_inner</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">rc</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' t =</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"std::rc::Rc::into_inner($0)"'</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

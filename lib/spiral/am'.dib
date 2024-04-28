@@ -21,9 +21,9 @@ open rust_operators
 #!spiral
 
 inl types () =
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>] type Slice<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"[$0; $1]\")>] type Slice'<'T, 'U> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>] type Vec<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>]\n#endif\ntype Slice<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0; $1]\")>]\n#endif\ntype Slice'<'T, 'U> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>]\n#endif\ntype Vec<'T> = class end"
 
 #!markdown
 
@@ -227,10 +227,32 @@ inl map_base forall t u. (fn : t -> u) (x : array_base t) : array_base u =
 inl average forall el {number}. (a : a _ el) : el =
     a |> $'Array.average'
 
+#!markdown
+
+## distinct
+
 #!spiral
 
 inl distinct forall dim el. (a : a dim el) : a dim el =
     a |> $'Array.distinct'
+
+#!markdown
+
+## to_list'
+
+#!spiral
+
+inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
+    items |> $'Array.toList'
+
+#!spiral
+
+// // test
+
+(a ;[ "a"; "b" ] : _ i32 _)
+|> to_list'
+|> listm'.unbox
+|> _assert_eq ([ "a"; "b" ])
 
 #!markdown
 

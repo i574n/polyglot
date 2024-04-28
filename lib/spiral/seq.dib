@@ -14,6 +14,19 @@ open testing
 
 #!markdown
 
+## types 
+
+#!spiral
+
+inl types () =
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::iter::Fuse<$0>\")>]\n#endif\ntype core_iter_Fuse<'T> = class end"
+
+#!spiral
+
+nominal fuse t = $'core_iter_Fuse<`t>'
+
+#!markdown
+
 ## seq'
 
 #!spiral
@@ -50,22 +63,6 @@ inl of_array forall dim t. (items : a dim t) : seq' t =
 
 #!markdown
 
-## of_string
-
-#!spiral
-
-inl of_string (s : string) : seq' char =
-    s |> unbox
-
-#!spiral
-
-// // test
-
-"ab"
-|> of_string
-
-#!markdown
-
 ## to_array'
 
 #!spiral
@@ -95,11 +92,11 @@ inl to_list' forall t. (items : seq' t) : listm'.list' t =
 
 // // test
 
-"ab"
-|> of_string
+(a ;[ "a"; "b" ] : _ i32 _)
+|> of_array
 |> to_list'
 |> listm'.unbox
-|> _assert_eq ([ 'a'; 'b' ])
+|> _assert_eq ([ "a"; "b" ])
 
 #!markdown
 

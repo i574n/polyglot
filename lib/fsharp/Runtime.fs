@@ -10,11 +10,6 @@ module Runtime =
 
     open Common
 
-    /// ## splitArgs
-    let inline splitArgs commandLine =
-        commandLine
-        |> System.CommandLine.Parsing.CommandLineStringSplitter.Instance.Split
-
     /// ## parseArgs
     let inline parseArgs<'T when 'T :> Argu.IArgParserTemplate> args =
         let assemblyName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name

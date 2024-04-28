@@ -24,22 +24,22 @@ open testing
 #!spiral
 
 inl types () =
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::FileType\")>] type std_fs_FileType = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>] type std_io_Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>] type std_path_Path = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::PathBuf\")>] type std_path_PathBuf = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::DirEntry\")>] type async_walkdir_DirEntry = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Filtering\")>] type async_walkdir_Filtering = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::WalkDir\")>] type async_walkdir_WalkDir = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::FileType\")>]\n#endif\ntype std_fs_FileType = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Display\")>]\n#endif\ntype std_path_Display = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>]\n#endif\ntype std_path_Path = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::PathBuf\")>]\n#endif\ntype std_path_PathBuf = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::DirEntry\")>]\n#endif\ntype async_walkdir_DirEntry = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Filtering\")>]\n#endif\ntype async_walkdir_Filtering = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::WalkDir\")>]\n#endif\ntype async_walkdir_WalkDir = class end"
 
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER // file_system.types"
     sm'.types ()
     rust.types ()
+    date_time.types ()
+    runtime.types ()
     types ()
-    global "#endif // file_system.types"
 
 #!markdown
 
@@ -124,10 +124,19 @@ inl file_stream (path : string) mode access share : file_stream' =
 
 #!markdown
 
+## display
+
+#!spiral
+
+nominal display = $'std_path_Display'
+
+#!markdown
+
 ## path
 
 #!spiral
 
+nominal path = $'std_path_Path'
 nominal path = $'std_path_Path'
 nominal path_buf = $'std_path_PathBuf'
 
@@ -137,9 +146,8 @@ nominal path_buf = $'std_path_PathBuf'
 
 #!spiral
 
-inl new_path_buf (path : string) : path_buf =
+inl new_path_buf (path : sm'.std_string) : path_buf =
     open rust_operators
-    inl path = path |> sm'.to_std_string
     !\\(path, $'"std::path::PathBuf::from($0)"')
 
 #!markdown
@@ -164,13 +172,33 @@ inl path_buf_join (s : string) (path_buf : path_buf) : path_buf =
 
 #!markdown
 
+## path_buf_strip_prefix
+
+#!spiral
+
+inl path_buf_strip_prefix (s : string) (path_buf : path_buf) : path_buf =
+    open rust_operators
+    !\\((path_buf, s |> sm'.to_std_string), $'"$0.strip_prefix($1).unwrap().to_path_buf()"')
+
+#!markdown
+
 ## path_display
 
 #!spiral
 
-inl path_display (path : rust.ref' path) : sm'.std_string =
+inl path_display (path : rust.ref' path) : display =
     open rust_operators
-    !\\(path, $'"$0.display().to_string()"')
+    !\\(path, $'"$0.display()"')
+
+#!markdown
+
+## path_buf_display
+
+#!spiral
+
+inl path_buf_display (path_buf : path_buf) : display =
+    open rust_operators
+    !\\(path_buf, $'"$0.display()"')
 
 #!markdown
 
@@ -181,16 +209,6 @@ inl path_display (path : rust.ref' path) : sm'.std_string =
 inl path_buf_file_name (path : path_buf) : optionm'.option' (rust.ref' sm'.os_str) =
     open rust_operators
     !\($'"!path.file_name()"')
-
-#!markdown
-
-## path_buf_display
-
-#!spiral
-
-inl path_buf_display (path_buf : path_buf) : sm'.std_string =
-    open rust_operators
-    !\\(path_buf, $'"$0.display().to_string()"')
 
 #!markdown
 
@@ -256,7 +274,13 @@ inl ts_path_join (b : string) (a : string) : string =
 inl (</>) (a : string) (b : string) : string =
     run_target function
         | Rust (Native) => fun () =>
-            a |> new_path_buf |> path_buf_join b |> path_buf_display |> sm'.from_std_string
+            a
+            |> sm'.to_std_string
+            |> new_path_buf
+            |> path_buf_join b
+            |> path_buf_display
+            |> sm'.format'
+            |> sm'.from_std_string
         | Fsharp (Native) => fun () =>
             $'System.IO.Path.Combine (!a, !b)'
         | TypeScript _ => fun () =>
@@ -348,14 +372,6 @@ nominal async_walkdir_filtering = $'async_walkdir_Filtering'
 
 #!markdown
 
-## io_error
-
-#!spiral
-
-nominal io_error = $"std_io_Error"
-
-#!markdown
-
 ## filtering
 
 #!spiral
@@ -372,7 +388,7 @@ union filtering =
 #!spiral
 
 inl stream_filter_map forall t.
-    (fn : resultm.result' dir_entry io_error -> optionm'.option' t)
+    (fn : resultm.result' dir_entry runtime.io_error -> optionm'.option' t)
     (stream : walk_dir)
     : am'.vec t =
 
@@ -423,7 +439,7 @@ nominal file_type = $'std_fs_FileType'
 
 #!spiral
 
-inl dir_entry_file_type (dir_entry : dir_entry) : async.future_pin_send (resultm.result' file_type io_error) =
+inl dir_entry_file_type (dir_entry : dir_entry) : async.future_pin_send (resultm.result' file_type runtime.io_error) =
     inl dir_entry = join dir_entry
     !\($'"Box::pin(async_walkdir::DirEntry::file_type(&!dir_entry))"')
 
@@ -453,7 +469,16 @@ inl dir_entry_path (dir_entry : dir_entry) : path_buf =
 #!spiral
 
 inl get_temp_path () : string =
-    $'System.IO.Path.GetTempPath' ()
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.IO.Path.GetTempPath' ()
+        | Rust (Native) => fun () =>
+            open rust_operators
+            !\($'"std::env::temp_dir()"')
+            |> path_buf_display
+            |> sm'.format'
+            |> sm'.from_std_string
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -469,6 +494,32 @@ inl get_file_name (path : string) : string =
 
 #!markdown
 
+## get_current_directory
+
+#!spiral
+
+inl get_current_directory () : string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.IO.Directory.GetCurrentDirectory' ()
+        | Rust (Native) => fun () =>
+            open rust_operators
+            inl current_dir = !\($'"std::env::current_dir()"') : resultm.result' path_buf runtime.io_error
+            current_dir
+            |> resultm.unwrap'
+            |> path_buf_display
+            |> sm'.format'
+            |> sm'.from_std_string
+        | _ => fun () => null ()
+
+#!spiral
+
+// // test
+
+get_current_directory ()
+
+#!markdown
+
 ## get_full_path
 
 #!spiral
@@ -479,12 +530,19 @@ inl get_full_path (path : string) : string =
             inl path = join path
             path |> $'System.IO.Path.GetFullPath'
         | Rust (Native) => fun () =>
+            inl path = join path
             open rust_operators
-            inl path = !\\(path, $'"std::fs::canonicalize(&*$0)"') : resultm.result' path_buf io_error
-            path
-            |> resultm.unwrap'
-            |> path_buf_display
-            |> sm'.from_std_string
+            inl path_buf = path |> sm'.to_std_string |> new_path_buf
+            if path_buf |> path_buf_exists |> not then
+                inl current_dir = get_current_directory ()
+                current_dir </> path
+            else
+                inl path = !\\(path, $'"std::fs::canonicalize(&*$0)"') : resultm.result' path_buf runtime.io_error
+                path
+                |> resultm.unwrap'
+                |> path_buf_display
+                |> sm'.format'
+                |> sm'.from_std_string
         | _ => fun () => null ()
 
 #!spiral
@@ -504,41 +562,29 @@ inl get_full_path (path : string) : string =
 // // print_code=false
 
 types ()
-"." |> get_full_path
+"."
+|> get_full_path
+|> sm'.to_std_string
 |> new_path_buf
 |> path_buf_file_name
 |> optionm'.unwrap
-|> sm'.to_os_string
-|> sm'.os_to_str
-|> optionm'.unwrap
-|> sm'.ref_to_std_string
-|> sm'.from_std_string
+|> sm'.from_os_str_ref
 |> _assert_eq "spiral"
 
 #!markdown
 
-## get_current_directory
+## directory_separator_char
 
 #!spiral
 
-inl get_current_directory () : string =
+inl directory_separator_char () : char =
     run_target function
         | Fsharp (Native) => fun () =>
-            $'System.IO.Directory.GetCurrentDirectory' ()
+            $'System.IO.Path.DirectorySeparatorChar'
         | Rust (Native) => fun () =>
             open rust_operators
-            inl current_dir = !\($'"std::env::current_dir()"') : resultm.result' path_buf io_error
-            current_dir
-            |> resultm.unwrap'
-            |> path_buf_display
-            |> sm'.from_std_string
+            !\($'"std::path::MAIN_SEPARATOR"')
         | _ => fun () => null ()
-
-#!spiral
-
-// // test
-
-get_current_directory ()
 
 #!markdown
 
@@ -548,18 +594,31 @@ get_current_directory ()
 
 inl create_temp_directory_name () =
     run_target function
-        | Fsharp (Native) => fun () =>
+        | Fsharp (Native)
+        | Rust (Native) => fun () =>
+            inl assembly = get_entry_assembly_name ()
             get_temp_path ()
-            </> ($'$"\!{!get_entry_assembly_name ()}"' : string)
+            </> ($'$"\!{!assembly}"' : string)
             </> (date_time.now () |> date_time.new_guid_from_date_time |> sm'.obj_to_string)
-        | target => fun () => null ()
+        | _ => fun () => null ()
 
 #!spiral
 
 // // test
+// // print_code=false
 
+types ()
 create_temp_directory_name ()
-|> _assert_contains ($'System.IO.Path.DirectorySeparatorChar' : char)
+|> _assert_contains (directory_separator_char ())
+
+#!spiral
+
+// // test
+// // rust=
+
+types ()
+create_temp_directory_name ()
+|> _assert_contains (directory_separator_char ())
 
 #!markdown
 
@@ -578,6 +637,15 @@ get_source_directory ()
 |> directory_info
 |> directory_info_name
 |> _assert_eq "spiral"
+
+#!markdown
+
+## create_dir_all
+
+#!spiral
+
+inl create_dir_all (path : string) : resultm.result' () runtime.io_error =
+    !\\(path, $'"std::fs::create_dir_all(&*$0)"')
 
 #!markdown
 
@@ -611,11 +679,11 @@ inl directory_get_files (path : string) : array_base string =
 
 inl directory_exists (path : string) : bool =
     run_target function
-        | Rust (Native) => fun () =>
-            inl path = path |> new_path_buf
-            (path |> path_buf_exists) && (path |> path_buf_is_dir)
         | Fsharp (Native) => fun () =>
             path |> $'System.IO.Directory.Exists'
+        | Rust (Native) => fun () =>
+            inl path = path |> sm'.to_std_string |> new_path_buf
+            path_buf_exists path && path_buf_is_dir path
         | TypeScript (Native) => fun () =>
             global "type IFsExistsSync = abstract existsSync: path: string -> bool"
             inl fs : $'IFsExistsSync' = ts.import_all "fs"
@@ -632,10 +700,12 @@ inl directory_get_parent (path : string) : optionm'.option' string =
     run_target function
         | Rust (Native) => fun () =>
             path
+            |> sm'.to_std_string
             |> new_path_buf
             |> path_buf_parent
             |> optionm'.try'
             |> path_buf_display
+            |> sm'.format'
             |> sm'.from_std_string
             |> Some
         | Fsharp (Native) => fun () =>
@@ -668,10 +738,29 @@ inl file_delete (path : string) : () =
 
 #!spiral
 
-inl file_move (old_path : string) (new_path : string) : () =
+inl file_move (new_path : string) (old_path : string) : () =
     run_target function
         | Fsharp (Native) => fun () =>
             $'System.IO.File.Move (!old_path, !new_path)'
+        | _ => fun () => null ()
+
+#!markdown
+
+## file_copy
+
+#!spiral
+
+inl file_copy (new_path : string) (old_path : string) : () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.IO.File.Copy (!old_path, !new_path, true)'
+        | Rust (Native) => fun () =>
+            open rust_operators
+            inl new_path = join new_path
+            !\($'"std::fs::copy(&*!old_path, &*!new_path)"')
+            |> fun x => x : _ u64 runtime.io_error
+            |> resultm.unwrap'
+            |> ignore
         | _ => fun () => null ()
 
 #!markdown
@@ -682,11 +771,11 @@ inl file_move (old_path : string) (new_path : string) : () =
 
 inl file_exists (path : string) : bool =
     run_target function
-        | Rust (Native) => fun () =>
-            inl path_buf = path |> new_path_buf
-            (path_buf |> path_buf_exists) && (path_buf |> path_buf_is_file)
         | Fsharp (Native) => fun () =>
             path |> $'System.IO.File.Exists'
+        | Rust (Native) => fun () =>
+            inl path_buf = path |> sm'.to_std_string |> new_path_buf
+            path_buf_exists path_buf && path_buf_is_file path_buf
         | TypeScript (Native) => fun () =>
             global "type IFsExistsSync = abstract existsSync: path: string -> bool"
             inl fs : $'IFsExistsSync' = ts.import_all "fs"
@@ -703,6 +792,11 @@ inl directory_delete recursive (path : string) : () =
     run_target function
         | Fsharp (Native) => fun () =>
             $'System.IO.Directory.Delete (!path, !recursive)'
+        | Rust (Native) => fun () =>
+            open rust_operators
+            if recursive
+            then !\\(path, $'"std::fs::remove_dir_all(&*$0).unwrap()"')
+            else !\\(path, $'"std::fs::remove_dir(&*$0).unwrap()"')
         | _ => fun () => null ()
 
 #!markdown
@@ -747,6 +841,9 @@ inl write_all_text (path : string) (text : string) : () =
     run_target function
         | Fsharp (Native) => fun () =>
             $'System.IO.File.WriteAllText (!path, !text)'
+        | Rust (Native) => fun () =>
+            open rust_operators
+            !\\((path, text), $'"std::fs::write(&*$0, &*$1).unwrap()"')
         | _ => fun () => null ()
 
 #!markdown
@@ -803,40 +900,82 @@ inl delete_directory_async path : _ i64 =
 
 #!markdown
 
+## create_directory'
+
+#!spiral
+
+inl create_directory' dir =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl directory_info = dir |> create_directory
+
+            inl exists' = directory_info |> directory_info_exists
+            if not exists' then
+                inl creation_time = directory_info |> directory_info_creation_time
+                inl result = ($'{| Exists = !exists'; CreationTime = !creation_time |}' : any) |> sm'.format_debug
+                trace Debug
+                    fun () => "file_system.create_directory"
+                    fun () => $'$"dir: {!dir} / result: {!result} {!_locals ()}"'
+            inl disposable : _ () = new_disposable fun () =>
+                dir
+                |> delete_directory_async
+                |> async.ignore
+                |> async.run_synchronously
+            disposable
+        | Rust (Native) => fun () =>
+            inl dir = join dir
+            match dir |> create_dir_all |> resultm.map_error' sm'.format' |> resultm.unbox with
+            | Ok () =>
+                trace Verbose
+                    fun () => "file_system.create_directory"
+                    fun () => $'$"dir: {!dir} / {!_locals ()}"'
+            | Error error =>
+                trace Critical
+                    fun () => "file_system.create_directory"
+                    fun () => $'$"dir: {!dir} / error: {!error} / {!_locals ()}"'
+            inl disposable : _ () = new_disposable fun () =>
+                dir
+                |> directory_delete true
+            disposable
+        | _ => fun () => null ()
+
+#!markdown
+
 ## create_temp_directory
 
 #!spiral
 
 inl create_temp_directory () =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            inl temp_folder = create_temp_directory_name ()
-            inl result = temp_folder |> create_directory
-
-            inl exists' = result |> directory_info_exists
-            if not exists' then
-                inl creation_time = result |> directory_info_creation_time
-                inl result = ($'{| Exists = !exists'; CreationTime = !creation_time |}' : any) |> sm'.format_debug
-                trace Debug
-                    fun () => "file_system.create_temp_directory"
-                    fun () => $'$"temp_folder: {!temp_folder} / result: {!result} {!_locals ()}"'
-            inl disposable : _ () = new_disposable fun () =>
-                temp_folder
-                |> delete_directory_async
-                |> async.ignore
-                |> async.run_synchronously
-            temp_folder, disposable
-        | _ => fun () => null ()
+    inl dir = create_temp_directory_name ()
+    dir, dir |> create_directory'
 
 #!spiral
 
 // // test
+// // print_code=false
 
+types ()
 inl path, disposable = create_temp_directory ()
 disposable |> use |> ignore
 path
 |> directory_exists
 |> _assert_eq true
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+inl path, disposable = create_temp_directory ()
+path
+|> directory_exists
+|> _assert_eq true
+disposable |> use |> ignore
+path
+|> directory_exists
+|> _assert_eq false
 
 #!spiral
 
@@ -859,6 +998,7 @@ inl lock_directory path =
         () |> return
     |> async.new_async
 
+types ()
 inl temp_dir, disposable = create_temp_directory ()
 disposable |> use |> ignore
 inl path = temp_dir </> "test"
@@ -958,6 +1098,7 @@ inl lock_file path =
         trace Debug (fun () => "_6") _locals
     |> async.new_async
 
+types ()
 inl temp_dir, disposable = create_temp_directory ()
 disposable |> use |> ignore
 inl path = temp_dir </> "test.txt"
@@ -1074,6 +1215,7 @@ inl lock_file path =
         trace Debug (fun () => "_3") _locals
     |> async.new_async
 
+types ()
 inl temp_dir, disposable = create_temp_directory ()
 disposable |> use |> ignore
 inl path = temp_dir </> "test.txt"
@@ -1117,7 +1259,7 @@ inl move_file_async new_path old_path : _ i64 =
                 fun () =>
                     try_unit
                         fun () =>
-                            file_move old_path new_path
+                            old_path |> file_move new_path
                             return retry
                         fun ex =>
                             if retry % 100 = 0 then
@@ -1150,6 +1292,7 @@ inl lock_file path =
         trace Debug (fun () => "_3") _locals
     |> async.new_async
 
+types ()
 inl temp_dir, disposable = create_temp_directory ()
 disposable |> use |> ignore
 let path = temp_dir </> "test.txt"
@@ -1236,14 +1379,11 @@ a ;[ ".paket", false; "paket.dependencies", true ]
         join
             get_source_directory ()
             |> find_parent file is_file
+            |> sm'.to_std_string
             |> new_path_buf
             |> path_buf_file_name
             |> optionm'.try'
-            |> sm'.to_os_string
-            |> sm'.os_to_str
-            |> optionm'.try'
-            |> sm'.ref_to_std_string
-            |> sm'.from_std_string
+            |> sm'.from_os_str_ref
             |> Some
             |> optionm'.box
     |> fun x => x () |> optionm'.unbox
@@ -1273,7 +1413,9 @@ inl get_repository_root () =
 inl normalize_path (path : string) : string =
     if runtime.is_windows () |> not
     then path
-    else $'$"{!path.[0] |> System.Char.ToLower}{!path.[1..]}"' |> sm'.replace "\\" "/"
+    else
+        inl path = path |> sm'.replace_regex @"^\\\\\?\\" ""
+        $'$"{!path.[0] |> System.Char.ToLower}{!path.[1..]}"' |> sm'.replace "\\" "/"
 
 #!markdown
 
@@ -1289,7 +1431,18 @@ inl new_file_uri (path : string) : string =
 
 // // test
 
-"C:\\test"
+@"\\?\C:\test"
+|> normalize_path
+|> new_file_uri
+|> _assert_eq "file:///c:/test"
+
+#!spiral
+
+// // test
+// // rust=
+
+types ()
+@"\\?\C:\test"
 |> normalize_path
 |> new_file_uri
 |> _assert_eq "file:///c:/test"
@@ -1327,6 +1480,7 @@ inl get_count dir : i64 =
     inl files = dir |> file_system.directory_get_files
     a files |> am'.length
 
+types ()
 inl trace_dir = file_system.get_repository_root () </> "target/polyglot/trace"
 trace_dir |> file_system.create_directory |> ignore
 

@@ -9402,7 +9402,7 @@ method0()
     <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="n">inl</span> <span class="p">(</span><span class="n">a</span> <span class="n">ar</span><span class="p">)</span> <span class="o">=</span> <span class="n">ar</span>
     <span class="n">inl</span> <span class="n">ar</span> <span class="o">=</span> <span class="n">ar</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.to_vec</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!ar.into_iter().enumerate().map(std::rc::Rc::new).collect()"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!ar.into_iter().enumerate().map(std::rc::Rc::new).collect()"'</span><span class="o">)</span>
     <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map from_pair</span>
     <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.from_vec</span>
 </pre></div>

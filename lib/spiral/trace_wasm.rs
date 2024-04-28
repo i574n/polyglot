@@ -14,6 +14,7 @@ pub mod Trace {
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::Option_::getValue;
     use fable_library_rust::Seq_::ofList;
+    use fable_library_rust::String_::padRight;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::toLower;
@@ -270,35 +271,39 @@ pub mod Trace {
             {
                 let v61: string = getValue(_v9.get().clone());
                 let v62: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v73: string = toLower(match &v0_1 {
-                    Trace::US0::US0_1 => string("Debug"),
-                    Trace::US0::US0_2 => string("Info"),
-                    Trace::US0::US0_0 => string("Verbose"),
-                    Trace::US0::US0_3 => string("Warning"),
-                    _ => string("Critical"),
-                });
-                let _v74: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v114: &str = match &v0_1 {
+                let v74: string = padRight(
+                    toLower(match &v0_1 {
+                        Trace::US0::US0_1 => string("Debug"),
+                        Trace::US0::US0_2 => string("Info"),
+                        Trace::US0::US0_0 => string("Verbose"),
+                        Trace::US0::US0_3 => string("Warning"),
+                        _ => string("Critical"),
+                    }),
+                    7_i32,
+                    ' ',
+                );
+                let _v75: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v115: &str = match &v0_1 {
                     Trace::US0::US0_1 => inline_colorization::color_bright_blue,
                     Trace::US0::US0_2 => inline_colorization::color_bright_green,
                     Trace::US0::US0_0 => inline_colorization::color_bright_black,
                     Trace::US0::US0_3 => inline_colorization::color_bright_yellow,
                     _ => inline_colorization::color_bright_red,
                 };
-                let v116: &str = fable_library_rust::String_::LrcStr::as_str(&v73);
-                let v118: &str = inline_colorization::color_reset;
-                let v120: string = string("format!(\"{v114}{v116}{v118}\")");
-                let v121: std::string::String = format!("{v114}{v116}{v118}");
+                let v117: &str = fable_library_rust::String_::LrcStr::as_str(&v74);
+                let v119: &str = inline_colorization::color_reset;
+                let v121: string = string("format!(\"{v115}{v117}{v119}\")");
+                let v122: std::string::String = format!("{v115}{v117}{v119}");
                 {
-                    let x_1: string = fable_library_rust::String_::fromString(v121);
-                    _v74.set(Some(x_1))
+                    let x_1: string = fable_library_rust::String_::fromString(v122);
+                    _v75.set(Some(x_1))
                 }
                 trimEndChars(
                     trimStartChars(
                         sprintf!(
                             "{} {} #{} {} / {}",
                             v61,
-                            getValue(_v74.get().clone()),
+                            getValue(_v75.get().clone()),
                             v62,
                             v1_1(),
                             v2()

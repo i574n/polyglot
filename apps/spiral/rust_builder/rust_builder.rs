@@ -30,6 +30,7 @@ mod module_4da4c295 {
         use fable_library_rust::Option_::getValue;
         use fable_library_rust::Option_::map;
         use fable_library_rust::Seq_::ofList;
+        use fable_library_rust::String_::padRight;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
         use fable_library_rust::String_::toLower;
@@ -329,20 +330,29 @@ mod module_4da4c295 {
             let v9: std::path::PathBuf = std::path::PathBuf::from(v7);
             let v11: Option<std::path::PathBuf> = v9.parent().map(std::path::PathBuf::from);
             let v13: std::path::PathBuf = v11?;
-            let v15: std::string::String = v13.display().to_string();
+            let v15: std::path::Display = v13.display();
+            let _v16: MutCell<Option<std::string::String>> =
+                MutCell::new(None::<std::string::String>);
             {
-                let x: Rust_builder::US0 =
-                    Rust_builder::US0::US0_0(fable_library_rust::String_::fromString(v15));
-                _v1.set(Some(x))
+                let x: std::string::String = format!("{}", v15);
+                _v16.set(Some(x))
             }
             {
-                let v43: Rust_builder::US0 = getValue(_v1.get().clone());
-                match &v43 {
-                    Rust_builder::US0::US0_0(v43_0_0) => Some(match &v43 {
-                        Rust_builder::US0::US0_0(x) => x.clone(),
-                        _ => unreachable!(),
-                    }),
-                    _ => None::<string>,
+                let v27: std::string::String = getValue(_v16.get().clone());
+                {
+                    let x_1: Rust_builder::US0 =
+                        Rust_builder::US0::US0_0(fable_library_rust::String_::fromString(v27));
+                    _v1.set(Some(x_1))
+                }
+                {
+                    let v55: Rust_builder::US0 = getValue(_v1.get().clone());
+                    match &v55 {
+                        Rust_builder::US0::US0_0(v55_0_0) => Some(match &v55 {
+                            Rust_builder::US0::US0_0(x) => x.clone(),
+                            _ => unreachable!(),
+                        }),
+                        _ => None::<string>,
+                    }
                 }
             }
         }
@@ -370,56 +380,66 @@ mod module_4da4c295 {
                     let v14: &str = fable_library_rust::String_::LrcStr::as_str(&v12);
                     let v16: std::string::String = String::from(v14);
                     let v18: std::path::PathBuf = v11.join(v16);
-                    let v20: std::string::String = v18.display().to_string();
+                    let v20: std::path::Display = v18.display();
+                    let _v21: MutCell<Option<std::string::String>> =
+                        MutCell::new(None::<std::string::String>);
                     {
-                        let x: string = fable_library_rust::String_::fromString(v20);
-                        _v3.set(Some(x))
+                        let x: std::string::String = format!("{}", v20);
+                        _v21.set(Some(x))
                     }
                     {
-                        let _v34: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-                        let v36: string = Rust_builder::method6(getValue(_v3.get().clone()));
-                        let v38: &str = fable_library_rust::String_::LrcStr::as_str(&v36);
-                        let v40: std::string::String = String::from(v38);
-                        let v42: std::path::PathBuf = std::path::PathBuf::from(v40);
+                        let v32: std::string::String = getValue(_v21.get().clone());
                         {
-                            let x_1: bool = if v42.clone().exists() {
-                                v42.is_dir()
-                            } else {
-                                false
-                            };
-                            _v34.set(Some(x_1))
+                            let x_1: string = fable_library_rust::String_::fromString(v32);
+                            _v3.set(Some(x_1))
                         }
-                        if getValue(_v34.get().clone()) {
-                            v2.get().clone()
-                        } else {
-                            let v59: Option<string> = (Rust_builder::method9())(v2.get().clone());
-                            let v62: Rust_builder::US0 = defaultValue(
-                                Rust_builder::US0::US0_1,
-                                map(Rust_builder::method10(), v59),
-                            );
-                            match &v62 {
-                                Rust_builder::US0::US0_0(v62_0_0) => {
-                                    let v0_1_temp: string = v0_1.get().clone();
-                                    let v1_1_temp: string = v1_1.get().clone();
-                                    let v2_temp: string = match &v62 {
-                                        Rust_builder::US0::US0_0(x) => x.clone(),
-                                        _ => unreachable!(),
-                                    };
-                                    v0_1.set(v0_1_temp);
-                                    v1_1.set(v1_1_temp);
-                                    v2.set(v2_temp);
-                                    continue '_method11;
-                                }
-                                _ => panic!(
-                                    "{}",
-                                    sprintf!(
-                                        "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
-                                        string("dir"),
-                                        v0_1.get().clone(),
-                                        v1_1.get().clone(),
-                                        v2.get().clone()
+                        {
+                            let _v46: MutCell<Option<bool>> = MutCell::new(None::<bool>);
+                            let v48: string = Rust_builder::method6(getValue(_v3.get().clone()));
+                            let v50: &str = fable_library_rust::String_::LrcStr::as_str(&v48);
+                            let v52: std::string::String = String::from(v50);
+                            let v54: std::path::PathBuf = std::path::PathBuf::from(v52);
+                            {
+                                let x_2: bool = if v54.clone().exists() {
+                                    v54.is_dir()
+                                } else {
+                                    false
+                                };
+                                _v46.set(Some(x_2))
+                            }
+                            if getValue(_v46.get().clone()) {
+                                v2.get().clone()
+                            } else {
+                                let v71: Option<string> =
+                                    (Rust_builder::method9())(v2.get().clone());
+                                let v74: Rust_builder::US0 = defaultValue(
+                                    Rust_builder::US0::US0_1,
+                                    map(Rust_builder::method10(), v71),
+                                );
+                                match &v74 {
+                                    Rust_builder::US0::US0_0(v74_0_0) => {
+                                        let v0_1_temp: string = v0_1.get().clone();
+                                        let v1_1_temp: string = v1_1.get().clone();
+                                        let v2_temp: string = match &v74 {
+                                            Rust_builder::US0::US0_0(x) => x.clone(),
+                                            _ => unreachable!(),
+                                        };
+                                        v0_1.set(v0_1_temp);
+                                        v1_1.set(v1_1_temp);
+                                        v2.set(v2_temp);
+                                        continue '_method11;
+                                    }
+                                    _ => panic!(
+                                        "{}",
+                                        sprintf!(
+                                            "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
+                                            string("dir"),
+                                            v0_1.get().clone(),
+                                            v1_1.get().clone(),
+                                            v2.get().clone()
+                                        ),
                                     ),
-                                ),
+                                }
                             }
                         }
                     }
@@ -436,50 +456,61 @@ mod module_4da4c295 {
             let v13: &str = fable_library_rust::String_::LrcStr::as_str(&v11);
             let v15: std::string::String = String::from(v13);
             let v17: std::path::PathBuf = v10.join(v15);
-            let v19: std::string::String = v17.display().to_string();
+            let v19: std::path::Display = v17.display();
+            let _v20: MutCell<Option<std::string::String>> =
+                MutCell::new(None::<std::string::String>);
             {
-                let x: string = fable_library_rust::String_::fromString(v19);
-                _v2.set(Some(x))
+                let x: std::string::String = format!("{}", v19);
+                _v20.set(Some(x))
             }
             {
-                let _v33: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-                let v35: string = Rust_builder::method6(getValue(_v2.get().clone()));
-                let v37: &str = fable_library_rust::String_::LrcStr::as_str(&v35);
-                let v39: std::string::String = String::from(v37);
-                let v41: std::path::PathBuf = std::path::PathBuf::from(v39);
+                let v31: std::string::String = getValue(_v20.get().clone());
                 {
-                    let x_1: bool = if v41.clone().exists() {
-                        v41.is_dir()
-                    } else {
-                        false
-                    };
-                    _v33.set(Some(x_1))
+                    let x_1: string = fable_library_rust::String_::fromString(v31);
+                    _v2.set(Some(x_1))
                 }
-                if getValue(_v33.get().clone()) {
-                    v1_1.clone()
-                } else {
-                    let v58: Option<string> = (Rust_builder::method9())(v1_1.clone());
-                    let v61: Rust_builder::US0 =
-                        defaultValue(Rust_builder::US0::US0_1, map(Rust_builder::method10(), v58));
-                    match &v61 {
-                        Rust_builder::US0::US0_0(v61_0_0) => Rust_builder::method11(
-                            v0_1.clone(),
-                            v1_1.clone(),
-                            match &v61 {
-                                Rust_builder::US0::US0_0(x) => x.clone(),
-                                _ => unreachable!(),
-                            },
-                        ),
-                        _ => panic!(
-                            "{}",
-                            sprintf!(
-                                "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
-                                string("dir"),
+                {
+                    let _v45: MutCell<Option<bool>> = MutCell::new(None::<bool>);
+                    let v47: string = Rust_builder::method6(getValue(_v2.get().clone()));
+                    let v49: &str = fable_library_rust::String_::LrcStr::as_str(&v47);
+                    let v51: std::string::String = String::from(v49);
+                    let v53: std::path::PathBuf = std::path::PathBuf::from(v51);
+                    {
+                        let x_2: bool = if v53.clone().exists() {
+                            v53.is_dir()
+                        } else {
+                            false
+                        };
+                        _v45.set(Some(x_2))
+                    }
+                    if getValue(_v45.get().clone()) {
+                        v1_1.clone()
+                    } else {
+                        let v70: Option<string> = (Rust_builder::method9())(v1_1.clone());
+                        let v73: Rust_builder::US0 = defaultValue(
+                            Rust_builder::US0::US0_1,
+                            map(Rust_builder::method10(), v70),
+                        );
+                        match &v73 {
+                            Rust_builder::US0::US0_0(v73_0_0) => Rust_builder::method11(
                                 v0_1.clone(),
                                 v1_1.clone(),
-                                v1_1.clone()
+                                match &v73 {
+                                    Rust_builder::US0::US0_0(x) => x.clone(),
+                                    _ => unreachable!(),
+                                },
                             ),
-                        ),
+                            _ => panic!(
+                                "{}",
+                                sprintf!(
+                                    "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
+                                    string("dir"),
+                                    v0_1.clone(),
+                                    v1_1.clone(),
+                                    v1_1.clone()
+                                ),
+                            ),
+                        }
                     }
                 }
             }
@@ -600,35 +631,39 @@ mod module_4da4c295 {
                 {
                     let v61: string = getValue(_v9.get().clone());
                     let v62: i64 = (patternInput.0.clone()).l0.get().clone();
-                    let v73: string = toLower(match &v0_1 {
-                        Rust_builder::US1::US1_1 => string("Debug"),
-                        Rust_builder::US1::US1_2 => string("Info"),
-                        Rust_builder::US1::US1_0 => string("Verbose"),
-                        Rust_builder::US1::US1_3 => string("Warning"),
-                        _ => string("Critical"),
-                    });
-                    let _v74: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v90: &str = match &v0_1 {
+                    let v74: string = padRight(
+                        toLower(match &v0_1 {
+                            Rust_builder::US1::US1_1 => string("Debug"),
+                            Rust_builder::US1::US1_2 => string("Info"),
+                            Rust_builder::US1::US1_0 => string("Verbose"),
+                            Rust_builder::US1::US1_3 => string("Warning"),
+                            _ => string("Critical"),
+                        }),
+                        7_i32,
+                        ' ',
+                    );
+                    let _v75: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v91: &str = match &v0_1 {
                         Rust_builder::US1::US1_1 => inline_colorization::color_bright_blue,
                         Rust_builder::US1::US1_2 => inline_colorization::color_bright_green,
                         Rust_builder::US1::US1_0 => inline_colorization::color_bright_black,
                         Rust_builder::US1::US1_3 => inline_colorization::color_bright_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v92: &str = fable_library_rust::String_::LrcStr::as_str(&v73);
-                    let v94: &str = inline_colorization::color_reset;
-                    let v96: string = string("format!(\"{v90}{v92}{v94}\")");
-                    let v97: std::string::String = format!("{v90}{v92}{v94}");
+                    let v93: &str = fable_library_rust::String_::LrcStr::as_str(&v74);
+                    let v95: &str = inline_colorization::color_reset;
+                    let v97: string = string("format!(\"{v91}{v93}{v95}\")");
+                    let v98: std::string::String = format!("{v91}{v93}{v95}");
                     {
-                        let x_1: string = fable_library_rust::String_::fromString(v97);
-                        _v74.set(Some(x_1))
+                        let x_1: string = fable_library_rust::String_::fromString(v98);
+                        _v75.set(Some(x_1))
                     }
                     trimEndChars(
                         trimStartChars(
                             sprintf!(
                                 "{} {} #{} {} / {}",
                                 v61,
-                                getValue(_v74.get().clone()),
+                                getValue(_v75.get().clone()),
                                 v62,
                                 v1_1(),
                                 v2()
@@ -735,53 +770,73 @@ mod module_4da4c295 {
             let v13: &str = fable_library_rust::String_::LrcStr::as_str(&v11);
             let v15: std::string::String = String::from(v13);
             let v17: std::path::PathBuf = v10.join(v15);
-            let v19: std::string::String = v17.display().to_string();
+            let v19: std::path::Display = v17.display();
+            let _v20: MutCell<Option<std::string::String>> =
+                MutCell::new(None::<std::string::String>);
             {
-                let x: string = fable_library_rust::String_::fromString(v19);
-                _v2.set(Some(x))
+                let x: std::string::String = format!("{}", v19);
+                _v20.set(Some(x))
             }
             {
-                let _v36: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v38: string = Rust_builder::method6(Rust_builder::method5(
-                    getValue(_v2.get().clone()),
-                    string("C:\\home\\git\\polyglot\\target\\polyglot\\builder\\rust_builder"),
-                ));
-                let v40: &str = fable_library_rust::String_::LrcStr::as_str(&v38);
-                let v42: std::string::String = String::from(v40);
-                let v44: std::path::PathBuf = std::path::PathBuf::from(v42);
-                let v45: string = Rust_builder::method1();
-                let v47: &str = fable_library_rust::String_::LrcStr::as_str(&v45);
-                let v49: std::string::String = String::from(v47);
-                let v51: std::path::PathBuf = v44.join(v49);
-                let v53: std::string::String = v51.display().to_string();
+                let v31: std::string::String = getValue(_v20.get().clone());
                 {
-                    let x_1: string = fable_library_rust::String_::fromString(v53);
-                    _v36.set(Some(x_1))
+                    let x_1: string = fable_library_rust::String_::fromString(v31);
+                    _v2.set(Some(x_1))
                 }
                 {
-                    let v65: string = getValue(_v36.get().clone());
-                    Rust_builder::method13(
-                        Rust_builder::US1::US1_1,
-                        Func0::new(move || Rust_builder::closure4((), ())),
-                        Func0::new({
-                            let v0_1 = v0_1.clone();
-                            let v65 = v65.clone();
-                            move || Rust_builder::closure5(v0_1.clone(), v65.clone(), ())
-                        }),
-                    );
+                    let _v48: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v50: string = Rust_builder::method6(Rust_builder::method5(
+                        getValue(_v2.get().clone()),
+                        string("C:\\home\\git\\polyglot\\target\\polyglot\\builder\\rust_builder"),
+                    ));
+                    let v52: &str = fable_library_rust::String_::LrcStr::as_str(&v50);
+                    let v54: std::string::String = String::from(v52);
+                    let v56: std::path::PathBuf = std::path::PathBuf::from(v54);
+                    let v57: string = Rust_builder::method1();
+                    let v59: &str = fable_library_rust::String_::LrcStr::as_str(&v57);
+                    let v61: std::string::String = String::from(v59);
+                    let v63: std::path::PathBuf = v56.join(v61);
+                    let v65: std::path::Display = v63.display();
+                    let _v66: MutCell<Option<std::string::String>> =
+                        MutCell::new(None::<std::string::String>);
                     {
-                        let v69: clap::Command = Rust_builder::method0();
-                        let v71: clap::ArgMatches = clap::Command::get_matches(v69.clone());
-                        Rust_builder::method13(
-                            Rust_builder::US1::US1_1,
-                            Func0::new(move || Rust_builder::closure11((), ())),
-                            Func0::new({
-                                let v69 = v69.clone();
-                                let v71 = v71.clone();
-                                move || Rust_builder::closure12(v69.clone(), v71.clone(), ())
-                            }),
-                        );
-                        0_i32
+                        let x_2: std::string::String = format!("{}", v65);
+                        _v66.set(Some(x_2))
+                    }
+                    {
+                        let v77: std::string::String = getValue(_v66.get().clone());
+                        {
+                            let x_3: string = fable_library_rust::String_::fromString(v77);
+                            _v48.set(Some(x_3))
+                        }
+                        {
+                            let v89: string = getValue(_v48.get().clone());
+                            Rust_builder::method13(
+                                Rust_builder::US1::US1_1,
+                                Func0::new(move || Rust_builder::closure4((), ())),
+                                Func0::new({
+                                    let v0_1 = v0_1.clone();
+                                    let v89 = v89.clone();
+                                    move || Rust_builder::closure5(v0_1.clone(), v89.clone(), ())
+                                }),
+                            );
+                            {
+                                let v93: clap::Command = Rust_builder::method0();
+                                let v95: clap::ArgMatches = clap::Command::get_matches(v93.clone());
+                                Rust_builder::method13(
+                                    Rust_builder::US1::US1_1,
+                                    Func0::new(move || Rust_builder::closure11((), ())),
+                                    Func0::new({
+                                        let v93 = v93.clone();
+                                        let v95 = v95.clone();
+                                        move || {
+                                            Rust_builder::closure12(v93.clone(), v95.clone(), ())
+                                        }
+                                    }),
+                                );
+                                0_i32
+                            }
+                        }
                     }
                 }
             }

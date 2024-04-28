@@ -25,18 +25,40 @@ open file_system_operators
 #!spiral
 
 inl types () =
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Arg\")>] type clap_Arg = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Command\")>] type clap_Command = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"clap::ArgMatches\")>] type clap_ArgMatches = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Arg\")>]\n#endif\ntype clap_Arg = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Command\")>]\n#endif\ntype clap_Command = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::ArgMatches\")>]\n#endif\ntype clap_ArgMatches = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>]\n#endif\ntype std_io_Error = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Lines<$0>\")>]\n#endif\ntype std_io_Lines<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_std::io::BufReader<$0>\")>]\n#endif\ntype async_std_io_BufReader<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::BufReader<$0>\")>]\n#endif\ntype std_io_BufReader<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Child\")>]\n#endif\ntype std_process_Child = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStderr\")>]\n#endif\ntype std_process_ChildStderr = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdout\")>]\n#endif\ntype std_process_ChildStdout = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Command\")>]\n#endif\ntype std_process_Command = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Output\")>]\n#endif\ntype std_process_Output = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Stdio\")>]\n#endif\ntype std_process_Stdio = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::mpsc::Receiver<$0>\")>]\n#endif\ntype std_sync_mpsc_Receiver<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::mpsc::Sender<$0>\")>]\n#endif\ntype std_sync_mpsc_Sender<'T> = class end"
 
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER // runtime.types"
     rust.types ()
     sm'.types ()
+    am'.types ()
+    async.types ()
+    seq.types ()
+    threading.types ()
     types ()
-    global "#endif // runtime.types"
+
+#!spiral
+
+// // test
+
+inl types () =
+    file_system.types ()
+    types ()
 
 #!markdown
 
@@ -71,6 +93,8 @@ inl is_windows () : bool =
     run_target function
         | Fsharp (Native) => fun () =>
             Windows |> os_platform |> is_os_platform
+        | Rust (Native) => fun () =>
+            !\($'"cfg\!(windows)"')
         | _ => fun () => null ()
 
 #!markdown
@@ -92,13 +116,19 @@ get_executable_suffix ()
 
 #!markdown
 
-## split_command
+## quoted
 
 #!spiral
 
 union quoted =
     | Quoted
     | NotQuoted
+
+#!markdown
+
+## split_command
+
+#!spiral
 
 union command_parse_step =
     | Start
@@ -115,7 +145,7 @@ inl split_command (command : string) =
         | Arguments, (char :: tail) => loop (path, $'$"{!args}{!char}"') tail Arguments
         | _, (char :: tail) => loop ($'$"{!path}{!char}"', args) tail step
         | _ => path |> sm'.replace @"\" "/", args
-    loop (join "", "") (command |> seq.of_string |> seq.to_list' |> listm'.unbox) Start
+    loop (join "", "") (command |> sm'.to_char_array |> am'.to_list' |> listm'.unbox) Start
 
 #!spiral
 
@@ -199,7 +229,7 @@ inl event_data (e : data_received_event_args) : string =
 
 #!markdown
 
-## execute_async
+## execution_line
 
 #!spiral
 
@@ -210,6 +240,12 @@ type execution_line =
         error : bool
     }
 
+#!markdown
+
+## execution_options
+
+#!spiral
+
 type execution_options =
     {
         command : string
@@ -217,6 +253,21 @@ type execution_options =
         cancellation_token : optionm'.option' threading.cancellation_token
         on_line : optionm'.option' (execution_line -> async.async ())
     }
+
+inl execution_options (fn : execution_options -> execution_options) : execution_options =
+    {
+        command = ""
+        cancellation_token = None |> optionm'.box
+        on_line = None |> optionm'.box
+        working_directory = None |> optionm'.box
+    }
+    |> fn
+
+#!markdown
+
+## execute_with_options_async
+
+#!spiral
 
 inl execute_with_options_async (options : execution_options) : _ (i32 * string) =
     run_target function
@@ -310,6 +361,12 @@ inl execute_with_options_async (options : execution_options) : _ (i32 * string) 
             global "#if FABLE_COMPILER\n[<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]\nmodule System =\n module Diagnostics =\n  type Process = unit\n  type DataReceivedEventArgs = unit\n#endif"
             null ()
 
+#!markdown
+
+## execute_async
+
+#!spiral
+
 inl execute_async command =
     execute_with_options_async
         {
@@ -319,20 +376,11 @@ inl execute_async command =
             working_directory = None |> optionm'.box
         }
 
-inl execution_options (fn : execution_options -> execution_options) : execution_options =
-    {
-        command = ""
-        cancellation_token = None |> optionm'.box
-        on_line = None |> optionm'.box
-        working_directory = None |> optionm'.box
-    }
-    |> fn
-
 #!spiral
 
 // // test
-// // print_code=true
 
+types ()
 inl temp_folder, disposable = file_system.create_temp_directory ()
 disposable |> use |> ignore
 inl file_name = "test.txt"
@@ -364,8 +412,8 @@ fun () =>
 #!spiral
 
 // // test
-// // print_code=true
 
+file_system.types ()
 inl temp_dir, disposable = file_system.create_temp_directory ()
 disposable |> use |> ignore
 fun () =>
@@ -376,7 +424,7 @@ fun () =>
     trace Debug (fun () => "1") _locals
     inl result =
         execution_options fun x => { x with
-            $'\@$"pwsh -c ""Get-Content {!path}"""'
+            command = $'\@$"pwsh -c ""Get-Content {!path}"""'
             cancellation_token = cts |> threading.cancellation_source_token |> Some |> optionm'.box
         }
         |> execute_with_options_async
@@ -399,6 +447,399 @@ fun () =>
         true
     | _ => false
 |> _assert_eq true
+
+#!markdown
+
+## child
+
+#!spiral
+
+nominal child = $'std_process_Child'
+
+#!markdown
+
+## child_stderr
+
+#!spiral
+
+nominal child_stderr = $"std_process_ChildStderr"
+
+#!markdown
+
+## child_stdout
+
+#!spiral
+
+nominal child_stdout = $"std_process_ChildStdout"
+
+#!markdown
+
+## process_command
+
+#!spiral
+
+nominal process_command = $'std_process_Command'
+
+#!markdown
+
+## stdio
+
+#!spiral
+
+nominal stdio = $'std_process_Stdio'
+
+#!markdown
+
+## output
+
+#!spiral
+
+nominal output = $'std_process_Output'
+
+#!markdown
+
+## io_error
+
+#!spiral
+
+nominal io_error = $"std_io_Error"
+
+#!markdown
+
+## lines
+
+#!spiral
+
+nominal lines t = $'std_io_Lines<`t>'
+
+#!markdown
+
+## buf_reader
+
+#!spiral
+
+nominal buf_reader t = $'std_io_BufReader<`t>'
+
+#!markdown
+
+## async_buf_reader
+
+#!spiral
+
+nominal async_buf_reader t = $'async_std_io_BufReader<`t>'
+
+#!markdown
+
+## receiver
+
+#!spiral
+
+nominal receiver t = $'std_sync_mpsc_Receiver<`t>'
+
+#!markdown
+
+## sender
+
+#!spiral
+
+nominal sender t = $'std_sync_mpsc_Sender<`t>'
+
+#!markdown
+
+## split_args
+
+#!spiral
+
+union args_parse_step =
+    | Start
+    | Quoted : char
+    | Escaped : u8
+
+let split_args (args : string) : array_base string =
+    let rec loop (acc, current) (chars : list char) (step, last) =
+        // trace Verbose (fun () => $'$"split_args / current: %A{!current} / acc: %A{!acc} / step: %A{!step} / last: %A{!last}"') _locals
+        match step, chars with
+        | Start, ('"' :: tail) =>
+            loop (acc, "") tail (Quoted '"', step)
+        | Escaped _, ('\\' :: tail) =>
+            loop (acc, current) tail (Quoted '\\', step)
+        | Escaped _, ('"' :: tail) when last = Start =>
+            loop (acc, current) tail (step, step)
+        | Quoted ('"'), ('"' :: tail) when last =. Quoted '\\' =>
+            loop (acc, current) tail (Start, step)
+        | Quoted ('\\'), ('"' :: tail) when last <>. Escaped 0 =>
+            loop (acc, $'$"{!current}\\\""') tail (Quoted '"', step)
+        | Quoted ('\\'), ('"' :: tail) when last =. Quoted '\\' =>
+            loop (acc, $'$"{!current}\\\""') tail (Quoted '"', step)
+        | Quoted ('\\'), ('"' :: tail) =>
+            loop (acc, current) tail (Start, step)
+        | Escaped n, ('"' :: tail) =>
+            loop (acc, $'$"{!current}\\\""') tail (Escaped n, step)
+        | Quoted _, ('\\' :: tail) =>
+            loop (acc, current) tail (Escaped 1, step)
+        | Quoted _, ('"' :: tail) when last =. Escaped 0 =>
+            loop (acc, $'$"{!current}\\\""') tail (Quoted '"', step)
+        | Quoted _, ('"' :: tail) =>
+            loop (acc /@ [ current ], "") tail (Start, step)
+        | (Escaped _ | Quoted _), (' ' :: tail) =>
+            loop (acc, $'$"{!current} "') tail (step, step)
+        | _, ('\\' :: tail) =>
+            loop (acc, current) tail (Escaped 0, step)
+        | _, (' ' :: tail) =>
+            loop ((if current = "" then acc else acc /@ [ current ]), "") tail (step, step)
+        | Escaped (1), (char :: tail) when last <>. step =>
+            loop (acc, $'$"{!current}\\{!char}"') tail (last, step)
+        | _, (char :: tail) =>
+            loop (acc, $'$"{!current}{!char}"') tail (step, step)
+        | _ =>
+            (if current = "" then acc else acc /@ [ current ]), current
+    loop
+        ([], "")
+        (
+            args
+            |> optionm'.of_obj
+            |> optionm'.unbox
+            |> optionm'.default_value ""
+            |> sm'.to_char_array
+            |> am'.to_list'
+            |> listm'.unbox
+        )
+        (Start, Start)
+    |> fst
+    |> listm'.box
+    |> listm'.to_array'
+
+#!spiral
+
+// // test
+// // print_code=false
+
+"a b \"c d\" e"
+|> split_args
+|> _assert_eq' ;[ "a"; "b"; "c d"; "e" ]
+
+#!spiral
+
+// // test
+// // print_code=false
+
+"a b e"
+|> split_args
+|> _assert_eq' ;[ "a"; "b"; "e" ]
+
+#!spiral
+
+// // test
+// // print_code=false
+
+"\"a b\" \"e\" \"f\""
+|> split_args
+|> _assert_eq' ;[ "a b"; "e"; "f" ]
+
+#!spiral
+
+// // test
+// // print_code=false
+
+"a -b \"c \\\"d\\\"\""
+|> split_args
+|> _assert_eq' ;[ "a"; "-b"; "c \"d\"" ]
+
+#!spiral
+
+// // test
+// // print_code=false
+
+"a -b \"c \\\"d\\\" e\""
+|> split_args
+|> _assert_eq' ;[ "a"; "-b"; "c \"d\" e" ]
+
+#!spiral
+
+// // test
+// // print_code=false
+
+$'$"--text \\\\\\"\'\'\' value \'\'\'\\\\\\" "'
+|> split_args
+|> _assert_eq' ;[ "--text"; "''' value '''" ]
+
+#!spiral
+
+// // test
+// // print_code=false
+
+$'\@$"run ""get c:\\test.txt"""'
+|> split_args
+|> _assert_eq' ;[ "run"; "get c:\\test.txt" ]
+
+#!markdown
+
+## execute_with_options
+
+#!spiral
+
+inl execute_with_options (options : execution_options) : i32 * string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            options |> execute_with_options_async |> async.run_synchronously
+        | Rust (Native) => fun () =>
+            inl file_name, arguments = options.command |> split_command
+            inl arguments =
+                arguments
+                |> split_args
+                |> am'.to_vec
+                |> am'.vec_map sm'.to_std_string
+
+            trace Debug (fun () => $'$"execute_with_options / file_name: {!file_name} / arguments: %A{!arguments} / options: %A{!options}"') (join _locals)
+            
+            fun () =>
+                inl command : process_command = !\\(file_name, $'"std::process::Command::new(&*$0)"')
+
+                (!\($'"true; let mut !command = !command"') : bool) |> ignore
+                inl command : rust.ref' (rust.mut' process_command) = !\\((command, arguments), $'"std::process::Command::args(&mut $0, &*$1)"')
+
+                (!\($'"true; let mut !command = !command"') : bool) |> ignore
+                inl command : rust.ref' (rust.mut' process_command) = !\\(command, $'"std::process::Command::stdout(&mut $0, std::process::Stdio::piped())"')
+
+                (!\($'"true; let mut !command = !command"') : bool) |> ignore
+                inl command : rust.ref' (rust.mut' process_command) = !\\(command, $'"std::process::Command::stderr(&mut $0, std::process::Stdio::piped())"')
+
+                inl command =
+                    match options.working_directory |> optionm'.unbox with
+                    | Some working_directory =>
+                        inl working_directory = join working_directory
+                        !\($'"std::process::Command::current_dir(!command, &*!working_directory)"')
+                    | None => command
+
+                (!\($'"true; let mut !command = !command"') : bool) |> ignore
+                inl command : resultm.result' child io_error = !\\(command, $'"std::process::Command::spawn(&mut $0)"')
+
+                match command |> resultm.map' (optionm'.some' >> rust.new_arc_mutex) |> resultm.map_error' sm'.format' |> resultm.unbox with
+                | Ok child =>
+                    inl child = join child
+                    inl stdout : child_stdout = !\($'"!child.lock().unwrap().as_mut().unwrap().stdout.take().unwrap()"')
+                    inl stderr : child_stderr = !\($'"!child.lock().unwrap().as_mut().unwrap().stderr.take().unwrap()"')
+                    inl stdout = stdout |> optionm'.some' |> rust.new_arc_mutex
+                    inl stderr = stderr |> optionm'.some' |> rust.new_arc_mutex
+
+                    inl channel_sender, channel_receiver : sender sm'.std_string * rust.arc (receiver sm'.std_string) =
+                        !\($'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"')
+                    inl channel_receiver = join channel_receiver
+                    (!\\(channel_receiver, $'"true; let !channel_receiver = !channel_receiver"') : bool) |> ignore
+
+                    inl channel_sender = channel_sender |> rust.new_arc_mutex
+                    inl channel_sender' = channel_sender |> rust.clone
+                    inl channel_sender'' = channel_sender |> rust.clone
+                    inl channel_receiver' = channel_receiver |> rust.new_arc_mutex
+
+                    inl std_line (stdout : bool) channel_sender (line : _ _ io_error) =
+                        inl line =
+                            match line |> resultm.map_error' sm'.format' |> resultm.unbox with
+                            | Ok (line : sm'.std_string) =>
+                                trace Verbose (fun () => $'$"> {!line}"') _locals
+                                line
+                            | Error (e : sm'.std_string) =>
+                                trace Critical (fun () => $'$"execute_with_options / stdout_line / stdout: {!stdout} / e: {!e}"') _locals
+                                $'$"[{!e}]"' |> sm'.to_std_string
+                        (!\\((channel_sender, line), $'"true; $0.lock().unwrap().send($1).unwrap()"') : bool) |> ignore
+
+                    inl stdout_thread : threading.join_handle () = !\($'"std::thread::spawn(move || { //"')
+                    inl stdout_lines : lines (buf_reader child_stdout) = !\($'"std::io::BufRead::lines(std::io::BufReader::new(!stdout.lock().unwrap().take().unwrap()))"')
+                    inl stdout_lines = stdout_lines |> rust.new_arc_mutex
+                    inl std_line' = std_line true channel_sender'
+                    inl std_line' = join std_line'
+                    (!\\(stdout_lines, $'"true; for line in $0.lock().unwrap().by_ref() { !std_line'(line) }"') : bool) |> ignore
+                    (!\($'"true; })"') : bool) |> ignore
+
+                    inl stderr_thread : threading.join_handle () = !\($'"std::thread::spawn(move || { //"')
+                    inl stderr_lines : lines (buf_reader child_stderr) = !\($'"std::io::BufRead::lines(std::io::BufReader::new(!stderr.lock().unwrap().take().unwrap()))"')
+                    inl stderr_lines = stderr_lines |> rust.new_arc_mutex
+                    inl std_line' = std_line false channel_sender
+                    inl std_line' = join std_line'
+                    (!\\(stderr_lines, $'"true; for line in $0.lock().unwrap().by_ref() { !std_line'(line) }"') : bool) |> ignore
+                    (!\($'"true; })"') : bool) |> ignore
+
+                    inl output : resultm.result' output io_error = !\($'"!child.lock().unwrap().take().unwrap().wait_with_output()"')
+                    inl output = output |> resultm.map_error' sm'.format'
+
+                    (!\($'"true; !stdout_thread.join().unwrap()"') : bool) |> ignore
+                    (!\($'"true; !stderr_thread.join().unwrap()"') : bool) |> ignore
+
+                    match output |> resultm.unbox with
+                    | Ok output =>
+                        inl exit_code : i32 = !\\(output, $'"$0.status.code().unwrap()"')
+                        exit_code, None, Some channel_receiver'
+                    | Error error =>
+                        trace Critical (fun () => $'$"execute_with_options -2 / error: {!error}"') _locals
+                        -2i32, error |> Some, None
+                | Error error =>
+                    trace Critical (fun () => $'$"execute_with_options -1 / error: {!error}"') _locals
+                    -1i32, error |> Some, None
+                |> function
+                    | exit_code, std_trace, channel_receiver =>
+                        inl std_trace =
+                            channel_receiver
+                            |> optionm.map fun channel_receiver =>
+                                !\\(channel_receiver, $'"$0.lock().unwrap().iter().collect::<Vec<String>>().join(\\"\\\\n\\")"')
+                            |> optionm.map sm'.from_std_string
+                            |> optionm'.default_value (
+                                std_trace
+                                |> optionm.map sm'.from_std_string
+                                |> optionm'.default_value ""
+                            )
+                        trace Verbose (fun () => $'$"execute_with_options / exit_code: {!exit_code} / std_trace.Length: {!std_trace.Length}"') _locals
+                        new_pair exit_code std_trace
+            |> async.future_init (3, 2) 1
+            |> async.block_on
+            |> from_pair
+        | _ => fun () => null ()
+
+#!spiral
+
+inl execute command =
+    execute_with_options
+        {
+            command = command
+            cancellation_token = None |> optionm'.box
+            on_line = None |> optionm'.box
+            working_directory = None |> optionm'.box
+        }
+
+#!spiral
+
+// // test
+// // print_code=false
+// // rust=
+
+types ()
+inl temp_folder, disposable = file_system.create_temp_directory ()
+fun () =>
+    inl file_name = join "test.txt"
+    inl path = temp_folder </> file_name
+    inl exit_code, result = execute $'\@$"pwsh -c ""Get-Content {!path}"""'
+    exit_code |> _assert_eq 1
+    result |> _assert_string_contains "not exist"
+
+    "0" |> file_system.write_all_text path
+
+    execution_options fun x => { x with
+        command = $'\@$"pwsh -c ""Get-Content {!file_name}"""'
+        working_directory = Some temp_folder |> optionm'.box
+    }
+    |> execute_with_options
+|> fun fn => fn () |> Some
+|> function
+    | Some (exit_code, output) =>
+        exit_code |> _assert_eq 0i32
+        output |> _assert_eq (join "0")
+        true
+    | _ => false
+|> _assert_eq true
+disposable |> use |> ignore
+
+#!markdown
+
+## command
 
 #!spiral
 
@@ -562,3 +1003,4 @@ inl main () =
     $"let get_executable_suffix () = !get_executable_suffix ()" : ()
     $"let execute_async x = !execute_async x" : ()
     $"let execute_with_options_async x = !execute_with_options_async x" : ()
+    $"let split_args x = !split_args x" : ()

@@ -1,11 +1,13 @@
-import { compare, defaultOf, IComparable, IEquatable, createAtom } from "../../deps/Fable/src/fable-library-ts/Util.js";
+import { uncurry2, equals, compare, defaultOf, IComparable, IEquatable, createAtom } from "../../deps/Fable/src/fable-library-ts/Util.js";
 import { value as value_2, some, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 import { op_Addition, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { FSharpRef, Union, Record } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { class_type, tuple_type, int32_type, char_type, lambda_type, unit_type, string_type, union_type, bool_type, record_type, int64_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
-import { trimStart, trimEnd, interpolate, toText, replace } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { uint8_type, class_type, tuple_type, char_type, int32_type, lambda_type, unit_type, string_type, union_type, bool_type, record_type, int64_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { uint8, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
+import { trimStart, trimEnd, padRight, interpolate, toText, replace } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
+import { empty, foldBack, toArray, ofArray, FSharpList, cons } from "../../deps/Fable/src/fable-library-ts/List.js";
+import { setItem, fill } from "../../deps/Fable/src/fable-library-ts/Array.js";
 
 export let State_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Option<int64>, Mut3]>>(void 0);
 
@@ -133,6 +135,18 @@ export class US1<Tag extends keyof US1_$cases> extends Union<Tag, US1_$cases[Tag
 
 export function US1_$reflection(): TypeInfo {
     return union_type("Runtime.US1", [], US1, () => [[["f0_0", int64_type]], []]);
+}
+
+export class Mut4 extends Record implements IEquatable<Mut4>, IComparable<Mut4> {
+    l0: int32;
+    constructor(l0: int32) {
+        super();
+        this.l0 = (l0 | 0);
+    }
+}
+
+export function Mut4_$reflection(): TypeInfo {
+    return record_type("Runtime.Mut4", [], Mut4, () => [["l0", int32_type]]);
 }
 
 export type UH0_$union = 
@@ -351,6 +365,72 @@ export function US7_$reflection(): TypeInfo {
     return union_type("Runtime.US7", [], US7, () => [[["f0_0", class_type("System.Threading.CancellationToken")]], []]);
 }
 
+export type UH1_$union = 
+    | UH1<0>
+    | UH1<1>
+
+export type UH1_$cases = {
+    0: ["UH1_0", []],
+    1: ["UH1_1", [string, UH1_$union]]
+}
+
+export function UH1_UH1_0() {
+    return new UH1<0>(0, []);
+}
+
+export function UH1_UH1_1(Item1: string, Item2: UH1_$union) {
+    return new UH1<1>(1, [Item1, Item2]);
+}
+
+export class UH1<Tag extends keyof UH1_$cases> extends Union<Tag, UH1_$cases[Tag][0]> {
+    constructor(readonly tag: Tag, readonly fields: UH1_$cases[Tag][1]) {
+        super();
+    }
+    cases() {
+        return ["UH1_0", "UH1_1"];
+    }
+}
+
+export function UH1_$reflection(): TypeInfo {
+    return union_type("Runtime.UH1", [], UH1, () => [[], [["Item1", string_type], ["Item2", UH1_$reflection()]]]);
+}
+
+export type US8_$union = 
+    | US8<0>
+    | US8<1>
+    | US8<2>
+
+export type US8_$cases = {
+    0: ["US8_0", []],
+    1: ["US8_1", [string]],
+    2: ["US8_2", [uint8]]
+}
+
+export function US8_US8_0() {
+    return new US8<0>(0, []);
+}
+
+export function US8_US8_1(f1_0: string) {
+    return new US8<1>(1, [f1_0]);
+}
+
+export function US8_US8_2(f2_0: uint8) {
+    return new US8<2>(2, [f2_0]);
+}
+
+export class US8<Tag extends keyof US8_$cases> extends Union<Tag, US8_$cases[Tag][0]> {
+    constructor(readonly tag: Tag, readonly fields: US8_$cases[Tag][1]) {
+        super();
+    }
+    cases() {
+        return ["US8_0", "US8_1", "US8_2"];
+    }
+}
+
+export function US8_$reflection(): TypeInfo {
+    return union_type("Runtime.US8", [], US8, () => [[], [["f1_0", char_type]], [["f2_0", uint8_type]]]);
+}
+
 export function US0__get_IsUS0_0(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
     if ((this$ as any)['tag'] === 0) {
         return true;
@@ -549,6 +629,51 @@ export function US7__get_IsUS7_1(this$: FSharpRef<US7_$union>, unitArg: void): b
     }
 }
 
+export function UH1__get_IsUH1_0(this$: UH1_$union, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === /* UH1_0 */ 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function UH1__get_IsUH1_1(this$: UH1_$union, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === /* UH1_1 */ 1) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function US8__get_IsUS8_0(this$: FSharpRef<US8_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function US8__get_IsUS8_1(this$: FSharpRef<US8_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 1) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function US8__get_IsUS8_2(this$: FSharpRef<US8_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 2) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 export function closure1(unitVar: void, v0_1: string): void {
 }
 
@@ -564,13 +689,13 @@ export function closure0(unitVar: void, unitVar_1: void): [Mut0, Mut1, Mut2, Opt
     const v0_1: Mut1 = new Mut1(true);
     const v1_1: Mut0 = new Mut0(0n);
     const v3_1: Mut2 = new Mut2(US0_US0_0());
-    const v5: Mut3 = new Mut3((v: string): void => {
+    const v5_1: Mut3 = new Mut3((v: string): void => {
         closure1(void 0, v);
     });
     let _v6: Option<Option<int64>> = void 0;
     const x: Option<int64> = method1(void 0);
     _v6 = some(x);
-    return [v1_1, v0_1, v3_1, value_2(_v6), v5] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
+    return [v1_1, v0_1, v3_1, value_2(_v6), v5_1] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
 }
 
 export function closure2(unitVar: void, unitVar_1: void): boolean {
@@ -596,6 +721,10 @@ export function method2(): [string, string] {
     return ["", ""] as [string, string];
 }
 
+export function method3(v0_1: int32, v1_1: Mut4): boolean {
+    return v1_1.l0 < v0_1;
+}
+
 export function closure6(v0_1: string, v1_1: UH0_$union): UH0_$union {
     return UH0_UH0_1(v0_1, v1_1);
 }
@@ -604,25 +733,25 @@ export function closure5(unitVar: void, v0_1: string): ((arg0: UH0_$union) => UH
     return (v: UH0_$union): UH0_$union => closure6(v0_1, v);
 }
 
-export function method3(): ((arg0: string) => ((arg0: UH0_$union) => UH0_$union)) {
+export function method4(): ((arg0: string) => ((arg0: UH0_$union) => UH0_$union)) {
     return (v: string): ((arg0: UH0_$union) => UH0_$union) => closure5(void 0, v);
 }
 
-export function method4(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union, v3_1_mut: US2_$union): [string, string] {
-    method4:
+export function method5(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union, v3_1_mut: US2_$union): [string, string] {
+    method5:
     while (true) {
         const v0_1: string = v0_1_mut, v1_1: string = v1_1_mut, v2_1: UH0_$union = v2_1_mut, v3_1: US2_$union = v3_1_mut;
         if (v2_1.tag === /* UH0_1 */ 1) {
-            const v5: UH0_$union = v2_1.fields[1];
+            const v5_1: UH0_$union = v2_1.fields[1];
             const v4_1: string = v2_1.fields[0];
             switch (v4_1) {
                 case "\"":
                     if (v1_1 === "") {
                         v0_1_mut = v0_1;
                         v1_1_mut = v1_1;
-                        v2_1_mut = v5;
+                        v2_1_mut = v5_1;
                         v3_1_mut = US2_US2_1(US3_US3_0());
-                        continue method4;
+                        continue method5;
                     }
                     else {
                         switch (v3_1.tag) {
@@ -630,45 +759,45 @@ export function method4(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
                                 if (v3_1.fields[0].tag === /* US3_0 */ 0) {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = v1_1;
-                                    v2_1_mut = v5;
+                                    v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_1(US3_US3_1());
-                                    continue method4;
+                                    continue method5;
                                 }
                                 else if (" " === v4_1) {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = v1_1;
-                                    v2_1_mut = v5;
+                                    v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_2();
-                                    continue method4;
+                                    continue method5;
                                 }
                                 else {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = (`${v1_1}${v4_1}`);
-                                    v2_1_mut = v5;
+                                    v2_1_mut = v5_1;
                                     v3_1_mut = v3_1;
-                                    continue method4;
+                                    continue method5;
                                 }
                             case /* US2_0 */ 0:
                                 if (" " === v4_1) {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = v1_1;
-                                    v2_1_mut = v5;
+                                    v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_2();
-                                    continue method4;
+                                    continue method5;
                                 }
                                 else {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = (`${v1_1}${v4_1}`);
-                                    v2_1_mut = v5;
+                                    v2_1_mut = v5_1;
                                     v3_1_mut = v3_1;
-                                    continue method4;
+                                    continue method5;
                                 }
                             default: {
                                 v0_1_mut = (`${v0_1}${v4_1}`);
                                 v1_1_mut = v1_1;
-                                v2_1_mut = v5;
+                                v2_1_mut = v5_1;
                                 v3_1_mut = US2_US2_2();
-                                continue method4;
+                                continue method5;
                             }
                         }
                     }
@@ -676,9 +805,9 @@ export function method4(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
                     if (v1_1 === "") {
                         v0_1_mut = v0_1;
                         v1_1_mut = v1_1;
-                        v2_1_mut = v5;
+                        v2_1_mut = v5_1;
                         v3_1_mut = US2_US2_1(US3_US3_0());
-                        continue method4;
+                        continue method5;
                     }
                     else {
                         switch (v3_1.tag) {
@@ -686,45 +815,45 @@ export function method4(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
                                 if (v3_1.fields[0].tag === /* US3_0 */ 0) {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = v1_1;
-                                    v2_1_mut = v5;
+                                    v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_1(US3_US3_1());
-                                    continue method4;
+                                    continue method5;
                                 }
                                 else if (" " === v4_1) {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = v1_1;
-                                    v2_1_mut = v5;
+                                    v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_2();
-                                    continue method4;
+                                    continue method5;
                                 }
                                 else {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = (`${v1_1}${v4_1}`);
-                                    v2_1_mut = v5;
+                                    v2_1_mut = v5_1;
                                     v3_1_mut = v3_1;
-                                    continue method4;
+                                    continue method5;
                                 }
                             case /* US2_0 */ 0:
                                 if (" " === v4_1) {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = v1_1;
-                                    v2_1_mut = v5;
+                                    v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_2();
-                                    continue method4;
+                                    continue method5;
                                 }
                                 else {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = (`${v1_1}${v4_1}`);
-                                    v2_1_mut = v5;
+                                    v2_1_mut = v5_1;
                                     v3_1_mut = v3_1;
-                                    continue method4;
+                                    continue method5;
                                 }
                             default: {
                                 v0_1_mut = (`${v0_1}${v4_1}`);
                                 v1_1_mut = v1_1;
-                                v2_1_mut = v5;
+                                v2_1_mut = v5_1;
                                 v3_1_mut = US2_US2_2();
-                                continue method4;
+                                continue method5;
                             }
                         }
                     }
@@ -735,53 +864,53 @@ export function method4(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
                                 if (" " === v4_1) {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = (`${v1_1} `);
-                                    v2_1_mut = v5;
+                                    v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_1(US3_US3_0());
-                                    continue method4;
+                                    continue method5;
                                 }
                                 else {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = (`${v1_1}${v4_1}`);
-                                    v2_1_mut = v5;
+                                    v2_1_mut = v5_1;
                                     v3_1_mut = v3_1;
-                                    continue method4;
+                                    continue method5;
                                 }
                             }
                             else if (" " === v4_1) {
                                 v0_1_mut = v0_1;
                                 v1_1_mut = v1_1;
-                                v2_1_mut = v5;
+                                v2_1_mut = v5_1;
                                 v3_1_mut = US2_US2_2();
-                                continue method4;
+                                continue method5;
                             }
                             else {
                                 v0_1_mut = v0_1;
                                 v1_1_mut = (`${v1_1}${v4_1}`);
-                                v2_1_mut = v5;
+                                v2_1_mut = v5_1;
                                 v3_1_mut = v3_1;
-                                continue method4;
+                                continue method5;
                             }
                         case /* US2_0 */ 0:
                             if (" " === v4_1) {
                                 v0_1_mut = v0_1;
                                 v1_1_mut = v1_1;
-                                v2_1_mut = v5;
+                                v2_1_mut = v5_1;
                                 v3_1_mut = US2_US2_2();
-                                continue method4;
+                                continue method5;
                             }
                             else {
                                 v0_1_mut = v0_1;
                                 v1_1_mut = (`${v1_1}${v4_1}`);
-                                v2_1_mut = v5;
+                                v2_1_mut = v5_1;
                                 v3_1_mut = v3_1;
-                                continue method4;
+                                continue method5;
                             }
                         default: {
                             v0_1_mut = (`${v0_1}${v4_1}`);
                             v1_1_mut = v1_1;
-                            v2_1_mut = v5;
+                            v2_1_mut = v5_1;
                             v3_1_mut = US2_US2_2();
-                            continue method4;
+                            continue method5;
                         }
                     }
             }
@@ -809,7 +938,7 @@ export function closure7(unitVar: void, v0_1: string): US4_$union {
     return US4_US4_0(v0_1);
 }
 
-export function method5(): ((arg0: string) => US4_$union) {
+export function method6(): ((arg0: string) => US4_$union) {
     return (v: string): US4_$union => closure7(void 0, v);
 }
 
@@ -821,7 +950,7 @@ export function closure9(unitVar: void, unitVar_1: void): string {
     return "";
 }
 
-export function method6(): (() => string) {
+export function method7(): (() => string) {
     return (): string => closure9(void 0, void 0);
 }
 
@@ -829,11 +958,11 @@ export function closure11(unitVar: void, v0_1: int64): US5_$union {
     return US5_US5_0(v0_1);
 }
 
-export function method8(): ((arg0: int64) => US5_$union) {
+export function method9(): ((arg0: int64) => US5_$union) {
     return (v: int64): US5_$union => closure11(void 0, v);
 }
 
-export function method9(): string {
+export function method10(): string {
     return "";
 }
 
@@ -843,18 +972,18 @@ export function closure10(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => s
     }
     const patternInput: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value_2(State_trace_state());
     let _v9: Option<string> = void 0;
-    const x: string = method9();
+    const x: string = method10();
     _v9 = x;
     const v61: string = value_2(_v9);
     const v62: int64 = patternInput[0].l0;
     const v72: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v74: Option<string> = void 0;
-    const x_1: string = v72.toLocaleLowerCase();
-    _v74 = x_1;
-    return trimEnd(trimStart(`${v61} ${value_2(_v74)} #${v62} ${v1_1()} / ${v2_1()}`), " ", "/");
+    let _v75: Option<string> = void 0;
+    const x_1: string = padRight(v72.toLocaleLowerCase(), 7, " ");
+    _v75 = x_1;
+    return trimEnd(trimStart(`${v61} ${value_2(_v75)} #${v62} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
-export function method10(v0_1: US0_$union, v1_1: (() => string)): void {
+export function method11(v0_1: US0_$union, v1_1: (() => string)): void {
     const v2_1 = (): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(void 0, void 0);
     if (State_trace_state() == null) {
         State_trace_state(v2_1());
@@ -882,15 +1011,15 @@ export function method10(v0_1: US0_$union, v1_1: (() => string)): void {
     }
 }
 
-export function method7(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
-    method10(v0_1, (): string => closure10(v0_1, v1_1, v2_1, void 0));
+export function method8(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
+    method11(v0_1, (): string => closure10(v0_1, v1_1, v2_1, void 0));
 }
 
 export function closure13(unitVar: void, v0_1: ((arg0: [boolean, string, int32]) => any)): US6_$union {
     return US6_US6_0(v0_1);
 }
 
-export function method11(): ((arg0: ((arg0: [boolean, string, int32]) => any)) => US6_$union) {
+export function method12(): ((arg0: ((arg0: [boolean, string, int32]) => any)) => US6_$union) {
     return (v: ((arg0: [boolean, string, int32]) => any)): US6_$union => closure13(void 0, v);
 }
 
@@ -898,7 +1027,7 @@ export function closure14(v0_1: string, unitVar: void): string {
     return `> ${v0_1}`;
 }
 
-export function closure12(v0_1: Option<any>, v1_1: string, v2_1: Option<((arg0: [boolean, string, int32]) => any)>, v3_1: Option<string>, v4_1: void, v5: any, v6: void): void {
+export function closure12(v0_1: Option<any>, v1_1: string, v2_1: Option<((arg0: [boolean, string, int32]) => any)>, v3_1: Option<string>, v4_1: void, v5_1: any, v6: void): void {
     let _v7: Option<any> = void 0;
     const x: any = defaultOf();
     _v7 = x;
@@ -909,7 +1038,7 @@ export function closure12(v0_1: Option<any>, v1_1: string, v2_1: Option<((arg0: 
     value_2(_v33);
 }
 
-export function closure15(v0_1: Option<any>, v1_1: string, v2_1: Option<((arg0: [boolean, string, int32]) => any)>, v3_1: Option<string>, v4_1: void, v5: any, v6: void): void {
+export function closure15(v0_1: Option<any>, v1_1: string, v2_1: Option<((arg0: [boolean, string, int32]) => any)>, v3_1: Option<string>, v4_1: void, v5_1: any, v6: void): void {
     let _v7: Option<any> = void 0;
     const x: any = defaultOf();
     _v7 = x;
@@ -924,7 +1053,7 @@ export function closure16(unitVar: void, v0_1: any): US7_$union {
     return US7_US7_0(v0_1);
 }
 
-export function method12(): ((arg0: any) => US7_$union) {
+export function method13(): ((arg0: any) => US7_$union) {
     return (v: any): US7_$union => closure16(void 0, v);
 }
 
@@ -944,7 +1073,7 @@ export function closure18(v0_1: any, unitVar: void): string {
     return toText(interpolate("execute_with_options_async / WaitForExitAsync / ex: %A%P()", [v0_1]));
 }
 
-export function method13(): string {
+export function method14(): string {
     return "\n";
 }
 
@@ -964,6 +1093,578 @@ export function closure20(unitVar: void, _arg: [Option<any>, string, Option<((ar
     const x: any = defaultOf();
     _v4 = x;
     return value_2(_v4);
+}
+
+export function method18(v0_1: UH1_$union, v1_1: UH1_$union): UH1_$union {
+    if (v0_1.tag === /* UH1_0 */ 0) {
+        return v1_1;
+    }
+    else {
+        return UH1_UH1_1(v0_1.fields[0], method18(v0_1.fields[1], v1_1));
+    }
+}
+
+export function method17(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$union, v3_1_mut: US8_$union): [UH1_$union, string] {
+    method17:
+    while (true) {
+        const v0_1: string = v0_1_mut, v1_1: UH1_$union = v1_1_mut, v2_1: UH0_$union = v2_1_mut, v3_1: US8_$union = v3_1_mut;
+        switch (v3_1.tag) {
+            case /* US8_1 */ 1: {
+                const v105: string = v3_1.fields[0];
+                switch (v105) {
+                    case "\"":
+                        if (v2_1.tag === /* UH0_1 */ 1) {
+                            const v108: UH0_$union = v2_1.fields[1];
+                            const v107: string = v2_1.fields[0];
+                            if ("\"" === v107) {
+                                if (equals(v3_1, US8_US8_1("\\"))) {
+                                    return method16(v0_1, v1_1, v108, v3_1, US8_US8_0());
+                                }
+                                else if ("\\" === v105) {
+                                    if (!equals(v3_1, US8_US8_2(0))) {
+                                        return method16(`${v0_1}"`, v1_1, v108, v3_1, US8_US8_1("\""));
+                                    }
+                                    else if (equals(v3_1, US8_US8_1("\\"))) {
+                                        return method16(`${v0_1}"`, v1_1, v108, v3_1, US8_US8_1("\""));
+                                    }
+                                    else {
+                                        return method16(v0_1, v1_1, v108, v3_1, US8_US8_0());
+                                    }
+                                }
+                                else if ("\\" === v107) {
+                                    return method16(v0_1, v1_1, v108, v3_1, US8_US8_2(1));
+                                }
+                                else if (equals(v3_1, US8_US8_2(0))) {
+                                    return method16(`${v0_1}"`, v1_1, v108, v3_1, US8_US8_1("\""));
+                                }
+                                else {
+                                    return method16("", method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v108, v3_1, US8_US8_0());
+                                }
+                            }
+                            else if ("\\" === v105) {
+                                switch (v107) {
+                                    case "\\":
+                                        return method16(v0_1, v1_1, v108, v3_1, US8_US8_2(1));
+                                    case " ": {
+                                        v0_1_mut = (`${v0_1} `);
+                                        v1_1_mut = v1_1;
+                                        v2_1_mut = v108;
+                                        v3_1_mut = v3_1;
+                                        continue method17;
+                                    }
+                                    default: {
+                                        v0_1_mut = (`${v0_1}${v107}`);
+                                        v1_1_mut = v1_1;
+                                        v2_1_mut = v108;
+                                        v3_1_mut = v3_1;
+                                        continue method17;
+                                    }
+                                }
+                            }
+                            else {
+                                switch (v107) {
+                                    case "\\":
+                                        return method16(v0_1, v1_1, v108, v3_1, US8_US8_2(1));
+                                    case " ": {
+                                        v0_1_mut = (`${v0_1} `);
+                                        v1_1_mut = v1_1;
+                                        v2_1_mut = v108;
+                                        v3_1_mut = v3_1;
+                                        continue method17;
+                                    }
+                                    default: {
+                                        v0_1_mut = (`${v0_1}${v107}`);
+                                        v1_1_mut = v1_1;
+                                        v2_1_mut = v108;
+                                        v3_1_mut = v3_1;
+                                        continue method17;
+                                    }
+                                }
+                            }
+                        }
+                        else if ("\\" === v105) {
+                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                        }
+                        else {
+                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                        }
+                    case "\\":
+                        if (v2_1.tag === /* UH0_1 */ 1) {
+                            const v220: UH0_$union = v2_1.fields[1];
+                            const v219: string = v2_1.fields[0];
+                            switch (v219) {
+                                case "\"":
+                                    if (!equals(v3_1, US8_US8_2(0))) {
+                                        return method16(`${v0_1}"`, v1_1, v220, v3_1, US8_US8_1("\""));
+                                    }
+                                    else if (equals(v3_1, US8_US8_1("\\"))) {
+                                        return method16(`${v0_1}"`, v1_1, v220, v3_1, US8_US8_1("\""));
+                                    }
+                                    else {
+                                        return method16(v0_1, v1_1, v220, v3_1, US8_US8_0());
+                                    }
+                                case "\\":
+                                    return method16(v0_1, v1_1, v220, v3_1, US8_US8_2(1));
+                                case " ": {
+                                    v0_1_mut = (`${v0_1} `);
+                                    v1_1_mut = v1_1;
+                                    v2_1_mut = v220;
+                                    v3_1_mut = v3_1;
+                                    continue method17;
+                                }
+                                default: {
+                                    v0_1_mut = (`${v0_1}${v219}`);
+                                    v1_1_mut = v1_1;
+                                    v2_1_mut = v220;
+                                    v3_1_mut = v3_1;
+                                    continue method17;
+                                }
+                            }
+                        }
+                        else {
+                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                        }
+                    default:
+                        if (v2_1.tag === /* UH0_1 */ 1) {
+                            const v270: UH0_$union = v2_1.fields[1];
+                            const v269: string = v2_1.fields[0];
+                            switch (v269) {
+                                case "\\":
+                                    return method16(v0_1, v1_1, v270, v3_1, US8_US8_2(1));
+                                case "\"":
+                                    if (equals(v3_1, US8_US8_2(0))) {
+                                        return method16(`${v0_1}"`, v1_1, v270, v3_1, US8_US8_1("\""));
+                                    }
+                                    else {
+                                        return method16("", method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v270, v3_1, US8_US8_0());
+                                    }
+                                case " ": {
+                                    v0_1_mut = (`${v0_1} `);
+                                    v1_1_mut = v1_1;
+                                    v2_1_mut = v270;
+                                    v3_1_mut = v3_1;
+                                    continue method17;
+                                }
+                                default: {
+                                    v0_1_mut = (`${v0_1}${v269}`);
+                                    v1_1_mut = v1_1;
+                                    v2_1_mut = v270;
+                                    v3_1_mut = v3_1;
+                                    continue method17;
+                                }
+                            }
+                        }
+                        else {
+                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                        }
+                }
+            }
+            case /* US8_0 */ 0:
+                if (v2_1.tag === /* UH0_1 */ 1) {
+                    const v5_1: UH0_$union = v2_1.fields[1];
+                    const v4_1: string = v2_1.fields[0];
+                    switch (v4_1) {
+                        case "\"":
+                            return method16("", v1_1, v5_1, v3_1, US8_US8_1("\""));
+                        case "\\":
+                            return method16(v0_1, v1_1, v5_1, v3_1, US8_US8_2(0));
+                        case " ": {
+                            v0_1_mut = "";
+                            v1_1_mut = ((v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())));
+                            v2_1_mut = v5_1;
+                            v3_1_mut = v3_1;
+                            continue method17;
+                        }
+                        default: {
+                            v0_1_mut = (`${v0_1}${v4_1}`);
+                            v1_1_mut = v1_1;
+                            v2_1_mut = v5_1;
+                            v3_1_mut = v3_1;
+                            continue method17;
+                        }
+                    }
+                }
+                else {
+                    return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                }
+            default: {
+                const v44: uint8 = v3_1.fields[0];
+                if (v2_1.tag === /* UH0_1 */ 1) {
+                    const v46: UH0_$union = v2_1.fields[1];
+                    const v45: string = v2_1.fields[0];
+                    switch (v45) {
+                        case "\\":
+                            return method16(v0_1, v1_1, v46, v3_1, US8_US8_1("\\"));
+                        case "\"":
+                            if (v3_1.tag === /* US8_0 */ 0) {
+                                v0_1_mut = v0_1;
+                                v1_1_mut = v1_1;
+                                v2_1_mut = v46;
+                                v3_1_mut = v3_1;
+                                continue method17;
+                            }
+                            else {
+                                return method16(`${v0_1}"`, v1_1, v46, v3_1, US8_US8_2(v44));
+                            }
+                        case " ": {
+                            v0_1_mut = (`${v0_1} `);
+                            v1_1_mut = v1_1;
+                            v2_1_mut = v46;
+                            v3_1_mut = v3_1;
+                            continue method17;
+                        }
+                        default:
+                            if (1 === v44) {
+                                if (!equals(v3_1, v3_1)) {
+                                    v0_1_mut = (`${v0_1}\\${v45}`);
+                                    v1_1_mut = v1_1;
+                                    v2_1_mut = v46;
+                                    v3_1_mut = v3_1;
+                                    continue method17;
+                                }
+                                else {
+                                    v0_1_mut = (`${v0_1}${v45}`);
+                                    v1_1_mut = v1_1;
+                                    v2_1_mut = v46;
+                                    v3_1_mut = v3_1;
+                                    continue method17;
+                                }
+                            }
+                            else {
+                                v0_1_mut = (`${v0_1}${v45}`);
+                                v1_1_mut = v1_1;
+                                v2_1_mut = v46;
+                                v3_1_mut = v3_1;
+                                continue method17;
+                            }
+                    }
+                }
+                else if (1 === v44) {
+                    return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                }
+                else {
+                    return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                }
+            }
+        }
+        break;
+    }
+}
+
+export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$union, v3_1_mut: US8_$union, v4_1_mut: US8_$union): [UH1_$union, string] {
+    method16:
+    while (true) {
+        const v0_1: string = v0_1_mut, v1_1: UH1_$union = v1_1_mut, v2_1: UH0_$union = v2_1_mut, v3_1: US8_$union = v3_1_mut, v4_1: US8_$union = v4_1_mut;
+        switch (v4_1.tag) {
+            case /* US8_1 */ 1: {
+                const v106: string = v4_1.fields[0];
+                switch (v106) {
+                    case "\"":
+                        if (v2_1.tag === /* UH0_1 */ 1) {
+                            const v109: UH0_$union = v2_1.fields[1];
+                            const v108: string = v2_1.fields[0];
+                            if ("\"" === v108) {
+                                if (equals(v3_1, US8_US8_1("\\"))) {
+                                    v0_1_mut = v0_1;
+                                    v1_1_mut = v1_1;
+                                    v2_1_mut = v109;
+                                    v3_1_mut = v4_1;
+                                    v4_1_mut = US8_US8_0();
+                                    continue method16;
+                                }
+                                else if ("\\" === v106) {
+                                    if (!equals(v3_1, US8_US8_2(0))) {
+                                        v0_1_mut = (`${v0_1}"`);
+                                        v1_1_mut = v1_1;
+                                        v2_1_mut = v109;
+                                        v3_1_mut = v4_1;
+                                        v4_1_mut = US8_US8_1("\"");
+                                        continue method16;
+                                    }
+                                    else if (equals(v3_1, US8_US8_1("\\"))) {
+                                        v0_1_mut = (`${v0_1}"`);
+                                        v1_1_mut = v1_1;
+                                        v2_1_mut = v109;
+                                        v3_1_mut = v4_1;
+                                        v4_1_mut = US8_US8_1("\"");
+                                        continue method16;
+                                    }
+                                    else {
+                                        v0_1_mut = v0_1;
+                                        v1_1_mut = v1_1;
+                                        v2_1_mut = v109;
+                                        v3_1_mut = v4_1;
+                                        v4_1_mut = US8_US8_0();
+                                        continue method16;
+                                    }
+                                }
+                                else if ("\\" === v108) {
+                                    v0_1_mut = v0_1;
+                                    v1_1_mut = v1_1;
+                                    v2_1_mut = v109;
+                                    v3_1_mut = v4_1;
+                                    v4_1_mut = US8_US8_2(1);
+                                    continue method16;
+                                }
+                                else if (equals(v3_1, US8_US8_2(0))) {
+                                    v0_1_mut = (`${v0_1}"`);
+                                    v1_1_mut = v1_1;
+                                    v2_1_mut = v109;
+                                    v3_1_mut = v4_1;
+                                    v4_1_mut = US8_US8_1("\"");
+                                    continue method16;
+                                }
+                                else {
+                                    v0_1_mut = "";
+                                    v1_1_mut = method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0()));
+                                    v2_1_mut = v109;
+                                    v3_1_mut = v4_1;
+                                    v4_1_mut = US8_US8_0();
+                                    continue method16;
+                                }
+                            }
+                            else if ("\\" === v106) {
+                                switch (v108) {
+                                    case "\\": {
+                                        v0_1_mut = v0_1;
+                                        v1_1_mut = v1_1;
+                                        v2_1_mut = v109;
+                                        v3_1_mut = v4_1;
+                                        v4_1_mut = US8_US8_2(1);
+                                        continue method16;
+                                    }
+                                    case " ":
+                                        return method17(`${v0_1} `, v1_1, v109, v4_1);
+                                    default:
+                                        return method17(`${v0_1}${v108}`, v1_1, v109, v4_1);
+                                }
+                            }
+                            else {
+                                switch (v108) {
+                                    case "\\": {
+                                        v0_1_mut = v0_1;
+                                        v1_1_mut = v1_1;
+                                        v2_1_mut = v109;
+                                        v3_1_mut = v4_1;
+                                        v4_1_mut = US8_US8_2(1);
+                                        continue method16;
+                                    }
+                                    case " ":
+                                        return method17(`${v0_1} `, v1_1, v109, v4_1);
+                                    default:
+                                        return method17(`${v0_1}${v108}`, v1_1, v109, v4_1);
+                                }
+                            }
+                        }
+                        else if ("\\" === v106) {
+                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                        }
+                        else {
+                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                        }
+                    case "\\":
+                        if (v2_1.tag === /* UH0_1 */ 1) {
+                            const v221: UH0_$union = v2_1.fields[1];
+                            const v220: string = v2_1.fields[0];
+                            switch (v220) {
+                                case "\"":
+                                    if (!equals(v3_1, US8_US8_2(0))) {
+                                        v0_1_mut = (`${v0_1}"`);
+                                        v1_1_mut = v1_1;
+                                        v2_1_mut = v221;
+                                        v3_1_mut = v4_1;
+                                        v4_1_mut = US8_US8_1("\"");
+                                        continue method16;
+                                    }
+                                    else if (equals(v3_1, US8_US8_1("\\"))) {
+                                        v0_1_mut = (`${v0_1}"`);
+                                        v1_1_mut = v1_1;
+                                        v2_1_mut = v221;
+                                        v3_1_mut = v4_1;
+                                        v4_1_mut = US8_US8_1("\"");
+                                        continue method16;
+                                    }
+                                    else {
+                                        v0_1_mut = v0_1;
+                                        v1_1_mut = v1_1;
+                                        v2_1_mut = v221;
+                                        v3_1_mut = v4_1;
+                                        v4_1_mut = US8_US8_0();
+                                        continue method16;
+                                    }
+                                case "\\": {
+                                    v0_1_mut = v0_1;
+                                    v1_1_mut = v1_1;
+                                    v2_1_mut = v221;
+                                    v3_1_mut = v4_1;
+                                    v4_1_mut = US8_US8_2(1);
+                                    continue method16;
+                                }
+                                case " ":
+                                    return method17(`${v0_1} `, v1_1, v221, v4_1);
+                                default:
+                                    return method17(`${v0_1}${v220}`, v1_1, v221, v4_1);
+                            }
+                        }
+                        else {
+                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                        }
+                    default:
+                        if (v2_1.tag === /* UH0_1 */ 1) {
+                            const v271: UH0_$union = v2_1.fields[1];
+                            const v270: string = v2_1.fields[0];
+                            switch (v270) {
+                                case "\\": {
+                                    v0_1_mut = v0_1;
+                                    v1_1_mut = v1_1;
+                                    v2_1_mut = v271;
+                                    v3_1_mut = v4_1;
+                                    v4_1_mut = US8_US8_2(1);
+                                    continue method16;
+                                }
+                                case "\"":
+                                    if (equals(v3_1, US8_US8_2(0))) {
+                                        v0_1_mut = (`${v0_1}"`);
+                                        v1_1_mut = v1_1;
+                                        v2_1_mut = v271;
+                                        v3_1_mut = v4_1;
+                                        v4_1_mut = US8_US8_1("\"");
+                                        continue method16;
+                                    }
+                                    else {
+                                        v0_1_mut = "";
+                                        v1_1_mut = method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0()));
+                                        v2_1_mut = v271;
+                                        v3_1_mut = v4_1;
+                                        v4_1_mut = US8_US8_0();
+                                        continue method16;
+                                    }
+                                case " ":
+                                    return method17(`${v0_1} `, v1_1, v271, v4_1);
+                                default:
+                                    return method17(`${v0_1}${v270}`, v1_1, v271, v4_1);
+                            }
+                        }
+                        else {
+                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                        }
+                }
+            }
+            case /* US8_0 */ 0:
+                if (v2_1.tag === /* UH0_1 */ 1) {
+                    const v6: UH0_$union = v2_1.fields[1];
+                    const v5_1: string = v2_1.fields[0];
+                    switch (v5_1) {
+                        case "\"": {
+                            v0_1_mut = "";
+                            v1_1_mut = v1_1;
+                            v2_1_mut = v6;
+                            v3_1_mut = v4_1;
+                            v4_1_mut = US8_US8_1("\"");
+                            continue method16;
+                        }
+                        case "\\": {
+                            v0_1_mut = v0_1;
+                            v1_1_mut = v1_1;
+                            v2_1_mut = v6;
+                            v3_1_mut = v4_1;
+                            v4_1_mut = US8_US8_2(0);
+                            continue method16;
+                        }
+                        case " ":
+                            return method17("", (v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v6, v4_1);
+                        default:
+                            return method17(`${v0_1}${v5_1}`, v1_1, v6, v4_1);
+                    }
+                }
+                else {
+                    return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                }
+            default: {
+                const v45: uint8 = v4_1.fields[0];
+                if (v2_1.tag === /* UH0_1 */ 1) {
+                    const v47: UH0_$union = v2_1.fields[1];
+                    const v46: string = v2_1.fields[0];
+                    switch (v46) {
+                        case "\\": {
+                            v0_1_mut = v0_1;
+                            v1_1_mut = v1_1;
+                            v2_1_mut = v47;
+                            v3_1_mut = v4_1;
+                            v4_1_mut = US8_US8_1("\\");
+                            continue method16;
+                        }
+                        case "\"":
+                            if (v3_1.tag === /* US8_0 */ 0) {
+                                return method17(v0_1, v1_1, v47, v4_1);
+                            }
+                            else {
+                                v0_1_mut = (`${v0_1}"`);
+                                v1_1_mut = v1_1;
+                                v2_1_mut = v47;
+                                v3_1_mut = v4_1;
+                                v4_1_mut = US8_US8_2(v45);
+                                continue method16;
+                            }
+                        case " ":
+                            return method17(`${v0_1} `, v1_1, v47, v4_1);
+                        default:
+                            if (1 === v45) {
+                                if (!equals(v3_1, v4_1)) {
+                                    v0_1_mut = (`${v0_1}\\${v46}`);
+                                    v1_1_mut = v1_1;
+                                    v2_1_mut = v47;
+                                    v3_1_mut = v4_1;
+                                    v4_1_mut = v3_1;
+                                    continue method16;
+                                }
+                                else {
+                                    return method17(`${v0_1}${v46}`, v1_1, v47, v4_1);
+                                }
+                            }
+                            else {
+                                return method17(`${v0_1}${v46}`, v1_1, v47, v4_1);
+                            }
+                    }
+                }
+                else if (1 === v45) {
+                    return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                }
+                else {
+                    return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                }
+            }
+        }
+        break;
+    }
+}
+
+export function method19(v0_1: UH1_$union, v1_1: FSharpList<string>): FSharpList<string> {
+    if (v0_1.tag === /* UH1_0 */ 0) {
+        return v1_1;
+    }
+    else {
+        return cons(v0_1.fields[0], method19(v0_1.fields[1], v1_1));
+    }
+}
+
+export function method15(v0_1: string): string[] {
+    const v3_1: int32 = v0_1.length | 0;
+    const v4_1: string[] = fill(new Array(v3_1), 0, v3_1, "");
+    const v5_1: Mut4 = new Mut4(0);
+    while (method3(v3_1, v5_1)) {
+        const v7: int32 = v5_1.l0 | 0;
+        const v8: string = v0_1[v7];
+        setItem(v4_1, v7, v8);
+        const v9: int32 = (v7 + 1) | 0;
+        v5_1.l0 = (v9 | 0);
+    }
+    const v11: FSharpList<string> = ofArray<string>(v4_1);
+    return toArray<string>(method19(method16("", UH1_UH1_0(), foldBack<string, UH0_$union>(uncurry2(method4()), v11, UH0_UH0_0()), US8_US8_0(), US8_US8_0())[0], empty<string>()));
+}
+
+export function closure21(unitVar: void, v0_1: string): string[] {
+    return method15(v0_1);
 }
 
 export const v0 = (): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(void 0, void 0);
@@ -994,6 +1695,12 @@ export const v4 = (arg10$0040: [Option<any>, string, Option<((arg0: [boolean, st
 
 export function execute_with_options_async(x: [Option<any>, string, Option<((arg0: [boolean, string, int32]) => any)>, Option<string>]): any {
     return v4(x);
+}
+
+export const v5 = (v: string): string[] => closure21(void 0, v);
+
+export function split_args(x: string): string[] {
+    return v5(x);
 }
 
 

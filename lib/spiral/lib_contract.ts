@@ -1,6 +1,6 @@
 import { Mut3 as Mut3_4, Mut2 as Mut2_4, Mut1 as Mut1_4, Mut0 as Mut0_4, State_trace_state as State_trace_state_4, US0_$union, trace } from "../../lib/spiral/trace.fsx";
 import { hash_text } from "../../lib/spiral/crypto.fsx";
-import { trim_end, trim_start, trim, to_lower, substring, starts_with, split_string, split, slice, replace, format_exception, ends_with, ellipsis_end, ellipsis, contains, concat } from "../../lib/spiral/sm.fsx";
+import { trim_end, trim_start, trim, to_lower, substring, starts_with, split_string, split, slice, replace_regex, replace, format_exception, ends_with, ellipsis_end, ellipsis, contains, concat } from "../../lib/spiral/sm.fsx";
 import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { US0_US0_0, US0_US0_4, US0_US0_3, US0_US0_2, US0_US0_1, Mut3, Mut2, Mut1, Mut0, State_trace_state, create_temp_directory_name, create_temp_directory, new_file_uri, normalize_path, find_parent, get_source_directory, get_repository_root } from "../../lib/spiral/file_system.fsx";
@@ -44,6 +44,10 @@ export function SpiralSm_format_exception(x: Error): string {
 
 export function SpiralSm_replace(x: string): ((arg0: string) => ((arg0: string) => string)) {
     return replace(x);
+}
+
+export function SpiralSm_replace_regex(x: string): ((arg0: string) => ((arg0: string) => string)) {
+    return replace_regex(x);
 }
 
 export function SpiralSm_slice(x: int32): ((arg0: int32) => ((arg0: string) => string)) {

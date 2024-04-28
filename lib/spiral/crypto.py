@@ -3,7 +3,7 @@ from abc import abstractmethod
 from collections.abc import Callable
 from dataclasses import dataclass
 from typing import (Any, Protocol)
-from fable_modules.fable_library.option import value
+from fable_modules.fable_library.option import value as value_1
 from fable_modules.fable_library.reflection import (TypeInfo, int32_type, record_type)
 from fable_modules.fable_library.types import Record
 
@@ -34,14 +34,14 @@ def method1(__unit: None=None) -> str:
 def closure0(unit_var: None, v0_1: str) -> str:
     _v1: str | None = None
     _v1 = None
-    return value(_v1)
+    return value_1(_v1)
 
 
-def _arrow21(v: str) -> str:
+def _arrow3(v: str) -> str:
     return closure0(None, v)
 
 
-v0: Callable[[str], str] = _arrow21
+v0: Callable[[str], str] = _arrow3
 
 def hash_text(x: str) -> str:
     return v0(x)

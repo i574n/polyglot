@@ -24,6 +24,7 @@ mod module_b7a9935b {
         use fable_library_rust::Native_::MutCell;
         use fable_library_rust::Native_::OnceInit;
         use fable_library_rust::Option_::defaultValue;
+        use fable_library_rust::Option_::getValue;
         use fable_library_rust::Option_::map;
         use fable_library_rust::String_::append;
         use fable_library_rust::String_::printfn;
@@ -161,7 +162,13 @@ mod module_b7a9935b {
             v0_1
         }
         pub fn closure1(unitVar: (), v0_1: pyo3::PyErr) -> std::string::String {
-            format!("{}", v0_1)
+            let _v1: MutCell<Option<std::string::String>> =
+                MutCell::new(None::<std::string::String>);
+            {
+                let x: std::string::String = format!("{}", v0_1);
+                _v1.set(Some(x))
+            }
+            getValue(_v1.get().clone())
         }
         pub fn method10() -> Func1<pyo3::PyErr, std::string::String> {
             Func1::new(move |v: pyo3::PyErr| Math::closure1((), v))
@@ -175,7 +182,13 @@ mod module_b7a9935b {
             v0_1
         }
         pub fn closure2(unitVar: (), v0_1: pyo3::PyErr) -> std::string::String {
-            format!("{}", v0_1)
+            let _v1: MutCell<Option<std::string::String>> =
+                MutCell::new(None::<std::string::String>);
+            {
+                let x: std::string::String = format!("{}", v0_1);
+                _v1.set(Some(x))
+            }
+            getValue(_v1.get().clone())
         }
         pub fn method13() -> Func1<pyo3::PyErr, std::string::String> {
             Func1::new(move |v: pyo3::PyErr| Math::closure2((), v))
@@ -190,7 +203,13 @@ mod module_b7a9935b {
             v0_1
         }
         pub fn closure3(unitVar: (), v0_1: pyo3::PyErr) -> std::string::String {
-            format!("{}", v0_1)
+            let _v1: MutCell<Option<std::string::String>> =
+                MutCell::new(None::<std::string::String>);
+            {
+                let x: std::string::String = format!("{}", v0_1);
+                _v1.set(Some(x))
+            }
+            getValue(_v1.get().clone())
         }
         pub fn method16() -> Func1<pyo3::PyErr, std::string::String> {
             Func1::new(move |v: pyo3::PyErr| Math::closure3((), v))
@@ -199,7 +218,13 @@ mod module_b7a9935b {
             v0_1
         }
         pub fn closure4(unitVar: (), v0_1: pyo3::PyErr) -> std::string::String {
-            format!("{}", v0_1)
+            let _v1: MutCell<Option<std::string::String>> =
+                MutCell::new(None::<std::string::String>);
+            {
+                let x: std::string::String = format!("{}", v0_1);
+                _v1.set(Some(x))
+            }
+            getValue(_v1.get().clone())
         }
         pub fn method18() -> Func1<pyo3::PyErr, std::string::String> {
             Func1::new(move |v: pyo3::PyErr| Math::closure4((), v))

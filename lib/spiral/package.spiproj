@@ -11,8 +11,8 @@ modules:
     resultm
     base-
     console
-    am'
     listm'
+    am'
     listm'_operators
     seq
     math

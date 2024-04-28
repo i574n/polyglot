@@ -16,6 +16,8 @@ if (!$fast) {
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 async.dib -Retries 3`"" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 runtime.dib -Retries 3`"" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 trace.dib -Retries 3`"" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"am'.dib\`" -Retries 3`"" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 benchmark.dib`" -Retries 3" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 crypto.dib -Retries 3`"" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 common.dib -Retries 3`"" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 resultm.dib -Retries 3`"" `
@@ -23,16 +25,14 @@ if (!$fast) {
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 date_time.dib -Retries 3`"" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 math.dib -Retries 3`"" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"optionm'.dib\`" -Retries 3`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"am'.dib\`" -Retries 3`"" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"sm'.dib\`" -Retries 3`"" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"listm'.dib\`" -Retries 3`"" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 util.dib`" -Retries 3" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 stream.dib`" -Retries 3" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 seq.dib`" -Retries 3" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 benchmark.dib`" -Retries 3" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 file_system.dib`" -Retries 3" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 rust.dib`" -Retries 3" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 threading.dib -Retries 3`"" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 file_system.dib`" -Retries 3" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 networking.dib -Retries 3`"" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 physics.dib`" -Retries 3" `
     } | Invoke-Block

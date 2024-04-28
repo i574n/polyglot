@@ -23,12 +23,15 @@ open rust_operators
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER // async.types"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type std_future_Future<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>] type futures_future_TryJoinAll<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::vec::IntoIter<$0>\")>] type rayon_vec_IntoIter<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::iter::Map<$0, _>\")>] type rayon_iter_Map<'T> = class end"
-    global "#endif // async.types"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>]\n#endif\ntype std_future_Future<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>]\n#endif\ntype futures_future_TryJoinAll<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::vec::IntoIter<$0>\")>]\n#endif\ntype rayon_vec_IntoIter<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::iter::Map<$0, _>\")>]\n#endif\ntype rayon_iter_Map<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures_lite::stream::StreamExt\")>]\n#endif\ntype futures_lite_stream_StreamExt = class end"
+
+#!spiral
+
+nominal stream_ext = $'futures_lite_stream_StreamExt'
 
 #!markdown
 
@@ -82,7 +85,7 @@ type future_pin_send t = rust.pin (rust.box (rust.send (rust.dyn' (future t))))
 #!spiral
 
 inl block_on forall t. (fn : future_pin t) : t =
-    !\($'"futures_lite::future::block_on(!fn)"')
+    !\\(fn, $'"futures_lite::future::block_on($0)"')
 
 #!markdown
 
@@ -191,7 +194,7 @@ nominal iter_map t u = $'rayon_iter_Map<`t>'
 #!spiral
 
 inl par_map forall t u. (fn : t -> u) (ar : into_iter t) : iter_map (into_iter t) u =
-    !\\(fn, $'"rayon::iter::ParallelIterator::map(!ar, |x| $0(x))"')
+    !\\((ar, fn), $'"rayon::iter::ParallelIterator::map($0, |x| $1(x))"')
 
 #!markdown
 
@@ -200,7 +203,7 @@ inl par_map forall t u. (fn : t -> u) (ar : into_iter t) : iter_map (into_iter t
 #!spiral
 
 inl par_collect forall t u. (iter : iter_map (into_iter t) u) : am'.vec u =
-    !\($'"rayon::iter::ParallelIterator::collect(!iter)"')
+    !\\(iter, $'"rayon::iter::ParallelIterator::collect($0)"')
 
 #!markdown
 

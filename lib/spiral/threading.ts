@@ -1,7 +1,26 @@
-import { FSharpRef, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
+import { defaultOf, IDisposable } from "../../deps/Fable/src/fable-library-ts/Util.js";
 import { union_type, class_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { FSharpRef, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { value as value_1, some, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
-import { IDisposable, defaultOf } from "../../deps/Fable/src/fable-library-ts/Util.js";
+
+export class Disposable implements IDisposable {
+    readonly f: (() => void);
+    constructor(f: (() => void)) {
+        this.f = f;
+    }
+    Dispose(): void {
+        const _: Disposable = this;
+        _.f();
+    }
+}
+
+export function Disposable_$reflection(): TypeInfo {
+    return class_type("Threading.Disposable", void 0, Disposable);
+}
+
+export function Disposable_$ctor_3A5B6456(f: (() => void)): Disposable {
+    return new Disposable(f);
+}
 
 export type US0_$union = 
     | US0<0>
@@ -64,6 +83,12 @@ export function closure2(v0_1: any, unitVar: void): void {
     defaultOf();
     _v1 = some(void 0);
     value_1(_v1);
+}
+
+export function method1(v0_1: any): (() => void) {
+    return (): void => {
+        closure2(v0_1, void 0);
+    };
 }
 
 export function closure0(unitVar: void, v0_1: Option<any>): [any, IDisposable] {

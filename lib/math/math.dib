@@ -14,12 +14,12 @@ open rust_operators
 #!spiral
 
 inl types () =
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"num_complex::Complex<$0>\")>] type num_complex_Complex<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::types::PyModule\")>] type pyo3_types_PyModule = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Bound<$0>\")>] type pyo3_Bound<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Python\")>] type pyo3_Python = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::PyAny\")>] type pyo3_PyAny = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::PyErr\")>] type pyo3_PyErr = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"num_complex::Complex<$0>\")>]\n#endif\ntype num_complex_Complex<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::types::PyModule\")>]\n#endif\ntype pyo3_types_PyModule = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Bound<$0>\")>]\n#endif\ntype pyo3_Bound<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Python\")>]\n#endif\ntype pyo3_Python = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::PyAny\")>]\n#endif\ntype pyo3_PyAny = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::PyErr\")>]\n#endif\ntype pyo3_PyErr = class end"
 
 #!spiral
 

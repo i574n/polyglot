@@ -18,6 +18,23 @@ open testing
 
 #!markdown
 
+## types
+
+#!spiral
+
+inl types () =
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::thread::JoinHandle<$0>\")>]\n#endif\ntype std_thread_JoinHandle<'T> = class end"
+
+#!markdown
+
+## join_handle
+
+#!spiral
+
+nominal join_handle t = $'std_thread_JoinHandle<`t>'
+
+#!markdown
+
 ## cancellation_token
 
 #!spiral

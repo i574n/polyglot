@@ -3,16 +3,14 @@ open rust_operators
 
 // // ## types
 inl types () =
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Error\")>] type reqwest_Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::RequestBuilder\")>] type reqwest_RequestBuilder = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Response\")>] type reqwest_Response = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Error\")>]\n#endif\ntype reqwest_Error = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::RequestBuilder\")>]\n#endif\ntype reqwest_RequestBuilder = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Response\")>]\n#endif\ntype reqwest_Response = class end"
 
 inl types () =
-    global "#if FABLE_COMPILER // networking.types"
     rust.types ()
     sm'.types ()
     types ()
-    global "#endif // networking.types"
 
 // // ## reqwest_response
 nominal reqwest_response = $"reqwest_Response"

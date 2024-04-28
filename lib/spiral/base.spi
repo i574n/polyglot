@@ -29,6 +29,7 @@ union target =
     | Rust : target_runtime
     | Fsharp : target_runtime
     | TypeScript : target_runtime
+    | Python : target_runtime
 
 // // ## defaultof
 
@@ -49,7 +50,7 @@ inl unbox forall t u. (x : t) : u =
 
 inl run_target forall t. (fn : target -> (() -> t)) : t =
     inl close x =
-        $'!x\n#endif'
+        $'!x\n    #endif'
     inl result : optionm'.option' t = optionm'.none' ()
     ($"true in let mutable _!result = !result" : bool) |> ignore
     $"#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT"
@@ -58,12 +59,12 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
     fn (Rust Wasm) () |> close
     $"#if FABLE_COMPILER_RUST && CONTRACT"
     fn (Rust Contract) () |> close
-    $"#if \!FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!FABLE_COMPILER_TYPESCRIPT && \!WASM && \!CONTRACT"
+    $"#if \!FABLE_COMPILER && \!WASM && \!CONTRACT"
     fn (Fsharp Native) () |> close
     $"#if FABLE_COMPILER_TYPESCRIPT"
     fn (TypeScript Native) () |> close
-    $"#if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART"
-    ((real defaultof `t ()) : t) |> close
+    $"#if FABLE_COMPILER_PYTHON"
+    fn (Python Native) () |> close
     $"|> fun x -> _!result <- Some x"
     $'_!result.Value'
 
@@ -134,6 +135,11 @@ nominal unativeint = $"unativeint"
 inl unativeint forall t {int}. (n : t) : unativeint =
     $"unativeint !n"
 
+// // ## convert_i32
+
+inl convert_i32 forall t. (x : t) : i32 =
+    x |> $'System.Convert.ToInt32'
+
 // // ## pair
 
 type pair a b = $"(`a * `b)"
@@ -152,6 +158,9 @@ inl get_entry_assembly_name () : string =
     run_target function
         | Fsharp (Native) => fun () =>
             $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'
+        | Rust (Native) => fun () =>
+            open rust_operators
+            !\($'"env\!(\\"CARGO_PKG_NAME\\").into()"')
         | target => fun () => null ()
 
 // // ## use

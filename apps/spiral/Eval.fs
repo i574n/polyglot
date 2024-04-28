@@ -493,7 +493,14 @@ module Eval =
                                                 else
                                                     rsCode
                                                     |> SpiralSm.replace "),);" "));"
+                                                    |> SpiralSm.replace_regex "\s\sdefaultOf\(\);" " defaultOf::<()>();"
+                                                    |> SpiralSm.replace "defaultOf()," "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
+                                                    |> SpiralSm.replace "_self_." "self."
                                                     |> SpiralSm.replace "get_or_insert_with" "get_or_init"
+                                                    |> SpiralSm.replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;" "type ConcurrentStack_1<T> = T;"
+                                                    |> SpiralSm.replace "use fable_library_rust::System::Threading::CancellationToken;" "type CancellationToken = ();"
+                                                    |> SpiralSm.replace "use fable_library_rust::System::TimeZoneInfo;" "type TimeZoneInfo = i64;"
+                                                    |> SpiralSm.replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;" "type TaskCanceledException = ();"
 
                                             if printCode
                                             then _trace (fun () -> $".rs:\n{rsCode}")
@@ -513,9 +520,11 @@ edition = "2021"
 [workspace]
 
 [dependencies]
-fable_library_rust = {{ path = "fable_modules/fable-library-rust", default-features = false, features = ["static_do_bindings", "datetime", "threaded"] }}
+fable_library_rust = {{ path = "fable_modules/fable-library-rust", default-features = false, features = ["static_do_bindings", "datetime", "guid", "threaded"] }}
 clap = "~4.5"
 inline_colorization = "~0.1"
+regex = "~1.10"
+chrono = "~0.4"
 num-complex = "~0.4"
 pyo3 = "~0.21"
 async-std = "~1.12"

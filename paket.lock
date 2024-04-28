@@ -64,7 +64,6 @@ NUGET
     Microsoft.Extensions.Primitives (8.0)
     Mono.Cecil (0.11.5)
     System.CodeDom (8.0)
-    System.CommandLine (2.0.0-beta4.22272.1)
     System.Configuration.ConfigurationManager (8.0)
       System.Diagnostics.EventLog (>= 8.0)
       System.Security.Cryptography.ProtectedData (>= 8.0)

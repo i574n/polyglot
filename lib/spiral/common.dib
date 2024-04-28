@@ -19,10 +19,8 @@ open testing
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER // common.types"
     rust.types ()
     sm'.types ()
-    global "#endif // common.types"
 
 #!markdown
 
@@ -160,6 +158,15 @@ instance (~:>) any = to_any
 
 #!markdown
 
+## not'
+
+#!spiral
+
+inl not' x =
+    join not x
+
+#!markdown
+
 ## (+.)
 
 #!spiral
@@ -202,6 +209,15 @@ inl (/.) forall t. (a : t) (b : t) : t =
 
 inl (=.) forall t. (a : t) (b : t) : bool =
     $"!a = !b"
+
+#!markdown
+
+## (<>.)
+
+#!spiral
+
+inl (<>.) forall t. (a : t) (b : t) : bool =
+    $"!a <> !b"
 
 #!markdown
 
@@ -347,10 +363,12 @@ inl dispose (disposable : disposable _) : () =
 
 inl new_disposable (fn : () -> ()) : disposable _ =
     run_target function
-        | Fsharp _ => fun () => $'{ new System.IDisposable with member _.Dispose () = !fn () }'
-        // | Rust _ =>
-        //     fun () =>
-                // $'{ new System.IDisposable with member _.Dispose () = Fable.Core.RustInterop.emitRustExpr () "!fn()" }'
+        | Rust _ => fun () =>
+            global "type Disposable (f : unit -> unit) = interface System.IDisposable with member _.Dispose () = f ()"
+            $'new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr !fn "$0()" )'
+        | Fsharp _ => fun () =>
+            inl fn = join fn
+            $'{ new System.IDisposable with member _.Dispose () = !fn () }'
         | _ => fun () => null ()
 
 #!spiral
@@ -358,7 +376,19 @@ inl new_disposable (fn : () -> ()) : disposable _ =
 // // test
 
 inl new_disposable_test = mut 0i32
-new_disposable (fun () => new_disposable_test <- *new_disposable_test + 1)
+new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
+|> fun x => x : disposable ()
+|> dispose
+*new_disposable_test |> _assert_eq 1
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+inl new_disposable_test = mut 0i32
+new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
 |> fun x => x : disposable ()
 |> dispose
 *new_disposable_test |> _assert_eq 1

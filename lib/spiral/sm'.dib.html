@@ -7613,17 +7613,18 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">str</span><span class="se">\"</span><span class="s2">)&gt;] type Str = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">base64::DecodeError</span><span class="se">\"</span><span class="s2">)&gt;] type base64_DecodeError = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">borsh::io::Error</span><span class="se">\"</span><span class="s2">)&gt;] type borsh_io_Error = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">js_sys::JsString</span><span class="se">\"</span><span class="s2">)&gt;] type js_sys_JsString = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">serde_json::Error</span><span class="se">\"</span><span class="s2">)&gt;] type serde_json_Error = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">serde_json::Value</span><span class="se">\"</span><span class="s2">)&gt;] type serde_json_Value = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">serde_wasm_bindgen::Error</span><span class="se">\"</span><span class="s2">)&gt;] type serde_wasm_bindgen_Error = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::ffi::OsStr</span><span class="se">\"</span><span class="s2">)&gt;] type std_ffi_OsStr = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::ffi::OsString</span><span class="se">\"</span><span class="s2">)&gt;] type std_ffi_OsString = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::str::Utf8Error</span><span class="se">\"</span><span class="s2">)&gt;] type std_str_Utf8Error = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::string::String</span><span class="se">\"</span><span class="s2">)&gt;] type std_string_String = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">str</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type Str = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">base64::DecodeError</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type base64_DecodeError = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">borsh::io::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type borsh_io_Error = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">js_sys::JsString</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type js_sys_JsString = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">serde_json::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type serde_json_Error = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">serde_json::Value</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type serde_json_Value = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">serde_wasm_bindgen::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type serde_wasm_bindgen_Error = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::ffi::OsStr</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_ffi_OsStr = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::ffi::OsString</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_ffi_OsString = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::fmt::Display&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_fmt_Display&lt;'T&gt; = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::str::Utf8Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_str_Utf8Error = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::string::String</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_string_String = class end"</span>
 </pre></div>
 </div>
 </div>
@@ -7651,9 +7652,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">rust</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
     <span class="n">types</span> <span class="p">()</span>
 </pre></div>
@@ -7683,14 +7682,15 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">base64_decode_error</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"base64_DecodeError"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">display</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_fmt_Display&lt;`t&gt;"</span>
+<span class="n">nominal</span> <span class="nb">str</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"Str"</span>
+<span class="n">nominal</span> <span class="n">base64_decode_error</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"base64_DecodeError"</span>
 <span class="n">nominal</span> <span class="n">borsh_io_error</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"borsh_io_Error"</span>
 <span class="n">nominal</span> <span class="n">utf8_error</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_str_Utf8Error"</span>
 <span class="n">nominal</span> <span class="n">json_value</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"serde_json_Value"</span>
 <span class="n">nominal</span> <span class="n">json_error</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"serde_json_Error"</span>
 <span class="n">nominal</span> <span class="n">serde_wasm_bindgen_error</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"serde_wasm_bindgen_Error"</span>
 <span class="n">nominal</span> <span class="n">js_string</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"js_sys_JsString"</span>
-<span class="n">nominal</span> <span class="nb">str</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"Str"</span>
 <span class="n">nominal</span> <span class="n">os_str</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_ffi_OsStr"</span>
 <span class="n">nominal</span> <span class="n">os_string</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_ffi_OsString"</span>
 <span class="n">nominal</span> <span class="n">std_string</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_string_String"</span>
@@ -7852,8 +7852,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">pad_right</span> <span class="p">(</span><span class="n">pad</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"!s.PadRight !pad"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">pad_right</span> <span class="p">(</span><span class="n">total_width</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">padding_char</span> <span class="p">:</span> <span class="n">char</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!s.PadRight (!total_width, !padding_char)"</span>
 </pre></div>
 </div>
 </div>
@@ -7873,18 +7873,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="replace">replace<a class="anchor-link" href="#replace">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7892,8 +7881,11 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">replace</span> <span class="p">(</span><span class="n">old_value</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">new_value</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"!s.Replace (!old_value, !new_value)"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="s2">"123"</span>
+<span class="o">|&gt;</span> <span class="n">pad_right</span> <span class="mi">6</span> <span class="s1">' '</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"123   "</span>
 </pre></div>
 </div>
 </div>
@@ -7906,15 +7898,34 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : string = "123"
+    let v1 : string = v0.PadRight (6, ' ')
+    let v2 : string = $"%A{v1}"
+    System.Console.WriteLine v2
+    let v4 : bool = v1 = "123   "
+    let v6 : bool =
+        if v4 then
+            true
+        else
+            method1(v4)
+    let v7 : string = "123   "
+    let v8 : string = $"__expect / actual: %A{v1} / expected: %A{v7}"
+    let v9 : bool = v6 = false
+    if v9 then
+        failwith&lt;unit&gt; v8
+method0()
 
+"123   "
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7924,7 +7935,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7954,7 +7965,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7964,7 +7975,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7994,7 +8005,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8004,7 +8015,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8034,7 +8045,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8044,7 +8055,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8074,7 +8085,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8084,7 +8095,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8114,7 +8125,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8124,7 +8135,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8154,7 +8165,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8164,7 +8175,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8194,7 +8205,47 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="length">length<a class="anchor-link" href="#length">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">length</span> <span class="n">forall</span> <span class="n">dim</span><span class="o">.</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">dim</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!input |&gt; String.length"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8204,7 +8255,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8234,7 +8285,58 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="range">range<a class="anchor-link" href="#range">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="nb">range</span> <span class="n">dim</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Start</span> <span class="p">:</span> <span class="n">dim</span>
+    <span class="o">|</span> <span class="n">End</span> <span class="p">:</span> <span class="n">dim</span> <span class="o">-&gt;</span> <span class="n">dim</span>
+
+<span class="n">inl</span> <span class="nb">range</span> <span class="n">start</span> <span class="n">end</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">Start</span> <span class="n">start</span><span class="p">,</span> <span class="n">End</span> <span class="n">fn</span> <span class="o">=&gt;</span>
+            <span class="n">start</span><span class="p">,</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">length</span> <span class="o">|&gt;</span> <span class="n">fn</span>
+        <span class="o">|</span> <span class="n">End</span> <span class="n">start_fn</span><span class="p">,</span> <span class="n">End</span> <span class="n">end_fn</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="nb">len</span> <span class="o">=</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">length</span>
+            <span class="n">start_fn</span> <span class="nb">len</span><span class="p">,</span> <span class="n">end_fn</span> <span class="nb">len</span>
+    <span class="n">s</span> <span class="o">|&gt;</span> <span class="nb">slice</span> <span class="n">start</span> <span class="n">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8244,7 +8346,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8253,7 +8355,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">raw_string_literal</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str =</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">r#</span><span class="se">\\\"\"</span><span class="s2"> + !s + </span><span class="se">\"\\\"</span><span class="s2">#</span><span class="se">\"</span><span class="s2">"</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s2">$"\"r#\\\"\" + !s + \"\\\"#\""</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8274,7 +8376,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8284,7 +8386,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8293,7 +8395,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">raw_string_literal_static</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span><span class="s1">' str =</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">r#</span><span class="se">\\\"\"</span><span class="s2"> + !s + </span><span class="se">\"\\\"</span><span class="s2">#</span><span class="se">\"</span><span class="s2">"</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s2">$"\"r#\\\"\" + !s + \"\\\"#\""</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8314,7 +8416,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8324,7 +8426,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8333,7 +8435,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">include_str</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str =</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"include_str\!(</span><span class="se">\\\"</span><span class="s1">" + !path + "</span><span class="se">\\\"</span><span class="s1">)"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"include_str\!(\\\"" + !path + "\\\")"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8354,7 +8456,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8364,7 +8466,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8373,7 +8475,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_str</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str =</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"fable_library_rust::String_::LrcStr::as_str(&amp;$0)"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"fable_library_rust::String_::LrcStr::as_str(&amp;$0)"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8394,127 +8496,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="as_os_ref">as_os_ref<a class="anchor-link" href="#as_os_ref">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_os_ref</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">os_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' os_str =</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.as_ref()"'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="to_os_string">to_os_string<a class="anchor-link" href="#to_os_string">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_os_string</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' os_str) : os_string =</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.to_os_string()"'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="os_to_str">os_to_str<a class="anchor-link" href="#os_to_str">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">os_to_str</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">os_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str) =</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.to_str()"'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8524,7 +8506,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8533,7 +8515,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">from_std_string</span> <span class="p">(</span><span class="nb">str</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"fable_library_rust::String_::fromString($0)"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>str,<span class="w"> </span><span class="s1">$'"fable_library_rust::String_::fromString($0)"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8554,7 +8536,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8564,7 +8546,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8573,7 +8555,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">ref_to_std_string</span> <span class="p">(</span><span class="nb">str</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str) : std_string =</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"String::from($0)"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>str,<span class="w"> </span><span class="s1">$'"String::from($0)"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8594,7 +8576,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8604,7 +8586,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8635,7 +8617,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8645,7 +8627,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8655,7 +8637,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_str_std</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str =</span>
     <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">join</span> <span class="n">s</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!s.as_str()"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!s.as_str()"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8676,7 +8658,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8686,7 +8668,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8695,7 +8677,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">into_boxed_str</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">box</span> <span class="nb">str</span> <span class="o">=</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!s.into_boxed_str()"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!s.into_boxed_str()"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8716,7 +8698,303 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="as_os_ref">as_os_ref<a class="anchor-link" href="#as_os_ref">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_os_ref</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">os_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' os_str =</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"$0.as_ref()"'</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="to_os_string">to_os_string<a class="anchor-link" href="#to_os_string">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_os_string</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' os_str) : os_string =</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"$0.to_os_string()"'</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="os_to_str">os_to_str<a class="anchor-link" href="#os_to_str">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=60">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">os_to_str</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">os_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str) =</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"$0.to_str()"'</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="from_os_str_ref">from_os_str_ref<a class="anchor-link" href="#from_os_str_ref">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">from_os_str_ref</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">s</span>
+    <span class="o">|&gt;</span> <span class="n">to_os_string</span>
+    <span class="o">|&gt;</span> <span class="n">os_to_str</span>
+    <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unwrap</span>
+    <span class="o">|&gt;</span> <span class="n">ref_to_std_string</span>
+    <span class="o">|&gt;</span> <span class="n">from_std_string</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=63">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="obj_to_string">obj_to_string<a class="anchor-link" href="#obj_to_string">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=64">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">obj_to_string</span> <span class="n">x</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.ToString()'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=65">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="to_string-any">to_string any<a class="anchor-link" href="#to_string-any">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=66">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">instance</span> <span class="n">to_string</span> <span class="nb">any</span> <span class="o">=</span>
+    <span class="n">obj_to_string</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="to_string-result-t-u">to_string result t u<a class="anchor-link" href="#to_string-result-t-u">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">instance</span> <span class="n">to_string</span> <span class="n">result</span> <span class="n">t</span> <span class="n">u</span> <span class="o">=</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
+    <span class="n">real</span>
+        <span class="nb">open</span> <span class="n">rust</span>
+        <span class="n">typecase</span> <span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">u</span><span class="p">)</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">string</span> <span class="o">*</span> <span class="n">string</span> <span class="o">=&gt;</span>
+            <span class="k">match</span> <span class="n">x</span> <span class="k">with</span>
+            <span class="o">|</span> <span class="n">Ok</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span>
+            <span class="o">|</span> <span class="n">Error</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"sm</span><span class="se">\'</span><span class="s1">.to_string result / Error: " + !x + ""'</span> <span class="p">:</span> <span class="n">string</span>
+        <span class="o">|</span> <span class="n">std_string</span> <span class="o">*</span> <span class="n">std_string</span> <span class="o">=&gt;</span>
+            <span class="k">match</span> <span class="n">x</span> <span class="k">with</span>
+            <span class="o">|</span> <span class="n">Ok</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">from_std_string</span> <span class="n">x</span>
+            <span class="o">|</span> <span class="n">Error</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"sm</span><span class="se">\'</span><span class="s1">.to_string result / Error: " + string !x + ""'</span> <span class="p">:</span> <span class="n">string</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">obj_to_string</span> <span class="err">`</span><span class="n">u</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8726,7 +9004,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=70">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8735,7 +9013,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">format</span><span class="s1">''</span> <span class="p">(</span><span class="nb">format</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'@@$"format\!(" + !format + ")"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'@@$"format\!(" + !format + ")"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8756,7 +9034,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=71">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8766,7 +9044,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=72">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8775,7 +9053,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">format</span><span class="s1">' x : std_string =</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'@@$"format\!(""{{}}"", $0)"'</span><span class="p">)</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'@@$"format\!(""{{}}"", $0)"'</span><span class="o">)</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8796,7 +9077,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=73">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8806,7 +9087,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=74">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8836,7 +9117,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=75">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8846,7 +9127,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=76">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8855,7 +9136,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">format_debug</span><span class="s1">' x : std_string =</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'@@$"format\!(""{{:?}}"", $0)"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'@@$"format\!(""{{:?}}"", $0)"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8876,7 +9157,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=66">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=77">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8886,7 +9167,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=78">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8895,7 +9176,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">format_pretty</span><span class="s1">' x : std_string =</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'@@$"format\!(""{{:#?}}"", $0)"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'@@$"format\!(""{{:#?}}"", $0)"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -8916,7 +9197,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=68">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8926,7 +9207,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=69">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=80">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8957,7 +9238,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=70">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=81">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9010,27 +9291,27 @@ and method0 () : unit =
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
             let v7 : string = $"%A{v4}"
             v7
-#endif
+    #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
             let v8 : string = $"%A{v4}"
             v8
-#endif
+    #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
             let v9 : string = $"%A{v4}"
             v9
-#endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    #endif
+            #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
             let v10 : string = $"{v4.GetType ()}: {v4.Message}"
             v10
-#endif
+    #endif
             #if FABLE_COMPILER_TYPESCRIPT
             let v11 : string = $"%A{v4}"
             v11
-#endif
-            #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-            let v12 : string = Unchecked.defaultof&lt;string&gt;
+    #endif
+            #if FABLE_COMPILER_PYTHON
+            let v12 : string = $"%A{v4}"
             v12
-#endif
+    #endif
             |&gt; fun x -&gt; _v5 &lt;- Some x
             let v13 : string = _v5.Value
             US1_0(v13)
@@ -9063,17 +9344,17 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=71">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=82">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="obj_to_string">obj_to_string<a class="anchor-link" href="#obj_to_string">¶</a></h2>
+<h2 id="replace">replace<a class="anchor-link" href="#replace">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=72">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=83">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9081,8 +9362,8 @@ US1_0 "System.Exception: test"
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">obj_to_string</span> <span class="n">x</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.ToString()'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">replace</span> <span class="p">(</span><span class="n">old_value</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">new_value</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!s.Replace (!old_value, !new_value)"</span>
 </pre></div>
 </div>
 </div>
@@ -9103,17 +9384,17 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=73">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=84">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="to_string-any">to_string any<a class="anchor-link" href="#to_string-any">¶</a></h2>
+<h2 id="replace_regex">replace_regex<a class="anchor-link" href="#replace_regex">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=74">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=85">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9121,8 +9402,19 @@ US1_0 "System.Exception: test"
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">instance</span> <span class="n">to_string</span> <span class="nb">any</span> <span class="o">=</span>
-    <span class="n">obj_to_string</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">replace_regex</span> <span class="p">(</span><span class="n">pattern</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">replacement</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s2">"System.Text.RegularExpressions.Regex.Replace (!s, !pattern, !replacement)"</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="nb">open</span> <span class="n">rust_operators</span>
+            <span class="n">inl</span> <span class="n">pattern</span> <span class="o">=</span> <span class="n">join</span> <span class="n">pattern</span>
+            <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">join</span> <span class="n">s</span>
+            <span class="n">inl</span> <span class="n">replacement</span> <span class="o">=</span> <span class="n">join</span> <span class="n">replacement</span>
+            <span class="o">!</span><span class="se">\\</span><span class="o">((</span>pattern,<span class="w"> </span>s,<span class="w"> </span>replacement<span class="o">)</span>,<span class="w"> </span><span class="s1">$'$"&amp;regex::Regex::new(&amp;$0).unwrap().replace_all(&amp;$1, &amp;*$2)"'</span><span class="o">)</span>
+            <span class="o">|&gt;</span> <span class="n">ref_to_std_string</span>
+            <span class="o">|&gt;</span> <span class="n">from_std_string</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -9142,18 +9434,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=75">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="to_string-result-t-u">to_string result t u<a class="anchor-link" href="#to_string-result-t-u">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=76">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=86">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9161,19 +9442,11 @@ US1_0 "System.Exception: test"
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">instance</span> <span class="n">to_string</span> <span class="n">result</span> <span class="n">t</span> <span class="n">u</span> <span class="o">=</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
-    <span class="n">real</span>
-        <span class="nb">open</span> <span class="n">rust</span>
-        <span class="n">typecase</span> <span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">u</span><span class="p">)</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">string</span> <span class="o">*</span> <span class="n">string</span> <span class="o">=&gt;</span>
-            <span class="k">match</span> <span class="n">x</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="n">Ok</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span>
-            <span class="o">|</span> <span class="n">Error</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"sm</span><span class="se">\'</span><span class="s1">.to_string result / Error: " + !x + ""'</span> <span class="p">:</span> <span class="n">string</span>
-        <span class="o">|</span> <span class="n">std_string</span> <span class="o">*</span> <span class="n">std_string</span> <span class="o">=&gt;</span>
-            <span class="k">match</span> <span class="n">x</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="n">Ok</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">from_std_string</span> <span class="n">x</span>
-            <span class="o">|</span> <span class="n">Error</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"sm</span><span class="se">\'</span><span class="s1">.to_string result / Error: " + string !x + ""'</span> <span class="p">:</span> <span class="n">string</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">obj_to_string</span> <span class="err">`</span><span class="n">u</span> <span class="n">x</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="s2">" 123"</span>
+<span class="o">|&gt;</span> <span class="n">replace_regex</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">s</span><span class="se">\\</span><span class="s2">w2"</span> <span class="s2">""</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"3"</span>
 </pre></div>
 </div>
 </div>
@@ -9186,7 +9459,381 @@ US1_0 "System.Exception: test"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
+<pre>let rec method1 () : string =
+    let v0 : string = "\\s\\w2"
+    v0
+and method2 () : string =
+    let v0 : string = " 123"
+    v0
+and method3 () : string =
+    let v0 : string = ""
+    v0
+and method4 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : string option = None
+    let v1 : bool = true in let mutable _v0 = v0
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v2 : string = method1()
+    let v3 : string = method2()
+    let v4 : string = method3()
+    let v5 : string = $"&amp;regex::Regex::new(&amp;$0).unwrap().replace_all(&amp;$1, &amp;*$2)"
+    let v6 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr struct (v2, v3, v4) v5
+    let v7 : string = "String::from($0)"
+    let v8 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v7
+    let v9 : string = "fable_library_rust::String_::fromString($0)"
+    let v10 : string = Fable.Core.RustInterop.emitRustExpr v8 v9
+    v10
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v11 : string = null |&gt; unbox&lt;string&gt;
+    v11
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v12 : string = null |&gt; unbox&lt;string&gt;
+    v12
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v13 : string = " 123"
+    let v14 : string = "\\s\\w2"
+    let v15 : string = ""
+    let v16 : string = System.Text.RegularExpressions.Regex.Replace (v13, v14, v15)
+    v16
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v17 : string = null |&gt; unbox&lt;string&gt;
+    v17
+    #endif
+    #if FABLE_COMPILER_PYTHON
+    let v18 : string = null |&gt; unbox&lt;string&gt;
+    v18
+    #endif
+    |&gt; fun x -&gt; _v0 &lt;- Some x
+    let v19 : string = _v0.Value
+    let v20 : string = $"%A{v19}"
+    System.Console.WriteLine v20
+    let v22 : bool = v19 = "3"
+    let v24 : bool =
+        if v22 then
+            true
+        else
+            method4(v22)
+    let v25 : string = "3"
+    let v26 : string = $"__expect / actual: %A{v19} / expected: %A{v25}"
+    let v27 : bool = v24 = false
+    if v27 then
+        failwith&lt;unit&gt; v26
+method0()
+
+"3"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=87">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+
+<span class="n">types</span> <span class="p">()</span>
+<span class="s2">" 123"</span>
+<span class="o">|&gt;</span> <span class="n">replace_regex</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">s</span><span class="se">\\</span><span class="s2">w2"</span> <span class="s2">""</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"3"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.rs output:
+"3"
+
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx:
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func0&lt;$0&gt;")&gt;]
+#endif
+type Func0&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func1&lt;$0, $1&gt;")&gt;]
+#endif
+type Func0&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Box&lt;$0&gt;")&gt;]
+#endif
+type Box&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("dyn $0")&gt;]
+#endif
+type Dyn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("$0 + Send")&gt;]
+#endif
+type Send&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn() -&gt; $0")&gt;]
+#endif
+type Fn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn()")&gt;]
+#endif
+type FnUnit = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("FnOnce() -&gt; $0")&gt;]
+#endif
+type FnOnce&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0)")&gt;]
+#endif
+type ActionFn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")&gt;]
+#endif
+type ActionFn2&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("impl $0")&gt;]
+#endif
+type Impl&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("mut $0")&gt;]
+#endif
+type Mut&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;]
+#endif
+type Ref&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;'static $0")&gt;]
+#endif
+type StaticRef&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("MutCell&lt;$0&gt;")&gt;]
+#endif
+type MutCell&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::any::Any")&gt;]
+#endif
+type std_any_Any = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell&lt;$0&gt;")&gt;]
+#endif
+type std_cell_RefCell&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin&lt;$0&gt;")&gt;]
+#endif
+type std_pin_Pin&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc&lt;$0&gt;")&gt;]
+#endif
+type std_rc_Rc&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak&lt;$0&gt;")&gt;]
+#endif
+type std_rc_Weak&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
+#endif
+type std_sync_Arc&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
+#endif
+type std_sync_Mutex&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;]
+#endif
+type Str = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")&gt;]
+#endif
+type base64_DecodeError = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")&gt;]
+#endif
+type borsh_io_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")&gt;]
+#endif
+type js_sys_JsString = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")&gt;]
+#endif
+type serde_json_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")&gt;]
+#endif
+type serde_json_Value = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")&gt;]
+#endif
+type serde_wasm_bindgen_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")&gt;]
+#endif
+type std_ffi_OsStr = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")&gt;]
+#endif
+type std_ffi_OsString = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fmt::Display&lt;$0&gt;")&gt;]
+#endif
+type std_fmt_Display&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")&gt;]
+#endif
+type std_str_Utf8Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;]
+#endif
+type std_string_String = class end
+let rec method1 () : string =
+    let v0 : string = "\\s\\w2"
+    v0
+and method2 () : string =
+    let v0 : string = " 123"
+    v0
+and method3 () : string =
+    let v0 : string = ""
+    v0
+and method4 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : string option = None
+    let v1 : bool = true in let mutable _v0 = v0
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v2 : string = method1()
+    let v3 : string = method2()
+    let v4 : string = method3()
+    let v5 : string = $"&amp;regex::Regex::new(&amp;$0).unwrap().replace_all(&amp;$1, &amp;*$2)"
+    let v6 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr struct (v2, v3, v4) v5
+    let v7 : string = "String::from($0)"
+    let v8 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v7
+    let v9 : string = "fable_library_rust::String_::fromString($0)"
+    let v10 : string = Fable.Core.RustInterop.emitRustExpr v8 v9
+    v10
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v11 : string = null |&gt; unbox&lt;string&gt;
+    v11
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v12 : string = null |&gt; unbox&lt;string&gt;
+    v12
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v13 : string = " 123"
+    let v14 : string = "\\s\\w2"
+    let v15 : string = ""
+    let v16 : string = System.Text.RegularExpressions.Regex.Replace (v13, v14, v15)
+    v16
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v17 : string = null |&gt; unbox&lt;string&gt;
+    v17
+    #endif
+    #if FABLE_COMPILER_PYTHON
+    let v18 : string = null |&gt; unbox&lt;string&gt;
+    v18
+    #endif
+    |&gt; fun x -&gt; _v0 &lt;- Some x
+    let v19 : string = _v0.Value
+    let v20 : string = $"%A{v19}"
+    System.Console.WriteLine v20
+    let v22 : bool = v19 = "3"
+    let v24 : bool =
+        if v22 then
+            true
+        else
+            method4(v22)
+    let v25 : string = "3"
+    let v26 : string = $"__expect / actual: %A{v19} / expected: %A{v25}"
+    let v27 : bool = v24 = false
+    if v27 then
+        failwith&lt;unit&gt; v26
+method0()
+
+
+.rs:
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+#![allow(unreachable_code)]
+#![allow(unused_attributes)]
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
+mod module_ccfa04bf {
+    pub mod Spiral_eval {
+        use super::*;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::Native_::MutCell;
+        use fable_library_rust::Option_::getValue;
+        use fable_library_rust::String_::printfn;
+        use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::string;
+        pub fn method1() -&gt; string {
+            string("\\s\\w2")
+        }
+        pub fn method2() -&gt; string {
+            string(" 123")
+        }
+        pub fn method3() -&gt; string {
+            string("")
+        }
+        pub fn method4(v0: bool) -&gt; bool {
+            v0
+        }
+        pub fn method0() {
+            let _v0: MutCell&lt;Option&lt;string&gt;&gt; = MutCell::new(None::&lt;string&gt;);
+            let v2: string = Spiral_eval::method1();
+            let v3: string = Spiral_eval::method2();
+            let v4: string = Spiral_eval::method3();
+            let v6: &amp;str = &amp;regex::Regex::new(&amp;v2).unwrap().replace_all(&amp;v3, &amp;*v4);
+            let v8: std::string::String = String::from(v6);
+            {
+                let x: string = fable_library_rust::String_::fromString(v8);
+                _v0.set(Some(x))
+            }
+            {
+                let v19: string = getValue(_v0.get().clone());
+                let v20: string = sprintf!("{:?}", v19.clone());
+                printfn!("{0}", v20);
+                {
+                    let v22: bool = v19.clone() == string("3");
+                    if (if v22 { true } else { Spiral_eval::method4(v22) }) == false {
+                        panic!(
+                            "{}",
+                            sprintf!("__expect / actual: {:?} / expected: {:?}", v19, string("3")),
+                        );
+                    }
+                }
+            }
+        }
+        on_startup!(Spiral_eval::method0());
+    }
+}
+pub use module_ccfa04bf::*;
 
 </pre>
 </div>
@@ -9194,7 +9841,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=77">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=88">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9204,7 +9851,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=78">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=89">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9213,7 +9860,7 @@ US1_0 "System.Exception: test"
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">serialize</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' std_string json_error =</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"serde_json::to_string(&amp;!x)"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"serde_json::to_string(&amp;!x)"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -9234,7 +9881,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9244,7 +9891,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=80">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=91">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9255,7 +9902,7 @@ US1_0 "System.Exception: test"
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">deserialize</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">json</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' t std_string =</span>
     <span class="n">inl</span> <span class="n">json</span> <span class="o">=</span> <span class="n">join</span> <span class="n">json</span>
     <span class="n">inl</span> <span class="n">json</span> <span class="o">=</span> <span class="n">json</span> <span class="o">|&gt;</span> <span class="n">as_str</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"serde_json::from_str(&amp;!json)"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"serde_json::from_str(&amp;!json)"'</span><span class="o">)</span>
     <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' fun (x : json_error) =&gt; x |&gt; format'</span>
 </pre></div>
 </div>
@@ -9277,7 +9924,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=81">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=92">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9287,7 +9934,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=82">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=93">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9297,8 +9944,8 @@ US1_0 "System.Exception: test"
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">borsh_deserialize</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">data</span> <span class="p">:</span> <span class="n">array_base</span> <span class="n">u8</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' t std_string =</span>
     <span class="n">inl</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.as_slice</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"let mut !data = !data"'</span><span class="p">)</span>
-    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"borsh::BorshDeserialize::deserialize(&amp;mut !data)"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"let mut !data = !data"'</span><span class="o">)</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"borsh::BorshDeserialize::deserialize(&amp;mut !data)"'</span><span class="o">)</span>
     <span class="n">result</span>
     <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' fun (x : borsh_io_error) =&gt; x |&gt; format'</span>
 </pre></div>
@@ -9321,7 +9968,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=83">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9331,7 +9978,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=84">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=95">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9341,7 +9988,7 @@ US1_0 "System.Exception: test"
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">deserialize_vec</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">json_value</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (am'</span><span class="o">.</span><span class="n">vec</span> <span class="n">u8</span><span class="p">)</span> <span class="n">std_string</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span> <span class="n">join</span> <span class="n">value</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"serde_json::from_value(!value)"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"serde_json::from_value(!value)"'</span><span class="o">)</span>
     <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' fun (x : json_error) =&gt; x |&gt; format'</span>
 </pre></div>
 </div>
@@ -9363,7 +10010,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=96">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9373,7 +10020,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=86">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=97">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9382,7 +10029,7 @@ US1_0 "System.Exception: test"
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">encode_uri_component</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">js_string</span> <span class="o">=</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"js_sys::encode_uri_component(&amp;!s)"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"js_sys::encode_uri_component(&amp;!s)"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -9403,7 +10050,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=87">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=98">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9413,7 +10060,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=88">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=99">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9423,7 +10070,7 @@ US1_0 "System.Exception: test"
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">strip_prefix</span> <span class="p">(</span><span class="n">prefix</span> <span class="p">:</span> <span class="n">char</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str) =</span>
     <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">join</span> <span class="n">s</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!s.strip_prefix(!prefix)"'</span><span class="p">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!s.strip_prefix(!prefix)"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -9444,7 +10091,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=89">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=100">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9454,7 +10101,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=90">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=101">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9466,13 +10113,13 @@ US1_0 "System.Exception: test"
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
         <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">join</span> <span class="n">s</span>
         <span class="n">inl</span> <span class="nb">bytes</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (am'</span><span class="o">.</span><span class="n">vec</span> <span class="n">u8</span><span class="p">)</span> <span class="n">base64_decode_error</span> <span class="o">=</span>
-            <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"base64::Engine::decode(&amp;base64::engine::general_purpose::STANDARD, !s)"'</span><span class="p">)</span>
+            <span class="o">!</span><span class="se">\(</span><span class="s1">$'"base64::Engine::decode(&amp;base64::engine::general_purpose::STANDARD, !s)"'</span><span class="o">)</span>
         <span class="n">inl</span> <span class="nb">bytes</span> <span class="o">=</span>
             <span class="nb">bytes</span>
             <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' format'</span>
             <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="k">try</span><span class="s1">'</span>
         <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' std_string utf8_error =</span>
-            <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::str::from_utf8(&amp;!bytes).map(String::from)"'</span><span class="p">)</span>
+            <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::str::from_utf8(&amp;!bytes).map(String::from)"'</span><span class="o">)</span>
         <span class="n">result</span>
         <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' format'</span>
     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
@@ -9498,7 +10145,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=91">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=102">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9508,7 +10155,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=92">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=103">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9539,7 +10186,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=93">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=104">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9715,7 +10362,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=105">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9725,7 +10372,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=95">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=106">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9756,7 +10403,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=96">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=107">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9879,7 +10526,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=97">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=108">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9889,7 +10536,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=98">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=109">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9924,7 +10571,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=99">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=110">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9972,38 +10619,142 @@ pub use module_ccfa04bf::*;
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx:
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Func0&lt;$0&gt;")&gt;] type Func0&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Func1&lt;$0, $1&gt;")&gt;] type Func0&lt;'T, 'U&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Box&lt;$0&gt;")&gt;] type Box&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("dyn $0")&gt;] type Dyn&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("$0 + Send")&gt;] type Send&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn() -&gt; $0")&gt;] type Fn&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn()")&gt;] type FnUnit = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("FnOnce() -&gt; $0")&gt;] type FnOnce&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0)")&gt;] type ActionFn&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")&gt;] type ActionFn2&lt;'T, 'U&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("impl $0")&gt;] type Impl&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("mut $0")&gt;] type Mut&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;] type Ref&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;'static $0")&gt;] type StaticRef&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("MutCell&lt;$0&gt;")&gt;] type MutCell&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::any::Any")&gt;] type std_any_Any = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell&lt;$0&gt;")&gt;] type std_cell_RefCell&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin&lt;$0&gt;")&gt;] type std_pin_Pin&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc&lt;$0&gt;")&gt;] type std_rc_Rc&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak&lt;$0&gt;")&gt;] type std_rc_Weak&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;] type std_sync_Arc&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;] type Str = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")&gt;] type base64_DecodeError = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")&gt;] type borsh_io_Error = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")&gt;] type js_sys_JsString = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")&gt;] type serde_json_Error = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")&gt;] type serde_json_Value = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")&gt;] type serde_wasm_bindgen_Error = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")&gt;] type std_ffi_OsStr = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")&gt;] type std_ffi_OsString = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")&gt;] type std_str_Utf8Error = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;] type std_string_String = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func0&lt;$0&gt;")&gt;]
+#endif
+type Func0&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func1&lt;$0, $1&gt;")&gt;]
+#endif
+type Func0&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Box&lt;$0&gt;")&gt;]
+#endif
+type Box&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("dyn $0")&gt;]
+#endif
+type Dyn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("$0 + Send")&gt;]
+#endif
+type Send&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn() -&gt; $0")&gt;]
+#endif
+type Fn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn()")&gt;]
+#endif
+type FnUnit = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("FnOnce() -&gt; $0")&gt;]
+#endif
+type FnOnce&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0)")&gt;]
+#endif
+type ActionFn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")&gt;]
+#endif
+type ActionFn2&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("impl $0")&gt;]
+#endif
+type Impl&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("mut $0")&gt;]
+#endif
+type Mut&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;]
+#endif
+type Ref&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;'static $0")&gt;]
+#endif
+type StaticRef&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("MutCell&lt;$0&gt;")&gt;]
+#endif
+type MutCell&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::any::Any")&gt;]
+#endif
+type std_any_Any = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell&lt;$0&gt;")&gt;]
+#endif
+type std_cell_RefCell&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin&lt;$0&gt;")&gt;]
+#endif
+type std_pin_Pin&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc&lt;$0&gt;")&gt;]
+#endif
+type std_rc_Rc&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak&lt;$0&gt;")&gt;]
+#endif
+type std_rc_Weak&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
+#endif
+type std_sync_Arc&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
+#endif
+type std_sync_Mutex&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;]
+#endif
+type Str = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")&gt;]
+#endif
+type base64_DecodeError = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")&gt;]
+#endif
+type borsh_io_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")&gt;]
+#endif
+type js_sys_JsString = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")&gt;]
+#endif
+type serde_json_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")&gt;]
+#endif
+type serde_json_Value = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")&gt;]
+#endif
+type serde_wasm_bindgen_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")&gt;]
+#endif
+type std_ffi_OsStr = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")&gt;]
+#endif
+type std_ffi_OsString = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fmt::Display&lt;$0&gt;")&gt;]
+#endif
+type std_fmt_Display&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")&gt;]
+#endif
+type std_str_Utf8Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;]
+#endif
+type std_string_String = class end
 let rec method1 () : string =
     let v0 : string = "\n"
     v0
@@ -10143,7 +10894,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=100">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=111">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10153,7 +10904,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=101">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=112">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10184,7 +10935,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=102">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=113">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10194,7 +10945,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=103">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=114">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10225,7 +10976,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=104">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=115">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10297,7 +11048,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=105">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=116">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10307,7 +11058,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=106">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=117">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10347,7 +11098,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=107">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=118">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10494,7 +11245,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=108">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=119">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10504,7 +11255,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=109">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=120">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10536,7 +11287,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=110">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=121">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10546,7 +11297,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=111">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=122">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10576,7 +11327,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=112">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=123">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10586,7 +11337,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=113">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=124">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10618,7 +11369,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=114">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=125">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10628,7 +11379,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=115">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=126">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10658,7 +11409,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=116">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=127">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10668,7 +11419,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=117">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=128">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10697,7 +11448,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=118">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=129">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10784,7 +11535,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=119">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=130">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10794,7 +11545,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=120">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=131">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10823,7 +11574,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=121">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=132">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10876,7 +11627,7 @@ UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=122">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=133">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10908,7 +11659,7 @@ UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=123">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=134">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10918,7 +11669,7 @@ UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=124">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=135">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10948,7 +11699,7 @@ UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=125">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=136">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10958,7 +11709,7 @@ UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=126">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=137">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10988,47 +11739,7 @@ UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=127">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="to_string-std_string">to_string std_string<a class="anchor-link" href="#to_string-std_string">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=128">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">rust</span>
-<span class="n">instance</span> <span class="n">to_string</span> <span class="n">std_string</span> <span class="o">=</span> <span class="n">from_std_string</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=129">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=138">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11038,7 +11749,7 @@ UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=130">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=139">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11047,11 +11758,13 @@ UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">types</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let contains x = !contains x"</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let ends_with x = !ends_with x"</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let pad_left x = !pad_left x"</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let pad_right x = !pad_right x"</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let replace x = !replace x"</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s2">"let replace_regex x = !replace_regex x"</span> <span class="p">:</span> <span class="p">()</span>
     <span class="n">inl</span> <span class="nb">slice</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">slice</span> <span class="n">a</span> <span class="n">b</span> <span class="n">c</span>
     <span class="err">$</span><span class="s2">"let slice x = !slice x"</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let split x = !split x"</span> <span class="p">:</span> <span class="p">()</span>
@@ -11083,7 +11796,143 @@ UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type Mut0 = {mutable l0 : int32; mutable l1 : string}
+<pre>#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func0&lt;$0&gt;")&gt;]
+#endif
+type Func0&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func1&lt;$0, $1&gt;")&gt;]
+#endif
+type Func0&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Box&lt;$0&gt;")&gt;]
+#endif
+type Box&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("dyn $0")&gt;]
+#endif
+type Dyn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("$0 + Send")&gt;]
+#endif
+type Send&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn() -&gt; $0")&gt;]
+#endif
+type Fn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn()")&gt;]
+#endif
+type FnUnit = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("FnOnce() -&gt; $0")&gt;]
+#endif
+type FnOnce&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0)")&gt;]
+#endif
+type ActionFn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")&gt;]
+#endif
+type ActionFn2&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("impl $0")&gt;]
+#endif
+type Impl&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("mut $0")&gt;]
+#endif
+type Mut&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;]
+#endif
+type Ref&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;'static $0")&gt;]
+#endif
+type StaticRef&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("MutCell&lt;$0&gt;")&gt;]
+#endif
+type MutCell&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::any::Any")&gt;]
+#endif
+type std_any_Any = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell&lt;$0&gt;")&gt;]
+#endif
+type std_cell_RefCell&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin&lt;$0&gt;")&gt;]
+#endif
+type std_pin_Pin&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc&lt;$0&gt;")&gt;]
+#endif
+type std_rc_Rc&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak&lt;$0&gt;")&gt;]
+#endif
+type std_rc_Weak&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
+#endif
+type std_sync_Arc&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
+#endif
+type std_sync_Mutex&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;]
+#endif
+type Str = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")&gt;]
+#endif
+type base64_DecodeError = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")&gt;]
+#endif
+type borsh_io_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")&gt;]
+#endif
+type js_sys_JsString = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")&gt;]
+#endif
+type serde_json_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")&gt;]
+#endif
+type serde_json_Value = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")&gt;]
+#endif
+type serde_wasm_bindgen_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")&gt;]
+#endif
+type std_ffi_OsStr = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")&gt;]
+#endif
+type std_ffi_OsString = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fmt::Display&lt;$0&gt;")&gt;]
+#endif
+type std_fmt_Display&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")&gt;]
+#endif
+type std_str_Utf8Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;]
+#endif
+type std_string_String = class end
+type Mut0 = {mutable l0 : int32; mutable l1 : string}
 and Mut1 = {mutable l0 : int32}
 let rec closure1 (v0 : string) (v1 : string) : bool =
     let v2 : bool = v1.Contains v0
@@ -11102,121 +11951,177 @@ and closure5 (v0 : int32) (v1 : char) : (string -&gt; string) =
     closure6(v0, v1)
 and closure4 () (v0 : int32) : (char -&gt; (string -&gt; string)) =
     closure5(v0)
-and closure8 (v0 : int32) (v1 : string) : string =
-    let v2 : string = v1.PadRight v0
-    v2
-and closure7 () (v0 : int32) : (string -&gt; string) =
+and closure9 (v0 : int32, v1 : char) (v2 : string) : string =
+    let v3 : string = v2.PadRight (v0, v1)
+    v3
+and closure8 (v0 : int32) (v1 : char) : (string -&gt; string) =
+    closure9(v0, v1)
+and closure7 () (v0 : int32) : (char -&gt; (string -&gt; string)) =
     closure8(v0)
-and closure11 (v0 : string, v1 : string) (v2 : string) : string =
+and closure12 (v0 : string, v1 : string) (v2 : string) : string =
     let v3 : string = v2.Replace (v0, v1)
     v3
-and closure10 (v0 : string) (v1 : string) : (string -&gt; string) =
-    closure11(v0, v1)
-and closure9 () (v0 : string) : (string -&gt; (string -&gt; string)) =
-    closure10(v0)
-and closure14 (v0 : int32, v1 : int32) (v2 : string) : string =
+and closure11 (v0 : string) (v1 : string) : (string -&gt; string) =
+    closure12(v0, v1)
+and closure10 () (v0 : string) : (string -&gt; (string -&gt; string)) =
+    closure11(v0)
+and method0 (v0 : string) : string =
+    v0
+and method1 (v0 : string) : string =
+    v0
+and method2 (v0 : string) : string =
+    v0
+and closure15 (v0 : string, v1 : string) (v2 : string) : string =
+    let v3 : string option = None
+    let v4 : bool = true in let mutable _v3 = v3
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v5 : string = method0(v0)
+    let v6 : string = method1(v2)
+    let v7 : string = method2(v1)
+    let v8 : string = $"&amp;regex::Regex::new(&amp;$0).unwrap().replace_all(&amp;$1, &amp;*$2)"
+    let v9 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr struct (v5, v6, v7) v8
+    let v10 : string = "String::from($0)"
+    let v11 : std_string_String = Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v12 : string = "fable_library_rust::String_::fromString($0)"
+    let v13 : string = Fable.Core.RustInterop.emitRustExpr v11 v12
+    v13
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v14 : string = null |&gt; unbox&lt;string&gt;
+    v14
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v15 : string = null |&gt; unbox&lt;string&gt;
+    v15
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v16 : string = System.Text.RegularExpressions.Regex.Replace (v2, v0, v1)
+    v16
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v17 : string = null |&gt; unbox&lt;string&gt;
+    v17
+    #endif
+    #if FABLE_COMPILER_PYTHON
+    let v18 : string = null |&gt; unbox&lt;string&gt;
+    v18
+    #endif
+    |&gt; fun x -&gt; _v3 &lt;- Some x
+    let v19 : string = _v3.Value
+    v19
+and closure14 (v0 : string) (v1 : string) : (string -&gt; string) =
+    closure15(v0, v1)
+and closure13 () (v0 : string) : (string -&gt; (string -&gt; string)) =
+    closure14(v0)
+and closure18 (v0 : int32, v1 : int32) (v2 : string) : string =
     let v3 : string = v2.[int v0..int v1]
     v3
-and closure13 (v0 : int32) (v1 : int32) : (string -&gt; string) =
-    closure14(v0, v1)
-and closure12 () (v0 : int32) : (int32 -&gt; (string -&gt; string)) =
-    closure13(v0)
-and closure16 (v0 : string) (v1 : string) : (string []) =
+and closure17 (v0 : int32) (v1 : int32) : (string -&gt; string) =
+    closure18(v0, v1)
+and closure16 () (v0 : int32) : (int32 -&gt; (string -&gt; string)) =
+    closure17(v0)
+and closure20 (v0 : string) (v1 : string) : (string []) =
     let v2 : (string []) = v1.Split v0
     v2
-and closure15 () (v0 : string) : (string -&gt; (string [])) =
-    closure16(v0)
-and method0 () : string =
+and closure19 () (v0 : string) : (string -&gt; (string [])) =
+    closure20(v0)
+and method3 () : string =
     let v0 : string = ""
     v0
-and closure18 (v0 : (string [])) (v1 : string) : (string []) =
+and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v2 : (string []) option = None
     let v3 : bool = true in let mutable _v2 = v2
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v4 : ((string []) -&gt; string seq) = Seq.ofArray
     let v5 : string seq = v4 v0
-    let v6 : string = method0()
+    let v6 : string = method3()
     let v7 : (string -&gt; (string seq -&gt; string)) = String.concat
     let v8 : (string seq -&gt; string) = v7 v6
     let v9 : string = v8 v5
     let v10 : (string []) = v1.Split v9
     v10
-#endif
+    #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v11 : ((string []) -&gt; string seq) = Seq.ofArray
     let v12 : string seq = v11 v0
-    let v13 : string = method0()
+    let v13 : string = method3()
     let v14 : (string -&gt; (string seq -&gt; string)) = String.concat
     let v15 : (string seq -&gt; string) = v14 v13
     let v16 : string = v15 v12
     let v17 : (string []) = v1.Split v16
     v17
-#endif
+    #endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v18 : ((string []) -&gt; string seq) = Seq.ofArray
     let v19 : string seq = v18 v0
-    let v20 : string = method0()
+    let v20 : string = method3()
     let v21 : (string -&gt; (string seq -&gt; string)) = String.concat
     let v22 : (string seq -&gt; string) = v21 v20
     let v23 : string = v22 v19
     let v24 : (string []) = v1.Split v23
     v24
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v25 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
     v25
-#endif
+    #endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v26 : ((string []) -&gt; string seq) = Seq.ofArray
     let v27 : string seq = v26 v0
-    let v28 : string = method0()
+    let v28 : string = method3()
     let v29 : (string -&gt; (string seq -&gt; string)) = String.concat
     let v30 : (string seq -&gt; string) = v29 v28
     let v31 : string = v30 v27
     let v32 : (string []) = v1.Split v31
     v32
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v33 : (string []) = Unchecked.defaultof&lt;(string [])&gt;
-    v33
-#endif
+    #endif
+    #if FABLE_COMPILER_PYTHON
+    let v33 : ((string []) -&gt; string seq) = Seq.ofArray
+    let v34 : string seq = v33 v0
+    let v35 : string = method3()
+    let v36 : (string -&gt; (string seq -&gt; string)) = String.concat
+    let v37 : (string seq -&gt; string) = v36 v35
+    let v38 : string = v37 v34
+    let v39 : (string []) = v1.Split v38
+    v39
+    #endif
     |&gt; fun x -&gt; _v2 &lt;- Some x
-    let v34 : (string []) = _v2.Value
-    v34
-and closure17 () (v0 : (string [])) : (string -&gt; (string [])) =
-    closure18(v0)
-and closure20 (v0 : string) (v1 : string) : bool =
+    let v40 : (string []) = _v2.Value
+    v40
+and closure21 () (v0 : (string [])) : (string -&gt; (string [])) =
+    closure22(v0)
+and closure24 (v0 : string) (v1 : string) : bool =
     let v2 : bool = v1.StartsWith v0
     v2
-and closure19 () (v0 : string) : (string -&gt; bool) =
-    closure20(v0)
-and closure23 (v0 : int32, v1 : int32) (v2 : string) : string =
+and closure23 () (v0 : string) : (string -&gt; bool) =
+    closure24(v0)
+and closure27 (v0 : int32, v1 : int32) (v2 : string) : string =
     let v3 : string = v2.Substring (v0, v1)
     v3
-and closure22 (v0 : int32) (v1 : int32) : (string -&gt; string) =
-    closure23(v0, v1)
-and closure21 () (v0 : int32) : (int32 -&gt; (string -&gt; string)) =
-    closure22(v0)
-and closure24 () (v0 : string) : string =
+and closure26 (v0 : int32) (v1 : int32) : (string -&gt; string) =
+    closure27(v0, v1)
+and closure25 () (v0 : int32) : (int32 -&gt; (string -&gt; string)) =
+    closure26(v0)
+and closure28 () (v0 : string) : string =
     let v1 : string = v0.ToLower ()
     v1
-and closure25 () (v0 : string) : string =
+and closure29 () (v0 : string) : string =
     let v1 : string = v0.ToUpper ()
     v1
-and closure26 () (v0 : string) : string =
+and closure30 () (v0 : string) : string =
     let v1 : string = v0.Trim ()
     v1
-and closure28 (v0 : (char [])) (v1 : string) : string =
+and closure32 (v0 : (char [])) (v1 : string) : string =
     let v2 : string = v1.TrimEnd v0
     v2
-and closure27 () (v0 : (char [])) : (string -&gt; string) =
-    closure28(v0)
-and closure30 (v0 : (char [])) (v1 : string) : string =
+and closure31 () (v0 : (char [])) : (string -&gt; string) =
+    closure32(v0)
+and closure34 (v0 : (char [])) (v1 : string) : string =
     let v2 : string = v1.TrimStart v0
     v2
-and closure29 () (v0 : (char [])) : (string -&gt; string) =
-    closure30(v0)
-and closure32 (v0 : int32) (v1 : string) : string =
+and closure33 () (v0 : (char [])) : (string -&gt; string) =
+    closure34(v0)
+and closure36 (v0 : int32) (v1 : string) : string =
     let v2 : int32 = v1.Length
     let v3 : bool = v2 &lt;= v0
     if v3 then
@@ -11226,9 +12131,9 @@ and closure32 (v0 : int32) (v1 : string) : string =
         let v5 : string = v1.[int 0..int v4]
         let v6 : string = v5 + "..."
         v6
-and closure31 () (v0 : int32) : (string -&gt; string) =
-    closure32(v0)
-and closure34 (v0 : int64) (v1 : string) : string =
+and closure35 () (v0 : int32) : (string -&gt; string) =
+    closure36(v0)
+and closure38 (v0 : int64) (v1 : string) : string =
     let v2 : int64 = System.Convert.ToInt64 v1.Length
     let v3 : bool = v2 &lt;= v0
     if v3 then
@@ -11251,51 +12156,51 @@ and closure34 (v0 : int64) (v1 : string) : string =
         let v18 : (string []) = [|v13; v17; v16|]
         let v19 : ((string []) -&gt; string seq) = Seq.ofArray
         let v20 : string seq = v19 v18
-        let v21 : string = method0()
+        let v21 : string = method3()
         let v22 : (string -&gt; (string seq -&gt; string)) = String.concat
         let v23 : (string seq -&gt; string) = v22 v21
         v23 v20
-and closure33 () (v0 : int64) : (string -&gt; string) =
-    closure34(v0)
-and closure35 () (v0 : exn) : string =
+and closure37 () (v0 : int64) : (string -&gt; string) =
+    closure38(v0)
+and closure39 () (v0 : exn) : string =
     let v1 : string option = None
     let v2 : bool = true in let mutable _v1 = v1
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : string = $"%A{v0}"
     v3
-#endif
+    #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v4 : string = $"%A{v0}"
     v4
-#endif
+    #endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v5 : string = $"%A{v0}"
     v5
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v6 : string = $"{v0.GetType ()}: {v0.Message}"
     v6
-#endif
+    #endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v7 : string = $"%A{v0}"
     v7
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v8 : string = Unchecked.defaultof&lt;string&gt;
+    #endif
+    #if FABLE_COMPILER_PYTHON
+    let v8 : string = $"%A{v0}"
     v8
-#endif
+    #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     let v9 : string = _v1.Value
     v9
-and method1 (v0 : int32, v1 : Mut0) : bool =
+and method4 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
-and closure37 (v0 : string) (v1 : (string [])) : string =
+and closure41 (v0 : string) (v1 : (string [])) : string =
     let v2 : int32 = v1.Length
     let v3 : string = ""
     let v4 : Mut0 = {l0 = 0; l1 = v3} : Mut0
-    while method1(v2, v4) do
+    while method4(v2, v4) do
         let v6 : int32 = v4.l0
         let v7 : string = v4.l1
         let v8 : string = v1.[int v6]
@@ -11306,31 +12211,31 @@ and closure37 (v0 : string) (v1 : (string [])) : string =
         ()
     let v11 : string = v4.l1
     v11
-and closure36 () (v0 : string) : ((string []) -&gt; string) =
-    closure37(v0)
-and method2 (v0 : string) : string =
+and closure40 () (v0 : string) : ((string []) -&gt; string) =
+    closure41(v0)
+and method5 (v0 : string) : string =
     v0
-and closure39 (v0 : string) (v1 : string seq) : string =
-    let v2 : string = method2(v0)
+and closure43 (v0 : string) (v1 : string seq) : string =
+    let v2 : string = method5(v0)
     let v3 : (string -&gt; (string seq -&gt; string)) = String.concat
     let v4 : (string seq -&gt; string) = v3 v2
     v4 v1
-and closure38 () (v0 : string) : (string seq -&gt; string) =
-    closure39(v0)
-and closure41 (v0 : string) (v1 : (string [])) : string =
+and closure42 () (v0 : string) : (string seq -&gt; string) =
+    closure43(v0)
+and closure45 (v0 : string) (v1 : (string [])) : string =
     let v2 : string = System.String.Join (v0, v1)
     v2
-and closure40 () (v0 : string) : ((string []) -&gt; string) =
-    closure41(v0)
-and method3 (v0 : int32, v1 : Mut1) : bool =
+and closure44 () (v0 : string) : ((string []) -&gt; string) =
+    closure45(v0)
+and method6 (v0 : int32, v1 : Mut1) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
-and closure42 () (v0 : string) : (char []) =
+and closure46 () (v0 : string) : (char []) =
     let v1 : int32 = v0.Length
     let v2 : (char []) = Array.zeroCreate&lt;char&gt; (v1)
     let v3 : Mut1 = {l0 = 0} : Mut1
-    while method3(v1, v3) do
+    while method6(v1, v3) do
         let v5 : int32 = v3.l0
         let v6 : char = v0.[int v5]
         v2.[int v5] &lt;- v6
@@ -11344,45 +12249,87 @@ let v1 : (string -&gt; (string -&gt; bool)) = closure2()
 let ends_with x = v1 x
 let v2 : (int32 -&gt; (char -&gt; (string -&gt; string))) = closure4()
 let pad_left x = v2 x
-let v3 : (int32 -&gt; (string -&gt; string)) = closure7()
+let v3 : (int32 -&gt; (char -&gt; (string -&gt; string))) = closure7()
 let pad_right x = v3 x
-let v4 : (string -&gt; (string -&gt; (string -&gt; string))) = closure9()
+let v4 : (string -&gt; (string -&gt; (string -&gt; string))) = closure10()
 let replace x = v4 x
-let v5 : (int32 -&gt; (int32 -&gt; (string -&gt; string))) = closure12()
-let slice x = v5 x
-let v6 : (string -&gt; (string -&gt; (string []))) = closure15()
-let split x = v6 x
-let v7 : ((string []) -&gt; (string -&gt; (string []))) = closure17()
-let split_string x = v7 x
-let v8 : (string -&gt; (string -&gt; bool)) = closure19()
-let starts_with x = v8 x
-let v9 : (int32 -&gt; (int32 -&gt; (string -&gt; string))) = closure21()
-let substring x = v9 x
-let v10 : (string -&gt; string) = closure24()
-let to_lower x = v10 x
-let v11 : (string -&gt; string) = closure25()
-let to_upper x = v11 x
-let v12 : (string -&gt; string) = closure26()
-let trim x = v12 x
-let v13 : ((char []) -&gt; (string -&gt; string)) = closure27()
-let trim_end x = v13 x
-let v14 : ((char []) -&gt; (string -&gt; string)) = closure29()
-let trim_start x = v14 x
-let v15 : (int32 -&gt; (string -&gt; string)) = closure31()
-let ellipsis x = v15 x
-let v16 : (int64 -&gt; (string -&gt; string)) = closure33()
-let ellipsis_end x = v16 x
-let v17 : (exn -&gt; string) = closure35()
-let format_exception x = v17 x
-let v18 : (string -&gt; ((string []) -&gt; string)) = closure36()
-let concat_array_trailing x = v18 x
-let v19 : (string -&gt; (string seq -&gt; string)) = closure38()
-let concat x = v19 x
-let v20 : (string -&gt; ((string []) -&gt; string)) = closure40()
-let join' x = v20 x
-let v21 : (string -&gt; (char [])) = closure42()
-let to_char_array x = v21 x
+let v5 : (string -&gt; (string -&gt; (string -&gt; string))) = closure13()
+let replace_regex x = v5 x
+let v6 : (int32 -&gt; (int32 -&gt; (string -&gt; string))) = closure16()
+let slice x = v6 x
+let v7 : (string -&gt; (string -&gt; (string []))) = closure19()
+let split x = v7 x
+let v8 : ((string []) -&gt; (string -&gt; (string []))) = closure21()
+let split_string x = v8 x
+let v9 : (string -&gt; (string -&gt; bool)) = closure23()
+let starts_with x = v9 x
+let v10 : (int32 -&gt; (int32 -&gt; (string -&gt; string))) = closure25()
+let substring x = v10 x
+let v11 : (string -&gt; string) = closure28()
+let to_lower x = v11 x
+let v12 : (string -&gt; string) = closure29()
+let to_upper x = v12 x
+let v13 : (string -&gt; string) = closure30()
+let trim x = v13 x
+let v14 : ((char []) -&gt; (string -&gt; string)) = closure31()
+let trim_end x = v14 x
+let v15 : ((char []) -&gt; (string -&gt; string)) = closure33()
+let trim_start x = v15 x
+let v16 : (int32 -&gt; (string -&gt; string)) = closure35()
+let ellipsis x = v16 x
+let v17 : (int64 -&gt; (string -&gt; string)) = closure37()
+let ellipsis_end x = v17 x
+let v18 : (exn -&gt; string) = closure39()
+let format_exception x = v18 x
+let v19 : (string -&gt; ((string []) -&gt; string)) = closure40()
+let concat_array_trailing x = v19 x
+let v20 : (string -&gt; (string seq -&gt; string)) = closure42()
+let concat x = v20 x
+let v21 : (string -&gt; ((string []) -&gt; string)) = closure44()
+let join' x = v21 x
+let v22 : (string -&gt; (char [])) = closure46()
+let to_char_array x = v22 x
 ()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=140">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="to_string-std_string">to_string std_string<a class="anchor-link" href="#to_string-std_string">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=141">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">rust</span>
+<span class="n">instance</span> <span class="n">to_string</span> <span class="n">std_string</span> <span class="o">=</span> <span class="n">from_std_string</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
 
 </pre>
 </div>

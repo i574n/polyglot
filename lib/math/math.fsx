@@ -1,41 +1,163 @@
-[<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>] type Func0<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("Func1<$0, $1>")>] type Func0<'T, 'U> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("Box<$0>")>] type Box<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dyn $0")>] type Dyn<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("$0 + Send")>] type Send<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>] type Fn<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("Fn()")>] type FnUnit = class end
-[<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>] type FnOnce<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("Fn($0)")>] type ActionFn<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")>] type ActionFn2<'T, 'U> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("impl $0")>] type Impl<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("mut $0")>] type Mut<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("&$0")>] type Ref<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("&'static $0")>] type StaticRef<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("MutCell<$0>")>] type MutCell<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::any::Any")>] type std_any_Any = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell<$0>")>] type std_cell_RefCell<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin<$0>")>] type std_pin_Pin<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc<$0>")>] type std_rc_Rc<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak<$0>")>] type std_rc_Weak<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc<$0>")>] type std_sync_Arc<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("str")>] type Str = class end
-[<Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")>] type base64_DecodeError = class end
-[<Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")>] type borsh_io_Error = class end
-[<Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")>] type js_sys_JsString = class end
-[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")>] type serde_json_Error = class end
-[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")>] type serde_json_Value = class end
-[<Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")>] type serde_wasm_bindgen_Error = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")>] type std_ffi_OsStr = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")>] type std_ffi_OsString = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")>] type std_str_Utf8Error = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>] type std_string_String = class end
-[<Fable.Core.Erase; Fable.Core.Emit("num_complex::Complex<$0>")>] type num_complex_Complex<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("pyo3::types::PyModule")>] type pyo3_types_PyModule = class end
-[<Fable.Core.Erase; Fable.Core.Emit("pyo3::Bound<$0>")>] type pyo3_Bound<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("pyo3::Python")>] type pyo3_Python = class end
-[<Fable.Core.Erase; Fable.Core.Emit("pyo3::PyAny")>] type pyo3_PyAny = class end
-[<Fable.Core.Erase; Fable.Core.Emit("pyo3::PyErr")>] type pyo3_PyErr = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>]
+#endif
+type Func0<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Func1<$0, $1>")>]
+#endif
+type Func0<'T, 'U> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Box<$0>")>]
+#endif
+type Box<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("dyn $0")>]
+#endif
+type Dyn<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("$0 + Send")>]
+#endif
+type Send<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>]
+#endif
+type Fn<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Fn()")>]
+#endif
+type FnUnit = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>]
+#endif
+type FnOnce<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Fn($0)")>]
+#endif
+type ActionFn<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")>]
+#endif
+type ActionFn2<'T, 'U> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("impl $0")>]
+#endif
+type Impl<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("mut $0")>]
+#endif
+type Mut<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("&$0")>]
+#endif
+type Ref<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("&'static $0")>]
+#endif
+type StaticRef<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("MutCell<$0>")>]
+#endif
+type MutCell<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::any::Any")>]
+#endif
+type std_any_Any = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell<$0>")>]
+#endif
+type std_cell_RefCell<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin<$0>")>]
+#endif
+type std_pin_Pin<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc<$0>")>]
+#endif
+type std_rc_Rc<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak<$0>")>]
+#endif
+type std_rc_Weak<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc<$0>")>]
+#endif
+type std_sync_Arc<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex<$0>")>]
+#endif
+type std_sync_Mutex<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("str")>]
+#endif
+type Str = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")>]
+#endif
+type base64_DecodeError = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")>]
+#endif
+type borsh_io_Error = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")>]
+#endif
+type js_sys_JsString = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")>]
+#endif
+type serde_json_Error = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")>]
+#endif
+type serde_json_Value = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")>]
+#endif
+type serde_wasm_bindgen_Error = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")>]
+#endif
+type std_ffi_OsStr = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")>]
+#endif
+type std_ffi_OsString = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::fmt::Display<$0>")>]
+#endif
+type std_fmt_Display<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")>]
+#endif
+type std_str_Utf8Error = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
+#endif
+type std_string_String = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("num_complex::Complex<$0>")>]
+#endif
+type num_complex_Complex<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("pyo3::types::PyModule")>]
+#endif
+type pyo3_types_PyModule = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("pyo3::Bound<$0>")>]
+#endif
+type pyo3_Bound<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("pyo3::Python")>]
+#endif
+type pyo3_Python = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("pyo3::PyAny")>]
+#endif
+type pyo3_PyAny = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("pyo3::PyErr")>]
+#endif
+type pyo3_PyErr = class end
 Fable.Core.RustInterop.emitRustExpr () ");
 use pyo3::prelude::PyAnyMethods;
 //"
@@ -82,9 +204,38 @@ and method8 (v0 : num_complex_Complex<float>) : num_complex_Complex<float> =
 and method9 (v0 : pyo3_Python) : pyo3_Python =
     v0
 and closure1 () (v0 : pyo3_PyErr) : std_string_String =
-    let v1 : string = @$"format!(""{{}}"", $0)"
-    let v2 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v1
-    v2
+    let v1 : std_string_String option = None
+    let v2 : bool = true in let mutable _v1 = v1
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v3 : string = @$"format!(""{{}}"", $0)"
+    let v4 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v3
+    v4
+#endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v5 : string = @$"format!(""{{}}"", $0)"
+    let v6 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v5
+    v6
+#endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v7 : string = @$"format!(""{{}}"", $0)"
+    let v8 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v7
+    v8
+#endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v9 : std_string_String = null |> unbox<std_string_String>
+    v9
+#endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v10 : std_string_String = null |> unbox<std_string_String>
+    v10
+#endif
+    #if FABLE_COMPILER_PYTHON
+    let v11 : std_string_String = null |> unbox<std_string_String>
+    v11
+#endif
+    |> fun x -> _v1 <- Some x
+    let v12 : std_string_String = _v1.Value
+    v12
 and method10 () : (pyo3_PyErr -> std_string_String) =
     closure1()
 and method11 () : string =
@@ -93,9 +244,38 @@ and method11 () : string =
 and method12 (v0 : pyo3_Bound<pyo3_types_PyModule>) : pyo3_Bound<pyo3_types_PyModule> =
     v0
 and closure2 () (v0 : pyo3_PyErr) : std_string_String =
-    let v1 : string = @$"format!(""{{}}"", $0)"
-    let v2 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v1
-    v2
+    let v1 : std_string_String option = None
+    let v2 : bool = true in let mutable _v1 = v1
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v3 : string = @$"format!(""{{}}"", $0)"
+    let v4 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v3
+    v4
+#endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v5 : string = @$"format!(""{{}}"", $0)"
+    let v6 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v5
+    v6
+#endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v7 : string = @$"format!(""{{}}"", $0)"
+    let v8 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v7
+    v8
+#endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v9 : std_string_String = null |> unbox<std_string_String>
+    v9
+#endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v10 : std_string_String = null |> unbox<std_string_String>
+    v10
+#endif
+    #if FABLE_COMPILER_PYTHON
+    let v11 : std_string_String = null |> unbox<std_string_String>
+    v11
+#endif
+    |> fun x -> _v1 <- Some x
+    let v12 : std_string_String = _v1.Value
+    v12
 and method13 () : (pyo3_PyErr -> std_string_String) =
     closure2()
 and method14 (v0 : (bool * (float * float))) : (bool * (float * float)) =
@@ -103,17 +283,75 @@ and method14 (v0 : (bool * (float * float))) : (bool * (float * float)) =
 and method15 (v0 : pyo3_Bound<pyo3_PyAny>) : pyo3_Bound<pyo3_PyAny> =
     v0
 and closure3 () (v0 : pyo3_PyErr) : std_string_String =
-    let v1 : string = @$"format!(""{{}}"", $0)"
-    let v2 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v1
-    v2
+    let v1 : std_string_String option = None
+    let v2 : bool = true in let mutable _v1 = v1
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v3 : string = @$"format!(""{{}}"", $0)"
+    let v4 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v3
+    v4
+#endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v5 : string = @$"format!(""{{}}"", $0)"
+    let v6 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v5
+    v6
+#endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v7 : string = @$"format!(""{{}}"", $0)"
+    let v8 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v7
+    v8
+#endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v9 : std_string_String = null |> unbox<std_string_String>
+    v9
+#endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v10 : std_string_String = null |> unbox<std_string_String>
+    v10
+#endif
+    #if FABLE_COMPILER_PYTHON
+    let v11 : std_string_String = null |> unbox<std_string_String>
+    v11
+#endif
+    |> fun x -> _v1 <- Some x
+    let v12 : std_string_String = _v1.Value
+    v12
 and method16 () : (pyo3_PyErr -> std_string_String) =
     closure3()
 and method17 (v0 : pyo3_Bound<pyo3_PyAny>) : pyo3_Bound<pyo3_PyAny> =
     v0
 and closure4 () (v0 : pyo3_PyErr) : std_string_String =
-    let v1 : string = @$"format!(""{{}}"", $0)"
-    let v2 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v1
-    v2
+    let v1 : std_string_String option = None
+    let v2 : bool = true in let mutable _v1 = v1
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v3 : string = @$"format!(""{{}}"", $0)"
+    let v4 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v3
+    v4
+#endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v5 : string = @$"format!(""{{}}"", $0)"
+    let v6 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v5
+    v6
+#endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v7 : string = @$"format!(""{{}}"", $0)"
+    let v8 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v7
+    v8
+#endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v9 : std_string_String = null |> unbox<std_string_String>
+    v9
+#endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v10 : std_string_String = null |> unbox<std_string_String>
+    v10
+#endif
+    #if FABLE_COMPILER_PYTHON
+    let v11 : std_string_String = null |> unbox<std_string_String>
+    v11
+#endif
+    |> fun x -> _v1 <- Some x
+    let v12 : std_string_String = _v1.Value
+    v12
 and method18 () : (pyo3_PyErr -> std_string_String) =
     closure4()
 and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : Result<num_complex_Complex<float>, std_string_String> =
@@ -962,8 +1200,8 @@ and method0 () : unit =
     method1(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method27(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
+    let v6 : string = "$0 }})"
+    Fable.Core.RustInterop.emitRustExpr v5 v6
     let v7 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v7
     let v8 : string = "__result"
@@ -1051,8 +1289,8 @@ and method28 () : unit =
     method29(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method27(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
+    let v6 : string = "$0 }})"
+    Fable.Core.RustInterop.emitRustExpr v5 v6
     let v7 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v7
     let v8 : string = "__result"
@@ -1154,8 +1392,8 @@ and method30 () : unit =
     method31(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method27(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
+    let v6 : string = "$0 }})"
+    Fable.Core.RustInterop.emitRustExpr v5 v6
     let v7 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v7
     let v8 : string = "__result"
@@ -1261,8 +1499,8 @@ and method34 () : unit =
     method35(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method27(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
+    let v6 : string = "$0 }})"
+    Fable.Core.RustInterop.emitRustExpr v5 v6
     let v7 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v7
     let v8 : string = "__result"
@@ -1344,8 +1582,8 @@ and method36 () : unit =
     method37(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method27(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
+    let v6 : string = "$0 }})"
+    Fable.Core.RustInterop.emitRustExpr v5 v6
     let v7 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v7
     let v8 : string = "__result"
@@ -1417,8 +1655,8 @@ and method38 () : unit =
     method39(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method27(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
+    let v6 : string = "$0 }})"
+    Fable.Core.RustInterop.emitRustExpr v5 v6
     let v7 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v7
     let v8 : string = "__result"
@@ -1528,8 +1766,8 @@ and method40 () : unit =
     method41(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method27(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
+    let v6 : string = "$0 }})"
+    Fable.Core.RustInterop.emitRustExpr v5 v6
     let v7 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v7
     let v8 : string = "__result"
@@ -1601,8 +1839,8 @@ and method42 () : unit =
     method43(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method27(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
+    let v6 : string = "$0 }})"
+    Fable.Core.RustInterop.emitRustExpr v5 v6
     let v7 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v7
     let v8 : string = "__result"
@@ -1692,8 +1930,8 @@ and method44 () : unit =
     method45(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method27(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
+    let v6 : string = "$0 }})"
+    Fable.Core.RustInterop.emitRustExpr v5 v6
     let v7 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v7
     let v8 : string = "__result"
@@ -1785,8 +2023,8 @@ and method48 () : unit =
     method49(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method27(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
+    let v6 : string = "$0 }})"
+    Fable.Core.RustInterop.emitRustExpr v5 v6
     let v7 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v7
     let v8 : string = "__result"
@@ -1985,8 +2223,8 @@ and method50 () : unit =
     method51(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method27(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
+    let v6 : string = "$0 }})"
+    Fable.Core.RustInterop.emitRustExpr v5 v6
     let v7 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v7
     let v8 : string = "__result"
@@ -2096,8 +2334,8 @@ and method52 () : unit =
     method53(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method27(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
+    let v6 : string = "$0 }})"
+    Fable.Core.RustInterop.emitRustExpr v5 v6
     let v7 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v7
     let v8 : string = "__result"

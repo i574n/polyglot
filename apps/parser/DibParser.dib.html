@@ -7600,7 +7600,6 @@ d----          2024-03-12  8:15 PM                <span class="ansi-blue-bg ansi
 <span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsec.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsecCS.dll"</span>
 </pre></div>
@@ -9031,7 +9030,7 @@ inl x = 0i32
     <span class="n">trace</span> <span class="n">Debug</span>
         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"parseDibCode"</span><span class="p">)</span>
         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"output: </span><span class="si">{output}</span><span class="s2"> / file: </span><span class="si">{file}</span><span class="s2"> / {_locals ()}"</span><span class="p">)</span>
-    <span class="n">let</span><span class="err">!</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">file</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_async</span>
+    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>file<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.read_all_text_async
     <span class="k">match</span> <span class="n">parse</span> <span class="n">output</span> <span class="nb">input</span> <span class="k">with</span>
     <span class="o">|</span> <span class="n">Result</span><span class="o">.</span><span class="n">Ok</span> <span class="n">blocks</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">blocks</span> <span class="o">|&gt;</span> <span class="n">formatBlocks</span> <span class="n">output</span>
     <span class="o">|</span> <span class="n">Result</span><span class="o">.</span><span class="n">Error</span> <span class="n">msg</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">failwith</span> <span class="n">msg</span>
@@ -9064,9 +9063,9 @@ inl x = 0i32
     <span class="n">trace</span> <span class="n">Debug</span>
         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"writeDibCode"</span><span class="p">)</span>
         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"output: </span><span class="si">{output}</span><span class="s2"> / path: </span><span class="si">{path}</span><span class="s2"> / {_locals ()}"</span><span class="p">)</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span> <span class="n">parseDibCode</span> <span class="n">output</span> <span class="n">path</span>
+    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>parseDibCode<span class="w"> </span>output<span class="w"> </span>path
     <span class="n">let</span> <span class="n">outputPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">".dib"</span> <span class="err">$</span><span class="s2">".{output |&gt; string |&gt; SpiralSm.to_lower}"</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">outputPath</span>
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>result<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span>outputPath
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -9197,7 +9196,7 @@ OPTIONS:
 
 <span class="n">let</span> <span class="n">args</span> <span class="o">=</span>
     <span class="n">System</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">GetEnvironmentVariable</span> <span class="s2">"ARGS"</span>
-    <span class="o">|&gt;</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">splitArgs</span>
+    <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">split_args</span>
     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toArray</span>
 
 <span class="k">match</span> <span class="n">args</span> <span class="k">with</span>
@@ -9252,8 +9251,8 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:06 debug #1 writeDibCode / output: Fs / path: DibParser.dib
-00:00:06 debug #2 parseDibCode / output: Fs / file: DibParser.dib
+<pre>00:00:06 debug   #1 writeDibCode / output: Fs / path: DibParser.dib
+00:00:06 debug   #2 parseDibCode / output: Fs / file: DibParser.dib
 </pre>
 </div>
 </div>

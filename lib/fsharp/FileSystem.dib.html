@@ -7543,8 +7543,10 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Notebooks.dib</span>
-<span class="c1">#!import ../../lib/fsharp/Testing.dib</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"</span>
 </pre></div>
 </div>
 </div>
@@ -7558,11 +7560,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Notebooks.dib</span>
+<span class="c1">#!import ../../lib/fsharp/Testing.dib</span>
 </pre></div>
 </div>
 </div>
@@ -7738,15 +7737,15 @@ a.anchor-link {
         <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">mapAsyncParallel</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
             <span class="k">match</span> <span class="n">shouldReadContent</span> <span class="n">event</span><span class="p">,</span> <span class="n">event</span> <span class="k">with</span>
             <span class="o">|</span> <span class="n">true</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
-                <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">5</span>
-                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_retry_async</span>
+                <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">5</span>
+                <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>fullPath<span class="w"> </span>&lt;/&gt;<span class="w"> </span>path<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.read_all_text_retry_async
                 <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">true</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
-                <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">5</span>
-                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_retry_async</span>
+                <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">5</span>
+                <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>fullPath<span class="w"> </span>&lt;/&gt;<span class="w"> </span>path<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.read_all_text_retry_async
                 <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">true</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Renamed</span> <span class="p">(</span><span class="n">oldPath</span><span class="p">,</span> <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">_</span><span class="p">))</span> <span class="o">-&gt;</span>
-                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">newPath</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_retry_async</span>
+                <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>fullPath<span class="w"> </span>&lt;/&gt;<span class="w"> </span>newPath<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.read_all_text_retry_async
                 <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Renamed</span> <span class="p">(</span><span class="n">oldPath</span><span class="p">,</span> <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">content</span><span class="p">))</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">event</span>
         <span class="p">})</span>
@@ -7812,9 +7811,9 @@ a.anchor-link {
         <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">iterAsyncParallel</span> <span class="p">(</span><span class="n">fun</span> <span class="n">event</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span> <span class="n">events</span><span class="o">.</span><span class="n">Add</span> <span class="n">event</span> <span class="p">})</span>
 
     <span class="n">let</span> <span class="n">run</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="n">let</span><span class="err">!</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">iter</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
-        <span class="k">return</span><span class="err">!</span> <span class="n">write</span> <span class="n">tempDir</span>
+        <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>iter<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.StartChild
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">250</span>
+        <span class="k">return</span><span class="o">!</span><span class="w"> </span>write<span class="w"> </span>tempDir
     <span class="p">}</span>
 
     <span class="k">try</span>
@@ -7887,29 +7886,29 @@ a.anchor-link {
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"a</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span><span class="s2">$"a{i}"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="o">)</span>
 
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"b</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
-
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">250</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span><span class="s2">$"b{i}"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="o">)</span>
 
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"c</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
-
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">250</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.move_file_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file_{i}.txt"</span><span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.Ignore
 
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">250</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span><span class="s2">$"c{i}"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file_{i}.txt"</span><span class="o">)</span>
+
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">250</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span>SpiralFileSystem.delete_file_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file_{i}.txt"</span><span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.Ignore
+
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">250</span>
 <span class="p">}</span>
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">run</span> <span class="p">()</span> <span class="o">=</span>
@@ -7952,26 +7951,26 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:06 debug #1 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:06 debug #2 testEventsRaw / eventsLog: 
-0 / 638493557137833370 / Created ("file1.txt", Some "a1")
-1 / 638493557137833371 / Changed ("file1.txt", Some "a1")
-24669 / 638493557137858040 / Changed ("file1.txt", Some "a1")
-1074 / 638493557137859114 / Created ("file2.txt", Some "a2")
-1 / 638493557137859115 / Changed ("file2.txt", Some "a2")
-45 / 638493557137859160 / Changed ("file2.txt", Some "a2")
-2509365 / 638493557140368525 / Changed ("file1.txt", Some "b1")
-3804 / 638493557140372329 / Changed ("file1.txt", Some "b1")
-14040 / 638493557140386369 / Changed ("file2.txt", Some "b2")
-3076 / 638493557140389445 / Changed ("file2.txt", Some "b2")
-2575137 / 638493557142964582 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-9252 / 638493557142973834 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2445550 / 638493557145419384 / Changed ("file_1.txt", Some "c1")
-2021 / 638493557145421405 / Changed ("file_1.txt", Some "c1")
-8172 / 638493557145429577 / Changed ("file_2.txt", Some "c2")
-1979 / 638493557145431556 / Changed ("file_2.txt", Some "c2")
-2602451 / 638493557148034007 / Deleted "file_1.txt"
-8126 / 638493557148042133 / Deleted "file_2.txt"
+00:00:09 debug   #1 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:09 debug   #2 testEventsRaw / eventsLog: 
+0 / 638498786898352262 / Created ("file1.txt", Some "a1")
+1 / 638498786898352263 / Changed ("file1.txt", Some "a1")
+42584 / 638498786898394847 / Changed ("file1.txt", Some "a1")
+1977 / 638498786898396824 / Created ("file2.txt", Some "a2")
+1 / 638498786898396825 / Changed ("file2.txt", Some "a2")
+91 / 638498786898396916 / Changed ("file2.txt", Some "a2")
+2540385 / 638498786900937301 / Changed ("file1.txt", Some "b1")
+2552 / 638498786900939853 / Changed ("file1.txt", Some "b1")
+13524 / 638498786900953377 / Changed ("file2.txt", Some "b2")
+2728 / 638498786900956105 / Changed ("file2.txt", Some "b2")
+2603582 / 638498786903559687 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+27003 / 638498786903586690 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2684540 / 638498786906271230 / Changed ("file_1.txt", Some "c1")
+3304 / 638498786906274534 / Changed ("file_1.txt", Some "c1")
+14276 / 638498786906288810 / Changed ("file_2.txt", Some "c2")
+4523 / 638498786906293333 / Changed ("file_2.txt", Some "c2")
+2544395 / 638498786908837728 / Deleted "file_1.txt"
+3096 / 638498786908840824 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -8103,29 +8102,29 @@ FSharpOption&lt;Unit&gt;
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">string</span> <span class="o">&gt;&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replicate</span> <span class="mi">1_000_000</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}a"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span><span class="s2">$"{contents.[i - 1]}a"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="o">)</span>
 
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}b"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
-
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">1500</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span><span class="s2">$"{contents.[i - 1]}b"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="o">)</span>
 
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}c"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
-
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">1500</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.move_file_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file_{i}.txt"</span><span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.Ignore
 
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">1500</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span><span class="s2">$"{contents.[i - 1]}c"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file_{i}.txt"</span><span class="o">)</span>
+
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">1500</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span>SpiralFileSystem.delete_file_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file_{i}.txt"</span><span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.Ignore
+
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">1500</span>
 <span class="p">}</span>
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">run</span> <span class="p">()</span> <span class="o">=</span>
@@ -8181,45 +8180,45 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:15 debug #3 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:16 debug #4 testEventsRaw / eventsLog: 
-0 / 638493557172380949 / Created
+00:00:21 debug   #3 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:21 debug   #4 testEventsRaw / eventsLog: 
+0 / 638498786959314212 / Created
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-1 / 638493557172380950 / Changed
+1 / 638498786959314213 / Changed
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-104137 / 638493557172485087 / Changed
-  ("file1.tx...11111111111111111111111111111111111111111111111a")
-15228 / 638493557172500315 / Created
+88232 / 638498786959402445 / Changed
+  ("file1.txt...11111111111111111111111111111111111111111111111a")
+28231 / 638498786959430676 / Created
   ("file2.txt...22222222222222222222222222222222222222222222222a")
-1 / 638493557172500316 / Changed
+1 / 638498786959430677 / Changed
   ("file2.txt",
  ...22222222222222222222222222222222222222222222222a")
-70759 / 638493557172571075 / Changed
-  ("file2.txt...22222222222222222222222222222222222222222222222a")
-15034768 / 638493557187605843 / Changed
+113772 / 638498786959544449 / Changed
+  ("file2.tx...22222222222222222222222222222222222222222222222a")
+15161562 / 638498786974706011 / Changed
   ("file1....11111111111111111111111111111111111111111111111b")
-50763 / 638493557187656606 / Changed
+71609 / 638498786974777620 / Changed
   ("file1.txt...11111111111111111111111111111111111111111111111b")
-19467 / 638493557187676073 / Changed
+35319 / 638498786974812939 / Changed
   ("file2.txt...22222222222222222222222222222222222222222222222b")
-55047 / 638493557187731120 / Changed
+97541 / 638498786974910480 / Changed
   ("file2.txt...22222222222222222222222222222222222222222222222b")
-15171835 / 638493557202902955 / Renamed
+15109760 / 638498786990020240 / Renamed
   ("file1....1111111111111111111111111111111111111111111111b"))
-6974 / 638493557202909929 / Renamed
+6740 / 638498786990026980 / Renamed
   ("file2.txt"...2222222222222222222222222222222222222222222222b"))
-15101728 / 638493557218011657 / Changed
+15145496 / 638498787005172476 / Changed
   ("file_1...11111111111111111111111111111111111111111111111c")
-267448 / 638493557218279105 / Changed
-  ("file_1.t...11111111111111111111111111111111111111111111111c")
-60697 / 638493557218339802 / Changed
+79196 / 638498787005251672 / Changed
+  ("file_1.tx...11111111111111111111111111111111111111111111111c")
+22560 / 638498787005274232 / Changed
   ("file_2.tx...22222222222222222222222222222222222222222222222c")
-157995 / 638493557218497797 / Changed
-  ("file_2.t...22222222222222222222222222222222222222222222222c")
-14986696 / 638493557233484493 / Deleted "file_1.txt"
-4710 / 638493557233489203 / Deleted "file_2.txt"
+82763 / 638498787005356995 / Changed
+  ("file_2.tx...22222222222222222222222222222222222222222222222c")
+15121293 / 638498787020478288 / Deleted "file_1.txt"
+4996 / 638498787020483284 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -8385,9 +8384,9 @@ FSharpOption&lt;Unit&gt;
         <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">iterAsyncParallel</span> <span class="p">(</span><span class="n">fun</span> <span class="n">event</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span> <span class="n">events</span><span class="o">.</span><span class="n">Add</span> <span class="n">event</span> <span class="p">})</span>
 
     <span class="n">let</span> <span class="n">run</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="n">let</span><span class="err">!</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">iter</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
-        <span class="k">return</span><span class="err">!</span> <span class="n">write</span> <span class="n">tempDir</span>
+        <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>iter<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.StartChild
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">250</span>
+        <span class="k">return</span><span class="o">!</span><span class="w"> </span>write<span class="w"> </span>tempDir
     <span class="p">}</span>
 
     <span class="k">try</span>
@@ -8450,12 +8449,12 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span><span class="s2">$"{i}"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="o">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span>SpiralFileSystem.delete_file_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.Ignore
 
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">150</span>
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">150</span>
 <span class="p">}</span>
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">run</span> <span class="p">()</span> <span class="o">=</span>
@@ -8501,7 +8500,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:18 debug #5 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:24 debug   #5 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -8551,15 +8550,15 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span><span class="s2">$"{i}"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="o">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="o">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span>SpiralFileSystem.delete_file_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.Ignore
 
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">150</span>
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">150</span>
 <span class="p">}</span>
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">run</span> <span class="p">()</span> <span class="o">=</span>
@@ -8600,7 +8599,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:19 debug #6 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:27 debug   #6 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -8645,15 +8644,15 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span><span class="s2">$"{i}"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="o">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.move_file_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file_{i}.txt"</span><span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.Ignore
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span>SpiralFileSystem.delete_file_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file_{i}.txt"</span><span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.Ignore
 
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">150</span>
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">150</span>
 <span class="p">}</span>
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">run</span> <span class="p">()</span> <span class="o">=</span>
@@ -8699,7 +8698,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:21 debug #7 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:29 debug   #7 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -8750,21 +8749,21 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span><span class="s2">$"{i}"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="o">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="o">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file{i}.txt"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.move_file_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file_{i}.txt"</span><span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.Ignore
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span><span class="s2">$"{i}"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file_{i}.txt"</span><span class="o">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="o">!</span><span class="w"> </span>SpiralFileSystem.delete_file_async<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">$"file_{i}.txt"</span><span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.Ignore
 
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">150</span>
+    <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">150</span>
 <span class="p">}</span>
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">run</span> <span class="p">()</span> <span class="o">=</span>
@@ -8812,7 +8811,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:23 debug #8 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:32 debug   #8 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )

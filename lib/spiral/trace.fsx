@@ -1,37 +1,139 @@
-#if FABLE_COMPILER // trace.types
-[<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>] type Func0<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("Func1<$0, $1>")>] type Func0<'T, 'U> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("Box<$0>")>] type Box<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dyn $0")>] type Dyn<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("$0 + Send")>] type Send<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>] type Fn<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("Fn()")>] type FnUnit = class end
-[<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>] type FnOnce<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("Fn($0)")>] type ActionFn<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")>] type ActionFn2<'T, 'U> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("impl $0")>] type Impl<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("mut $0")>] type Mut<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("&$0")>] type Ref<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("&'static $0")>] type StaticRef<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("MutCell<$0>")>] type MutCell<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::any::Any")>] type std_any_Any = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell<$0>")>] type std_cell_RefCell<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin<$0>")>] type std_pin_Pin<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc<$0>")>] type std_rc_Rc<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak<$0>")>] type std_rc_Weak<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc<$0>")>] type std_sync_Arc<'T> = class end
-[<Fable.Core.Erase; Fable.Core.Emit("str")>] type Str = class end
-[<Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")>] type base64_DecodeError = class end
-[<Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")>] type borsh_io_Error = class end
-[<Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")>] type js_sys_JsString = class end
-[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")>] type serde_json_Error = class end
-[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")>] type serde_json_Value = class end
-[<Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")>] type serde_wasm_bindgen_Error = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")>] type std_ffi_OsStr = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")>] type std_ffi_OsString = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")>] type std_str_Utf8Error = class end
-[<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>] type std_string_String = class end
-#endif // trace.types
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>]
+#endif
+type Func0<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Func1<$0, $1>")>]
+#endif
+type Func0<'T, 'U> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Box<$0>")>]
+#endif
+type Box<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("dyn $0")>]
+#endif
+type Dyn<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("$0 + Send")>]
+#endif
+type Send<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>]
+#endif
+type Fn<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Fn()")>]
+#endif
+type FnUnit = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>]
+#endif
+type FnOnce<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Fn($0)")>]
+#endif
+type ActionFn<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")>]
+#endif
+type ActionFn2<'T, 'U> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("impl $0")>]
+#endif
+type Impl<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("mut $0")>]
+#endif
+type Mut<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("&$0")>]
+#endif
+type Ref<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("&'static $0")>]
+#endif
+type StaticRef<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("MutCell<$0>")>]
+#endif
+type MutCell<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::any::Any")>]
+#endif
+type std_any_Any = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell<$0>")>]
+#endif
+type std_cell_RefCell<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin<$0>")>]
+#endif
+type std_pin_Pin<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc<$0>")>]
+#endif
+type std_rc_Rc<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak<$0>")>]
+#endif
+type std_rc_Weak<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc<$0>")>]
+#endif
+type std_sync_Arc<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex<$0>")>]
+#endif
+type std_sync_Mutex<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("str")>]
+#endif
+type Str = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")>]
+#endif
+type base64_DecodeError = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")>]
+#endif
+type borsh_io_Error = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")>]
+#endif
+type js_sys_JsString = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")>]
+#endif
+type serde_json_Error = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")>]
+#endif
+type serde_json_Value = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")>]
+#endif
+type serde_wasm_bindgen_Error = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")>]
+#endif
+type std_ffi_OsStr = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")>]
+#endif
+type std_ffi_OsString = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::fmt::Display<$0>")>]
+#endif
+type std_fmt_Display<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")>]
+#endif
+type std_str_Utf8Error = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
+#endif
+type std_string_String = class end
 module State = let mutable trace_state = None
 type Mut0 = {mutable l0 : int64}
 and Mut1 = {mutable l0 : bool}
@@ -68,59 +170,60 @@ and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     let v7 : string option = None
     let v8 : bool = true in let mutable _v7 = v7
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v9 : string = null |> unbox<string>
-    v9
-#endif
-    #if FABLE_COMPILER_RUST && WASM
-    let v10 : string = null |> unbox<string>
+    let v9 : string = "env!(\"CARGO_PKG_NAME\").into()"
+    let v10 : string = Fable.Core.RustInterop.emitRustExpr () v9
     v10
-#endif
-    #if FABLE_COMPILER_RUST && CONTRACT
+    #endif
+    #if FABLE_COMPILER_RUST && WASM
     let v11 : string = null |> unbox<string>
     v11
-#endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v12 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v12 : string = null |> unbox<string>
     v12
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v13 : string = null |> unbox<string>
+    #endif
+    #if !FABLE_COMPILER && !WASM && !CONTRACT
+    let v13 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v13
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v14 : string = Unchecked.defaultof<string>
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v14 : string = null |> unbox<string>
     v14
-#endif
+    #endif
+    #if FABLE_COMPILER_PYTHON
+    let v15 : string = null |> unbox<string>
+    v15
+    #endif
     |> fun x -> _v7 <- Some x
-    let v15 : string = _v7.Value
-    let v17 : bool = v15 = "Microsoft.DotNet.Interactive.App"
-    let v18 : bool = v17 <> true
-    let v24 : US1 =
-        if v18 then
-            let v19 : System.DateTime = System.DateTime.Now
-            let v20 : (System.DateTime -> int64) = _.Ticks
-            let v21 : int64 = v20 v19
-            US1_0(v21)
+    let v16 : string = _v7.Value
+    let v18 : bool = v16 = "Microsoft.DotNet.Interactive.App"
+    let v19 : bool = v18 <> true
+    let v25 : US1 =
+        if v19 then
+            let v20 : System.DateTime = System.DateTime.Now
+            let v21 : (System.DateTime -> int64) = _.Ticks
+            let v22 : int64 = v21 v20
+            US1_0(v22)
         else
             US1_1
-    let v29 : int64 option =
-        match v24 with
+    let v30 : int64 option =
+        match v25 with
         | US1_1 -> (* None *)
-            let v27 : int64 option = None
+            let v28 : int64 option = None
+            v28
+        | US1_0(v26) -> (* Some *)
+            let v27 : int64 option = Some v26 
             v27
-        | US1_0(v25) -> (* Some *)
-            let v26 : int64 option = Some v25 
-            v26
-    let v30 : int64 option = method0(v29)
-    v30 
+    let v31 : int64 option = method0(v30)
+    v31 
     #else
-    let v31 : int64 option = None
-    let v32 : int64 option = method1(v31)
-    v32 
+    let v32 : int64 option = None
+    let v33 : int64 option = method1(v32)
+    v33 
     #endif
     |> fun x -> _v6 <- Some x
-    let v33 : int64 option = _v6.Value
-    struct (v1, v0, v3, v33, v5)
+    let v34 : int64 option = _v6.Value
+    struct (v1, v0, v3, v34, v5)
 and closure6 () (v0 : int64) : US2 =
     US2_0(v0)
 and method3 () : (int64 -> US2) =
@@ -162,16 +265,16 @@ and closure5 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     let v32 : string = "hh:mm:ss"
     let v33 : string = v31.ToString v32 
     v33
-#endif
+    #endif
     #if FABLE_COMPILER_RUST && WASM
     let v34 : string = method4()
     v34
-#endif
+    #endif
     #if FABLE_COMPILER_RUST && CONTRACT
     let v35 : string = method4()
     v35
-#endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    #endif
+    #if !FABLE_COMPILER && !WASM && !CONTRACT
     let v36 : (int64 -> US2) = method3()
     let v37 : US2 = US2_1
     let v38 : US2 = v7 |> Option.map v36 |> Option.defaultValue v37 
@@ -199,15 +302,15 @@ and closure5 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     let v57 : string = "HH:mm:ss"
     let v58 : string = v56.ToString v57 
     v58
-#endif
+    #endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v59 : string = method4()
     v59
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v60 : string = Unchecked.defaultof<string>
+    #endif
+    #if FABLE_COMPILER_PYTHON
+    let v60 : string = method4()
     v60
-#endif
+    #endif
     |> fun x -> _v9 <- Some x
     let v61 : string = _v9.Value
     let v62 : int64 = v4.l0
@@ -265,7 +368,7 @@ and closure5 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     let v99 : string = "fable_library_rust::String_::fromString($0)"
     let v100 : string = Fable.Core.RustInterop.emitRustExpr v98 v99
     v100
-#endif
+    #endif
     #if FABLE_COMPILER_RUST && WASM
     let v115 : Ref<Str> =
         match v0 with
@@ -299,7 +402,7 @@ and closure5 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     let v123 : string = "fable_library_rust::String_::fromString($0)"
     let v124 : string = Fable.Core.RustInterop.emitRustExpr v122 v123
     v124
-#endif
+    #endif
     #if FABLE_COMPILER_RUST && CONTRACT
     let v139 : Ref<Str> =
         match v0 with
@@ -333,20 +436,20 @@ and closure5 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     let v147 : string = "fable_library_rust::String_::fromString($0)"
     let v148 : string = Fable.Core.RustInterop.emitRustExpr v146 v147
     v148
-#endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    #endif
+    #if !FABLE_COMPILER && !WASM && !CONTRACT
     v74
-#endif
+    #endif
     #if FABLE_COMPILER_TYPESCRIPT
     v74
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v149 : string = Unchecked.defaultof<string>
-    v149
-#endif
+    #endif
+    #if FABLE_COMPILER_PYTHON
+    v74
+    #endif
     |> fun x -> _v75 <- Some x
-    let v150 : string = _v75.Value
-    let v151 : string = $"{v61} {v150} #{v62} %s{v1 ()} / %s{v2 ()}"
+    let v149 : string = _v75.Value
+    let v150 : string = v1 ()
+    let v151 : string = $"{v61} {v149} #{v62} %s{v150} / %s{v2 ()}"
     let v152 : (char []) = [||]
     let v153 : string = v151.TrimStart v152
     let v154 : (char []) = [|' '; '/'|]
@@ -380,29 +483,29 @@ and method5 (v0 : US0, v1 : (unit -> string)) : unit =
         let v25 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v25
         ()
-#endif
+    #endif
         #if FABLE_COMPILER_RUST && WASM
         let v26 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v26
         ()
-#endif
+    #endif
         #if FABLE_COMPILER_RUST && CONTRACT
         let v27 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v27
         ()
-#endif
-        #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    #endif
+        #if !FABLE_COMPILER && !WASM && !CONTRACT
         System.Console.WriteLine v22 
         ()
-#endif
+    #endif
         #if FABLE_COMPILER_TYPESCRIPT
         System.Console.WriteLine v22 
         ()
-#endif
-        #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-        Unchecked.defaultof<unit>
+    #endif
+        #if FABLE_COMPILER_PYTHON
+        System.Console.WriteLine v22 
         ()
-#endif
+    #endif
         |> fun x -> _v23 <- Some x
         _v23.Value
         let v28 : (string -> unit) = v7.l0

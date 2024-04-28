@@ -16,7 +16,7 @@ if ($fast -and (Test-Path $dibParserExe)) {
 }
 
 $runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
-$builderArgs = @("DibParser.fs", $runtime, "--packages", "Argu", "FParsec", "FSharp.Control.AsyncSeq", "System.CommandLine", "System.Reactive.Linq", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs", "lib/fsharp/CommonFSharp.fs", "lib/fsharp/Async.fs", "lib/fsharp/AsyncSeq.fs", "lib/fsharp/Runtime.fs", "lib/fsharp/FileSystem.fs")
+$builderArgs = @("DibParser.fs", $runtime, "--packages", "Argu", "FParsec", "FSharp.Control.AsyncSeq", "System.Reactive.Linq", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs", "lib/fsharp/CommonFSharp.fs", "lib/fsharp/Async.fs", "lib/fsharp/AsyncSeq.fs", "lib/fsharp/Runtime.fs", "lib/fsharp/FileSystem.fs")
 { . ../builder/dist/Builder$(_exe) @builderArgs } | Invoke-Block
 
 if (!$fast) {

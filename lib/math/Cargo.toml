@@ -11,6 +11,8 @@ statrs = "~0.16"
 float-cmp = "~0.9"
 pyo3 = "~0.21.1"
 inline_colorization = "~0.1"
+chrono = "~0.4"
+regex = "~1.10"
 
 [dev-dependencies]
 

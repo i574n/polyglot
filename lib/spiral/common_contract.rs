@@ -8,7 +8,6 @@ pub mod Common {
     use fable_library_rust::Map_::ofSeq;
     use fable_library_rust::NativeArray_::new_array;
     use fable_library_rust::NativeArray_::new_empty;
-    use fable_library_rust::Native_::defaultOf;
     use fable_library_rust::Native_::interface_cast;
     use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::Func0;
@@ -19,6 +18,7 @@ pub mod Common {
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::Option_::getValue;
     use fable_library_rust::Seq_::ofList;
+    use fable_library_rust::String_::padRight;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::toLower;
@@ -64,6 +64,29 @@ pub mod Common {
                     ))
                 })
                 .clone()
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct Disposable {
+        f: Func0<()>,
+    }
+    impl Common::Disposable {
+        pub fn _ctor__3A5B6456(f: Func0<()>) -> LrcPtr<Common::Disposable> {
+            let f_1;
+            ();
+            f_1 = f;
+            ();
+            LrcPtr::new(Common::Disposable { f: f_1 })
+        }
+    }
+    impl core::fmt::Display for Common::Disposable {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    impl IDisposable for Disposable {
+        fn Dispose(&self) {
+            (self.f)();
         }
     }
     #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
@@ -294,12 +317,18 @@ pub mod Common {
         }
         (v1_1, v0_1, v3, getValue(_v6.get().clone()), v5)
     }
+    pub fn method2(v0_1: Func0<()>) -> Func0<()> {
+        v0_1
+    }
     pub fn closure2(unitVar: (), v0_1: Func0<()>) -> LrcPtr<dyn IDisposable> {
         let _v1: MutCell<Option<LrcPtr<dyn IDisposable>>> =
             MutCell::new(None::<LrcPtr<dyn IDisposable>>);
         {
             let x: LrcPtr<dyn IDisposable> = interface_cast!(
-                defaultOf::<std::rc::Rc<dyn IDisposable>>(),
+                Common::Disposable::_ctor__3A5B6456(Func0::new({
+                    let v0_1 = v0_1.clone();
+                    move || v0_1.clone()()
+                })),
                 Lrc<dyn IDisposable>,
             );
             _v1.set(Some(x))
@@ -334,10 +363,10 @@ pub mod Common {
     pub fn closure12(unitVar: (), v0_1: i64) -> Common::US4 {
         Common::US4::US4_0(v0_1)
     }
-    pub fn method4() -> Func1<i64, Common::US4> {
+    pub fn method5() -> Func1<i64, Common::US4> {
         Func1::new(move |v: i64| Common::closure12((), v))
     }
-    pub fn method5() -> string {
+    pub fn method6() -> string {
         string("")
     }
     pub fn closure11(
@@ -359,41 +388,45 @@ pub mod Common {
             ) = getValue(Common::State::trace_state().get().clone());
             let _v9: MutCell<Option<string>> = MutCell::new(None::<string>);
             {
-                let x: string = Common::method5();
+                let x: string = Common::method6();
                 _v9.set(Some(x))
             }
             {
                 let v61: string = getValue(_v9.get().clone());
                 let v62: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v73: string = toLower(match &v0_1 {
-                    Common::US0::US0_1 => string("Debug"),
-                    Common::US0::US0_2 => string("Info"),
-                    Common::US0::US0_0 => string("Verbose"),
-                    Common::US0::US0_3 => string("Warning"),
-                    _ => string("Critical"),
-                });
-                let _v74: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v138: &str = match &v0_1 {
+                let v74: string = padRight(
+                    toLower(match &v0_1 {
+                        Common::US0::US0_1 => string("Debug"),
+                        Common::US0::US0_2 => string("Info"),
+                        Common::US0::US0_0 => string("Verbose"),
+                        Common::US0::US0_3 => string("Warning"),
+                        _ => string("Critical"),
+                    }),
+                    7_i32,
+                    ' ',
+                );
+                let _v75: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v139: &str = match &v0_1 {
                     Common::US0::US0_1 => inline_colorization::color_bright_blue,
                     Common::US0::US0_2 => inline_colorization::color_bright_green,
                     Common::US0::US0_0 => inline_colorization::color_bright_black,
                     Common::US0::US0_3 => inline_colorization::color_bright_yellow,
                     _ => inline_colorization::color_bright_red,
                 };
-                let v140: &str = fable_library_rust::String_::LrcStr::as_str(&v73);
-                let v142: &str = inline_colorization::color_reset;
-                let v144: string = string("format!(\"{v138}{v140}{v142}\")");
-                let v145: std::string::String = format!("{v138}{v140}{v142}");
+                let v141: &str = fable_library_rust::String_::LrcStr::as_str(&v74);
+                let v143: &str = inline_colorization::color_reset;
+                let v145: string = string("format!(\"{v139}{v141}{v143}\")");
+                let v146: std::string::String = format!("{v139}{v141}{v143}");
                 {
-                    let x_1: string = fable_library_rust::String_::fromString(v145);
-                    _v74.set(Some(x_1))
+                    let x_1: string = fable_library_rust::String_::fromString(v146);
+                    _v75.set(Some(x_1))
                 }
                 trimEndChars(
                     trimStartChars(
                         sprintf!(
                             "{} {} #{} {} / {}",
                             v61,
-                            getValue(_v74.get().clone()),
+                            getValue(_v75.get().clone()),
                             v62,
                             v1_1(),
                             v2_1()
@@ -405,7 +438,7 @@ pub mod Common {
             }
         }
     }
-    pub fn method6(v0_1: Common::US0, v1_1: Func0<string>) {
+    pub fn method7(v0_1: Common::US0, v1_1: Func0<string>) {
         let v2_1 = Func0::new(move || Common::closure0((), ()));
         if Common::State::trace_state().get().clone().is_none() {
             Common::State::trace_state().set(Some(v2_1()));
@@ -468,8 +501,8 @@ pub mod Common {
             }
         }
     }
-    pub fn method3(v0_1: Common::US0, v1_1: Func0<string>, v2_1: Func0<string>) {
-        Common::method6(
+    pub fn method4(v0_1: Common::US0, v1_1: Func0<string>, v2_1: Func0<string>) {
+        Common::method7(
             v0_1.clone(),
             Func0::new({
                 let v0_1 = v0_1.clone();
@@ -480,7 +513,7 @@ pub mod Common {
         );
     }
     pub fn closure7(v0_1: i32, v1_1: LrcPtr<Exception>) -> Common::US3 {
-        Common::method3(
+        Common::method4(
             Common::US0::US0_3,
             Func0::new(move || Common::closure8((), ())),
             Func0::new({
@@ -496,12 +529,12 @@ pub mod Common {
             Common::US3::US3_1
         }
     }
-    pub fn method2(v0_1: i32, v1_1: Func0<()>, v2_1: i32) -> Common::US2 {
+    pub fn method3(v0_1: i32, v1_1: Func0<()>, v2_1: i32) -> Common::US2 {
         let v0_1: MutCell<i32> = MutCell::new(v0_1);
         let v1_1 = MutCell::new(v1_1.clone());
         let v2_1: MutCell<i32> = MutCell::new(v2_1);
-        '_method2: loop {
-            break '_method2 ({
+        '_method3: loop {
+            break '_method3 ({
                 let v6: Common::US3 = try_catch(
                     || {
                         Common::closure6(
@@ -528,14 +561,14 @@ pub mod Common {
                         v0_1.set(v0_1_temp);
                         v1_1.set(v1_1_temp);
                         v2_1.set(v2_1_temp);
-                        continue '_method2;
+                        continue '_method3;
                     }
                 }
             });
         }
     }
     pub fn closure4(v0_1: i32, v1_1: Func0<()>) -> Option<()> {
-        let v3: Common::US2 = Common::method2(v0_1, v1_1, 0_i32);
+        let v3: Common::US2 = Common::method3(v0_1, v1_1, 0_i32);
         match &v3 {
             Common::US2::US2_0 => Some(()),
             _ => None::<()>,

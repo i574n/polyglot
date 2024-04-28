@@ -107,8 +107,9 @@ inl map_error forall t e u. (fn : e -> u) (source : result t e) : result t u =
 #!spiral
 
 inl map' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
+    inl fn = join fn
     inl source = join source
-    !\\((source, fn), $'"$0.map(|x| $1(x))"')
+    !\($'"!source.map(|x| !fn(x))"')
 
 #!markdown
 
@@ -122,6 +123,15 @@ inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u 
 
 #!markdown
 
+## as_ref
+
+#!spiral
+
+inl as_ref forall t e. (source : result' t e) : result' (rust.ref' t) (rust.ref' e) =
+    !\($'"!source.as_ref()"')
+
+#!markdown
+
 ## unbox
 
 #!spiral
@@ -129,7 +139,10 @@ inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u 
 inl unbox forall t u. (x : result' t u) : result t u =
     inl ok x : result t u = Ok x
     inl error x : result t u = Error x
-    $"match !x with Ok x -> !ok x | Error x -> !error x"
+    real
+        typecase t with
+        | () => $"match !x with Ok () -> !ok () | Error x -> !error x" : result t u
+        | _ => $"match !x with Ok x -> !ok x | Error x -> !error x" : result t u
 
 #!markdown
 

@@ -190,6 +190,42 @@ inl y' = y |> box |> unbox
 
 #!markdown
 
+## of_obj
+
+#!spiral
+
+inl of_obj forall t. (x : t) : option' t =
+    ($"true in let mutable _!x = None" : bool) |> ignore
+    $"#if \!FABLE_COMPILER && \!WASM && \!CONTRACT"
+    ((x |> $'Option.ofObj') : option' t)
+    |> fun x => $'!x '
+    $"#else"
+    $'Some !x '
+    $"#endif"
+    $"|> fun x -> _!x <- Some x"
+    $'_!x.Value'
+
+#!spiral
+
+// // test
+
+null ()
+|> of_obj
+|> unbox
+|> _assert_eq (None : option string)
+
+#!spiral
+
+// // test
+// // rust=
+
+""
+|> of_obj
+|> unbox
+|> _assert_eq' (Some "")
+
+#!markdown
+
 ## try'
 
 #!spiral
@@ -215,7 +251,7 @@ inl flatten x =
 #!spiral
 
 inl unwrap forall t. (x : option' t) : t =
-    !\($'"!x.unwrap()"')
+    !\\(x, $'"$0.unwrap()"')
 
 #!markdown
 

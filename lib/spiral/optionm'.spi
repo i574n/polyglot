@@ -62,6 +62,18 @@ inl box forall t. (x : option t) : option' t =
     | Some x => some' x
     | None => none' ()
 
+// // ## of_obj
+inl of_obj forall t. (x : t) : option' t =
+    ($"true in let mutable _!x = None" : bool) |> ignore
+    $"#if \!FABLE_COMPILER && \!WASM && \!CONTRACT"
+    ((x |> $'Option.ofObj') : option' t)
+    |> fun x => $'!x '
+    $"#else"
+    $'Some !x '
+    $"#endif"
+    $"|> fun x -> _!x <- Some x"
+    $'_!x.Value'
+
 // // ## try'
 inl try' forall t. (x : option' t) : t =
     !\\(x, $'"$0?"')
@@ -74,7 +86,7 @@ inl flatten x =
 
 // // ## unwrap
 inl unwrap forall t. (x : option' t) : t =
-    !\($'"!x.unwrap()"')
+    !\\(x, $'"$0.unwrap()"')
 
 // // ## unwrap_or
 inl unwrap_or forall t. (def : t) (x : option' t) : t =

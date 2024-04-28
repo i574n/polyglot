@@ -1,6 +1,13 @@
 // // # threading
 open rust_operators
 
+// // ## types
+inl types () =
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::thread::JoinHandle<$0>\")>]\n#endif\ntype std_thread_JoinHandle<'T> = class end"
+
+// // ## join_handle
+nominal join_handle t = $'std_thread_JoinHandle<`t>'
+
 // // ## cancellation_token
 nominal cancellation_token = $'System.Threading.CancellationToken'
 
