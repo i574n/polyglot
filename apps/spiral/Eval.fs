@@ -468,7 +468,14 @@ module Eval =
 
                                         let command = $@"dotnet fable ""{fsprojPath}"" --optimize --lang rs --extension .rs --outDir ""{outDir}"" "
                                         let! exitCode, result =
-                                            SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, repositoryRoot)
+                                            SpiralRuntime.execution_options (fun x ->
+                                                { x with
+                                                    l0 = cancellationToken
+                                                    l1 = command
+                                                    l4 = repositoryRoot
+                                                }
+                                            )
+                                            |> SpiralRuntime.execute_with_options_async
 
                                         if exitCode <> 0
                                         then return Some (Error result)
@@ -483,7 +490,14 @@ module Eval =
 
                                             let command = "cargo fmt --"
                                             let! exitCode, result =
-                                                SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, Some outDir)
+                                                SpiralRuntime.execution_options (fun x ->
+                                                    { x with
+                                                        l0 = cancellationToken
+                                                        l1 = command
+                                                        l4 = Some outDir
+                                                    }
+                                                )
+                                                |> SpiralRuntime.execute_with_options_async
                                             if exitCode <> 0 then
                                                 trace Critical (fun () -> $"Eval.eval / cargo fmt error / exitCode: {exitCode} / result: {result}") _locals
 
@@ -547,9 +561,17 @@ path = "{hash}.rs"
 """
                                             do! cargoTomlContent |> SpiralFileSystem.write_all_text_exists cargoTomlPath
 
-                                            let command = $@"cargo run --release --manifest-path {cargoTomlPath}"
+                                            let command = $@"cargo run --manifest-path {cargoTomlPath}"
                                             let! exitCode, result =
-                                                SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, repositoryRoot)
+                                                SpiralRuntime.execution_options (fun x ->
+                                                    { x with
+                                                        l0 = cancellationToken
+                                                        l1 = command
+                                                        l2 = [| "RUSTC_WRAPPER", "sccache" |]
+                                                        l4 = repositoryRoot
+                                                    }
+                                                )
+                                                |> SpiralRuntime.execute_with_options_async
 
                                             if exitCode = 0 then
                                                 try
@@ -557,7 +579,8 @@ path = "{hash}.rs"
                                                         result
                                                         |> SpiralSm.split "\n"
                                                         |> Array.skipWhile (fun line ->
-                                                            line |> SpiralSm.contains @"[optimized] target" |> not
+                                                            (line |> SpiralSm.contains @"profile [optimized] target" |> not)
+                                                                && (line |> SpiralSm.contains @"profile [unoptimized + debuginfo] target" |> not)
                                                         )
                                                         |> Array.skip 2
                                                         |> SpiralSm.concat "\n"

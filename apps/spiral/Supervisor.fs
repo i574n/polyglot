@@ -69,34 +69,37 @@ module Supervisor =
                 let dllPath = compilerPath </> "Spiral.dll"
 
                 let! exitCode, result =
-                    SpiralRuntime.execute_with_options_async struct (
-                        Some ct,
-                        $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64",
-                        Some (fun struct (_, line, _) -> async {
-                            if line |> SpiralSm.contains $"System.IO.IOException: Failed to bind to address http://{host}:{port}: address already in use." then
-                                inbox.Post (port, false)
+                    SpiralRuntime.execution_options (fun x ->
+                        { x with
+                            l0 = Some ct
+                            l1 = $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64"
+                            l3 = Some (fun struct (_, line, _) -> async {
+                                if line |> SpiralSm.contains $"System.IO.IOException: Failed to bind to address http://{host}:{port}: address already in use." then
+                                    inbox.Post (port, false)
 
-                            if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
-                                do!
-                                    SpiralNetworking.wait_for_port_access (Some 5000) true availablePort
-                                    |> Async.Ignore
+                                if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
+                                    do!
+                                        SpiralNetworking.wait_for_port_access (Some 5000) true availablePort
+                                        |> Async.Ignore
 
-                                let rec loop retry = async {
-                                    let _locals () = $"port: {availablePort} / retry: {retry} / {_locals ()}"
-                                    try
-                                        let pingObj = {| Ping = true |}
-                                        let! pingResult = pingObj |> sendObj availablePort
-                                        trace Verbose (fun () -> $"awaitCompiler / Ping / result: '{pingResult}'") _locals
-                                    with ex ->
-                                        trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") _locals
-                                        do! Async.Sleep 10
-                                        do! loop (retry + 1)
-                                }
-                                do! loop 0
-                                inbox.Post (availablePort, true)
-                        }),
-                        Some repositoryRoot
+                                    let rec loop retry = async {
+                                        let _locals () = $"port: {availablePort} / retry: {retry} / {_locals ()}"
+                                        try
+                                            let pingObj = {| Ping = true |}
+                                            let! pingResult = pingObj |> sendObj availablePort
+                                            trace Verbose (fun () -> $"awaitCompiler / Ping / result: '{pingResult}'") _locals
+                                        with ex ->
+                                            trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") _locals
+                                            do! Async.Sleep 10
+                                            do! loop (retry + 1)
+                                    }
+                                    do! loop 0
+                                    inbox.Post (availablePort, true)
+                            })
+                            l4 = Some repositoryRoot
+                        }
                     )
+                    |> SpiralRuntime.execute_with_options_async
 
                 trace Debug (fun () -> $"awaitCompiler / exitCode: {exitCode} / result: {result}") _locals
                 disposable.Dispose ()
@@ -479,7 +482,13 @@ modules:
                 executeCommandActions
                 |> List.map (fun command -> async {
                     let! exitCode, result =
-                        SpiralRuntime.execute_with_options_async struct (Some compilerToken, command, None, None)
+                        SpiralRuntime.execution_options (fun x ->
+                            { x with
+                                l0 = Some compilerToken
+                                l1 = command
+                            }
+                        )
+                        |> SpiralRuntime.execute_with_options_async
 
                     trace Debug (fun () -> $"main / executeCommand / exitCode: {exitCode}") _locals
 

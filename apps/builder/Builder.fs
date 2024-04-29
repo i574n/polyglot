@@ -37,7 +37,13 @@ module Builder =
             |> List.map (fun runtime -> async {
                 let command = $@"dotnet publish ""{path}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
                 let! exitCode, _result =
-                    SpiralRuntime.execute_with_options_async struct (None, command, None, Some fileDir)
+                    SpiralRuntime.execution_options (fun x ->
+                        { x with
+                            l1 = command
+                            l4 = Some fileDir
+                        }
+                    )
+                    |> SpiralRuntime.execute_with_options_async
                 return exitCode
             })
             |> Async.Sequential
@@ -104,7 +110,7 @@ module Builder =
             let! fsprojText = fsprojPath |> SpiralFileSystem.read_all_text_async
             trace Critical
                 (fun () -> "buildCode")
-                (fun () -> $"code: {code} / fsprojText: {fsprojText} / {_locals ()}")
+                (fun () -> $"code: {code |> SpiralSm.ellipsis_end 400} / fsprojText: {fsprojText} / {_locals ()}")
         return exitCode
     }
 

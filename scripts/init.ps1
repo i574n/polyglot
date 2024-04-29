@@ -41,10 +41,10 @@ if ($IsLinux) {
     curl -fsSL https://bun.sh/install | bash
     $env:PATH = "~/.bun/bin:$env:PATH"
 
-    if (!(Search-Command "mono")) {
-        sudo apt-add-repository 'deb https://download.mono-project.com/repo/ubuntu stable-focal main'
-        sudo apt install -y mono-complete
-    }
+    # if (!(Search-Command "mono")) {
+    #     sudo apt-add-repository 'deb https://download.mono-project.com/repo/ubuntu stable-focal main'
+    #     sudo apt install -y mono-complete
+    # }
 }
 
 pip install -r ../requirements.txt

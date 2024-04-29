@@ -65,9 +65,14 @@ Formatter.Register<struct (string * string * string * struct (string * float arr
 
                 let plotExePath = repositoryRoot </> $"target/release/plot{SpiralRuntime.get_executable_suffix ()}"
                 let! exitCode, result =
-                    SpiralRuntime.execute_with_options_async struct (
-                        Some ct, plotExePath, None, Some repositoryRoot
+                    SpiralRuntime.execution_options (fun x ->
+                        { x with
+                            l0 = Some ct
+                            l1 = plotExePath
+                            l4 = Some repositoryRoot
+                        }
                     )
+                    |> SpiralRuntime.execute_with_options_async
                 if exitCode <> 0 then
                     return failwith $"plot failed with exit code {exitCode} and output {result}"
             return! svgPath |> SpiralFileSystem.read_all_text_async

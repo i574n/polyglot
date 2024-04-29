@@ -96,6 +96,13 @@ module SpiralRuntime =
         execute_with_options_async x
 #endif
 
+    let execution_options x =
+#if !INTERACTIVE
+        Runtime.execution_options x
+#else
+        execution_options x
+#endif
+
     let split_args x =
 #if !INTERACTIVE
         Runtime.split_args x

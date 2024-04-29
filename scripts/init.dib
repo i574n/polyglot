@@ -25,6 +25,10 @@ rustup +nightly update
 
 #!pwsh
 
+{ cargo +nightly install sccache --locked } | Invoke-Block -OnError Continue
+
+#!pwsh
+
 { cargo +nightly install wasm-pack --locked } | Invoke-Block -OnError Continue
 
 #!pwsh

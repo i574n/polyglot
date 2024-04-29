@@ -141,15 +141,17 @@ type execution_options =
         command : string
         working_directory : optionm'.option' string
         cancellation_token : optionm'.option' threading.cancellation_token
+        environment_variables : array_base (string * string)
         on_line : optionm'.option' (execution_line -> async.async ())
     }
 
 inl execution_options (fn : execution_options -> execution_options) : execution_options =
     {
         command = ""
-        cancellation_token = None |> optionm'.box
-        on_line = None |> optionm'.box
         working_directory = None |> optionm'.box
+        cancellation_token = None |> optionm'.box
+        environment_variables = ;[]
+        on_line = None |> optionm'.box
     }
     |> fn
 
@@ -165,6 +167,10 @@ inl execute_with_options_async (options : execution_options) : _ (i32 * string) 
 
                 inl utf8 = sm'.encoding_utf8 ()
                 inl start_info : process_start_info = $'System.Diagnostics.ProcessStartInfo (Arguments = !arguments, StandardOutputEncoding = !utf8, WorkingDirectory = !working_directory, FileName = !file_name, CreateNoWindow = true, RedirectStandardError = true, RedirectStandardOutput = true, UseShellExecute = false)'
+
+                (a options.environment_variables : _ i32 _)
+                |> am.iter fun key, value =>
+                    $'!start_info.EnvironmentVariables.[!key] <- !value '
 
                 inl proc = start_info |> new_process |> use
                 inl output : _ string = threading.new_concurrent_stack ()
@@ -248,13 +254,10 @@ inl execute_with_options_async (options : execution_options) : _ (i32 * string) 
 
 // // ## execute_async
 inl execute_async command =
-    execute_with_options_async
-        {
-            command = command
-            cancellation_token = None |> optionm'.box
-            on_line = None |> optionm'.box
-            working_directory = None |> optionm'.box
-        }
+    execution_options fun x => { x with
+        command = command
+    }
+    |> execute_with_options_async
 
 // // ## child
 nominal child = $'std_process_Child'
@@ -471,13 +474,10 @@ inl execute_with_options (options : execution_options) : i32 * string =
         | _ => fun () => null ()
 
 inl execute command =
-    execute_with_options
-        {
-            command = command
-            cancellation_token = None |> optionm'.box
-            on_line = None |> optionm'.box
-            working_directory = None |> optionm'.box
-        }
+    execution_options fun x => { x with
+        command = command
+    }
+    |> execute_with_options
 
 // // ## command
 nominal command = $'clap_Command'
@@ -542,4 +542,11 @@ inl main () =
     $"let get_executable_suffix () = !get_executable_suffix ()" : ()
     $"let execute_async x = !execute_async x" : ()
     $"let execute_with_options_async x = !execute_with_options_async x" : ()
+    inl execution_options fn =
+        execution_options fun x =>
+            x
+            |> heap
+            |> fn
+            |> fun x => !x
+    $"let execution_options x = !execution_options x" : ()
     $"let split_args x = !split_args x" : ()
