@@ -24,6 +24,22 @@ function FixRust2 {
     }
 }
 
+function TsVersion {
+    "4.17.0"
+}
+
+function FixTypeScript {
+    param (
+        [Parameter(Mandatory, ValueFromPipeline)]
+        $text
+    )
+    process {
+        $text `
+            -replace "\./fable_modules/fable-library-ts.$(TsVersion)/", "./deps/Fable/src/fable-library-ts/" `
+            -replace "from `"\./deps/", "from `"../../polyglot/deps/"
+    }
+}
+
 function CopyTarget {
     param (
         $TargetDir,
@@ -49,9 +65,9 @@ function CopyTarget {
 
         if ($Language -eq "ts") {
             $text = $text `
-                -replace "../../fable_modules/fable-library-ts.4.14.0/", "../../deps/Fable/src/fable-library-ts/" `
                 -replace "this\$.tag", "(this$ as any)['tag']" `
-                -replace "../../../../../../../../", "../../"
+                -replace "../../../../../../../../", "../../" `
+                | FixTypeScript
         }
         if ($Language -eq "rs") {
             $text = $text `
@@ -75,18 +91,26 @@ function CopyTarget {
                 $text = $text `
                     -replace "use fable_library_rust::System::Threading::CancellationTokenSource;", "type CancellationTokenSource = ();"
             }
-            if ($name -in @("runtime", "threading", "file_system")) {
-                $text = $text `
-                    -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();"
-            }
             if ($name -eq "runtime") {
                 $text = $text `
                     -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();" `
                     -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;"
             }
-            if ($name -eq "common" -and !$Runtime) {
+            if ($name -in @("runtime", "threading", "file_system")) {
+                $text = $text `
+                    -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();"
+            }
+            if ($name -in @("common") -and !$Runtime) {
                 $text = $text `
                     -replace "defaultOf\(\)", "defaultOf::<std::sync::Arc<dyn IDisposable>>()"
+            }
+            if ($name -in @("file_system") -and !$Runtime) {
+                $text = $text `
+                    -replace "defaultOf\(\),", "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
+            }
+            if ($name -in @("common", "file_system") -and ($Runtime -in @("wasm", "contract"))) {
+                $text = $text `
+                    -replace "defaultOf\(\),", "defaultOf::<std::rc::Rc<dyn IDisposable>>(),"
             }
             if ($name -eq "file_system" -and ($Runtime -in @("wasm", "contract"))) {
                 $text = $text `
@@ -95,14 +119,6 @@ function CopyTarget {
                     -replace "chrono::DateTime", "Option" `
                     -replace "use fable_library_rust::DateTime_::DateTime;", "type DateTime = ();" `
                     -replace "use fable_library_rust::Guid_::new_guid;", "type Guid = ();" `
-            }
-            if ($name -in @("common", "file_system") -and ($Runtime -in @("wasm", "contract"))) {
-                $text = $text `
-                    -replace "defaultOf\(\),", "defaultOf::<std::rc::Rc<dyn IDisposable>>(),"
-            }
-            if ($name -eq "lib") {
-                $text = $text `
-                    -replace "trace_state\(\)", "trace_state().get().clone()"
             }
         }
 

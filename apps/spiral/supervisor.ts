@@ -2,6 +2,18 @@ import * as crypto from "../../lib/spiral/crypto"
 import * as path from "path"
 import * as fs from "fs"
 
+import * as list from '../../deps/Fable/src/fable-library-ts/List';
+import * as array from '../../deps/Fable/src/fable-library-ts/Array';
+import * as double from '../../deps/Fable/src/fable-library-ts/Double';
+import * as seq from '../../deps/Fable/src/fable-library-ts/Seq';
+import * as core from '../../deps/Fable/src/fable-library-ts/FSharp.Core';
+
+export const _FSharpList = () => list.FSharpList;
+export const _array_map = () => array.map;
+export const _double_max = () => double.max;
+export const _seq = () => seq.ofSeq;
+export const _core = () => core.Operators_NullArg;
+
 const fileExists = async (path: string) => !!(await fs.promises.stat(path).catch((_e) => false))
 
 const sleep = async (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))

@@ -608,6 +608,7 @@ let split_args (args : string) : array_base string =
     |> fst
     |> listm'.box
     |> listm'.to_array'
+    |> fun (a x : _ i32 _) => x
 
 #!spiral
 

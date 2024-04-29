@@ -316,7 +316,15 @@ pub mod Trace {
         }
     }
     pub fn method5(v0_1: Trace::US0, v1_1: Func0<string>) {
-        let v2 = Func0::new(move || Trace::closure0((), ()));
+        fn v2() -> (
+            LrcPtr<Trace::Mut0>,
+            LrcPtr<Trace::Mut1>,
+            LrcPtr<Trace::Mut2>,
+            Option<i64>,
+            LrcPtr<Trace::Mut3>,
+        ) {
+            Trace::closure0((), ())
+        }
         if Trace::State::trace_state().get().clone().is_none() {
             Trace::State::trace_state().set(Some(v2()));
         }

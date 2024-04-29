@@ -10,19 +10,23 @@ and method1 () : string =
 and closure0 () (v0 : string) : string =
     let v1 : string option = None
     let v2 : bool = true in let mutable _v1 = v1
-    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v3 : string = null |> unbox<string>
     v3
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
+#endif
+    
+#if FABLE_COMPILER_RUST && WASM
     let v4 : string = null |> unbox<string>
     v4
-    #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
+#endif
+    
+#if FABLE_COMPILER_RUST && CONTRACT
     let v5 : string = null |> unbox<string>
     v5
-    #endif
-    #if !FABLE_COMPILER && !WASM && !CONTRACT
+#endif
+    
+#if !FABLE_COMPILER && !WASM && !CONTRACT
     let v6 : (unit -> System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
     let v7 : System.Security.Cryptography.SHA256 = v6 ()
     use v7 = v7 
@@ -50,8 +54,9 @@ and closure0 () (v0 : string) : string =
     let v26 : (string seq -> string) = v25 v24
     let v27 : string = v26 v23
     v27
-    #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+#endif
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v28 : string = "crypto"
     let v29 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v28
     let v30 : string = "v29.createHash($0)"
@@ -63,11 +68,12 @@ and closure0 () (v0 : string) : string =
     let v36 : string = "hex"
     let v37 : string = Fable.Core.JsInterop.emitJsExpr struct (v34, v36) v35
     v37
-    #endif
-    #if FABLE_COMPILER_PYTHON
+#endif
+    
+#if FABLE_COMPILER_PYTHON
     let v38 : string = null |> unbox<string>
     v38
-    #endif
+#endif
     |> fun x -> _v1 <- Some x
     let v39 : string = _v1.Value
     v39

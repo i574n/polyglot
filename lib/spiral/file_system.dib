@@ -520,6 +520,34 @@ get_current_directory ()
 
 #!markdown
 
+## directory_separator_char
+
+#!spiral
+
+inl directory_separator_char () : char =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.IO.Path.DirectorySeparatorChar'
+        | Rust (Native) => fun () =>
+            open rust_operators
+            !\($'"std::path::MAIN_SEPARATOR"')
+        | _ => fun () => null ()
+
+#!markdown
+
+## normalize_path
+
+#!spiral
+
+inl normalize_path (path : string) : string =
+    if runtime.is_windows () |> not
+    then path
+    else
+        inl path = path |> sm'.replace_regex @"^\\\\\?\\" ""
+        $'$"{!path.[0] |> string |> _.ToLower()}{!path.[1..]}"' |> sm'.replace "\\" "/"
+
+#!markdown
+
 ## get_full_path
 
 #!spiral
@@ -536,6 +564,19 @@ inl get_full_path (path : string) : string =
             if path_buf |> path_buf_exists |> not then
                 inl current_dir = get_current_directory ()
                 current_dir </> path
+                |> normalize_path
+                |> sm'.split "/"
+                |> fun x => a x : _ i32 _
+                |> fun x =>
+                    (x, (0i32, (a ;[] : _ i32 string)))
+                    ||> am.foldBack fun x (level, acc) =>
+                        match x, level with
+                        | "..", _ => level + 1, acc
+                        | _, 0 => level, a ;[ x ] /@ acc
+                        | _ => level - 1, acc
+                |> snd
+                |> seq.of_array'
+                |> sm'.concat (directory_separator_char () |> sm'.obj_to_string)
             else
                 inl path = !\\(path, $'"std::fs::canonicalize(&*$0)"') : resultm.result' path_buf runtime.io_error
                 path
@@ -550,10 +591,20 @@ inl get_full_path (path : string) : string =
 // // test
 // // print_code=false
 
-"." |> get_full_path
+"."
+|> get_full_path
 |> directory_info
 |> directory_info_name
 |> _assert_eq "spiral"
+
+#!spiral
+
+// // test
+// // print_code=false
+
+"dir/../._file"
+|> get_full_path
+|> _assert_eq (get_current_directory () </> "._file" |> normalize_path)
 
 #!spiral
 
@@ -571,20 +622,16 @@ types ()
 |> sm'.from_os_str_ref
 |> _assert_eq "spiral"
 
-#!markdown
-
-## directory_separator_char
-
 #!spiral
 
-inl directory_separator_char () : char =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            $'System.IO.Path.DirectorySeparatorChar'
-        | Rust (Native) => fun () =>
-            open rust_operators
-            !\($'"std::path::MAIN_SEPARATOR"')
-        | _ => fun () => null ()
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+"dir/../._file"
+|> get_full_path
+|> _assert_eq (get_current_directory () </> "._file" |> normalize_path)
 
 #!markdown
 
@@ -793,10 +840,12 @@ inl directory_delete recursive (path : string) : () =
         | Fsharp (Native) => fun () =>
             $'System.IO.Directory.Delete (!path, !recursive)'
         | Rust (Native) => fun () =>
-            open rust_operators
-            if recursive
-            then !\\(path, $'"std::fs::remove_dir_all(&*$0).unwrap()"')
-            else !\\(path, $'"std::fs::remove_dir(&*$0).unwrap()"')
+            inl path = join path
+            if path |> directory_exists then
+                open rust_operators
+                if recursive
+                then !\\(path, $'"std::fs::remove_dir_all(&*$0).unwrap()"')
+                else !\\(path, $'"std::fs::remove_dir(&*$0).unwrap()"')
         | _ => fun () => null ()
 
 #!markdown
@@ -1406,16 +1455,13 @@ inl get_repository_root () =
 
 #!markdown
 
-## normalize_path
+## absolute_path
 
 #!spiral
 
-inl normalize_path (path : string) : string =
-    if runtime.is_windows () |> not
-    then path
-    else
-        inl path = path |> sm'.replace_regex @"^\\\\\?\\" ""
-        $'$"{!path.[0] |> System.Char.ToLower}{!path.[1..]}"' |> sm'.replace "\\" "/"
+inl absolute_path path =
+    inl current_dir = get_current_directory ()
+    current_dir </> path |> get_full_path |> normalize_path
 
 #!markdown
 

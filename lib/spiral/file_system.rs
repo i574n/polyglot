@@ -30,12 +30,12 @@ pub mod File_system {
     use fable_library_rust::String_::getCharAt;
     use fable_library_rust::String_::getSlice;
     use fable_library_rust::String_::length;
+    use fable_library_rust::String_::ofChar;
     use fable_library_rust::String_::padRight;
     use fable_library_rust::String_::replace;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::toLower;
-    use fable_library_rust::String_::toLowerChar;
     use fable_library_rust::String_::toString;
     use fable_library_rust::String_::trimEndChars;
     use fable_library_rust::String_::trimStartChars;
@@ -550,6 +550,12 @@ pub mod File_system {
         }
         (v1_1, v0_1, v3_1, getValue(_v6.get().clone()), v5_1)
     }
+    pub fn method3(v0_1: string) -> string {
+        v0_1
+    }
+    pub fn method4(v0_1: string) -> string {
+        v0_1
+    }
     pub fn closure3(unitVar: (), unitVar_1: ()) -> string {
         string("file_system.delete_directory_async")
     }
@@ -575,10 +581,10 @@ pub mod File_system {
     pub fn closure8(unitVar: (), v0_1: i64) -> File_system::US2 {
         File_system::US2::US2_0(v0_1)
     }
-    pub fn method4() -> Func1<i64, File_system::US2> {
+    pub fn method6() -> Func1<i64, File_system::US2> {
         Func1::new(move |v: i64| File_system::closure8((), v))
     }
-    pub fn method5() -> string {
+    pub fn method7() -> string {
         string("")
     }
     pub fn closure7(
@@ -601,7 +607,7 @@ pub mod File_system {
             let _v9: MutCell<Option<string>> = MutCell::new(None::<string>);
             let v13_1: File_system::US2 = defaultValue(
                 File_system::US2::US2_1,
-                map(File_system::method4(), patternInput.3.clone()),
+                map(File_system::method6(), patternInput.3.clone()),
             );
             let v31: DateTime = match &v13_1 {
                 File_system::US2::US2_0(v13_1_0_0) => {
@@ -677,8 +683,16 @@ pub mod File_system {
             }
         }
     }
-    pub fn method6(v0_1: File_system::US0, v1_1: Func0<string>) {
-        let v2_1 = Func0::new(move || File_system::closure0((), ()));
+    pub fn method8(v0_1: File_system::US0, v1_1: Func0<string>) {
+        fn v2_1() -> (
+            LrcPtr<File_system::Mut0>,
+            LrcPtr<File_system::Mut1>,
+            LrcPtr<File_system::Mut2>,
+            Option<i64>,
+            LrcPtr<File_system::Mut3>,
+        ) {
+            File_system::closure0((), ())
+        }
         if File_system::State::trace_state().get().clone().is_none() {
             File_system::State::trace_state().set(Some(v2_1()));
         }
@@ -740,8 +754,8 @@ pub mod File_system {
             }
         }
     }
-    pub fn method3(v0_1: File_system::US0, v1_1: Func0<string>, v2_1: Func0<string>) {
-        File_system::method6(
+    pub fn method5(v0_1: File_system::US0, v1_1: Func0<string>, v2_1: Func0<string>) {
+        File_system::method8(
             v0_1.clone(),
             Func0::new({
                 let v0_1 = v0_1.clone();
@@ -779,7 +793,7 @@ pub mod File_system {
             File_system::closure6((), ())
         )
     }
-    pub fn method7(
+    pub fn method9(
         v0_1: string,
         v1_1: File_system::US5,
         v2_1: File_system::US4,
@@ -806,7 +820,7 @@ pub mod File_system {
             move |v: string| File_system::closure10(v0_1.clone(), v)
         })
     }
-    pub fn method8(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
+    pub fn method10(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
         let _v2: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
         {
             let x: Arc<Async<i64>> = defaultOf();
@@ -829,9 +843,6 @@ pub mod File_system {
             _v1.set(Some(x))
         }
         getValue(_v1.get().clone())
-    }
-    pub fn method9(v0_1: string) -> string {
-        v0_1
     }
     pub fn closure16(v0_1: string, v1_1: string) -> Arc<Async<bool>> {
         let _v2: MutCell<Option<Arc<Async<bool>>>> = MutCell::new(None::<Arc<Async<bool>>>);
@@ -894,7 +905,7 @@ pub mod File_system {
             )
         }
     }
-    pub fn method10(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
+    pub fn method11(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
         let _v2: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
         {
             let x: Arc<Async<i64>> = defaultOf();
@@ -921,7 +932,9 @@ pub mod File_system {
         }
         {
             let v11_1: string = getValue(_v3.get().clone());
-            let v12_1 = Func1::new(move |v: string| File_system::closure5((), v));
+            fn v12_1(v: string) -> string {
+                File_system::closure5((), v)
+            }
             sprintf!(
                 "old_path: {} / new_path: {} / ex: {} / {}",
                 v12_1(v1_1),
@@ -931,7 +944,7 @@ pub mod File_system {
             )
         }
     }
-    pub fn method11(v0_1: string, v1_1: string, v2_1: i64) -> Arc<Async<i64>> {
+    pub fn method12(v0_1: string, v1_1: string, v2_1: i64) -> Arc<Async<i64>> {
         let _v3: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
         {
             let x: Arc<Async<i64>> = defaultOf();
@@ -971,7 +984,7 @@ pub mod File_system {
     pub fn closure34(unitVar: (), unitVar_1: ()) -> string {
         string("read_all_text_retry_async")
     }
-    pub fn method13(v0_1: i64, v1_1: string) -> string {
+    pub fn method14(v0_1: i64, v1_1: string) -> string {
         sprintf!(
             "retry: {} / ex: {} / {}",
             v0_1,
@@ -980,9 +993,9 @@ pub mod File_system {
         )
     }
     pub fn closure35(v0_1: i64, v1_1: string, unitVar: ()) -> string {
-        File_system::method13(v0_1, v1_1)
+        File_system::method14(v0_1, v1_1)
     }
-    pub fn method12(v0_1: string, v1_1: i64) -> Arc<Async<Option<string>>> {
+    pub fn method13(v0_1: string, v1_1: i64) -> Arc<Async<Option<string>>> {
         let _v2: MutCell<Option<Arc<Async<Option<string>>>>> =
             MutCell::new(None::<Arc<Async<Option<string>>>>);
         {
@@ -1000,28 +1013,28 @@ pub mod File_system {
         }
         getValue(_v1.get().clone())
     }
-    pub fn method14(v0_1: string) -> string {
+    pub fn method15(v0_1: string) -> string {
         v0_1
     }
-    pub fn method15(v0_1: string) -> string {
+    pub fn method16(v0_1: string) -> string {
         v0_1
     }
     pub fn closure37(unitVar: (), v0_1: chrono::DateTime<chrono::Utc>) -> File_system::US8 {
         File_system::US8::US8_0(v0_1)
     }
-    pub fn method16() -> Func1<chrono::DateTime<chrono::Utc>, File_system::US8> {
+    pub fn method17() -> Func1<chrono::DateTime<chrono::Utc>, File_system::US8> {
         Func1::new(move |v: chrono::DateTime<chrono::Utc>| File_system::closure37((), v))
     }
-    pub fn method17(v0_1: chrono::DateTime<chrono::Utc>) -> chrono::DateTime<chrono::Utc> {
+    pub fn method18(v0_1: chrono::DateTime<chrono::Utc>) -> chrono::DateTime<chrono::Utc> {
         v0_1
     }
-    pub fn method18(v0_1: chrono::DateTime<chrono::Local>) -> chrono::DateTime<chrono::Local> {
+    pub fn method19(v0_1: chrono::DateTime<chrono::Local>) -> chrono::DateTime<chrono::Local> {
         v0_1
-    }
-    pub fn method19() -> string {
-        string("yyyyMMdd-HHmm-ssff-ffff-f")
     }
     pub fn method20() -> string {
+        string("yyyyMMdd-HHmm-ssff-ffff-f")
+    }
+    pub fn method21() -> string {
         string("hhmm")
     }
     pub fn closure36(unitVar: (), unitVar_1: ()) -> string {
@@ -1051,11 +1064,11 @@ pub mod File_system {
                 {
                     let v39: string = sprintf!("!{}", v11_1);
                     let _v40: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v42: string = File_system::method9(getValue(_v12.get().clone()));
+                    let v42: string = File_system::method4(getValue(_v12.get().clone()));
                     let v44: &str = fable_library_rust::String_::LrcStr::as_str(&v42);
                     let v46: std::string::String = String::from(v44);
                     let v48: std::path::PathBuf = std::path::PathBuf::from(v46);
-                    let v49: string = File_system::method9(v39);
+                    let v49: string = File_system::method4(v39);
                     let v51: &str = fable_library_rust::String_::LrcStr::as_str(&v49);
                     let v53: std::string::String = String::from(v51);
                     let v55: std::path::PathBuf = v48.join(v53);
@@ -1096,12 +1109,12 @@ pub mod File_system {
                                 chrono::DateTime::from_timestamp_micros(v101);
                             let v106: File_system::US8 = defaultValue(
                                 File_system::US8::US8_1,
-                                map(File_system::method16(), v103),
+                                map(File_system::method17(), v103),
                             );
                             let v125: File_system::US9 = match &v106 {
                                 File_system::US8::US8_0(v106_0_0) => {
                                     let v108: chrono::DateTime<chrono::Utc> =
-                                        File_system::method17(match &v106 {
+                                        File_system::method18(match &v106 {
                                             File_system::US8::US8_0(x) => x.clone(),
                                             _ => unreachable!(),
                                         });
@@ -1114,7 +1127,7 @@ pub mod File_system {
                                     let v114: string = string("r#\"%Y%m%d-%H%M-%S%f\"#");
                                     let v115: &str = r#"%Y%m%d-%H%M-%S%f"#;
                                     let v116: chrono::DateTime<chrono::Local> =
-                                        File_system::method18(v112);
+                                        File_system::method19(v112);
                                     let v118: std::string::String = v116.format(v115).to_string();
                                     let v120: string =
                                         fable_library_rust::String_::fromString(v118);
@@ -1178,13 +1191,13 @@ pub mod File_system {
                                         )));
                                         let _v225: MutCell<Option<string>> =
                                             MutCell::new(None::<string>);
-                                        let v227: string = File_system::method9(v82);
+                                        let v227: string = File_system::method4(v82);
                                         let v229: &str =
                                             fable_library_rust::String_::LrcStr::as_str(&v227);
                                         let v231: std::string::String = String::from(v229);
                                         let v233: std::path::PathBuf =
                                             std::path::PathBuf::from(v231);
-                                        let v234: string = File_system::method9(v224);
+                                        let v234: string = File_system::method4(v224);
                                         let v236: &str =
                                             fable_library_rust::String_::LrcStr::as_str(&v234);
                                         let v238: std::string::String = String::from(v236);
@@ -1219,7 +1232,7 @@ pub mod File_system {
             }
         }
     }
-    pub fn method21(v0_1: string) -> string {
+    pub fn method22(v0_1: string) -> string {
         v0_1
     }
     pub fn closure39(unitVar: (), v0_1: std::io::Error) -> std::string::String {
@@ -1230,7 +1243,7 @@ pub mod File_system {
         }
         getValue(_v1.get().clone())
     }
-    pub fn method22() -> Func1<std::io::Error, std::string::String> {
+    pub fn method23() -> Func1<std::io::Error, std::string::String> {
         Func1::new(move |v: std::io::Error| File_system::closure39((), v))
     }
     pub fn closure40(unitVar: (), unitVar_1: ()) -> File_system::US10 {
@@ -1258,12 +1271,29 @@ pub mod File_system {
     }
     pub fn closure46(v0_1: string, unitVar: ()) {
         let _v1: MutCell<Option<()>> = MutCell::new(None::<()>);
-        std::fs::remove_dir_all(&*v0_1).unwrap();
+        let v3_1: string = File_system::method3(v0_1);
+        let _v4: MutCell<Option<bool>> = MutCell::new(None::<bool>);
+        let v6_1: string = File_system::method4(v3_1.clone());
+        let v8_1: &str = fable_library_rust::String_::LrcStr::as_str(&v6_1);
+        let v10_1: std::string::String = String::from(v8_1);
+        let v12_1: std::path::PathBuf = std::path::PathBuf::from(v10_1);
+        {
+            let x: bool = if v12_1.clone().exists() {
+                v12_1.is_dir()
+            } else {
+                false
+            };
+            _v4.set(Some(x))
+        }
+        if getValue(_v4.get().clone()) {
+            std::fs::remove_dir_all(&*v3_1).unwrap();
+            ()
+        }
         _v1.set(Some(()));
         getValue(_v1.get().clone());
         ()
     }
-    pub fn method23(v0_1: string) -> Func0<()> {
+    pub fn method24(v0_1: string) -> Func0<()> {
         Func0::new({
             let v0_1 = v0_1.clone();
             move || File_system::closure46(v0_1.clone(), ())
@@ -1303,7 +1333,7 @@ pub mod File_system {
             }
         }
     }
-    pub fn method24(v0_1: string) -> Func0<()> {
+    pub fn method25(v0_1: string) -> Func0<()> {
         Func0::new({
             let v0_1 = v0_1.clone();
             move || File_system::closure49(v0_1.clone(), ())
@@ -1336,11 +1366,11 @@ pub mod File_system {
                 {
                     let v39: string = sprintf!("!{}", v11_1);
                     let _v40: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v42: string = File_system::method9(getValue(_v12.get().clone()));
+                    let v42: string = File_system::method4(getValue(_v12.get().clone()));
                     let v44: &str = fable_library_rust::String_::LrcStr::as_str(&v42);
                     let v46: std::string::String = String::from(v44);
                     let v48: std::path::PathBuf = std::path::PathBuf::from(v46);
-                    let v49: string = File_system::method9(v39);
+                    let v49: string = File_system::method4(v39);
                     let v51: &str = fable_library_rust::String_::LrcStr::as_str(&v49);
                     let v53: std::string::String = String::from(v51);
                     let v55: std::path::PathBuf = v48.join(v53);
@@ -1381,12 +1411,12 @@ pub mod File_system {
                                 chrono::DateTime::from_timestamp_micros(v101);
                             let v106: File_system::US8 = defaultValue(
                                 File_system::US8::US8_1,
-                                map(File_system::method16(), v103),
+                                map(File_system::method17(), v103),
                             );
                             let v125: File_system::US9 = match &v106 {
                                 File_system::US8::US8_0(v106_0_0) => {
                                     let v108: chrono::DateTime<chrono::Utc> =
-                                        File_system::method17(match &v106 {
+                                        File_system::method18(match &v106 {
                                             File_system::US8::US8_0(x) => x.clone(),
                                             _ => unreachable!(),
                                         });
@@ -1399,7 +1429,7 @@ pub mod File_system {
                                     let v114: string = string("r#\"%Y%m%d-%H%M-%S%f\"#");
                                     let v115: &str = r#"%Y%m%d-%H%M-%S%f"#;
                                     let v116: chrono::DateTime<chrono::Local> =
-                                        File_system::method18(v112);
+                                        File_system::method19(v112);
                                     let v118: std::string::String = v116.format(v115).to_string();
                                     let v120: string =
                                         fable_library_rust::String_::fromString(v118);
@@ -1463,13 +1493,13 @@ pub mod File_system {
                                         )));
                                         let _v225: MutCell<Option<string>> =
                                             MutCell::new(None::<string>);
-                                        let v227: string = File_system::method9(v82);
+                                        let v227: string = File_system::method4(v82);
                                         let v229: &str =
                                             fable_library_rust::String_::LrcStr::as_str(&v227);
                                         let v231: std::string::String = String::from(v229);
                                         let v233: std::path::PathBuf =
                                             std::path::PathBuf::from(v231);
-                                        let v234: string = File_system::method9(v224);
+                                        let v234: string = File_system::method4(v224);
                                         let v236: &str =
                                             fable_library_rust::String_::LrcStr::as_str(&v234);
                                         let v238: std::string::String = String::from(v236);
@@ -1499,10 +1529,10 @@ pub mod File_system {
                                                     Option<LrcPtr<dyn IDisposable>>,
                                                 > = MutCell::new(None::<LrcPtr<dyn IDisposable>>);
                                                 let v537: string =
-                                                    File_system::method21(v534.clone());
+                                                    File_system::method22(v534.clone());
                                                 let v539: Result<(), std::io::Error> =
                                                     std::fs::create_dir_all(&*v537.clone());
-                                                let v540 = File_system::method22();
+                                                let v540 = File_system::method23();
                                                 let v542: Result<(), std::string::String> =
                                                     v539.map_err(|x| v540(x));
                                                 let v545: File_system::US10 = match &v542 {
@@ -1513,7 +1543,7 @@ pub mod File_system {
                                                 };
                                                 match &v545 {
                                                     File_system::US10::US10_0 => {
-                                                        File_system::method3(
+                                                        File_system::method5(
                                                             File_system::US0::US0_0,
                                                             Func0::new(move || {
                                                                 File_system::closure44((), ())
@@ -1530,7 +1560,7 @@ pub mod File_system {
                                                         )
                                                     }
                                                     File_system::US10::US10_1(v545_1_0) => {
-                                                        File_system::method3(
+                                                        File_system::method5(
                                                             File_system::US0::US0_4,
                                                             Func0::new(move || {
                                                                 File_system::closure42((), ())
@@ -1604,7 +1634,7 @@ pub mod File_system {
     }
     pub fn closure54(unitVar: (), v0_1: string) -> bool {
         let _v1: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-        let v3_1: string = File_system::method9(v0_1);
+        let v3_1: string = File_system::method4(v0_1);
         let v5_1: &str = fable_library_rust::String_::LrcStr::as_str(&v3_1);
         let v7_1: std::string::String = String::from(v5_1);
         let v9_1: std::path::PathBuf = std::path::PathBuf::from(v7_1);
@@ -1620,7 +1650,7 @@ pub mod File_system {
     }
     pub fn closure55(unitVar: (), v0_1: string) -> bool {
         let _v1: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-        let v3_1: string = File_system::method9(v0_1);
+        let v3_1: string = File_system::method4(v0_1);
         let v5_1: &str = fable_library_rust::String_::LrcStr::as_str(&v3_1);
         let v7_1: std::string::String = String::from(v5_1);
         let v9_1: std::path::PathBuf = std::path::PathBuf::from(v7_1);
@@ -1636,7 +1666,7 @@ pub mod File_system {
     }
     pub fn closure56(unitVar: (), v0_1: string) -> Option<string> {
         let _v1: MutCell<Option<File_system::US9>> = MutCell::new(None::<File_system::US9>);
-        let v3_1: string = File_system::method9(v0_1);
+        let v3_1: string = File_system::method4(v0_1);
         let v5_1: &str = fable_library_rust::String_::LrcStr::as_str(&v3_1);
         let v7_1: std::string::String = String::from(v5_1);
         let v9_1: std::path::PathBuf = std::path::PathBuf::from(v7_1);
@@ -1667,28 +1697,28 @@ pub mod File_system {
             }
         }
     }
-    pub fn method26() -> Func1<string, Option<string>> {
+    pub fn method27() -> Func1<string, Option<string>> {
         Func1::new(move |v: string| File_system::closure56((), v))
     }
     pub fn closure57(unitVar: (), v0_1: string) -> File_system::US9 {
         File_system::US9::US9_0(v0_1)
     }
-    pub fn method27() -> Func1<string, File_system::US9> {
+    pub fn method28() -> Func1<string, File_system::US9> {
         Func1::new(move |v: string| File_system::closure57((), v))
     }
-    pub fn method28(v0_1: string, v1_1: bool, v2_1: string, v3_1: string) -> string {
+    pub fn method29(v0_1: string, v1_1: bool, v2_1: string, v3_1: string) -> string {
         let v0_1: MutCell<string> = MutCell::new(v0_1.clone());
         let v1_1: MutCell<bool> = MutCell::new(v1_1);
         let v2_1: MutCell<string> = MutCell::new(v2_1.clone());
         let v3_1: MutCell<string> = MutCell::new(v3_1.clone());
-        '_method28: loop {
-            break '_method28 ({
+        '_method29: loop {
+            break '_method29 ({
                 let _v4: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v6_1: string = File_system::method9(v3_1.get().clone());
+                let v6_1: string = File_system::method4(v3_1.get().clone());
                 let v8_1: &str = fable_library_rust::String_::LrcStr::as_str(&v6_1);
                 let v10_1: std::string::String = String::from(v8_1);
                 let v12_1: std::path::PathBuf = std::path::PathBuf::from(v10_1);
-                let v13_1: string = File_system::method9(v0_1.get().clone());
+                let v13_1: string = File_system::method4(v0_1.get().clone());
                 let v15_1: &str = fable_library_rust::String_::LrcStr::as_str(&v13_1);
                 let v17_1: std::string::String = String::from(v15_1);
                 let v19_1: std::path::PathBuf = v12_1.join(v17_1);
@@ -1713,10 +1743,10 @@ pub mod File_system {
                     {
                         v3_1.get().clone()
                     } else {
-                        let v52: Option<string> = (File_system::method26())(v3_1.get().clone());
+                        let v52: Option<string> = (File_system::method27())(v3_1.get().clone());
                         let v55: File_system::US9 = defaultValue(
                             File_system::US9::US9_1,
-                            map(File_system::method27(), v52),
+                            map(File_system::method28(), v52),
                         );
                         match &v55 {
                             File_system::US9::US9_0(v55_0_0) => {
@@ -1731,7 +1761,7 @@ pub mod File_system {
                                 v1_1.set(v1_1_temp);
                                 v2_1.set(v2_1_temp);
                                 v3_1.set(v3_1_temp);
-                                continue '_method28;
+                                continue '_method29;
                             }
                             _ => panic!(
                                 "{}",
@@ -1753,13 +1783,13 @@ pub mod File_system {
             });
         }
     }
-    pub fn method25(v0_1: string, v1_1: bool, v2_1: string) -> string {
+    pub fn method26(v0_1: string, v1_1: bool, v2_1: string) -> string {
         let _v3: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v5_1: string = File_system::method9(v2_1.clone());
+        let v5_1: string = File_system::method4(v2_1.clone());
         let v7_1: &str = fable_library_rust::String_::LrcStr::as_str(&v5_1);
         let v9_1: std::string::String = String::from(v7_1);
         let v11_1: std::path::PathBuf = std::path::PathBuf::from(v9_1);
-        let v12_1: string = File_system::method9(v0_1.clone());
+        let v12_1: string = File_system::method4(v0_1.clone());
         let v14_1: &str = fable_library_rust::String_::LrcStr::as_str(&v12_1);
         let v16_1: std::string::String = String::from(v14_1);
         let v18_1: std::path::PathBuf = v11_1.join(v16_1);
@@ -1783,11 +1813,11 @@ pub mod File_system {
             {
                 v2_1.clone()
             } else {
-                let v51: Option<string> = (File_system::method26())(v2_1.clone());
+                let v51: Option<string> = (File_system::method27())(v2_1.clone());
                 let v54: File_system::US9 =
-                    defaultValue(File_system::US9::US9_1, map(File_system::method27(), v51));
+                    defaultValue(File_system::US9::US9_1, map(File_system::method28(), v51));
                 match &v54 {
-                    File_system::US9::US9_0(v54_0_0) => File_system::method28(
+                    File_system::US9::US9_0(v54_0_0) => File_system::method29(
                         v0_1.clone(),
                         v1_1,
                         v2_1.clone(),
@@ -1811,7 +1841,7 @@ pub mod File_system {
         }
     }
     pub fn closure53(v0_1: string, v1_1: bool, v2_1: string) -> string {
-        File_system::method25(v0_1, v1_1, v2_1)
+        File_system::method26(v0_1, v1_1, v2_1)
     }
     pub fn closure52(v0_1: string, v1_1: bool) -> Func1<string, string> {
         Func1::new({
@@ -1826,13 +1856,13 @@ pub mod File_system {
             move |v: bool| File_system::closure52(v0_1.clone(), v)
         })
     }
-    pub fn method29() -> string {
+    pub fn method30() -> string {
         string("^\\\\\\\\\\?\\\\")
     }
-    pub fn method30(v0_1: string) -> string {
+    pub fn method31(v0_1: string) -> string {
         v0_1
     }
-    pub fn method31() -> string {
+    pub fn method32() -> string {
         string("")
     }
     pub fn closure58(unitVar: (), v0_1: string) -> string {
@@ -1845,9 +1875,9 @@ pub mod File_system {
             v0_1.clone()
         } else {
             let _v14: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let v16_1: string = File_system::method29();
-            let v17_1: string = File_system::method30(v0_1);
-            let v18_1: string = File_system::method31();
+            let v16_1: string = File_system::method30();
+            let v17_1: string = File_system::method31(v0_1);
+            let v18_1: string = File_system::method32();
             let v20: &str = &regex::Regex::new(&v16_1)
                 .unwrap()
                 .replace_all(&v17_1, &*v18_1);
@@ -1861,7 +1891,7 @@ pub mod File_system {
                 replace(
                     sprintf!(
                         "{}{}",
-                        toLowerChar(getCharAt(v32.clone(), 0_i32)),
+                        toLower(ofChar(getCharAt(v32.clone(), 0_i32))),
                         getSlice(v32, Some(1_i32), None::<i32>)
                     ),
                     string("\\"),
@@ -1873,30 +1903,30 @@ pub mod File_system {
     pub fn closure59(unitVar: (), v0_1: string) -> string {
         sprintf!("file:///{}", trimStartChars(v0_1, new_array(&['/'])))
     }
-    pub fn method32() -> string {
-        string("polyglot")
-    }
     pub fn method33() -> string {
-        string(".paket")
+        string("polyglot")
     }
     pub fn method34() -> string {
-        string("polyglot")
-    }
-    pub fn method35() -> string {
         string(".paket")
     }
-    pub fn method37(v0_1: string, v1_1: string, v2_1: string) -> string {
+    pub fn method35() -> string {
+        string("polyglot")
+    }
+    pub fn method36() -> string {
+        string(".paket")
+    }
+    pub fn method38(v0_1: string, v1_1: string, v2_1: string) -> string {
         let v0_1: MutCell<string> = MutCell::new(v0_1.clone());
         let v1_1: MutCell<string> = MutCell::new(v1_1.clone());
         let v2_1: MutCell<string> = MutCell::new(v2_1.clone());
-        '_method37: loop {
-            break '_method37 ({
+        '_method38: loop {
+            break '_method38 ({
                 let _v3: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v5_1: string = File_system::method9(v2_1.get().clone());
+                let v5_1: string = File_system::method4(v2_1.get().clone());
                 let v7_1: &str = fable_library_rust::String_::LrcStr::as_str(&v5_1);
                 let v9_1: std::string::String = String::from(v7_1);
                 let v11_1: std::path::PathBuf = std::path::PathBuf::from(v9_1);
-                let v12_1: string = File_system::method9(v0_1.get().clone());
+                let v12_1: string = File_system::method4(v0_1.get().clone());
                 let v14_1: &str = fable_library_rust::String_::LrcStr::as_str(&v12_1);
                 let v16_1: std::string::String = String::from(v14_1);
                 let v18_1: std::path::PathBuf = v11_1.join(v16_1);
@@ -1915,7 +1945,7 @@ pub mod File_system {
                     }
                     {
                         let _v46: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-                        let v48: string = File_system::method9(getValue(_v3.get().clone()));
+                        let v48: string = File_system::method4(getValue(_v3.get().clone()));
                         let v50: &str = fable_library_rust::String_::LrcStr::as_str(&v48);
                         let v52: std::string::String = String::from(v50);
                         let v54: std::path::PathBuf = std::path::PathBuf::from(v52);
@@ -1930,10 +1960,10 @@ pub mod File_system {
                         if getValue(_v46.get().clone()) {
                             v2_1.get().clone()
                         } else {
-                            let v71: Option<string> = (File_system::method26())(v2_1.get().clone());
+                            let v71: Option<string> = (File_system::method27())(v2_1.get().clone());
                             let v74: File_system::US9 = defaultValue(
                                 File_system::US9::US9_1,
-                                map(File_system::method27(), v71),
+                                map(File_system::method28(), v71),
                             );
                             match &v74 {
                                 File_system::US9::US9_0(v74_0_0) => {
@@ -1946,7 +1976,7 @@ pub mod File_system {
                                     v0_1.set(v0_1_temp);
                                     v1_1.set(v1_1_temp);
                                     v2_1.set(v2_1_temp);
-                                    continue '_method37;
+                                    continue '_method38;
                                 }
                                 _ => panic!(
                                     "{}",
@@ -1965,13 +1995,13 @@ pub mod File_system {
             });
         }
     }
-    pub fn method36(v0_1: string, v1_1: string) -> string {
+    pub fn method37(v0_1: string, v1_1: string) -> string {
         let _v2: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v4_1: string = File_system::method9(v1_1.clone());
+        let v4_1: string = File_system::method4(v1_1.clone());
         let v6_1: &str = fable_library_rust::String_::LrcStr::as_str(&v4_1);
         let v8_1: std::string::String = String::from(v6_1);
         let v10_1: std::path::PathBuf = std::path::PathBuf::from(v8_1);
-        let v11_1: string = File_system::method9(v0_1.clone());
+        let v11_1: string = File_system::method4(v0_1.clone());
         let v13_1: &str = fable_library_rust::String_::LrcStr::as_str(&v11_1);
         let v15_1: std::string::String = String::from(v13_1);
         let v17_1: std::path::PathBuf = v10_1.join(v15_1);
@@ -1989,7 +2019,7 @@ pub mod File_system {
             }
             {
                 let _v45: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-                let v47: string = File_system::method9(getValue(_v2.get().clone()));
+                let v47: string = File_system::method4(getValue(_v2.get().clone()));
                 let v49: &str = fable_library_rust::String_::LrcStr::as_str(&v47);
                 let v51: std::string::String = String::from(v49);
                 let v53: std::path::PathBuf = std::path::PathBuf::from(v51);
@@ -2004,11 +2034,11 @@ pub mod File_system {
                 if getValue(_v45.get().clone()) {
                     v1_1.clone()
                 } else {
-                    let v70: Option<string> = (File_system::method26())(v1_1.clone());
+                    let v70: Option<string> = (File_system::method27())(v1_1.clone());
                     let v73: File_system::US9 =
-                        defaultValue(File_system::US9::US9_1, map(File_system::method27(), v70));
+                        defaultValue(File_system::US9::US9_1, map(File_system::method28(), v70));
                     match &v73 {
-                        File_system::US9::US9_0(v73_0_0) => File_system::method37(
+                        File_system::US9::US9_0(v73_0_0) => File_system::method38(
                             v0_1.clone(),
                             v1_1.clone(),
                             match &v73 {
@@ -2031,16 +2061,16 @@ pub mod File_system {
             }
         }
     }
-    pub fn method38() -> string {
+    pub fn method39() -> string {
         string("polyglot")
     }
     pub fn closure60(unitVar: (), unitVar_1: ()) -> string {
         let _v1: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v3_1: string = File_system::method32();
+        let v3_1: string = File_system::method33();
         let v5_1: &str = fable_library_rust::String_::LrcStr::as_str(&v3_1);
         let v7_1: std::string::String = String::from(v5_1);
         let v9_1: std::path::PathBuf = std::path::PathBuf::from(v7_1);
-        let v10_1: string = File_system::method33();
+        let v10_1: string = File_system::method34();
         let v12_1: &str = fable_library_rust::String_::LrcStr::as_str(&v10_1);
         let v14_1: std::string::String = String::from(v12_1);
         let v16_1: std::path::PathBuf = v9_1.join(v14_1);
@@ -2058,14 +2088,14 @@ pub mod File_system {
             }
             {
                 let _v47: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v49: string = File_system::method9(File_system::method36(
+                let v49: string = File_system::method4(File_system::method37(
                     getValue(_v1.get().clone()),
                     string("C:\\home\\git\\polyglot\\lib\\spiral"),
                 ));
                 let v51: &str = fable_library_rust::String_::LrcStr::as_str(&v49);
                 let v53: std::string::String = String::from(v51);
                 let v55: std::path::PathBuf = std::path::PathBuf::from(v53);
-                let v56: string = File_system::method32();
+                let v56: string = File_system::method33();
                 let v58: &str = fable_library_rust::String_::LrcStr::as_str(&v56);
                 let v60: std::string::String = String::from(v58);
                 let v62: std::path::PathBuf = v55.join(v60);
@@ -2087,20 +2117,20 @@ pub mod File_system {
             }
         }
     }
-    pub fn method40() -> string {
-        string("target/polyglot/trace")
-    }
     pub fn method41() -> string {
         string("target/polyglot/trace")
     }
-    pub fn method39(v0_1: string) {
+    pub fn method42() -> string {
+        string("target/polyglot/trace")
+    }
+    pub fn method40(v0_1: string) {
         let _v1: MutCell<Option<()>> = MutCell::new(None::<()>);
         _v1.set(Some(()));
         getValue(_v1.get().clone());
         ()
     }
     pub fn closure62(unitVar: (), v0_1: string) {
-        File_system::method39(v0_1);
+        File_system::method40(v0_1);
     }
     pub fn closure61(unitVar: (), v0_1: bool) {
         if File_system::State::trace_state().get().clone().is_none() {
@@ -2125,11 +2155,11 @@ pub mod File_system {
     }
     pub fn closure64(v0_1: string, v1_1: string) -> string {
         let _v2: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v4_1: string = File_system::method9(v0_1);
+        let v4_1: string = File_system::method4(v0_1);
         let v6_1: &str = fable_library_rust::String_::LrcStr::as_str(&v4_1);
         let v8_1: std::string::String = String::from(v6_1);
         let v10_1: std::path::PathBuf = std::path::PathBuf::from(v8_1);
-        let v11_1: string = File_system::method9(v1_1);
+        let v11_1: string = File_system::method4(v1_1);
         let v13_1: &str = fable_library_rust::String_::LrcStr::as_str(&v11_1);
         let v15_1: std::string::String = String::from(v13_1);
         let v17_1: std::path::PathBuf = v10_1.join(v15_1);

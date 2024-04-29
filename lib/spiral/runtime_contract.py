@@ -7,7 +7,7 @@ from fable_modules.fable_library.async_builder import (CancellationToken, Async)
 from fable_modules.fable_library.list import (cons, FSharpList, of_array, to_array, fold_back, empty)
 from fable_modules.fable_library.long import op_addition
 from fable_modules.fable_library.map import (find, of_seq)
-from fable_modules.fable_library.option import (some, value as value_2)
+from fable_modules.fable_library.option import (some, value as value_2, default_arg, map)
 from fable_modules.fable_library.reflection import (TypeInfo, int64_type, record_type, bool_type, union_type, string_type, unit_type, lambda_type, int32_type, char_type, tuple_type, class_type, uint8_type)
 from fable_modules.fable_library.string_ import (replace, to_text, interpolate, pad_right, trim_end, trim_start)
 from fable_modules.fable_library.types import (int64, Record, Array, Union, FSharpRef, uint8)
@@ -1481,17 +1481,22 @@ def method19(v0_1: UH1, v1_1: FSharpList[str]) -> FSharpList[str]:
 
 
 def method15(v0_1: str) -> Array[str]:
-    v3_1: int = len(v0_1) or 0
-    v4_1: Array[str] = fill([0] * v3_1, 0, v3_1, "")
-    v5_1: Mut4 = Mut4(0)
-    while method3(v3_1, v5_1):
-        v7: int = v5_1.l0 or 0
-        v8: str = v0_1[v7]
-        v4_1[v7] = v8
-        v9: int = (v7 + 1) or 0
-        v5_1.l0 = v9 or 0
-    v11: FSharpList[str] = of_array(v4_1)
-    return to_array(method19(method16("", UH1(0), fold_back(uncurry2(method4()), v11, UH0(0)), US8(0), US8(0))[0], empty()))
+    _v0: (str | None) | None = None
+    _v0 = some(v0_1)
+    v6: str | None = value_2(_v0)
+    v9: US4 = default_arg(map(method6(), v6), US4(1))
+    v12: str = v9.fields[0] if (v9.tag == 0) else ""
+    v13: int = len(v12) or 0
+    v14: Array[str] = fill([0] * v13, 0, v13, "")
+    v15: Mut4 = Mut4(0)
+    while method3(v13, v15):
+        v17: int = v15.l0 or 0
+        v18: str = v12[v17]
+        v14[v17] = v18
+        v19: int = (v17 + 1) or 0
+        v15.l0 = v19 or 0
+    v21: FSharpList[str] = of_array(v14)
+    return to_array(method19(method16("", UH1(0), fold_back(uncurry2(method4()), v21, UH0(0)), US8(0), US8(0))[0], empty()))
 
 
 def closure21(unit_var: None, v0_1: str) -> Array[str]:

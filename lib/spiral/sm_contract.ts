@@ -1,12 +1,12 @@
-import { Record } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { float64, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
-import { defaultOf, IComparable, IEquatable } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { record_type, string_type, int32_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { interpolate, toText, trimStart, trimEnd, substring as substring_1, join, split as split_1, replace as replace_1, padRight, padLeft, endsWith } from "../../deps/Fable/src/fable-library-ts/String.js";
-import { value as value_2, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
-import { ofArray } from "../../deps/Fable/src/fable-library-ts/Seq.js";
-import { toInt32, op_Subtraction, fromFloat64, toFloat64, compare, int64, fromInt32, toInt64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
-import { setItem, fill, item } from "../../deps/Fable/src/fable-library-ts/Array.js";
+import { Record } from "../../../polyglot/deps/Fable/src/fable-library-ts/Types.js";
+import { float64, int32 } from "../../../polyglot/deps/Fable/src/fable-library-ts/Int32.js";
+import { defaultOf, IComparable, IEquatable } from "../../../polyglot/deps/Fable/src/fable-library-ts/Util.js";
+import { record_type, string_type, int32_type, TypeInfo } from "../../../polyglot/deps/Fable/src/fable-library-ts/Reflection.js";
+import { interpolate, toText, trimStart, trimEnd, substring as substring_1, join, split as split_1, replace as replace_1, padRight, padLeft, endsWith } from "../../../polyglot/deps/Fable/src/fable-library-ts/String.js";
+import { value as value_2, Option } from "../../../polyglot/deps/Fable/src/fable-library-ts/Option.js";
+import { ofArray } from "../../../polyglot/deps/Fable/src/fable-library-ts/Seq.js";
+import { toInt32, op_Subtraction, fromFloat64, toFloat64, compare, int64, fromInt32, toInt64 } from "../../../polyglot/deps/Fable/src/fable-library-ts/BigInt.js";
+import { setItem, fill, item } from "../../../polyglot/deps/Fable/src/fable-library-ts/Array.js";
 
 export class Mut0 extends Record implements IEquatable<Mut0>, IComparable<Mut0> {
     l0: int32;
@@ -99,7 +99,7 @@ export function method2(v0_1: string): string {
 }
 
 export function closure15(v0_1: string, v1_1: string, v2_1: string): string {
-    let _v3: Option<string> = void 0;
+    let _v3: Option<string> = undefined;
     const x: string = defaultOf();
     _v3 = x;
     return value_2(_v3);
@@ -126,7 +126,7 @@ export function closure16(unitVar: void, v0_1: int32): ((arg0: int32) => ((arg0:
 }
 
 export function closure20(v0_1: string, v1_1: string): string[] {
-    return split_1(v1_1, [v0_1], void 0, 0);
+    return split_1(v1_1, [v0_1], undefined, 0);
 }
 
 export function closure19(unitVar: void, v0_1: string): ((arg0: string) => string[]) {
@@ -138,9 +138,9 @@ export function method3(): string {
 }
 
 export function closure22(v0_1: string[], v1_1: string): string[] {
-    let _v2: Option<string[]> = void 0;
+    let _v2: Option<string[]> = undefined;
     const v27: Iterable<string> = ofArray<string>(v0_1);
-    const x: string[] = split_1(v1_1, [join(method3(), v27)], void 0, 0);
+    const x: string[] = split_1(v1_1, [join(method3(), v27)], undefined, 0);
     _v2 = x;
     return value_2(_v2);
 }
@@ -234,7 +234,7 @@ export function closure37(unitVar: void, v0_1: int64): ((arg0: string) => string
 }
 
 export function closure39(unitVar: void, v0_1: Error): string {
-    let _v1: Option<string> = void 0;
+    let _v1: Option<string> = undefined;
     const x: string = toText(interpolate("%A%P()", [v0_1]));
     _v1 = x;
     return value_2(_v1);
@@ -299,139 +299,139 @@ export function closure46(unitVar: void, v0_1: string): string[] {
     return v2_1;
 }
 
-export const v0 = (v: string): ((arg0: string) => boolean) => closure0(void 0, v);
+export const v0 = (v: string): ((arg0: string) => boolean) => closure0(undefined, v);
 
 export function contains(x: string): ((arg0: string) => boolean) {
     return v0(x);
 }
 
-export const v1 = (v: string): ((arg0: string) => boolean) => closure2(void 0, v);
+export const v1 = (v: string): ((arg0: string) => boolean) => closure2(undefined, v);
 
 export function ends_with(x: string): ((arg0: string) => boolean) {
     return v1(x);
 }
 
-export const v2 = (v: int32): ((arg0: string) => ((arg0: string) => string)) => closure4(void 0, v);
+export const v2 = (v: int32): ((arg0: string) => ((arg0: string) => string)) => closure4(undefined, v);
 
 export function pad_left(x: int32): ((arg0: string) => ((arg0: string) => string)) {
     return v2(x);
 }
 
-export const v3 = (v: int32): ((arg0: string) => ((arg0: string) => string)) => closure7(void 0, v);
+export const v3 = (v: int32): ((arg0: string) => ((arg0: string) => string)) => closure7(undefined, v);
 
 export function pad_right(x: int32): ((arg0: string) => ((arg0: string) => string)) {
     return v3(x);
 }
 
-export const v4 = (v: string): ((arg0: string) => ((arg0: string) => string)) => closure10(void 0, v);
+export const v4 = (v: string): ((arg0: string) => ((arg0: string) => string)) => closure10(undefined, v);
 
 export function replace(x: string): ((arg0: string) => ((arg0: string) => string)) {
     return v4(x);
 }
 
-export const v5 = (v: string): ((arg0: string) => ((arg0: string) => string)) => closure13(void 0, v);
+export const v5 = (v: string): ((arg0: string) => ((arg0: string) => string)) => closure13(undefined, v);
 
 export function replace_regex(x: string): ((arg0: string) => ((arg0: string) => string)) {
     return v5(x);
 }
 
-export const v6 = (v: int32): ((arg0: int32) => ((arg0: string) => string)) => closure16(void 0, v);
+export const v6 = (v: int32): ((arg0: int32) => ((arg0: string) => string)) => closure16(undefined, v);
 
 export function slice(x: int32): ((arg0: int32) => ((arg0: string) => string)) {
     return v6(x);
 }
 
-export const v7 = (v: string): ((arg0: string) => string[]) => closure19(void 0, v);
+export const v7 = (v: string): ((arg0: string) => string[]) => closure19(undefined, v);
 
 export function split(x: string): ((arg0: string) => string[]) {
     return v7(x);
 }
 
-export const v8 = (v: string[]): ((arg0: string) => string[]) => closure21(void 0, v);
+export const v8 = (v: string[]): ((arg0: string) => string[]) => closure21(undefined, v);
 
 export function split_string(x: string[]): ((arg0: string) => string[]) {
     return v8(x);
 }
 
-export const v9 = (v: string): ((arg0: string) => boolean) => closure23(void 0, v);
+export const v9 = (v: string): ((arg0: string) => boolean) => closure23(undefined, v);
 
 export function starts_with(x: string): ((arg0: string) => boolean) {
     return v9(x);
 }
 
-export const v10 = (v: int32): ((arg0: int32) => ((arg0: string) => string)) => closure25(void 0, v);
+export const v10 = (v: int32): ((arg0: int32) => ((arg0: string) => string)) => closure25(undefined, v);
 
 export function substring(x: int32): ((arg0: int32) => ((arg0: string) => string)) {
     return v10(x);
 }
 
-export const v11 = (v: string): string => closure28(void 0, v);
+export const v11 = (v: string): string => closure28(undefined, v);
 
 export function to_lower(x: string): string {
     return v11(x);
 }
 
-export const v12 = (v: string): string => closure29(void 0, v);
+export const v12 = (v: string): string => closure29(undefined, v);
 
 export function to_upper(x: string): string {
     return v12(x);
 }
 
-export const v13 = (v: string): string => closure30(void 0, v);
+export const v13 = (v: string): string => closure30(undefined, v);
 
 export function trim(x: string): string {
     return v13(x);
 }
 
-export const v14 = (v: string[]): ((arg0: string) => string) => closure31(void 0, v);
+export const v14 = (v: string[]): ((arg0: string) => string) => closure31(undefined, v);
 
 export function trim_end(x: string[]): ((arg0: string) => string) {
     return v14(x);
 }
 
-export const v15 = (v: string[]): ((arg0: string) => string) => closure33(void 0, v);
+export const v15 = (v: string[]): ((arg0: string) => string) => closure33(undefined, v);
 
 export function trim_start(x: string[]): ((arg0: string) => string) {
     return v15(x);
 }
 
-export const v16 = (v: int32): ((arg0: string) => string) => closure35(void 0, v);
+export const v16 = (v: int32): ((arg0: string) => string) => closure35(undefined, v);
 
 export function ellipsis(x: int32): ((arg0: string) => string) {
     return v16(x);
 }
 
-export const v17 = (v: int64): ((arg0: string) => string) => closure37(void 0, v);
+export const v17 = (v: int64): ((arg0: string) => string) => closure37(undefined, v);
 
 export function ellipsis_end(x: int64): ((arg0: string) => string) {
     return v17(x);
 }
 
-export const v18 = (v: Error): string => closure39(void 0, v);
+export const v18 = (v: Error): string => closure39(undefined, v);
 
 export function format_exception(x: Error): string {
     return v18(x);
 }
 
-export const v19 = (v: string): ((arg0: string[]) => string) => closure40(void 0, v);
+export const v19 = (v: string): ((arg0: string[]) => string) => closure40(undefined, v);
 
 export function concat_array_trailing(x: string): ((arg0: string[]) => string) {
     return v19(x);
 }
 
-export const v20 = (v: string): ((arg0: Iterable<string>) => string) => closure42(void 0, v);
+export const v20 = (v: string): ((arg0: Iterable<string>) => string) => closure42(undefined, v);
 
 export function concat(x: string): ((arg0: Iterable<string>) => string) {
     return v20(x);
 }
 
-export const v21 = (v: string): ((arg0: string[]) => string) => closure44(void 0, v);
+export const v21 = (v: string): ((arg0: string[]) => string) => closure44(undefined, v);
 
 export function join$0027(x: string): ((arg0: string[]) => string) {
     return v21(x);
 }
 
-export const v22 = (v: string): string[] => closure46(void 0, v);
+export const v22 = (v: string): string[] => closure46(undefined, v);
 
 export function to_char_array(x: string): string[] {
     return v22(x);

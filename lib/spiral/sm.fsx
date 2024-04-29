@@ -176,7 +176,8 @@ and method2 (v0 : string) : string =
 and closure15 (v0 : string, v1 : string) (v2 : string) : string =
     let v3 : string option = None
     let v4 : bool = true in let mutable _v3 = v3
-    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v5 : string = method0(v0)
     let v6 : string = method1(v2)
     let v7 : string = method2(v1)
@@ -187,27 +188,32 @@ and closure15 (v0 : string, v1 : string) (v2 : string) : string =
     let v12 : string = "fable_library_rust::String_::fromString($0)"
     let v13 : string = Fable.Core.RustInterop.emitRustExpr v11 v12
     v13
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
+#endif
+    
+#if FABLE_COMPILER_RUST && WASM
     let v14 : string = null |> unbox<string>
     v14
-    #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
+#endif
+    
+#if FABLE_COMPILER_RUST && CONTRACT
     let v15 : string = null |> unbox<string>
     v15
-    #endif
-    #if !FABLE_COMPILER && !WASM && !CONTRACT
+#endif
+    
+#if !FABLE_COMPILER && !WASM && !CONTRACT
     let v16 : string = System.Text.RegularExpressions.Regex.Replace (v2, v0, v1)
     v16
-    #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+#endif
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v17 : string = null |> unbox<string>
     v17
-    #endif
-    #if FABLE_COMPILER_PYTHON
+#endif
+    
+#if FABLE_COMPILER_PYTHON
     let v18 : string = null |> unbox<string>
     v18
-    #endif
+#endif
     |> fun x -> _v3 <- Some x
     let v19 : string = _v3.Value
     v19
@@ -233,7 +239,8 @@ and method3 () : string =
 and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v2 : (string []) option = None
     let v3 : bool = true in let mutable _v2 = v2
-    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v4 : ((string []) -> string seq) = Seq.ofArray
     let v5 : string seq = v4 v0
     let v6 : string = method3()
@@ -242,8 +249,9 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v9 : string = v8 v5
     let v10 : (string []) = v1.Split v9
     v10
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
+#endif
+    
+#if FABLE_COMPILER_RUST && WASM
     let v11 : ((string []) -> string seq) = Seq.ofArray
     let v12 : string seq = v11 v0
     let v13 : string = method3()
@@ -252,8 +260,9 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v16 : string = v15 v12
     let v17 : (string []) = v1.Split v16
     v17
-    #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
+#endif
+    
+#if FABLE_COMPILER_RUST && CONTRACT
     let v18 : ((string []) -> string seq) = Seq.ofArray
     let v19 : string seq = v18 v0
     let v20 : string = method3()
@@ -262,12 +271,14 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v23 : string = v22 v19
     let v24 : (string []) = v1.Split v23
     v24
-    #endif
-    #if !FABLE_COMPILER && !WASM && !CONTRACT
+#endif
+    
+#if !FABLE_COMPILER && !WASM && !CONTRACT
     let v25 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
     v25
-    #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+#endif
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v26 : ((string []) -> string seq) = Seq.ofArray
     let v27 : string seq = v26 v0
     let v28 : string = method3()
@@ -276,8 +287,9 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v31 : string = v30 v27
     let v32 : (string []) = v1.Split v31
     v32
-    #endif
-    #if FABLE_COMPILER_PYTHON
+#endif
+    
+#if FABLE_COMPILER_PYTHON
     let v33 : ((string []) -> string seq) = Seq.ofArray
     let v34 : string seq = v33 v0
     let v35 : string = method3()
@@ -286,7 +298,7 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v38 : string = v37 v34
     let v39 : (string []) = v1.Split v38
     v39
-    #endif
+#endif
     |> fun x -> _v2 <- Some x
     let v40 : (string []) = _v2.Value
     v40
@@ -367,30 +379,36 @@ and closure37 () (v0 : int64) : (string -> string) =
 and closure39 () (v0 : exn) : string =
     let v1 : string option = None
     let v2 : bool = true in let mutable _v1 = v1
-    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v3 : string = $"%A{v0}"
     v3
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
+#endif
+    
+#if FABLE_COMPILER_RUST && WASM
     let v4 : string = $"%A{v0}"
     v4
-    #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
+#endif
+    
+#if FABLE_COMPILER_RUST && CONTRACT
     let v5 : string = $"%A{v0}"
     v5
-    #endif
-    #if !FABLE_COMPILER && !WASM && !CONTRACT
+#endif
+    
+#if !FABLE_COMPILER && !WASM && !CONTRACT
     let v6 : string = $"{v0.GetType ()}: {v0.Message}"
     v6
-    #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+#endif
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v7 : string = $"%A{v0}"
     v7
-    #endif
-    #if FABLE_COMPILER_PYTHON
+#endif
+    
+#if FABLE_COMPILER_PYTHON
     let v8 : string = $"%A{v0}"
     v8
-    #endif
+#endif
     |> fun x -> _v1 <- Some x
     let v9 : string = _v1.Value
     v9

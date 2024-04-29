@@ -461,7 +461,15 @@ pub mod Networking {
         }
     }
     pub fn method5(v0_1: Networking::US0, v1_1: Func0<string>) {
-        let v2_1 = Func0::new(move || Networking::closure0((), ()));
+        fn v2_1() -> (
+            LrcPtr<Networking::Mut0>,
+            LrcPtr<Networking::Mut1>,
+            LrcPtr<Networking::Mut2>,
+            Option<i64>,
+            LrcPtr<Networking::Mut3>,
+        ) {
+            Networking::closure0((), ())
+        }
         if Networking::State::trace_state().get().clone().is_none() {
             Networking::State::trace_state().set(Some(v2_1()));
         }

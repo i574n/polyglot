@@ -9,7 +9,7 @@ import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import * as fs from "fs";
 import * as path from "path";
 
-export let State_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Option<int64>, Mut3]>>(void 0);
+export let State_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Option<int64>, Mut3]>>(undefined);
 
 export interface IFsExistsSync {
     existsSync(path: string): boolean
@@ -31,7 +31,7 @@ export class Disposable implements IDisposable {
 }
 
 export function Disposable_$reflection(): TypeInfo {
-    return class_type("File_system.Disposable", void 0, Disposable);
+    return class_type("File_system.Disposable", undefined, Disposable);
 }
 
 export function Disposable_$ctor_3A5B6456(f: (() => void)): Disposable {
@@ -739,10 +739,10 @@ export function closure0(unitVar: void, unitVar_1: void): [Mut0, Mut1, Mut2, Opt
     const v1_1: Mut0 = new Mut0(0n);
     const v3_1: Mut2 = new Mut2(US0_US0_0());
     const v5_1: Mut3 = new Mut3((v: string): void => {
-        closure1(void 0, v);
+        closure1(undefined, v);
     });
-    let _v6: Option<Option<int64>> = void 0;
-    const x: Option<int64> = method1(void 0);
+    let _v6: Option<Option<int64>> = undefined;
+    const x: Option<int64> = method1(undefined);
     _v6 = some(x);
     return [v1_1, v0_1, v3_1, value_3(_v6), v5_1] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
 }
@@ -752,7 +752,7 @@ export function closure3(unitVar: void, unitVar_1: void): string {
 }
 
 export function closure5(unitVar: void, v0_1: string): string {
-    let _v1: Option<string> = void 0;
+    let _v1: Option<string> = undefined;
     const x: string = defaultOf();
     _v1 = x;
     return value_3(_v1);
@@ -763,7 +763,7 @@ export function closure6(unitVar: void, unitVar_1: void): string {
 }
 
 export function closure4(v0_1: string, v1_1: string, unitVar: void): string {
-    return `path: ${closure5(void 0, v0_1)} / ex: ${v1_1} / ${closure6(void 0, void 0)}`;
+    return `path: ${closure5(undefined, v0_1)} / ex: ${v1_1} / ${closure6(undefined, undefined)}`;
 }
 
 export function closure8(unitVar: void, v0_1: int64): US2_$union {
@@ -771,7 +771,7 @@ export function closure8(unitVar: void, v0_1: int64): US2_$union {
 }
 
 export function method4(): ((arg0: int64) => US2_$union) {
-    return (v: int64): US2_$union => closure8(void 0, v);
+    return (v: int64): US2_$union => closure8(undefined, v);
 }
 
 export function method5(): string {
@@ -780,23 +780,23 @@ export function method5(): string {
 
 export function closure7(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string), unitVar: void): string {
     if (State_trace_state() == null) {
-        State_trace_state(closure0(void 0, void 0));
+        State_trace_state(closure0(undefined, undefined));
     }
     const patternInput: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value_3(State_trace_state());
-    let _v9: Option<string> = void 0;
+    let _v9: Option<string> = undefined;
     const x: string = method5();
     _v9 = x;
     const v61: string = value_3(_v9);
     const v62: int64 = patternInput[0].l0;
     const v72: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v75: Option<string> = void 0;
+    let _v75: Option<string> = undefined;
     const x_1: string = padRight(v72.toLocaleLowerCase(), 7, " ");
     _v75 = x_1;
     return trimEnd(trimStart(`${v61} ${value_3(_v75)} #${v62} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
 export function method6(v0_1: US0_$union, v1_1: (() => string)): void {
-    const v2_1 = (): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(void 0, void 0);
+    const v2_1 = (): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(undefined, undefined);
     if (State_trace_state() == null) {
         State_trace_state(v2_1());
     }
@@ -815,27 +815,27 @@ export function method6(v0_1: US0_$union, v1_1: (() => string)): void {
         const v21: int64 = toInt64(op_Addition(v3_1.l0, 1n));
         v3_1.l0 = v21;
         const v22 = `${v1_1()}`;
-        let _v23: Option<void> = void 0;
+        let _v23: Option<void> = undefined;
         console.log(v22);
-        _v23 = some(void 0);
+        _v23 = some(undefined);
         value_3(_v23);
         patternInput[4].l0(v22);
     }
 }
 
 export function method3(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
-    method6(v0_1, (): string => closure7(v0_1, v1_1, v2_1, void 0));
+    method6(v0_1, (): string => closure7(v0_1, v1_1, v2_1, undefined));
 }
 
 export function method2(v0_1: string, v1_1: int64): any {
-    let _v2: Option<any> = void 0;
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
 }
 
 export function closure2(unitVar: void, v0_1: string): any {
-    let _v1: Option<any> = void 0;
+    let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
     return value_3(_v1);
@@ -846,18 +846,18 @@ export function closure11(unitVar: void, unitVar_1: void): string {
 }
 
 export function closure12(v0_1: string, v1_1: int64, v2_1: string, unitVar: void): string {
-    return `path: ${closure5(void 0, v0_1)} / retry: ${v1_1} / ex: ${v2_1} / ${closure6(void 0, void 0)}`;
+    return `path: ${closure5(undefined, v0_1)} / retry: ${v1_1} / ex: ${v2_1} / ${closure6(undefined, undefined)}`;
 }
 
 export function method7(v0_1: string, v1_1: US5_$union, v2_1: US4_$union, v3_1: int64): any {
-    let _v4: Option<any> = void 0;
+    let _v4: Option<any> = undefined;
     const x: any = defaultOf();
     _v4 = x;
     return value_3(_v4);
 }
 
 export function closure10(v0_1: US3_$union, v1_1: string): any {
-    let _v2: Option<any> = void 0;
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
@@ -868,21 +868,21 @@ export function closure9(unitVar: void, v0_1: US3_$union): ((arg0: string) => an
 }
 
 export function method8(v0_1: string, v1_1: int64): any {
-    let _v2: Option<any> = void 0;
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
 }
 
 export function closure13(unitVar: void, v0_1: string): any {
-    let _v1: Option<any> = void 0;
+    let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
     return value_3(_v1);
 }
 
 export function closure14(unitVar: void, v0_1: string): any {
-    let _v1: Option<any> = void 0;
+    let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
     return value_3(_v1);
@@ -893,7 +893,7 @@ export function method9(v0_1: string): string {
 }
 
 export function closure16(v0_1: string, v1_1: string): any {
-    let _v2: Option<any> = void 0;
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
@@ -904,7 +904,7 @@ export function closure15(unitVar: void, v0_1: string): ((arg0: string) => any) 
 }
 
 export function closure18(v0_1: string, v1_1: string): any {
-    let _v2: Option<any> = void 0;
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
@@ -915,7 +915,7 @@ export function closure17(unitVar: void, v0_1: string): ((arg0: string) => any) 
 }
 
 export function closure20(v0_1: string, v1_1: string): any {
-    let _v2: Option<any> = void 0;
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
@@ -930,22 +930,22 @@ export function closure22(unitVar: void, unitVar_1: void): string {
 }
 
 export function closure23(v0_1: string, v1_1: Error, unitVar: void): string {
-    let _v2: Option<string> = void 0;
+    let _v2: Option<string> = undefined;
     const x: string = toText(interpolate("%A%P()", [v1_1]));
     _v2 = x;
     const v10_1: string = value_3(_v2);
-    return `path: ${closure5(void 0, v0_1)} / ex: ${v10_1} / ${closure6(void 0, void 0)}`;
+    return `path: ${closure5(undefined, v0_1)} / ex: ${v10_1} / ${closure6(undefined, undefined)}`;
 }
 
 export function method10(v0_1: string, v1_1: int64): any {
-    let _v2: Option<any> = void 0;
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
 }
 
 export function closure21(unitVar: void, v0_1: string): any {
-    let _v1: Option<any> = void 0;
+    let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
     return value_3(_v1);
@@ -956,23 +956,23 @@ export function closure26(unitVar: void, unitVar_1: void): string {
 }
 
 export function closure27(v0_1: string, v1_1: string, v2_1: Error, unitVar: void): string {
-    let _v3: Option<string> = void 0;
+    let _v3: Option<string> = undefined;
     const x: string = toText(interpolate("%A%P()", [v2_1]));
     _v3 = x;
     const v11_1: string = value_3(_v3);
-    const v12_1 = (v: string): string => closure5(void 0, v);
-    return `old_path: ${v12_1(v1_1)} / new_path: ${v12_1(v0_1)} / ex: ${v11_1} / ${closure6(void 0, void 0)}`;
+    const v12_1 = (v: string): string => closure5(undefined, v);
+    return `old_path: ${v12_1(v1_1)} / new_path: ${v12_1(v0_1)} / ex: ${v11_1} / ${closure6(undefined, undefined)}`;
 }
 
 export function method11(v0_1: string, v1_1: string, v2_1: int64): any {
-    let _v3: Option<any> = void 0;
+    let _v3: Option<any> = undefined;
     const x: any = defaultOf();
     _v3 = x;
     return value_3(_v3);
 }
 
 export function closure25(v0_1: string, v1_1: string): any {
-    let _v2: Option<any> = void 0;
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
@@ -995,7 +995,7 @@ export function closure31(unitVar: void, unitVar_1: void): string {
 }
 
 export function closure32(unitVar: void, unitVar_1: void): string {
-    return `timeout: ${1000} / ${closure6(void 0, void 0)}`;
+    return `timeout: ${1000} / ${closure6(undefined, undefined)}`;
 }
 
 export function closure33(v0_1: string, unitVar: void): string {
@@ -1007,7 +1007,7 @@ export function closure34(unitVar: void, unitVar_1: void): string {
 }
 
 export function method13(v0_1: int64, v1_1: string): string {
-    return `retry: ${v0_1} / ex: ${v1_1} / ${closure6(void 0, void 0)}`;
+    return `retry: ${v0_1} / ex: ${v1_1} / ${closure6(undefined, undefined)}`;
 }
 
 export function closure35(v0_1: int64, v1_1: string, unitVar: void): string {
@@ -1015,14 +1015,14 @@ export function closure35(v0_1: int64, v1_1: string, unitVar: void): string {
 }
 
 export function method12(v0_1: string, v1_1: int64): any {
-    let _v2: Option<any> = void 0;
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
 }
 
 export function closure28(unitVar: void, v0_1: string): any {
-    let _v1: Option<any> = void 0;
+    let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
     return value_3(_v1);
@@ -1041,7 +1041,7 @@ export function closure37(unitVar: void, v0_1: any): US8_$union {
 }
 
 export function method16(): ((arg0: any) => US8_$union) {
-    return (v: any): US8_$union => closure37(void 0, v);
+    return (v: any): US8_$union => closure37(undefined, v);
 }
 
 export function method17(v0_1: any): any {
@@ -1061,7 +1061,7 @@ export function method20(): string {
 }
 
 export function closure36(unitVar: void, unitVar_1: void): string {
-    let _v0: Option<string> = void 0;
+    let _v0: Option<string> = undefined;
     const x: string = defaultOf();
     _v0 = x;
     return value_3(_v0);
@@ -1072,14 +1072,14 @@ export function method21(v0_1: string): string {
 }
 
 export function closure39(unitVar: void, v0_1: any): any {
-    let _v1: Option<any> = void 0;
+    let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
     return value_3(_v1);
 }
 
 export function method22(): ((arg0: any) => any) {
-    return (v: any): any => closure39(void 0, v);
+    return (v: any): any => closure39(undefined, v);
 }
 
 export function closure40(unitVar: void, unitVar_1: void): US10_$union {
@@ -1095,7 +1095,7 @@ export function closure42(unitVar: void, unitVar_1: void): string {
 }
 
 export function closure43(v0_1: string, v1_1: any, unitVar: void): string {
-    return `dir: ${v0_1} / error: ${v1_1} / ${closure6(void 0, void 0)}`;
+    return `dir: ${v0_1} / error: ${v1_1} / ${closure6(undefined, undefined)}`;
 }
 
 export function closure44(unitVar: void, unitVar_1: void): string {
@@ -1103,19 +1103,19 @@ export function closure44(unitVar: void, unitVar_1: void): string {
 }
 
 export function closure45(v0_1: string, unitVar: void): string {
-    return `dir: ${v0_1} / ${closure6(void 0, void 0)}`;
+    return `dir: ${v0_1} / ${closure6(undefined, undefined)}`;
 }
 
 export function closure46(v0_1: string, unitVar: void): void {
-    let _v1: Option<void> = void 0;
+    let _v1: Option<void> = undefined;
     defaultOf();
-    _v1 = some(void 0);
+    _v1 = some(undefined);
     value_3(_v1);
 }
 
 export function method23(v0_1: string): (() => void) {
     return (): void => {
-        closure46(v0_1, void 0);
+        closure46(v0_1, undefined);
     };
 }
 
@@ -1124,36 +1124,36 @@ export function closure47(unitVar: void, unitVar_1: void): string {
 }
 
 export function closure48(v0_1: string, v1_1: string, unitVar: void): string {
-    return `dir: ${v0_1} / result: ${v1_1} ${closure6(void 0, void 0)}`;
+    return `dir: ${v0_1} / result: ${v1_1} ${closure6(undefined, undefined)}`;
 }
 
 export function closure49(v0_1: string, unitVar: void): void {
-    let _v1: Option<any> = void 0;
+    let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
     const v10_1: any = value_3(_v1);
-    let _v11: Option<any> = void 0;
+    let _v11: Option<any> = undefined;
     const x_1: any = defaultOf();
     _v11 = x_1;
     const v20: any = value_3(_v11);
-    let _v21: Option<void> = void 0;
+    let _v21: Option<void> = undefined;
     defaultOf();
-    _v21 = some(void 0);
+    _v21 = some(undefined);
     value_3(_v21);
 }
 
 export function method24(v0_1: string): (() => void) {
     return (): void => {
-        closure49(v0_1, void 0);
+        closure49(v0_1, undefined);
     };
 }
 
 export function closure38(unitVar: void, unitVar_1: void): [string, IDisposable] {
-    let _v0: Option<string> = void 0;
+    let _v0: Option<string> = undefined;
     const x: string = defaultOf();
     _v0 = x;
     const v534: string = value_3(_v0);
-    let _v535: Option<IDisposable> = void 0;
+    let _v535: Option<IDisposable> = undefined;
     const x_1: IDisposable = defaultOf();
     _v535 = x_1;
     return [v534, value_3(_v535)] as [string, IDisposable];
@@ -1164,7 +1164,7 @@ export function closure50(unitVar: void, unitVar_1: void): string {
 }
 
 export function closure54(unitVar: void, v0_1: string): boolean {
-    let _v1: Option<boolean> = void 0;
+    let _v1: Option<boolean> = undefined;
     const v20: IFsExistsSync = fs;
     const x: boolean = v20.existsSync(v0_1);
     _v1 = x;
@@ -1172,7 +1172,7 @@ export function closure54(unitVar: void, v0_1: string): boolean {
 }
 
 export function closure55(unitVar: void, v0_1: string): boolean {
-    let _v1: Option<boolean> = void 0;
+    let _v1: Option<boolean> = undefined;
     const v20: IFsExistsSync = fs;
     const x: boolean = v20.existsSync(v0_1);
     _v1 = x;
@@ -1180,7 +1180,7 @@ export function closure55(unitVar: void, v0_1: string): boolean {
 }
 
 export function closure56(unitVar: void, v0_1: string): Option<string> {
-    let _v1: Option<US9_$union> = void 0;
+    let _v1: Option<US9_$union> = undefined;
     const v50: IPathDirname = path;
     const x: US9_$union = US9_US9_0(v50.dirname(v0_1));
     _v1 = x;
@@ -1189,12 +1189,12 @@ export function closure56(unitVar: void, v0_1: string): Option<string> {
         return v55.fields[0];
     }
     else {
-        return void 0;
+        return undefined;
     }
 }
 
 export function method26(): ((arg0: string) => Option<string>) {
-    return (v: string): Option<string> => closure56(void 0, v);
+    return (v: string): Option<string> => closure56(undefined, v);
 }
 
 export function closure57(unitVar: void, v0_1: string): US9_$union {
@@ -1202,20 +1202,20 @@ export function closure57(unitVar: void, v0_1: string): US9_$union {
 }
 
 export function method27(): ((arg0: string) => US9_$union) {
-    return (v: string): US9_$union => closure57(void 0, v);
+    return (v: string): US9_$union => closure57(undefined, v);
 }
 
 export function method28(v0_1_mut: string, v1_1_mut: boolean, v2_1_mut: string, v3_1_mut: string): string {
     method28:
     while (true) {
         const v0_1: string = v0_1_mut, v1_1: boolean = v1_1_mut, v2_1: string = v2_1_mut, v3_1: string = v3_1_mut;
-        let _v4: Option<string> = void 0;
+        let _v4: Option<string> = undefined;
         const v40: IPathJoin = path;
         const v41: string = method14(v3_1);
         const v42: string = method15(v0_1);
         const x: string = v40.join(v41, v42);
         _v4 = x;
-        if ((v1_1 ? ((v: string): boolean => closure54(void 0, v)) : ((v_1: string): boolean => closure55(void 0, v_1)))(value_3(_v4))) {
+        if ((v1_1 ? ((v: string): boolean => closure54(undefined, v)) : ((v_1: string): boolean => closure55(undefined, v_1)))(value_3(_v4))) {
             return v3_1;
         }
         else {
@@ -1237,13 +1237,13 @@ export function method28(v0_1_mut: string, v1_1_mut: boolean, v2_1_mut: string, 
 }
 
 export function method25(v0_1: string, v1_1: boolean, v2_1: string): string {
-    let _v3: Option<string> = void 0;
+    let _v3: Option<string> = undefined;
     const v39: IPathJoin = path;
     const v40: string = method14(v2_1);
     const v41: string = method15(v0_1);
     const x: string = v39.join(v40, v41);
     _v3 = x;
-    if ((v1_1 ? ((v: string): boolean => closure54(void 0, v)) : ((v_1: string): boolean => closure55(void 0, v_1)))(value_3(_v3))) {
+    if ((v1_1 ? ((v: string): boolean => closure54(undefined, v)) : ((v_1: string): boolean => closure55(undefined, v_1)))(value_3(_v3))) {
         return v2_1;
     }
     else {
@@ -1283,19 +1283,19 @@ export function method31(): string {
 }
 
 export function closure58(unitVar: void, v0_1: string): string {
-    let c: string;
-    let _v1: Option<boolean> = void 0;
+    let _arg: string;
+    let _v1: Option<boolean> = undefined;
     const x: boolean = defaultOf();
     _v1 = x;
     if (value_3(_v1) === false) {
         return v0_1;
     }
     else {
-        let _v14: Option<string> = void 0;
+        let _v14: Option<string> = undefined;
         const x_1: string = defaultOf();
         _v14 = x_1;
         const v32: string = value_3(_v14);
-        return replace(`${(c = v32[0], c.toLocaleLowerCase())}${v32.slice(1, v32.length)}`, "\\", "/");
+        return replace(`${(_arg = v32[0], _arg.toLocaleLowerCase())}${v32.slice(1, v32.length)}`, "\\", "/");
     }
 }
 
@@ -1323,14 +1323,14 @@ export function method37(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string): 
     method37:
     while (true) {
         const v0_1: string = v0_1_mut, v1_1: string = v1_1_mut, v2_1: string = v2_1_mut;
-        let _v3: Option<string> = void 0;
+        let _v3: Option<string> = undefined;
         const v39: IPathJoin = path;
         const v40: string = method14(v2_1);
         const v41: string = method15(v0_1);
         const x: string = v39.join(v40, v41);
         _v3 = x;
         const v45: string = value_3(_v3);
-        let _v46: Option<boolean> = void 0;
+        let _v46: Option<boolean> = undefined;
         const v65: IFsExistsSync = fs;
         const x_1: boolean = v65.existsSync(v45);
         _v46 = x_1;
@@ -1355,14 +1355,14 @@ export function method37(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string): 
 }
 
 export function method36(v0_1: string, v1_1: string): string {
-    let _v2: Option<string> = void 0;
+    let _v2: Option<string> = undefined;
     const v38: IPathJoin = path;
     const v39: string = method14(v1_1);
     const v40: string = method15(v0_1);
     const x: string = v38.join(v39, v40);
     _v2 = x;
     const v44: string = value_3(_v2);
-    let _v45: Option<boolean> = void 0;
+    let _v45: Option<boolean> = undefined;
     const v64: IFsExistsSync = fs;
     const x_1: boolean = v64.existsSync(v44);
     _v45 = x_1;
@@ -1386,13 +1386,13 @@ export function method38(): string {
 }
 
 export function closure60(unitVar: void, unitVar_1: void): string {
-    let _v1: Option<string> = void 0;
+    let _v1: Option<string> = undefined;
     const v39: IPathJoin = path;
     const v40: string = method34();
     const v41: string = method35();
     const x: string = v39.join(v40, v41);
     _v1 = x;
-    let _v47: Option<string> = void 0;
+    let _v47: Option<string> = undefined;
     const v82: IPathJoin = path;
     const v83: string = method14(method36(value_3(_v1), "C:\\home\\git\\polyglot\\lib\\spiral"));
     const v84: string = method38();
@@ -1410,8 +1410,8 @@ export function method41(): string {
 }
 
 export function method39(v0_1: string): void {
-    let _v1: Option<void> = void 0;
-    _v1 = some(void 0);
+    let _v1: Option<void> = undefined;
+    _v1 = some(undefined);
     value_3(_v1);
 }
 
@@ -1421,19 +1421,19 @@ export function closure62(unitVar: void, v0_1: string): void {
 
 export function closure61(unitVar: void, v0_1: boolean): void {
     if (State_trace_state() == null) {
-        State_trace_state(closure0(void 0, void 0));
+        State_trace_state(closure0(undefined, undefined));
     }
     const patternInput: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value_3(State_trace_state());
     const v9_1: ((arg0: string) => void) = v0_1 ? ((v: string): void => {
-        closure62(void 0, v);
+        closure62(undefined, v);
     }) : ((v_1: string): void => {
-        closure1(void 0, v_1);
+        closure1(undefined, v_1);
     });
     patternInput[4].l0 = v9_1;
 }
 
 export function closure64(v0_1: string, v1_1: string): string {
-    let _v2: Option<string> = void 0;
+    let _v2: Option<string> = undefined;
     const v38: IPathJoin = path;
     const v39: string = method14(v0_1);
     const v40: string = method15(v1_1);
@@ -1446,123 +1446,123 @@ export function closure63(unitVar: void, v0_1: string): ((arg0: string) => strin
     return (v: string): string => closure64(v0_1, v);
 }
 
-export const v0 = (): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(void 0, void 0);
+export const v0 = (): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(undefined, undefined);
 
 if (State_trace_state() == null) {
     State_trace_state(v0());
 }
 
-export const v1 = (v: string): any => closure2(void 0, v);
+export const v1 = (v: string): any => closure2(undefined, v);
 
 export function delete_directory_async(x: string): any {
     return v1(x);
 }
 
-export const v2 = (v: US3_$union): ((arg0: string) => any) => closure9(void 0, v);
+export const v2 = (v: US3_$union): ((arg0: string) => any) => closure9(undefined, v);
 
 export function wait_for_file_access(x: US3_$union): ((arg0: string) => any) {
     return v2(x);
 }
 
-export const v3 = (v: string): any => closure13(void 0, v);
+export const v3 = (v: string): any => closure13(undefined, v);
 
 export function wait_for_file_access_read(x: string): any {
     return v3(x);
 }
 
-export const v4 = (v: string): any => closure14(void 0, v);
+export const v4 = (v: string): any => closure14(undefined, v);
 
 export function read_all_text_async(x: string): any {
     return v4(x);
 }
 
-export const v5 = (v: string): ((arg0: string) => any) => closure15(void 0, v);
+export const v5 = (v: string): ((arg0: string) => any) => closure15(undefined, v);
 
 export function file_exists_content(x: string): ((arg0: string) => any) {
     return v5(x);
 }
 
-export const v6 = (v: string): ((arg0: string) => any) => closure17(void 0, v);
+export const v6 = (v: string): ((arg0: string) => any) => closure17(undefined, v);
 
 export function write_all_text_async(x: string): ((arg0: string) => any) {
     return v6(x);
 }
 
-export const v7 = (v: string): ((arg0: string) => any) => closure19(void 0, v);
+export const v7 = (v: string): ((arg0: string) => any) => closure19(undefined, v);
 
 export function write_all_text_exists(x: string): ((arg0: string) => any) {
     return v7(x);
 }
 
-export const v8 = (v: string): any => closure21(void 0, v);
+export const v8 = (v: string): any => closure21(undefined, v);
 
 export function delete_file_async(x: string): any {
     return v8(x);
 }
 
-export const v9 = (v: string): ((arg0: string) => any) => closure24(void 0, v);
+export const v9 = (v: string): ((arg0: string) => any) => closure24(undefined, v);
 
 export function move_file_async(x: string): ((arg0: string) => any) {
     return v9(x);
 }
 
-export const v10 = (v: string): any => closure28(void 0, v);
+export const v10 = (v: string): any => closure28(undefined, v);
 
 export function read_all_text_retry_async(x: string): any {
     return v10(x);
 }
 
-export const v11 = (): string => closure36(void 0, void 0);
+export const v11 = (): string => closure36(undefined, undefined);
 
 export function create_temp_directory_name(): string {
     return v11();
 }
 
-export const v12 = (): [string, IDisposable] => closure38(void 0, void 0);
+export const v12 = (): [string, IDisposable] => closure38(undefined, undefined);
 
 export function create_temp_directory(): [string, IDisposable] {
     return v12();
 }
 
-export const v13 = (): string => closure50(void 0, void 0);
+export const v13 = (): string => closure50(undefined, undefined);
 
 export function get_source_directory(): string {
     return v13();
 }
 
-export const v14 = (v: string): ((arg0: boolean) => ((arg0: string) => string)) => closure51(void 0, v);
+export const v14 = (v: string): ((arg0: boolean) => ((arg0: string) => string)) => closure51(undefined, v);
 
 export function find_parent(x: string): ((arg0: boolean) => ((arg0: string) => string)) {
     return v14(x);
 }
 
-export const v15 = (v: string): string => closure58(void 0, v);
+export const v15 = (v: string): string => closure58(undefined, v);
 
 export function normalize_path(x: string): string {
     return v15(x);
 }
 
-export const v16 = (v: string): string => closure59(void 0, v);
+export const v16 = (v: string): string => closure59(undefined, v);
 
 export function new_file_uri(x: string): string {
     return v16(x);
 }
 
-export const v17 = (): string => closure60(void 0, void 0);
+export const v17 = (): string => closure60(undefined, undefined);
 
 export function get_repository_root(): string {
     return v17();
 }
 
 export const v18 = (v: boolean): void => {
-    closure61(void 0, v);
+    closure61(undefined, v);
 };
 
 export function init_trace_file(x: boolean): void {
     v18(x);
 }
 
-export const v19 = (v: string): ((arg0: string) => string) => closure63(void 0, v);
+export const v19 = (v: string): ((arg0: string) => string) => closure63(undefined, v);
 
 export function op_LessDivideGreater(x: string): ((arg0: string) => string) {
     return v19(x);

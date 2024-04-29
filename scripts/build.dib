@@ -9,68 +9,68 @@
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/builder/build.ps1" } | Invoke-Block
+{ . ../apps/builder/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/parser/build.ps1" } | Invoke-Block
+{ . ../apps/parser/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/spiral/build.ps1" } | Invoke-Block
+{ . ../apps/spiral/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../lib/rust/fable/build.ps1" } | Invoke-Block
+{ . ../lib/rust/fable/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/spiral/rust_builder/build.ps1" } | Invoke-Block
+{ . ../apps/spiral/rust_builder/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../lib/fsharp/build.ps1" -sequential 1 } | Invoke-Block
+{ . ../lib/fsharp/build.ps1 -sequential 1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../lib/math/build.ps1" } | Invoke-Block
+{ . ../lib/math/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/plot/build.ps1" } | Invoke-Block
+{ . ../apps/plot/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../lib/spiral/build.ps1" -sequential 1 } | Invoke-Block
+{ . ../lib/spiral/build.ps1 -sequential 1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/scheduler/build.ps1" } | Invoke-Block
+{ . ../apps/scheduler/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/chat/build.ps1" } | Invoke-Block
+{ . ../apps/chat/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/spiral/temp/extension/build.ps1" } | Invoke-Block
+{ . ../apps/spiral/temp/extension/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/spiral/temp/test/build.ps1" } | Invoke-Block
+{ . ../apps/spiral/temp/test/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/perf/build.ps1" } | Invoke-Block
+{ . ../apps/perf/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/dir-tree-html/build.ps1" } | Invoke-Block
+{ . ../apps/dir-tree-html/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/ipfs/build.ps1" } | Invoke-Block
+{ . ../apps/ipfs/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 
-{ . "$ScriptDir/outdated.ps1" } | Invoke-Block
+{ . ./outdated.ps1 } | Invoke-Block -Location $ScriptDir

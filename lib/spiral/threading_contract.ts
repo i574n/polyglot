@@ -1,7 +1,7 @@
-import { defaultOf, IDisposable } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { union_type, class_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { FSharpRef, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { value as value_1, some, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { defaultOf, IDisposable } from "../../../polyglot/deps/Fable/src/fable-library-ts/Util.js";
+import { union_type, class_type, TypeInfo } from "../../../polyglot/deps/Fable/src/fable-library-ts/Reflection.js";
+import { FSharpRef, Union } from "../../../polyglot/deps/Fable/src/fable-library-ts/Types.js";
+import { value as value_1, some, Option } from "../../../polyglot/deps/Fable/src/fable-library-ts/Option.js";
 
 export class Disposable implements IDisposable {
     readonly f: (() => void);
@@ -15,7 +15,7 @@ export class Disposable implements IDisposable {
 }
 
 export function Disposable_$reflection(): TypeInfo {
-    return class_type("Threading.Disposable", void 0, Disposable);
+    return class_type("Threading.Disposable", undefined, Disposable);
 }
 
 export function Disposable_$ctor_3A5B6456(f: (() => void)): Disposable {
@@ -75,31 +75,31 @@ export function closure1(unitVar: void, v0_1: any): US0_$union {
 }
 
 export function method0(): ((arg0: any) => US0_$union) {
-    return (v: any): US0_$union => closure1(void 0, v);
+    return (v: any): US0_$union => closure1(undefined, v);
 }
 
 export function closure2(v0_1: any, unitVar: void): void {
-    let _v1: Option<void> = void 0;
+    let _v1: Option<void> = undefined;
     defaultOf();
-    _v1 = some(void 0);
+    _v1 = some(undefined);
     value_1(_v1);
 }
 
 export function method1(v0_1: any): (() => void) {
     return (): void => {
-        closure2(v0_1, void 0);
+        closure2(v0_1, undefined);
     };
 }
 
 export function closure0(unitVar: void, v0_1: Option<any>): [any, IDisposable] {
-    let _v1: Option<[any, IDisposable]> = void 0;
+    let _v1: Option<[any, IDisposable]> = undefined;
     const patternInput: [any, IDisposable] = defaultOf();
     _v1 = ([patternInput[0], patternInput[1]] as [any, IDisposable]);
     const patternInput_1: [any, IDisposable] = value_1(_v1);
     return [patternInput_1[0], patternInput_1[1]] as [any, IDisposable];
 }
 
-export const v0 = (v: Option<any>): [any, IDisposable] => closure0(void 0, v);
+export const v0 = (v: Option<any>): [any, IDisposable] => closure0(undefined, v);
 
 export function new_disposable_token(x: Option<any>): [any, IDisposable] {
     return v0(x);

@@ -24,7 +24,9 @@ pub mod Runtime {
     use fable_library_rust::Native_::LrcPtr;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
+    use fable_library_rust::Option_::defaultValue;
     use fable_library_rust::Option_::getValue;
+    use fable_library_rust::Option_::map;
     use fable_library_rust::Seq_::ofList;
     use fable_library_rust::String_::getCharAt;
     use fable_library_rust::String_::length;
@@ -944,7 +946,15 @@ pub mod Runtime {
         }
     }
     pub fn method11(v0_1: Runtime::US0, v1_1: Func0<string>) {
-        let v2_1 = Func0::new(move || Runtime::closure0((), ()));
+        fn v2_1() -> (
+            LrcPtr<Runtime::Mut0>,
+            LrcPtr<Runtime::Mut1>,
+            LrcPtr<Runtime::Mut2>,
+            Option<i64>,
+            LrcPtr<Runtime::Mut3>,
+        ) {
+            Runtime::closure0((), ())
+        }
         if Runtime::State::trace_state().get().clone().is_none() {
             Runtime::State::trace_state().set(Some(v2_1()));
         }
@@ -2435,41 +2445,54 @@ pub mod Runtime {
         }
     }
     pub fn method15(v0_1: string) -> Array<string> {
-        let v3_1: i32 = length(v0_1.clone());
-        let v4_1: Array<char> = new_init(&'\u{0000}', v3_1);
-        let v5_1: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
-            l0: MutCell::new(0_i32),
-        });
-        while Runtime::method3(v3_1, v5_1.clone()) {
-            let v7: i32 = v5_1.l0.get().clone();
-            let v8: char = getCharAt(v0_1.clone(), v7);
-            v4_1.get_mut()[v7 as usize] = v8;
-            {
-                let v9: i32 = v7 + 1_i32;
-                v5_1.l0.set(v9);
-                ()
-            }
-        }
+        let _v0: MutCell<Option<Option<string>>> = MutCell::new(None::<Option<string>>);
+        _v0.set(Some(Some(v0_1)));
         {
-            let v11: List<char> = ofArray(v4_1.clone());
-            toArray(Runtime::method19(
-                (Runtime::method16(
-                    string(""),
-                    LrcPtr::new(Runtime::UH1::UH1_0),
-                    foldBack(
-                        Func2::new(move |b0: char, b1: LrcPtr<Runtime::UH0>| {
-                            (Runtime::method4())(b0)(b1)
-                        }),
-                        v11,
-                        LrcPtr::new(Runtime::UH0::UH0_0),
-                    ),
-                    Runtime::US8::US8_0,
-                    Runtime::US8::US8_0,
+            let v6: Option<string> = getValue(_v0.get().clone());
+            let v9: Runtime::US4 = defaultValue(Runtime::US4::US4_1, map(Runtime::method6(), v6));
+            let v12: string = match &v9 {
+                Runtime::US4::US4_0(v9_0_0) => match &v9 {
+                    Runtime::US4::US4_0(x) => x.clone(),
+                    _ => unreachable!(),
+                },
+                _ => string(""),
+            };
+            let v13: i32 = length(v12.clone());
+            let v14: Array<char> = new_init(&'\u{0000}', v13);
+            let v15: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
+                l0: MutCell::new(0_i32),
+            });
+            while Runtime::method3(v13, v15.clone()) {
+                let v17: i32 = v15.l0.get().clone();
+                let v18: char = getCharAt(v12.clone(), v17);
+                v14.get_mut()[v17 as usize] = v18;
+                {
+                    let v19: i32 = v17 + 1_i32;
+                    v15.l0.set(v19);
+                    ()
+                }
+            }
+            {
+                let v21: List<char> = ofArray(v14.clone());
+                toArray(Runtime::method19(
+                    (Runtime::method16(
+                        string(""),
+                        LrcPtr::new(Runtime::UH1::UH1_0),
+                        foldBack(
+                            Func2::new(move |b0: char, b1: LrcPtr<Runtime::UH0>| {
+                                (Runtime::method4())(b0)(b1)
+                            }),
+                            v21,
+                            LrcPtr::new(Runtime::UH0::UH0_0),
+                        ),
+                        Runtime::US8::US8_0,
+                        Runtime::US8::US8_0,
+                    ))
+                    .0
+                    .clone(),
+                    empty::<string>(),
                 ))
-                .0
-                .clone(),
-                empty::<string>(),
-            ))
+            }
         }
     }
     pub fn closure21(unitVar: (), v0_1: string) -> Array<string> {

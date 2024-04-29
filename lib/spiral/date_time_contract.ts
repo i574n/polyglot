@@ -1,12 +1,12 @@
-import { FSharpRef, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { union_type, string_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { value as value_1, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
-import { int64ToString, defaultOf } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { newGuid, parse } from "../../deps/Fable/src/fable-library-ts/Guid.js";
-import { padLeft, replace } from "../../deps/Fable/src/fable-library-ts/String.js";
-import { toString, parseExact } from "../../deps/Fable/src/fable-library-ts/Date.js";
-import { toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
-import { parse as parse_1 } from "../../deps/Fable/src/fable-library-ts/Long.js";
+import { FSharpRef, Union } from "../../../polyglot/deps/Fable/src/fable-library-ts/Types.js";
+import { union_type, string_type, TypeInfo } from "../../../polyglot/deps/Fable/src/fable-library-ts/Reflection.js";
+import { value as value_1, Option } from "../../../polyglot/deps/Fable/src/fable-library-ts/Option.js";
+import { int64ToString, defaultOf } from "../../../polyglot/deps/Fable/src/fable-library-ts/Util.js";
+import { newGuid, parse } from "../../../polyglot/deps/Fable/src/fable-library-ts/Guid.js";
+import { padLeft, replace } from "../../../polyglot/deps/Fable/src/fable-library-ts/String.js";
+import { toString, parseExact } from "../../../polyglot/deps/Fable/src/fable-library-ts/Date.js";
+import { toInt64, int64 } from "../../../polyglot/deps/Fable/src/fable-library-ts/BigInt.js";
+import { parse as parse_1 } from "../../../polyglot/deps/Fable/src/fable-library-ts/Long.js";
 
 export type US0_$union = 
     | US0<0>
@@ -109,7 +109,7 @@ export function closure2(unitVar: void, v0_1: any): US0_$union {
 }
 
 export function method0(): ((arg0: any) => US0_$union) {
-    return (v: any): US0_$union => closure2(void 0, v);
+    return (v: any): US0_$union => closure2(undefined, v);
 }
 
 export function method1(v0_1: any): any {
@@ -130,7 +130,7 @@ export function method4(): string {
 
 export function closure1(v0_1: string, v1_1: Date): string {
     const v3_1: string = v0_1;
-    let _v4: Option<[string, string]> = void 0;
+    let _v4: Option<[string, string]> = undefined;
     const patternInput: [string, string] = defaultOf();
     _v4 = ([patternInput[0], patternInput[1]] as [string, string]);
     const patternInput_1: [string, string] = value_1(_v4);
@@ -156,12 +156,12 @@ export function closure4(unitVar: void, v0_1: string): ((arg0: string) => ((arg0
 }
 
 export function method5(): ((arg0: string) => ((arg0: string) => ((arg0: string) => string))) {
-    return (v: string): ((arg0: string) => ((arg0: string) => string)) => closure4(void 0, v);
+    return (v: string): ((arg0: string) => ((arg0: string) => string)) => closure4(undefined, v);
 }
 
 export function closure3(unitVar: void, v0_1: string): Date {
-    let _v4: Option<Date> = void 0;
-    const x: Date = parseExact(method5()("-")("")(v0_1.slice(void 0, 24 + 1)), "yyyyMMddHHmmssfffffff", defaultOf());
+    let _v4: Option<Date> = undefined;
+    const x: Date = parseExact(method5()("-")("")(v0_1.slice(undefined, 24 + 1)), "yyyyMMddHHmmssfffffff", defaultOf());
     _v4 = x;
     return value_1(_v4);
 }
@@ -183,7 +183,7 @@ export function closure9(unitVar: void, v0_1: string): int64 {
 
 export function closure10(unitVar: void, v0_1: Date): string {
     const v3_1: string = newGuid();
-    let _v4: Option<[string, string]> = void 0;
+    let _v4: Option<[string, string]> = undefined;
     const patternInput: [string, string] = defaultOf();
     _v4 = ([patternInput[0], patternInput[1]] as [string, string]);
     const patternInput_1: [string, string] = value_1(_v4);
@@ -210,49 +210,49 @@ export function closure14(unitVar: void, v0_1: Date): string {
     return toString(v0_1, "yyyy-MM-ddTHH-mm-ss.fff");
 }
 
-export const v0 = (v: string): ((arg0: Date) => string) => closure0(void 0, v);
+export const v0 = (v: string): ((arg0: Date) => string) => closure0(undefined, v);
 
 export function date_time_guid_from_date_time(x: string): ((arg0: Date) => string) {
     return v0(x);
 }
 
-export const v1 = (v: string): Date => closure3(void 0, v);
+export const v1 = (v: string): Date => closure3(undefined, v);
 
 export function date_time_from_guid(x: string): Date {
     return v1(x);
 }
 
-export const v2 = (v: string): ((arg0: int64) => string) => closure7(void 0, v);
+export const v2 = (v: string): ((arg0: int64) => string) => closure7(undefined, v);
 
 export function timestamp_guid_from_timestamp(x: string): ((arg0: int64) => string) {
     return v2(x);
 }
 
-export const v3 = (v: string): int64 => closure9(void 0, v);
+export const v3 = (v: string): int64 => closure9(undefined, v);
 
 export function timestamp_from_guid(x: string): int64 {
     return v3(x);
 }
 
-export const v4 = (v: Date): string => closure10(void 0, v);
+export const v4 = (v: Date): string => closure10(undefined, v);
 
 export function new_guid_from_date_time(x: Date): string {
     return v4(x);
 }
 
-export const v5 = (v: int64): string => closure11(void 0, v);
+export const v5 = (v: int64): string => closure11(undefined, v);
 
 export function new_guid_from_timestamp(x: int64): string {
     return v5(x);
 }
 
-export const v6 = (v: string): ((arg0: Date) => string) => closure12(void 0, v);
+export const v6 = (v: string): ((arg0: Date) => string) => closure12(undefined, v);
 
 export function format(x: string): ((arg0: Date) => string) {
     return v6(x);
 }
 
-export const v7 = (v: Date): string => closure14(void 0, v);
+export const v7 = (v: Date): string => closure14(undefined, v);
 
 export function format_iso8601(x: Date): string {
     return v7(x);

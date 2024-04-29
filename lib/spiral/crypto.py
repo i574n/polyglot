@@ -37,11 +37,11 @@ def closure0(unit_var: None, v0_1: str) -> str:
     return value_1(_v1)
 
 
-def _arrow3(v: str) -> str:
+def _arrow11(v: str) -> str:
     return closure0(None, v)
 
 
-v0: Callable[[str], str] = _arrow3
+v0: Callable[[str], str] = _arrow11
 
 def hash_text(x: str) -> str:
     return v0(x)

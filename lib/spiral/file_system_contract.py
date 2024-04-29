@@ -1144,10 +1144,10 @@ def closure58(unit_var: None, v0_1: str) -> str:
         _v14 = None
         v32: str = value_3(_v14)
         def _arrow197(__unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
-            c: str = v32[0]
-            return c.lower()
+            _arg: str = v32[0]
+            return _arg.lower()
 
-        return replace(((("" + str(_arrow197())) + "") + v32[1:len(v32)]) + "", "\\", "/")
+        return replace(((("" + _arrow197()) + "") + v32[1:len(v32)]) + "", "\\", "/")
 
 
 

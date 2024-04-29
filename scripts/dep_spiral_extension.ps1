@@ -73,7 +73,7 @@ foreach ($extensionsPath in $extensionsPath) {
                     Write-Output "Failed to delete $destPath"
                 }
             } else {
-                New-Item -Path $destPath -Force | Out-Null
+                New-Item $destPath -Force | Out-Null
             }
 
             Move-Item $_.FullName $destPath -Force -ErrorAction SilentlyContinue

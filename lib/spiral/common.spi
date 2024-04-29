@@ -163,3 +163,5 @@ inl main () =
 
     inl retry_fn (r : i32) (x : () -> _) : optionm'.option' () = retry_fn r x |> optionm'.box
     $"let retry_fn x = !retry_fn x" : ()
+    inl memoize (fn : () -> ()) : () -> () = memoize fn
+    $"let memoize x = !memoize x" : ()

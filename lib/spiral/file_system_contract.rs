@@ -26,12 +26,12 @@ pub mod File_system {
     use fable_library_rust::Seq_::ofList;
     use fable_library_rust::String_::getCharAt;
     use fable_library_rust::String_::getSlice;
+    use fable_library_rust::String_::ofChar;
     use fable_library_rust::String_::padRight;
     use fable_library_rust::String_::replace;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::toLower;
-    use fable_library_rust::String_::toLowerChar;
     use fable_library_rust::String_::trimEndChars;
     use fable_library_rust::String_::trimStartChars;
     use fable_library_rust::System::Exception;
@@ -643,7 +643,15 @@ pub mod File_system {
         }
     }
     pub fn method6(v0_1: File_system::US0, v1_1: Func0<string>) {
-        let v2_1 = Func0::new(move || File_system::closure0((), ()));
+        fn v2_1() -> (
+            LrcPtr<File_system::Mut0>,
+            LrcPtr<File_system::Mut1>,
+            LrcPtr<File_system::Mut2>,
+            Option<i64>,
+            LrcPtr<File_system::Mut3>,
+        ) {
+            File_system::closure0((), ())
+        }
         if File_system::State::trace_state().get().clone().is_none() {
             File_system::State::trace_state().set(Some(v2_1()));
         }
@@ -886,7 +894,9 @@ pub mod File_system {
         }
         {
             let v11_1: string = getValue(_v3.get().clone());
-            let v12_1 = Func1::new(move |v: string| File_system::closure5((), v));
+            fn v12_1(v: string) -> string {
+                File_system::closure5((), v)
+            }
             sprintf!(
                 "old_path: {} / new_path: {} / ex: {} / {}",
                 v12_1(v1_1),
@@ -1293,7 +1303,7 @@ pub mod File_system {
                 replace(
                     sprintf!(
                         "{}{}",
-                        toLowerChar(getCharAt(v32.clone(), 0_i32)),
+                        toLower(ofChar(getCharAt(v32.clone(), 0_i32))),
                         getSlice(v32, Some(1_i32), None::<i32>)
                     ),
                     string("\\"),

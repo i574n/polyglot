@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-Set-Location (New-Item -ItemType Directory -Path "../deps" -Force)
+Set-Location (New-Item "../deps" -ItemType Directory -Force)
 git clone --recurse-submodules https://github.com/i574n/hyperui.git
 { git pull } | Invoke-Block -Location hyperui
 

@@ -975,7 +975,15 @@ pub mod Runtime {
         }
     }
     pub fn method11(v0_1: Runtime::US0, v1_1: Func0<string>) {
-        let v2_1 = Func0::new(move || Runtime::closure0((), ()));
+        fn v2_1() -> (
+            LrcPtr<Runtime::Mut0>,
+            LrcPtr<Runtime::Mut1>,
+            LrcPtr<Runtime::Mut2>,
+            Option<i64>,
+            LrcPtr<Runtime::Mut3>,
+        ) {
+            Runtime::closure0((), ())
+        }
         if Runtime::State::trace_state().get().clone().is_none() {
             Runtime::State::trace_state().set(Some(v2_1()));
         }

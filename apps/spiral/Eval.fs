@@ -473,6 +473,14 @@ module Eval =
                                         if exitCode <> 0
                                         then return Some (Error result)
                                         else
+                                            let rsPath = libLinkPath </> "src/Range.rs"
+                                            let! text = rsPath |> SpiralFileSystem.read_all_text_async
+                                            do!
+                                                text
+                                                |> SpiralSm.replace "use crate::String_::fromCharCode;" "use crate::String_::fromChar;"
+                                                |> SpiralSm.replace "fromCharCode(c)" "std::char::from_u32(c).unwrap()"
+                                                |> SpiralFileSystem.write_all_text_async rsPath
+
                                             let command = "cargo fmt --"
                                             let! exitCode, result =
                                                 SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, Some outDir)

@@ -410,52 +410,65 @@ module SpiralFileSystem =
 
 let set_trace_level new_level =
 #if !INTERACTIVE
-    let struct (_, _, level, _, _) = File_system.State.trace_state |> Option.get
-    level.l0 <-
-        match new_level with
-        | Trace.US0_0 -> File_system.US0_0
-        | Trace.US0_1 -> File_system.US0_1
-        | Trace.US0_2 -> File_system.US0_2
-        | Trace.US0_3 -> File_system.US0_3
-        | Trace.US0_4 -> File_system.US0_4
+    Networking.State.trace_state
+    |> Option.iter (fun struct (_, _, level, _, _) ->
+        level.l0 <-
+            match new_level with
+            | Trace.US0_0 -> Networking.US0_0
+            | Trace.US0_1 -> Networking.US0_1
+            | Trace.US0_2 -> Networking.US0_2
+            | Trace.US0_3 -> Networking.US0_3
+            | Trace.US0_4 -> Networking.US0_4
+    )
 
-    let struct (_, _, level, _, _) = Networking.State.trace_state |> Option.get
-    level.l0 <-
-        match new_level with
-        | Trace.US0_0 -> Networking.US0_0
-        | Trace.US0_1 -> Networking.US0_1
-        | Trace.US0_2 -> Networking.US0_2
-        | Trace.US0_3 -> Networking.US0_3
-        | Trace.US0_4 -> Networking.US0_4
+    File_system.State.trace_state
+    |> Option.iter (fun struct (_, _, level, _, _) ->
+        level.l0 <-
+            match new_level with
+            | Trace.US0_0 -> File_system.US0_0
+            | Trace.US0_1 -> File_system.US0_1
+            | Trace.US0_2 -> File_system.US0_2
+            | Trace.US0_3 -> File_system.US0_3
+            | Trace.US0_4 -> File_system.US0_4
+    )
 
-    let struct (_, _, level, _, _) = Runtime.State.trace_state |> Option.get
-    level.l0 <-
-        match new_level with
-        | Trace.US0_0 -> Runtime.US0_0
-        | Trace.US0_1 -> Runtime.US0_1
-        | Trace.US0_2 -> Runtime.US0_2
-        | Trace.US0_3 -> Runtime.US0_3
-        | Trace.US0_4 -> Runtime.US0_4
+    Runtime.State.trace_state
+    |> Option.iter (fun struct (_, _, level, _, _) ->
+        level.l0 <-
+            match new_level with
+            | Trace.US0_0 -> Runtime.US0_0
+            | Trace.US0_1 -> Runtime.US0_1
+            | Trace.US0_2 -> Runtime.US0_2
+            | Trace.US0_3 -> Runtime.US0_3
+            | Trace.US0_4 -> Runtime.US0_4
+    )
 
-    let struct (_, _, level, _, _) = Common.State.trace_state |> Option.get
-    level.l0 <-
-        match new_level with
-        | Trace.US0_0 -> Common.US0_0
-        | Trace.US0_1 -> Common.US0_1
-        | Trace.US0_2 -> Common.US0_2
-        | Trace.US0_3 -> Common.US0_3
-        | Trace.US0_4 -> Common.US0_4
+    Common.State.trace_state
+    |> Option.iter (fun struct (_, _, level, _, _) ->
+        level.l0 <-
+            match new_level with
+            | Trace.US0_0 -> Common.US0_0
+            | Trace.US0_1 -> Common.US0_1
+            | Trace.US0_2 -> Common.US0_2
+            | Trace.US0_3 -> Common.US0_3
+            | Trace.US0_4 -> Common.US0_4
+    )
 
-    let struct (_, _, level, _, _) = Trace.State.trace_state |> Option.get
+    Trace.State.trace_state
 #else
-    let struct (_, _, level, _, _) = State.trace_state |> Option.get
+    State.trace_state
 #endif
-    level.l0 <- new_level
+    |> Option.iter (fun (struct (_, _, level, _, _)) ->
+        level.l0 <- new_level
+    )
 
 let get_trace_level () =
 #if !INTERACTIVE
-    let struct (_, _, level, _, _) = Trace.State.trace_state |> Option.get
+    Trace.State.trace_state
 #else
-    let struct (_, _, level, _, _) = State.trace_state |> Option.get
+    State.trace_state
 #endif
-    level.l0
+    |> Option.map (fun struct (_, _, level, _, _) ->
+        level.l0
+    )
+    |> Option.defaultWith (fun () -> failwith "lib.get_trace_level / trace_state=None")

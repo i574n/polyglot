@@ -132,7 +132,7 @@ function Update-Toml {
     )
 
     if (!(Test-Path $tomlPath)) {
-        New-Item -ItemType File -Path $tomlPath -Force | Out-Null
+        New-Item $tomlPath -ItemType File -Force | Out-Null
     }
 
     $tomlContent = Get-Content $tomlPath | ConvertFrom-Toml
@@ -151,7 +151,7 @@ function Update-Json {
     )
 
     if (!(Test-Path $jsonPath)) {
-        New-Item -ItemType File -Path $jsonPath -Force | Out-Null
+        New-Item $jsonPath -ItemType File -Force | Out-Null
     }
 
     $jsonContent = Get-Content $jsonPath | ConvertFrom-Json

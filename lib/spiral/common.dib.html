@@ -7690,27 +7690,27 @@ and method0 () : unit =
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v2 : uint8 = 2uy
     v2
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v3 : uint8 = 2uy
     v3
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v4 : uint8 = 2uy
     v4
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v5 : uint8 = 1uy
     v5
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v6 : uint8 = 2uy
     v6
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v7 : uint8 = 2uy
     v7
-    #endif
+#endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
     let v8 : uint8 = _v0.Value
     let v9 : string = $"%A{v8}"
@@ -7779,27 +7779,27 @@ and method0 () : unit =
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v2 : uint8 = 1uy
     v2
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v3 : uint8 = 2uy
     v3
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v4 : uint8 = 2uy
     v4
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v5 : uint8 = 2uy
     v5
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v6 : uint8 = 2uy
     v6
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v7 : uint8 = 2uy
     v7
-    #endif
+#endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
     let v8 : uint8 = _v0.Value
     let v9 : string = $"%A{v8}"
@@ -9228,27 +9228,27 @@ and method0 () : unit =
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
             let v7 : string = $"%A{v4}"
             v7
-    #endif
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
             let v8 : string = $"%A{v4}"
             v8
-    #endif
+#endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
             let v9 : string = $"%A{v4}"
             v9
-    #endif
+#endif
             #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
             let v10 : string = $"{v4.GetType ()}: {v4.Message}"
             v10
-    #endif
+#endif
             #if FABLE_COMPILER_TYPESCRIPT
             let v11 : string = $"%A{v4}"
             v11
-    #endif
+#endif
             #if FABLE_COMPILER_PYTHON
             let v12 : string = $"%A{v4}"
             v12
-    #endif
+#endif
             |&gt; fun x -&gt; _v5 &lt;- Some x
             let v13 : string = _v5.Value
             US1_0(v13)
@@ -9452,28 +9452,28 @@ and method0 () : unit =
     let v3 : (unit -&gt; unit) = closure0(v0)
     let v4 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v3 "$0()" )
     v4
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v5 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v3 "$0()" )
     v5
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v6 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v3 "$0()" )
     v6
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v7 : (unit -&gt; unit) = method1(v0)
     let v8 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v7 () }
     v8
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v9 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v9
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v10 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v10
-    #endif
+#endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     let v11 : System.IDisposable = _v1.Value
     let v12 : (System.IDisposable -&gt; unit) = _.Dispose()
@@ -9585,15 +9585,15 @@ and method0 () : unit =
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : System.Threading.Tasks.Task = null |&gt; unbox&lt;System.Threading.Tasks.Task&gt;
     v3
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v4 : System.Threading.Tasks.Task = null |&gt; unbox&lt;System.Threading.Tasks.Task&gt;
     v4
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v5 : System.Threading.Tasks.Task = null |&gt; unbox&lt;System.Threading.Tasks.Task&gt;
     v5
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v6 : System.Threading.Tasks.Task option = None
     let mutable _v6 = v6
@@ -9604,28 +9604,28 @@ and method0 () : unit =
     let v9 : (unit -&gt; unit) = closure0(v0)
     let v10 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
     v10
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v11 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
     v11
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v12 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
     v12
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v13 : (unit -&gt; unit) = method1(v0)
     let v14 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v13 () }
     v14
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v15 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v15
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v16 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v16
-    #endif
+#endif
     |&gt; fun x -&gt; _v7 &lt;- Some x
     let v17 : System.IDisposable = _v7.Value
     use v17 = v17 
@@ -9635,15 +9635,15 @@ and method0 () : unit =
     |&gt; fun x -&gt; _v6 &lt;- Some x
     let v19 : System.Threading.Tasks.Task = _v6 |&gt; Option.get
     v19
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v20 : System.Threading.Tasks.Task = null |&gt; unbox&lt;System.Threading.Tasks.Task&gt;
     v20
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v21 : System.Threading.Tasks.Task = null |&gt; unbox&lt;System.Threading.Tasks.Task&gt;
     v21
-    #endif
+#endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     let v22 : System.Threading.Tasks.Task = _v1.Value
     let v23 : Async&lt;unit&gt; option = None
@@ -9651,28 +9651,28 @@ and method0 () : unit =
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v25 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v25
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v26 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v26
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v27 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v27
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v28 : (System.Threading.Tasks.Task -&gt; Async&lt;unit&gt;) = Async.AwaitTask
     let v29 : Async&lt;unit&gt; = v28 v22
     v29
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v30 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v30
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v31 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v31
-    #endif
+#endif
     |&gt; fun x -&gt; _v23 &lt;- Some x
     let v32 : Async&lt;unit&gt; = _v23.Value
     let v33 : unit option = None
@@ -9680,28 +9680,28 @@ and method0 () : unit =
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v35 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
     v35 v32
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     |&gt; fun x -&gt; _v33 &lt;- Some x
     _v33.Value
     let v36 : int32 = v0.l0
@@ -9775,15 +9775,15 @@ and method0 () : unit =
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v3
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v4 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v4
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v5 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v5
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v6 : Async&lt;unit&gt; option = None
     let mutable _v6 = v6
@@ -9794,28 +9794,28 @@ and method0 () : unit =
     let v9 : (unit -&gt; unit) = closure0(v0)
     let v10 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
     v10
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v11 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
     v11
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v12 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
     v12
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v13 : (unit -&gt; unit) = method1(v0)
     let v14 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v13 () }
     v14
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v15 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v15
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v16 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v16
-    #endif
+#endif
     |&gt; fun x -&gt; _v7 &lt;- Some x
     let v17 : System.IDisposable = _v7.Value
     use v17 = v17 
@@ -9825,15 +9825,15 @@ and method0 () : unit =
     |&gt; fun x -&gt; _v6 &lt;- Some x
     let v19 : Async&lt;unit&gt; = _v6 |&gt; Option.get
     v19
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v20 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v20
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v21 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v21
-    #endif
+#endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     let v22 : Async&lt;unit&gt; = _v1.Value
     let v23 : unit option = None
@@ -9841,28 +9841,28 @@ and method0 () : unit =
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v25 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
     v25 v22
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     |&gt; fun x -&gt; _v23 &lt;- Some x
     _v23.Value
     let v26 : int32 = v0.l0
@@ -9935,15 +9935,15 @@ and method0 () : unit =
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v3
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v4 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v4
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v5 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v5
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v6 : Async&lt;unit&gt; option = None
     let mutable _v6 = v6
@@ -9954,28 +9954,28 @@ and method0 () : unit =
     let v9 : (unit -&gt; unit) = closure0(v0)
     let v10 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
     v10
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v11 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
     v11
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v12 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
     v12
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v13 : (unit -&gt; unit) = method1(v0)
     let v14 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v13 () }
     v14
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v15 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v15
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v16 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v16
-    #endif
+#endif
     |&gt; fun x -&gt; _v7 &lt;- Some x
     let v17 : System.IDisposable = _v7.Value
     return () 
@@ -9983,15 +9983,15 @@ and method0 () : unit =
     |&gt; fun x -&gt; _v6 &lt;- Some x
     let v18 : Async&lt;unit&gt; = _v6 |&gt; Option.get
     v18
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v19 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v19
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v20 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v20
-    #endif
+#endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     let v21 : Async&lt;unit&gt; = _v1.Value
     let v22 : unit option = None
@@ -9999,28 +9999,28 @@ and method0 () : unit =
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v24 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
     v24 v21
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     null |&gt; unbox&lt;unit&gt;
     ()
-    #endif
+#endif
     |&gt; fun x -&gt; _v22 &lt;- Some x
     _v22.Value
     let v25 : int32 = v0.l0
@@ -10281,27 +10281,27 @@ and closure7 () () : struct (Mut1 * Mut2 * Mut3 * int64 option * Mut4) =
     let v9 : string = "env!(\"CARGO_PKG_NAME\").into()"
     let v10 : string = Fable.Core.RustInterop.emitRustExpr () v9
     v10
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v11 : string = null |&gt; unbox&lt;string&gt;
     v11
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v12 : string = null |&gt; unbox&lt;string&gt;
     v12
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v13 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v13
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v14 : string = null |&gt; unbox&lt;string&gt;
     v14
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v15 : string = null |&gt; unbox&lt;string&gt;
     v15
-    #endif
+#endif
     |&gt; fun x -&gt; _v7 &lt;- Some x
     let v16 : string = _v7.Value
     let v18 : bool = v16 = "Microsoft.DotNet.Interactive.App"
@@ -10373,15 +10373,15 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v32 : string = "hh:mm:ss"
     let v33 : string = v31.ToString v32 
     v33
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v34 : string = method6()
     v34
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v35 : string = method6()
     v35
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v36 : (int64 -&gt; US4) = method5()
     let v37 : US4 = US4_1
@@ -10410,15 +10410,15 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v57 : string = "HH:mm:ss"
     let v58 : string = v56.ToString v57 
     v58
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v59 : string = method6()
     v59
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v60 : string = method6()
     v60
-    #endif
+#endif
     |&gt; fun x -&gt; _v9 &lt;- Some x
     let v61 : string = _v9.Value
     let v62 : int64 = v4.l0
@@ -10476,7 +10476,7 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v99 : string = "fable_library_rust::String_::fromString($0)"
     let v100 : string = Fable.Core.RustInterop.emitRustExpr v98 v99
     v100
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v115 : Ref&lt;Str&gt; =
         match v0 with
@@ -10510,7 +10510,7 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v123 : string = "fable_library_rust::String_::fromString($0)"
     let v124 : string = Fable.Core.RustInterop.emitRustExpr v122 v123
     v124
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v139 : Ref&lt;Str&gt; =
         match v0 with
@@ -10544,16 +10544,16 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v147 : string = "fable_library_rust::String_::fromString($0)"
     let v148 : string = Fable.Core.RustInterop.emitRustExpr v146 v147
     v148
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     v74
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     v74
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     v74
-    #endif
+#endif
     |&gt; fun x -&gt; _v75 &lt;- Some x
     let v149 : string = _v75.Value
     let v150 : string = v1 ()
@@ -10591,29 +10591,29 @@ and method7 (v0 : US2, v1 : (unit -&gt; string)) : unit =
         let v25 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v25
         ()
-    #endif
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; WASM
         let v26 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v26
         ()
-    #endif
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
         let v27 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v27
         ()
-    #endif
+#endif
         #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
         System.Console.WriteLine v22 
         ()
-    #endif
+#endif
         #if FABLE_COMPILER_TYPESCRIPT
         System.Console.WriteLine v22 
         ()
-    #endif
+#endif
         #if FABLE_COMPILER_PYTHON
         System.Console.WriteLine v22 
         ()
-    #endif
+#endif
         |&gt; fun x -&gt; _v23 &lt;- Some x
         _v23.Value
         let v28 : (string -&gt; unit) = v7.l0
@@ -10630,24 +10630,24 @@ and closure2 (v0 : int32) (v1 : exn) : US1 =
     let v6 : bool = true in let mutable _v5 = v5
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     ()
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v7 : (int32 -&gt; unit) = System.Threading.Thread.Sleep
     v7 1
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     ()
-    #endif
+#endif
     |&gt; fun x -&gt; _v5 &lt;- Some x
     _v5.Value
     US1_1
@@ -10801,27 +10801,27 @@ and closure7 () () : struct (Mut1 * Mut2 * Mut3 * int64 option * Mut4) =
     let v9 : string = "env!(\"CARGO_PKG_NAME\").into()"
     let v10 : string = Fable.Core.RustInterop.emitRustExpr () v9
     v10
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v11 : string = null |&gt; unbox&lt;string&gt;
     v11
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v12 : string = null |&gt; unbox&lt;string&gt;
     v12
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v13 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v13
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v14 : string = null |&gt; unbox&lt;string&gt;
     v14
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v15 : string = null |&gt; unbox&lt;string&gt;
     v15
-    #endif
+#endif
     |&gt; fun x -&gt; _v7 &lt;- Some x
     let v16 : string = _v7.Value
     let v18 : bool = v16 = "Microsoft.DotNet.Interactive.App"
@@ -10893,15 +10893,15 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v32 : string = "hh:mm:ss"
     let v33 : string = v31.ToString v32 
     v33
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v34 : string = method6()
     v34
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v35 : string = method6()
     v35
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v36 : (int64 -&gt; US4) = method5()
     let v37 : US4 = US4_1
@@ -10930,15 +10930,15 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v57 : string = "HH:mm:ss"
     let v58 : string = v56.ToString v57 
     v58
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v59 : string = method6()
     v59
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v60 : string = method6()
     v60
-    #endif
+#endif
     |&gt; fun x -&gt; _v9 &lt;- Some x
     let v61 : string = _v9.Value
     let v62 : int64 = v4.l0
@@ -10996,7 +10996,7 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v99 : string = "fable_library_rust::String_::fromString($0)"
     let v100 : string = Fable.Core.RustInterop.emitRustExpr v98 v99
     v100
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v115 : Ref&lt;Str&gt; =
         match v0 with
@@ -11030,7 +11030,7 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v123 : string = "fable_library_rust::String_::fromString($0)"
     let v124 : string = Fable.Core.RustInterop.emitRustExpr v122 v123
     v124
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v139 : Ref&lt;Str&gt; =
         match v0 with
@@ -11064,16 +11064,16 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v147 : string = "fable_library_rust::String_::fromString($0)"
     let v148 : string = Fable.Core.RustInterop.emitRustExpr v146 v147
     v148
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     v74
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     v74
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     v74
-    #endif
+#endif
     |&gt; fun x -&gt; _v75 &lt;- Some x
     let v149 : string = _v75.Value
     let v150 : string = v1 ()
@@ -11111,29 +11111,29 @@ and method7 (v0 : US2, v1 : (unit -&gt; string)) : unit =
         let v25 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v25
         ()
-    #endif
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; WASM
         let v26 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v26
         ()
-    #endif
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
         let v27 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v27
         ()
-    #endif
+#endif
         #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
         System.Console.WriteLine v22 
         ()
-    #endif
+#endif
         #if FABLE_COMPILER_TYPESCRIPT
         System.Console.WriteLine v22 
         ()
-    #endif
+#endif
         #if FABLE_COMPILER_PYTHON
         System.Console.WriteLine v22 
         ()
-    #endif
+#endif
         |&gt; fun x -&gt; _v23 &lt;- Some x
         _v23.Value
         let v28 : (string -&gt; unit) = v7.l0
@@ -11150,24 +11150,24 @@ and closure2 (v0 : int32) (v1 : exn) : US1 =
     let v6 : bool = true in let mutable _v5 = v5
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     ()
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v7 : (int32 -&gt; unit) = System.Threading.Thread.Sleep
     v7 1
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     ()
-    #endif
+#endif
     |&gt; fun x -&gt; _v5 &lt;- Some x
     _v5.Value
     US1_1
@@ -11442,27 +11442,27 @@ and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     let v9 : string = "env!(\"CARGO_PKG_NAME\").into()"
     let v10 : string = Fable.Core.RustInterop.emitRustExpr () v9
     v10
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v11 : string = null |&gt; unbox&lt;string&gt;
     v11
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v12 : string = null |&gt; unbox&lt;string&gt;
     v12
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v13 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v13
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v14 : string = null |&gt; unbox&lt;string&gt;
     v14
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v15 : string = null |&gt; unbox&lt;string&gt;
     v15
-    #endif
+#endif
     |&gt; fun x -&gt; _v7 &lt;- Some x
     let v16 : string = _v7.Value
     let v18 : bool = v16 = "Microsoft.DotNet.Interactive.App"
@@ -11501,28 +11501,28 @@ and closure2 () (v0 : (unit -&gt; unit)) : System.IDisposable =
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v0 "$0()" )
     v3
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v4 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v0 "$0()" )
     v4
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v5 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v0 "$0()" )
     v5
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v6 : (unit -&gt; unit) = method2(v0)
     let v7 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v6 () }
     v7
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v8 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v8
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v9 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v9
-    #endif
+#endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     let v10 : System.IDisposable = _v1.Value
     v10
@@ -11586,15 +11586,15 @@ and closure11 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () 
     let v32 : string = "hh:mm:ss"
     let v33 : string = v31.ToString v32 
     v33
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v34 : string = method6()
     v34
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v35 : string = method6()
     v35
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v36 : (int64 -&gt; US4) = method5()
     let v37 : US4 = US4_1
@@ -11623,15 +11623,15 @@ and closure11 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () 
     let v57 : string = "HH:mm:ss"
     let v58 : string = v56.ToString v57 
     v58
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     let v59 : string = method6()
     v59
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     let v60 : string = method6()
     v60
-    #endif
+#endif
     |&gt; fun x -&gt; _v9 &lt;- Some x
     let v61 : string = _v9.Value
     let v62 : int64 = v4.l0
@@ -11689,7 +11689,7 @@ and closure11 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () 
     let v99 : string = "fable_library_rust::String_::fromString($0)"
     let v100 : string = Fable.Core.RustInterop.emitRustExpr v98 v99
     v100
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v115 : Ref&lt;Str&gt; =
         match v0 with
@@ -11723,7 +11723,7 @@ and closure11 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () 
     let v123 : string = "fable_library_rust::String_::fromString($0)"
     let v124 : string = Fable.Core.RustInterop.emitRustExpr v122 v123
     v124
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v139 : Ref&lt;Str&gt; =
         match v0 with
@@ -11757,16 +11757,16 @@ and closure11 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () 
     let v147 : string = "fable_library_rust::String_::fromString($0)"
     let v148 : string = Fable.Core.RustInterop.emitRustExpr v146 v147
     v148
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     v74
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     v74
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     v74
-    #endif
+#endif
     |&gt; fun x -&gt; _v75 &lt;- Some x
     let v149 : string = _v75.Value
     let v150 : string = v1 ()
@@ -11804,29 +11804,29 @@ and method7 (v0 : US0, v1 : (unit -&gt; string)) : unit =
         let v25 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v25
         ()
-    #endif
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; WASM
         let v26 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v26
         ()
-    #endif
+#endif
         #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
         let v27 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v27
         ()
-    #endif
+#endif
         #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
         System.Console.WriteLine v22 
         ()
-    #endif
+#endif
         #if FABLE_COMPILER_TYPESCRIPT
         System.Console.WriteLine v22 
         ()
-    #endif
+#endif
         #if FABLE_COMPILER_PYTHON
         System.Console.WriteLine v22 
         ()
-    #endif
+#endif
         |&gt; fun x -&gt; _v23 &lt;- Some x
         _v23.Value
         let v28 : (string -&gt; unit) = v7.l0
@@ -11843,24 +11843,24 @@ and closure7 (v0 : int32) (v1 : exn) : US3 =
     let v6 : bool = true in let mutable _v5 = v5
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     ()
-    #endif
+#endif
     #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v7 : (int32 -&gt; unit) = System.Threading.Thread.Sleep
     v7 1
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_TYPESCRIPT
     ()
-    #endif
+#endif
     #if FABLE_COMPILER_PYTHON
     ()
-    #endif
+#endif
     |&gt; fun x -&gt; _v5 &lt;- Some x
     _v5.Value
     US3_1

@@ -351,6 +351,7 @@ let split_args (args : string) : array_base string =
     |> fst
     |> listm'.box
     |> listm'.to_array'
+    |> fun (a x : _ i32 _) => x
 
 // // ## execute_with_options
 inl execute_with_options (options : execution_options) : i32 * string =

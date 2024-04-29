@@ -2,6 +2,7 @@ pub mod Common {
     use super::*;
     use fable_library_rust::DateTime_::DateTime;
     use fable_library_rust::Exception_::try_catch;
+    use fable_library_rust::FSharp::Control::LazyExtensions;
     use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
     use fable_library_rust::Interfaces_::System::IDisposable;
     use fable_library_rust::List_::ofArray;
@@ -28,6 +29,7 @@ pub mod Common {
     use fable_library_rust::String_::trimEndChars;
     use fable_library_rust::String_::trimStartChars;
     use fable_library_rust::System::Exception;
+    use fable_library_rust::System::Lazy_1;
     use fable_library_rust::TimeSpan_::TimeSpan;
     pub mod State {
         use super::*;
@@ -308,7 +310,7 @@ pub mod Common {
         let v1_1: LrcPtr<Common::Mut0> = LrcPtr::new(Common::Mut0 {
             l0: MutCell::new(0_i64),
         });
-        let v3: LrcPtr<Common::Mut2> = LrcPtr::new(Common::Mut2 {
+        let v3_1: LrcPtr<Common::Mut2> = LrcPtr::new(Common::Mut2 {
             l0: MutCell::new(Common::US0::US0_0),
         });
         let v5: LrcPtr<Common::Mut3> = LrcPtr::new(Common::Mut3 {
@@ -319,7 +321,7 @@ pub mod Common {
             let x: Option<i64> = Common::method1(None::<i64>);
             _v6.set(Some(x))
         }
-        (v1_1, v0_1, v3, getValue(_v6.get().clone()), v5)
+        (v1_1, v0_1, v3_1, getValue(_v6.get().clone()), v5)
     }
     pub fn method2(v0_1: Func0<()>) -> Func0<()> {
         v0_1
@@ -470,7 +472,15 @@ pub mod Common {
         }
     }
     pub fn method7(v0_1: Common::US0, v1_1: Func0<string>) {
-        let v2_1 = Func0::new(move || Common::closure0((), ()));
+        fn v2_1() -> (
+            LrcPtr<Common::Mut0>,
+            LrcPtr<Common::Mut1>,
+            LrcPtr<Common::Mut2>,
+            Option<i64>,
+            LrcPtr<Common::Mut3>,
+        ) {
+            Common::closure0((), ())
+        }
         if Common::State::trace_state().get().clone().is_none() {
             Common::State::trace_state().set(Some(v2_1()));
         }
@@ -482,7 +492,7 @@ pub mod Common {
                 Option<i64>,
                 LrcPtr<Common::Mut3>,
             ) = getValue(Common::State::trace_state().get().clone());
-            let v3: LrcPtr<Common::Mut0> = patternInput.0.clone();
+            let v3_1: LrcPtr<Common::Mut0> = patternInput.0.clone();
             if Common::State::trace_state().get().clone().is_none() {
                 Common::State::trace_state().set(Some(v2_1()));
             }
@@ -518,8 +528,8 @@ pub mod Common {
                         ])))),
                     )
                 } {
-                    let v21: i64 = v3.l0.get().clone() + 1_i64;
-                    v3.l0.set(v21);
+                    let v21: i64 = v3_1.l0.get().clone() + 1_i64;
+                    v3_1.l0.set(v21);
                     {
                         let v22: string = sprintf!("{}", v1_1());
                         let _v23: MutCell<Option<()>> = MutCell::new(None::<()>);
@@ -599,8 +609,8 @@ pub mod Common {
         }
     }
     pub fn closure4(v0_1: i32, v1_1: Func0<()>) -> Option<()> {
-        let v3: Common::US2 = Common::method3(v0_1, v1_1, 0_i32);
-        match &v3 {
+        let v3_1: Common::US2 = Common::method3(v0_1, v1_1, 0_i32);
+        match &v3_1 {
             Common::US2::US2_0 => Some(()),
             _ => None::<()>,
         }
@@ -609,6 +619,24 @@ pub mod Common {
         Func1::new({
             let v0_1 = v0_1.clone();
             move |v: Func0<()>| Common::closure4(v0_1, v)
+        })
+    }
+    pub fn method8(v0_1: Func0<()>) -> Func0<()> {
+        v0_1
+    }
+    pub fn closure14(v0_1: LrcPtr<Lazy_1<()>>, unitVar: ()) {
+        v0_1.get_Value();
+        ()
+    }
+    pub fn closure13(unitVar: (), v0_1: Func0<()>) -> Func0<()> {
+        let v1_1 = Common::method8(v0_1);
+        let v2_1: LrcPtr<Lazy_1<()>> = LazyExtensions::Create(Func0::new({
+            let v1_1 = v1_1.clone();
+            move || v1_1()
+        }));
+        Func0::new({
+            let v2_1 = v2_1.clone();
+            move || Common::closure14(v2_1.clone(), ())
         })
     }
     pub fn v0() -> Func0<(
@@ -648,6 +676,14 @@ pub mod Common {
     }
     pub fn retry_fn(x: i32) -> Func1<Func0<()>, Option<()>> {
         (Common::v2())(x)
+    }
+    pub fn v3() -> Func1<Func0<()>, Func0<()>> {
+        static v3: OnceInit<Func1<Func0<()>, Func0<()>>> = OnceInit::new();
+        v3.get_or_init(|| Func1::new(move |v: Func0<()>| Common::closure13((), v)))
+            .clone()
+    }
+    pub fn memoize(x: Func0<()>) -> Func0<()> {
+        (Common::v3())(x)
     }
     on_startup!(());
 }

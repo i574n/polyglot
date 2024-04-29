@@ -119,17 +119,18 @@ let inline awaitCompiler port cancellationToken = async {
 
             let dllPath = compilerPath </> "Spiral.dll"
 
-            let command = $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64"
             let onLine = fun struct (_, line, _) -> async {
                 if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
-                    do! SpiralNetworking.wait_for_port_access (Some 500) true availablePort |> Async.Ignore
+                    do!
+                        SpiralNetworking.wait_for_port_access (Some 500) true availablePort
+                        |> Async.Ignore
 
                     let rec loop retry = async {
                         let _locals () = $"port: {availablePort} / retry: {retry} / {_locals ()}"
                         try
                             let pingObj = {| Ping = true |}
                             let! pingResult = pingObj |> sendObj availablePort
-                            trace Verbose (fun () -> $"awaitCompiler / Ping / result: {pingResult}") _locals
+                            trace Verbose (fun () -> $"awaitCompiler / Ping / result: '{pingResult}'") _locals
                         with ex ->
                             trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") _locals
                             do! Async.Sleep 10
@@ -139,6 +140,7 @@ let inline awaitCompiler port cancellationToken = async {
                     inbox.Post (availablePort, true)
             }
 
+            let command = $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64"
             let! exitCode, result =
                 SpiralRuntime.execute_with_options_async struct (Some ct, command, Some onLine, Some repositoryRoot)
 
@@ -300,7 +302,7 @@ let inline buildFile timeout port cancellationToken path = async {
                 | _ -> fsxContentResult, errors, typeErrorCount
         )
         |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors, typeErrorCount) ->
-            trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 400} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") _locals
+            trace Debug (fun () -> $"buildFile / takeWhileInclusive / path: {path} / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 400} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") _locals
 #if INTERACTIVE
             let errorWait = 2
 #else
