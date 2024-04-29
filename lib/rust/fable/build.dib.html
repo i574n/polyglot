@@ -7560,16 +7560,24 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Fable 4.14.0: F# to Rust compiler (status: alpha)
+<pre>Fable 4.17.0: F# to Rust compiler (status: alpha)
 
-Thanks to the contributor! @mastoj
+Thanks to the contributor! @justinjstark
 Stand with Ukraine! https://standwithukraine.com.ua/
 
 Parsing fable-library-rust.fsproj...
-Retrieving project options from cache, in case of issues run `dotnet fable clean` or try `--noCache` option.
-Project and references (1 source files) parsed in 179ms
+.&gt; cmd /C dotnet restore fable-library-rust.fable-temp.csproj -p:FABLE_COMPILER=true -p:FABLE_COMPILER_4=true -p:FABLE_COMPILER_RUST=true
+  Determining projects to restore...
+  Restored C:\home\git\polyglot\lib\rust\fable\fable-library-rust.fable-temp.csproj (in 228 ms).
+.&gt; cmd /C dotnet restore C:/home/git/polyglot/lib/rust/fable/fable-library-rust.fsproj
+  Determining projects to restore...
+  Restored C:\home\git\polyglot\lib\rust\fable\fable-library-rust.fsproj (in 1.54 sec).
+Project and references (1 source files) parsed in 18000ms
 
-Skipped compilation because all generated files are up-to-date!
+Started Fable compilation...
+
+Fable compilation finished in 1750ms
+
 </pre>
 </div>
 </div>

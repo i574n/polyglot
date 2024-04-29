@@ -9288,27 +9288,33 @@ and method0 () : unit =
         | US0_0(v4) -&gt; (* Some *)
             let v5 : string option = None
             let v6 : bool = true in let mutable _v5 = v5
-            #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
             let v7 : string = $"%A{v4}"
             v7
 #endif
-            #if FABLE_COMPILER_RUST &amp;&amp; WASM
+            
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
             let v8 : string = $"%A{v4}"
             v8
 #endif
-            #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+            
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
             let v9 : string = $"%A{v4}"
             v9
 #endif
-            #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
             let v10 : string = $"{v4.GetType ()}: {v4.Message}"
             v10
 #endif
-            #if FABLE_COMPILER_TYPESCRIPT
+            
+#if FABLE_COMPILER_TYPESCRIPT
             let v11 : string = $"%A{v4}"
             v11
 #endif
-            #if FABLE_COMPILER_PYTHON
+            
+#if FABLE_COMPILER_PYTHON
             let v12 : string = $"%A{v4}"
             v12
 #endif
@@ -9473,7 +9479,8 @@ and method4 (v0 : bool) : bool =
 and method0 () : unit =
     let v0 : string option = None
     let v1 : bool = true in let mutable _v0 = v0
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v2 : string = method1()
     let v3 : string = method2()
     let v4 : string = method3()
@@ -9485,26 +9492,31 @@ and method0 () : unit =
     let v10 : string = Fable.Core.RustInterop.emitRustExpr v8 v9
     v10
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v11 : string = null |&gt; unbox&lt;string&gt;
     v11
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v12 : string = null |&gt; unbox&lt;string&gt;
     v12
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v13 : string = " 123"
     let v14 : string = "\\s\\w2"
     let v15 : string = ""
     let v16 : string = System.Text.RegularExpressions.Regex.Replace (v13, v14, v15)
     v16
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v17 : string = null |&gt; unbox&lt;string&gt;
     v17
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v18 : string = null |&gt; unbox&lt;string&gt;
     v18
 #endif
@@ -9559,7 +9571,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-"3"
+"99991230-2359-5999-9999-000000543210"
 
 
 </pre>
@@ -9719,7 +9731,8 @@ and method4 (v0 : bool) : bool =
 and method0 () : unit =
     let v0 : string option = None
     let v1 : bool = true in let mutable _v0 = v0
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v2 : string = method1()
     let v3 : string = method2()
     let v4 : string = method3()
@@ -9731,26 +9744,31 @@ and method0 () : unit =
     let v10 : string = Fable.Core.RustInterop.emitRustExpr v8 v9
     v10
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v11 : string = null |&gt; unbox&lt;string&gt;
     v11
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v12 : string = null |&gt; unbox&lt;string&gt;
     v12
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v13 : string = " 123"
     let v14 : string = "\\s\\w2"
     let v15 : string = ""
     let v16 : string = System.Text.RegularExpressions.Regex.Replace (v13, v14, v15)
     v16
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v17 : string = null |&gt; unbox&lt;string&gt;
     v17
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v18 : string = null |&gt; unbox&lt;string&gt;
     v18
 #endif
@@ -10219,10 +10237,7 @@ pub use module_ccfa04bf::*;
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-"1
-2
-3
-"
+"19700102-0000-0000-0000-000000543210"
 
 
 </pre>
@@ -10519,6 +10534,10 @@ mod module_ccfa04bf {
     }
 }
 pub use module_ccfa04bf::*;
+
+pub fn main() -&gt; Result&lt;(), String&gt; {
+    Ok(())
+}
 
 </pre>
 </div>
@@ -10887,6 +10906,10 @@ mod module_ccfa04bf {
     }
 }
 pub use module_ccfa04bf::*;
+
+pub fn main() -&gt; Result&lt;(), String&gt; {
+    Ok(())
+}
 
 </pre>
 </div>
@@ -11974,7 +11997,8 @@ and method2 (v0 : string) : string =
 and closure15 (v0 : string, v1 : string) (v2 : string) : string =
     let v3 : string option = None
     let v4 : bool = true in let mutable _v3 = v3
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v5 : string = method0(v0)
     let v6 : string = method1(v2)
     let v7 : string = method2(v1)
@@ -11986,23 +12010,28 @@ and closure15 (v0 : string, v1 : string) (v2 : string) : string =
     let v13 : string = Fable.Core.RustInterop.emitRustExpr v11 v12
     v13
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v14 : string = null |&gt; unbox&lt;string&gt;
     v14
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v15 : string = null |&gt; unbox&lt;string&gt;
     v15
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v16 : string = System.Text.RegularExpressions.Regex.Replace (v2, v0, v1)
     v16
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v17 : string = null |&gt; unbox&lt;string&gt;
     v17
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v18 : string = null |&gt; unbox&lt;string&gt;
     v18
 #endif
@@ -12031,7 +12060,8 @@ and method3 () : string =
 and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v2 : (string []) option = None
     let v3 : bool = true in let mutable _v2 = v2
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v4 : ((string []) -&gt; string seq) = Seq.ofArray
     let v5 : string seq = v4 v0
     let v6 : string = method3()
@@ -12041,7 +12071,8 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v10 : (string []) = v1.Split v9
     v10
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v11 : ((string []) -&gt; string seq) = Seq.ofArray
     let v12 : string seq = v11 v0
     let v13 : string = method3()
@@ -12051,7 +12082,8 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v17 : (string []) = v1.Split v16
     v17
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v18 : ((string []) -&gt; string seq) = Seq.ofArray
     let v19 : string seq = v18 v0
     let v20 : string = method3()
@@ -12061,11 +12093,13 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v24 : (string []) = v1.Split v23
     v24
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v25 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
     v25
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v26 : ((string []) -&gt; string seq) = Seq.ofArray
     let v27 : string seq = v26 v0
     let v28 : string = method3()
@@ -12075,7 +12109,8 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v32 : (string []) = v1.Split v31
     v32
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v33 : ((string []) -&gt; string seq) = Seq.ofArray
     let v34 : string seq = v33 v0
     let v35 : string = method3()
@@ -12165,27 +12200,33 @@ and closure37 () (v0 : int64) : (string -&gt; string) =
 and closure39 () (v0 : exn) : string =
     let v1 : string option = None
     let v2 : bool = true in let mutable _v1 = v1
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : string = $"%A{v0}"
     v3
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v4 : string = $"%A{v0}"
     v4
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v5 : string = $"%A{v0}"
     v5
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v6 : string = $"{v0.GetType ()}: {v0.Message}"
     v6
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v7 : string = $"%A{v0}"
     v7
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v8 : string = $"%A{v0}"
     v8
 #endif

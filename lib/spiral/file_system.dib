@@ -566,13 +566,12 @@ inl get_full_path (path : string) : string =
                 current_dir </> path
                 |> normalize_path
                 |> sm'.split "/"
-                |> fun x => a x : _ i32 _
                 |> fun x =>
-                    (x, (0i32, (a ;[] : _ i32 string)))
-                    ||> am.foldBack fun x (level, acc) =>
+                    ((a x : _ i32 _), (0i32, (a ;[] : _ i32 _)))
+                    ||> am.foldBack fun x level, acc =>
                         match x, level with
                         | "..", _ => level + 1, acc
-                        | _, 0 => level, a ;[ x ] /@ acc
+                        | _, 0 => 0, a ;[ x ] /@ acc
                         | _ => level - 1, acc
                 |> snd
                 |> seq.of_array'
@@ -604,7 +603,7 @@ inl get_full_path (path : string) : string =
 
 "dir/../._file"
 |> get_full_path
-|> _assert_eq (get_current_directory () </> "._file" |> normalize_path)
+|> _assert_eq (get_current_directory () </> "._file")
 
 #!spiral
 
@@ -631,7 +630,7 @@ types ()
 types ()
 "dir/../._file"
 |> get_full_path
-|> _assert_eq (get_current_directory () </> "._file" |> normalize_path)
+|> _assert_eq (get_current_directory () </> "._file")
 
 #!markdown
 

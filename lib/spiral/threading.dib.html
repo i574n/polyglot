@@ -8327,28 +8327,34 @@ and method2 () : (System.Threading.CancellationToken -&gt; US0) =
 and closure1 (v0 : System.Threading.CancellationTokenSource) () : unit =
     let v1 : unit option = None
     let v2 : bool = true in let mutable _v1 = v1
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : (unit -&gt; unit) = v0.Cancel
     v3 ()
     ()
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
@@ -8361,19 +8367,23 @@ and method1 (v0 : Mut0) : unit =
     let v1 : System.Threading.CancellationToken option = None
     let v2 : struct (System.Threading.CancellationToken * System.IDisposable) option = None
     let v3 : bool = true in let mutable _v2 = v2
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let struct (v4 : System.Threading.CancellationToken, v5 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
     struct (v4, v5)
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let struct (v6 : System.Threading.CancellationToken, v7 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
     struct (v6, v7)
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let struct (v8 : System.Threading.CancellationToken, v9 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
     struct (v8, v9)
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v10 : System.Threading.CancellationTokenSource = new System.Threading.CancellationTokenSource ()
     let v11 : (System.Threading.CancellationToken -&gt; US0) = method2()
     let v12 : US0 = US0_1
@@ -8389,29 +8399,35 @@ and method1 (v0 : Mut0) : unit =
             v17 v16
     let v21 : System.IDisposable option = None
     let v22 : bool = true in let mutable _v21 = v21
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v23 : (unit -&gt; unit) = closure1(v20)
     let v24 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v23 "$0()" )
     v24
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v25 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v23 "$0()" )
     v25
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v26 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v23 "$0()" )
     v26
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v27 : (unit -&gt; unit) = method3(v20)
     let v28 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v27 () }
     v28
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v29 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v29
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v30 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v30
 #endif
@@ -8420,11 +8436,13 @@ and method1 (v0 : Mut0) : unit =
     let v32 : System.Threading.CancellationToken = v20.Token
     struct (v32, v31)
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let struct (v33 : System.Threading.CancellationToken, v34 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
     struct (v33, v34)
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let struct (v35 : System.Threading.CancellationToken, v36 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
     struct (v35, v36)
 #endif
@@ -8443,19 +8461,23 @@ and method1 (v0 : Mut0) : unit =
     v0.l0 &lt;- v43
     let v44 : Async&lt;unit&gt; option = None
     let v45 : bool = true in let mutable _v44 = v44
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v46 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v46
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v47 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v47
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v48 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v48
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v49 : Async&lt;unit&gt; option = None
     let mutable _v49 = v49
     async {
@@ -8473,11 +8495,13 @@ and method1 (v0 : Mut0) : unit =
     let v54 : Async&lt;unit&gt; = _v49 |&gt; Option.get
     v54
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v55 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v55
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v56 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v56
 #endif
@@ -8485,28 +8509,34 @@ and method1 (v0 : Mut0) : unit =
     let v57 : Async&lt;unit&gt; = _v44.Value
     let v58 : unit option = None
     let v59 : bool = true in let mutable _v58 = v58
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v60 : (Async&lt;unit&gt; -&gt; unit) = Async.Start
     v60 v57
     ()
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
@@ -8518,19 +8548,23 @@ and method4 (v0 : bool) : bool =
 and method0 () : unit =
     let v0 : Async&lt;int32&gt; option = None
     let v1 : bool = true in let mutable _v0 = v0
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v2 : Async&lt;int32&gt; = null |&gt; unbox&lt;Async&lt;int32&gt;&gt;
     v2
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v3 : Async&lt;int32&gt; = null |&gt; unbox&lt;Async&lt;int32&gt;&gt;
     v3
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v4 : Async&lt;int32&gt; = null |&gt; unbox&lt;Async&lt;int32&gt;&gt;
     v4
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v5 : Async&lt;int32&gt; option = None
     let mutable _v5 = v5
     async {
@@ -8538,28 +8572,34 @@ and method0 () : unit =
     method1(v6)
     let v7 : Async&lt;unit&gt; option = None
     let v8 : bool = true in let mutable _v7 = v7
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v9 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v9
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v10 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v10
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v11 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v11
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v12 : (int32 -&gt; Async&lt;unit&gt;) = Async.Sleep
     let v13 : Async&lt;unit&gt; = v12 10
     v13
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v14 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v14
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v15 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v15
 #endif
@@ -8573,11 +8613,13 @@ and method0 () : unit =
     let v18 : Async&lt;int32&gt; = _v5 |&gt; Option.get
     v18
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v19 : Async&lt;int32&gt; = null |&gt; unbox&lt;Async&lt;int32&gt;&gt;
     v19
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v20 : Async&lt;int32&gt; = null |&gt; unbox&lt;Async&lt;int32&gt;&gt;
     v20
 #endif
@@ -8585,28 +8627,34 @@ and method0 () : unit =
     let v21 : Async&lt;int32&gt; = _v0.Value
     let v22 : int32 option = None
     let v23 : bool = true in let mutable _v22 = v22
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v24 : int32 = null |&gt; unbox&lt;int32&gt;
     v24
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v25 : int32 = null |&gt; unbox&lt;int32&gt;
     v25
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v26 : int32 = null |&gt; unbox&lt;int32&gt;
     v26
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v27 : (Async&lt;int32&gt; -&gt; int32) = Async.RunSynchronously
     let v28 : int32 = v27 v21
     v28
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v29 : int32 = null |&gt; unbox&lt;int32&gt;
     v29
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v30 : int32 = null |&gt; unbox&lt;int32&gt;
     v30
 #endif
@@ -8676,28 +8724,34 @@ and method0 () : (System.Threading.CancellationToken -&gt; US0) =
 and closure2 (v0 : System.Threading.CancellationTokenSource) () : unit =
     let v1 : unit option = None
     let v2 : bool = true in let mutable _v1 = v1
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : (unit -&gt; unit) = v0.Cancel
     v3 ()
     ()
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     null |&gt; unbox&lt;unit&gt;
     ()
 #endif
@@ -8709,19 +8763,23 @@ and method1 (v0 : System.Threading.CancellationTokenSource) : (unit -&gt; unit) 
 and closure0 () (v0 : System.Threading.CancellationToken option) : struct (System.Threading.CancellationToken * System.IDisposable) =
     let v1 : struct (System.Threading.CancellationToken * System.IDisposable) option = None
     let v2 : bool = true in let mutable _v1 = v1
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let struct (v3 : System.Threading.CancellationToken, v4 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
     struct (v3, v4)
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let struct (v5 : System.Threading.CancellationToken, v6 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
     struct (v5, v6)
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let struct (v7 : System.Threading.CancellationToken, v8 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
     struct (v7, v8)
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v9 : System.Threading.CancellationTokenSource = new System.Threading.CancellationTokenSource ()
     let v10 : (System.Threading.CancellationToken -&gt; US0) = method0()
     let v11 : US0 = US0_1
@@ -8737,29 +8795,35 @@ and closure0 () (v0 : System.Threading.CancellationToken option) : struct (Syste
             v16 v15
     let v20 : System.IDisposable option = None
     let v21 : bool = true in let mutable _v20 = v20
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v22 : (unit -&gt; unit) = closure2(v19)
     let v23 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v22 "$0()" )
     v23
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v24 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v22 "$0()" )
     v24
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v25 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v22 "$0()" )
     v25
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v26 : (unit -&gt; unit) = method1(v19)
     let v27 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v26 () }
     v27
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v28 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v28
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v29 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v29
 #endif
@@ -8768,11 +8832,13 @@ and closure0 () (v0 : System.Threading.CancellationToken option) : struct (Syste
     let v31 : System.Threading.CancellationToken = v19.Token
     struct (v31, v30)
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let struct (v32 : System.Threading.CancellationToken, v33 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
     struct (v32, v33)
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let struct (v34 : System.Threading.CancellationToken, v35 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
     struct (v34, v35)
 #endif

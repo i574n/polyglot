@@ -105,6 +105,7 @@ let repositoryRoot = SpiralFileSystem.get_repository_root ()
 #!fsharp
 
 let inline awaitCompiler port cancellationToken = async {
+    let host = "127.0.0.1"
     let struct (ct, disposable) = cancellationToken |> SpiralThreading.new_disposable_token
     let! ct = ct |> SpiralAsync.merge_cancellation_token_with_default_async
 
@@ -119,30 +120,35 @@ let inline awaitCompiler port cancellationToken = async {
 
             let dllPath = compilerPath </> "Spiral.dll"
 
-            let onLine = fun struct (_, line, _) -> async {
-                if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
-                    do!
-                        SpiralNetworking.wait_for_port_access (Some 500) true availablePort
-                        |> Async.Ignore
-
-                    let rec loop retry = async {
-                        let _locals () = $"port: {availablePort} / retry: {retry} / {_locals ()}"
-                        try
-                            let pingObj = {| Ping = true |}
-                            let! pingResult = pingObj |> sendObj availablePort
-                            trace Verbose (fun () -> $"awaitCompiler / Ping / result: '{pingResult}'") _locals
-                        with ex ->
-                            trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") _locals
-                            do! Async.Sleep 10
-                            do! loop (retry + 1)
-                    }
-                    do! loop 0
-                    inbox.Post (availablePort, true)
-            }
-
-            let command = $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64"
             let! exitCode, result =
-                SpiralRuntime.execute_with_options_async struct (Some ct, command, Some onLine, Some repositoryRoot)
+                SpiralRuntime.execute_with_options_async struct (
+                    Some ct,
+                    $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64",
+                    Some (fun struct (_, line, _) -> async {
+                        if line |> SpiralSm.contains $"System.IO.IOException: Failed to bind to address http://{host}:{port}: address already in use." then
+                            inbox.Post (port, false)
+
+                        if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
+                            do!
+                                SpiralNetworking.wait_for_port_access (Some 5000) true availablePort
+                                |> Async.Ignore
+
+                            let rec loop retry = async {
+                                let _locals () = $"port: {availablePort} / retry: {retry} / {_locals ()}"
+                                try
+                                    let pingObj = {| Ping = true |}
+                                    let! pingResult = pingObj |> sendObj availablePort
+                                    trace Verbose (fun () -> $"awaitCompiler / Ping / result: '{pingResult}'") _locals
+                                with ex ->
+                                    trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") _locals
+                                    do! Async.Sleep 10
+                                    do! loop (retry + 1)
+                            }
+                            do! loop 0
+                            inbox.Post (availablePort, true)
+                    }),
+                    Some repositoryRoot
+                )
 
             trace Debug (fun () -> $"awaitCompiler / exitCode: {exitCode} / result: {result}") _locals
             disposable.Dispose ()
@@ -150,7 +156,7 @@ let inline awaitCompiler port cancellationToken = async {
 
     let! serverPort, managed = compiler.Receive ()
 
-    let connection = HubConnectionBuilder().WithUrl($"http://127.0.0.1:{serverPort}").Build ()
+    let connection = HubConnectionBuilder().WithUrl($"http://{host}:{serverPort}").Build ()
     do! connection.StartAsync () |> Async.AwaitTask
 
     let event = Event<_> ()

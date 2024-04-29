@@ -10061,34 +10061,42 @@ type futures_lite_stream_StreamExt = class end
 let rec closure0 () (v0 : System.Threading.CancellationToken) : Async&lt;System.Threading.CancellationToken&gt; =
     let v1 : Async&lt;System.Threading.CancellationToken&gt; option = None
     let v2 : bool = true in let mutable _v1 = v1
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
     v3
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v4 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
     v4
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v5 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
     v5
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v6 : Async&lt;System.Threading.CancellationToken&gt; option = None
     let v7 : bool = true in let mutable _v6 = v6
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v8 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
     v8
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v9 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
     v9
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v10 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
     v10
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v11 : Async&lt;System.Threading.CancellationToken&gt; option = None
     let mutable _v11 = v11
     async {
@@ -10106,11 +10114,13 @@ let rec closure0 () (v0 : System.Threading.CancellationToken) : Async&lt;System.
     let v19 : Async&lt;System.Threading.CancellationToken&gt; = _v11 |&gt; Option.get
     v19
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v20 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
     v20
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v21 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
     v21
 #endif
@@ -10118,11 +10128,13 @@ let rec closure0 () (v0 : System.Threading.CancellationToken) : Async&lt;System.
     let v22 : Async&lt;System.Threading.CancellationToken&gt; = _v6.Value
     v22
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v23 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
     v23
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v24 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
     v24
 #endif

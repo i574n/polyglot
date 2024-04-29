@@ -8006,28 +8006,34 @@ and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     #if INTERACTIVE || !FABLE_COMPILER
     let v7 : string option = None
     let v8 : bool = true in let mutable _v7 = v7
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v9 : string = "env!(\"CARGO_PKG_NAME\").into()"
     let v10 : string = Fable.Core.RustInterop.emitRustExpr () v9
     v10
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v11 : string = null |&gt; unbox&lt;string&gt;
     v11
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v12 : string = null |&gt; unbox&lt;string&gt;
     v12
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v13 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v13
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v14 : string = null |&gt; unbox&lt;string&gt;
     v14
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v15 : string = null |&gt; unbox&lt;string&gt;
     v15
 #endif
@@ -8375,7 +8381,7 @@ true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>08:39:44 <span class="ansi-blue-intense-fg">debug  </span> #1 test
+<pre>11:12:06 <span class="ansi-blue-intense-fg">debug  </span> #1 test
 </pre>
 </div>
 </div>
@@ -8587,28 +8593,34 @@ and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     #if INTERACTIVE || !FABLE_COMPILER
     let v7 : string option = None
     let v8 : bool = true in let mutable _v7 = v7
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v9 : string = "env!(\"CARGO_PKG_NAME\").into()"
     let v10 : string = Fable.Core.RustInterop.emitRustExpr () v9
     v10
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v11 : string = null |&gt; unbox&lt;string&gt;
     v11
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v12 : string = null |&gt; unbox&lt;string&gt;
     v12
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v13 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v13
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v14 : string = null |&gt; unbox&lt;string&gt;
     v14
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v15 : string = null |&gt; unbox&lt;string&gt;
     v15
 #endif
@@ -8655,7 +8667,8 @@ and closure5 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let struct (v4 : Mut0, v5 : Mut1, v6 : Mut2, v7 : int64 option, v8 : Mut3) = State.trace_state.Value
     let v9 : string option = None
     let v10 : bool = true in let mutable _v9 = v9
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v11 : (int64 -&gt; US2) = method3()
     let v12 : US2 = US2_1
     let v13 : US2 = v7 |&gt; Option.map v11 |&gt; Option.defaultValue v12 
@@ -8684,15 +8697,18 @@ and closure5 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v33 : string = v31.ToString v32 
     v33
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v34 : string = method4()
     v34
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v35 : string = method4()
     v35
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v36 : (int64 -&gt; US2) = method3()
     let v37 : US2 = US2_1
     let v38 : US2 = v7 |&gt; Option.map v36 |&gt; Option.defaultValue v37 
@@ -8721,11 +8737,13 @@ and closure5 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v58 : string = v56.ToString v57 
     v58
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v59 : string = method4()
     v59
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     let v60 : string = method4()
     v60
 #endif
@@ -8753,7 +8771,8 @@ and closure5 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v74 : string = v73.PadRight (7, ' ')
     let v75 : string option = None
     let v76 : bool = true in let mutable _v75 = v75
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v91 : Ref&lt;Str&gt; =
         match v0 with
         | US0_4 -&gt; (* Critical *)
@@ -8787,7 +8806,8 @@ and closure5 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v100 : string = Fable.Core.RustInterop.emitRustExpr v98 v99
     v100
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v115 : Ref&lt;Str&gt; =
         match v0 with
         | US0_4 -&gt; (* Critical *)
@@ -8821,7 +8841,8 @@ and closure5 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v124 : string = Fable.Core.RustInterop.emitRustExpr v122 v123
     v124
 #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v139 : Ref&lt;Str&gt; =
         match v0 with
         | US0_4 -&gt; (* Critical *)
@@ -8855,13 +8876,16 @@ and closure5 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v148 : string = Fable.Core.RustInterop.emitRustExpr v146 v147
     v148
 #endif
-    #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
     v74
 #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    
+#if FABLE_COMPILER_TYPESCRIPT
     v74
 #endif
-    #if FABLE_COMPILER_PYTHON
+    
+#if FABLE_COMPILER_PYTHON
     v74
 #endif
     |&gt; fun x -&gt; _v75 &lt;- Some x
@@ -8897,30 +8921,36 @@ and method5 (v0 : US0, v1 : (unit -&gt; string)) : unit =
         let v22 : string = $"%s{v1 ()}"
         let v23 : unit option = None
         let v24 : bool = true in let mutable _v23 = v23
-        #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+        
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
         let v25 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v25
         ()
 #endif
-        #if FABLE_COMPILER_RUST &amp;&amp; WASM
+        
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
         let v26 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v26
         ()
 #endif
-        #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+        
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
         let v27 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v27
         ()
 #endif
-        #if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+        
+#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
         System.Console.WriteLine v22 
         ()
 #endif
-        #if FABLE_COMPILER_TYPESCRIPT
+        
+#if FABLE_COMPILER_TYPESCRIPT
         System.Console.WriteLine v22 
         ()
 #endif
-        #if FABLE_COMPILER_PYTHON
+        
+#if FABLE_COMPILER_PYTHON
         System.Console.WriteLine v22 
         ()
 #endif
