@@ -51,7 +51,7 @@ pip install -r ../requirements.txt
 
 dotnet tool restore
 
-{ . $ScriptDir/dep_paket.ps1 } | Invoke-Block
+# { . $ScriptDir/dep_paket.ps1 } | Invoke-Block
 
 { dotnet paket restore } | Invoke-Block
 

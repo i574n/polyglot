@@ -17,7 +17,7 @@
 
 #!pwsh
 
-rustup update
+rustup +nightly update
 
 #!pwsh
 
