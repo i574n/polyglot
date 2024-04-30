@@ -69,7 +69,7 @@ Formatter.Register<struct (string * string * string * struct (string * float arr
                         { x with
                             l0 = Some ct
                             l1 = plotExePath
-                            l4 = Some repositoryRoot
+                            l5 = Some repositoryRoot
                         }
                     )
                     |> SpiralRuntime.execute_with_options_async

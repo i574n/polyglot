@@ -148,7 +148,7 @@ let inline awaitCompiler port cancellationToken = async {
                                 do! loop 0
                                 inbox.Post (availablePort, true)
                         })
-                        l4 = Some repositoryRoot
+                        l5 = Some repositoryRoot
                     }
                 )
                 |> SpiralRuntime.execute_with_options_async

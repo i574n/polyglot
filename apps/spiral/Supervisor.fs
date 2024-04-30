@@ -96,7 +96,7 @@ module Supervisor =
                                     do! loop 0
                                     inbox.Post (availablePort, true)
                             })
-                            l4 = Some repositoryRoot
+                            l5 = Some repositoryRoot
                         }
                     )
                     |> SpiralRuntime.execute_with_options_async

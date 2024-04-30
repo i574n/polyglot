@@ -400,7 +400,8 @@ pub mod Runtime {
         pub l1: string,
         pub l2: Array<(string, string)>,
         pub l3: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-        pub l4: Option<string>,
+        pub l4: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
+        pub l5: Option<string>,
     }
     impl core::fmt::Display for Runtime::Heap0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -869,12 +870,13 @@ pub mod Runtime {
         v1_1: string,
         v2_1: Array<(string, string)>,
         v3_1: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-        v4_1: Option<string>,
+        v4_1: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
+        v5_1: Option<string>,
         unitVar: (),
     ) -> string {
         sprintf!(
             "execute_with_options_async / options: {:?}",
-            (v0_1, v1_1, v2_1, v3_1, v4_1)
+            (v0_1, v1_1, v2_1, v3_1, v4_1, v5_1)
         )
     }
     pub fn closure9(unitVar: (), unitVar_1: ()) -> string {
@@ -1087,22 +1089,23 @@ pub mod Runtime {
         v1_1: string,
         v2_1: Array<(string, string)>,
         v3_1: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-        v4_1: Option<string>,
-        v5_1: (),
-        v6_1: LrcPtr<ConcurrentStack_1<string>>,
-        v7: (),
+        v4_1: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
+        v5_1: Option<string>,
+        v6_1: (),
+        v7: LrcPtr<ConcurrentStack_1<string>>,
+        v8: (),
     ) {
-        let _v8: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
+        let _v9: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
         {
             let x: Arc<Async<()>> = defaultOf();
-            _v8.set(Some(x))
+            _v9.set(Some(x))
         }
         {
-            let v33: Arc<Async<()>> = getValue(_v8.get().clone());
-            let _v34: MutCell<Option<()>> = MutCell::new(None::<()>);
+            let v34: Arc<Async<()>> = getValue(_v9.get().clone());
+            let _v35: MutCell<Option<()>> = MutCell::new(None::<()>);
             defaultOf::<()>();
-            _v34.set(Some(()));
-            getValue(_v34.get().clone());
+            _v35.set(Some(()));
+            getValue(_v35.get().clone());
             ()
         }
     }
@@ -1111,22 +1114,23 @@ pub mod Runtime {
         v1_1: string,
         v2_1: Array<(string, string)>,
         v3_1: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-        v4_1: Option<string>,
-        v5_1: (),
-        v6_1: LrcPtr<ConcurrentStack_1<string>>,
-        v7: (),
+        v4_1: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
+        v5_1: Option<string>,
+        v6_1: (),
+        v7: LrcPtr<ConcurrentStack_1<string>>,
+        v8: (),
     ) {
-        let _v8: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
+        let _v9: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
         {
             let x: Arc<Async<()>> = defaultOf();
-            _v8.set(Some(x))
+            _v9.set(Some(x))
         }
         {
-            let v34: Arc<Async<()>> = getValue(_v8.get().clone());
-            let _v35: MutCell<Option<()>> = MutCell::new(None::<()>);
+            let v35: Arc<Async<()>> = getValue(_v9.get().clone());
+            let _v36: MutCell<Option<()>> = MutCell::new(None::<()>);
             defaultOf::<()>();
-            _v35.set(Some(()));
-            getValue(_v35.get().clone());
+            _v36.set(Some(()));
+            getValue(_v36.get().clone());
             ()
         }
     }
@@ -1167,13 +1171,13 @@ pub mod Runtime {
         )
     }
     pub fn closure4(unitVar: (), v0_1: string) -> Arc<Async<(i32, string)>> {
-        let _v5: MutCell<Option<Arc<Async<(i32, string)>>>> =
+        let _v6: MutCell<Option<Arc<Async<(i32, string)>>>> =
             MutCell::new(None::<Arc<Async<(i32, string)>>>);
         {
             let x: Arc<Async<(i32, string)>> = defaultOf();
-            _v5.set(Some(x))
+            _v6.set(Some(x))
         }
-        getValue(_v5.get().clone())
+        getValue(_v6.get().clone())
     }
     pub fn closure20(
         unitVar: (),
@@ -1182,16 +1186,17 @@ pub mod Runtime {
             string,
             Array<(string, string)>,
             Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+            Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
             Option<string>,
         ),
     ) -> Arc<Async<(i32, string)>> {
-        let _v5: MutCell<Option<Arc<Async<(i32, string)>>>> =
+        let _v6: MutCell<Option<Arc<Async<(i32, string)>>>> =
             MutCell::new(None::<Arc<Async<(i32, string)>>>);
         {
             let x: Arc<Async<(i32, string)>> = defaultOf();
-            _v5.set(Some(x))
+            _v6.set(Some(x))
         }
-        getValue(_v5.get().clone())
+        getValue(_v6.get().clone())
     }
     pub fn closure21(
         unitVar: (),
@@ -1201,21 +1206,24 @@ pub mod Runtime {
         string,
         Array<(string, string)>,
         Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+        Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
         Option<string>,
     ) {
-        let v7: LrcPtr<Runtime::Heap0> = v0_1(LrcPtr::new(Runtime::Heap0 {
+        let v8: LrcPtr<Runtime::Heap0> = v0_1(LrcPtr::new(Runtime::Heap0 {
             l0: None::<CancellationToken>,
             l1: string(""),
             l2: new_empty::<(string, string)>(),
             l3: None::<Func1<(bool, string, i32), Arc<Async<()>>>>,
-            l4: None::<string>,
+            l4: None::<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
+            l5: None::<string>,
         }));
         (
-            v7.l0.clone(),
-            v7.l1.clone(),
-            v7.l2.clone(),
-            v7.l3.clone(),
-            v7.l4.clone(),
+            v8.l0.clone(),
+            v8.l1.clone(),
+            v8.l2.clone(),
+            v8.l3.clone(),
+            v8.l4.clone(),
+            v8.l5.clone(),
         )
     }
     pub fn method18(
@@ -2621,6 +2629,7 @@ pub mod Runtime {
             string,
             Array<(string, string)>,
             Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+            Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
             Option<string>,
         ),
         Arc<Async<(i32, string)>>,
@@ -2632,6 +2641,7 @@ pub mod Runtime {
                     string,
                     Array<(string, string)>,
                     Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+                    Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
                     Option<string>,
                 ),
                 Arc<Async<(i32, string)>>,
@@ -2644,6 +2654,7 @@ pub mod Runtime {
                     string,
                     Array<(string, string)>,
                     Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+                    Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
                     Option<string>,
                 )| Runtime::closure20((), arg10_0040),
             )
@@ -2656,6 +2667,7 @@ pub mod Runtime {
             string,
             Array<(string, string)>,
             Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+            Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
             Option<string>,
         ),
     ) -> Arc<Async<(i32, string)>> {
@@ -2668,6 +2680,7 @@ pub mod Runtime {
             string,
             Array<(string, string)>,
             Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+            Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
             Option<string>,
         ),
     > {
@@ -2679,6 +2692,7 @@ pub mod Runtime {
                     string,
                     Array<(string, string)>,
                     Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+                    Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
                     Option<string>,
                 ),
             >,
@@ -2699,6 +2713,7 @@ pub mod Runtime {
         string,
         Array<(string, string)>,
         Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+        Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
         Option<string>,
     ) {
         (Runtime::v5())(x)

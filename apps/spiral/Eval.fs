@@ -472,7 +472,7 @@ module Eval =
                                                 { x with
                                                     l0 = cancellationToken
                                                     l1 = command
-                                                    l4 = repositoryRoot
+                                                    l5 = repositoryRoot
                                                 }
                                             )
                                             |> SpiralRuntime.execute_with_options_async
@@ -494,7 +494,7 @@ module Eval =
                                                     { x with
                                                         l0 = cancellationToken
                                                         l1 = command
-                                                        l4 = Some outDir
+                                                        l5 = Some outDir
                                                     }
                                                 )
                                                 |> SpiralRuntime.execute_with_options_async
@@ -568,7 +568,7 @@ path = "{hash}.rs"
                                                         l0 = cancellationToken
                                                         l1 = command
                                                         l2 = [| "RUSTC_WRAPPER", "sccache" |]
-                                                        l4 = repositoryRoot
+                                                        l5 = repositoryRoot
                                                     }
                                                 )
                                                 |> SpiralRuntime.execute_with_options_async
