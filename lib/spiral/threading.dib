@@ -27,6 +27,7 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>]\n#endif\ntype std_sync_Arc<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Mutex<$0>\")>]\n#endif\ntype std_sync_Mutex<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::MutexGuard<$0>\")>]\n#endif\ntype std_sync_MutexGuard<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::PoisonError<$0>\")>]\n#endif\ntype std_sync_PoisonError<'T> = class end"
 
 #!markdown
 
@@ -261,15 +262,6 @@ inl arc_clone forall t. (x : arc t) : arc t =
 
 #!markdown
 
-## arc_value
-
-#!spiral
-
-inl arc_value forall t. (x : arc t) : t =
-    !\($'"!x.into()"')
-
-#!markdown
-
 ## mutex_guard
 
 #!spiral
@@ -278,12 +270,20 @@ nominal mutex_guard t = $"std_sync_MutexGuard<`t>"
 
 #!markdown
 
+## poison_error
+
+#!spiral
+
+nominal poison_error t = $"std_sync_PoisonError<`t>"
+
+#!markdown
+
 ## mutex_lock
 
 #!spiral
 
-inl mutex_lock forall t. (x : mutex t) : resultm.result' (mutex_guard t) t =
-    !\($'"!x.lock()"')
+inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard t) (poison_error (mutex_guard t)) =
+    !\\(x, $'"$0.lock()"')
 
 #!markdown
 

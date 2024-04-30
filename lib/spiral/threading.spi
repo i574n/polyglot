@@ -7,6 +7,7 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>]\n#endif\ntype std_sync_Arc<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Mutex<$0>\")>]\n#endif\ntype std_sync_Mutex<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::MutexGuard<$0>\")>]\n#endif\ntype std_sync_MutexGuard<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::PoisonError<$0>\")>]\n#endif\ntype std_sync_PoisonError<'T> = class end"
 
 // // ## join_handle
 nominal join_handle t = $'std_thread_JoinHandle<`t>'
@@ -106,16 +107,15 @@ inl arc_clone forall t. (x : arc t) : arc t =
     inl x = join x
     !\($'"std::sync::Arc::clone(&!x)"')
 
-// // ## arc_value
-inl arc_value forall t. (x : arc t) : t =
-    !\($'"!x.into()"')
-
 // // ## mutex_guard
 nominal mutex_guard t = $"std_sync_MutexGuard<`t>"
 
+// // ## poison_error
+nominal poison_error t = $"std_sync_PoisonError<`t>"
+
 // // ## mutex_lock
-inl mutex_lock forall t. (x : mutex t) : resultm.result' (mutex_guard t) t =
-    !\($'"!x.lock()"')
+inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard t) (poison_error (mutex_guard t)) =
+    !\\(x, $'"$0.lock()"')
 
 // // ## main
 inl main () =

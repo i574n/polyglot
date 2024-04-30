@@ -92,6 +92,10 @@ inl unwrap forall t. (x : option' t) : t =
 inl unwrap_or forall t. (def : t) (x : option' t) : t =
     !\($'"!x.unwrap_or(!def)"')
 
+// // ## map'
+inl map' forall t u. (fn : t -> u) (x : option' t) : option' u =
+    !\\((x, fn), $'"$0.map(|x| $1(x))"')
+
 // // ## rc_upgrade
 inl rc_upgrade forall t. (x : rust.weak_rc t) : option' (rust.rc t) =
     inl x = join x

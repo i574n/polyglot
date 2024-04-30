@@ -80,6 +80,15 @@ inl ends_with (value : string) (s : string) : bool =
 
 #!markdown
 
+## last_index_of
+
+#!spiral
+
+inl last_index_of (search : string) (s : string) : i32 =
+    $"!s.LastIndexOf !search"
+
+#!markdown
+
 ## pad_left
 
 #!spiral
@@ -899,6 +908,16 @@ inl slice_contains (text : string) (source : am'.vec u8) : bool =
         |> windows (text |> length |> (fun x => x : i32) |> unativeint)
         |> any ((=.) text)
     |> fun x => join x ()
+
+#!markdown
+
+## as_bytes
+
+#!spiral
+
+inl as_bytes (text : string) : rust.ref' (am'.slice u8) =
+    inl text = join text
+    !\($'"!text.as_bytes()"')
 
 #!markdown
 

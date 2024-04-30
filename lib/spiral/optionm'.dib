@@ -264,6 +264,15 @@ inl unwrap_or forall t. (def : t) (x : option' t) : t =
 
 #!markdown
 
+## map'
+
+#!spiral
+
+inl map' forall t u. (fn : t -> u) (x : option' t) : option' u =
+    !\\((x, fn), $'"$0.map(|x| $1(x))"')
+
+#!markdown
+
 ## rc_upgrade
 
 #!spiral

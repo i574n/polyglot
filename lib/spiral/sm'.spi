@@ -44,6 +44,10 @@ inl contains (value : string) (s : string) : bool =
 inl ends_with (value : string) (s : string) : bool =
     $"!s.EndsWith !value"
 
+// // ## last_index_of
+inl last_index_of (search : string) (s : string) : i32 =
+    $"!s.LastIndexOf !search"
+
 // // ## pad_left
 inl pad_left (total_width : i32) (padding_char : char) (s : string) : string =
     $"!s.PadLeft (!total_width, !padding_char)"
@@ -417,6 +421,11 @@ inl slice_contains (text : string) (source : am'.vec u8) : bool =
         |> windows (text |> length |> (fun x => x : i32) |> unativeint)
         |> any ((=.) text)
     |> fun x => join x ()
+
+// // ## as_bytes
+inl as_bytes (text : string) : rust.ref' (am'.slice u8) =
+    inl text = join text
+    !\($'"!text.as_bytes()"')
 
 // // ## main
 inl main () =

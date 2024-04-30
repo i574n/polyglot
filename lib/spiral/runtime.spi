@@ -14,6 +14,7 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Child\")>]\n#endif\ntype std_process_Child = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStderr\")>]\n#endif\ntype std_process_ChildStderr = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdout\")>]\n#endif\ntype std_process_ChildStdout = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdin\")>]\n#endif\ntype std_process_ChildStdin = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Command\")>]\n#endif\ntype std_process_Command = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Output\")>]\n#endif\ntype std_process_Output = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Stdio\")>]\n#endif\ntype std_process_Stdio = class end"
@@ -28,6 +29,45 @@ inl types () =
     seq.types ()
     threading.types ()
     types ()
+
+// // ## child
+nominal child = $'std_process_Child'
+
+// // ## child_stderr
+nominal child_stderr = $"std_process_ChildStderr"
+
+// // ## child_stdout
+nominal child_stdout = $"std_process_ChildStdout"
+
+// // ## child_stdin
+nominal child_stdin = $"std_process_ChildStdin"
+
+// // ## process_command
+nominal process_command = $'std_process_Command'
+
+// // ## stdio
+nominal stdio = $'std_process_Stdio'
+
+// // ## output
+nominal output = $'std_process_Output'
+
+// // ## io_error
+nominal io_error = $"std_io_Error"
+
+// // ## lines
+nominal lines t = $'std_io_Lines<`t>'
+
+// // ## buf_reader
+nominal buf_reader t = $'std_io_BufReader<`t>'
+
+// // ## async_buf_reader
+nominal async_buf_reader t = $'async_std_io_BufReader<`t>'
+
+// // ## receiver
+nominal receiver t = $'std_sync_mpsc_Receiver<`t>'
+
+// // ## sender
+nominal sender t = $'std_sync_mpsc_Sender<`t>'
 
 // // ## os_platform
 nominal os_platform' = $'System.Runtime.InteropServices.OSPlatform'
@@ -143,6 +183,7 @@ type execution_options =
         cancellation_token : optionm'.option' threading.cancellation_token
         environment_variables : array_base (string * string)
         on_line : optionm'.option' (execution_line -> async.async ())
+        stdin : optionm'.option' (threading.arc (threading.mutex child_stdin) -> ())
     }
 
 inl execution_options (fn : execution_options -> execution_options) : execution_options =
@@ -152,6 +193,7 @@ inl execution_options (fn : execution_options -> execution_options) : execution_
         cancellation_token = None |> optionm'.box
         environment_variables = ;[]
         on_line = None |> optionm'.box
+        stdin = None |> optionm'.box
     }
     |> fn
 
@@ -259,42 +301,6 @@ inl execute_async command =
     }
     |> execute_with_options_async
 
-// // ## child
-nominal child = $'std_process_Child'
-
-// // ## child_stderr
-nominal child_stderr = $"std_process_ChildStderr"
-
-// // ## child_stdout
-nominal child_stdout = $"std_process_ChildStdout"
-
-// // ## process_command
-nominal process_command = $'std_process_Command'
-
-// // ## stdio
-nominal stdio = $'std_process_Stdio'
-
-// // ## output
-nominal output = $'std_process_Output'
-
-// // ## io_error
-nominal io_error = $"std_io_Error"
-
-// // ## lines
-nominal lines t = $'std_io_Lines<`t>'
-
-// // ## buf_reader
-nominal buf_reader t = $'std_io_BufReader<`t>'
-
-// // ## async_buf_reader
-nominal async_buf_reader t = $'async_std_io_BufReader<`t>'
-
-// // ## receiver
-nominal receiver t = $'std_sync_mpsc_Receiver<`t>'
-
-// // ## sender
-nominal sender t = $'std_sync_mpsc_Sender<`t>'
-
 // // ## split_args
 union args_parse_step =
     | Start
@@ -356,6 +362,19 @@ let split_args (args : string) : array_base string =
     |> listm'.to_array'
     |> fun (a x : _ i32 _) => x
 
+// // ## stdin_write_all
+inl stdin_write_all (stdin : threading.mutex_guard child_stdin) (text : string) : () =
+    inl stream = text |> sm'.as_bytes
+    inl stdin = join stdin
+    (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
+    (!\\(stdin, $'"true; std::io::Write::write_all(&mut *$0, !stream).unwrap()"') : bool) |> ignore
+
+// // ## stdin_flush
+inl stdin_flush (stdin : threading.mutex_guard child_stdin) : () =
+    inl stdin = join stdin
+    (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
+    (!\\(stdin, $'"true; std::io::Write::flush(&mut *$0).unwrap()"') : bool) |> ignore
+
 // // ## execute_with_options
 inl execute_with_options (options : execution_options) : i32 * string =
     run_target function
@@ -384,6 +403,9 @@ inl execute_with_options (options : execution_options) : i32 * string =
                 (!\($'"true; let mut !command = !command"') : bool) |> ignore
                 inl command : rust.ref' (rust.mut' process_command) = !\\(command, $'"std::process::Command::stderr(&mut $0, std::process::Stdio::piped())"')
 
+                (!\($'"true; let mut !command = !command"') : bool) |> ignore
+                inl command : rust.ref' (rust.mut' process_command) = !\\(command, $'"std::process::Command::stdin(&mut $0, std::process::Stdio::piped())"')
+
                 inl command =
                     match options.working_directory |> optionm'.unbox with
                     | Some working_directory =>
@@ -399,8 +421,10 @@ inl execute_with_options (options : execution_options) : i32 * string =
                     inl child = join child
                     inl stdout : child_stdout = !\($'"!child.lock().unwrap().as_mut().unwrap().stdout.take().unwrap()"')
                     inl stderr : child_stderr = !\($'"!child.lock().unwrap().as_mut().unwrap().stderr.take().unwrap()"')
+                    inl stdin : child_stdin = !\($'"!child.lock().unwrap().as_mut().unwrap().stdin.take().unwrap()"')
                     inl stdout = stdout |> optionm'.some' |> threading.new_arc_mutex
                     inl stderr = stderr |> optionm'.some' |> threading.new_arc_mutex
+                    inl stdin = stdin |> optionm'.some' |> threading.new_arc_mutex
 
                     inl channel_sender, channel_receiver : sender sm'.std_string * threading.arc (receiver sm'.std_string) =
                         !\($'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"')
@@ -438,6 +462,26 @@ inl execute_with_options (options : execution_options) : i32 * string =
                     inl std_line' = join std_line'
                     (!\\(stderr_lines, $'"true; for line in $0.lock().unwrap().by_ref() { !std_line'(line) }"') : bool) |> ignore
                     (!\($'"true; })"') : bool) |> ignore
+                    
+                    match options.stdin |> optionm'.unbox with
+                    | Some stdin' =>
+                        inl stdin : optionm'.option' child_stdin =
+                            !\($'"!stdin.lock().unwrap().take()"')
+                        match stdin |> optionm'.map' threading.new_arc_mutex |> optionm'.unbox with
+                        | Some stdin =>
+                            stdin |> stdin'
+                            stdin
+                            |> threading.arc_mutex_lock
+                            |> resultm.unwrap'
+                            |> stdin_flush
+                            // (!\\(stdin, $'"true; std::io::Write::write_all(&mut *$0.lock().unwrap(), !stream).unwrap()"') : bool) |> ignore
+                            // (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
+                            // (!\\(stdin, $'"true; std::io::Write::flush(&mut *$0.lock().unwrap()).unwrap()"') : bool) |> ignore
+                            // stdin |> rust.drop
+                            // (!\($'"true; *!stdin.lock().unwrap() = Some(!stdin')"') : bool) |> ignore
+                            // stdin |> rust.drop
+                        | None => ()
+                    | None => ()
 
                     inl output : resultm.result' output io_error = !\($'"!child.lock().unwrap().take().unwrap().wait_with_output()"')
                     inl output = output |> resultm.map_error' sm'.format'

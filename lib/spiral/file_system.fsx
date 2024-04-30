@@ -207,6 +207,10 @@ type std_sync_Mutex<'T> = class end
 #endif
 type std_sync_MutexGuard<'T> = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError<$0>")>]
+#endif
+type std_sync_PoisonError<'T> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("clap::Arg")>]
 #endif
 type clap_Arg = class end
@@ -246,6 +250,10 @@ type std_process_ChildStderr = class end
 [<Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")>]
 #endif
 type std_process_ChildStdout = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")>]
+#endif
+type std_process_ChildStdin = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::process::Command")>]
 #endif
