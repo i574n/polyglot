@@ -2,9 +2,9 @@ import { uncurry2, equals, compare, defaultOf, IComparable, IEquatable, createAt
 import { map, defaultArg, value as value_2, some, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 import { op_Addition, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { FSharpRef, Union, Record } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { uint8_type, class_type, tuple_type, char_type, int32_type, lambda_type, unit_type, string_type, union_type, bool_type, record_type, int64_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { uint8_type, array_type, option_type, class_type, tuple_type, char_type, int32_type, lambda_type, unit_type, string_type, union_type, bool_type, record_type, int64_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import { uint8, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
-import { trimStart, trimEnd, padRight, interpolate, toText, replace } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { trimStart, trimEnd, padLeft, interpolate, toText, replace } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { empty, foldBack, toArray, ofArray, FSharpList, cons } from "../../deps/Fable/src/fable-library-ts/List.js";
 import { setItem, fill } from "../../deps/Fable/src/fable-library-ts/Array.js";
@@ -363,6 +363,26 @@ export class US7<Tag extends keyof US7_$cases> extends Union<Tag, US7_$cases[Tag
 
 export function US7_$reflection(): TypeInfo {
     return union_type("Runtime.US7", [], US7, () => [[["f0_0", class_type("System.Threading.CancellationToken")]], []]);
+}
+
+export class Heap0 extends Record {
+    readonly l0: Option<any>;
+    readonly l1: string;
+    readonly l2: [string, string][];
+    readonly l3: Option<((arg0: [boolean, string, int32]) => any)>;
+    readonly l4: Option<string>;
+    constructor(l0: Option<any>, l1: string, l2: [string, string][], l3: Option<((arg0: [boolean, string, int32]) => any)>, l4: Option<string>) {
+        super();
+        this.l0 = l0;
+        this.l1 = l1;
+        this.l2 = l2;
+        this.l3 = l3;
+        this.l4 = l4;
+    }
+}
+
+export function Heap0_$reflection(): TypeInfo {
+    return record_type("Runtime.Heap0", [], Heap0, () => [["l0", option_type(class_type("System.Threading.CancellationToken"))], ["l1", string_type], ["l2", array_type(tuple_type(string_type, string_type))], ["l3", option_type(lambda_type(tuple_type(bool_type, string_type, int32_type), class_type("Microsoft.FSharp.Control.FSharpAsync`1", [unit_type])))], ["l4", option_type(string_type)]]);
 }
 
 export type UH1_$union = 
@@ -942,8 +962,8 @@ export function method6(): ((arg0: string) => US4_$union) {
     return (v: string): US4_$union => closure7(undefined, v);
 }
 
-export function closure8(v0_1: Option<any>, v1_1: string, v2_1: Option<((arg0: [boolean, string, int32]) => any)>, v3_1: Option<string>, unitVar: void): string {
-    return toText(interpolate("execute_with_options_async / options: %A%P()", [[v0_1, v1_1, v2_1, v3_1] as [Option<any>, string, Option<((arg0: [boolean, string, int32]) => any)>, Option<string>]]));
+export function closure8(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<string>, unitVar: void): string {
+    return toText(interpolate("execute_with_options_async / options: %A%P()", [[v0_1, v1_1, v2_1, v3_1, v4_1] as [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<string>]]));
 }
 
 export function closure9(unitVar: void, unitVar_1: void): string {
@@ -978,7 +998,7 @@ export function closure10(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => s
     const v62: int64 = patternInput[0].l0;
     const v72: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
     let _v75: Option<string> = undefined;
-    const x_1: string = padRight(v72.toLocaleLowerCase(), 7, " ");
+    const x_1: string = padLeft(v72.toLocaleLowerCase(), 7, " ");
     _v75 = x_1;
     return trimEnd(trimStart(`${v61} ${value_2(_v75)} #${v62} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
@@ -1027,26 +1047,26 @@ export function closure14(v0_1: string, unitVar: void): string {
     return `> ${v0_1}`;
 }
 
-export function closure12(v0_1: Option<any>, v1_1: string, v2_1: Option<((arg0: [boolean, string, int32]) => any)>, v3_1: Option<string>, v4_1: void, v5_1: any, v6: void): void {
-    let _v7: Option<any> = undefined;
+export function closure12(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<string>, v5_1: void, v6_1: any, v7: void): void {
+    let _v8: Option<any> = undefined;
     const x: any = defaultOf();
-    _v7 = x;
-    const v32: any = value_2(_v7);
-    let _v33: Option<void> = undefined;
-    defaultOf();
-    _v33 = some(undefined);
-    value_2(_v33);
-}
-
-export function closure15(v0_1: Option<any>, v1_1: string, v2_1: Option<((arg0: [boolean, string, int32]) => any)>, v3_1: Option<string>, v4_1: void, v5_1: any, v6: void): void {
-    let _v7: Option<any> = undefined;
-    const x: any = defaultOf();
-    _v7 = x;
-    const v33: any = value_2(_v7);
+    _v8 = x;
+    const v33: any = value_2(_v8);
     let _v34: Option<void> = undefined;
     defaultOf();
     _v34 = some(undefined);
     value_2(_v34);
+}
+
+export function closure15(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<string>, v5_1: void, v6_1: any, v7: void): void {
+    let _v8: Option<any> = undefined;
+    const x: any = defaultOf();
+    _v8 = x;
+    const v34: any = value_2(_v8);
+    let _v35: Option<void> = undefined;
+    defaultOf();
+    _v35 = some(undefined);
+    value_2(_v35);
 }
 
 export function closure16(unitVar: void, v0_1: any): US7_$union {
@@ -1082,17 +1102,22 @@ export function closure19(v0_1: int32, v1_1: string, unitVar: void): string {
 }
 
 export function closure4(unitVar: void, v0_1: string): any {
-    let _v4: Option<any> = undefined;
+    let _v5: Option<any> = undefined;
     const x: any = defaultOf();
-    _v4 = x;
-    return value_2(_v4);
+    _v5 = x;
+    return value_2(_v5);
 }
 
-export function closure20(unitVar: void, _arg: [Option<any>, string, Option<((arg0: [boolean, string, int32]) => any)>, Option<string>]): any {
-    let _v4: Option<any> = undefined;
+export function closure20(unitVar: void, _arg: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<string>]): any {
+    let _v5: Option<any> = undefined;
     const x: any = defaultOf();
-    _v4 = x;
-    return value_2(_v4);
+    _v5 = x;
+    return value_2(_v5);
+}
+
+export function closure21(unitVar: void, v0_1: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<string>] {
+    const v7: Heap0 = v0_1(new Heap0(undefined, "", [], undefined, undefined));
+    return [v7.l0, v7.l1, v7.l2, v7.l3, v7.l4] as [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<string>];
 }
 
 export function method18(v0_1: UH1_$union, v1_1: UH1_$union): UH1_$union {
@@ -1552,13 +1577,13 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
             }
             case /* US8_0 */ 0:
                 if (v2_1.tag === /* UH0_1 */ 1) {
-                    const v6: UH0_$union = v2_1.fields[1];
+                    const v6_1: UH0_$union = v2_1.fields[1];
                     const v5_1: string = v2_1.fields[0];
                     switch (v5_1) {
                         case "\"": {
                             v0_1_mut = "";
                             v1_1_mut = v1_1;
-                            v2_1_mut = v6;
+                            v2_1_mut = v6_1;
                             v3_1_mut = v4_1;
                             v4_1_mut = US8_US8_1("\"");
                             continue method16;
@@ -1566,15 +1591,15 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                         case "\\": {
                             v0_1_mut = v0_1;
                             v1_1_mut = v1_1;
-                            v2_1_mut = v6;
+                            v2_1_mut = v6_1;
                             v3_1_mut = v4_1;
                             v4_1_mut = US8_US8_2(0);
                             continue method16;
                         }
                         case " ":
-                            return method17("", (v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v6, v4_1);
+                            return method17("", (v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v6_1, v4_1);
                         default:
-                            return method17(`${v0_1}${v5_1}`, v1_1, v6, v4_1);
+                            return method17(`${v0_1}${v5_1}`, v1_1, v6_1, v4_1);
                     }
                 }
                 else {
@@ -1651,8 +1676,8 @@ export function method19(v0_1: UH1_$union, v1_1: FSharpList<string>): FSharpList
 export function method15(v0_1: string): string[] {
     let _v0: Option<Option<string>> = undefined;
     _v0 = some(v0_1);
-    const v6: Option<string> = value_2(_v0);
-    const v9: US4_$union = defaultArg(map<string, US4_$union>(method6(), v6), US4_US4_1());
+    const v6_1: Option<string> = value_2(_v0);
+    const v9: US4_$union = defaultArg(map<string, US4_$union>(method6(), v6_1), US4_US4_1());
     const v12: string = (v9.tag === /* US4_0 */ 0) ? v9.fields[0] : "";
     const v13: int32 = v12.length | 0;
     const v14: string[] = fill(new Array(v13), 0, v13, "");
@@ -1668,7 +1693,7 @@ export function method15(v0_1: string): string[] {
     return toArray<string>(method19(method16("", UH1_UH1_0(), foldBack<string, UH0_$union>(uncurry2(method4()), v21, UH0_UH0_0()), US8_US8_0(), US8_US8_0())[0], empty<string>()));
 }
 
-export function closure21(unitVar: void, v0_1: string): string[] {
+export function closure22(unitVar: void, v0_1: string): string[] {
     return method15(v0_1);
 }
 
@@ -1696,16 +1721,22 @@ export function execute_async(x: string): any {
     return v3(x);
 }
 
-export const v4 = (arg10$0040: [Option<any>, string, Option<((arg0: [boolean, string, int32]) => any)>, Option<string>]): any => closure20(undefined, arg10$0040);
+export const v4 = (arg10$0040: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<string>]): any => closure20(undefined, arg10$0040);
 
-export function execute_with_options_async(x: [Option<any>, string, Option<((arg0: [boolean, string, int32]) => any)>, Option<string>]): any {
+export function execute_with_options_async(x: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<string>]): any {
     return v4(x);
 }
 
-export const v5 = (v: string): string[] => closure21(undefined, v);
+export const v5 = (v: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<string>] => closure21(undefined, v);
+
+export function execution_options(x: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<string>] {
+    return v5(x);
+}
+
+export const v6 = (v: string): string[] => closure22(undefined, v);
 
 export function split_args(x: string): string[] {
-    return v5(x);
+    return v6(x);
 }
 
 

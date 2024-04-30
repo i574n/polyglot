@@ -7719,9 +7719,10 @@ d----          2024-03-12  8:15 PM                <span class="ansi-blue-bg ansi
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>a
+<pre>"a
 #!magic
 b
+"
 
 </pre>
 </div>
@@ -7780,14 +7781,8 @@ b
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item1: #!
-      Item2: &lt;null&gt;
-      Item3: Position
-        Index: 2
-        Line: 1
-        Column: 3
-        StreamName: 
+<pre>Success: "#!"
+
 </pre>
 </div>
 </div>
@@ -7828,25 +7823,13 @@ b
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Failure
-      Item1: Error in Ln: 1 Col: 1
+<pre>Failure:
+Error in Ln: 1 Col: 1
 ##!magic
 ^
 Expecting: '#!'
 
-      Item2: ParserError
-        Position: Position
-          Index: 0
-          Line: 1
-          Column: 1
-          StreamName: 
-        UserState: &lt;null&gt;
-        Messages: ErrorMessageList
-          Head: ExpectedString
-            String: #!
-            Type: ExpectedString
-          Tail: &lt;null&gt;
-      Item3: &lt;null&gt;
+
 </pre>
 </div>
 </div>
@@ -7909,14 +7892,8 @@ Expecting: '#!'
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item1: magic
-      Item2: &lt;null&gt;
-      Item3: Position
-        Index: 8
-        Line: 2
-        Column: 1
-        StreamName: 
+<pre>Success: "magic"
+
 </pre>
 </div>
 </div>
@@ -7959,25 +7936,13 @@ Expecting: '#!'
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Failure
-      Item1: Error in Ln: 1 Col: 1
+<pre>Failure:
+Error in Ln: 1 Col: 1
  #!magic
 ^
 Expecting: '#!'
 
-      Item2: ParserError
-        Position: Position
-          Index: 0
-          Line: 1
-          Column: 1
-          StreamName: 
-        UserState: &lt;null&gt;
-        Messages: ErrorMessageList
-          Head: ExpectedString
-            String: #!
-            Type: ExpectedString
-          Tail: &lt;null&gt;
-      Item3: &lt;null&gt;
+
 </pre>
 </div>
 </div>
@@ -8049,17 +8014,11 @@ Expecting: '#!'
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item1: #!magic
+<pre>Success: "#!magic
 
 
-a
-      Item2: &lt;null&gt;
-      Item3: Position
-        Index: 14
-        Line: 7
-        Column: 1
-        StreamName: 
+a"
+
 </pre>
 </div>
 </div>
@@ -8164,16 +8123,9 @@ a
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item1: Block
-        magic: magic
-        content: a
-      Item2: &lt;null&gt;
-      Item3: Position
-        Index: 14
-        Line: 7
-        Column: 1
-        StreamName: 
+<pre>Success: { magic = "magic"
+  content = "a" }
+
 </pre>
 </div>
 </div>
@@ -8250,18 +8202,10 @@ a
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item1: FSharpList&lt;Block&gt;
-        - magic: magic1
-          content: a
-        - magic: magic2
-          content: b
-      Item2: &lt;null&gt;
-      Item3: Position
-        Index: 26
-        Line: 9
-        Column: 1
-        StreamName: 
+<pre>Success: [{ magic = "magic1"
+   content = "a" }; { magic = "magic2"
+                      content = "b" }]
+
 </pre>
 </div>
 </div>
@@ -8411,11 +8355,12 @@ a
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>/// a
+<pre>"/// a
 ///
     /// b
 ///
-/// c
+/// c"
+
 </pre>
 </div>
 </div>
@@ -8535,7 +8480,7 @@ a
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>/// a
+<pre>"/// a
 ///
 /// b
 
@@ -8544,6 +8489,7 @@ let a = 1
 
 /// e
 let a = 3
+"
 
 </pre>
 </div>
@@ -8859,7 +8805,7 @@ let a = 3
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>#if !INTERACTIVE
+<pre>"#if !INTERACTIVE
 namespace TestNamespace
 #endif
 
@@ -8911,6 +8857,7 @@ a
 #endif
             column : int
         }
+"
 
 </pre>
 </div>
@@ -8950,11 +8897,12 @@ a
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre># TestModule (TestNamespace)
+<pre>"# TestModule (TestNamespace)
 
 ## ParserLibrary
 
 ### TextInput
+"
 
 </pre>
 </div>
@@ -8995,12 +8943,13 @@ a
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>// // # TestModule (TestNamespace)
+<pre>"// // # TestModule (TestNamespace)
 
 // // ## ParserLibrary
 inl x = 0i32
 
 // // ### TextInput
+"
 
 </pre>
 </div>
@@ -9128,7 +9077,7 @@ inl x = 0i32
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>USAGE: dotnet-repl [--help] &lt;file&gt; &lt;fs|md|spi|spir&gt;
+<pre>"USAGE: dotnet-repl [--help] &lt;file&gt; &lt;fs|md|spi|spir&gt;
 
 FILE:
 
@@ -9138,6 +9087,7 @@ FILE:
 OPTIONS:
 
     --help                display this list of options.
+"
 </pre>
 </div>
 </div>
@@ -9214,7 +9164,8 @@ OPTIONS:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<div class="dni-plaintext"><pre>0</pre></div><style>
+<div class="dni-plaintext"><pre>0
+</pre></div><style>
 .dni-code-hint {
     font-style: italic;
     overflow: hidden;
@@ -9251,8 +9202,8 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:06 debug   #1 writeDibCode / output: Fs / path: DibParser.dib
-00:00:06 debug   #2 parseDibCode / output: Fs / file: DibParser.dib
+<pre>00:00:08   debug #1 writeDibCode / output: Fs / path: DibParser.dib
+00:00:08   debug #2 parseDibCode / output: Fs / file: DibParser.dib
 </pre>
 </div>
 </div>

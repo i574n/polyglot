@@ -31,7 +31,7 @@ pub mod File_system {
     use fable_library_rust::String_::getSlice;
     use fable_library_rust::String_::length;
     use fable_library_rust::String_::ofChar;
-    use fable_library_rust::String_::padRight;
+    use fable_library_rust::String_::padLeft;
     use fable_library_rust::String_::replace;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
@@ -639,7 +639,7 @@ pub mod File_system {
             {
                 let v61: string = getValue(_v9.get().clone());
                 let v62: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v74: string = padRight(
+                let v74: string = padLeft(
                     toLower(match &v0_1 {
                         File_system::US0::US0_1 => string("Debug"),
                         File_system::US0::US0_2 => string("Info"),

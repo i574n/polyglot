@@ -200,6 +200,8 @@ and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     let v7 : string option = None
     let v8 : bool = true in let mutable _v7 = v7
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v9 : string = "env!(\"CARGO_PKG_NAME\").into()"
     let v10 : string = Fable.Core.RustInterop.emitRustExpr () v9
@@ -216,18 +218,18 @@ and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     v12
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v13 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+#if FABLE_COMPILER_TYPESCRIPT
+    let v13 : string = null |> unbox<string>
     v13
 #endif
     
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_PYTHON
     let v14 : string = null |> unbox<string>
     v14
 #endif
     
-#if FABLE_COMPILER_PYTHON
-    let v15 : string = null |> unbox<string>
+#else
+    let v15 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v15
 #endif
     |> fun x -> _v7 <- Some x
@@ -280,6 +282,8 @@ and closure5 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     let v9 : string option = None
     let v10 : bool = true in let mutable _v9 = v9
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v11 : (int64 -> US2) = method3()
     let v12 : US2 = US2_1
@@ -320,43 +324,43 @@ and closure5 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     v35
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v36 : (int64 -> US2) = method3()
-    let v37 : US2 = US2_1
-    let v38 : US2 = v7 |> Option.map v36 |> Option.defaultValue v37 
-    let v56 : System.DateTime =
-        match v38 with
-        | US2_1 -> (* None *)
-            let v54 : System.DateTime = System.DateTime.Now
-            v54
-        | US2_0(v39) -> (* Some *)
-            let v40 : System.DateTime = System.DateTime.Now
-            let v41 : (System.DateTime -> int64) = _.Ticks
-            let v42 : int64 = v41 v40
-            let v43 : int64 = v42 - v39
-            let v44 : System.TimeSpan = System.TimeSpan v43 
-            let v45 : (System.TimeSpan -> int32) = _.Hours
-            let v46 : int32 = v45 v44
-            let v47 : (System.TimeSpan -> int32) = _.Minutes
-            let v48 : int32 = v47 v44
-            let v49 : (System.TimeSpan -> int32) = _.Seconds
-            let v50 : int32 = v49 v44
-            let v51 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v52 : int32 = v51 v44
-            let v53 : System.DateTime = System.DateTime (1, 1, 1, v46, v48, v50, v52)
-            v53
-    let v57 : string = "HH:mm:ss"
-    let v58 : string = v56.ToString v57 
-    v58
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
-    let v59 : string = method4()
-    v59
+    let v36 : string = method4()
+    v36
 #endif
     
 #if FABLE_COMPILER_PYTHON
-    let v60 : string = method4()
+    let v37 : string = method4()
+    v37
+#endif
+    
+#else
+    let v38 : (int64 -> US2) = method3()
+    let v39 : US2 = US2_1
+    let v40 : US2 = v7 |> Option.map v38 |> Option.defaultValue v39 
+    let v58 : System.DateTime =
+        match v40 with
+        | US2_1 -> (* None *)
+            let v56 : System.DateTime = System.DateTime.Now
+            v56
+        | US2_0(v41) -> (* Some *)
+            let v42 : System.DateTime = System.DateTime.Now
+            let v43 : (System.DateTime -> int64) = _.Ticks
+            let v44 : int64 = v43 v42
+            let v45 : int64 = v44 - v41
+            let v46 : System.TimeSpan = System.TimeSpan v45 
+            let v47 : (System.TimeSpan -> int32) = _.Hours
+            let v48 : int32 = v47 v46
+            let v49 : (System.TimeSpan -> int32) = _.Minutes
+            let v50 : int32 = v49 v46
+            let v51 : (System.TimeSpan -> int32) = _.Seconds
+            let v52 : int32 = v51 v46
+            let v53 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v54 : int32 = v53 v46
+            let v55 : System.DateTime = System.DateTime (1, 1, 1, v48, v50, v52, v54)
+            v55
+    let v59 : string = "HH:mm:ss"
+    let v60 : string = v58.ToString v59 
     v60
 #endif
     |> fun x -> _v9 <- Some x
@@ -380,9 +384,11 @@ and closure5 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
             let v66 : string = "Warning"
             v66
     let v73 : string = v72.ToLower ()
-    let v74 : string = v73.PadRight (7, ' ')
+    let v74 : string = v73.PadLeft (7, ' ')
     let v75 : string option = None
     let v76 : bool = true in let mutable _v75 = v75
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v91 : Ref<Str> =
@@ -489,15 +495,15 @@ and closure5 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     v148
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    v74
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
     v74
 #endif
     
 #if FABLE_COMPILER_PYTHON
+    v74
+#endif
+    
+#else
     v74
 #endif
     |> fun x -> _v75 <- Some x
@@ -534,6 +540,8 @@ and method5 (v0 : US0, v1 : (unit -> string)) : unit =
         let v23 : unit option = None
         let v24 : bool = true in let mutable _v23 = v23
         
+#if FABLE_COMPILER || WASM || CONTRACT
+        
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
         let v25 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v25
@@ -552,17 +560,17 @@ and method5 (v0 : US0, v1 : (unit -> string)) : unit =
         ()
 #endif
         
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-        System.Console.WriteLine v22 
-        ()
-#endif
-        
 #if FABLE_COMPILER_TYPESCRIPT
         System.Console.WriteLine v22 
         ()
 #endif
         
 #if FABLE_COMPILER_PYTHON
+        System.Console.WriteLine v22 
+        ()
+#endif
+        
+#else
         System.Console.WriteLine v22 
         ()
 #endif
@@ -576,6 +584,8 @@ and method2 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
 and closure2 () (v0 : int32) : Async<bool> =
     let v1 : Async<bool> option = None
     let v2 : bool = true in let mutable _v1 = v1
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v3 : Async<bool> = null |> unbox<Async<bool>>
@@ -592,42 +602,48 @@ and closure2 () (v0 : int32) : Async<bool> =
     v5
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v6 : Async<bool> option = None
-    let mutable _v6 = v6
+#if FABLE_COMPILER_TYPESCRIPT
+    let v6 : Async<bool> = null |> unbox<Async<bool>>
+    v6
+#endif
+    
+#if FABLE_COMPILER_PYTHON
+    let v7 : Async<bool> = null |> unbox<Async<bool>>
+    v7
+#endif
+    
+#else
+    let v8 : Async<bool> option = None
+    let mutable _v8 = v8
     async {
-    let v7 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-    let! v7 = v7 
-    let v8 : System.Threading.CancellationToken = v7 
-    let v9 : System.Net.Sockets.TcpClient = new System.Net.Sockets.TcpClient ()
-    use v9 = v9 
-    let v10 : System.Net.Sockets.TcpClient = v9 
+    let v9 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+    let! v9 = v9 
+    let v10 : System.Threading.CancellationToken = v9 
+    let v11 : System.Net.Sockets.TcpClient = new System.Net.Sockets.TcpClient ()
+    use v11 = v11 
+    let v12 : System.Net.Sockets.TcpClient = v11 
     try
-    let v11 : string = "127.0.0.1"
-    let v12 : System.Threading.Tasks.ValueTask = v10.ConnectAsync (v11, v0, v8)
-    let v13 : (unit -> System.Threading.Tasks.Task) = v12.AsTask
-    let v14 : System.Threading.Tasks.Task = v13 ()
-    let v15 : Async<unit> option = None
-    let v16 : bool = true in let mutable _v15 = v15
+    let v13 : string = "127.0.0.1"
+    let v14 : System.Threading.Tasks.ValueTask = v12.ConnectAsync (v13, v0, v10)
+    let v15 : (unit -> System.Threading.Tasks.Task) = v14.AsTask
+    let v16 : System.Threading.Tasks.Task = v15 ()
+    let v17 : Async<unit> option = None
+    let v18 : bool = true in let mutable _v17 = v17
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : Async<unit> = null |> unbox<Async<unit>>
-    v17
-#endif
-    
-#if FABLE_COMPILER_RUST && WASM
-    let v18 : Async<unit> = null |> unbox<Async<unit>>
-    v18
-#endif
-    
-#if FABLE_COMPILER_RUST && CONTRACT
     let v19 : Async<unit> = null |> unbox<Async<unit>>
     v19
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v20 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
-    let v21 : Async<unit> = v20 v14
+#if FABLE_COMPILER_RUST && WASM
+    let v20 : Async<unit> = null |> unbox<Async<unit>>
+    v20
+#endif
+    
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v21 : Async<unit> = null |> unbox<Async<unit>>
     v21
 #endif
     
@@ -640,66 +656,64 @@ and closure2 () (v0 : int32) : Async<bool> =
     let v23 : Async<unit> = null |> unbox<Async<unit>>
     v23
 #endif
-    |> fun x -> _v15 <- Some x
-    let v24 : Async<unit> = _v15.Value
-    do! v24 
+    
+#else
+    let v24 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
+    let v25 : Async<unit> = v24 v16
+    v25
+#endif
+    |> fun x -> _v17 <- Some x
+    let v26 : Async<unit> = _v17.Value
+    do! v26 
     return true 
     with ex ->
-    let v25 : exn = ex
-    let v26 : string option = None
-    let v27 : bool = true in let mutable _v26 = v26
+    let v27 : exn = ex
+    let v28 : string option = None
+    let v29 : bool = true in let mutable _v28 = v28
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v28 : string = $"%A{v25}"
-    v28
-#endif
-    
-#if FABLE_COMPILER_RUST && WASM
-    let v29 : string = $"%A{v25}"
-    v29
-#endif
-    
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v30 : string = $"%A{v25}"
+    let v30 : string = $"%A{v27}"
     v30
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v31 : string = $"{v25.GetType ()}: {v25.Message}"
+#if FABLE_COMPILER_RUST && WASM
+    let v31 : string = $"%A{v27}"
     v31
 #endif
     
-#if FABLE_COMPILER_TYPESCRIPT
-    let v32 : string = $"%A{v25}"
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v32 : string = $"%A{v27}"
     v32
 #endif
     
-#if FABLE_COMPILER_PYTHON
-    let v33 : string = $"%A{v25}"
+#if FABLE_COMPILER_TYPESCRIPT
+    let v33 : string = $"%A{v27}"
     v33
 #endif
-    |> fun x -> _v26 <- Some x
-    let v34 : string = _v26.Value
-    let v35 : US0 = US0_0
-    let v36 : (unit -> string) = closure3(v34)
-    let v37 : (unit -> string) = closure4()
-    method2(v35, v36, v37)
-    return false 
-    (*
-    let v38 : bool = *)
-    }
-    |> fun x -> _v6 <- Some x
-    let v39 : Async<bool> = _v6 |> Option.get
-    v39
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v40 : Async<bool> = null |> unbox<Async<bool>>
-    v40
-#endif
     
 #if FABLE_COMPILER_PYTHON
-    let v41 : Async<bool> = null |> unbox<Async<bool>>
+    let v34 : string = $"%A{v27}"
+    v34
+#endif
+    
+#else
+    let v35 : string = $"{v27.GetType ()}: {v27.Message}"
+    v35
+#endif
+    |> fun x -> _v28 <- Some x
+    let v36 : string = _v28.Value
+    let v37 : US0 = US0_0
+    let v38 : (unit -> string) = closure3(v36)
+    let v39 : (unit -> string) = closure4()
+    method2(v37, v38, v39)
+    return false 
+    (*
+    let v40 : bool = *)
+    }
+    |> fun x -> _v8 <- Some x
+    let v41 : Async<bool> = _v8 |> Option.get
     v41
 #endif
     |> fun x -> _v1 <- Some x
@@ -723,6 +737,8 @@ and closure8 (v0 : int32) (v1 : int32) : Async<bool> =
     let v2 : Async<bool> option = None
     let v3 : bool = true in let mutable _v2 = v2
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v4 : Async<bool> = null |> unbox<Async<bool>>
     v4
@@ -738,528 +754,552 @@ and closure8 (v0 : int32) (v1 : int32) : Async<bool> =
     v6
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v7 : Async<bool> option = None
-    let mutable _v7 = v7
+#if FABLE_COMPILER_TYPESCRIPT
+    let v7 : Async<bool> = null |> unbox<Async<bool>>
+    v7
+#endif
+    
+#if FABLE_COMPILER_PYTHON
+    let v8 : Async<bool> = null |> unbox<Async<bool>>
+    v8
+#endif
+    
+#else
+    let v9 : Async<bool> option = None
+    let mutable _v9 = v9
     async {
-    let v8 : Async<bool> option = None
-    let v9 : bool = true in let mutable _v8 = v8
+    let v10 : Async<bool> option = None
+    let v11 : bool = true in let mutable _v10 = v10
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v10 : Async<bool> = null |> unbox<Async<bool>>
-    v10
-#endif
-    
-#if FABLE_COMPILER_RUST && WASM
-    let v11 : Async<bool> = null |> unbox<Async<bool>>
-    v11
-#endif
-    
-#if FABLE_COMPILER_RUST && CONTRACT
     let v12 : Async<bool> = null |> unbox<Async<bool>>
     v12
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v13 : Async<bool> option = None
-    let mutable _v13 = v13
-    async {
-    let v14 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-    let! v14 = v14 
-    let v15 : System.Threading.CancellationToken = v14 
-    let v16 : System.Net.Sockets.TcpClient = new System.Net.Sockets.TcpClient ()
-    use v16 = v16 
-    let v17 : System.Net.Sockets.TcpClient = v16 
-    try
-    let v18 : string = "127.0.0.1"
-    let v19 : System.Threading.Tasks.ValueTask = v17.ConnectAsync (v18, v1, v15)
-    let v20 : (unit -> System.Threading.Tasks.Task) = v19.AsTask
-    let v21 : System.Threading.Tasks.Task = v20 ()
-    let v22 : Async<unit> option = None
-    let v23 : bool = true in let mutable _v22 = v22
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v24 : Async<unit> = null |> unbox<Async<unit>>
-    v24
-#endif
-    
 #if FABLE_COMPILER_RUST && WASM
-    let v25 : Async<unit> = null |> unbox<Async<unit>>
-    v25
+    let v13 : Async<bool> = null |> unbox<Async<bool>>
+    v13
 #endif
     
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v26 : Async<unit> = null |> unbox<Async<unit>>
-    v26
-#endif
-    
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v27 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
-    let v28 : Async<unit> = v27 v21
-    v28
+    let v14 : Async<bool> = null |> unbox<Async<bool>>
+    v14
 #endif
     
 #if FABLE_COMPILER_TYPESCRIPT
+    let v15 : Async<bool> = null |> unbox<Async<bool>>
+    v15
+#endif
+    
+#if FABLE_COMPILER_PYTHON
+    let v16 : Async<bool> = null |> unbox<Async<bool>>
+    v16
+#endif
+    
+#else
+    let v17 : Async<bool> option = None
+    let mutable _v17 = v17
+    async {
+    let v18 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+    let! v18 = v18 
+    let v19 : System.Threading.CancellationToken = v18 
+    let v20 : System.Net.Sockets.TcpClient = new System.Net.Sockets.TcpClient ()
+    use v20 = v20 
+    let v21 : System.Net.Sockets.TcpClient = v20 
+    try
+    let v22 : string = "127.0.0.1"
+    let v23 : System.Threading.Tasks.ValueTask = v21.ConnectAsync (v22, v1, v19)
+    let v24 : (unit -> System.Threading.Tasks.Task) = v23.AsTask
+    let v25 : System.Threading.Tasks.Task = v24 ()
+    let v26 : Async<unit> option = None
+    let v27 : bool = true in let mutable _v26 = v26
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v28 : Async<unit> = null |> unbox<Async<unit>>
+    v28
+#endif
+    
+#if FABLE_COMPILER_RUST && WASM
     let v29 : Async<unit> = null |> unbox<Async<unit>>
     v29
 #endif
     
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_RUST && CONTRACT
     let v30 : Async<unit> = null |> unbox<Async<unit>>
     v30
 #endif
-    |> fun x -> _v22 <- Some x
-    let v31 : Async<unit> = _v22.Value
-    do! v31 
-    return true 
-    with ex ->
-    let v32 : exn = ex
-    let v33 : string option = None
-    let v34 : bool = true in let mutable _v33 = v33
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v35 : string = $"%A{v32}"
-    v35
-#endif
-    
-#if FABLE_COMPILER_RUST && WASM
-    let v36 : string = $"%A{v32}"
-    v36
-#endif
-    
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v37 : string = $"%A{v32}"
-    v37
-#endif
-    
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v38 : string = $"{v32.GetType ()}: {v32.Message}"
-    v38
-#endif
     
 #if FABLE_COMPILER_TYPESCRIPT
-    let v39 : string = $"%A{v32}"
+    let v31 : Async<unit> = null |> unbox<Async<unit>>
+    v31
+#endif
+    
+#if FABLE_COMPILER_PYTHON
+    let v32 : Async<unit> = null |> unbox<Async<unit>>
+    v32
+#endif
+    
+#else
+    let v33 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
+    let v34 : Async<unit> = v33 v25
+    v34
+#endif
+    |> fun x -> _v26 <- Some x
+    let v35 : Async<unit> = _v26.Value
+    do! v35 
+    return true 
+    with ex ->
+    let v36 : exn = ex
+    let v37 : string option = None
+    let v38 : bool = true in let mutable _v37 = v37
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v39 : string = $"%A{v36}"
     v39
 #endif
     
-#if FABLE_COMPILER_PYTHON
-    let v40 : string = $"%A{v32}"
-    v40
-#endif
-    |> fun x -> _v33 <- Some x
-    let v41 : string = _v33.Value
-    let v42 : US0 = US0_0
-    let v43 : (unit -> string) = closure3(v41)
-    let v44 : (unit -> string) = closure4()
-    method2(v42, v43, v44)
-    return false 
-    (*
-    let v45 : bool = *)
-    }
-    |> fun x -> _v13 <- Some x
-    let v46 : Async<bool> = _v13 |> Option.get
-    v46
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v47 : Async<bool> = null |> unbox<Async<bool>>
-    v47
-#endif
-    
-#if FABLE_COMPILER_PYTHON
-    let v48 : Async<bool> = null |> unbox<Async<bool>>
-    v48
-#endif
-    |> fun x -> _v8 <- Some x
-    let v49 : Async<bool> = _v8.Value
-    let v50 : Async<US3> option = None
-    let v51 : bool = true in let mutable _v50 = v50
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v52 : Async<US3> = null |> unbox<Async<US3>>
-    v52
-#endif
-    
 #if FABLE_COMPILER_RUST && WASM
-    let v53 : Async<US3> = null |> unbox<Async<US3>>
-    v53
+    let v40 : string = $"%A{v36}"
+    v40
 #endif
     
 #if FABLE_COMPILER_RUST && CONTRACT
+    let v41 : string = $"%A{v36}"
+    v41
+#endif
+    
+#if FABLE_COMPILER_TYPESCRIPT
+    let v42 : string = $"%A{v36}"
+    v42
+#endif
+    
+#if FABLE_COMPILER_PYTHON
+    let v43 : string = $"%A{v36}"
+    v43
+#endif
+    
+#else
+    let v44 : string = $"{v36.GetType ()}: {v36.Message}"
+    v44
+#endif
+    |> fun x -> _v37 <- Some x
+    let v45 : string = _v37.Value
+    let v46 : US0 = US0_0
+    let v47 : (unit -> string) = closure3(v45)
+    let v48 : (unit -> string) = closure4()
+    method2(v46, v47, v48)
+    return false 
+    (*
+    let v49 : bool = *)
+    }
+    |> fun x -> _v17 <- Some x
+    let v50 : Async<bool> = _v17 |> Option.get
+    v50
+#endif
+    |> fun x -> _v10 <- Some x
+    let v51 : Async<bool> = _v10.Value
+    let v52 : Async<US3> option = None
+    let v53 : bool = true in let mutable _v52 = v52
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v54 : Async<US3> = null |> unbox<Async<US3>>
     v54
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v55 : Async<US3> option = None
-    let v56 : bool = true in let mutable _v55 = v55
+#if FABLE_COMPILER_RUST && WASM
+    let v55 : Async<US3> = null |> unbox<Async<US3>>
+    v55
+#endif
     
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v56 : Async<US3> = null |> unbox<Async<US3>>
+    v56
+#endif
+    
+#if FABLE_COMPILER_TYPESCRIPT
     let v57 : Async<US3> = null |> unbox<Async<US3>>
     v57
 #endif
     
-#if FABLE_COMPILER_RUST && WASM
+#if FABLE_COMPILER_PYTHON
     let v58 : Async<US3> = null |> unbox<Async<US3>>
     v58
 #endif
     
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v59 : Async<US3> = null |> unbox<Async<US3>>
-    v59
-#endif
+#else
+    let v59 : Async<US3> option = None
+    let v60 : bool = true in let mutable _v59 = v59
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v60 : Async<US3> option = None
-    let mutable _v60 = v60
-    async {
-    let v61 : Async<Async<bool>> option = None
-    let v62 : bool = true in let mutable _v61 = v61
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v63 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+    let v61 : Async<US3> = null |> unbox<Async<US3>>
+    v61
+#endif
+    
+#if FABLE_COMPILER_RUST && WASM
+    let v62 : Async<US3> = null |> unbox<Async<US3>>
+    v62
+#endif
+    
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v63 : Async<US3> = null |> unbox<Async<US3>>
     v63
 #endif
     
-#if FABLE_COMPILER_RUST && WASM
-    let v64 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+#if FABLE_COMPILER_TYPESCRIPT
+    let v64 : Async<US3> = null |> unbox<Async<US3>>
     v64
 #endif
     
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v65 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+#if FABLE_COMPILER_PYTHON
+    let v65 : Async<US3> = null |> unbox<Async<US3>>
     v65
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v66 : Async<Async<bool>> = Async.StartChild (v49, v0)
-    v66
+#else
+    let v66 : Async<US3> option = None
+    let mutable _v66 = v66
+    async {
+    let v67 : Async<Async<bool>> option = None
+    let v68 : bool = true in let mutable _v67 = v67
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v69 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+    v69
+#endif
+    
+#if FABLE_COMPILER_RUST && WASM
+    let v70 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+    v70
+#endif
+    
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v71 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+    v71
 #endif
     
 #if FABLE_COMPILER_TYPESCRIPT
-    let v67 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
-    v67
+    let v72 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+    v72
 #endif
     
 #if FABLE_COMPILER_PYTHON
-    let v68 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
-    v68
-#endif
-    |> fun x -> _v61 <- Some x
-    let v69 : Async<Async<bool>> = _v61.Value
-    let! v69 = v69 
-    let v70 : Async<bool> = v69 
-    let v71 : Async<Choice<bool, exn>> option = None
-    let v72 : bool = true in let mutable _v71 = v71
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v73 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+    let v73 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
     v73
 #endif
     
-#if FABLE_COMPILER_RUST && WASM
-    let v74 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+#else
+    let v74 : Async<Async<bool>> = Async.StartChild (v51, v0)
     v74
 #endif
+    |> fun x -> _v67 <- Some x
+    let v75 : Async<Async<bool>> = _v67.Value
+    let! v75 = v75 
+    let v76 : Async<bool> = v75 
+    let v77 : Async<Choice<bool, exn>> option = None
+    let v78 : bool = true in let mutable _v77 = v77
     
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v75 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
-    v75
-#endif
+#if FABLE_COMPILER || WASM || CONTRACT
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v76 : (Async<bool> -> Async<Choice<bool, exn>>) = Async.Catch
-    let v77 : Async<Choice<bool, exn>> = v76 v70
-    v77
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v78 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
-    v78
-#endif
-    
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v79 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
     v79
 #endif
-    |> fun x -> _v71 <- Some x
-    let v80 : Async<Choice<bool, exn>> = _v71.Value
-    let v81 : Async<US4> option = None
-    let v82 : bool = true in let mutable _v81 = v81
     
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v83 : Async<US4> = null |> unbox<Async<US4>>
+#if FABLE_COMPILER_RUST && WASM
+    let v80 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+    v80
+#endif
+    
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v81 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+    v81
+#endif
+    
+#if FABLE_COMPILER_TYPESCRIPT
+    let v82 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+    v82
+#endif
+    
+#if FABLE_COMPILER_PYTHON
+    let v83 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
     v83
 #endif
     
-#if FABLE_COMPILER_RUST && WASM
-    let v84 : Async<US4> = null |> unbox<Async<US4>>
-    v84
-#endif
-    
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v85 : Async<US4> = null |> unbox<Async<US4>>
+#else
+    let v84 : (Async<bool> -> Async<Choice<bool, exn>>) = Async.Catch
+    let v85 : Async<Choice<bool, exn>> = v84 v76
     v85
 #endif
+    |> fun x -> _v77 <- Some x
+    let v86 : Async<Choice<bool, exn>> = _v77.Value
+    let v87 : Async<US4> option = None
+    let v88 : bool = true in let mutable _v87 = v87
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v86 : Async<US4> option = None
-    let mutable _v86 = v86
-    async {
-    let! v80 = v80 
-    let v87 : Choice<bool, exn> = v80 
-    let v88 : US4 option = None
-    let v89 : bool = true in let mutable _v88 = v88
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v90 : US4 = null |> unbox<US4>
+    let v89 : Async<US4> = null |> unbox<Async<US4>>
+    v89
+#endif
+    
+#if FABLE_COMPILER_RUST && WASM
+    let v90 : Async<US4> = null |> unbox<Async<US4>>
     v90
 #endif
     
-#if FABLE_COMPILER_RUST && WASM
-    let v91 : US4 = null |> unbox<US4>
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v91 : Async<US4> = null |> unbox<Async<US4>>
     v91
 #endif
     
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v92 : US4 = null |> unbox<US4>
+#if FABLE_COMPILER_TYPESCRIPT
+    let v92 : Async<US4> = null |> unbox<Async<US4>>
     v92
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v93 : (bool -> US4) = closure9()
-    let v94 : (exn -> US4) = closure10()
-    let v95 : US4 = match v87 with Choice1Of2 x -> v93 x | Choice2Of2 x -> v94 x
-    v95
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v96 : US4 = null |> unbox<US4>
-    v96
-#endif
-    
 #if FABLE_COMPILER_PYTHON
-    let v97 : US4 = null |> unbox<US4>
-    v97
+    let v93 : Async<US4> = null |> unbox<Async<US4>>
+    v93
 #endif
-    |> fun x -> _v88 <- Some x
-    let v98 : US4 = _v88.Value
-    return v98 
-    }
-    |> fun x -> _v86 <- Some x
-    let v99 : Async<US4> = _v86 |> Option.get
+    
+#else
+    let v94 : Async<US4> option = None
+    let mutable _v94 = v94
+    async {
+    let! v86 = v86 
+    let v95 : Choice<bool, exn> = v86 
+    let v96 : US4 option = None
+    let v97 : bool = true in let mutable _v96 = v96
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v98 : US4 = null |> unbox<US4>
+    v98
+#endif
+    
+#if FABLE_COMPILER_RUST && WASM
+    let v99 : US4 = null |> unbox<US4>
     v99
 #endif
     
-#if FABLE_COMPILER_TYPESCRIPT
-    let v100 : Async<US4> = null |> unbox<Async<US4>>
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v100 : US4 = null |> unbox<US4>
     v100
 #endif
     
-#if FABLE_COMPILER_PYTHON
-    let v101 : Async<US4> = null |> unbox<Async<US4>>
+#if FABLE_COMPILER_TYPESCRIPT
+    let v101 : US4 = null |> unbox<US4>
     v101
 #endif
-    |> fun x -> _v81 <- Some x
-    let v102 : Async<US4> = _v81.Value
-    let v103 : Async<US5> option = None
-    let v104 : bool = true in let mutable _v103 = v103
     
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v105 : Async<US5> = null |> unbox<Async<US5>>
+#if FABLE_COMPILER_PYTHON
+    let v102 : US4 = null |> unbox<US4>
+    v102
+#endif
+    
+#else
+    let v103 : (bool -> US4) = closure9()
+    let v104 : (exn -> US4) = closure10()
+    let v105 : US4 = match v95 with Choice1Of2 x -> v103 x | Choice2Of2 x -> v104 x
     v105
 #endif
-    
-#if FABLE_COMPILER_RUST && WASM
-    let v106 : Async<US5> = null |> unbox<Async<US5>>
-    v106
-#endif
-    
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v107 : Async<US5> = null |> unbox<Async<US5>>
+    |> fun x -> _v96 <- Some x
+    let v106 : US4 = _v96.Value
+    return v106 
+    }
+    |> fun x -> _v94 <- Some x
+    let v107 : Async<US4> = _v94 |> Option.get
     v107
 #endif
+    |> fun x -> _v87 <- Some x
+    let v108 : Async<US4> = _v87.Value
+    let v109 : Async<US5> option = None
+    let v110 : bool = true in let mutable _v109 = v109
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v108 : Async<US5> option = None
-    let mutable _v108 = v108
-    async {
-    let! v102 = v102 
-    let v109 : US4 = v102 
-    let v115 : US5 =
-        match v109 with
-        | US4_0(v110) -> (* Choice1Of2 *)
-            US5_0(v110)
-        | US4_1(v112) -> (* Choice2Of2 *)
-            US5_1(v112)
-    return v115 
-    }
-    |> fun x -> _v108 <- Some x
-    let v116 : Async<US5> = _v108 |> Option.get
-    v116
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v117 : Async<US5> = null |> unbox<Async<US5>>
-    v117
-#endif
-    
-#if FABLE_COMPILER_PYTHON
-    let v118 : Async<US5> = null |> unbox<Async<US5>>
-    v118
-#endif
-    |> fun x -> _v103 <- Some x
-    let v119 : Async<US5> = _v103.Value
-    let v120 : Async<US3> option = None
-    let v121 : bool = true in let mutable _v120 = v120
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v122 : Async<US3> = null |> unbox<Async<US3>>
-    v122
+    let v111 : Async<US5> = null |> unbox<Async<US5>>
+    v111
 #endif
     
 #if FABLE_COMPILER_RUST && WASM
-    let v123 : Async<US3> = null |> unbox<Async<US3>>
-    v123
+    let v112 : Async<US5> = null |> unbox<Async<US5>>
+    v112
 #endif
     
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v124 : Async<US3> = null |> unbox<Async<US3>>
+    let v113 : Async<US5> = null |> unbox<Async<US5>>
+    v113
+#endif
+    
+#if FABLE_COMPILER_TYPESCRIPT
+    let v114 : Async<US5> = null |> unbox<Async<US5>>
+    v114
+#endif
+    
+#if FABLE_COMPILER_PYTHON
+    let v115 : Async<US5> = null |> unbox<Async<US5>>
+    v115
+#endif
+    
+#else
+    let v116 : Async<US5> option = None
+    let mutable _v116 = v116
+    async {
+    let! v108 = v108 
+    let v117 : US4 = v108 
+    let v123 : US5 =
+        match v117 with
+        | US4_0(v118) -> (* Choice1Of2 *)
+            US5_0(v118)
+        | US4_1(v120) -> (* Choice2Of2 *)
+            US5_1(v120)
+    return v123 
+    }
+    |> fun x -> _v116 <- Some x
+    let v124 : Async<US5> = _v116 |> Option.get
     v124
 #endif
+    |> fun x -> _v109 <- Some x
+    let v125 : Async<US5> = _v109.Value
+    let v126 : Async<US3> option = None
+    let v127 : bool = true in let mutable _v126 = v126
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v125 : Async<US3> option = None
-    let mutable _v125 = v125
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v128 : Async<US3> = null |> unbox<Async<US3>>
+    v128
+#endif
+    
+#if FABLE_COMPILER_RUST && WASM
+    let v129 : Async<US3> = null |> unbox<Async<US3>>
+    v129
+#endif
+    
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v130 : Async<US3> = null |> unbox<Async<US3>>
+    v130
+#endif
+    
+#if FABLE_COMPILER_TYPESCRIPT
+    let v131 : Async<US3> = null |> unbox<Async<US3>>
+    v131
+#endif
+    
+#if FABLE_COMPILER_PYTHON
+    let v132 : Async<US3> = null |> unbox<Async<US3>>
+    v132
+#endif
+    
+#else
+    let v133 : Async<US3> option = None
+    let mutable _v133 = v133
     async {
-    let! v119 = v119 
-    let v126 : US5 = v119 
-    let v152 : US3 =
-        match v126 with
-        | US5_1(v129) -> (* Error *)
-            let v130 : string = $"%A{v129}"
-            let v131 : string = "System.TimeoutException"
-            let v132 : bool = v130.Contains v131
-            if v132 then
-                let v133 : US0 = US0_1
-                let v134 : (unit -> string) = closure11()
-                let v135 : (unit -> string) = closure12(v0)
-                method2(v133, v134, v135)
+    let! v125 = v125 
+    let v134 : US5 = v125 
+    let v160 : US3 =
+        match v134 with
+        | US5_1(v137) -> (* Error *)
+            let v138 : string = $"%A{v137}"
+            let v139 : string = "System.TimeoutException"
+            let v140 : bool = v138.Contains v139
+            if v140 then
+                let v141 : US0 = US0_1
+                let v142 : (unit -> string) = closure11()
+                let v143 : (unit -> string) = closure12(v0)
+                method2(v141, v142, v143)
                 US3_1
             else
-                let v137 : string option = None
-                let v138 : bool = true in let mutable _v137 = v137
+                let v145 : string option = None
+                let v146 : bool = true in let mutable _v145 = v145
+                
+#if FABLE_COMPILER || WASM || CONTRACT
                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                let v139 : string = $"%A{v129}"
-                v139
+                let v147 : string = $"%A{v137}"
+                v147
 #endif
                 
 #if FABLE_COMPILER_RUST && WASM
-                let v140 : string = $"%A{v129}"
-                v140
+                let v148 : string = $"%A{v137}"
+                v148
 #endif
                 
 #if FABLE_COMPILER_RUST && CONTRACT
-                let v141 : string = $"%A{v129}"
-                v141
-#endif
-                
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-                let v142 : string = $"{v129.GetType ()}: {v129.Message}"
-                v142
+                let v149 : string = $"%A{v137}"
+                v149
 #endif
                 
 #if FABLE_COMPILER_TYPESCRIPT
-                let v143 : string = $"%A{v129}"
-                v143
+                let v150 : string = $"%A{v137}"
+                v150
 #endif
                 
 #if FABLE_COMPILER_PYTHON
-                let v144 : string = $"%A{v129}"
-                v144
+                let v151 : string = $"%A{v137}"
+                v151
 #endif
-                |> fun x -> _v137 <- Some x
-                let v145 : string = _v137.Value
-                let v146 : US0 = US0_4
-                let v147 : (unit -> string) = closure13(v145)
-                let v148 : (unit -> string) = closure12(v0)
-                method2(v146, v147, v148)
+                
+#else
+                let v152 : string = $"{v137.GetType ()}: {v137.Message}"
+                v152
+#endif
+                |> fun x -> _v145 <- Some x
+                let v153 : string = _v145.Value
+                let v154 : US0 = US0_4
+                let v155 : (unit -> string) = closure13(v153)
+                let v156 : (unit -> string) = closure12(v0)
+                method2(v154, v155, v156)
                 US3_1
-        | US5_0(v127) -> (* Ok *)
-            US3_0(v127)
-    return v152 
+        | US5_0(v135) -> (* Ok *)
+            US3_0(v135)
+    return v160 
     }
-    |> fun x -> _v125 <- Some x
-    let v153 : Async<US3> = _v125 |> Option.get
-    v153
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v154 : Async<US3> = null |> unbox<Async<US3>>
-    v154
-#endif
-    
-#if FABLE_COMPILER_PYTHON
-    let v155 : Async<US3> = null |> unbox<Async<US3>>
-    v155
-#endif
-    |> fun x -> _v120 <- Some x
-    let v156 : Async<US3> = _v120.Value
-    return! v156 
-    }
-    |> fun x -> _v60 <- Some x
-    let v157 : Async<US3> = _v60 |> Option.get
-    v157
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v158 : Async<US3> = null |> unbox<Async<US3>>
-    v158
-#endif
-    
-#if FABLE_COMPILER_PYTHON
-    let v159 : Async<US3> = null |> unbox<Async<US3>>
-    v159
-#endif
-    |> fun x -> _v55 <- Some x
-    let v160 : Async<US3> = _v55.Value
-    v160
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v161 : Async<US3> = null |> unbox<Async<US3>>
+    |> fun x -> _v133 <- Some x
+    let v161 : Async<US3> = _v133 |> Option.get
     v161
 #endif
-    
-#if FABLE_COMPILER_PYTHON
-    let v162 : Async<US3> = null |> unbox<Async<US3>>
-    v162
+    |> fun x -> _v126 <- Some x
+    let v162 : Async<US3> = _v126.Value
+    return! v162 
+    }
+    |> fun x -> _v66 <- Some x
+    let v163 : Async<US3> = _v66 |> Option.get
+    v163
 #endif
-    |> fun x -> _v50 <- Some x
-    let v163 : Async<US3> = _v50.Value
-    let! v163 = v163 
-    let v164 : US3 = v163 
-    let v167 : bool =
-        match v164 with
+    |> fun x -> _v59 <- Some x
+    let v164 : Async<US3> = _v59.Value
+    v164
+#endif
+    |> fun x -> _v52 <- Some x
+    let v165 : Async<US3> = _v52.Value
+    let! v165 = v165 
+    let v166 : US3 = v165 
+    let v169 : bool =
+        match v166 with
         | US3_1 -> (* None *)
             false
-        | US3_0(v165) -> (* Some *)
-            v165
-    return v167 
+        | US3_0(v167) -> (* Some *)
+            v167
+    return v169 
     }
-    |> fun x -> _v7 <- Some x
-    let v168 : Async<bool> = _v7 |> Option.get
-    v168
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v169 : Async<bool> = null |> unbox<Async<bool>>
-    v169
-#endif
-    
-#if FABLE_COMPILER_PYTHON
-    let v170 : Async<bool> = null |> unbox<Async<bool>>
+    |> fun x -> _v9 <- Some x
+    let v170 : Async<bool> = _v9 |> Option.get
     v170
 #endif
     |> fun x -> _v2 <- Some x
@@ -1282,6 +1322,8 @@ and method6 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
     let v4 : Async<int64> option = None
     let v5 : bool = true in let mutable _v4 = v4
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v6 : Async<int64> = null |> unbox<Async<int64>>
     v6
@@ -1297,730 +1339,768 @@ and method6 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
     v8
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v9 : Async<int64> option = None
-    let mutable _v9 = v9
+#if FABLE_COMPILER_TYPESCRIPT
+    let v9 : Async<int64> = null |> unbox<Async<int64>>
+    v9
+#endif
+    
+#if FABLE_COMPILER_PYTHON
+    let v10 : Async<int64> = null |> unbox<Async<int64>>
+    v10
+#endif
+    
+#else
+    let v11 : Async<int64> option = None
+    let mutable _v11 = v11
     async {
-    let v10 : (int32 -> US6) = method7()
-    let v11 : US6 = US6_1
-    let v12 : US6 = v0 |> Option.map v10 |> Option.defaultValue v11 
-    let v227 : Async<bool> =
-        match v12 with
+    let v12 : (int32 -> US6) = method7()
+    let v13 : US6 = US6_1
+    let v14 : US6 = v0 |> Option.map v12 |> Option.defaultValue v13 
+    let v229 : Async<bool> =
+        match v14 with
         | US6_1 -> (* None *)
-            let v13 : Async<bool> option = None
-            let v14 : bool = true in let mutable _v13 = v13
+            let v15 : Async<bool> option = None
+            let v16 : bool = true in let mutable _v15 = v15
+            
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v15 : Async<bool> = null |> unbox<Async<bool>>
-            v15
-#endif
-            
-#if FABLE_COMPILER_RUST && WASM
-            let v16 : Async<bool> = null |> unbox<Async<bool>>
-            v16
-#endif
-            
-#if FABLE_COMPILER_RUST && CONTRACT
             let v17 : Async<bool> = null |> unbox<Async<bool>>
             v17
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v18 : Async<bool> option = None
-            let mutable _v18 = v18
-            async {
-            let v19 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-            let! v19 = v19 
-            let v20 : System.Threading.CancellationToken = v19 
-            let v21 : System.Net.Sockets.TcpClient = new System.Net.Sockets.TcpClient ()
-            use v21 = v21 
-            let v22 : System.Net.Sockets.TcpClient = v21 
-            try
-            let v23 : string = "127.0.0.1"
-            let v24 : System.Threading.Tasks.ValueTask = v22.ConnectAsync (v23, v2, v20)
-            let v25 : (unit -> System.Threading.Tasks.Task) = v24.AsTask
-            let v26 : System.Threading.Tasks.Task = v25 ()
-            let v27 : Async<unit> option = None
-            let v28 : bool = true in let mutable _v27 = v27
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v29 : Async<unit> = null |> unbox<Async<unit>>
-            v29
-#endif
-            
 #if FABLE_COMPILER_RUST && WASM
-            let v30 : Async<unit> = null |> unbox<Async<unit>>
-            v30
+            let v18 : Async<bool> = null |> unbox<Async<bool>>
+            v18
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v31 : Async<unit> = null |> unbox<Async<unit>>
-            v31
-#endif
-            
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v32 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
-            let v33 : Async<unit> = v32 v26
-            v33
+            let v19 : Async<bool> = null |> unbox<Async<bool>>
+            v19
 #endif
             
 #if FABLE_COMPILER_TYPESCRIPT
+            let v20 : Async<bool> = null |> unbox<Async<bool>>
+            v20
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v21 : Async<bool> = null |> unbox<Async<bool>>
+            v21
+#endif
+            
+#else
+            let v22 : Async<bool> option = None
+            let mutable _v22 = v22
+            async {
+            let v23 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+            let! v23 = v23 
+            let v24 : System.Threading.CancellationToken = v23 
+            let v25 : System.Net.Sockets.TcpClient = new System.Net.Sockets.TcpClient ()
+            use v25 = v25 
+            let v26 : System.Net.Sockets.TcpClient = v25 
+            try
+            let v27 : string = "127.0.0.1"
+            let v28 : System.Threading.Tasks.ValueTask = v26.ConnectAsync (v27, v2, v24)
+            let v29 : (unit -> System.Threading.Tasks.Task) = v28.AsTask
+            let v30 : System.Threading.Tasks.Task = v29 ()
+            let v31 : Async<unit> option = None
+            let v32 : bool = true in let mutable _v31 = v31
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v33 : Async<unit> = null |> unbox<Async<unit>>
+            v33
+#endif
+            
+#if FABLE_COMPILER_RUST && WASM
             let v34 : Async<unit> = null |> unbox<Async<unit>>
             v34
 #endif
             
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_RUST && CONTRACT
             let v35 : Async<unit> = null |> unbox<Async<unit>>
             v35
 #endif
-            |> fun x -> _v27 <- Some x
-            let v36 : Async<unit> = _v27.Value
-            do! v36 
-            return true 
-            with ex ->
-            let v37 : exn = ex
-            let v38 : string option = None
-            let v39 : bool = true in let mutable _v38 = v38
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v40 : string = $"%A{v37}"
-            v40
-#endif
-            
-#if FABLE_COMPILER_RUST && WASM
-            let v41 : string = $"%A{v37}"
-            v41
-#endif
-            
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v42 : string = $"%A{v37}"
-            v42
-#endif
-            
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v43 : string = $"{v37.GetType ()}: {v37.Message}"
-            v43
-#endif
             
 #if FABLE_COMPILER_TYPESCRIPT
-            let v44 : string = $"%A{v37}"
+            let v36 : Async<unit> = null |> unbox<Async<unit>>
+            v36
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v37 : Async<unit> = null |> unbox<Async<unit>>
+            v37
+#endif
+            
+#else
+            let v38 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
+            let v39 : Async<unit> = v38 v30
+            v39
+#endif
+            |> fun x -> _v31 <- Some x
+            let v40 : Async<unit> = _v31.Value
+            do! v40 
+            return true 
+            with ex ->
+            let v41 : exn = ex
+            let v42 : string option = None
+            let v43 : bool = true in let mutable _v42 = v42
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v44 : string = $"%A{v41}"
             v44
 #endif
             
-#if FABLE_COMPILER_PYTHON
-            let v45 : string = $"%A{v37}"
-            v45
-#endif
-            |> fun x -> _v38 <- Some x
-            let v46 : string = _v38.Value
-            let v47 : US0 = US0_0
-            let v48 : (unit -> string) = closure3(v46)
-            let v49 : (unit -> string) = closure4()
-            method2(v47, v48, v49)
-            return false 
-            (*
-            let v50 : bool = *)
-            }
-            |> fun x -> _v18 <- Some x
-            let v51 : Async<bool> = _v18 |> Option.get
-            v51
-#endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v52 : Async<bool> = null |> unbox<Async<bool>>
-            v52
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v53 : Async<bool> = null |> unbox<Async<bool>>
-            v53
-#endif
-            |> fun x -> _v13 <- Some x
-            let v54 : Async<bool> = _v13.Value
-            v54
-        | US6_0(v55) -> (* Some *)
-            let v56 : Async<bool> option = None
-            let v57 : bool = true in let mutable _v56 = v56
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v58 : Async<bool> = null |> unbox<Async<bool>>
-            v58
-#endif
-            
 #if FABLE_COMPILER_RUST && WASM
-            let v59 : Async<bool> = null |> unbox<Async<bool>>
-            v59
+            let v45 : string = $"%A{v41}"
+            v45
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
+            let v46 : string = $"%A{v41}"
+            v46
+#endif
+            
+#if FABLE_COMPILER_TYPESCRIPT
+            let v47 : string = $"%A{v41}"
+            v47
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v48 : string = $"%A{v41}"
+            v48
+#endif
+            
+#else
+            let v49 : string = $"{v41.GetType ()}: {v41.Message}"
+            v49
+#endif
+            |> fun x -> _v42 <- Some x
+            let v50 : string = _v42.Value
+            let v51 : US0 = US0_0
+            let v52 : (unit -> string) = closure3(v50)
+            let v53 : (unit -> string) = closure4()
+            method2(v51, v52, v53)
+            return false 
+            (*
+            let v54 : bool = *)
+            }
+            |> fun x -> _v22 <- Some x
+            let v55 : Async<bool> = _v22 |> Option.get
+            v55
+#endif
+            |> fun x -> _v15 <- Some x
+            let v56 : Async<bool> = _v15.Value
+            v56
+        | US6_0(v57) -> (* Some *)
+            let v58 : Async<bool> option = None
+            let v59 : bool = true in let mutable _v58 = v58
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
             let v60 : Async<bool> = null |> unbox<Async<bool>>
             v60
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v61 : Async<bool> option = None
-            let mutable _v61 = v61
-            async {
-            let v62 : Async<bool> option = None
-            let v63 : bool = true in let mutable _v62 = v62
+#if FABLE_COMPILER_RUST && WASM
+            let v61 : Async<bool> = null |> unbox<Async<bool>>
+            v61
+#endif
             
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v62 : Async<bool> = null |> unbox<Async<bool>>
+            v62
+#endif
+            
+#if FABLE_COMPILER_TYPESCRIPT
+            let v63 : Async<bool> = null |> unbox<Async<bool>>
+            v63
+#endif
+            
+#if FABLE_COMPILER_PYTHON
             let v64 : Async<bool> = null |> unbox<Async<bool>>
             v64
 #endif
             
-#if FABLE_COMPILER_RUST && WASM
-            let v65 : Async<bool> = null |> unbox<Async<bool>>
-            v65
-#endif
-            
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v66 : Async<bool> = null |> unbox<Async<bool>>
-            v66
-#endif
-            
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v67 : Async<bool> option = None
-            let mutable _v67 = v67
+#else
+            let v65 : Async<bool> option = None
+            let mutable _v65 = v65
             async {
-            let v68 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-            let! v68 = v68 
-            let v69 : System.Threading.CancellationToken = v68 
-            let v70 : System.Net.Sockets.TcpClient = new System.Net.Sockets.TcpClient ()
-            use v70 = v70 
-            let v71 : System.Net.Sockets.TcpClient = v70 
-            try
-            let v72 : string = "127.0.0.1"
-            let v73 : System.Threading.Tasks.ValueTask = v71.ConnectAsync (v72, v2, v69)
-            let v74 : (unit -> System.Threading.Tasks.Task) = v73.AsTask
-            let v75 : System.Threading.Tasks.Task = v74 ()
-            let v76 : Async<unit> option = None
-            let v77 : bool = true in let mutable _v76 = v76
+            let v66 : Async<bool> option = None
+            let v67 : bool = true in let mutable _v66 = v66
+            
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v78 : Async<unit> = null |> unbox<Async<unit>>
-            v78
+            let v68 : Async<bool> = null |> unbox<Async<bool>>
+            v68
 #endif
             
 #if FABLE_COMPILER_RUST && WASM
-            let v79 : Async<unit> = null |> unbox<Async<unit>>
-            v79
+            let v69 : Async<bool> = null |> unbox<Async<bool>>
+            v69
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v80 : Async<unit> = null |> unbox<Async<unit>>
-            v80
-#endif
-            
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v81 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
-            let v82 : Async<unit> = v81 v75
-            v82
+            let v70 : Async<bool> = null |> unbox<Async<bool>>
+            v70
 #endif
             
 #if FABLE_COMPILER_TYPESCRIPT
-            let v83 : Async<unit> = null |> unbox<Async<unit>>
-            v83
+            let v71 : Async<bool> = null |> unbox<Async<bool>>
+            v71
 #endif
             
 #if FABLE_COMPILER_PYTHON
+            let v72 : Async<bool> = null |> unbox<Async<bool>>
+            v72
+#endif
+            
+#else
+            let v73 : Async<bool> option = None
+            let mutable _v73 = v73
+            async {
+            let v74 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+            let! v74 = v74 
+            let v75 : System.Threading.CancellationToken = v74 
+            let v76 : System.Net.Sockets.TcpClient = new System.Net.Sockets.TcpClient ()
+            use v76 = v76 
+            let v77 : System.Net.Sockets.TcpClient = v76 
+            try
+            let v78 : string = "127.0.0.1"
+            let v79 : System.Threading.Tasks.ValueTask = v77.ConnectAsync (v78, v2, v75)
+            let v80 : (unit -> System.Threading.Tasks.Task) = v79.AsTask
+            let v81 : System.Threading.Tasks.Task = v80 ()
+            let v82 : Async<unit> option = None
+            let v83 : bool = true in let mutable _v82 = v82
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
             let v84 : Async<unit> = null |> unbox<Async<unit>>
             v84
 #endif
-            |> fun x -> _v76 <- Some x
-            let v85 : Async<unit> = _v76.Value
-            do! v85 
-            return true 
-            with ex ->
-            let v86 : exn = ex
-            let v87 : string option = None
-            let v88 : bool = true in let mutable _v87 = v87
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v89 : string = $"%A{v86}"
-            v89
-#endif
             
 #if FABLE_COMPILER_RUST && WASM
-            let v90 : string = $"%A{v86}"
+            let v85 : Async<unit> = null |> unbox<Async<unit>>
+            v85
+#endif
+            
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v86 : Async<unit> = null |> unbox<Async<unit>>
+            v86
+#endif
+            
+#if FABLE_COMPILER_TYPESCRIPT
+            let v87 : Async<unit> = null |> unbox<Async<unit>>
+            v87
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v88 : Async<unit> = null |> unbox<Async<unit>>
+            v88
+#endif
+            
+#else
+            let v89 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
+            let v90 : Async<unit> = v89 v81
             v90
 #endif
+            |> fun x -> _v82 <- Some x
+            let v91 : Async<unit> = _v82.Value
+            do! v91 
+            return true 
+            with ex ->
+            let v92 : exn = ex
+            let v93 : string option = None
+            let v94 : bool = true in let mutable _v93 = v93
             
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v91 : string = $"%A{v86}"
-            v91
-#endif
-            
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v92 : string = $"{v86.GetType ()}: {v86.Message}"
-            v92
-#endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v93 : string = $"%A{v86}"
-            v93
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v94 : string = $"%A{v86}"
-            v94
-#endif
-            |> fun x -> _v87 <- Some x
-            let v95 : string = _v87.Value
-            let v96 : US0 = US0_0
-            let v97 : (unit -> string) = closure3(v95)
-            let v98 : (unit -> string) = closure4()
-            method2(v96, v97, v98)
-            return false 
-            (*
-            let v99 : bool = *)
-            }
-            |> fun x -> _v67 <- Some x
-            let v100 : Async<bool> = _v67 |> Option.get
-            v100
-#endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v101 : Async<bool> = null |> unbox<Async<bool>>
-            v101
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v102 : Async<bool> = null |> unbox<Async<bool>>
-            v102
-#endif
-            |> fun x -> _v62 <- Some x
-            let v103 : Async<bool> = _v62.Value
-            let v104 : Async<US3> option = None
-            let v105 : bool = true in let mutable _v104 = v104
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v106 : Async<US3> = null |> unbox<Async<US3>>
-            v106
+            let v95 : string = $"%A{v92}"
+            v95
 #endif
             
 #if FABLE_COMPILER_RUST && WASM
-            let v107 : Async<US3> = null |> unbox<Async<US3>>
-            v107
+            let v96 : string = $"%A{v92}"
+            v96
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v108 : Async<US3> = null |> unbox<Async<US3>>
-            v108
+            let v97 : string = $"%A{v92}"
+            v97
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v109 : Async<US3> option = None
-            let v110 : bool = true in let mutable _v109 = v109
+#if FABLE_COMPILER_TYPESCRIPT
+            let v98 : string = $"%A{v92}"
+            v98
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v99 : string = $"%A{v92}"
+            v99
+#endif
+            
+#else
+            let v100 : string = $"{v92.GetType ()}: {v92.Message}"
+            v100
+#endif
+            |> fun x -> _v93 <- Some x
+            let v101 : string = _v93.Value
+            let v102 : US0 = US0_0
+            let v103 : (unit -> string) = closure3(v101)
+            let v104 : (unit -> string) = closure4()
+            method2(v102, v103, v104)
+            return false 
+            (*
+            let v105 : bool = *)
+            }
+            |> fun x -> _v73 <- Some x
+            let v106 : Async<bool> = _v73 |> Option.get
+            v106
+#endif
+            |> fun x -> _v66 <- Some x
+            let v107 : Async<bool> = _v66.Value
+            let v108 : Async<US3> option = None
+            let v109 : bool = true in let mutable _v108 = v108
+            
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v110 : Async<US3> = null |> unbox<Async<US3>>
+            v110
+#endif
+            
+#if FABLE_COMPILER_RUST && WASM
             let v111 : Async<US3> = null |> unbox<Async<US3>>
             v111
 #endif
             
-#if FABLE_COMPILER_RUST && WASM
+#if FABLE_COMPILER_RUST && CONTRACT
             let v112 : Async<US3> = null |> unbox<Async<US3>>
             v112
 #endif
             
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_TYPESCRIPT
             let v113 : Async<US3> = null |> unbox<Async<US3>>
             v113
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v114 : Async<US3> option = None
-            let mutable _v114 = v114
-            async {
-            let v115 : Async<Async<bool>> option = None
+#if FABLE_COMPILER_PYTHON
+            let v114 : Async<US3> = null |> unbox<Async<US3>>
+            v114
+#endif
+            
+#else
+            let v115 : Async<US3> option = None
             let v116 : bool = true in let mutable _v115 = v115
             
+#if FABLE_COMPILER || WASM || CONTRACT
+            
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v117 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+            let v117 : Async<US3> = null |> unbox<Async<US3>>
             v117
 #endif
             
 #if FABLE_COMPILER_RUST && WASM
-            let v118 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+            let v118 : Async<US3> = null |> unbox<Async<US3>>
             v118
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v119 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+            let v119 : Async<US3> = null |> unbox<Async<US3>>
             v119
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v120 : Async<Async<bool>> = Async.StartChild (v103, v55)
+#if FABLE_COMPILER_TYPESCRIPT
+            let v120 : Async<US3> = null |> unbox<Async<US3>>
             v120
 #endif
             
-#if FABLE_COMPILER_TYPESCRIPT
-            let v121 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+#if FABLE_COMPILER_PYTHON
+            let v121 : Async<US3> = null |> unbox<Async<US3>>
             v121
 #endif
             
-#if FABLE_COMPILER_PYTHON
-            let v122 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
-            v122
-#endif
-            |> fun x -> _v115 <- Some x
-            let v123 : Async<Async<bool>> = _v115.Value
-            let! v123 = v123 
-            let v124 : Async<bool> = v123 
-            let v125 : Async<Choice<bool, exn>> option = None
-            let v126 : bool = true in let mutable _v125 = v125
+#else
+            let v122 : Async<US3> option = None
+            let mutable _v122 = v122
+            async {
+            let v123 : Async<Async<bool>> option = None
+            let v124 : bool = true in let mutable _v123 = v123
+            
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v127 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+            let v125 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+            v125
+#endif
+            
+#if FABLE_COMPILER_RUST && WASM
+            let v126 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+            v126
+#endif
+            
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v127 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
             v127
 #endif
             
-#if FABLE_COMPILER_RUST && WASM
-            let v128 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+#if FABLE_COMPILER_TYPESCRIPT
+            let v128 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
             v128
 #endif
             
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v129 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+#if FABLE_COMPILER_PYTHON
+            let v129 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
             v129
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v130 : (Async<bool> -> Async<Choice<bool, exn>>) = Async.Catch
-            let v131 : Async<Choice<bool, exn>> = v130 v124
-            v131
+#else
+            let v130 : Async<Async<bool>> = Async.StartChild (v107, v57)
+            v130
 #endif
+            |> fun x -> _v123 <- Some x
+            let v131 : Async<Async<bool>> = _v123.Value
+            let! v131 = v131 
+            let v132 : Async<bool> = v131 
+            let v133 : Async<Choice<bool, exn>> option = None
+            let v134 : bool = true in let mutable _v133 = v133
             
-#if FABLE_COMPILER_TYPESCRIPT
-            let v132 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
-            v132
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v133 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
-            v133
-#endif
-            |> fun x -> _v125 <- Some x
-            let v134 : Async<Choice<bool, exn>> = _v125.Value
-            let v135 : Async<US4> option = None
-            let v136 : bool = true in let mutable _v135 = v135
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v137 : Async<US4> = null |> unbox<Async<US4>>
+            let v135 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+            v135
+#endif
+            
+#if FABLE_COMPILER_RUST && WASM
+            let v136 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+            v136
+#endif
+            
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v137 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
             v137
 #endif
             
-#if FABLE_COMPILER_RUST && WASM
-            let v138 : Async<US4> = null |> unbox<Async<US4>>
+#if FABLE_COMPILER_TYPESCRIPT
+            let v138 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
             v138
 #endif
             
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v139 : Async<US4> = null |> unbox<Async<US4>>
+#if FABLE_COMPILER_PYTHON
+            let v139 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
             v139
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v140 : Async<US4> option = None
-            let mutable _v140 = v140
-            async {
-            let! v134 = v134 
-            let v141 : Choice<bool, exn> = v134 
-            let v142 : US4 option = None
-            let v143 : bool = true in let mutable _v142 = v142
+#else
+            let v140 : (Async<bool> -> Async<Choice<bool, exn>>) = Async.Catch
+            let v141 : Async<Choice<bool, exn>> = v140 v132
+            v141
+#endif
+            |> fun x -> _v133 <- Some x
+            let v142 : Async<Choice<bool, exn>> = _v133.Value
+            let v143 : Async<US4> option = None
+            let v144 : bool = true in let mutable _v143 = v143
+            
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v144 : US4 = null |> unbox<US4>
-            v144
-#endif
-            
-#if FABLE_COMPILER_RUST && WASM
-            let v145 : US4 = null |> unbox<US4>
+            let v145 : Async<US4> = null |> unbox<Async<US4>>
             v145
 #endif
             
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v146 : US4 = null |> unbox<US4>
+#if FABLE_COMPILER_RUST && WASM
+            let v146 : Async<US4> = null |> unbox<Async<US4>>
             v146
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v147 : (bool -> US4) = closure9()
-            let v148 : (exn -> US4) = closure10()
-            let v149 : US4 = match v141 with Choice1Of2 x -> v147 x | Choice2Of2 x -> v148 x
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v147 : Async<US4> = null |> unbox<Async<US4>>
+            v147
+#endif
+            
+#if FABLE_COMPILER_TYPESCRIPT
+            let v148 : Async<US4> = null |> unbox<Async<US4>>
+            v148
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v149 : Async<US4> = null |> unbox<Async<US4>>
             v149
 #endif
             
-#if FABLE_COMPILER_TYPESCRIPT
-            let v150 : US4 = null |> unbox<US4>
-            v150
-#endif
+#else
+            let v150 : Async<US4> option = None
+            let mutable _v150 = v150
+            async {
+            let! v142 = v142 
+            let v151 : Choice<bool, exn> = v142 
+            let v152 : US4 option = None
+            let v153 : bool = true in let mutable _v152 = v152
             
-#if FABLE_COMPILER_PYTHON
-            let v151 : US4 = null |> unbox<US4>
-            v151
-#endif
-            |> fun x -> _v142 <- Some x
-            let v152 : US4 = _v142.Value
-            return v152 
-            }
-            |> fun x -> _v140 <- Some x
-            let v153 : Async<US4> = _v140 |> Option.get
-            v153
-#endif
+#if FABLE_COMPILER || WASM || CONTRACT
             
-#if FABLE_COMPILER_TYPESCRIPT
-            let v154 : Async<US4> = null |> unbox<Async<US4>>
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v154 : US4 = null |> unbox<US4>
             v154
 #endif
             
-#if FABLE_COMPILER_PYTHON
-            let v155 : Async<US4> = null |> unbox<Async<US4>>
-            v155
-#endif
-            |> fun x -> _v135 <- Some x
-            let v156 : Async<US4> = _v135.Value
-            let v157 : Async<US5> option = None
-            let v158 : bool = true in let mutable _v157 = v157
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v159 : Async<US5> = null |> unbox<Async<US5>>
-            v159
-#endif
-            
 #if FABLE_COMPILER_RUST && WASM
-            let v160 : Async<US5> = null |> unbox<Async<US5>>
-            v160
+            let v155 : US4 = null |> unbox<US4>
+            v155
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v161 : Async<US5> = null |> unbox<Async<US5>>
-            v161
-#endif
-            
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v162 : Async<US5> option = None
-            let mutable _v162 = v162
-            async {
-            let! v156 = v156 
-            let v163 : US4 = v156 
-            let v169 : US5 =
-                match v163 with
-                | US4_0(v164) -> (* Choice1Of2 *)
-                    US5_0(v164)
-                | US4_1(v166) -> (* Choice2Of2 *)
-                    US5_1(v166)
-            return v169 
-            }
-            |> fun x -> _v162 <- Some x
-            let v170 : Async<US5> = _v162 |> Option.get
-            v170
+            let v156 : US4 = null |> unbox<US4>
+            v156
 #endif
             
 #if FABLE_COMPILER_TYPESCRIPT
+            let v157 : US4 = null |> unbox<US4>
+            v157
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v158 : US4 = null |> unbox<US4>
+            v158
+#endif
+            
+#else
+            let v159 : (bool -> US4) = closure9()
+            let v160 : (exn -> US4) = closure10()
+            let v161 : US4 = match v151 with Choice1Of2 x -> v159 x | Choice2Of2 x -> v160 x
+            v161
+#endif
+            |> fun x -> _v152 <- Some x
+            let v162 : US4 = _v152.Value
+            return v162 
+            }
+            |> fun x -> _v150 <- Some x
+            let v163 : Async<US4> = _v150 |> Option.get
+            v163
+#endif
+            |> fun x -> _v143 <- Some x
+            let v164 : Async<US4> = _v143.Value
+            let v165 : Async<US5> option = None
+            let v166 : bool = true in let mutable _v165 = v165
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v167 : Async<US5> = null |> unbox<Async<US5>>
+            v167
+#endif
+            
+#if FABLE_COMPILER_RUST && WASM
+            let v168 : Async<US5> = null |> unbox<Async<US5>>
+            v168
+#endif
+            
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v169 : Async<US5> = null |> unbox<Async<US5>>
+            v169
+#endif
+            
+#if FABLE_COMPILER_TYPESCRIPT
+            let v170 : Async<US5> = null |> unbox<Async<US5>>
+            v170
+#endif
+            
+#if FABLE_COMPILER_PYTHON
             let v171 : Async<US5> = null |> unbox<Async<US5>>
             v171
 #endif
             
-#if FABLE_COMPILER_PYTHON
-            let v172 : Async<US5> = null |> unbox<Async<US5>>
-            v172
+#else
+            let v172 : Async<US5> option = None
+            let mutable _v172 = v172
+            async {
+            let! v164 = v164 
+            let v173 : US4 = v164 
+            let v179 : US5 =
+                match v173 with
+                | US4_0(v174) -> (* Choice1Of2 *)
+                    US5_0(v174)
+                | US4_1(v176) -> (* Choice2Of2 *)
+                    US5_1(v176)
+            return v179 
+            }
+            |> fun x -> _v172 <- Some x
+            let v180 : Async<US5> = _v172 |> Option.get
+            v180
 #endif
-            |> fun x -> _v157 <- Some x
-            let v173 : Async<US5> = _v157.Value
-            let v174 : Async<US3> option = None
-            let v175 : bool = true in let mutable _v174 = v174
+            |> fun x -> _v165 <- Some x
+            let v181 : Async<US5> = _v165.Value
+            let v182 : Async<US3> option = None
+            let v183 : bool = true in let mutable _v182 = v182
+            
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v176 : Async<US3> = null |> unbox<Async<US3>>
-            v176
+            let v184 : Async<US3> = null |> unbox<Async<US3>>
+            v184
 #endif
             
 #if FABLE_COMPILER_RUST && WASM
-            let v177 : Async<US3> = null |> unbox<Async<US3>>
-            v177
+            let v185 : Async<US3> = null |> unbox<Async<US3>>
+            v185
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v178 : Async<US3> = null |> unbox<Async<US3>>
-            v178
+            let v186 : Async<US3> = null |> unbox<Async<US3>>
+            v186
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v179 : Async<US3> option = None
-            let mutable _v179 = v179
+#if FABLE_COMPILER_TYPESCRIPT
+            let v187 : Async<US3> = null |> unbox<Async<US3>>
+            v187
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v188 : Async<US3> = null |> unbox<Async<US3>>
+            v188
+#endif
+            
+#else
+            let v189 : Async<US3> option = None
+            let mutable _v189 = v189
             async {
-            let! v173 = v173 
-            let v180 : US5 = v173 
-            let v206 : US3 =
-                match v180 with
-                | US5_1(v183) -> (* Error *)
-                    let v184 : string = $"%A{v183}"
-                    let v185 : string = "System.TimeoutException"
-                    let v186 : bool = v184.Contains v185
-                    if v186 then
-                        let v187 : US0 = US0_1
-                        let v188 : (unit -> string) = closure11()
-                        let v189 : (unit -> string) = closure12(v55)
-                        method2(v187, v188, v189)
+            let! v181 = v181 
+            let v190 : US5 = v181 
+            let v216 : US3 =
+                match v190 with
+                | US5_1(v193) -> (* Error *)
+                    let v194 : string = $"%A{v193}"
+                    let v195 : string = "System.TimeoutException"
+                    let v196 : bool = v194.Contains v195
+                    if v196 then
+                        let v197 : US0 = US0_1
+                        let v198 : (unit -> string) = closure11()
+                        let v199 : (unit -> string) = closure12(v57)
+                        method2(v197, v198, v199)
                         US3_1
                     else
-                        let v191 : string option = None
-                        let v192 : bool = true in let mutable _v191 = v191
+                        let v201 : string option = None
+                        let v202 : bool = true in let mutable _v201 = v201
+                        
+#if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v193 : string = $"%A{v183}"
-                        v193
+                        let v203 : string = $"%A{v193}"
+                        v203
 #endif
                         
 #if FABLE_COMPILER_RUST && WASM
-                        let v194 : string = $"%A{v183}"
-                        v194
+                        let v204 : string = $"%A{v193}"
+                        v204
 #endif
                         
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v195 : string = $"%A{v183}"
-                        v195
-#endif
-                        
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-                        let v196 : string = $"{v183.GetType ()}: {v183.Message}"
-                        v196
+                        let v205 : string = $"%A{v193}"
+                        v205
 #endif
                         
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v197 : string = $"%A{v183}"
-                        v197
+                        let v206 : string = $"%A{v193}"
+                        v206
 #endif
                         
 #if FABLE_COMPILER_PYTHON
-                        let v198 : string = $"%A{v183}"
-                        v198
+                        let v207 : string = $"%A{v193}"
+                        v207
 #endif
-                        |> fun x -> _v191 <- Some x
-                        let v199 : string = _v191.Value
-                        let v200 : US0 = US0_4
-                        let v201 : (unit -> string) = closure13(v199)
-                        let v202 : (unit -> string) = closure12(v55)
-                        method2(v200, v201, v202)
+                        
+#else
+                        let v208 : string = $"{v193.GetType ()}: {v193.Message}"
+                        v208
+#endif
+                        |> fun x -> _v201 <- Some x
+                        let v209 : string = _v201.Value
+                        let v210 : US0 = US0_4
+                        let v211 : (unit -> string) = closure13(v209)
+                        let v212 : (unit -> string) = closure12(v57)
+                        method2(v210, v211, v212)
                         US3_1
-                | US5_0(v181) -> (* Ok *)
-                    US3_0(v181)
-            return v206 
+                | US5_0(v191) -> (* Ok *)
+                    US3_0(v191)
+            return v216 
             }
-            |> fun x -> _v179 <- Some x
-            let v207 : Async<US3> = _v179 |> Option.get
-            v207
+            |> fun x -> _v189 <- Some x
+            let v217 : Async<US3> = _v189 |> Option.get
+            v217
 #endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v208 : Async<US3> = null |> unbox<Async<US3>>
-            v208
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v209 : Async<US3> = null |> unbox<Async<US3>>
-            v209
-#endif
-            |> fun x -> _v174 <- Some x
-            let v210 : Async<US3> = _v174.Value
-            return! v210 
+            |> fun x -> _v182 <- Some x
+            let v218 : Async<US3> = _v182.Value
+            return! v218 
             }
-            |> fun x -> _v114 <- Some x
-            let v211 : Async<US3> = _v114 |> Option.get
-            v211
+            |> fun x -> _v122 <- Some x
+            let v219 : Async<US3> = _v122 |> Option.get
+            v219
 #endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v212 : Async<US3> = null |> unbox<Async<US3>>
-            v212
+            |> fun x -> _v115 <- Some x
+            let v220 : Async<US3> = _v115.Value
+            v220
 #endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v213 : Async<US3> = null |> unbox<Async<US3>>
-            v213
-#endif
-            |> fun x -> _v109 <- Some x
-            let v214 : Async<US3> = _v109.Value
-            v214
-#endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v215 : Async<US3> = null |> unbox<Async<US3>>
-            v215
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v216 : Async<US3> = null |> unbox<Async<US3>>
-            v216
-#endif
-            |> fun x -> _v104 <- Some x
-            let v217 : Async<US3> = _v104.Value
-            let! v217 = v217 
-            let v218 : US3 = v217 
-            let v221 : bool =
-                match v218 with
+            |> fun x -> _v108 <- Some x
+            let v221 : Async<US3> = _v108.Value
+            let! v221 = v221 
+            let v222 : US3 = v221 
+            let v225 : bool =
+                match v222 with
                 | US3_1 -> (* None *)
                     false
-                | US3_0(v219) -> (* Some *)
-                    v219
-            return v221 
+                | US3_0(v223) -> (* Some *)
+                    v223
+            return v225 
             }
-            |> fun x -> _v61 <- Some x
-            let v222 : Async<bool> = _v61 |> Option.get
-            v222
+            |> fun x -> _v65 <- Some x
+            let v226 : Async<bool> = _v65 |> Option.get
+            v226
 #endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v223 : Async<bool> = null |> unbox<Async<bool>>
-            v223
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v224 : Async<bool> = null |> unbox<Async<bool>>
-            v224
-#endif
-            |> fun x -> _v56 <- Some x
-            let v225 : Async<bool> = _v56.Value
-            v225
-    let! v227 = v227 
-    let v228 : bool = v227 
-    let v229 : bool = v228 = v1
-    if v229 then
+            |> fun x -> _v58 <- Some x
+            let v227 : Async<bool> = _v58.Value
+            v227
+    let! v229 = v229 
+    let v230 : bool = v229 
+    let v231 : bool = v230 = v1
+    if v231 then
         return v3 
         (*
         ()
     else
         *) else
-        let v230 : int64 = v3 % 100L
-        let v231 : bool = v230 = 0L
-        if v231 then
-            let v232 : US0 = US0_0
-            let v233 : (unit -> string) = closure18()
-            let v234 : (unit -> string) = closure19(v0, v1, v2, v3)
-            method2(v232, v233, v234)
-        let v235 : Async<unit> option = None
-        let v236 : bool = true in let mutable _v235 = v235
+        let v232 : int64 = v3 % 100L
+        let v233 : bool = v232 = 0L
+        if v233 then
+            let v234 : US0 = US0_0
+            let v235 : (unit -> string) = closure18()
+            let v236 : (unit -> string) = closure19(v0, v1, v2, v3)
+            method2(v234, v235, v236)
+        let v237 : Async<unit> option = None
+        let v238 : bool = true in let mutable _v237 = v237
+        
+#if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v237 : Async<unit> = null |> unbox<Async<unit>>
-        v237
-#endif
-        
-#if FABLE_COMPILER_RUST && WASM
-        let v238 : Async<unit> = null |> unbox<Async<unit>>
-        v238
-#endif
-        
-#if FABLE_COMPILER_RUST && CONTRACT
         let v239 : Async<unit> = null |> unbox<Async<unit>>
         v239
 #endif
         
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-        let v240 : (int32 -> Async<unit>) = Async.Sleep
-        let v241 : Async<unit> = v240 10
+#if FABLE_COMPILER_RUST && WASM
+        let v240 : Async<unit> = null |> unbox<Async<unit>>
+        v240
+#endif
+        
+#if FABLE_COMPILER_RUST && CONTRACT
+        let v241 : Async<unit> = null |> unbox<Async<unit>>
         v241
 #endif
         
@@ -2033,28 +2113,24 @@ and method6 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
         let v243 : Async<unit> = null |> unbox<Async<unit>>
         v243
 #endif
-        |> fun x -> _v235 <- Some x
-        let v244 : Async<unit> = _v235.Value
-        do! v244 
-        let v245 : int64 = v3 + 1L
-        let v246 : Async<int64> = method6(v0, v1, v2, v245)
-        return! v246 
+        
+#else
+        let v244 : (int32 -> Async<unit>) = Async.Sleep
+        let v245 : Async<unit> = v244 10
+        v245
+#endif
+        |> fun x -> _v237 <- Some x
+        let v246 : Async<unit> = _v237.Value
+        do! v246 
+        let v247 : int64 = v3 + 1L
+        let v248 : Async<int64> = method6(v0, v1, v2, v247)
+        return! v248 
         (*
         ()
     *)
     }
-    |> fun x -> _v9 <- Some x
-    let v247 : Async<int64> = _v9 |> Option.get
-    v247
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v248 : Async<int64> = null |> unbox<Async<int64>>
-    v248
-#endif
-    
-#if FABLE_COMPILER_PYTHON
-    let v249 : Async<int64> = null |> unbox<Async<int64>>
+    |> fun x -> _v11 <- Some x
+    let v249 : Async<int64> = _v11 |> Option.get
     v249
 #endif
     |> fun x -> _v4 <- Some x
@@ -2077,6 +2153,8 @@ and closure16 (v0 : int32 option, v1 : bool) (v2 : int32) : Async<int64> =
         let v9 : Async<US2> option = None
         let v10 : bool = true in let mutable _v9 = v9
         
+#if FABLE_COMPILER || WASM || CONTRACT
+        
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
         let v11 : Async<US2> = null |> unbox<Async<US2>>
         v11
@@ -2092,356 +2170,374 @@ and closure16 (v0 : int32 option, v1 : bool) (v2 : int32) : Async<int64> =
         v13
 #endif
         
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-        let v14 : Async<US2> option = None
-        let v15 : bool = true in let mutable _v14 = v14
+#if FABLE_COMPILER_TYPESCRIPT
+        let v14 : Async<US2> = null |> unbox<Async<US2>>
+        v14
+#endif
+        
+#if FABLE_COMPILER_PYTHON
+        let v15 : Async<US2> = null |> unbox<Async<US2>>
+        v15
+#endif
+        
+#else
+        let v16 : Async<US2> option = None
+        let v17 : bool = true in let mutable _v16 = v16
+        
+#if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v16 : Async<US2> = null |> unbox<Async<US2>>
-        v16
-#endif
-        
-#if FABLE_COMPILER_RUST && WASM
-        let v17 : Async<US2> = null |> unbox<Async<US2>>
-        v17
-#endif
-        
-#if FABLE_COMPILER_RUST && CONTRACT
         let v18 : Async<US2> = null |> unbox<Async<US2>>
         v18
 #endif
         
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-        let v19 : Async<US2> option = None
-        let mutable _v19 = v19
-        async {
-        let v20 : Async<Async<int64>> option = None
-        let v21 : bool = true in let mutable _v20 = v20
-        
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v22 : Async<Async<int64>> = null |> unbox<Async<Async<int64>>>
-        v22
-#endif
-        
 #if FABLE_COMPILER_RUST && WASM
-        let v23 : Async<Async<int64>> = null |> unbox<Async<Async<int64>>>
-        v23
+        let v19 : Async<US2> = null |> unbox<Async<US2>>
+        v19
 #endif
         
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v24 : Async<Async<int64>> = null |> unbox<Async<Async<int64>>>
-        v24
-#endif
-        
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-        let v25 : Async<Async<int64>> = Async.StartChild (v4, v8)
-        v25
+        let v20 : Async<US2> = null |> unbox<Async<US2>>
+        v20
 #endif
         
 #if FABLE_COMPILER_TYPESCRIPT
+        let v21 : Async<US2> = null |> unbox<Async<US2>>
+        v21
+#endif
+        
+#if FABLE_COMPILER_PYTHON
+        let v22 : Async<US2> = null |> unbox<Async<US2>>
+        v22
+#endif
+        
+#else
+        let v23 : Async<US2> option = None
+        let mutable _v23 = v23
+        async {
+        let v24 : Async<Async<int64>> option = None
+        let v25 : bool = true in let mutable _v24 = v24
+        
+#if FABLE_COMPILER || WASM || CONTRACT
+        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
         let v26 : Async<Async<int64>> = null |> unbox<Async<Async<int64>>>
         v26
 #endif
         
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_RUST && WASM
         let v27 : Async<Async<int64>> = null |> unbox<Async<Async<int64>>>
         v27
 #endif
-        |> fun x -> _v20 <- Some x
-        let v28 : Async<Async<int64>> = _v20.Value
-        let! v28 = v28 
-        let v29 : Async<int64> = v28 
-        let v30 : Async<Choice<int64, exn>> option = None
-        let v31 : bool = true in let mutable _v30 = v30
-        
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v32 : Async<Choice<int64, exn>> = null |> unbox<Async<Choice<int64, exn>>>
-        v32
-#endif
-        
-#if FABLE_COMPILER_RUST && WASM
-        let v33 : Async<Choice<int64, exn>> = null |> unbox<Async<Choice<int64, exn>>>
-        v33
-#endif
         
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v34 : Async<Choice<int64, exn>> = null |> unbox<Async<Choice<int64, exn>>>
-        v34
-#endif
-        
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-        let v35 : (Async<int64> -> Async<Choice<int64, exn>>) = Async.Catch
-        let v36 : Async<Choice<int64, exn>> = v35 v29
-        v36
+        let v28 : Async<Async<int64>> = null |> unbox<Async<Async<int64>>>
+        v28
 #endif
         
 #if FABLE_COMPILER_TYPESCRIPT
+        let v29 : Async<Async<int64>> = null |> unbox<Async<Async<int64>>>
+        v29
+#endif
+        
+#if FABLE_COMPILER_PYTHON
+        let v30 : Async<Async<int64>> = null |> unbox<Async<Async<int64>>>
+        v30
+#endif
+        
+#else
+        let v31 : Async<Async<int64>> = Async.StartChild (v4, v8)
+        v31
+#endif
+        |> fun x -> _v24 <- Some x
+        let v32 : Async<Async<int64>> = _v24.Value
+        let! v32 = v32 
+        let v33 : Async<int64> = v32 
+        let v34 : Async<Choice<int64, exn>> option = None
+        let v35 : bool = true in let mutable _v34 = v34
+        
+#if FABLE_COMPILER || WASM || CONTRACT
+        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+        let v36 : Async<Choice<int64, exn>> = null |> unbox<Async<Choice<int64, exn>>>
+        v36
+#endif
+        
+#if FABLE_COMPILER_RUST && WASM
         let v37 : Async<Choice<int64, exn>> = null |> unbox<Async<Choice<int64, exn>>>
         v37
 #endif
         
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_RUST && CONTRACT
         let v38 : Async<Choice<int64, exn>> = null |> unbox<Async<Choice<int64, exn>>>
         v38
 #endif
-        |> fun x -> _v30 <- Some x
-        let v39 : Async<Choice<int64, exn>> = _v30.Value
-        let v40 : Async<US7> option = None
-        let v41 : bool = true in let mutable _v40 = v40
         
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v42 : Async<US7> = null |> unbox<Async<US7>>
+#if FABLE_COMPILER_TYPESCRIPT
+        let v39 : Async<Choice<int64, exn>> = null |> unbox<Async<Choice<int64, exn>>>
+        v39
+#endif
+        
+#if FABLE_COMPILER_PYTHON
+        let v40 : Async<Choice<int64, exn>> = null |> unbox<Async<Choice<int64, exn>>>
+        v40
+#endif
+        
+#else
+        let v41 : (Async<int64> -> Async<Choice<int64, exn>>) = Async.Catch
+        let v42 : Async<Choice<int64, exn>> = v41 v33
         v42
 #endif
+        |> fun x -> _v34 <- Some x
+        let v43 : Async<Choice<int64, exn>> = _v34.Value
+        let v44 : Async<US7> option = None
+        let v45 : bool = true in let mutable _v44 = v44
         
-#if FABLE_COMPILER_RUST && WASM
-        let v43 : Async<US7> = null |> unbox<Async<US7>>
-        v43
-#endif
-        
-#if FABLE_COMPILER_RUST && CONTRACT
-        let v44 : Async<US7> = null |> unbox<Async<US7>>
-        v44
-#endif
-        
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-        let v45 : Async<US7> option = None
-        let mutable _v45 = v45
-        async {
-        let! v39 = v39 
-        let v46 : Choice<int64, exn> = v39 
-        let v47 : US7 option = None
-        let v48 : bool = true in let mutable _v47 = v47
+#if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v49 : US7 = null |> unbox<US7>
-        v49
+        let v46 : Async<US7> = null |> unbox<Async<US7>>
+        v46
 #endif
         
 #if FABLE_COMPILER_RUST && WASM
-        let v50 : US7 = null |> unbox<US7>
-        v50
+        let v47 : Async<US7> = null |> unbox<Async<US7>>
+        v47
 #endif
         
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v51 : US7 = null |> unbox<US7>
-        v51
-#endif
-        
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-        let v52 : (int64 -> US7) = closure20()
-        let v53 : (exn -> US7) = closure21()
-        let v54 : US7 = match v46 with Choice1Of2 x -> v52 x | Choice2Of2 x -> v53 x
-        v54
+        let v48 : Async<US7> = null |> unbox<Async<US7>>
+        v48
 #endif
         
 #if FABLE_COMPILER_TYPESCRIPT
+        let v49 : Async<US7> = null |> unbox<Async<US7>>
+        v49
+#endif
+        
+#if FABLE_COMPILER_PYTHON
+        let v50 : Async<US7> = null |> unbox<Async<US7>>
+        v50
+#endif
+        
+#else
+        let v51 : Async<US7> option = None
+        let mutable _v51 = v51
+        async {
+        let! v43 = v43 
+        let v52 : Choice<int64, exn> = v43 
+        let v53 : US7 option = None
+        let v54 : bool = true in let mutable _v53 = v53
+        
+#if FABLE_COMPILER || WASM || CONTRACT
+        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
         let v55 : US7 = null |> unbox<US7>
         v55
 #endif
         
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_RUST && WASM
         let v56 : US7 = null |> unbox<US7>
         v56
 #endif
-        |> fun x -> _v47 <- Some x
-        let v57 : US7 = _v47.Value
-        return v57 
-        }
-        |> fun x -> _v45 <- Some x
-        let v58 : Async<US7> = _v45 |> Option.get
+        
+#if FABLE_COMPILER_RUST && CONTRACT
+        let v57 : US7 = null |> unbox<US7>
+        v57
+#endif
+        
+#if FABLE_COMPILER_TYPESCRIPT
+        let v58 : US7 = null |> unbox<US7>
         v58
 #endif
         
-#if FABLE_COMPILER_TYPESCRIPT
-        let v59 : Async<US7> = null |> unbox<Async<US7>>
+#if FABLE_COMPILER_PYTHON
+        let v59 : US7 = null |> unbox<US7>
         v59
 #endif
         
-#if FABLE_COMPILER_PYTHON
-        let v60 : Async<US7> = null |> unbox<Async<US7>>
-        v60
+#else
+        let v60 : (int64 -> US7) = closure20()
+        let v61 : (exn -> US7) = closure21()
+        let v62 : US7 = match v52 with Choice1Of2 x -> v60 x | Choice2Of2 x -> v61 x
+        v62
 #endif
-        |> fun x -> _v40 <- Some x
-        let v61 : Async<US7> = _v40.Value
-        let v62 : Async<US8> option = None
-        let v63 : bool = true in let mutable _v62 = v62
-        
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v64 : Async<US8> = null |> unbox<Async<US8>>
+        |> fun x -> _v53 <- Some x
+        let v63 : US7 = _v53.Value
+        return v63 
+        }
+        |> fun x -> _v51 <- Some x
+        let v64 : Async<US7> = _v51 |> Option.get
         v64
 #endif
+        |> fun x -> _v44 <- Some x
+        let v65 : Async<US7> = _v44.Value
+        let v66 : Async<US8> option = None
+        let v67 : bool = true in let mutable _v66 = v66
+        
+#if FABLE_COMPILER || WASM || CONTRACT
+        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+        let v68 : Async<US8> = null |> unbox<Async<US8>>
+        v68
+#endif
         
 #if FABLE_COMPILER_RUST && WASM
-        let v65 : Async<US8> = null |> unbox<Async<US8>>
-        v65
+        let v69 : Async<US8> = null |> unbox<Async<US8>>
+        v69
 #endif
         
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v66 : Async<US8> = null |> unbox<Async<US8>>
-        v66
-#endif
-        
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-        let v67 : Async<US8> option = None
-        let mutable _v67 = v67
-        async {
-        let! v61 = v61 
-        let v68 : US7 = v61 
-        let v74 : US8 =
-            match v68 with
-            | US7_0(v69) -> (* Choice1Of2 *)
-                US8_0(v69)
-            | US7_1(v71) -> (* Choice2Of2 *)
-                US8_1(v71)
-        return v74 
-        }
-        |> fun x -> _v67 <- Some x
-        let v75 : Async<US8> = _v67 |> Option.get
-        v75
+        let v70 : Async<US8> = null |> unbox<Async<US8>>
+        v70
 #endif
         
 #if FABLE_COMPILER_TYPESCRIPT
-        let v76 : Async<US8> = null |> unbox<Async<US8>>
-        v76
+        let v71 : Async<US8> = null |> unbox<Async<US8>>
+        v71
 #endif
         
 #if FABLE_COMPILER_PYTHON
-        let v77 : Async<US8> = null |> unbox<Async<US8>>
-        v77
+        let v72 : Async<US8> = null |> unbox<Async<US8>>
+        v72
 #endif
-        |> fun x -> _v62 <- Some x
-        let v78 : Async<US8> = _v62.Value
-        let v79 : Async<US2> option = None
-        let v80 : bool = true in let mutable _v79 = v79
         
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v81 : Async<US2> = null |> unbox<Async<US2>>
+#else
+        let v73 : Async<US8> option = None
+        let mutable _v73 = v73
+        async {
+        let! v65 = v65 
+        let v74 : US7 = v65 
+        let v80 : US8 =
+            match v74 with
+            | US7_0(v75) -> (* Choice1Of2 *)
+                US8_0(v75)
+            | US7_1(v77) -> (* Choice2Of2 *)
+                US8_1(v77)
+        return v80 
+        }
+        |> fun x -> _v73 <- Some x
+        let v81 : Async<US8> = _v73 |> Option.get
         v81
 #endif
+        |> fun x -> _v66 <- Some x
+        let v82 : Async<US8> = _v66.Value
+        let v83 : Async<US2> option = None
+        let v84 : bool = true in let mutable _v83 = v83
+        
+#if FABLE_COMPILER || WASM || CONTRACT
+        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+        let v85 : Async<US2> = null |> unbox<Async<US2>>
+        v85
+#endif
         
 #if FABLE_COMPILER_RUST && WASM
-        let v82 : Async<US2> = null |> unbox<Async<US2>>
-        v82
+        let v86 : Async<US2> = null |> unbox<Async<US2>>
+        v86
 #endif
         
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v83 : Async<US2> = null |> unbox<Async<US2>>
-        v83
+        let v87 : Async<US2> = null |> unbox<Async<US2>>
+        v87
 #endif
         
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-        let v84 : Async<US2> option = None
-        let mutable _v84 = v84
+#if FABLE_COMPILER_TYPESCRIPT
+        let v88 : Async<US2> = null |> unbox<Async<US2>>
+        v88
+#endif
+        
+#if FABLE_COMPILER_PYTHON
+        let v89 : Async<US2> = null |> unbox<Async<US2>>
+        v89
+#endif
+        
+#else
+        let v90 : Async<US2> option = None
+        let mutable _v90 = v90
         async {
-        let! v78 = v78 
-        let v85 : US8 = v78 
-        let v111 : US2 =
-            match v85 with
-            | US8_1(v88) -> (* Error *)
-                let v89 : string = $"%A{v88}"
-                let v90 : string = "System.TimeoutException"
-                let v91 : bool = v89.Contains v90
-                if v91 then
-                    let v92 : US0 = US0_1
-                    let v93 : (unit -> string) = closure11()
-                    let v94 : (unit -> string) = closure12(v8)
-                    method2(v92, v93, v94)
+        let! v82 = v82 
+        let v91 : US8 = v82 
+        let v117 : US2 =
+            match v91 with
+            | US8_1(v94) -> (* Error *)
+                let v95 : string = $"%A{v94}"
+                let v96 : string = "System.TimeoutException"
+                let v97 : bool = v95.Contains v96
+                if v97 then
+                    let v98 : US0 = US0_1
+                    let v99 : (unit -> string) = closure11()
+                    let v100 : (unit -> string) = closure12(v8)
+                    method2(v98, v99, v100)
                     US2_1
                 else
-                    let v96 : string option = None
-                    let v97 : bool = true in let mutable _v96 = v96
+                    let v102 : string option = None
+                    let v103 : bool = true in let mutable _v102 = v102
+                    
+#if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v98 : string = $"%A{v88}"
-                    v98
+                    let v104 : string = $"%A{v94}"
+                    v104
 #endif
                     
 #if FABLE_COMPILER_RUST && WASM
-                    let v99 : string = $"%A{v88}"
-                    v99
+                    let v105 : string = $"%A{v94}"
+                    v105
 #endif
                     
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v100 : string = $"%A{v88}"
-                    v100
-#endif
-                    
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-                    let v101 : string = $"{v88.GetType ()}: {v88.Message}"
-                    v101
+                    let v106 : string = $"%A{v94}"
+                    v106
 #endif
                     
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v102 : string = $"%A{v88}"
-                    v102
+                    let v107 : string = $"%A{v94}"
+                    v107
 #endif
                     
 #if FABLE_COMPILER_PYTHON
-                    let v103 : string = $"%A{v88}"
-                    v103
+                    let v108 : string = $"%A{v94}"
+                    v108
 #endif
-                    |> fun x -> _v96 <- Some x
-                    let v104 : string = _v96.Value
-                    let v105 : US0 = US0_4
-                    let v106 : (unit -> string) = closure13(v104)
-                    let v107 : (unit -> string) = closure12(v8)
-                    method2(v105, v106, v107)
+                    
+#else
+                    let v109 : string = $"{v94.GetType ()}: {v94.Message}"
+                    v109
+#endif
+                    |> fun x -> _v102 <- Some x
+                    let v110 : string = _v102.Value
+                    let v111 : US0 = US0_4
+                    let v112 : (unit -> string) = closure13(v110)
+                    let v113 : (unit -> string) = closure12(v8)
+                    method2(v111, v112, v113)
                     US2_1
-            | US8_0(v86) -> (* Ok *)
-                US2_0(v86)
-        return v111 
+            | US8_0(v92) -> (* Ok *)
+                US2_0(v92)
+        return v117 
         }
-        |> fun x -> _v84 <- Some x
-        let v112 : Async<US2> = _v84 |> Option.get
-        v112
-#endif
-        
-#if FABLE_COMPILER_TYPESCRIPT
-        let v113 : Async<US2> = null |> unbox<Async<US2>>
-        v113
-#endif
-        
-#if FABLE_COMPILER_PYTHON
-        let v114 : Async<US2> = null |> unbox<Async<US2>>
-        v114
-#endif
-        |> fun x -> _v79 <- Some x
-        let v115 : Async<US2> = _v79.Value
-        return! v115 
-        }
-        |> fun x -> _v19 <- Some x
-        let v116 : Async<US2> = _v19 |> Option.get
-        v116
-#endif
-        
-#if FABLE_COMPILER_TYPESCRIPT
-        let v117 : Async<US2> = null |> unbox<Async<US2>>
-        v117
-#endif
-        
-#if FABLE_COMPILER_PYTHON
-        let v118 : Async<US2> = null |> unbox<Async<US2>>
+        |> fun x -> _v90 <- Some x
+        let v118 : Async<US2> = _v90 |> Option.get
         v118
 #endif
-        |> fun x -> _v14 <- Some x
-        let v119 : Async<US2> = _v14.Value
-        v119
-#endif
-        
-#if FABLE_COMPILER_TYPESCRIPT
-        let v120 : Async<US2> = null |> unbox<Async<US2>>
+        |> fun x -> _v83 <- Some x
+        let v119 : Async<US2> = _v83.Value
+        return! v119 
+        }
+        |> fun x -> _v23 <- Some x
+        let v120 : Async<US2> = _v23 |> Option.get
         v120
 #endif
-        
-#if FABLE_COMPILER_PYTHON
-        let v121 : Async<US2> = null |> unbox<Async<US2>>
+        |> fun x -> _v16 <- Some x
+        let v121 : Async<US2> = _v16.Value
         v121
 #endif
         |> fun x -> _v9 <- Some x
         let v122 : Async<US2> = _v9.Value
         let v123 : Async<int64> option = None
         let v124 : bool = true in let mutable _v123 = v123
+        
+#if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
         let v125 : Async<int64> = null |> unbox<Async<int64>>
@@ -2458,32 +2554,32 @@ and closure16 (v0 : int32 option, v1 : bool) (v2 : int32) : Async<int64> =
         v127
 #endif
         
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-        let v128 : Async<int64> option = None
-        let mutable _v128 = v128
-        async {
-        let! v122 = v122 
-        let v129 : US2 = v122 
-        let v133 : int64 =
-            match v129 with
-            | US2_1 -> (* None *)
-                failwith<int64> "Option does not have a value."
-            | US2_0(v130) -> (* Some *)
-                v130
-        return v133 
-        }
-        |> fun x -> _v128 <- Some x
-        let v134 : Async<int64> = _v128 |> Option.get
-        v134
-#endif
-        
 #if FABLE_COMPILER_TYPESCRIPT
-        let v135 : Async<int64> = null |> unbox<Async<int64>>
-        v135
+        let v128 : Async<int64> = null |> unbox<Async<int64>>
+        v128
 #endif
         
 #if FABLE_COMPILER_PYTHON
-        let v136 : Async<int64> = null |> unbox<Async<int64>>
+        let v129 : Async<int64> = null |> unbox<Async<int64>>
+        v129
+#endif
+        
+#else
+        let v130 : Async<int64> option = None
+        let mutable _v130 = v130
+        async {
+        let! v122 = v122 
+        let v131 : US2 = v122 
+        let v135 : int64 =
+            match v131 with
+            | US2_1 -> (* None *)
+                failwith<int64> "Option does not have a value."
+            | US2_0(v132) -> (* Some *)
+                v132
+        return v135 
+        }
+        |> fun x -> _v130 <- Some x
+        let v136 : Async<int64> = _v130 |> Option.get
         v136
 #endif
         |> fun x -> _v123 <- Some x
@@ -2496,6 +2592,8 @@ and closure14 () (v0 : int32 option) : (bool -> (int32 -> Async<int64>)) =
 and method8 (v0 : int32 option, v1 : int32) : Async<int32> =
     let v2 : Async<int32> option = None
     let v3 : bool = true in let mutable _v2 = v2
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v4 : Async<int32> = null |> unbox<Async<int32>>
@@ -2512,721 +2610,753 @@ and method8 (v0 : int32 option, v1 : int32) : Async<int32> =
     v6
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v7 : Async<int32> option = None
-    let mutable _v7 = v7
+#if FABLE_COMPILER_TYPESCRIPT
+    let v7 : Async<int32> = null |> unbox<Async<int32>>
+    v7
+#endif
+    
+#if FABLE_COMPILER_PYTHON
+    let v8 : Async<int32> = null |> unbox<Async<int32>>
+    v8
+#endif
+    
+#else
+    let v9 : Async<int32> option = None
+    let mutable _v9 = v9
     async {
-    let v8 : (int32 -> US6) = method7()
-    let v9 : US6 = US6_1
-    let v10 : US6 = v0 |> Option.map v8 |> Option.defaultValue v9 
-    let v225 : Async<bool> =
-        match v10 with
+    let v10 : (int32 -> US6) = method7()
+    let v11 : US6 = US6_1
+    let v12 : US6 = v0 |> Option.map v10 |> Option.defaultValue v11 
+    let v227 : Async<bool> =
+        match v12 with
         | US6_1 -> (* None *)
-            let v11 : Async<bool> option = None
-            let v12 : bool = true in let mutable _v11 = v11
+            let v13 : Async<bool> option = None
+            let v14 : bool = true in let mutable _v13 = v13
+            
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v13 : Async<bool> = null |> unbox<Async<bool>>
-            v13
-#endif
-            
-#if FABLE_COMPILER_RUST && WASM
-            let v14 : Async<bool> = null |> unbox<Async<bool>>
-            v14
-#endif
-            
-#if FABLE_COMPILER_RUST && CONTRACT
             let v15 : Async<bool> = null |> unbox<Async<bool>>
             v15
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v16 : Async<bool> option = None
-            let mutable _v16 = v16
-            async {
-            let v17 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-            let! v17 = v17 
-            let v18 : System.Threading.CancellationToken = v17 
-            let v19 : System.Net.Sockets.TcpClient = new System.Net.Sockets.TcpClient ()
-            use v19 = v19 
-            let v20 : System.Net.Sockets.TcpClient = v19 
-            try
-            let v21 : string = "127.0.0.1"
-            let v22 : System.Threading.Tasks.ValueTask = v20.ConnectAsync (v21, v1, v18)
-            let v23 : (unit -> System.Threading.Tasks.Task) = v22.AsTask
-            let v24 : System.Threading.Tasks.Task = v23 ()
-            let v25 : Async<unit> option = None
-            let v26 : bool = true in let mutable _v25 = v25
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v27 : Async<unit> = null |> unbox<Async<unit>>
-            v27
-#endif
-            
 #if FABLE_COMPILER_RUST && WASM
-            let v28 : Async<unit> = null |> unbox<Async<unit>>
-            v28
+            let v16 : Async<bool> = null |> unbox<Async<bool>>
+            v16
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v29 : Async<unit> = null |> unbox<Async<unit>>
-            v29
-#endif
-            
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v30 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
-            let v31 : Async<unit> = v30 v24
-            v31
+            let v17 : Async<bool> = null |> unbox<Async<bool>>
+            v17
 #endif
             
 #if FABLE_COMPILER_TYPESCRIPT
+            let v18 : Async<bool> = null |> unbox<Async<bool>>
+            v18
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v19 : Async<bool> = null |> unbox<Async<bool>>
+            v19
+#endif
+            
+#else
+            let v20 : Async<bool> option = None
+            let mutable _v20 = v20
+            async {
+            let v21 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+            let! v21 = v21 
+            let v22 : System.Threading.CancellationToken = v21 
+            let v23 : System.Net.Sockets.TcpClient = new System.Net.Sockets.TcpClient ()
+            use v23 = v23 
+            let v24 : System.Net.Sockets.TcpClient = v23 
+            try
+            let v25 : string = "127.0.0.1"
+            let v26 : System.Threading.Tasks.ValueTask = v24.ConnectAsync (v25, v1, v22)
+            let v27 : (unit -> System.Threading.Tasks.Task) = v26.AsTask
+            let v28 : System.Threading.Tasks.Task = v27 ()
+            let v29 : Async<unit> option = None
+            let v30 : bool = true in let mutable _v29 = v29
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v31 : Async<unit> = null |> unbox<Async<unit>>
+            v31
+#endif
+            
+#if FABLE_COMPILER_RUST && WASM
             let v32 : Async<unit> = null |> unbox<Async<unit>>
             v32
 #endif
             
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_RUST && CONTRACT
             let v33 : Async<unit> = null |> unbox<Async<unit>>
             v33
 #endif
-            |> fun x -> _v25 <- Some x
-            let v34 : Async<unit> = _v25.Value
-            do! v34 
-            return true 
-            with ex ->
-            let v35 : exn = ex
-            let v36 : string option = None
-            let v37 : bool = true in let mutable _v36 = v36
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v38 : string = $"%A{v35}"
-            v38
-#endif
-            
-#if FABLE_COMPILER_RUST && WASM
-            let v39 : string = $"%A{v35}"
-            v39
-#endif
-            
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v40 : string = $"%A{v35}"
-            v40
-#endif
-            
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v41 : string = $"{v35.GetType ()}: {v35.Message}"
-            v41
-#endif
             
 #if FABLE_COMPILER_TYPESCRIPT
-            let v42 : string = $"%A{v35}"
+            let v34 : Async<unit> = null |> unbox<Async<unit>>
+            v34
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v35 : Async<unit> = null |> unbox<Async<unit>>
+            v35
+#endif
+            
+#else
+            let v36 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
+            let v37 : Async<unit> = v36 v28
+            v37
+#endif
+            |> fun x -> _v29 <- Some x
+            let v38 : Async<unit> = _v29.Value
+            do! v38 
+            return true 
+            with ex ->
+            let v39 : exn = ex
+            let v40 : string option = None
+            let v41 : bool = true in let mutable _v40 = v40
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v42 : string = $"%A{v39}"
             v42
 #endif
             
-#if FABLE_COMPILER_PYTHON
-            let v43 : string = $"%A{v35}"
-            v43
-#endif
-            |> fun x -> _v36 <- Some x
-            let v44 : string = _v36.Value
-            let v45 : US0 = US0_0
-            let v46 : (unit -> string) = closure3(v44)
-            let v47 : (unit -> string) = closure4()
-            method2(v45, v46, v47)
-            return false 
-            (*
-            let v48 : bool = *)
-            }
-            |> fun x -> _v16 <- Some x
-            let v49 : Async<bool> = _v16 |> Option.get
-            v49
-#endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v50 : Async<bool> = null |> unbox<Async<bool>>
-            v50
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v51 : Async<bool> = null |> unbox<Async<bool>>
-            v51
-#endif
-            |> fun x -> _v11 <- Some x
-            let v52 : Async<bool> = _v11.Value
-            v52
-        | US6_0(v53) -> (* Some *)
-            let v54 : Async<bool> option = None
-            let v55 : bool = true in let mutable _v54 = v54
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v56 : Async<bool> = null |> unbox<Async<bool>>
-            v56
-#endif
-            
 #if FABLE_COMPILER_RUST && WASM
-            let v57 : Async<bool> = null |> unbox<Async<bool>>
-            v57
+            let v43 : string = $"%A{v39}"
+            v43
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
+            let v44 : string = $"%A{v39}"
+            v44
+#endif
+            
+#if FABLE_COMPILER_TYPESCRIPT
+            let v45 : string = $"%A{v39}"
+            v45
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v46 : string = $"%A{v39}"
+            v46
+#endif
+            
+#else
+            let v47 : string = $"{v39.GetType ()}: {v39.Message}"
+            v47
+#endif
+            |> fun x -> _v40 <- Some x
+            let v48 : string = _v40.Value
+            let v49 : US0 = US0_0
+            let v50 : (unit -> string) = closure3(v48)
+            let v51 : (unit -> string) = closure4()
+            method2(v49, v50, v51)
+            return false 
+            (*
+            let v52 : bool = *)
+            }
+            |> fun x -> _v20 <- Some x
+            let v53 : Async<bool> = _v20 |> Option.get
+            v53
+#endif
+            |> fun x -> _v13 <- Some x
+            let v54 : Async<bool> = _v13.Value
+            v54
+        | US6_0(v55) -> (* Some *)
+            let v56 : Async<bool> option = None
+            let v57 : bool = true in let mutable _v56 = v56
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
             let v58 : Async<bool> = null |> unbox<Async<bool>>
             v58
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v59 : Async<bool> option = None
-            let mutable _v59 = v59
-            async {
-            let v60 : Async<bool> option = None
-            let v61 : bool = true in let mutable _v60 = v60
+#if FABLE_COMPILER_RUST && WASM
+            let v59 : Async<bool> = null |> unbox<Async<bool>>
+            v59
+#endif
             
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v60 : Async<bool> = null |> unbox<Async<bool>>
+            v60
+#endif
+            
+#if FABLE_COMPILER_TYPESCRIPT
+            let v61 : Async<bool> = null |> unbox<Async<bool>>
+            v61
+#endif
+            
+#if FABLE_COMPILER_PYTHON
             let v62 : Async<bool> = null |> unbox<Async<bool>>
             v62
 #endif
             
-#if FABLE_COMPILER_RUST && WASM
-            let v63 : Async<bool> = null |> unbox<Async<bool>>
-            v63
-#endif
-            
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v64 : Async<bool> = null |> unbox<Async<bool>>
-            v64
-#endif
-            
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v65 : Async<bool> option = None
-            let mutable _v65 = v65
+#else
+            let v63 : Async<bool> option = None
+            let mutable _v63 = v63
             async {
-            let v66 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-            let! v66 = v66 
-            let v67 : System.Threading.CancellationToken = v66 
-            let v68 : System.Net.Sockets.TcpClient = new System.Net.Sockets.TcpClient ()
-            use v68 = v68 
-            let v69 : System.Net.Sockets.TcpClient = v68 
-            try
-            let v70 : string = "127.0.0.1"
-            let v71 : System.Threading.Tasks.ValueTask = v69.ConnectAsync (v70, v1, v67)
-            let v72 : (unit -> System.Threading.Tasks.Task) = v71.AsTask
-            let v73 : System.Threading.Tasks.Task = v72 ()
-            let v74 : Async<unit> option = None
-            let v75 : bool = true in let mutable _v74 = v74
+            let v64 : Async<bool> option = None
+            let v65 : bool = true in let mutable _v64 = v64
+            
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v76 : Async<unit> = null |> unbox<Async<unit>>
-            v76
+            let v66 : Async<bool> = null |> unbox<Async<bool>>
+            v66
 #endif
             
 #if FABLE_COMPILER_RUST && WASM
-            let v77 : Async<unit> = null |> unbox<Async<unit>>
-            v77
+            let v67 : Async<bool> = null |> unbox<Async<bool>>
+            v67
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v78 : Async<unit> = null |> unbox<Async<unit>>
-            v78
-#endif
-            
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v79 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
-            let v80 : Async<unit> = v79 v73
-            v80
+            let v68 : Async<bool> = null |> unbox<Async<bool>>
+            v68
 #endif
             
 #if FABLE_COMPILER_TYPESCRIPT
-            let v81 : Async<unit> = null |> unbox<Async<unit>>
-            v81
+            let v69 : Async<bool> = null |> unbox<Async<bool>>
+            v69
 #endif
             
 #if FABLE_COMPILER_PYTHON
+            let v70 : Async<bool> = null |> unbox<Async<bool>>
+            v70
+#endif
+            
+#else
+            let v71 : Async<bool> option = None
+            let mutable _v71 = v71
+            async {
+            let v72 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+            let! v72 = v72 
+            let v73 : System.Threading.CancellationToken = v72 
+            let v74 : System.Net.Sockets.TcpClient = new System.Net.Sockets.TcpClient ()
+            use v74 = v74 
+            let v75 : System.Net.Sockets.TcpClient = v74 
+            try
+            let v76 : string = "127.0.0.1"
+            let v77 : System.Threading.Tasks.ValueTask = v75.ConnectAsync (v76, v1, v73)
+            let v78 : (unit -> System.Threading.Tasks.Task) = v77.AsTask
+            let v79 : System.Threading.Tasks.Task = v78 ()
+            let v80 : Async<unit> option = None
+            let v81 : bool = true in let mutable _v80 = v80
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
             let v82 : Async<unit> = null |> unbox<Async<unit>>
             v82
 #endif
-            |> fun x -> _v74 <- Some x
-            let v83 : Async<unit> = _v74.Value
-            do! v83 
-            return true 
-            with ex ->
-            let v84 : exn = ex
-            let v85 : string option = None
-            let v86 : bool = true in let mutable _v85 = v85
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v87 : string = $"%A{v84}"
-            v87
-#endif
             
 #if FABLE_COMPILER_RUST && WASM
-            let v88 : string = $"%A{v84}"
+            let v83 : Async<unit> = null |> unbox<Async<unit>>
+            v83
+#endif
+            
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v84 : Async<unit> = null |> unbox<Async<unit>>
+            v84
+#endif
+            
+#if FABLE_COMPILER_TYPESCRIPT
+            let v85 : Async<unit> = null |> unbox<Async<unit>>
+            v85
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v86 : Async<unit> = null |> unbox<Async<unit>>
+            v86
+#endif
+            
+#else
+            let v87 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
+            let v88 : Async<unit> = v87 v79
             v88
 #endif
+            |> fun x -> _v80 <- Some x
+            let v89 : Async<unit> = _v80.Value
+            do! v89 
+            return true 
+            with ex ->
+            let v90 : exn = ex
+            let v91 : string option = None
+            let v92 : bool = true in let mutable _v91 = v91
             
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v89 : string = $"%A{v84}"
-            v89
-#endif
-            
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v90 : string = $"{v84.GetType ()}: {v84.Message}"
-            v90
-#endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v91 : string = $"%A{v84}"
-            v91
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v92 : string = $"%A{v84}"
-            v92
-#endif
-            |> fun x -> _v85 <- Some x
-            let v93 : string = _v85.Value
-            let v94 : US0 = US0_0
-            let v95 : (unit -> string) = closure3(v93)
-            let v96 : (unit -> string) = closure4()
-            method2(v94, v95, v96)
-            return false 
-            (*
-            let v97 : bool = *)
-            }
-            |> fun x -> _v65 <- Some x
-            let v98 : Async<bool> = _v65 |> Option.get
-            v98
-#endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v99 : Async<bool> = null |> unbox<Async<bool>>
-            v99
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v100 : Async<bool> = null |> unbox<Async<bool>>
-            v100
-#endif
-            |> fun x -> _v60 <- Some x
-            let v101 : Async<bool> = _v60.Value
-            let v102 : Async<US3> option = None
-            let v103 : bool = true in let mutable _v102 = v102
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v104 : Async<US3> = null |> unbox<Async<US3>>
-            v104
+            let v93 : string = $"%A{v90}"
+            v93
 #endif
             
 #if FABLE_COMPILER_RUST && WASM
-            let v105 : Async<US3> = null |> unbox<Async<US3>>
-            v105
+            let v94 : string = $"%A{v90}"
+            v94
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v106 : Async<US3> = null |> unbox<Async<US3>>
-            v106
+            let v95 : string = $"%A{v90}"
+            v95
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v107 : Async<US3> option = None
-            let v108 : bool = true in let mutable _v107 = v107
+#if FABLE_COMPILER_TYPESCRIPT
+            let v96 : string = $"%A{v90}"
+            v96
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v97 : string = $"%A{v90}"
+            v97
+#endif
+            
+#else
+            let v98 : string = $"{v90.GetType ()}: {v90.Message}"
+            v98
+#endif
+            |> fun x -> _v91 <- Some x
+            let v99 : string = _v91.Value
+            let v100 : US0 = US0_0
+            let v101 : (unit -> string) = closure3(v99)
+            let v102 : (unit -> string) = closure4()
+            method2(v100, v101, v102)
+            return false 
+            (*
+            let v103 : bool = *)
+            }
+            |> fun x -> _v71 <- Some x
+            let v104 : Async<bool> = _v71 |> Option.get
+            v104
+#endif
+            |> fun x -> _v64 <- Some x
+            let v105 : Async<bool> = _v64.Value
+            let v106 : Async<US3> option = None
+            let v107 : bool = true in let mutable _v106 = v106
+            
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v108 : Async<US3> = null |> unbox<Async<US3>>
+            v108
+#endif
+            
+#if FABLE_COMPILER_RUST && WASM
             let v109 : Async<US3> = null |> unbox<Async<US3>>
             v109
 #endif
             
-#if FABLE_COMPILER_RUST && WASM
+#if FABLE_COMPILER_RUST && CONTRACT
             let v110 : Async<US3> = null |> unbox<Async<US3>>
             v110
 #endif
             
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_TYPESCRIPT
             let v111 : Async<US3> = null |> unbox<Async<US3>>
             v111
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v112 : Async<US3> option = None
-            let mutable _v112 = v112
-            async {
-            let v113 : Async<Async<bool>> option = None
+#if FABLE_COMPILER_PYTHON
+            let v112 : Async<US3> = null |> unbox<Async<US3>>
+            v112
+#endif
+            
+#else
+            let v113 : Async<US3> option = None
             let v114 : bool = true in let mutable _v113 = v113
             
+#if FABLE_COMPILER || WASM || CONTRACT
+            
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v115 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+            let v115 : Async<US3> = null |> unbox<Async<US3>>
             v115
 #endif
             
 #if FABLE_COMPILER_RUST && WASM
-            let v116 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+            let v116 : Async<US3> = null |> unbox<Async<US3>>
             v116
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v117 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+            let v117 : Async<US3> = null |> unbox<Async<US3>>
             v117
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v118 : Async<Async<bool>> = Async.StartChild (v101, v53)
+#if FABLE_COMPILER_TYPESCRIPT
+            let v118 : Async<US3> = null |> unbox<Async<US3>>
             v118
 #endif
             
-#if FABLE_COMPILER_TYPESCRIPT
-            let v119 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+#if FABLE_COMPILER_PYTHON
+            let v119 : Async<US3> = null |> unbox<Async<US3>>
             v119
 #endif
             
-#if FABLE_COMPILER_PYTHON
-            let v120 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
-            v120
-#endif
-            |> fun x -> _v113 <- Some x
-            let v121 : Async<Async<bool>> = _v113.Value
-            let! v121 = v121 
-            let v122 : Async<bool> = v121 
-            let v123 : Async<Choice<bool, exn>> option = None
-            let v124 : bool = true in let mutable _v123 = v123
+#else
+            let v120 : Async<US3> option = None
+            let mutable _v120 = v120
+            async {
+            let v121 : Async<Async<bool>> option = None
+            let v122 : bool = true in let mutable _v121 = v121
+            
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v125 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+            let v123 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+            v123
+#endif
+            
+#if FABLE_COMPILER_RUST && WASM
+            let v124 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
+            v124
+#endif
+            
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v125 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
             v125
 #endif
             
-#if FABLE_COMPILER_RUST && WASM
-            let v126 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+#if FABLE_COMPILER_TYPESCRIPT
+            let v126 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
             v126
 #endif
             
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v127 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+#if FABLE_COMPILER_PYTHON
+            let v127 : Async<Async<bool>> = null |> unbox<Async<Async<bool>>>
             v127
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v128 : (Async<bool> -> Async<Choice<bool, exn>>) = Async.Catch
-            let v129 : Async<Choice<bool, exn>> = v128 v122
-            v129
+#else
+            let v128 : Async<Async<bool>> = Async.StartChild (v105, v55)
+            v128
 #endif
+            |> fun x -> _v121 <- Some x
+            let v129 : Async<Async<bool>> = _v121.Value
+            let! v129 = v129 
+            let v130 : Async<bool> = v129 
+            let v131 : Async<Choice<bool, exn>> option = None
+            let v132 : bool = true in let mutable _v131 = v131
             
-#if FABLE_COMPILER_TYPESCRIPT
-            let v130 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
-            v130
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v131 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
-            v131
-#endif
-            |> fun x -> _v123 <- Some x
-            let v132 : Async<Choice<bool, exn>> = _v123.Value
-            let v133 : Async<US4> option = None
-            let v134 : bool = true in let mutable _v133 = v133
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v135 : Async<US4> = null |> unbox<Async<US4>>
+            let v133 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+            v133
+#endif
+            
+#if FABLE_COMPILER_RUST && WASM
+            let v134 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
+            v134
+#endif
+            
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v135 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
             v135
 #endif
             
-#if FABLE_COMPILER_RUST && WASM
-            let v136 : Async<US4> = null |> unbox<Async<US4>>
+#if FABLE_COMPILER_TYPESCRIPT
+            let v136 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
             v136
 #endif
             
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v137 : Async<US4> = null |> unbox<Async<US4>>
+#if FABLE_COMPILER_PYTHON
+            let v137 : Async<Choice<bool, exn>> = null |> unbox<Async<Choice<bool, exn>>>
             v137
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v138 : Async<US4> option = None
-            let mutable _v138 = v138
-            async {
-            let! v132 = v132 
-            let v139 : Choice<bool, exn> = v132 
-            let v140 : US4 option = None
-            let v141 : bool = true in let mutable _v140 = v140
+#else
+            let v138 : (Async<bool> -> Async<Choice<bool, exn>>) = Async.Catch
+            let v139 : Async<Choice<bool, exn>> = v138 v130
+            v139
+#endif
+            |> fun x -> _v131 <- Some x
+            let v140 : Async<Choice<bool, exn>> = _v131.Value
+            let v141 : Async<US4> option = None
+            let v142 : bool = true in let mutable _v141 = v141
+            
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v142 : US4 = null |> unbox<US4>
-            v142
-#endif
-            
-#if FABLE_COMPILER_RUST && WASM
-            let v143 : US4 = null |> unbox<US4>
+            let v143 : Async<US4> = null |> unbox<Async<US4>>
             v143
 #endif
             
-#if FABLE_COMPILER_RUST && CONTRACT
-            let v144 : US4 = null |> unbox<US4>
+#if FABLE_COMPILER_RUST && WASM
+            let v144 : Async<US4> = null |> unbox<Async<US4>>
             v144
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v145 : (bool -> US4) = closure9()
-            let v146 : (exn -> US4) = closure10()
-            let v147 : US4 = match v139 with Choice1Of2 x -> v145 x | Choice2Of2 x -> v146 x
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v145 : Async<US4> = null |> unbox<Async<US4>>
+            v145
+#endif
+            
+#if FABLE_COMPILER_TYPESCRIPT
+            let v146 : Async<US4> = null |> unbox<Async<US4>>
+            v146
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v147 : Async<US4> = null |> unbox<Async<US4>>
             v147
 #endif
             
-#if FABLE_COMPILER_TYPESCRIPT
-            let v148 : US4 = null |> unbox<US4>
-            v148
-#endif
+#else
+            let v148 : Async<US4> option = None
+            let mutable _v148 = v148
+            async {
+            let! v140 = v140 
+            let v149 : Choice<bool, exn> = v140 
+            let v150 : US4 option = None
+            let v151 : bool = true in let mutable _v150 = v150
             
-#if FABLE_COMPILER_PYTHON
-            let v149 : US4 = null |> unbox<US4>
-            v149
-#endif
-            |> fun x -> _v140 <- Some x
-            let v150 : US4 = _v140.Value
-            return v150 
-            }
-            |> fun x -> _v138 <- Some x
-            let v151 : Async<US4> = _v138 |> Option.get
-            v151
-#endif
+#if FABLE_COMPILER || WASM || CONTRACT
             
-#if FABLE_COMPILER_TYPESCRIPT
-            let v152 : Async<US4> = null |> unbox<Async<US4>>
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v152 : US4 = null |> unbox<US4>
             v152
 #endif
             
-#if FABLE_COMPILER_PYTHON
-            let v153 : Async<US4> = null |> unbox<Async<US4>>
-            v153
-#endif
-            |> fun x -> _v133 <- Some x
-            let v154 : Async<US4> = _v133.Value
-            let v155 : Async<US5> option = None
-            let v156 : bool = true in let mutable _v155 = v155
-            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v157 : Async<US5> = null |> unbox<Async<US5>>
-            v157
-#endif
-            
 #if FABLE_COMPILER_RUST && WASM
-            let v158 : Async<US5> = null |> unbox<Async<US5>>
-            v158
+            let v153 : US4 = null |> unbox<US4>
+            v153
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v159 : Async<US5> = null |> unbox<Async<US5>>
-            v159
-#endif
-            
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v160 : Async<US5> option = None
-            let mutable _v160 = v160
-            async {
-            let! v154 = v154 
-            let v161 : US4 = v154 
-            let v167 : US5 =
-                match v161 with
-                | US4_0(v162) -> (* Choice1Of2 *)
-                    US5_0(v162)
-                | US4_1(v164) -> (* Choice2Of2 *)
-                    US5_1(v164)
-            return v167 
-            }
-            |> fun x -> _v160 <- Some x
-            let v168 : Async<US5> = _v160 |> Option.get
-            v168
+            let v154 : US4 = null |> unbox<US4>
+            v154
 #endif
             
 #if FABLE_COMPILER_TYPESCRIPT
+            let v155 : US4 = null |> unbox<US4>
+            v155
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v156 : US4 = null |> unbox<US4>
+            v156
+#endif
+            
+#else
+            let v157 : (bool -> US4) = closure9()
+            let v158 : (exn -> US4) = closure10()
+            let v159 : US4 = match v149 with Choice1Of2 x -> v157 x | Choice2Of2 x -> v158 x
+            v159
+#endif
+            |> fun x -> _v150 <- Some x
+            let v160 : US4 = _v150.Value
+            return v160 
+            }
+            |> fun x -> _v148 <- Some x
+            let v161 : Async<US4> = _v148 |> Option.get
+            v161
+#endif
+            |> fun x -> _v141 <- Some x
+            let v162 : Async<US4> = _v141.Value
+            let v163 : Async<US5> option = None
+            let v164 : bool = true in let mutable _v163 = v163
+            
+#if FABLE_COMPILER || WASM || CONTRACT
+            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+            let v165 : Async<US5> = null |> unbox<Async<US5>>
+            v165
+#endif
+            
+#if FABLE_COMPILER_RUST && WASM
+            let v166 : Async<US5> = null |> unbox<Async<US5>>
+            v166
+#endif
+            
+#if FABLE_COMPILER_RUST && CONTRACT
+            let v167 : Async<US5> = null |> unbox<Async<US5>>
+            v167
+#endif
+            
+#if FABLE_COMPILER_TYPESCRIPT
+            let v168 : Async<US5> = null |> unbox<Async<US5>>
+            v168
+#endif
+            
+#if FABLE_COMPILER_PYTHON
             let v169 : Async<US5> = null |> unbox<Async<US5>>
             v169
 #endif
             
-#if FABLE_COMPILER_PYTHON
-            let v170 : Async<US5> = null |> unbox<Async<US5>>
-            v170
+#else
+            let v170 : Async<US5> option = None
+            let mutable _v170 = v170
+            async {
+            let! v162 = v162 
+            let v171 : US4 = v162 
+            let v177 : US5 =
+                match v171 with
+                | US4_0(v172) -> (* Choice1Of2 *)
+                    US5_0(v172)
+                | US4_1(v174) -> (* Choice2Of2 *)
+                    US5_1(v174)
+            return v177 
+            }
+            |> fun x -> _v170 <- Some x
+            let v178 : Async<US5> = _v170 |> Option.get
+            v178
 #endif
-            |> fun x -> _v155 <- Some x
-            let v171 : Async<US5> = _v155.Value
-            let v172 : Async<US3> option = None
-            let v173 : bool = true in let mutable _v172 = v172
+            |> fun x -> _v163 <- Some x
+            let v179 : Async<US5> = _v163.Value
+            let v180 : Async<US3> option = None
+            let v181 : bool = true in let mutable _v180 = v180
+            
+#if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v174 : Async<US3> = null |> unbox<Async<US3>>
-            v174
+            let v182 : Async<US3> = null |> unbox<Async<US3>>
+            v182
 #endif
             
 #if FABLE_COMPILER_RUST && WASM
-            let v175 : Async<US3> = null |> unbox<Async<US3>>
-            v175
+            let v183 : Async<US3> = null |> unbox<Async<US3>>
+            v183
 #endif
             
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v176 : Async<US3> = null |> unbox<Async<US3>>
-            v176
+            let v184 : Async<US3> = null |> unbox<Async<US3>>
+            v184
 #endif
             
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-            let v177 : Async<US3> option = None
-            let mutable _v177 = v177
+#if FABLE_COMPILER_TYPESCRIPT
+            let v185 : Async<US3> = null |> unbox<Async<US3>>
+            v185
+#endif
+            
+#if FABLE_COMPILER_PYTHON
+            let v186 : Async<US3> = null |> unbox<Async<US3>>
+            v186
+#endif
+            
+#else
+            let v187 : Async<US3> option = None
+            let mutable _v187 = v187
             async {
-            let! v171 = v171 
-            let v178 : US5 = v171 
-            let v204 : US3 =
-                match v178 with
-                | US5_1(v181) -> (* Error *)
-                    let v182 : string = $"%A{v181}"
-                    let v183 : string = "System.TimeoutException"
-                    let v184 : bool = v182.Contains v183
-                    if v184 then
-                        let v185 : US0 = US0_1
-                        let v186 : (unit -> string) = closure11()
-                        let v187 : (unit -> string) = closure12(v53)
-                        method2(v185, v186, v187)
+            let! v179 = v179 
+            let v188 : US5 = v179 
+            let v214 : US3 =
+                match v188 with
+                | US5_1(v191) -> (* Error *)
+                    let v192 : string = $"%A{v191}"
+                    let v193 : string = "System.TimeoutException"
+                    let v194 : bool = v192.Contains v193
+                    if v194 then
+                        let v195 : US0 = US0_1
+                        let v196 : (unit -> string) = closure11()
+                        let v197 : (unit -> string) = closure12(v55)
+                        method2(v195, v196, v197)
                         US3_1
                     else
-                        let v189 : string option = None
-                        let v190 : bool = true in let mutable _v189 = v189
+                        let v199 : string option = None
+                        let v200 : bool = true in let mutable _v199 = v199
+                        
+#if FABLE_COMPILER || WASM || CONTRACT
                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                        let v191 : string = $"%A{v181}"
-                        v191
+                        let v201 : string = $"%A{v191}"
+                        v201
 #endif
                         
 #if FABLE_COMPILER_RUST && WASM
-                        let v192 : string = $"%A{v181}"
-                        v192
+                        let v202 : string = $"%A{v191}"
+                        v202
 #endif
                         
 #if FABLE_COMPILER_RUST && CONTRACT
-                        let v193 : string = $"%A{v181}"
-                        v193
-#endif
-                        
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-                        let v194 : string = $"{v181.GetType ()}: {v181.Message}"
-                        v194
+                        let v203 : string = $"%A{v191}"
+                        v203
 #endif
                         
 #if FABLE_COMPILER_TYPESCRIPT
-                        let v195 : string = $"%A{v181}"
-                        v195
+                        let v204 : string = $"%A{v191}"
+                        v204
 #endif
                         
 #if FABLE_COMPILER_PYTHON
-                        let v196 : string = $"%A{v181}"
-                        v196
+                        let v205 : string = $"%A{v191}"
+                        v205
 #endif
-                        |> fun x -> _v189 <- Some x
-                        let v197 : string = _v189.Value
-                        let v198 : US0 = US0_4
-                        let v199 : (unit -> string) = closure13(v197)
-                        let v200 : (unit -> string) = closure12(v53)
-                        method2(v198, v199, v200)
+                        
+#else
+                        let v206 : string = $"{v191.GetType ()}: {v191.Message}"
+                        v206
+#endif
+                        |> fun x -> _v199 <- Some x
+                        let v207 : string = _v199.Value
+                        let v208 : US0 = US0_4
+                        let v209 : (unit -> string) = closure13(v207)
+                        let v210 : (unit -> string) = closure12(v55)
+                        method2(v208, v209, v210)
                         US3_1
-                | US5_0(v179) -> (* Ok *)
-                    US3_0(v179)
-            return v204 
+                | US5_0(v189) -> (* Ok *)
+                    US3_0(v189)
+            return v214 
             }
-            |> fun x -> _v177 <- Some x
-            let v205 : Async<US3> = _v177 |> Option.get
-            v205
+            |> fun x -> _v187 <- Some x
+            let v215 : Async<US3> = _v187 |> Option.get
+            v215
 #endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v206 : Async<US3> = null |> unbox<Async<US3>>
-            v206
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v207 : Async<US3> = null |> unbox<Async<US3>>
-            v207
-#endif
-            |> fun x -> _v172 <- Some x
-            let v208 : Async<US3> = _v172.Value
-            return! v208 
+            |> fun x -> _v180 <- Some x
+            let v216 : Async<US3> = _v180.Value
+            return! v216 
             }
-            |> fun x -> _v112 <- Some x
-            let v209 : Async<US3> = _v112 |> Option.get
-            v209
+            |> fun x -> _v120 <- Some x
+            let v217 : Async<US3> = _v120 |> Option.get
+            v217
 #endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v210 : Async<US3> = null |> unbox<Async<US3>>
-            v210
+            |> fun x -> _v113 <- Some x
+            let v218 : Async<US3> = _v113.Value
+            v218
 #endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v211 : Async<US3> = null |> unbox<Async<US3>>
-            v211
-#endif
-            |> fun x -> _v107 <- Some x
-            let v212 : Async<US3> = _v107.Value
-            v212
-#endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v213 : Async<US3> = null |> unbox<Async<US3>>
-            v213
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v214 : Async<US3> = null |> unbox<Async<US3>>
-            v214
-#endif
-            |> fun x -> _v102 <- Some x
-            let v215 : Async<US3> = _v102.Value
-            let! v215 = v215 
-            let v216 : US3 = v215 
-            let v219 : bool =
-                match v216 with
+            |> fun x -> _v106 <- Some x
+            let v219 : Async<US3> = _v106.Value
+            let! v219 = v219 
+            let v220 : US3 = v219 
+            let v223 : bool =
+                match v220 with
                 | US3_1 -> (* None *)
                     false
-                | US3_0(v217) -> (* Some *)
-                    v217
-            return v219 
+                | US3_0(v221) -> (* Some *)
+                    v221
+            return v223 
             }
-            |> fun x -> _v59 <- Some x
-            let v220 : Async<bool> = _v59 |> Option.get
-            v220
+            |> fun x -> _v63 <- Some x
+            let v224 : Async<bool> = _v63 |> Option.get
+            v224
 #endif
-            
-#if FABLE_COMPILER_TYPESCRIPT
-            let v221 : Async<bool> = null |> unbox<Async<bool>>
-            v221
-#endif
-            
-#if FABLE_COMPILER_PYTHON
-            let v222 : Async<bool> = null |> unbox<Async<bool>>
-            v222
-#endif
-            |> fun x -> _v54 <- Some x
-            let v223 : Async<bool> = _v54.Value
-            v223
-    let! v225 = v225 
-    let v226 : bool = v225 
-    let v227 : bool = v226 = false
-    if v227 then
+            |> fun x -> _v56 <- Some x
+            let v225 : Async<bool> = _v56.Value
+            v225
+    let! v227 = v227 
+    let v228 : bool = v227 
+    let v229 : bool = v228 = false
+    if v229 then
         return v1 
         (*
         ()
     else
         *) else
-        let v228 : int32 = v1 + 1
-        let v229 : Async<int32> = method8(v0, v228)
-        return! v229 
+        let v230 : int32 = v1 + 1
+        let v231 : Async<int32> = method8(v0, v230)
+        return! v231 
         (*
         ()
     *)
     }
-    |> fun x -> _v7 <- Some x
-    let v230 : Async<int32> = _v7 |> Option.get
-    v230
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v231 : Async<int32> = null |> unbox<Async<int32>>
-    v231
-#endif
-    
-#if FABLE_COMPILER_PYTHON
-    let v232 : Async<int32> = null |> unbox<Async<int32>>
+    |> fun x -> _v9 <- Some x
+    let v232 : Async<int32> = _v9 |> Option.get
     v232
 #endif
     |> fun x -> _v2 <- Some x

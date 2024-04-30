@@ -7949,125 +7949,35 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
-00:00:09 debug   #1 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:09 debug   #2 testEventsRaw / eventsLog: 
-0 / 638498786898352262 / Created ("file1.txt", Some "a1")
-1 / 638498786898352263 / Changed ("file1.txt", Some "a1")
-42584 / 638498786898394847 / Changed ("file1.txt", Some "a1")
-1977 / 638498786898396824 / Created ("file2.txt", Some "a2")
-1 / 638498786898396825 / Changed ("file2.txt", Some "a2")
-91 / 638498786898396916 / Changed ("file2.txt", Some "a2")
-2540385 / 638498786900937301 / Changed ("file1.txt", Some "b1")
-2552 / 638498786900939853 / Changed ("file1.txt", Some "b1")
-13524 / 638498786900953377 / Changed ("file2.txt", Some "b2")
-2728 / 638498786900956105 / Changed ("file2.txt", Some "b2")
-2603582 / 638498786903559687 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-27003 / 638498786903586690 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2684540 / 638498786906271230 / Changed ("file_1.txt", Some "c1")
-3304 / 638498786906274534 / Changed ("file_1.txt", Some "c1")
-14276 / 638498786906288810 / Changed ("file_2.txt", Some "c2")
-4523 / 638498786906293333 / Changed ("file_2.txt", Some "c2")
-2544395 / 638498786908837728 / Deleted "file_1.txt"
-3096 / 638498786908840824 / Deleted "file_2.txt"
-FSharpList&lt;FileSystemChange&gt;
-      - path: file1.txt
-        content: FSharpOption&lt;String&gt;
-          Value: a1
-        IsFailure: False
-        IsChanged: False
-        IsCreated: True
-        IsDeleted: False
-        IsRenamed: False
-      - path: file1.txt
-        content: FSharpOption&lt;String&gt;
-          Value: a1
-        IsFailure: False
-        IsChanged: True
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: False
-      - path: file2.txt
-        content: FSharpOption&lt;String&gt;
-          Value: a2
-        IsFailure: False
-        IsChanged: False
-        IsCreated: True
-        IsDeleted: False
-        IsRenamed: False
-      - path: file2.txt
-        content: FSharpOption&lt;String&gt;
-          Value: a2
-        IsFailure: False
-        IsChanged: True
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: False
-      - path: file1.txt
-        content: FSharpOption&lt;String&gt;
-          Value: b1
-        IsFailure: False
-        IsChanged: True
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: False
-      - path: file2.txt
-        content: FSharpOption&lt;String&gt;
-          Value: b2
-        IsFailure: False
-        IsChanged: True
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: False
-      - oldPath: file1.txt
-        Item2:         - file_1.txt
-        - FSharpOption&lt;String&gt;
-            Value: b1
-      - IsFailure: False
-        IsChanged: False
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: True
-      - oldPath: file2.txt
-        Item2:         - file_2.txt
-        - FSharpOption&lt;String&gt;
-            Value: b2
-      - IsFailure: False
-        IsChanged: False
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: True
-      - path: file_1.txt
-        content: FSharpOption&lt;String&gt;
-          Value: c1
-        IsFailure: False
-        IsChanged: True
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: False
-      - path: file_2.txt
-        content: FSharpOption&lt;String&gt;
-          Value: c2
-        IsFailure: False
-        IsChanged: True
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: False
-      - path: file_1.txt
-        IsFailure: False
-        IsChanged: False
-        IsCreated: False
-        IsDeleted: True
-        IsRenamed: False
-      - path: file_2.txt
-        IsFailure: False
-        IsChanged: False
-        IsCreated: False
-        IsDeleted: True
-        IsRenamed: False
-FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
+<pre>Some ()
+
+00:00:07   debug #1 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:07   debug #2 testEventsRaw / eventsLog: 
+0 / 638500447190262176 / Created ("file1.txt", Some "a1")
+1 / 638500447190262177 / Changed ("file1.txt", Some "a1")
+95781 / 638500447190357958 / Changed ("file1.txt", Some "a1")
+5287 / 638500447190363245 / Created ("file2.txt", Some "a2")
+1 / 638500447190363246 / Changed ("file2.txt", Some "a2")
+130 / 638500447190363376 / Changed ("file2.txt", Some "a2")
+2520990 / 638500447192884366 / Changed ("file1.txt", Some "b1")
+3175 / 638500447192887541 / Changed ("file1.txt", Some "b1")
+20410 / 638500447192907951 / Changed ("file2.txt", Some "b2")
+8918 / 638500447192916869 / Changed ("file2.txt", Some "b2")
+2691902 / 638500447195608771 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+30393 / 638500447195639164 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2422646 / 638500447198061810 / Changed ("file_1.txt", Some "c1")
+2683 / 638500447198064493 / Changed ("file_1.txt", Some "c1")
+60380 / 638500447198124873 / Changed ("file_2.txt", Some "c2")
+3160 / 638500447198128033 / Changed ("file_2.txt", Some "c2")
+2483256 / 638500447200611289 / Deleted "file_1.txt"
+3841 / 638500447200615130 / Deleted "file_2.txt"
+[Created ("file1.txt", Some "a1"); Changed ("file1.txt", Some "a1"); Created ("file2.txt", Some "a2");
+ Changed ("file2.txt", Some "a2"); Changed ("file1.txt", Some "b1"); Changed ("file2.txt", Some "b2");
+ Renamed ("file1.txt", ("file_1.txt", Some "b1")); Renamed ("file2.txt", ("file_2.txt", Some "b2"));
+ Changed ("file_1.txt", Some "c1"); Changed ("file_2.txt", Some "c2"); Deleted "file_1.txt"; Deleted "file_2.txt"]
+
+Some ()
+
 </pre>
 </div>
 </div>
@@ -8178,144 +8088,54 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
-00:00:21 debug   #3 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:21 debug   #4 testEventsRaw / eventsLog: 
-0 / 638498786959314212 / Created
+<pre>Some ()
+
+00:00:17   debug #3 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:17   debug #4 testEventsRaw / eventsLog: 
+0 / 638500447228512173 / Created
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-1 / 638498786959314213 / Changed
+1 / 638500447228512174 / Changed
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-88232 / 638498786959402445 / Changed
-  ("file1.txt...11111111111111111111111111111111111111111111111a")
-28231 / 638498786959430676 / Created
+131254 / 638500447228643428 / Changed
+  ("file1.tx...11111111111111111111111111111111111111111111111a")
+17933 / 638500447228661361 / Created
   ("file2.txt...22222222222222222222222222222222222222222222222a")
-1 / 638498786959430677 / Changed
+1 / 638500447228661362 / Changed
   ("file2.txt",
  ...22222222222222222222222222222222222222222222222a")
-113772 / 638498786959544449 / Changed
-  ("file2.tx...22222222222222222222222222222222222222222222222a")
-15161562 / 638498786974706011 / Changed
+91277 / 638500447228752639 / Changed
+  ("file2.txt...22222222222222222222222222222222222222222222222a")
+15025989 / 638500447243778628 / Changed
   ("file1....11111111111111111111111111111111111111111111111b")
-71609 / 638498786974777620 / Changed
+88638 / 638500447243867266 / Changed
   ("file1.txt...11111111111111111111111111111111111111111111111b")
-35319 / 638498786974812939 / Changed
+43894 / 638500447243911160 / Changed
   ("file2.txt...22222222222222222222222222222222222222222222222b")
-97541 / 638498786974910480 / Changed
-  ("file2.txt...22222222222222222222222222222222222222222222222b")
-15109760 / 638498786990020240 / Renamed
+100694 / 638500447244011854 / Changed
+  ("file2.tx...22222222222222222222222222222222222222222222222b")
+15002418 / 638500447259014272 / Renamed
   ("file1....1111111111111111111111111111111111111111111111b"))
-6740 / 638498786990026980 / Renamed
+5498 / 638500447259019770 / Renamed
   ("file2.txt"...2222222222222222222222222222222222222222222222b"))
-15145496 / 638498787005172476 / Changed
+15088142 / 638500447274107912 / Changed
   ("file_1...11111111111111111111111111111111111111111111111c")
-79196 / 638498787005251672 / Changed
+81378 / 638500447274189290 / Changed
   ("file_1.tx...11111111111111111111111111111111111111111111111c")
-22560 / 638498787005274232 / Changed
+44572 / 638500447274233862 / Changed
   ("file_2.tx...22222222222222222222222222222222222222222222222c")
-82763 / 638498787005356995 / Changed
+78407 / 638500447274312269 / Changed
   ("file_2.tx...22222222222222222222222222222222222222222222222c")
-15121293 / 638498787020478288 / Deleted "file_1.txt"
-4996 / 638498787020483284 / Deleted "file_2.txt"
-FSharpList&lt;FileSystemChange&gt;
-      - path: file1.txt
-        content: FSharpOption&lt;String&gt;
-          Value: 1a
-        IsFailure: False
-        IsChanged: False
-        IsCreated: True
-        IsDeleted: False
-        IsRenamed: False
-      - path: file1.txt
-        content: FSharpOption&lt;String&gt;
-          Value: 1a
-        IsFailure: False
-        IsChanged: True
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: False
-      - path: file2.txt
-        content: FSharpOption&lt;String&gt;
-          Value: 2a
-        IsFailure: False
-        IsChanged: False
-        IsCreated: True
-        IsDeleted: False
-        IsRenamed: False
-      - path: file2.txt
-        content: FSharpOption&lt;String&gt;
-          Value: 2a
-        IsFailure: False
-        IsChanged: True
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: False
-      - path: file1.txt
-        content: FSharpOption&lt;String&gt;
-          Value: 1b
-        IsFailure: False
-        IsChanged: True
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: False
-      - path: file2.txt
-        content: FSharpOption&lt;String&gt;
-          Value: 2b
-        IsFailure: False
-        IsChanged: True
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: False
-      - oldPath: file1.txt
-        Item2:         - file_1.txt
-        - FSharpOption&lt;String&gt;
-            Value: 1b
-      - IsFailure: False
-        IsChanged: False
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: True
-      - oldPath: file2.txt
-        Item2:         - file_2.txt
-        - FSharpOption&lt;String&gt;
-            Value: 2b
-      - IsFailure: False
-        IsChanged: False
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: True
-      - path: file_1.txt
-        content: FSharpOption&lt;String&gt;
-          Value: 1c
-        IsFailure: False
-        IsChanged: True
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: False
-      - path: file_2.txt
-        content: FSharpOption&lt;String&gt;
-          Value: 2c
-        IsFailure: False
-        IsChanged: True
-        IsCreated: False
-        IsDeleted: False
-        IsRenamed: False
-      - path: file_1.txt
-        IsFailure: False
-        IsChanged: False
-        IsCreated: False
-        IsDeleted: True
-        IsRenamed: False
-      - path: file_2.txt
-        IsFailure: False
-        IsChanged: False
-        IsCreated: False
-        IsDeleted: True
-        IsRenamed: False
-FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
+15076845 / 638500447289389114 / Deleted "file_1.txt"
+9286 / 638500447289398400 / Deleted "file_2.txt"
+[Created ("file1.txt", Some "1a"); Changed ("file1.txt", Some "1a"); Created ("file2.txt", Some "2a");
+ Changed ("file2.txt", Some "2a"); Changed ("file1.txt", Some "1b"); Changed ("file2.txt", Some "2b");
+ Renamed ("file1.txt", ("file_1.txt", Some "1b")); Renamed ("file2.txt", ("file_2.txt", Some "2b"));
+ Changed ("file_1.txt", Some "1c"); Changed ("file_2.txt", Some "2c"); Deleted "file_1.txt"; Deleted "file_2.txt"]
+
+Some ()
+
 </pre>
 </div>
 </div>
@@ -8498,28 +8318,17 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
-00:00:24 debug   #5 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-FSharpList&lt;Tuple&lt;String,String&gt;&gt;
-( file1.txt, Created )
-( file1.txt, Changed )
-( file1.txt, Deleted )
-( file2.txt, Created )
-( file2.txt, Changed )
-( file2.txt, Deleted )
-( file3.txt, Created )
-( file3.txt, Changed )
-( file3.txt, Deleted )
-FSharpMap&lt;String,String&gt;
-      - Key: file1.txt
-        Value: Deleted
-      - Key: file2.txt
-        Value: Deleted
-      - Key: file3.txt
-        Value: Deleted
-FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
+<pre>Some ()
+
+00:00:20   debug #5 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+[("file1.txt", "Created"); ("file1.txt", "Changed"); ("file1.txt", "Deleted"); ("file2.txt", "Created");
+ ("file2.txt", "Changed"); ("file2.txt", "Deleted"); ("file3.txt", "Created"); ("file3.txt", "Changed");
+ ("file3.txt", "Deleted")]
+
+map [("file1.txt", "Deleted"); ("file2.txt", "Deleted"); ("file3.txt", "Deleted")]
+
+Some ()
+
 </pre>
 </div>
 </div>
@@ -8597,23 +8406,16 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
-00:00:27 debug   #6 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-FSharpList&lt;Tuple&lt;String,String&gt;&gt;
-( file1.txt, Created )
-( file1.txt, Changed )
-( file1.txt, Deleted )
-( file2.txt, Created )
-( file2.txt, Changed )
-( file2.txt, Deleted )
-FSharpMap&lt;String,String&gt;
-      - Key: file1.txt
-        Value: Deleted
-      - Key: file2.txt
-        Value: Deleted
-FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
+<pre>Some ()
+
+00:00:22   debug #6 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+[("file1.txt", "Created"); ("file1.txt", "Changed"); ("file1.txt", "Deleted"); ("file2.txt", "Created");
+ ("file2.txt", "Changed"); ("file2.txt", "Deleted")]
+
+map [("file1.txt", "Deleted"); ("file2.txt", "Deleted")]
+
+Some ()
+
 </pre>
 </div>
 </div>
@@ -8696,29 +8498,16 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
-00:00:29 debug   #7 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-FSharpList&lt;Tuple&lt;String,String&gt;&gt;
-( file1.txt, Created )
-( file1.txt, Changed )
-( file2.txt, Created )
-( file2.txt, Changed )
-( file_1.txt, Renamed )
-( file_1.txt, Deleted )
-( file_2.txt, Renamed )
-( file_2.txt, Deleted )
-FSharpMap&lt;String,String&gt;
-      - Key: file1.txt
-        Value: Changed
-      - Key: file2.txt
-        Value: Changed
-      - Key: file_1.txt
-        Value: Deleted
-      - Key: file_2.txt
-        Value: Deleted
-FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
+<pre>Some ()
+
+00:00:26   debug #7 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+[("file1.txt", "Created"); ("file1.txt", "Changed"); ("file2.txt", "Created"); ("file2.txt", "Changed");
+ ("file_1.txt", "Renamed"); ("file_1.txt", "Deleted"); ("file_2.txt", "Renamed"); ("file_2.txt", "Deleted")]
+
+map [("file1.txt", "Changed"); ("file2.txt", "Changed"); ("file_1.txt", "Deleted"); ("file_2.txt", "Deleted")]
+
+Some ()
+
 </pre>
 </div>
 </div>
@@ -8809,31 +8598,17 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
-00:00:32 debug   #8 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-FSharpList&lt;Tuple&lt;String,String&gt;&gt;
-( file1.txt, Created )
-( file1.txt, Changed )
-( file2.txt, Created )
-( file2.txt, Changed )
-( file_1.txt, Changed )
-( file_1.txt, Renamed )
-( file_1.txt, Deleted )
-( file_2.txt, Changed )
-( file_2.txt, Renamed )
-( file_2.txt, Deleted )
-FSharpMap&lt;String,String&gt;
-      - Key: file1.txt
-        Value: Changed
-      - Key: file2.txt
-        Value: Changed
-      - Key: file_1.txt
-        Value: Deleted
-      - Key: file_2.txt
-        Value: Deleted
-FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
+<pre>Some ()
+
+00:00:29   debug #8 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+[("file1.txt", "Created"); ("file1.txt", "Changed"); ("file2.txt", "Created"); ("file2.txt", "Changed");
+ ("file_1.txt", "Changed"); ("file_1.txt", "Renamed"); ("file_1.txt", "Deleted"); ("file_2.txt", "Changed");
+ ("file_2.txt", "Renamed"); ("file_2.txt", "Deleted")]
+
+map [("file1.txt", "Changed"); ("file2.txt", "Changed"); ("file_1.txt", "Deleted"); ("file_2.txt", "Deleted")]
+
+Some ()
+
 </pre>
 </div>
 </div>

@@ -3,7 +3,7 @@ import { map, defaultArg, value as value_3, some, Option } from "../../deps/Fabl
 import { op_Addition, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { lambda_type, unit_type, string_type, union_type, bool_type, record_type, int64_type, class_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import { FSharpRef, Union, Record } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { replace, interpolate, toText, trimStart, trimEnd, padRight } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { replace, interpolate, toText, trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import * as fs from "fs";
@@ -747,6 +747,14 @@ export function closure0(unitVar: void, unitVar_1: void): [Mut0, Mut1, Mut2, Opt
     return [v1_1, v0_1, v3_1, value_3(_v6), v5_1] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
 }
 
+export function method3(v0_1: string): string {
+    return v0_1;
+}
+
+export function method4(v0_1: string): string {
+    return v0_1;
+}
+
 export function closure3(unitVar: void, unitVar_1: void): string {
     return "file_system.delete_directory_async";
 }
@@ -770,11 +778,11 @@ export function closure8(unitVar: void, v0_1: int64): US2_$union {
     return US2_US2_0(v0_1);
 }
 
-export function method4(): ((arg0: int64) => US2_$union) {
+export function method6(): ((arg0: int64) => US2_$union) {
     return (v: int64): US2_$union => closure8(undefined, v);
 }
 
-export function method5(): string {
+export function method7(): string {
     return "";
 }
 
@@ -784,18 +792,18 @@ export function closure7(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => st
     }
     const patternInput: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value_3(State_trace_state());
     let _v9: Option<string> = undefined;
-    const x: string = method5();
+    const x: string = method7();
     _v9 = x;
     const v61: string = value_3(_v9);
     const v62: int64 = patternInput[0].l0;
     const v72: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
     let _v75: Option<string> = undefined;
-    const x_1: string = padRight(v72.toLocaleLowerCase(), 7, " ");
+    const x_1: string = padLeft(v72.toLocaleLowerCase(), 7, " ");
     _v75 = x_1;
     return trimEnd(trimStart(`${v61} ${value_3(_v75)} #${v62} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
-export function method6(v0_1: US0_$union, v1_1: (() => string)): void {
+export function method8(v0_1: US0_$union, v1_1: (() => string)): void {
     const v2_1 = (): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(undefined, undefined);
     if (State_trace_state() == null) {
         State_trace_state(v2_1());
@@ -823,8 +831,8 @@ export function method6(v0_1: US0_$union, v1_1: (() => string)): void {
     }
 }
 
-export function method3(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
-    method6(v0_1, (): string => closure7(v0_1, v1_1, v2_1, undefined));
+export function method5(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
+    method8(v0_1, (): string => closure7(v0_1, v1_1, v2_1, undefined));
 }
 
 export function method2(v0_1: string, v1_1: int64): any {
@@ -849,7 +857,7 @@ export function closure12(v0_1: string, v1_1: int64, v2_1: string, unitVar: void
     return `path: ${closure5(undefined, v0_1)} / retry: ${v1_1} / ex: ${v2_1} / ${closure6(undefined, undefined)}`;
 }
 
-export function method7(v0_1: string, v1_1: US5_$union, v2_1: US4_$union, v3_1: int64): any {
+export function method9(v0_1: string, v1_1: US5_$union, v2_1: US4_$union, v3_1: int64): any {
     let _v4: Option<any> = undefined;
     const x: any = defaultOf();
     _v4 = x;
@@ -867,7 +875,7 @@ export function closure9(unitVar: void, v0_1: US3_$union): ((arg0: string) => an
     return (v: string): any => closure10(v0_1, v);
 }
 
-export function method8(v0_1: string, v1_1: int64): any {
+export function method10(v0_1: string, v1_1: int64): any {
     let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
@@ -886,10 +894,6 @@ export function closure14(unitVar: void, v0_1: string): any {
     const x: any = defaultOf();
     _v1 = x;
     return value_3(_v1);
-}
-
-export function method9(v0_1: string): string {
-    return v0_1;
 }
 
 export function closure16(v0_1: string, v1_1: string): any {
@@ -937,7 +941,7 @@ export function closure23(v0_1: string, v1_1: Error, unitVar: void): string {
     return `path: ${closure5(undefined, v0_1)} / ex: ${v10_1} / ${closure6(undefined, undefined)}`;
 }
 
-export function method10(v0_1: string, v1_1: int64): any {
+export function method11(v0_1: string, v1_1: int64): any {
     let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
@@ -964,7 +968,7 @@ export function closure27(v0_1: string, v1_1: string, v2_1: Error, unitVar: void
     return `old_path: ${v12_1(v1_1)} / new_path: ${v12_1(v0_1)} / ex: ${v11_1} / ${closure6(undefined, undefined)}`;
 }
 
-export function method11(v0_1: string, v1_1: string, v2_1: int64): any {
+export function method12(v0_1: string, v1_1: string, v2_1: int64): any {
     let _v3: Option<any> = undefined;
     const x: any = defaultOf();
     _v3 = x;
@@ -1006,15 +1010,15 @@ export function closure34(unitVar: void, unitVar_1: void): string {
     return "read_all_text_retry_async";
 }
 
-export function method13(v0_1: int64, v1_1: string): string {
+export function method14(v0_1: int64, v1_1: string): string {
     return `retry: ${v0_1} / ex: ${v1_1} / ${closure6(undefined, undefined)}`;
 }
 
 export function closure35(v0_1: int64, v1_1: string, unitVar: void): string {
-    return method13(v0_1, v1_1);
+    return method14(v0_1, v1_1);
 }
 
-export function method12(v0_1: string, v1_1: int64): any {
+export function method13(v0_1: string, v1_1: int64): any {
     let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
@@ -1028,11 +1032,11 @@ export function closure28(unitVar: void, v0_1: string): any {
     return value_3(_v1);
 }
 
-export function method14(v0_1: string): string {
+export function method15(v0_1: string): string {
     return v0_1;
 }
 
-export function method15(v0_1: string): string {
+export function method16(v0_1: string): string {
     return v0_1;
 }
 
@@ -1040,23 +1044,23 @@ export function closure37(unitVar: void, v0_1: any): US8_$union {
     return US8_US8_0(v0_1);
 }
 
-export function method16(): ((arg0: any) => US8_$union) {
+export function method17(): ((arg0: any) => US8_$union) {
     return (v: any): US8_$union => closure37(undefined, v);
-}
-
-export function method17(v0_1: any): any {
-    return v0_1;
 }
 
 export function method18(v0_1: any): any {
     return v0_1;
 }
 
-export function method19(): string {
-    return "yyyyMMdd-HHmm-ssff-ffff-f";
+export function method19(v0_1: any): any {
+    return v0_1;
 }
 
 export function method20(): string {
+    return "yyyyMMdd-HHmm-ssff-ffff-f";
+}
+
+export function method21(): string {
     return "hhmm";
 }
 
@@ -1067,7 +1071,7 @@ export function closure36(unitVar: void, unitVar_1: void): string {
     return value_3(_v0);
 }
 
-export function method21(v0_1: string): string {
+export function method22(v0_1: string): string {
     return v0_1;
 }
 
@@ -1078,7 +1082,7 @@ export function closure39(unitVar: void, v0_1: any): any {
     return value_3(_v1);
 }
 
-export function method22(): ((arg0: any) => any) {
+export function method23(): ((arg0: any) => any) {
     return (v: any): any => closure39(undefined, v);
 }
 
@@ -1113,7 +1117,7 @@ export function closure46(v0_1: string, unitVar: void): void {
     value_3(_v1);
 }
 
-export function method23(v0_1: string): (() => void) {
+export function method24(v0_1: string): (() => void) {
     return (): void => {
         closure46(v0_1, undefined);
     };
@@ -1142,7 +1146,7 @@ export function closure49(v0_1: string, unitVar: void): void {
     value_3(_v21);
 }
 
-export function method24(v0_1: string): (() => void) {
+export function method25(v0_1: string): (() => void) {
     return (): void => {
         closure49(v0_1, undefined);
     };
@@ -1165,24 +1169,24 @@ export function closure50(unitVar: void, unitVar_1: void): string {
 
 export function closure54(unitVar: void, v0_1: string): boolean {
     let _v1: Option<boolean> = undefined;
-    const v20: IFsExistsSync = fs;
-    const x: boolean = v20.existsSync(v0_1);
+    const v18_1: IFsExistsSync = fs;
+    const x: boolean = v18.existsSync(v0_1);
     _v1 = x;
     return value_3(_v1);
 }
 
 export function closure55(unitVar: void, v0_1: string): boolean {
     let _v1: Option<boolean> = undefined;
-    const v20: IFsExistsSync = fs;
-    const x: boolean = v20.existsSync(v0_1);
+    const v18_1: IFsExistsSync = fs;
+    const x: boolean = v18.existsSync(v0_1);
     _v1 = x;
     return value_3(_v1);
 }
 
 export function closure56(unitVar: void, v0_1: string): Option<string> {
     let _v1: Option<US9_$union> = undefined;
-    const v50: IPathDirname = path;
-    const x: US9_$union = US9_US9_0(v50.dirname(v0_1));
+    const v34: IPathDirname = path;
+    const x: US9_$union = US9_US9_0(v34.dirname(v0_1));
     _v1 = x;
     const v55: US9_$union = value_3(_v1);
     if (v55.tag === /* US9_0 */ 0) {
@@ -1193,7 +1197,7 @@ export function closure56(unitVar: void, v0_1: string): Option<string> {
     }
 }
 
-export function method26(): ((arg0: string) => Option<string>) {
+export function method27(): ((arg0: string) => Option<string>) {
     return (v: string): Option<string> => closure56(undefined, v);
 }
 
@@ -1201,32 +1205,32 @@ export function closure57(unitVar: void, v0_1: string): US9_$union {
     return US9_US9_0(v0_1);
 }
 
-export function method27(): ((arg0: string) => US9_$union) {
+export function method28(): ((arg0: string) => US9_$union) {
     return (v: string): US9_$union => closure57(undefined, v);
 }
 
-export function method28(v0_1_mut: string, v1_1_mut: boolean, v2_1_mut: string, v3_1_mut: string): string {
-    method28:
+export function method29(v0_1_mut: string, v1_1_mut: boolean, v2_1_mut: string, v3_1_mut: string): string {
+    method29:
     while (true) {
         const v0_1: string = v0_1_mut, v1_1: boolean = v1_1_mut, v2_1: string = v2_1_mut, v3_1: string = v3_1_mut;
         let _v4: Option<string> = undefined;
-        const v40: IPathJoin = path;
-        const v41: string = method14(v3_1);
-        const v42: string = method15(v0_1);
-        const x: string = v40.join(v41, v42);
+        const v39: IPathJoin = path;
+        const v40: string = method15(v3_1);
+        const v41: string = method16(v0_1);
+        const x: string = v39.join(v40, v41);
         _v4 = x;
         if ((v1_1 ? ((v: string): boolean => closure54(undefined, v)) : ((v_1: string): boolean => closure55(undefined, v_1)))(value_3(_v4))) {
             return v3_1;
         }
         else {
-            const v52: Option<string> = method26()(v3_1);
-            const v55: US9_$union = defaultArg(map<string, US9_$union>(method27(), v52), US9_US9_1());
+            const v52: Option<string> = method27()(v3_1);
+            const v55: US9_$union = defaultArg(map<string, US9_$union>(method28(), v52), US9_US9_1());
             if (v55.tag === /* US9_0 */ 0) {
                 v0_1_mut = v0_1;
                 v1_1_mut = v1_1;
                 v2_1_mut = v2_1;
                 v3_1_mut = v55.fields[0];
-                continue method28;
+                continue method29;
             }
             else {
                 throw new Error(`No parent for ${v1_1 ? "file" : "dir"} '${v0_1}' at '${v2_1}' (until '${v3_1}')`);
@@ -1236,21 +1240,21 @@ export function method28(v0_1_mut: string, v1_1_mut: boolean, v2_1_mut: string, 
     }
 }
 
-export function method25(v0_1: string, v1_1: boolean, v2_1: string): string {
+export function method26(v0_1: string, v1_1: boolean, v2_1: string): string {
     let _v3: Option<string> = undefined;
-    const v39: IPathJoin = path;
-    const v40: string = method14(v2_1);
-    const v41: string = method15(v0_1);
-    const x: string = v39.join(v40, v41);
+    const v38: IPathJoin = path;
+    const v39: string = method15(v2_1);
+    const v40: string = method16(v0_1);
+    const x: string = v38.join(v39, v40);
     _v3 = x;
     if ((v1_1 ? ((v: string): boolean => closure54(undefined, v)) : ((v_1: string): boolean => closure55(undefined, v_1)))(value_3(_v3))) {
         return v2_1;
     }
     else {
-        const v51: Option<string> = method26()(v2_1);
-        const v54: US9_$union = defaultArg(map<string, US9_$union>(method27(), v51), US9_US9_1());
+        const v51: Option<string> = method27()(v2_1);
+        const v54: US9_$union = defaultArg(map<string, US9_$union>(method28(), v51), US9_US9_1());
         if (v54.tag === /* US9_0 */ 0) {
-            return method28(v0_1, v1_1, v2_1, v54.fields[0]);
+            return method29(v0_1, v1_1, v2_1, v54.fields[0]);
         }
         else {
             throw new Error(`No parent for ${v1_1 ? "file" : "dir"} '${v0_1}' at '${v2_1}' (until '${v2_1}')`);
@@ -1259,7 +1263,7 @@ export function method25(v0_1: string, v1_1: boolean, v2_1: string): string {
 }
 
 export function closure53(v0_1: string, v1_1: boolean, v2_1: string): string {
-    return method25(v0_1, v1_1, v2_1);
+    return method26(v0_1, v1_1, v2_1);
 }
 
 export function closure52(v0_1: string, v1_1: boolean): ((arg0: string) => string) {
@@ -1270,15 +1274,15 @@ export function closure51(unitVar: void, v0_1: string): ((arg0: boolean) => ((ar
     return (v: boolean): ((arg0: string) => string) => closure52(v0_1, v);
 }
 
-export function method29(): string {
+export function method30(): string {
     return "^\\\\\\\\\\?\\\\";
 }
 
-export function method30(v0_1: string): string {
+export function method31(v0_1: string): string {
     return v0_1;
 }
 
-export function method31(): string {
+export function method32(): string {
     return "";
 }
 
@@ -1303,48 +1307,48 @@ export function closure59(unitVar: void, v0_1: string): string {
     return `file:///${trimStart(v0_1, "/")}`;
 }
 
-export function method32(): string {
-    return "polyglot";
-}
-
 export function method33(): string {
-    return ".paket";
+    return "polyglot";
 }
 
 export function method34(): string {
-    return "polyglot";
-}
-
-export function method35(): string {
     return ".paket";
 }
 
-export function method37(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string): string {
-    method37:
+export function method35(): string {
+    return "polyglot";
+}
+
+export function method36(): string {
+    return ".paket";
+}
+
+export function method38(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string): string {
+    method38:
     while (true) {
         const v0_1: string = v0_1_mut, v1_1: string = v1_1_mut, v2_1: string = v2_1_mut;
         let _v3: Option<string> = undefined;
-        const v39: IPathJoin = path;
-        const v40: string = method14(v2_1);
-        const v41: string = method15(v0_1);
-        const x: string = v39.join(v40, v41);
+        const v38: IPathJoin = path;
+        const v39: string = method15(v2_1);
+        const v40: string = method16(v0_1);
+        const x: string = v38.join(v39, v40);
         _v3 = x;
         const v45: string = value_3(_v3);
         let _v46: Option<boolean> = undefined;
-        const v65: IFsExistsSync = fs;
-        const x_1: boolean = v65.existsSync(v45);
+        const v63: IFsExistsSync = fs;
+        const x_1: boolean = v63.existsSync(v45);
         _v46 = x_1;
         if (value_3(_v46)) {
             return v2_1;
         }
         else {
-            const v71: Option<string> = method26()(v2_1);
-            const v74: US9_$union = defaultArg(map<string, US9_$union>(method27(), v71), US9_US9_1());
+            const v71: Option<string> = method27()(v2_1);
+            const v74: US9_$union = defaultArg(map<string, US9_$union>(method28(), v71), US9_US9_1());
             if (v74.tag === /* US9_0 */ 0) {
                 v0_1_mut = v0_1;
                 v1_1_mut = v1_1;
                 v2_1_mut = v74.fields[0];
-                continue method37;
+                continue method38;
             }
             else {
                 throw new Error(`No parent for ${"dir"} '${v0_1}' at '${v1_1}' (until '${v2_1}')`);
@@ -1354,26 +1358,26 @@ export function method37(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string): 
     }
 }
 
-export function method36(v0_1: string, v1_1: string): string {
+export function method37(v0_1: string, v1_1: string): string {
     let _v2: Option<string> = undefined;
-    const v38: IPathJoin = path;
-    const v39: string = method14(v1_1);
-    const v40: string = method15(v0_1);
-    const x: string = v38.join(v39, v40);
+    const v37: IPathJoin = path;
+    const v38: string = method15(v1_1);
+    const v39: string = method16(v0_1);
+    const x: string = v37.join(v38, v39);
     _v2 = x;
     const v44: string = value_3(_v2);
     let _v45: Option<boolean> = undefined;
-    const v64: IFsExistsSync = fs;
-    const x_1: boolean = v64.existsSync(v44);
+    const v62: IFsExistsSync = fs;
+    const x_1: boolean = v62.existsSync(v44);
     _v45 = x_1;
     if (value_3(_v45)) {
         return v1_1;
     }
     else {
-        const v70: Option<string> = method26()(v1_1);
-        const v73: US9_$union = defaultArg(map<string, US9_$union>(method27(), v70), US9_US9_1());
+        const v70: Option<string> = method27()(v1_1);
+        const v73: US9_$union = defaultArg(map<string, US9_$union>(method28(), v70), US9_US9_1());
         if (v73.tag === /* US9_0 */ 0) {
-            return method37(v0_1, v1_1, v73.fields[0]);
+            return method38(v0_1, v1_1, v73.fields[0]);
         }
         else {
             throw new Error(`No parent for ${"dir"} '${v0_1}' at '${v1_1}' (until '${v1_1}')`);
@@ -1381,42 +1385,42 @@ export function method36(v0_1: string, v1_1: string): string {
     }
 }
 
-export function method38(): string {
+export function method39(): string {
     return "polyglot";
 }
 
 export function closure60(unitVar: void, unitVar_1: void): string {
     let _v1: Option<string> = undefined;
-    const v39: IPathJoin = path;
-    const v40: string = method34();
-    const v41: string = method35();
-    const x: string = v39.join(v40, v41);
+    const v36: IPathJoin = path;
+    const v37: string = method35();
+    const v38: string = method36();
+    const x: string = v36.join(v37, v38);
     _v1 = x;
     let _v47: Option<string> = undefined;
-    const v82: IPathJoin = path;
-    const v83: string = method14(method36(value_3(_v1), "C:\\home\\git\\polyglot\\lib\\spiral"));
-    const v84: string = method38();
-    const x_1: string = v82.join(v83, v84);
+    const v81: IPathJoin = path;
+    const v82: string = method15(method37(value_3(_v1), "C:\\home\\git\\polyglot\\lib\\spiral"));
+    const v83: string = method39();
+    const x_1: string = v81.join(v82, v83);
     _v47 = x_1;
     return value_3(_v47);
-}
-
-export function method40(): string {
-    return "target/polyglot/trace";
 }
 
 export function method41(): string {
     return "target/polyglot/trace";
 }
 
-export function method39(v0_1: string): void {
+export function method42(): string {
+    return "target/polyglot/trace";
+}
+
+export function method40(v0_1: string): void {
     let _v1: Option<void> = undefined;
     _v1 = some(undefined);
     value_3(_v1);
 }
 
 export function closure62(unitVar: void, v0_1: string): void {
-    method39(v0_1);
+    method40(v0_1);
 }
 
 export function closure61(unitVar: void, v0_1: boolean): void {
@@ -1434,10 +1438,10 @@ export function closure61(unitVar: void, v0_1: boolean): void {
 
 export function closure64(v0_1: string, v1_1: string): string {
     let _v2: Option<string> = undefined;
-    const v38: IPathJoin = path;
-    const v39: string = method14(v0_1);
-    const v40: string = method15(v1_1);
-    const x: string = v38.join(v39, v40);
+    const v37: IPathJoin = path;
+    const v38: string = method15(v0_1);
+    const v39: string = method16(v1_1);
+    const x: string = v37.join(v38, v39);
     _v2 = x;
     return value_3(_v2);
 }

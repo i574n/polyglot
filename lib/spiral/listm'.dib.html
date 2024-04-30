@@ -8529,6 +8529,8 @@ and method0 () : unit =
             let v5 : string option = None
             let v6 : bool = true in let mutable _v5 = v5
             
+#if FABLE_COMPILER || WASM || CONTRACT
+            
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
             let v7 : string = $"%A{v4}"
             v7
@@ -8544,18 +8546,18 @@ and method0 () : unit =
             v9
 #endif
             
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            let v10 : string = $"{v4.GetType ()}: {v4.Message}"
+#if FABLE_COMPILER_TYPESCRIPT
+            let v10 : string = $"%A{v4}"
             v10
 #endif
             
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_PYTHON
             let v11 : string = $"%A{v4}"
             v11
 #endif
             
-#if FABLE_COMPILER_PYTHON
-            let v12 : string = $"%A{v4}"
+#else
+            let v12 : string = $"{v4.GetType ()}: {v4.Message}"
             v12
 #endif
             |&gt; fun x -&gt; _v5 &lt;- Some x

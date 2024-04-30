@@ -17,7 +17,7 @@ pub mod Trace {
     use fable_library_rust::Option_::getValue;
     use fable_library_rust::Option_::map;
     use fable_library_rust::Seq_::ofList;
-    use fable_library_rust::String_::padRight;
+    use fable_library_rust::String_::padLeft;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::toLower;
@@ -302,7 +302,7 @@ pub mod Trace {
             {
                 let v61: string = getValue(_v9.get().clone());
                 let v62: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v74: string = padRight(
+                let v74: string = padLeft(
                     toLower(match &v0_1 {
                         Trace::US0::US0_1 => string("Debug"),
                         Trace::US0::US0_2 => string("Info"),

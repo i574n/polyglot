@@ -7688,6 +7688,8 @@ and method0 () : unit =
     let v0 : uint8 option = None
     let v1 : bool = true in let mutable _v0 = v0
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v2 : uint8 = 2uy
     v2
@@ -7703,18 +7705,18 @@ and method0 () : unit =
     v4
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v5 : uint8 = 1uy
+#if FABLE_COMPILER_TYPESCRIPT
+    let v5 : uint8 = 2uy
     v5
 #endif
     
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_PYTHON
     let v6 : uint8 = 2uy
     v6
 #endif
     
-#if FABLE_COMPILER_PYTHON
-    let v7 : uint8 = 2uy
+#else
+    let v7 : uint8 = 1uy
     v7
 #endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
@@ -7783,6 +7785,8 @@ and method0 () : unit =
     let v0 : uint8 option = None
     let v1 : bool = true in let mutable _v0 = v0
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v2 : uint8 = 1uy
     v2
@@ -7798,17 +7802,17 @@ and method0 () : unit =
     v4
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
+#if FABLE_COMPILER_TYPESCRIPT
     let v5 : uint8 = 2uy
     v5
 #endif
     
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_PYTHON
     let v6 : uint8 = 2uy
     v6
 #endif
     
-#if FABLE_COMPILER_PYTHON
+#else
     let v7 : uint8 = 2uy
     v7
 #endif
@@ -8389,320 +8393,11 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="not'">not'<a class="anchor-link" href="#not'">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="ow">not</span><span class="s1">' x =</span>
-    <span class="n">join</span> <span class="ow">not</span> <span class="n">x</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="(+.)">(+.)<a class="anchor-link" href="#(+.)">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">+.</span><span class="p">)</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"!a + !b"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="(-.)">(-.)<a class="anchor-link" href="#(-.)">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">-.</span><span class="p">)</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"!a - !b"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="(*.)">(*.)<a class="anchor-link" href="#(*.)">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">*.</span><span class="p">)</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"!a * !b"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="(/.)">(/.)<a class="anchor-link" href="#(/.)">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">/.</span><span class="p">)</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"!a / !b"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="(=.)">(=.)<a class="anchor-link" href="#(=.)">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">=.</span><span class="p">)</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"!a = !b"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="(%3C%3E.)">(&lt;&gt;.)<a class="anchor-link" href="#(%3C%3E.)">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">&lt;&gt;.</span><span class="p">)</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"!a &lt;&gt; !b"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="(%7C%7C%3E)">(||&gt;)<a class="anchor-link" href="#(%7C%7C%3E)">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">||&gt;</span><span class="p">)</span> <span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">arg2</span> <span class="o">|&gt;</span> <span class="n">fn</span> <span class="n">arg1</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8741,7 +8436,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8751,7 +8446,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8780,7 +8475,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8819,7 +8514,7 @@ struct (2, 1)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8829,7 +8524,7 @@ struct (2, 1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8862,7 +8557,7 @@ struct (2, 1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8894,7 +8589,7 @@ struct (2, 1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8948,7 +8643,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9007,7 +8702,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9017,7 +8712,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9050,7 +8745,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9108,7 +8803,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9118,7 +8813,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9148,7 +8843,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9158,7 +8853,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9187,7 +8882,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9238,6 +8933,8 @@ and method0 () : unit =
             let v5 : string option = None
             let v6 : bool = true in let mutable _v5 = v5
             
+#if FABLE_COMPILER || WASM || CONTRACT
+            
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
             let v7 : string = $"%A{v4}"
             v7
@@ -9253,18 +8950,18 @@ and method0 () : unit =
             v9
 #endif
             
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            let v10 : string = $"{v4.GetType ()}: {v4.Message}"
+#if FABLE_COMPILER_TYPESCRIPT
+            let v10 : string = $"%A{v4}"
             v10
 #endif
             
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_PYTHON
             let v11 : string = $"%A{v4}"
             v11
 #endif
             
-#if FABLE_COMPILER_PYTHON
-            let v12 : string = $"%A{v4}"
+#else
+            let v12 : string = $"{v4.GetType ()}: {v4.Message}"
             v12
 #endif
             |&gt; fun x -&gt; _v5 &lt;- Some x
@@ -9299,7 +8996,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9309,7 +9006,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9338,7 +9035,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9348,7 +9045,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9378,7 +9075,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9388,7 +9085,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9424,7 +9121,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=66">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9467,6 +9164,8 @@ and method0 () : unit =
     let v1 : System.IDisposable option = None
     let v2 : bool = true in let mutable _v1 = v1
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : (unit -&gt; unit) = closure0(v0)
     let v4 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v3 "$0()" )
@@ -9483,19 +9182,19 @@ and method0 () : unit =
     v6
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v7 : (unit -&gt; unit) = method1(v0)
-    let v8 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v7 () }
-    v8
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
-    let v9 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
-    v9
+    let v7 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
+    v7
 #endif
     
 #if FABLE_COMPILER_PYTHON
-    let v10 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
+    let v8 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
+    v8
+#endif
+    
+#else
+    let v9 : (unit -&gt; unit) = method1(v0)
+    let v10 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v9 () }
     v10
 #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
@@ -9523,7 +9222,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9552,43 +9251,13 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>11:07:39 <span class="ansi-blue-intense-fg">debug  </span> #1 new_arg / arg: Arg {
-    id: "arg",
-    help: None,
-    long_help: None,
-    action: None,
-    value_parser: None,
-    blacklist: [],
-    settings: ArgFlags(
-        0,
-    ),
-    overrides: [],
-    groups: [],
-    requires: [],
-    r_ifs: [],
-    r_unless: [],
-    short: None,
-    long: None,
-    aliases: [],
-    short_aliases: [],
-    disp_ord: None,
-    val_names: [],
-    num_vals: None,
-    val_delim: None,
-    default_vals: [],
-    default_vals_ifs: [],
-    terminator: None,
-    index: None,
-    help_heading: None,
-    value_hint: None,
-    default_missing_vals: [],
-}
+<pre>1
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9637,6 +9306,8 @@ and method0 () : unit =
     let v1 : System.Threading.Tasks.Task option = None
     let v2 : bool = true in let mutable _v1 = v1
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : System.Threading.Tasks.Task = null |&gt; unbox&lt;System.Threading.Tasks.Task&gt;
     v3
@@ -9652,32 +9323,38 @@ and method0 () : unit =
     v5
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v6 : System.Threading.Tasks.Task option = None
-    let mutable _v6 = v6
+#if FABLE_COMPILER_TYPESCRIPT
+    let v6 : System.Threading.Tasks.Task = null |&gt; unbox&lt;System.Threading.Tasks.Task&gt;
+    v6
+#endif
+    
+#if FABLE_COMPILER_PYTHON
+    let v7 : System.Threading.Tasks.Task = null |&gt; unbox&lt;System.Threading.Tasks.Task&gt;
+    v7
+#endif
+    
+#else
+    let v8 : System.Threading.Tasks.Task option = None
+    let mutable _v8 = v8
     task {
-    let v7 : System.IDisposable option = None
-    let v8 : bool = true in let mutable _v7 = v7
+    let v9 : System.IDisposable option = None
+    let v10 : bool = true in let mutable _v9 = v9
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v9 : (unit -&gt; unit) = closure0(v0)
-    let v10 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
-    v10
-#endif
-    
-#if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v11 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
-    v11
-#endif
-    
-#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v12 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
+    let v11 : (unit -&gt; unit) = closure0(v0)
+    let v12 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v11 "$0()" )
     v12
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v13 : (unit -&gt; unit) = method1(v0)
-    let v14 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v13 () }
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v13 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v11 "$0()" )
+    v13
+#endif
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v14 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v11 "$0()" )
     v14
 #endif
     
@@ -9690,30 +9367,28 @@ and method0 () : unit =
     let v16 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v16
 #endif
-    |&gt; fun x -&gt; _v7 &lt;- Some x
-    let v17 : System.IDisposable = _v7.Value
-    use v17 = v17 
-    let v18 : System.IDisposable = v17 
+    
+#else
+    let v17 : (unit -&gt; unit) = method1(v0)
+    let v18 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v17 () }
+    v18
+#endif
+    |&gt; fun x -&gt; _v9 &lt;- Some x
+    let v19 : System.IDisposable = _v9.Value
+    use v19 = v19 
+    let v20 : System.IDisposable = v19 
     return () 
     }
-    |&gt; fun x -&gt; _v6 &lt;- Some x
-    let v19 : System.Threading.Tasks.Task = _v6 |&gt; Option.get
-    v19
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v20 : System.Threading.Tasks.Task = null |&gt; unbox&lt;System.Threading.Tasks.Task&gt;
-    v20
-#endif
-    
-#if FABLE_COMPILER_PYTHON
-    let v21 : System.Threading.Tasks.Task = null |&gt; unbox&lt;System.Threading.Tasks.Task&gt;
+    |&gt; fun x -&gt; _v8 &lt;- Some x
+    let v21 : System.Threading.Tasks.Task = _v8 |&gt; Option.get
     v21
 #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     let v22 : System.Threading.Tasks.Task = _v1.Value
     let v23 : Async&lt;unit&gt; option = None
     let v24 : bool = true in let mutable _v23 = v23
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v25 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
@@ -9730,25 +9405,27 @@ and method0 () : unit =
     v27
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v28 : (System.Threading.Tasks.Task -&gt; Async&lt;unit&gt;) = Async.AwaitTask
-    let v29 : Async&lt;unit&gt; = v28 v22
-    v29
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
-    let v30 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v30
+    let v28 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v28
 #endif
     
 #if FABLE_COMPILER_PYTHON
-    let v31 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    let v29 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v29
+#endif
+    
+#else
+    let v30 : (System.Threading.Tasks.Task -&gt; Async&lt;unit&gt;) = Async.AwaitTask
+    let v31 : Async&lt;unit&gt; = v30 v22
     v31
 #endif
     |&gt; fun x -&gt; _v23 &lt;- Some x
     let v32 : Async&lt;unit&gt; = _v23.Value
     let v33 : unit option = None
     let v34 : bool = true in let mutable _v33 = v33
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
@@ -9765,12 +9442,6 @@ and method0 () : unit =
     ()
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v35 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
-    v35 v32
-    ()
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
     null |&gt; unbox&lt;unit&gt;
     ()
@@ -9778,6 +9449,12 @@ and method0 () : unit =
     
 #if FABLE_COMPILER_PYTHON
     null |&gt; unbox&lt;unit&gt;
+    ()
+#endif
+    
+#else
+    let v35 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
+    v35 v32
     ()
 #endif
     |&gt; fun x -&gt; _v33 &lt;- Some x
@@ -9803,7 +9480,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=69">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9851,6 +9528,8 @@ and method0 () : unit =
     let v1 : Async&lt;unit&gt; option = None
     let v2 : bool = true in let mutable _v1 = v1
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v3
@@ -9866,32 +9545,38 @@ and method0 () : unit =
     v5
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v6 : Async&lt;unit&gt; option = None
-    let mutable _v6 = v6
+#if FABLE_COMPILER_TYPESCRIPT
+    let v6 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v6
+#endif
+    
+#if FABLE_COMPILER_PYTHON
+    let v7 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v7
+#endif
+    
+#else
+    let v8 : Async&lt;unit&gt; option = None
+    let mutable _v8 = v8
     async {
-    let v7 : System.IDisposable option = None
-    let v8 : bool = true in let mutable _v7 = v7
+    let v9 : System.IDisposable option = None
+    let v10 : bool = true in let mutable _v9 = v9
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v9 : (unit -&gt; unit) = closure0(v0)
-    let v10 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
-    v10
-#endif
-    
-#if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v11 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
-    v11
-#endif
-    
-#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v12 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
+    let v11 : (unit -&gt; unit) = closure0(v0)
+    let v12 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v11 "$0()" )
     v12
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v13 : (unit -&gt; unit) = method1(v0)
-    let v14 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v13 () }
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v13 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v11 "$0()" )
+    v13
+#endif
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v14 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v11 "$0()" )
     v14
 #endif
     
@@ -9904,30 +9589,28 @@ and method0 () : unit =
     let v16 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v16
 #endif
-    |&gt; fun x -&gt; _v7 &lt;- Some x
-    let v17 : System.IDisposable = _v7.Value
-    use v17 = v17 
-    let v18 : System.IDisposable = v17 
+    
+#else
+    let v17 : (unit -&gt; unit) = method1(v0)
+    let v18 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v17 () }
+    v18
+#endif
+    |&gt; fun x -&gt; _v9 &lt;- Some x
+    let v19 : System.IDisposable = _v9.Value
+    use v19 = v19 
+    let v20 : System.IDisposable = v19 
     return () 
     }
-    |&gt; fun x -&gt; _v6 &lt;- Some x
-    let v19 : Async&lt;unit&gt; = _v6 |&gt; Option.get
-    v19
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v20 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v20
-#endif
-    
-#if FABLE_COMPILER_PYTHON
-    let v21 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    |&gt; fun x -&gt; _v8 &lt;- Some x
+    let v21 : Async&lt;unit&gt; = _v8 |&gt; Option.get
     v21
 #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     let v22 : Async&lt;unit&gt; = _v1.Value
     let v23 : unit option = None
     let v24 : bool = true in let mutable _v23 = v23
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
@@ -9944,12 +9627,6 @@ and method0 () : unit =
     ()
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v25 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
-    v25 v22
-    ()
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
     null |&gt; unbox&lt;unit&gt;
     ()
@@ -9957,6 +9634,12 @@ and method0 () : unit =
     
 #if FABLE_COMPILER_PYTHON
     null |&gt; unbox&lt;unit&gt;
+    ()
+#endif
+    
+#else
+    let v25 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
+    v25 v22
     ()
 #endif
     |&gt; fun x -&gt; _v23 &lt;- Some x
@@ -9982,7 +9665,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=70">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10029,6 +9712,8 @@ and method0 () : unit =
     let v1 : Async&lt;unit&gt; option = None
     let v2 : bool = true in let mutable _v1 = v1
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v3
@@ -10044,32 +9729,38 @@ and method0 () : unit =
     v5
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v6 : Async&lt;unit&gt; option = None
-    let mutable _v6 = v6
+#if FABLE_COMPILER_TYPESCRIPT
+    let v6 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v6
+#endif
+    
+#if FABLE_COMPILER_PYTHON
+    let v7 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v7
+#endif
+    
+#else
+    let v8 : Async&lt;unit&gt; option = None
+    let mutable _v8 = v8
     async {
-    let v7 : System.IDisposable option = None
-    let v8 : bool = true in let mutable _v7 = v7
+    let v9 : System.IDisposable option = None
+    let v10 : bool = true in let mutable _v9 = v9
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v9 : (unit -&gt; unit) = closure0(v0)
-    let v10 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
-    v10
-#endif
-    
-#if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v11 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
-    v11
-#endif
-    
-#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v12 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v9 "$0()" )
+    let v11 : (unit -&gt; unit) = closure0(v0)
+    let v12 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v11 "$0()" )
     v12
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v13 : (unit -&gt; unit) = method1(v0)
-    let v14 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v13 () }
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v13 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v11 "$0()" )
+    v13
+#endif
+    
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v14 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v11 "$0()" )
     v14
 #endif
     
@@ -10082,28 +9773,26 @@ and method0 () : unit =
     let v16 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
     v16
 #endif
-    |&gt; fun x -&gt; _v7 &lt;- Some x
-    let v17 : System.IDisposable = _v7.Value
-    return () 
-    }
-    |&gt; fun x -&gt; _v6 &lt;- Some x
-    let v18 : Async&lt;unit&gt; = _v6 |&gt; Option.get
+    
+#else
+    let v17 : (unit -&gt; unit) = method1(v0)
+    let v18 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v17 () }
     v18
 #endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v19 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v19
-#endif
-    
-#if FABLE_COMPILER_PYTHON
-    let v20 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    |&gt; fun x -&gt; _v9 &lt;- Some x
+    let v19 : System.IDisposable = _v9.Value
+    return () 
+    }
+    |&gt; fun x -&gt; _v8 &lt;- Some x
+    let v20 : Async&lt;unit&gt; = _v8 |&gt; Option.get
     v20
 #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     let v21 : Async&lt;unit&gt; = _v1.Value
     let v22 : unit option = None
     let v23 : bool = true in let mutable _v22 = v22
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
@@ -10120,12 +9809,6 @@ and method0 () : unit =
     ()
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v24 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
-    v24 v21
-    ()
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
     null |&gt; unbox&lt;unit&gt;
     ()
@@ -10133,6 +9816,12 @@ and method0 () : unit =
     
 #if FABLE_COMPILER_PYTHON
     null |&gt; unbox&lt;unit&gt;
+    ()
+#endif
+    
+#else
+    let v24 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
+    v24 v21
     ()
 #endif
     |&gt; fun x -&gt; _v22 &lt;- Some x
@@ -10159,7 +9848,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=71">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10169,7 +9858,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=72">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10202,7 +9891,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=73">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10212,7 +9901,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=74">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10244,7 +9933,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=75">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10254,7 +9943,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=76">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10299,7 +9988,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=77">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10392,6 +10081,8 @@ and closure7 () () : struct (Mut1 * Mut2 * Mut3 * int64 option * Mut4) =
     let v7 : string option = None
     let v8 : bool = true in let mutable _v7 = v7
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v9 : string = "env!(\"CARGO_PKG_NAME\").into()"
     let v10 : string = Fable.Core.RustInterop.emitRustExpr () v9
@@ -10408,18 +10099,18 @@ and closure7 () () : struct (Mut1 * Mut2 * Mut3 * int64 option * Mut4) =
     v12
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v13 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+#if FABLE_COMPILER_TYPESCRIPT
+    let v13 : string = null |&gt; unbox&lt;string&gt;
     v13
 #endif
     
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_PYTHON
     let v14 : string = null |&gt; unbox&lt;string&gt;
     v14
 #endif
     
-#if FABLE_COMPILER_PYTHON
-    let v15 : string = null |&gt; unbox&lt;string&gt;
+#else
+    let v15 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v15
 #endif
     |&gt; fun x -&gt; _v7 &lt;- Some x
@@ -10466,6 +10157,8 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v9 : string option = None
     let v10 : bool = true in let mutable _v9 = v9
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v11 : (int64 -&gt; US4) = method5()
     let v12 : US4 = US4_1
@@ -10506,43 +10199,43 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     v35
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v36 : (int64 -&gt; US4) = method5()
-    let v37 : US4 = US4_1
-    let v38 : US4 = v7 |&gt; Option.map v36 |&gt; Option.defaultValue v37 
-    let v56 : System.DateTime =
-        match v38 with
-        | US4_1 -&gt; (* None *)
-            let v54 : System.DateTime = System.DateTime.Now
-            v54
-        | US4_0(v39) -&gt; (* Some *)
-            let v40 : System.DateTime = System.DateTime.Now
-            let v41 : (System.DateTime -&gt; int64) = _.Ticks
-            let v42 : int64 = v41 v40
-            let v43 : int64 = v42 - v39
-            let v44 : System.TimeSpan = System.TimeSpan v43 
-            let v45 : (System.TimeSpan -&gt; int32) = _.Hours
-            let v46 : int32 = v45 v44
-            let v47 : (System.TimeSpan -&gt; int32) = _.Minutes
-            let v48 : int32 = v47 v44
-            let v49 : (System.TimeSpan -&gt; int32) = _.Seconds
-            let v50 : int32 = v49 v44
-            let v51 : (System.TimeSpan -&gt; int32) = _.Milliseconds
-            let v52 : int32 = v51 v44
-            let v53 : System.DateTime = System.DateTime (1, 1, 1, v46, v48, v50, v52)
-            v53
-    let v57 : string = "HH:mm:ss"
-    let v58 : string = v56.ToString v57 
-    v58
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
-    let v59 : string = method6()
-    v59
+    let v36 : string = method6()
+    v36
 #endif
     
 #if FABLE_COMPILER_PYTHON
-    let v60 : string = method6()
+    let v37 : string = method6()
+    v37
+#endif
+    
+#else
+    let v38 : (int64 -&gt; US4) = method5()
+    let v39 : US4 = US4_1
+    let v40 : US4 = v7 |&gt; Option.map v38 |&gt; Option.defaultValue v39 
+    let v58 : System.DateTime =
+        match v40 with
+        | US4_1 -&gt; (* None *)
+            let v56 : System.DateTime = System.DateTime.Now
+            v56
+        | US4_0(v41) -&gt; (* Some *)
+            let v42 : System.DateTime = System.DateTime.Now
+            let v43 : (System.DateTime -&gt; int64) = _.Ticks
+            let v44 : int64 = v43 v42
+            let v45 : int64 = v44 - v41
+            let v46 : System.TimeSpan = System.TimeSpan v45 
+            let v47 : (System.TimeSpan -&gt; int32) = _.Hours
+            let v48 : int32 = v47 v46
+            let v49 : (System.TimeSpan -&gt; int32) = _.Minutes
+            let v50 : int32 = v49 v46
+            let v51 : (System.TimeSpan -&gt; int32) = _.Seconds
+            let v52 : int32 = v51 v46
+            let v53 : (System.TimeSpan -&gt; int32) = _.Milliseconds
+            let v54 : int32 = v53 v46
+            let v55 : System.DateTime = System.DateTime (1, 1, 1, v48, v50, v52, v54)
+            v55
+    let v59 : string = "HH:mm:ss"
+    let v60 : string = v58.ToString v59 
     v60
 #endif
     |&gt; fun x -&gt; _v9 &lt;- Some x
@@ -10566,9 +10259,11 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
             let v66 : string = "Warning"
             v66
     let v73 : string = v72.ToLower ()
-    let v74 : string = v73.PadRight (7, ' ')
+    let v74 : string = v73.PadLeft (7, ' ')
     let v75 : string option = None
     let v76 : bool = true in let mutable _v75 = v75
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v91 : Ref&lt;Str&gt; =
@@ -10675,15 +10370,15 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     v148
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    v74
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
     v74
 #endif
     
 #if FABLE_COMPILER_PYTHON
+    v74
+#endif
+    
+#else
     v74
 #endif
     |&gt; fun x -&gt; _v75 &lt;- Some x
@@ -10720,6 +10415,8 @@ and method7 (v0 : US2, v1 : (unit -&gt; string)) : unit =
         let v23 : unit option = None
         let v24 : bool = true in let mutable _v23 = v23
         
+#if FABLE_COMPILER || WASM || CONTRACT
+        
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
         let v25 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v25
@@ -10738,17 +10435,17 @@ and method7 (v0 : US2, v1 : (unit -&gt; string)) : unit =
         ()
 #endif
         
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-        System.Console.WriteLine v22 
-        ()
-#endif
-        
 #if FABLE_COMPILER_TYPESCRIPT
         System.Console.WriteLine v22 
         ()
 #endif
         
 #if FABLE_COMPILER_PYTHON
+        System.Console.WriteLine v22 
+        ()
+#endif
+        
+#else
         System.Console.WriteLine v22 
         ()
 #endif
@@ -10767,6 +10464,8 @@ and closure2 (v0 : int32) (v1 : exn) : US1 =
     let v5 : unit option = None
     let v6 : bool = true in let mutable _v5 = v5
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     ()
 #endif
@@ -10779,17 +10478,17 @@ and closure2 (v0 : int32) (v1 : exn) : US1 =
     ()
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v7 : (int32 -&gt; unit) = System.Threading.Thread.Sleep
-    v7 1
-    ()
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
     ()
 #endif
     
 #if FABLE_COMPILER_PYTHON
+    ()
+#endif
+    
+#else
+    let v7 : (int32 -&gt; unit) = System.Threading.Thread.Sleep
+    v7 1
     ()
 #endif
     |&gt; fun x -&gt; _v5 &lt;- Some x
@@ -10839,7 +10538,7 @@ US0_0 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=78">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10942,6 +10641,8 @@ and closure7 () () : struct (Mut1 * Mut2 * Mut3 * int64 option * Mut4) =
     let v7 : string option = None
     let v8 : bool = true in let mutable _v7 = v7
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v9 : string = "env!(\"CARGO_PKG_NAME\").into()"
     let v10 : string = Fable.Core.RustInterop.emitRustExpr () v9
@@ -10958,18 +10659,18 @@ and closure7 () () : struct (Mut1 * Mut2 * Mut3 * int64 option * Mut4) =
     v12
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v13 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+#if FABLE_COMPILER_TYPESCRIPT
+    let v13 : string = null |&gt; unbox&lt;string&gt;
     v13
 #endif
     
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_PYTHON
     let v14 : string = null |&gt; unbox&lt;string&gt;
     v14
 #endif
     
-#if FABLE_COMPILER_PYTHON
-    let v15 : string = null |&gt; unbox&lt;string&gt;
+#else
+    let v15 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v15
 #endif
     |&gt; fun x -&gt; _v7 &lt;- Some x
@@ -11016,6 +10717,8 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v9 : string option = None
     let v10 : bool = true in let mutable _v9 = v9
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v11 : (int64 -&gt; US4) = method5()
     let v12 : US4 = US4_1
@@ -11056,43 +10759,43 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     v35
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v36 : (int64 -&gt; US4) = method5()
-    let v37 : US4 = US4_1
-    let v38 : US4 = v7 |&gt; Option.map v36 |&gt; Option.defaultValue v37 
-    let v56 : System.DateTime =
-        match v38 with
-        | US4_1 -&gt; (* None *)
-            let v54 : System.DateTime = System.DateTime.Now
-            v54
-        | US4_0(v39) -&gt; (* Some *)
-            let v40 : System.DateTime = System.DateTime.Now
-            let v41 : (System.DateTime -&gt; int64) = _.Ticks
-            let v42 : int64 = v41 v40
-            let v43 : int64 = v42 - v39
-            let v44 : System.TimeSpan = System.TimeSpan v43 
-            let v45 : (System.TimeSpan -&gt; int32) = _.Hours
-            let v46 : int32 = v45 v44
-            let v47 : (System.TimeSpan -&gt; int32) = _.Minutes
-            let v48 : int32 = v47 v44
-            let v49 : (System.TimeSpan -&gt; int32) = _.Seconds
-            let v50 : int32 = v49 v44
-            let v51 : (System.TimeSpan -&gt; int32) = _.Milliseconds
-            let v52 : int32 = v51 v44
-            let v53 : System.DateTime = System.DateTime (1, 1, 1, v46, v48, v50, v52)
-            v53
-    let v57 : string = "HH:mm:ss"
-    let v58 : string = v56.ToString v57 
-    v58
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
-    let v59 : string = method6()
-    v59
+    let v36 : string = method6()
+    v36
 #endif
     
 #if FABLE_COMPILER_PYTHON
-    let v60 : string = method6()
+    let v37 : string = method6()
+    v37
+#endif
+    
+#else
+    let v38 : (int64 -&gt; US4) = method5()
+    let v39 : US4 = US4_1
+    let v40 : US4 = v7 |&gt; Option.map v38 |&gt; Option.defaultValue v39 
+    let v58 : System.DateTime =
+        match v40 with
+        | US4_1 -&gt; (* None *)
+            let v56 : System.DateTime = System.DateTime.Now
+            v56
+        | US4_0(v41) -&gt; (* Some *)
+            let v42 : System.DateTime = System.DateTime.Now
+            let v43 : (System.DateTime -&gt; int64) = _.Ticks
+            let v44 : int64 = v43 v42
+            let v45 : int64 = v44 - v41
+            let v46 : System.TimeSpan = System.TimeSpan v45 
+            let v47 : (System.TimeSpan -&gt; int32) = _.Hours
+            let v48 : int32 = v47 v46
+            let v49 : (System.TimeSpan -&gt; int32) = _.Minutes
+            let v50 : int32 = v49 v46
+            let v51 : (System.TimeSpan -&gt; int32) = _.Seconds
+            let v52 : int32 = v51 v46
+            let v53 : (System.TimeSpan -&gt; int32) = _.Milliseconds
+            let v54 : int32 = v53 v46
+            let v55 : System.DateTime = System.DateTime (1, 1, 1, v48, v50, v52, v54)
+            v55
+    let v59 : string = "HH:mm:ss"
+    let v60 : string = v58.ToString v59 
     v60
 #endif
     |&gt; fun x -&gt; _v9 &lt;- Some x
@@ -11116,9 +10819,11 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
             let v66 : string = "Warning"
             v66
     let v73 : string = v72.ToLower ()
-    let v74 : string = v73.PadRight (7, ' ')
+    let v74 : string = v73.PadLeft (7, ' ')
     let v75 : string option = None
     let v76 : bool = true in let mutable _v75 = v75
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v91 : Ref&lt;Str&gt; =
@@ -11225,15 +10930,15 @@ and closure6 (v0 : US2, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     v148
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    v74
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
     v74
 #endif
     
 #if FABLE_COMPILER_PYTHON
+    v74
+#endif
+    
+#else
     v74
 #endif
     |&gt; fun x -&gt; _v75 &lt;- Some x
@@ -11270,6 +10975,8 @@ and method7 (v0 : US2, v1 : (unit -&gt; string)) : unit =
         let v23 : unit option = None
         let v24 : bool = true in let mutable _v23 = v23
         
+#if FABLE_COMPILER || WASM || CONTRACT
+        
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
         let v25 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v25
@@ -11288,17 +10995,17 @@ and method7 (v0 : US2, v1 : (unit -&gt; string)) : unit =
         ()
 #endif
         
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-        System.Console.WriteLine v22 
-        ()
-#endif
-        
 #if FABLE_COMPILER_TYPESCRIPT
         System.Console.WriteLine v22 
         ()
 #endif
         
 #if FABLE_COMPILER_PYTHON
+        System.Console.WriteLine v22 
+        ()
+#endif
+        
+#else
         System.Console.WriteLine v22 
         ()
 #endif
@@ -11317,6 +11024,8 @@ and closure2 (v0 : int32) (v1 : exn) : US1 =
     let v5 : unit option = None
     let v6 : bool = true in let mutable _v5 = v5
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     ()
 #endif
@@ -11329,17 +11038,17 @@ and closure2 (v0 : int32) (v1 : exn) : US1 =
     ()
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v7 : (int32 -&gt; unit) = System.Threading.Thread.Sleep
-    v7 1
-    ()
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
     ()
 #endif
     
 #if FABLE_COMPILER_PYTHON
+    ()
+#endif
+    
+#else
+    let v7 : (int32 -&gt; unit) = System.Threading.Thread.Sleep
+    v7 1
     ()
 #endif
     |&gt; fun x -&gt; _v5 &lt;- Some x
@@ -11384,11 +11093,11 @@ and method0 () : unit =
 method0()
 
 00:00:00 warning #1 retry_fn / retry: 0 / ex: System.Exception: test
-   at FSI_0050.closure0(Mut0 v0, Int32 v1, Unit unitVar2)
-   at FSI_0050.method1(Mut0 v0, Int32 v1)
+   at FSI_0042.closure0(Mut0 v0, Int32 v1, Unit unitVar2)
+   at FSI_0042.method1(Mut0 v0, Int32 v1)
 00:00:00 warning #2 retry_fn / retry: 1 / ex: System.Exception: test
-   at FSI_0050.closure0(Mut0 v0, Int32 v1, Unit unitVar2)
-   at FSI_0050.method1(Mut0 v0, Int32 v1)
+   at FSI_0042.closure0(Mut0 v0, Int32 v1, Unit unitVar2)
+   at FSI_0042.method1(Mut0 v0, Int32 v1)
 US0_0 2
 </pre>
 </div>
@@ -11396,7 +11105,7 @@ US0_0 2
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11406,7 +11115,7 @@ US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=80">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11517,14 +11226,6 @@ type std_rc_Rc&lt;'T&gt; = class end
 #endif
 type std_rc_Weak&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Arc&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Mutex&lt;'T&gt; = class end
-#if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;]
 #endif
 type Str = class end
@@ -11569,9 +11270,17 @@ type std_fmt_Display&lt;'T&gt; = class end
 #endif
 type std_str_Utf8Error = class end
 #if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::FromUtf8Error")&gt;]
+#endif
+type std_string_FromUtf8Error = class end
+#if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;]
 #endif
 type std_string_String = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::slice::Windows&lt;$0&gt;")&gt;]
+#endif
+type std_slice_Windows&lt;'T&gt; = class end
 module State = let mutable trace_state = None
 type Disposable (f : unit -&gt; unit) = interface System.IDisposable with member _.Dispose () = f ()
 type Mut0 = {mutable l0 : int64}
@@ -11615,6 +11324,8 @@ and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     let v7 : string option = None
     let v8 : bool = true in let mutable _v7 = v7
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v9 : string = "env!(\"CARGO_PKG_NAME\").into()"
     let v10 : string = Fable.Core.RustInterop.emitRustExpr () v9
@@ -11631,18 +11342,18 @@ and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     v12
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v13 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+#if FABLE_COMPILER_TYPESCRIPT
+    let v13 : string = null |&gt; unbox&lt;string&gt;
     v13
 #endif
     
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_PYTHON
     let v14 : string = null |&gt; unbox&lt;string&gt;
     v14
 #endif
     
-#if FABLE_COMPILER_PYTHON
-    let v15 : string = null |&gt; unbox&lt;string&gt;
+#else
+    let v15 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v15
 #endif
     |&gt; fun x -&gt; _v7 &lt;- Some x
@@ -11681,6 +11392,8 @@ and closure2 () (v0 : (unit -&gt; unit)) : System.IDisposable =
     let v1 : System.IDisposable option = None
     let v2 : bool = true in let mutable _v1 = v1
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v3 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v0 "$0()" )
     v3
@@ -11696,19 +11409,19 @@ and closure2 () (v0 : (unit -&gt; unit)) : System.IDisposable =
     v5
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v6 : (unit -&gt; unit) = method2(v0)
-    let v7 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v6 () }
-    v7
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
-    let v8 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
-    v8
+    let v6 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
+    v6
 #endif
     
 #if FABLE_COMPILER_PYTHON
-    let v9 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
+    let v7 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
+    v7
+#endif
+    
+#else
+    let v8 : (unit -&gt; unit) = method2(v0)
+    let v9 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v8 () }
     v9
 #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
@@ -11746,6 +11459,8 @@ and closure11 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () 
     let struct (v4 : Mut0, v5 : Mut1, v6 : Mut2, v7 : int64 option, v8 : Mut3) = State.trace_state.Value
     let v9 : string option = None
     let v10 : bool = true in let mutable _v9 = v9
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v11 : (int64 -&gt; US4) = method5()
@@ -11787,43 +11502,43 @@ and closure11 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () 
     v35
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v36 : (int64 -&gt; US4) = method5()
-    let v37 : US4 = US4_1
-    let v38 : US4 = v7 |&gt; Option.map v36 |&gt; Option.defaultValue v37 
-    let v56 : System.DateTime =
-        match v38 with
-        | US4_1 -&gt; (* None *)
-            let v54 : System.DateTime = System.DateTime.Now
-            v54
-        | US4_0(v39) -&gt; (* Some *)
-            let v40 : System.DateTime = System.DateTime.Now
-            let v41 : (System.DateTime -&gt; int64) = _.Ticks
-            let v42 : int64 = v41 v40
-            let v43 : int64 = v42 - v39
-            let v44 : System.TimeSpan = System.TimeSpan v43 
-            let v45 : (System.TimeSpan -&gt; int32) = _.Hours
-            let v46 : int32 = v45 v44
-            let v47 : (System.TimeSpan -&gt; int32) = _.Minutes
-            let v48 : int32 = v47 v44
-            let v49 : (System.TimeSpan -&gt; int32) = _.Seconds
-            let v50 : int32 = v49 v44
-            let v51 : (System.TimeSpan -&gt; int32) = _.Milliseconds
-            let v52 : int32 = v51 v44
-            let v53 : System.DateTime = System.DateTime (1, 1, 1, v46, v48, v50, v52)
-            v53
-    let v57 : string = "HH:mm:ss"
-    let v58 : string = v56.ToString v57 
-    v58
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
-    let v59 : string = method6()
-    v59
+    let v36 : string = method6()
+    v36
 #endif
     
 #if FABLE_COMPILER_PYTHON
-    let v60 : string = method6()
+    let v37 : string = method6()
+    v37
+#endif
+    
+#else
+    let v38 : (int64 -&gt; US4) = method5()
+    let v39 : US4 = US4_1
+    let v40 : US4 = v7 |&gt; Option.map v38 |&gt; Option.defaultValue v39 
+    let v58 : System.DateTime =
+        match v40 with
+        | US4_1 -&gt; (* None *)
+            let v56 : System.DateTime = System.DateTime.Now
+            v56
+        | US4_0(v41) -&gt; (* Some *)
+            let v42 : System.DateTime = System.DateTime.Now
+            let v43 : (System.DateTime -&gt; int64) = _.Ticks
+            let v44 : int64 = v43 v42
+            let v45 : int64 = v44 - v41
+            let v46 : System.TimeSpan = System.TimeSpan v45 
+            let v47 : (System.TimeSpan -&gt; int32) = _.Hours
+            let v48 : int32 = v47 v46
+            let v49 : (System.TimeSpan -&gt; int32) = _.Minutes
+            let v50 : int32 = v49 v46
+            let v51 : (System.TimeSpan -&gt; int32) = _.Seconds
+            let v52 : int32 = v51 v46
+            let v53 : (System.TimeSpan -&gt; int32) = _.Milliseconds
+            let v54 : int32 = v53 v46
+            let v55 : System.DateTime = System.DateTime (1, 1, 1, v48, v50, v52, v54)
+            v55
+    let v59 : string = "HH:mm:ss"
+    let v60 : string = v58.ToString v59 
     v60
 #endif
     |&gt; fun x -&gt; _v9 &lt;- Some x
@@ -11847,9 +11562,11 @@ and closure11 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () 
             let v66 : string = "Warning"
             v66
     let v73 : string = v72.ToLower ()
-    let v74 : string = v73.PadRight (7, ' ')
+    let v74 : string = v73.PadLeft (7, ' ')
     let v75 : string option = None
     let v76 : bool = true in let mutable _v75 = v75
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v91 : Ref&lt;Str&gt; =
@@ -11956,15 +11673,15 @@ and closure11 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () 
     v148
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    v74
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
     v74
 #endif
     
 #if FABLE_COMPILER_PYTHON
+    v74
+#endif
+    
+#else
     v74
 #endif
     |&gt; fun x -&gt; _v75 &lt;- Some x
@@ -12001,6 +11718,8 @@ and method7 (v0 : US0, v1 : (unit -&gt; string)) : unit =
         let v23 : unit option = None
         let v24 : bool = true in let mutable _v23 = v23
         
+#if FABLE_COMPILER || WASM || CONTRACT
+        
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
         let v25 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v25
@@ -12019,17 +11738,17 @@ and method7 (v0 : US0, v1 : (unit -&gt; string)) : unit =
         ()
 #endif
         
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-        System.Console.WriteLine v22 
-        ()
-#endif
-        
 #if FABLE_COMPILER_TYPESCRIPT
         System.Console.WriteLine v22 
         ()
 #endif
         
 #if FABLE_COMPILER_PYTHON
+        System.Console.WriteLine v22 
+        ()
+#endif
+        
+#else
         System.Console.WriteLine v22 
         ()
 #endif
@@ -12048,6 +11767,8 @@ and closure7 (v0 : int32) (v1 : exn) : US3 =
     let v5 : unit option = None
     let v6 : bool = true in let mutable _v5 = v5
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     ()
 #endif
@@ -12060,17 +11781,17 @@ and closure7 (v0 : int32) (v1 : exn) : US3 =
     ()
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v7 : (int32 -&gt; unit) = System.Threading.Thread.Sleep
-    v7 1
-    ()
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
     ()
 #endif
     
 #if FABLE_COMPILER_PYTHON
+    ()
+#endif
+    
+#else
+    let v7 : (int32 -&gt; unit) = System.Threading.Thread.Sleep
+    v7 1
     ()
 #endif
     |&gt; fun x -&gt; _v5 &lt;- Some x

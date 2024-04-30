@@ -8007,6 +8007,8 @@ and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     let v7 : string option = None
     let v8 : bool = true in let mutable _v7 = v7
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v9 : string = "env!(\"CARGO_PKG_NAME\").into()"
     let v10 : string = Fable.Core.RustInterop.emitRustExpr () v9
@@ -8023,18 +8025,18 @@ and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     v12
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v13 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+#if FABLE_COMPILER_TYPESCRIPT
+    let v13 : string = null |&gt; unbox&lt;string&gt;
     v13
 #endif
     
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_PYTHON
     let v14 : string = null |&gt; unbox&lt;string&gt;
     v14
 #endif
     
-#if FABLE_COMPILER_PYTHON
-    let v15 : string = null |&gt; unbox&lt;string&gt;
+#else
+    let v15 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v15
 #endif
     |&gt; fun x -&gt; _v7 &lt;- Some x
@@ -8281,7 +8283,7 @@ true
                         <span class="err">$</span><span class="s1">'!date_time.ToString !format '</span>
                 <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="s2">""</span>
         <span class="n">inl</span> <span class="n">count</span> <span class="o">=</span> <span class="o">*</span><span class="n">trace_state</span><span class="o">.</span><span class="n">count</span>
-        <span class="n">inl</span> <span class="n">level_str</span> <span class="o">=</span> <span class="n">level</span> <span class="o">|&gt;</span> <span class="n">to_string</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_lower |&gt; sm'</span><span class="o">.</span><span class="n">pad_right</span> <span class="mi">7</span> <span class="s1">' '</span>
+        <span class="n">inl</span> <span class="n">level_str</span> <span class="o">=</span> <span class="n">level</span> <span class="o">|&gt;</span> <span class="n">to_string</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_lower |&gt; sm'</span><span class="o">.</span><span class="n">pad_left</span> <span class="mi">7</span> <span class="s1">' '</span>
         <span class="n">inl</span> <span class="n">level_str</span> <span class="o">=</span>
             <span class="n">run_target</span> <span class="n">function</span>
             <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -8348,8 +8350,8 @@ true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 debug   #1 test
-00:00:00 debug   #2 test
+<pre>00:00:00   debug #1 test
+00:00:00   debug #2 test
 </pre>
 </div>
 </div>
@@ -8381,7 +8383,7 @@ true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>11:12:06 <span class="ansi-blue-intense-fg">debug  </span> #1 test
+<pre>23:45:50 <span class="ansi-blue-intense-fg">  debug</span> #1 test
 </pre>
 </div>
 </div>
@@ -8503,14 +8505,6 @@ type std_rc_Rc&lt;'T&gt; = class end
 #endif
 type std_rc_Weak&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Arc&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Mutex&lt;'T&gt; = class end
-#if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;]
 #endif
 type Str = class end
@@ -8555,9 +8549,17 @@ type std_fmt_Display&lt;'T&gt; = class end
 #endif
 type std_str_Utf8Error = class end
 #if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::FromUtf8Error")&gt;]
+#endif
+type std_string_FromUtf8Error = class end
+#if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;]
 #endif
 type std_string_String = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::slice::Windows&lt;$0&gt;")&gt;]
+#endif
+type std_slice_Windows&lt;'T&gt; = class end
 module State = let mutable trace_state = None
 type Mut0 = {mutable l0 : int64}
 and Mut1 = {mutable l0 : bool}
@@ -8594,6 +8596,8 @@ and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     let v7 : string option = None
     let v8 : bool = true in let mutable _v7 = v7
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v9 : string = "env!(\"CARGO_PKG_NAME\").into()"
     let v10 : string = Fable.Core.RustInterop.emitRustExpr () v9
@@ -8610,18 +8614,18 @@ and closure0 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     v12
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v13 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+#if FABLE_COMPILER_TYPESCRIPT
+    let v13 : string = null |&gt; unbox&lt;string&gt;
     v13
 #endif
     
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_PYTHON
     let v14 : string = null |&gt; unbox&lt;string&gt;
     v14
 #endif
     
-#if FABLE_COMPILER_PYTHON
-    let v15 : string = null |&gt; unbox&lt;string&gt;
+#else
+    let v15 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     v15
 #endif
     |&gt; fun x -&gt; _v7 &lt;- Some x
@@ -8668,6 +8672,8 @@ and closure5 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     let v9 : string option = None
     let v10 : bool = true in let mutable _v9 = v9
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v11 : (int64 -&gt; US2) = method3()
     let v12 : US2 = US2_1
@@ -8708,43 +8714,43 @@ and closure5 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     v35
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v36 : (int64 -&gt; US2) = method3()
-    let v37 : US2 = US2_1
-    let v38 : US2 = v7 |&gt; Option.map v36 |&gt; Option.defaultValue v37 
-    let v56 : System.DateTime =
-        match v38 with
-        | US2_1 -&gt; (* None *)
-            let v54 : System.DateTime = System.DateTime.Now
-            v54
-        | US2_0(v39) -&gt; (* Some *)
-            let v40 : System.DateTime = System.DateTime.Now
-            let v41 : (System.DateTime -&gt; int64) = _.Ticks
-            let v42 : int64 = v41 v40
-            let v43 : int64 = v42 - v39
-            let v44 : System.TimeSpan = System.TimeSpan v43 
-            let v45 : (System.TimeSpan -&gt; int32) = _.Hours
-            let v46 : int32 = v45 v44
-            let v47 : (System.TimeSpan -&gt; int32) = _.Minutes
-            let v48 : int32 = v47 v44
-            let v49 : (System.TimeSpan -&gt; int32) = _.Seconds
-            let v50 : int32 = v49 v44
-            let v51 : (System.TimeSpan -&gt; int32) = _.Milliseconds
-            let v52 : int32 = v51 v44
-            let v53 : System.DateTime = System.DateTime (1, 1, 1, v46, v48, v50, v52)
-            v53
-    let v57 : string = "HH:mm:ss"
-    let v58 : string = v56.ToString v57 
-    v58
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
-    let v59 : string = method4()
-    v59
+    let v36 : string = method4()
+    v36
 #endif
     
 #if FABLE_COMPILER_PYTHON
-    let v60 : string = method4()
+    let v37 : string = method4()
+    v37
+#endif
+    
+#else
+    let v38 : (int64 -&gt; US2) = method3()
+    let v39 : US2 = US2_1
+    let v40 : US2 = v7 |&gt; Option.map v38 |&gt; Option.defaultValue v39 
+    let v58 : System.DateTime =
+        match v40 with
+        | US2_1 -&gt; (* None *)
+            let v56 : System.DateTime = System.DateTime.Now
+            v56
+        | US2_0(v41) -&gt; (* Some *)
+            let v42 : System.DateTime = System.DateTime.Now
+            let v43 : (System.DateTime -&gt; int64) = _.Ticks
+            let v44 : int64 = v43 v42
+            let v45 : int64 = v44 - v41
+            let v46 : System.TimeSpan = System.TimeSpan v45 
+            let v47 : (System.TimeSpan -&gt; int32) = _.Hours
+            let v48 : int32 = v47 v46
+            let v49 : (System.TimeSpan -&gt; int32) = _.Minutes
+            let v50 : int32 = v49 v46
+            let v51 : (System.TimeSpan -&gt; int32) = _.Seconds
+            let v52 : int32 = v51 v46
+            let v53 : (System.TimeSpan -&gt; int32) = _.Milliseconds
+            let v54 : int32 = v53 v46
+            let v55 : System.DateTime = System.DateTime (1, 1, 1, v48, v50, v52, v54)
+            v55
+    let v59 : string = "HH:mm:ss"
+    let v60 : string = v58.ToString v59 
     v60
 #endif
     |&gt; fun x -&gt; _v9 &lt;- Some x
@@ -8768,9 +8774,11 @@ and closure5 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
             let v66 : string = "Warning"
             v66
     let v73 : string = v72.ToLower ()
-    let v74 : string = v73.PadRight (7, ' ')
+    let v74 : string = v73.PadLeft (7, ' ')
     let v75 : string option = None
     let v76 : bool = true in let mutable _v75 = v75
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v91 : Ref&lt;Str&gt; =
@@ -8877,15 +8885,15 @@ and closure5 (v0 : US0, v1 : (unit -&gt; string), v2 : (unit -&gt; string)) () :
     v148
 #endif
     
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    v74
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
     v74
 #endif
     
 #if FABLE_COMPILER_PYTHON
+    v74
+#endif
+    
+#else
     v74
 #endif
     |&gt; fun x -&gt; _v75 &lt;- Some x
@@ -8922,6 +8930,8 @@ and method5 (v0 : US0, v1 : (unit -&gt; string)) : unit =
         let v23 : unit option = None
         let v24 : bool = true in let mutable _v23 = v23
         
+#if FABLE_COMPILER || WASM || CONTRACT
+        
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
         let v25 : string = @"println!(""{}"", $0)"
         Fable.Core.RustInterop.emitRustExpr v22 v25
@@ -8940,17 +8950,17 @@ and method5 (v0 : US0, v1 : (unit -&gt; string)) : unit =
         ()
 #endif
         
-#if !FABLE_COMPILER &amp;&amp; !WASM &amp;&amp; !CONTRACT
-        System.Console.WriteLine v22 
-        ()
-#endif
-        
 #if FABLE_COMPILER_TYPESCRIPT
         System.Console.WriteLine v22 
         ()
 #endif
         
 #if FABLE_COMPILER_PYTHON
+        System.Console.WriteLine v22 
+        ()
+#endif
+        
+#else
         System.Console.WriteLine v22 
         ()
 #endif

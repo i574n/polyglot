@@ -127,7 +127,7 @@ module Supervisor =
                     do! connection.StopAsync () |> Async.AwaitTask
                     disposable.Dispose ()
                     if managed
-                    then do! SpiralNetworking.wait_for_port_access (Some 1000) false serverPort |> Async.Ignore
+                    then do! SpiralNetworking.wait_for_port_access (Some 3000) false serverPort |> Async.Ignore
                 }
                 |> Async.RunSynchronously
             )

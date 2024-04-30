@@ -82,18 +82,19 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
         $'!x\n#endif'
     inl result : optionm'.option' t = optionm'.none' ()
     ($"true in let mutable _!result = !result" : bool) |> ignore
+    $"\n#if FABLE_COMPILER || WASM || CONTRACT"
     $"\n#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT"
     fn (Rust Native) () |> close
     $"\n#if FABLE_COMPILER_RUST && WASM"
     fn (Rust Wasm) () |> close
     $"\n#if FABLE_COMPILER_RUST && CONTRACT"
     fn (Rust Contract) () |> close
-    $"\n#if \!FABLE_COMPILER && \!WASM && \!CONTRACT"
-    fn (Fsharp Native) () |> close
     $"\n#if FABLE_COMPILER_TYPESCRIPT"
     fn (TypeScript Native) () |> close
     $"\n#if FABLE_COMPILER_PYTHON"
     fn (Python Native) () |> close
+    $"\n#else"
+    fn (Fsharp Native) () |> close
     $"|> fun x -> _!result <- Some x"
     $'_!result.Value'
 

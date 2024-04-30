@@ -11,7 +11,7 @@ $ErrorActionPreference = "Stop"
 $projectName = "rust_builder"
 
 if (!$fast -and !$SkipNotebook) {
-    { . ../dist/Supervisor$(_exe) --execute-command "pwsh -c `"../../../scripts/invoke-dib.ps1 $projectName.dib`"" } | Invoke-Block -Retries 5
+    { . ../dist/Supervisor$(_exe) --execute-command "pwsh -c `"../../../scripts/invoke-dib.ps1 $projectName.dib`"" } | Invoke-Block -Retries 3
 }
 
 { . ../../parser/dist/DibParser$(_exe) "$projectName.dib" spi } | Invoke-Block

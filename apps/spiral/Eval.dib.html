@@ -7878,7 +7878,7 @@ a.anchor-link {
                 <span class="n">trace</span> <span class="n">Verbose</span>
                     <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"Eval.parentAsyncChild"</span><span class="p">)</span>
                     <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"parentProcessId: </span><span class="si">{parentProcessId}</span><span class="s2"> / {_locals ()}"</span><span class="p">)</span>
-                
+
                 <span class="k">if</span> <span class="n">parentProcessId</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="n">u</span> <span class="n">then</span>
                     <span class="n">let</span> <span class="n">parentProcess</span> <span class="o">=</span> <span class="n">parentProcessId</span> <span class="o">|&gt;</span> <span class="nb">int</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">Diagnostics</span><span class="o">.</span><span class="n">Process</span><span class="o">.</span><span class="n">GetProcessById</span>
                     <span class="n">do</span><span class="o">!</span><span class="w"> </span>parentProcess.WaitForExitAsync<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Async.AwaitTask
@@ -8211,17 +8211,39 @@ a.anchor-link {
                                     <span class="o">//</span>     <span class="n">trace</span> <span class="n">Info</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval 1 / exitCode: </span><span class="si">{exitCode}</span><span class="s2"> / result: </span><span class="si">{result}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
                                     <span class="o">//</span> <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
                                     <span class="o">//</span>     <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval 1 / ex: </span><span class="si">{ex}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
-                                    
+
                                     <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"dotnet fable ""</span><span class="si">{fsprojPath}</span><span class="s2">"" --optimize --lang rs --extension .rs --outDir ""</span><span class="si">{outDir}</span><span class="s2">"" "</span>
                                     <span class="n">let</span><span class="o">!</span><span class="w"> </span>exitCode,<span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span>
-                                        <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">repositoryRoot</span><span class="p">)</span>
+                                        <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execution_options</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
+                                            <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
+                                                <span class="n">l0</span> <span class="o">=</span> <span class="n">cancellationToken</span>
+                                                <span class="n">l1</span> <span class="o">=</span> <span class="n">command</span>
+                                                <span class="n">l4</span> <span class="o">=</span> <span class="n">repositoryRoot</span>
+                                            <span class="p">}</span>
+                                        <span class="p">)</span>
+                                        <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span>
 
                                     <span class="k">if</span> <span class="n">exitCode</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span>
                                     <span class="n">then</span> <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Error</span> <span class="n">result</span><span class="p">)</span>
                                     <span class="k">else</span>
+                                        <span class="n">let</span> <span class="n">rsPath</span> <span class="o">=</span> <span class="n">libLinkPath</span> <span class="o">&lt;/&gt;</span> <span class="s2">"src/Range.rs"</span>
+                                        <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>rsPath<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.read_all_text_async
+                                        <span class="n">do</span><span class="err">!</span>
+                                            <span class="n">text</span>
+                                            <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"use crate::String_::fromCharCode;"</span> <span class="s2">"use crate::String_::fromChar;"</span>
+                                            <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"fromCharCode(c)"</span> <span class="s2">"std::char::from_u32(c).unwrap()"</span>
+                                            <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">rsPath</span>
+
                                         <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="s2">"cargo fmt --"</span>
                                         <span class="n">let</span><span class="o">!</span><span class="w"> </span>exitCode,<span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span>
-                                            <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="n">outDir</span><span class="p">)</span>
+                                            <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execution_options</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
+                                                <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
+                                                    <span class="n">l0</span> <span class="o">=</span> <span class="n">cancellationToken</span>
+                                                    <span class="n">l1</span> <span class="o">=</span> <span class="n">command</span>
+                                                    <span class="n">l4</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">outDir</span>
+                                                <span class="p">}</span>
+                                            <span class="p">)</span>
+                                            <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span>
                                         <span class="k">if</span> <span class="n">exitCode</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span> <span class="n">then</span>
                                             <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval / cargo fmt error / exitCode: </span><span class="si">{exitCode}</span><span class="s2"> / result: </span><span class="si">{result}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
 
@@ -8285,9 +8307,17 @@ a.anchor-link {
 <span class="s2">"""</span>
                                         <span class="n">do</span><span class="o">!</span><span class="w"> </span>cargoTomlContent<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_exists<span class="w"> </span>cargoTomlPath
 
-                                        <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"cargo run --release --manifest-path </span><span class="si">{cargoTomlPath}</span><span class="s2">"</span>
+                                        <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"cargo run --manifest-path </span><span class="si">{cargoTomlPath}</span><span class="s2">"</span>
                                         <span class="n">let</span><span class="o">!</span><span class="w"> </span>exitCode,<span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span>
-                                            <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">repositoryRoot</span><span class="p">)</span>
+                                            <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execution_options</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
+                                                <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
+                                                    <span class="n">l0</span> <span class="o">=</span> <span class="n">cancellationToken</span>
+                                                    <span class="n">l1</span> <span class="o">=</span> <span class="n">command</span>
+                                                    <span class="n">l2</span> <span class="o">=</span> <span class="p">[</span><span class="o">|</span> <span class="s2">"RUSTC_WRAPPER"</span><span class="p">,</span> <span class="s2">"sccache"</span> <span class="o">|</span><span class="p">]</span>
+                                                    <span class="n">l4</span> <span class="o">=</span> <span class="n">repositoryRoot</span>
+                                                <span class="p">}</span>
+                                            <span class="p">)</span>
+                                            <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span>
 
                                         <span class="k">if</span> <span class="n">exitCode</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
                                             <span class="k">try</span>
@@ -8295,7 +8325,8 @@ a.anchor-link {
                                                     <span class="n">result</span>
                                                     <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
                                                     <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">skipWhile</span> <span class="p">(</span><span class="n">fun</span> <span class="n">line</span> <span class="o">-&gt;</span>
-                                                        <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="o">@</span><span class="s2">"[optimized] target"</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+                                                        <span class="p">(</span><span class="n">line</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="o">@</span><span class="s2">"profile [optimized] target"</span> <span class="o">|&gt;</span> <span class="ow">not</span><span class="p">)</span>
+                                                            <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">line</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="o">@</span><span class="s2">"profile [unoptimized + debuginfo] target"</span> <span class="o">|&gt;</span> <span class="ow">not</span><span class="p">)</span>
                                                     <span class="p">)</span>
                                                     <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">skip</span> <span class="mi">2</span>
                                                     <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>

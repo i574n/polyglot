@@ -30,7 +30,7 @@ pub mod Runtime {
     use fable_library_rust::Seq_::ofList;
     use fable_library_rust::String_::getCharAt;
     use fable_library_rust::String_::length;
-    use fable_library_rust::String_::padRight;
+    use fable_library_rust::String_::padLeft;
     use fable_library_rust::String_::replace;
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
@@ -388,6 +388,19 @@ pub mod Runtime {
         }
     }
     impl core::fmt::Display for Runtime::US7 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct Heap0 {
+        pub l0: Option<CancellationToken>,
+        pub l1: string,
+        pub l2: Array<(string, string)>,
+        pub l3: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+        pub l4: Option<string>,
+    }
+    impl core::fmt::Display for Runtime::Heap0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
@@ -852,13 +865,14 @@ pub mod Runtime {
     pub fn closure8(
         v0_1: Option<CancellationToken>,
         v1_1: string,
-        v2_1: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-        v3_1: Option<string>,
+        v2_1: Array<(string, string)>,
+        v3_1: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+        v4_1: Option<string>,
         unitVar: (),
     ) -> string {
         sprintf!(
             "execute_with_options_async / options: {:?}",
-            (v0_1, v1_1, v2_1, v3_1)
+            (v0_1, v1_1, v2_1, v3_1, v4_1)
         )
     }
     pub fn closure9(unitVar: (), unitVar_1: ()) -> string {
@@ -901,7 +915,7 @@ pub mod Runtime {
             {
                 let v61: string = getValue(_v9.get().clone());
                 let v62: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v74: string = padRight(
+                let v74: string = padLeft(
                     toLower(match &v0_1 {
                         Runtime::US0::US0_1 => string("Debug"),
                         Runtime::US0::US0_2 => string("Info"),
@@ -1042,46 +1056,48 @@ pub mod Runtime {
     pub fn closure12(
         v0_1: Option<CancellationToken>,
         v1_1: string,
-        v2_1: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-        v3_1: Option<string>,
-        v4_1: (),
-        v5_1: LrcPtr<ConcurrentStack_1<string>>,
-        v6: (),
+        v2_1: Array<(string, string)>,
+        v3_1: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+        v4_1: Option<string>,
+        v5_1: (),
+        v6_1: LrcPtr<ConcurrentStack_1<string>>,
+        v7: (),
     ) {
-        let _v7: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
+        let _v8: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
         {
             let x: Arc<Async<()>> = defaultOf();
-            _v7.set(Some(x))
+            _v8.set(Some(x))
         }
         {
-            let v32: Arc<Async<()>> = getValue(_v7.get().clone());
-            let _v33: MutCell<Option<()>> = MutCell::new(None::<()>);
+            let v33: Arc<Async<()>> = getValue(_v8.get().clone());
+            let _v34: MutCell<Option<()>> = MutCell::new(None::<()>);
             defaultOf::<()>();
-            _v33.set(Some(()));
-            getValue(_v33.get().clone());
+            _v34.set(Some(()));
+            getValue(_v34.get().clone());
             ()
         }
     }
     pub fn closure15(
         v0_1: Option<CancellationToken>,
         v1_1: string,
-        v2_1: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-        v3_1: Option<string>,
-        v4_1: (),
-        v5_1: LrcPtr<ConcurrentStack_1<string>>,
-        v6: (),
+        v2_1: Array<(string, string)>,
+        v3_1: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+        v4_1: Option<string>,
+        v5_1: (),
+        v6_1: LrcPtr<ConcurrentStack_1<string>>,
+        v7: (),
     ) {
-        let _v7: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
+        let _v8: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
         {
             let x: Arc<Async<()>> = defaultOf();
-            _v7.set(Some(x))
+            _v8.set(Some(x))
         }
         {
-            let v33: Arc<Async<()>> = getValue(_v7.get().clone());
-            let _v34: MutCell<Option<()>> = MutCell::new(None::<()>);
+            let v34: Arc<Async<()>> = getValue(_v8.get().clone());
+            let _v35: MutCell<Option<()>> = MutCell::new(None::<()>);
             defaultOf::<()>();
-            _v34.set(Some(()));
-            getValue(_v34.get().clone());
+            _v35.set(Some(()));
+            getValue(_v35.get().clone());
             ()
         }
     }
@@ -1122,30 +1138,56 @@ pub mod Runtime {
         )
     }
     pub fn closure4(unitVar: (), v0_1: string) -> Arc<Async<(i32, string)>> {
-        let _v4: MutCell<Option<Arc<Async<(i32, string)>>>> =
+        let _v5: MutCell<Option<Arc<Async<(i32, string)>>>> =
             MutCell::new(None::<Arc<Async<(i32, string)>>>);
         {
             let x: Arc<Async<(i32, string)>> = defaultOf();
-            _v4.set(Some(x))
+            _v5.set(Some(x))
         }
-        getValue(_v4.get().clone())
+        getValue(_v5.get().clone())
     }
     pub fn closure20(
         unitVar: (),
         _arg: (
             Option<CancellationToken>,
             string,
+            Array<(string, string)>,
             Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
             Option<string>,
         ),
     ) -> Arc<Async<(i32, string)>> {
-        let _v4: MutCell<Option<Arc<Async<(i32, string)>>>> =
+        let _v5: MutCell<Option<Arc<Async<(i32, string)>>>> =
             MutCell::new(None::<Arc<Async<(i32, string)>>>);
         {
             let x: Arc<Async<(i32, string)>> = defaultOf();
-            _v4.set(Some(x))
+            _v5.set(Some(x))
         }
-        getValue(_v4.get().clone())
+        getValue(_v5.get().clone())
+    }
+    pub fn closure21(
+        unitVar: (),
+        v0_1: Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>,
+    ) -> (
+        Option<CancellationToken>,
+        string,
+        Array<(string, string)>,
+        Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+        Option<string>,
+    ) {
+        let v7: LrcPtr<Runtime::Heap0> = v0_1(LrcPtr::new(Runtime::Heap0 {
+            l0: None::<CancellationToken>,
+            l1: string(""),
+            l2: new_empty::<(string, string)>(),
+            l3: None::<Func1<(bool, string, i32), Arc<Async<()>>>>,
+            l4: None::<string>,
+        }));
+        (
+            v7.l0.clone(),
+            v7.l1.clone(),
+            v7.l2.clone(),
+            v7.l3.clone(),
+            v7.l4.clone(),
+        )
     }
     pub fn method18(
         v0_1: LrcPtr<Runtime::UH1>,
@@ -2216,7 +2258,7 @@ pub mod Runtime {
                 }
                 Runtime::US8::US8_0 => {
                     if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) = v2_1.get().clone().as_ref() {
-                        let v6: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
+                        let v6_1: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
                             Runtime::UH0::UH0_1(_, x) => x.clone(),
                             _ => unreachable!(),
                         };
@@ -2227,7 +2269,7 @@ pub mod Runtime {
                         if '\"' == v5_1 {
                             let v0_1_temp: string = string("");
                             let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                            let v2_1_temp: LrcPtr<Runtime::UH0> = v6.clone();
+                            let v2_1_temp: LrcPtr<Runtime::UH0> = v6_1.clone();
                             let v3_1_temp: Runtime::US8 = v4_1.get().clone();
                             let v4_1_temp: Runtime::US8 = Runtime::US8::US8_1('\"');
                             v0_1.set(v0_1_temp);
@@ -2240,7 +2282,7 @@ pub mod Runtime {
                             if '\\' == v5_1 {
                                 let v0_1_temp: string = v0_1.get().clone();
                                 let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                                let v2_1_temp: LrcPtr<Runtime::UH0> = v6;
+                                let v2_1_temp: LrcPtr<Runtime::UH0> = v6_1;
                                 let v3_1_temp: Runtime::US8 = v4_1.get().clone();
                                 let v4_1_temp: Runtime::US8 = Runtime::US8::US8_2(0_u8);
                                 v0_1.set(v0_1_temp);
@@ -2264,14 +2306,14 @@ pub mod Runtime {
                                                 )),
                                             )
                                         },
-                                        v6.clone(),
+                                        v6_1.clone(),
                                         v4_1.get().clone(),
                                     )
                                 } else {
                                     Runtime::method17(
                                         sprintf!("{}{}", v0_1.get().clone(), v5_1),
                                         v1_1.get().clone(),
-                                        v6.clone(),
+                                        v6_1.clone(),
                                         v4_1.get().clone(),
                                     )
                                 }
@@ -2448,8 +2490,8 @@ pub mod Runtime {
         let _v0: MutCell<Option<Option<string>>> = MutCell::new(None::<Option<string>>);
         _v0.set(Some(Some(v0_1)));
         {
-            let v6: Option<string> = getValue(_v0.get().clone());
-            let v9: Runtime::US4 = defaultValue(Runtime::US4::US4_1, map(Runtime::method6(), v6));
+            let v6_1: Option<string> = getValue(_v0.get().clone());
+            let v9: Runtime::US4 = defaultValue(Runtime::US4::US4_1, map(Runtime::method6(), v6_1));
             let v12: string = match &v9 {
                 Runtime::US4::US4_0(v9_0_0) => match &v9 {
                     Runtime::US4::US4_0(x) => x.clone(),
@@ -2495,7 +2537,7 @@ pub mod Runtime {
             }
         }
     }
-    pub fn closure21(unitVar: (), v0_1: string) -> Array<string> {
+    pub fn closure22(unitVar: (), v0_1: string) -> Array<string> {
         Runtime::method15(v0_1)
     }
     pub fn v0() -> Func0<(
@@ -2548,6 +2590,7 @@ pub mod Runtime {
         (
             Option<CancellationToken>,
             string,
+            Array<(string, string)>,
             Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
             Option<string>,
         ),
@@ -2558,6 +2601,7 @@ pub mod Runtime {
                 (
                     Option<CancellationToken>,
                     string,
+                    Array<(string, string)>,
                     Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
                     Option<string>,
                 ),
@@ -2569,6 +2613,7 @@ pub mod Runtime {
                 move |arg10_0040: (
                     Option<CancellationToken>,
                     string,
+                    Array<(string, string)>,
                     Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
                     Option<string>,
                 )| Runtime::closure20((), arg10_0040),
@@ -2580,19 +2625,62 @@ pub mod Runtime {
         x: (
             Option<CancellationToken>,
             string,
+            Array<(string, string)>,
             Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
             Option<string>,
         ),
     ) -> Arc<Async<(i32, string)>> {
         (Runtime::v4())(x)
     }
-    pub fn v5() -> Func1<string, Array<string>> {
-        static v5: OnceInit<Func1<string, Array<string>>> = OnceInit::new();
-        v5.get_or_init(|| Func1::new(move |v: string| Runtime::closure21((), v)))
+    pub fn v5() -> Func1<
+        Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>,
+        (
+            Option<CancellationToken>,
+            string,
+            Array<(string, string)>,
+            Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+            Option<string>,
+        ),
+    > {
+        static v5: OnceInit<
+            Func1<
+                Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>,
+                (
+                    Option<CancellationToken>,
+                    string,
+                    Array<(string, string)>,
+                    Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+                    Option<string>,
+                ),
+            >,
+        > = OnceInit::new();
+        v5.get_or_init(|| {
+            Func1::new(
+                move |v: Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>| {
+                    Runtime::closure21((), v)
+                },
+            )
+        })
+        .clone()
+    }
+    pub fn execution_options(
+        x: Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>,
+    ) -> (
+        Option<CancellationToken>,
+        string,
+        Array<(string, string)>,
+        Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+        Option<string>,
+    ) {
+        (Runtime::v5())(x)
+    }
+    pub fn v6() -> Func1<string, Array<string>> {
+        static v6: OnceInit<Func1<string, Array<string>>> = OnceInit::new();
+        v6.get_or_init(|| Func1::new(move |v: string| Runtime::closure22((), v)))
             .clone()
     }
     pub fn split_args(x: string) -> Array<string> {
-        (Runtime::v5())(x)
+        (Runtime::v6())(x)
     }
     on_startup!(());
 }

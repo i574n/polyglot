@@ -10,7 +10,7 @@ from fable_modules.fable_library.string_ import (replace, pad_left)
 from fable_modules.fable_library.types import (Array, Union, FSharpRef, int64)
 from fable_modules.fable_library.util import int64_to_string
 
-def _expr77() -> TypeInfo:
+def _expr74() -> TypeInfo:
     return union_type("Date_time.US0", [], US0, lambda: [[("f0_0", class_type("Date_time.chrono_DateTime`1", [class_type("Date_time.chrono_Utc")]))], []])
 
 
@@ -26,9 +26,9 @@ class US0(Union):
         return ["US0_0", "US0_1"]
 
 
-US0_reflection = _expr77
+US0_reflection = _expr74
 
-def _expr78() -> TypeInfo:
+def _expr75() -> TypeInfo:
     return union_type("Date_time.US1", [], US1, lambda: [[("f0_0", string_type)], []])
 
 
@@ -44,7 +44,7 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr78
+US1_reflection = _expr75
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:

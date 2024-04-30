@@ -30,7 +30,7 @@ mod module_4da4c295 {
         use fable_library_rust::Option_::getValue;
         use fable_library_rust::Option_::map;
         use fable_library_rust::Seq_::ofList;
-        use fable_library_rust::String_::padRight;
+        use fable_library_rust::String_::padLeft;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
         use fable_library_rust::String_::toLower;
@@ -631,7 +631,7 @@ mod module_4da4c295 {
                 {
                     let v61: string = getValue(_v9.get().clone());
                     let v62: i64 = (patternInput.0.clone()).l0.get().clone();
-                    let v74: string = padRight(
+                    let v74: string = padLeft(
                         toLower(match &v0_1 {
                             Rust_builder::US1::US1_1 => string("Debug"),
                             Rust_builder::US1::US1_2 => string("Info"),
@@ -676,7 +676,15 @@ mod module_4da4c295 {
             }
         }
         pub fn method18(v0_1: Rust_builder::US1, v1_1: Func0<string>) {
-            let v2 = Func0::new(move || Rust_builder::closure8((), ()));
+            fn v2() -> (
+                LrcPtr<Rust_builder::Mut0>,
+                LrcPtr<Rust_builder::Mut1>,
+                LrcPtr<Rust_builder::Mut2>,
+                Option<i64>,
+                LrcPtr<Rust_builder::Mut3>,
+            ) {
+                Rust_builder::closure8((), ())
+            }
             if Rust_builder::State::trace_state().get().clone().is_none() {
                 Rust_builder::State::trace_state().set(Some(v2()));
             }

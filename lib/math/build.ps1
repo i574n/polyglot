@@ -1,5 +1,6 @@
 param(
     $fast,
+    $SkipNotebook,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -10,7 +11,7 @@ $ErrorActionPreference = "Stop"
 
 $projectName = "math"
 
-if (!$fast) {
+if (!$fast && !$SkipNotebook) {
     { . ../../apps/spiral/dist/Supervisor$(_exe) --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 $projectName.dib`"" } | Invoke-Block -Retries ($fast -or !$env:CI ? 1 : 5)
 }
 

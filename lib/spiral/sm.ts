@@ -139,8 +139,8 @@ export function method3(): string {
 
 export function closure22(v0_1: string[], v1_1: string): string[] {
     let _v2: Option<string[]> = undefined;
-    const v27: Iterable<string> = ofArray<string>(v0_1);
-    const x: string[] = split_1(v1_1, [join(method3(), v27)], undefined, 0);
+    const v26: Iterable<string> = ofArray<string>(v0_1);
+    const x: string[] = split_1(v1_1, [join(method3(), v26)], undefined, 0);
     _v2 = x;
     return value_2(_v2);
 }

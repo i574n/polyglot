@@ -3,7 +3,7 @@ import { value, some, Option } from "../../deps/Fable/src/fable-library-ts/Optio
 import { op_Addition, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { FSharpRef, Union, Record } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { lambda_type, unit_type, string_type, union_type, bool_type, record_type, int64_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { trimStart, trimEnd, padRight } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 
@@ -294,7 +294,7 @@ export function closure5(v0_1: US0_$union, v1_1: (() => string), v2: (() => stri
     const v62: int64 = patternInput[0].l0;
     const v72: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
     let _v75: Option<string> = undefined;
-    const x_1: string = padRight(v72.toLocaleLowerCase(), 7, " ");
+    const x_1: string = padLeft(v72.toLocaleLowerCase(), 7, " ");
     _v75 = x_1;
     return trimEnd(trimStart(`${v61} ${value(_v75)} #${v62} ${v1_1()} / ${v2()}`), " ", "/");
 }

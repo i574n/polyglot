@@ -177,6 +177,8 @@ and closure15 (v0 : string, v1 : string) (v2 : string) : string =
     let v3 : string option = None
     let v4 : bool = true in let mutable _v3 = v3
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v5 : string = method0(v0)
     let v6 : string = method1(v2)
@@ -200,18 +202,18 @@ and closure15 (v0 : string, v1 : string) (v2 : string) : string =
     v15
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v16 : string = System.Text.RegularExpressions.Regex.Replace (v2, v0, v1)
+#if FABLE_COMPILER_TYPESCRIPT
+    let v16 : string = null |> unbox<string>
     v16
 #endif
     
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_PYTHON
     let v17 : string = null |> unbox<string>
     v17
 #endif
     
-#if FABLE_COMPILER_PYTHON
-    let v18 : string = null |> unbox<string>
+#else
+    let v18 : string = System.Text.RegularExpressions.Regex.Replace (v2, v0, v1)
     v18
 #endif
     |> fun x -> _v3 <- Some x
@@ -239,6 +241,8 @@ and method3 () : string =
 and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     let v2 : (string []) option = None
     let v3 : bool = true in let mutable _v2 = v2
+    
+#if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v4 : ((string []) -> string seq) = Seq.ofArray
@@ -273,30 +277,30 @@ and closure22 (v0 : (string [])) (v1 : string) : (string []) =
     v24
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v25 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
-    v25
-#endif
-    
 #if FABLE_COMPILER_TYPESCRIPT
-    let v26 : ((string []) -> string seq) = Seq.ofArray
-    let v27 : string seq = v26 v0
-    let v28 : string = method3()
-    let v29 : (string -> (string seq -> string)) = String.concat
-    let v30 : (string seq -> string) = v29 v28
-    let v31 : string = v30 v27
-    let v32 : (string []) = v1.Split v31
-    v32
+    let v25 : ((string []) -> string seq) = Seq.ofArray
+    let v26 : string seq = v25 v0
+    let v27 : string = method3()
+    let v28 : (string -> (string seq -> string)) = String.concat
+    let v29 : (string seq -> string) = v28 v27
+    let v30 : string = v29 v26
+    let v31 : (string []) = v1.Split v30
+    v31
 #endif
     
 #if FABLE_COMPILER_PYTHON
-    let v33 : ((string []) -> string seq) = Seq.ofArray
-    let v34 : string seq = v33 v0
-    let v35 : string = method3()
-    let v36 : (string -> (string seq -> string)) = String.concat
-    let v37 : (string seq -> string) = v36 v35
-    let v38 : string = v37 v34
-    let v39 : (string []) = v1.Split v38
+    let v32 : ((string []) -> string seq) = Seq.ofArray
+    let v33 : string seq = v32 v0
+    let v34 : string = method3()
+    let v35 : (string -> (string seq -> string)) = String.concat
+    let v36 : (string seq -> string) = v35 v34
+    let v37 : string = v36 v33
+    let v38 : (string []) = v1.Split v37
+    v38
+#endif
+    
+#else
+    let v39 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
     v39
 #endif
     |> fun x -> _v2 <- Some x
@@ -380,6 +384,8 @@ and closure39 () (v0 : exn) : string =
     let v1 : string option = None
     let v2 : bool = true in let mutable _v1 = v1
     
+#if FABLE_COMPILER || WASM || CONTRACT
+    
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v3 : string = $"%A{v0}"
     v3
@@ -395,18 +401,18 @@ and closure39 () (v0 : exn) : string =
     v5
 #endif
     
-#if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v6 : string = $"{v0.GetType ()}: {v0.Message}"
+#if FABLE_COMPILER_TYPESCRIPT
+    let v6 : string = $"%A{v0}"
     v6
 #endif
     
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_PYTHON
     let v7 : string = $"%A{v0}"
     v7
 #endif
     
-#if FABLE_COMPILER_PYTHON
-    let v8 : string = $"%A{v0}"
+#else
+    let v8 : string = $"{v0.GetType ()}: {v0.Message}"
     v8
 #endif
     |> fun x -> _v1 <- Some x
