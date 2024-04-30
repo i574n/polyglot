@@ -158,75 +158,7 @@ instance (~:>) any = to_any
 
 #!markdown
 
-## not'
-
-#!spiral
-
-inl not' x =
-    join not x
-
-#!markdown
-
-## (+.)
-
-#!spiral
-
-inl (+.) forall t. (a : t) (b : t) : t =
-    $"!a + !b"
-
-#!markdown
-
-## (-.)
-
-#!spiral
-
-inl (-.) forall t. (a : t) (b : t) : t =
-    $"!a - !b"
-
-#!markdown
-
-## (*.)
-
-#!spiral
-
-inl (*.) forall t. (a : t) (b : t) : t =
-    $"!a * !b"
-
-#!markdown
-
-## (/.)
-
-#!spiral
-
-inl (/.) forall t. (a : t) (b : t) : t =
-    $"!a / !b"
-
-#!markdown
-
-## (=.)
-
-#!spiral
-
-inl (=.) forall t. (a : t) (b : t) : bool =
-    $"!a = !b"
-
-#!markdown
-
-## (<>.)
-
-#!spiral
-
-inl (<>.) forall t. (a : t) (b : t) : bool =
-    $"!a <> !b"
-
-#!markdown
-
 ## (||>)
-
-#!spiral
-
-inl (||>) (arg1, arg2) fn =
-    arg2 |> fn arg1
 
 #!spiral
 

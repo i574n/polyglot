@@ -43,37 +43,7 @@ inl to_any forall t. (obj : t) : any =
 
 instance (~:>) any = to_any
 
-// // ## not'
-inl not' x =
-    join not x
-
-// // ## (+.)
-inl (+.) forall t. (a : t) (b : t) : t =
-    $"!a + !b"
-
-// // ## (-.)
-inl (-.) forall t. (a : t) (b : t) : t =
-    $"!a - !b"
-
-// // ## (*.)
-inl (*.) forall t. (a : t) (b : t) : t =
-    $"!a * !b"
-
-// // ## (/.)
-inl (/.) forall t. (a : t) (b : t) : t =
-    $"!a / !b"
-
-// // ## (=.)
-inl (=.) forall t. (a : t) (b : t) : bool =
-    $"!a = !b"
-
-// // ## (<>.)
-inl (<>.) forall t. (a : t) (b : t) : bool =
-    $"!a <> !b"
-
 // // ## (||>)
-inl (||>) (arg1, arg2) fn =
-    arg2 |> fn arg1
 
 // // ## flip
 inl flip fn a b =

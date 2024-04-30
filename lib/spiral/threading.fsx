@@ -1,3 +1,19 @@
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle<$0>")>]
+#endif
+type std_thread_JoinHandle<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc<$0>")>]
+#endif
+type std_sync_Arc<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex<$0>")>]
+#endif
+type std_sync_Mutex<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard<$0>")>]
+#endif
+type std_sync_MutexGuard<'T> = class end
 type Disposable (f : unit -> unit) = interface System.IDisposable with member _.Dispose () = f ()
 type [<Struct>] US0 =
     | US0_0 of f0_0 : System.Threading.CancellationToken

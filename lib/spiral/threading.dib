@@ -24,6 +24,9 @@ open testing
 
 inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::thread::JoinHandle<$0>\")>]\n#endif\ntype std_thread_JoinHandle<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>]\n#endif\ntype std_sync_Arc<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Mutex<$0>\")>]\n#endif\ntype std_sync_Mutex<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::MutexGuard<$0>\")>]\n#endif\ntype std_sync_MutexGuard<'T> = class end"
 
 #!markdown
 
@@ -203,9 +206,91 @@ fun () =>
 
 #!markdown
 
+## arc
+
+#!spiral
+
+nominal arc t = $"std_sync_Arc<`t>"
+
+#!markdown
+
+## new_arc
+
+#!spiral
+
+inl new_arc forall t. (x : t) : arc t =
+    inl x = join x
+    !\($'"std::sync::Arc::new(!x)"')
+
+#!markdown
+
+## mutex
+
+#!spiral
+
+nominal mutex t = $"std_sync_Mutex<`t>"
+
+#!markdown
+
+## new_mutex
+
+#!spiral
+
+inl new_mutex forall t. (x : t) : mutex t =
+    // inl x = join x
+    !\\(x, $'"std::sync::Mutex::new($0)"')
+
+#!markdown
+
+## new_arc_mutex
+
+#!spiral
+
+inl new_arc_mutex forall t. (x : t) : arc (mutex t) =
+    x |> new_mutex |> new_arc
+
+#!markdown
+
+## arc_clone
+
+#!spiral
+
+inl arc_clone forall t. (x : arc t) : arc t =
+    inl x = join x
+    !\($'"std::sync::Arc::clone(&!x)"')
+
+#!markdown
+
+## arc_value
+
+#!spiral
+
+inl arc_value forall t. (x : arc t) : t =
+    !\($'"!x.into()"')
+
+#!markdown
+
+## mutex_guard
+
+#!spiral
+
+nominal mutex_guard t = $"std_sync_MutexGuard<`t>"
+
+#!markdown
+
+## mutex_lock
+
+#!spiral
+
+inl mutex_lock forall t. (x : mutex t) : resultm.result' (mutex_guard t) t =
+    !\($'"!x.lock()"')
+
+#!markdown
+
 ## main
 
 #!spiral
 
 inl main () =
+    types ()
     $"let new_disposable_token x = !new_disposable_token x" : ()

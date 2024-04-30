@@ -528,3 +528,12 @@ inl slice' forall dim el. (x : option el) : slice' el dim =
 inl as_slice forall t. (x : array_base t) : rust.ref' (slice t) =
     inl x = x |> to_vec
     !\($'"!x.as_slice()"')
+
+#!markdown
+
+## any
+
+#!spiral
+
+inl any forall t. (fn : t -> bool) (source : array_base t) : bool =
+    !\($'"!source.any(|x| !fn(x))"')

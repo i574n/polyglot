@@ -175,6 +175,15 @@ inl unwrap' forall t u. (x : result' t u) : t =
 
 #!markdown
 
+## unwrap_or'
+
+#!spiral
+
+inl unwrap_or' forall t u. (default : t) (x : result' t u) : t =
+    !\\(x, $'"$0.unwrap_or(!default)"')
+
+#!markdown
+
 ## expect
 
 #!spiral

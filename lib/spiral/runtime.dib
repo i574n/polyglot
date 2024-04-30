@@ -687,7 +687,8 @@ inl execute_with_options (options : execution_options) : i32 * string =
         | Fsharp (Native) => fun () =>
             options |> execute_with_options_async |> async.run_synchronously
         | Rust (Native) => fun () =>
-            inl file_name, arguments = options.command |> split_command
+            inl command = join options.command
+            inl file_name, arguments = command |> split_command
             inl arguments =
                 arguments
                 |> split_args
@@ -695,7 +696,7 @@ inl execute_with_options (options : execution_options) : i32 * string =
                 |> am'.vec_map sm'.to_std_string
 
             trace Debug (fun () => $'$"execute_with_options / file_name: {!file_name} / arguments: %A{!arguments} / options: %A{!options}"') (join _locals)
-            
+
             fun () =>
                 inl command : process_command = !\\(file_name, $'"std::process::Command::new(&*$0)"')
 
@@ -718,23 +719,23 @@ inl execute_with_options (options : execution_options) : i32 * string =
                 (!\($'"true; let mut !command = !command"') : bool) |> ignore
                 inl command : resultm.result' child io_error = !\\(command, $'"std::process::Command::spawn(&mut $0)"')
 
-                match command |> resultm.map' (optionm'.some' >> rust.new_arc_mutex) |> resultm.map_error' sm'.format' |> resultm.unbox with
+                match command |> resultm.map' (optionm'.some' >> threading.new_arc_mutex) |> resultm.map_error' sm'.format' |> resultm.unbox with
                 | Ok child =>
                     inl child = join child
                     inl stdout : child_stdout = !\($'"!child.lock().unwrap().as_mut().unwrap().stdout.take().unwrap()"')
                     inl stderr : child_stderr = !\($'"!child.lock().unwrap().as_mut().unwrap().stderr.take().unwrap()"')
-                    inl stdout = stdout |> optionm'.some' |> rust.new_arc_mutex
-                    inl stderr = stderr |> optionm'.some' |> rust.new_arc_mutex
+                    inl stdout = stdout |> optionm'.some' |> threading.new_arc_mutex
+                    inl stderr = stderr |> optionm'.some' |> threading.new_arc_mutex
 
-                    inl channel_sender, channel_receiver : sender sm'.std_string * rust.arc (receiver sm'.std_string) =
+                    inl channel_sender, channel_receiver : sender sm'.std_string * threading.arc (receiver sm'.std_string) =
                         !\($'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"')
                     inl channel_receiver = join channel_receiver
                     (!\\(channel_receiver, $'"true; let !channel_receiver = !channel_receiver"') : bool) |> ignore
 
-                    inl channel_sender = channel_sender |> rust.new_arc_mutex
+                    inl channel_sender = channel_sender |> threading.new_arc_mutex
                     inl channel_sender' = channel_sender |> rust.clone
                     inl channel_sender'' = channel_sender |> rust.clone
-                    inl channel_receiver' = channel_receiver |> rust.new_arc_mutex
+                    inl channel_receiver' = channel_receiver |> threading.new_arc_mutex
 
                     inl std_line (stdout : bool) channel_sender (line : _ _ io_error) =
                         inl line =
@@ -749,7 +750,7 @@ inl execute_with_options (options : execution_options) : i32 * string =
 
                     inl stdout_thread : threading.join_handle () = !\($'"std::thread::spawn(move || { //"')
                     inl stdout_lines : lines (buf_reader child_stdout) = !\($'"std::io::BufRead::lines(std::io::BufReader::new(!stdout.lock().unwrap().take().unwrap()))"')
-                    inl stdout_lines = stdout_lines |> rust.new_arc_mutex
+                    inl stdout_lines = stdout_lines |> threading.new_arc_mutex
                     inl std_line' = std_line true channel_sender'
                     inl std_line' = join std_line'
                     (!\\(stdout_lines, $'"true; for line in $0.lock().unwrap().by_ref() { !std_line'(line) }"') : bool) |> ignore
@@ -757,7 +758,7 @@ inl execute_with_options (options : execution_options) : i32 * string =
 
                     inl stderr_thread : threading.join_handle () = !\($'"std::thread::spawn(move || { //"')
                     inl stderr_lines : lines (buf_reader child_stderr) = !\($'"std::io::BufRead::lines(std::io::BufReader::new(!stderr.lock().unwrap().take().unwrap()))"')
-                    inl stderr_lines = stderr_lines |> rust.new_arc_mutex
+                    inl stderr_lines = stderr_lines |> threading.new_arc_mutex
                     inl std_line' = std_line false channel_sender
                     inl std_line' = join std_line'
                     (!\\(stderr_lines, $'"true; for line in $0.lock().unwrap().by_ref() { !std_line'(line) }"') : bool) |> ignore

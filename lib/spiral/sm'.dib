@@ -34,7 +34,9 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::OsString\")>]\n#endif\ntype std_ffi_OsString = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fmt::Display<$0>\")>]\n#endif\ntype std_fmt_Display<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::str::Utf8Error\")>]\n#endif\ntype std_str_Utf8Error = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::FromUtf8Error\")>]\n#endif\ntype std_string_FromUtf8Error = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>]\n#endif\ntype std_string_String = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::slice::Windows<$0>\")>]\n#endif\ntype std_slice_Windows<'T> = class end"
 
 #!spiral
 
@@ -49,6 +51,7 @@ nominal str = $"Str"
 nominal base64_decode_error = $"base64_DecodeError"
 nominal borsh_io_error = $"borsh_io_Error"
 nominal utf8_error = $"std_str_Utf8Error"
+nominal from_utf8_error = $"std_string_FromUtf8Error"
 nominal json_value = $"serde_json_Value"
 nominal json_error = $"serde_json_Error"
 nominal serde_wasm_bindgen_error = $"serde_wasm_bindgen_Error"
@@ -219,6 +222,24 @@ inl raw_string_literal (s : string) : rust.ref' str =
 
 inl raw_string_literal_static (s : string) : rust.static_ref' str =
     !\($"\"r#\\\"\" + !s + \"\\\"#\"")
+
+#!markdown
+
+## (~#)
+
+#!spiral
+
+inl (~#) s =
+    s |> raw_string_literal
+
+#!markdown
+
+## (~##)
+
+#!spiral
+
+inl (~##) s =
+    s |> raw_string_literal_static
 
 #!markdown
 
@@ -545,6 +566,24 @@ inl strip_prefix (prefix : char) (s : std_string) : optionm'.option' (rust.ref' 
 
 #!markdown
 
+## str_from_utf8
+
+#!spiral
+
+inl str_from_utf8 (bytes : rust.ref' (am'.slice u8)) : resultm.result' (rust.ref' str) utf8_error =
+    !\($'"std::str::from_utf8(!bytes)"')
+
+#!markdown
+
+## string_from_utf8
+
+#!spiral
+
+inl string_from_utf8 (bytes : am'.vec u8) : resultm.result' std_string from_utf8_error =
+    !\($'"std::string::String::from_utf8(!bytes)"')
+
+#!markdown
+
 ## base64_decode
 
 #!spiral
@@ -554,13 +593,10 @@ inl base64_decode (s : std_string) : result std_string std_string =
         inl s = join s
         inl bytes : resultm.result' (am'.vec u8) base64_decode_error =
             !\($'"base64::Engine::decode(&base64::engine::general_purpose::STANDARD, !s)"')
-        inl bytes =
-            bytes
-            |> resultm.map_error' format'
-            |> resultm.try'
-        inl result : resultm.result' std_string utf8_error =
-            !\($'"std::str::from_utf8(&!bytes).map(String::from)"')
-        result
+        bytes
+        |> resultm.map_error' format'
+        |> resultm.try'
+        |> string_from_utf8
         |> resultm.map_error' format'
     |> fun x =>
         join x ()
@@ -817,6 +853,52 @@ inl utf8_get_bytes (s : string) : a i32 u8 =
 
 inl byte_to_string (format : string) (x : u8) : string =
     $'!x.ToString' format
+
+#!markdown
+
+## windows
+
+#!spiral
+
+nominal windows t = $'std_slice_Windows<`t>'
+
+inl windows (len : unativeint) (source : am'.vec u8) : windows u8 =
+    inl source = source |> rust.new_box |> rust.box_leak
+    // inl source' = source |> rust.clone
+    inl result = !\\(len, $'"<[_]>::windows(!source, $0)"')
+    // source |> rust.drop
+    result
+
+#!markdown
+
+## any
+
+#!spiral
+
+inl any forall t. (fn : string -> bool) (source : windows t) : bool =
+    (!\($'"true; let mut !source = !source"') : bool) |> ignore
+    inl fn' x =
+        x
+        |> str_from_utf8
+        |> resultm.unwrap_or' #""
+        |> ref_to_std_string
+        |> from_std_string
+        |> fn
+    !\\(fn', $'"!source.any(move |x| $0(x))"')
+
+#!markdown
+
+## slice_contains
+
+#!spiral
+
+inl slice_contains (text : string) (source : am'.vec u8) : bool =
+    fun () =>
+        inl source = join source
+        source
+        |> windows (text |> length |> (fun x => x : i32) |> unativeint)
+        |> any ((=.) text)
+    |> fun x => join x ()
 
 #!markdown
 

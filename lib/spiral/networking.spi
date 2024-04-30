@@ -151,12 +151,19 @@ inl wait_for_port_access timeout status port : _ i64 =
         else
             $'*) else' : ()
             if retry % 100 = 0 then
-                inl _locals () = $'$"port: {!port} / retry: {!retry} / {!_locals ()}"'
+                inl _locals () = $'$"port: {!port} / retry: {!retry} / timeout: %A{!timeout} / status: {!status} / {!_locals ()}"'
                 trace Verbose (fun () => "wait_for_port_access") _locals
             async.sleep 10 |> async.do
             loop (retry + 1) |> async.return_await |> fun x => $'(*' : ()
         |> fun x => $'*)' : ()
     loop 0i64
+    |> fun result =>
+        match timeout |> optionm'.unbox with
+        | None => result
+        | Some timeout =>
+            result
+            |> async.run_with_timeout_async timeout
+            |> async.map optionm.value
 
 // // ## get_available_port
 inl get_available_port timeout initial_port : _ i32 =

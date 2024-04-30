@@ -79,14 +79,6 @@ type std_rc_Rc<'T> = class end
 #endif
 type std_rc_Weak<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc<$0>")>]
-#endif
-type std_sync_Arc<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex<$0>")>]
-#endif
-type std_sync_Mutex<'T> = class end
-#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("str")>]
 #endif
 type Str = class end
@@ -131,9 +123,17 @@ type std_fmt_Display<'T> = class end
 #endif
 type std_str_Utf8Error = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::string::FromUtf8Error")>]
+#endif
+type std_string_FromUtf8Error = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
 #endif
 type std_string_String = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::slice::Windows<$0>")>]
+#endif
+type std_slice_Windows<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("chrono::DateTime<$0>")>]
 #endif
@@ -194,6 +194,18 @@ type core_iter_Fuse<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle<$0>")>]
 #endif
 type std_thread_JoinHandle<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc<$0>")>]
+#endif
+type std_sync_Arc<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex<$0>")>]
+#endif
+type std_sync_Mutex<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard<$0>")>]
+#endif
+type std_sync_MutexGuard<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("clap::Arg")>]
 #endif

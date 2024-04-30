@@ -506,10 +506,35 @@ inl file_exists_content path content : _ bool =
 inl write_all_text (path : string) (text : string) : () =
     run_target function
         | Fsharp (Native) => fun () =>
+            inl text = join text
             $'System.IO.File.WriteAllText (!path, !text)'
         | Rust (Native) => fun () =>
             open rust_operators
             !\\((path, text), $'"std::fs::write(&*$0, &*$1).unwrap()"')
+        | _ => fun () => null ()
+
+// // ## read_all_bytes
+inl read_all_bytes (path : string) : am'.vec u8 =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!path |> System.IO.File.ReadAllBytes'
+            |> am'.to_vec
+        | Rust (Native) => fun () =>
+            open rust_operators
+            !\\(path, $'"std::fs::read(&*$0).unwrap()"')
+        | _ => fun () => null ()
+
+// // ## read_all_text
+inl read_all_text (path : string) : string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!path |> System.IO.File.ReadAllText'
+        | Rust (Native) => fun () =>
+            path
+            |> read_all_bytes
+            |> sm'.string_from_utf8
+            |> resultm.unwrap'
+            |> sm'.from_std_string
         | _ => fun () => null ()
 
 // // ## write_all_text_async

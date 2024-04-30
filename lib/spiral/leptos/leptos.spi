@@ -495,7 +495,7 @@ inl use_location () : location =
     !\($'"leptos_router::use_location()"')
 
 inl use_navigate () : string -> () =
-    inl navigate : rust.arc (rust.dyn' (rust.action_fn2 (rust.ref' sm'.str) navigate_options)) =
+    inl navigate : threading.arc (rust.dyn' (rust.action_fn2 (rust.ref' sm'.str) navigate_options)) =
         !\($'"std::sync::Arc::new(leptos_router::use_navigate())"')
     fun url =>
         inl url = url |> sm'.as_str

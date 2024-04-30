@@ -83,6 +83,10 @@ inl try' forall t u. (x : result' t u) : t =
 inl unwrap' forall t u. (x : result' t u) : t =
     !\\(x, $'"$0.unwrap()"')
 
+// // ## unwrap_or'
+inl unwrap_or' forall t u. (default : t) (x : result' t u) : t =
+    !\\(x, $'"$0.unwrap_or(!default)"')
+
 // // ## expect
 inl expect forall t u. (error : rust.ref' string) (x : result' t u) : t =
     !\($'"!x.expect(&!error)"')
