@@ -9698,7 +9698,7 @@ assert_eq / actual: "3" / expected: "3"
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-assert_eq / actual: "99991230-2359-5999-9999-000000543210" / expected: "99991230-2359-5999-9999-000000543210"
+assert_eq / actual: "3" / expected: "3"
 
 
 </pre>
@@ -9933,211 +9933,48 @@ method0()
 mod module_ccfa04bf {
     pub mod Spiral_eval {
         use super::*;
-        use fable_library_rust::DateTime_::DateTime;
-        use fable_library_rust::Guid_::parse;
         use fable_library_rust::Native_::on_startup;
-        use fable_library_rust::Native_::Func1;
-        use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::Native_::MutCell;
-        use fable_library_rust::Option_::defaultValue;
         use fable_library_rust::Option_::getValue;
-        use fable_library_rust::Option_::map;
-        use fable_library_rust::String_::getCharAt;
-        use fable_library_rust::String_::getSlice;
-        use fable_library_rust::String_::length;
         use fable_library_rust::String_::printfn;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
-        use fable_library_rust::String_::toString;
-        type TimeZoneInfo = i64;
-        use fable_library_rust::TimeSpan_::zero;
-        use fable_library_rust::TimeSpan_::TimeSpan;
-        #[derive(Clone, Debug)]
-        pub enum US0 {
-            US0_0(chrono::DateTime&lt;chrono::Utc&gt;),
-            US0_1,
+        pub fn method1() -&gt; string {
+            string("\\s\\w2")
         }
-        impl Spiral_eval::US0 {
-            pub fn get_IsUS0_0(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS0_1(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
+        pub fn method2() -&gt; string {
+            string(" 123")
         }
-        impl core::fmt::Display for Spiral_eval::US0 {
-            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-            }
+        pub fn method3() -&gt; string {
+            string("")
         }
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
-        pub enum US1 {
-            US1_0(string),
-            US1_1,
-        }
-        impl Spiral_eval::US1 {
-            pub fn get_IsUS1_0(this_: &amp;MutCell&lt;Spiral_eval::US1&gt;, unitArg: ()) -&gt; bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS1_1(this_: &amp;MutCell&lt;Spiral_eval::US1&gt;, unitArg: ()) -&gt; bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
-        impl core::fmt::Display for Spiral_eval::US1 {
-            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-            }
-        }
-        pub fn closure0(unitVar: (), v0: chrono::DateTime&lt;chrono::Utc&gt;) -&gt; Spiral_eval::US0 {
-            Spiral_eval::US0::US0_0(v0)
-        }
-        pub fn method1() -&gt; Func1&lt;chrono::DateTime&lt;chrono::Utc&gt;, Spiral_eval::US0&gt; {
-            Func1::new(move |v: chrono::DateTime&lt;chrono::Utc&gt;| Spiral_eval::closure0((), v))
-        }
-        pub fn method2(v0: chrono::DateTime&lt;chrono::Utc&gt;) -&gt; chrono::DateTime&lt;chrono::Utc&gt; {
-            v0
-        }
-        pub fn method3(v0: chrono::DateTime&lt;chrono::Local&gt;) -&gt; chrono::DateTime&lt;chrono::Local&gt; {
-            v0
-        }
-        pub fn method4() -&gt; string {
-            string("yyyyMMdd-HHmm-ssff-ffff-f")
-        }
-        pub fn method5() -&gt; string {
-            string("hhmm")
-        }
-        pub fn method6(v0: bool) -&gt; bool {
+        pub fn method4(v0: bool) -&gt; bool {
             v0
         }
         pub fn method0() {
-            let v3: string = toString(parse(string("FEDCBA98-7654-3210-FEDC-BA9876543210")));
-            let v4: i32 = length(v3.clone());
-            let v6: string = getSlice(v3, Some(v4 - 6_i32), Some(v4));
-            let v9: DateTime = DateTime::specifyKind(DateTime::maxValue(), 1_i32);
-            let v11: DateTime = v9.addDays(-1_i32 as f64);
-            let v14: string = toString(parse(string("FEDCBA98-7654-3210-FEDC-BA9876543210")));
-            let _v15: MutCell&lt;Option&lt;(string, string)&gt;&gt; = MutCell::new(None::&lt;(string, string)&gt;);
-            let v19: DateTime = {
-                let _arg_2: DateTime =
-                    DateTime::new_ymdhms_kind(1970_i32, 1_i32, 1_i32, 0_i32, 0_i32, 0_i32, 1_i32);
-                _arg_2.toUniversalTime()
-            };
-            let v29: i64 = ({
-                let _arg_4: DateTime = {
-                    let _arg_3: DateTime = DateTime::specifyKind(v11, 2_i32);
-                    _arg_3.toUniversalTime()
-                };
-                _arg_4.ticks()
-            } - v19.ticks())
-                / 10_i64;
-            let v31: Option&lt;chrono::DateTime&lt;chrono::Utc&gt;&gt; =
-                chrono::DateTime::from_timestamp_micros(v29);
-            let v34: Spiral_eval::US0 =
-                defaultValue(Spiral_eval::US0::US0_1, map(Spiral_eval::method1(), v31));
-            let v53: Spiral_eval::US1 = match &amp;v34 {
-                Spiral_eval::US0::US0_0(v34_0_0) =&gt; {
-                    let v36: chrono::DateTime&lt;chrono::Utc&gt; = Spiral_eval::method2(match &amp;v34 {
-                        Spiral_eval::US0::US0_0(x) =&gt; x.clone(),
-                        _ =&gt; unreachable!(),
-                    });
-                    let v38: chrono::NaiveDateTime = v36.naive_utc();
-                    let v40: chrono::DateTime&lt;chrono::Local&gt; =
-                        chrono::offset::TimeZone::from_utc_datetime(&amp;chrono::Local, &amp;v38);
-                    let v42: string = string("r#\"%Y%m%d-%H%M-%S%f\"#");
-                    let v43: &amp;str = r#"%Y%m%d-%H%M-%S%f"#;
-                    let v44: chrono::DateTime&lt;chrono::Local&gt; = Spiral_eval::method3(v40);
-                    let v46: std::string::String = v44.format(v43).to_string();
-                    let v48: string = fable_library_rust::String_::fromString(v46);
-                    Spiral_eval::US1::US1_0(sprintf!(
-                        "{}-{}-{}",
-                        getSlice(v48.clone(), Some(0_i32), Some(17_i32)),
-                        getSlice(v48.clone(), Some(18_i32), Some(21_i32)),
-                        getCharAt(v48, 22_i32)
-                    ))
-                }
-                _ =&gt; Spiral_eval::US1::US1_1,
-            };
-            let v57: string = match &amp;v53 {
-                Spiral_eval::US1::US1_0(v53_0_0) =&gt; match &amp;v53 {
-                    Spiral_eval::US1::US1_0(x) =&gt; x.clone(),
-                    _ =&gt; unreachable!(),
-                },
-                _ =&gt; string(""),
-            };
-            let _v58: MutCell&lt;Option&lt;LrcPtr&lt;TimeZoneInfo&gt;&gt;&gt; =
-                MutCell::new(None::&lt;LrcPtr&lt;TimeZoneInfo&gt;&gt;);
+            let _v0: MutCell&lt;Option&lt;string&gt;&gt; = MutCell::new(None::&lt;string&gt;);
+            let v2: string = Spiral_eval::method1();
+            let v3: string = Spiral_eval::method2();
+            let v4: string = Spiral_eval::method3();
+            let v6: &amp;str = &amp;regex::Regex::new(&amp;v2).unwrap().replace_all(&amp;v3, &amp;*v4);
+            let v8: std::string::String = String::from(v6);
             {
-                let x: LrcPtr&lt;TimeZoneInfo&gt; = 0i64.into();
-                _v58.set(Some(x))
+                let x: string = fable_library_rust::String_::fromString(v8);
+                _v0.set(Some(x))
             }
             {
-                let v67: LrcPtr&lt;TimeZoneInfo&gt; = getValue(_v58.get().clone());
-                let _v68: MutCell&lt;Option&lt;TimeSpan&gt;&gt; = MutCell::new(None::&lt;TimeSpan&gt;);
-                _v68.set(Some(zero));
-                {
-                    let v88: TimeSpan = getValue(_v68.get().clone());
-                    let v92: u8 = if v88.hours() &gt; 0_i32 { 1_u8 } else { 0_u8 };
-                    let v95: string = v88.to_string(string("hh:mm"));
-                    {
-                        let x_2: (string, string) = (
-                            v57,
-                            sprintf!(
-                                "{}{}{}",
-                                v92,
-                                getSlice(v95.clone(), Some(0_i32), Some(1_i32)),
-                                getSlice(v95, Some(3_i32), Some(4_i32))
-                            ),
-                        );
-                        _v15.set(Some(x_2))
-                    }
-                    {
-                        let patternInput: (string, string) = getValue(_v15.get().clone());
-                        let v149: string = patternInput.1.clone();
-                        let v148: string = patternInput.0.clone();
-                        let v152: string = toString(parse(sprintf!(
-                            "{}{}{}",
-                            v148.clone(),
-                            v149.clone(),
-                            getSlice(v14, Some(length(v148) + length(v149)), None::&lt;i32&gt;)
-                        )));
-                        let v153: string = sprintf!(
-                            "99991230-2359-5999-9999-0{}{}",
-                            getSlice(v152.clone(), Some(25_i32), Some(29_i32)),
-                            v6
-                        );
-                        let v154: bool = v152.clone() == v153.clone();
-                        let v156: bool = if v154 {
-                            true
-                        } else {
-                            Spiral_eval::method6(v154)
-                        };
-                        let v158: string = sprintf!(
-                            "{} / actual: {:?} / expected: {:?}",
-                            string("assert_eq"),
-                            v152,
-                            v153
-                        );
-                        printfn!("{0}", v158.clone());
-                        if v156 == false {
-                            panic!("{}", v158,);
-                        }
-                    }
+                let v19: string = getValue(_v0.get().clone());
+                let v21: bool = v19.clone() == string("3");
+                let v23: bool = if v21 { true } else { Spiral_eval::method4(v21) };
+                let v26: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_eq"),
+                    v19,
+                    string("3")
+                );
+                printfn!("{0}", v26.clone());
+                if v23 == false {
+                    panic!("{}", v26,);
                 }
             }
         }
@@ -10145,10 +9982,6 @@ mod module_ccfa04bf {
     }
 }
 pub use module_ccfa04bf::*;
-
-pub fn main() -&gt; Result&lt;(), String&gt; {
-    Ok(())
-}
 
 </pre>
 </div>

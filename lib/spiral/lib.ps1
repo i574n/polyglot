@@ -164,9 +164,10 @@ function BuildFable {
         [string] $Language,
         [string] $Runtime
     )
-    dotnet fable "$TargetDir/$ProjectName.fsproj" --optimize --lang $Language --extension ".$Language" --outDir $TargetDir/target/$Language $($Runtime ? @("--define", $Runtime) : @())
-
     $root = "$PSScriptRoot/../.."
+
+    { dotnet fable "$TargetDir/$ProjectName.fsproj" --optimize --lang $Language --extension ".$Language" --outDir $TargetDir/target/$Language $($Runtime ? @("--define", $Runtime) : @()) } | Invoke-Block -Location $root
+
     CopyTarget $TargetDir $root $Language $Runtime.ToLower()
 }
 

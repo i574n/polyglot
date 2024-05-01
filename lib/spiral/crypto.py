@@ -13,7 +13,7 @@ class ICryptoCreateHash(Protocol):
         ...
 
 
-def _expr1() -> TypeInfo:
+def _expr0() -> TypeInfo:
     return record_type("Crypto.Mut0", [], Mut0, lambda: [("l0", int32_type)])
 
 
@@ -21,13 +21,17 @@ def _expr1() -> TypeInfo:
 class Mut0(Record):
     l0: int
 
-Mut0_reflection = _expr1
+Mut0_reflection = _expr0
 
-def method0(v0_1: int, v1: Mut0) -> bool:
+def method0(v0_1: str) -> str:
+    return v0_1
+
+
+def method1(v0_1: int, v1: Mut0) -> bool:
     return v1.l0 < v0_1
 
 
-def method1(__unit: None=None) -> str:
+def method2(__unit: None=None) -> str:
     return ""
 
 

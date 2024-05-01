@@ -15,9 +15,7 @@ pub mod Networking {
     use fable_library_rust::Native_::LrcPtr;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
-    use fable_library_rust::Option_::defaultValue;
     use fable_library_rust::Option_::getValue;
-    use fable_library_rust::Option_::map;
     use fable_library_rust::Seq_::ofList;
     use fable_library_rust::String_::padLeft;
     use fable_library_rust::String_::sprintf;
@@ -309,58 +307,6 @@ pub mod Networking {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Debug)]
-    pub enum US7 {
-        US7_0(i64),
-        US7_1(LrcPtr<Exception>),
-    }
-    impl Networking::US7 {
-        pub fn get_IsUS7_0(this_: &MutCell<Networking::US7>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS7_1(this_: &MutCell<Networking::US7>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
-    impl core::fmt::Display for Networking::US7 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
-    #[derive(Clone, Debug)]
-    pub enum US8 {
-        US8_0(i64),
-        US8_1(LrcPtr<Exception>),
-    }
-    impl Networking::US8 {
-        pub fn get_IsUS8_0(this_: &MutCell<Networking::US8>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS8_1(this_: &MutCell<Networking::US8>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
-    impl core::fmt::Display for Networking::US8 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
     pub fn closure1(unitVar: (), v0_1: string) {
         ();
     }
@@ -629,37 +575,8 @@ pub mod Networking {
         }
         getValue(_v4.get().clone())
     }
-    pub fn closure20(unitVar: (), v0_1: i64) -> Networking::US7 {
-        Networking::US7::US7_0(v0_1)
-    }
-    pub fn closure21(unitVar: (), v0_1: LrcPtr<Exception>) -> Networking::US7 {
-        Networking::US7::US7_1(v0_1)
-    }
     pub fn closure16(v0_1: Option<i32>, v1_1: bool, v2_1: i32) -> Arc<Async<i64>> {
-        let v4_1: Arc<Async<i64>> = Networking::method6(v0_1.clone(), v1_1, v2_1, 0_i64);
-        let v7: Networking::US6 =
-            defaultValue(Networking::US6::US6_1, map(Networking::method7(), v0_1));
-        match &v7 {
-            Networking::US6::US6_0(v7_0_0) => {
-                let _v9: MutCell<Option<Arc<Async<Networking::US2>>>> =
-                    MutCell::new(None::<Arc<Async<Networking::US2>>>);
-                {
-                    let x: Arc<Async<Networking::US2>> = defaultOf();
-                    _v9.set(Some(x))
-                }
-                {
-                    let v122: Arc<Async<Networking::US2>> = getValue(_v9.get().clone());
-                    let _v123: MutCell<Option<Arc<Async<i64>>>> =
-                        MutCell::new(None::<Arc<Async<i64>>>);
-                    {
-                        let x_1: Arc<Async<i64>> = defaultOf();
-                        _v123.set(Some(x_1))
-                    }
-                    getValue(_v123.get().clone())
-                }
-            }
-            _ => v4_1,
-        }
+        Networking::method6(v0_1, v1_1, v2_1, 0_i64)
     }
     pub fn closure15(v0_1: Option<i32>, v1_1: bool) -> Func1<i32, Arc<Async<i64>>> {
         Func1::new({
@@ -682,13 +599,13 @@ pub mod Networking {
         }
         getValue(_v2.get().clone())
     }
-    pub fn closure23(v0_1: Option<i32>, v1_1: i32) -> Arc<Async<i32>> {
+    pub fn closure21(v0_1: Option<i32>, v1_1: i32) -> Arc<Async<i32>> {
         Networking::method8(v0_1, v1_1)
     }
-    pub fn closure22(unitVar: (), v0_1: Option<i32>) -> Func1<i32, Arc<Async<i32>>> {
+    pub fn closure20(unitVar: (), v0_1: Option<i32>) -> Func1<i32, Arc<Async<i32>>> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: i32| Networking::closure23(v0_1.clone(), v)
+            move |v: i32| Networking::closure21(v0_1.clone(), v)
         })
     }
     pub fn v0() -> Func0<(
@@ -742,7 +659,7 @@ pub mod Networking {
     }
     pub fn v4() -> Func1<Option<i32>, Func1<i32, Arc<Async<i32>>>> {
         static v4: OnceInit<Func1<Option<i32>, Func1<i32, Arc<Async<i32>>>>> = OnceInit::new();
-        v4.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure22((), v)))
+        v4.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure20((), v)))
             .clone()
     }
     pub fn get_available_port(x: Option<i32>) -> Func1<i32, Arc<Async<i32>>> {

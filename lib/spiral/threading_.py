@@ -67,10 +67,10 @@ def closure1(unit_var: None, v0_1: CancellationToken) -> US0:
 
 
 def method0(__unit: None=None) -> Callable[[CancellationToken], US0]:
-    def _arrow76(v: CancellationToken) -> US0:
+    def _arrow74(v: CancellationToken) -> US0:
         return closure1(None, v)
 
-    return _arrow76
+    return _arrow74
 
 
 def closure2(v0_1: Any, unit_var: None) -> None:
@@ -80,10 +80,10 @@ def closure2(v0_1: Any, unit_var: None) -> None:
 
 
 def method1(v0_1: Any) -> Callable[[], None]:
-    def _arrow77(__unit: None=None, v0_1: Any=v0_1) -> None:
+    def _arrow75(__unit: None=None, v0_1: Any=v0_1) -> None:
         closure2(v0_1, None)
 
-    return _arrow77
+    return _arrow75
 
 
 def closure0(unit_var: None, v0_1: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
@@ -94,11 +94,11 @@ def closure0(unit_var: None, v0_1: CancellationToken | None=None) -> tuple[Cance
     return (pattern_input_1[0], pattern_input_1[1])
 
 
-def _arrow78(v: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
+def _arrow76(v: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
     return closure0(None, v)
 
 
-v0: Callable[[CancellationToken | None], tuple[CancellationToken, IDisposable]] = _arrow78
+v0: Callable[[CancellationToken | None], tuple[CancellationToken, IDisposable]] = _arrow76
 
 def new_disposable_token(x: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
     return v0(x)

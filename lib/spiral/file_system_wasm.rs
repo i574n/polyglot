@@ -978,28 +978,36 @@ pub mod File_system {
         }
         getValue(_v1.get().clone())
     }
-    pub fn method15(v0_1: string) -> string {
-        v0_1
-    }
     pub fn method16(v0_1: string) -> string {
         v0_1
+    }
+    pub fn method17(v0_1: string) -> string {
+        v0_1
+    }
+    pub fn method15(v0_1: string, v1_1: string) -> string {
+        let _v2: MutCell<Option<string>> = MutCell::new(None::<string>);
+        {
+            let x: string = unbox::<string>(&defaultOf());
+            _v2.set(Some(x))
+        }
+        getValue(_v2.get().clone())
     }
     pub fn closure37(unitVar: (), v0_1: Option<()>) -> File_system::US8 {
         File_system::US8::US8_0(v0_1)
     }
-    pub fn method17() -> Func1<Option<()>, File_system::US8> {
+    pub fn method18() -> Func1<Option<()>, File_system::US8> {
         Func1::new(move |v: Option<()>| File_system::closure37((), v))
-    }
-    pub fn method18(v0_1: Option<()>) -> Option<()> {
-        v0_1
     }
     pub fn method19(v0_1: Option<()>) -> Option<()> {
         v0_1
     }
-    pub fn method20() -> string {
-        string("yyyyMMdd-HHmm-ssff-ffff-f")
+    pub fn method20(v0_1: Option<()>) -> Option<()> {
+        v0_1
     }
     pub fn method21() -> string {
+        string("yyyyMMdd-HHmm-ssff-ffff-f")
+    }
+    pub fn method22() -> string {
         string("hhmm")
     }
     pub fn closure36(unitVar: (), unitVar_1: ()) -> string {
@@ -1010,7 +1018,7 @@ pub mod File_system {
         }
         getValue(_v0.get().clone())
     }
-    pub fn method22(v0_1: string) -> string {
+    pub fn method23(v0_1: string) -> string {
         v0_1
     }
     pub fn closure39(unitVar: (), v0_1: std::io::Error) -> std::string::String {
@@ -1021,7 +1029,7 @@ pub mod File_system {
         }
         getValue(_v1.get().clone())
     }
-    pub fn method23() -> Func1<std::io::Error, std::string::String> {
+    pub fn method24() -> Func1<std::io::Error, std::string::String> {
         Func1::new(move |v: std::io::Error| File_system::closure39((), v))
     }
     pub fn closure40(unitVar: (), unitVar_1: ()) -> File_system::US10 {
@@ -1054,7 +1062,7 @@ pub mod File_system {
         getValue(_v1.get().clone());
         ()
     }
-    pub fn method24(v0_1: string) -> Func0<()> {
+    pub fn method25(v0_1: string) -> Func0<()> {
         Func0::new({
             let v0_1 = v0_1.clone();
             move || File_system::closure46(v0_1.clone(), ())
@@ -1094,7 +1102,7 @@ pub mod File_system {
             }
         }
     }
-    pub fn method25(v0_1: string) -> Func0<()> {
+    pub fn method26(v0_1: string) -> Func0<()> {
         Func0::new({
             let v0_1 = v0_1.clone();
             move || File_system::closure49(v0_1.clone(), ())
@@ -1107,17 +1115,17 @@ pub mod File_system {
             _v0.set(Some(x))
         }
         {
-            let v534: string = getValue(_v0.get().clone());
-            let _v535: MutCell<Option<LrcPtr<dyn IDisposable>>> =
+            let v369: string = getValue(_v0.get().clone());
+            let _v370: MutCell<Option<LrcPtr<dyn IDisposable>>> =
                 MutCell::new(None::<LrcPtr<dyn IDisposable>>);
             {
                 let x_1: LrcPtr<dyn IDisposable> = interface_cast!(
                     defaultOf::<std::rc::Rc<dyn IDisposable>>(),
                     Lrc<dyn IDisposable>,
                 );
-                _v535.set(Some(x_1))
+                _v370.set(Some(x_1))
             }
-            (v534, getValue(_v535.get().clone()))
+            (v369, getValue(_v370.get().clone()))
         }
     }
     pub fn closure50(unitVar: (), unitVar_1: ()) -> string {
@@ -1156,95 +1164,85 @@ pub mod File_system {
             }
         }
     }
-    pub fn method27() -> Func1<string, Option<string>> {
+    pub fn method28() -> Func1<string, Option<string>> {
         Func1::new(move |v: string| File_system::closure56((), v))
     }
     pub fn closure57(unitVar: (), v0_1: string) -> File_system::US9 {
         File_system::US9::US9_0(v0_1)
     }
-    pub fn method28() -> Func1<string, File_system::US9> {
+    pub fn method29() -> Func1<string, File_system::US9> {
         Func1::new(move |v: string| File_system::closure57((), v))
     }
-    pub fn method29(v0_1: string, v1_1: bool, v2_1: string, v3_1: string) -> string {
+    pub fn method30(v0_1: string, v1_1: bool, v2_1: string, v3_1: string) -> string {
         let v0_1: MutCell<string> = MutCell::new(v0_1.clone());
         let v1_1: MutCell<bool> = MutCell::new(v1_1);
         let v2_1: MutCell<string> = MutCell::new(v2_1.clone());
         let v3_1: MutCell<string> = MutCell::new(v3_1.clone());
-        '_method29: loop {
-            break '_method29 ({
-                let _v4: MutCell<Option<string>> = MutCell::new(None::<string>);
-                {
-                    let x: string = unbox::<string>(&defaultOf());
-                    _v4.set(Some(x))
-                }
-                if (if v1_1.get().clone() {
-                    Func1::new(move |v: string| File_system::closure54((), v))
-                } else {
-                    Func1::new(move |v_1: string| File_system::closure55((), v_1))
-                })(getValue(_v4.get().clone()))
-                {
-                    v3_1.get().clone()
-                } else {
-                    let v52: Option<string> = (File_system::method27())(v3_1.get().clone());
-                    let v55: File_system::US9 =
-                        defaultValue(File_system::US9::US9_1, map(File_system::method28(), v52));
-                    match &v55 {
-                        File_system::US9::US9_0(v55_0_0) => {
-                            let v0_1_temp: string = v0_1.get().clone();
-                            let v1_1_temp: bool = v1_1.get().clone();
-                            let v2_1_temp: string = v2_1.get().clone();
-                            let v3_1_temp: string = match &v55 {
-                                File_system::US9::US9_0(x) => x.clone(),
-                                _ => unreachable!(),
-                            };
-                            v0_1.set(v0_1_temp);
-                            v1_1.set(v1_1_temp);
-                            v2_1.set(v2_1_temp);
-                            v3_1.set(v3_1_temp);
-                            continue '_method29;
-                        }
-                        _ => panic!(
-                            "{}",
-                            sprintf!(
-                                "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
-                                if v1_1.get().clone() {
-                                    string("file")
-                                } else {
-                                    string("dir")
-                                },
-                                v0_1.get().clone(),
-                                v2_1.get().clone(),
-                                v3_1.get().clone()
-                            ),
-                        ),
+        '_method30: loop {
+            break '_method30 (if (if v1_1.get().clone() {
+                Func1::new(move |v: string| File_system::closure54((), v))
+            } else {
+                Func1::new(move |v_1: string| File_system::closure55((), v_1))
+            })(File_system::method15(
+                v3_1.get().clone(),
+                v0_1.get().clone(),
+            )) {
+                v3_1.get().clone()
+            } else {
+                let v10_1: Option<string> = (File_system::method28())(v3_1.get().clone());
+                let v13_1: File_system::US9 =
+                    defaultValue(File_system::US9::US9_1, map(File_system::method29(), v10_1));
+                match &v13_1 {
+                    File_system::US9::US9_0(v13_1_0_0) => {
+                        let v0_1_temp: string = v0_1.get().clone();
+                        let v1_1_temp: bool = v1_1.get().clone();
+                        let v2_1_temp: string = v2_1.get().clone();
+                        let v3_1_temp: string = match &v13_1 {
+                            File_system::US9::US9_0(x) => x.clone(),
+                            _ => unreachable!(),
+                        };
+                        v0_1.set(v0_1_temp);
+                        v1_1.set(v1_1_temp);
+                        v2_1.set(v2_1_temp);
+                        v3_1.set(v3_1_temp);
+                        continue '_method30;
                     }
+                    _ => panic!(
+                        "{}",
+                        sprintf!(
+                            "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
+                            if v1_1.get().clone() {
+                                string("file")
+                            } else {
+                                string("dir")
+                            },
+                            v0_1.get().clone(),
+                            v2_1.get().clone(),
+                            v3_1.get().clone()
+                        ),
+                    ),
                 }
             });
         }
     }
-    pub fn method26(v0_1: string, v1_1: bool, v2_1: string) -> string {
-        let _v3: MutCell<Option<string>> = MutCell::new(None::<string>);
-        {
-            let x: string = unbox::<string>(&defaultOf());
-            _v3.set(Some(x))
-        }
+    pub fn method27(v0_1: string, v1_1: bool, v2_1: string) -> string {
         if (if v1_1 {
             Func1::new(move |v: string| File_system::closure54((), v))
         } else {
             Func1::new(move |v_1: string| File_system::closure55((), v_1))
-        })(getValue(_v3.get().clone()))
+        })(File_system::method15(v2_1.clone(), v0_1.clone()))
         {
             v2_1.clone()
         } else {
-            let v51: Option<string> = (File_system::method27())(v2_1.clone());
-            let v54: File_system::US9 =
-                defaultValue(File_system::US9::US9_1, map(File_system::method28(), v51));
-            match &v54 {
-                File_system::US9::US9_0(v54_0_0) => File_system::method29(
+            let v9_1: Option<string> = (File_system::method28())(v2_1.clone());
+            let v12_1: File_system::US9 =
+                defaultValue(File_system::US9::US9_1, map(File_system::method29(), v9_1));
+            match &v12_1 {
+                File_system::US9::US9_0(v12_1_0_0) => File_system::method30(
                     v0_1.clone(),
                     v1_1,
                     v2_1.clone(),
-                    match &v54 {
+                    match &v12_1 {
                         File_system::US9::US9_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
@@ -1263,7 +1261,7 @@ pub mod File_system {
         }
     }
     pub fn closure53(v0_1: string, v1_1: bool, v2_1: string) -> string {
-        File_system::method26(v0_1, v1_1, v2_1)
+        File_system::method27(v0_1, v1_1, v2_1)
     }
     pub fn closure52(v0_1: string, v1_1: bool) -> Func1<string, string> {
         Func1::new({
@@ -1278,13 +1276,13 @@ pub mod File_system {
             move |v: bool| File_system::closure52(v0_1.clone(), v)
         })
     }
-    pub fn method30() -> string {
+    pub fn method31() -> string {
         string("^\\\\\\\\\\?\\\\")
     }
-    pub fn method31(v0_1: string) -> string {
+    pub fn method32(v0_1: string) -> string {
         v0_1
     }
-    pub fn method32() -> string {
+    pub fn method33() -> string {
         string("")
     }
     pub fn closure58(unitVar: (), v0_1: string) -> string {
@@ -1318,151 +1316,104 @@ pub mod File_system {
     pub fn closure59(unitVar: (), v0_1: string) -> string {
         sprintf!("file:///{}", trimStartChars(v0_1, new_array(&['/'])))
     }
-    pub fn method33() -> string {
-        string("polyglot")
-    }
-    pub fn method34() -> string {
-        string(".paket")
-    }
-    pub fn method35() -> string {
-        string("polyglot")
-    }
-    pub fn method36() -> string {
-        string(".paket")
-    }
-    pub fn method38(v0_1: string, v1_1: string, v2_1: string) -> string {
+    pub fn method35(v0_1: string, v1_1: string, v2_1: string) -> string {
         let v0_1: MutCell<string> = MutCell::new(v0_1.clone());
         let v1_1: MutCell<string> = MutCell::new(v1_1.clone());
         let v2_1: MutCell<string> = MutCell::new(v2_1.clone());
-        '_method38: loop {
-            break '_method38 ({
-                let _v3: MutCell<Option<string>> = MutCell::new(None::<string>);
+        '_method35: loop {
+            break '_method35 ({
+                let v3_1: string = File_system::method15(v2_1.get().clone(), v0_1.get().clone());
+                let _v4: MutCell<Option<bool>> = MutCell::new(None::<bool>);
                 {
-                    let x: string = unbox::<string>(&defaultOf());
-                    _v3.set(Some(x))
+                    let x: bool = unbox::<bool>(&defaultOf());
+                    _v4.set(Some(x))
                 }
-                {
-                    let v45: string = getValue(_v3.get().clone());
-                    let _v46: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-                    {
-                        let x_1: bool = unbox::<bool>(&defaultOf());
-                        _v46.set(Some(x_1))
-                    }
-                    if getValue(_v46.get().clone()) {
-                        v2_1.get().clone()
-                    } else {
-                        let v71: Option<string> = (File_system::method27())(v2_1.get().clone());
-                        let v74: File_system::US9 = defaultValue(
-                            File_system::US9::US9_1,
-                            map(File_system::method28(), v71),
-                        );
-                        match &v74 {
-                            File_system::US9::US9_0(v74_0_0) => {
-                                let v0_1_temp: string = v0_1.get().clone();
-                                let v1_1_temp: string = v1_1.get().clone();
-                                let v2_1_temp: string = match &v74 {
-                                    File_system::US9::US9_0(x) => x.clone(),
-                                    _ => unreachable!(),
-                                };
-                                v0_1.set(v0_1_temp);
-                                v1_1.set(v1_1_temp);
-                                v2_1.set(v2_1_temp);
-                                continue '_method38;
-                            }
-                            _ => panic!(
-                                "{}",
-                                sprintf!(
-                                    "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
-                                    string("dir"),
-                                    v0_1.get().clone(),
-                                    v1_1.get().clone(),
-                                    v2_1.get().clone()
-                                ),
-                            ),
+                if getValue(_v4.get().clone()) {
+                    v2_1.get().clone()
+                } else {
+                    let v29: Option<string> = (File_system::method28())(v2_1.get().clone());
+                    let v32: File_system::US9 =
+                        defaultValue(File_system::US9::US9_1, map(File_system::method29(), v29));
+                    match &v32 {
+                        File_system::US9::US9_0(v32_0_0) => {
+                            let v0_1_temp: string = v0_1.get().clone();
+                            let v1_1_temp: string = v1_1.get().clone();
+                            let v2_1_temp: string = match &v32 {
+                                File_system::US9::US9_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            };
+                            v0_1.set(v0_1_temp);
+                            v1_1.set(v1_1_temp);
+                            v2_1.set(v2_1_temp);
+                            continue '_method35;
                         }
+                        _ => panic!(
+                            "{}",
+                            sprintf!(
+                                "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
+                                string("dir"),
+                                v0_1.get().clone(),
+                                v1_1.get().clone(),
+                                v2_1.get().clone()
+                            ),
+                        ),
                     }
                 }
             });
         }
     }
-    pub fn method37(v0_1: string, v1_1: string) -> string {
-        let _v2: MutCell<Option<string>> = MutCell::new(None::<string>);
+    pub fn method34(v0_1: string, v1_1: string) -> string {
+        let v2_1: string = File_system::method15(v1_1.clone(), v0_1.clone());
+        let _v3: MutCell<Option<bool>> = MutCell::new(None::<bool>);
         {
-            let x: string = unbox::<string>(&defaultOf());
-            _v2.set(Some(x))
+            let x: bool = unbox::<bool>(&defaultOf());
+            _v3.set(Some(x))
         }
-        {
-            let v44: string = getValue(_v2.get().clone());
-            let _v45: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-            {
-                let x_1: bool = unbox::<bool>(&defaultOf());
-                _v45.set(Some(x_1))
-            }
-            if getValue(_v45.get().clone()) {
-                v1_1.clone()
-            } else {
-                let v70: Option<string> = (File_system::method27())(v1_1.clone());
-                let v73: File_system::US9 =
-                    defaultValue(File_system::US9::US9_1, map(File_system::method28(), v70));
-                match &v73 {
-                    File_system::US9::US9_0(v73_0_0) => File_system::method38(
+        if getValue(_v3.get().clone()) {
+            v1_1.clone()
+        } else {
+            let v28: Option<string> = (File_system::method28())(v1_1.clone());
+            let v31: File_system::US9 =
+                defaultValue(File_system::US9::US9_1, map(File_system::method29(), v28));
+            match &v31 {
+                File_system::US9::US9_0(v31_0_0) => File_system::method35(
+                    v0_1.clone(),
+                    v1_1.clone(),
+                    match &v31 {
+                        File_system::US9::US9_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    },
+                ),
+                _ => panic!(
+                    "{}",
+                    sprintf!(
+                        "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
+                        string("dir"),
                         v0_1.clone(),
                         v1_1.clone(),
-                        match &v73 {
-                            File_system::US9::US9_0(x) => x.clone(),
-                            _ => unreachable!(),
-                        },
+                        v1_1.clone()
                     ),
-                    _ => panic!(
-                        "{}",
-                        sprintf!(
-                            "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
-                            string("dir"),
-                            v0_1.clone(),
-                            v1_1.clone(),
-                            v1_1.clone()
-                        ),
-                    ),
-                }
+                ),
             }
         }
-    }
-    pub fn method39() -> string {
-        string("polyglot")
     }
     pub fn closure60(unitVar: (), unitVar_1: ()) -> string {
-        let _v1: MutCell<Option<string>> = MutCell::new(None::<string>);
-        {
-            let x: string = unbox::<string>(&defaultOf());
-            _v1.set(Some(x))
-        }
-        {
-            let v46: string = File_system::method37(
-                getValue(_v1.get().clone()),
+        File_system::method15(
+            File_system::method34(
+                File_system::method15(string("polyglot"), string(".paket")),
                 string("C:\\home\\git\\polyglot\\lib\\spiral"),
-            );
-            let _v47: MutCell<Option<string>> = MutCell::new(None::<string>);
-            {
-                let x_1: string = unbox::<string>(&defaultOf());
-                _v47.set(Some(x_1))
-            }
-            getValue(_v47.get().clone())
-        }
+            ),
+            string("polyglot"),
+        )
     }
-    pub fn method41() -> string {
-        string("target/polyglot/trace")
-    }
-    pub fn method42() -> string {
-        string("target/polyglot/trace")
-    }
-    pub fn method40(v0_1: string) {
+    pub fn method36(v0_1: string) {
         let _v1: MutCell<Option<()>> = MutCell::new(None::<()>);
         _v1.set(Some(()));
         getValue(_v1.get().clone());
         ()
     }
     pub fn closure62(unitVar: (), v0_1: string) {
-        File_system::method40(v0_1);
+        File_system::method36(v0_1);
     }
     pub fn closure61(unitVar: (), v0_1: bool) {
         if File_system::State::trace_state().get().clone().is_none() {
@@ -1486,12 +1437,7 @@ pub mod File_system {
         }
     }
     pub fn closure64(v0_1: string, v1_1: string) -> string {
-        let _v2: MutCell<Option<string>> = MutCell::new(None::<string>);
-        {
-            let x: string = unbox::<string>(&defaultOf());
-            _v2.set(Some(x))
-        }
-        getValue(_v2.get().clone())
+        File_system::method15(v0_1, v1_1)
     }
     pub fn closure63(unitVar: (), v0_1: string) -> Func1<string, string> {
         Func1::new({

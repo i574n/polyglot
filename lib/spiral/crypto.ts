@@ -21,11 +21,15 @@ export function Mut0_$reflection(): TypeInfo {
     return record_type("Crypto.Mut0", [], Mut0, () => [["l0", int32_type]]);
 }
 
-export function method0(v0_1: int32, v1: Mut0): boolean {
+export function method0(v0_1: string): string {
+    return v0_1;
+}
+
+export function method1(v0_1: int32, v1: Mut0): boolean {
     return v1.l0 < v0_1;
 }
 
-export function method1(): string {
+export function method2(): string {
     return "";
 }
 

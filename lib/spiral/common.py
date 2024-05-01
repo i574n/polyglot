@@ -51,7 +51,7 @@ class Mut1(Record):
 
 Mut1_reflection = _expr27
 
-def _expr31() -> TypeInfo:
+def _expr41() -> TypeInfo:
     return union_type("Common.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -67,9 +67,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr31
+US0_reflection = _expr41
 
-def _expr33() -> TypeInfo:
+def _expr44() -> TypeInfo:
     return record_type("Common.Mut2", [], Mut2, lambda: [("l0", US0_reflection())])
 
 
@@ -77,9 +77,9 @@ def _expr33() -> TypeInfo:
 class Mut2(Record):
     l0: US0
 
-Mut2_reflection = _expr33
+Mut2_reflection = _expr44
 
-def _expr37() -> TypeInfo:
+def _expr48() -> TypeInfo:
     return record_type("Common.Mut3", [], Mut3, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -87,9 +87,9 @@ def _expr37() -> TypeInfo:
 class Mut3(Record):
     l0: Callable[[str], None]
 
-Mut3_reflection = _expr37
+Mut3_reflection = _expr48
 
-def _expr40() -> TypeInfo:
+def _expr50() -> TypeInfo:
     return union_type("Common.US1", [], US1, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -105,9 +105,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr40
+US1_reflection = _expr50
 
-def _expr41() -> TypeInfo:
+def _expr51() -> TypeInfo:
     return union_type("Common.US2", [], US2, lambda: [[], []])
 
 
@@ -123,9 +123,9 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr41
+US2_reflection = _expr51
 
-def _expr42() -> TypeInfo:
+def _expr54() -> TypeInfo:
     return union_type("Common.US3", [], US3, lambda: [[("f0_0", US2_reflection())], []])
 
 
@@ -141,9 +141,9 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr42
+US3_reflection = _expr54
 
-def _expr43() -> TypeInfo:
+def _expr56() -> TypeInfo:
     return union_type("Common.US4", [], US4, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -159,7 +159,7 @@ class US4(Union):
         return ["US4_0", "US4_1"]
 
 
-US4_reflection = _expr43
+US4_reflection = _expr56
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:
@@ -345,10 +345,10 @@ def closure12(unit_var: None, v0_1: int64) -> US4:
 
 
 def method5(__unit: None=None) -> Callable[[int64], US4]:
-    def _arrow58(v: int64) -> US4:
+    def _arrow61(v: int64) -> US4:
         return closure12(None, v)
 
-    return _arrow58
+    return _arrow61
 
 
 def method6(__unit: None=None) -> str:
