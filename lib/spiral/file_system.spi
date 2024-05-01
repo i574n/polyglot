@@ -312,11 +312,8 @@ inl directory_separator_char () : char =
 
 // // ## normalize_path
 inl normalize_path (path : string) : string =
-    if runtime.is_windows () |> not
-    then path
-    else
-        inl path = path |> sm'.replace_regex @"^\\\\\?\\" ""
-        $'$"{!path.[0] |> string |> _.ToLower()}{!path.[1..]}"' |> sm'.replace "\\" "/"
+    inl path = path |> sm'.replace_regex @"^\\\\\?\\" ""
+    $'$"{!path.[0] |> string |> _.ToLower()}{!path.[1..]}"' |> sm'.replace "\\" "/"
 
 // // ## get_full_path
 inl get_full_path (path : string) : string =

@@ -468,41 +468,41 @@ def starts_with(x: str) -> Callable[[str], bool]:
     return v9(x)
 
 
-def _arrow42(v: int) -> Callable[[int, str], str]:
+def _arrow41(v: int) -> Callable[[int, str], str]:
     return closure25(None, v)
 
 
-v10: Callable[[int, int, str], str] = _arrow42
+v10: Callable[[int, int, str], str] = _arrow41
 
 def substring(x: int) -> Callable[[int, str], str]:
     return v10(x)
 
 
-def _arrow43(v: str) -> str:
+def _arrow42(v: str) -> str:
     return closure28(None, v)
 
 
-v11: Callable[[str], str] = _arrow43
+v11: Callable[[str], str] = _arrow42
 
 def to_lower(x: str) -> str:
     return v11(x)
 
 
-def _arrow45(v: str) -> str:
+def _arrow44(v: str) -> str:
     return closure29(None, v)
 
 
-v12: Callable[[str], str] = _arrow45
+v12: Callable[[str], str] = _arrow44
 
 def to_upper(x: str) -> str:
     return v12(x)
 
 
-def _arrow46(v: str) -> str:
+def _arrow45(v: str) -> str:
     return closure30(None, v)
 
 
-v13: Callable[[str], str] = _arrow46
+v13: Callable[[str], str] = _arrow45
 
 def trim(x: str) -> str:
     return v13(x)
@@ -518,31 +518,31 @@ def trim_end(x: Array[str]) -> Callable[[str], str]:
     return v14(x)
 
 
-def _arrow49(v: Array[str]) -> Callable[[str], str]:
+def _arrow48(v: Array[str]) -> Callable[[str], str]:
     return closure33(None, v)
 
 
-v15: Callable[[Array[str], str], str] = _arrow49
+v15: Callable[[Array[str], str], str] = _arrow48
 
 def trim_start(x: Array[str]) -> Callable[[str], str]:
     return v15(x)
 
 
-def _arrow52(v: int) -> Callable[[str], str]:
+def _arrow50(v: int) -> Callable[[str], str]:
     return closure35(None, v)
 
 
-v16: Callable[[int, str], str] = _arrow52
+v16: Callable[[int, str], str] = _arrow50
 
 def ellipsis(x: int) -> Callable[[str], str]:
     return v16(x)
 
 
-def _arrow53(v: int64) -> Callable[[str], str]:
+def _arrow52(v: int64) -> Callable[[str], str]:
     return closure37(None, v)
 
 
-v17: Callable[[int64, str], str] = _arrow53
+v17: Callable[[int64, str], str] = _arrow52
 
 def ellipsis_end(x: int64) -> Callable[[str], str]:
     return v17(x)

@@ -540,11 +540,8 @@ inl directory_separator_char () : char =
 #!spiral
 
 inl normalize_path (path : string) : string =
-    if runtime.is_windows () |> not
-    then path
-    else
-        inl path = path |> sm'.replace_regex @"^\\\\\?\\" ""
-        $'$"{!path.[0] |> string |> _.ToLower()}{!path.[1..]}"' |> sm'.replace "\\" "/"
+    inl path = path |> sm'.replace_regex @"^\\\\\?\\" ""
+    $'$"{!path.[0] |> string |> _.ToLower()}{!path.[1..]}"' |> sm'.replace "\\" "/"
 
 #!markdown
 

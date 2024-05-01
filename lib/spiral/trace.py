@@ -32,7 +32,7 @@ class Mut1(Record):
 
 Mut1_reflection = _expr152
 
-def _expr153() -> TypeInfo:
+def _expr154() -> TypeInfo:
     return union_type("Trace.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -48,9 +48,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr153
+US0_reflection = _expr154
 
-def _expr154() -> TypeInfo:
+def _expr155() -> TypeInfo:
     return record_type("Trace.Mut2", [], Mut2, lambda: [("l0", US0_reflection())])
 
 
@@ -58,9 +58,9 @@ def _expr154() -> TypeInfo:
 class Mut2(Record):
     l0: US0
 
-Mut2_reflection = _expr154
+Mut2_reflection = _expr155
 
-def _expr155() -> TypeInfo:
+def _expr156() -> TypeInfo:
     return record_type("Trace.Mut3", [], Mut3, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -68,9 +68,9 @@ def _expr155() -> TypeInfo:
 class Mut3(Record):
     l0: Callable[[str], None]
 
-Mut3_reflection = _expr155
+Mut3_reflection = _expr156
 
-def _expr156() -> TypeInfo:
+def _expr157() -> TypeInfo:
     return union_type("Trace.US1", [], US1, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -86,9 +86,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr156
+US1_reflection = _expr157
 
-def _expr157() -> TypeInfo:
+def _expr158() -> TypeInfo:
     return union_type("Trace.US2", [], US2, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -104,7 +104,7 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr157
+US2_reflection = _expr158
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:

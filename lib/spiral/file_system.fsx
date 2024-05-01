@@ -6315,100 +6315,57 @@ and method33 () : string =
     let v0 : string = ""
     v0
 and closure58 () (v0 : string) : string =
-    let v1 : bool option = None
+    let v1 : string option = None
     let v2 : bool = true in let mutable _v1 = v1
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v3 : string = "cfg!(windows)"
-    let v4 : bool = Fable.Core.RustInterop.emitRustExpr () v3
-    v4
-#endif
-    
-#if FABLE_COMPILER_RUST && WASM
-    let v5 : bool = null |> unbox<bool>
-    v5
-#endif
-    
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v6 : bool = null |> unbox<bool>
-    v6
-#endif
-    
-#if FABLE_COMPILER_TYPESCRIPT
-    let v7 : bool = null |> unbox<bool>
-    v7
-#endif
-    
-#if FABLE_COMPILER_PYTHON
-    let v8 : bool = null |> unbox<bool>
-    v8
-#endif
-    
-#else
-    let v9 : System.Runtime.InteropServices.OSPlatform = System.Runtime.InteropServices.OSPlatform.Windows
-    let v10 : (System.Runtime.InteropServices.OSPlatform -> bool) = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
-    let v11 : bool = v10 v9
+    let v3 : string = method31()
+    let v4 : string = method32(v0)
+    let v5 : string = method33()
+    let v6 : string = $"&regex::Regex::new(&$0).unwrap().replace_all(&$1, &*$2)"
+    let v7 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr struct (v3, v4, v5) v6
+    let v8 : string = "String::from($0)"
+    let v9 : std_string_String = Fable.Core.RustInterop.emitRustExpr v7 v8
+    let v10 : string = "fable_library_rust::String_::fromString($0)"
+    let v11 : string = Fable.Core.RustInterop.emitRustExpr v9 v10
     v11
 #endif
-    |> fun x -> _v1 <- Some x
-    let v12 : bool = _v1.Value
-    let v13 : bool = v12 = false
-    if v13 then
-        v0
-    else
-        let v14 : string option = None
-        let v15 : bool = true in let mutable _v14 = v14
-        
-#if FABLE_COMPILER || WASM || CONTRACT
-        
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v16 : string = method31()
-        let v17 : string = method32(v0)
-        let v18 : string = method33()
-        let v19 : string = $"&regex::Regex::new(&$0).unwrap().replace_all(&$1, &*$2)"
-        let v20 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr struct (v16, v17, v18) v19
-        let v21 : string = "String::from($0)"
-        let v22 : std_string_String = Fable.Core.RustInterop.emitRustExpr v20 v21
-        let v23 : string = "fable_library_rust::String_::fromString($0)"
-        let v24 : string = Fable.Core.RustInterop.emitRustExpr v22 v23
-        v24
-#endif
-        
+    
 #if FABLE_COMPILER_RUST && WASM
-        let v25 : string = null |> unbox<string>
-        v25
+    let v12 : string = null |> unbox<string>
+    v12
 #endif
-        
+    
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v26 : string = null |> unbox<string>
-        v26
+    let v13 : string = null |> unbox<string>
+    v13
 #endif
-        
+    
 #if FABLE_COMPILER_TYPESCRIPT
-        let v27 : string = null |> unbox<string>
-        v27
+    let v14 : string = null |> unbox<string>
+    v14
 #endif
-        
+    
 #if FABLE_COMPILER_PYTHON
-        let v28 : string = null |> unbox<string>
-        v28
+    let v15 : string = null |> unbox<string>
+    v15
 #endif
-        
+    
 #else
-        let v29 : string = "^\\\\\\\\\\?\\\\"
-        let v30 : string = ""
-        let v31 : string = System.Text.RegularExpressions.Regex.Replace (v0, v29, v30)
-        v31
+    let v16 : string = "^\\\\\\\\\\?\\\\"
+    let v17 : string = ""
+    let v18 : string = System.Text.RegularExpressions.Regex.Replace (v0, v16, v17)
+    v18
 #endif
-        |> fun x -> _v14 <- Some x
-        let v32 : string = _v14.Value
-        let v33 : string = $"{v32.[0] |> string |> _.ToLower()}{v32.[1..]}"
-        let v34 : string = "\\"
-        let v35 : string = "/"
-        let v36 : string = v33.Replace (v34, v35)
-        v36
+    |> fun x -> _v1 <- Some x
+    let v19 : string = _v1.Value
+    let v20 : string = $"{v19.[0] |> string |> _.ToLower()}{v19.[1..]}"
+    let v21 : string = "\\"
+    let v22 : string = "/"
+    let v23 : string = v20.Replace (v21, v22)
+    v23
 and closure59 () (v0 : string) : string =
     let v1 : (char []) = [|'/'|]
     let v2 : string = v0.TrimStart v1
