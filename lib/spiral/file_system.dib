@@ -271,7 +271,7 @@ inl ts_path_join (b : string) (a : string) : string =
 
 #!spiral
 
-inl (</>) (a : string) (b : string) : string =
+let (</>) (a : string) (b : string) : string =
     run_target function
         | Rust (Native) => fun () =>
             a
@@ -1494,7 +1494,7 @@ inl get_repository_root () =
 
 #!spiral
 
-inl absolute_path path =
+let absolute_path path =
     inl current_dir = get_current_directory ()
     current_dir </> path |> get_full_path |> normalize_path
 
