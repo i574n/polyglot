@@ -7659,13 +7659,13 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{3}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{3} / expected: %A{3}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{3} / expected: %A{3}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-3
+assert_eq / actual: 3 / expected: 3
 </pre>
 </div>
 </div>
@@ -7736,13 +7736,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{3}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{3} / expected: %A{3}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{3} / expected: %A{3}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-3
+assert_eq / actual: 3 / expected: 3
 </pre>
 </div>
 </div>
@@ -7815,13 +7815,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{3}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{3} / expected: %A{3}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{3} / expected: %A{3}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-3
+assert_eq / actual: 3 / expected: 3
 </pre>
 </div>
 </div>
@@ -7898,16 +7898,15 @@ method0()
     | US0_0 of f0_0 : int32
     | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_0(5)
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : US0 = US0_0(5)
     let v5 : US0 = US0_0(5)
-    let v6 : US0 = US0_0(5)
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
     ()
 method0()
 
-US0_0 5
+assert_eq / actual: US0_0 5 / expected: US0_0 5
 </pre>
 </div>
 </div>
@@ -7993,21 +7992,21 @@ and method0 () : unit =
     let v2 : int32 = v1 + 1
     v0.l0 &lt;- v2
     let v3 : int32 = v0.l0
-    let v4 : string = $"%A{v3}"
-    System.Console.WriteLine v4
-    let v5 : bool = v3 = 2
-    let v7 : bool =
-        if v5 then
+    let v4 : bool = v3 = 2
+    let v6 : bool =
+        if v4 then
             true
         else
-            method1(v5)
-    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{2}"
-    let v9 : bool = v7 = false
+            method1(v4)
+    let v7 : string = "assert_eq"
+    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{2}"
+    System.Console.WriteLine v8
+    let v9 : bool = v6 = false
     if v9 then
         failwith&lt;unit&gt; v8
 method0()
 
-2
+assert_eq / actual: 2 / expected: 2
 </pre>
 </div>
 </div>
@@ -8337,17 +8336,15 @@ and method0 () : unit =
     let v5 : (int32 -&gt; US0) = method1()
     let v6 : US0 = US0_1
     let v7 : US0 = v4 |&gt; Option.map v5 |&gt; Option.defaultValue v6 
-    let v8 : string = $"%A{struct (v3, v7)}"
-    System.Console.WriteLine v8
-    let v13 : bool =
+    let v12 : bool =
         match v3 with
-        | US0_0(v11) -&gt; (* Some *)
-            let v12 : bool = v11 = 3
-            v12
+        | US0_0(v10) -&gt; (* Some *)
+            let v11 : bool = v10 = 3
+            v11
         | _ -&gt;
             false
-    let v15 : bool =
-        if v13 then
+    let v14 : bool =
+        if v12 then
             match v7 with
             | US0_1 -&gt; (* None *)
                 true
@@ -8355,20 +8352,22 @@ and method0 () : unit =
                 false
         else
             false
-    let v17 : bool =
-        if v15 then
+    let v16 : bool =
+        if v14 then
             true
         else
-            method2(v15)
+            method2(v14)
+    let v17 : string = "assert_eq"
     let v18 : US0 = US0_0(3)
     let v19 : US0 = US0_1
-    let v20 : string = $"__expect / actual: %A{struct (v3, v7)} / expected: %A{struct (v18, v19)}"
-    let v21 : bool = v17 = false
+    let v20 : string = $"{v17} / actual: %A{struct (v3, v7)} / expected: %A{struct (v18, v19)}"
+    System.Console.WriteLine v20
+    let v21 : bool = v16 = false
     if v21 then
         failwith&lt;unit&gt; v20
 method0()
 
-struct (US0_0 3, US0_1)
+assert_eq / actual: struct (US0_0 3, US0_1) / expected: struct (US0_0 3, US0_1)
 </pre>
 </div>
 </div>
@@ -8472,27 +8471,27 @@ and method0 () : unit =
     let v5 : (string -&gt; US0) = method1()
     let v6 : US0 = US0_1
     let v7 : US0 = v4 |&gt; Option.map v5 |&gt; Option.defaultValue v6 
-    let v8 : string = $"%A{v7}"
-    System.Console.WriteLine v8
-    let v10 : bool =
+    let v9 : bool =
         match v7 with
         | US0_1 -&gt; (* None *)
             true
         | _ -&gt;
             false
-    let v12 : bool =
-        if v10 then
+    let v11 : bool =
+        if v9 then
             true
         else
-            method2(v10)
+            method2(v9)
+    let v12 : string = "assert_eq"
     let v13 : US0 = US0_1
-    let v14 : string = $"__expect / actual: %A{v7} / expected: %A{v13}"
-    let v15 : bool = v12 = false
+    let v14 : string = $"{v12} / actual: %A{v7} / expected: %A{v13}"
+    System.Console.WriteLine v14
+    let v15 : bool = v11 = false
     if v15 then
         failwith&lt;unit&gt; v14
 method0()
 
-US0_1
+assert_eq / actual: US0_1 / expected: US0_1
 </pre>
 </div>
 </div>
@@ -8526,7 +8525,7 @@ US0_1
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-US0_0("")
+assert_eq' / actual: US0_0("") / expected: US0_0("")
 
 
 </pre>
@@ -8560,18 +8559,18 @@ and method0 () : unit =
     let v5 : (string -&gt; US0) = method1()
     let v6 : US0 = US0_1
     let v7 : US0 = v4 |&gt; Option.map v5 |&gt; Option.defaultValue v6 
-    let v8 : string = $"%A{v7}"
-    System.Console.WriteLine v8
-    let v9 : US0 = US0_0(v0)
-    let v10 : bool = v7 = v9
-    let v12 : bool =
-        if v10 then
+    let v8 : US0 = US0_0(v0)
+    let v9 : bool = v7 = v8
+    let v11 : bool =
+        if v9 then
             true
         else
-            method2(v10)
+            method2(v9)
+    let v12 : string = "assert_eq'"
     let v13 : US0 = US0_0(v0)
-    let v14 : string = $"__expect / actual: %A{v7} / expected: %A{v13}"
-    let v15 : bool = v12 = false
+    let v14 : string = $"{v12} / actual: %A{v7} / expected: %A{v13}"
+    System.Console.WriteLine v14
+    let v15 : bool = v11 = false
     if v15 then
         failwith&lt;unit&gt; v14
 method0()
@@ -8642,20 +8641,17 @@ mod module_ccfa04bf {
                 let v4: Option&lt;string&gt; = getValue(_v0.get().clone());
                 let v7: Spiral_eval::US0 =
                     defaultValue(Spiral_eval::US0::US0_1, map(Spiral_eval::method1(), v4));
-                let v8: string = sprintf!("{:?}", v7.clone());
-                printfn!("{0}", v8);
-                {
-                    let v10: bool = v7.clone() == Spiral_eval::US0::US0_0(string(""));
-                    if (if v10 { true } else { Spiral_eval::method2(v10) }) == false {
-                        panic!(
-                            "{}",
-                            sprintf!(
-                                "__expect / actual: {:?} / expected: {:?}",
-                                v7,
-                                Spiral_eval::US0::US0_0(string(""))
-                            ),
-                        );
-                    }
+                let v9: bool = v7.clone() == Spiral_eval::US0::US0_0(string(""));
+                let v11: bool = if v9 { true } else { Spiral_eval::method2(v9) };
+                let v14: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_eq\'"),
+                    v7,
+                    Spiral_eval::US0::US0_0(string(""))
+                );
+                printfn!("{0}", v14.clone());
+                if v11 == false {
+                    panic!("{}", v14,);
                 }
             }
         }
@@ -8838,11 +8834,51 @@ pub use module_ccfa04bf::*;
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="rc_upgrade">rc_upgrade<a class="anchor-link" href="#rc_upgrade">¶</a></h2>
+<h2 id="map'">map'<a class="anchor-link" href="#map'">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">map</span><span class="s1">' forall t u. (fn : t -&gt; u) (x : option'</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' u =</span>
+    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>x,<span class="w"> </span>fn<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.map(|x| $1(x))"'</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="rc_upgrade">rc_upgrade<a class="anchor-link" href="#rc_upgrade">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8873,7 +8909,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8883,7 +8919,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8912,7 +8948,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8941,7 +8977,7 @@ pub use module_ccfa04bf::*;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>US0_0(0)
+<pre>assert_eq / actual: "3" / expected: "3"
 </pre>
 </div>
 </div>

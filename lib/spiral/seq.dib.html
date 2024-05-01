@@ -7979,30 +7979,30 @@ and method0 () : unit =
     let v4 : (string seq -&gt; (string [])) = Seq.toArray
     let v5 : (string []) = v4 v3
     let v6 : (string []) = [|v0; v1|]
-    let v7 : string = $"%A{v5}"
-    System.Console.WriteLine v7
-    let v8 : int32 = v5.Length
-    let v9 : int32 = v6.Length
-    let v10 : bool = v8 = v9
-    let v11 : bool = v10 &lt;&gt; true
-    let v14 : bool =
-        if v11 then
+    let v7 : int32 = v5.Length
+    let v8 : int32 = v6.Length
+    let v9 : bool = v7 = v8
+    let v10 : bool = v9 &lt;&gt; true
+    let v13 : bool =
+        if v10 then
             false
         else
-            let v12 : int32 = 0
-            method1(v5, v6, v12)
-    let v16 : bool =
-        if v14 then
+            let v11 : int32 = 0
+            method1(v5, v6, v11)
+    let v15 : bool =
+        if v13 then
             true
         else
-            method2(v14)
-    let v17 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
-    let v18 : bool = v16 = false
+            method2(v13)
+    let v16 : string = "assert_eq"
+    let v17 : string = $"{v16} / actual: %A{v5} / expected: %A{v6}"
+    System.Console.WriteLine v17
+    let v18 : bool = v15 = false
     if v18 then
         failwith&lt;unit&gt; v17
 method0()
 
-[|"a"; "b"|]
+assert_eq / actual: [|"a"; "b"|] / expected: [|"a"; "b"|]
 </pre>
 </div>
 </div>
@@ -8100,18 +8100,16 @@ and method0 () : unit =
     let v10 : (UH0 -&gt; UH0) = v9 v6
     let v11 : UH0 = UH0_0
     let v12 : UH0 = v10 v11
-    let v13 : string = $"%A{v12}"
-    System.Console.WriteLine v13
-    let v27 : bool =
+    let v26 : bool =
         match v12 with
-        | UH0_1(v17, v18) -&gt; (* Cons *)
-            let v19 : bool = v17 = "a"
-            if v19 then
-                match v18 with
-                | UH0_1(v20, v21) -&gt; (* Cons *)
-                    let v22 : bool = v20 = "b"
-                    if v22 then
-                        match v21 with
+        | UH0_1(v16, v17) -&gt; (* Cons *)
+            let v18 : bool = v16 = "a"
+            if v18 then
+                match v17 with
+                | UH0_1(v19, v20) -&gt; (* Cons *)
+                    let v21 : bool = v19 = "b"
+                    if v21 then
+                        match v20 with
                         | UH0_0 -&gt; (* Nil *)
                             true
                         | _ -&gt;
@@ -8124,21 +8122,23 @@ and method0 () : unit =
                 false
         | _ -&gt;
             false
-    let v29 : bool =
-        if v27 then
+    let v28 : bool =
+        if v26 then
             true
         else
-            method2(v27)
+            method2(v26)
+    let v29 : string = "assert_eq"
     let v30 : UH0 = UH0_0
     let v31 : UH0 = UH0_1(v1, v30)
     let v32 : UH0 = UH0_1(v0, v31)
-    let v33 : string = $"__expect / actual: %A{v12} / expected: %A{v32}"
-    let v34 : bool = v29 = false
+    let v33 : string = $"{v29} / actual: %A{v12} / expected: %A{v32}"
+    System.Console.WriteLine v33
+    let v34 : bool = v28 = false
     if v34 then
         failwith&lt;unit&gt; v33
 method0()
 
-UH0_1 ("a", UH0_1 ("b", UH0_0))
+assert_eq / actual: UH0_1 ("a", UH0_1 ("b", UH0_0)) / expected: UH0_1 ("a", UH0_1 ("b", UH0_0))
 </pre>
 </div>
 </div>
@@ -8345,12 +8345,11 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v0 : US0 = US0_0(5)
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : US0 = US0_0(5)
     let v5 : US0 = US0_0(5)
-    let v6 : US0 = US0_0(5)
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
     ()
 method0()
 
@@ -8364,7 +8363,7 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
-US0_0 5
+assert_eq / actual: US0_0 5 / expected: US0_0 5
 </pre>
 </div>
 </div>
@@ -8444,16 +8443,15 @@ US0_0 5
     | US0_0 of f0_0 : int32
     | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_0(10)
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : US0 = US0_0(10)
     let v5 : US0 = US0_0(10)
-    let v6 : US0 = US0_0(10)
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
     ()
 method0()
 
-US0_0 10
+assert_eq / actual: US0_0 10 / expected: US0_0 10
 </pre>
 </div>
 </div>
@@ -8543,12 +8541,11 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v0 : US0 = US0_0(10)
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : US0 = US0_0(10)
     let v5 : US0 = US0_0(10)
-    let v6 : US0 = US0_0(10)
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
     ()
 method0()
 
@@ -8562,7 +8559,7 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
-US0_0 10
+assert_eq / actual: US0_0 10 / expected: US0_0 10
 </pre>
 </div>
 </div>
@@ -8665,12 +8662,11 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v0 : US0 = US0_0(2)
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : US0 = US0_0(2)
     let v5 : US0 = US0_0(2)
-    let v6 : US0 = US0_0(2)
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
     ()
 method0()
 
@@ -8684,7 +8680,7 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
-US0_0 2
+assert_eq / actual: US0_0 2 / expected: US0_0 2
 </pre>
 </div>
 </div>
@@ -8763,16 +8759,15 @@ US0_0 2
     | US0_0 of f0_0 : int32 * f0_1 : int32
     | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_0(5, 10)
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : US0 = US0_0(5, 10)
     let v5 : US0 = US0_0(5, 10)
-    let v6 : US0 = US0_0(5, 10)
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
     ()
 method0()
 
-US0_0 (5, 10)
+assert_eq / actual: US0_0 (5, 10) / expected: US0_0 (5, 10)
 </pre>
 </div>
 </div>
@@ -8847,19 +8842,17 @@ US0_0 (5, 10)
     | US0_0 of f0_0 : int32
     | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_0(5)
-    let v1 : US0 = US0_0(10)
-    let v2 : string = $"%A{struct (v0, v1)}"
-    System.Console.WriteLine v2
+    let v6 : string = "assert_eq"
+    let v7 : US0 = US0_0(5)
+    let v8 : US0 = US0_0(10)
     let v9 : US0 = US0_0(5)
     let v10 : US0 = US0_0(10)
-    let v11 : US0 = US0_0(5)
-    let v12 : US0 = US0_0(10)
-    let v13 : string = $"__expect / actual: %A{struct (v9, v10)} / expected: %A{struct (v11, v12)}"
+    let v11 : string = $"{v6} / actual: %A{struct (v7, v8)} / expected: %A{struct (v9, v10)}"
+    System.Console.WriteLine v11
     ()
 method0()
 
-struct (US0_0 5, US0_0 10)
+assert_eq / actual: struct (US0_0 5, US0_0 10) / expected: struct (US0_0 5, US0_0 10)
 </pre>
 </div>
 </div>
@@ -8936,16 +8929,15 @@ struct (US0_0 5, US0_0 10)
     | US0_0 of f0_0 : int32
     | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_0(6)
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : US0 = US0_0(6)
     let v5 : US0 = US0_0(6)
-    let v6 : US0 = US0_0(6)
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
     ()
 method0()
 
-US0_0 6
+assert_eq / actual: US0_0 6 / expected: US0_0 6
 </pre>
 </div>
 </div>
@@ -9073,13 +9065,13 @@ US0_0 6
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{45}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{45} / expected: %A{45}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{45} / expected: %A{45}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-45
+assert_eq / actual: 45 / expected: 45
 </pre>
 </div>
 </div>
@@ -9163,19 +9155,18 @@ method0()
     | UH0_0
     | UH0_1 of int32 * UH0
 let rec method0 () : unit =
-    let v0 : UH0 = UH0_0
-    let v1 : UH0 = UH0_1(9, v0)
-    let v2 : UH0 = UH0_1(8, v1)
-    let v3 : UH0 = UH0_1(7, v2)
-    let v4 : UH0 = UH0_1(6, v3)
-    let v5 : UH0 = UH0_1(5, v4)
-    let v6 : UH0 = UH0_1(4, v5)
-    let v7 : UH0 = UH0_1(3, v6)
-    let v8 : UH0 = UH0_1(2, v7)
-    let v9 : UH0 = UH0_1(1, v8)
-    let v10 : UH0 = UH0_1(0, v9)
-    let v11 : string = $"%A{v10}"
-    System.Console.WriteLine v11
+    let v88 : string = "assert_eq"
+    let v89 : UH0 = UH0_0
+    let v90 : UH0 = UH0_1(9, v89)
+    let v91 : UH0 = UH0_1(8, v90)
+    let v92 : UH0 = UH0_1(7, v91)
+    let v93 : UH0 = UH0_1(6, v92)
+    let v94 : UH0 = UH0_1(5, v93)
+    let v95 : UH0 = UH0_1(4, v94)
+    let v96 : UH0 = UH0_1(3, v95)
+    let v97 : UH0 = UH0_1(2, v96)
+    let v98 : UH0 = UH0_1(1, v97)
+    let v99 : UH0 = UH0_1(0, v98)
     let v100 : UH0 = UH0_0
     let v101 : UH0 = UH0_1(9, v100)
     let v102 : UH0 = UH0_1(8, v101)
@@ -9187,22 +9178,21 @@ let rec method0 () : unit =
     let v108 : UH0 = UH0_1(2, v107)
     let v109 : UH0 = UH0_1(1, v108)
     let v110 : UH0 = UH0_1(0, v109)
-    let v111 : UH0 = UH0_0
-    let v112 : UH0 = UH0_1(9, v111)
-    let v113 : UH0 = UH0_1(8, v112)
-    let v114 : UH0 = UH0_1(7, v113)
-    let v115 : UH0 = UH0_1(6, v114)
-    let v116 : UH0 = UH0_1(5, v115)
-    let v117 : UH0 = UH0_1(4, v116)
-    let v118 : UH0 = UH0_1(3, v117)
-    let v119 : UH0 = UH0_1(2, v118)
-    let v120 : UH0 = UH0_1(1, v119)
-    let v121 : UH0 = UH0_1(0, v120)
-    let v122 : string = $"__expect / actual: %A{v110} / expected: %A{v121}"
+    let v111 : string = $"{v88} / actual: %A{v99} / expected: %A{v110}"
+    System.Console.WriteLine v111
     ()
 method0()
 
-UH0_1
+assert_eq / actual: UH0_1
+  (0,
+   UH0_1
+     (1,
+      UH0_1
+        (2,
+         UH0_1
+           (3,
+            UH0_1
+              (4, UH0_1 (5, UH0_1 (6, UH0_1 (7, UH0_1 (8, UH0_1 (9, UH0_0)))))))))) / expected: UH0_1
   (0,
    UH0_1
      (1,
@@ -9301,28 +9291,28 @@ and method0 () : unit =
         else
             let v4 : int32 = v0.[int 1]
             US0_0(v4)
-    let v7 : string = $"%A{v6}"
-    System.Console.WriteLine v7
-    let v11 : bool =
+    let v10 : bool =
         match v6 with
-        | US0_0(v9) -&gt; (* Some *)
-            let v10 : bool = v9 = 2
-            v10
+        | US0_0(v8) -&gt; (* Some *)
+            let v9 : bool = v8 = 2
+            v9
         | _ -&gt;
             false
-    let v13 : bool =
-        if v11 then
+    let v12 : bool =
+        if v10 then
             true
         else
-            method1(v11)
+            method1(v10)
+    let v13 : string = "assert_eq"
     let v14 : US0 = US0_0(2)
-    let v15 : string = $"__expect / actual: %A{v6} / expected: %A{v14}"
-    let v16 : bool = v13 = false
+    let v15 : string = $"{v13} / actual: %A{v6} / expected: %A{v14}"
+    System.Console.WriteLine v15
+    let v16 : bool = v12 = false
     if v16 then
         failwith&lt;unit&gt; v15
 method0()
 
-US0_0 2
+assert_eq / actual: US0_0 2 / expected: US0_0 2
 </pre>
 </div>
 </div>
@@ -9663,30 +9653,30 @@ and method0 () : unit =
     v1.l0 &lt;- v142
     let v152 : (int32 []) = v1.l0
     let v153 : (int32 []) = [|0; 1; 2; 3; 4; 5; 6; 7; 8; 9|]
-    let v154 : string = $"%A{v152}"
-    System.Console.WriteLine v154
-    let v155 : int32 = v152.Length
-    let v156 : int32 = v153.Length
-    let v157 : bool = v155 = v156
-    let v158 : bool = v157 &lt;&gt; true
-    let v161 : bool =
-        if v158 then
+    let v154 : int32 = v152.Length
+    let v155 : int32 = v153.Length
+    let v156 : bool = v154 = v155
+    let v157 : bool = v156 &lt;&gt; true
+    let v160 : bool =
+        if v157 then
             false
         else
-            let v159 : int32 = 0
-            method2(v152, v153, v159)
-    let v163 : bool =
-        if v161 then
+            let v158 : int32 = 0
+            method2(v152, v153, v158)
+    let v162 : bool =
+        if v160 then
             true
         else
-            method3(v161)
-    let v164 : string = $"__expect / actual: %A{v152} / expected: %A{v153}"
-    let v165 : bool = v163 = false
+            method3(v160)
+    let v163 : string = "assert_eq"
+    let v164 : string = $"{v163} / actual: %A{v152} / expected: %A{v153}"
+    System.Console.WriteLine v164
+    let v165 : bool = v162 = false
     if v165 then
         failwith&lt;unit&gt; v164
 method0()
 
-[|0; 1; 2; 3; 4; 5; 6; 7; 8; 9|]
+assert_eq / actual: [|0; 1; 2; 3; 4; 5; 6; 7; 8; 9|] / expected: [|0; 1; 2; 3; 4; 5; 6; 7; 8; 9|]
 </pre>
 </div>
 </div>
@@ -9764,13 +9754,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{10}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{10} / expected: %A{10}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{10} / expected: %A{10}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-10
+assert_eq / actual: 10 / expected: 10
 </pre>
 </div>
 </div>
@@ -9820,9 +9810,9 @@ method0()
     printfn $"print_and_return / x: {3}"
     printfn $"print_and_return / x: {4}"
     printfn $"print_and_return / x: {5}"
-    let v0 : string = $"%A{10}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{10} / expected: %A{10}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{10} / expected: %A{10}"
+    System.Console.WriteLine v1
     ()
 method0()
 
@@ -9842,7 +9832,7 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
-10
+assert_eq / actual: 10 / expected: 10
 </pre>
 </div>
 </div>
@@ -9986,16 +9976,16 @@ and method0 () : unit =
     let v4 : UH1 = method2(v1, v2, v3)
     let v5 : int32 = 0
     let v6 : int32 = method5(v4, v5)
-    let v7 : string = $"%A{v6}"
-    System.Console.WriteLine v7
-    let v8 : bool = v6 = 10
-    let v10 : bool =
-        if v8 then
+    let v7 : bool = v6 = 10
+    let v9 : bool =
+        if v7 then
             true
         else
-            method6(v8)
-    let v11 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
-    let v12 : bool = v10 = false
+            method6(v7)
+    let v10 : string = "assert_eq"
+    let v11 : string = $"{v10} / actual: %A{v6} / expected: %A{10}"
+    System.Console.WriteLine v11
+    let v12 : bool = v9 = false
     if v12 then
         failwith&lt;unit&gt; v11
 method0()
@@ -10016,7 +10006,7 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
-10
+assert_eq / actual: 10 / expected: 10
 </pre>
 </div>
 </div>
@@ -10150,16 +10140,16 @@ and method0 () : unit =
     let v7 : UH1 = method3(v4, v5, v6)
     let v8 : int32 = 0
     let v9 : int32 = method6(v7, v8)
-    let v10 : string = $"%A{v9}"
-    System.Console.WriteLine v10
-    let v11 : bool = v9 = 10
-    let v13 : bool =
-        if v11 then
+    let v10 : bool = v9 = 10
+    let v12 : bool =
+        if v10 then
             true
         else
-            method7(v11)
-    let v14 : string = $"__expect / actual: %A{v9} / expected: %A{10}"
-    let v15 : bool = v13 = false
+            method7(v10)
+    let v13 : string = "assert_eq"
+    let v14 : string = $"{v13} / actual: %A{v9} / expected: %A{10}"
+    System.Console.WriteLine v14
+    let v15 : bool = v12 = false
     if v15 then
         failwith&lt;unit&gt; v14
 method0()
@@ -10170,7 +10160,7 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
-10
+assert_eq / actual: 10 / expected: 10
 </pre>
 </div>
 </div>
@@ -10352,16 +10342,16 @@ and method0 () : unit =
     let v21 : UH1 = method1(v18, v19, v20)
     let v22 : int32 = 0
     let v23 : int32 = method4(v21, v22)
-    let v24 : string = $"%A{v23}"
-    System.Console.WriteLine v24
-    let v25 : bool = v23 = 10
-    let v27 : bool =
-        if v25 then
+    let v24 : bool = v23 = 10
+    let v26 : bool =
+        if v24 then
             true
         else
-            method5(v25)
-    let v28 : string = $"__expect / actual: %A{v23} / expected: %A{10}"
-    let v29 : bool = v27 = false
+            method5(v24)
+    let v27 : string = "assert_eq"
+    let v28 : string = $"{v27} / actual: %A{v23} / expected: %A{10}"
+    System.Console.WriteLine v28
+    let v29 : bool = v26 = false
     if v29 then
         failwith&lt;unit&gt; v28
 method0()
@@ -10372,7 +10362,7 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
-10
+assert_eq / actual: 10 / expected: 10
 </pre>
 </div>
 </div>
@@ -10572,16 +10562,16 @@ and method0 () : unit =
     let v4 : UH1 = method1(v1, v2, v3)
     let v5 : int32 = 0
     let v6 : int32 = method4(v4, v5)
-    let v7 : string = $"%A{v6}"
-    System.Console.WriteLine v7
-    let v8 : bool = v6 = 10
-    let v10 : bool =
-        if v8 then
+    let v7 : bool = v6 = 10
+    let v9 : bool =
+        if v7 then
             true
         else
-            method5(v8)
-    let v11 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
-    let v12 : bool = v10 = false
+            method5(v7)
+    let v10 : string = "assert_eq"
+    let v11 : string = $"{v10} / actual: %A{v6} / expected: %A{10}"
+    System.Console.WriteLine v11
+    let v12 : bool = v9 = false
     if v12 then
         failwith&lt;unit&gt; v11
     let v13 : UH1 = UH1_0
@@ -10589,18 +10579,17 @@ and method0 () : unit =
     let v15 : UH1 = method6(v1, v13, v14)
     let v16 : int32 = 0
     let v17 : int32 = method4(v15, v16)
-    let v18 : string = $"%A{v17}"
-    System.Console.WriteLine v18
-    let v19 : bool = v17 = 10
-    let v21 : bool =
-        if v19 then
+    let v18 : bool = v17 = 10
+    let v20 : bool =
+        if v18 then
             true
         else
-            method5(v19)
-    let v22 : string = $"__expect / actual: %A{v17} / expected: %A{10}"
-    let v23 : bool = v21 = false
-    if v23 then
-        failwith&lt;unit&gt; v22
+            method5(v18)
+    let v21 : string = $"{v10} / actual: %A{v17} / expected: %A{10}"
+    System.Console.WriteLine v21
+    let v22 : bool = v20 = false
+    if v22 then
+        failwith&lt;unit&gt; v21
 method0()
 
 print_and_return / x: 0
@@ -10609,8 +10598,8 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
-10
-10
+assert_eq / actual: 10 / expected: 10
+assert_eq / actual: 10 / expected: 10
 </pre>
 </div>
 </div>
@@ -10685,13 +10674,13 @@ print_and_return / x: 5
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{1024}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{1024} / expected: %A{1024}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-1024
+assert_eq / actual: 1024 / expected: 1024
 </pre>
 </div>
 </div>
@@ -10768,21 +10757,21 @@ and method0 () : unit =
     let v0 : int32 = 1
     let v1 : int32 = 10
     let v2 : int32 = method1(v0, v1)
-    let v3 : string = $"%A{v2}"
-    System.Console.WriteLine v3
-    let v4 : bool = v2 = 1024
-    let v6 : bool =
-        if v4 then
+    let v3 : bool = v2 = 1024
+    let v5 : bool =
+        if v3 then
             true
         else
-            method2(v4)
-    let v7 : string = $"__expect / actual: %A{v2} / expected: %A{1024}"
-    let v8 : bool = v6 = false
+            method2(v3)
+    let v6 : string = "assert_eq"
+    let v7 : string = $"{v6} / actual: %A{v2} / expected: %A{1024}"
+    System.Console.WriteLine v7
+    let v8 : bool = v5 = false
     if v8 then
         failwith&lt;unit&gt; v7
 method0()
 
-1024
+assert_eq / actual: 1024 / expected: 1024
 </pre>
 </div>
 </div>
@@ -10843,13 +10832,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{1024}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{1024} / expected: %A{1024}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-1024
+assert_eq / actual: 1024 / expected: 1024
 </pre>
 </div>
 </div>

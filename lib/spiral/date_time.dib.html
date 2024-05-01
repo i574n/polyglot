@@ -9236,7 +9236,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>20240430-0349-5480-8097-800400543210
+<pre>20240501-0318-2794-9473-900400543210
 </pre>
 </div>
 </div>
@@ -9255,8 +9255,12 @@ a.anchor-link {
 <span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
 <span class="n">types</span> <span class="p">()</span>
-<span class="n">now</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">to_universal_time</span> <span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
-<span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+<span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">sm</span><span class="s1">'.End fun x =&gt; x - 6i32) (sm'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
+<span class="n">now</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">to_universal_time</span>
+<span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' $'</span><span class="err">$</span><span class="s2">"{!s.[0..29]}{!suffix}"</span><span class="s1">'</span>
 </pre></div>
 </div>
 </div>
@@ -9269,7 +9273,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>20240430-0350-0768-5880-000000543210
+<pre>assert_eq' / actual: "20240501-0318-5481-1740-000000543210" / expected: "20240501-0318-5481-1740-000000543210"
 </pre>
 </div>
 </div>
@@ -9286,8 +9290,8 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 <span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
-<span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">sm</span><span class="s1">'.End fun x =&gt; x - 6i32) (sm'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
 <span class="n">types</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">sm</span><span class="s1">'.End fun x =&gt; x - 6i32) (sm'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
 <span class="n">min_value</span> <span class="p">()</span>
 <span class="o">|&gt;</span> <span class="n">specify_date_kind</span> <span class="n">Local</span>
 <span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span>
@@ -9305,7 +9309,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>"00010101-0000-0000-0000-000400543210"
+<pre>assert_eq' / actual: "00010101-0000-0000-0000-000400543210" / expected: "00010101-0000-0000-0000-000400543210"
 </pre>
 </div>
 </div>
@@ -9342,7 +9346,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>"00010101-0000-0000-0000-000000543210"
+<pre>assert_eq' / actual: "00010101-0000-0000-0000-000000543210" / expected: "00010101-0000-0000-0000-000000543210"
 </pre>
 </div>
 </div>
@@ -9379,7 +9383,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>"99991230-2359-5999-9999-900400543210"
+<pre>assert_eq / actual: "99991230-2359-5999-9999-900400543210" / expected: "99991230-2359-5999-9999-900400543210"
 </pre>
 </div>
 </div>
@@ -9417,7 +9421,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>"99991230-2359-5999-9999-000000543210"
+<pre>assert_eq / actual: "99991230-2359-5999-9999-000000543210" / expected: "99991230-2359-5999-9999-000000543210"
 </pre>
 </div>
 </div>
@@ -9453,7 +9457,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>"19700102-0000-0000-0000-000400543210"
+<pre>assert_eq / actual: "19700102-0000-0000-0000-000400543210" / expected: "19700102-0000-0000-0000-000400543210"
 </pre>
 </div>
 </div>
@@ -9491,7 +9495,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>"19700102-0000-0000-0000-000000543210"
+<pre>assert_eq / actual: "19700102-0000-0000-0000-000000543210" / expected: "19700102-0000-0000-0000-000000543210"
 </pre>
 </div>
 </div>
@@ -9620,21 +9624,21 @@ and method0 () : unit =
     |&gt; fun x -&gt; _v5 &lt;- Some x
     let v13 : System.DateTime = _v5.Value
     let v14 : System.DateTime = System.DateTime.MinValue
-    let v15 : string = $"%A{v13}"
-    System.Console.WriteLine v15
-    let v16 : bool = v13 = v14
-    let v18 : bool =
-        if v16 then
+    let v15 : bool = v13 = v14
+    let v17 : bool =
+        if v15 then
             true
         else
-            method2(v16)
-    let v19 : string = $"__expect / actual: %A{v13} / expected: %A{v14}"
-    let v20 : bool = v18 = false
+            method2(v15)
+    let v18 : string = "assert_eq'"
+    let v19 : string = $"{v18} / actual: %A{v13} / expected: %A{v14}"
+    System.Console.WriteLine v19
+    let v20 : bool = v17 = false
     if v20 then
         failwith&lt;unit&gt; v19
 method0()
 
-0001-01-01 12:00:00 AM
+assert_eq' / actual: 0001-01-01 12:00:00 AM / expected: 0001-01-01 12:00:00 AM
 </pre>
 </div>
 </div>
@@ -9723,21 +9727,21 @@ and method0 () : unit =
     |&gt; fun x -&gt; _v6 &lt;- Some x
     let v14 : System.DateTime = _v6.Value
     let v15 : System.DateTime = System.DateTime.MaxValue
-    let v16 : string = $"%A{v14}"
-    System.Console.WriteLine v16
-    let v17 : bool = v14 = v15
-    let v19 : bool =
-        if v17 then
+    let v16 : bool = v14 = v15
+    let v18 : bool =
+        if v16 then
             true
         else
-            method2(v17)
-    let v20 : string = $"__expect / actual: %A{v14} / expected: %A{v15}"
-    let v21 : bool = v19 = false
+            method2(v16)
+    let v19 : string = "assert_eq'"
+    let v20 : string = $"{v19} / actual: %A{v14} / expected: %A{v15}"
+    System.Console.WriteLine v20
+    let v21 : bool = v18 = false
     if v21 then
         failwith&lt;unit&gt; v20
 method0()
 
-9999-12-31 11:59:59 PM
+assert_eq' / actual: 9999-12-31 11:59:59 PM / expected: 9999-12-31 11:59:59 PM
 </pre>
 </div>
 </div>
@@ -9826,21 +9830,21 @@ and method0 () : unit =
     |&gt; fun x -&gt; _v6 &lt;- Some x
     let v14 : System.DateTime = _v6.Value
     let v15 : System.DateTime = System.DateTime.UnixEpoch
-    let v16 : string = $"%A{v14}"
-    System.Console.WriteLine v16
-    let v17 : bool = v14 = v15
-    let v19 : bool =
-        if v17 then
+    let v16 : bool = v14 = v15
+    let v18 : bool =
+        if v16 then
             true
         else
-            method2(v17)
-    let v20 : string = $"__expect / actual: %A{v14} / expected: %A{v15}"
-    let v21 : bool = v19 = false
+            method2(v16)
+    let v19 : string = "assert_eq'"
+    let v20 : string = $"{v19} / actual: %A{v14} / expected: %A{v15}"
+    System.Console.WriteLine v20
+    let v21 : bool = v18 = false
     if v21 then
         failwith&lt;unit&gt; v20
 method0()
 
-1970-01-01 12:00:00 AM
+assert_eq' / actual: 1970-01-01 12:00:00 AM / expected: 1970-01-01 12:00:00 AM
 </pre>
 </div>
 </div>
@@ -9925,21 +9929,21 @@ and method0 () : unit =
     let v7 : System.Guid = System.Guid $"{v6.[0..7]}-{v6.[8..11]}-{v6.[12..15]}-{v6.[16..17]}{v3.[21..]}"
     let v8 : string = "00000000-0000-0000-00dc-ba9876543210"
     let v9 : System.Guid = System.Guid v8 
-    let v10 : string = $"%A{v7}"
-    System.Console.WriteLine v10
-    let v11 : bool = v7 = v9
-    let v13 : bool =
-        if v11 then
+    let v10 : bool = v7 = v9
+    let v12 : bool =
+        if v10 then
             true
         else
-            method1(v11)
-    let v14 : string = $"__expect / actual: %A{v7} / expected: %A{v9}"
-    let v15 : bool = v13 = false
+            method1(v10)
+    let v13 : string = "assert_eq'"
+    let v14 : string = $"{v13} / actual: %A{v7} / expected: %A{v9}"
+    System.Console.WriteLine v14
+    let v15 : bool = v12 = false
     if v15 then
         failwith&lt;unit&gt; v14
 method0()
 
-00000000-0000-0000-00dc-ba9876543210
+assert_eq' / actual: 00000000-0000-0000-00dc-ba9876543210 / expected: 00000000-0000-0000-00dc-ba9876543210
 </pre>
 </div>
 </div>
@@ -9987,21 +9991,21 @@ and method0 () : unit =
     let v8 : (unit -&gt; System.Guid) = closure0()
     let v9 : string = $"99999999-9999-9999-99dc-b{(v8 () |&gt; string).[^10..]}"
     let v10 : System.Guid = System.Guid v9 
-    let v11 : string = $"%A{v7}"
-    System.Console.WriteLine v11
-    let v12 : bool = v7 = v10
-    let v14 : bool =
-        if v12 then
+    let v11 : bool = v7 = v10
+    let v13 : bool =
+        if v11 then
             true
         else
-            method1(v12)
-    let v15 : string = $"__expect / actual: %A{v7} / expected: %A{v10}"
-    let v16 : bool = v14 = false
+            method1(v11)
+    let v14 : string = "assert_eq'"
+    let v15 : string = $"{v14} / actual: %A{v7} / expected: %A{v10}"
+    System.Console.WriteLine v15
+    let v16 : bool = v13 = false
     if v16 then
         failwith&lt;unit&gt; v15
 method0()
 
-99999999-9999-9999-99dc-ba9876543210
+assert_eq' / actual: 99999999-9999-9999-99dc-ba9876543210 / expected: 99999999-9999-9999-99dc-ba9876543210
 </pre>
 </div>
 </div>
@@ -10080,21 +10084,21 @@ and method0 () : unit =
     let v2 : (System.Guid -&gt; string) = _.ToString()
     let v3 : string = v2 v1
     let v4 : int64 = int64 $"{v3.[0..7]}{v3.[9..12]}{v3.[14..17]}{v3.[19..20]}"
-    let v5 : string = $"%A{v4}"
-    System.Console.WriteLine v5
-    let v6 : bool = v4 = 0L
-    let v8 : bool =
-        if v6 then
+    let v5 : bool = v4 = 0L
+    let v7 : bool =
+        if v5 then
             true
         else
-            method1(v6)
-    let v9 : string = $"__expect / actual: %A{v4} / expected: %A{0L}"
-    let v10 : bool = v8 = false
+            method1(v5)
+    let v8 : string = "assert_eq"
+    let v9 : string = $"{v8} / actual: %A{v4} / expected: %A{0L}"
+    System.Console.WriteLine v9
+    let v10 : bool = v7 = false
     if v10 then
         failwith&lt;unit&gt; v9
 method0()
 
-0L
+assert_eq / actual: 0L / expected: 0L
 </pre>
 </div>
 </div>
@@ -10137,21 +10141,21 @@ and method0 () : unit =
     let v3 : (System.Guid -&gt; string) = _.ToString()
     let v4 : string = v3 v2
     let v5 : int64 = int64 $"{v4.[0..7]}{v4.[9..12]}{v4.[14..17]}{v4.[19..20]}"
-    let v6 : string = $"%A{v5}"
-    System.Console.WriteLine v6
-    let v7 : bool = v5 = 999999999999999999L
-    let v9 : bool =
-        if v7 then
+    let v6 : bool = v5 = 999999999999999999L
+    let v8 : bool =
+        if v6 then
             true
         else
-            method1(v7)
-    let v10 : string = $"__expect / actual: %A{v5} / expected: %A{999999999999999999L}"
-    let v11 : bool = v9 = false
+            method1(v6)
+    let v9 : string = "assert_eq"
+    let v10 : string = $"{v9} / actual: %A{v5} / expected: %A{999999999999999999L}"
+    System.Console.WriteLine v10
+    let v11 : bool = v8 = false
     if v11 then
         failwith&lt;unit&gt; v10
 method0()
 
-999999999999999999L
+assert_eq / actual: 999999999999999999L / expected: 999999999999999999L
 </pre>
 </div>
 </div>
@@ -10226,7 +10230,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>0
+<pre>assert_eq / actual: 0 / expected: 0
 </pre>
 </div>
 </div>
@@ -10322,85 +10326,28 @@ and method0 () : unit =
     let v15 : int64 = v14 v13
     let v16 : int64 = v12 - v15
     let v17 : int64 = v16 / 100000L
-    let v18 : string = $"%A{v17}"
-    System.Console.WriteLine v18
-    let v19 : bool = v17 = 0L
-    let v21 : bool =
-        if v19 then
+    let v18 : bool = v17 = 0L
+    let v20 : bool =
+        if v18 then
             true
         else
-            method1(v19)
-    let v22 : string = $"__expect / actual: %A{v17} / expected: %A{0L}"
-    let v23 : bool = v21 = false
+            method1(v18)
+    let v21 : string = "assert_eq"
+    let v22 : string = $"{v21} / actual: %A{v17} / expected: %A{0L}"
+    System.Console.WriteLine v22
+    let v23 : bool = v20 = false
     if v23 then
         failwith&lt;unit&gt; v22
 method0()
 
-0L
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=106">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="nb">type</span> <span class="n">DateTimeWithZone</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">DateTime</span><span class="p">:</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTimeOffset</span>
-    <span class="n">TimeZone</span><span class="p">:</span> <span class="n">System</span><span class="o">.</span><span class="n">TimeZoneInfo</span>
-<span class="p">}</span>
-
-<span class="k">try</span>
-    <span class="n">let</span> <span class="n">now</span> <span class="o">=</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">SpecifyKind</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">MinValue</span><span class="p">,</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTimeKind</span><span class="o">.</span><span class="n">Utc</span><span class="p">)</span>
-    <span class="n">let</span> <span class="n">timeZoneInfo</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">TimeZoneInfo</span><span class="o">.</span><span class="n">Local</span>
-
-    <span class="n">printfn</span> <span class="s2">"now: %O</span><span class="se">\n</span><span class="s2">"</span> <span class="n">now</span>
-    <span class="n">printfn</span> <span class="s2">"Time Zone: </span><span class="si">%s</span><span class="s2">"</span> <span class="n">timeZoneInfo</span><span class="o">.</span><span class="n">DisplayName</span>
-    <span class="n">printfn</span> <span class="s2">"Is DST: %b"</span> <span class="p">(</span><span class="n">now</span> <span class="o">|&gt;</span> <span class="n">timeZoneInfo</span><span class="o">.</span><span class="n">IsDaylightSavingTime</span><span class="p">)</span>
-    <span class="n">printfn</span> <span class="s2">"v1: </span><span class="si">%s</span><span class="s2">"</span> <span class="p">(</span><span class="n">now</span> <span class="o">|&gt;</span> <span class="n">timeZoneInfo</span><span class="o">.</span><span class="n">GetUtcOffset</span> <span class="o">|&gt;</span> <span class="n">string</span><span class="p">)</span>
-    <span class="n">printfn</span> <span class="s2">"v2: </span><span class="si">%s</span><span class="s2">"</span> <span class="p">(</span><span class="n">timeZoneInfo</span> <span class="o">|&gt;</span> <span class="n">string</span><span class="p">)</span>
-    
-    <span class="n">let</span> <span class="n">dst</span> <span class="o">=</span> <span class="n">now</span> <span class="o">|&gt;</span> <span class="n">timeZoneInfo</span><span class="o">.</span><span class="n">IsDaylightSavingTime</span>
-    <span class="n">printfn</span> <span class="err">$</span><span class="s2">"""dst: </span><span class="si">{dst}</span><span class="s2">"""</span>
-    <span class="n">let</span> <span class="n">time_zone</span> <span class="o">=</span> <span class="n">now</span> <span class="o">|&gt;</span> <span class="n">timeZoneInfo</span><span class="o">.</span><span class="n">GetUtcOffset</span>
-    <span class="n">printfn</span> <span class="err">$</span><span class="s2">"""time_zone: {time_zone.Hours &gt; 0 |&gt; System.Convert.ToInt32}{time_zone.ToString "hhmm"}"""</span>
-<span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-    <span class="n">printfn</span> <span class="s2">"error: %A"</span> <span class="n">ex</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>now: 0001-01-01 12:00:00 AM
-
-Time Zone: (UTC-04:00) Cuiaba
-Is DST: true
-v1: -03:00:00
-v2: (UTC-04:00) Cuiaba
-dst: True
-time_zone: 00300
+assert_eq / actual: 0L / expected: 0L
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=107">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=106">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10410,7 +10357,7 @@ time_zone: 00300
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=108">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=107">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

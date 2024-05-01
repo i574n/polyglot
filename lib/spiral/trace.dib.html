@@ -8085,15 +8085,15 @@ and method0 () : unit =
             let v9 : int32 = [ US0_0, 0; US0_1, 1; US0_2, 2; US0_3, 3; US0_4, 4 ] |&gt; Map |&gt; Map.find v6
             let v10 : bool = 4 &gt;= v9
             v10
-    let v12 : string = $"%A{v11}"
-    System.Console.WriteLine v12
-    let v14 : bool =
+    let v13 : bool =
         if v11 then
             true
         else
             method3(v11)
-    let v15 : string = $"__expect / actual: %A{v11} / expected: %A{true}"
-    let v16 : bool = v14 = false
+    let v14 : string = "assert_eq"
+    let v15 : string = $"{v14} / actual: %A{v11} / expected: %A{true}"
+    System.Console.WriteLine v15
+    let v16 : bool = v13 = false
     if v16 then
         failwith&lt;unit&gt; v15
     if State.trace_state.IsNone then State.trace_state &lt;- v0 () |&gt; Some
@@ -8108,76 +8108,73 @@ and method0 () : unit =
             let v25 : int32 = [ US0_0, 0; US0_1, 1; US0_2, 2; US0_3, 3; US0_4, 4 ] |&gt; Map |&gt; Map.find v22
             let v26 : bool = 0 &gt;= v25
             v26
-    let v28 : string = $"%A{v27}"
-    System.Console.WriteLine v28
-    let v30 : bool =
+    let v29 : bool =
         if v27 then
             true
         else
             method3(v27)
-    let v31 : string = $"__expect / actual: %A{v27} / expected: %A{true}"
-    let v32 : bool = v30 = false
-    if v32 then
-        failwith&lt;unit&gt; v31
+    let v30 : string = $"{v14} / actual: %A{v27} / expected: %A{true}"
+    System.Console.WriteLine v30
+    let v31 : bool = v29 = false
+    if v31 then
+        failwith&lt;unit&gt; v30
     if State.trace_state.IsNone then State.trace_state &lt;- v0 () |&gt; Some
-    let struct (v33 : Mut0, v34 : Mut1, v35 : Mut2, v36 : int64 option, v37 : Mut3) = State.trace_state.Value
-    let v38 : US0 = US0_1
-    v35.l0 &lt;- v38
+    let struct (v32 : Mut0, v33 : Mut1, v34 : Mut2, v35 : int64 option, v36 : Mut3) = State.trace_state.Value
+    let v37 : US0 = US0_1
+    v34.l0 &lt;- v37
     if State.trace_state.IsNone then State.trace_state &lt;- v0 () |&gt; Some
-    let struct (v39 : Mut0, v40 : Mut1, v41 : Mut2, v42 : int64 option, v43 : Mut3) = State.trace_state.Value
-    let v44 : US0 = v41.l0
-    let v45 : bool = v40.l0
-    let v46 : bool = v45 = false
-    let v49 : bool =
-        if v46 then
+    let struct (v38 : Mut0, v39 : Mut1, v40 : Mut2, v41 : int64 option, v42 : Mut3) = State.trace_state.Value
+    let v43 : US0 = v40.l0
+    let v44 : bool = v39.l0
+    let v45 : bool = v44 = false
+    let v48 : bool =
+        if v45 then
             false
         else
-            let v47 : int32 = [ US0_0, 0; US0_1, 1; US0_2, 2; US0_3, 3; US0_4, 4 ] |&gt; Map |&gt; Map.find v44
-            let v48 : bool = 0 &gt;= v47
-            v48
-    let v50 : string = $"%A{v49}"
-    System.Console.WriteLine v50
-    let v51 : bool = v49 = false
-    let v53 : bool =
-        if v51 then
+            let v46 : int32 = [ US0_0, 0; US0_1, 1; US0_2, 2; US0_3, 3; US0_4, 4 ] |&gt; Map |&gt; Map.find v43
+            let v47 : bool = 0 &gt;= v46
+            v47
+    let v49 : bool = v48 = false
+    let v51 : bool =
+        if v49 then
             true
         else
-            method3(v51)
-    let v54 : string = $"__expect / actual: %A{v49} / expected: %A{false}"
-    let v55 : bool = v53 = false
-    if v55 then
-        failwith&lt;unit&gt; v54
-    let v56 : US0 = US0_0
-    v35.l0 &lt;- v56
+            method3(v49)
+    let v52 : string = $"{v14} / actual: %A{v48} / expected: %A{false}"
+    System.Console.WriteLine v52
+    let v53 : bool = v51 = false
+    if v53 then
+        failwith&lt;unit&gt; v52
+    let v54 : US0 = US0_0
+    v34.l0 &lt;- v54
     if State.trace_state.IsNone then State.trace_state &lt;- v0 () |&gt; Some
-    let struct (v57 : Mut0, v58 : Mut1, v59 : Mut2, v60 : int64 option, v61 : Mut3) = State.trace_state.Value
-    let v62 : US0 = v59.l0
-    let v63 : bool = v58.l0
-    let v64 : bool = v63 = false
+    let struct (v55 : Mut0, v56 : Mut1, v57 : Mut2, v58 : int64 option, v59 : Mut3) = State.trace_state.Value
+    let v60 : US0 = v57.l0
+    let v61 : bool = v56.l0
+    let v62 : bool = v61 = false
+    let v65 : bool =
+        if v62 then
+            false
+        else
+            let v63 : int32 = [ US0_0, 0; US0_1, 1; US0_2, 2; US0_3, 3; US0_4, 4 ] |&gt; Map |&gt; Map.find v60
+            let v64 : bool = 0 &gt;= v63
+            v64
     let v67 : bool =
-        if v64 then
-            false
-        else
-            let v65 : int32 = [ US0_0, 0; US0_1, 1; US0_2, 2; US0_3, 3; US0_4, 4 ] |&gt; Map |&gt; Map.find v62
-            let v66 : bool = 0 &gt;= v65
-            v66
-    let v68 : string = $"%A{v67}"
-    System.Console.WriteLine v68
-    let v70 : bool =
-        if v67 then
+        if v65 then
             true
         else
-            method3(v67)
-    let v71 : string = $"__expect / actual: %A{v67} / expected: %A{true}"
-    let v72 : bool = v70 = false
-    if v72 then
-        failwith&lt;unit&gt; v71
+            method3(v65)
+    let v68 : string = $"{v14} / actual: %A{v65} / expected: %A{true}"
+    System.Console.WriteLine v68
+    let v69 : bool = v67 = false
+    if v69 then
+        failwith&lt;unit&gt; v68
 method0()
 
-true
-true
-false
-true
+assert_eq / actual: true / expected: true
+assert_eq / actual: true / expected: true
+assert_eq / actual: false / expected: false
+assert_eq / actual: true / expected: true
 </pre>
 </div>
 </div>
@@ -8338,6 +8335,9 @@ true
 
 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"test"</span><span class="p">)</span> <span class="n">_locals</span>
 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"test"</span><span class="p">)</span> <span class="n">_locals</span>
+<span class="n">get_trace_state</span> <span class="p">()</span> <span class="o">.</span><span class="n">count</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="o">*</span><span class="n">x</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -8352,6 +8352,7 @@ true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00   debug #1 test
 00:00:00   debug #2 test
+assert_eq / actual: 2L / expected: 2L
 </pre>
 </div>
 </div>
@@ -8370,7 +8371,11 @@ true
 <span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
 
 <span class="n">types</span> <span class="p">()</span>
-<span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"test"</span><span class="p">)</span> <span class="n">_locals</span>
+<span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"test1"</span><span class="p">)</span> <span class="n">_locals</span>
+<span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"test2"</span><span class="p">)</span> <span class="n">_locals</span>
+<span class="n">get_trace_state</span> <span class="p">()</span> <span class="o">.</span><span class="n">count</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="o">*</span><span class="n">x</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -8383,7 +8388,9 @@ true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>23:45:50 <span class="ansi-blue-intense-fg">  debug</span> #1 test
+<pre>22:50:05 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
+22:50:05 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
+assert_eq / actual: 2 / expected: 2
 </pre>
 </div>
 </div>

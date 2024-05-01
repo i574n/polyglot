@@ -7859,30 +7859,30 @@ and method0 () : unit =
         v10.l0 &lt;- v18
         ()
     let v19 : (string []) = [|v0; v1; v3; v4|]
-    let v20 : string = $"%A{v9}"
-    System.Console.WriteLine v20
-    let v21 : int32 = v9.Length
-    let v22 : int32 = v19.Length
-    let v23 : bool = v21 = v22
-    let v24 : bool = v23 &lt;&gt; true
-    let v27 : bool =
-        if v24 then
+    let v20 : int32 = v9.Length
+    let v21 : int32 = v19.Length
+    let v22 : bool = v20 = v21
+    let v23 : bool = v22 &lt;&gt; true
+    let v26 : bool =
+        if v23 then
             false
         else
-            let v25 : int32 = 0
-            method2(v9, v19, v25)
-    let v29 : bool =
-        if v27 then
+            let v24 : int32 = 0
+            method2(v9, v19, v24)
+    let v28 : bool =
+        if v26 then
             true
         else
-            method3(v27)
-    let v30 : string = $"__expect / actual: %A{v9} / expected: %A{v19}"
-    let v31 : bool = v29 = false
+            method3(v26)
+    let v29 : string = "assert_eq"
+    let v30 : string = $"{v29} / actual: %A{v9} / expected: %A{v19}"
+    System.Console.WriteLine v30
+    let v31 : bool = v28 = false
     if v31 then
         failwith&lt;unit&gt; v30
 method0()
 
-[|"a"; "b"; "c"; "d"|]
+assert_eq / actual: [|"a"; "b"; "c"; "d"|] / expected: [|"a"; "b"; "c"; "d"|]
 </pre>
 </div>
 </div>
@@ -8093,30 +8093,30 @@ and method0 () : unit =
     let v25 : UH0 = v7.l1
     let v26 : (int32 []) = method3(v25)
     let v27 : (int32 []) = [|0; 2; 4; 6; 8|]
-    let v28 : string = $"%A{v26}"
-    System.Console.WriteLine v28
-    let v29 : int32 = v26.Length
-    let v30 : int32 = v27.Length
-    let v31 : bool = v29 = v30
-    let v32 : bool = v31 &lt;&gt; true
-    let v35 : bool =
-        if v32 then
+    let v28 : int32 = v26.Length
+    let v29 : int32 = v27.Length
+    let v30 : bool = v28 = v29
+    let v31 : bool = v30 &lt;&gt; true
+    let v34 : bool =
+        if v31 then
             false
         else
-            let v33 : int32 = 0
-            method6(v26, v27, v33)
-    let v37 : bool =
-        if v35 then
+            let v32 : int32 = 0
+            method6(v26, v27, v32)
+    let v36 : bool =
+        if v34 then
             true
         else
-            method7(v35)
-    let v38 : string = $"__expect / actual: %A{v26} / expected: %A{v27}"
-    let v39 : bool = v37 = false
+            method7(v34)
+    let v37 : string = "assert_eq"
+    let v38 : string = $"{v37} / actual: %A{v26} / expected: %A{v27}"
+    System.Console.WriteLine v38
+    let v39 : bool = v36 = false
     if v39 then
         failwith&lt;unit&gt; v38
 method0()
 
-[|0; 2; 4; 6; 8|]
+assert_eq / actual: [|0; 2; 4; 6; 8|] / expected: [|0; 2; 4; 6; 8|]
 </pre>
 </div>
 </div>
@@ -8220,21 +8220,21 @@ and method0 () : unit =
         v6.l1 &lt;- v11
         ()
     let v13 : int32 = v6.l1
-    let v14 : string = $"%A{v13}"
-    System.Console.WriteLine v14
-    let v15 : bool = v13 = 45
-    let v17 : bool =
-        if v15 then
+    let v14 : bool = v13 = 45
+    let v16 : bool =
+        if v14 then
             true
         else
-            method3(v15)
-    let v18 : string = $"__expect / actual: %A{v13} / expected: %A{45}"
-    let v19 : bool = v17 = false
+            method3(v14)
+    let v17 : string = "assert_eq"
+    let v18 : string = $"{v17} / actual: %A{v13} / expected: %A{45}"
+    System.Console.WriteLine v18
+    let v19 : bool = v16 = false
     if v19 then
         failwith&lt;unit&gt; v18
 method0()
 
-45
+assert_eq / actual: 45 / expected: 45
 </pre>
 </div>
 </div>
@@ -8338,30 +8338,30 @@ and method0 () : unit =
         v1.l0 &lt;- v6
         ()
     let v7 : (float []) = [|0.0; 0.5; 1.0|]
-    let v8 : string = $"%A{v0}"
-    System.Console.WriteLine v8
-    let v9 : int32 = v0.Length
-    let v10 : int32 = v7.Length
-    let v11 : bool = v9 = v10
-    let v12 : bool = v11 &lt;&gt; true
-    let v15 : bool =
-        if v12 then
+    let v8 : int32 = v0.Length
+    let v9 : int32 = v7.Length
+    let v10 : bool = v8 = v9
+    let v11 : bool = v10 &lt;&gt; true
+    let v14 : bool =
+        if v11 then
             false
         else
-            let v13 : int32 = 0
-            method2(v0, v7, v13)
-    let v17 : bool =
-        if v15 then
+            let v12 : int32 = 0
+            method2(v0, v7, v12)
+    let v16 : bool =
+        if v14 then
             true
         else
-            method3(v15)
-    let v18 : string = $"__expect / actual: %A{v0} / expected: %A{v7}"
-    let v19 : bool = v17 = false
+            method3(v14)
+    let v17 : string = "assert_eq"
+    let v18 : string = $"{v17} / actual: %A{v0} / expected: %A{v7}"
+    System.Console.WriteLine v18
+    let v19 : bool = v16 = false
     if v19 then
         failwith&lt;unit&gt; v18
 method0()
 
-[|0.0; 0.5; 1.0|]
+assert_eq / actual: [|0.0; 0.5; 1.0|] / expected: [|0.0; 0.5; 1.0|]
 </pre>
 </div>
 </div>
@@ -8496,21 +8496,21 @@ and method0 () : unit =
     let v5 : int32 = v0.Length
     let v6 : int32 = v5 - 1
     let v7 : int32 = v0.[int v6]
-    let v8 : string = $"%A{v7}"
-    System.Console.WriteLine v8
-    let v9 : bool = v7 = 9
-    let v11 : bool =
-        if v9 then
+    let v8 : bool = v7 = 9
+    let v10 : bool =
+        if v8 then
             true
         else
-            method2(v9)
-    let v12 : string = $"__expect / actual: %A{v7} / expected: %A{9}"
-    let v13 : bool = v11 = false
+            method2(v8)
+    let v11 : string = "assert_eq"
+    let v12 : string = $"{v11} / actual: %A{v7} / expected: %A{9}"
+    System.Console.WriteLine v12
+    let v13 : bool = v10 = false
     if v13 then
         failwith&lt;unit&gt; v12
 method0()
 
-9
+assert_eq / actual: 9 / expected: 9
 </pre>
 </div>
 </div>
@@ -8634,28 +8634,28 @@ and method0 () : unit =
         v7.l1 &lt;- v21
         ()
     let v23 : US0 = v7.l1
-    let v24 : string = $"%A{v23}"
-    System.Console.WriteLine v24
-    let v28 : bool =
+    let v27 : bool =
         match v23 with
-        | US0_0(v26) -&gt; (* Some *)
-            let v27 : bool = v26 = 5
-            v27
+        | US0_0(v25) -&gt; (* Some *)
+            let v26 : bool = v25 = 5
+            v26
         | _ -&gt;
             false
-    let v30 : bool =
-        if v28 then
+    let v29 : bool =
+        if v27 then
             true
         else
-            method3(v28)
+            method3(v27)
+    let v30 : string = "assert_eq"
     let v31 : US0 = US0_0(5)
-    let v32 : string = $"__expect / actual: %A{v23} / expected: %A{v31}"
-    let v33 : bool = v30 = false
+    let v32 : string = $"{v30} / actual: %A{v23} / expected: %A{v31}"
+    System.Console.WriteLine v32
+    let v33 : bool = v29 = false
     if v33 then
         failwith&lt;unit&gt; v32
 method0()
 
-US0_0 5
+assert_eq / actual: US0_0 5 / expected: US0_0 5
 </pre>
 </div>
 </div>
@@ -8811,30 +8811,30 @@ and method0 () : unit =
         ()
     let struct (v33 : int32, v34 : (struct (int32 * int32) [])) = v8.l1, v8.l2
     let v35 : (struct (int32 * int32) []) = [|struct (0, 0); struct (1, 2); struct (2, 4)|]
-    let v36 : string = $"%A{v34}"
-    System.Console.WriteLine v36
-    let v37 : int32 = v34.Length
-    let v38 : int32 = v35.Length
-    let v39 : bool = v37 = v38
-    let v40 : bool = v39 &lt;&gt; true
-    let v43 : bool =
-        if v40 then
+    let v36 : int32 = v34.Length
+    let v37 : int32 = v35.Length
+    let v38 : bool = v36 = v37
+    let v39 : bool = v38 &lt;&gt; true
+    let v42 : bool =
+        if v39 then
             false
         else
-            let v41 : int32 = 0
-            method4(v34, v35, v41)
-    let v45 : bool =
-        if v43 then
+            let v40 : int32 = 0
+            method4(v34, v35, v40)
+    let v44 : bool =
+        if v42 then
             true
         else
-            method5(v43)
-    let v46 : string = $"__expect / actual: %A{v34} / expected: %A{v35}"
-    let v47 : bool = v45 = false
+            method5(v42)
+    let v45 : string = "assert_eq"
+    let v46 : string = $"{v45} / actual: %A{v34} / expected: %A{v35}"
+    System.Console.WriteLine v46
+    let v47 : bool = v44 = false
     if v47 then
         failwith&lt;unit&gt; v46
 method0()
 
-[|struct (0, 0); struct (1, 2); struct (2, 4)|]
+assert_eq / actual: [|struct (0, 0); struct (1, 2); struct (2, 4)|] / expected: [|struct (0, 0); struct (1, 2); struct (2, 4)|]
 </pre>
 </div>
 </div>
@@ -9051,18 +9051,16 @@ and method0 () : unit =
     let v8 : (UH0 -&gt; UH0) = v7 v4
     let v9 : UH0 = UH0_0
     let v10 : UH0 = v8 v9
-    let v11 : string = $"%A{v10}"
-    System.Console.WriteLine v11
-    let v25 : bool =
+    let v24 : bool =
         match v10 with
-        | UH0_1(v15, v16) -&gt; (* Cons *)
-            let v17 : bool = v15 = "a"
-            if v17 then
-                match v16 with
-                | UH0_1(v18, v19) -&gt; (* Cons *)
-                    let v20 : bool = v18 = "b"
-                    if v20 then
-                        match v19 with
+        | UH0_1(v14, v15) -&gt; (* Cons *)
+            let v16 : bool = v14 = "a"
+            if v16 then
+                match v15 with
+                | UH0_1(v17, v18) -&gt; (* Cons *)
+                    let v19 : bool = v17 = "b"
+                    if v19 then
+                        match v18 with
                         | UH0_0 -&gt; (* Nil *)
                             true
                         | _ -&gt;
@@ -9075,21 +9073,23 @@ and method0 () : unit =
                 false
         | _ -&gt;
             false
-    let v27 : bool =
-        if v25 then
+    let v26 : bool =
+        if v24 then
             true
         else
-            method2(v25)
+            method2(v24)
+    let v27 : string = "assert_eq"
     let v28 : UH0 = UH0_0
     let v29 : UH0 = UH0_1(v1, v28)
     let v30 : UH0 = UH0_1(v0, v29)
-    let v31 : string = $"__expect / actual: %A{v10} / expected: %A{v30}"
-    let v32 : bool = v27 = false
+    let v31 : string = $"{v27} / actual: %A{v10} / expected: %A{v30}"
+    System.Console.WriteLine v31
+    let v32 : bool = v26 = false
     if v32 then
         failwith&lt;unit&gt; v31
 method0()
 
-UH0_1 ("a", UH0_1 ("b", UH0_0))
+assert_eq / actual: UH0_1 ("a", UH0_1 ("b", UH0_0)) / expected: UH0_1 ("a", UH0_1 ("b", UH0_0))
 </pre>
 </div>
 </div>
@@ -9458,30 +9458,30 @@ and method0 () : unit =
     let v20 : UH0 = method3(v17, v19)
     let v21 : (struct (int32 * int32) []) = method4(v20)
     let v22 : (struct (int32 * int32) []) = [|struct (0, 0); struct (1, 2); struct (2, 4)|]
-    let v23 : string = $"%A{v21}"
-    System.Console.WriteLine v23
-    let v24 : int32 = v21.Length
-    let v25 : int32 = v22.Length
-    let v26 : bool = v24 = v25
-    let v27 : bool = v26 &lt;&gt; true
-    let v30 : bool =
-        if v27 then
+    let v23 : int32 = v21.Length
+    let v24 : int32 = v22.Length
+    let v25 : bool = v23 = v24
+    let v26 : bool = v25 &lt;&gt; true
+    let v29 : bool =
+        if v26 then
             false
         else
-            let v28 : int32 = 0
-            method7(v21, v22, v28)
-    let v32 : bool =
-        if v30 then
+            let v27 : int32 = 0
+            method7(v21, v22, v27)
+    let v31 : bool =
+        if v29 then
             true
         else
-            method8(v30)
-    let v33 : string = $"__expect / actual: %A{v21} / expected: %A{v22}"
-    let v34 : bool = v32 = false
+            method8(v29)
+    let v32 : string = "assert_eq"
+    let v33 : string = $"{v32} / actual: %A{v21} / expected: %A{v22}"
+    System.Console.WriteLine v33
+    let v34 : bool = v31 = false
     if v34 then
         failwith&lt;unit&gt; v33
 method0()
 
-[|struct (0, 0); struct (1, 2); struct (2, 4)|]
+assert_eq / actual: [|struct (0, 0); struct (1, 2); struct (2, 4)|] / expected: [|struct (0, 0); struct (1, 2); struct (2, 4)|]
 </pre>
 </div>
 </div>

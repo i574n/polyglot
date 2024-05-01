@@ -73,6 +73,7 @@ inl hash_digest (s : string) (x : any) : string =
 inl hash_text (input : string) =
     run_target function
         | Fsharp (Native) => fun () =>
+            inl input = join input
             inl sha256 = sha256 () |> use
             input
             |> sm'.utf8_get_bytes

@@ -493,13 +493,12 @@ inl file_exists_content path content : _ bool =
     run_target function
         | Fsharp (Native) => fun () =>
             fun () =>
-                if path |> file_exists |> not
-                then false |> return |> fun x => $'(*' : ()
-                else
-                    $'*) else' : ()
-                    inl existing_content = path |> read_all_text_async |> async.let'
-                    content = existing_content |> return |> fun x => $'(*' : ()
-                |> fun x => $'*)' : ()
+                fix_condition
+                    fun () => path |> file_exists |> not
+                    fun () => false |> return
+                    fun () =>
+                        inl existing_content = path |> read_all_text_async |> async.let'
+                        content = existing_content |> return
             |> async.new_async_unit
         | _ => fun () => null ()
 
@@ -671,15 +670,15 @@ inl read_all_text_retry_async full_path : async.async (optionm'.option' string) 
                                 |> async.do
                             full_path |> read_all_text_async |> async.map (Some >> optionm'.box) |> async.return_await
                         fun ex =>
-                            if retry <> 0 then
-                                inl ex = ex |> sm'.format_exception
-                                let _locals () = $'$"retry: {!retry} / ex: {!ex} / {!_locals ()}"' : string
-                                trace Debug (fun () => $'"read_all_text_retry_async"' : string) _locals
-                                (None : _ string) |> optionm'.box |> return |> fun x => $'(*' : ()
-                            else
-                                $'*) else' : ()
-                                loop (retry + 1) |> async.return_await |> fun x => $'(*' : ()
-                            |> fun x => $'*)' : ()
+                            fix_condition
+                                fun () => retry <> 0
+                                fun () =>
+                                    inl ex = ex |> sm'.format_exception
+                                    let _locals () = $'$"retry: {!retry} / ex: {!ex} / {!_locals ()}"'
+                                    trace Debug (fun () => $'"read_all_text_retry_async"' : string) _locals
+                                    (None : _ string) |> optionm'.box |> return
+                                fun () =>
+                                    loop (retry + 1) |> async.return_await
                 |> async.new_async
             loop 0
         | _ => fun () => null ()

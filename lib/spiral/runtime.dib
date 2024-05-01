@@ -498,7 +498,7 @@ inl path = temp_folder </> file_name
 
 fun () =>
     inl exit_code, result = execute_async $'\@$"pwsh -c ""Get-Content {!path}"""' |> async.let'
-    exit_code |> _assert_eq 1
+    exit_code |> join _assert_eq 1
     result |> _assert_string_contains "not exist"
 
     "0" |> file_system.write_all_text_async path |> async.do
@@ -513,8 +513,8 @@ fun () =>
 |> async.run_with_timeout 10000
 |> function
     | Some (exit_code, output) =>
-        exit_code |> _assert_eq 0i32
-        output |> _assert_eq (join "0")
+        exit_code |> join _assert_eq 0i32
+        output |> join _assert_eq "0"
         true
     | _ => false
 |> _assert_eq true
@@ -922,12 +922,11 @@ inl new_command (s : rust.static_ref' sm'.str) : command =
 // // rust=
 
 types ()
-inl command = ##"command" |> new_command
-trace Debug
-    fun () => $'$"new_command"'
-    fun () =>
-        inl command = command |> sm'.format_pretty'
-        $'$"command: {!command} / {!_locals ()}"'
+##"command"
+|> new_command
+|> sm'.format_pretty'
+|> sm'.from_std_string
+|> _assert_string_contains "command"
 
 #!markdown
 
@@ -953,12 +952,11 @@ inl new_arg (s : rust.static_ref' sm'.str) : arg =
 // // rust=
 
 types ()
-inl arg = ##"arg" |> new_arg
-trace Debug
-    fun () => $'$"new_arg"'
-    fun () =>
-        inl arg = arg |> sm'.format_pretty'
-        $'$"arg: {!arg} / {!_locals ()}"'
+##"arg"
+|> new_arg
+|> sm'.format_pretty'
+|> sm'.from_std_string
+|> _assert_string_contains "arg"
 
 #!markdown
 

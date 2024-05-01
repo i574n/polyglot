@@ -129,13 +129,12 @@ inl test_port_open port : _ bool = async.new_async fun () =>
 
 // // ## test_port_open_timeout
 inl test_port_open_timeout timeout port : _ bool = async.new_async_unit fun () =>
-    inl result =
-        test_port_open port
-        |> async.run_with_timeout_async timeout
-        |> async.let'
-    match result with
-    | None => false
-    | Some result => result
+    test_port_open port
+    |> async.run_with_timeout_async timeout
+    |> async.let'
+    |> function
+        | None => false
+        | Some result => result
     |> return
 
 // // ## wait_for_port_access
@@ -146,24 +145,17 @@ inl wait_for_port_access timeout status port : _ i64 =
             | None => test_port_open port
             | Some timeout => test_port_open_timeout timeout port
             |> async.let'
-        if isPortOpen = status
-        then retry |> return |> fun x => $'(*' : ()
-        else
-            $'*) else' : ()
-            if retry % 100 = 0 then
-                inl _locals () = $'$"port: {!port} / retry: {!retry} / timeout: %A{!timeout} / status: {!status} / {!_locals ()}"'
-                trace Verbose (fun () => "wait_for_port_access") _locals
-            async.sleep 10 |> async.do
-            loop (retry + 1) |> async.return_await |> fun x => $'(*' : ()
-        |> fun x => $'*)' : ()
+
+        fix_condition
+            fun () => isPortOpen = status
+            fun () => retry |> return
+            fun () =>
+                if retry % 100 = 0 then
+                    inl _locals () = $'$"port: {!port} / retry: {!retry} / timeout: %A{!timeout} / status: {!status} / {!_locals ()}"'
+                    trace Verbose (fun () => "wait_for_port_access") _locals
+                async.sleep 10 |> async.do
+                loop (retry + 1) |> async.return_await
     loop 0i64
-    |> fun result =>
-        match timeout |> optionm'.unbox with
-        | None => result
-        | Some timeout =>
-            result
-            |> async.run_with_timeout_async timeout
-            |> async.map optionm.value
 
 // // ## get_available_port
 inl get_available_port timeout initial_port : _ i32 =
@@ -173,12 +165,10 @@ inl get_available_port timeout initial_port : _ i32 =
             | None => test_port_open port
             | Some timeout => test_port_open_timeout timeout port
             |> async.let'
-        if not is_port_open
-        then port |> return |> fun x => $'(*' : ()
-        else
-            $'*) else' : ()
-            loop (port + 1) |> async.return_await |> fun x => $'(*' : ()
-        |> fun x => $'*)' : ()
+        fix_condition
+            fun () => is_port_open |> not
+            fun () => port |> return
+            fun () => loop (port + 1) |> async.return_await
     loop initial_port
 
 // // ## main

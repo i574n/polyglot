@@ -461,16 +461,20 @@ now () |> to_universal_time |> date_time_guid_from_date_time (test_guid ()) |> s
 // // print_code=false
 
 types ()
-now () |> to_universal_time |> date_time_guid_from_date_time (test_guid ()) |> sm'.obj_to_string
-|> console.write_line
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (sm'.End fun x => x - 6i32) (sm'.End id)
+now ()
+|> to_universal_time
+|> date_time_guid_from_date_time (test_guid ())
+|> sm'.obj_to_string
+|> fun s => s |> _assert_eq' $'$"{!s.[0..29]}{!suffix}"'
 
 #!spiral
 
 // // test
 // // print_code=false
 
-inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (sm'.End fun x => x - 6i32) (sm'.End id)
 types ()
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (sm'.End fun x => x - 6i32) (sm'.End id)
 min_value ()
 |> specify_date_kind Local
 |> date_time_guid_from_date_time (test_guid ())
@@ -673,33 +677,6 @@ utc_now ()
 |> timestamp_from_guid
 |> fun (timestamp timestamp) => (timestamp - (utc_now () |> ticks |> fun (timestamp x) => x)) / 100000i64
 |> _assert_eq 0i64
-
-#!fsharp
-
-//// test
-
-type DateTimeWithZone = {
-    DateTime: System.DateTimeOffset
-    TimeZone: System.TimeZoneInfo
-}
-
-try
-    let now =
-        System.DateTime.SpecifyKind (System.DateTime.MinValue, System.DateTimeKind.Utc)
-    let timeZoneInfo = System.TimeZoneInfo.Local
-
-    printfn "now: %O\n" now
-    printfn "Time Zone: %s" timeZoneInfo.DisplayName
-    printfn "Is DST: %b" (now |> timeZoneInfo.IsDaylightSavingTime)
-    printfn "v1: %s" (now |> timeZoneInfo.GetUtcOffset |> string)
-    printfn "v2: %s" (timeZoneInfo |> string)
-    
-    let dst = now |> timeZoneInfo.IsDaylightSavingTime
-    printfn $"""dst: {dst}"""
-    let time_zone = now |> timeZoneInfo.GetUtcOffset
-    printfn $"""time_zone: {time_zone.Hours > 0 |> System.Convert.ToInt32}{time_zone.ToString "hhmm"}"""
-with ex ->
-    printfn "error: %A" ex
 
 #!markdown
 

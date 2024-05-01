@@ -58,7 +58,7 @@ module Supervisor =
         let! ct = ct |> SpiralAsync.merge_cancellation_token_with_default_async
 
         let compiler = MailboxProcessor.Start (fun inbox -> async {
-            let! availablePort = SpiralNetworking.get_available_port (Some 60) port
+            let! availablePort = SpiralNetworking.get_available_port (Some 500) port
             if availablePort <> port then
                 inbox.Post (port, false)
             else
@@ -78,23 +78,25 @@ module Supervisor =
                                     inbox.Post (port, false)
 
                                 if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
-                                    do!
-                                        SpiralNetworking.wait_for_port_access (Some 5000) true availablePort
-                                        |> Async.Ignore
-
                                     let rec loop retry = async {
+                                        do!
+                                            SpiralNetworking.wait_for_port_access (Some 100) true availablePort
+                                            |> Async.runWithTimeoutAsync 2000
+                                            |> Async.Ignore
+
                                         let _locals () = $"port: {availablePort} / retry: {retry} / {_locals ()}"
                                         try
                                             let pingObj = {| Ping = true |}
                                             let! pingResult = pingObj |> sendObj availablePort
                                             trace Verbose (fun () -> $"awaitCompiler / Ping / result: '{pingResult}'") _locals
+
+                                            inbox.Post (availablePort, true)
                                         with ex ->
                                             trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") _locals
                                             do! Async.Sleep 10
                                             do! loop (retry + 1)
                                     }
                                     do! loop 0
-                                    inbox.Post (availablePort, true)
                             })
                             l5 = Some repositoryRoot
                         }
@@ -127,7 +129,10 @@ module Supervisor =
                     do! connection.StopAsync () |> Async.AwaitTask
                     disposable.Dispose ()
                     if managed
-                    then do! SpiralNetworking.wait_for_port_access (Some 3000) false serverPort |> Async.Ignore
+                    then do!
+                        SpiralNetworking.wait_for_port_access (Some 100) false serverPort
+                        |> Async.runWithTimeoutAsync 2000
+                        |> Async.Ignore
                 }
                 |> Async.RunSynchronously
             )

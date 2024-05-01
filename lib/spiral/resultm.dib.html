@@ -8486,7 +8486,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-US0_0
+assert_eq / actual: US0_0 / expected: US0_0
 
 
 </pre>
@@ -8652,22 +8652,22 @@ and method0 () : unit =
     let v4 : (unit -&gt; US0) = closure0()
     let v5 : (std_rc_Rc&lt;unit&gt; -&gt; US0) = closure1()
     let v6 : US0 = match v3 with Ok () -&gt; v4 () | Error x -&gt; v5 x
-    let v7 : string = $"%A{v6}"
-    System.Console.WriteLine v7
-    let v9 : bool =
+    let v8 : bool =
         match v6 with
         | US0_0 -&gt; (* Ok *)
             true
         | _ -&gt;
             false
-    let v11 : bool =
-        if v9 then
+    let v10 : bool =
+        if v8 then
             true
         else
-            method2(v9)
+            method2(v8)
+    let v11 : string = "assert_eq"
     let v12 : US0 = US0_0
-    let v13 : string = $"__expect / actual: %A{v6} / expected: %A{v12}"
-    let v14 : bool = v11 = false
+    let v13 : string = $"{v11} / actual: %A{v6} / expected: %A{v12}"
+    System.Console.WriteLine v13
+    let v14 : bool = v10 = false
     if v14 then
         failwith&lt;unit&gt; v13
 method0()
@@ -8739,24 +8739,21 @@ mod module_ccfa04bf {
                     Err(v3_1_0) =&gt; Spiral_eval::closure1((), v3_1_0.clone()),
                     _ =&gt; Spiral_eval::closure0((), ()),
                 };
-                let v7: string = sprintf!("{:?}", v6.clone());
-                printfn!("{0}", v7);
-                {
-                    let v9: bool = if let Spiral_eval::US0::US0_0 = &amp;v6 {
-                        true
-                    } else {
-                        false
-                    };
-                    if (if v9 { true } else { Spiral_eval::method2(v9) }) == false {
-                        panic!(
-                            "{}",
-                            sprintf!(
-                                "__expect / actual: {:?} / expected: {:?}",
-                                v6,
-                                Spiral_eval::US0::US0_0
-                            ),
-                        );
-                    }
+                let v8: bool = if let Spiral_eval::US0::US0_0 = &amp;v6 {
+                    true
+                } else {
+                    false
+                };
+                let v10: bool = if v8 { true } else { Spiral_eval::method2(v8) };
+                let v13: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_eq"),
+                    v6,
+                    Spiral_eval::US0::US0_0
+                );
+                printfn!("{0}", v13.clone());
+                if v10 == false {
+                    panic!("{}", v13,);
                 }
             }
         }

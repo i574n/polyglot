@@ -233,10 +233,10 @@ inl get_tasks () : list task_template =
 // // rust=
 
 types ()
-inl tasks = get_tasks () |> sm'.format_pretty'
-trace Verbose
-    fun () => "Tasks"
-    fun () => $'$"tasks: {!tasks} / {!_locals ()}"'
+get_tasks ()
+|> sm'.format_pretty'
+|> sm'.from_std_string
+|> _assert_string_contains "01"
 
 #!spiral
 

@@ -243,6 +243,9 @@ let trace (level : trace_level) (fn : () -> string) (locals : () -> string) =
 
 trace Debug (fun () => "test") _locals
 trace Debug (fun () => "test") _locals
+get_trace_state () .count
+|> fun x => *x
+|> _assert_eq 2
 
 #!spiral
 
@@ -251,7 +254,11 @@ trace Debug (fun () => "test") _locals
 // // rust=
 
 types ()
-trace Debug (fun () => "test") _locals
+trace Debug (fun () => "test1") _locals
+trace Debug (fun () => "test2") _locals
+get_trace_state () .count
+|> fun x => *x
+|> _assert_eq 2
 
 #!markdown
 

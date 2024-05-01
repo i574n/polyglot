@@ -1,10 +1,12 @@
 type ICryptoCreateHash = abstract createHash: x: string -> obj
 type Mut0 = {mutable l0 : int32}
-let rec method0 (v0 : int32, v1 : Mut0) : bool =
+let rec method0 (v0 : string) : string =
+    v0
+and method1 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and method1 () : string =
+and method2 () : string =
     let v0 : string = ""
     v0
 and closure0 () (v0 : string) : string =
@@ -48,37 +50,38 @@ and closure0 () (v0 : string) : string =
 #endif
     
 #else
-    let v17 : (unit -> System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
-    let v18 : System.Security.Cryptography.SHA256 = v17 ()
-    use v18 = v18 
-    let v19 : System.Security.Cryptography.SHA256 = v18 
-    let v20 : (string -> (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
-    let v21 : (uint8 []) = v20 v0
-    let v22 : ((uint8 []) -> (uint8 [])) = v19.ComputeHash
-    let v23 : (uint8 []) = v22 v21
-    let v24 : int32 = v23.Length
-    let v25 : (string []) = Array.zeroCreate<string> (v24)
-    let v26 : Mut0 = {l0 = 0} : Mut0
-    while method0(v24, v26) do
-        let v28 : int32 = v26.l0
-        let v29 : uint8 = v23.[int v28]
-        let v30 : (string -> string) = v29.ToString
-        let v31 : string = "x2"
-        let v32 : string = v30 v31
-        v25.[int v28] <- v32
-        let v33 : int32 = v28 + 1
-        v26.l0 <- v33
+    let v17 : string = method0(v0)
+    let v18 : (unit -> System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
+    let v19 : System.Security.Cryptography.SHA256 = v18 ()
+    use v19 = v19 
+    let v20 : System.Security.Cryptography.SHA256 = v19 
+    let v21 : (string -> (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
+    let v22 : (uint8 []) = v21 v17
+    let v23 : ((uint8 []) -> (uint8 [])) = v20.ComputeHash
+    let v24 : (uint8 []) = v23 v22
+    let v25 : int32 = v24.Length
+    let v26 : (string []) = Array.zeroCreate<string> (v25)
+    let v27 : Mut0 = {l0 = 0} : Mut0
+    while method1(v25, v27) do
+        let v29 : int32 = v27.l0
+        let v30 : uint8 = v24.[int v29]
+        let v31 : (string -> string) = v30.ToString
+        let v32 : string = "x2"
+        let v33 : string = v31 v32
+        v26.[int v29] <- v33
+        let v34 : int32 = v29 + 1
+        v27.l0 <- v34
         ()
-    let v34 : string seq = seq { for i = 0 to v25.Length - 1 do yield v25.[i] }
-    let v35 : string = method1()
-    let v36 : (string -> (string seq -> string)) = String.concat
-    let v37 : (string seq -> string) = v36 v35
-    let v38 : string = v37 v34
-    v38
+    let v35 : string seq = seq { for i = 0 to v26.Length - 1 do yield v26.[i] }
+    let v36 : string = method2()
+    let v37 : (string -> (string seq -> string)) = String.concat
+    let v38 : (string seq -> string) = v37 v36
+    let v39 : string = v38 v35
+    v39
 #endif
     |> fun x -> _v1 <- Some x
-    let v39 : string = _v1.Value
-    v39
+    let v40 : string = _v1.Value
+    v40
 let v0 : (string -> string) = closure0()
 let hash_text x = v0 x
 ()

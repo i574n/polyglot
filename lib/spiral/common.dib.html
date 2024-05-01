@@ -7525,7 +7525,7 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="false" data-jp-theme-name="JupyterLab Dark">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7abe9117">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7535,7 +7535,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=99885808">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7566,7 +7566,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0de1c693">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7576,7 +7576,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9defe950">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7607,7 +7607,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27144546">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7617,7 +7617,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=006aedad">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7646,7 +7646,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c2b3cb0a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7656,7 +7656,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6d93708a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7721,27 +7721,27 @@ and method0 () : unit =
 #endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
     let v8 : uint8 = _v0.Value
-    let v9 : string = $"%A{v8}"
-    System.Console.WriteLine v9
-    let v10 : bool = v8 = 1uy
-    let v12 : bool =
-        if v10 then
+    let v9 : bool = v8 = 1uy
+    let v11 : bool =
+        if v9 then
             true
         else
-            method1(v10)
-    let v13 : string = $"__expect / actual: %A{v8} / expected: %A{1uy}"
-    let v14 : bool = v12 = false
+            method1(v9)
+    let v12 : string = "assert_eq"
+    let v13 : string = $"{v12} / actual: %A{v8} / expected: %A{1uy}"
+    System.Console.WriteLine v13
+    let v14 : bool = v11 = false
     if v14 then
         failwith&lt;unit&gt; v13
 method0()
 
-1uy
+assert_eq / actual: 1uy / expected: 1uy
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1c538337">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7769,7 +7769,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-1
+assert_eq / actual: 1 / expected: 1
 
 
 </pre>
@@ -7818,16 +7818,16 @@ and method0 () : unit =
 #endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
     let v8 : uint8 = _v0.Value
-    let v9 : string = $"%A{v8}"
-    System.Console.WriteLine v9
-    let v10 : bool = v8 = 1uy
-    let v12 : bool =
-        if v10 then
+    let v9 : bool = v8 = 1uy
+    let v11 : bool =
+        if v9 then
             true
         else
-            method1(v10)
-    let v13 : string = $"__expect / actual: %A{v8} / expected: %A{1uy}"
-    let v14 : bool = v12 = false
+            method1(v9)
+    let v12 : string = "assert_eq"
+    let v13 : string = $"{v12} / actual: %A{v8} / expected: %A{1uy}"
+    System.Console.WriteLine v13
+    let v14 : bool = v11 = false
     if v14 then
         failwith&lt;unit&gt; v13
 method0()
@@ -7861,16 +7861,17 @@ mod module_ccfa04bf {
             _v0.set(Some(1_u8));
             {
                 let v8: u8 = getValue(_v0.get().clone());
-                let v9: string = sprintf!("{:?}", v8);
-                printfn!("{0}", v9);
-                {
-                    let v10: bool = v8 == 1_u8;
-                    if (if v10 { true } else { Spiral_eval::method1(v10) }) == false {
-                        panic!(
-                            "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v8, 1_u8),
-                        );
-                    }
+                let v9: bool = v8 == 1_u8;
+                let v11: bool = if v9 { true } else { Spiral_eval::method1(v9) };
+                let v13: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_eq"),
+                    v8,
+                    1_u8
+                );
+                printfn!("{0}", v13.clone());
+                if v11 == false {
+                    panic!("{}", v13,);
                 }
             }
         }
@@ -7885,7 +7886,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9937556f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7895,7 +7896,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=338e2819">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7925,7 +7926,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=961aed0f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7935,7 +7936,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9d5ca51a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7965,7 +7966,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=989718ab">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7975,7 +7976,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cf5ee60c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8000,20 +8001,20 @@ pub use module_ccfa04bf::*;
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{struct (1, 2)}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{struct (1, 2)} / expected: %A{struct (1, 2)}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{struct (1, 2)} / expected: %A{struct (1, 2)}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-struct (1, 2)
+assert_eq / actual: struct (1, 2) / expected: struct (1, 2)
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8a4fcd85">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8023,7 +8024,7 @@ struct (1, 2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=88748a72">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8053,7 +8054,7 @@ struct (1, 2)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2bc7fb08">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8063,7 +8064,7 @@ struct (1, 2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9cd60f9c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8093,7 +8094,7 @@ struct (1, 2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c2a6246e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8126,33 +8127,33 @@ and method0 () : unit =
     let (a, b) = v1
     let v2 : string = a
     let v3 : int32 = b
-    let v4 : string = $"%A{struct (v2, v3)}"
-    System.Console.WriteLine v4
-    let v5 : bool = v2 = "a"
-    let v7 : bool =
-        if v5 then
-            let v6 : bool = v3 = 1
-            v6
+    let v4 : bool = v2 = "a"
+    let v6 : bool =
+        if v4 then
+            let v5 : bool = v3 = 1
+            v5
         else
             false
-    let v9 : bool =
-        if v7 then
+    let v8 : bool =
+        if v6 then
             true
         else
-            method1(v7)
-    let v10 : string = $"__expect / actual: %A{struct (v2, v3)} / expected: %A{struct (v0, 1)}"
-    let v11 : bool = v9 = false
+            method1(v6)
+    let v9 : string = "assert_eq"
+    let v10 : string = $"{v9} / actual: %A{struct (v2, v3)} / expected: %A{struct (v0, 1)}"
+    System.Console.WriteLine v10
+    let v11 : bool = v8 = false
     if v11 then
         failwith&lt;unit&gt; v10
 method0()
 
-struct ("a", 1)
+assert_eq / actual: struct ("a", 1) / expected: struct ("a", 1)
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f725f457">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8230,7 +8231,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a7e7ac37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8240,7 +8241,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2c5819e8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8273,7 +8274,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75066f45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8324,28 +8325,28 @@ and method0 () : unit =
     v2.Value
     v2.Value
     let v3 : int32 = v0.l0
-    let v4 : string = $"%A{v3}"
-    System.Console.WriteLine v4
-    let v5 : bool = v3 = 1
-    let v7 : bool =
-        if v5 then
+    let v4 : bool = v3 = 1
+    let v6 : bool =
+        if v4 then
             true
         else
-            method2(v5)
-    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{1}"
-    let v9 : bool = v7 = false
+            method2(v4)
+    let v7 : string = "assert_eq"
+    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{1}"
+    System.Console.WriteLine v8
+    let v9 : bool = v6 = false
     if v9 then
         failwith&lt;unit&gt; v8
 method0()
 
-1
+assert_eq / actual: 1 / expected: 1
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=78884158">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8355,7 +8356,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35d17421">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8387,7 +8388,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=84e7415e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8397,7 +8398,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a4f47b7d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8423,20 +8424,20 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{1}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{1} / expected: %A{1}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{1} / expected: %A{1}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-1
+assert_eq / actual: 1 / expected: 1
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=87366252">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8446,7 +8447,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b77aef2f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8475,7 +8476,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2713056c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8501,20 +8502,20 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{struct (2, 1)}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{struct (2, 1)} / expected: %A{struct (2, 1)}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{struct (2, 1)} / expected: %A{struct (2, 1)}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-struct (2, 1)
+assert_eq / actual: struct (2, 1) / expected: struct (2, 1)
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=629e11a5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8524,7 +8525,7 @@ struct (2, 1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0cabf140">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8557,7 +8558,7 @@ struct (2, 1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1e2459e7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8589,7 +8590,7 @@ struct (2, 1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40f8cbdc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8623,27 +8624,27 @@ and method0 () : unit =
     let v1 : int32 = 9 + v0
     let v2 : int32 = v1 + 2
     let v3 : int32 = v2 + 1
-    let v4 : string = $"%A{v3}"
-    System.Console.WriteLine v4
-    let v5 : bool = v3 = 15
-    let v7 : bool =
-        if v5 then
+    let v4 : bool = v3 = 15
+    let v6 : bool =
+        if v4 then
             true
         else
-            method2(v5)
-    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
-    let v9 : bool = v7 = false
+            method2(v4)
+    let v7 : string = "assert_eq"
+    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{15}"
+    System.Console.WriteLine v8
+    let v9 : bool = v6 = false
     if v9 then
         failwith&lt;unit&gt; v8
 method0()
 
-15
+assert_eq / actual: 15 / expected: 15
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ca0190a3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8681,28 +8682,28 @@ and method0 () : unit =
     let v2 : int32 = method2(v0, v1)
     let v3 : int32 = v2 + 2
     let v4 : int32 = v3 + 1
-    let v5 : string = $"%A{v4}"
-    System.Console.WriteLine v5
-    let v6 : bool = v4 = 15
-    let v8 : bool =
-        if v6 then
+    let v5 : bool = v4 = 15
+    let v7 : bool =
+        if v5 then
             true
         else
-            method3(v6)
-    let v9 : string = $"__expect / actual: %A{v4} / expected: %A{15}"
-    let v10 : bool = v8 = false
+            method3(v5)
+    let v8 : string = "assert_eq"
+    let v9 : string = $"{v8} / actual: %A{v4} / expected: %A{15}"
+    System.Console.WriteLine v9
+    let v10 : bool = v7 = false
     if v10 then
         failwith&lt;unit&gt; v9
 method0()
 
-15
+assert_eq / actual: 15 / expected: 15
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8cf434da">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8712,7 +8713,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8fe8e71f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8745,7 +8746,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=df654f8a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8782,28 +8783,28 @@ and method0 () : unit =
     let v1 : int32 = method2(v0)
     let v2 : int32 = v1 + 2
     let v3 : int32 = v2 + 1
-    let v4 : string = $"%A{v3}"
-    System.Console.WriteLine v4
-    let v5 : bool = v3 = 15
-    let v7 : bool =
-        if v5 then
+    let v4 : bool = v3 = 15
+    let v6 : bool =
+        if v4 then
             true
         else
-            method3(v5)
-    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
-    let v9 : bool = v7 = false
+            method3(v4)
+    let v7 : string = "assert_eq"
+    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{15}"
+    System.Console.WriteLine v8
+    let v9 : bool = v6 = false
     if v9 then
         failwith&lt;unit&gt; v8
 method0()
 
-15
+assert_eq / actual: 15 / expected: 15
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=06b53f85">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8813,7 +8814,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65cf20d6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8843,7 +8844,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=06587db9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8853,7 +8854,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0665eabf">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8882,7 +8883,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9eff6108">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8967,36 +8968,36 @@ and method0 () : unit =
             |&gt; fun x -&gt; _v5 &lt;- Some x
             let v13 : string = _v5.Value
             US1_0(v13)
-    let v18 : string = $"%A{v17}"
-    System.Console.WriteLine v18
-    let v23 : bool =
+    let v22 : bool =
         match v17 with
-        | US1_0(v21) -&gt; (* Some *)
-            let v22 : bool = v21 = "System.Exception: test"
-            v22
+        | US1_0(v20) -&gt; (* Some *)
+            let v21 : bool = v20 = "System.Exception: test"
+            v21
         | _ -&gt;
             false
-    let v25 : bool =
-        if v23 then
+    let v24 : bool =
+        if v22 then
             true
         else
-            method1(v23)
+            method1(v22)
+    let v25 : string = "assert_eq"
     let v26 : string = "System.Exception: test"
     let v27 : US1 = US1_0(v26)
-    let v28 : string = $"__expect / actual: %A{v17} / expected: %A{v27}"
-    let v29 : bool = v25 = false
+    let v28 : string = $"{v25} / actual: %A{v17} / expected: %A{v27}"
+    System.Console.WriteLine v28
+    let v29 : bool = v24 = false
     if v29 then
         failwith&lt;unit&gt; v28
 method0()
 
-US1_0 "System.Exception: test"
+assert_eq / actual: US1_0 "System.Exception: test" / expected: US1_0 "System.Exception: test"
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2bb82d54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9006,7 +9007,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a2991f67">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9035,7 +9036,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43da853a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9045,7 +9046,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6b744ad6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9075,7 +9076,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1939ed3e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9085,7 +9086,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16768f9a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9121,7 +9122,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22233286">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9202,27 +9203,27 @@ and method0 () : unit =
     let v12 : (System.IDisposable -&gt; unit) = _.Dispose()
     v12 v11
     let v13 : int32 = v0.l0
-    let v14 : string = $"%A{v13}"
-    System.Console.WriteLine v14
-    let v15 : bool = v13 = 1
-    let v17 : bool =
-        if v15 then
+    let v14 : bool = v13 = 1
+    let v16 : bool =
+        if v14 then
             true
         else
-            method2(v15)
-    let v18 : string = $"__expect / actual: %A{v13} / expected: %A{1}"
-    let v19 : bool = v17 = false
+            method2(v14)
+    let v17 : string = "assert_eq"
+    let v18 : string = $"{v17} / actual: %A{v13} / expected: %A{1}"
+    System.Console.WriteLine v18
+    let v19 : bool = v16 = false
     if v19 then
         failwith&lt;unit&gt; v18
 method0()
 
-1
+assert_eq / actual: 1 / expected: 1
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15b8ffd8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9251,13 +9252,13 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>1
+<pre>assert_eq / actual: 1 / expected: 1
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67d0bd13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9460,27 +9461,27 @@ and method0 () : unit =
     |&gt; fun x -&gt; _v33 &lt;- Some x
     _v33.Value
     let v36 : int32 = v0.l0
-    let v37 : string = $"%A{v36}"
-    System.Console.WriteLine v37
-    let v38 : bool = v36 = 1
-    let v40 : bool =
-        if v38 then
+    let v37 : bool = v36 = 1
+    let v39 : bool =
+        if v37 then
             true
         else
-            method2(v38)
-    let v41 : string = $"__expect / actual: %A{v36} / expected: %A{1}"
-    let v42 : bool = v40 = false
+            method2(v37)
+    let v40 : string = "assert_eq"
+    let v41 : string = $"{v40} / actual: %A{v36} / expected: %A{1}"
+    System.Console.WriteLine v41
+    let v42 : bool = v39 = false
     if v42 then
         failwith&lt;unit&gt; v41
 method0()
 
-1
+assert_eq / actual: 1 / expected: 1
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9afa4676">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9645,27 +9646,27 @@ and method0 () : unit =
     |&gt; fun x -&gt; _v23 &lt;- Some x
     _v23.Value
     let v26 : int32 = v0.l0
-    let v27 : string = $"%A{v26}"
-    System.Console.WriteLine v27
-    let v28 : bool = v26 = 1
-    let v30 : bool =
-        if v28 then
+    let v27 : bool = v26 = 1
+    let v29 : bool =
+        if v27 then
             true
         else
-            method2(v28)
-    let v31 : string = $"__expect / actual: %A{v26} / expected: %A{1}"
-    let v32 : bool = v30 = false
+            method2(v27)
+    let v30 : string = "assert_eq"
+    let v31 : string = $"{v30} / actual: %A{v26} / expected: %A{1}"
+    System.Console.WriteLine v31
+    let v32 : bool = v29 = false
     if v32 then
         failwith&lt;unit&gt; v31
 method0()
 
-1
+assert_eq / actual: 1 / expected: 1
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1efb1ef9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9827,28 +9828,28 @@ and method0 () : unit =
     |&gt; fun x -&gt; _v22 &lt;- Some x
     _v22.Value
     let v25 : int32 = v0.l0
-    let v26 : string = $"%A{v25}"
-    System.Console.WriteLine v26
-    let v27 : bool = v25 = 0
-    let v29 : bool =
-        if v27 then
+    let v26 : bool = v25 = 0
+    let v28 : bool =
+        if v26 then
             true
         else
-            method2(v27)
-    let v30 : string = $"__expect / actual: %A{v25} / expected: %A{0}"
-    let v31 : bool = v29 = false
+            method2(v26)
+    let v29 : string = "assert_eq"
+    let v30 : string = $"{v29} / actual: %A{v25} / expected: %A{0}"
+    System.Console.WriteLine v30
+    let v31 : bool = v28 = false
     if v31 then
         failwith&lt;unit&gt; v30
 method0()
 
-0
+assert_eq / actual: 0 / expected: 0
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a943c7f7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9858,7 +9859,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e9098fce">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9891,7 +9892,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9419cc2f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9901,7 +9902,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c3b4822a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9933,7 +9934,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=de3b7d00">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9943,7 +9944,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11d88ded">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9988,7 +9989,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a043859f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10511,34 +10512,34 @@ and method0 () : unit =
     let v0 : Mut0 = {l0 = 0} : Mut0
     let v1 : int32 = 0
     let v2 : US0 = method1(v0, v1)
-    let v3 : string = $"%A{v2}"
-    System.Console.WriteLine v3
-    let v7 : bool =
+    let v6 : bool =
         match v2 with
-        | US0_0(v5) -&gt; (* Some *)
-            let v6 : bool = v5 = 1
-            v6
+        | US0_0(v4) -&gt; (* Some *)
+            let v5 : bool = v4 = 1
+            v5
         | _ -&gt;
             false
-    let v9 : bool =
-        if v7 then
+    let v8 : bool =
+        if v6 then
             true
         else
-            method8(v7)
+            method8(v6)
+    let v9 : string = "assert_eq"
     let v10 : US0 = US0_0(1)
-    let v11 : string = $"__expect / actual: %A{v2} / expected: %A{v10}"
-    let v12 : bool = v9 = false
+    let v11 : string = $"{v9} / actual: %A{v2} / expected: %A{v10}"
+    System.Console.WriteLine v11
+    let v12 : bool = v8 = false
     if v12 then
         failwith&lt;unit&gt; v11
 method0()
 
-US0_0 1
+assert_eq / actual: US0_0 1 / expected: US0_0 1
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3132a9c3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11071,23 +11072,23 @@ and method0 () : unit =
     let v0 : Mut0 = {l0 = 0} : Mut0
     let v1 : int32 = 0
     let v2 : US0 = method1(v0, v1)
-    let v3 : string = $"%A{v2}"
-    System.Console.WriteLine v3
-    let v7 : bool =
+    let v6 : bool =
         match v2 with
-        | US0_0(v5) -&gt; (* Some *)
-            let v6 : bool = v5 = 2
-            v6
+        | US0_0(v4) -&gt; (* Some *)
+            let v5 : bool = v4 = 2
+            v5
         | _ -&gt;
             false
-    let v9 : bool =
-        if v7 then
+    let v8 : bool =
+        if v6 then
             true
         else
-            method8(v7)
+            method8(v6)
+    let v9 : string = "assert_eq"
     let v10 : US0 = US0_0(2)
-    let v11 : string = $"__expect / actual: %A{v2} / expected: %A{v10}"
-    let v12 : bool = v9 = false
+    let v11 : string = $"{v9} / actual: %A{v2} / expected: %A{v10}"
+    System.Console.WriteLine v11
+    let v12 : bool = v8 = false
     if v12 then
         failwith&lt;unit&gt; v11
 method0()
@@ -11098,14 +11099,14 @@ method0()
 00:00:00 warning #2 retry_fn / retry: 1 / ex: System.Exception: test
    at FSI_0042.closure0(Mut0 v0, Int32 v1, Unit unitVar2)
    at FSI_0042.method1(Mut0 v0, Int32 v1)
-US0_0 2
+assert_eq / actual: US0_0 2 / expected: US0_0 2
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f52267b7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11115,7 +11116,7 @@ US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8eaa533d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11848,4 +11849,3 @@ let memoize x = v3 x
 </main>
 </body>
 </html>
-

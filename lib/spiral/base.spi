@@ -133,6 +133,14 @@ inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
     $'(*'
     $'*)'
 
+inl fix_condition x a b =
+    if x ()
+    then a () |> fun x => $'(*' : ()
+    else
+        $'*) else' : ()
+        b () |> fun x => $'(*' : ()
+    |> fun x => $'*)' : ()
+
 // // ## any
 
 nominal any = $"obj"
