@@ -210,6 +210,10 @@ inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : vec t) : vec u =
 inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
     !\\((ar, fn), $'"$0.iter().map(|x| $1(x.clone())).collect()"')
 
+// // ## vec_iter
+inl vec_iter forall t. (fn : t -> ()) (ar : vec t) : () =
+    !\\((ar, fn), $'"$0.iter().map(|x| { $1(x.clone()); }).collect()"')
+
 // // ## vec_filter
 inl vec_filter forall t. (fn : t -> bool) (ar : vec t) : vec t =
     inl fn = join fn

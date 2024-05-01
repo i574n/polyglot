@@ -57,11 +57,35 @@ inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
     (init, list)
     ||> $'List.fold' join fun acc x => Cons (fn x, acc)
 
+#!markdown
+
+## fold_back'
+
 #!spiral
 
 inl fold_back' forall t u. (fn : t -> u) (list : list' t) (init : list u) : list u =
     (list, init)
     ||> $'List.foldBack' join fun x acc => Cons (fn x, acc)
+
+#!markdown
+
+## filter'
+
+#!spiral
+
+inl filter' forall t. (fn : t -> bool) (list : list' t) : list' t =
+    list |> $'"List.filter !fn"'
+
+#!markdown
+
+## filter
+
+#!spiral
+
+inl filter forall t. (fn : t -> bool) (list : list t) : list t =
+    (list, Nil)
+    ||> listm.foldBack fun x acc =>
+        if fn x then x :: acc else acc
 
 #!markdown
 
@@ -125,6 +149,17 @@ inl (/@) a b =
 
 [ "a"; "b" ] /@ [ "c"; "d" ]
 |> _assert_eq [ "a"; "b"; "c"; "d" ]
+
+#!markdown
+
+## collect
+
+#!spiral
+
+inl collect forall t r. (fn : t -> list r) (items : list t) : list r =
+    items
+    |> listm.map fn
+    |> listm.fold (/@) []
 
 #!markdown
 

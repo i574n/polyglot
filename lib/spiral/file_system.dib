@@ -490,6 +490,12 @@ inl get_file_name (path : string) : string =
     run_target function
         | Fsharp (Native) => fun () =>
             path |> $'System.IO.Path.GetFileName'
+        | Rust (Native) => fun () =>
+            open rust_operators
+            inl path_buf = path |> sm'.to_std_string |> new_path_buf
+            !\\(path_buf, $'"$0.file_name()"')
+            |> optionm'.unwrap
+            |> sm'.from_os_str_ref
         | _ => fun () => null ()
 
 #!markdown
@@ -801,7 +807,7 @@ inl file_copy (new_path : string) (old_path : string) : () =
         | Rust (Native) => fun () =>
             open rust_operators
             inl new_path = join new_path
-            !\($'"std::fs::copy(&*!old_path, &*!new_path)"')
+            !\\(old_path, $'"std::fs::copy(&*$0, &*!new_path)"')
             |> fun x => x : _ u64 runtime.io_error
             |> resultm.unwrap'
             |> ignore

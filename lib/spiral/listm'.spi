@@ -20,9 +20,20 @@ inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
     (init, list)
     ||> $'List.fold' join fun acc x => Cons (fn x, acc)
 
+// // ## fold_back'
 inl fold_back' forall t u. (fn : t -> u) (list : list' t) (init : list u) : list u =
     (list, init)
     ||> $'List.foldBack' join fun x acc => Cons (fn x, acc)
+
+// // ## filter'
+inl filter' forall t. (fn : t -> bool) (list : list' t) : list' t =
+    list |> $'"List.filter !fn"'
+
+// // ## filter
+inl filter forall t. (fn : t -> bool) (list : list t) : list t =
+    (list, Nil)
+    ||> listm.foldBack fun x acc =>
+        if fn x then x :: acc else acc
 
 // // ## unbox
 inl unbox forall t. (list : list' t) : list t =
@@ -44,6 +55,12 @@ instance append list t =
 // // ## /@
 inl (/@) a b =
     b |> append a
+
+// // ## collect
+inl collect forall t r. (fn : t -> list r) (items : list t) : list r =
+    items
+    |> listm.map fn
+    |> listm.fold (/@) []
 
 // // ## init_series
 inl init_series start end inc =

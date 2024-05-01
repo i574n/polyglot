@@ -15,7 +15,6 @@ pub mod File_system {
     use fable_library_rust::Native_::defaultOf;
     use fable_library_rust::Native_::interface_cast;
     use fable_library_rust::Native_::on_startup;
-    use fable_library_rust::Native_::unbox;
     use fable_library_rust::Native_::Arc;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
@@ -561,8 +560,18 @@ pub mod File_system {
     }
     pub fn closure5(unitVar: (), v0_1: string) -> string {
         let _v1: MutCell<Option<string>> = MutCell::new(None::<string>);
+        let v3_1: string = File_system::method4(v0_1);
+        let v5_1: &str = fable_library_rust::String_::LrcStr::as_str(&v3_1);
+        let v7_1: std::string::String = String::from(v5_1);
+        let v9_1: std::path::PathBuf = std::path::PathBuf::from(v7_1);
+        let v11_1: Option<&std::ffi::OsStr> = v9_1.file_name();
+        let v13_1: &std::ffi::OsStr = v11_1.unwrap();
+        let v15_1: std::ffi::OsString = v13_1.to_os_string();
+        let v17_1: Option<&str> = v15_1.to_str();
+        let v19_1: &str = v17_1.unwrap();
+        let v21: std::string::String = String::from(v19_1);
         {
-            let x: string = unbox::<string>(&defaultOf());
+            let x: string = fable_library_rust::String_::fromString(v21);
             _v1.set(Some(x))
         }
         getValue(_v1.get().clone())
@@ -1708,38 +1717,27 @@ pub mod File_system {
         string("")
     }
     pub fn closure58(unitVar: (), v0_1: string) -> string {
-        let _v1: MutCell<Option<bool>> = MutCell::new(None::<bool>);
+        let _v1: MutCell<Option<string>> = MutCell::new(None::<string>);
+        let v3_1: string = File_system::method31();
+        let v4_1: string = File_system::method32(v0_1);
+        let v5_1: string = File_system::method33();
+        let v7_1: &str = &regex::Regex::new(&v3_1).unwrap().replace_all(&v4_1, &*v5_1);
+        let v9_1: std::string::String = String::from(v7_1);
         {
-            let x: bool = cfg!(windows);
+            let x: string = fable_library_rust::String_::fromString(v9_1);
             _v1.set(Some(x))
         }
-        if getValue(_v1.get().clone()) == false {
-            v0_1.clone()
-        } else {
-            let _v14: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let v16_1: string = File_system::method31();
-            let v17_1: string = File_system::method32(v0_1);
-            let v18_1: string = File_system::method33();
-            let v20: &str = &regex::Regex::new(&v16_1)
-                .unwrap()
-                .replace_all(&v17_1, &*v18_1);
-            let v22: std::string::String = String::from(v20);
-            {
-                let x_1: string = fable_library_rust::String_::fromString(v22);
-                _v14.set(Some(x_1))
-            }
-            {
-                let v32: string = getValue(_v14.get().clone());
-                replace(
-                    sprintf!(
-                        "{}{}",
-                        toLower(ofChar(getCharAt(v32.clone(), 0_i32))),
-                        getSlice(v32, Some(1_i32), None::<i32>)
-                    ),
-                    string("\\"),
-                    string("/"),
-                )
-            }
+        {
+            let v19_1: string = getValue(_v1.get().clone());
+            replace(
+                sprintf!(
+                    "{}{}",
+                    toLower(ofChar(getCharAt(v19_1.clone(), 0_i32))),
+                    getSlice(v19_1, Some(1_i32), None::<i32>)
+                ),
+                string("\\"),
+                string("/"),
+            )
         }
     }
     pub fn closure59(unitVar: (), v0_1: string) -> string {

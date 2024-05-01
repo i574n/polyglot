@@ -18,20 +18,20 @@ modules:
     math
     sm'
     sm'_operators
-    crypto
     date_time
     trace-
     common-
-    wasm
-    mapm
     threading
     async
-    networking
-    benchmark
-    stream
     runtime
     file_system
     file_system_operators
+    crypto
+    wasm
+    mapm
+    networking
+    benchmark
+    stream
     util
     physics
     leptos/

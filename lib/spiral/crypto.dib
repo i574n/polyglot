@@ -105,6 +105,23 @@ inl hash_text (input : string) =
 
 #!markdown
 
+## get_file_hash
+
+#!spiral
+
+inl get_file_hash (path : string) : result string string =
+    inl path = path |> file_system.normalize_path
+    inl exit_code, result =
+        runtime.execution_options fun x => { x with
+            command = $'$"pwsh -c \\\"(Get-FileHash \\\\\\"{!path}\\\\\\" -Algorithm SHA256).Hash\\\""'
+        }
+        |> runtime.execute_with_options
+    if exit_code = 0
+    then Ok result
+    else Error result
+
+#!markdown
+
 ## main
 
 #!spiral

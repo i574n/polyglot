@@ -477,6 +477,15 @@ inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
 
 #!markdown
 
+## vec_iter
+
+#!spiral
+
+inl vec_iter forall t. (fn : t -> ()) (ar : vec t) : () =
+    !\\((ar, fn), $'"$0.iter().map(|x| { $1(x.clone()); }).collect()"')
+
+#!markdown
+
 ## vec_filter
 
 #!spiral

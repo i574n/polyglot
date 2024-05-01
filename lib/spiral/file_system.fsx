@@ -446,38 +446,58 @@ and closure5 () (v0 : string) : string =
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v3 : string = null |> unbox<string>
-    v3
+    let v3 : string = method4(v0)
+    let v4 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v5 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v3 v4
+    let v6 : string = "String::from($0)"
+    let v7 : std_string_String = Fable.Core.RustInterop.emitRustExpr v5 v6
+    let v8 : string = "std::path::PathBuf::from($0)"
+    let v9 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v7 v8
+    let v10 : string = "$0.file_name()"
+    let v11 : Ref<std_ffi_OsStr> option = Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v12 : string = "$0.unwrap()"
+    let v13 : Ref<std_ffi_OsStr> = Fable.Core.RustInterop.emitRustExpr v11 v12
+    let v14 : string = "$0.to_os_string()"
+    let v15 : std_ffi_OsString = Fable.Core.RustInterop.emitRustExpr v13 v14
+    let v16 : string = "$0.to_str()"
+    let v17 : Ref<Str> option = Fable.Core.RustInterop.emitRustExpr v15 v16
+    let v18 : string = "$0.unwrap()"
+    let v19 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v17 v18
+    let v20 : string = "String::from($0)"
+    let v21 : std_string_String = Fable.Core.RustInterop.emitRustExpr v19 v20
+    let v22 : string = "fable_library_rust::String_::fromString($0)"
+    let v23 : string = Fable.Core.RustInterop.emitRustExpr v21 v22
+    v23
 #endif
     
 #if FABLE_COMPILER_RUST && WASM
-    let v4 : string = null |> unbox<string>
-    v4
+    let v24 : string = null |> unbox<string>
+    v24
 #endif
     
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v5 : string = null |> unbox<string>
-    v5
+    let v25 : string = null |> unbox<string>
+    v25
 #endif
     
 #if FABLE_COMPILER_TYPESCRIPT
-    let v6 : string = null |> unbox<string>
-    v6
+    let v26 : string = null |> unbox<string>
+    v26
 #endif
     
 #if FABLE_COMPILER_PYTHON
-    let v7 : string = null |> unbox<string>
-    v7
+    let v27 : string = null |> unbox<string>
+    v27
 #endif
     
 #else
-    let v8 : (string -> string) = System.IO.Path.GetFileName
-    let v9 : string = v8 v0
-    v9
+    let v28 : (string -> string) = System.IO.Path.GetFileName
+    let v29 : string = v28 v0
+    v29
 #endif
     |> fun x -> _v1 <- Some x
-    let v10 : string = _v1.Value
-    v10
+    let v30 : string = _v1.Value
+    v30
 and closure6 () () : string =
     let v0 : string = ""
     v0
