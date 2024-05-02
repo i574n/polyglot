@@ -45,14 +45,15 @@ function Invoke-Block {
         }
     }
 
+    $OldLocation = Get-Location
     if ($Location -ne "") {
-        $OldLocation = Get-Location
         Set-Location $Location
     }
 
     $result = $null
 
-    while ($Retries -gt 0) {
+    $retry = 1
+    while ($retry -le $Retries) {
         try {
             $Error.Clear()
             $exitcode = 0
@@ -73,10 +74,10 @@ function Invoke-Block {
             $exitcode = -1
         }
         if ($exitcode -ne 0 -or $Error.Count -gt 0) {
-            $msg = "`n# Invoke-Block / `$Retry: $Retries / `$Location: $Location / Get-Location: $(Get-Location) / `$OnError: $OnError / `$exitcode: $exitcode / `$EnvVars: $($EnvironmentVariables | ConvertTo-Json) / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
+            $msg = "`n# Invoke-Block / `$retry: $retry/$Retries / `$Location: $Location / Get-Location: $(Get-Location) / `$OnError: $OnError / `$exitcode: $exitcode / `$EnvVars: $($EnvironmentVariables | ConvertTo-Json) / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
 
             Write-Host $msg
-            if ($OnError -eq "Stop" -and $Retries -le 1) {
+            if ($OnError -eq "Stop" -and $retry -eq $Retries) {
                 if ($host.Name -match "Interactive") {
                     [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Publish([Microsoft.DotNet.Interactive.Events.CommandFailed]::new([System.Exception]::new($msg), [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Command))
                 } else {
@@ -84,15 +85,13 @@ function Invoke-Block {
                 }
             }
             $Error.Clear()
-            $Retries--
+            $retry++
             continue
         }
         break
     }
 
-    if ($Location -ne "") {
-        Set-Location $OldLocation
-    }
+    Set-Location $OldLocation
 
     if (!($Linux -and $IsWindows)) {
         if ($EnvironmentVariables) {
