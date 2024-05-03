@@ -8346,11 +8346,7 @@ assert_eq / actual: "123   " / expected: "123   "
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="nb">range</span> <span class="n">dim</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Start</span> <span class="p">:</span> <span class="n">dim</span>
-    <span class="o">|</span> <span class="n">End</span> <span class="p">:</span> <span class="n">dim</span> <span class="o">-&gt;</span> <span class="n">dim</span>
-
-<span class="n">inl</span> <span class="nb">range</span> <span class="n">start</span> <span class="n">end</span> <span class="n">s</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">range</span> <span class="p">(</span><span class="n">start</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.range _) (end : am'</span><span class="o">.</span><span class="n">range</span> <span class="n">_</span><span class="p">)</span> <span class="n">s</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span>
         <span class="k">match</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="k">with</span>
         <span class="o">|</span> <span class="n">Start</span> <span class="n">start</span><span class="p">,</span> <span class="n">End</span> <span class="n">fn</span> <span class="o">=&gt;</span>
@@ -9738,9 +9734,7 @@ assert_eq / actual: "3" / expected: "3"
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>output:
-19:30:30 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
-19:30:30 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
-assert_eq / actual: 2 / expected: 2
+assert_eq / actual: "3" / expected: "3"
 
 
 </pre>
@@ -10564,18 +10558,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>output:
-19:31:42 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240502-1931-4202-8756-0000006fbd8c
-19:31:42 <span class="ansi-blue-intense-fg">  debug</span> #2 execute_with_options / file_name: pwsh / arguments: ["-c", "Get-Content C:\\Users\\i574n\\AppData\\Local\\Temp\\!spiral_eval\\20240502-1931-4202-8756-0000006fbd8c\\test.txt"] / options: (None, "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240502-1931-4202-8756-0000006fbd8c\test.txt"", Array(MutCell([])), None, None, None)
-19:31:43 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240502-1931-4202-8756-0000006fbd8c\test.txt' because it does not exist.</span>
-19:31:44 <span class="ansi-black-intense-fg">verbose</span> #4 execute_with_options / exit_code: 1 / std_trace.Length: 169
-assert_eq / actual: 1 / expected: 1
-assert_string_contains / actual: "not exist" / expected: "<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240502-1931-4202-8756-0000006fbd8c\test.txt' because it does not exist.</span>"
-19:31:44 <span class="ansi-blue-intense-fg">  debug</span> #5 execute_with_options / file_name: pwsh / arguments: ["-c", "Get-Content test.txt"] / options: (None, "pwsh -c "Get-Content test.txt"", Array(MutCell([])), None, None, Some("C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240502-1931-4202-8756-0000006fbd8c"))
-19:31:45 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; 0
-19:31:45 <span class="ansi-black-intense-fg">verbose</span> #7 execute_with_options / exit_code: 0 / std_trace.Length: 1
-assert_eq / actual: 0 / expected: 0
-assert_eq / actual: "0" / expected: "0"
-assert_eq / actual: true / expected: true
+assert_eq / actual: "1
+2
+3
+" / expected: "1
+2
+3
+"
 
 
 </pre>
@@ -10698,7 +10687,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>output:
-assert_eq / actual: 1 / expected: 1
+assert_eq / actual: "1
+2
+3
+" / expected: "1
+2
+3
+"
 
 
 </pre>

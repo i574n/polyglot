@@ -1286,31 +1286,22 @@ pub mod File_system {
         string("")
     }
     pub fn closure58(unitVar: (), v0_1: string) -> string {
-        let _v1: MutCell<Option<bool>> = MutCell::new(None::<bool>);
+        let _v1: MutCell<Option<string>> = MutCell::new(None::<string>);
         {
-            let x: bool = unbox::<bool>(&defaultOf());
+            let x: string = unbox::<string>(&defaultOf());
             _v1.set(Some(x))
         }
-        if getValue(_v1.get().clone()) == false {
-            v0_1
-        } else {
-            let _v14: MutCell<Option<string>> = MutCell::new(None::<string>);
-            {
-                let x_1: string = unbox::<string>(&defaultOf());
-                _v14.set(Some(x_1))
-            }
-            {
-                let v32: string = getValue(_v14.get().clone());
-                replace(
-                    sprintf!(
-                        "{}{}",
-                        toLower(ofChar(getCharAt(v32.clone(), 0_i32))),
-                        getSlice(v32, Some(1_i32), None::<i32>)
-                    ),
-                    string("\\"),
-                    string("/"),
-                )
-            }
+        {
+            let v19_1: string = getValue(_v1.get().clone());
+            replace(
+                sprintf!(
+                    "{}{}",
+                    toLower(ofChar(getCharAt(v19_1.clone(), 0_i32))),
+                    getSlice(v19_1, Some(1_i32), None::<i32>)
+                ),
+                string("\\"),
+                string("/"),
+            )
         }
     }
     pub fn closure59(unitVar: (), v0_1: string) -> string {

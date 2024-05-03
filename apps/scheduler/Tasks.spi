@@ -1,25 +1,25 @@
-//// ## Tasks (Polyglot)
+/// ## Tasks (Polyglot)
 
-//// ## types
+/// ## types
 inl types () =
     rust.types ()
     sm'.types ()
 
-//// ## task_name
+/// ## task_name
 nominal task_name = string
 
-//// ## manual_scheduling
+/// ## manual_scheduling
 union manual_scheduling =
     | WithSuggestion
     | WithoutSuggestion
 
-//// ## recurrency_offset
+/// ## recurrency_offset
 union recurrency_offset =
     | Days : i32
     | Weeks : i32
     | Months : i32
 
-//// ## day_of_week
+/// ## day_of_week
 union day_of_week =
     | Sunday
     | Monday
@@ -29,7 +29,7 @@ union day_of_week =
     | Friday
     | Saturday
 
-//// ## month
+/// ## month
 union month =
     | January
     | February
@@ -44,36 +44,36 @@ union month =
     | November
     | December
 
-//// ## day
+/// ## day
 nominal day = i32
 
-//// ## year
+/// ## year
 nominal year = i32
 
-//// ## fixed_recurrency
+/// ## fixed_recurrency
 union fixed_recurrency =
     | Weekly : day_of_week
     | Monthly : day
     | Yearly : day * month
 
-//// ## recurrency
+/// ## recurrency
 union recurrency =
     | Offset : recurrency_offset
     | Fixed : list fixed_recurrency
 
-//// ## scheduling
+/// ## scheduling
 union scheduling =
     | Manual : manual_scheduling
     | Recurrent : recurrency
 
-//// ## task
+/// ## task
 type task =
     {
         name : task_name
         scheduling : scheduling
     }
 
-//// ## date
+/// ## date
 type date =
     {
         year : year
@@ -81,18 +81,18 @@ type date =
         day : day
     }
 
-//// ## status
+/// ## status
 union status =
     | Postponed : option ()
 
-//// ## event
+/// ## event
 type event =
     {
         date : date
         status : status
     }
 
-//// ## task_template
+/// ## task_template
 type task_template =
     {
         task : task

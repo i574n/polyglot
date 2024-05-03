@@ -13,6 +13,7 @@ inl types () =
     date_time.types ()
     file_system.types ()
     stream.types ()
+    runtime.types ()
     types ()
 
 /// ## sha256
@@ -95,7 +96,7 @@ inl hash_file (path : string) : result string string =
     inl file = path |> file_system.file_open |> resultm.unwrap'
     inl reader = file |> stream.new_buf_reader
     inl hasher = new_sha256 ()
-    inl buffer = (0, 1014) |> am'.new_slice
+    inl buffer : _ i32 i32 = (0, 1014) |> am'.new_slice
 
     rust.loop fun () =>
         inl count = reader |> stream.buf_reader_read buffer |> resultm.unwrap'

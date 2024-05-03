@@ -239,6 +239,78 @@ type async_walkdir_Filtering = class end
 #endif
 type async_walkdir_WalkDir = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>]
+#endif
+type std_future_Future<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>]
+#endif
+type futures_future_TryJoinAll<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter<$0>")>]
+#endif
+type rayon_vec_IntoIter<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map<$0, _>")>]
+#endif
+type rayon_iter_Map<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")>]
+#endif
+type futures_lite_stream_StreamExt = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse<$0>")>]
+#endif
+type core_iter_Fuse<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("clap::Arg")>]
+#endif
+type clap_Arg = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("clap::Command")>]
+#endif
+type clap_Command = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")>]
+#endif
+type clap_ArgMatches = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::process::Child")>]
+#endif
+type std_process_Child = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStderr")>]
+#endif
+type std_process_ChildStderr = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")>]
+#endif
+type std_process_ChildStdout = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")>]
+#endif
+type std_process_ChildStdin = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::process::Command")>]
+#endif
+type std_process_Command = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::process::Output")>]
+#endif
+type std_process_Output = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::process::Stdio")>]
+#endif
+type std_process_Stdio = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver<$0>")>]
+#endif
+type std_sync_mpsc_Receiver<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender<$0>")>]
+#endif
+type std_sync_mpsc_Sender<'T> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("sha2::Sha256")>]
 #endif
 type sha2_Sha256 = class end

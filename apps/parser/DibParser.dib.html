@@ -7543,6 +7543,25 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsec.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsecCS.dll"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Notebooks.dib</span>
 <span class="c1">#!import ../../lib/fsharp/Testing.dib</span>
 </pre></div>
@@ -7550,7 +7569,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7584,25 +7603,6 @@ d----          2024-02-23  6:50 PM                <span class="ansi-blue-bg ansi
 d----          2024-03-12  8:15 PM                <span class="ansi-blue-bg ansi-bold">6.2.2</span>
 
 </pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsec.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsecCS.dll"</span>
-</pre></div>
 </div>
 </div>
 </div>
@@ -8271,7 +8271,7 @@ a"
     <span class="o">|</span> <span class="n">output</span><span class="p">,</span> <span class="p">{</span> <span class="n">magic</span> <span class="o">=</span> <span class="s2">"markdown"</span><span class="p">;</span> <span class="n">content</span> <span class="o">=</span> <span class="n">content</span> <span class="p">}</span> <span class="o">-&gt;</span>
         <span class="n">let</span> <span class="n">markdownComment</span> <span class="o">=</span>
             <span class="k">match</span> <span class="n">output</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="n">Spi</span> <span class="o">|</span> <span class="n">Spir</span> <span class="o">-&gt;</span> <span class="s2">"// // "</span>
+            <span class="o">|</span> <span class="n">Spi</span> <span class="o">|</span> <span class="n">Spir</span> <span class="o">-&gt;</span> <span class="s2">"/// "</span>
             <span class="o">|</span> <span class="n">Fs</span> <span class="o">-&gt;</span> <span class="s2">"/// "</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="s2">""</span>
         <span class="n">content</span>
@@ -8279,7 +8279,7 @@ a"
         <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim_end</span> <span class="p">[</span><span class="o">||</span><span class="p">])</span>
         <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">filter</span> <span class="p">(</span><span class="n">SpiralSm</span><span class="o">.</span><span class="n">ends_with</span> <span class="s2">" (test)"</span> <span class="o">&gt;&gt;</span> <span class="ow">not</span><span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">function</span>
-            <span class="o">|</span> <span class="s2">""</span> <span class="o">-&gt;</span> <span class="n">markdownComment</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim</span>
+            <span class="o">|</span> <span class="s2">""</span> <span class="o">-&gt;</span> <span class="n">markdownComment</span>
             <span class="o">|</span> <span class="n">line</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">RegularExpressions</span><span class="o">.</span><span class="n">Regex</span><span class="o">.</span><span class="n">Replace</span> <span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s2">"^</span><span class="se">\\</span><span class="s2">s*"</span><span class="p">,</span> <span class="err">$</span><span class="s2">"$&amp;</span><span class="si">{markdownComment}</span><span class="s2">"</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
@@ -8294,7 +8294,7 @@ a"
             <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
     <span class="o">|</span> <span class="p">(</span><span class="n">Spi</span> <span class="o">|</span> <span class="n">Spir</span><span class="p">),</span> <span class="p">{</span> <span class="n">magic</span> <span class="o">=</span> <span class="s2">"spiral"</span><span class="p">;</span> <span class="n">content</span> <span class="o">=</span> <span class="n">content</span> <span class="p">}</span> <span class="o">-&gt;</span>
         <span class="n">let</span> <span class="n">trimmedContent</span> <span class="o">=</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim</span>
-        <span class="k">if</span> <span class="n">trimmedContent</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"// // test"</span> <span class="o">||</span> <span class="n">trimmedContent</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"// // ignore"</span>
+        <span class="k">if</span> <span class="n">trimmedContent</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"//// test"</span> <span class="o">||</span> <span class="n">trimmedContent</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"//// ignore"</span>
         <span class="n">then</span> <span class="s2">""</span>
         <span class="k">else</span> <span class="n">content</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="s2">""</span>
@@ -8339,9 +8339,9 @@ a"
     <span class="o">|</span> <span class="n">Success</span> <span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">formatBlock</span> <span class="n">Fs</span> <span class="n">block</span>
     <span class="o">|</span> <span class="n">Failure</span> <span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="n">msg</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"/// a</span>
-<span class="o">///</span>
+<span class="o">///</span> 
     <span class="o">///</span> <span class="n">b</span>
-<span class="o">///</span>
+<span class="o">///</span> 
 <span class="o">///</span> <span class="n">c</span><span class="s2">"</span>
 </pre></div>
 </div>
@@ -8356,9 +8356,9 @@ a"
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>"/// a
-///
+/// 
     /// b
-///
+/// 
 /// c"
 
 </pre>
@@ -8459,7 +8459,7 @@ a"
     <span class="o">|</span> <span class="n">Success</span> <span class="p">(</span><span class="n">blocks</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">formatBlocks</span> <span class="n">Fs</span> <span class="n">blocks</span>
     <span class="o">|</span> <span class="n">Failure</span> <span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="n">msg</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"/// a</span>
-<span class="o">///</span>
+<span class="o">///</span> 
 <span class="o">///</span> <span class="n">b</span>
 
 <span class="o">///</span> <span class="n">c</span>
@@ -8481,7 +8481,7 @@ a"
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>"/// a
-///
+/// 
 /// b
 
 /// c
@@ -8661,7 +8661,7 @@ let a = 3
 
 <span class="s2">\#!spiral</span>
 
-<span class="s2">// // test</span>
+<span class="s2">//// test</span>
 
 <span class="s2">inl x = 0i32</span>
 
@@ -8924,12 +8924,12 @@ a
 <span class="o">|&gt;</span> <span class="n">Result</span><span class="o">.</span><span class="n">toOption</span>
 <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">get</span>
 <span class="o">|&gt;</span> <span class="p">(</span><span class="n">formatBlocks</span> <span class="n">Spi</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"// // # TestModule (TestNamespace)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"/// # TestModule (TestNamespace)</span>
 
-<span class="o">//</span> <span class="o">//</span> <span class="c1">## ParserLibrary</span>
+<span class="o">///</span> <span class="c1">## ParserLibrary</span>
 <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="n">i32</span>
 
-<span class="o">//</span> <span class="o">//</span> <span class="c1">### TextInput</span>
+<span class="o">///</span> <span class="c1">### TextInput</span>
 <span class="s2">"</span>
 </pre></div>
 </div>
@@ -8943,12 +8943,12 @@ a
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>"// // # TestModule (TestNamespace)
+<pre>"/// # TestModule (TestNamespace)
 
-// // ## ParserLibrary
+/// ## ParserLibrary
 inl x = 0i32
 
-// // ### TextInput
+/// ### TextInput
 "
 
 </pre>
@@ -9202,8 +9202,8 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:08   debug #1 writeDibCode / output: Fs / path: DibParser.dib
-00:00:08   debug #2 parseDibCode / output: Fs / file: DibParser.dib
+<pre>00:00:05   debug #1 writeDibCode / output: Fs / path: DibParser.dib
+00:00:05   debug #2 parseDibCode / output: Fs / file: DibParser.dib
 </pre>
 </div>
 </div>

@@ -1286,19 +1286,11 @@ export function method33(): string {
 
 export function closure58(unitVar: void, v0_1: string): string {
     let _arg: string;
-    let _v1: Option<boolean> = undefined;
-    const x: boolean = defaultOf();
+    let _v1: Option<string> = undefined;
+    const x: string = defaultOf();
     _v1 = x;
-    if (value_3(_v1) === false) {
-        return v0_1;
-    }
-    else {
-        let _v14: Option<string> = undefined;
-        const x_1: string = defaultOf();
-        _v14 = x_1;
-        const v32: string = value_3(_v14);
-        return replace(`${(_arg = v32[0], _arg.toLocaleLowerCase())}${v32.slice(1, v32.length)}`, "\\", "/");
-    }
+    const v19_1: string = value_3(_v1);
+    return replace(`${(_arg = v19_1[0], _arg.toLocaleLowerCase())}${v19_1.slice(1, v19_1.length)}`, "\\", "/");
 }
 
 export function closure59(unitVar: void, v0_1: string): string {

@@ -7614,6 +7614,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::fs::File</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_fs_File = class end"</span>
     <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::fs::FileType</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_fs_FileType = class end"</span>
     <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::path::Display</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_path_Display = class end"</span>
     <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::path::Path</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_path_Path = class end"</span>
@@ -7652,7 +7653,7 @@ a.anchor-link {
     <span class="n">sm</span><span class="s1">'.types ()</span>
     <span class="n">rust</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
     <span class="n">date_time</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
-    <span class="n">runtime</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">stream</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
     <span class="n">types</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -8901,7 +8902,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">stream_filter_map</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span>
-    <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' dir_entry runtime.io_error -&gt; optionm'</span><span class="o">.</span><span class="n">option</span><span class="s1">' t)</span>
+    <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' dir_entry stream.io_error -&gt; optionm'</span><span class="o">.</span><span class="n">option</span><span class="s1">' t)</span>
     <span class="p">(</span><span class="n">stream</span> <span class="p">:</span> <span class="n">walk_dir</span><span class="p">)</span>
     <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec t =</span>
 
@@ -9076,7 +9077,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">dir_entry_file_type</span> <span class="p">(</span><span class="n">dir_entry</span> <span class="p">:</span> <span class="n">dir_entry</span><span class="p">)</span> <span class="p">:</span> <span class="k">async</span><span class="o">.</span><span class="n">future_pin_send</span> <span class="p">(</span><span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' file_type runtime.io_error) =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">dir_entry_file_type</span> <span class="p">(</span><span class="n">dir_entry</span> <span class="p">:</span> <span class="n">dir_entry</span><span class="p">)</span> <span class="p">:</span> <span class="k">async</span><span class="o">.</span><span class="n">future_pin_send</span> <span class="p">(</span><span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' file_type stream.io_error) =</span>
     <span class="n">inl</span> <span class="n">dir_entry</span> <span class="o">=</span> <span class="n">join</span> <span class="n">dir_entry</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"Box::pin(async_walkdir::DirEntry::file_type(&amp;!dir_entry))"'</span><span class="o">)</span>
 </pre></div>
@@ -9146,11 +9147,90 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="dir_entry_path">dir_entry_path<a class="anchor-link" href="#dir_entry_path">¶</a></h2>
+<h2 id="file">file<a class="anchor-link" href="#file">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=76">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">file</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_fs_File'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=77">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="file_open">file_open<a class="anchor-link" href="#file_open">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=78">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">file_open</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' file stream.io_error =</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::fs::File::open(&amp;*!path)"'</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="dir_entry_path">dir_entry_path<a class="anchor-link" href="#dir_entry_path">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=80">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9180,7 +9260,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=77">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=81">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9190,7 +9270,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=78">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=82">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9229,7 +9309,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=83">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9239,7 +9319,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=80">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=84">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9278,7 +9358,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=81">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9288,7 +9368,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=82">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=86">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9302,7 +9382,7 @@ a.anchor-link {
             <span class="err">$</span><span class="s1">'System.IO.Directory.GetCurrentDirectory'</span> <span class="p">()</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="nb">open</span> <span class="n">rust_operators</span>
-            <span class="n">inl</span> <span class="n">current_dir</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::env::current_dir()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>resultm.result<span class="err">'</span><span class="w"> </span>path_buf<span class="w"> </span>runtime.io_error
+            <span class="n">inl</span> <span class="n">current_dir</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::env::current_dir()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>resultm.result<span class="err">'</span><span class="w"> </span>path_buf<span class="w"> </span>stream.io_error
             <span class="n">current_dir</span>
             <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
             <span class="o">|&gt;</span> <span class="n">path_buf_display</span>
@@ -9328,7 +9408,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=83">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=87">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9450,7 +9530,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=84">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=88">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9460,7 +9540,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=85">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=89">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9496,7 +9576,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=86">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9506,7 +9586,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=87">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=91">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9537,7 +9617,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=88">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=92">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9547,7 +9627,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=89">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=93">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9581,7 +9661,7 @@ method0()
                 <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">of_array</span><span class="s1">'</span>
                 <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.concat (directory_separator_char () |&gt; sm'</span><span class="o">.</span><span class="n">obj_to_string</span><span class="p">)</span>
             <span class="k">else</span>
-                <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>path,<span class="w"> </span><span class="s1">$'"std::fs::canonicalize(&amp;*$0)"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>resultm.result<span class="err">'</span><span class="w"> </span>path_buf<span class="w"> </span>runtime.io_error
+                <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>path,<span class="w"> </span><span class="s1">$'"std::fs::canonicalize(&amp;*$0)"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>resultm.result<span class="err">'</span><span class="w"> </span>path_buf<span class="w"> </span>stream.io_error
                 <span class="n">path</span>
                 <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
                 <span class="o">|&gt;</span> <span class="n">path_buf_display</span>
@@ -9607,7 +9687,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=90">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=94">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9641,7 +9721,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=91">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=95">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9673,7 +9753,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=92">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=96">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9712,7 +9792,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=93">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=97">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9747,7 +9827,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=98">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9757,7 +9837,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=95">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=99">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9793,7 +9873,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=96">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=100">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9819,13 +9899,13 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240502-1937-2766-6669-600400eeb806" / expected: '\\'
+<pre>assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0148-2748-4848-400400b0db8d" / expected: '\\'
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=97">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=101">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9852,7 +9932,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>output:
-assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240502-1937-4450-6842-0000004a3657" / expected: '\\'
+assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0148-3893-3436-0000002337e8" / expected: '\\'
 
 
 </pre>
@@ -10023,73 +10103,13 @@ type chrono_Utc = class end
 #endif
 type std_time_Duration = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice&lt;'T&gt; = class end
+type async_std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0; $1]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice'&lt;'T, 'U&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Vec&lt;$0&gt;")&gt;]
-#endif
-type Vec&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::future::Future&lt;Output = $0&gt;")&gt;]
-#endif
-type std_future_Future&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll&lt;$0&gt;")&gt;]
-#endif
-type futures_future_TryJoinAll&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter&lt;$0&gt;")&gt;]
-#endif
-type rayon_vec_IntoIter&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map&lt;$0, _&gt;")&gt;]
-#endif
-type rayon_iter_Map&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")&gt;]
-#endif
-type futures_lite_stream_StreamExt = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse&lt;$0&gt;")&gt;]
-#endif
-type core_iter_Fuse&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle&lt;$0&gt;")&gt;]
-#endif
-type std_thread_JoinHandle&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Arc&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Mutex&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard&lt;$0&gt;")&gt;]
-#endif
-type std_sync_MutexGuard&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError&lt;$0&gt;")&gt;]
-#endif
-type std_sync_PoisonError&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Arg")&gt;]
-#endif
-type clap_Arg = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Command")&gt;]
-#endif
-type clap_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")&gt;]
-#endif
-type clap_ArgMatches = class end
+type std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
 #endif
@@ -10099,49 +10119,9 @@ type std_io_Error = class end
 #endif
 type std_io_Lines&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::File")&gt;]
 #endif
-type async_std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
-#endif
-type std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Child")&gt;]
-#endif
-type std_process_Child = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStderr")&gt;]
-#endif
-type std_process_ChildStderr = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")&gt;]
-#endif
-type std_process_ChildStdout = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")&gt;]
-#endif
-type std_process_ChildStdin = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Command")&gt;]
-#endif
-type std_process_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Output")&gt;]
-#endif
-type std_process_Output = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Stdio")&gt;]
-#endif
-type std_process_Stdio = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Receiver&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Sender&lt;'T&gt; = class end
+type std_fs_File = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
 #endif
@@ -11325,7 +11305,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=98">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=102">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11335,7 +11315,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=99">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=103">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11364,7 +11344,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=100">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=104">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11454,7 +11434,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=101">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=105">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11464,7 +11444,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=102">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=106">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11472,7 +11452,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">create_dir_all</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' () runtime.io_error =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">create_dir_all</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' () stream.io_error =</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">(</span>path,<span class="w"> </span><span class="s1">$'"std::fs::create_dir_all(&amp;*$0)"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -11494,7 +11474,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=103">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=107">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11504,7 +11484,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=104">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=108">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11537,7 +11517,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=105">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=109">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11547,7 +11527,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=106">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=110">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11580,7 +11560,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=107">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=111">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11590,7 +11570,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=108">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=112">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11630,7 +11610,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=109">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=113">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11640,7 +11620,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=110">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=114">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11691,7 +11671,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=111">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=115">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11701,7 +11681,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=112">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=116">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11734,7 +11714,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=113">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=117">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11744,7 +11724,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=114">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=118">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11777,7 +11757,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=115">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=119">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11787,7 +11767,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=116">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=120">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11803,7 +11783,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
             <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="n">inl</span> <span class="n">new_path</span> <span class="o">=</span> <span class="n">join</span> <span class="n">new_path</span>
             <span class="o">!</span><span class="se">\\</span><span class="o">(</span>old_path,<span class="w"> </span><span class="s1">$'"std::fs::copy(&amp;*$0, &amp;*!new_path)"'</span><span class="o">)</span>
-            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">u64</span> <span class="n">runtime</span><span class="o">.</span><span class="n">io_error</span>
+            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">u64</span> <span class="n">stream</span><span class="o">.</span><span class="n">io_error</span>
             <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
             <span class="o">|&gt;</span> <span class="n">ignore</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
@@ -11827,7 +11807,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=117">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=121">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11837,7 +11817,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=118">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=122">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11877,7 +11857,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=119">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=123">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11887,7 +11867,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=120">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=124">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11927,7 +11907,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=121">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=125">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11937,7 +11917,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=122">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=126">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11970,7 +11950,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=123">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=127">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11980,7 +11960,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=124">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=128">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12020,7 +12000,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=125">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=129">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12030,7 +12010,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=126">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=130">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12067,7 +12047,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=127">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=131">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12077,7 +12057,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=128">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=132">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12114,7 +12094,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=129">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=133">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12124,7 +12104,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=130">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=134">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12163,7 +12143,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=131">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=135">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12173,7 +12153,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=132">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=136">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12206,7 +12186,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=133">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=137">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12216,7 +12196,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=134">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=138">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12250,7 +12230,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=135">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=139">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12260,7 +12240,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=136">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=140">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12308,7 +12288,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=137">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=141">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12318,7 +12298,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=138">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=142">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12380,7 +12360,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=139">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=143">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12390,7 +12370,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=140">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=144">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12420,7 +12400,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=141">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=145">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12455,7 +12435,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=142">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=146">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12488,7 +12468,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>19:38:17 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240502-1938-1721-5135-000000705047
+<pre>01:49:07 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0149-0786-2866-00000002a6db
 assert_eq / actual: true / expected: true
 assert_eq / actual: false / expected: false
 </pre>
@@ -12496,7 +12476,7 @@ assert_eq / actual: false / expected: false
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=143">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=147">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12727,73 +12707,13 @@ type chrono_Utc = class end
 #endif
 type std_time_Duration = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice&lt;'T&gt; = class end
+type async_std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0; $1]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice'&lt;'T, 'U&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Vec&lt;$0&gt;")&gt;]
-#endif
-type Vec&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::future::Future&lt;Output = $0&gt;")&gt;]
-#endif
-type std_future_Future&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll&lt;$0&gt;")&gt;]
-#endif
-type futures_future_TryJoinAll&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter&lt;$0&gt;")&gt;]
-#endif
-type rayon_vec_IntoIter&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map&lt;$0, _&gt;")&gt;]
-#endif
-type rayon_iter_Map&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")&gt;]
-#endif
-type futures_lite_stream_StreamExt = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse&lt;$0&gt;")&gt;]
-#endif
-type core_iter_Fuse&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle&lt;$0&gt;")&gt;]
-#endif
-type std_thread_JoinHandle&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Arc&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Mutex&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard&lt;$0&gt;")&gt;]
-#endif
-type std_sync_MutexGuard&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError&lt;$0&gt;")&gt;]
-#endif
-type std_sync_PoisonError&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Arg")&gt;]
-#endif
-type clap_Arg = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Command")&gt;]
-#endif
-type clap_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")&gt;]
-#endif
-type clap_ArgMatches = class end
+type std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
 #endif
@@ -12803,49 +12723,9 @@ type std_io_Error = class end
 #endif
 type std_io_Lines&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::File")&gt;]
 #endif
-type async_std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
-#endif
-type std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Child")&gt;]
-#endif
-type std_process_Child = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStderr")&gt;]
-#endif
-type std_process_ChildStderr = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")&gt;]
-#endif
-type std_process_ChildStdout = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")&gt;]
-#endif
-type std_process_ChildStdin = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Command")&gt;]
-#endif
-type std_process_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Output")&gt;]
-#endif
-type std_process_Output = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Stdio")&gt;]
-#endif
-type std_process_Stdio = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Receiver&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Sender&lt;'T&gt; = class end
+type std_fs_File = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
 #endif
@@ -16227,7 +16107,7 @@ method0()
 00:00:02   debug #9 _3
 00:00:02   debug #10 5
 00:00:02   debug #11 6
-assert_between / actual: 121L / expected: struct (50L, 150L)
+assert_between / actual: 125L / expected: struct (50L, 150L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -16235,7 +16115,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=144">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=148">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -16245,7 +16125,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=145">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=149">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -16308,7 +16188,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=146">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=150">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -16546,73 +16426,13 @@ type chrono_Utc = class end
 #endif
 type std_time_Duration = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice&lt;'T&gt; = class end
+type async_std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0; $1]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice'&lt;'T, 'U&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Vec&lt;$0&gt;")&gt;]
-#endif
-type Vec&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::future::Future&lt;Output = $0&gt;")&gt;]
-#endif
-type std_future_Future&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll&lt;$0&gt;")&gt;]
-#endif
-type futures_future_TryJoinAll&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter&lt;$0&gt;")&gt;]
-#endif
-type rayon_vec_IntoIter&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map&lt;$0, _&gt;")&gt;]
-#endif
-type rayon_iter_Map&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")&gt;]
-#endif
-type futures_lite_stream_StreamExt = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse&lt;$0&gt;")&gt;]
-#endif
-type core_iter_Fuse&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle&lt;$0&gt;")&gt;]
-#endif
-type std_thread_JoinHandle&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Arc&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Mutex&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard&lt;$0&gt;")&gt;]
-#endif
-type std_sync_MutexGuard&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError&lt;$0&gt;")&gt;]
-#endif
-type std_sync_PoisonError&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Arg")&gt;]
-#endif
-type clap_Arg = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Command")&gt;]
-#endif
-type clap_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")&gt;]
-#endif
-type clap_ArgMatches = class end
+type std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
 #endif
@@ -16622,49 +16442,9 @@ type std_io_Error = class end
 #endif
 type std_io_Lines&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::File")&gt;]
 #endif
-type async_std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
-#endif
-type std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Child")&gt;]
-#endif
-type std_process_Child = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStderr")&gt;]
-#endif
-type std_process_ChildStderr = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")&gt;]
-#endif
-type std_process_ChildStdout = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")&gt;]
-#endif
-type std_process_ChildStdin = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Command")&gt;]
-#endif
-type std_process_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Output")&gt;]
-#endif
-type std_process_Output = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Stdio")&gt;]
-#endif
-type std_process_Stdio = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Receiver&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Sender&lt;'T&gt; = class end
+type std_fs_File = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
 #endif
@@ -20308,11 +20088,11 @@ method0()
 
 00:00:00   debug #1 1
 00:00:00   debug #2 2
-00:00:00   debug #3 3
-00:00:00   debug #4 _1
+00:00:00   debug #3 _1
+00:00:00   debug #4 3
 00:00:00   debug #5 _2
 00:00:00   debug #6 4
-00:00:01   debug #7 file_system.wait_for_file_access / path: test.txt / retry: 100 / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240502-1938-2541-4100-40040092e346\test.txt' because it is being used by another process.
+00:00:01   debug #7 file_system.wait_for_file_access / path: test.txt / retry: 100 / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0149-1598-9801-900400fccde0\test.txt' because it is being used by another process.
 00:00:02   debug #8 _3
 00:00:02   debug #9 _4
 00:00:02   debug #10 _5
@@ -20320,7 +20100,7 @@ method0()
 00:00:02   debug #12 5
 00:00:02   debug #13 6
 00:00:02   debug #14 7
-assert_between / actual: 124L / expected: struct (50L, 150L)
+assert_between / actual: 128L / expected: struct (50L, 150L)
 assert_eq / actual: "1" / expected: "1"
 assert_eq / actual: true / expected: true
 </pre>
@@ -20329,7 +20109,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=147">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=151">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -20339,7 +20119,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=148">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=152">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -20395,7 +20175,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=149">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=153">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -20405,7 +20185,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=150">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=154">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -20453,7 +20233,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=151">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=155">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -20681,73 +20461,13 @@ type chrono_Utc = class end
 #endif
 type std_time_Duration = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice&lt;'T&gt; = class end
+type async_std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0; $1]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice'&lt;'T, 'U&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Vec&lt;$0&gt;")&gt;]
-#endif
-type Vec&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::future::Future&lt;Output = $0&gt;")&gt;]
-#endif
-type std_future_Future&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll&lt;$0&gt;")&gt;]
-#endif
-type futures_future_TryJoinAll&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter&lt;$0&gt;")&gt;]
-#endif
-type rayon_vec_IntoIter&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map&lt;$0, _&gt;")&gt;]
-#endif
-type rayon_iter_Map&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")&gt;]
-#endif
-type futures_lite_stream_StreamExt = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse&lt;$0&gt;")&gt;]
-#endif
-type core_iter_Fuse&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle&lt;$0&gt;")&gt;]
-#endif
-type std_thread_JoinHandle&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Arc&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Mutex&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard&lt;$0&gt;")&gt;]
-#endif
-type std_sync_MutexGuard&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError&lt;$0&gt;")&gt;]
-#endif
-type std_sync_PoisonError&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Arg")&gt;]
-#endif
-type clap_Arg = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Command")&gt;]
-#endif
-type clap_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")&gt;]
-#endif
-type clap_ArgMatches = class end
+type std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
 #endif
@@ -20757,49 +20477,9 @@ type std_io_Error = class end
 #endif
 type std_io_Lines&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::File")&gt;]
 #endif
-type async_std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
-#endif
-type std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Child")&gt;]
-#endif
-type std_process_Child = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStderr")&gt;]
-#endif
-type std_process_ChildStderr = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")&gt;]
-#endif
-type std_process_ChildStdout = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")&gt;]
-#endif
-type std_process_ChildStdin = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Command")&gt;]
-#endif
-type std_process_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Output")&gt;]
-#endif
-type std_process_Output = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Stdio")&gt;]
-#endif
-type std_process_Stdio = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Receiver&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Sender&lt;'T&gt; = class end
+type std_fs_File = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
 #endif
@@ -24313,12 +23993,12 @@ method0()
 00:00:00   debug #4 _1
 00:00:00   debug #5 _2
 00:00:00   debug #6 4
-00:00:00 warning #7 delete_file_async / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240502-1938-3268-6842-600400bf7ca7\test.txt' because it is being used by another process.
-00:00:01 warning #8 delete_file_async / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240502-1938-3268-6842-600400bf7ca7\test.txt' because it is being used by another process.
+00:00:00 warning #7 delete_file_async / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0149-2330-3066-30040026da50\test.txt' because it is being used by another process.
+00:00:01 warning #8 delete_file_async / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0149-2330-3066-30040026da50\test.txt' because it is being used by another process.
 00:00:02   debug #9 _3
 00:00:02   debug #10 5
 00:00:02   debug #11 6
-assert_between / actual: 125L / expected: struct (50L, 150L)
+assert_between / actual: 128L / expected: struct (50L, 150L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -24326,7 +24006,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=152">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=156">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -24336,7 +24016,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=153">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=157">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -24383,7 +24063,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=154">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=158">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -24623,73 +24303,13 @@ type chrono_Utc = class end
 #endif
 type std_time_Duration = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice&lt;'T&gt; = class end
+type async_std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0; $1]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice'&lt;'T, 'U&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Vec&lt;$0&gt;")&gt;]
-#endif
-type Vec&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::future::Future&lt;Output = $0&gt;")&gt;]
-#endif
-type std_future_Future&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll&lt;$0&gt;")&gt;]
-#endif
-type futures_future_TryJoinAll&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter&lt;$0&gt;")&gt;]
-#endif
-type rayon_vec_IntoIter&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map&lt;$0, _&gt;")&gt;]
-#endif
-type rayon_iter_Map&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")&gt;]
-#endif
-type futures_lite_stream_StreamExt = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse&lt;$0&gt;")&gt;]
-#endif
-type core_iter_Fuse&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle&lt;$0&gt;")&gt;]
-#endif
-type std_thread_JoinHandle&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Arc&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Mutex&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard&lt;$0&gt;")&gt;]
-#endif
-type std_sync_MutexGuard&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError&lt;$0&gt;")&gt;]
-#endif
-type std_sync_PoisonError&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Arg")&gt;]
-#endif
-type clap_Arg = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Command")&gt;]
-#endif
-type clap_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")&gt;]
-#endif
-type clap_ArgMatches = class end
+type std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
 #endif
@@ -24699,49 +24319,9 @@ type std_io_Error = class end
 #endif
 type std_io_Lines&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::File")&gt;]
 #endif
-type async_std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
-#endif
-type std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Child")&gt;]
-#endif
-type std_process_Child = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStderr")&gt;]
-#endif
-type std_process_ChildStderr = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")&gt;]
-#endif
-type std_process_ChildStdout = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")&gt;]
-#endif
-type std_process_ChildStdin = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Command")&gt;]
-#endif
-type std_process_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Output")&gt;]
-#endif
-type std_process_Output = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Stdio")&gt;]
-#endif
-type std_process_Stdio = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Receiver&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Sender&lt;'T&gt; = class end
+type std_fs_File = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
 #endif
@@ -28705,7 +28285,7 @@ method0()
 00:00:02   debug #11 6
 00:00:02   debug #12 7
 00:00:02   debug #13 8
-assert_between / actual: 122L / expected: struct (50L, 150L)
+assert_between / actual: 126L / expected: struct (50L, 150L)
 assert_between / actual: 0L / expected: struct (0L, 0L)
 assert_eq / actual: "0" / expected: "0"
 assert_eq / actual: true / expected: true
@@ -28715,7 +28295,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=155">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=159">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -28725,7 +28305,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=156">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=160">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -28762,7 +28342,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=157">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=161">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -28799,7 +28379,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=158">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=162">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -28851,7 +28431,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=159">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=163">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -28861,7 +28441,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=160">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=164">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -28893,7 +28473,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=161">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=165">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -28903,7 +28483,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=162">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=166">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -28934,7 +28514,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=163">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=167">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -28944,7 +28524,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=164">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=168">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -28974,7 +28554,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=165">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=169">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -29087,7 +28667,7 @@ assert_eq / actual: "file:///c:/test" / expected: "file:///c:/test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=166">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=170">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -29287,73 +28867,13 @@ type chrono_Utc = class end
 #endif
 type std_time_Duration = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice&lt;'T&gt; = class end
+type async_std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0; $1]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice'&lt;'T, 'U&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Vec&lt;$0&gt;")&gt;]
-#endif
-type Vec&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::future::Future&lt;Output = $0&gt;")&gt;]
-#endif
-type std_future_Future&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll&lt;$0&gt;")&gt;]
-#endif
-type futures_future_TryJoinAll&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter&lt;$0&gt;")&gt;]
-#endif
-type rayon_vec_IntoIter&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map&lt;$0, _&gt;")&gt;]
-#endif
-type rayon_iter_Map&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")&gt;]
-#endif
-type futures_lite_stream_StreamExt = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse&lt;$0&gt;")&gt;]
-#endif
-type core_iter_Fuse&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle&lt;$0&gt;")&gt;]
-#endif
-type std_thread_JoinHandle&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Arc&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Mutex&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard&lt;$0&gt;")&gt;]
-#endif
-type std_sync_MutexGuard&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError&lt;$0&gt;")&gt;]
-#endif
-type std_sync_PoisonError&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Arg")&gt;]
-#endif
-type clap_Arg = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Command")&gt;]
-#endif
-type clap_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")&gt;]
-#endif
-type clap_ArgMatches = class end
+type std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
 #endif
@@ -29363,49 +28883,9 @@ type std_io_Error = class end
 #endif
 type std_io_Lines&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::File")&gt;]
 #endif
-type async_std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
-#endif
-type std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Child")&gt;]
-#endif
-type std_process_Child = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStderr")&gt;]
-#endif
-type std_process_ChildStderr = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")&gt;]
-#endif
-type std_process_ChildStdout = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")&gt;]
-#endif
-type std_process_ChildStdin = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Command")&gt;]
-#endif
-type std_process_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Output")&gt;]
-#endif
-type std_process_Output = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Stdio")&gt;]
-#endif
-type std_process_Stdio = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Receiver&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Sender&lt;'T&gt; = class end
+type std_fs_File = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
 #endif
@@ -29522,7 +29002,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=167">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=171">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -29532,7 +29012,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=168">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=172">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -29576,7 +29056,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=169">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=173">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -29613,14 +29093,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 35L / expected: 35L
+<pre>assert_eq / actual: 37L / expected: 37L
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=170">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=174">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -29630,7 +29110,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=171">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=175">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -29661,7 +29141,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=172">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=176">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -29671,7 +29151,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=173">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=177">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -29875,73 +29355,13 @@ type chrono_Utc = class end
 #endif
 type std_time_Duration = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice&lt;'T&gt; = class end
+type async_std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0; $1]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice'&lt;'T, 'U&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Vec&lt;$0&gt;")&gt;]
-#endif
-type Vec&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::future::Future&lt;Output = $0&gt;")&gt;]
-#endif
-type std_future_Future&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll&lt;$0&gt;")&gt;]
-#endif
-type futures_future_TryJoinAll&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter&lt;$0&gt;")&gt;]
-#endif
-type rayon_vec_IntoIter&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map&lt;$0, _&gt;")&gt;]
-#endif
-type rayon_iter_Map&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")&gt;]
-#endif
-type futures_lite_stream_StreamExt = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse&lt;$0&gt;")&gt;]
-#endif
-type core_iter_Fuse&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle&lt;$0&gt;")&gt;]
-#endif
-type std_thread_JoinHandle&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Arc&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Mutex&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard&lt;$0&gt;")&gt;]
-#endif
-type std_sync_MutexGuard&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError&lt;$0&gt;")&gt;]
-#endif
-type std_sync_PoisonError&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Arg")&gt;]
-#endif
-type clap_Arg = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Command")&gt;]
-#endif
-type clap_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")&gt;]
-#endif
-type clap_ArgMatches = class end
+type std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
 #endif
@@ -29951,49 +29371,9 @@ type std_io_Error = class end
 #endif
 type std_io_Lines&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::File")&gt;]
 #endif
-type async_std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
-#endif
-type std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Child")&gt;]
-#endif
-type std_process_Child = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStderr")&gt;]
-#endif
-type std_process_ChildStderr = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")&gt;]
-#endif
-type std_process_ChildStdout = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")&gt;]
-#endif
-type std_process_ChildStdin = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Command")&gt;]
-#endif
-type std_process_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Output")&gt;]
-#endif
-type std_process_Output = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Stdio")&gt;]
-#endif
-type std_process_Stdio = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Receiver&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Sender&lt;'T&gt; = class end
+type std_fs_File = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
 #endif

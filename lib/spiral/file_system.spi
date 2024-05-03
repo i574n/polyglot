@@ -17,7 +17,6 @@ inl types () =
     sm'.types ()
     rust.types ()
     date_time.types ()
-    // runtime.types ()
     stream.types ()
     types ()
 

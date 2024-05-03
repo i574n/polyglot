@@ -7543,9 +7543,38 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">rust_operators</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="nb">open</span> <span class="n">testing</span>
+<span class="nb">open</span> <span class="n">file_system_operators</span>
 </pre></div>
 </div>
 </div>
@@ -7566,7 +7595,84 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="types">types<a class="anchor-link" href="#types">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">sha2::Sha256</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type sha2_Sha256 = class end"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">sm</span><span class="s1">'.types ()</span>
+    <span class="n">am</span><span class="s1">'.types ()</span>
+    <span class="n">threading</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">rust</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">date_time</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">file_system</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">stream</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">runtime</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">types</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7576,7 +7682,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7608,7 +7714,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7618,7 +7724,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7648,7 +7754,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7658,7 +7764,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7691,7 +7797,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7701,7 +7807,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7732,7 +7838,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7742,7 +7848,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7773,7 +7879,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7783,7 +7889,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7826,7 +7932,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7959,7 +8065,7 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8093,7 +8199,7 @@ assert_eq / actual: "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab61
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8103,7 +8209,7 @@ assert_eq / actual: "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab61
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8140,8 +8246,317 @@ assert_eq / actual: "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab61
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+<span class="o">///!</span><span class="w"> </span>rust
+
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">temp_folder</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">file_system</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
+
+<span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="n">join</span> <span class="s2">"test.txt"</span>
+<span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">temp_folder</span> <span class="o">&lt;/&gt;</span> <span class="n">file_name</span>
+<span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">write_all_text</span> <span class="n">path</span>
+<span class="n">path</span>
+<span class="o">|&gt;</span> <span class="n">get_file_hash</span>
+<span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">get</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"</span>
+<span class="n">disposable</span> <span class="o">|&gt;</span> <span class="n">use</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>01:35:29 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0135-2967-3989-00000032cb15
+01:35:29 <span class="ansi-blue-intense-fg">  debug</span> #2 execute_with_options / file_name: pwsh / arguments: ["-c", "(Get-FileHash \"c:/Users/i574n/AppData/Local/Temp/!spiral_eval/20240503-0135-2967-3989-00000032cb15/test.txt\" -Algorithm SHA256).Hash"] / options: (None, "pwsh -c "(Get-FileHash \"c:/Users/i574n/AppData/Local/Temp/!spiral_eval/20240503-0135-2967-3989-00000032cb15/test.txt\" -Algorithm SHA256).Hash"", Array(MutCell([])), None, None, None)
+01:35:30 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855
+01:35:30 <span class="ansi-black-intense-fg">verbose</span> #4 execute_with_options / exit_code: 0 / std_trace.Length: 64
+assert_eq / actual: "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855" / expected: "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="hash_file">hash_file<a class="anchor-link" href="#hash_file">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="sha256'">sha256'<a class="anchor-link" href="#sha256'">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">sha256</span><span class="s1">' = $'</span><span class="n">sha2_Sha256</span><span class="s1">'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="new_sha256">new_sha256<a class="anchor-link" href="#new_sha256">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_sha256</span> <span class="p">()</span> <span class="p">:</span> <span class="n">sha256</span><span class="s1">' =</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"sha2::Sha256::new()"'</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="hasher_update">hasher_update<a class="anchor-link" href="#hasher_update">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hasher_update</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">dim</span><span class="o">.</span> <span class="p">(</span><span class="nb">slice</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.slice'</span> <span class="n">t</span> <span class="n">dim</span><span class="p">)</span> <span class="p">(</span><span class="n">hasher</span> <span class="p">:</span> <span class="n">sha256</span><span class="s1">') : () =</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!hasher"'</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="hasher_finalize">hasher_finalize<a class="anchor-link" href="#hasher_finalize">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hasher_finalize</span> <span class="p">(</span><span class="n">hasher</span> <span class="p">:</span> <span class="n">sha256</span><span class="s1">') : sm'</span><span class="o">.</span><span class="n">std_string</span> <span class="o">=</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!hasher"'</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="hash_file">hash_file<a class="anchor-link" href="#hash_file">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hash_file</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">result</span> <span class="n">string</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">normalize_path</span>
+    <span class="n">inl</span> <span class="n">file</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">file_open</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
+    <span class="n">inl</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">file</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">new_buf_reader</span>
+    <span class="n">inl</span> <span class="n">hasher</span> <span class="o">=</span> <span class="n">new_sha256</span> <span class="p">()</span>
+    <span class="n">inl</span> <span class="n">buffer</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">i32</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1014</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.new_slice</span>
+
+    <span class="n">rust</span><span class="o">.</span><span class="n">loop</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="n">inl</span> <span class="n">count</span> <span class="o">=</span> <span class="n">reader</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">buf_reader_read</span> <span class="n">buffer</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span> <span class="n">rust</span><span class="o">.</span><span class="k">break</span> <span class="p">()</span>
+        <span class="n">hasher</span> <span class="o">|&gt;</span> <span class="n">hasher_update</span> <span class="p">(</span><span class="n">buffer</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.slice_range (am'</span><span class="o">.</span><span class="n">Start</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun _ =&gt; count))</span>
+
+    <span class="n">hasher</span> <span class="o">|&gt;</span> <span class="n">hasher_finalize</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string |&gt; Ok</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+<span class="o">///!</span><span class="w"> </span>rust
+
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">temp_folder</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">file_system</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
+
+<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="n">join</span> <span class="s2">"test.txt"</span>
+    <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">temp_folder</span> <span class="o">&lt;/&gt;</span> <span class="n">file_name</span>
+    <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">write_all_text</span> <span class="n">path</span>
+    <span class="n">path</span>
+    <span class="o">|&gt;</span> <span class="n">hash_file</span>
+    <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">get</span>
+    <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"</span>
+<span class="o">|&gt;</span> <span class="n">ignore</span>
+<span class="n">disposable</span> <span class="o">|&gt;</span> <span class="n">use</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>01:35:46 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0135-4616-0040-00000016561e
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8151,7 +8566,7 @@ assert_eq / actual: "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab61
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8160,6 +8575,7 @@ assert_eq / actual: "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab61
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">types</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let hash_text x = !hash_text x"</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -8173,7 +8589,323 @@ assert_eq / actual: "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab61
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type ICryptoCreateHash = abstract createHash: x: string -&gt; obj
+<pre>#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func0&lt;$0&gt;")&gt;]
+#endif
+type Func0&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func1&lt;$0, $1&gt;")&gt;]
+#endif
+type Func0&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Box&lt;$0&gt;")&gt;]
+#endif
+type Box&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("dyn $0")&gt;]
+#endif
+type Dyn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("$0 + Send")&gt;]
+#endif
+type Send&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn() -&gt; $0")&gt;]
+#endif
+type Fn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn()")&gt;]
+#endif
+type FnUnit = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("FnOnce() -&gt; $0")&gt;]
+#endif
+type FnOnce&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0)")&gt;]
+#endif
+type ActionFn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")&gt;]
+#endif
+type ActionFn2&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("impl $0")&gt;]
+#endif
+type Impl&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("mut $0")&gt;]
+#endif
+type Mut&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;]
+#endif
+type Ref&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;'static $0")&gt;]
+#endif
+type StaticRef&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("MutCell&lt;$0&gt;")&gt;]
+#endif
+type MutCell&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::any::Any")&gt;]
+#endif
+type std_any_Any = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow&lt;$0&gt;")&gt;]
+#endif
+type std_borrow_Cow&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell&lt;$0&gt;")&gt;]
+#endif
+type std_cell_RefCell&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin&lt;$0&gt;")&gt;]
+#endif
+type std_pin_Pin&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc&lt;$0&gt;")&gt;]
+#endif
+type std_rc_Rc&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak&lt;$0&gt;")&gt;]
+#endif
+type std_rc_Weak&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;]
+#endif
+type Str = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")&gt;]
+#endif
+type base64_DecodeError = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")&gt;]
+#endif
+type borsh_io_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")&gt;]
+#endif
+type js_sys_JsString = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")&gt;]
+#endif
+type serde_json_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")&gt;]
+#endif
+type serde_json_Value = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")&gt;]
+#endif
+type serde_wasm_bindgen_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")&gt;]
+#endif
+type std_ffi_OsStr = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")&gt;]
+#endif
+type std_ffi_OsString = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fmt::Display&lt;$0&gt;")&gt;]
+#endif
+type std_fmt_Display&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")&gt;]
+#endif
+type std_str_Utf8Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::FromUtf8Error")&gt;]
+#endif
+type std_string_FromUtf8Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;]
+#endif
+type std_string_String = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::slice::Windows&lt;$0&gt;")&gt;]
+#endif
+type std_slice_Windows&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0]")&gt;]
+#endif
+type Slice&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0; $1]")&gt;]
+#endif
+type Slice'&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Vec&lt;$0&gt;")&gt;]
+#endif
+type Vec&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle&lt;$0&gt;")&gt;]
+#endif
+type std_thread_JoinHandle&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
+#endif
+type std_sync_Arc&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
+#endif
+type std_sync_Mutex&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard&lt;$0&gt;")&gt;]
+#endif
+type std_sync_MutexGuard&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError&lt;$0&gt;")&gt;]
+#endif
+type std_sync_PoisonError&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("chrono::DateTime&lt;$0&gt;")&gt;]
+#endif
+type chrono_DateTime&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("chrono::Local")&gt;]
+#endif
+type chrono_Local = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("chrono::NaiveDateTime")&gt;]
+#endif
+type chrono_NaiveDateTime = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("chrono::Utc")&gt;]
+#endif
+type chrono_Utc = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::time::Duration")&gt;]
+#endif
+type std_time_Duration = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
+#endif
+type async_std_io_BufReader&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
+#endif
+type std_io_BufReader&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
+#endif
+type std_io_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Lines&lt;$0&gt;")&gt;]
+#endif
+type std_io_Lines&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::File")&gt;]
+#endif
+type std_fs_File = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
+#endif
+type std_fs_FileType = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::Display")&gt;]
+#endif
+type std_path_Display = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::Path")&gt;]
+#endif
+type std_path_Path = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::PathBuf")&gt;]
+#endif
+type std_path_PathBuf = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::DirEntry")&gt;]
+#endif
+type async_walkdir_DirEntry = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::Filtering")&gt;]
+#endif
+type async_walkdir_Filtering = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::WalkDir")&gt;]
+#endif
+type async_walkdir_WalkDir = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::future::Future&lt;Output = $0&gt;")&gt;]
+#endif
+type std_future_Future&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll&lt;$0&gt;")&gt;]
+#endif
+type futures_future_TryJoinAll&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter&lt;$0&gt;")&gt;]
+#endif
+type rayon_vec_IntoIter&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map&lt;$0, _&gt;")&gt;]
+#endif
+type rayon_iter_Map&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")&gt;]
+#endif
+type futures_lite_stream_StreamExt = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse&lt;$0&gt;")&gt;]
+#endif
+type core_iter_Fuse&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Arg")&gt;]
+#endif
+type clap_Arg = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Command")&gt;]
+#endif
+type clap_Command = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")&gt;]
+#endif
+type clap_ArgMatches = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Child")&gt;]
+#endif
+type std_process_Child = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStderr")&gt;]
+#endif
+type std_process_ChildStderr = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")&gt;]
+#endif
+type std_process_ChildStdout = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")&gt;]
+#endif
+type std_process_ChildStdin = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Command")&gt;]
+#endif
+type std_process_Command = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Output")&gt;]
+#endif
+type std_process_Output = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Stdio")&gt;]
+#endif
+type std_process_Stdio = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver&lt;$0&gt;")&gt;]
+#endif
+type std_sync_mpsc_Receiver&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender&lt;$0&gt;")&gt;]
+#endif
+type std_sync_mpsc_Sender&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("sha2::Sha256")&gt;]
+#endif
+type sha2_Sha256 = class end
+type ICryptoCreateHash = abstract createHash: x: string -&gt; obj
 type Mut0 = {mutable l0 : int32}
 let rec method0 (v0 : string) : string =
     v0

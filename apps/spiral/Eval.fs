@@ -746,7 +746,7 @@ module Eval =
 
         let printCode = argsMap |> Map.containsKey (nameof Arguments.Print_Code)
 
-        traceLevel |> to_trace_level |> Lib.set_trace_level
+        traceLevel |> to_trace_level |> set_trace_level
 
         async {
             let! result = run file args printCode traceLevel

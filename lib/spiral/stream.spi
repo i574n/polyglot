@@ -29,7 +29,7 @@ inl buf_read_lines forall t. (buf_reader : buf_reader t) : lines (buf_reader t) 
     !\($'"std::io::BufRead::lines(!buf_reader)"')
 
 /// ## buf_reader_read
-inl buf_reader_read forall t dim. (slice : am'.slice' t dim) (buf_reader : buf_reader t) : resultm.result' t io_error =
+inl buf_reader_read forall t dim. (slice : am'.slice' dim dim) (buf_reader : buf_reader t) : resultm.result' dim io_error =
     !\($'"std::io::Read::read(!buf_reader, !slice)"')
 
 /// ## stream

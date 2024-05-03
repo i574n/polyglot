@@ -997,9 +997,9 @@ rotate_strings_tests ()
 
 //// test
 //// print_code=false
-///! rust
 
 // rotate_strings_tests ()
+()
 
 #!markdown
 

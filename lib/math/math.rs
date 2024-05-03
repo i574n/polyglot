@@ -1165,41 +1165,39 @@ mod module_b7a9935b {
                 };
                 let v30: num_complex::Complex<f64> = Math::method8(v29.clone());
                 let v32: f64 = v30.im;
-                let v33: string = sprintf!("{:?}", v32);
-                printfn!("{0}", v33);
+                let v33: bool = v32 == 0.0_f64;
+                let v35: bool = if v33 { true } else { Math::method26(v33) };
+                let v37: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_eq"),
+                    v32,
+                    0.0_f64
+                );
+                printfn!("{0}", v37.clone());
+                if v35 == false {
+                    panic!("{}", v37,);
+                }
                 {
-                    let v34: bool = v32 == 0.0_f64;
-                    if (if v34 { true } else { Math::method26(v34) }) == false {
-                        panic!(
-                            "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v32, 0.0_f64),
-                        );
+                    let v39: num_complex::Complex<f64> = Math::method7(v29);
+                    let v42: f64 = v39.re - patternInput.1.clone();
+                    let v43: f64 = -v42;
+                    let v45: f64 = if v42 >= v43 { v42 } else { v43 };
+                    let v46: bool = v45 < 0.0001_f64;
+                    let v48: bool = if v46 { true } else { Math::method26(v46) };
+                    let v50: string = sprintf!(
+                        "{} / actual: {:?} / expected: {:?}",
+                        string("assert_lt"),
+                        v45,
+                        0.0001_f64
+                    );
+                    printfn!("{0}", v50.clone());
+                    if v48 == false {
+                        panic!("{}", v50,);
                     }
                     {
-                        let v39: num_complex::Complex<f64> = Math::method7(v29);
-                        let v42: f64 = v39.re - patternInput.1.clone();
-                        let v43: f64 = -v42;
-                        let v45: f64 = if v42 >= v43 { v42 } else { v43 };
-                        let v46: string = sprintf!("{:?}", v45);
-                        printfn!("{0}", v46);
-                        {
-                            let v47: bool = v45 < 0.0001_f64;
-                            if (if v47 { true } else { Math::method26(v47) }) == false {
-                                panic!(
-                                    "{}",
-                                    sprintf!(
-                                        "__expect / actual: {:?} / expected: {:?}",
-                                        v45,
-                                        0.0001_f64
-                                    ),
-                                );
-                            }
-                            {
-                                let v52: i32 = v9 + 1_i32;
-                                v7.l0.set(v52);
-                                ()
-                            }
-                        }
+                        let v52: i32 = v9 + 1_i32;
+                        v7.l0.set(v52);
+                        ()
                     }
                 }
             }
@@ -1251,36 +1249,34 @@ mod module_b7a9935b {
             let v24: f64 = v21.re - 0.8673_f64;
             let v25: f64 = -v24;
             let v27: f64 = if v24 >= v25 { v24 } else { v25 };
-            let v28: string = sprintf!("{:?}", v27);
-            printfn!("{0}", v28);
+            let v28: bool = v27 < 0.001_f64;
+            let v30: bool = if v28 { true } else { Math::method26(v28) };
+            let v32: string = sprintf!(
+                "{} / actual: {:?} / expected: {:?}",
+                string("assert_lt"),
+                v27,
+                0.001_f64
+            );
+            printfn!("{0}", v32.clone());
+            if v30 == false {
+                panic!("{}", v32,);
+            }
             {
-                let v29: bool = v27 < 0.001_f64;
-                if (if v29 { true } else { Math::method26(v29) }) == false {
-                    panic!(
-                        "{}",
-                        sprintf!("__expect / actual: {:?} / expected: {:?}", v27, 0.001_f64),
-                    );
-                }
-                {
-                    let v34: num_complex::Complex<f64> = Math::method8(v20);
-                    let v37: f64 = v34.im - 0.275_f64;
-                    let v38: f64 = -v37;
-                    let v40: f64 = if v37 >= v38 { v37 } else { v38 };
-                    let v41: string = sprintf!("{:?}", v40);
-                    printfn!("{0}", v41);
-                    {
-                        let v42: bool = v40 < 0.001_f64;
-                        if (if v42 { true } else { Math::method26(v42) }) == false {
-                            panic!(
-                                "{}",
-                                sprintf!(
-                                    "__expect / actual: {:?} / expected: {:?}",
-                                    v40,
-                                    0.001_f64
-                                ),
-                            );
-                        }
-                    }
+                let v34: num_complex::Complex<f64> = Math::method8(v20);
+                let v37: f64 = v34.im - 0.275_f64;
+                let v38: f64 = -v37;
+                let v40: f64 = if v37 >= v38 { v37 } else { v38 };
+                let v41: bool = v40 < 0.001_f64;
+                let v43: bool = if v41 { true } else { Math::method26(v41) };
+                let v44: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_lt"),
+                    v40,
+                    0.001_f64
+                );
+                printfn!("{0}", v44.clone());
+                if v43 == false {
+                    panic!("{}", v44,);
                 }
             }
         }
@@ -1362,49 +1358,43 @@ mod module_b7a9935b {
                         };
                         let v24: num_complex::Complex<f64> = Math::method7(v23.clone());
                         let v26: f64 = v24.re;
-                        let v27: string = sprintf!("{:?}", v26);
-                        printfn!("{0}", v27);
+                        let v27: bool = v26 == 0.0_f64;
+                        let v29: bool = if v27 { true } else { Math::method26(v27) };
+                        let v31: string = sprintf!(
+                            "{} / actual: {:?} / expected: {:?}",
+                            string("assert_eq"),
+                            v26,
+                            0.0_f64
+                        );
+                        printfn!("{0}", v31.clone());
+                        if v29 == false {
+                            panic!("{}", v31,);
+                        }
                         {
-                            let v28: bool = v26 == 0.0_f64;
-                            if (if v28 { true } else { Math::method26(v28) }) == false {
-                                panic!(
-                                    "{}",
-                                    sprintf!(
-                                        "__expect / actual: {:?} / expected: {:?}",
-                                        v26,
-                                        0.0_f64
-                                    ),
-                                );
+                            let v33: num_complex::Complex<f64> = Math::method8(v23);
+                            let v35: f64 = v33.im;
+                            let v36: bool = v35 == 0.0_f64;
+                            let v38: bool = if v36 { true } else { Math::method26(v36) };
+                            let v39: string = sprintf!(
+                                "{} / actual: {:?} / expected: {:?}",
+                                string("assert_eq"),
+                                v35,
+                                0.0_f64
+                            );
+                            printfn!("{0}", v39.clone());
+                            if v38 == false {
+                                panic!("{}", v39,);
                             }
                             {
-                                let v33: num_complex::Complex<f64> = Math::method8(v23);
-                                let v35: f64 = v33.im;
-                                let v36: string = sprintf!("{:?}", v35);
-                                printfn!("{0}", v36);
+                                let v0_1_temp: pyo3::Python = v0_1.get().clone();
+                                let v1_1_temp: LrcPtr<Math::UH0> = match v1_1.get().clone().as_ref()
                                 {
-                                    let v37: bool = v35 == 0.0_f64;
-                                    if (if v37 { true } else { Math::method26(v37) }) == false {
-                                        panic!(
-                                            "{}",
-                                            sprintf!(
-                                                "__expect / actual: {:?} / expected: {:?}",
-                                                v35,
-                                                0.0_f64
-                                            ),
-                                        );
-                                    }
-                                    {
-                                        let v0_1_temp: pyo3::Python = v0_1.get().clone();
-                                        let v1_1_temp: LrcPtr<Math::UH0> =
-                                            match v1_1.get().clone().as_ref() {
-                                                Math::UH0::UH0_1(_, x) => x.clone(),
-                                                _ => unreachable!(),
-                                            };
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        continue '_method33;
-                                    }
-                                }
+                                    Math::UH0::UH0_1(_, x) => x.clone(),
+                                    _ => unreachable!(),
+                                };
+                                v0_1.set(v0_1_temp);
+                                v1_1.set(v1_1_temp);
+                                continue '_method33;
                             }
                         }
                     }
@@ -1471,41 +1461,39 @@ mod module_b7a9935b {
                 let v39: f64 = v37.re;
                 let v40: f64 = -v39;
                 let v42: f64 = if v39 >= v40 { v39 } else { v40 };
-                let v43: string = sprintf!("{:?}", v42);
-                printfn!("{0}", v43);
+                let v43: bool = v42 < 0.0001_f64;
+                let v45: bool = if v43 { true } else { Math::method26(v43) };
+                let v47: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_lt"),
+                    v42,
+                    0.0001_f64
+                );
+                printfn!("{0}", v47.clone());
+                if v45 == false {
+                    panic!("{}", v47,);
+                }
                 {
-                    let v44: bool = v42 < 0.0001_f64;
-                    if (if v44 { true } else { Math::method26(v44) }) == false {
-                        panic!(
-                            "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v42, 0.0001_f64),
-                        );
+                    let v49: num_complex::Complex<f64> = Math::method8(v36);
+                    let v51: f64 = v49.im;
+                    let v52: f64 = -v51;
+                    let v54: f64 = if v51 >= v52 { v51 } else { v52 };
+                    let v55: bool = v54 < 0.0001_f64;
+                    let v57: bool = if v55 { true } else { Math::method26(v55) };
+                    let v58: string = sprintf!(
+                        "{} / actual: {:?} / expected: {:?}",
+                        string("assert_lt"),
+                        v54,
+                        0.0001_f64
+                    );
+                    printfn!("{0}", v58.clone());
+                    if v57 == false {
+                        panic!("{}", v58,);
                     }
                     {
-                        let v49: num_complex::Complex<f64> = Math::method8(v36);
-                        let v51: f64 = v49.im;
-                        let v52: f64 = -v51;
-                        let v54: f64 = if v51 >= v52 { v51 } else { v52 };
-                        let v55: string = sprintf!("{:?}", v54);
-                        printfn!("{0}", v55);
-                        {
-                            let v56: bool = v54 < 0.0001_f64;
-                            if (if v56 { true } else { Math::method26(v56) }) == false {
-                                panic!(
-                                    "{}",
-                                    sprintf!(
-                                        "__expect / actual: {:?} / expected: {:?}",
-                                        v54,
-                                        0.0001_f64
-                                    ),
-                                );
-                            }
-                            {
-                                let v61: i32 = v17 + 1_i32;
-                                v15.l0.set(v61);
-                                ()
-                            }
-                        }
+                        let v60: i32 = v17 + 1_i32;
+                        v15.l0.set(v60);
+                        ()
                     }
                 }
             }
@@ -1562,39 +1550,37 @@ mod module_b7a9935b {
                 };
                 let v27: num_complex::Complex<f64> = Math::method7(v26.clone());
                 let v29: f64 = v27.re;
-                let v30: string = sprintf!("{:?}", v29);
-                printfn!("{0}", v30);
+                let v30: bool = v29 > 0.0_f64;
+                let v32: bool = if v30 { true } else { Math::method26(v30) };
+                let v34: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_gt"),
+                    v29,
+                    0.0_f64
+                );
+                printfn!("{0}", v34.clone());
+                if v32 == false {
+                    panic!("{}", v34,);
+                }
                 {
-                    let v31: bool = v29 > 0.0_f64;
-                    if (if v31 { true } else { Math::method26(v31) }) == false {
-                        panic!(
-                            "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v29, 0.0_f64),
-                        );
+                    let v36: num_complex::Complex<f64> = Math::method8(v26);
+                    let v38: f64 = v36.im;
+                    let v39: bool = v38 == 0.0_f64;
+                    let v41: bool = if v39 { true } else { Math::method26(v39) };
+                    let v43: string = sprintf!(
+                        "{} / actual: {:?} / expected: {:?}",
+                        string("assert_eq"),
+                        v38,
+                        0.0_f64
+                    );
+                    printfn!("{0}", v43.clone());
+                    if v41 == false {
+                        panic!("{}", v43,);
                     }
                     {
-                        let v36: num_complex::Complex<f64> = Math::method8(v26);
-                        let v38: f64 = v36.im;
-                        let v39: string = sprintf!("{:?}", v38);
-                        printfn!("{0}", v39);
-                        {
-                            let v40: bool = v38 == 0.0_f64;
-                            if (if v40 { true } else { Math::method26(v40) }) == false {
-                                panic!(
-                                    "{}",
-                                    sprintf!(
-                                        "__expect / actual: {:?} / expected: {:?}",
-                                        v38,
-                                        0.0_f64
-                                    ),
-                                );
-                            }
-                            {
-                                let v45: i32 = v5 + 1_i32;
-                                v3.l0.set(v45);
-                                ()
-                            }
-                        }
+                        let v45: i32 = v5 + 1_i32;
+                        v3.l0.set(v45);
+                        ()
                     }
                 }
             }
@@ -1641,34 +1627,32 @@ mod module_b7a9935b {
             };
             let v21: num_complex::Complex<f64> = Math::method7(v20.clone());
             let v23: f64 = v21.re;
-            let v24: string = sprintf!("{:?}", v23);
-            printfn!("{0}", v24);
+            let v24: bool = v23 == f64::INFINITY;
+            let v26: bool = if v24 { true } else { Math::method26(v24) };
+            let v28: string = sprintf!(
+                "{} / actual: {:?} / expected: {:?}",
+                string("assert_eq"),
+                v23,
+                f64::INFINITY
+            );
+            printfn!("{0}", v28.clone());
+            if v26 == false {
+                panic!("{}", v28,);
+            }
             {
-                let v25: bool = v23 == f64::INFINITY;
-                if (if v25 { true } else { Math::method26(v25) }) == false {
-                    panic!(
-                        "{}",
-                        sprintf!(
-                            "__expect / actual: {:?} / expected: {:?}",
-                            v23,
-                            f64::INFINITY
-                        ),
-                    );
-                }
-                {
-                    let v30: num_complex::Complex<f64> = Math::method8(v20);
-                    let v32: f64 = v30.im;
-                    let v33: string = sprintf!("{:?}", v32);
-                    printfn!("{0}", v33);
-                    {
-                        let v34: bool = v32 == 0.0_f64;
-                        if (if v34 { true } else { Math::method26(v34) }) == false {
-                            panic!(
-                                "{}",
-                                sprintf!("__expect / actual: {:?} / expected: {:?}", v32, 0.0_f64),
-                            );
-                        }
-                    }
+                let v30: num_complex::Complex<f64> = Math::method8(v20);
+                let v32: f64 = v30.im;
+                let v33: bool = v32 == 0.0_f64;
+                let v35: bool = if v33 { true } else { Math::method26(v33) };
+                let v36: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_eq"),
+                    v32,
+                    0.0_f64
+                );
+                printfn!("{0}", v36.clone());
+                if v35 == false {
+                    panic!("{}", v36,);
                 }
             }
         }
@@ -1739,32 +1723,34 @@ mod module_b7a9935b {
             let v52: f64 = v50.re;
             let v53: num_complex::Complex<f64> = Math::method7(v49.clone());
             let v55: f64 = v53.re;
-            let v56: string = sprintf!("{:?}", v52);
-            printfn!("{0}", v56);
+            let v56: bool = v52 == v55;
+            let v58: bool = if v56 { true } else { Math::method26(v56) };
+            let v60: string = sprintf!(
+                "{} / actual: {:?} / expected: {:?}",
+                string("assert_eq"),
+                v52,
+                v55
+            );
+            printfn!("{0}", v60.clone());
+            if v58 == false {
+                panic!("{}", v60,);
+            }
             {
-                let v57: bool = v52 == v55;
-                if (if v57 { true } else { Math::method26(v57) }) == false {
-                    panic!(
-                        "{}",
-                        sprintf!("__expect / actual: {:?} / expected: {:?}", v52, v55),
-                    );
-                }
-                {
-                    let v62: num_complex::Complex<f64> = Math::method8(v20);
-                    let v64: f64 = v62.im;
-                    let v65: num_complex::Complex<f64> = Math::method8(v49);
-                    let v67: f64 = v65.im;
-                    let v68: string = sprintf!("{:?}", v64);
-                    printfn!("{0}", v68);
-                    {
-                        let v69: bool = v64 == v67;
-                        if (if v69 { true } else { Math::method26(v69) }) == false {
-                            panic!(
-                                "{}",
-                                sprintf!("__expect / actual: {:?} / expected: {:?}", v64, v67),
-                            );
-                        }
-                    }
+                let v62: num_complex::Complex<f64> = Math::method8(v20);
+                let v64: f64 = v62.im;
+                let v65: num_complex::Complex<f64> = Math::method8(v49);
+                let v67: f64 = v65.im;
+                let v68: bool = v64 == v67;
+                let v70: bool = if v68 { true } else { Math::method26(v68) };
+                let v71: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_eq"),
+                    v64,
+                    v67
+                );
+                printfn!("{0}", v71.clone());
+                if v70 == false {
+                    panic!("{}", v71,);
                 }
             }
         }
@@ -1809,38 +1795,32 @@ mod module_b7a9935b {
             };
             let v21: num_complex::Complex<f64> = Math::method7(v20.clone());
             let v23: f64 = v21.re;
-            let v24: string = sprintf!("{:?}", v23);
-            printfn!("{0}", v24);
+            let v24: bool = v23 < f64::INFINITY;
+            let v26: bool = if v24 { true } else { Math::method26(v24) };
+            let v28: string = sprintf!(
+                "{} / actual: {:?} / expected: {:?}",
+                string("assert_lt"),
+                v23,
+                f64::INFINITY
+            );
+            printfn!("{0}", v28.clone());
+            if v26 == false {
+                panic!("{}", v28,);
+            }
             {
-                let v25: bool = v23 < f64::INFINITY;
-                if (if v25 { true } else { Math::method26(v25) }) == false {
-                    panic!(
-                        "{}",
-                        sprintf!(
-                            "__expect / actual: {:?} / expected: {:?}",
-                            v23,
-                            f64::INFINITY
-                        ),
-                    );
-                }
-                {
-                    let v30: num_complex::Complex<f64> = Math::method8(v20);
-                    let v32: f64 = v30.im;
-                    let v33: string = sprintf!("{:?}", v32);
-                    printfn!("{0}", v33);
-                    {
-                        let v34: bool = v32 < f64::INFINITY;
-                        if (if v34 { true } else { Math::method26(v34) }) == false {
-                            panic!(
-                                "{}",
-                                sprintf!(
-                                    "__expect / actual: {:?} / expected: {:?}",
-                                    v32,
-                                    f64::INFINITY
-                                ),
-                            );
-                        }
-                    }
+                let v30: num_complex::Complex<f64> = Math::method8(v20);
+                let v32: f64 = v30.im;
+                let v33: bool = v32 < f64::INFINITY;
+                let v35: bool = if v33 { true } else { Math::method26(v33) };
+                let v36: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_lt"),
+                    v32,
+                    f64::INFINITY
+                );
+                printfn!("{0}", v36.clone());
+                if v35 == false {
+                    panic!("{}", v36,);
                 }
             }
         }
@@ -1868,9 +1848,6 @@ mod module_b7a9935b {
                 10.0_f64, 20.0_f64, 30.0_f64, 40.0_f64, 50.0_f64, 60.0_f64, 70.0_f64, 80.0_f64,
                 90.0_f64, 100.0_f64,
             ])
-        }
-        pub fn method47(v0_1: bool) -> bool {
-            v0_1 == false
         }
         pub fn method45(v0_1: pyo3::Python) {
             let v1_1: Array<f64> = Math::method46();
@@ -1902,39 +1879,37 @@ mod module_b7a9935b {
                 };
                 let v27: num_complex::Complex<f64> = Math::method7(v26.clone());
                 let v29: f64 = v27.re;
-                let v30: string = sprintf!("{:?}", v29);
-                printfn!("{0}", v30);
+                let v30: bool = v29 != 0.0_f64;
+                let v32: bool = if v30 { true } else { Math::method26(v30) };
+                let v34: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_ne"),
+                    v29,
+                    0.0_f64
+                );
+                printfn!("{0}", v34.clone());
+                if v32 == false {
+                    panic!("{}", v34,);
+                }
                 {
-                    let v32: bool = Math::method47(v29 == 0.0_f64);
-                    if (if v32 { true } else { Math::method26(v32) }) == false {
-                        panic!(
-                            "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v29, 0.0_f64),
-                        );
+                    let v36: num_complex::Complex<f64> = Math::method8(v26);
+                    let v38: f64 = v36.im;
+                    let v39: bool = v38 != 0.0_f64;
+                    let v41: bool = if v39 { true } else { Math::method26(v39) };
+                    let v42: string = sprintf!(
+                        "{} / actual: {:?} / expected: {:?}",
+                        string("assert_ne"),
+                        v38,
+                        0.0_f64
+                    );
+                    printfn!("{0}", v42.clone());
+                    if v41 == false {
+                        panic!("{}", v42,);
                     }
                     {
-                        let v37: num_complex::Complex<f64> = Math::method8(v26);
-                        let v39: f64 = v37.im;
-                        let v40: string = sprintf!("{:?}", v39);
-                        printfn!("{0}", v40);
-                        {
-                            let v42: bool = Math::method47(v39 == 0.0_f64);
-                            if (if v42 { true } else { Math::method26(v42) }) == false {
-                                panic!(
-                                    "{}",
-                                    sprintf!(
-                                        "__expect / actual: {:?} / expected: {:?}",
-                                        v39,
-                                        0.0_f64
-                                    ),
-                                );
-                            }
-                            {
-                                let v47: i32 = v5 + 1_i32;
-                                v3.l0.set(v47);
-                                ()
-                            }
-                        }
+                        let v44: i32 = v5 + 1_i32;
+                        v3.l0.set(v44);
+                        ()
                     }
                 }
             }
@@ -1959,7 +1934,7 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method49(v0_1: pyo3::Python) {
+        pub fn method48(v0_1: pyo3::Python) {
             let v11: Array<num_complex::Complex<f64>> = new_array(&[
                 num_complex::Complex::new(0.5_f64, 14.134725_f64),
                 num_complex::Complex::new(0.75_f64, 20.5_f64),
@@ -1994,49 +1969,47 @@ mod module_b7a9935b {
                 };
                 let v35: num_complex::Complex<f64> = Math::method7(v34.clone());
                 let v37: f64 = v35.re;
-                let v38: string = sprintf!("{:?}", v37);
-                printfn!("{0}", v38);
+                let v38: bool = v37 != 0.0_f64;
+                let v40: bool = if v38 { true } else { Math::method26(v38) };
+                let v42: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_ne"),
+                    v37,
+                    0.0_f64
+                );
+                printfn!("{0}", v42.clone());
+                if v40 == false {
+                    panic!("{}", v42,);
+                }
                 {
-                    let v40: bool = Math::method47(v37 == 0.0_f64);
-                    if (if v40 { true } else { Math::method26(v40) }) == false {
-                        panic!(
-                            "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v37, 0.0_f64),
-                        );
+                    let v44: num_complex::Complex<f64> = Math::method8(v34);
+                    let v46: f64 = v44.im;
+                    let v47: bool = v46 != 0.0_f64;
+                    let v49: bool = if v47 { true } else { Math::method26(v47) };
+                    let v50: string = sprintf!(
+                        "{} / actual: {:?} / expected: {:?}",
+                        string("assert_ne"),
+                        v46,
+                        0.0_f64
+                    );
+                    printfn!("{0}", v50.clone());
+                    if v49 == false {
+                        panic!("{}", v50,);
                     }
                     {
-                        let v45: num_complex::Complex<f64> = Math::method8(v34);
-                        let v47: f64 = v45.im;
-                        let v48: string = sprintf!("{:?}", v47);
-                        printfn!("{0}", v48);
-                        {
-                            let v50: bool = Math::method47(v47 == 0.0_f64);
-                            if (if v50 { true } else { Math::method26(v50) }) == false {
-                                panic!(
-                                    "{}",
-                                    sprintf!(
-                                        "__expect / actual: {:?} / expected: {:?}",
-                                        v47,
-                                        0.0_f64
-                                    ),
-                                );
-                            }
-                            {
-                                let v55: i32 = v15 + 1_i32;
-                                v13.l0.set(v55);
-                                ()
-                            }
-                        }
+                        let v52: i32 = v15 + 1_i32;
+                        v13.l0.set(v52);
+                        ()
                     }
                 }
             }
             ()
         }
-        pub fn method48() {
+        pub fn method47() {
             pyo3::prepare_freethreaded_python();
             let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method49(py);
+                Math::method48(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method27(Ok::<(), pyo3::PyErr>(()));
                     v5
@@ -2051,7 +2024,7 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method51(v0_1: pyo3::Python) {
+        pub fn method50(v0_1: pyo3::Python) {
             let v9: Array<num_complex::Complex<f64>> = new_array(&[
                 num_complex::Complex::new(3.0_f64, 4.0_f64),
                 num_complex::Complex::new(2.5_f64, -3.5_f64),
@@ -2151,53 +2124,51 @@ mod module_b7a9935b {
                 let v122: f64 = v118 - v119.re;
                 let v123: f64 = -v122;
                 let v125: f64 = if v122 >= v123 { v122 } else { v123 };
-                let v126: string = sprintf!("{:?}", v125);
-                printfn!("{0}", v126);
+                let v126: bool = v125 < 0.0001_f64;
+                let v128: bool = if v126 { true } else { Math::method26(v126) };
+                let v130: string = sprintf!(
+                    "{} / actual: {:?} / expected: {:?}",
+                    string("assert_lt"),
+                    v125,
+                    0.0001_f64
+                );
+                printfn!("{0}", v130.clone());
+                if v128 == false {
+                    panic!("{}", v130,);
+                }
                 {
-                    let v127: bool = v125 < 0.0001_f64;
-                    if (if v127 { true } else { Math::method26(v127) }) == false {
-                        panic!(
-                            "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v125, 0.0001_f64),
-                        );
+                    let v132: num_complex::Complex<f64> = Math::method8(v32);
+                    let v134: f64 = v132.im;
+                    let v135: num_complex::Complex<f64> = Math::method8(v115);
+                    let v138: f64 = v134 - v135.im;
+                    let v139: f64 = -v138;
+                    let v141: f64 = if v138 >= v139 { v138 } else { v139 };
+                    let v142: bool = v141 < 0.0001_f64;
+                    let v144: bool = if v142 { true } else { Math::method26(v142) };
+                    let v145: string = sprintf!(
+                        "{} / actual: {:?} / expected: {:?}",
+                        string("assert_lt"),
+                        v141,
+                        0.0001_f64
+                    );
+                    printfn!("{0}", v145.clone());
+                    if v144 == false {
+                        panic!("{}", v145,);
                     }
                     {
-                        let v132: num_complex::Complex<f64> = Math::method8(v32);
-                        let v134: f64 = v132.im;
-                        let v135: num_complex::Complex<f64> = Math::method8(v115);
-                        let v138: f64 = v134 - v135.im;
-                        let v139: f64 = -v138;
-                        let v141: f64 = if v138 >= v139 { v138 } else { v139 };
-                        let v142: string = sprintf!("{:?}", v141);
-                        printfn!("{0}", v142);
-                        {
-                            let v143: bool = v141 < 0.0001_f64;
-                            if (if v143 { true } else { Math::method26(v143) }) == false {
-                                panic!(
-                                    "{}",
-                                    sprintf!(
-                                        "__expect / actual: {:?} / expected: {:?}",
-                                        v141,
-                                        0.0001_f64
-                                    ),
-                                );
-                            }
-                            {
-                                let v148: i32 = v13 + 1_i32;
-                                v11.l0.set(v148);
-                                ()
-                            }
-                        }
+                        let v147: i32 = v13 + 1_i32;
+                        v11.l0.set(v147);
+                        ()
                     }
                 }
             }
             ()
         }
-        pub fn method50() {
+        pub fn method49() {
             pyo3::prepare_freethreaded_python();
             let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method51(py);
+                Math::method50(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method27(Ok::<(), pyo3::PyErr>(()));
                     v5
@@ -2212,10 +2183,10 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method54(v0_1: i32, v1_1: LrcPtr<Math::Mut3>) -> bool {
+        pub fn method53(v0_1: i32, v1_1: LrcPtr<Math::Mut3>) -> bool {
             v1_1.l0.get().clone() < v0_1
         }
-        pub fn method53(v0_1: pyo3::Python) {
+        pub fn method52(v0_1: pyo3::Python) {
             let v1_1: Array<f64> = new_array(&[
                 2.0_f64, 2.5_f64, 3.0_f64, 3.5_f64, 4.0_f64, 4.5_f64, 5.0_f64,
             ]);
@@ -2237,7 +2208,7 @@ mod module_b7a9935b {
                     l0: MutCell::new(0_i32),
                     l1: MutCell::new(1.0_f64),
                 });
-                while Math::method54(v10, v11.clone()) {
+                while Math::method53(v10, v11.clone()) {
                     let v13: i32 = v11.l0.get().clone();
                     let v14: f64 = v11.l1.get().clone();
                     let v15: f64 = v2[v13].clone();
@@ -2272,50 +2243,48 @@ mod module_b7a9935b {
                     let v43: f64 = v40.re - v21;
                     let v44: f64 = -v43;
                     let v46: f64 = if v43 >= v44 { v43 } else { v44 };
-                    let v47: string = sprintf!("{:?}", v46);
-                    printfn!("{0}", v47);
+                    let v47: bool = v46 < 0.01_f64;
+                    let v49: bool = if v47 { true } else { Math::method26(v47) };
+                    let v51: string = sprintf!(
+                        "{} / actual: {:?} / expected: {:?}",
+                        string("assert_lt"),
+                        v46,
+                        0.01_f64
+                    );
+                    printfn!("{0}", v51.clone());
+                    if v49 == false {
+                        panic!("{}", v51,);
+                    }
                     {
-                        let v48: bool = v46 < 0.01_f64;
-                        if (if v48 { true } else { Math::method26(v48) }) == false {
-                            panic!(
-                                "{}",
-                                sprintf!("__expect / actual: {:?} / expected: {:?}", v46, 0.01_f64),
-                            );
+                        let v53: num_complex::Complex<f64> = Math::method8(v39);
+                        let v55: f64 = v53.im;
+                        let v56: bool = v55 < 0.01_f64;
+                        let v58: bool = if v56 { true } else { Math::method26(v56) };
+                        let v59: string = sprintf!(
+                            "{} / actual: {:?} / expected: {:?}",
+                            string("assert_lt"),
+                            v55,
+                            0.01_f64
+                        );
+                        printfn!("{0}", v59.clone());
+                        if v58 == false {
+                            panic!("{}", v59,);
                         }
                         {
-                            let v53: num_complex::Complex<f64> = Math::method8(v39);
-                            let v55: f64 = v53.im;
-                            let v56: string = sprintf!("{:?}", v55);
-                            printfn!("{0}", v56);
-                            {
-                                let v57: bool = v55 < 0.01_f64;
-                                if (if v57 { true } else { Math::method26(v57) }) == false {
-                                    panic!(
-                                        "{}",
-                                        sprintf!(
-                                            "__expect / actual: {:?} / expected: {:?}",
-                                            v55,
-                                            0.01_f64
-                                        ),
-                                    );
-                                }
-                                {
-                                    let v62: i32 = v6 + 1_i32;
-                                    v4.l0.set(v62);
-                                    ()
-                                }
-                            }
+                            let v61: i32 = v6 + 1_i32;
+                            v4.l0.set(v61);
+                            ()
                         }
                     }
                 }
             }
             ()
         }
-        pub fn method52() {
+        pub fn method51() {
             pyo3::prepare_freethreaded_python();
             let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method53(py);
+                Math::method52(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method27(Ok::<(), pyo3::PyErr>(()));
                     v5
@@ -2431,7 +2400,7 @@ mod module_b7a9935b {
         #[test]
         fn test_critical_strip() {
             //;
-            Math::method48();
+            Math::method47();
         } /* /*;
           {
               let v44: string =
@@ -2441,7 +2410,7 @@ mod module_b7a9935b {
         #[test]
         fn test_reflection_formula_for_specific_value() {
             //;
-            Math::method50();
+            Math::method49();
         } /* /*;
           {
               let v48: string =
@@ -2451,7 +2420,7 @@ mod module_b7a9935b {
         #[test]
         fn test_euler_product_formula() {
             //;
-            Math::method52();
+            Math::method51();
             {
                 //;
                 {

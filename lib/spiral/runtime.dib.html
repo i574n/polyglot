@@ -7618,10 +7618,6 @@ a.anchor-link {
     <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::Arg</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_Arg = class end"</span>
     <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::Command</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_Command = class end"</span>
     <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::ArgMatches</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_ArgMatches = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::io::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_io_Error = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::io::Lines&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_io_Lines&lt;'T&gt; = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">async_std::io::BufReader&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type async_std_io_BufReader&lt;'T&gt; = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::io::BufReader&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_io_BufReader&lt;'T&gt; = class end"</span>
     <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::Child</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_Child = class end"</span>
     <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::ChildStderr</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_ChildStderr = class end"</span>
     <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::ChildStdout</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_ChildStdout = class end"</span>
@@ -7997,167 +7993,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="io_error">io_error<a class="anchor-link" href="#io_error">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">io_error</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_io_Error"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="lines">lines<a class="anchor-link" href="#lines">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">lines</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_io_Lines&lt;`t&gt;'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="buf_reader">buf_reader<a class="anchor-link" href="#buf_reader">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">buf_reader</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_io_BufReader&lt;`t&gt;'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="async_buf_reader">async_buf_reader<a class="anchor-link" href="#async_buf_reader">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">async_buf_reader</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'async_std_io_BufReader&lt;`t&gt;'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="receiver">receiver<a class="anchor-link" href="#receiver">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8186,7 +8026,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8196,7 +8036,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8225,7 +8065,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8235,7 +8075,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8270,7 +8110,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8280,7 +8120,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8310,7 +8150,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8320,7 +8160,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8355,7 +8195,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8365,7 +8205,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8396,7 +8236,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8479,7 +8319,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8489,7 +8329,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8520,7 +8360,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8530,7 +8370,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8573,7 +8413,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9126,7 +8966,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9136,7 +8976,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9209,7 +9049,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9219,7 +9059,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9253,7 +9093,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9263,7 +9103,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9311,7 +9151,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9321,7 +9161,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9444,7 +9284,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9454,7 +9294,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9486,7 +9326,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9697,6 +9537,54 @@ type chrono_Utc = class end
 #endif
 type std_time_Duration = class end
 #if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
+#endif
+type async_std_io_BufReader&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
+#endif
+type std_io_BufReader&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
+#endif
+type std_io_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Lines&lt;$0&gt;")&gt;]
+#endif
+type std_io_Lines&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::File")&gt;]
+#endif
+type std_fs_File = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
+#endif
+type std_fs_FileType = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::Display")&gt;]
+#endif
+type std_path_Display = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::Path")&gt;]
+#endif
+type std_path_Path = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::PathBuf")&gt;]
+#endif
+type std_path_PathBuf = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::DirEntry")&gt;]
+#endif
+type async_walkdir_DirEntry = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::Filtering")&gt;]
+#endif
+type async_walkdir_Filtering = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::WalkDir")&gt;]
+#endif
+type async_walkdir_WalkDir = class end
+#if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("[$0]")&gt;]
 #endif
 type Slice&lt;'T&gt; = class end
@@ -9765,22 +9653,6 @@ type clap_Command = class end
 #endif
 type clap_ArgMatches = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
-#endif
-type std_io_Error = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Lines&lt;$0&gt;")&gt;]
-#endif
-type std_io_Lines&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
-#endif
-type async_std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
-#endif
-type std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Child")&gt;]
 #endif
 type std_process_Child = class end
@@ -9816,34 +9688,6 @@ type std_sync_mpsc_Receiver&lt;'T&gt; = class end
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender&lt;$0&gt;")&gt;]
 #endif
 type std_sync_mpsc_Sender&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
-#endif
-type std_fs_FileType = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::Display")&gt;]
-#endif
-type std_path_Display = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::Path")&gt;]
-#endif
-type std_path_Path = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::PathBuf")&gt;]
-#endif
-type std_path_PathBuf = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::DirEntry")&gt;]
-#endif
-type async_walkdir_DirEntry = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::Filtering")&gt;]
-#endif
-type async_walkdir_Filtering = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::WalkDir")&gt;]
-#endif
-type async_walkdir_WalkDir = class end
 type IPathJoin = abstract join: [&lt;System.ParamArray&gt;] paths: string[] -&gt; string
 module State = let mutable trace_state = None
 type Disposable (f : unit -&gt; unit) = interface System.IDisposable with member _.Dispose () = f ()
@@ -14086,17 +13930,17 @@ and method0 () : unit =
 method0()
 
 00:00:00   debug #1 execute_with_options_async / options: struct (None,
-        "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240502-1930-1895-9505-900400966203\test.txt"",
+        "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0132-1001-0141-0004009d21a4\test.txt"",
         [||], None, None, None)
-00:00:01 verbose #2 &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240502-1930-1895-9505-900400966203\test.txt' because it does not exist.</span>
-00:00:01   debug #3 execute_with_options_async / exit_code: 1 / output.Length: 171
+00:00:00 verbose #2 &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0132-1001-0141-0004009d21a4\test.txt' because it does not exist.</span>
+00:00:00   debug #3 execute_with_options_async / exit_code: 1 / output.Length: 171
 assert_eq / actual: 1 / expected: 1
-assert_string_contains / actual: "not exist" / expected: "[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240502-1930-1895-9505-900400966203\test.txt' because it does not exist.</span>]"
-00:00:01   debug #4 execute_with_options_async / options: struct (None, "pwsh -c "Get-Content test.txt"", [||], None, None,
+assert_string_contains / actual: "not exist" / expected: "[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0132-1001-0141-0004009d21a4\test.txt' because it does not exist.</span>]"
+00:00:00   debug #4 execute_with_options_async / options: struct (None, "pwsh -c "Get-Content test.txt"", [||], None, None,
         Some
-          "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240502-1930-1895-9505-900400966203")
-00:00:02 verbose #5 &gt; 0
-00:00:02   debug #6 execute_with_options_async / exit_code: 0 / output.Length: 1
+          "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0132-1001-0141-0004009d21a4")
+00:00:01 verbose #5 &gt; 0
+00:00:01   debug #6 execute_with_options_async / exit_code: 0 / output.Length: 1
 assert_eq / actual: 0 / expected: 0
 assert_eq / actual: "0" / expected: "0"
 assert_eq / actual: true / expected: true
@@ -14105,7 +13949,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14322,73 +14166,13 @@ type chrono_Utc = class end
 #endif
 type std_time_Duration = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice&lt;'T&gt; = class end
+type async_std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0; $1]")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
 #endif
-type Slice'&lt;'T, 'U&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("Vec&lt;$0&gt;")&gt;]
-#endif
-type Vec&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::future::Future&lt;Output = $0&gt;")&gt;]
-#endif
-type std_future_Future&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll&lt;$0&gt;")&gt;]
-#endif
-type futures_future_TryJoinAll&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter&lt;$0&gt;")&gt;]
-#endif
-type rayon_vec_IntoIter&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map&lt;$0, _&gt;")&gt;]
-#endif
-type rayon_iter_Map&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")&gt;]
-#endif
-type futures_lite_stream_StreamExt = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse&lt;$0&gt;")&gt;]
-#endif
-type core_iter_Fuse&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle&lt;$0&gt;")&gt;]
-#endif
-type std_thread_JoinHandle&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Arc&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
-#endif
-type std_sync_Mutex&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard&lt;$0&gt;")&gt;]
-#endif
-type std_sync_MutexGuard&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError&lt;$0&gt;")&gt;]
-#endif
-type std_sync_PoisonError&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Arg")&gt;]
-#endif
-type clap_Arg = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Command")&gt;]
-#endif
-type clap_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")&gt;]
-#endif
-type clap_ArgMatches = class end
+type std_io_BufReader&lt;'T&gt; = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
 #endif
@@ -14398,49 +14182,9 @@ type std_io_Error = class end
 #endif
 type std_io_Lines&lt;'T&gt; = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::File")&gt;]
 #endif
-type async_std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
-#endif
-type std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Child")&gt;]
-#endif
-type std_process_Child = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStderr")&gt;]
-#endif
-type std_process_ChildStderr = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")&gt;]
-#endif
-type std_process_ChildStdout = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")&gt;]
-#endif
-type std_process_ChildStdin = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Command")&gt;]
-#endif
-type std_process_Command = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Output")&gt;]
-#endif
-type std_process_Output = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Stdio")&gt;]
-#endif
-type std_process_Stdio = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Receiver&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender&lt;$0&gt;")&gt;]
-#endif
-type std_sync_mpsc_Sender&lt;'T&gt; = class end
+type std_fs_File = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
 #endif
@@ -18429,7 +18173,7 @@ method0()
 00:00:00   debug #1 1
 00:00:00   debug #2 2
 00:00:00   debug #3 execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240502-1930-3384-8402-800400929f2b\test.txt"",
+        "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0132-1475-7511-70040043c343\test.txt"",
         [||], None, None, None)
 00:00:00   debug #4 3
 00:00:00   debug #5 4
@@ -18445,7 +18189,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18455,7 +18199,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18541,7 +18285,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18573,7 +18317,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18605,7 +18349,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=64">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18637,7 +18381,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18669,7 +18413,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=66">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18701,7 +18445,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18733,7 +18477,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=60">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18766,7 +18510,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=69">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18776,7 +18520,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=70">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18809,7 +18553,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=71">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=63">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18819,7 +18563,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=72">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=64">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18851,7 +18595,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=73">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18861,7 +18605,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=74">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=66">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -18907,7 +18651,7 @@ assert_eq / actual: true / expected: true
                     <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">command</span>
 
                 <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let mut !command = !command"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-                <span class="n">inl</span> <span class="n">command</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' child io_error = !</span><span class="se">\\</span><span class="s1">(command, $'</span><span class="s2">"std::process::Command::spawn(&amp;mut $0)"</span><span class="s1">')</span>
+                <span class="n">inl</span> <span class="n">command</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' child stream.io_error = !</span><span class="se">\\</span><span class="s1">(command, $'</span><span class="s2">"std::process::Command::spawn(&amp;mut $0)"</span><span class="s1">')</span>
 
                 <span class="k">match</span> <span class="n">command</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map</span><span class="s1">' (optionm'</span><span class="o">.</span><span class="n">some</span><span class="s1">' &gt;&gt; threading.new_arc_mutex) |&gt; resultm.map_error'</span> <span class="n">sm</span><span class="s1">'.format'</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unbox</span> <span class="k">with</span>
                 <span class="o">|</span> <span class="n">Ok</span> <span class="n">child</span> <span class="o">=&gt;</span>
@@ -18929,7 +18673,7 @@ assert_eq / actual: true / expected: true
                     <span class="n">inl</span> <span class="n">channel_sender</span><span class="s1">''</span> <span class="o">=</span> <span class="n">channel_sender</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">clone</span>
                     <span class="n">inl</span> <span class="n">channel_receiver</span><span class="s1">' = channel_receiver |&gt; threading.new_arc_mutex</span>
 
-                    <span class="n">inl</span> <span class="n">std_line</span> <span class="p">(</span><span class="n">stdout</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="n">channel_sender</span> <span class="p">(</span><span class="n">line</span> <span class="p">:</span> <span class="n">_</span> <span class="n">_</span> <span class="n">io_error</span><span class="p">)</span> <span class="o">=</span>
+                    <span class="n">inl</span> <span class="n">std_line</span> <span class="p">(</span><span class="n">stdout</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="n">channel_sender</span> <span class="p">(</span><span class="n">line</span> <span class="p">:</span> <span class="n">_</span> <span class="n">_</span> <span class="n">stream</span><span class="o">.</span><span class="n">io_error</span><span class="p">)</span> <span class="o">=</span>
                         <span class="n">inl</span> <span class="n">line</span> <span class="o">=</span>
                             <span class="k">match</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">format</span><span class="s1">' |&gt; resultm.unbox with</span>
                             <span class="o">|</span> <span class="n">Ok</span> <span class="p">(</span><span class="n">line</span> <span class="p">:</span> <span class="n">sm</span><span class="s1">'.std_string) =&gt;</span>
@@ -18941,16 +18685,24 @@ assert_eq / actual: true / expected: true
                         <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">((</span>channel_sender,<span class="w"> </span>line<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"true; $0.lock().unwrap().send($1).unwrap()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
 
                     <span class="n">inl</span> <span class="n">stdout_thread</span> <span class="p">:</span> <span class="n">threading</span><span class="o">.</span><span class="n">join_handle</span> <span class="p">()</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::thread::spawn(move || { //"'</span><span class="o">)</span>
-                    <span class="n">inl</span> <span class="n">stdout_lines</span> <span class="p">:</span> <span class="n">lines</span> <span class="p">(</span><span class="n">buf_reader</span> <span class="n">child_stdout</span><span class="p">)</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::io::BufRead::lines(std::io::BufReader::new(!stdout.lock().unwrap().take().unwrap()))"'</span><span class="o">)</span>
-                    <span class="n">inl</span> <span class="n">stdout_lines</span> <span class="o">=</span> <span class="n">stdout_lines</span> <span class="o">|&gt;</span> <span class="n">threading</span><span class="o">.</span><span class="n">new_arc_mutex</span>
+                    <span class="n">inl</span> <span class="n">stdout</span><span class="s1">' : child_stdout = !\($'</span><span class="s2">"!stdout.lock().unwrap().take().unwrap()"</span><span class="s1">')</span>
+                    <span class="n">inl</span> <span class="n">stdout_lines</span> <span class="o">=</span>
+                        <span class="n">stdout</span><span class="s1">'</span>
+                        <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">new_buf_reader</span>
+                        <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">buf_read_lines</span>
+                        <span class="o">|&gt;</span> <span class="n">threading</span><span class="o">.</span><span class="n">new_arc_mutex</span>
                     <span class="n">inl</span> <span class="n">std_line</span><span class="s1">' = std_line true channel_sender'</span>
                     <span class="n">inl</span> <span class="n">std_line</span><span class="s1">' = join std_line'</span>
                     <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>stdout_lines,<span class="w"> </span><span class="s1">$'"true; for line in $0.lock().unwrap().by_ref() { !std_line'</span><span class="o">(</span>line<span class="o">)</span><span class="w"> </span><span class="o">}</span><span class="s2">"') : bool) |&gt; ignore</span>
                     <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; })"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
 
                     <span class="n">inl</span> <span class="n">stderr_thread</span> <span class="p">:</span> <span class="n">threading</span><span class="o">.</span><span class="n">join_handle</span> <span class="p">()</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::thread::spawn(move || { //"'</span><span class="o">)</span>
-                    <span class="n">inl</span> <span class="n">stderr_lines</span> <span class="p">:</span> <span class="n">lines</span> <span class="p">(</span><span class="n">buf_reader</span> <span class="n">child_stderr</span><span class="p">)</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"std::io::BufRead::lines(std::io::BufReader::new(!stderr.lock().unwrap().take().unwrap()))"'</span><span class="o">)</span>
-                    <span class="n">inl</span> <span class="n">stderr_lines</span> <span class="o">=</span> <span class="n">stderr_lines</span> <span class="o">|&gt;</span> <span class="n">threading</span><span class="o">.</span><span class="n">new_arc_mutex</span>
+                    <span class="n">inl</span> <span class="n">stderr</span><span class="s1">' : child_stderr = !\($'</span><span class="s2">"!stderr.lock().unwrap().take().unwrap()"</span><span class="s1">')</span>
+                    <span class="n">inl</span> <span class="n">stderr_lines</span> <span class="o">=</span>
+                        <span class="n">stderr</span><span class="s1">'</span>
+                        <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">new_buf_reader</span>
+                        <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">buf_read_lines</span>
+                        <span class="o">|&gt;</span> <span class="n">threading</span><span class="o">.</span><span class="n">new_arc_mutex</span>
                     <span class="n">inl</span> <span class="n">std_line</span><span class="s1">' = std_line false channel_sender</span>
                     <span class="n">inl</span> <span class="n">std_line</span><span class="s1">' = join std_line'</span>
                     <span class="p">(</span><span class="o">!</span><span class="se">\\</span><span class="o">(</span>stderr_lines,<span class="w"> </span><span class="s1">$'"true; for line in $0.lock().unwrap().by_ref() { !std_line'</span><span class="o">(</span>line<span class="o">)</span><span class="w"> </span><span class="o">}</span><span class="s2">"') : bool) |&gt; ignore</span>
@@ -18976,7 +18728,7 @@ assert_eq / actual: true / expected: true
                         <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="p">()</span>
                     <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="p">()</span>
 
-                    <span class="n">inl</span> <span class="n">output</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' output io_error = !\($'</span><span class="s2">"!child.lock().unwrap().take().unwrap().wait_with_output()"</span><span class="s1">')</span>
+                    <span class="n">inl</span> <span class="n">output</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' output stream.io_error = !\($'</span><span class="s2">"!child.lock().unwrap().take().unwrap().wait_with_output()"</span><span class="s1">')</span>
                     <span class="n">inl</span> <span class="n">output</span> <span class="o">=</span> <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">format</span><span class="s1">'</span>
 
                     <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; !stdout_thread.join().unwrap()"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
@@ -19029,7 +18781,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19061,7 +18813,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=76">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19110,15 +18862,15 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>19:31:42 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240502-1931-4293-4632-000000e333c4
-19:31:42 <span class="ansi-blue-intense-fg">  debug</span> #2 execute_with_options / file_name: pwsh / arguments: ["-c", "Get-Content C:\\Users\\i574n\\AppData\\Local\\Temp\\!spiral_eval\\20240502-1931-4293-4632-000000e333c4\\test.txt"] / options: (None, "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240502-1931-4293-4632-000000e333c4\test.txt"", Array(MutCell([])), None, None, None)
-19:31:44 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240502-1931-4293-4632-000000e333c4\test.txt' because it does not exist.</span>
-19:31:44 <span class="ansi-black-intense-fg">verbose</span> #4 execute_with_options / exit_code: 1 / std_trace.Length: 169
+<pre>01:32:42 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0132-4207-2561-00000019e68e
+01:32:42 <span class="ansi-blue-intense-fg">  debug</span> #2 execute_with_options / file_name: pwsh / arguments: ["-c", "Get-Content C:\\Users\\i574n\\AppData\\Local\\Temp\\!spiral_eval\\20240503-0132-4207-2561-00000019e68e\\test.txt"] / options: (None, "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0132-4207-2561-00000019e68e\test.txt"", Array(MutCell([])), None, None, None)
+01:32:42 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0132-4207-2561-00000019e68e\test.txt' because it does not exist.</span>
+01:32:42 <span class="ansi-black-intense-fg">verbose</span> #4 execute_with_options / exit_code: 1 / std_trace.Length: 169
 assert_eq / actual: 1 / expected: 1
-assert_string_contains / actual: "not exist" / expected: "<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240502-1931-4293-4632-000000e333c4\test.txt' because it does not exist.</span>"
-19:31:44 <span class="ansi-blue-intense-fg">  debug</span> #5 execute_with_options / file_name: pwsh / arguments: ["-c", "Get-Content test.txt"] / options: (None, "pwsh -c "Get-Content test.txt"", Array(MutCell([])), None, None, Some("C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240502-1931-4293-4632-000000e333c4"))
-19:31:46 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; 0
-19:31:46 <span class="ansi-black-intense-fg">verbose</span> #7 execute_with_options / exit_code: 0 / std_trace.Length: 1
+assert_string_contains / actual: "not exist" / expected: "<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0132-4207-2561-00000019e68e\test.txt' because it does not exist.</span>"
+01:32:42 <span class="ansi-blue-intense-fg">  debug</span> #5 execute_with_options / file_name: pwsh / arguments: ["-c", "Get-Content test.txt"] / options: (None, "pwsh -c "Get-Content test.txt"", Array(MutCell([])), None, None, Some("C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0132-4207-2561-00000019e68e"))
+01:32:43 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; 0
+01:32:43 <span class="ansi-black-intense-fg">verbose</span> #7 execute_with_options / exit_code: 0 / std_trace.Length: 1
 assert_eq / actual: 0 / expected: 0
 assert_eq / actual: "0" / expected: "0"
 assert_eq / actual: true / expected: true
@@ -19128,7 +18880,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=77">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19138,7 +18890,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=78">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=70">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19167,7 +18919,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=71">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19177,7 +18929,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=80">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=72">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19206,7 +18958,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=81">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=73">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19236,14 +18988,64 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 1 / expected: 1
+<pre>assert_string_contains / actual: "command" / expected: "Command {
+    name: "command",
+    long_flag: None,
+    short_flag: None,
+    display_name: None,
+    bin_name: None,
+    author: None,
+    version: None,
+    long_version: None,
+    about: None,
+    long_about: None,
+    before_help: None,
+    before_long_help: None,
+    after_help: None,
+    after_long_help: None,
+    aliases: [],
+    short_flag_aliases: [],
+    long_flag_aliases: [],
+    usage_str: None,
+    usage_name: None,
+    help_str: None,
+    disp_ord: None,
+    template: None,
+    settings: AppFlags(
+        0,
+    ),
+    g_settings: AppFlags(
+        0,
+    ),
+    args: MKeyMap {
+        args: [],
+        keys: [],
+    },
+    subcommands: [],
+    groups: [],
+    current_help_heading: None,
+    current_disp_ord: Some(
+        0,
+    ),
+    subcommand_value_name: None,
+    subcommand_heading: None,
+    external_value_parser: None,
+    long_help_exists: false,
+    deferred: None,
+    app_ext: Extensions {
+        extensions: FlatMap {
+            keys: [],
+            values: [],
+        },
+    },
+}"
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=82">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=74">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19253,7 +19055,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=83">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19282,7 +19084,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=84">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19292,7 +19094,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=85">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=77">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19321,7 +19123,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=86">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=78">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19388,7 +19190,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=87">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19398,7 +19200,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=88">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=80">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19428,7 +19230,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=89">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=81">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19438,7 +19240,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=90">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=82">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19468,7 +19270,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=91">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=83">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19478,7 +19280,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=92">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=84">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19508,7 +19310,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=93">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19518,7 +19320,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=94">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=86">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19548,7 +19350,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=95">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=87">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19558,7 +19360,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=96">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=88">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19588,7 +19390,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=97">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=89">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19598,7 +19400,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=98">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=90">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19628,7 +19430,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=99">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=91">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19638,7 +19440,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=100">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=92">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19667,7 +19469,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=101">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=93">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19677,7 +19479,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=102">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=94">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19707,7 +19509,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=103">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=95">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19717,7 +19519,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=104">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=96">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19748,7 +19550,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=105">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=97">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19758,7 +19560,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=106">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=98">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19790,7 +19592,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=107">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=99">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19800,7 +19602,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=108">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=100">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19832,7 +19634,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=109">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=101">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19842,7 +19644,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=110">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=102">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19872,7 +19674,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=111">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=103">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19882,7 +19684,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=112">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=104">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19912,7 +19714,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=113">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=105">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19922,7 +19724,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=114">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=106">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19952,7 +19754,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=115">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=107">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -19962,7 +19764,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=116">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=108">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -20158,6 +19960,54 @@ type chrono_Utc = class end
 #endif
 type std_time_Duration = class end
 #if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
+#endif
+type async_std_io_BufReader&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
+#endif
+type std_io_BufReader&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
+#endif
+type std_io_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Lines&lt;$0&gt;")&gt;]
+#endif
+type std_io_Lines&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::File")&gt;]
+#endif
+type std_fs_File = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
+#endif
+type std_fs_FileType = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::Display")&gt;]
+#endif
+type std_path_Display = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::Path")&gt;]
+#endif
+type std_path_Path = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::PathBuf")&gt;]
+#endif
+type std_path_PathBuf = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::DirEntry")&gt;]
+#endif
+type async_walkdir_DirEntry = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::Filtering")&gt;]
+#endif
+type async_walkdir_Filtering = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::WalkDir")&gt;]
+#endif
+type async_walkdir_WalkDir = class end
+#if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("[$0]")&gt;]
 #endif
 type Slice&lt;'T&gt; = class end
@@ -20226,22 +20076,6 @@ type clap_Command = class end
 #endif
 type clap_ArgMatches = class end
 #if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
-#endif
-type std_io_Error = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Lines&lt;$0&gt;")&gt;]
-#endif
-type std_io_Lines&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
-#endif
-type async_std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
-#endif
-type std_io_BufReader&lt;'T&gt; = class end
-#if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Child")&gt;]
 #endif
 type std_process_Child = class end
@@ -20277,34 +20111,6 @@ type std_sync_mpsc_Receiver&lt;'T&gt; = class end
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender&lt;$0&gt;")&gt;]
 #endif
 type std_sync_mpsc_Sender&lt;'T&gt; = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
-#endif
-type std_fs_FileType = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::Display")&gt;]
-#endif
-type std_path_Display = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::Path")&gt;]
-#endif
-type std_path_Path = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::PathBuf")&gt;]
-#endif
-type std_path_PathBuf = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::DirEntry")&gt;]
-#endif
-type async_walkdir_DirEntry = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::Filtering")&gt;]
-#endif
-type async_walkdir_Filtering = class end
-#if FABLE_COMPILER
-[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::WalkDir")&gt;]
-#endif
-type async_walkdir_WalkDir = class end
 module State = let mutable trace_state = None
 #if FABLE_COMPILER
 [&lt;CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)&gt;]

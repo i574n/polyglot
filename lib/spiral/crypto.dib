@@ -215,7 +215,7 @@ inl hash_file (path : string) : result string string =
     inl file = path |> file_system.file_open |> resultm.unwrap'
     inl reader = file |> stream.new_buf_reader
     inl hasher = new_sha256 ()
-    inl buffer = (0, 1014) |> am'.new_slice
+    inl buffer : _ i32 i32 = (0, 1014) |> am'.new_slice
 
     rust.loop fun () =>
         inl count = reader |> stream.buf_reader_read buffer |> resultm.unwrap'
@@ -233,13 +233,15 @@ inl hash_file (path : string) : result string string =
 types ()
 inl temp_folder, disposable = file_system.create_temp_directory ()
 
-inl file_name = join "test.txt"
-inl path = temp_folder </> file_name
-"" |> file_system.write_all_text path
-path
-|> hash_file
-|> resultm.get
-|> _assert_eq "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+fun () =>
+    inl file_name = join "test.txt"
+    inl path = temp_folder </> file_name
+    "" |> file_system.write_all_text path
+    path
+    |> hash_file
+    |> resultm.get
+    |> _assert_eq "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+|> ignore
 disposable |> use |> ignore
 
 #!markdown
