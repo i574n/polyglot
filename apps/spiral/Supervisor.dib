@@ -567,7 +567,7 @@ Expected: uppercase variable" ]
 //// test
 
 """
-/// abc
+//abc
 inl main () =
     ()
 """
