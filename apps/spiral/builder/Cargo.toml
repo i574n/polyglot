@@ -16,4 +16,4 @@ futures-lite = "~2.3"
 
 [[bin]]
 name = "spiral_builder"
-path = "builder.rs"
+path = "spiral_builder.rs"

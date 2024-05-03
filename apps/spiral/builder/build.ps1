@@ -9,9 +9,10 @@ $ErrorActionPreference = "Stop"
 . ../../../lib/spiral/lib.ps1
 
 
-$projectName = "builder"
+$projectName = "spiral_builder"
 
 if (!$fast -and !$SkipNotebook) {
+    { cargo build --release } | Invoke-Block
     { . ../dist/Supervisor$(_exe) --execute-command "pwsh -c `"../../../scripts/invoke-dib.ps1 $projectName.dib`"" } | Invoke-Block -Retries 3
 }
 

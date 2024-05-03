@@ -4,7 +4,7 @@
 
 #!markdown
 
-# builder
+# spiral_builder
 
 #!spiral
 
@@ -106,19 +106,19 @@ let run { file out_dir hash args }
     inl out_dir = out_dir |> file_system.get_full_path
 
     trace Debug
-        fun () => $'"builder.run"'
+        fun () => $'"spiral_builder.run"'
         fun () => $'$"file: {!file} / out_dir: {!out_dir} / hash: {!hash} / args: {!args} / {!_locals ()}"'
 
     fun () =>
         inl arg_matches =
             get_args_command ()
-            |> runtime.command_get_matches_from ($'$"builder {!args}"' |> runtime.split_args)
+            |> runtime.command_get_matches_from ($'$"spiral_builder {!args}"' |> runtime.split_args)
 
         inl result =
             match arg_matches |> runtime.matches_subcommand |> optionm'.unbox with
             | Some (subcommand, arg_matches) =>
                 trace Debug
-                    fun () => $'"builder.run"'
+                    fun () => $'"spiral_builder.run"'
                     fun () => $'$"subcommand: {!subcommand} / {!_locals ()}"'
 
                 inl cargo_toml_content = hash |> get_cargo_toml_content
@@ -126,7 +126,7 @@ let run { file out_dir hash args }
             | _ => ""
 
         trace Debug
-            fun () => $'"builder.run"'
+            fun () => $'"spiral_builder.run"'
             fun () => $'$"result: {!result} / {!_locals ()}"'
 
         result |> Ok |> resultm.box
@@ -179,7 +179,7 @@ inl main (args : array_base string) =
     trace_level <- Info
 
     trace Debug
-        fun () => $'$"builder.main"'
+        fun () => $'$"spiral_builder.main"'
         fun () => $'$"args: {!args} / {!_locals ()}"'
 
     inl command = get_command ()

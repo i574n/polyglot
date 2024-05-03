@@ -510,7 +510,7 @@ and closure2 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     let v34 : int64 option = _v6.Value
     struct (v1, v0, v3, v34, v5)
 and closure4 () () : string =
-    let v0 : string = $"builder.main"
+    let v0 : string = $"spiral_builder.main"
     v0
 and closure6 () () : string =
     let v0 : string = ""
@@ -976,7 +976,7 @@ and method23 (v0 : string) : string =
 and method24 (v0 : string) : string =
     v0
 and closure10 () () : string =
-    let v0 : string = "builder.run"
+    let v0 : string = "spiral_builder.run"
     v0
 and closure11 (v0 : string, v1 : string, v2 : string, v3 : string) () : string =
     let v4 : (unit -> string) = closure6()
@@ -1695,14 +1695,14 @@ and closure17 () struct (v0 : std_string_String, v1 : clap_ArgMatches) : US6 =
 and method34 () : (struct (std_string_String * clap_ArgMatches) -> US6) =
     closure17()
 and closure18 () () : string =
-    let v0 : string = "builder.run"
+    let v0 : string = "spiral_builder.run"
     v0
 and closure19 (v0 : std_string_String) () : string =
     let v1 : (unit -> string) = closure6()
     let v2 : string = $"subcommand: {v0} / {v1 ()}"
     v2
 and closure20 () () : string =
-    let v0 : string = "builder.run"
+    let v0 : string = "spiral_builder.run"
     v0
 and closure21 (v0 : string) () : string =
     let v1 : (unit -> string) = closure6()
@@ -1714,7 +1714,7 @@ and method25 (v0 : string, v1 : string) : std_pin_Pin<Box<Dyn<std_future_Future<
     let v2 : string = "let __result = Box::pin(async move { //"
     Fable.Core.RustInterop.emitRustExpr () v2
     let v3 : clap_Command = method26()
-    let v4 : string = $"builder {v0}"
+    let v4 : string = $"spiral_builder {v0}"
     let v5 : (string []) = method27(v4)
     let v6 : string = "$0.to_vec()"
     let v7 : Vec<string> = Fable.Core.RustInterop.emitRustExpr v5 v6

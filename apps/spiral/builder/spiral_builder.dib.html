@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>builder.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>spiral_builder.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7531,7 +7531,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="builder">builder<a class="anchor-link" href="#builder">¶</a></h1>
+<h1 id="spiral_builder">spiral_builder<a class="anchor-link" href="#spiral_builder">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7837,19 +7837,19 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">out_dir</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">get_full_path</span>
 
     <span class="n">trace</span> <span class="n">Debug</span>
-        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"builder.run"'</span>
+        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"spiral_builder.run"'</span>
         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"file: {!file} / out_dir: {!out_dir} / hash: {!hash} / args: {!args} / {!_locals ()}"'</span>
 
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
         <span class="n">inl</span> <span class="n">arg_matches</span> <span class="o">=</span>
             <span class="n">get_args_command</span> <span class="p">()</span>
-            <span class="o">|&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">command_get_matches_from</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"builder {!args}"'</span> <span class="o">|&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">split_args</span><span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">command_get_matches_from</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"spiral_builder {!args}"'</span> <span class="o">|&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">split_args</span><span class="p">)</span>
 
         <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span>
             <span class="k">match</span> <span class="n">arg_matches</span> <span class="o">|&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">matches_subcommand</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
             <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">subcommand</span><span class="p">,</span> <span class="n">arg_matches</span><span class="p">)</span> <span class="o">=&gt;</span>
                 <span class="n">trace</span> <span class="n">Debug</span>
-                    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"builder.run"'</span>
+                    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"spiral_builder.run"'</span>
                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"subcommand: {!subcommand} / {!_locals ()}"'</span>
 
                 <span class="n">inl</span> <span class="n">cargo_toml_content</span> <span class="o">=</span> <span class="nb">hash</span> <span class="o">|&gt;</span> <span class="n">get_cargo_toml_content</span>
@@ -7857,7 +7857,7 @@ a.anchor-link {
             <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="s2">""</span>
 
         <span class="n">trace</span> <span class="n">Debug</span>
-            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"builder.run"'</span>
+            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"spiral_builder.run"'</span>
             <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"result: {!result} / {!_locals ()}"'</span>
 
         <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">Ok</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">box</span>
@@ -7919,9 +7919,9 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>01:16:55 <span class="ansi-blue-intense-fg">  debug</span> #1 builder.run / file: C:\home\git\polyglot\apps\spiral\builder\file / out_dir: C:\home\git\polyglot\apps\spiral\builder\out_dir / hash: hash / args: rust
-01:16:55 <span class="ansi-blue-intense-fg">  debug</span> #2 builder.run / subcommand: rust
-01:16:55 <span class="ansi-blue-intense-fg">  debug</span> #3 builder.run / result: [package]
+<pre>03:05:53 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_builder.run / file: C:\home\git\polyglot\apps\spiral\builder\file / out_dir: C:\home\git\polyglot\apps\spiral\builder\out_dir / hash: hash / args: rust
+03:05:53 <span class="ansi-blue-intense-fg">  debug</span> #2 spiral_builder.run / subcommand: rust
+03:05:53 <span class="ansi-blue-intense-fg">  debug</span> #3 spiral_builder.run / result: [package]
 name = "hash"
 version = "0.0.1"
 edition = "2021"
@@ -8067,7 +8067,7 @@ path = "hash.rs" "
     <span class="n">trace_level</span> <span class="o">&lt;-</span> <span class="n">Info</span>
 
     <span class="n">trace</span> <span class="n">Debug</span>
-        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"builder.main"'</span>
+        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"spiral_builder.main"'</span>
         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"args: {!args} / {!_locals ()}"'</span>
 
     <span class="n">inl</span> <span class="n">command</span> <span class="o">=</span> <span class="n">get_command</span> <span class="p">()</span>
@@ -8640,7 +8640,7 @@ and closure2 () () : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     let v34 : int64 option = _v6.Value
     struct (v1, v0, v3, v34, v5)
 and closure4 () () : string =
-    let v0 : string = $"builder.main"
+    let v0 : string = $"spiral_builder.main"
     v0
 and closure6 () () : string =
     let v0 : string = ""
@@ -9106,7 +9106,7 @@ and method23 (v0 : string) : string =
 and method24 (v0 : string) : string =
     v0
 and closure10 () () : string =
-    let v0 : string = "builder.run"
+    let v0 : string = "spiral_builder.run"
     v0
 and closure11 (v0 : string, v1 : string, v2 : string, v3 : string) () : string =
     let v4 : (unit -&gt; string) = closure6()
@@ -9825,14 +9825,14 @@ and closure17 () struct (v0 : std_string_String, v1 : clap_ArgMatches) : US6 =
 and method34 () : (struct (std_string_String * clap_ArgMatches) -&gt; US6) =
     closure17()
 and closure18 () () : string =
-    let v0 : string = "builder.run"
+    let v0 : string = "spiral_builder.run"
     v0
 and closure19 (v0 : std_string_String) () : string =
     let v1 : (unit -&gt; string) = closure6()
     let v2 : string = $"subcommand: {v0} / {v1 ()}"
     v2
 and closure20 () () : string =
-    let v0 : string = "builder.run"
+    let v0 : string = "spiral_builder.run"
     v0
 and closure21 (v0 : string) () : string =
     let v1 : (unit -&gt; string) = closure6()
@@ -9844,7 +9844,7 @@ and method25 (v0 : string, v1 : string) : std_pin_Pin&lt;Box&lt;Dyn&lt;std_futur
     let v2 : string = "let __result = Box::pin(async move { //"
     Fable.Core.RustInterop.emitRustExpr () v2
     let v3 : clap_Command = method26()
-    let v4 : string = $"builder {v0}"
+    let v4 : string = $"spiral_builder {v0}"
     let v5 : (string []) = method27(v4)
     let v6 : string = "$0.to_vec()"
     let v7 : Vec&lt;string&gt; = Fable.Core.RustInterop.emitRustExpr v5 v6
