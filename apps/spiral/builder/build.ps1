@@ -13,7 +13,7 @@ $projectName = "spiral_builder"
 
 if (!$fast -and !$SkipNotebook) {
     { cargo build --release } | Invoke-Block
-    { . ../dist/Supervisor$(_exe) --execute-command "pwsh -c `"../../../scripts/invoke-dib.ps1 $projectName.dib`"" } | Invoke-Block -Retries 3
+    { . ../dist/Supervisor$(_exe) --execute-command "pwsh -c `"../../../scripts/invoke-dib.ps1 $projectName.dib -Retries 3`"" } | Invoke-Block
 }
 
 { . ../../parser/dist/DibParser$(_exe) "$projectName.dib" spi } | Invoke-Block

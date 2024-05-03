@@ -592,6 +592,7 @@ inl get_full_path (path : string) : string =
                     ||> am.foldBack fun x level, acc =>
                         match x, level with
                         | "..", _ => level + 1, acc
+                        | ".", _ => level, acc
                         | _, 0 when x |> sm'.ends_with ":" => 0, a ;[ $'$"{!current_dir.[0]}:"' ] /@ acc
                         | _, 0 => 0, a ;[ x ] /@ acc
                         | _ => level - 1, acc
@@ -623,7 +624,7 @@ inl get_full_path (path : string) : string =
 //// test
 //// print_code=false
 
-"dir/../._file"
+"dir/.././._file"
 |> get_full_path
 |> _assert_eq (get_current_directory () </> "._file")
 
@@ -650,7 +651,7 @@ types ()
 ///! rust
 
 types ()
-"dir/../._file"
+"dir/.././._file"
 |> get_full_path
 |> _assert_eq (get_current_directory () </> "._file")
 
