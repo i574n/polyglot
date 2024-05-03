@@ -1180,7 +1180,7 @@ export function closure50(unitVar: void, unitVar_1: void): string {
 export function closure54(unitVar: void, v0_1: string): boolean {
     let _v1: Option<boolean> = undefined;
     const v18_1: IFsExistsSync = fs;
-    const x: boolean = v18.existsSync(v0_1);
+    const x: boolean = v18_1.existsSync(v0_1);
     _v1 = x;
     return value_3(_v1);
 }
@@ -1188,7 +1188,7 @@ export function closure54(unitVar: void, v0_1: string): boolean {
 export function closure55(unitVar: void, v0_1: string): boolean {
     let _v1: Option<boolean> = undefined;
     const v18_1: IFsExistsSync = fs;
-    const x: boolean = v18.existsSync(v0_1);
+    const x: boolean = v18_1.existsSync(v0_1);
     _v1 = x;
     return value_3(_v1);
 }

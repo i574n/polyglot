@@ -755,8 +755,9 @@ inl directory_exists (path : string) : bool =
             path_buf_exists path && path_buf_is_dir path
         | TypeScript (Native) => fun () =>
             global "type IFsExistsSync = abstract existsSync: path: string -> bool"
+            open ts_operators
             inl fs : $'IFsExistsSync' = ts.import_all "fs"
-            ts.emit_expr path $'"!fs.existsSync($0)"'
+            !\\((fs, path), $'"$0.existsSync($1)"')
         | _ => fun () => null ()
 
 #!markdown
@@ -846,9 +847,10 @@ inl file_exists (path : string) : bool =
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             path_buf_exists path_buf && path_buf_is_file path_buf
         | TypeScript (Native) => fun () =>
+            open ts_operators
             global "type IFsExistsSync = abstract existsSync: path: string -> bool"
             inl fs : $'IFsExistsSync' = ts.import_all "fs"
-            ts.emit_expr path $'"!fs.existsSync($0)"'
+            !\\((fs, path), $'"$0.existsSync($1)"')
         | _ => fun () => null ()
 
 #!markdown

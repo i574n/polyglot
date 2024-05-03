@@ -70,7 +70,7 @@ class Mut3(Record):
 
 Mut3_reflection = _expr154
 
-def _expr156() -> TypeInfo:
+def _expr155() -> TypeInfo:
     return union_type("Trace.US1", [], US1, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -86,9 +86,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr156
+US1_reflection = _expr155
 
-def _expr157() -> TypeInfo:
+def _expr156() -> TypeInfo:
     return union_type("Trace.US2", [], US2, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -104,7 +104,7 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr157
+US2_reflection = _expr156
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:

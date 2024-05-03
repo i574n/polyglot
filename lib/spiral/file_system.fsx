@@ -804,8 +804,8 @@ and method2 (v0 : string, v1 : int64) : Async<int64> =
 #if FABLE_COMPILER_TYPESCRIPT
     let v29 : string = "fs"
     let v30 : IFsExistsSync = Fable.Core.JsInterop.importAll v29
-    let v31 : string = "v30.existsSync($0)"
-    let v32 : bool = Fable.Core.JsInterop.emitJsExpr v12 v31
+    let v31 : string = "$0.existsSync($1)"
+    let v32 : bool = Fable.Core.JsInterop.emitJsExpr struct (v30, v12) v31
     v32
 #endif
     
@@ -1652,8 +1652,8 @@ and closure16 (v0 : string) (v1 : string) : Async<bool> =
 #if FABLE_COMPILER_TYPESCRIPT
     let v33 : string = "fs"
     let v34 : IFsExistsSync = Fable.Core.JsInterop.importAll v33
-    let v35 : string = "v34.existsSync($0)"
-    let v36 : bool = Fable.Core.JsInterop.emitJsExpr v0 v35
+    let v35 : string = "$0.existsSync($1)"
+    let v36 : bool = Fable.Core.JsInterop.emitJsExpr struct (v34, v0) v35
     v36
 #endif
     
@@ -1986,8 +1986,8 @@ and closure20 (v0 : string) (v1 : string) : Async<unit> =
 #if FABLE_COMPILER_TYPESCRIPT
     let v41 : string = "fs"
     let v42 : IFsExistsSync = Fable.Core.JsInterop.importAll v41
-    let v43 : string = "v42.existsSync($0)"
-    let v44 : bool = Fable.Core.JsInterop.emitJsExpr v0 v43
+    let v43 : string = "$0.existsSync($1)"
+    let v44 : bool = Fable.Core.JsInterop.emitJsExpr struct (v42, v0) v43
     v44
 #endif
     
@@ -4544,8 +4544,8 @@ and closure46 (v0 : string) () : unit =
 #if FABLE_COMPILER_TYPESCRIPT
     let v20 : string = "fs"
     let v21 : IFsExistsSync = Fable.Core.JsInterop.importAll v20
-    let v22 : string = "v21.existsSync($0)"
-    let v23 : bool = Fable.Core.JsInterop.emitJsExpr v3 v22
+    let v22 : string = "$0.existsSync($1)"
+    let v23 : bool = Fable.Core.JsInterop.emitJsExpr struct (v21, v3) v22
     v23
 #endif
     
@@ -5953,8 +5953,8 @@ and closure54 () (v0 : string) : bool =
 #if FABLE_COMPILER_TYPESCRIPT
     let v17 : string = "fs"
     let v18 : IFsExistsSync = Fable.Core.JsInterop.importAll v17
-    let v19 : string = "v18.existsSync($0)"
-    let v20 : bool = Fable.Core.JsInterop.emitJsExpr v0 v19
+    let v19 : string = "$0.existsSync($1)"
+    let v20 : bool = Fable.Core.JsInterop.emitJsExpr struct (v18, v0) v19
     v20
 #endif
     
@@ -6010,8 +6010,8 @@ and closure55 () (v0 : string) : bool =
 #if FABLE_COMPILER_TYPESCRIPT
     let v17 : string = "fs"
     let v18 : IFsExistsSync = Fable.Core.JsInterop.importAll v17
-    let v19 : string = "v18.existsSync($0)"
-    let v20 : bool = Fable.Core.JsInterop.emitJsExpr v0 v19
+    let v19 : string = "$0.existsSync($1)"
+    let v20 : bool = Fable.Core.JsInterop.emitJsExpr struct (v18, v0) v19
     v20
 #endif
     
@@ -6335,8 +6335,8 @@ and method35 (v0 : string, v1 : string, v2 : string) : string =
 #if FABLE_COMPILER_TYPESCRIPT
     let v20 : string = "fs"
     let v21 : IFsExistsSync = Fable.Core.JsInterop.importAll v20
-    let v22 : string = "v21.existsSync($0)"
-    let v23 : bool = Fable.Core.JsInterop.emitJsExpr v3 v22
+    let v22 : string = "$0.existsSync($1)"
+    let v23 : bool = Fable.Core.JsInterop.emitJsExpr struct (v21, v3) v22
     v23
 #endif
     
@@ -6406,8 +6406,8 @@ and method34 (v0 : string, v1 : string) : string =
 #if FABLE_COMPILER_TYPESCRIPT
     let v19 : string = "fs"
     let v20 : IFsExistsSync = Fable.Core.JsInterop.importAll v19
-    let v21 : string = "v20.existsSync($0)"
-    let v22 : bool = Fable.Core.JsInterop.emitJsExpr v2 v21
+    let v21 : string = "$0.existsSync($1)"
+    let v22 : bool = Fable.Core.JsInterop.emitJsExpr struct (v20, v2) v21
     v22
 #endif
     
