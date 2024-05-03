@@ -13,7 +13,7 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 open benchmark
@@ -829,9 +829,9 @@ rotateStringsTests
 
 #!spiral
 
-// // test
-// // timeout=60000
-// // print_code=true
+//// test
+//// timeout=60000
+//// print_code=true
 
 inl get_solutions () =
     [
@@ -965,7 +965,7 @@ inl get_solutions () =
         // fun input =>
         //     Array.singleton 0
         //     |> Array.append (a ;[ 1 .. input.Length - 1 ])
-        // //    |> Array.Parallel.map (fun i => input.[ i .. ] + input.[ .. i - 1 ])
+        ////    |> Array.Parallel.map (fun i => input.[ i .. ] + input.[ .. i - 1 ])
         //     |> SpiralSm.concat " "
     ]
 
@@ -995,9 +995,9 @@ rotate_strings_tests ()
 
 #!spiral
 
-// // test
-// // rust=
-// // print_code=false
+//// test
+//// print_code=false
+///! rust
 
 // rotate_strings_tests ()
 
@@ -1007,9 +1007,9 @@ rotate_strings_tests ()
 
 #!spiral
 
-// // test
-// // timeout=90000
-// // print_code=true
+//// test
+//// timeout=90000
+//// print_code=true
 
 inl binary_search_semi_open_1 arr target left right =
     inl rec body left right =
@@ -1258,9 +1258,3 @@ let rec hasAnyPairCloseToEachotherTests =
     runAll (nameof hasAnyPairCloseToEachotherTests) _count solutions testCases
 hasAnyPairCloseToEachotherTests
 |> sortResultList
-
-#!spiral
-
-// // test
-
-()

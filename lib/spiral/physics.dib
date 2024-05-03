@@ -12,7 +12,7 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -26,7 +26,7 @@ open listm'_operators
 
 #!spiral
 
-// // test
+//// test
 
 inl x : a _ f64 = am'.init_series -3 3 0.01
 inl y = x |> am.map math.square
@@ -34,7 +34,7 @@ inl y = x |> am.map math.square
 
 #!spiral
 
-// // test
+//// test
 
 inl x : a _ f64 = am'.init_series -10 10 0.1
 inl y_sin = x |> am.map sin
@@ -43,7 +43,7 @@ inl y_cos = x |> am.map cos
 
 #!spiral
 
-// // test
+//// test
 
 inl y_pos y0 vy0 ay t =
     y0 + vy0 * t + ay * (t |> math.square) / 2
@@ -74,7 +74,7 @@ inl velocity_cf m v0 fs =
 
 #!spiral
 
-// // test
+//// test
 
 velocity_cf 0.1f64 0.6 [ 0.04; -0.08 ] 0
 |> _assert_eq 0.6
@@ -84,7 +84,7 @@ velocity_cf 0.1f64 0.6 [ 0.04; -0.08 ] 1
 
 #!spiral
 
-// // test
+//// test
 
 inl x = am'.init_series 0 4 0.1
 inl y = x |> am.map (velocity_cf 0.1f64 0.6 [ 0.04; -0.08 ])
@@ -104,7 +104,7 @@ inl derivative dt : derivative =
 
 #!spiral
 
-// // test
+//// test
 
 derivative 1 (fun x => x ** 4 / 4) 1 - 1
 |> _assert_approx_eq None 0.25
@@ -146,7 +146,7 @@ inl integral dt : integration =
 
 #!spiral
 
-// // test
+//// test
 
 integral 0.01 math.square 0 1
 |> _assert_approx_eq None 0.33332500000000004
@@ -161,7 +161,7 @@ inl integral' dt : integration =
 
 #!spiral
 
-// // test
+//// test
 
 integral' 0.1 math.square 0 1
 |> _assert_approx_eq None (integral 0.1 math.square 0 1)
@@ -176,7 +176,7 @@ inl integral'' dt : integration =
 
 #!spiral
 
-// // test
+//// test
 
 integral'' 0.01 math.square 0 1
 |> _assert_approx_eq None (integral 0.01 math.square 0 1)
@@ -219,7 +219,7 @@ inl position_ft dt : position_ft =
 
 #!spiral
 
-// // test
+//// test
 
 inl pedal_coast (t : time) : force =
     inl t_cycle = 20
@@ -235,7 +235,7 @@ inl y = x |> am.map pedal_coast
 
 #!spiral
 
-// // test
+//// test
 
 inl x = am'.init_series -5 45 1
 inl y = x |> am.map (position_ft 0.1f64 20 0 0 [ pedal_coast ])
@@ -265,7 +265,7 @@ inl f_air drag rho area v =
 
 #!spiral
 
-// // test
+//// test
 
 inl x = am'.init_series 0 60 0.5
 inl y = x |> am.map (velocity_fv 1 70 0f64 [ fun _ => 100; f_air 2 1.225 0.6 ])
@@ -294,7 +294,7 @@ inl velocity_ftv dt m tv0 fs t =
 
 #!spiral
 
-// // test
+//// test
 
 inl x = am'.init_series 0 100 0.1
 inl y =
@@ -358,7 +358,7 @@ inl spring_force k (state_1d (_, x0, _)) =
 
 #!spiral
 
-// // test
+//// test
 
 inl damped_ho_forces () =
     [
@@ -379,7 +379,7 @@ inl y = x |> am.map pingpong_position
 
 #!spiral
 
-// // test
+//// test
 
 inl pingpong_velocity t =
     velocity_ftxv 0.001 0.0027 (state_1d (0, 0.1, 0)) (damped_ho_forces ()) t
@@ -456,7 +456,7 @@ inl of_state_1d (state_1d (t, x, v)) =
 
 #!spiral
 
-// // test
+//// test
 
 solver (euler 0.01) (of_state_1d >> exponential >> state_1d) (state_1d (0, 1, 1)) 800i32
 |> _assert_eq (state_1d (7.999999999999874, 2864.8311229272326, 2864.8311229272326))
@@ -485,7 +485,7 @@ inl vec x y z : vec =
 
 #!spiral
 
-// // test
+//// test
 
 vec 1 2 3 .z
 |> _assert_eq 3
@@ -512,7 +512,7 @@ inl (^+^) (a : vec) (b : vec) =
 
 #!spiral
 
-// // test
+//// test
 
 vec 1 2 3 ^+^ vec 4 5 6
 |> _assert_eq (vec 5 7 9)
@@ -528,7 +528,7 @@ inl sum_vec vs =
 
 #!spiral
 
-// // test
+//// test
 
 [ vec 1 2 3; vec 4 5 6 ]
 |> sum_vec
@@ -545,14 +545,14 @@ inl (*^) c { x y z } =
 
 #!spiral
 
-// // test
+//// test
 
 5 *^ vec 1 2 3
 |> _assert_eq (vec 5 10 15)
 
 #!spiral
 
-// // test
+//// test
 
 3 *^ i_hat () ^+^ 4 *^ k_hat ()
 |> _assert_eq (vec 3 0 4)
@@ -568,7 +568,7 @@ inl (^*) v c =
 
 #!spiral
 
-// // test
+//// test
 
 vec 1 2 3 ^* 5
 |> _assert_eq (vec 5 10 15)
@@ -584,7 +584,7 @@ inl (^/) { x y z } c =
 
 #!spiral
 
-// // test
+//// test
 
 vec 1 2 3 ^/ 5
 |> _assert_eq (vec 0.2 0.4 0.6)
@@ -600,7 +600,7 @@ inl negate_vec v =
 
 #!spiral
 
-// // test
+//// test
 
 vec 1 2 3
 |> negate_vec
@@ -617,7 +617,7 @@ inl (^-^) a b =
 
 #!spiral
 
-// // test
+//// test
 
 vec 1 2 3 ^-^ vec 4 5 6
 |> _assert_eq (vec -3 -3 -3)
@@ -633,7 +633,7 @@ inl (<.>) { x = ax y = ay z = az } { x = bx y = by z = bz } =
 
 #!spiral
 
-// // test
+//// test
 
 vec 1 2 3 <.> vec 4 5 6
 |> _assert_eq 32
@@ -652,7 +652,7 @@ inl (><) (a : vec) (b : vec) =
 
 #!spiral
 
-// // test
+//// test
 
 vec 1 2 3 >< vec 4 5 6
 |> _assert_eq (vec -3 6 -3)
@@ -668,7 +668,7 @@ inl magnitude v =
 
 #!spiral
 
-// // test
+//// test
 
 vec 1 2 3
 |> magnitude
@@ -685,7 +685,7 @@ inl v1 t =
 
 #!spiral
 
-// // test
+//// test
 
 v1 1
 |> _assert_eq (vec 2 6 6)
@@ -704,7 +704,7 @@ inl vec_derivative dt : vec_derivative =
 
 #!spiral
 
-// // test
+//// test
 
 vec_derivative 0.01 v1 3 .x
 |> _assert_approx_eq None (derivative 0.01 (v1 >> fun v => v.x) 3)
@@ -811,7 +811,7 @@ inl trajectory sts =
 
 #!spiral
 
-// // test
+//// test
 
 inl update_ps (method : numerical_method particle_state d_particle_state) =
     newton_second_ps >> method
@@ -852,7 +852,7 @@ inl halley_initial () =
 
 #!spiral
 
-// // test
+//// test
 
 inl baseball_forces () =
     inl area = pi * (0.074 / 2) ** 2
@@ -891,7 +891,7 @@ inl y = x |> am.map (baseball_range 0.01 45)
 
 #!spiral
 
-// // test
+//// test
 
 inl best_angle (min, max) =
     let rec loop theta_deg (best_range, best_theta_deg) =
@@ -930,7 +930,7 @@ inl relativity_ps fs (st : particle_state) =
 
 #!spiral
 
-// // test
+//// test
 
 inl year = 365.25 * 24 * 60 * 60
 inl c = 299792458
@@ -978,7 +978,7 @@ inl uniform_lorentz_force v_e v_b (st : particle_state) =
 
 #!spiral
 
-// // test
+//// test
 
 inl c : f64 = 299792458
 inl ~method = runge_kutta_4 0.000000001
@@ -1028,7 +1028,7 @@ inl relativity_y : a i32 _ = relativity_y |> listm.toArray
 
 #!spiral
 
-// // test
+//// test
 
 inl central_force f (particle_state st1) (particle_state st2) =
     inl r1 = st1.pos_vec
@@ -1222,7 +1222,7 @@ inl time_ke_rk4_y : a i32 _ = time_ke_rk4_y |> listm.toArray
 
 #!spiral
 
-// // test
+//// test
 
 inl linear_spring k re (particle_state st1) (particle_state st2) =
     inl r1 = st1.pos_vec
@@ -1318,7 +1318,7 @@ let main () =
 
 #!spiral
 
-// // test
+//// test
 
 inl central_force f (particle_state st1) (particle_state st2) =
     inl r1 = st1.pos_vec
@@ -1533,7 +1533,7 @@ inl time_ke_rk4_y : a i32 _ = time_ke_rk4_y |> listm.toArray
 
 #!spiral
 
-// // test
+//// test
 
 inl linear_spring k re (particle_state st1) (particle_state st2) =
     inl r1 = st1.pos_vec

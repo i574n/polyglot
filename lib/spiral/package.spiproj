@@ -23,6 +23,7 @@ modules:
     common-
     threading
     async
+    stream
     runtime
     file_system
     file_system_operators
@@ -31,7 +32,6 @@ modules:
     mapm
     networking
     benchmark
-    stream
     util
     physics
     leptos/

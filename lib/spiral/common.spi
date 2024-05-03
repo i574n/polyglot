@@ -1,35 +1,35 @@
-// // # common
+/// # common
 
-// // ## types
+/// ## types
 inl types () =
     rust.types ()
     sm'.types ()
 
-// // ## prototype
+/// ## prototype
 prototype (~:>) r : forall t. t -> r
 
-// // ## run_target
+/// ## run_target
 
-// // ## upcast
+/// ## upcast
 inl upcast forall t u. (x : t) : u =
     $'!x :> `u '
 
-// // ## downcast
+/// ## downcast
 inl downcast forall t u. (x : t) : u =
     $'!x :?> `u '
 
-// // ## pair
+/// ## pair
 
-// // ## new_pair
+/// ## new_pair
 inl new_pair forall a b. (a : a) (b : b) : pair a b =
     $"!a, !b"
 
-// // ## from_pair
+/// ## from_pair
 inl from_pair forall a b. (pair : pair a b) : a * b =
     $"let (a, b) = !pair"
     $"a", $"b"
 
-// // ## memoize
+/// ## memoize
 nominal lazy t = $'Lazy<`t>'
 
 inl memoize forall t. (fn : () -> t) : () -> t =
@@ -37,19 +37,19 @@ inl memoize forall t. (fn : () -> t) : () -> t =
     inl result : lazy t = $'lazy !fn ()'
     fun () => $'!result.Value'
 
-// // ## to_any
+/// ## to_any
 inl to_any forall t. (obj : t) : any =
     $"!obj"
 
 instance (~:>) any = to_any
 
-// // ## (||>)
+/// ## (||>)
 
-// // ## flip
+/// ## flip
 inl flip fn a b =
     fn b a
 
-// // ## join_body
+/// ## join_body
 inl join_body body acc x =
     if var_is x |> not
     then body acc x
@@ -57,7 +57,7 @@ inl join_body body acc x =
         inl acc = dyn acc
         join body acc x
 
-// // ## join_body_unit
+/// ## join_body_unit
 inl join_body_unit body d x =
     if var_is d |> not
     then body x
@@ -65,22 +65,22 @@ inl join_body_unit body d x =
         inl x = dyn x
         join body x
 
-// // ## nameof
+/// ## nameof
 inl nameof x : string =
     $"nameof !x"
 
-// // ## get_environment_variable
+/// ## get_environment_variable
 inl get_environment_variable (var : string) : string =
     $"System.Environment.GetEnvironmentVariable !var"
 
-// // ## disposable
+/// ## disposable
 nominal disposable t = $"System.IDisposable"
 
-// // ## dispose
+/// ## dispose
 inl dispose (disposable : disposable _) : () =
     disposable |> $'_.Dispose()'
 
-// // ## new_disposable
+/// ## new_disposable
 inl new_disposable (fn : () -> ()) : disposable _ =
     run_target function
         | Rust _ => fun () =>
@@ -91,20 +91,20 @@ inl new_disposable (fn : () -> ()) : disposable _ =
             $'{ new System.IDisposable with member _.Dispose () = !fn () }'
         | _ => fun () => null ()
 
-// // ## return
+/// ## return
 inl return forall t. (x : t) : () =
     $'return !x '
 
 inl return' forall t. (x : t) : t =
     $'return !x '
 
-// // ## sleep
+/// ## sleep
 inl sleep (n : i32) : () =
     run_target function
         | Fsharp (Native) => fun () => $'System.Threading.Thread.Sleep' n
         | _ => fun () => ()
 
-// // ## retry_fn
+/// ## retry_fn
 inl retry_fn forall t. retries (fn : () -> t) : option t =
     let rec loop retry =
         try
@@ -124,7 +124,7 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
             | None => loop (retry + 1)
     loop 0
 
-// // ## main
+/// ## main
 inl main () =
     types ()
     init_trace_state ()

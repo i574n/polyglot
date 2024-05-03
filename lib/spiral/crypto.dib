@@ -8,9 +8,36 @@
 
 #!spiral
 
-// // test
+open rust_operators
+
+#!spiral
+
+//// test
 
 open testing
+open file_system_operators
+
+#!markdown
+
+## types
+
+#!spiral
+
+inl types () =
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"sha2::Sha256\")>]\n#endif\ntype sha2_Sha256 = class end"
+
+#!spiral
+
+inl types () =
+    sm'.types ()
+    am'.types ()
+    threading.types ()
+    rust.types ()
+    date_time.types ()
+    file_system.types ()
+    stream.types ()
+    runtime.types ()
+    types ()
 
 #!markdown
 
@@ -89,7 +116,7 @@ inl hash_text (input : string) =
 
 #!spiral
 
-// // test
+//// test
 
 ""
 |> hash_text
@@ -97,7 +124,7 @@ inl hash_text (input : string) =
 
 #!spiral
 
-// // test
+//// test
 
 " "
 |> hash_text
@@ -120,6 +147,101 @@ inl get_file_hash (path : string) : result string string =
     then Ok result
     else Error result
 
+#!spiral
+
+//// test
+//// print_code=false
+///! rust
+
+types ()
+inl temp_folder, disposable = file_system.create_temp_directory ()
+
+inl file_name = join "test.txt"
+inl path = temp_folder </> file_name
+"" |> file_system.write_all_text path
+path
+|> get_file_hash
+|> resultm.get
+|> _assert_eq "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+disposable |> use |> ignore
+
+#!markdown
+
+## hash_file
+
+#!markdown
+
+## sha256'
+
+#!spiral
+
+nominal sha256' = $'sha2_Sha256'
+
+#!markdown
+
+## new_sha256
+
+#!spiral
+
+inl new_sha256 () : sha256' =
+    !\($'"sha2::Sha256::new()"')
+
+#!markdown
+
+## hasher_update
+
+#!spiral
+
+inl hasher_update forall t dim. (slice : am'.slice' t dim) (hasher : sha256') : () =
+    !\($'"!hasher"')
+
+#!markdown
+
+## hasher_finalize
+
+#!spiral
+
+inl hasher_finalize (hasher : sha256') : sm'.std_string =
+    !\($'"!hasher"')
+
+#!markdown
+
+## hash_file
+
+#!spiral
+
+inl hash_file (path : string) : result string string =
+    inl path = path |> file_system.normalize_path
+    inl file = path |> file_system.file_open |> resultm.unwrap'
+    inl reader = file |> stream.new_buf_reader
+    inl hasher = new_sha256 ()
+    inl buffer = (0, 1014) |> am'.new_slice
+
+    rust.loop fun () =>
+        inl count = reader |> stream.buf_reader_read buffer |> resultm.unwrap'
+        if count = 0 then rust.break ()
+        hasher |> hasher_update (buffer |> am'.slice_range (am'.Start 0) (am'.End fun _ => count))
+
+    hasher |> hasher_finalize |> sm'.from_std_string |> Ok
+
+#!spiral
+
+//// test
+//// print_code=false
+///! rust
+
+types ()
+inl temp_folder, disposable = file_system.create_temp_directory ()
+
+inl file_name = join "test.txt"
+inl path = temp_folder </> file_name
+"" |> file_system.write_all_text path
+path
+|> hash_file
+|> resultm.get
+|> _assert_eq "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+disposable |> use |> ignore
+
 #!markdown
 
 ## main
@@ -127,4 +249,5 @@ inl get_file_hash (path : string) : result string string =
 #!spiral
 
 inl main () =
+    types ()
     $"let hash_text x = !hash_text x" : ()

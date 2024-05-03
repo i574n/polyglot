@@ -7571,7 +7571,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="nb">open</span> <span class="n">testing</span>
 </pre></div>
@@ -8581,7 +8581,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">test_port_open</span> <span class="mi">65536</span>
 <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">run_with_timeout</span> <span class="mi">120</span>
@@ -9680,7 +9680,7 @@ assert_eq / actual: US3_0 false / expected: US3_0 false
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">test_port_open_timeout</span> <span class="mi">120</span> <span class="mi">65535</span>
 <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">run_synchronously</span>
@@ -10832,7 +10832,7 @@ assert_eq / actual: false / expected: false
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">inl</span> <span class="n">lock_port</span> <span class="n">port</span> <span class="o">=</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">_locals</span>
@@ -13975,8 +13975,8 @@ and method0 () : unit =
 method0()
 
 00:00:00   debug #1 1
-00:00:00   debug #2 _1
-00:00:00   debug #3 2
+00:00:00   debug #2 2
+00:00:00   debug #3 _1
 00:00:00   debug #4 3
 00:00:02 verbose #5 test_port_open / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
 00:00:02 verbose #6 wait_for_port_access / port: 5555 / retry: 0 / timeout: None / status: True
@@ -13992,7 +13992,7 @@ method0()
 00:00:09   debug #16 5
 00:00:09   debug #17 6
 assert_between / actual: 2L / expected: struct (2L, 5L)
-assert_between / actual: 121L / expected: struct (80L, 150L)
+assert_between / actual: 113L / expected: struct (80L, 150L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -14007,7 +14007,7 @@ assert_eq / actual: true / expected: true
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">inl</span> <span class="n">lock_port</span> <span class="n">port</span> <span class="o">=</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async_unit</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">_locals</span>
@@ -17160,8 +17160,8 @@ and method0 () : unit =
 method0()
 
 00:00:00   debug #1 1
+00:00:00   debug #2 _1
 00:00:00   debug #3 2
-00:00:00   debug #3 _1
 00:00:00   debug #4 3
 00:00:00   debug #5 run_with_timeout_async / timeout: 60
 00:00:00 verbose #6 wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: True
@@ -17169,9 +17169,9 @@ method0()
 00:00:00   debug #8 run_with_timeout_async / timeout: 60
 00:00:00   debug #9 run_with_timeout_async / timeout: 60
 00:00:00   debug #10 run_with_timeout_async / timeout: 60
-00:00:00   debug #11 _2
-00:00:00   debug #12 _3
-00:00:00   debug #13 run_with_timeout_async / timeout: 60
+00:00:00   debug #11 run_with_timeout_async / timeout: 60
+00:00:00   debug #12 _2
+00:00:00   debug #13 _3
 00:00:00   debug #14 4
 00:00:00 verbose #15 wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: False
 00:00:00   debug #16 _4
@@ -17180,7 +17180,7 @@ method0()
 00:00:00   debug #19 5
 00:00:00   debug #20 6
 assert_between / actual: 6L / expected: struct (4L, 15L)
-assert_between / actual: 11L / expected: struct (5L, 20L)
+assert_between / actual: 5L / expected: struct (5L, 20L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -17245,7 +17245,7 @@ assert_eq / actual: true / expected: true
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">inl</span> <span class="n">lock_ports</span> <span class="n">port</span> <span class="o">=</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async_unit</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">_locals</span>
@@ -20227,14 +20227,14 @@ method0()
 00:00:02 verbose #7 test_port_open / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
 00:00:02   debug #8 4
 00:00:02 verbose #9 wait_for_port_access / port: 5555 / retry: 0 / timeout: None / status: False
-00:00:03 verbose #10 wait_for_port_access / port: 5555 / retry: 100 / timeout: None / status: False
+00:00:04 verbose #10 wait_for_port_access / port: 5555 / retry: 100 / timeout: None / status: False
 00:00:04   debug #11 _4
 00:00:04   debug #12 _5
 00:00:06 verbose #13 test_port_open / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
 00:00:06   debug #14 5
 00:00:06   debug #15 6
 assert_eq / actual: 5557 / expected: 5557
-assert_between / actual: 109L / expected: struct (100L, 150L)
+assert_between / actual: 102L / expected: struct (100L, 150L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -20249,7 +20249,7 @@ assert_eq / actual: true / expected: true
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">inl</span> <span class="n">lock_ports</span> <span class="n">port</span> <span class="o">=</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async_unit</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">_locals</span>
@@ -23228,8 +23228,8 @@ and method0 () : unit =
 method0()
 
 00:00:00   debug #1 1
-00:00:00   debug #2 2
-00:00:00   debug #3 _1
+00:00:00   debug #2 _1
+00:00:00   debug #3 2
 00:00:00   debug #4 _2
 00:00:00   debug #5 _3
 00:00:00   debug #6 3
@@ -23242,7 +23242,7 @@ method0()
 00:00:00   debug #13 5
 00:00:00   debug #14 6
 assert_eq / actual: 5557 / expected: 5557
-assert_between / actual: 3L / expected: struct (2L, 10L)
+assert_between / actual: 2L / expected: struct (2L, 10L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -23351,6 +23351,10 @@ type MutCell&lt;'T&gt; = class end
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::any::Any")&gt;]
 #endif
 type std_any_Any = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow&lt;$0&gt;")&gt;]
+#endif
+type std_borrow_Cow&lt;'T&gt; = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell&lt;$0&gt;")&gt;]
 #endif

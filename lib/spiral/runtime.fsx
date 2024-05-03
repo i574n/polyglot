@@ -63,6 +63,10 @@ type MutCell<'T> = class end
 #endif
 type std_any_Any = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow<$0>")>]
+#endif
+type std_borrow_Cow<'T> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell<$0>")>]
 #endif
 type std_cell_RefCell<'T> = class end
@@ -202,22 +206,6 @@ type clap_Command = class end
 [<Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")>]
 #endif
 type clap_ArgMatches = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::io::Error")>]
-#endif
-type std_io_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::io::Lines<$0>")>]
-#endif
-type std_io_Lines<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader<$0>")>]
-#endif
-type async_std_io_BufReader<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader<$0>")>]
-#endif
-type std_io_BufReader<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::process::Child")>]
 #endif

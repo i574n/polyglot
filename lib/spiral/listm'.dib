@@ -8,13 +8,13 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
 #!spiral
 
-// // test
+//// test
 
 prototype append t : t -> t -> t
 
@@ -108,7 +108,7 @@ inl distinct' forall t. (list : list' t) : list' t =
 
 #!spiral
 
-// // test
+//// test
 
 [ "1"; "2"; "2"; "3" ]
 |> box
@@ -145,7 +145,7 @@ inl (/@) a b =
 
 #!spiral
 
-// // test
+//// test
 
 [ "a"; "b" ] /@ [ "c"; "d" ]
 |> _assert_eq [ "a"; "b"; "c"; "d" ]
@@ -173,7 +173,7 @@ inl init_series start end inc =
 
 #!spiral
 
-// // test
+//// test
 
 init_series 0 1 0.5
 |> _assert_eq [ 0f64; 0.5; 1 ]
@@ -191,7 +191,7 @@ inl rec try_item i = function
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> try_item 9i32
@@ -199,7 +199,7 @@ listm.init 10i32 id
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> try_item 10i32
@@ -216,7 +216,7 @@ inl item i =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> item 9i32
@@ -224,7 +224,7 @@ listm.init 10i32 id
 
 #!spiral
 
-// // test
+//// test
 
 fun () =>
     listm.init 10i32 id
@@ -265,7 +265,7 @@ inl sum list =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> sum
@@ -286,7 +286,7 @@ inl unzip list =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> listm.map (fun x => x, x)
@@ -350,7 +350,7 @@ inl index_of__ item =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> index_of 5i32
@@ -358,7 +358,7 @@ listm.init 10i32 id
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> try_index_of 10i32
@@ -390,7 +390,7 @@ inl try_find_ fn list =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> try_find ((=) 5i32)
@@ -406,7 +406,7 @@ inl find_ x =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> find ((=) 5i32)
@@ -427,7 +427,7 @@ inl choose f l =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> choose (fun x => if x % 2 = 0 then Some x else None)
@@ -457,7 +457,7 @@ inl zip_with_ fn xs ys =
 
 #!spiral
 
-// // test
+//// test
 
 ([ 1i32; 2; 3 ], [ 4; 5; 6 ])
 ||> zip_with (+)
@@ -477,7 +477,7 @@ inl zip_ xs ys =
 
 #!spiral
 
-// // test
+//// test
 
 ([ 1i32; 2; 3 ], [ 4i32; 5; 6 ])
 ||> zip
@@ -498,7 +498,7 @@ inl indexed list =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 5i32 ((*) 2)
 |> indexed
@@ -526,7 +526,7 @@ inl group_by fn list =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> group_by (fun x => x % 2 = 0)
@@ -545,7 +545,7 @@ inl forall' fn (head :: tail) =
 
 #!spiral
 
-// // test
+//// test
 
 [ 1i32; 1; 1; 1; 1 ]
 |> forall' ((=) 1i32)
@@ -564,7 +564,7 @@ inl last list =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> last
@@ -594,7 +594,7 @@ inl try_pick fn list =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> try_pick (fun x => if x = 5i32 then Some x else None)

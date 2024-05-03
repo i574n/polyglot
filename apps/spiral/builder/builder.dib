@@ -1,0 +1,229 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# builder
+
+#!spiral
+
+open file_system_operators
+open rust_operators
+open sm'_operators
+
+#!spiral
+
+//// test
+
+open testing
+
+#!markdown
+
+## types
+
+#!spiral
+
+inl types () =
+    rust.types ()
+    sm'.types ()
+    file_system.types ()
+    runtime.types ()
+
+#!markdown
+
+## get_args
+
+#!spiral
+
+inl get_args () =
+    {
+        file = "file"
+        out_dir = "out-dir"
+        hash = "hash"
+        args = "args"
+    }
+
+#!markdown
+
+## get_command
+
+#!spiral
+
+let get_command () =
+    ##"command"
+    |> runtime.new_command
+    |> runtime.command_arg (
+        runtime.new_arg ##(get_args () .file)
+        |> runtime.arg_short 'f'
+        |> runtime.arg_long ##(get_args () .file)
+        |> runtime.arg_required true
+    )
+    |> runtime.command_arg (
+        runtime.new_arg ##(get_args () .out_dir)
+        |> runtime.arg_short 'o'
+        |> runtime.arg_long ##(get_args () .out_dir)
+        |> runtime.arg_required true
+    )
+    |> runtime.command_arg (
+        runtime.new_arg ##(get_args () .hash)
+        |> runtime.arg_short 'h'
+        |> runtime.arg_long ##(get_args () .hash)
+        |> runtime.arg_required true
+    )
+    |> runtime.command_arg (
+        runtime.new_arg ##(get_args () .args)
+        |> runtime.arg_short 'a'
+        |> runtime.arg_long ##(get_args () .args)
+    )
+
+#!spiral
+
+let get_args_command () =
+    ##"command"
+    |> runtime.new_command
+    |> runtime.command_subcommand_required true
+    |> runtime.command_subcommand (
+        ##"rust"
+        |> runtime.new_command
+    )
+
+#!spiral
+
+inl get_cargo_toml_content hash : string =
+    $'$"""[package]\nname = \"{!hash}\"\nversion = "0.0.1"\nedition = "2021"\n\n[workspace]\n\n[dependencies]\nfable_library_rust = {{ path = \"fable_modules/fable-library-rust\", default-features = false, features = [\"static_do_bindings\", \"datetime\", \"guid\", \"threaded\"] }}\nclap = \"~4.5\"\ninline_colorization = \"~0.1\"\nregex = \"~1.10\"\nchrono = \"~0.4\"\nnum-complex = \"~0.4\"\npyo3 = \"~0.21\"\nasync-std = \"~1.12\"\nfutures = \"~0.3\"\nfutures-lite = \"~2.3\"\nasync-walkdir = \"~1.0\"\nrayon = \"~1.10\"\n\n[[bin]]\nname = \"{!hash}\"\npath = \"{!hash}.rs\" """'
+
+#!markdown
+
+## run
+
+#!spiral
+
+let run { file out_dir hash args }
+    : async.future_pin (resultm.result' string sm'.std_string) =
+
+    inl file = file |> file_system.get_full_path
+    inl out_dir = out_dir |> file_system.get_full_path
+
+    trace Debug
+        fun () => $'"builder.run"'
+        fun () => $'$"file: {!file} / out_dir: {!out_dir} / hash: {!hash} / args: {!args} / {!_locals ()}"'
+
+    fun () =>
+        inl arg_matches =
+            get_args_command ()
+            |> runtime.command_get_matches_from ($'$"builder {!args}"' |> runtime.split_args)
+
+        inl result =
+            match arg_matches |> runtime.matches_subcommand |> optionm'.unbox with
+            | Some (subcommand, arg_matches) =>
+                trace Debug
+                    fun () => $'"builder.run"'
+                    fun () => $'$"subcommand: {!subcommand} / {!_locals ()}"'
+
+                inl cargo_toml_content = hash |> get_cargo_toml_content
+                cargo_toml_content
+            | _ => ""
+
+        trace Debug
+            fun () => $'"builder.run"'
+            fun () => $'$"result: {!result} / {!_locals ()}"'
+
+        result |> Ok |> resultm.box
+    |> async.future_init (3, 2) 1
+
+#!spiral
+
+//// test
+//// print_code=false
+//// trace=false
+///! rust
+
+types ()
+run {
+    file = "file"
+    out_dir = "out_dir"
+    hash = "hash"
+    args = "rust"
+}
+|> async.block_on
+|> resultm.unwrap'
+|> _assert_eq (
+    "hash"
+    |> get_cargo_toml_content
+)
+
+#!markdown
+
+## tests
+
+#!spiral
+
+inl tests () =
+    rust.run_tests [
+        "verify_app", fun _ =>
+            get_command () |> runtime.command_debug_assert
+    ]
+
+#!markdown
+
+## main
+
+#!spiral
+
+///! 
+
+inl main (args : array_base string) =
+    inl trace_state = get_trace_state ()
+    inl trace_level = trace_state.level
+    trace_level <- Info
+
+    trace Debug
+        fun () => $'$"builder.main"'
+        fun () => $'$"args: {!args} / {!_locals ()}"'
+
+    inl command = get_command ()
+    inl arg_matches = command |> runtime.command_get_matches
+
+    inl file =
+        arg_matches
+        |> runtime.matches_get_one (get_args () .file)
+        |> optionm'.unbox
+        |> optionm.value
+        |> sm'.from_std_string
+
+    inl out_dir =
+        arg_matches
+        |> runtime.matches_get_one (get_args () .out_dir)
+        |> optionm'.unbox
+        |> optionm.value
+        |> sm'.from_std_string
+
+    inl hash =
+        arg_matches
+        |> runtime.matches_get_one (get_args () .hash)
+        |> optionm'.unbox
+        |> optionm.value
+        |> sm'.from_std_string
+
+    inl args =
+        arg_matches
+        |> runtime.matches_get_one (get_args () .args)
+        |> optionm'.unbox
+        |> optionm.map sm'.from_std_string
+        |> optionm'.default_value ""
+
+    inl result =
+        run { file out_dir hash args }
+        |> async.block_on
+        |> resultm.unwrap'
+
+    if *trace_level = Info
+    then result |> console.write_line
+
+    0i32
+
+inl main () =
+    types ()
+    $"let tests () = !tests ()" : ()
+    $"let main args = !main args" : ()

@@ -1,6 +1,6 @@
-// // # util
+/// # util
 
-// // ## ski
+/// ## ski
 union rec ski =
     | I
     | K

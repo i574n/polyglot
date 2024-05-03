@@ -1,4 +1,4 @@
-// // # test (Polyglot)
+//// # test (Polyglot)
 nominal i = ()
 nominal e = ()
 nominal s = ()
@@ -61,7 +61,7 @@ inl main () =
 inl main () =
     $"!main ()" : ()
 
-// // ## main
+//// ## main
 inl main (_args : array_base string) =
     0i32
 

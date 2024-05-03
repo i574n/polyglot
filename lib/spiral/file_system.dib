@@ -13,7 +13,7 @@ open rust_operators
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -24,6 +24,7 @@ open testing
 #!spiral
 
 inl types () =
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::File\")>]\n#endif\ntype std_fs_File = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::FileType\")>]\n#endif\ntype std_fs_FileType = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Display\")>]\n#endif\ntype std_path_Display = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>]\n#endif\ntype std_path_Path = class end"
@@ -38,7 +39,7 @@ inl types () =
     sm'.types ()
     rust.types ()
     date_time.types ()
-    runtime.types ()
+    stream.types ()
     types ()
 
 #!markdown
@@ -388,7 +389,7 @@ union filtering =
 #!spiral
 
 inl stream_filter_map forall t.
-    (fn : resultm.result' dir_entry runtime.io_error -> optionm'.option' t)
+    (fn : resultm.result' dir_entry stream.io_error -> optionm'.option' t)
     (stream : walk_dir)
     : am'.vec t =
 
@@ -439,7 +440,7 @@ nominal file_type = $'std_fs_FileType'
 
 #!spiral
 
-inl dir_entry_file_type (dir_entry : dir_entry) : async.future_pin_send (resultm.result' file_type runtime.io_error) =
+inl dir_entry_file_type (dir_entry : dir_entry) : async.future_pin_send (resultm.result' file_type stream.io_error) =
     inl dir_entry = join dir_entry
     !\($'"Box::pin(async_walkdir::DirEntry::file_type(&!dir_entry))"')
 
@@ -452,6 +453,23 @@ inl dir_entry_file_type (dir_entry : dir_entry) : async.future_pin_send (resultm
 inl file_type_is_dir (file_type : file_type) : bool =
     inl file_type = join file_type
     !\($'"std::fs::FileType::is_dir(&!file_type)"')
+
+#!markdown
+
+## file
+
+#!spiral
+
+nominal file = $'std_fs_File'
+
+#!markdown
+
+## file_open
+
+#!spiral
+
+inl file_open (path : string) : resultm.result' file stream.io_error =
+    !\($'"std::fs::File::open(&*!path)"')
 
 #!markdown
 
@@ -510,7 +528,7 @@ inl get_current_directory () : string =
             $'System.IO.Directory.GetCurrentDirectory' ()
         | Rust (Native) => fun () =>
             open rust_operators
-            inl current_dir = !\($'"std::env::current_dir()"') : resultm.result' path_buf runtime.io_error
+            inl current_dir = !\($'"std::env::current_dir()"') : resultm.result' path_buf stream.io_error
             current_dir
             |> resultm.unwrap'
             |> path_buf_display
@@ -520,7 +538,7 @@ inl get_current_directory () : string =
 
 #!spiral
 
-// // test
+//// test
 
 get_current_directory ()
 
@@ -581,7 +599,7 @@ inl get_full_path (path : string) : string =
                 |> seq.of_array'
                 |> sm'.concat (directory_separator_char () |> sm'.obj_to_string)
             else
-                inl path = !\\(path, $'"std::fs::canonicalize(&*$0)"') : resultm.result' path_buf runtime.io_error
+                inl path = !\\(path, $'"std::fs::canonicalize(&*$0)"') : resultm.result' path_buf stream.io_error
                 path
                 |> resultm.unwrap'
                 |> path_buf_display
@@ -591,8 +609,8 @@ inl get_full_path (path : string) : string =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 "."
 |> get_full_path
@@ -602,8 +620,8 @@ inl get_full_path (path : string) : string =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 "dir/../._file"
 |> get_full_path
@@ -611,9 +629,9 @@ inl get_full_path (path : string) : string =
 
 #!spiral
 
-// // test
-// // rust=
-// // print_code=false
+//// test
+//// print_code=false
+///! rust
 
 types ()
 "."
@@ -627,9 +645,9 @@ types ()
 
 #!spiral
 
-// // test
-// // rust=
-// // print_code=false
+//// test
+//// print_code=false
+///! rust
 
 types ()
 "dir/../._file"
@@ -654,8 +672,8 @@ inl create_temp_directory_name () =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 types ()
 create_temp_directory_name ()
@@ -663,8 +681,8 @@ create_temp_directory_name ()
 
 #!spiral
 
-// // test
-// // rust=
+//// test
+///! rust
 
 types ()
 create_temp_directory_name ()
@@ -681,7 +699,7 @@ inl get_source_directory () =
 
 #!spiral
 
-// // test
+//// test
 
 get_source_directory ()
 |> directory_info
@@ -694,7 +712,7 @@ get_source_directory ()
 
 #!spiral
 
-inl create_dir_all (path : string) : resultm.result' () runtime.io_error =
+inl create_dir_all (path : string) : resultm.result' () stream.io_error =
     !\\(path, $'"std::fs::create_dir_all(&*$0)"')
 
 #!markdown
@@ -808,7 +826,7 @@ inl file_copy (new_path : string) (old_path : string) : () =
             open rust_operators
             inl new_path = join new_path
             !\\(old_path, $'"std::fs::copy(&*$0, &*!new_path)"')
-            |> fun x => x : _ u64 runtime.io_error
+            |> fun x => x : _ u64 stream.io_error
             |> resultm.unwrap'
             |> ignore
         | _ => fun () => null ()
@@ -1037,8 +1055,8 @@ inl create_temp_directory () =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 types ()
 inl path, disposable = create_temp_directory ()
@@ -1049,9 +1067,9 @@ path
 
 #!spiral
 
-// // test
-// // rust=
-// // print_code=false
+//// test
+//// print_code=false
+///! rust
 
 types ()
 inl path, disposable = create_temp_directory ()
@@ -1065,7 +1083,7 @@ path
 
 #!spiral
 
-// // test
+//// test
 
 inl lock_directory path =
     fun () =>
@@ -1161,7 +1179,7 @@ inl wait_for_file_access_read path =
 
 #!spiral
 
-// // test
+//// test
 
 inl lock_file path =
     fun () =>
@@ -1284,7 +1302,7 @@ inl delete_file_async path : _ i64 =
 
 #!spiral
 
-// // test
+//// test
 
 inl lock_file path =
     fun () =>
@@ -1361,7 +1379,7 @@ inl move_file_async new_path old_path : _ i64 =
 
 #!spiral
 
-// // test
+//// test
 
 inl lock_file path =
     fun () =>
@@ -1440,8 +1458,8 @@ inl find_parent name is_file root_dir =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 a ;[ ".paket", false; "paket.dependencies", true ]
 |> am.map fun (file, is_file) =>
@@ -1454,9 +1472,9 @@ a ;[ ".paket", false; "paket.dependencies", true ]
 
 #!spiral
 
-// // test
-// // rust=
-// // print_code=false
+//// test
+//// print_code=false
+///! rust
 
 types ()
 a ;[ ".paket", false; "paket.dependencies", true ]
@@ -1512,7 +1530,7 @@ inl new_file_uri (path : string) : string =
 
 #!spiral
 
-// // test
+//// test
 
 @"\\?\C:\test"
 |> normalize_path
@@ -1521,8 +1539,8 @@ inl new_file_uri (path : string) : string =
 
 #!spiral
 
-// // test
-// // rust=
+//// test
+///! rust
 
 types ()
 @"\\?\C:\test"
@@ -1556,8 +1574,8 @@ let rec trace_file text =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 inl get_count dir : i64 =
     inl files = dir |> file_system.directory_get_files

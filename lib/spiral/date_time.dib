@@ -13,7 +13,7 @@ open sm'_operators
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -393,7 +393,7 @@ type date_time_guid = guid.guid
 
 #!spiral
 
-// // test
+//// test
 
 inl test_guid () =
     guid.new_guid "FEDCBA98-7654-3210-FEDC-BA9876543210"
@@ -447,8 +447,8 @@ inl date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 types ()
 now () |> to_universal_time |> date_time_guid_from_date_time (test_guid ()) |> sm'.obj_to_string
@@ -456,12 +456,12 @@ now () |> to_universal_time |> date_time_guid_from_date_time (test_guid ()) |> s
 
 #!spiral
 
-// // test
-// // rust=
-// // print_code=false
+//// test
+//// print_code=false
+///! rust
 
 types ()
-inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (sm'.End fun x => x - 6i32) (sm'.End id)
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 now ()
 |> to_universal_time
 |> date_time_guid_from_date_time (test_guid ())
@@ -470,11 +470,11 @@ now ()
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 types ()
-inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (sm'.End fun x => x - 6i32) (sm'.End id)
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 min_value ()
 |> specify_date_kind Local
 |> date_time_guid_from_date_time (test_guid ())
@@ -483,11 +483,11 @@ min_value ()
 
 #!spiral
 
-// // test
-// // rust=
-// // print_code=false
+//// test
+//// print_code=false
+///! rust
 
-inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (sm'.End fun x => x - 6i32) (sm'.End id)
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 types ()
 min_value ()
 |> specify_date_kind Local
@@ -497,11 +497,11 @@ min_value ()
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 types ()
-inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (sm'.End fun x => x - 6i32) (sm'.End id)
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 max_value ()
 |> specify_date_kind Utc
 |> add_days -1
@@ -511,12 +511,12 @@ max_value ()
 
 #!spiral
 
-// // test
-// // rust=
-// // print_code=false
+//// test
+//// print_code=false
+///! rust
 
 types ()
-inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (sm'.End fun x => x - 6i32) (sm'.End id)
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 max_value ()
 |> specify_date_kind Utc
 |> add_days -1
@@ -526,10 +526,10 @@ max_value ()
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
-inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (sm'.End fun x => x - 6i32) (sm'.End id)
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 unix_epoch ()
 |> specify_date_kind Utc
 |> add_days 1
@@ -539,12 +539,12 @@ unix_epoch ()
 
 #!spiral
 
-// // test
-// // rust=
-// // print_code=false
+//// test
+//// print_code=false
+///! rust
 
 types ()
-inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (sm'.End fun x => x - 6i32) (sm'.End id)
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 unix_epoch ()
 |> specify_date_kind Utc
 |> add_days 1
@@ -568,21 +568,21 @@ inl date_time_from_guid (date_time_guid : date_time_guid) =
 
 #!spiral
 
-// // test
+//// test
 
 date_time_from_guid (guid.new_guid "00010101-0000-0000-0000-0a9876543210")
 |> _assert_eq' (min_value ())
 
 #!spiral
 
-// // test
+//// test
 
 date_time_from_guid (guid.new_guid $'$"99991231-2359-5999-9999-9{(!test_guid () |> string).[^10..]}"')
 |> _assert_eq' (max_value ())
 
 #!spiral
 
-// // test
+//// test
 
 date_time_from_guid (guid.new_guid $'$"19700101-0000-0000-0000-0{(!test_guid () |> string).[^10..]}"')
 |> _assert_eq' $'System.DateTime.UnixEpoch'
@@ -600,14 +600,14 @@ inl timestamp_guid_from_timestamp (guid : guid.guid) (timestamp : timestamp) : t
 
 #!spiral
 
-// // test
+//// test
 
 timestamp_guid_from_timestamp (test_guid ()) (timestamp 0i64)
 |> _assert_eq' (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")
 
 #!spiral
 
-// // test
+//// test
 
 timestamp_guid_from_timestamp (test_guid ()) (timestamp 999999999999999999i64)
 |> _assert_eq' (guid.new_guid $'$"99999999-9999-9999-99dc-b{(!test_guid () |> string).[^10..]}"')
@@ -624,14 +624,14 @@ inl timestamp_from_guid (guid : date_time_guid) : timestamp =
 
 #!spiral
 
-// // test
+//// test
 
 timestamp_from_guid (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")
 |> _assert_eq (timestamp 0)
 
 #!spiral
 
-// // test
+//// test
 
 timestamp_from_guid (guid.new_guid $'$"99999999-9999-9999-99{(!test_guid () |> string).[^14..]}"')
 |> _assert_eq (timestamp 999999999999999999)
@@ -648,8 +648,8 @@ inl new_guid_from_date_time (date_time : date_time) =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 utc_now ()
 |> new_guid_from_date_time
@@ -669,7 +669,7 @@ inl new_guid_from_timestamp (timestamp : timestamp) =
 
 #!spiral
 
-// // test
+//// test
 
 utc_now ()
 |> ticks

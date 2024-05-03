@@ -8,7 +8,7 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -197,7 +197,7 @@ type task_template =
 
 #!spiral
 
-// // test
+//// test
 
 inl get_tasks () : list task_template =
     [
@@ -229,8 +229,8 @@ inl get_tasks () : list task_template =
 
 #!spiral
 
-// // test
-// // rust=
+//// test
+///! rust
 
 types ()
 get_tasks ()
@@ -240,8 +240,8 @@ get_tasks ()
 
 #!spiral
 
-// // test
-// // rust=
+//// test
+///! rust
 
 get_tasks ()
 |> listm'.try_item 0i32

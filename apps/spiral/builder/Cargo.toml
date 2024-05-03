@@ -1,5 +1,5 @@
 [package]
-name = "rust_builder"
+name = "spiral_builder"
 version = "0.0.1"
 edition = "2021"
 workspace = "../../../"
@@ -10,9 +10,10 @@ clap = "~4.5"
 inline_colorization = "~0.1"
 regex = "~1.10"
 chrono = "~0.4"
+futures-lite = "~2.3"
 
 [dev-dependencies]
 
 [[bin]]
-name = "rust_builder"
-path = "rust_builder.rs"
+name = "spiral_builder"
+path = "builder.rs"

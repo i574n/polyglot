@@ -274,18 +274,18 @@ module Eval =
             | Choice2Of2 ex -> Error(ex), errors
         else
             try
-                let rustArgs =
+                let builderArgs =
                     lines
-                    |> Array.tryPick (fun line ->
-                        if line |> SpiralSm.starts_with "// // rust="
-                        then line |> SpiralSm.split "=" |> Array.tryItem 1
+                    |> Array.choose (fun line ->
+                        if line |> SpiralSm.starts_with "///! "
+                        then line |> SpiralSm.split "///! " |> Array.tryItem 1
                         else None
                     )
 
                 let timeout =
                     lines
                     |> Array.tryPick (fun line ->
-                        if line |> SpiralSm.starts_with "// // timeout="
+                        if line |> SpiralSm.starts_with "//// timeout="
                         then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map int
                         else None
                     )
@@ -294,7 +294,7 @@ module Eval =
                 let printCode =
                     lines
                     |> Array.tryPick (fun line ->
-                        if line |> SpiralSm.starts_with "// // print_code="
+                        if line |> SpiralSm.starts_with "//// print_code="
                         then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
                         else None
                     )
@@ -303,16 +303,19 @@ module Eval =
                 let isTrace =
                     lines
                     |> Array.tryPick (fun line ->
-                        if line |> SpiralSm.starts_with "// // trace="
+                        if line |> SpiralSm.starts_with "//// trace="
                         then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
                         else None
                     )
                     |> Option.defaultValue false
 
                 let oldLevel = get_trace_level ()
-                if isTrace
-                then SpiralTrace.TraceLevel.US0_0
-                else SpiralTrace.TraceLevel.US0_2
+                let traceLevel =
+                    if isTrace
+                    then Verbose
+                    else Info
+                traceLevel
+                |> to_trace_level
                 |> set_trace_level
                 use _ = (new_disposable (fun () ->
                     oldLevel |> set_trace_level
@@ -396,16 +399,16 @@ module Eval =
                             |> Async.catch
                             |> Async.runWithTimeoutAsync timeout
 
-                        let code =
+                        let result =
                             match codeChoice with
-                            | Some (Ok code) -> Some code
+                            | Some (Ok (fsxPath, code)) -> Some (fsxPath, code)
                             | Some (Error ex) ->
                                 trace Critical (fun () -> $"Eval / errors: {ex |> SpiralSm.format_exception}") _locals
                                 None
                             | _ -> None
 
-                        match code with
-                        | Some (Some code, spiralErrors) ->
+                        match result with
+                        | Some (fsxPath, (Some code, spiralErrors)) ->
                             let spiralErrors =
                                 mapErrors (Warning, spiralErrors, lastTopLevelIndex) allCode
                             let inline _trace (fn : unit -> string) =
@@ -414,187 +417,40 @@ module Eval =
                                 else fn () |> System.Console.WriteLine
 
                             if printCode
-                            then _trace (fun () -> if rustArgs |> Option.isSome then $".fsx:\n{code}\n" else code)
+                            then _trace (fun () -> if builderArgs.Length > 0 then $".fsx:\n{code}\n" else code)
 
-                            let! rustResult =
-                                if rustArgs |> Option.isNone || lastTopLevelIndex = None
-                                then None |> Async.init
-                                else
-                                    async {
-                                        // let hash = $"repl_{code |> SpiralCrypto.hash_text}"
-                                        let hash = $"spiral_eval"
-
-                                        let! fsprojPath = code |> Builder.persistCodeProject ["Fable.Core"] [] hash
-
-                                        let projectDir = fsprojPath |> Path.GetDirectoryName
-
-                                        let outDir = projectDir </> $"target/{hash}"
-
-                                        let libLinkTargetPath = projectDir </> "target/fable-library-rust"
-                                        let libLinkPath = outDir </> $"fable_modules/fable-library-rust"
-
-                                        if Directory.Exists libLinkTargetPath |> not
-                                        then libLinkTargetPath |> Directory.CreateDirectory |> ignore
-
-                                        libLinkPath |> Path.GetDirectoryName |> Directory.CreateDirectory |> ignore
-
-                                        let libLinkPathInfo = DirectoryInfo libLinkPath
-                                        if libLinkPathInfo.Exists && libLinkPathInfo.LinkTarget = null then
-                                            Directory.Delete (libLinkPath, true)
-
-                                        if libLinkPath |> Directory.Exists |> not then
-                                            Directory.CreateSymbolicLink (libLinkPath, libLinkTargetPath)
-                                            |> ignore
-
-                                        let repositoryRoot =
-                                            let currentDir =
-                                                System.IO.Directory.GetCurrentDirectory ()
-                                                |> SpiralSm.to_lower
-                                            let repositoryRoot = repositoryRoot |> SpiralSm.to_lower
-                                            if currentDir |> SpiralSm.starts_with repositoryRoot
-                                            then None
-                                            else Some repositoryRoot
-
-                                        // try
-                                        //     let path =
-                                        //         repositoryRoot </> $@"target/release/rust_builder{SpiralRuntime.get_executable_suffix ()}"
-                                        //         |> System.IO.Path.GetFullPath
-                                        //     let command = $"{path} {fsprojPath} {outDir}"
-                                        //     let! exitCode, result =
-                                        //         SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, repositoryRoot)
-                                        //     trace Info (fun () -> $"Eval.eval 1 / exitCode: {exitCode} / result: {result}") _locals
-                                        // with ex ->
-                                        //     trace Critical (fun () -> $"Eval.eval 1 / ex: {ex}") _locals
-
-                                        let command = $@"dotnet fable ""{fsprojPath}"" --optimize --lang rs --extension .rs --outDir ""{outDir}"" "
-                                        let! exitCode, result =
-                                            SpiralRuntime.execution_options (fun x ->
-                                                { x with
-                                                    l0 = cancellationToken
-                                                    l1 = command
-                                                    l5 = repositoryRoot
-                                                }
-                                            )
-                                            |> SpiralRuntime.execute_with_options_async
-
-                                        if exitCode <> 0
-                                        then return Some (Error result)
-                                        else
-                                            let rsPath = libLinkPath </> "src/Range.rs"
-                                            let! text = rsPath |> SpiralFileSystem.read_all_text_async
-                                            do!
-                                                text
-                                                |> SpiralSm.replace "use crate::String_::fromCharCode;" "use crate::String_::fromChar;"
-                                                |> SpiralSm.replace "fromCharCode(c)" "std::char::from_u32(c).unwrap()"
-                                                |> SpiralFileSystem.write_all_text_async rsPath
-
-                                            let command = "cargo fmt --"
+                            let! evalResult =
+                                match builderArgs, lastTopLevelIndex with
+                                | [||], _ | _, None -> None |> Async.init
+                                | builderArgs, _ -> async {
+                                    let! result =
+                                        builderArgs
+                                        |> Array.map (fun builderArgs -> async {
                                             let! exitCode, result =
                                                 SpiralRuntime.execution_options (fun x ->
                                                     { x with
+                                                        l1 = $"""{repositoryRoot}/apps/spiral/dist/Eval{SpiralRuntime.get_executable_suffix ()} --file "{fsxPath}" --args "{builderArgs}" --trace-level %A{traceLevel}"""
                                                         l0 = cancellationToken
-                                                        l1 = command
-                                                        l5 = Some outDir
                                                     }
                                                 )
                                                 |> SpiralRuntime.execute_with_options_async
-                                            if exitCode <> 0 then
-                                                trace Critical (fun () -> $"Eval.eval / cargo fmt error / exitCode: {exitCode} / result: {result}") _locals
-
-                                            let rsPath = outDir </> $"{hash}.rs"
-                                            let! rsCode = rsPath |> SpiralFileSystem.read_all_text_async
-
-                                            let mainCodeHeader = "pub fn main() -> Result<(), String> {"
-                                            let mainCode = $"{mainCodeHeader} Ok(()) }}"
-
-                                            let cached = rsCode |> SpiralSm.contains mainCodeHeader
-
-                                            let rsCode =
-                                                if cached
-                                                then rsCode
-                                                else
-                                                    rsCode
-                                                    |> SpiralSm.replace "),);" "));"
-                                                    |> SpiralSm.replace_regex "\s\sdefaultOf\(\);" " defaultOf::<()>();"
-                                                    |> SpiralSm.replace "defaultOf()," "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
-                                                    |> SpiralSm.replace "_self_." "self."
-                                                    |> SpiralSm.replace "get_or_insert_with" "get_or_init"
-                                                    |> SpiralSm.replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;" "type ConcurrentStack_1<T> = T;"
-                                                    |> SpiralSm.replace "use fable_library_rust::System::Threading::CancellationToken;" "type CancellationToken = ();"
-                                                    |> SpiralSm.replace "use fable_library_rust::System::TimeZoneInfo;" "type TimeZoneInfo = i64;"
-                                                    |> SpiralSm.replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;" "type TaskCanceledException = ();"
-
-                                            if printCode
-                                            then _trace (fun () -> $".rs:\n{rsCode}")
-
-                                            if not cached
-                                            then do!
-                                                $"{rsCode}\n\n{mainCode}\n"
-                                                |> SpiralFileSystem.write_all_text_async rsPath
-
-
-                                            let cargoTomlPath = outDir </> $"Cargo.toml"
-                                            let cargoTomlContent = $"""[package]
-name = "{hash}"
-version = "0.0.1"
-edition = "2021"
-
-[workspace]
-
-[dependencies]
-fable_library_rust = {{ path = "fable_modules/fable-library-rust", default-features = false, features = ["static_do_bindings", "datetime", "guid", "threaded"] }}
-clap = "~4.5"
-inline_colorization = "~0.1"
-regex = "~1.10"
-chrono = "~0.4"
-num-complex = "~0.4"
-pyo3 = "~0.21"
-async-std = "~1.12"
-futures = "~0.3"
-futures-lite = "~2.3"
-async-walkdir = "~1.0"
-rayon = "~1.10"
-
-[[bin]]
-name = "{hash}"
-path = "{hash}.rs"
-"""
-                                            do! cargoTomlContent |> SpiralFileSystem.write_all_text_exists cargoTomlPath
-
-                                            let command = $@"cargo run --manifest-path {cargoTomlPath}"
-                                            let! exitCode, result =
-                                                SpiralRuntime.execution_options (fun x ->
-                                                    { x with
-                                                        l0 = cancellationToken
-                                                        l1 = command
-                                                        l2 = [| "RUSTC_WRAPPER", "sccache" |]
-                                                        l5 = repositoryRoot
-                                                    }
-                                                )
-                                                |> SpiralRuntime.execute_with_options_async
-
-                                            if exitCode = 0 then
-                                                try
-                                                    let result =
-                                                        result
-                                                        |> SpiralSm.split "\n"
-                                                        |> Array.skipWhile (fun line ->
-                                                            (line |> SpiralSm.contains @"profile [optimized] target" |> not)
-                                                                && (line |> SpiralSm.contains @"profile [unoptimized + debuginfo] target" |> not)
-                                                        )
-                                                        |> Array.skip 2
-                                                        |> SpiralSm.concat "\n"
-                                                    return Some (Ok result)
-                                                with ex ->
-                                                    return $"ex: {ex}\nresult:\n{result}" |> Error |> Some
-                                            else
-                                                return Some (Error result)
-                                    }
+                                            trace Debug (fun () -> $"Eval.eval / builder / exitCode: {exitCode} / result: {result}") _locals
+                                            return
+                                                if exitCode = 0
+                                                then result |> Ok
+                                                else result |> Error
+                                                |> Some
+                                        })
+                                        |> Async.Parallel
+                                    return
+                                        (None, result)
+                                        ||> Array.fold (fun acc x -> x)
+                                }
 
                             let cancellationToken = defaultArg cancellationToken System.Threading.CancellationToken.None
 
                             let fsxResult =
-                                if rustArgs |> Option.isSome
+                                if builderArgs.Length > 0
                                 then None
                                 else
                                     try
@@ -609,7 +465,7 @@ path = "{hash}.rs"
                                         trace Critical (fun () -> $"Eval.eval / ex: {ex |> SpiralSm.format_exception}") _locals
                                         None
 
-                            match fsxResult, rustResult with
+                            match fsxResult, evalResult with
                             | Some (ch, errors), None ->
                                 let errors = errors |> Array.append spiralErrors
                                 match ch with
@@ -629,7 +485,7 @@ path = "{hash}.rs"
                                             )
                                         |]
 
-                                let header = if printCode then ".rs output:\n" else ""
+                                let header = if printCode then "output:\n" else ""
                                 let code =
                                     if printCode
                                     then $"\"\"\"{header}{result}\n\n\n\"\"\""
@@ -653,7 +509,7 @@ path = "{hash}.rs"
                                     return Ok(v), errors
                                 | Choice2Of2 ex ->
                                     return Error ex, errors
-                        | Some (None, errors) when errors |> List.isEmpty |> not ->
+                        | Some (_, (None, errors)) when errors |> List.isEmpty |> not ->
                             return errors.[0] |> fst |> Exception |> Error,
                             mapErrors (TraceLevel.Critical, errors, lastTopLevelIndex) allCode
                         | _ ->
@@ -672,7 +528,7 @@ path = "{hash}.rs"
                             )
                         |]
                 }
-                |> Async.runWithTimeoutStrict timeout
+                |> Async.runWithTimeout timeout
                 |> Option.defaultValue (
                     Error (Exception "Spiral error or timeout (2)"),
                     [|
@@ -689,3 +545,224 @@ path = "{hash}.rs"
                         TraceLevel.Critical, $"Diag: Spiral error or timeout (3) / ex: {ex |> SpiralSm.format_exception}", 0, ("", (0, 0), (0, 0))
                     )
                 |]
+
+    /// ## run
+    let run file args printCode traceLevel = async {
+        let isTrace = traceLevel = Verbose
+        let inline _trace (fn : unit -> string) =
+            if isTrace
+            then trace Info (fun () -> $"Eval.run / {fn ()}") _locals
+            else fn () |> System.Console.WriteLine
+        // let hash = $"repl_{code |> SpiralCrypto.hash_text}"
+        let hash = $"spiral_eval"
+
+        let! code = file |> SpiralFileSystem.read_all_text_async
+
+        let! fsprojPath = code |> Builder.persistCodeProject ["Fable.Core"] [] hash
+
+        let projectDir = fsprojPath |> Path.GetDirectoryName
+
+        let outDir = projectDir </> $"target/{hash}"
+
+        let libLinkTargetPath = projectDir </> "target/fable-library-rust"
+        let libLinkPath = outDir </> $"fable_modules/fable-library-rust"
+
+        if Directory.Exists libLinkTargetPath |> not
+        then libLinkTargetPath |> Directory.CreateDirectory |> ignore
+
+        libLinkPath |> Path.GetDirectoryName |> Directory.CreateDirectory |> ignore
+
+        let libLinkPathInfo = DirectoryInfo libLinkPath
+        if libLinkPathInfo.Exists && libLinkPathInfo.LinkTarget = null then
+            Directory.Delete (libLinkPath, true)
+
+        if libLinkPath |> Directory.Exists |> not then
+            Directory.CreateSymbolicLink (libLinkPath, libLinkTargetPath)
+            |> ignore
+
+        let repositoryRootExternal =
+            let currentDir =
+                System.IO.Directory.GetCurrentDirectory ()
+                |> SpiralSm.to_lower
+            let repositoryRoot = repositoryRoot |> SpiralSm.to_lower
+            if currentDir |> SpiralSm.starts_with repositoryRoot
+            then None
+            else Some repositoryRoot
+
+        let! exitCode, spiralBuilderResult =
+            let command =
+                let path =
+                    repositoryRoot </> $@"target/release/spiral_builder{SpiralRuntime.get_executable_suffix ()}"
+                    |> System.IO.Path.GetFullPath
+                $"""{path} --file "{fsprojPath}" --out-dir "{outDir}" --hash {hash} --args "{args}" """
+            SpiralRuntime.execution_options (fun x ->
+                { x with
+                    l1 = command
+                    l5 = repositoryRootExternal
+                }
+            )
+            |> SpiralRuntime.execute_with_options_async
+
+        if exitCode <> 0 then
+            trace Critical (fun () -> $"Eval.run / spiral_builder / exitCode: {exitCode} / spiralBuilderResult: {spiralBuilderResult}") _locals
+            return Some (Error spiralBuilderResult)
+        else
+            trace Debug (fun () -> $"Eval.run / spiral_builder / exitCode: {exitCode} / spiralBuilderResult: {spiralBuilderResult}") _locals
+
+            let! exitCode, dotnetFableResult =
+                let command = $@"dotnet fable ""{fsprojPath}"" --optimize --lang rs --extension .rs --outDir ""{outDir}"" "
+                SpiralRuntime.execution_options (fun x ->
+                    { x with
+                        l1 = command
+                        l5 = repositoryRootExternal
+                    }
+                )
+                |> SpiralRuntime.execute_with_options_async
+
+            if exitCode <> 0 then
+                trace Critical (fun () -> $"Eval.run / dotnet fable / exitCode: {exitCode} / dotnetFableResult: {dotnetFableResult}") _locals
+                return Some (Error dotnetFableResult)
+            else
+                let rsPath = libLinkPath </> "src/Range.rs"
+                let! text = rsPath |> SpiralFileSystem.read_all_text_async
+                do!
+                    text
+                    |> SpiralSm.replace "use crate::String_::fromCharCode;" "use crate::String_::fromChar;"
+                    |> SpiralSm.replace "fromCharCode(c)" "std::char::from_u32(c).unwrap()"
+                    |> SpiralFileSystem.write_all_text_async rsPath
+
+                let! exitCode, cargoFmtResult =
+                    SpiralRuntime.execution_options (fun x ->
+                        { x with
+                            l1 = "cargo fmt --"
+                            l5 = Some outDir
+                        }
+                    )
+                    |> SpiralRuntime.execute_with_options_async
+                if exitCode <> 0 then
+                    trace Critical (fun () -> $"Eval.run / cargo fmt error / exitCode: {exitCode} / cargoFmtResult: {cargoFmtResult}") _locals
+
+                let rsPath = outDir </> $"{hash}.rs"
+                let! rsCode = rsPath |> SpiralFileSystem.read_all_text_async
+
+                let mainCodeHeader = "pub fn main() -> Result<(), String> {"
+                let mainCode = $"{mainCodeHeader} Ok(()) }}"
+
+                let cached = rsCode |> SpiralSm.contains mainCodeHeader
+
+                let rsCode =
+                    if cached
+                    then rsCode
+                    else
+                        rsCode
+                        |> SpiralSm.replace "),);" "));"
+                        |> SpiralSm.replace_regex "\s\sdefaultOf\(\);" " defaultOf::<()>();"
+                        |> SpiralSm.replace "defaultOf()," "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
+                        |> SpiralSm.replace "_self_." "self."
+                        |> SpiralSm.replace "get_or_insert_with" "get_or_init"
+                        |> SpiralSm.replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;" "type ConcurrentStack_1<T> = T;"
+                        |> SpiralSm.replace "use fable_library_rust::System::Threading::CancellationToken;" "type CancellationToken = ();"
+                        |> SpiralSm.replace "use fable_library_rust::System::TimeZoneInfo;" "type TimeZoneInfo = i64;"
+                        |> SpiralSm.replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;" "type TaskCanceledException = ();"
+
+                if printCode
+                then _trace (fun () -> $".rs:\n{rsCode}")
+
+                if not cached
+                then do!
+                    $"{rsCode}\n\n{mainCode}\n"
+                    |> SpiralFileSystem.write_all_text_async rsPath
+
+
+                let cargoTomlPath = outDir </> $"Cargo.toml"
+                let cargoTomlContent = spiralBuilderResult
+                do! cargoTomlContent |> SpiralFileSystem.write_all_text_exists cargoTomlPath
+
+                let! exitCode, cargoRunResult =
+                    SpiralRuntime.execution_options (fun x ->
+                        { x with
+                            l1 = $@"cargo run --manifest-path {cargoTomlPath}"
+                            l2 = [| "RUSTC_WRAPPER", "sccache" |]
+                            l5 = repositoryRootExternal
+                        }
+                    )
+                    |> SpiralRuntime.execute_with_options_async
+
+                if exitCode = 0 then
+                    try
+                        return
+                            cargoRunResult
+                            |> SpiralSm.split "\n"
+                            |> Array.skipWhile (fun line ->
+                                (line |> SpiralSm.contains @"profile [optimized] target" |> not)
+                                    && (line |> SpiralSm.contains @"profile [unoptimized + debuginfo] target" |> not)
+                            )
+                            |> Array.skip 2
+                            |> SpiralSm.concat "\n"
+                            |> Ok
+                            |> Some
+                    with ex ->
+                        return $"ex: {ex}\ncargoRunResult:\n{cargoRunResult}" |> Error |> Some
+                else
+                    return Some (Error cargoRunResult)
+    }
+
+    /// ## Arguments
+    [<RequireQualifiedAccess>]
+    type Arguments =
+        | [<Argu.ArguAttributes.ExactlyOnce>] File of string
+        | [<Argu.ArguAttributes.ExactlyOnce>] Args of string
+        | [<Argu.ArguAttributes.Unique>] Print_Code
+        | [<Argu.ArguAttributes.Unique>] Trace_Level of TraceLevel
+
+        interface Argu.IArgParserTemplate with
+            member s.Usage =
+                match s with
+                | File _ -> nameof File
+                | Args _ -> nameof Args
+                | Print_Code -> nameof Print_Code
+                | Trace_Level _ -> nameof Trace_Level
+
+    /// ## main
+    let main args =
+        let argsMap = args |> Runtime.parseArgsMap<Arguments>
+
+        let file =
+            match argsMap.[nameof Arguments.File] with
+            | [ Arguments.File file ] -> file |> Some
+            | _ -> None
+            |> Option.get
+
+        let args =
+            match argsMap.[nameof Arguments.Args] with
+            | [ Arguments.Args args ] -> args |> Some
+            | _ -> None
+            |> Option.get
+
+        let traceLevel =
+            match argsMap |> Map.tryFind (nameof Arguments.Trace_Level) with
+            | Some [ Arguments.Trace_Level traceLevel ] -> traceLevel
+            | _ -> Verbose
+
+        let printCode = argsMap |> Map.containsKey (nameof Arguments.Print_Code)
+
+        traceLevel |> to_trace_level |> Lib.set_trace_level
+
+        async {
+            let! result = run file args printCode traceLevel
+
+            return
+                match result with
+                | Some (Ok result) ->
+                    trace Debug (fun () -> $"Eval.main / result: %A{result}") _locals
+
+                    if traceLevel = Info
+                    then result |> System.Console.WriteLine
+                    0
+                | Some (Error error) ->
+                    trace Critical (fun () -> $"Eval.main / error: %A{error}") _locals
+                    1
+                | None -> 1
+        }
+        |> Async.runWithTimeout (60000 * 60)
+        |> Option.defaultValue 1

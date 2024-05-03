@@ -12,7 +12,7 @@ open rust_operators
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -181,7 +181,7 @@ inl new_disposable_token (merge_token : optionm'.option' cancellation_token) =
 
 #!spiral
 
-// // test
+//// test
 
 inl run fn =
     inl token, disposable = new_disposable_token (None |> optionm'.box)

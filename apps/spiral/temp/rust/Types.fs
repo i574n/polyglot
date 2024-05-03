@@ -192,6 +192,6 @@ module web_sys =
     [<Erase; Emit("web_sys::HtmlStyleElement")>]
     type HtmlStyleElement = class end
 
-// // #else
-// //     ()
-// // #endif //FABLE_COMPILER_RUST
+//// #else
+////     ()
+//// #endif //FABLE_COMPILER_RUST

@@ -1,6 +1,6 @@
-// // # rust
+/// # rust
 
-// // ## types
+/// ## types
 inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func0<$0>\")>]\n#endif\ntype Func0<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func1<$0, $1>\")>]\n#endif\ntype Func0<'T, 'U> = class end"
@@ -18,11 +18,13 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"&'static $0\")>]\n#endif\ntype StaticRef<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"MutCell<$0>\")>]\n#endif\ntype MutCell<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::any::Any\")>]\n#endif\ntype std_any_Any = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::borrow::Cow<$0>\")>]\n#endif\ntype std_borrow_Cow<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::cell::RefCell<$0>\")>]\n#endif\ntype std_cell_RefCell<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>]\n#endif\ntype std_pin_Pin<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>]\n#endif\ntype std_rc_Rc<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Weak<$0>\")>]\n#endif\ntype std_rc_Weak<'T> = class end"
 
+nominal cow t = $"std_borrow_Cow<`t>"
 nominal ref_cell t = $"std_cell_RefCell<`t>"
 nominal rc t = $"std_rc_Rc<`t>"
 nominal weak_rc t = $"std_rc_Weak<`t>"
@@ -48,73 +50,73 @@ nominal ref' t = $"Ref<`t>"
 nominal send t = $"Send<`t>"
 nominal static_ref' t = $"StaticRef<`t>"
 
-// // ## emit_expr
+/// ## emit_expr
 inl emit_expr forall a t. (args : a) (code : string) : t =
     real
         $"Fable.Core.RustInterop.emitRustExpr !args !code" : t
 
-// // ## (~!\)
+/// ## (~!\)
 inl (~!\) forall t. (code : string) : t =
     emit_expr () code
 
-// // ## (~!\\)
+/// ## (~!\\)
 inl (~!\\) forall t u. ((args : t), (code : string)) : u =
     emit_expr args code
 
-// // ## emit
+/// ## emit
 inl emit forall t. (x : t) : t =
     !\\(x, $'"$0"')
 
-// // ## emit'
+/// ## emit'
 inl emit' forall t. (x : t) : t =
     !\\(x, $'"let !x = $0"')
     x
 
-// // ## clone
+/// ## clone
 inl clone forall t. (x : t) : t =
     !\($'"!x.clone()"')
 
-// // ## new_box
+/// ## new_box
 inl new_box forall t. (x : t) : box t =
     inl x = join x
     !\($'"Box::new(!x)"')
 
-// // ## new_rc
+/// ## new_rc
 inl new_rc forall t. (x : t) : rc t =
     inl x = join x
     !\($'"std::rc::Rc::new(!x)"')
 
-// // ## rc_clone
+/// ## rc_clone
 inl rc_clone forall t. (x : rc t) : rc t =
     inl x = join x
     !\($'"std::rc::Rc::clone(&!x)"')
 
-// // ## rc_unwrap_or_clone
+/// ## rc_unwrap_or_clone
 inl rc_unwrap_or_clone forall t. (x : rc t) : t =
     inl x = join x
     !\($'"std::rc::Rc::unwrap_or_clone(!x)"')
 
-// // ## rc_downgrade
+/// ## rc_downgrade
 inl rc_downgrade forall t. (x : rc t) : weak_rc t =
     inl x = join x
     !\($'"std::rc::Rc::downgrade(&!x)"')
 
-// // ## new_ref_cell
+/// ## new_ref_cell
 inl new_ref_cell forall t. (x : t) : ref_cell t =
     inl x = join x
     !\($'"std::cell::RefCell::new(!x)"')
 
-// // ## ref_cell_borrow
+/// ## ref_cell_borrow
 inl ref_cell_borrow forall t. (x : rc (ref_cell t)) : t =
     inl x = join x
     !\($'"*std::cell::RefCell::borrow(&std::rc::Rc::clone(&!x))"')
 
-// // ## ref_cell_borrow_mut
+/// ## ref_cell_borrow_mut
 inl ref_cell_borrow_mut forall t. (x : rc (ref_cell t)) : mut' t =
     inl x = join x
     !\($'"*std::cell::RefCell::borrow_mut(&std::rc::Rc::clone(&!x))"')
 
-// // ## to_mut
+/// ## to_mut
 inl to_mut forall t. (x : t) : t =
     (!\($'"true; // 1"') : bool) |> ignore
     (!\($'"true; let mut !x = !x"') : bool) |> ignore
@@ -126,65 +128,73 @@ inl to_mut forall t. (x : t) : t =
     // inl result = !\($'"!x"') : mut' t
     // result |> fun x => $'!x |> unbox // b'
 
-// // ## ref_map
+/// ## ref_map
 inl ref_map forall t u. (fn : t -> u) (x : ref' t) : ref' u =
     !\($'"!fn(!x)"')
 
-// // ## from_mut
+/// ## from_mut
 inl from_mut forall t. (x : mut' t) : t =
     !\($'"!x"')
 
-// // ## box_fn
+/// ## box_fn
 inl box_fn forall t. (x : () -> ()) : box t =
     inl x = join x
     !\($'"Box::new(move || !x())"')
 
-// // ## box_pin
+/// ## box_pin
 inl box_pin forall t. (x : t) : pin (box t) =
     inl x = join x
     !\($'"Box::pin(!x)"')
 
-// // ## deref
+/// ## deref
 inl deref forall t. (ref : ref' t) : t =
     inl ref = join ref
     !\($'"*!ref"')
 
-// // ## ops_deref
+/// ## ops_deref
 inl ops_deref forall t. (ref : t) : t =
     inl ref = join ref
     !\($'"core::ops::Deref::deref(&!ref)"')
 
-// // ## func0_get
+/// ## func0_get
 inl func0_get forall t. (x : func0 t) : t =
     inl x = join x
     !\($'"!x()"')
 
-// // ## func0_move
+/// ## func0_move
 inl func0_move forall t. (fn : func0 t) : t =
     inl fn = join fn
     !\($'"(move || !fn())()"')
 
-// // ## move
+/// ## move
 inl move forall t. (fn : () -> t) : func0 t =
     !\\(fn, $'"Func0::new(move || $0())"')
 
-// // ## to_static_ref_unbox
+/// ## to_static_ref_unbox
 inl to_static_ref_unbox forall t. (x : ref' t) : static_ref' t =
     $"!x |> unbox"
 
-// // ## from_static_ref_unbox
+/// ## from_static_ref_unbox
 inl from_static_ref_unbox forall t. (x : static_ref' t) : ref' t =
     $"!x |> unbox"
 
-// // ## box_leak
+/// ## box_leak
 inl box_leak forall t. (x : box t) : static_ref' (mut' t) =
     emit_expr () $"\"Box::leak(!x)\""
 
-// // ## drop
+/// ## drop
 inl drop forall t. (x : t) : () =
     !\\(x, $'"drop($0)"')
 
-// // ## fix_closure
+/// ## break
+inl break () : () =
+    (!\($'"true; break"') : bool) |> ignore
+
+/// ## loop
+inl loop (fn : () -> ()) : () =
+    (!\\(fn, $'"true; loop { $0() }"') : bool) |> ignore
+
+/// ## fix_closure
 inl fix_closure depth' x' =
     inl depth = depth' |> fst
     if depth = 1
@@ -222,7 +232,7 @@ inl fix_closure depth' x' =
     elif depth = 8
     then !\($'"{{{{{{{{ //"')
 
-// // ## run_tests
+/// ## run_tests
 inl run_tests tests =
     (!\($'"true; () //"') : bool) |> ignore
 

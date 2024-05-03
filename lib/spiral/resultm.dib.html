@@ -7571,7 +7571,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="nb">open</span> <span class="n">testing</span>
 </pre></div>
@@ -8465,8 +8465,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>rust
 
 <span class="n">types</span> <span class="p">()</span>
 <span class="n">rust</span><span class="o">.</span><span class="n">new_rc</span> <span class="p">()</span>
@@ -8485,8 +8485,8 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.rs output:
-assert_eq / actual: US0_0 / expected: US0_0
+<pre>output:
+assert_eq / actual: 1 / expected: 1
 
 
 </pre>
@@ -8560,6 +8560,10 @@ type MutCell&lt;'T&gt; = class end
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::any::Any")&gt;]
 #endif
 type std_any_Any = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow&lt;$0&gt;")&gt;]
+#endif
+type std_borrow_Cow&lt;'T&gt; = class end
 #if FABLE_COMPILER
 [&lt;Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell&lt;$0&gt;")&gt;]
 #endif
@@ -8672,95 +8676,6 @@ and method0 () : unit =
         failwith&lt;unit&gt; v13
 method0()
 
-
-.rs:
-#![allow(dead_code)]
-#![allow(non_camel_case_types)]
-#![allow(non_snake_case)]
-#![allow(non_upper_case_globals)]
-#![allow(unreachable_code)]
-#![allow(unused_attributes)]
-#![allow(unused_imports)]
-#![allow(unused_macros)]
-#![allow(unused_parens)]
-#![allow(unused_variables)]
-mod module_ccfa04bf {
-    pub mod Spiral_eval {
-        use super::*;
-        use fable_library_rust::Native_::on_startup;
-        use fable_library_rust::Native_::MutCell;
-        use fable_library_rust::String_::printfn;
-        use fable_library_rust::String_::sprintf;
-        use fable_library_rust::String_::string;
-        #[derive(Clone, Debug)]
-        pub enum US0 {
-            US0_0,
-            US0_1(std::rc::Rc&lt;()&gt;),
-        }
-        impl Spiral_eval::US0 {
-            pub fn get_IsUS0_0(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS0_1(this_: &amp;MutCell&lt;Spiral_eval::US0&gt;, unitArg: ()) -&gt; bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
-        impl core::fmt::Display for Spiral_eval::US0 {
-            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-            }
-        }
-        pub fn method1() {
-            ();
-        }
-        pub fn closure0(unitVar: (), unitVar_1: ()) -&gt; Spiral_eval::US0 {
-            Spiral_eval::US0::US0_0
-        }
-        pub fn closure1(unitVar: (), v0: std::rc::Rc&lt;()&gt;) -&gt; Spiral_eval::US0 {
-            Spiral_eval::US0::US0_1(v0)
-        }
-        pub fn method2(v0: bool) -&gt; bool {
-            v0
-        }
-        pub fn method0() {
-            Spiral_eval::method1();
-            {
-                let v1: std::rc::Rc&lt;()&gt; = std::rc::Rc::new(());
-                let v3: Result&lt;(), std::rc::Rc&lt;()&gt;&gt; = std::rc::Rc::try_unwrap(v1);
-                let v6: Spiral_eval::US0 = match &amp;v3 {
-                    Err(v3_1_0) =&gt; Spiral_eval::closure1((), v3_1_0.clone()),
-                    _ =&gt; Spiral_eval::closure0((), ()),
-                };
-                let v8: bool = if let Spiral_eval::US0::US0_0 = &amp;v6 {
-                    true
-                } else {
-                    false
-                };
-                let v10: bool = if v8 { true } else { Spiral_eval::method2(v8) };
-                let v13: string = sprintf!(
-                    "{} / actual: {:?} / expected: {:?}",
-                    string("assert_eq"),
-                    v6,
-                    Spiral_eval::US0::US0_0
-                );
-                printfn!("{0}", v13.clone());
-                if v10 == false {
-                    panic!("{}", v13,);
-                }
-            }
-        }
-        on_startup!(Spiral_eval::method0());
-    }
-}
-pub use module_ccfa04bf::*;
 
 </pre>
 </div>

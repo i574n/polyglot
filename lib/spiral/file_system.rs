@@ -1721,7 +1721,8 @@ pub mod File_system {
         let v3_1: string = File_system::method31();
         let v4_1: string = File_system::method32(v0_1);
         let v5_1: string = File_system::method33();
-        let v7_1: &str = &regex::Regex::new(&v3_1).unwrap().replace_all(&v4_1, &*v5_1);
+        let v7_1: std::borrow::Cow<str> =
+            regex::Regex::new(&v3_1).unwrap().replace_all(&v4_1, &*v5_1);
         let v9_1: std::string::String = String::from(v7_1);
         {
             let x: string = fable_library_rust::String_::fromString(v9_1);

@@ -63,6 +63,10 @@ type MutCell<'T> = class end
 #endif
 type std_any_Any = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow<$0>")>]
+#endif
+type std_borrow_Cow<'T> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell<$0>")>]
 #endif
 type std_cell_RefCell<'T> = class end

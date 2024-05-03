@@ -25,7 +25,7 @@
 
 #!pwsh
 
-{ . ../apps/spiral/rust_builder/build.ps1 } | Invoke-Block -Location $ScriptDir
+{ . ../apps/spiral/builder/build.ps1 } | Invoke-Block -Location $ScriptDir
 
 #!pwsh
 

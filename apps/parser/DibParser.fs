@@ -71,7 +71,7 @@ module DibParser =
         | output, { magic = "markdown"; content = content } ->
             let markdownComment =
                 match output with
-                | Spi | Spir -> "// // "
+                | Spi | Spir -> "/// "
                 | Fs -> "/// "
                 | _ -> ""
             content
@@ -79,7 +79,7 @@ module DibParser =
             |> Array.map (SpiralSm.trim_end [||])
             |> Array.filter (SpiralSm.ends_with " (test)" >> not)
             |> Array.map (function
-                | "" -> markdownComment |> SpiralSm.trim
+                | "" -> markdownComment
                 | line -> System.Text.RegularExpressions.Regex.Replace (line, "^\\s*", $"$&{markdownComment}")
             )
             |> SpiralSm.concat "\n"
@@ -94,7 +94,7 @@ module DibParser =
                 |> SpiralSm.concat "\n"
         | (Spi | Spir), { magic = "spiral"; content = content } ->
             let trimmedContent = content |> SpiralSm.trim
-            if trimmedContent |> SpiralSm.starts_with "// // test" || trimmedContent |> SpiralSm.starts_with "// // ignore"
+            if trimmedContent |> SpiralSm.starts_with "//// test" || trimmedContent |> SpiralSm.starts_with "//// ignore"
             then ""
             else content
         | _ -> ""

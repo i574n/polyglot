@@ -8,7 +8,7 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -107,7 +107,7 @@ inl pad_right (total_width : i32) (padding_char : char) (s : string) : string =
 
 #!spiral
 
-// // test
+//// test
 
 "123"
 |> pad_right 6 ' '
@@ -200,11 +200,7 @@ inl slice from to s : string =
 
 #!spiral
 
-union range dim =
-    | Start : dim
-    | End : dim -> dim
-
-inl range start end s =
+inl range (start : am'.range _) (end : am'.range _) s =
     inl start, end =
         match start, end with
         | Start start, End fn =>
@@ -284,6 +280,15 @@ inl from_std_string (str : std_string) : string =
 #!spiral
 
 inl ref_to_std_string (str : rust.ref' str) : std_string =
+    !\\(str, $'"String::from($0)"')
+
+#!markdown
+
+## cow_to_std_string
+
+#!spiral
+
+inl cow_to_std_string (str : rust.cow str) : std_string =
     !\\(str, $'"String::from($0)"')
 
 #!markdown
@@ -455,7 +460,7 @@ inl format_exception (ex : exn) : string =
 
 #!spiral
 
-// // test
+//// test
 
 fun () => failwith "test"
 |> _throws
@@ -486,14 +491,14 @@ inl replace_regex (pattern : string) (replacement : string) (s : string) : strin
             inl pattern = join pattern
             inl s = join s
             inl replacement = join replacement
-            !\\((pattern, s, replacement), $'$"&regex::Regex::new(&$0).unwrap().replace_all(&$1, &*$2)"')
-            |> ref_to_std_string
+            !\\((pattern, s, replacement), $'$"regex::Regex::new(&$0).unwrap().replace_all(&$1, &*$2)"')
+            |> cow_to_std_string
             |> from_std_string
         | _ => fun () => null ()
 
 #!spiral
 
-// // test
+//// test
 
 " 123"
 |> replace_regex "\\s\\w2" ""
@@ -501,8 +506,8 @@ inl replace_regex (pattern : string) (replacement : string) (s : string) : strin
 
 #!spiral
 
-// // test
-// // rust=
+//// test
+///! rust
 
 types ()
 " 123"
@@ -624,8 +629,8 @@ inl concat_array_trailing (separator : string) (input : a i32 string) =
 
 #!spiral
 
-// // test
-// // rust=
+//// test
+///! rust
 
 ;[
     "1"
@@ -650,8 +655,8 @@ inl concat_list_trailing separator input =
 
 #!spiral
 
-// // test
-// // rust=
+//// test
+///! rust
 
 [
     "1"
@@ -680,8 +685,8 @@ inl concat_list_heap_trailing separator input =
 
 #!spiral
 
-// // test
-// // rust=
+//// test
+///! rust
 
 types ()
 
@@ -718,7 +723,7 @@ inl ellipsis (max : i32) (s : string) =
 
 #!spiral
 
-// // test
+//// test
 
 "12345"
 |> ellipsis 2
@@ -750,7 +755,7 @@ inl ellipsis_end (max : i64) (s : string) =
 
 #!spiral
 
-// // test
+//// test
 
 "12345"
 |> ellipsis_end 2
@@ -815,7 +820,7 @@ inl to_char_array (str : string) : a i32 char =
 
 #!spiral
 
-// // test
+//// test
 
 "abc"
 |> to_char_array
@@ -832,7 +837,7 @@ inl to_char_list (str : string) : list char =
 
 #!spiral
 
-// // test
+//// test
 
 "abc"
 |> to_char_list

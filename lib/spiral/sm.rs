@@ -133,7 +133,8 @@ pub mod Sm {
         let v5_1: string = Sm::method0(v0_1);
         let v6_1: string = Sm::method1(v2_1);
         let v7_1: string = Sm::method2(v1_1);
-        let v9_1: &str = &regex::Regex::new(&v5_1).unwrap().replace_all(&v6_1, &*v7_1);
+        let v9_1: std::borrow::Cow<str> =
+            regex::Regex::new(&v5_1).unwrap().replace_all(&v6_1, &*v7_1);
         let v11_1: std::string::String = String::from(v9_1);
         {
             let x: string = fable_library_rust::String_::fromString(v11_1);

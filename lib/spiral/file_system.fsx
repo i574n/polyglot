@@ -63,6 +63,10 @@ type MutCell<'T> = class end
 #endif
 type std_any_Any = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow<$0>")>]
+#endif
+type std_borrow_Cow<'T> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell<$0>")>]
 #endif
 type std_cell_RefCell<'T> = class end
@@ -155,73 +159,13 @@ type chrono_Utc = class end
 #endif
 type std_time_Duration = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("[$0]")>]
+[<Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader<$0>")>]
 #endif
-type Slice<'T> = class end
+type async_std_io_BufReader<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("[$0; $1]")>]
+[<Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader<$0>")>]
 #endif
-type Slice'<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Vec<$0>")>]
-#endif
-type Vec<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>]
-#endif
-type std_future_Future<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>]
-#endif
-type futures_future_TryJoinAll<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter<$0>")>]
-#endif
-type rayon_vec_IntoIter<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map<$0, _>")>]
-#endif
-type rayon_iter_Map<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")>]
-#endif
-type futures_lite_stream_StreamExt = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse<$0>")>]
-#endif
-type core_iter_Fuse<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle<$0>")>]
-#endif
-type std_thread_JoinHandle<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc<$0>")>]
-#endif
-type std_sync_Arc<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex<$0>")>]
-#endif
-type std_sync_Mutex<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard<$0>")>]
-#endif
-type std_sync_MutexGuard<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError<$0>")>]
-#endif
-type std_sync_PoisonError<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("clap::Arg")>]
-#endif
-type clap_Arg = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("clap::Command")>]
-#endif
-type clap_Command = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")>]
-#endif
-type clap_ArgMatches = class end
+type std_io_BufReader<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::io::Error")>]
 #endif
@@ -231,49 +175,9 @@ type std_io_Error = class end
 #endif
 type std_io_Lines<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader<$0>")>]
+[<Fable.Core.Erase; Fable.Core.Emit("std::fs::File")>]
 #endif
-type async_std_io_BufReader<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader<$0>")>]
-#endif
-type std_io_BufReader<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::Child")>]
-#endif
-type std_process_Child = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStderr")>]
-#endif
-type std_process_ChildStderr = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")>]
-#endif
-type std_process_ChildStdout = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")>]
-#endif
-type std_process_ChildStdin = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::Command")>]
-#endif
-type std_process_Command = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::Output")>]
-#endif
-type std_process_Output = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::Stdio")>]
-#endif
-type std_process_Stdio = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver<$0>")>]
-#endif
-type std_sync_mpsc_Receiver<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender<$0>")>]
-#endif
-type std_sync_mpsc_Sender<'T> = class end
+type std_fs_File = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")>]
 #endif
@@ -6344,8 +6248,8 @@ and closure58 () (v0 : string) : string =
     let v3 : string = method31()
     let v4 : string = method32(v0)
     let v5 : string = method33()
-    let v6 : string = $"&regex::Regex::new(&$0).unwrap().replace_all(&$1, &*$2)"
-    let v7 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr struct (v3, v4, v5) v6
+    let v6 : string = $"regex::Regex::new(&$0).unwrap().replace_all(&$1, &*$2)"
+    let v7 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v3, v4, v5) v6
     let v8 : string = "String::from($0)"
     let v9 : std_string_String = Fable.Core.RustInterop.emitRustExpr v7 v8
     let v10 : string = "fable_library_rust::String_::fromString($0)"

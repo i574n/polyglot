@@ -12,7 +12,7 @@ open rust_operators
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -261,7 +261,7 @@ inl test_port_open port : _ bool = async.new_async fun () =>
 
 #!spiral
 
-// // test
+//// test
 
 test_port_open 65536
 |> async.run_with_timeout 120
@@ -284,7 +284,7 @@ inl test_port_open_timeout timeout port : _ bool = async.new_async_unit fun () =
 
 #!spiral
 
-// // test
+//// test
 
 test_port_open_timeout 120 65535
 |> async.run_synchronously
@@ -317,7 +317,7 @@ inl wait_for_port_access timeout status port : _ i64 =
 
 #!spiral
 
-// // test
+//// test
 
 inl lock_port port = async.new_async fun () =>
     trace Debug (fun () => "_1") _locals
@@ -366,7 +366,7 @@ fun () =>
 
 #!spiral
 
-// // test
+//// test
 
 inl lock_port port = async.new_async_unit fun () =>
     trace Debug (fun () => "_1") _locals
@@ -434,7 +434,7 @@ inl get_available_port timeout initial_port : _ i32 =
 
 #!spiral
 
-// // test
+//// test
 
 inl lock_ports port = async.new_async_unit fun () =>
     trace Debug (fun () => "_1") _locals
@@ -482,7 +482,7 @@ fun () =>
 
 #!spiral
 
-// // test
+//// test
 
 inl lock_ports port = async.new_async_unit fun () =>
     trace Debug (fun () => "_1") _locals

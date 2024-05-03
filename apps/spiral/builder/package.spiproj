@@ -3,4 +3,4 @@ packages:
     |core-
     spiral-
 modules:
-    rust_builder
+    builder

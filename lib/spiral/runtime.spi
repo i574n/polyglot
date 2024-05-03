@@ -1,16 +1,12 @@
-// // # runtime
+/// # runtime
 open rust_operators
 open sm'_operators
 
-// // ## types
+/// ## types
 inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Arg\")>]\n#endif\ntype clap_Arg = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Command\")>]\n#endif\ntype clap_Command = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::ArgMatches\")>]\n#endif\ntype clap_ArgMatches = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>]\n#endif\ntype std_io_Error = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Lines<$0>\")>]\n#endif\ntype std_io_Lines<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_std::io::BufReader<$0>\")>]\n#endif\ntype async_std_io_BufReader<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::BufReader<$0>\")>]\n#endif\ntype std_io_BufReader<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Child\")>]\n#endif\ntype std_process_Child = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStderr\")>]\n#endif\ntype std_process_ChildStderr = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdout\")>]\n#endif\ntype std_process_ChildStdout = class end"
@@ -30,46 +26,34 @@ inl types () =
     threading.types ()
     types ()
 
-// // ## child
+/// ## child
 nominal child = $'std_process_Child'
 
-// // ## child_stderr
+/// ## child_stderr
 nominal child_stderr = $"std_process_ChildStderr"
 
-// // ## child_stdout
+/// ## child_stdout
 nominal child_stdout = $"std_process_ChildStdout"
 
-// // ## child_stdin
+/// ## child_stdin
 nominal child_stdin = $"std_process_ChildStdin"
 
-// // ## process_command
+/// ## process_command
 nominal process_command = $'std_process_Command'
 
-// // ## stdio
+/// ## stdio
 nominal stdio = $'std_process_Stdio'
 
-// // ## output
+/// ## output
 nominal output = $'std_process_Output'
 
-// // ## io_error
-nominal io_error = $"std_io_Error"
-
-// // ## lines
-nominal lines t = $'std_io_Lines<`t>'
-
-// // ## buf_reader
-nominal buf_reader t = $'std_io_BufReader<`t>'
-
-// // ## async_buf_reader
-nominal async_buf_reader t = $'async_std_io_BufReader<`t>'
-
-// // ## receiver
+/// ## receiver
 nominal receiver t = $'std_sync_mpsc_Receiver<`t>'
 
-// // ## sender
+/// ## sender
 nominal sender t = $'std_sync_mpsc_Sender<`t>'
 
-// // ## os_platform
+/// ## os_platform
 nominal os_platform' = $'System.Runtime.InteropServices.OSPlatform'
 
 union os_platform =
@@ -78,11 +62,11 @@ union os_platform =
 inl os_platform = function
     | Windows => $'`os_platform'.Windows' : os_platform'
 
-// // ## is_os_platform
+/// ## is_os_platform
 inl is_os_platform (x : os_platform') : bool =
     x |> $'System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform'
 
-// // ## is_windows
+/// ## is_windows
 inl is_windows () : bool =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -91,18 +75,18 @@ inl is_windows () : bool =
             !\($'"cfg\!(windows)"')
         | _ => fun () => null ()
 
-// // ## get_executable_suffix
+/// ## get_executable_suffix
 inl get_executable_suffix () =
     if is_windows ()
     then ".exe"
     else ""
 
-// // ## quoted
+/// ## quoted
 union quoted =
     | Quoted
     | NotQuoted
 
-// // ## split_command
+/// ## split_command
 union command_parse_step =
     | Start
     | Path : quoted
@@ -120,7 +104,7 @@ inl split_command (command : string) =
         | _ => path |> sm'.replace @"\" "/", args
     loop (join "", "") (command |> sm'.to_char_array |> am'.to_list' |> listm'.unbox) Start
 
-// // ## process
+/// ## process
 nominal process = $'System.Diagnostics.Process'
 nominal process_start_info = $'System.Diagnostics.ProcessStartInfo'
 nominal data_received_event_args = $'System.Diagnostics.DataReceivedEventArgs'
@@ -167,7 +151,7 @@ inl process_wait_for_exit_async (ct : threading.cancellation_token) (process : p
 inl event_data (e : data_received_event_args) : string =
     $'!e.Data'
 
-// // ## execution_line
+/// ## execution_line
 type execution_line =
     {
         process_id : int
@@ -175,7 +159,7 @@ type execution_line =
         error : bool
     }
 
-// // ## execution_options
+/// ## execution_options
 type execution_options =
     {
         command : string
@@ -197,7 +181,7 @@ inl execution_options (fn : execution_options -> execution_options) : execution_
     }
     |> fn
 
-// // ## execute_with_options_async
+/// ## execute_with_options_async
 inl execute_with_options_async (options : execution_options) : _ (i32 * string) =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -294,14 +278,14 @@ inl execute_with_options_async (options : execution_options) : _ (i32 * string) 
             global "#if FABLE_COMPILER\n[<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]\nmodule System =\n module Diagnostics =\n  type Process = unit\n  type DataReceivedEventArgs = unit\n#endif"
             null ()
 
-// // ## execute_async
+/// ## execute_async
 inl execute_async command =
     execution_options fun x => { x with
         command = command
     }
     |> execute_with_options_async
 
-// // ## split_args
+/// ## split_args
 union args_parse_step =
     | Start
     | Quoted : char
@@ -362,20 +346,20 @@ let split_args (args : string) : array_base string =
     |> listm'.to_array'
     |> fun (a x : _ i32 _) => x
 
-// // ## stdin_write_all
+/// ## stdin_write_all
 inl stdin_write_all (stdin : threading.mutex_guard child_stdin) (text : string) : () =
     inl stream = text |> sm'.as_bytes
     inl stdin = join stdin
     (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
     (!\\(stdin, $'"true; std::io::Write::write_all(&mut *$0, !stream).unwrap()"') : bool) |> ignore
 
-// // ## stdin_flush
+/// ## stdin_flush
 inl stdin_flush (stdin : threading.mutex_guard child_stdin) : () =
     inl stdin = join stdin
     (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
     (!\\(stdin, $'"true; std::io::Write::flush(&mut *$0).unwrap()"') : bool) |> ignore
 
-// // ## execute_with_options
+/// ## execute_with_options
 inl execute_with_options (options : execution_options) : i32 * string =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -414,7 +398,7 @@ inl execute_with_options (options : execution_options) : i32 * string =
                     | None => command
 
                 (!\($'"true; let mut !command = !command"') : bool) |> ignore
-                inl command : resultm.result' child io_error = !\\(command, $'"std::process::Command::spawn(&mut $0)"')
+                inl command : resultm.result' child stream.io_error = !\\(command, $'"std::process::Command::spawn(&mut $0)"')
 
                 match command |> resultm.map' (optionm'.some' >> threading.new_arc_mutex) |> resultm.map_error' sm'.format' |> resultm.unbox with
                 | Ok child =>
@@ -436,7 +420,7 @@ inl execute_with_options (options : execution_options) : i32 * string =
                     inl channel_sender'' = channel_sender |> rust.clone
                     inl channel_receiver' = channel_receiver |> threading.new_arc_mutex
 
-                    inl std_line (stdout : bool) channel_sender (line : _ _ io_error) =
+                    inl std_line (stdout : bool) channel_sender (line : _ _ stream.io_error) =
                         inl line =
                             match line |> resultm.map_error' sm'.format' |> resultm.unbox with
                             | Ok (line : sm'.std_string) =>
@@ -448,16 +432,24 @@ inl execute_with_options (options : execution_options) : i32 * string =
                         (!\\((channel_sender, line), $'"true; $0.lock().unwrap().send($1).unwrap()"') : bool) |> ignore
 
                     inl stdout_thread : threading.join_handle () = !\($'"std::thread::spawn(move || { //"')
-                    inl stdout_lines : lines (buf_reader child_stdout) = !\($'"std::io::BufRead::lines(std::io::BufReader::new(!stdout.lock().unwrap().take().unwrap()))"')
-                    inl stdout_lines = stdout_lines |> threading.new_arc_mutex
+                    inl stdout' : child_stdout = !\($'"!stdout.lock().unwrap().take().unwrap()"')
+                    inl stdout_lines =
+                        stdout'
+                        |> stream.new_buf_reader
+                        |> stream.buf_read_lines
+                        |> threading.new_arc_mutex
                     inl std_line' = std_line true channel_sender'
                     inl std_line' = join std_line'
                     (!\\(stdout_lines, $'"true; for line in $0.lock().unwrap().by_ref() { !std_line'(line) }"') : bool) |> ignore
                     (!\($'"true; })"') : bool) |> ignore
 
                     inl stderr_thread : threading.join_handle () = !\($'"std::thread::spawn(move || { //"')
-                    inl stderr_lines : lines (buf_reader child_stderr) = !\($'"std::io::BufRead::lines(std::io::BufReader::new(!stderr.lock().unwrap().take().unwrap()))"')
-                    inl stderr_lines = stderr_lines |> threading.new_arc_mutex
+                    inl stderr' : child_stderr = !\($'"!stderr.lock().unwrap().take().unwrap()"')
+                    inl stderr_lines =
+                        stderr'
+                        |> stream.new_buf_reader
+                        |> stream.buf_read_lines
+                        |> threading.new_arc_mutex
                     inl std_line' = std_line false channel_sender
                     inl std_line' = join std_line'
                     (!\\(stderr_lines, $'"true; for line in $0.lock().unwrap().by_ref() { !std_line'(line) }"') : bool) |> ignore
@@ -483,7 +475,7 @@ inl execute_with_options (options : execution_options) : i32 * string =
                         | None => ()
                     | None => ()
 
-                    inl output : resultm.result' output io_error = !\($'"!child.lock().unwrap().take().unwrap().wait_with_output()"')
+                    inl output : resultm.result' output stream.io_error = !\($'"!child.lock().unwrap().take().unwrap().wait_with_output()"')
                     inl output = output |> resultm.map_error' sm'.format'
 
                     (!\($'"true; !stdout_thread.join().unwrap()"') : bool) |> ignore
@@ -524,62 +516,81 @@ inl execute command =
     }
     |> execute_with_options
 
-// // ## command
+/// ## command
 nominal command = $'clap_Command'
 
-// // ## new_command
+/// ## new_command
 inl new_command (s : rust.static_ref' sm'.str) : command =
     !\\(s, $'"clap::Command::new($0)"')
 
-// // ## arg
+/// ## arg
 nominal arg = $'clap_Arg'
 
-// // ## new_arg
+/// ## new_arg
 inl new_arg (s : rust.static_ref' sm'.str) : arg =
     !\\(s, $'"clap::Arg::new($0)"')
 
-// // ## command_arg
+/// ## command_arg
 inl command_arg (arg : arg) (command : command) : command =
     !\\((command, arg), $'"clap::Command::arg($0, $1)"')
 
-// // ## arg_required
+/// ## arg_required
 inl arg_required (value : bool) (arg : arg) : arg =
     !\\((arg, value), $'"$0.required($1)"')
 
-// // ## arg_short
+/// ## arg_short
 inl arg_short (value : char) (arg : arg) : arg =
     !\\((arg, value), $'"$0.short($1)"')
 
-// // ## arg_long
+/// ## arg_long
 inl arg_long (value : rust.static_ref' sm'.str) (arg : arg) : arg =
     !\\((arg, value), $'"$0.long($1)"')
 
-// // ## arg_index
+/// ## arg_index
 inl arg_index (value : i32) (arg : arg) : arg =
     !\\((arg, value), $'"$0.index($1)"')
 
-// // ## arg_index
+/// ## arg_index
 inl arg_index (value : i32) (arg : arg) : arg =
     !\\((arg, value), $'"$0.index($1)"')
 
-// // ## arg_matches
+/// ## arg_matches
 nominal arg_matches = $'clap_ArgMatches'
 
-// // ## command_get_matches
+/// ## command_get_matches
 inl command_get_matches (command : command) : arg_matches =
     !\\(command, $'"clap::Command::get_matches($0)"')
 
-// // ## matches_get_one
+/// ## command_get_matches_from
+inl command_get_matches_from (args : array_base string) (command : command) : arg_matches =
+    inl args = args |> am'.to_vec |> am'.vec_map sm'.to_std_string
+    !\\(command, $'"clap::Command::get_matches_from($0, !args)"')
+
+/// ## matches_get_one
 inl matches_get_one (x : string) (matches : arg_matches) : optionm'.option' sm'.std_string =
     inl x = join x
     inl x = x |> sm'.as_str
     !\($'"clap::ArgMatches::get_one(&!matches, !x).cloned()"')
 
-// // ## command_debug_assert
+/// ## matches_subcommand
+inl matches_subcommand (matches : arg_matches) : optionm'.option' (sm'.std_string * arg_matches) =
+    open sm'
+    inl matches = matches |> rust.clone
+    !\\(ref_to_std_string, $'"clap::ArgMatches::subcommand(Box::leak(Box::new(!matches))).map(|(a, b)| ($0(a), b.clone()))"')
+
+/// ## command_debug_assert
 inl command_debug_assert (command : command) : () =
     !\\(command, $'"clap::Command::debug_assert($0)"')
 
-// // ## main
+/// ## command_subcommand_required
+inl command_subcommand_required (value : bool) (command : command) : command =
+    !\\(command, $'"clap::Command::subcommand_required($0, !value)"')
+
+/// ## command_subcommand
+inl command_subcommand (subcommand : command) (command : command) : command =
+    !\\(command, $'"clap::Command::subcommand($0, !subcommand)"')
+
+/// ## main
 inl main () =
     types ()
     init_trace_state ()

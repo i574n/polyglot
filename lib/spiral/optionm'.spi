@@ -1,49 +1,49 @@
-// // # optionm
+/// # optionm
 open rust_operators
 
-// // ## default_value
+/// ## default_value
 inl default_value d =
     optionm.defaultWith d
 
-// // ## (/??)
+/// ## (/??)
 inl (/??) a b =
     a |> default_value b
 
-// // ## default_with
+/// ## default_with
 inl default_with fn = function
     | Some x => x
     | None => fn ()
 
-// // ## choose
+/// ## choose
 inl choose fn a b =
     match a, b with
     | Some x, Some y => fn x y |> Some
     | _ => None
 
-// // ## iter
+/// ## iter
 inl iter fn = function
     | Some x => fn x
     | None => ()
 
-// // ## option'
+/// ## option'
 nominal option' t = $"`t option"
 
-// // ## none'
+/// ## none'
 inl none' forall t. () : option' t =
     $'None'
 
 inl some' forall t. (x : t) : option' t =
     $'Some !x '
 
-// // ## map
+/// ## map
 inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
     $'!x |> Option.map !fn '
 
-// // ## default_value'
+/// ## default_value'
 inl default_value' forall t. (value : t) (x : option' t) : t =
     $'!x |> Option.defaultValue !value '
 
-// // ## unbox
+/// ## unbox
 inl unbox forall t. (x : option' t) : option t =
     // x
     // |> map Some
@@ -53,7 +53,7 @@ inl unbox forall t. (x : option' t) : option t =
     inl none : option t = None
     $'!x |> Option.map !some |> Option.defaultValue !none '
 
-// // ## box
+/// ## box
 inl box forall t. (x : option t) : option' t =
     // x
     // |> optionm.map some'
@@ -62,7 +62,7 @@ inl box forall t. (x : option t) : option' t =
     | Some x => some' x
     | None => none' ()
 
-// // ## of_obj
+/// ## of_obj
 inl of_obj forall t. (x : t) : option' t =
     ($"true in let mutable _!x = None" : bool) |> ignore
     $"#if \!FABLE_COMPILER && \!WASM && \!CONTRACT"
@@ -74,33 +74,33 @@ inl of_obj forall t. (x : t) : option' t =
     $"|> fun x -> _!x <- Some x"
     $'_!x.Value'
 
-// // ## try'
+/// ## try'
 inl try' forall t. (x : option' t) : t =
     !\\(x, $'"$0?"')
 
-// // ## flatten
+/// ## flatten
 inl flatten x =
     match x with
     | Some (Some x) => Some x
     | _ => None
 
-// // ## unwrap
+/// ## unwrap
 inl unwrap forall t. (x : option' t) : t =
     !\\(x, $'"$0.unwrap()"')
 
-// // ## unwrap_or
+/// ## unwrap_or
 inl unwrap_or forall t. (def : t) (x : option' t) : t =
     !\($'"!x.unwrap_or(!def)"')
 
-// // ## map'
+/// ## map'
 inl map' forall t u. (fn : t -> u) (x : option' t) : option' u =
     !\\((x, fn), $'"$0.map(|x| $1(x))"')
 
-// // ## rc_upgrade
+/// ## rc_upgrade
 inl rc_upgrade forall t. (x : rust.weak_rc t) : option' (rust.rc t) =
     inl x = join x
     !\($'"std::rc::Weak::upgrade(&!x)"')
 
-// // ## rc_into_inner
+/// ## rc_into_inner
 inl rc_into_inner forall t. (x : rust.rc t) : option' t =
     !\\(x, $'"std::rc::Rc::into_inner($0)"')

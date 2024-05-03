@@ -1,8 +1,8 @@
-// // # date_time
+/// # date_time
 open rust_operators
 open sm'_operators
 
-// // ## types
+/// ## types
 inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::DateTime<$0>\")>]\n#endif\ntype chrono_DateTime<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Local\")>]\n#endif\ntype chrono_Local = class end"
@@ -22,61 +22,61 @@ nominal local = $"chrono_Local"
 nominal naive_date_time = $"chrono_NaiveDateTime"
 nominal utc = $"chrono_Utc"
 
-// // ## date_time_milliseconds
+/// ## date_time_milliseconds
 inl date_time_milliseconds
     (year : int) (month : int) (day : int) (hour : int) (minute : int) (second : int) (millisecond : int)
     : date_time
     =
     $'System.DateTime (!year, !month, !day, !hour, !minute, !second, !millisecond)'
 
-// // ## date_time_utc
+/// ## date_time_utc
 inl date_time_utc
     (year : int) (month : int) (day : int) (hour : int) (minute : int) (second : int)
     : date_time
     =
     $'System.DateTime (!year, !month, !day, !hour, !minute, !second, System.DateTimeKind.Utc)'
 
-// // ## naive_utc
+/// ## naive_utc
 inl naive_utc (date_time : date_time' utc) : naive_date_time =
     inl date_time = join date_time
     !\($'"!date_time.naive_utc()"')
 
-// // ## to_local
+/// ## to_local
 inl to_local (date_time : date_time' utc) : date_time' local =
     inl naive_date_time = date_time |> naive_utc
     !\($'"chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &!naive_date_time)"')
 
-// // ## from_timestamp_micros
+/// ## from_timestamp_micros
 inl from_timestamp_micros forall t {number; int}. (timestamp : t) : option (date_time' utc) =
     inl result : optionm'.option' (date_time' utc) =
         !\\(timestamp, $'"chrono::DateTime::from_timestamp_micros($0)"')
     result |> optionm'.unbox
 
-// // ## ticks
+/// ## ticks
 inl ticks (date_time : date_time) : timestamp =
     date_time |> $'_.Ticks'
 
-// // ## format
+/// ## format
 inl format (format : string) (date_time : date_time) : string =
     $'!date_time.ToString' format
 
-// // ## format_iso8601
+/// ## format_iso8601
 inl format_iso8601 (date_time : date_time) =
     date_time |> format "yyyy-MM-ddTHH-mm-ss.fff"
 
-// // ## format'
+/// ## format'
 inl format' (format : string) (date_time : date_time' utc) : sm'.std_string =
     inl format = #format
     inl date_time = join date_time
     !\($'"!date_time.format(!format).to_string()"')
 
-// // ## format''
+/// ## format''
 inl format'' (format : string) (date_time : date_time' _) : sm'.std_string =
     inl format = #format
     inl date_time = join date_time
     !\($'"!date_time.format(!format).to_string()"')
 
-// // ## format_timestamp
+/// ## format_timestamp
 inl format_timestamp forall t {number; int}. (timestamp : t) =
     inl timestamp = join timestamp
     (timestamp / 1000)
@@ -88,34 +88,34 @@ inl format_timestamp forall t {number; int}. (timestamp : t) =
         |> sm'.from_std_string
     |> resultm.from_option
 
-// // ## duration_from_millis
+/// ## duration_from_millis
 inl duration_from_millis (ms : u64) : duration =
     inl ms = join ms
     !\($'"std::time::Duration::from_millis(!ms)"')
 
-// // ## min_value
+/// ## min_value
 inl min_value () : date_time =
     $'System.DateTime.MinValue'
 
-// // ## max_value
+/// ## max_value
 inl max_value () : date_time =
     $'System.DateTime.MaxValue'
 
-// // ## unix_epoch
+/// ## unix_epoch
 inl unix_epoch () : date_time =
     $'System.DateTime.UnixEpoch'
 
-// // ## to_universal_time
+/// ## to_universal_time
 inl to_universal_time (date_time : date_time) : date_time =
     date_time |> $'_.ToUniversalTime()'
 
-// // ## date_time_kind
+/// ## date_time_kind
 union date_time_kind =
     | Unspecified
     | Utc
     | Local
 
-// // ## specify_date_kind
+/// ## specify_date_kind
 inl specify_date_kind (kind : date_time_kind) (date_time : date_time) : date_time =
     inl kind : $'System.DateTimeKind' =
         match kind with
@@ -124,44 +124,44 @@ inl specify_date_kind (kind : date_time_kind) (date_time : date_time) : date_tim
         | Local => $'System.DateTimeKind.Local'
     $'System.DateTime.SpecifyKind (!date_time, !kind)'
 
-// // ## time_span
+/// ## time_span
 nominal time_span = $'System.TimeSpan'
 
 inl time_span x : time_span =
     $'`time_span !x '
 
-// // ## new_time_span
+/// ## new_time_span
 inl new_time_span (a : date_time) (b : date_time) : time_span =
     $'!b - !a '
 
-// // ## time_span_format
+/// ## time_span_format
 inl time_span_format (format : string) (time_span : time_span) : string =
     $'!time_span.ToString' format
 
-// // ## hours
+/// ## hours
 inl hours (time_span : time_span) : i32 =
     time_span |> $'_.Hours'
 
-// // ## milliseconds
+/// ## milliseconds
 inl milliseconds (time_span : time_span) : i32 =
     time_span |> $'_.Milliseconds'
 
-// // ## minutes
+/// ## minutes
 inl minutes (time_span : time_span) : i32 =
     time_span |> $'_.Minutes'
 
-// // ## seconds
+/// ## seconds
 inl seconds (time_span : time_span) : i32 =
     time_span |> $'_.Seconds'
 
-// // ## total_seconds
+/// ## total_seconds
 inl total_seconds (time_span : time_span) : f64 =
     time_span |> $'_.TotalSeconds'
 
-// // ## time_zone_info
+/// ## time_zone_info
 nominal time_zone_info = $'System.TimeZoneInfo'
 
-// // ## time_zone_local
+/// ## time_zone_local
 inl time_zone_local () : time_zone_info =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -171,7 +171,7 @@ inl time_zone_local () : time_zone_info =
             !\($'"0i64.into()"')
         | _ => fun () => null ()
 
-// // ## get_utc_offset
+/// ## get_utc_offset
 inl get_utc_offset (time_zone_info : time_zone_info) (date_time : date_time) : time_span =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -179,25 +179,25 @@ inl get_utc_offset (time_zone_info : time_zone_info) (date_time : date_time) : t
         | _ => fun () =>
             time_span ()
 
-// // ## add_days
+/// ## add_days
 inl add_days (days : i32) (date_time : date_time) : date_time =
     $'!date_time.AddDays' days
 
-// // ## now
+/// ## now
 inl now () : date_time =
     $'System.DateTime.Now'
 
-// // ## utc_now
+/// ## utc_now
 inl utc_now () : date_time =
     $'System.DateTime.UtcNow'
 
-// // ## timestamp_guid
+/// ## timestamp_guid
 type timestamp_guid = guid.guid
 
-// // ## date_time_guid
+/// ## date_time_guid
 type date_time_guid = guid.guid
 
-// // ## date_time_guid_from_date_time
+/// ## date_time_guid_from_date_time
 inl date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
     inl guid = guid |> sm'.obj_to_string
     inl prefix, time_zone =
@@ -239,7 +239,7 @@ inl date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
 
     $'`date_time_guid $"{!prefix}{!time_zone}{!guid.[!prefix.Length + !time_zone.Length..]}"' : date_time_guid
 
-// // ## date_time_from_guid
+/// ## date_time_from_guid
 inl date_time_from_guid (date_time_guid : date_time_guid) =
     inl date_time_guid = date_time_guid |> sm'.obj_to_string
     inl sm'_replace = join sm'.replace
@@ -248,28 +248,28 @@ inl date_time_from_guid (date_time_guid : date_time_guid) =
             $'System.DateTime.Parse (!date_time_guid.[..24] |> !sm'_replace "-" "")' : date_time
         | _ => fun () => $'System.DateTime.ParseExact (!date_time_guid.[..24] |> !sm'_replace "-" "", "yyyyMMddHHmmssfffffff", null)' : date_time
 
-// // ## timestamp_guid_from_timestamp
+/// ## timestamp_guid_from_timestamp
 inl timestamp_guid_from_timestamp (guid : guid.guid) (timestamp : timestamp) : timestamp_guid =
     inl guid = guid |> sm'.obj_to_string
     inl timestamp = timestamp |> sm'.obj_to_string |> sm'.pad_left 18i32 '0'
     $'`timestamp_guid $"{!timestamp.[0..7]}-{!timestamp.[8..11]}-{!timestamp.[12..15]}-{!timestamp.[16..17]}{!guid.[21..]}"'
 
-// // ## timestamp_from_guid
+/// ## timestamp_from_guid
 inl timestamp_from_guid (guid : date_time_guid) : timestamp =
     inl guid = guid |> sm'.obj_to_string
     $'`i64 $"{!guid.[0..7]}{!guid.[9..12]}{!guid.[14..17]}{!guid.[19..20]}"'
 
-// // ## new_guid_from_date_time
+/// ## new_guid_from_date_time
 inl new_guid_from_date_time (date_time : date_time) =
     inl guid = guid.new_raw_guid ()
     date_time_guid_from_date_time guid date_time
 
-// // ## new_guid_from_timestamp
+/// ## new_guid_from_timestamp
 inl new_guid_from_timestamp (timestamp : timestamp) =
     inl guid = guid.new_raw_guid ()
     timestamp_guid_from_timestamp guid timestamp
 
-// // ## main
+/// ## main
 inl main () =
     types ()
     $"let date_time_guid_from_date_time x = !date_time_guid_from_date_time x" : ()

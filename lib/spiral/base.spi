@@ -1,54 +1,50 @@
-// // # base
+/// # base
 
 inl array x = x
 
-// // ## prototype
-
+/// ## prototype
 prototype append t : t -> t -> t
 prototype of_string t : string -> t
 prototype to_string t : t -> string
 
-// // ## not'
+/// ## not'
 inl not' x =
     join not x
 
-// // ## (+.)
+/// ## (+.)
 inl (+.) forall t. (a : t) (b : t) : t =
     $"!a + !b"
 
-// // ## (-.)
+/// ## (-.)
 inl (-.) forall t. (a : t) (b : t) : t =
     $"!a - !b"
 
-// // ## (*.)
+/// ## (*.)
 inl (*.) forall t. (a : t) (b : t) : t =
     $"!a * !b"
 
-// // ## (/.)
+/// ## (/.)
 inl (/.) forall t. (a : t) (b : t) : t =
     $"!a / !b"
 
-// // ## (=.)
+/// ## (=.)
 inl (=.) forall t. (a : t) (b : t) : bool =
     $"!a = !b"
 
-// // ## (<>.)
+/// ## (<>.)
 inl (<>.) forall t. (a : t) (b : t) : bool =
     $"!a <> !b"
 
 
-// // ## (||>)
-
+/// ## (||>)
 inl (||>) (arg1, arg2) fn =
     arg2 |> fn arg1
 
-// // ## (/@)
-
+/// ## (/@)
 inl (/@) a b =
     b |> append a
 
-// // ## target
-
+/// ## target
 union target_runtime =
     | Native
     | Wasm
@@ -60,23 +56,19 @@ union target =
     | TypeScript : target_runtime
     | Python : target_runtime
 
-// // ## defaultof
-
+/// ## defaultof
 inl defaultof forall t. () : t =
     $'Unchecked.defaultof<`t>'
 
-// // ## emit
-
+/// ## emit
 inl emit forall t. (x : t) : t =
     $'!x '
 
-// // ## unbox
-
+/// ## unbox
 inl unbox forall t u. (x : t) : u =
     $"!x |> unbox<`u>"
 
-// // ## run_target
-
+/// ## run_target
 inl run_target forall t. (fn : target -> (() -> t)) : t =
     inl close x =
         $'!x\n#endif'
@@ -98,19 +90,16 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
     $"|> fun x -> _!result <- Some x"
     $'_!result.Value'
 
-// // ## exn
-
+/// ## exn
 nominal exn = $"exn"
 
-// // ## try
-
+/// ## try
 inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
     inl none = None : option t
     inl some (s : t) = Some s
     $'try !fn () |> !some with ex -> !ex_fn ex '
 
-// // ## try_unit
-
+/// ## try_unit
 inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
     $"try"
     fn ()
@@ -121,8 +110,7 @@ inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
     $'(*'
     $'*)'
 
-// // ## try_finally
-
+/// ## try_finally
 inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
     $"try"
     fn ()
@@ -141,57 +129,47 @@ inl fix_condition x a b =
         b () |> fun x => $'(*' : ()
     |> fun x => $'*)' : ()
 
-// // ## any
-
+/// ## any
 nominal any = $"obj"
 
 
-// // ## i32
-
+/// ## i32
 inl i32 forall t. (x : t) : i32 =
     $"int32 !x"
 
-// // ## i64
-
+/// ## i64
 inl i64 forall t. (x : t) : i64 =
     $"int64 !x"
 
-// // ## f32
-
+/// ## f32
 inl f32 forall t. (x : t) : f32 =
     $"float32 !x"
 
-// // ## f64
-
+/// ## f64
 inl f64 forall t. (x : t) : f64 =
     $"float !x"
 
-// // ## unativeint
-
+/// ## unativeint
 nominal unativeint = $"unativeint"
 
 inl unativeint forall t {int}. (n : t) : unativeint =
     $"unativeint !n"
 
-// // ## convert_i32
-
+/// ## convert_i32
 inl convert_i32 forall t. (x : t) : i32 =
     x |> $'System.Convert.ToInt32'
 
-// // ## pair
-
+/// ## pair
 type pair a b = $"(`a * `b)"
 
 inl pair x y =
     x, y
 
-// // ## null
-
+/// ## null
 inl null forall t. () : t =
     $"null |> unbox<`t>"
 
-// // ## get_entry_assembly_name
-
+/// ## get_entry_assembly_name
 inl get_entry_assembly_name () : string =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -201,8 +179,7 @@ inl get_entry_assembly_name () : string =
             !\($'"env\!(\\"CARGO_PKG_NAME\\").into()"')
         | target => fun () => null ()
 
-// // ## use
-
+/// ## use
 inl use forall t. (x : t) : t =
     $"use !x = !x " : ()
     $'!x '

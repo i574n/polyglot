@@ -8,21 +8,21 @@
 
 #!fsharp
 
-#!import ../../lib/fsharp/Notebooks.dib
-#!import ../../lib/fsharp/Testing.dib
-
-#!pwsh
-
-ls ~/.nuget/packages/argu
-
-#!fsharp
-
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
 #r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"
 #r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsec.dll"
 #r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsecCS.dll"
+
+#!fsharp
+
+#!import ../../lib/fsharp/Notebooks.dib
+#!import ../../lib/fsharp/Testing.dib
+
+#!pwsh
+
+ls ~/.nuget/packages/argu
 
 #!fsharp
 
@@ -298,7 +298,7 @@ let inline formatBlock output (block : Block) =
     | output, { magic = "markdown"; content = content } ->
         let markdownComment =
             match output with
-            | Spi | Spir -> "// // "
+            | Spi | Spir -> "/// "
             | Fs -> "/// "
             | _ -> ""
         content
@@ -306,7 +306,7 @@ let inline formatBlock output (block : Block) =
         |> Array.map (SpiralSm.trim_end [||])
         |> Array.filter (SpiralSm.ends_with " (test)" >> not)
         |> Array.map (function
-            | "" -> markdownComment |> SpiralSm.trim
+            | "" -> markdownComment
             | line -> System.Text.RegularExpressions.Regex.Replace (line, "^\\s*", $"$&{markdownComment}")
         )
         |> SpiralSm.concat "\n"
@@ -321,7 +321,7 @@ let inline formatBlock output (block : Block) =
             |> SpiralSm.concat "\n"
     | (Spi | Spir), { magic = "spiral"; content = content } ->
         let trimmedContent = content |> SpiralSm.trim
-        if trimmedContent |> SpiralSm.starts_with "// // test" || trimmedContent |> SpiralSm.starts_with "// // ignore"
+        if trimmedContent |> SpiralSm.starts_with "//// test" || trimmedContent |> SpiralSm.starts_with "//// ignore"
         then ""
         else content
     | _ -> ""
@@ -356,9 +356,9 @@ let a = 1"
     | Success (block, _, _) -> formatBlock Fs block
     | Failure (msg, _, _) -> failwith msg
 |> _assertEqual "/// a
-///
+/// 
     /// b
-///
+/// 
 /// c"
 
 #!markdown
@@ -431,7 +431,7 @@ let a = 3"
     | Success (blocks, _, _) -> formatBlocks Fs blocks
     | Failure (msg, _, _) -> failwith msg
 |> _assertEqual "/// a
-///
+/// 
 /// b
 
 /// c
@@ -583,7 +583,7 @@ let x = 1
 
 \#!spiral
 
-// // test
+//// test
 
 inl x = 0i32
 
@@ -731,12 +731,12 @@ example1
 |> Result.toOption
 |> Option.get
 |> (formatBlocks Spi)
-|> _assertEqual "// // # TestModule (TestNamespace)
+|> _assertEqual "/// # TestModule (TestNamespace)
 
-// // ## ParserLibrary
+/// ## ParserLibrary
 inl x = 0i32
 
-// // ### TextInput
+/// ### TextInput
 "
 
 #!markdown

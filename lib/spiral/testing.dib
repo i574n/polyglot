@@ -74,21 +74,21 @@ inl _assert_between a b actual = __assert_between true a b actual
 
 #!spiral
 
-// // test
+//// test
 
 1f64
 |> _assert_approx_eq (Some 3) 2
 
 #!spiral
 
-// // test
+//// test
 
 "abcd"
 |> _assert_contains 'b'
 
 #!spiral
 
-// // test
+//// test
 
 (dyn 1f64)
 |> _assert_approx_eq (Some 3) 2

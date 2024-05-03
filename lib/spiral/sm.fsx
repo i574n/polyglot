@@ -63,6 +63,10 @@ type MutCell<'T> = class end
 #endif
 type std_any_Any = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow<$0>")>]
+#endif
+type std_borrow_Cow<'T> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell<$0>")>]
 #endif
 type std_cell_RefCell<'T> = class end
@@ -183,8 +187,8 @@ and closure15 (v0 : string, v1 : string) (v2 : string) : string =
     let v5 : string = method0(v0)
     let v6 : string = method1(v2)
     let v7 : string = method2(v1)
-    let v8 : string = $"&regex::Regex::new(&$0).unwrap().replace_all(&$1, &*$2)"
-    let v9 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr struct (v5, v6, v7) v8
+    let v8 : string = $"regex::Regex::new(&$0).unwrap().replace_all(&$1, &*$2)"
+    let v9 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v5, v6, v7) v8
     let v10 : string = "String::from($0)"
     let v11 : std_string_String = Fable.Core.RustInterop.emitRustExpr v9 v10
     let v12 : string = "fable_library_rust::String_::fromString($0)"

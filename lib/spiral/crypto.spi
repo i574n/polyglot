@@ -1,33 +1,48 @@
-// // # crypto
+/// # crypto
+open rust_operators
 
-// // ## sha256
+/// ## types
+inl types () =
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"sha2::Sha256\")>]\n#endif\ntype sha2_Sha256 = class end"
+
+inl types () =
+    sm'.types ()
+    am'.types ()
+    threading.types ()
+    rust.types ()
+    date_time.types ()
+    file_system.types ()
+    stream.types ()
+    types ()
+
+/// ## sha256
 nominal sha256 = $'System.Security.Cryptography.SHA256'
 
 inl sha256 () : sha256 =
     $'`sha256.Create' ()
 
-// // ## sha256_compute_hash
+/// ## sha256_compute_hash
 inl sha256_compute_hash (x : sha256) (data : a i32 u8) : a i32 u8 =
     data |> $'!x.ComputeHash'
 
-// // ## create_hash
+/// ## create_hash
 inl create_hash (x : string) : any =
     open ts_operators
     global "type ICryptoCreateHash = abstract createHash: x: string -> obj"
     inl crypto : $'ICryptoCreateHash' = ts.import_all "crypto"
     !\\(x, $'"!crypto.createHash($0)"')
 
-// // ## hash_update
+/// ## hash_update
 inl hash_update (s : string) (x : any) : any =
     open ts_operators
     !\\((x, s), $'"$0.update($1, \'utf8\')"')
 
-// // ## hash_digest
+/// ## hash_digest
 inl hash_digest (s : string) (x : any) : string =
     open ts_operators
     !\\((x, s), $'"$0.digest($1)"')
 
-// // ## hash_text
+/// ## hash_text
 inl hash_text (input : string) =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -45,7 +60,7 @@ inl hash_text (input : string) =
             |> hash_digest "hex"
         | _ => fun () => null ()
 
-// // ## get_file_hash
+/// ## get_file_hash
 inl get_file_hash (path : string) : result string string =
     inl path = path |> file_system.normalize_path
     inl exit_code, result =
@@ -57,6 +72,39 @@ inl get_file_hash (path : string) : result string string =
     then Ok result
     else Error result
 
-// // ## main
+/// ## hash_file
+
+/// ## sha256'
+nominal sha256' = $'sha2_Sha256'
+
+/// ## new_sha256
+inl new_sha256 () : sha256' =
+    !\($'"sha2::Sha256::new()"')
+
+/// ## hasher_update
+inl hasher_update forall t dim. (slice : am'.slice' t dim) (hasher : sha256') : () =
+    !\($'"!hasher"')
+
+/// ## hasher_finalize
+inl hasher_finalize (hasher : sha256') : sm'.std_string =
+    !\($'"!hasher"')
+
+/// ## hash_file
+inl hash_file (path : string) : result string string =
+    inl path = path |> file_system.normalize_path
+    inl file = path |> file_system.file_open |> resultm.unwrap'
+    inl reader = file |> stream.new_buf_reader
+    inl hasher = new_sha256 ()
+    inl buffer = (0, 1014) |> am'.new_slice
+
+    rust.loop fun () =>
+        inl count = reader |> stream.buf_reader_read buffer |> resultm.unwrap'
+        if count = 0 then rust.break ()
+        hasher |> hasher_update (buffer |> am'.slice_range (am'.Start 0) (am'.End fun _ => count))
+
+    hasher |> hasher_finalize |> sm'.from_std_string |> Ok
+
+/// ## main
 inl main () =
+    types ()
     $"let hash_text x = !hash_text x" : ()

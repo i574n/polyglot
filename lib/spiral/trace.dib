@@ -8,7 +8,7 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -145,7 +145,7 @@ inl test_trace_level level : bool =
 
 #!spiral
 
-// // test
+//// test
 
 test_trace_level Critical |> _assert_eq true
 test_trace_level Verbose |> _assert_eq true
@@ -238,8 +238,8 @@ let trace (level : trace_level) (fn : () -> string) (locals : () -> string) =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 trace Debug (fun () => "test") _locals
 trace Debug (fun () => "test") _locals
@@ -249,9 +249,9 @@ get_trace_state () .count
 
 #!spiral
 
-// // test
-// // print_code=false
-// // rust=
+//// test
+//// print_code=false
+///! rust
 
 types ()
 trace Debug (fun () => "test1") _locals

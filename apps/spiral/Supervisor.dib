@@ -360,7 +360,8 @@ let inline buildFile timeout port cancellationToken path = async {
         let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
         ()
 
-    return result
+    let fsxPath = fileDir </> $"{fileName}.fsx"
+    return fsxPath, result
 }
 
 #!markdown
@@ -406,7 +407,8 @@ modules:
 let inline buildCode timeout cancellationToken code = async {
     let! mainPath = persistCode code
     let port = getCompilerPort ()
-    return! mainPath |> buildFile timeout port cancellationToken
+    let! fsxPath, fsxCode = mainPath |> buildFile timeout port cancellationToken
+    return fsxCode
 }
 
 #!fsharp
@@ -863,7 +865,7 @@ let main args =
         let buildFileAsync =
             buildFileActions
             |> List.map (fun (inputPath, outputPath) -> async {
-                let! outputCode, errors = inputPath |> buildFile timeout serverPort None
+                let! _fsxPath, (outputCode, errors) = inputPath |> buildFile timeout serverPort None
 
                 errors
                 |> List.map snd

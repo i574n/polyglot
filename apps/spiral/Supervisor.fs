@@ -288,7 +288,8 @@ module Supervisor =
             let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
             ()
 
-        return result
+        let fsxPath = fileDir </> $"{fileName}.fsx"
+        return fsxPath, result
     }
 
     /// ## persistCode
@@ -324,7 +325,8 @@ modules:
     let inline buildCode timeout cancellationToken code = async {
         let! mainPath = persistCode code
         let port = getCompilerPort ()
-        return! mainPath |> buildFile timeout port cancellationToken
+        let! fsxPath, fsxCode = mainPath |> buildFile timeout port cancellationToken
+        return fsxCode
     }
 
     /// ## getFileTokenRange
@@ -455,7 +457,7 @@ modules:
             let buildFileAsync =
                 buildFileActions
                 |> List.map (fun (inputPath, outputPath) -> async {
-                    let! outputCode, errors = inputPath |> buildFile timeout serverPort None
+                    let! _fsxPath, (outputCode, errors) = inputPath |> buildFile timeout serverPort None
 
                     errors
                     |> List.map snd

@@ -13,7 +13,7 @@ open sm'_operators
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 open file_system_operators
@@ -28,10 +28,6 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Arg\")>]\n#endif\ntype clap_Arg = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Command\")>]\n#endif\ntype clap_Command = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::ArgMatches\")>]\n#endif\ntype clap_ArgMatches = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>]\n#endif\ntype std_io_Error = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Lines<$0>\")>]\n#endif\ntype std_io_Lines<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_std::io::BufReader<$0>\")>]\n#endif\ntype async_std_io_BufReader<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::BufReader<$0>\")>]\n#endif\ntype std_io_BufReader<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Child\")>]\n#endif\ntype std_process_Child = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStderr\")>]\n#endif\ntype std_process_ChildStderr = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdout\")>]\n#endif\ntype std_process_ChildStdout = class end"
@@ -55,7 +51,7 @@ inl types () =
 
 #!spiral
 
-// // test
+//// test
 
 inl types () =
     file_system.types ()
@@ -116,38 +112,6 @@ nominal stdio = $'std_process_Stdio'
 #!spiral
 
 nominal output = $'std_process_Output'
-
-#!markdown
-
-## io_error
-
-#!spiral
-
-nominal io_error = $"std_io_Error"
-
-#!markdown
-
-## lines
-
-#!spiral
-
-nominal lines t = $'std_io_Lines<`t>'
-
-#!markdown
-
-## buf_reader
-
-#!spiral
-
-nominal buf_reader t = $'std_io_BufReader<`t>'
-
-#!markdown
-
-## async_buf_reader
-
-#!spiral
-
-nominal async_buf_reader t = $'async_std_io_BufReader<`t>'
 
 #!markdown
 
@@ -215,7 +179,7 @@ inl get_executable_suffix () =
 
 #!spiral
 
-// // test
+//// test
 
 get_executable_suffix ()
 
@@ -254,7 +218,7 @@ inl split_command (command : string) =
 
 #!spiral
 
-// // test
+//// test
 
 split_command ""
 |> _assert_eq ("", "")
@@ -488,7 +452,7 @@ inl execute_async command =
 
 #!spiral
 
-// // test
+//// test
 
 types ()
 inl temp_folder, disposable = file_system.create_temp_directory ()
@@ -521,7 +485,7 @@ fun () =>
 
 #!spiral
 
-// // test
+//// test
 
 file_system.types ()
 inl temp_dir, disposable = file_system.create_temp_directory ()
@@ -626,8 +590,8 @@ let split_args (args : string) : array_base string =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 "a b \"c d\" e"
 |> split_args
@@ -635,8 +599,8 @@ let split_args (args : string) : array_base string =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 "a b e"
 |> split_args
@@ -644,8 +608,8 @@ let split_args (args : string) : array_base string =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 "\"a b\" \"e\" \"f\""
 |> split_args
@@ -653,8 +617,8 @@ let split_args (args : string) : array_base string =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 "a -b \"c \\\"d\\\"\""
 |> split_args
@@ -662,8 +626,8 @@ let split_args (args : string) : array_base string =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 "a -b \"c \\\"d\\\" e\""
 |> split_args
@@ -671,8 +635,8 @@ let split_args (args : string) : array_base string =
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 $'$"--text \\\\\\"\'\'\' value \'\'\'\\\\\\" "'
 |> split_args
@@ -680,8 +644,8 @@ $'$"--text \\\\\\"\'\'\' value \'\'\'\\\\\\" "'
 
 #!spiral
 
-// // test
-// // print_code=false
+//// test
+//// print_code=false
 
 $'\@$"run ""get c:\\test.txt"""'
 |> split_args
@@ -754,7 +718,7 @@ inl execute_with_options (options : execution_options) : i32 * string =
                     | None => command
 
                 (!\($'"true; let mut !command = !command"') : bool) |> ignore
-                inl command : resultm.result' child io_error = !\\(command, $'"std::process::Command::spawn(&mut $0)"')
+                inl command : resultm.result' child stream.io_error = !\\(command, $'"std::process::Command::spawn(&mut $0)"')
 
                 match command |> resultm.map' (optionm'.some' >> threading.new_arc_mutex) |> resultm.map_error' sm'.format' |> resultm.unbox with
                 | Ok child =>
@@ -776,7 +740,7 @@ inl execute_with_options (options : execution_options) : i32 * string =
                     inl channel_sender'' = channel_sender |> rust.clone
                     inl channel_receiver' = channel_receiver |> threading.new_arc_mutex
 
-                    inl std_line (stdout : bool) channel_sender (line : _ _ io_error) =
+                    inl std_line (stdout : bool) channel_sender (line : _ _ stream.io_error) =
                         inl line =
                             match line |> resultm.map_error' sm'.format' |> resultm.unbox with
                             | Ok (line : sm'.std_string) =>
@@ -788,16 +752,24 @@ inl execute_with_options (options : execution_options) : i32 * string =
                         (!\\((channel_sender, line), $'"true; $0.lock().unwrap().send($1).unwrap()"') : bool) |> ignore
 
                     inl stdout_thread : threading.join_handle () = !\($'"std::thread::spawn(move || { //"')
-                    inl stdout_lines : lines (buf_reader child_stdout) = !\($'"std::io::BufRead::lines(std::io::BufReader::new(!stdout.lock().unwrap().take().unwrap()))"')
-                    inl stdout_lines = stdout_lines |> threading.new_arc_mutex
+                    inl stdout' : child_stdout = !\($'"!stdout.lock().unwrap().take().unwrap()"')
+                    inl stdout_lines =
+                        stdout'
+                        |> stream.new_buf_reader
+                        |> stream.buf_read_lines
+                        |> threading.new_arc_mutex
                     inl std_line' = std_line true channel_sender'
                     inl std_line' = join std_line'
                     (!\\(stdout_lines, $'"true; for line in $0.lock().unwrap().by_ref() { !std_line'(line) }"') : bool) |> ignore
                     (!\($'"true; })"') : bool) |> ignore
 
                     inl stderr_thread : threading.join_handle () = !\($'"std::thread::spawn(move || { //"')
-                    inl stderr_lines : lines (buf_reader child_stderr) = !\($'"std::io::BufRead::lines(std::io::BufReader::new(!stderr.lock().unwrap().take().unwrap()))"')
-                    inl stderr_lines = stderr_lines |> threading.new_arc_mutex
+                    inl stderr' : child_stderr = !\($'"!stderr.lock().unwrap().take().unwrap()"')
+                    inl stderr_lines =
+                        stderr'
+                        |> stream.new_buf_reader
+                        |> stream.buf_read_lines
+                        |> threading.new_arc_mutex
                     inl std_line' = std_line false channel_sender
                     inl std_line' = join std_line'
                     (!\\(stderr_lines, $'"true; for line in $0.lock().unwrap().by_ref() { !std_line'(line) }"') : bool) |> ignore
@@ -823,7 +795,7 @@ inl execute_with_options (options : execution_options) : i32 * string =
                         | None => ()
                     | None => ()
 
-                    inl output : resultm.result' output io_error = !\($'"!child.lock().unwrap().take().unwrap().wait_with_output()"')
+                    inl output : resultm.result' output stream.io_error = !\($'"!child.lock().unwrap().take().unwrap().wait_with_output()"')
                     inl output = output |> resultm.map_error' sm'.format'
 
                     (!\($'"true; !stdout_thread.join().unwrap()"') : bool) |> ignore
@@ -868,9 +840,9 @@ inl execute command =
 
 #!spiral
 
-// // test
-// // print_code=false
-// // rust=
+//// test
+//// print_code=false
+///! rust
 
 types ()
 inl temp_folder, disposable = file_system.create_temp_directory ()
@@ -917,9 +889,9 @@ inl new_command (s : rust.static_ref' sm'.str) : command =
 
 #!spiral
 
-// // test
-// // print_code=false
-// // rust=
+//// test
+//// print_code=false
+///! rust
 
 types ()
 ##"command"
@@ -947,9 +919,9 @@ inl new_arg (s : rust.static_ref' sm'.str) : arg =
 
 #!spiral
 
-// // test
-// // print_code=false
-// // rust=
+//// test
+//// print_code=false
+///! rust
 
 types ()
 ##"arg"
@@ -1031,6 +1003,16 @@ inl command_get_matches (command : command) : arg_matches =
 
 #!markdown
 
+## command_get_matches_from
+
+#!spiral
+
+inl command_get_matches_from (args : array_base string) (command : command) : arg_matches =
+    inl args = args |> am'.to_vec |> am'.vec_map sm'.to_std_string
+    !\\(command, $'"clap::Command::get_matches_from($0, !args)"')
+
+#!markdown
+
 ## matches_get_one
 
 #!spiral
@@ -1042,12 +1024,41 @@ inl matches_get_one (x : string) (matches : arg_matches) : optionm'.option' sm'.
 
 #!markdown
 
+## matches_subcommand
+
+#!spiral
+
+inl matches_subcommand (matches : arg_matches) : optionm'.option' (sm'.std_string * arg_matches) =
+    open sm'
+    inl matches = matches |> rust.clone
+    !\\(ref_to_std_string, $'"clap::ArgMatches::subcommand(Box::leak(Box::new(!matches))).map(|(a, b)| ($0(a), b.clone()))"')
+
+#!markdown
+
 ## command_debug_assert
 
 #!spiral
 
 inl command_debug_assert (command : command) : () =
     !\\(command, $'"clap::Command::debug_assert($0)"')
+
+#!markdown
+
+## command_subcommand_required
+
+#!spiral
+
+inl command_subcommand_required (value : bool) (command : command) : command =
+    !\\(command, $'"clap::Command::subcommand_required($0, !value)"')
+
+#!markdown
+
+## command_subcommand
+
+#!spiral
+
+inl command_subcommand (subcommand : command) (command : command) : command =
+    !\\(command, $'"clap::Command::subcommand($0, !subcommand)"')
 
 #!markdown
 

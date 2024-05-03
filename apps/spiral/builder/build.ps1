@@ -1,5 +1,6 @@
 param(
     $fast,
+    $SkipNotebook,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -8,7 +9,7 @@ $ErrorActionPreference = "Stop"
 . ../../../lib/spiral/lib.ps1
 
 
-$projectName = "rust_builder"
+$projectName = "builder"
 
 if (!$fast -and !$SkipNotebook) {
     { . ../dist/Supervisor$(_exe) --execute-command "pwsh -c `"../../../scripts/invoke-dib.ps1 $projectName.dib`"" } | Invoke-Block -Retries 3

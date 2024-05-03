@@ -8,7 +8,7 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -27,7 +27,7 @@ inl default_value d =
 
 #!spiral
 
-// // test
+//// test
 
 None
 |> default_value 3i32
@@ -44,7 +44,7 @@ inl (/??) a b =
 
 #!spiral
 
-// // test
+//// test
 
 None /?? 3i32
 |> _assert_eq 3i32
@@ -61,7 +61,7 @@ inl default_with fn = function
 
 #!spiral
 
-// // test
+//// test
 
 None
 |> default_with fun () => 3i32
@@ -80,7 +80,7 @@ inl choose fn a b =
 
 #!spiral
 
-// // test
+//// test
 
 (Some 2i32, Some 3)
 ||> choose (+)
@@ -98,7 +98,7 @@ inl iter fn = function
 
 #!spiral
 
-// // test
+//// test
 
 inl n = mut 1i32
 inl fn =
@@ -180,7 +180,7 @@ inl box forall t. (x : option t) : option' t =
 
 #!spiral
 
-// // test
+//// test
 
 inl x = Some 3i32
 inl y : option i32 = None
@@ -207,7 +207,7 @@ inl of_obj forall t. (x : t) : option' t =
 
 #!spiral
 
-// // test
+//// test
 
 null ()
 |> of_obj
@@ -216,8 +216,8 @@ null ()
 
 #!spiral
 
-// // test
-// // rust=
+//// test
+///! rust
 
 ""
 |> of_obj
@@ -292,9 +292,9 @@ inl rc_into_inner forall t. (x : rust.rc t) : option' t =
 
 #!spiral
 
-// // test
-// // rust=
-// // print_code=false
+//// test
+//// print_code=false
+///! rust
 
 types ()
 rust.new_rc 0i32

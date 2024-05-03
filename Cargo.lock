@@ -1528,6 +1528,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a44623e20b9681a318efdd71c299b6b222ed6f231972bfe2f224ebad6311f0c1"
 
 [[package]]
+name = "futures-lite"
+version = "2.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "52527eb5074e35e9339c6b4e8d12600c7128b68fb25dcb9fa9dec18f7c25f3a5"
+dependencies = [
+ "fastrand",
+ "futures-core",
+ "futures-io",
+ "parking",
+ "pin-project-lite",
+]
+
+[[package]]
 name = "futures-macro"
 version = "0.3.30"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3209,6 +3222,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "56d80efc4b6721e8be2a10a5df21a30fa0b470f1539e53d8b4e6e75faf938b63"
 
 [[package]]
+name = "parking"
+version = "2.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bb813b8af86854136c6922af0598d719255ecb2179515e6e7730d468f05c9cae"
+
+[[package]]
 name = "parking_lot"
 version = "0.12.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3402,7 +3421,7 @@ dependencies = [
  "fable_library_rust",
  "math",
  "plot",
- "rust_builder",
+ "spiral_builder",
  "spiral_temp_extension",
  "spiral_temp_test",
 ]
@@ -4043,17 +4062,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "rust_builder"
-version = "0.0.1"
-dependencies = [
- "chrono",
- "clap 4.5.4",
- "fable_library_rust",
- "inline_colorization",
- "regex",
-]
-
-[[package]]
 name = "rust_decimal"
 version = "1.35.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4649,6 +4657,18 @@ name = "spin"
 version = "0.9.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6980e8d7511241f8acf4aebddbb1ff938df5eebe98691418c4468d0b72a96a67"
+
+[[package]]
+name = "spiral_builder"
+version = "0.0.1"
+dependencies = [
+ "chrono",
+ "clap 4.5.4",
+ "fable_library_rust",
+ "futures-lite",
+ "inline_colorization",
+ "regex",
+]
 
 [[package]]
 name = "spiral_temp_extension"

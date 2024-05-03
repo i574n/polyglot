@@ -1,4 +1,4 @@
-// // # testing
+/// # testing
 inl __expect fn log name b a =
     inl result = fn a b
     inl result =

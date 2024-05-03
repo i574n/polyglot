@@ -20,7 +20,7 @@ fable_library_rust = { path = "lib/rust/fable/fable_modules/fable-library-rust",
 chat_contract = { path = "./apps/chat/contract" }
 chat_contract_tests = { path = "./apps/chat/contract/tests" }
 plot = { path = "./apps/plot" }
-rust_builder = { path = "./apps/spiral/rust_builder" }
+spiral_builder = { path = "./apps/spiral/builder" }
 spiral_temp_extension = { path = "./apps/spiral/temp/extension" }
 spiral_temp_test = { path = "./apps/spiral/temp/test" }
 exercism = { path = "./examples/rust/exercism" }

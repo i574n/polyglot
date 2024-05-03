@@ -1,11 +1,11 @@
-// // # trace
+/// # trace
 
-// // ## types
+/// ## types
 inl types () =
     rust.types ()
     sm'.types ()
 
-// // ## trace_level
+/// ## trace_level
 union trace_level =
     | Verbose
     | Debug
@@ -27,7 +27,7 @@ instance of_string trace_level = function
     | "Warning" => Warning
     | "Critical" => Critical
 
-// // ## repl_start
+/// ## repl_start
 inl repl_start () : optionm'.option' i64 =
     inl result : optionm'.option' (optionm'.option' i64) = optionm'.none' ()
     $"let mutable _!result = !result"
@@ -48,7 +48,7 @@ inl repl_start () : optionm'.option' i64 =
     $"|> fun x -> _!result <- Some x"
     $'_!result.Value'
 
-// // ## trace_state
+/// ## trace_state
 type trace_state =
     {
         count : mut i64
@@ -67,20 +67,20 @@ inl new_trace_state () =
         repl_start = repl_start ()
     } : trace_state
 
-// // ## init_trace_state
+/// ## init_trace_state
 inl init_trace_state () : () =
     global "module State = let mutable trace_state = None"
     $"if State.trace_state.IsNone then State.trace_state <- !new_trace_state () |> Some" : ()
 
-// // ## get_trace_state
+/// ## get_trace_state
 inl get_trace_state () : trace_state =
     init_trace_state ()
     $'State.trace_state.Value'
 
-// // ## _locals
+/// ## _locals
 inl _locals () = ""
 
-// // ## test_trace_level
+/// ## test_trace_level
 inl test_trace_level level : bool =
     inl state = get_trace_state ()
     inl level' = *state.level
@@ -91,7 +91,7 @@ inl test_trace_level level : bool =
         inl level' : i32 = real real_core.union_tag level'
         level >= level'
 
-// // ## trace_raw
+/// ## trace_raw
 let rec trace_raw level fn =
     inl trace_state = get_trace_state ()
     if level |> test_trace_level then
@@ -108,7 +108,7 @@ let rec trace_raw level fn =
 
         *trace_state.trace_file text
 
-// // ## trace
+/// ## trace
 let trace (level : trace_level) (fn : () -> string) (locals : () -> string) =
     fun () =>
         inl trace_state = get_trace_state ()
@@ -161,7 +161,7 @@ let trace (level : trace_level) (fn : () -> string) (locals : () -> string) =
         |> sm'.trim_end ;[ ' '; '/' ]
     |> trace_raw level
 
-// // ## main
+/// ## main
 inl main () =
     types ()
     init_trace_state ()

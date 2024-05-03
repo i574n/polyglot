@@ -8,7 +8,7 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -36,7 +36,7 @@ prototype (~:>) r : forall t. t -> r
 
 #!spiral
 
-// // test
+//// test
 
 run_target function
     | Fsharp (Native) => fun () => $"1uy"
@@ -45,8 +45,8 @@ run_target function
 
 #!spiral
 
-// // test
-// // rust=
+//// test
+///! rust
 
 run_target function
     | Rust (Native) => fun () => $"1uy"
@@ -77,7 +77,7 @@ inl downcast forall t u. (x : t) : u =
 
 #!spiral
 
-// // test
+//// test
 
 pair 1i32 2i32
 |> _assert_eq (1, 2)
@@ -103,7 +103,7 @@ inl from_pair forall a b. (pair : pair a b) : a * b =
 
 #!spiral
 
-// // test
+//// test
 
 new_pair "a" 1i32
 |> from_pair
@@ -111,7 +111,7 @@ new_pair "a" 1i32
 
 #!spiral
 
-// // test
+//// test
 
 new_pair "a" (new_pair 1i32 "b")
 |> from_pair
@@ -131,7 +131,7 @@ inl memoize forall t. (fn : () -> t) : () -> t =
 
 #!spiral
 
-// // test
+//// test
 
 inl count = mut 0i32
 inl add =
@@ -162,7 +162,7 @@ instance (~:>) any = to_any
 
 #!spiral
 
-// // test
+//// test
 
 (3i32, 2i32)
 ||> fun a b => a - b
@@ -179,7 +179,7 @@ inl flip fn a b =
 
 #!spiral
 
-// // test
+//// test
 
 (1i32, 2i32)
 ||> flip pair
@@ -200,7 +200,7 @@ inl join_body body acc x =
 
 #!spiral
 
-// // test
+//// test
 
 inl rec fold_list f s = function
     | Cons (x, x') => fold_list f (f s x) x'
@@ -208,7 +208,7 @@ inl rec fold_list f s = function
 
 #!spiral
 
-// // test
+//// test
 
 [ 5i32; 4; join 3; 2; 1 ]
 |> fold_list (+) 0
@@ -216,7 +216,7 @@ inl rec fold_list f s = function
 
 #!spiral
 
-// // test
+//// test
 
 [ 5i32; 4; join 3; 2; 1 ]
 |> fold_list (join_body (+)) 0
@@ -237,7 +237,7 @@ inl join_body_unit body d x =
 
 #!spiral
 
-// // test
+//// test
 
 [ 5i32; 4; join 3; 2; 1 ]
 |> fold_list (fun acc n => join_body_unit ((+) acc) n n) 0
@@ -263,7 +263,7 @@ inl get_environment_variable (var : string) : string =
 
 #!spiral
 
-// // test
+//// test
 
 fun () => failwith "test"
 |> _throws
@@ -305,7 +305,7 @@ inl new_disposable (fn : () -> ()) : disposable _ =
 
 #!spiral
 
-// // test
+//// test
 
 inl new_disposable_test = mut 0i32
 new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
@@ -315,9 +315,11 @@ new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
 
 #!spiral
 
-// // test
-// // rust=
-// // print_code=false
+//// test
+//// print_code=false
+///! rust
+
+///! rust
 
 inl new_disposable_test = mut 0i32
 new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
@@ -327,7 +329,7 @@ new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
 
 #!spiral
 
-// // test
+//// test
 
 inl new_disposable_test = mut 0i32
 fun () =>
@@ -343,7 +345,7 @@ fun () =>
 
 #!spiral
 
-// // test
+//// test
 
 inl new_disposable_test = mut 0i32
 fun () =>
@@ -358,7 +360,7 @@ fun () =>
 
 #!spiral
 
-// // test
+//// test
 
 inl new_disposable_test = mut 0i32
 fun () =>
@@ -420,7 +422,7 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
 
 #!spiral
 
-// // test
+//// test
 
 inl retry_fn_test = mut 0i32
 fun () =>
@@ -431,7 +433,7 @@ fun () =>
 
 #!spiral
 
-// // test
+//// test
 
 inl retry_fn_test = mut 0i32
 fun () =>

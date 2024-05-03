@@ -232,8 +232,8 @@ pub fn MessagesProcessor() -> impl IntoView {
             messages.outer.set(new_messages.0.clone());
 
             // let json = serde_json::to_string(&new_messages.0).unwrap();
-            // // set_outer_messages.dispatch(json);
-            // // let result = set_outer_messages.value().get();
+            //// set_outer_messages.dispatch(json);
+            //// let result = set_outer_messages.value().get();
             // let result = set_outer_messages(json);
             // log!(
             //     "MessagesProcessor / set_outer_messages / result: {:#?}",

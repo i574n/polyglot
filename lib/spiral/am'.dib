@@ -8,7 +8,7 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -63,7 +63,7 @@ inl (/@) a b =
 
 #!spiral
 
-// // test
+//// test
 
 a ;[ "a"; "b" ] /@ a ;[ "c"; "d" ]
 |> _assert_eq (a ;[ "a"; "b"; "c"; "d" ] : _ i32 _)
@@ -95,7 +95,7 @@ inl choose f l =
 
 #!spiral
 
-// // test
+//// test
 
 (am.init 10i32 id : a _ _)
 |> choose (fun x => if x % 2 = 0 then Some x else None)
@@ -112,7 +112,7 @@ inl sum (a' : a _ _) =
 
 #!spiral
 
-// // test
+//// test
 
 am.init 10i32 id
 |> sum
@@ -130,7 +130,7 @@ inl init_series start end inc =
 
 #!spiral
 
-// // test
+//// test
 
 init_series 0 1 0.5
 |> _assert_eq (a ;[ 0f64; 0.5; 1 ])
@@ -160,7 +160,7 @@ inl last (ar : a _ _) =
 
 #!spiral
 
-// // test
+//// test
 
 am.init 10i32 id
 |> last
@@ -181,7 +181,7 @@ inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
 
 #!spiral
 
-// // test
+//// test
 
 am.init 10i32 id
 |> try_pick (fun x => if x = 5i32 then Some x else None)
@@ -201,7 +201,7 @@ inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a d
 
 #!spiral
 
-// // test
+//// test
 
 am.init 3i32 ((*) 2)
 |> indexed'
@@ -247,7 +247,7 @@ inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
 
 #!spiral
 
-// // test
+//// test
 
 (a ;[ "a"; "b" ] : _ i32 _)
 |> to_list'
@@ -315,7 +315,7 @@ inl indexed (array : a _ _) =
 
 #!spiral
 
-// // test
+//// test
 
 am.init 3i32 ((*) 2)
 |> indexed
@@ -514,6 +514,47 @@ nominal slice t = $"Slice<`t>"
 
 #!markdown
 
+## slice
+
+#!spiral
+
+inl slice forall dim {int; number} el. from nearTo s : a dim el =
+    am.slice { from nearTo } s
+
+#!spiral
+
+//// test
+
+inl x : _ i32 _ = a ;[ 1i32; 2; 3 ]
+x |> slice 0 0 |> _assert_eq (a ;[])
+x |> slice 0 1 |> _assert_eq (a ;[ 1 ])
+x |> slice 1 1 |> _assert_eq (a ;[])
+x |> slice 1 2 |> _assert_eq (a ;[ 2 ])
+x |> slice 2 2 |> _assert_eq (a ;[])
+x |> slice 0 2 |> _assert_eq (a ;[ 1; 2 ])
+
+#!markdown
+
+## range
+
+#!spiral
+
+union range dim =
+    | Start : dim
+    | End : dim -> dim
+
+inl range start end s =
+    inl start, end =
+        match start, end with
+        | Start start, End fn =>
+            start, s |> length |> fn
+        | End start_fn, End end_fn =>
+            inl len = s |> length
+            start_fn len, end_fn len
+    s |> slice start end
+
+#!markdown
+
 ## slice'
 
 #!spiral
@@ -527,6 +568,33 @@ inl slice' forall dim el. (x : option el) : slice' el dim =
         !\($'"[\\\"\\\".to_string()]"') : slice' el dim
             // emit_expr `(()) `(slice' el dim) () ($'"[@dim]"' : string) : slice' el 10
             // !\( : string) : slice' el i32 // !\($'"[]"')
+
+#!markdown
+
+## slice_range
+
+#!spiral
+
+inl slice_range forall t dim. start end (s : slice' t dim) : slice' t dim =
+    inl start, end =
+        inl length (x : slice' t dim) : dim =
+            !\($'"!x.len()"')
+        match start, end with
+        | Start start, End fn =>
+            start, s |> length |> fn
+        | End start_fn, End end_fn =>
+            inl len = s |> length
+            start_fn len, end_fn len
+    !\($'"!s[!start..!end]"')
+
+#!markdown
+
+## new_slice
+
+#!spiral
+
+inl new_slice forall dim el. ((n : el), (dim : dim)) : slice' el dim =
+    !\($'"[!n; !dim]"')
 
 #!markdown
 

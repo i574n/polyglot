@@ -8,7 +8,7 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -35,7 +35,7 @@ inl rec eval ski =
 
 #!spiral
 
-// // test
+//// test
 
 eval I
 |> _assert_eq I
