@@ -9654,6 +9654,7 @@ method0()
                     <span class="o">||&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="n">x</span> <span class="n">level</span><span class="p">,</span> <span class="n">acc</span> <span class="o">=&gt;</span>
                         <span class="k">match</span> <span class="n">x</span><span class="p">,</span> <span class="n">level</span> <span class="k">with</span>
                         <span class="o">|</span> <span class="s2">".."</span><span class="p">,</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">acc</span>
+                        <span class="o">|</span> <span class="s2">"."</span><span class="p">,</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">level</span><span class="p">,</span> <span class="n">acc</span>
                         <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="mi">0</span> <span class="n">when</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.ends_with ":" =&gt; 0, a ;[ $'</span><span class="err">$</span><span class="s2">"{!current_dir.[0]}:"</span><span class="s1">' ] /@ acc</span>
                         <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="mi">0</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">a</span> <span class="p">;[</span> <span class="n">x</span> <span class="p">]</span> <span class="o">/@</span> <span class="n">acc</span>
                         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">level</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">acc</span>
@@ -9732,7 +9733,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 <span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
-<span class="s2">"dir/../._file"</span>
+<span class="s2">"dir/.././._file"</span>
 <span class="o">|&gt;</span> <span class="n">get_full_path</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">get_current_directory</span> <span class="p">()</span> <span class="o">&lt;/&gt;</span> <span class="s2">"._file"</span><span class="p">)</span>
 </pre></div>
@@ -9805,7 +9806,7 @@ method0()
 <span class="o">///!</span><span class="w"> </span>rust
 
 <span class="n">types</span> <span class="p">()</span>
-<span class="s2">"dir/../._file"</span>
+<span class="s2">"dir/.././._file"</span>
 <span class="o">|&gt;</span> <span class="n">get_full_path</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">get_current_directory</span> <span class="p">()</span> <span class="o">&lt;/&gt;</span> <span class="s2">"._file"</span><span class="p">)</span>
 </pre></div>
@@ -9899,7 +9900,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0148-2748-4848-400400b0db8d" / expected: '\\'
+<pre>assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-1354-5372-7206-70040059c725" / expected: '\\'
 </pre>
 </div>
 </div>
@@ -9932,7 +9933,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>output:
-assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0148-3893-3436-0000002337e8" / expected: '\\'
+assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-1355-0408-9747-000000f49f83" / expected: '\\'
 
 
 </pre>
@@ -11587,8 +11588,9 @@ assert_eq / actual: "spiral" / expected: "spiral"
             <span class="n">path_buf_exists</span> <span class="n">path</span> <span class="o">&amp;&amp;</span> <span class="n">path_buf_is_dir</span> <span class="n">path</span>
         <span class="o">|</span> <span class="n">TypeScript</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="k">global</span> <span class="s2">"type IFsExistsSync = abstract existsSync: path: string -&gt; bool"</span>
+            <span class="nb">open</span> <span class="n">ts_operators</span>
             <span class="n">inl</span> <span class="n">fs</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'IFsExistsSync'</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">import_all</span> <span class="s2">"fs"</span>
-            <span class="n">ts</span><span class="o">.</span><span class="n">emit_expr</span> <span class="n">path</span> <span class="err">$</span><span class="s1">'"!fs.existsSync($0)"'</span>
+            <span class="o">!</span><span class="se">\\</span><span class="o">((</span>fs,<span class="w"> </span>path<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.existsSync($1)"'</span><span class="o">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -11833,9 +11835,10 @@ assert_eq / actual: "spiral" / expected: "spiral"
             <span class="n">inl</span> <span class="n">path_buf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string |&gt; new_path_buf</span>
             <span class="n">path_buf_exists</span> <span class="n">path_buf</span> <span class="o">&amp;&amp;</span> <span class="n">path_buf_is_file</span> <span class="n">path_buf</span>
         <span class="o">|</span> <span class="n">TypeScript</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="nb">open</span> <span class="n">ts_operators</span>
             <span class="k">global</span> <span class="s2">"type IFsExistsSync = abstract existsSync: path: string -&gt; bool"</span>
             <span class="n">inl</span> <span class="n">fs</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'IFsExistsSync'</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">import_all</span> <span class="s2">"fs"</span>
-            <span class="n">ts</span><span class="o">.</span><span class="n">emit_expr</span> <span class="n">path</span> <span class="err">$</span><span class="s1">'"!fs.existsSync($0)"'</span>
+            <span class="o">!</span><span class="se">\\</span><span class="o">((</span>fs,<span class="w"> </span>path<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.existsSync($1)"'</span><span class="o">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -12468,7 +12471,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>01:49:07 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0149-0786-2866-00000002a6db
+<pre>13:55:32 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-1355-3244-4287-0000007f9817
 assert_eq / actual: true / expected: true
 assert_eq / actual: false / expected: false
 </pre>
@@ -13416,8 +13419,8 @@ and closure13 (v0 : string) () : unit =
 #if FABLE_COMPILER_TYPESCRIPT
     let v20 : string = "fs"
     let v21 : IFsExistsSync = Fable.Core.JsInterop.importAll v20
-    let v22 : string = "v21.existsSync($0)"
-    let v23 : bool = Fable.Core.JsInterop.emitJsExpr v3 v22
+    let v22 : string = "$0.existsSync($1)"
+    let v23 : bool = Fable.Core.JsInterop.emitJsExpr struct (v21, v3) v22
     v23
 #endif
     
@@ -13624,8 +13627,8 @@ and method20 (v0 : string, v1 : int64) : Async&lt;int64&gt; =
 #if FABLE_COMPILER_TYPESCRIPT
     let v29 : string = "fs"
     let v30 : IFsExistsSync = Fable.Core.JsInterop.importAll v29
-    let v31 : string = "v30.existsSync($0)"
-    let v32 : bool = Fable.Core.JsInterop.emitJsExpr v12 v31
+    let v31 : string = "$0.existsSync($1)"
+    let v32 : bool = Fable.Core.JsInterop.emitJsExpr struct (v30, v12) v31
     v32
 #endif
     
@@ -17138,8 +17141,8 @@ and closure13 (v0 : string) () : unit =
 #if FABLE_COMPILER_TYPESCRIPT
     let v20 : string = "fs"
     let v21 : IFsExistsSync = Fable.Core.JsInterop.importAll v20
-    let v22 : string = "v21.existsSync($0)"
-    let v23 : bool = Fable.Core.JsInterop.emitJsExpr v3 v22
+    let v22 : string = "$0.existsSync($1)"
+    let v23 : bool = Fable.Core.JsInterop.emitJsExpr struct (v21, v3) v22
     v23
 #endif
     
@@ -17346,8 +17349,8 @@ and method20 (v0 : string, v1 : int64) : Async&lt;int64&gt; =
 #if FABLE_COMPILER_TYPESCRIPT
     let v29 : string = "fs"
     let v30 : IFsExistsSync = Fable.Core.JsInterop.importAll v29
-    let v31 : string = "v30.existsSync($0)"
-    let v32 : bool = Fable.Core.JsInterop.emitJsExpr v12 v31
+    let v31 : string = "$0.existsSync($1)"
+    let v32 : bool = Fable.Core.JsInterop.emitJsExpr struct (v30, v12) v31
     v32
 #endif
     
@@ -20088,11 +20091,11 @@ method0()
 
 00:00:00   debug #1 1
 00:00:00   debug #2 2
-00:00:00   debug #3 _1
-00:00:00   debug #4 3
+00:00:00   debug #3 3
+00:00:00   debug #4 _1
 00:00:00   debug #5 _2
 00:00:00   debug #6 4
-00:00:01   debug #7 file_system.wait_for_file_access / path: test.txt / retry: 100 / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0149-1598-9801-900400fccde0\test.txt' because it is being used by another process.
+00:00:01   debug #7 file_system.wait_for_file_access / path: test.txt / retry: 100 / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-1355-3954-5412-50040074cd0f\test.txt' because it is being used by another process.
 00:00:02   debug #8 _3
 00:00:02   debug #9 _4
 00:00:02   debug #10 _5
@@ -21170,8 +21173,8 @@ and closure13 (v0 : string) () : unit =
 #if FABLE_COMPILER_TYPESCRIPT
     let v20 : string = "fs"
     let v21 : IFsExistsSync = Fable.Core.JsInterop.importAll v20
-    let v22 : string = "v21.existsSync($0)"
-    let v23 : bool = Fable.Core.JsInterop.emitJsExpr v3 v22
+    let v22 : string = "$0.existsSync($1)"
+    let v23 : bool = Fable.Core.JsInterop.emitJsExpr struct (v21, v3) v22
     v23
 #endif
     
@@ -21378,8 +21381,8 @@ and method20 (v0 : string, v1 : int64) : Async&lt;int64&gt; =
 #if FABLE_COMPILER_TYPESCRIPT
     let v29 : string = "fs"
     let v30 : IFsExistsSync = Fable.Core.JsInterop.importAll v29
-    let v31 : string = "v30.existsSync($0)"
-    let v32 : bool = Fable.Core.JsInterop.emitJsExpr v12 v31
+    let v31 : string = "$0.existsSync($1)"
+    let v32 : bool = Fable.Core.JsInterop.emitJsExpr struct (v30, v12) v31
     v32
 #endif
     
@@ -23993,8 +23996,8 @@ method0()
 00:00:00   debug #4 _1
 00:00:00   debug #5 _2
 00:00:00   debug #6 4
-00:00:00 warning #7 delete_file_async / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0149-2330-3066-30040026da50\test.txt' because it is being used by another process.
-00:00:01 warning #8 delete_file_async / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0149-2330-3066-30040026da50\test.txt' because it is being used by another process.
+00:00:00 warning #7 delete_file_async / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-1355-4643-4366-400400787399\test.txt' because it is being used by another process.
+00:00:01 warning #8 delete_file_async / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-1355-4643-4366-400400787399\test.txt' because it is being used by another process.
 00:00:02   debug #9 _3
 00:00:02   debug #10 5
 00:00:02   debug #11 6
@@ -25015,8 +25018,8 @@ and closure13 (v0 : string) () : unit =
 #if FABLE_COMPILER_TYPESCRIPT
     let v20 : string = "fs"
     let v21 : IFsExistsSync = Fable.Core.JsInterop.importAll v20
-    let v22 : string = "v21.existsSync($0)"
-    let v23 : bool = Fable.Core.JsInterop.emitJsExpr v3 v22
+    let v22 : string = "$0.existsSync($1)"
+    let v23 : bool = Fable.Core.JsInterop.emitJsExpr struct (v21, v3) v22
     v23
 #endif
     
@@ -25223,8 +25226,8 @@ and method20 (v0 : string, v1 : int64) : Async&lt;int64&gt; =
 #if FABLE_COMPILER_TYPESCRIPT
     let v29 : string = "fs"
     let v30 : IFsExistsSync = Fable.Core.JsInterop.importAll v29
-    let v31 : string = "v30.existsSync($0)"
-    let v32 : bool = Fable.Core.JsInterop.emitJsExpr v12 v31
+    let v31 : string = "$0.existsSync($1)"
+    let v32 : bool = Fable.Core.JsInterop.emitJsExpr struct (v30, v12) v31
     v32
 #endif
     
@@ -28280,12 +28283,12 @@ method0()
 00:00:00   debug #6 4
 00:00:00 warning #7 move_file_async / old_path: test.txt / new_path: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
 00:00:01 warning #8 move_file_async / old_path: test.txt / new_path: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
-00:00:02   debug #9 _3
+00:00:01   debug #9 _3
 00:00:02   debug #10 5
 00:00:02   debug #11 6
 00:00:02   debug #12 7
 00:00:02   debug #13 8
-assert_between / actual: 126L / expected: struct (50L, 150L)
+assert_between / actual: 128L / expected: struct (50L, 150L)
 assert_between / actual: 0L / expected: struct (0L, 0L)
 assert_eq / actual: "0" / expected: "0"
 assert_eq / actual: true / expected: true
@@ -29093,7 +29096,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 37L / expected: 37L
+<pre>assert_eq / actual: 40L / expected: 40L
 </pre>
 </div>
 </div>
@@ -30000,8 +30003,8 @@ and method2 (v0 : string, v1 : int64) : Async&lt;int64&gt; =
 #if FABLE_COMPILER_TYPESCRIPT
     let v29 : string = "fs"
     let v30 : IFsExistsSync = Fable.Core.JsInterop.importAll v29
-    let v31 : string = "v30.existsSync($0)"
-    let v32 : bool = Fable.Core.JsInterop.emitJsExpr v12 v31
+    let v31 : string = "$0.existsSync($1)"
+    let v32 : bool = Fable.Core.JsInterop.emitJsExpr struct (v30, v12) v31
     v32
 #endif
     
@@ -30848,8 +30851,8 @@ and closure16 (v0 : string) (v1 : string) : Async&lt;bool&gt; =
 #if FABLE_COMPILER_TYPESCRIPT
     let v33 : string = "fs"
     let v34 : IFsExistsSync = Fable.Core.JsInterop.importAll v33
-    let v35 : string = "v34.existsSync($0)"
-    let v36 : bool = Fable.Core.JsInterop.emitJsExpr v0 v35
+    let v35 : string = "$0.existsSync($1)"
+    let v36 : bool = Fable.Core.JsInterop.emitJsExpr struct (v34, v0) v35
     v36
 #endif
     
@@ -31182,8 +31185,8 @@ and closure20 (v0 : string) (v1 : string) : Async&lt;unit&gt; =
 #if FABLE_COMPILER_TYPESCRIPT
     let v41 : string = "fs"
     let v42 : IFsExistsSync = Fable.Core.JsInterop.importAll v41
-    let v43 : string = "v42.existsSync($0)"
-    let v44 : bool = Fable.Core.JsInterop.emitJsExpr v0 v43
+    let v43 : string = "$0.existsSync($1)"
+    let v44 : bool = Fable.Core.JsInterop.emitJsExpr struct (v42, v0) v43
     v44
 #endif
     
@@ -33740,8 +33743,8 @@ and closure46 (v0 : string) () : unit =
 #if FABLE_COMPILER_TYPESCRIPT
     let v20 : string = "fs"
     let v21 : IFsExistsSync = Fable.Core.JsInterop.importAll v20
-    let v22 : string = "v21.existsSync($0)"
-    let v23 : bool = Fable.Core.JsInterop.emitJsExpr v3 v22
+    let v22 : string = "$0.existsSync($1)"
+    let v23 : bool = Fable.Core.JsInterop.emitJsExpr struct (v21, v3) v22
     v23
 #endif
     
@@ -35149,8 +35152,8 @@ and closure54 () (v0 : string) : bool =
 #if FABLE_COMPILER_TYPESCRIPT
     let v17 : string = "fs"
     let v18 : IFsExistsSync = Fable.Core.JsInterop.importAll v17
-    let v19 : string = "v18.existsSync($0)"
-    let v20 : bool = Fable.Core.JsInterop.emitJsExpr v0 v19
+    let v19 : string = "$0.existsSync($1)"
+    let v20 : bool = Fable.Core.JsInterop.emitJsExpr struct (v18, v0) v19
     v20
 #endif
     
@@ -35206,8 +35209,8 @@ and closure55 () (v0 : string) : bool =
 #if FABLE_COMPILER_TYPESCRIPT
     let v17 : string = "fs"
     let v18 : IFsExistsSync = Fable.Core.JsInterop.importAll v17
-    let v19 : string = "v18.existsSync($0)"
-    let v20 : bool = Fable.Core.JsInterop.emitJsExpr v0 v19
+    let v19 : string = "$0.existsSync($1)"
+    let v20 : bool = Fable.Core.JsInterop.emitJsExpr struct (v18, v0) v19
     v20
 #endif
     
@@ -35531,8 +35534,8 @@ and method35 (v0 : string, v1 : string, v2 : string) : string =
 #if FABLE_COMPILER_TYPESCRIPT
     let v20 : string = "fs"
     let v21 : IFsExistsSync = Fable.Core.JsInterop.importAll v20
-    let v22 : string = "v21.existsSync($0)"
-    let v23 : bool = Fable.Core.JsInterop.emitJsExpr v3 v22
+    let v22 : string = "$0.existsSync($1)"
+    let v23 : bool = Fable.Core.JsInterop.emitJsExpr struct (v21, v3) v22
     v23
 #endif
     
@@ -35602,8 +35605,8 @@ and method34 (v0 : string, v1 : string) : string =
 #if FABLE_COMPILER_TYPESCRIPT
     let v19 : string = "fs"
     let v20 : IFsExistsSync = Fable.Core.JsInterop.importAll v19
-    let v21 : string = "v20.existsSync($0)"
-    let v22 : bool = Fable.Core.JsInterop.emitJsExpr v2 v21
+    let v21 : string = "$0.existsSync($1)"
+    let v22 : bool = Fable.Core.JsInterop.emitJsExpr struct (v20, v2) v21
     v22
 #endif
     

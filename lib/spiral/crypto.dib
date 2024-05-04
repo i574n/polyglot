@@ -233,15 +233,13 @@ inl hash_file (path : string) : result string string =
 types ()
 inl temp_folder, disposable = file_system.create_temp_directory ()
 
-fun () =>
-    inl file_name = join "test.txt"
-    inl path = temp_folder </> file_name
-    "" |> file_system.write_all_text path
-    path
-    |> hash_file
-    |> resultm.get
-    |> _assert_eq "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
-|> ignore
+inl file_name = join "test.txt"
+inl path = temp_folder </> file_name
+"" |> file_system.write_all_text path
+path
+|> hash_file
+|> resultm.get
+|> _assert_eq "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
 disposable |> use |> ignore
 
 #!markdown

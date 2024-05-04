@@ -7,6 +7,9 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Arg\")>]\n#endif\ntype clap_Arg = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Command\")>]\n#endif\ntype clap_Command = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::ArgMatches\")>]\n#endif\ntype clap_ArgMatches = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::builder::ValueRange\")>]\n#endif\ntype clap_builder_ValueRange = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::builder::ValueParser\")>]\n#endif\ntype clap_builder_ValueParser = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::builder::PossibleValue\")>]\n#endif\ntype clap_builder_PossibleValue = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Child\")>]\n#endif\ntype std_process_Child = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStderr\")>]\n#endif\ntype std_process_ChildStderr = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdout\")>]\n#endif\ntype std_process_ChildStdout = class end"
@@ -546,9 +549,62 @@ inl arg_short (value : char) (arg : arg) : arg =
 inl arg_long (value : rust.static_ref' sm'.str) (arg : arg) : arg =
     !\\((arg, value), $'"$0.long($1)"')
 
-/// ## arg_index
-inl arg_index (value : i32) (arg : arg) : arg =
-    !\\((arg, value), $'"$0.index($1)"')
+/// ## arg_value_names
+inl arg_value_names (values : array_base (rust.static_ref' sm'.str)) (arg : arg) : arg =
+    inl values = values |> am'.to_vec
+    !\\((arg, values), $'"$0.value_names($1)"')
+
+/// ## arg_num_args
+inl arg_num_args (value : i32) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.num_args($1)"')
+
+/// ## value_range
+nominal value_range = $'clap_builder_ValueRange'
+
+/// ## new_value_range
+inl new_value_range start end : value_range =
+    inl len = -1
+    inl start, end =
+        open am'
+        match start, end with
+        | Start start, End fn =>
+            start, len |> fn
+        | End start_fn, End end_fn =>
+            start_fn len, end_fn len
+    match start, end with
+    | start, end when end = len => !\($'"clap::builder::ValueRange::new(!start..)"')
+    | start, end => !\($'"clap::builder::ValueRange::new(!start..!end)"')
+
+/// ## arg_num_args_range
+inl arg_num_args_range (value : value_range) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.num_args($1)"')
+
+/// ## arg_value_name
+inl arg_value_name (value : string) (arg : arg) : arg =
+    inl value = value |> sm'.as_str
+    !\\((arg, value), $'"$0.value_name($1)"')
+
+/// ## value_parser
+nominal value_parser = $'clap_builder_ValueParser'
+
+/// ## possible_value
+nominal possible_value = $'clap_builder_PossibleValue'
+
+/// ## new_possible_value
+inl new_possible_value forall t. (x : t) : possible_value =
+    !\\(x, $'"clap::builder::PossibleValue::new(&**$0)"')
+
+/// ## value_parser_possible_values
+inl value_parser_possible_values (values : array_base string) : value_parser =
+    inl values =
+        values
+        |> am'.to_vec
+        |> am'.vec_map (sm'.to_std_string >> rust.new_box >> rust.box_leak >> new_possible_value)
+    !\\(values, $'"clap::builder::PossibleValuesParser::new($0).into()"')
+
+/// ## arg_value_parser
+inl arg_value_parser (values : value_parser) (arg : arg) : arg =
+    !\\((arg, values), $'"$0.value_parser($1)"')
 
 /// ## arg_index
 inl arg_index (value : i32) (arg : arg) : arg =
@@ -572,11 +628,33 @@ inl matches_get_one (x : string) (matches : arg_matches) : optionm'.option' sm'.
     inl x = x |> sm'.as_str
     !\($'"clap::ArgMatches::get_one(&!matches, !x).cloned()"')
 
+/// ## matches_get_flag
+inl matches_get_flag (x : string) (matches : arg_matches) : bool =
+    inl x = join x
+    inl x = x |> sm'.as_str
+    !\($'"clap::ArgMatches::get_flag(&!matches, !x)"')
+
+/// ## matches_get_many
+inl matches_get_many forall t. (x : string) (matches : arg_matches) : optionm'.option' (am'.vec t) =
+    inl x = join x
+    inl x = x |> sm'.as_str
+    !\\(matches, $'"clap::ArgMatches::get_many(&$0, !x).map(|x| x.cloned().into_iter().collect())"')
+
+/// ## matches_get_occurrences
+inl matches_get_occurrences (x : string) (matches : arg_matches) : optionm'.option' (array_base sm'.std_string) =
+    inl x = join x
+    inl x = x |> sm'.as_str
+    !\($'"clap::ArgMatches::get_occurrences(&!matches, !x).cloned()"')
+
 /// ## matches_subcommand
 inl matches_subcommand (matches : arg_matches) : optionm'.option' (sm'.std_string * arg_matches) =
     open sm'
     inl matches = matches |> rust.clone
     !\\(ref_to_std_string, $'"clap::ArgMatches::subcommand(Box::leak(Box::new(!matches))).map(|(a, b)| ($0(a), b.clone()))"')
+
+/// ## matches_values_of
+inl matches_values_of (x : string) (matches : arg_matches) : array_base sm'.std_string =
+    !\\((matches, x), $'"clap::ArgMatches::values_of($0, &*$1)"')
 
 /// ## command_debug_assert
 inl command_debug_assert (command : command) : () =

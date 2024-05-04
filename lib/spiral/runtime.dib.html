@@ -10377,8 +10377,8 @@ and closure13 (v0 : string) () : unit =
 #if FABLE_COMPILER_TYPESCRIPT
     let v20 : string = "fs"
     let v21 : IFsExistsSync = Fable.Core.JsInterop.importAll v20
-    let v22 : string = "v21.existsSync($0)"
-    let v23 : bool = Fable.Core.JsInterop.emitJsExpr v3 v22
+    let v22 : string = "$0.existsSync($1)"
+    let v23 : bool = Fable.Core.JsInterop.emitJsExpr struct (v21, v3) v22
     v23
 #endif
     
@@ -10585,8 +10585,8 @@ and method20 (v0 : string, v1 : int64) : Async&lt;int64&gt; =
 #if FABLE_COMPILER_TYPESCRIPT
     let v29 : string = "fs"
     let v30 : IFsExistsSync = Fable.Core.JsInterop.importAll v29
-    let v31 : string = "v30.existsSync($0)"
-    let v32 : bool = Fable.Core.JsInterop.emitJsExpr v12 v31
+    let v31 : string = "$0.existsSync($1)"
+    let v32 : bool = Fable.Core.JsInterop.emitJsExpr struct (v30, v12) v31
     v32
 #endif
     
@@ -13930,15 +13930,15 @@ and method0 () : unit =
 method0()
 
 00:00:00   debug #1 execute_with_options_async / options: struct (None,
-        "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0132-1001-0141-0004009d21a4\test.txt"",
+        "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-1337-3097-9712-900400370c10\test.txt"",
         [||], None, None, None)
-00:00:00 verbose #2 &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0132-1001-0141-0004009d21a4\test.txt' because it does not exist.</span>
+00:00:00 verbose #2 &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-1337-3097-9712-900400370c10\test.txt' because it does not exist.</span>
 00:00:00   debug #3 execute_with_options_async / exit_code: 1 / output.Length: 171
 assert_eq / actual: 1 / expected: 1
-assert_string_contains / actual: "not exist" / expected: "[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0132-1001-0141-0004009d21a4\test.txt' because it does not exist.</span>]"
+assert_string_contains / actual: "not exist" / expected: "[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-1337-3097-9712-900400370c10\test.txt' because it does not exist.</span>]"
 00:00:00   debug #4 execute_with_options_async / options: struct (None, "pwsh -c "Get-Content test.txt"", [||], None, None,
         Some
-          "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0132-1001-0141-0004009d21a4")
+          "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-1337-3097-9712-900400370c10")
 00:00:01 verbose #5 &gt; 0
 00:00:01   debug #6 execute_with_options_async / exit_code: 0 / output.Length: 1
 assert_eq / actual: 0 / expected: 0
@@ -14902,8 +14902,8 @@ and closure13 (v0 : string) () : unit =
 #if FABLE_COMPILER_TYPESCRIPT
     let v20 : string = "fs"
     let v21 : IFsExistsSync = Fable.Core.JsInterop.importAll v20
-    let v22 : string = "v21.existsSync($0)"
-    let v23 : bool = Fable.Core.JsInterop.emitJsExpr v3 v22
+    let v22 : string = "$0.existsSync($1)"
+    let v23 : bool = Fable.Core.JsInterop.emitJsExpr struct (v21, v3) v22
     v23
 #endif
     
@@ -15110,8 +15110,8 @@ and method20 (v0 : string, v1 : int64) : Async&lt;int64&gt; =
 #if FABLE_COMPILER_TYPESCRIPT
     let v29 : string = "fs"
     let v30 : IFsExistsSync = Fable.Core.JsInterop.importAll v29
-    let v31 : string = "v30.existsSync($0)"
-    let v32 : bool = Fable.Core.JsInterop.emitJsExpr v12 v31
+    let v31 : string = "$0.existsSync($1)"
+    let v32 : bool = Fable.Core.JsInterop.emitJsExpr struct (v30, v12) v31
     v32
 #endif
     
@@ -18173,7 +18173,7 @@ method0()
 00:00:00   debug #1 1
 00:00:00   debug #2 2
 00:00:00   debug #3 execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-0132-1475-7511-70040043c343\test.txt"",
+        "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240503-1337-3711-1128-100400936aea\test.txt"",
         [||], None, None, None)
 00:00:00   debug #4 3
 00:00:00   debug #5 4
@@ -18862,15 +18862,15 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>01:32:42 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0132-4207-2561-00000019e68e
-01:32:42 <span class="ansi-blue-intense-fg">  debug</span> #2 execute_with_options / file_name: pwsh / arguments: ["-c", "Get-Content C:\\Users\\i574n\\AppData\\Local\\Temp\\!spiral_eval\\20240503-0132-4207-2561-00000019e68e\\test.txt"] / options: (None, "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0132-4207-2561-00000019e68e\test.txt"", Array(MutCell([])), None, None, None)
-01:32:42 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0132-4207-2561-00000019e68e\test.txt' because it does not exist.</span>
-01:32:42 <span class="ansi-black-intense-fg">verbose</span> #4 execute_with_options / exit_code: 1 / std_trace.Length: 169
+<pre>13:38:07 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-1338-0766-3132-00000018d372
+13:38:07 <span class="ansi-blue-intense-fg">  debug</span> #2 execute_with_options / file_name: pwsh / arguments: ["-c", "Get-Content C:\\Users\\i574n\\AppData\\Local\\Temp\\!spiral_eval\\20240503-1338-0766-3132-00000018d372\\test.txt"] / options: (None, "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-1338-0766-3132-00000018d372\test.txt"", Array(MutCell([])), None, None, None)
+13:38:08 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-1338-0766-3132-00000018d372\test.txt' because it does not exist.</span>
+13:38:08 <span class="ansi-black-intense-fg">verbose</span> #4 execute_with_options / exit_code: 1 / std_trace.Length: 169
 assert_eq / actual: 1 / expected: 1
-assert_string_contains / actual: "not exist" / expected: "<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0132-4207-2561-00000019e68e\test.txt' because it does not exist.</span>"
-01:32:42 <span class="ansi-blue-intense-fg">  debug</span> #5 execute_with_options / file_name: pwsh / arguments: ["-c", "Get-Content test.txt"] / options: (None, "pwsh -c "Get-Content test.txt"", Array(MutCell([])), None, None, Some("C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-0132-4207-2561-00000019e68e"))
-01:32:43 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; 0
-01:32:43 <span class="ansi-black-intense-fg">verbose</span> #7 execute_with_options / exit_code: 0 / std_trace.Length: 1
+assert_string_contains / actual: "not exist" / expected: "<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-1338-0766-3132-00000018d372\test.txt' because it does not exist.</span>"
+13:38:08 <span class="ansi-blue-intense-fg">  debug</span> #5 execute_with_options / file_name: pwsh / arguments: ["-c", "Get-Content test.txt"] / options: (None, "pwsh -c "Get-Content test.txt"", Array(MutCell([])), None, None, Some("C:\Users\i574n\AppData\Local\Temp\!spiral_eval\20240503-1338-0766-3132-00000018d372"))
+13:38:08 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; 0
+13:38:09 <span class="ansi-black-intense-fg">verbose</span> #7 execute_with_options / exit_code: 0 / std_trace.Length: 1
 assert_eq / actual: 0 / expected: 0
 assert_eq / actual: "0" / expected: "0"
 assert_eq / actual: true / expected: true

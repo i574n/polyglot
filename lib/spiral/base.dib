@@ -1,75 +1,172 @@
-/// # base
+#!meta
 
-/// ## array
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# base
+
+#!spiral
+
+//// test
+
+open testing
+
+#!markdown
+
+## array
+
+#!spiral
+
 inl array x = x
 
-/// ## prototype
+#!markdown
+
+## prototype
+
+#!spiral
+
 prototype append t : t -> t -> t
 prototype of_string t : string -> t
 prototype to_string t : t -> string
 
-/// ## not'
+#!markdown
+
+## not'
+
+#!spiral
+
 inl not' x =
     join not x
 
-/// ## (+.)
+#!markdown
+
+## (+.)
+
+#!spiral
+
 inl (+.) forall t. (a : t) (b : t) : t =
     $"!a + !b"
 
-/// ## (-.)
+#!markdown
+
+## (-.)
+
+#!spiral
+
 inl (-.) forall t. (a : t) (b : t) : t =
     $"!a - !b"
 
-/// ## (*.)
+#!markdown
+
+## (*.)
+
+#!spiral
+
 inl (*.) forall t. (a : t) (b : t) : t =
     $"!a * !b"
 
-/// ## (/.)
+#!markdown
+
+## (/.)
+
+#!spiral
+
 inl (/.) forall t. (a : t) (b : t) : t =
     $"!a / !b"
 
-/// ## (=.)
+#!markdown
+
+## (=.)
+
+#!spiral
+
 inl (=.) forall t. (a : t) (b : t) : bool =
     $"!a = !b"
 
-/// ## (<>.)
+#!markdown
+
+## (<>.)
+
+#!spiral
+
 inl (<>.) forall t. (a : t) (b : t) : bool =
     $"!a <> !b"
 
-/// ## (||>)
+#!markdown
+
+## (||>)
+
+#!spiral
+
 inl (||>) (arg1, arg2) fn =
     arg2 |> fn arg1
 
-/// ## (/@)
+#!markdown
+
+## (/@)
+
+#!spiral
+
 inl (/@) a b =
     b |> append a
 
-/// ## target_runtime
+#!markdown
+
+## target_runtime
+
+#!spiral
+
 union target_runtime =
     | Native
     | Wasm
     | Contract
 
-/// ## target
+#!markdown
+
+## target
+
+#!spiral
+
 union target =
     | Rust : target_runtime
     | Fsharp : target_runtime
     | TypeScript : target_runtime
     | Python : target_runtime
 
-/// ## defaultof
+#!markdown
+
+## defaultof
+
+#!spiral
+
 inl defaultof forall t. () : t =
     $'Unchecked.defaultof<`t>'
 
-/// ## emit
+#!markdown
+
+## emit
+
+#!spiral
+
 inl emit forall t. (x : t) : t =
     $'!x '
 
-/// ## unbox
+#!markdown
+
+## unbox
+
+#!spiral
+
 inl unbox forall t u. (x : t) : u =
     $"!x |> unbox<`u>"
 
-/// ## run_target
+#!markdown
+
+## run_target
+
+#!spiral
+
 inl run_target forall t. (fn : target -> (() -> t)) : t =
     inl close x =
         $'!x\n#endif'
@@ -91,16 +188,50 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
     $"|> fun x -> _!result <- Some x"
     $'_!result.Value'
 
-/// ## exn
+#!spiral
+
+//// test
+
+run_target function
+    | Fsharp (Native) => fun () => $"1uy"
+    | _ => fun () => $"2uy"
+|> _assert_eq 1u8
+
+#!spiral
+
+//// test
+///! rust
+
+run_target function
+    | Rust (Native) => fun () => $"1uy"
+    | _ => fun () => $"2uy"
+|> _assert_eq 1u8
+
+#!markdown
+
+## exn
+
+#!spiral
+
 nominal exn = $"exn"
 
-/// ## try
+#!markdown
+
+## try
+
+#!spiral
+
 inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
     inl none = None : option t
     inl some (s : t) = Some s
     $'try !fn () |> !some with ex -> !ex_fn ex '
 
-/// ## try_unit
+#!markdown
+
+## try_unit
+
+#!spiral
+
 inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
     $"try"
     fn ()
@@ -111,7 +242,12 @@ inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
     $'(*'
     $'*)'
 
-/// ## try_finally
+#!markdown
+
+## try_finally
+
+#!spiral
+
 inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
     $"try"
     fn ()
@@ -122,7 +258,12 @@ inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
     $'(*'
     $'*)'
 
-/// ## fix_condition
+#!markdown
+
+## fix_condition
+
+#!spiral
+
 inl fix_condition x a b =
     if x ()
     then a () |> fun x => $'(*' : ()
@@ -131,46 +272,96 @@ inl fix_condition x a b =
         b () |> fun x => $'(*' : ()
     |> fun x => $'*)' : ()
 
-/// ## any
+#!markdown
+
+## any
+
+#!spiral
+
 nominal any = $"obj"
 
-/// ## i32
+#!markdown
+
+## i32
+
+#!spiral
+
 inl i32 forall t. (x : t) : i32 =
     $"int32 !x"
 
-/// ## i64
+#!markdown
+
+## i64
+
+#!spiral
+
 inl i64 forall t. (x : t) : i64 =
     $"int64 !x"
 
-/// ## f32
+#!markdown
+
+## f32
+
+#!spiral
+
 inl f32 forall t. (x : t) : f32 =
     $"float32 !x"
 
-/// ## f64
+#!markdown
+
+## f64
+
+#!spiral
+
 inl f64 forall t. (x : t) : f64 =
     $"float !x"
 
-/// ## unativeint
+#!markdown
+
+## unativeint
+
+#!spiral
+
 nominal unativeint = $"unativeint"
 
 inl unativeint forall t {int}. (n : t) : unativeint =
     $"unativeint !n"
 
-/// ## convert_i32
+#!markdown
+
+## convert_i32
+
+#!spiral
+
 inl convert_i32 forall t. (x : t) : i32 =
     x |> $'System.Convert.ToInt32'
 
-/// ## pair
+#!markdown
+
+## pair
+
+#!spiral
+
 type pair a b = $"(`a * `b)"
 
 inl pair x y =
     x, y
 
-/// ## null
+#!markdown
+
+## null
+
+#!spiral
+
 inl null forall t. () : t =
     $"null |> unbox<`t>"
 
-/// ## get_entry_assembly_name
+#!markdown
+
+## get_entry_assembly_name
+
+#!spiral
+
 inl get_entry_assembly_name () : string =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -180,12 +371,22 @@ inl get_entry_assembly_name () : string =
             !\($'"env\!(\\"CARGO_PKG_NAME\\").into()"')
         | target => fun () => null ()
 
-/// ## use
+#!markdown
+
+## use
+
+#!spiral
+
 inl use forall t. (x : t) : t =
     $"use !x = !x " : ()
     $'!x '
 
-/// ## get_union_fields
+#!markdown
+
+## get_union_fields
+
+#!spiral
+
 inl get_union_fields forall union_type. () : list union_type =
     real
         real_core.union_to_record
@@ -199,7 +400,24 @@ inl get_union_fields forall union_type. () : list union_type =
                     (Nil `union_type)
                     `union_record_type
 
-/// ## get_union_fields_untag
+#!spiral
+
+//// test
+
+inl fields : list target_runtime = get_union_fields ()
+fields
+|> listm'.box
+|> listm'.to_array'
+|> am'.sort
+|> fun x => x : a i32 _
+|> _assert_eq (a ;[ Native; Wasm; Contract ])
+
+#!markdown
+
+## get_union_fields_untag
+
+#!spiral
+
 inl get_union_fields_untag forall union_type. () : list union_type =
     real
         real_core.union_to_record
@@ -218,3 +436,14 @@ inl get_union_fields_untag forall union_type. () : list union_type =
                         (Nil `union_type, 0i32)
                 inl result = fst `(list union_type) `i32 result
                 listm.rev `union_type result
+
+#!spiral
+
+//// test
+
+inl fields : list target_runtime = get_union_fields_untag ()
+fields
+|> listm'.box
+|> listm'.to_array'
+|> fun x => x : a i32 _
+|> _assert_eq (a ;[ Native; Wasm; Contract ])

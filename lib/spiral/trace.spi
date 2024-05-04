@@ -26,6 +26,7 @@ instance of_string trace_level = function
     | "Info" => Info
     | "Warning" => Warning
     | "Critical" => Critical
+    | x => failwith $'$"of_string trace_level / x: {!x}"'
 
 /// ## repl_start
 inl repl_start () : optionm'.option' i64 =

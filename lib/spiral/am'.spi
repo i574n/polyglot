@@ -100,6 +100,10 @@ inl parallel_map forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' 
 inl sort_by forall dim el. (fn : el -> _) (a : a dim el) : a dim el =
     a |> $'Array.sortBy' fn
 
+/// ## sort
+inl sort forall dim el. (a : a dim el) : a dim el =
+    a |> $'Array.sort'
+
 /// ## sort_descending
 inl sort_descending forall dim el. (a : a dim el) : a dim el =
     a |> $'Array.sortDescending'
@@ -249,7 +253,8 @@ inl range start end s =
 /// ## slice'
 nominal slice' t u = $"Slice'<`t, `u>"
 
-inl slice' forall dim el. (x : option el) : slice' el dim =
+/// ## slice_singleton
+inl slice_singleton forall dim el. (x : option el) : slice' el dim =
     match x with
     | Some x => !\($'"[!x]"')
     | None =>
@@ -257,18 +262,22 @@ inl slice' forall dim el. (x : option el) : slice' el dim =
             // emit_expr `(()) `(slice' el dim) () ($'"[@dim]"' : string) : slice' el 10
             // !\( : string) : slice' el i32 // !\($'"[]"')
 
+/// ## slice_length
+inl slice_length forall t dim. (x : slice' t dim) : dim =
+    !\($'"!x.len()"')
+
 /// ## slice_range
 inl slice_range forall t dim. start end (s : slice' t dim) : slice' t dim =
+    inl len = s |> slice_length
     inl start, end =
-        inl length (x : slice' t dim) : dim =
-            !\($'"!x.len()"')
         match start, end with
         | Start start, End fn =>
-            start, s |> length |> fn
+            start, len |> fn
         | End start_fn, End end_fn =>
-            inl len = s |> length
             start_fn len, end_fn len
-    !\($'"!s[!start..!end]"')
+    match start, end with
+    | start, end when end = len => !\($'"!s[!start..]"')
+    | start, end => !\($'"!s[!start..!end]"')
 
 /// ## new_slice
 inl new_slice forall dim el. ((n : el), (dim : dim)) : slice' el dim =

@@ -207,6 +207,18 @@ type clap_Command = class end
 #endif
 type clap_ArgMatches = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("clap::builder::ValueRange")>]
+#endif
+type clap_builder_ValueRange = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("clap::builder::ValueParser")>]
+#endif
+type clap_builder_ValueParser = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("clap::builder::PossibleValue")>]
+#endif
+type clap_builder_PossibleValue = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::process::Child")>]
 #endif
 type std_process_Child = class end

@@ -10,13 +10,14 @@ inl types () =
     file_system.types ()
     runtime.types ()
 
-/// ## get_args
-inl get_args () =
+/// ## get_command_args
+inl get_command_args () =
     {
         file = "file"
         out_dir = "out-dir"
         hash = "hash"
         args = "args"
+        trace_level = "trace-level"
     }
 
 /// ## get_command
@@ -24,36 +25,66 @@ let get_command () =
     ##"command"
     |> runtime.new_command
     |> runtime.command_arg (
-        runtime.new_arg ##(get_args () .file)
+        runtime.new_arg ##(get_command_args () .file)
         |> runtime.arg_short 'f'
-        |> runtime.arg_long ##(get_args () .file)
+        |> runtime.arg_long ##(get_command_args () .file)
         |> runtime.arg_required true
     )
     |> runtime.command_arg (
-        runtime.new_arg ##(get_args () .out_dir)
+        runtime.new_arg ##(get_command_args () .out_dir)
         |> runtime.arg_short 'o'
-        |> runtime.arg_long ##(get_args () .out_dir)
+        |> runtime.arg_long ##(get_command_args () .out_dir)
         |> runtime.arg_required true
     )
     |> runtime.command_arg (
-        runtime.new_arg ##(get_args () .hash)
+        runtime.new_arg ##(get_command_args () .hash)
         |> runtime.arg_short 'h'
-        |> runtime.arg_long ##(get_args () .hash)
+        |> runtime.arg_long ##(get_command_args () .hash)
         |> runtime.arg_required true
     )
     |> runtime.command_arg (
-        runtime.new_arg ##(get_args () .args)
+        runtime.new_arg ##(get_command_args () .args)
         |> runtime.arg_short 'a'
-        |> runtime.arg_long ##(get_args () .args)
+        |> runtime.arg_long ##(get_command_args () .args)
+    )
+    |> runtime.command_arg (
+        runtime.new_arg ##(get_command_args () .trace_level)
+        |> runtime.arg_short 't'
+        |> runtime.arg_long ##(get_command_args () .trace_level)
+        |> runtime.arg_value_parser (
+            real get_union_fields_untag `trace_level ()
+            |> fun x => x : list trace_level
+            |> listm.map to_string
+            |> listm'.box
+            |> listm'.to_array'
+            |> fun (a x : _ i32 _) => x
+            |> runtime.value_parser_possible_values
+        )
     )
 
-let get_args_command () =
+/// ## get_subcommands_args
+inl get_subcommands_args () =
+    {
+        rust = "rust", {
+            deps = "deps"
+        }
+    }
+
+/// ## get_subcommands
+let get_subcommands () =
     ##"command"
     |> runtime.new_command
     |> runtime.command_subcommand_required true
     |> runtime.command_subcommand (
-        ##"rust"
+        ##(get_subcommands_args () .rust |> fst)
         |> runtime.new_command
+        |> runtime.command_arg (
+            runtime.new_arg ##((get_subcommands_args () .rust |> snd).deps)
+            |> runtime.arg_short 'd'
+            |> runtime.arg_long ##((get_subcommands_args () .rust |> snd).deps)
+            |> runtime.arg_value_names ;[ ##"NAME"; ##"VERSION" ]
+            |> runtime.arg_num_args_range (runtime.new_value_range (am'.Start 1i32) (am'.End id))
+        )
     )
 
 inl get_cargo_toml_content hash : string =
@@ -71,12 +102,26 @@ let run { file out_dir hash args }
         fun () => $'$"file: {!file} / out_dir: {!out_dir} / hash: {!hash} / args: {!args} / {!_locals ()}"'
 
     fun () =>
-        inl arg_matches =
-            get_args_command ()
+        inl subcommands =
+            get_subcommands ()
             |> runtime.command_get_matches_from ($'$"spiral_builder {!args}"' |> runtime.split_args)
 
         inl result =
-            match arg_matches |> runtime.matches_subcommand |> optionm'.unbox with
+            match subcommands |> runtime.matches_subcommand |> optionm'.unbox with
+            | Some (subcommand, arg_matches)
+                when sm'.from_std_string subcommand = (get_subcommands_args () .rust |> fst)
+                =>
+                inl deps : optionm'.option' (am'.vec sm'.std_string) =
+                    arg_matches
+                    |> runtime.matches_get_many ((get_subcommands_args () .rust |> snd).deps)
+
+                trace Debug
+                    fun () => $'"spiral_builder.run"'
+                    fun () => $'$"deps: %A{!deps} / {!_locals ()}"'
+
+                inl cargo_toml_content = hash |> get_cargo_toml_content
+                cargo_toml_content
+
             | Some (subcommand, arg_matches) =>
                 trace Debug
                     fun () => $'"spiral_builder.run"'
@@ -105,8 +150,8 @@ inl tests () =
 
 inl main (args : array_base string) =
     inl trace_state = get_trace_state ()
-    inl trace_level = trace_state.level
-    trace_level <- Info
+    inl trace_state_level = trace_state.level
+    trace_state_level <- Info
 
     trace Debug
         fun () => $'$"spiral_builder.main"'
@@ -117,38 +162,48 @@ inl main (args : array_base string) =
 
     inl file =
         arg_matches
-        |> runtime.matches_get_one (get_args () .file)
+        |> runtime.matches_get_one (get_command_args () .file)
         |> optionm'.unbox
         |> optionm.value
         |> sm'.from_std_string
 
     inl out_dir =
         arg_matches
-        |> runtime.matches_get_one (get_args () .out_dir)
+        |> runtime.matches_get_one (get_command_args () .out_dir)
         |> optionm'.unbox
         |> optionm.value
         |> sm'.from_std_string
 
     inl hash =
         arg_matches
-        |> runtime.matches_get_one (get_args () .hash)
+        |> runtime.matches_get_one (get_command_args () .hash)
         |> optionm'.unbox
         |> optionm.value
         |> sm'.from_std_string
 
     inl args =
         arg_matches
-        |> runtime.matches_get_one (get_args () .args)
+        |> runtime.matches_get_one (get_command_args () .args)
         |> optionm'.unbox
         |> optionm.map sm'.from_std_string
         |> optionm'.default_value ""
+
+    inl trace_level =
+        arg_matches
+        |> runtime.matches_get_one (get_command_args () .trace_level)
+        |> optionm'.unbox
+        |> optionm.map sm'.from_std_string
+    
+    match trace_level with
+    | Some trace_level => trace_state_level <- trace_level |> of_string
+    | None => ()
 
     inl result =
         run { file out_dir hash args }
         |> async.block_on
         |> resultm.unwrap'
 
-    if *trace_level = Info
+    if *trace_state_level = Info
     then result |> console.write_line
 
     0i32

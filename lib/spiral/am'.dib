@@ -274,6 +274,15 @@ inl sort_by forall dim el. (fn : el -> _) (a : a dim el) : a dim el =
 
 #!markdown
 
+## sort
+
+#!spiral
+
+inl sort forall dim el. (a : a dim el) : a dim el =
+    a |> $'Array.sort'
+
+#!markdown
+
 ## sort_descending
 
 #!spiral
@@ -561,7 +570,13 @@ inl range start end s =
 
 nominal slice' t u = $"Slice'<`t, `u>"
 
-inl slice' forall dim el. (x : option el) : slice' el dim =
+#!markdown
+
+## slice_singleton
+
+#!spiral
+
+inl slice_singleton forall dim el. (x : option el) : slice' el dim =
     match x with
     | Some x => !\($'"[!x]"')
     | None =>
@@ -571,21 +586,30 @@ inl slice' forall dim el. (x : option el) : slice' el dim =
 
 #!markdown
 
+## slice_length
+
+#!spiral
+
+inl slice_length forall t dim. (x : slice' t dim) : dim =
+    !\($'"!x.len()"')
+
+#!markdown
+
 ## slice_range
 
 #!spiral
 
 inl slice_range forall t dim. start end (s : slice' t dim) : slice' t dim =
+    inl len = s |> slice_length
     inl start, end =
-        inl length (x : slice' t dim) : dim =
-            !\($'"!x.len()"')
         match start, end with
         | Start start, End fn =>
-            start, s |> length |> fn
+            start, len |> fn
         | End start_fn, End end_fn =>
-            inl len = s |> length
             start_fn len, end_fn len
-    !\($'"!s[!start..!end]"')
+    match start, end with
+    | start, end when end = len => !\($'"!s[!start..]"')
+    | start, end => !\($'"!s[!start..!end]"')
 
 #!markdown
 

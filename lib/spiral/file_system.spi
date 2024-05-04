@@ -760,10 +760,14 @@ inl get_repository_root () =
     |> find_parent ("polyglot" </> ".paket") false
     |> fun root => root </> "polyglot"
 
+/// ## standardize_path
+let standardize_path path =
+    path |> get_full_path |> normalize_path
+
 /// ## absolute_path
 let absolute_path path =
     inl current_dir = get_current_directory ()
-    current_dir </> path |> get_full_path |> normalize_path
+    current_dir </> path |> standardize_path
 
 /// ## new_file_uri
 inl new_file_uri (path : string) : string =
