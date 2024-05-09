@@ -270,15 +270,7 @@ export function closure0(unitVar: void, unitVar_1: void): [Mut0, Mut1, Mut2, Opt
     return [v1_1, v0_1, v3, value(_v6), v5] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
 }
 
-export function closure6(unitVar: void, v0_1: int64): US2_$union {
-    return US2_US2_0(v0_1);
-}
-
-export function method3(): ((arg0: int64) => US2_$union) {
-    return (v: int64): US2_$union => closure6(undefined, v);
-}
-
-export function method4(): string {
+export function method3(): string {
     return "";
 }
 
@@ -288,18 +280,18 @@ export function closure5(v0_1: US0_$union, v1_1: (() => string), v2: (() => stri
     }
     const patternInput: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value(State_trace_state());
     let _v9: Option<string> = undefined;
-    const x: string = method4();
+    const x: string = method3();
     _v9 = x;
-    const v61: string = value(_v9);
-    const v62: int64 = patternInput[0].l0;
-    const v72: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v75: Option<string> = undefined;
-    const x_1: string = padLeft(v72.toLocaleLowerCase(), 7, " ");
-    _v75 = x_1;
-    return trimEnd(trimStart(`${v61} ${value(_v75)} #${v62} ${v1_1()} / ${v2()}`), " ", "/");
+    const v66: string = value(_v9);
+    const v67: int64 = patternInput[0].l0;
+    const v77: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
+    let _v80: Option<string> = undefined;
+    const x_1: string = padLeft(v77.toLocaleLowerCase(), 7, " ");
+    _v80 = x_1;
+    return trimEnd(trimStart(`${v66} ${value(_v80)} #${v67} ${v1_1()} / ${v2()}`), " ", "/");
 }
 
-export function method5(v0_1: US0_$union, v1_1: (() => string)): void {
+export function method4(v0_1: US0_$union, v1_1: (() => string)): void {
     const v2 = (): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(undefined, undefined);
     if (State_trace_state() == null) {
         State_trace_state(v2());
@@ -328,7 +320,7 @@ export function method5(v0_1: US0_$union, v1_1: (() => string)): void {
 }
 
 export function method2(v0_1: US0_$union, v1_1: (() => string), v2: (() => string)): void {
-    method5(v0_1, (): string => closure5(v0_1, v1_1, v2, undefined));
+    method4(v0_1, (): string => closure5(v0_1, v1_1, v2, undefined));
 }
 
 export function closure4(v0_1: US0_$union, v1_1: (() => string), v2: (() => string)): void {

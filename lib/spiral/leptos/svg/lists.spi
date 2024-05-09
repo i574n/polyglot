@@ -11,7 +11,7 @@ inl render (class : () -> string) props : _ svg =
         $'"stroke-width=\\\"1.5\\\""'
         $'"stroke=\\\"currentColor\\\""'
         $'"class=move || \\\"text-gray-700 \\\".to_owned() + &!class(())"'
-        ] /@ props) fun () =>
+        ] ++ props) fun () =>
         :>(;[
             path [
                 $'"stroke-linecap=\\\"round\\\""'

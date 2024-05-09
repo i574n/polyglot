@@ -168,3 +168,18 @@ module Async =
     let inline withCancellationToken (ct : System.Threading.CancellationToken) fn =
         Async.StartImmediateAsTask (fn, ct)
         |> Async.AwaitTask
+
+    /// ## retryAsync
+    let inline retryAsync retries fn =
+        let rec loop retry lastError = async {
+            try
+                return!
+                    if retry <= retries
+                    then fn |> map Ok
+                    else lastError |> Error |> init
+            with ex ->
+                trace Debug (fun () -> $"Async.retryAsync / retry: {retry}/{retries} / ex: {ex |> SpiralSm.format_exception}") _locals
+                do! Async.Sleep 1
+                return! loop (retry + 1) (ex |> SpiralSm.format_exception)
+        }
+        loop 1 "Async.retryAsync / invalid retries / retries: {retries}"

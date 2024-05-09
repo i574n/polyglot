@@ -35,12 +35,12 @@ cargo fmt --
 
 #!pwsh
 
-cargo build --release
+cargo +nightly build --release
 
 #!pwsh
 
 $env:RUST_LOG="info"
-{ cargo test --release } | Invoke-Block
+{ cargo +nightly test --release } | Invoke-Block
 
 #!pwsh
 

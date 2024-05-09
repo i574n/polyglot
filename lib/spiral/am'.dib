@@ -12,17 +12,19 @@
 
 open testing
 
-prototype append t : t -> t -> t
-
 #!spiral
 
 open rust_operators
+
+#!markdown
+
+## types ()
 
 #!spiral
 
 inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>]\n#endif\ntype Slice<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0; $1]\")>]\n#endif\ntype Slice'<'T, 'U> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype Slice'<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>]\n#endif\ntype Vec<'T> = class end"
 
 #!markdown
@@ -52,20 +54,11 @@ inl index forall dim {int} el. (i : dim) (a : a dim el) : el =
 instance append a dim {int; number} t =
     am.append
 
-#!markdown
-
-## /@
-
-#!spiral
-
-inl (/@) a b =
-    b |> append a
-
 #!spiral
 
 //// test
 
-a ;[ "a"; "b" ] /@ a ;[ "c"; "d" ]
+a ;[ "a"; "b" ] ++ a ;[ "c"; "d" ]
 |> _assert_eq (a ;[ "a"; "b"; "c"; "d" ] : _ i32 _)
 
 #!markdown
@@ -77,7 +70,7 @@ a ;[ "a"; "b" ] /@ a ;[ "c"; "d" ]
 inl collect forall t r. (fn : t -> a i32 r) (items : a i32 t) : a i32 r =
     items
     |> am.map fn
-    |> am.fold (/@) (a ;[])
+    |> am.fold (++) (a ;[])
 
 #!markdown
 
@@ -196,7 +189,7 @@ am.init 10i32 id
 inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a dim t) : a dim' (u * t) =
     ((0, a ;[]), ar)
     ||> am.fold fun (i, acc) x =>
-        i + 1, acc /@ a ;[i, x]
+        i + 1, acc ++ a ;[i, x]
     |> snd
 
 #!spiral
@@ -262,6 +255,15 @@ inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
 
 inl parallel_map forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
     a |> $'Array.Parallel.map' fn
+
+#!markdown
+
+## map'
+
+#!spiral
+
+inl map' forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
+    $'!a |> Array.map !fn '
 
 #!markdown
 
@@ -365,9 +367,9 @@ inl to_vec forall t. (ab : array_base t) : vec t =
 inl vec_push forall el. (el : el) (vec : vec el) : vec el =
     inl el = join el
     inl vec = join vec
-    !\($'"let mut !vec = !vec"')
+    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
     // inl vec = vec |> rust.to_mut
-    !\($'"!vec.push(!el)"')
+    (!\($'"true; !vec.push(!el)"') : bool) |> ignore
     !\($'"!vec"')
 
 #!markdown
@@ -378,8 +380,8 @@ inl vec_push forall el. (el : el) (vec : vec el) : vec el =
 
 inl vec_reverse forall el. (vec : vec el) : vec el =
     inl vec = join vec
-    !\($'"let mut !vec = !vec"')
-    !\($'"!vec.reverse()"')
+    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
+    (!\($'"true; !vec.reverse()"') : bool) |> ignore
     !\($'"!vec"')
 
 #!markdown
@@ -391,9 +393,9 @@ inl vec_reverse forall el. (vec : vec el) : vec el =
 inl vec_retain forall el. (fn : el -> bool) (vec : vec el) : vec el =
     inl vec = join vec
     inl fn = join fn
-    !\($'"let mut !vec = !vec"')
+    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
     // inl vec = vec |> rust.to_mut
-    !\($'"!vec.retain(|x| !fn(x.clone()))"')
+    (!\($'"true; !vec.retain(|x| !fn(x.clone()))"') : bool) |> ignore
     !\($'"!vec"')
 
 #!markdown
@@ -405,9 +407,9 @@ inl vec_retain forall el. (fn : el -> bool) (vec : vec el) : vec el =
 inl vec_sort_by_key forall el t. (fn : el -> t) (vec : vec el) : vec el =
     inl vec = join vec
     inl fn = join fn
-    !\($'"let mut !vec = !vec"')
+    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
     // inl vec = vec |> rust.to_mut
-    !\($'"!vec.sort_by_key(|x| !fn(x.clone()))"')
+    (!\($'"true; !vec.sort_by_key(|x| !fn(x.clone()))"') : bool) |> ignore
     !\($'"!vec"')
 
 #!markdown
@@ -419,9 +421,9 @@ inl vec_sort_by_key forall el t. (fn : el -> t) (vec : vec el) : vec el =
 inl vec_extend forall el. (el : vec el) (vec : vec el) : vec el =
     inl el = join el
     inl vec = join vec
-    !\($'"let mut !vec = !vec"')
+    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
     // inl vec = vec |> rust.to_mut
-    !\($'"!vec.extend(!el)"')
+    (!\($'"true; !vec.extend(!el)"') : bool) |> ignore
     !\($'"!vec"')
 
 #!markdown
@@ -482,7 +484,18 @@ inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : vec t) : vec u =
 #!spiral
 
 inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
-    !\\((ar, fn), $'"$0.iter().map(|x| $1(x.clone())).collect()"')
+    (!\($'"true; let _result = !ar.into_iter().map(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 }).collect()"') : bool) |> ignore
+    !\($'"_result"')
+
+#!markdown
+
+## vec_map'
+
+#!spiral
+
+inl vec_map' forall t u. (fn : t -> u) (ar : vec t) : vec u =
+    !\\((ar, fn), $'"$0.into_iter().map(|x| $1(x.clone())).collect()"')
 
 #!markdown
 
@@ -512,6 +525,15 @@ inl vec_filter forall t. (fn : t -> bool) (ar : vec t) : vec t =
 
 inl vec_len forall t. (vec : vec t) : unativeint =
     !\\(vec, $'"$0.len()"')
+
+#!markdown
+
+## vec_chunks
+
+#!spiral
+
+inl vec_chunks forall t. (n : i32) (vec : vec t) : vec (vec t) =
+    !\\(vec, $'"$0.chunks(!n).map(|x| x.into_iter().map(|x| x.clone()).collect()).collect()"')
 
 #!markdown
 
@@ -556,11 +578,11 @@ inl range start end s =
     inl start, end =
         match start, end with
         | Start start, End fn =>
-            start, s |> length |> fn
+            start, s |> length |> conv |> fn
         | End start_fn, End end_fn =>
-            inl len = s |> length
+            inl len = s |> length |> conv
             start_fn len, end_fn len
-    s |> slice start end
+    s |> slice (start |> unbox) (end |> unbox)
 
 #!markdown
 
@@ -568,7 +590,7 @@ inl range start end s =
 
 #!spiral
 
-nominal slice' t u = $"Slice'<`t, `u>"
+nominal slice' el dim = $"Slice'<`el>"
 
 #!markdown
 
@@ -590,7 +612,7 @@ inl slice_singleton forall dim el. (x : option el) : slice' el dim =
 
 #!spiral
 
-inl slice_length forall t dim. (x : slice' t dim) : dim =
+inl slice_length forall t dim. (x : slice' t dim) : unativeint =
     !\($'"!x.len()"')
 
 #!markdown
@@ -599,17 +621,15 @@ inl slice_length forall t dim. (x : slice' t dim) : dim =
 
 #!spiral
 
-inl slice_range forall t dim. start end (s : slice' t dim) : slice' t dim =
+inl slice_range forall t dim. (start : range t) (end : range t) (s : slice' t dim) : rust.ref' (slice' t dim) =
     inl len = s |> slice_length
     inl start, end =
         match start, end with
-        | Start start, End fn =>
-            start, len |> fn
-        | End start_fn, End end_fn =>
-            start_fn len, end_fn len
+        | Start start, End fn => start, len |> convert |> fn |> unativeint
+        | End start_fn, End end_fn => len |> convert |> start_fn, len |> convert |> end_fn |> unativeint
     match start, end with
-    | start, end when end = len => !\($'"!s[!start..]"')
-    | start, end => !\($'"!s[!start..!end]"')
+    | start, end when unbox end =. len => !\($'"&!s[!start..]"')
+    | start, end => !\\((start, end), $'"&!s[$0..$1]"')
 
 #!markdown
 
@@ -617,8 +637,8 @@ inl slice_range forall t dim. start end (s : slice' t dim) : slice' t dim =
 
 #!spiral
 
-inl new_slice forall dim el. ((n : el), (dim : dim)) : slice' el dim =
-    !\($'"[!n; !dim]"')
+inl new_slice forall el dim. (el : el) : slice' el dim =
+    !\\(el, $'"[$0; @dim]"')
 
 #!markdown
 
@@ -632,9 +652,56 @@ inl as_slice forall t. (x : array_base t) : rust.ref' (slice t) =
 
 #!markdown
 
+## slice_to_vec
+
+#!spiral
+
+inl slice_to_vec forall t. (slice : rust.ref' (slice t)) : vec t =
+    !\\(slice, $'"$0.iter().map(|x| *x).collect()"')
+
+#!markdown
+
 ## any
 
 #!spiral
 
 inl any forall t. (fn : t -> bool) (source : array_base t) : bool =
     !\($'"!source.any(|x| !fn(x))"')
+
+#!markdown
+
+## iter_collect vec
+
+#!spiral
+
+open iter_prototypes
+
+instance iter_collect vec = fun (iter : iter_prototypes.into_iterator u) =>
+    !\($'"!iter.collect()"')
+
+#!markdown
+
+## enumerate
+
+#!spiral
+
+inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
+    inl (a ar) = ar
+    ar
+    |> to_vec
+    |> iter.into_iter
+    |> iter.iter_enumerate
+    |> iter_prototypes.iter_collect
+    |> vec_map' from_pair
+    |> from_vec
+
+#!spiral
+
+//// test
+//// print_code=false
+///! rust
+
+types ()
+init_series 0i32 2 1
+|> enumerate
+|> _assert_eq' (a ;[ unativeint 0i32, 0; unativeint 1i32, 1; unativeint 2i32, 2 ])

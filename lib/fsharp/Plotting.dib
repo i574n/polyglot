@@ -36,8 +36,8 @@ open SpiralFileSystem.Operators
 
 #!fsharp
 
-let repositoryRoot = SpiralFileSystem.get_repository_root ()
-let tmpSpiralPath = repositoryRoot </> "target/polyglot/plotting"
+let workspaceRoot = SpiralFileSystem.get_workspace_root ()
+let tmpSpiralPath = workspaceRoot </> "target/polyglot/plotting"
 let linePlotsDataPath = tmpSpiralPath </> "line_data"
 let linePlotsSvgPath = tmpSpiralPath </> "line_svg"
 
@@ -63,13 +63,13 @@ Formatter.Register<struct (string * string * string * struct (string * float arr
                     oldLevel |> set_trace_level
                 ))
 
-                let plotExePath = repositoryRoot </> $"target/release/plot{SpiralRuntime.get_executable_suffix ()}"
+                let plotExePath = workspaceRoot </> $"target/release/plot{SpiralRuntime.get_executable_suffix ()}"
                 let! exitCode, result =
                     SpiralRuntime.execution_options (fun x ->
                         { x with
                             l0 = Some ct
                             l1 = plotExePath
-                            l5 = Some repositoryRoot
+                            l5 = Some workspaceRoot
                         }
                     )
                     |> SpiralRuntime.execute_with_options_async

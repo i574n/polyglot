@@ -47,7 +47,7 @@ inl complex forall t. ((re : t), (im : t)) : complex t =
 #!spiral
 
 //// test
-///! rust
+///! rust -d num-complex
 
 types ()
 
@@ -325,7 +325,7 @@ inl test_zeta_at_known_values_ log = run_test log (3u8, 2u8) fun zeta, gamma =>
 
 //// test
 //// print_code=false
-///! rust
+///! rust -d num-complex pyo3
 
 types ()
 test_zeta_at_known_values_ true
@@ -347,7 +347,7 @@ inl test_zeta_at_2_minus2 log = run_test log (6u8, 5u8) fun zeta, gamma =>
 
 //// test
 //// print_code=false
-///! rust
+///! rust -d num-complex pyo3
 
 types ()
 test_zeta_at_2_minus2 true
@@ -371,7 +371,7 @@ inl test_trivial_zero_at_negative_even___ log = run_test log (2u8, 1u8) fun zeta
 
 //// test
 //// print_code=false
-///! rust
+///! rust -d num-complex pyo3
 
 types ()
 test_trivial_zero_at_negative_even___ true
@@ -401,7 +401,7 @@ inl test_non_trivial_zero___ log = run_test log (3u8, 2u8) fun zeta, gamma =>
 
 //// test
 //// print_code=false
-///! rust
+///! rust -d num-complex pyo3
 
 types ()
 test_non_trivial_zero___ true
@@ -425,7 +425,7 @@ inl test_real_part_greater_than_one___ log = run_test log (3u8, 2u8) fun zeta, g
 
 //// test
 //// print_code=false
-///! rust
+///! rust -d num-complex pyo3
 
 types ()
 test_real_part_greater_than_one___ true
@@ -446,7 +446,7 @@ inl test_zeta_at_1___ log = run_test log (6u8, 5u8) fun zeta, gamma =>
 
 //// test
 //// print_code=false
-///! rust
+///! rust -d num-complex pyo3
 
 types ()
 test_zeta_at_1___ true
@@ -469,7 +469,7 @@ inl test_symmetry_across_real_axis___ log = run_test log (8u8, 7u8) fun zeta, ga
 
 //// test
 //// print_code=false
-///! rust
+///! rust -d num-complex pyo3
 
 types ()
 test_symmetry_across_real_axis___ true
@@ -490,7 +490,7 @@ inl test_behavior_near_origin___ log = run_test log (6u8, 5u8) fun zeta, gamma =
 
 //// test
 //// print_code=false
-///! rust
+///! rust -d num-complex pyo3
 
 types ()
 test_behavior_near_origin___ true
@@ -513,7 +513,7 @@ inl test_imaginary_axis log = run_test log (3u8, 2u8) fun zeta, gamma =>
 
 //// test
 //// print_code=false
-///! rust
+///! rust -d num-complex pyo3
 
 types ()
 test_imaginary_axis true
@@ -542,7 +542,7 @@ inl test_critical_strip log = run_test log (3u8, 2u8) fun zeta, gamma =>
 
 //// test
 //// print_code=false
-///! rust
+///! rust -d num-complex pyo3
 
 types ()
 test_critical_strip true
@@ -579,7 +579,7 @@ inl test_reflection_formula_for_specific_value log = run_test log (3u8, 2u8) fun
 
 //// test
 //// print_code=false
-///! rust
+///! rust -d num-complex pyo3
 
 types ()
 test_reflection_formula_for_specific_value true
@@ -609,7 +609,7 @@ inl test_euler_product_formula log = run_test log (3u8, 2u8) fun zeta, gamma =>
 
 //// test
 //// print_code=false
-///! rust
+///! rust -d num-complex pyo3
 
 types ()
 test_euler_product_formula true

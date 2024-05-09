@@ -11,6 +11,7 @@ $ErrorActionPreference = "Stop"
 if (!$fast) {
     {
         . ../../apps/spiral/dist/Supervisor$(_exe) `
+            --exit-on-error `
             $(!$sequential ? @("--parallel") : @()) `
             --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"sm'.dib\`" -Retries 3`"" `
             --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 rust.dib`" -Retries 3" `

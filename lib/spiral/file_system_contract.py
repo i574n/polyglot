@@ -293,7 +293,7 @@ def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -302,7 +302,7 @@ def US0__get_IsUS0_1(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 1:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -311,7 +311,7 @@ def US0__get_IsUS0_2(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 2:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -320,7 +320,7 @@ def US0__get_IsUS0_3(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 3:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -329,7 +329,7 @@ def US0__get_IsUS0_4(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 4:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -338,7 +338,7 @@ def US1__get_IsUS1_0(this: FSharpRef[US1], unit_arg: None) -> bool:
     if this.tag == 0:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -347,7 +347,7 @@ def US1__get_IsUS1_1(this: FSharpRef[US1], unit_arg: None) -> bool:
     if this.tag == 1:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -356,7 +356,7 @@ def US2__get_IsUS2_0(this: FSharpRef[US2], unit_arg: None) -> bool:
     if this.tag == 0:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -365,7 +365,7 @@ def US2__get_IsUS2_1(this: FSharpRef[US2], unit_arg: None) -> bool:
     if this.tag == 1:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -374,7 +374,7 @@ def US4__get_IsUS4_0(this: FSharpRef[US4], unit_arg: None) -> bool:
     if this.tag == 0:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -383,7 +383,7 @@ def US4__get_IsUS4_1(this: FSharpRef[US4], unit_arg: None) -> bool:
     if this.tag == 1:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -392,7 +392,7 @@ def US4__get_IsUS4_2(this: FSharpRef[US4], unit_arg: None) -> bool:
     if this.tag == 2:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -401,7 +401,7 @@ def US5__get_IsUS5_0(this: FSharpRef[US5], unit_arg: None) -> bool:
     if this.tag == 0:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -410,7 +410,7 @@ def US5__get_IsUS5_1(this: FSharpRef[US5], unit_arg: None) -> bool:
     if this.tag == 1:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -419,7 +419,7 @@ def US5__get_IsUS5_2(this: FSharpRef[US5], unit_arg: None) -> bool:
     if this.tag == 2:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -428,7 +428,7 @@ def US5__get_IsUS5_3(this: FSharpRef[US5], unit_arg: None) -> bool:
     if this.tag == 3:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -437,7 +437,7 @@ def US5__get_IsUS5_4(this: FSharpRef[US5], unit_arg: None) -> bool:
     if this.tag == 4:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -446,7 +446,7 @@ def US3__get_IsUS3_0(this: FSharpRef[US3], unit_arg: None) -> bool:
     if this.tag == 0:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -455,7 +455,7 @@ def US3__get_IsUS3_1(this: FSharpRef[US3], unit_arg: None) -> bool:
     if this.tag == 1:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -464,7 +464,7 @@ def US6__get_IsUS6_0(this: FSharpRef[US6], unit_arg: None) -> bool:
     if this.tag == 0:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -473,7 +473,7 @@ def US6__get_IsUS6_1(this: FSharpRef[US6], unit_arg: None) -> bool:
     if this.tag == 1:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -482,7 +482,7 @@ def US7__get_IsUS7_0(this: FSharpRef[US7], unit_arg: None) -> bool:
     if this.tag == 0:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -491,7 +491,7 @@ def US7__get_IsUS7_1(this: FSharpRef[US7], unit_arg: None) -> bool:
     if this.tag == 1:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -500,7 +500,7 @@ def US8__get_IsUS8_0(this: FSharpRef[US8], unit_arg: None) -> bool:
     if this.tag == 0:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -509,7 +509,7 @@ def US8__get_IsUS8_1(this: FSharpRef[US8], unit_arg: None) -> bool:
     if this.tag == 1:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -518,7 +518,7 @@ def US9__get_IsUS9_0(this: FSharpRef[US9], unit_arg: None) -> bool:
     if this.tag == 0:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -527,7 +527,7 @@ def US9__get_IsUS9_1(this: FSharpRef[US9], unit_arg: None) -> bool:
     if this.tag == 1:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -536,7 +536,7 @@ def US10__get_IsUS10_0(this: FSharpRef[US10], unit_arg: None) -> bool:
     if this.tag == 0:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -545,7 +545,7 @@ def US10__get_IsUS10_1(this: FSharpRef[US10], unit_arg: None) -> bool:
     if this.tag == 1:
         return True
 
-    else: 
+    else:
         return False
 
 
@@ -1025,7 +1025,7 @@ def closure56(unit_var: None, v0_1: str) -> str | None:
     if v55.tag == 0:
         return v55.fields[0]
 
-    else: 
+    else:
         return None
 
 
@@ -1062,7 +1062,7 @@ def method28(v0_1_mut: str, v1_1_mut: bool, v2_1_mut: str, v3_1_mut: str) -> str
         if (_arrow191 if v1_1 else _arrow192)(value_3(_v4)):
             return v3_1
 
-        else: 
+        else:
             v52: str | None = method26()(v3_1)
             v55: US9 = default_arg(map(method27(), v52), US9(1))
             if v55.tag == 0:
@@ -1072,7 +1072,7 @@ def method28(v0_1_mut: str, v1_1_mut: bool, v2_1_mut: str, v3_1_mut: str) -> str
                 v3_1_mut = v55.fields[0]
                 continue
 
-            else: 
+            else:
                 raise Exception(((((((("No parent for " + ("file" if v1_1 else "dir")) + " \'") + v0_1) + "\' at \'") + v2_1) + "\' (until \'") + v3_1) + "\')")
 
 
@@ -1091,13 +1091,13 @@ def method25(v0_1: str, v1_1: bool, v2_1: str) -> str:
     if (_arrow193 if v1_1 else _arrow194)(value_3(_v3)):
         return v2_1
 
-    else: 
+    else:
         v51: str | None = method26()(v2_1)
         v54: US9 = default_arg(map(method27(), v51), US9(1))
         if v54.tag == 0:
             return method28(v0_1, v1_1, v2_1, v54.fields[0])
 
-        else: 
+        else:
             raise Exception(((((((("No parent for " + ("file" if v1_1 else "dir")) + " \'") + v0_1) + "\' at \'") + v2_1) + "\' (until \'") + v2_1) + "\')")
 
 
@@ -1139,7 +1139,7 @@ def closure58(unit_var: None, v0_1: str) -> str:
     if value_3(_v1) == False:
         return v0_1
 
-    else: 
+    else:
         _v14: str | None = None
         _v14 = None
         v32: str = value_3(_v14)
@@ -1182,7 +1182,7 @@ def method37(v0_1_mut: str, v1_1_mut: str, v2_1_mut: str) -> str:
         if value_3(_v46):
             return v2_1
 
-        else: 
+        else:
             v71: str | None = method26()(v2_1)
             v74: US9 = default_arg(map(method27(), v71), US9(1))
             if v74.tag == 0:
@@ -1191,7 +1191,7 @@ def method37(v0_1_mut: str, v1_1_mut: str, v2_1_mut: str) -> str:
                 v2_1_mut = v74.fields[0]
                 continue
 
-            else: 
+            else:
                 raise Exception(((((((("No parent for " + "dir") + " \'") + v0_1) + "\' at \'") + v1_1) + "\' (until \'") + v2_1) + "\')")
 
 
@@ -1207,13 +1207,13 @@ def method36(v0_1: str, v1_1: str) -> str:
     if value_3(_v45):
         return v1_1
 
-    else: 
+    else:
         v70: str | None = method26()(v1_1)
         v73: US9 = default_arg(map(method27(), v70), US9(1))
         if v73.tag == 0:
             return method37(v0_1, v1_1, v73.fields[0])
 
-        else: 
+        else:
             raise Exception(((((((("No parent for " + "dir") + " \'") + v0_1) + "\' at \'") + v1_1) + "\' (until \'") + v1_1) + "\')")
 
 
@@ -1455,7 +1455,7 @@ def _arrow218(__unit: None=None) -> str:
 
 v17: Callable[[], str] = _arrow218
 
-def get_repository_root(__unit: None=None) -> str:
+def get_workspace_root(__unit: None=None) -> str:
     return v17(None)
 
 
@@ -1477,5 +1477,3 @@ v19: Callable[[str, str], str] = _arrow220
 
 def op_less_divide_greater(x: str) -> Callable[[str], str]:
     return v19(x)
-
-

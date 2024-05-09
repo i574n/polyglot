@@ -33,7 +33,7 @@ rustup +nightly update
 
 #!pwsh
 
-{ cargo +nightly install trunk --version 0.19.3 } | Invoke-Block -OnError Continue
+{ cargo +nightly install trunk --version 0.20.0 } | Invoke-Block -OnError Continue
 
 #!pwsh
 

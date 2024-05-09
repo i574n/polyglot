@@ -1,33 +1,35 @@
 cargo-features = ["profile-rustflags"]
 
-[package]
-name = "polyglot"
-version = "0.0.1"
-edition = "2021"
-
 [workspace]
+resolver = "2"
+members = [
+    "apps/chat/contract",
+    "apps/chat/contract/tests",
+    "apps/plot",
+    "apps/spiral/builder",
+    "apps/spiral/temp/extension",
+    "apps/spiral/temp/test",
+    "examples/rust/exercism",
+    "lib/math"
+]
 
 [workspace.package]
+version = "0.0.1"
+edition = "2021"
+license-file = "./LICENSE"
 repository = "https://github.com/i574n/polyglot"
-license-file = "../LICENSE"
 
-[dependencies]
-fable_library_rust = { path = "lib/rust/fable/fable_modules/fable-library-rust", default-features = false, features = ["static_do_bindings", "datetime", "guid", "threaded"] }
+[workspace.dependencies]
+fable_library_rust = { path = "./lib/rust/fable/fable_modules/fable-library-rust", default-features = false, features = ["static_do_bindings", "datetime", "guid", "threaded"] }
+inline_colorization = "~0.1"
+serde_json = { version = "~1.0", features = ["arbitrary_precision"] }
+chrono = "~0.4"
+regex = "~1.10"
+clap = "~4.5"
+futures-lite = "~2.3"
 
-[dev-dependencies]
-
-[build-dependencies]
-chat_contract = { path = "./apps/chat/contract" }
-chat_contract_tests = { path = "./apps/chat/contract/tests" }
-plot = { path = "./apps/plot" }
-spiral_builder = { path = "./apps/spiral/builder" }
-spiral_temp_extension = { path = "./apps/spiral/temp/extension" }
-spiral_temp_test = { path = "./apps/spiral/temp/test" }
-exercism = { path = "./examples/rust/exercism" }
-math = { path = "./lib/math" }
-
-[lib]
-path = "./lib/spiral/lib_spiral.rs"
+[profile.dev]
+incremental = true
 
 [profile.release]
 codegen-units = 1

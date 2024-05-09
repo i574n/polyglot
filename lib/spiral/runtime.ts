@@ -1,5 +1,5 @@
 import { uncurry2, equals, compare, defaultOf, IComparable, IEquatable, createAtom } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { map, defaultArg, value as value_2, some, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { defaultArg, value as value_2, some, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 import { op_Addition, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { FSharpRef, Union, Record } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { uint8_type, array_type, option_type, class_type, tuple_type, char_type, int32_type, lambda_type, unit_type, string_type, union_type, bool_type, record_type, int64_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
@@ -739,11 +739,11 @@ export function closure3(unitVar: void, unitVar_1: void): string {
     }
 }
 
-export function method2(): [string, string] {
+export function method3(): [string, string] {
     return ["", ""] as [string, string];
 }
 
-export function method3(v0_1: int32, v1_1: Mut4): boolean {
+export function method4(v0_1: int32, v1_1: Mut4): boolean {
     return v1_1.l0 < v0_1;
 }
 
@@ -755,12 +755,12 @@ export function closure5(unitVar: void, v0_1: string): ((arg0: UH0_$union) => UH
     return (v: UH0_$union): UH0_$union => closure6(v0_1, v);
 }
 
-export function method4(): ((arg0: string) => ((arg0: UH0_$union) => UH0_$union)) {
+export function method5(): ((arg0: string) => ((arg0: UH0_$union) => UH0_$union)) {
     return (v: string): ((arg0: UH0_$union) => UH0_$union) => closure5(undefined, v);
 }
 
-export function method5(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union, v3_1_mut: US2_$union): [string, string] {
-    method5:
+export function method6(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union, v3_1_mut: US2_$union): [string, string] {
+    method6:
     while (true) {
         const v0_1: string = v0_1_mut, v1_1: string = v1_1_mut, v2_1: UH0_$union = v2_1_mut, v3_1: US2_$union = v3_1_mut;
         if (v2_1.tag === /* UH0_1 */ 1) {
@@ -773,7 +773,7 @@ export function method5(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
                         v1_1_mut = v1_1;
                         v2_1_mut = v5_1;
                         v3_1_mut = US2_US2_1(US3_US3_0());
-                        continue method5;
+                        continue method6;
                     }
                     else {
                         switch (v3_1.tag) {
@@ -783,21 +783,21 @@ export function method5(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
                                     v1_1_mut = v1_1;
                                     v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_1(US3_US3_1());
-                                    continue method5;
+                                    continue method6;
                                 }
                                 else if (" " === v4_1) {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = v1_1;
                                     v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_2();
-                                    continue method5;
+                                    continue method6;
                                 }
                                 else {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = (`${v1_1}${v4_1}`);
                                     v2_1_mut = v5_1;
                                     v3_1_mut = v3_1;
-                                    continue method5;
+                                    continue method6;
                                 }
                             case /* US2_0 */ 0:
                                 if (" " === v4_1) {
@@ -805,21 +805,21 @@ export function method5(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
                                     v1_1_mut = v1_1;
                                     v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_2();
-                                    continue method5;
+                                    continue method6;
                                 }
                                 else {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = (`${v1_1}${v4_1}`);
                                     v2_1_mut = v5_1;
                                     v3_1_mut = v3_1;
-                                    continue method5;
+                                    continue method6;
                                 }
                             default: {
                                 v0_1_mut = (`${v0_1}${v4_1}`);
                                 v1_1_mut = v1_1;
                                 v2_1_mut = v5_1;
                                 v3_1_mut = US2_US2_2();
-                                continue method5;
+                                continue method6;
                             }
                         }
                     }
@@ -829,7 +829,7 @@ export function method5(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
                         v1_1_mut = v1_1;
                         v2_1_mut = v5_1;
                         v3_1_mut = US2_US2_1(US3_US3_0());
-                        continue method5;
+                        continue method6;
                     }
                     else {
                         switch (v3_1.tag) {
@@ -839,21 +839,21 @@ export function method5(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
                                     v1_1_mut = v1_1;
                                     v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_1(US3_US3_1());
-                                    continue method5;
+                                    continue method6;
                                 }
                                 else if (" " === v4_1) {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = v1_1;
                                     v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_2();
-                                    continue method5;
+                                    continue method6;
                                 }
                                 else {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = (`${v1_1}${v4_1}`);
                                     v2_1_mut = v5_1;
                                     v3_1_mut = v3_1;
-                                    continue method5;
+                                    continue method6;
                                 }
                             case /* US2_0 */ 0:
                                 if (" " === v4_1) {
@@ -861,21 +861,21 @@ export function method5(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
                                     v1_1_mut = v1_1;
                                     v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_2();
-                                    continue method5;
+                                    continue method6;
                                 }
                                 else {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = (`${v1_1}${v4_1}`);
                                     v2_1_mut = v5_1;
                                     v3_1_mut = v3_1;
-                                    continue method5;
+                                    continue method6;
                                 }
                             default: {
                                 v0_1_mut = (`${v0_1}${v4_1}`);
                                 v1_1_mut = v1_1;
                                 v2_1_mut = v5_1;
                                 v3_1_mut = US2_US2_2();
-                                continue method5;
+                                continue method6;
                             }
                         }
                     }
@@ -888,14 +888,14 @@ export function method5(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
                                     v1_1_mut = (`${v1_1} `);
                                     v2_1_mut = v5_1;
                                     v3_1_mut = US2_US2_1(US3_US3_0());
-                                    continue method5;
+                                    continue method6;
                                 }
                                 else {
                                     v0_1_mut = v0_1;
                                     v1_1_mut = (`${v1_1}${v4_1}`);
                                     v2_1_mut = v5_1;
                                     v3_1_mut = v3_1;
-                                    continue method5;
+                                    continue method6;
                                 }
                             }
                             else if (" " === v4_1) {
@@ -903,14 +903,14 @@ export function method5(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
                                 v1_1_mut = v1_1;
                                 v2_1_mut = v5_1;
                                 v3_1_mut = US2_US2_2();
-                                continue method5;
+                                continue method6;
                             }
                             else {
                                 v0_1_mut = v0_1;
                                 v1_1_mut = (`${v1_1}${v4_1}`);
                                 v2_1_mut = v5_1;
                                 v3_1_mut = v3_1;
-                                continue method5;
+                                continue method6;
                             }
                         case /* US2_0 */ 0:
                             if (" " === v4_1) {
@@ -918,21 +918,21 @@ export function method5(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
                                 v1_1_mut = v1_1;
                                 v2_1_mut = v5_1;
                                 v3_1_mut = US2_US2_2();
-                                continue method5;
+                                continue method6;
                             }
                             else {
                                 v0_1_mut = v0_1;
                                 v1_1_mut = (`${v1_1}${v4_1}`);
                                 v2_1_mut = v5_1;
                                 v3_1_mut = v3_1;
-                                continue method5;
+                                continue method6;
                             }
                         default: {
                             v0_1_mut = (`${v0_1}${v4_1}`);
                             v1_1_mut = v1_1;
                             v2_1_mut = v5_1;
                             v3_1_mut = US2_US2_2();
-                            continue method5;
+                            continue method6;
                         }
                     }
             }
@@ -956,56 +956,40 @@ export function method5(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
     }
 }
 
-export function closure7(unitVar: void, v0_1: string): US4_$union {
-    return US4_US4_0(v0_1);
-}
-
-export function method6(): ((arg0: string) => US4_$union) {
-    return (v: string): US4_$union => closure7(undefined, v);
-}
-
-export function closure8(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: Option<string>, unitVar: void): string {
+export function closure7(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: Option<string>, unitVar: void): string {
     return toText(interpolate("execute_with_options_async / options: %A%P()", [[v0_1, v1_1, v2_1, v3_1, v4_1, v5_1] as [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>]]));
 }
 
-export function closure9(unitVar: void, unitVar_1: void): string {
+export function closure8(unitVar: void, unitVar_1: void): string {
     return "";
 }
 
 export function method7(): (() => string) {
-    return (): string => closure9(undefined, undefined);
+    return (): string => closure8(undefined, undefined);
 }
 
-export function closure11(unitVar: void, v0_1: int64): US5_$union {
-    return US5_US5_0(v0_1);
-}
-
-export function method9(): ((arg0: int64) => US5_$union) {
-    return (v: int64): US5_$union => closure11(undefined, v);
-}
-
-export function method10(): string {
+export function method9(): string {
     return "";
 }
 
-export function closure10(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string), unitVar: void): string {
+export function closure9(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string), unitVar: void): string {
     if (State_trace_state() == null) {
         State_trace_state(closure0(undefined, undefined));
     }
     const patternInput: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value_2(State_trace_state());
     let _v9: Option<string> = undefined;
-    const x: string = method10();
+    const x: string = method9();
     _v9 = x;
-    const v61: string = value_2(_v9);
-    const v62: int64 = patternInput[0].l0;
-    const v72: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v75: Option<string> = undefined;
-    const x_1: string = padLeft(v72.toLocaleLowerCase(), 7, " ");
-    _v75 = x_1;
-    return trimEnd(trimStart(`${v61} ${value_2(_v75)} #${v62} ${v1_1()} / ${v2_1()}`), " ", "/");
+    const v66: string = value_2(_v9);
+    const v67: int64 = patternInput[0].l0;
+    const v77: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
+    let _v80: Option<string> = undefined;
+    const x_1: string = padLeft(v77.toLocaleLowerCase(), 7, " ");
+    _v80 = x_1;
+    return trimEnd(trimStart(`${v66} ${value_2(_v80)} #${v67} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
-export function method11(v0_1: US0_$union, v1_1: (() => string)): void {
+export function method10(v0_1: US0_$union, v1_1: (() => string)): void {
     const v2_1 = (): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(undefined, undefined);
     if (State_trace_state() == null) {
         State_trace_state(v2_1());
@@ -1034,105 +1018,90 @@ export function method11(v0_1: US0_$union, v1_1: (() => string)): void {
 }
 
 export function method8(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
-    method11(v0_1, (): string => closure10(v0_1, v1_1, v2_1, undefined));
+    method10(v0_1, (): string => closure9(v0_1, v1_1, v2_1, undefined));
 }
 
-export function closure13(unitVar: void, v0_1: ((arg0: [boolean, string, int32]) => any)): US6_$union {
-    return US6_US6_0(v0_1);
-}
-
-export function method12(): ((arg0: ((arg0: [boolean, string, int32]) => any)) => US6_$union) {
-    return (v: ((arg0: [boolean, string, int32]) => any)): US6_$union => closure13(undefined, v);
-}
-
-export function closure14(v0_1: string, unitVar: void): string {
+export function closure11(v0_1: string, unitVar: void): string {
     return `> ${v0_1}`;
+}
+
+export function closure10(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: Option<string>, v6_1: void, v7: any, v8: void): void {
+    let _v9: Option<any> = undefined;
+    const x: any = defaultOf();
+    _v9 = x;
+    const v36: any = value_2(_v9);
+    let _v37: Option<void> = undefined;
+    defaultOf();
+    _v37 = some(undefined);
+    value_2(_v37);
 }
 
 export function closure12(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: Option<string>, v6_1: void, v7: any, v8: void): void {
     let _v9: Option<any> = undefined;
     const x: any = defaultOf();
     _v9 = x;
-    const v34: any = value_2(_v9);
-    let _v35: Option<void> = undefined;
+    const v37: any = value_2(_v9);
+    let _v38: Option<void> = undefined;
     defaultOf();
-    _v35 = some(undefined);
-    value_2(_v35);
+    _v38 = some(undefined);
+    value_2(_v38);
 }
 
-export function closure15(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: Option<string>, v6_1: void, v7: any, v8: void): void {
-    let _v9: Option<any> = undefined;
-    const x: any = defaultOf();
-    _v9 = x;
-    const v35: any = value_2(_v9);
-    let _v36: Option<void> = undefined;
-    defaultOf();
-    _v36 = some(undefined);
-    value_2(_v36);
-}
-
-export function closure16(unitVar: void, v0_1: any): US7_$union {
-    return US7_US7_0(v0_1);
-}
-
-export function method13(): ((arg0: any) => US7_$union) {
-    return (v: any): US7_$union => closure16(undefined, v);
-}
-
-export function closure17(v0_1: void, unitVar: void): void {
+export function closure13(v0_1: void, unitVar: void): void {
     let _v1: Option<boolean> = undefined;
     const x: boolean = defaultOf();
     _v1 = x;
     if (value_2(_v1) === false) {
-        let _v11: Option<void> = undefined;
+        let _v10: Option<void> = undefined;
         defaultOf();
-        _v11 = some(undefined);
-        value_2(_v11);
+        _v10 = some(undefined);
+        value_2(_v10);
     }
 }
 
-export function closure18(v0_1: any, unitVar: void): string {
+export function closure14(v0_1: any, unitVar: void): string {
     return toText(interpolate("execute_with_options_async / WaitForExitAsync / ex: %A%P()", [v0_1]));
 }
 
-export function method14(): string {
+export function method11(): string {
     return "\n";
 }
 
-export function closure19(v0_1: int32, v1_1: string, unitVar: void): string {
+export function closure15(v0_1: int32, v1_1: string, unitVar: void): string {
     return `execute_with_options_async / exit_code: ${v0_1} / output.Length: ${v1_1.length}`;
 }
 
+export function method2(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: Option<string>): any {
+    let _v6: Option<any> = undefined;
+    const x: any = defaultOf();
+    _v6 = x;
+    return value_2(_v6);
+}
+
 export function closure4(unitVar: void, v0_1: string): any {
-    let _v6: Option<any> = undefined;
-    const x: any = defaultOf();
-    _v6 = x;
-    return value_2(_v6);
+    return method2(undefined, v0_1, [], undefined, undefined, undefined);
 }
 
-export function closure20(unitVar: void, _arg: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>]): any {
-    let _v6: Option<any> = undefined;
-    const x: any = defaultOf();
-    _v6 = x;
-    return value_2(_v6);
+export function closure16(unitVar: void, _arg: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>]): any {
+    return method2(_arg[0], _arg[1], _arg[2], _arg[3], _arg[4], _arg[5]);
 }
 
-export function closure21(unitVar: void, v0_1: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>] {
+export function closure17(unitVar: void, v0_1: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>] {
     const v8: Heap0 = v0_1(new Heap0(undefined, "", [], undefined, undefined, undefined));
     return [v8.l0, v8.l1, v8.l2, v8.l3, v8.l4, v8.l5] as [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>];
 }
 
-export function method18(v0_1: UH1_$union, v1_1: UH1_$union): UH1_$union {
+export function method15(v0_1: UH1_$union, v1_1: UH1_$union): UH1_$union {
     if (v0_1.tag === /* UH1_0 */ 0) {
         return v1_1;
     }
     else {
-        return UH1_UH1_1(v0_1.fields[0], method18(v0_1.fields[1], v1_1));
+        return UH1_UH1_1(v0_1.fields[0], method15(v0_1.fields[1], v1_1));
     }
 }
 
-export function method17(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$union, v3_1_mut: US8_$union): [UH1_$union, string] {
-    method17:
+export function method14(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$union, v3_1_mut: US8_$union): [UH1_$union, string] {
+    method14:
     while (true) {
         const v0_1: string = v0_1_mut, v1_1: UH1_$union = v1_1_mut, v2_1: UH0_$union = v2_1_mut, v3_1: US8_$union = v3_1_mut;
         switch (v3_1.tag) {
@@ -1145,75 +1114,75 @@ export function method17(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                             const v107: string = v2_1.fields[0];
                             if ("\"" === v107) {
                                 if (equals(v3_1, US8_US8_1("\\"))) {
-                                    return method16(v0_1, v1_1, v108, v3_1, US8_US8_0());
+                                    return method13(v0_1, v1_1, v108, v3_1, US8_US8_0());
                                 }
                                 else if ("\\" === v105) {
                                     if (!equals(v3_1, US8_US8_2(0))) {
-                                        return method16(`${v0_1}"`, v1_1, v108, v3_1, US8_US8_1("\""));
+                                        return method13(`${v0_1}"`, v1_1, v108, v3_1, US8_US8_1("\""));
                                     }
                                     else if (equals(v3_1, US8_US8_1("\\"))) {
-                                        return method16(`${v0_1}"`, v1_1, v108, v3_1, US8_US8_1("\""));
+                                        return method13(`${v0_1}"`, v1_1, v108, v3_1, US8_US8_1("\""));
                                     }
                                     else {
-                                        return method16(v0_1, v1_1, v108, v3_1, US8_US8_0());
+                                        return method13(v0_1, v1_1, v108, v3_1, US8_US8_0());
                                     }
                                 }
                                 else if ("\\" === v107) {
-                                    return method16(v0_1, v1_1, v108, v3_1, US8_US8_2(1));
+                                    return method13(v0_1, v1_1, v108, v3_1, US8_US8_2(1));
                                 }
                                 else if (equals(v3_1, US8_US8_2(0))) {
-                                    return method16(`${v0_1}"`, v1_1, v108, v3_1, US8_US8_1("\""));
+                                    return method13(`${v0_1}"`, v1_1, v108, v3_1, US8_US8_1("\""));
                                 }
                                 else {
-                                    return method16("", method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v108, v3_1, US8_US8_0());
+                                    return method13("", method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v108, v3_1, US8_US8_0());
                                 }
                             }
                             else if ("\\" === v105) {
                                 switch (v107) {
                                     case "\\":
-                                        return method16(v0_1, v1_1, v108, v3_1, US8_US8_2(1));
+                                        return method13(v0_1, v1_1, v108, v3_1, US8_US8_2(1));
                                     case " ": {
                                         v0_1_mut = (`${v0_1} `);
                                         v1_1_mut = v1_1;
                                         v2_1_mut = v108;
                                         v3_1_mut = v3_1;
-                                        continue method17;
+                                        continue method14;
                                     }
                                     default: {
                                         v0_1_mut = (`${v0_1}${v107}`);
                                         v1_1_mut = v1_1;
                                         v2_1_mut = v108;
                                         v3_1_mut = v3_1;
-                                        continue method17;
+                                        continue method14;
                                     }
                                 }
                             }
                             else {
                                 switch (v107) {
                                     case "\\":
-                                        return method16(v0_1, v1_1, v108, v3_1, US8_US8_2(1));
+                                        return method13(v0_1, v1_1, v108, v3_1, US8_US8_2(1));
                                     case " ": {
                                         v0_1_mut = (`${v0_1} `);
                                         v1_1_mut = v1_1;
                                         v2_1_mut = v108;
                                         v3_1_mut = v3_1;
-                                        continue method17;
+                                        continue method14;
                                     }
                                     default: {
                                         v0_1_mut = (`${v0_1}${v107}`);
                                         v1_1_mut = v1_1;
                                         v2_1_mut = v108;
                                         v3_1_mut = v3_1;
-                                        continue method17;
+                                        continue method14;
                                     }
                                 }
                             }
                         }
                         else if ("\\" === v105) {
-                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                            return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                         }
                         else {
-                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                            return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                         }
                     case "\\":
                         if (v2_1.tag === /* UH0_1 */ 1) {
@@ -1222,34 +1191,34 @@ export function method17(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                             switch (v219) {
                                 case "\"":
                                     if (!equals(v3_1, US8_US8_2(0))) {
-                                        return method16(`${v0_1}"`, v1_1, v220, v3_1, US8_US8_1("\""));
+                                        return method13(`${v0_1}"`, v1_1, v220, v3_1, US8_US8_1("\""));
                                     }
                                     else if (equals(v3_1, US8_US8_1("\\"))) {
-                                        return method16(`${v0_1}"`, v1_1, v220, v3_1, US8_US8_1("\""));
+                                        return method13(`${v0_1}"`, v1_1, v220, v3_1, US8_US8_1("\""));
                                     }
                                     else {
-                                        return method16(v0_1, v1_1, v220, v3_1, US8_US8_0());
+                                        return method13(v0_1, v1_1, v220, v3_1, US8_US8_0());
                                     }
                                 case "\\":
-                                    return method16(v0_1, v1_1, v220, v3_1, US8_US8_2(1));
+                                    return method13(v0_1, v1_1, v220, v3_1, US8_US8_2(1));
                                 case " ": {
                                     v0_1_mut = (`${v0_1} `);
                                     v1_1_mut = v1_1;
                                     v2_1_mut = v220;
                                     v3_1_mut = v3_1;
-                                    continue method17;
+                                    continue method14;
                                 }
                                 default: {
                                     v0_1_mut = (`${v0_1}${v219}`);
                                     v1_1_mut = v1_1;
                                     v2_1_mut = v220;
                                     v3_1_mut = v3_1;
-                                    continue method17;
+                                    continue method14;
                                 }
                             }
                         }
                         else {
-                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                            return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                         }
                     default:
                         if (v2_1.tag === /* UH0_1 */ 1) {
@@ -1257,32 +1226,32 @@ export function method17(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                             const v269: string = v2_1.fields[0];
                             switch (v269) {
                                 case "\\":
-                                    return method16(v0_1, v1_1, v270, v3_1, US8_US8_2(1));
+                                    return method13(v0_1, v1_1, v270, v3_1, US8_US8_2(1));
                                 case "\"":
                                     if (equals(v3_1, US8_US8_2(0))) {
-                                        return method16(`${v0_1}"`, v1_1, v270, v3_1, US8_US8_1("\""));
+                                        return method13(`${v0_1}"`, v1_1, v270, v3_1, US8_US8_1("\""));
                                     }
                                     else {
-                                        return method16("", method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v270, v3_1, US8_US8_0());
+                                        return method13("", method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v270, v3_1, US8_US8_0());
                                     }
                                 case " ": {
                                     v0_1_mut = (`${v0_1} `);
                                     v1_1_mut = v1_1;
                                     v2_1_mut = v270;
                                     v3_1_mut = v3_1;
-                                    continue method17;
+                                    continue method14;
                                 }
                                 default: {
                                     v0_1_mut = (`${v0_1}${v269}`);
                                     v1_1_mut = v1_1;
                                     v2_1_mut = v270;
                                     v3_1_mut = v3_1;
-                                    continue method17;
+                                    continue method14;
                                 }
                             }
                         }
                         else {
-                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                            return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                         }
                 }
             }
@@ -1292,27 +1261,27 @@ export function method17(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                     const v4_1: string = v2_1.fields[0];
                     switch (v4_1) {
                         case "\"":
-                            return method16("", v1_1, v5_1, v3_1, US8_US8_1("\""));
+                            return method13("", v1_1, v5_1, v3_1, US8_US8_1("\""));
                         case "\\":
-                            return method16(v0_1, v1_1, v5_1, v3_1, US8_US8_2(0));
+                            return method13(v0_1, v1_1, v5_1, v3_1, US8_US8_2(0));
                         case " ": {
                             v0_1_mut = "";
-                            v1_1_mut = ((v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())));
+                            v1_1_mut = ((v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())));
                             v2_1_mut = v5_1;
                             v3_1_mut = v3_1;
-                            continue method17;
+                            continue method14;
                         }
                         default: {
                             v0_1_mut = (`${v0_1}${v4_1}`);
                             v1_1_mut = v1_1;
                             v2_1_mut = v5_1;
                             v3_1_mut = v3_1;
-                            continue method17;
+                            continue method14;
                         }
                     }
                 }
                 else {
-                    return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                    return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                 }
             default: {
                 const v44: uint8 = v3_1.fields[0];
@@ -1321,24 +1290,24 @@ export function method17(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                     const v45: string = v2_1.fields[0];
                     switch (v45) {
                         case "\\":
-                            return method16(v0_1, v1_1, v46, v3_1, US8_US8_1("\\"));
+                            return method13(v0_1, v1_1, v46, v3_1, US8_US8_1("\\"));
                         case "\"":
                             if (v3_1.tag === /* US8_0 */ 0) {
                                 v0_1_mut = v0_1;
                                 v1_1_mut = v1_1;
                                 v2_1_mut = v46;
                                 v3_1_mut = v3_1;
-                                continue method17;
+                                continue method14;
                             }
                             else {
-                                return method16(`${v0_1}"`, v1_1, v46, v3_1, US8_US8_2(v44));
+                                return method13(`${v0_1}"`, v1_1, v46, v3_1, US8_US8_2(v44));
                             }
                         case " ": {
                             v0_1_mut = (`${v0_1} `);
                             v1_1_mut = v1_1;
                             v2_1_mut = v46;
                             v3_1_mut = v3_1;
-                            continue method17;
+                            continue method14;
                         }
                         default:
                             if (1 === v44) {
@@ -1347,14 +1316,14 @@ export function method17(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                     v1_1_mut = v1_1;
                                     v2_1_mut = v46;
                                     v3_1_mut = v3_1;
-                                    continue method17;
+                                    continue method14;
                                 }
                                 else {
                                     v0_1_mut = (`${v0_1}${v45}`);
                                     v1_1_mut = v1_1;
                                     v2_1_mut = v46;
                                     v3_1_mut = v3_1;
-                                    continue method17;
+                                    continue method14;
                                 }
                             }
                             else {
@@ -1362,15 +1331,15 @@ export function method17(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                 v1_1_mut = v1_1;
                                 v2_1_mut = v46;
                                 v3_1_mut = v3_1;
-                                continue method17;
+                                continue method14;
                             }
                     }
                 }
                 else if (1 === v44) {
-                    return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                    return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                 }
                 else {
-                    return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                    return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                 }
             }
         }
@@ -1378,8 +1347,8 @@ export function method17(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
     }
 }
 
-export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$union, v3_1_mut: US8_$union, v4_1_mut: US8_$union): [UH1_$union, string] {
-    method16:
+export function method13(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$union, v3_1_mut: US8_$union, v4_1_mut: US8_$union): [UH1_$union, string] {
+    method13:
     while (true) {
         const v0_1: string = v0_1_mut, v1_1: UH1_$union = v1_1_mut, v2_1: UH0_$union = v2_1_mut, v3_1: US8_$union = v3_1_mut, v4_1: US8_$union = v4_1_mut;
         switch (v4_1.tag) {
@@ -1397,7 +1366,7 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                     v2_1_mut = v109;
                                     v3_1_mut = v4_1;
                                     v4_1_mut = US8_US8_0();
-                                    continue method16;
+                                    continue method13;
                                 }
                                 else if ("\\" === v106) {
                                     if (!equals(v3_1, US8_US8_2(0))) {
@@ -1406,7 +1375,7 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                         v2_1_mut = v109;
                                         v3_1_mut = v4_1;
                                         v4_1_mut = US8_US8_1("\"");
-                                        continue method16;
+                                        continue method13;
                                     }
                                     else if (equals(v3_1, US8_US8_1("\\"))) {
                                         v0_1_mut = (`${v0_1}"`);
@@ -1414,7 +1383,7 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                         v2_1_mut = v109;
                                         v3_1_mut = v4_1;
                                         v4_1_mut = US8_US8_1("\"");
-                                        continue method16;
+                                        continue method13;
                                     }
                                     else {
                                         v0_1_mut = v0_1;
@@ -1422,7 +1391,7 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                         v2_1_mut = v109;
                                         v3_1_mut = v4_1;
                                         v4_1_mut = US8_US8_0();
-                                        continue method16;
+                                        continue method13;
                                     }
                                 }
                                 else if ("\\" === v108) {
@@ -1431,7 +1400,7 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                     v2_1_mut = v109;
                                     v3_1_mut = v4_1;
                                     v4_1_mut = US8_US8_2(1);
-                                    continue method16;
+                                    continue method13;
                                 }
                                 else if (equals(v3_1, US8_US8_2(0))) {
                                     v0_1_mut = (`${v0_1}"`);
@@ -1439,15 +1408,15 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                     v2_1_mut = v109;
                                     v3_1_mut = v4_1;
                                     v4_1_mut = US8_US8_1("\"");
-                                    continue method16;
+                                    continue method13;
                                 }
                                 else {
                                     v0_1_mut = "";
-                                    v1_1_mut = method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0()));
+                                    v1_1_mut = method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0()));
                                     v2_1_mut = v109;
                                     v3_1_mut = v4_1;
                                     v4_1_mut = US8_US8_0();
-                                    continue method16;
+                                    continue method13;
                                 }
                             }
                             else if ("\\" === v106) {
@@ -1458,12 +1427,12 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                         v2_1_mut = v109;
                                         v3_1_mut = v4_1;
                                         v4_1_mut = US8_US8_2(1);
-                                        continue method16;
+                                        continue method13;
                                     }
                                     case " ":
-                                        return method17(`${v0_1} `, v1_1, v109, v4_1);
+                                        return method14(`${v0_1} `, v1_1, v109, v4_1);
                                     default:
-                                        return method17(`${v0_1}${v108}`, v1_1, v109, v4_1);
+                                        return method14(`${v0_1}${v108}`, v1_1, v109, v4_1);
                                 }
                             }
                             else {
@@ -1474,20 +1443,20 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                         v2_1_mut = v109;
                                         v3_1_mut = v4_1;
                                         v4_1_mut = US8_US8_2(1);
-                                        continue method16;
+                                        continue method13;
                                     }
                                     case " ":
-                                        return method17(`${v0_1} `, v1_1, v109, v4_1);
+                                        return method14(`${v0_1} `, v1_1, v109, v4_1);
                                     default:
-                                        return method17(`${v0_1}${v108}`, v1_1, v109, v4_1);
+                                        return method14(`${v0_1}${v108}`, v1_1, v109, v4_1);
                                 }
                             }
                         }
                         else if ("\\" === v106) {
-                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                            return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                         }
                         else {
-                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                            return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                         }
                     case "\\":
                         if (v2_1.tag === /* UH0_1 */ 1) {
@@ -1501,7 +1470,7 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                         v2_1_mut = v221;
                                         v3_1_mut = v4_1;
                                         v4_1_mut = US8_US8_1("\"");
-                                        continue method16;
+                                        continue method13;
                                     }
                                     else if (equals(v3_1, US8_US8_1("\\"))) {
                                         v0_1_mut = (`${v0_1}"`);
@@ -1509,7 +1478,7 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                         v2_1_mut = v221;
                                         v3_1_mut = v4_1;
                                         v4_1_mut = US8_US8_1("\"");
-                                        continue method16;
+                                        continue method13;
                                     }
                                     else {
                                         v0_1_mut = v0_1;
@@ -1517,7 +1486,7 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                         v2_1_mut = v221;
                                         v3_1_mut = v4_1;
                                         v4_1_mut = US8_US8_0();
-                                        continue method16;
+                                        continue method13;
                                     }
                                 case "\\": {
                                     v0_1_mut = v0_1;
@@ -1525,16 +1494,16 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                     v2_1_mut = v221;
                                     v3_1_mut = v4_1;
                                     v4_1_mut = US8_US8_2(1);
-                                    continue method16;
+                                    continue method13;
                                 }
                                 case " ":
-                                    return method17(`${v0_1} `, v1_1, v221, v4_1);
+                                    return method14(`${v0_1} `, v1_1, v221, v4_1);
                                 default:
-                                    return method17(`${v0_1}${v220}`, v1_1, v221, v4_1);
+                                    return method14(`${v0_1}${v220}`, v1_1, v221, v4_1);
                             }
                         }
                         else {
-                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                            return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                         }
                     default:
                         if (v2_1.tag === /* UH0_1 */ 1) {
@@ -1547,7 +1516,7 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                     v2_1_mut = v271;
                                     v3_1_mut = v4_1;
                                     v4_1_mut = US8_US8_2(1);
-                                    continue method16;
+                                    continue method13;
                                 }
                                 case "\"":
                                     if (equals(v3_1, US8_US8_2(0))) {
@@ -1556,24 +1525,24 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                         v2_1_mut = v271;
                                         v3_1_mut = v4_1;
                                         v4_1_mut = US8_US8_1("\"");
-                                        continue method16;
+                                        continue method13;
                                     }
                                     else {
                                         v0_1_mut = "";
-                                        v1_1_mut = method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0()));
+                                        v1_1_mut = method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0()));
                                         v2_1_mut = v271;
                                         v3_1_mut = v4_1;
                                         v4_1_mut = US8_US8_0();
-                                        continue method16;
+                                        continue method13;
                                     }
                                 case " ":
-                                    return method17(`${v0_1} `, v1_1, v271, v4_1);
+                                    return method14(`${v0_1} `, v1_1, v271, v4_1);
                                 default:
-                                    return method17(`${v0_1}${v270}`, v1_1, v271, v4_1);
+                                    return method14(`${v0_1}${v270}`, v1_1, v271, v4_1);
                             }
                         }
                         else {
-                            return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                            return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                         }
                 }
             }
@@ -1588,7 +1557,7 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                             v2_1_mut = v6_1;
                             v3_1_mut = v4_1;
                             v4_1_mut = US8_US8_1("\"");
-                            continue method16;
+                            continue method13;
                         }
                         case "\\": {
                             v0_1_mut = v0_1;
@@ -1596,16 +1565,16 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                             v2_1_mut = v6_1;
                             v3_1_mut = v4_1;
                             v4_1_mut = US8_US8_2(0);
-                            continue method16;
+                            continue method13;
                         }
                         case " ":
-                            return method17("", (v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v6_1, v4_1);
+                            return method14("", (v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v6_1, v4_1);
                         default:
-                            return method17(`${v0_1}${v5_1}`, v1_1, v6_1, v4_1);
+                            return method14(`${v0_1}${v5_1}`, v1_1, v6_1, v4_1);
                     }
                 }
                 else {
-                    return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                    return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                 }
             default: {
                 const v45: uint8 = v4_1.fields[0];
@@ -1619,11 +1588,11 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                             v2_1_mut = v47;
                             v3_1_mut = v4_1;
                             v4_1_mut = US8_US8_1("\\");
-                            continue method16;
+                            continue method13;
                         }
                         case "\"":
                             if (v3_1.tag === /* US8_0 */ 0) {
-                                return method17(v0_1, v1_1, v47, v4_1);
+                                return method14(v0_1, v1_1, v47, v4_1);
                             }
                             else {
                                 v0_1_mut = (`${v0_1}"`);
@@ -1631,10 +1600,10 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                 v2_1_mut = v47;
                                 v3_1_mut = v4_1;
                                 v4_1_mut = US8_US8_2(v45);
-                                continue method16;
+                                continue method13;
                             }
                         case " ":
-                            return method17(`${v0_1} `, v1_1, v47, v4_1);
+                            return method14(`${v0_1} `, v1_1, v47, v4_1);
                         default:
                             if (1 === v45) {
                                 if (!equals(v3_1, v4_1)) {
@@ -1643,22 +1612,22 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
                                     v2_1_mut = v47;
                                     v3_1_mut = v4_1;
                                     v4_1_mut = v3_1;
-                                    continue method16;
+                                    continue method13;
                                 }
                                 else {
-                                    return method17(`${v0_1}${v46}`, v1_1, v47, v4_1);
+                                    return method14(`${v0_1}${v46}`, v1_1, v47, v4_1);
                                 }
                             }
                             else {
-                                return method17(`${v0_1}${v46}`, v1_1, v47, v4_1);
+                                return method14(`${v0_1}${v46}`, v1_1, v47, v4_1);
                             }
                     }
                 }
                 else if (1 === v45) {
-                    return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                    return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                 }
                 else {
-                    return [(v0_1 === "") ? v1_1 : method18(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
+                    return [(v0_1 === "") ? v1_1 : method15(v1_1, UH1_UH1_1(v0_1, UH1_UH1_0())), v0_1] as [UH1_$union, string];
                 }
             }
         }
@@ -1666,37 +1635,47 @@ export function method16(v0_1_mut: string, v1_1_mut: UH1_$union, v2_1_mut: UH0_$
     }
 }
 
-export function method19(v0_1: UH1_$union, v1_1: FSharpList<string>): FSharpList<string> {
+export function method16(v0_1: UH1_$union, v1_1: FSharpList<string>): FSharpList<string> {
     if (v0_1.tag === /* UH1_0 */ 0) {
         return v1_1;
     }
     else {
-        return cons(v0_1.fields[0], method19(v0_1.fields[1], v1_1));
+        return cons(v0_1.fields[0], method16(v0_1.fields[1], v1_1));
     }
 }
 
-export function method15(v0_1: string): string[] {
+export function method12(v0_1: string): string[] {
     let _v0: Option<Option<string>> = undefined;
     _v0 = some(v0_1);
-    const v6_1: Option<string> = value_2(_v0);
-    const v9: US4_$union = defaultArg(map<string, US4_$union>(method6(), v6_1), US4_US4_1());
-    const v12: string = (v9.tag === /* US4_0 */ 0) ? v9.fields[0] : "";
-    const v13: int32 = v12.length | 0;
-    const v14: string[] = fill(new Array(v13), 0, v13, "");
-    const v15: Mut4 = new Mut4(0);
-    while (method3(v13, v15)) {
-        const v17: int32 = v15.l0 | 0;
-        const v18: string = v12[v17];
-        setItem(v14, v17, v18);
-        const v19: int32 = (v17 + 1) | 0;
-        v15.l0 = (v19 | 0);
+    const v5_1: Option<string> = value_2(_v0);
+    const _v6: FSharpRef<Option<US4_$union>> = new FSharpRef<Option<US4_$union>>(undefined);
+    let x_3: Option<US4_$union>;
+    if (v5_1 == null) {
+        x_3 = undefined;
     }
-    const v21: FSharpList<string> = ofArray<string>(v14);
-    return toArray<string>(method19(method16("", UH1_UH1_0(), foldBack<string, UH0_$union>(uncurry2(method4()), v21, UH0_UH0_0()), US8_US8_0(), US8_US8_0())[0], empty<string>()));
+    else {
+        const x_1: string = value_2(v5_1);
+        x_3 = ((): US4_$union => US4_US4_0(x_1))();
+    }
+    _v6.contents = x_3;
+    const v11: US4_$union = defaultArg(_v6.contents, US4_US4_1());
+    const v14: string = (v11.tag === /* US4_0 */ 0) ? v11.fields[0] : "";
+    const v15: int32 = v14.length | 0;
+    const v16: string[] = fill(new Array(v15), 0, v15, "");
+    const v17: Mut4 = new Mut4(0);
+    while (method4(v15, v17)) {
+        const v19: int32 = v17.l0 | 0;
+        const v20: string = v14[v19];
+        setItem(v16, v19, v20);
+        const v21: int32 = (v19 + 1) | 0;
+        v17.l0 = (v21 | 0);
+    }
+    const v23: FSharpList<string> = ofArray<string>(v16);
+    return toArray<string>(method16(method13("", UH1_UH1_0(), foldBack<string, UH0_$union>(uncurry2(method5()), v23, UH0_UH0_0()), US8_US8_0(), US8_US8_0())[0], empty<string>()));
 }
 
-export function closure22(unitVar: void, v0_1: string): string[] {
-    return method15(v0_1);
+export function closure18(unitVar: void, v0_1: string): string[] {
+    return method12(v0_1);
 }
 
 export const v0 = (): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(undefined, undefined);
@@ -1723,19 +1702,19 @@ export function execute_async(x: string): any {
     return v3(x);
 }
 
-export const v4 = (arg10$0040: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>]): any => closure20(undefined, arg10$0040);
+export const v4 = (arg10$0040: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>]): any => closure16(undefined, arg10$0040);
 
 export function execute_with_options_async(x: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>]): any {
     return v4(x);
 }
 
-export const v5 = (v: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>] => closure21(undefined, v);
+export const v5 = (v: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>] => closure17(undefined, v);
 
 export function execution_options(x: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>] {
     return v5(x);
 }
 
-export const v6 = (v: string): string[] => closure22(undefined, v);
+export const v6 = (v: string): string[] => closure18(undefined, v);
 
 export function split_args(x: string): string[] {
     return v6(x);

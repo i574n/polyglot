@@ -130,13 +130,13 @@ pub mod Lib {
         use crate::File_system::create_temp_directory as create_temp_directory_1;
         use crate::File_system::create_temp_directory_name as create_temp_directory_name_1;
         use crate::File_system::find_parent as find_parent_1;
-        use crate::File_system::get_repository_root as get_repository_root_1;
         use crate::File_system::get_source_directory as get_source_directory_1;
+        use crate::File_system::get_workspace_root as get_workspace_root_1;
         use crate::File_system::new_file_uri as new_file_uri_1;
         use crate::File_system::normalize_path as normalize_path_1;
         use fable_library_rust::Interfaces_::System::IDisposable;
-        pub fn get_repository_root() -> string {
-            get_repository_root_1()
+        pub fn get_workspace_root() -> string {
+            get_workspace_root_1()
         }
         pub fn get_source_directory() -> string {
             get_source_directory_1()

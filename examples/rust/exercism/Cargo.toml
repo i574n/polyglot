@@ -1,8 +1,9 @@
 [package]
 name = "exercism"
-version = "0.0.1"
-edition = "2021"
-workspace = "../../../"
+version.workspace = true
+edition.workspace = true
+license-file.workspace = true
+repository.workspace = true
 
 
 [dependencies]

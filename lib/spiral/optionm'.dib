@@ -126,19 +126,14 @@ nominal option' t = $"`t option"
 inl none' forall t. () : option' t =
     $'None'
 
+#!markdown
+
+## some'
+
 #!spiral
 
 inl some' forall t. (x : t) : option' t =
     $'Some !x '
-
-#!markdown
-
-## map
-
-#!spiral
-
-inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
-    $'!x |> Option.map !fn '
 
 #!markdown
 
@@ -151,18 +146,33 @@ inl default_value' forall t. (value : t) (x : option' t) : t =
 
 #!markdown
 
-## unbox
+## try'
 
 #!spiral
 
-inl unbox forall t. (x : option' t) : option t =
-    // x
-    // |> map Some
-    // |> default_value' None
-    inl some x : option t = Some x
-    inl some = join some
-    inl none : option t = None
-    $'!x |> Option.map !some |> Option.defaultValue !none '
+inl try' forall t. (x : option' t) : t =
+    !\\(x, $'"$0?"')
+
+#!markdown
+
+## map
+
+#!spiral
+
+inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
+    inl result : option' u = none' ()
+    $'let _!result = ref !result '
+    $'match !x with'
+    $'| Some x -> ('
+    $'(fun () ->'
+    $'(fun () ->'
+    inl x = dyn $'x'
+    x |> fn |> emit_unit
+    $')'
+    $"|> fun x -> x () |> Some"
+    $') () ) | None -> None'
+    $"|> fun x -> _!result.Value <- x"
+    $'_!result.Value '
 
 #!markdown
 
@@ -178,6 +188,39 @@ inl box forall t. (x : option t) : option' t =
     | Some x => some' x
     | None => none' ()
 
+#!markdown
+
+## map'
+
+#!spiral
+
+inl map' forall t u. (fn : t -> u) (x : option' t) : option' u =
+    (!\($'"true; let _result = !x.map(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
+    !\($'"_result"')
+
+#!markdown
+
+## map''
+
+#!spiral
+
+inl map'' forall t u. (fn : t -> u) (x : option' t) : option' u =
+    $'!x |> Option.map !fn '
+
+#!markdown
+
+## unbox
+
+#!spiral
+
+inl unbox forall t. (x : option' t) : option t =
+    x |> map Some |> default_value' None
+    // inl some x : option t = Some x
+    // inl some = join some
+    // inl none : option t = None
+    // $'!x |> Option.map !some |> Option.defaultValue !none '
+
 #!spiral
 
 //// test
@@ -185,8 +228,20 @@ inl box forall t. (x : option t) : option' t =
 inl x = Some 3i32
 inl y : option i32 = None
 inl x' = x |> box |> unbox
-inl y' = y |> box |> unbox
+inl y' = y |> box |> map id |> unbox
 (x', y') |> _assert_eq (x, y)
+
+#!spiral
+
+//// test
+//// print_code=true
+///! rust
+
+inl x = Some 3i32
+inl y : option i32 = None
+inl x' = x |> box |> unbox
+inl y' = y |> box |> map id |> unbox
+(x', y') |> _assert_eq' (x, y)
 
 #!markdown
 
@@ -195,7 +250,7 @@ inl y' = y |> box |> unbox
 #!spiral
 
 inl of_obj forall t. (x : t) : option' t =
-    ($"true in let mutable _!x = None" : bool) |> ignore
+    $'let mutable _!x = None'
     $"#if \!FABLE_COMPILER && \!WASM && \!CONTRACT"
     ((x |> $'Option.ofObj') : option' t)
     |> fun x => $'!x '
@@ -223,15 +278,6 @@ null ()
 |> of_obj
 |> unbox
 |> _assert_eq' (Some "")
-
-#!markdown
-
-## try'
-
-#!spiral
-
-inl try' forall t. (x : option' t) : t =
-    !\\(x, $'"$0?"')
 
 #!markdown
 
@@ -264,22 +310,12 @@ inl unwrap_or forall t. (def : t) (x : option' t) : t =
 
 #!markdown
 
-## map'
-
-#!spiral
-
-inl map' forall t u. (fn : t -> u) (x : option' t) : option' u =
-    !\\((x, fn), $'"$0.map(|x| $1(x))"')
-
-#!markdown
-
 ## rc_upgrade
 
 #!spiral
 
 inl rc_upgrade forall t. (x : rust.weak_rc t) : option' (rust.rc t) =
-    inl x = join x
-    !\($'"std::rc::Weak::upgrade(&!x)"')
+    !\\(x, $'"std::rc::Weak::upgrade(&$0)"')
 
 #!markdown
 

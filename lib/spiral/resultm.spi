@@ -27,11 +27,51 @@ inl flatten forall t u. (x : result (result t u) u) : result t u =
     | Ok x => x
     | Error x => Error x
 
+/// ## try'
+inl try' forall t u. (x : result' t u) : t =
+    !\\(x, $'"$0?"')
+
+/// ## unwrap'
+inl unwrap' forall t u. (x : result' t u) : t =
+    !\\(x, $'"$0.unwrap()"')
+
 /// ## get
 inl get forall t e. (source : result t e) : t =
     match source with
     | Ok x => x
     | Error x => failwith $'$"resultm.get / Result value was Error: {!x}"'
+
+/// ## unbox
+inl unbox forall t u. (x : result' t u) : result t u =
+    inl ok x : result t u = Ok x
+    inl error x : result t u = Error x
+    real
+        typecase t with
+        | () => $"match !x with Ok () -> !ok () | Error x -> !error x" : result t u
+        | _ => $"match !x with Ok x -> !ok x | Error x -> !error x" : result t u
+
+/// ## unbox'
+inl unbox' forall t u. (x : result' t u) : result t u =
+    inl ok x : result t u = Ok x
+    inl error x : result t u = Error x
+    real
+        typecase t with
+        | () =>
+            (~!\\)
+                `((result' t u -> result t u) * (result' t u -> result t u))
+                `(result t u)
+                ((ok, error), ($'"match !x { Ok(()) => $0(()), Err(e) => $1(e) }"' : string))
+        | _ =>
+            (~!\\)
+                `((result' t u -> result t u) * (result' t u -> result t u))
+                `(result t u)
+                ((ok, error), ($'"match !x { Ok(x) => $0(x), Err(e) => $1(e) }"' : string))
+
+/// ## box
+inl box forall t u. (x : result t u) : result' t u =
+    match x with
+    | Ok x => $"Ok !x"
+    | Error err => $"Error !err"
 
 /// ## map
 inl map forall t e u. (fn : t -> u) (source : result t e) : result u e =
@@ -47,6 +87,12 @@ inl map_error forall t e u. (fn : e -> u) (source : result t e) : result t u =
 
 /// ## map'
 inl map' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
+    (!\\(source, $'"true; let _result = $0.map(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
+    !\($'"_result"')
+
+/// ## map''
+inl map'' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
     inl fn = join fn
     inl source = join source
     !\($'"!source.map(|x| !fn(x))"')
@@ -56,36 +102,27 @@ inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u 
     inl fn = join fn
     !\\((source, fn), $'"$0.map_err(|x| $1(x))"')
 
+/// ## map_error''
+inl map_error'' forall t e u. (fn : e -> u) (source : result' t e) : result' t u =
+    (!\\(source, $'"true; let _result = $0.map_err(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
+    !\($'"_result"')
+
+/// ## option_ok_or
+inl option_ok_or forall t e. (e : e) (source : optionm'.option' t) : result' t e =
+    !\\(source, $'"$0.ok_or(!e)"')
+
 /// ## as_ref
 inl as_ref forall t e. (source : result' t e) : result' (rust.ref' t) (rust.ref' e) =
     !\($'"!source.as_ref()"')
 
-/// ## unbox
-inl unbox forall t u. (x : result' t u) : result t u =
-    inl ok x : result t u = Ok x
-    inl error x : result t u = Error x
-    real
-        typecase t with
-        | () => $"match !x with Ok () -> !ok () | Error x -> !error x" : result t u
-        | _ => $"match !x with Ok x -> !ok x | Error x -> !error x" : result t u
-
-/// ## box
-inl box forall t u. (x : result t u) : result' t u =
-    match x with
-    | Ok x => $"Ok !x"
-    | Error err => $"Error !err"
-
-/// ## try'
-inl try' forall t u. (x : result' t u) : t =
-    !\\(x, $'"$0?"')
-
-/// ## unwrap'
-inl unwrap' forall t u. (x : result' t u) : t =
-    !\\(x, $'"$0.unwrap()"')
+/// ## as_ref'
+inl as_ref' forall t e. (source : rust.ref' (result' t e)) : result' (rust.ref' t) (rust.ref' e) =
+    !\($'"!source.as_ref()"')
 
 /// ## unwrap_or'
 inl unwrap_or' forall t u. (default : t) (x : result' t u) : t =
-    !\\(x, $'"$0.unwrap_or(!default)"')
+    !\\((x, default), $'"$0.unwrap_or($1)"')
 
 /// ## expect
 inl expect forall t u. (error : rust.ref' string) (x : result' t u) : t =

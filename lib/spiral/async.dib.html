@@ -8577,17 +8577,16 @@ a.anchor-link {
     <span class="o">//</span>     <span class="k">if</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="o">//</span>     <span class="n">then</span> <span class="n">new_future_move</span> <span class="n">x</span>
     <span class="o">//</span>     <span class="k">else</span> <span class="n">new_future</span> <span class="n">x</span>
-    <span class="n">join</span>
-        <span class="k">if</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="n">then</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"let __result = Box::pin(async move { //"'</span><span class="o">)</span>
-        <span class="k">else</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"let __result = Box::pin(async { //"'</span><span class="o">)</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">then</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"let __result = Box::pin(async move { //"'</span><span class="o">)</span>
+    <span class="k">else</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"let __result = Box::pin(async { //"'</span><span class="o">)</span>
 
-        <span class="n">let</span> <span class="n">x</span><span class="s1">' = x ()</span>
-        <span class="n">inl</span> <span class="n">x</span><span class="s1">' = join x'</span>
+    <span class="n">let</span> <span class="n">x</span><span class="s1">' = x ()</span>
+    <span class="n">inl</span> <span class="n">x</span><span class="s1">' = join x'</span>
 
-        <span class="n">x</span><span class="s1">' |&gt; rust.fix_closure depth</span>
+    <span class="n">x</span><span class="s1">' |&gt; rust.fix_closure depth</span>
 
-        <span class="o">!</span><span class="se">\(</span><span class="s1">$'"__result"'</span><span class="o">)</span>
+    <span class="o">!</span><span class="se">\(</span><span class="s1">$'"__result"'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -10059,92 +10058,82 @@ type rayon_iter_Map&lt;'T&gt; = class end
 #endif
 type futures_lite_stream_StreamExt = class end
 let rec closure0 () (v0 : System.Threading.CancellationToken) : Async&lt;System.Threading.CancellationToken&gt; =
-    let v1 : Async&lt;System.Threading.CancellationToken&gt; option = None
-    let v2 : bool = true in let mutable _v1 = v1
+    let v1 : bool = true
+    let mutable _v1 : Async&lt;System.Threading.CancellationToken&gt; option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v2 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
+    v2 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v3 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
-    v3
-#endif
-    
-#if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v4 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
-    v4
-#endif
-    
+    v3 
+    #endif
 #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v5 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
-    v5
-#endif
-    
+    let v4 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
+    v4 
+    #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v6 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
-    v6
-#endif
-    
+    let v5 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
+    v5 
+    #endif
 #if FABLE_COMPILER_PYTHON
-    let v7 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
-    v7
-#endif
-    
+    let v6 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
+    v6 
+    #endif
 #else
-    let v8 : Async&lt;System.Threading.CancellationToken&gt; option = None
-    let v9 : bool = true in let mutable _v8 = v8
+    let v7 : bool = true
+    let mutable _v7 : Async&lt;System.Threading.CancellationToken&gt; option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v10 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
-    v10
-#endif
-    
+    let v8 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
+    v8 
+    #endif
 #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v11 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
-    v11
-#endif
-    
+    let v9 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
+    v9 
+    #endif
 #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v12 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
-    v12
-#endif
-    
+    let v10 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
+    v10 
+    #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v13 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
-    v13
-#endif
-    
+    let v11 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
+    v11 
+    #endif
 #if FABLE_COMPILER_PYTHON
-    let v14 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
-    v14
-#endif
-    
+    let v12 : Async&lt;System.Threading.CancellationToken&gt; = null |&gt; unbox&lt;Async&lt;System.Threading.CancellationToken&gt;&gt;
+    v12 
+    #endif
 #else
-    let v15 : Async&lt;System.Threading.CancellationToken&gt; option = None
-    let mutable _v15 = v15
+    let v13 : Async&lt;System.Threading.CancellationToken&gt; option = None
+    let mutable _v13 = v13
     async {
-    let v16 : Async&lt;System.Threading.CancellationToken&gt; = Async.CancellationToken
-    let! v16 = v16 
-    let v17 : System.Threading.CancellationToken = v16 
-    let v18 : System.Threading.CancellationToken = Async.DefaultCancellationToken
-    let v19 : (System.Threading.CancellationToken []) = [|v17; v18; v0|]
-    let v20 : ((System.Threading.CancellationToken []) -&gt; System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-    let v21 : System.Threading.CancellationTokenSource = v20 v19
-    let v22 : System.Threading.CancellationToken = v21.Token
-    return v22 
+    let v14 : Async&lt;System.Threading.CancellationToken&gt; = Async.CancellationToken
+    let! v14 = v14 
+    let v15 : System.Threading.CancellationToken = v14 
+    let v16 : System.Threading.CancellationToken = Async.DefaultCancellationToken
+    let v17 : (System.Threading.CancellationToken []) = [|v15; v16; v0|]
+    let v18 : ((System.Threading.CancellationToken []) -&gt; System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+    let v19 : System.Threading.CancellationTokenSource = v18 v17
+    let v20 : System.Threading.CancellationToken = v19.Token
+    return v20 
     }
-    |&gt; fun x -&gt; _v15 &lt;- Some x
-    let v23 : Async&lt;System.Threading.CancellationToken&gt; = _v15 |&gt; Option.get
-    v23
-#endif
-    |&gt; fun x -&gt; _v8 &lt;- Some x
-    let v24 : Async&lt;System.Threading.CancellationToken&gt; = _v8.Value
-    v24
-#endif
+    |&gt; fun x -&gt; _v13 &lt;- Some x
+    let v21 : Async&lt;System.Threading.CancellationToken&gt; = _v13 |&gt; Option.get
+    v21 
+    #endif
+    |&gt; fun x -&gt; _v7 &lt;- Some x
+    let v22 : Async&lt;System.Threading.CancellationToken&gt; = _v7.Value
+    v22 
+    #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
-    let v25 : Async&lt;System.Threading.CancellationToken&gt; = _v1.Value
-    v25
+    let v23 : Async&lt;System.Threading.CancellationToken&gt; = _v1.Value
+    v23
 let v0 : (System.Threading.CancellationToken -&gt; Async&lt;System.Threading.CancellationToken&gt;) = closure0()
 let merge_cancellation_token_with_default_async x = v0 x
 ()

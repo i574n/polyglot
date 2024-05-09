@@ -250,17 +250,16 @@ inl future_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future
     //     if flag = 1
     //     then new_future_move x
     //     else new_future x
-    join
-        if flag = 1
-        then !\($'"let __result = Box::pin(async move { //"')
-        else !\($'"let __result = Box::pin(async { //"')
+    if flag = 1
+    then !\($'"let __result = Box::pin(async move { //"')
+    else !\($'"let __result = Box::pin(async { //"')
 
-        let x' = x ()
-        inl x' = join x'
+    let x' = x ()
+    inl x' = join x'
 
-        x' |> rust.fix_closure depth
+    x' |> rust.fix_closure depth
 
-        !\($'"__result"')
+    !\($'"__result"')
 
 #!markdown
 

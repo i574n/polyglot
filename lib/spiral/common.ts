@@ -422,15 +422,7 @@ export function closure9(v0_1: int32, v1_1: Error, unitVar: void): string {
     return toText(interpolate("retry: %P() / ex: %A%P() / %P()", [v0_1, v1_1, closure10(undefined, undefined)]));
 }
 
-export function closure12(unitVar: void, v0_1: int64): US4_$union {
-    return US4_US4_0(v0_1);
-}
-
-export function method5(): ((arg0: int64) => US4_$union) {
-    return (v: int64): US4_$union => closure12(undefined, v);
-}
-
-export function method6(): string {
+export function method5(): string {
     return "";
 }
 
@@ -440,18 +432,18 @@ export function closure11(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => s
     }
     const patternInput: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value_1(State_trace_state());
     let _v9: Option<string> = undefined;
-    const x: string = method6();
+    const x: string = method5();
     _v9 = x;
-    const v61: string = value_1(_v9);
-    const v62: int64 = patternInput[0].l0;
-    const v72: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v75: Option<string> = undefined;
-    const x_1: string = padLeft(v72.toLocaleLowerCase(), 7, " ");
-    _v75 = x_1;
-    return trimEnd(trimStart(`${v61} ${value_1(_v75)} #${v62} ${v1_1()} / ${v2_1()}`), " ", "/");
+    const v66: string = value_1(_v9);
+    const v67: int64 = patternInput[0].l0;
+    const v77: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
+    let _v80: Option<string> = undefined;
+    const x_1: string = padLeft(v77.toLocaleLowerCase(), 7, " ");
+    _v80 = x_1;
+    return trimEnd(trimStart(`${v66} ${value_1(_v80)} #${v67} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
-export function method7(v0_1: US0_$union, v1_1: (() => string)): void {
+export function method6(v0_1: US0_$union, v1_1: (() => string)): void {
     const v2_1 = (): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(undefined, undefined);
     if (State_trace_state() == null) {
         State_trace_state(v2_1());
@@ -480,7 +472,7 @@ export function method7(v0_1: US0_$union, v1_1: (() => string)): void {
 }
 
 export function method4(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
-    method7(v0_1, (): string => closure11(v0_1, v1_1, v2_1, undefined));
+    method6(v0_1, (): string => closure11(v0_1, v1_1, v2_1, undefined));
 }
 
 export function closure7(v0_1: int32, v1_1: Error): US3_$union {
@@ -529,21 +521,21 @@ export function closure3(unitVar: void, v0_1: int32): ((arg0: (() => void)) => O
     return (v: (() => void)): Option<void> => closure4(v0_1, v);
 }
 
-export function method8(v0_1: (() => void)): (() => void) {
+export function method7(v0_1: (() => void)): (() => void) {
     return v0_1;
 }
 
-export function closure14(v0_1: any, unitVar: void): void {
+export function closure13(v0_1: any, unitVar: void): void {
     v0_1.Value;
 }
 
-export function closure13(unitVar: void, v0_1: (() => void)): (() => void) {
-    const v1_1: (() => void) = method8(v0_1);
+export function closure12(unitVar: void, v0_1: (() => void)): (() => void) {
+    const v1_1: (() => void) = method7(v0_1);
     const v2_1: any = new Lazy<void>((): void => {
         v1_1();
     });
     return (): void => {
-        closure14(v2_1, undefined);
+        closure13(v2_1, undefined);
     };
 }
 
@@ -565,7 +557,7 @@ export function retry_fn(x: int32): ((arg0: (() => void)) => Option<void>) {
     return v2(x);
 }
 
-export const v3 = (v: (() => void)): (() => void) => closure13(undefined, v);
+export const v3 = (v: (() => void)): (() => void) => closure12(undefined, v);
 
 export function memoize(x: (() => void)): (() => void) {
     return v3(x);

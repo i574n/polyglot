@@ -362,13 +362,7 @@ pub mod Common {
             Common::closure10((), ())
         )
     }
-    pub fn closure12(unitVar: (), v0_1: i64) -> Common::US4 {
-        Common::US4::US4_0(v0_1)
-    }
-    pub fn method5() -> Func1<i64, Common::US4> {
-        Func1::new(move |v: i64| Common::closure12((), v))
-    }
-    pub fn method6() -> string {
+    pub fn method5() -> string {
         string("")
     }
     pub fn closure11(
@@ -390,13 +384,13 @@ pub mod Common {
             ) = getValue(Common::State::trace_state().get().clone());
             let _v9: MutCell<Option<string>> = MutCell::new(None::<string>);
             {
-                let x: string = Common::method6();
+                let x: string = Common::method5();
                 _v9.set(Some(x))
             }
             {
-                let v61: string = getValue(_v9.get().clone());
-                let v62: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v74: string = padLeft(
+                let v66: string = getValue(_v9.get().clone());
+                let v67: i64 = (patternInput.0.clone()).l0.get().clone();
+                let v79: string = padLeft(
                     toLower(match &v0_1 {
                         Common::US0::US0_1 => string("Debug"),
                         Common::US0::US0_2 => string("Info"),
@@ -407,29 +401,29 @@ pub mod Common {
                     7_i32,
                     ' ',
                 );
-                let _v75: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v139: &str = match &v0_1 {
+                let _v80: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v143: &str = match &v0_1 {
                     Common::US0::US0_1 => inline_colorization::color_bright_blue,
                     Common::US0::US0_2 => inline_colorization::color_bright_green,
                     Common::US0::US0_0 => inline_colorization::color_bright_black,
-                    Common::US0::US0_3 => inline_colorization::color_bright_yellow,
+                    Common::US0::US0_3 => inline_colorization::color_yellow,
                     _ => inline_colorization::color_bright_red,
                 };
-                let v141: &str = fable_library_rust::String_::LrcStr::as_str(&v74);
-                let v143: &str = inline_colorization::color_reset;
-                let v145: string = string("format!(\"{v139}{v141}{v143}\")");
-                let v146: std::string::String = format!("{v139}{v141}{v143}");
+                let v145: &str = &*v79;
+                let v147: &str = inline_colorization::color_reset;
+                let v149: string = string("format!(\"{v143}{v145}{v147}\")");
+                let v150: std::string::String = format!("{v143}{v145}{v147}");
                 {
-                    let x_1: string = fable_library_rust::String_::fromString(v146);
-                    _v75.set(Some(x_1))
+                    let x_1: string = fable_library_rust::String_::fromString(v150);
+                    _v80.set(Some(x_1))
                 }
                 trimEndChars(
                     trimStartChars(
                         sprintf!(
                             "{} {} #{} {} / {}",
-                            v61,
-                            getValue(_v75.get().clone()),
-                            v62,
+                            v66,
+                            getValue(_v80.get().clone()),
+                            v67,
                             v1_1(),
                             v2_1()
                         ),
@@ -440,7 +434,7 @@ pub mod Common {
             }
         }
     }
-    pub fn method7(v0_1: Common::US0, v1_1: Func0<string>) {
+    pub fn method6(v0_1: Common::US0, v1_1: Func0<string>) {
         fn v2_1() -> (
             LrcPtr<Common::Mut0>,
             LrcPtr<Common::Mut1>,
@@ -512,7 +506,7 @@ pub mod Common {
         }
     }
     pub fn method4(v0_1: Common::US0, v1_1: Func0<string>, v2_1: Func0<string>) {
-        Common::method7(
+        Common::method6(
             v0_1.clone(),
             Func0::new({
                 let v0_1 = v0_1.clone();
@@ -590,22 +584,22 @@ pub mod Common {
             move |v: Func0<()>| Common::closure4(v0_1, v)
         })
     }
-    pub fn method8(v0_1: Func0<()>) -> Func0<()> {
+    pub fn method7(v0_1: Func0<()>) -> Func0<()> {
         v0_1
     }
-    pub fn closure14(v0_1: LrcPtr<Lazy_1<()>>, unitVar: ()) {
+    pub fn closure13(v0_1: LrcPtr<Lazy_1<()>>, unitVar: ()) {
         v0_1.get_Value();
         ()
     }
-    pub fn closure13(unitVar: (), v0_1: Func0<()>) -> Func0<()> {
-        let v1_1 = Common::method8(v0_1);
+    pub fn closure12(unitVar: (), v0_1: Func0<()>) -> Func0<()> {
+        let v1_1 = Common::method7(v0_1);
         let v2_1: LrcPtr<Lazy_1<()>> = LazyExtensions::Create(Func0::new({
             let v1_1 = v1_1.clone();
             move || v1_1()
         }));
         Func0::new({
             let v2_1 = v2_1.clone();
-            move || Common::closure14(v2_1.clone(), ())
+            move || Common::closure13(v2_1.clone(), ())
         })
     }
     pub fn v0() -> Func0<(
@@ -648,7 +642,7 @@ pub mod Common {
     }
     pub fn v3() -> Func1<Func0<()>, Func0<()>> {
         static v3: OnceInit<Func1<Func0<()>, Func0<()>>> = OnceInit::new();
-        v3.get_or_init(|| Func1::new(move |v: Func0<()>| Common::closure13((), v)))
+        v3.get_or_init(|| Func1::new(move |v: Func0<()>| Common::closure12((), v)))
             .clone()
     }
     pub fn memoize(x: Func0<()>) -> Func0<()> {

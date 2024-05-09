@@ -1,6 +1,5 @@
 open rust_operators
 open sm'_operators
-open listm'_operators
 
 inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Action<$0, $1>\")>]\n#endif\ntype leptos_Action<'T, 'U> = class end"
@@ -165,7 +164,7 @@ instance (~:>) fragment = fun x =>
         typecase t with
         | array_base (html_element ~el) =>
             inl x = am'.to_vec `(html_element el) x
-            inl x = am'.vec_map `(html_element el) `view (element_to_view `el) x
+            inl x = am'.vec_map' `(html_element el) `view (element_to_view `el) x
             inl x : a i32 view = am'.from_vec `i32 `view x
             inl (a x) = x
             view_array_to_fragment x
@@ -275,7 +274,7 @@ inl provide_meta_context () =
     (!\($'"true; leptos_meta::provide_meta_context()"') : bool) |> ignore
 
 inl provide_context forall t. (x : t) =
-    (!\\(x, $'$"true; leptos::provide_context::<std::rc::Rc<`t>>($0)"') : bool) |> ignore
+    (!\\(x, $'$"true; leptos::provide_context::<std::sync::Arc<`t>>($0)"') : bool) |> ignore
 
 inl create_signal forall t. (value : t) : read_signal t * write_signal t =
     !\\(value, $'$"leptos::create_signal($0)"')
@@ -370,7 +369,7 @@ inl create_local_resource forall t u.
 //     !\\(fetcher, $'"leptos::create_resource(move || !source(), |x| async move { $0(x).await })"')
 
 inl create_action forall t u. (action_fn : t -> async.future_pin u) : action t u =
-    !\\(action_fn, $'"leptos::create_action(move |value: &std::rc::Rc<`t>| $0(value.clone()))"')
+    !\\(action_fn, $'"leptos::create_action(move |value: &std::sync::Arc<`t>| $0(value.clone()))"')
 
 inl action_dispatch forall t u. (value : heap t) (action : action (heap t) u) : () =
     (!\\((action, value), $'"true; leptos::Action::dispatch(&$0, $1.clone())"') : bool) |> ignore
@@ -385,7 +384,7 @@ inl action_value forall t u. (action : action (heap t) u) : rw_signal (optionm'.
     !\\(action, $'"leptos::Action::value(&$0)"')
 
 inl use_context forall t. () : optionm'.option' t =
-    !\($'"leptos::use_context::<std::rc::Rc<`t>>()"')
+    !\($'"leptos::use_context::<std::sync::Arc<`t>>()"')
 
 inl resource_loading forall t u. (resource : resource t u) : signal bool =
     !\\(resource, $'$"leptos::Resource::loading(&$0)"')

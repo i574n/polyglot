@@ -66,7 +66,7 @@ export function Mut1_$reflection(): TypeInfo {
     return record_type("File_system.Mut1", [], Mut1, () => [["l0", bool_type]]);
 }
 
-export type US0_$union = 
+export type US0_$union =
     | US0<0>
     | US0<1>
     | US0<2>
@@ -138,7 +138,7 @@ export function Mut3_$reflection(): TypeInfo {
     return record_type("File_system.Mut3", [], Mut3, () => [["l0", lambda_type(string_type, unit_type)]]);
 }
 
-export type US1_$union = 
+export type US1_$union =
     | US1<0>
     | US1<1>
 
@@ -168,7 +168,7 @@ export function US1_$reflection(): TypeInfo {
     return union_type("File_system.US1", [], US1, () => [[["f0_0", int64_type]], []]);
 }
 
-export type US2_$union = 
+export type US2_$union =
     | US2<0>
     | US2<1>
 
@@ -198,7 +198,7 @@ export function US2_$reflection(): TypeInfo {
     return union_type("File_system.US2", [], US2, () => [[["f0_0", int64_type]], []]);
 }
 
-export type US4_$union = 
+export type US4_$union =
     | US4<0>
     | US4<1>
     | US4<2>
@@ -234,7 +234,7 @@ export function US4_$reflection(): TypeInfo {
     return union_type("File_system.US4", [], US4, () => [[], [], []]);
 }
 
-export type US5_$union = 
+export type US5_$union =
     | US5<0>
     | US5<1>
     | US5<2>
@@ -282,7 +282,7 @@ export function US5_$reflection(): TypeInfo {
     return union_type("File_system.US5", [], US5, () => [[], [], [], [], []]);
 }
 
-export type US3_$union = 
+export type US3_$union =
     | US3<0>
     | US3<1>
 
@@ -312,7 +312,7 @@ export function US3_$reflection(): TypeInfo {
     return union_type("File_system.US3", [], US3, () => [[["f0_0", US4_$reflection()], ["f0_1", US5_$reflection()]], []]);
 }
 
-export type US6_$union = 
+export type US6_$union =
     | US6<0>
     | US6<1>
 
@@ -342,7 +342,7 @@ export function US6_$reflection(): TypeInfo {
     return union_type("File_system.US6", [], US6, () => [[["f0_0", int64_type]], [["f1_0", class_type("System.Exception")]]]);
 }
 
-export type US7_$union = 
+export type US7_$union =
     | US7<0>
     | US7<1>
 
@@ -372,7 +372,7 @@ export function US7_$reflection(): TypeInfo {
     return union_type("File_system.US7", [], US7, () => [[["f0_0", int64_type]], [["f1_0", class_type("System.Exception")]]]);
 }
 
-export type US8_$union = 
+export type US8_$union =
     | US8<0>
     | US8<1>
 
@@ -402,7 +402,7 @@ export function US8_$reflection(): TypeInfo {
     return union_type("File_system.US8", [], US8, () => [[["f0_0", string_type]], []]);
 }
 
-export type US9_$union = 
+export type US9_$union =
     | US9<0>
     | US9<1>
 
@@ -432,7 +432,7 @@ export function US9_$reflection(): TypeInfo {
     return union_type("File_system.US9", [], US9, () => [[["f0_0", string_type]], []]);
 }
 
-export type US10_$union = 
+export type US10_$union =
     | US10<0>
     | US10<1>
 
@@ -1550,7 +1550,7 @@ export function new_file_uri(x: string): string {
 
 export const v17 = (): string => closure60(undefined, undefined);
 
-export function get_repository_root(): string {
+export function get_workspace_root(): string {
     return v17();
 }
 
@@ -1567,5 +1567,3 @@ export const v19 = (v: string): ((arg0: string) => string) => closure63(undefine
 export function op_LessDivideGreater(x: string): ((arg0: string) => string) {
     return v19(x);
 }
-
-

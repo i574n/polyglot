@@ -11,13 +11,14 @@ if (!$fast) {
     Invoke-Dib build.dib
 }
 
-$rsPath = "./fable_modules/fable-library-rust/src/Range.rs"
+$libPath = "./fable_modules/fable-library-rust"
+
+$rsPath = "$libPath/src/Range.rs"
 
 (Get-Content $rsPath) `
     -replace "use crate::String_::fromCharCode;", "use crate::String_::fromChar;" `
     -replace "fromCharCode\(c\)", "std::char::from_u32(c).unwrap()" `
     | Set-Content $rsPath
 
-$targetDir = "./fable_modules/fable-library-rust/target"
-
-Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
+{ cargo check } | Invoke-Block -Location $libPath -OnError Continue
+{ cargo clippy } | Invoke-Block -Location $libPath -OnError Continue

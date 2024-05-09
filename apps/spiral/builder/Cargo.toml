@@ -1,16 +1,18 @@
 [package]
 name = "spiral_builder"
-version = "0.0.1"
-edition = "2021"
-workspace = "../../../"
+version.workspace = true
+edition.workspace = true
+license-file.workspace = true
+repository.workspace = true
 
 [dependencies]
-fable_library_rust = { path = "../../../lib/rust/fable/fable_modules/fable-library-rust", default-features = false, features = ["static_do_bindings", "datetime", "guid", "threaded"] }
-clap = "~4.5"
-inline_colorization = "~0.1"
-regex = "~1.10"
-chrono = "~0.4"
-futures-lite = "~2.3"
+fable_library_rust = { workspace = true }
+inline_colorization = { workspace = true }
+chrono = { workspace = true }
+regex = { workspace = true }
+clap = { workspace = true }
+futures-lite = { workspace = true }
+serde_json = { workspace = true }
 
 [dev-dependencies]
 

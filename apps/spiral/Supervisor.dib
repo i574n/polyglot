@@ -100,7 +100,7 @@ type ClientErrorsRes =
 
 #!fsharp
 
-let repositoryRoot = SpiralFileSystem.get_repository_root ()
+let workspaceRoot = SpiralFileSystem.get_workspace_root ()
 
 #!fsharp
 
@@ -115,7 +115,7 @@ let inline awaitCompiler port cancellationToken = async {
             inbox.Post (port, false)
         else
             let compilerPath =
-                repositoryRoot </> "deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release"
+                workspaceRoot </> "deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release"
                 |> System.IO.Path.GetFullPath
 
             let dllPath = compilerPath </> "Spiral.dll"
@@ -150,7 +150,7 @@ let inline awaitCompiler port cancellationToken = async {
                                 }
                                 do! loop 0
                         })
-                        l5 = Some repositoryRoot
+                        l5 = Some workspaceRoot
                     }
                 )
                 |> SpiralRuntime.execute_with_options_async
@@ -354,7 +354,7 @@ let inline buildFile timeout port cancellationToken path = async {
             | _ -> None, []
         )
 
-    if fileDir |> SpiralSm.starts_with (repositoryRoot </> "target") then
+    if fileDir |> SpiralSm.starts_with (workspaceRoot </> "target") then
         let fileDirUri = fileDir |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
         let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
         let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
@@ -371,7 +371,7 @@ let inline buildFile timeout port cancellationToken path = async {
 #!fsharp
 
 let inline persistCode code = async {
-    let targetDir = repositoryRoot </> "target/polyglot/spiral_eval"
+    let targetDir = workspaceRoot </> "target/polyglot/spiral_eval"
 
     let packagesDir = targetDir </> "packages"
 
@@ -386,7 +386,7 @@ let inline persistCode code = async {
 
     let spiprojPath = codeDir </> "package.spiproj"
     let spiprojCode =
-        $"""packageDir: {repositoryRoot </> "lib"}
+        $"""packageDir: {workspaceRoot </> "lib"}
 packages:
     |core-
     spiral-
@@ -734,7 +734,7 @@ let inline getFileTokenRange port cancellationToken path = async {
         |> Async.withCancellationToken ct
 
     let fileDir = fullPath |> System.IO.Path.GetDirectoryName
-    if fileDir |> SpiralSm.starts_with (repositoryRoot </> "target") then
+    if fileDir |> SpiralSm.starts_with (workspaceRoot </> "target") then
         let fileDirUri = fileDir |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
         let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
         let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
@@ -791,6 +791,7 @@ type Arguments =
     | [<Argu.ArguAttributes.Unique>] Timeout of int
     | [<Argu.ArguAttributes.Unique>] Port of int
     | [<Argu.ArguAttributes.Unique>] Parallel
+    | [<Argu.ArguAttributes.Unique>] Exit_On_Error
 
     interface Argu.IArgParserTemplate with
         member s.Usage =
@@ -801,6 +802,7 @@ type Arguments =
             | Timeout _ -> nameof Timeout
             | Port _ -> nameof Port
             | Parallel -> nameof Parallel
+            | Exit_On_Error-> nameof Exit_On_Error
 
 #!fsharp
 
@@ -856,6 +858,8 @@ let main args =
 
     let isParallel = argsMap |> Map.containsKey (nameof Arguments.Parallel)
 
+    let isExitOnError = argsMap |> Map.containsKey (nameof Arguments.Exit_On_Error)
+
     async {
         let port = port |> Option.defaultWith getCompilerPort
         let struct (localToken, disposable) = SpiralThreading.new_disposable_token None
@@ -878,6 +882,9 @@ let main args =
                     do! outputCode |> SpiralFileSystem.write_all_text_async outputPath
                     return 0
                 | None ->
+                    if isExitOnError
+                    then System.Environment.Exit 1
+
                     return 1
             })
 
@@ -890,6 +897,9 @@ let main args =
                     do! tokenRange |> FSharp.Json.Json.serialize |> SpiralFileSystem.write_all_text_async outputPath
                     return 0
                 | None ->
+                    if isExitOnError
+                    then System.Environment.Exit 1
+
                     return 1
             })
 
@@ -905,7 +915,10 @@ let main args =
                     )
                     |> SpiralRuntime.execute_with_options_async
 
-                trace Debug (fun () -> $"main / executeCommand / exitCode: {exitCode}") _locals
+                trace Debug (fun () -> $"main / executeCommand / exitCode: {exitCode} / command: {command}") _locals
+
+                if isExitOnError && exitCode > 0
+                then System.Environment.Exit exitCode
 
                 return exitCode
             })

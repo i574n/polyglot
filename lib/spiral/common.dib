@@ -19,6 +19,7 @@ open testing
 #!spiral
 
 inl types () =
+    env.types ()
     rust.types ()
     sm'.types ()
 
@@ -39,8 +40,8 @@ prototype (~:>) r : forall t. t -> r
 //// test
 
 run_target function
-    | Fsharp (Native) => fun () => $"1uy"
-    | _ => fun () => $"2uy"
+    | Fsharp (Native) => fun () => $'1uy'
+    | _ => fun () => $'2uy'
 |> _assert_eq 1u8
 
 #!spiral
@@ -49,8 +50,8 @@ run_target function
 ///! rust
 
 run_target function
-    | Rust (Native) => fun () => $"1uy"
-    | _ => fun () => $"2uy"
+    | Rust (Native) => fun () => $'1uy'
+    | _ => fun () => $'2uy'
 |> _assert_eq 1u8
 
 #!markdown
@@ -70,51 +71,6 @@ inl upcast forall t u. (x : t) : u =
 
 inl downcast forall t u. (x : t) : u =
     $'!x :?> `u '
-
-#!markdown
-
-## pair
-
-#!spiral
-
-//// test
-
-pair 1i32 2i32
-|> _assert_eq (1, 2)
-
-#!markdown
-
-## new_pair
-
-#!spiral
-
-inl new_pair forall a b. (a : a) (b : b) : pair a b =
-    $"!a, !b"
-
-#!markdown
-
-## from_pair
-
-#!spiral
-
-inl from_pair forall a b. (pair : pair a b) : a * b =
-    $"let (a, b) = !pair"
-    $"a", $"b"
-
-#!spiral
-
-//// test
-
-new_pair "a" 1i32
-|> from_pair
-|> _assert_eq ("a", 1i32)
-
-#!spiral
-
-//// test
-
-new_pair "a" (new_pair 1i32 "b")
-|> from_pair
 
 #!markdown
 
@@ -252,15 +208,6 @@ inl join_body_unit body d x =
 inl nameof x : string =
     $"nameof !x"
 
-#!markdown
-
-## get_environment_variable
-
-#!spiral
-
-inl get_environment_variable (var : string) : string =
-    $"System.Environment.GetEnvironmentVariable !var"
-
 #!spiral
 
 //// test
@@ -317,8 +264,6 @@ new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
 
 //// test
 //// print_code=false
-///! rust
-
 ///! rust
 
 inl new_disposable_test = mut 0i32
@@ -411,8 +356,7 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
             fun ex =>
                 trace Warning
                     fun () => "retry_fn"
-                    fun () =>
-                        $'$"retry: {!retry} / ex: %A{!ex} / {!_locals ()}"'
+                    fun () => $'$"retry: {!retry} / ex: %A{!ex} / {!_locals ()}"'
                 sleep 1
                 None
         |> function

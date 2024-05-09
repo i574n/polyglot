@@ -5,17 +5,17 @@ open sm'_operators
 
 /// ## types
 inl types () =
-    rust.types ()
-    sm'.types ()
+    env.types ()
     file_system.types ()
     runtime.types ()
+    rust.types ()
+    sm'.types ()
 
 /// ## get_command_args
 inl get_command_args () =
     {
         file = "file"
-        out_dir = "out-dir"
-        hash = "hash"
+        package_dir = "package-dir"
         args = "args"
         trace_level = "trace-level"
     }
@@ -31,15 +31,9 @@ let get_command () =
         |> runtime.arg_required true
     )
     |> runtime.command_arg (
-        runtime.new_arg ##(get_command_args () .out_dir)
-        |> runtime.arg_short 'o'
-        |> runtime.arg_long ##(get_command_args () .out_dir)
-        |> runtime.arg_required true
-    )
-    |> runtime.command_arg (
-        runtime.new_arg ##(get_command_args () .hash)
-        |> runtime.arg_short 'h'
-        |> runtime.arg_long ##(get_command_args () .hash)
+        runtime.new_arg ##(get_command_args () .package_dir)
+        |> runtime.arg_short 'p'
+        |> runtime.arg_long ##(get_command_args () .package_dir)
         |> runtime.arg_required true
     )
     |> runtime.command_arg (
@@ -51,15 +45,7 @@ let get_command () =
         runtime.new_arg ##(get_command_args () .trace_level)
         |> runtime.arg_short 't'
         |> runtime.arg_long ##(get_command_args () .trace_level)
-        |> runtime.arg_value_parser (
-            real get_union_fields_untag `trace_level ()
-            |> fun x => x : list trace_level
-            |> listm.map to_string
-            |> listm'.box
-            |> listm'.to_array'
-            |> fun (a x : _ i32 _) => x
-            |> runtime.value_parser_possible_values
-        )
+        |> real runtime.arg_union `trace_level ignore
     )
 
 /// ## get_subcommands_args
@@ -83,43 +69,66 @@ let get_subcommands () =
             |> runtime.arg_short 'd'
             |> runtime.arg_long ##((get_subcommands_args () .rust |> snd).deps)
             |> runtime.arg_value_names ;[ ##"NAME"; ##"VERSION" ]
-            |> runtime.arg_num_args_range (runtime.new_value_range (am'.Start 1i32) (am'.End id))
+            |> runtime.arg_num_args_range (
+                runtime.new_value_range
+                    (am'.Start (1i32 |> unativeint))
+                    (am'.End id)
+            )
+            |> runtime.arg_action runtime.Append
         )
     )
 
-inl get_cargo_toml_content hash : string =
-    $'$"""[package]\nname = \"{!hash}\"\nversion = "0.0.1"\nedition = "2021"\n\n[workspace]\n\n[dependencies]\nfable_library_rust = {{ path = \"fable_modules/fable-library-rust\", default-features = false, features = [\"static_do_bindings\", \"datetime\", \"guid\", \"threaded\"] }}\nclap = \"~4.5\"\ninline_colorization = \"~0.1\"\nregex = \"~1.10\"\nchrono = \"~0.4\"\nnum-complex = \"~0.4\"\npyo3 = \"~0.21\"\nasync-std = \"~1.12\"\nfutures = \"~0.3\"\nfutures-lite = \"~2.3\"\nasync-walkdir = \"~1.0\"\nrayon = \"~1.10\"\n\n[[bin]]\nname = \"{!hash}\"\npath = \"{!hash}.rs\" """'
+/// ## get_workspace_cargo_toml_content
+inl get_workspace_cargo_toml_content () : string =
+    $'$"""[workspace]\nresolver = "2"\nmembers = ["packages/*"]\n\n[workspace.dependencies]\nfable_library_rust = {{ path = \"../../../../../lib/rust/fable/fable_modules/fable-library-rust\", default-features = false, features = [\"static_do_bindings\", \"datetime\", \"guid\", \"threaded\"] }}\ninline_colorization = \"~0.1\"\n\n"""'
+
+/// ## get_cargo_toml_content
+inl get_cargo_toml_content { hash deps } : string =
+    $'$"""[package]\nname = \"spiral_builder_{!hash}\"\nversion = "0.0.1"\nedition = "2021"\n\n[dependencies]\nfable_library_rust = {{ workspace = true }}\ninline_colorization = {{ workspace = true }}\n{!deps}\n\n[[bin]]\nname = \"spiral_builder_{!hash}\"\npath = \"spiral_eval.rs\" """'
 
 /// ## run
-let run { file out_dir hash args }
-    : async.future_pin (resultm.result' string sm'.std_string) =
+let run { file package_dir args }
+    : async.future_pin (resultm.result' string string) =
 
     inl file = file |> file_system.get_full_path
-    inl out_dir = out_dir |> file_system.get_full_path
+    inl package_dir = package_dir |> file_system.get_full_path
+    inl hash = package_dir |> file_system.get_file_name
 
     trace Debug
         fun () => $'"spiral_builder.run"'
-        fun () => $'$"file: {!file} / out_dir: {!out_dir} / hash: {!hash} / args: {!args} / {!_locals ()}"'
+        fun () => $'$"file: {!file} / package_dir: {!package_dir} / hash: {!hash} / args: {!args} / {!_locals ()}"'
 
     fun () =>
         inl subcommands =
             get_subcommands ()
             |> runtime.command_get_matches_from ($'$"spiral_builder {!args}"' |> runtime.split_args)
 
-        inl result =
+        inl cargo_toml_content =
             match subcommands |> runtime.matches_subcommand |> optionm'.unbox with
             | Some (subcommand, arg_matches)
                 when sm'.from_std_string subcommand = (get_subcommands_args () .rust |> fst)
                 =>
-                inl deps : optionm'.option' (am'.vec sm'.std_string) =
+                inl deps =
                     arg_matches
                     |> runtime.matches_get_many ((get_subcommands_args () .rust |> snd).deps)
+                    |> optionm'.unbox
+                    |> optionm'.default_value (;[] |> am'.to_vec)
+                
+                inl len = deps |> am'.vec_len |> i32
+                
+                inl deps =
+                    deps
+                    |> am'.vec_map fun dep =>
+                        inl dep = dep |> sm'.from_std_string
+                        if dep |> sm'.contains "="
+                        then dep
+                        else $'$"{!dep}=\\"*\\""'
+                    |> am'.from_vec
+                    |> fun x => x : _ i32 _
+                    |> seq.of_array'
+                    |> sm'.concat "\n"
 
-                trace Debug
-                    fun () => $'"spiral_builder.run"'
-                    fun () => $'$"deps: %A{!deps} / {!_locals ()}"'
-
-                inl cargo_toml_content = hash |> get_cargo_toml_content
+                inl cargo_toml_content = get_cargo_toml_content { hash deps }
                 cargo_toml_content
 
             | Some (subcommand, arg_matches) =>
@@ -127,16 +136,31 @@ let run { file out_dir hash args }
                     fun () => $'"spiral_builder.run"'
                     fun () => $'$"subcommand: {!subcommand} / {!_locals ()}"'
 
-                inl cargo_toml_content = hash |> get_cargo_toml_content
+                inl cargo_toml_content = get_cargo_toml_content { hash deps = "" }
                 cargo_toml_content
             | _ => ""
 
+        inl workspace_cargo_toml_content = get_workspace_cargo_toml_content ()
+        
+        inl result =
+            ;[
+                "cargo_toml_content", cargo_toml_content
+                "workspace_cargo_toml_content", workspace_cargo_toml_content
+            ]
+            |> am'.to_vec
+            |> am'.vec_map' fun k, v =>
+                new_pair (sm'.to_std_string k) (sm'.to_std_string v)
+            |> mapm.b_tree_map_from_vec_pairs
+
         trace Debug
             fun () => $'"spiral_builder.run"'
-            fun () => $'$"result: {!result} / {!_locals ()}"'
-
-        result |> Ok |> resultm.box
-    |> async.future_init (3, 2) 1
+            fun () => $'$"result: %A{!result} / {!_locals ()}"'
+        
+        result
+        |> sm'.serialize
+        |> resultm.map_error' (sm'.format' >> sm'.from_std_string)
+        |> resultm.map' sm'.from_std_string
+    |> async.future_init (4, 3) 1
 
 /// ## tests
 inl tests () =
@@ -167,16 +191,9 @@ inl main (args : array_base string) =
         |> optionm.value
         |> sm'.from_std_string
 
-    inl out_dir =
+    inl package_dir =
         arg_matches
-        |> runtime.matches_get_one (get_command_args () .out_dir)
-        |> optionm'.unbox
-        |> optionm.value
-        |> sm'.from_std_string
-
-    inl hash =
-        arg_matches
-        |> runtime.matches_get_one (get_command_args () .hash)
+        |> runtime.matches_get_one (get_command_args () .package_dir)
         |> optionm'.unbox
         |> optionm.value
         |> sm'.from_std_string
@@ -193,13 +210,13 @@ inl main (args : array_base string) =
         |> runtime.matches_get_one (get_command_args () .trace_level)
         |> optionm'.unbox
         |> optionm.map sm'.from_std_string
-    
+
     match trace_level with
     | Some trace_level => trace_state_level <- trace_level |> of_string
     | None => ()
 
     inl result =
-        run { file out_dir hash args }
+        run { file package_dir args }
         |> async.block_on
         |> resultm.unwrap'
 

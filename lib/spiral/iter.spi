@@ -1,0 +1,17 @@
+open iter_prototypes
+open rust_operators
+
+/// ## iter_enumerate
+inl iter_enumerate forall t. (iter : into_iterator t) : into_iterator (pair unativeint t) =
+    !\($'"!iter.enumerate().map(std::sync::Arc::new)"')
+
+/// ## into_iter
+inl into_iter forall (t : * -> *) u. (x : t u) : into_iterator u =
+    !\($'"!x.into_iter()"')
+
+/// ## iter
+inl iter forall (t : * -> *) u. (x : t u) : into_iterator u =
+    !\($'"!x.iter()"')
+
+inl iter_map forall t u. (fn : t -> u) (iter : into_iterator t) : into_iterator u =
+    !\\(fn, $'"!iter.map(|x| $0(x))"')

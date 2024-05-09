@@ -128,19 +128,31 @@ pub mod Sm {
     pub fn method2(v0_1: string) -> string {
         v0_1
     }
+    pub fn method3(v0_1: string) -> string {
+        v0_1
+    }
     pub fn closure15(v0_1: string, v1_1: string, v2_1: string) -> string {
         let _v3: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v5_1: string = Sm::method0(v0_1);
-        let v6_1: string = Sm::method1(v2_1);
-        let v7_1: string = Sm::method2(v1_1);
-        let v9_1: std::borrow::Cow<str> =
-            regex::Regex::new(&v5_1).unwrap().replace_all(&v6_1, &*v7_1);
-        let v11_1: std::string::String = String::from(v9_1);
+        let v4_1: string = Sm::method0(v2_1);
+        let v5_1: string = Sm::method1(v1_1);
+        let _v6: MutCell<Option<Result<regex::Regex, regex::Error>>> =
+            MutCell::new(None::<Result<regex::Regex, regex::Error>>);
+        let v7_1: string = Sm::method2(v0_1);
         {
-            let x: string = fable_library_rust::String_::fromString(v11_1);
-            _v3.set(Some(x))
+            let x: Result<regex::Regex, regex::Error> = regex::Regex::new(&v7_1);
+            _v6.set(Some(x))
         }
-        getValue(_v3.get().clone())
+        {
+            let v15_1: Result<regex::Regex, regex::Error> = getValue(_v6.get().clone());
+            let v17_1: regex::Regex = v15_1.unwrap();
+            let v19_1: std::borrow::Cow<str> = v17_1.replace_all(&v4_1, &*v5_1);
+            let v21_1: std::string::String = String::from(v19_1);
+            {
+                let x_1: string = fable_library_rust::String_::fromString(v21_1);
+                _v3.set(Some(x_1))
+            }
+            getValue(_v3.get().clone())
+        }
     }
     pub fn closure14(v0_1: string, v1_1: string) -> Func1<string, string> {
         Func1::new({
@@ -180,14 +192,14 @@ pub mod Sm {
             move |v: string| Sm::closure20(v0_1.clone(), v)
         })
     }
-    pub fn method3() -> string {
+    pub fn method4() -> string {
         string("")
     }
     pub fn closure22(v0_1: Array<string>, v1_1: string) -> Array<string> {
         let _v2: MutCell<Option<Array<string>>> = MutCell::new(None::<Array<string>>);
-        let v5_1: LrcPtr<dyn IEnumerable_1<string>> = ofArray(v0_1);
+        let v4_1: LrcPtr<dyn IEnumerable_1<string>> = ofArray(v0_1);
         {
-            let x: Array<string> = split_1(v1_1, join(Sm::method3(), toArray(v5_1)), -1_i32, 0_i32);
+            let x: Array<string> = split_1(v1_1, join(Sm::method4(), toArray(v4_1)), -1_i32, 0_i32);
             _v2.set(Some(x))
         }
         getValue(_v2.get().clone())
@@ -266,7 +278,7 @@ pub mod Sm {
             move |v: string| Sm::closure36(v0_1, v)
         })
     }
-    pub fn closure38(v0_1: i64, v1_1: string) -> string {
+    pub fn method5(v0_1: i64, v1_1: string) -> string {
         let v2_1: i64 = length(v1_1.clone()) as i64;
         if v2_1 <= v0_1 {
             v1_1.clone()
@@ -287,8 +299,11 @@ pub mod Sm {
                     Some((v2_1 - 1_i64) as i32),
                 ),
             ]));
-            join(Sm::method3(), toArray(v20_1))
+            join(Sm::method4(), toArray(v20_1))
         }
+    }
+    pub fn closure38(v0_1: i64, v1_1: string) -> string {
+        Sm::method5(v0_1, v1_1)
     }
     pub fn closure37(unitVar: (), v0_1: i64) -> Func1<string, string> {
         Func1::new({
@@ -304,7 +319,7 @@ pub mod Sm {
         }
         getValue(_v1.get().clone())
     }
-    pub fn method4(v0_1: i32, v1_1: LrcPtr<Sm::Mut0>) -> bool {
+    pub fn method6(v0_1: i32, v1_1: LrcPtr<Sm::Mut0>) -> bool {
         v1_1.l0.get().clone() < v0_1
     }
     pub fn closure41(v0_1: string, v1_1: Array<string>) -> string {
@@ -313,7 +328,7 @@ pub mod Sm {
             l0: MutCell::new(0_i32),
             l1: MutCell::new(string("")),
         });
-        while Sm::method4(v2_1, v4_1.clone()) {
+        while Sm::method6(v2_1, v4_1.clone()) {
             let v6_1: i32 = v4_1.l0.get().clone();
             let v9_1: string = append(
                 append(
@@ -335,11 +350,11 @@ pub mod Sm {
             move |v: Array<string>| Sm::closure41(v0_1.clone(), v)
         })
     }
-    pub fn method5(v0_1: string) -> string {
+    pub fn method7(v0_1: string) -> string {
         v0_1
     }
     pub fn closure43(v0_1: string, v1_1: LrcPtr<dyn IEnumerable_1<string>>) -> string {
-        join(Sm::method5(v0_1), toArray(v1_1))
+        join(Sm::method7(v0_1), toArray(v1_1))
     }
     pub fn closure42(
         unitVar: (),
@@ -359,7 +374,7 @@ pub mod Sm {
             move |v: Array<string>| Sm::closure45(v0_1.clone(), v)
         })
     }
-    pub fn method6(v0_1: i32, v1_1: LrcPtr<Sm::Mut1>) -> bool {
+    pub fn method8(v0_1: i32, v1_1: LrcPtr<Sm::Mut1>) -> bool {
         v1_1.l0.get().clone() < v0_1
     }
     pub fn closure46(unitVar: (), v0_1: string) -> Array<char> {
@@ -368,7 +383,7 @@ pub mod Sm {
         let v3_1: LrcPtr<Sm::Mut1> = LrcPtr::new(Sm::Mut1 {
             l0: MutCell::new(0_i32),
         });
-        while Sm::method6(v1_1, v3_1.clone()) {
+        while Sm::method8(v1_1, v3_1.clone()) {
             let v5_1: i32 = v3_1.l0.get().clone();
             let v6_1: char = getCharAt(v0_1.clone(), v5_1);
             v2_1.get_mut()[v5_1 as usize] = v6_1;

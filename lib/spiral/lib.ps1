@@ -104,21 +104,25 @@ function CopyTarget {
                 $text = $text `
                     -replace "defaultOf\(\)", "defaultOf::<std::sync::Arc<dyn IDisposable>>()"
             }
-            if ($name -in @("file_system") -and !$Runtime) {
-                $text = $text `
-                    -replace "defaultOf\(\),", "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
-            }
-            if ($name -in @("common", "file_system") -and ($Runtime -in @("wasm", "contract"))) {
+            if ($name -in @("file_system") -and $Runtime -eq "contract") {
                 $text = $text `
                     -replace "defaultOf\(\),", "defaultOf::<std::rc::Rc<dyn IDisposable>>(),"
             }
-            if ($name -eq "file_system" -and ($Runtime -in @("wasm", "contract"))) {
+            if ($name -in @("file_system") -and $Runtime -ne "contract") {
+                $text = $text `
+                    -replace "defaultOf\(\),", "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
+            }
+            if ($name -in @("common") -and $Runtime -in @("wasm", "contract")) {
+                $text = $text `
+                    -replace "defaultOf\(\),", "defaultOf::<std::rc::Rc<dyn IDisposable>>(),"
+            }
+            if ($name -eq "file_system" -and $Runtime -in @("wasm", "contract")) {
                 $text = $text `
                     -replace "chrono::Utc", "()" `
                     -replace "chrono::Local", "()" `
                     -replace "chrono::DateTime", "Option" `
                     -replace "use fable_library_rust::DateTime_::DateTime;", "type DateTime = ();" `
-                    -replace "use fable_library_rust::Guid_::new_guid;", "type Guid = ();" `
+                    -replace "use fable_library_rust::Guid_::Guid;", "type Guid = ();" `
             }
         }
 

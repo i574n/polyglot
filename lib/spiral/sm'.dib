@@ -37,11 +37,16 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::FromUtf8Error\")>]\n#endif\ntype std_string_FromUtf8Error = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>]\n#endif\ntype std_string_String = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::slice::Windows<$0>\")>]\n#endif\ntype std_slice_Windows<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Regex\")>]\n#endif\ntype regex_Regex = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Captures\")>]\n#endif\ntype regex_Captures = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::CaptureMatches\")>]\n#endif\ntype regex_CaptureMatches = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Error\")>]\n#endif\ntype regex_Error = class end"
 
 #!spiral
 
 inl types () =
     rust.types ()
+    mapm.types ()
     types ()
 
 #!spiral
@@ -182,8 +187,26 @@ inl trim_start (trim_chars : array_base char) (input : string) : string =
 
 #!spiral
 
-inl length forall dim. (input : string) : dim =
-    $"!input |> String.length"
+inl length forall dim {int}. (input : string) : dim =
+    input |> sm.length
+
+#!markdown
+
+## length'
+
+#!spiral
+
+inl length' forall dim. (input : string) : dim =
+    input |> $'String.length'
+
+#!markdown
+
+## is_empty
+
+#!spiral
+
+inl is_empty (input : string) : bool =
+    length input = 0i32
 
 #!markdown
 
@@ -200,15 +223,15 @@ inl slice from to s : string =
 
 #!spiral
 
-inl range (start : am'.range _) (end : am'.range _) s =
+inl range forall t. (start : am'.range t) (end : am'.range t) s =
     inl start, end =
         match start, end with
         | Start start, End fn =>
-            start, s |> length |> fn
+            start, s |> length' |> fn
         | End start_fn, End end_fn =>
-            inl len = s |> length
+            inl len = s |> length'
             start_fn len, end_fn len
-    s |> slice start end
+    s |> slice (start |> u64) (end |> u64)
 
 #!markdown
 
@@ -262,7 +285,8 @@ inl include_str (path : string) : rust.ref' str =
 #!spiral
 
 inl as_str (s : string) : rust.ref' str =
-    !\\(s, $'"fable_library_rust::String_::LrcStr::as_str(&$0)"')
+    // !\\(s, $'"fable_library_rust::String_::LrcStr::as_str(&$0)"')
+    !\\(s, $'"&*$0"')
 
 #!markdown
 
@@ -298,7 +322,6 @@ inl cow_to_std_string (str : rust.cow str) : std_string =
 #!spiral
 
 inl to_std_string (s : string) : std_string =
-    inl s = join s
     s |> as_str |> ref_to_std_string
 
 #!markdown
@@ -308,8 +331,7 @@ inl to_std_string (s : string) : std_string =
 #!spiral
 
 inl as_str_std (s : std_string) : rust.ref' str =
-    inl s = join s
-    !\($'"!s.as_str()"')
+    !\\(s, $'"$0.as_str()"')
 
 #!markdown
 
@@ -318,7 +340,7 @@ inl as_str_std (s : std_string) : rust.ref' str =
 #!spiral
 
 inl into_boxed_str (s : std_string) : rust.box str =
-    !\($'"!s.into_boxed_str()"')
+    !\\(s, $'"$0.into_boxed_str()"')
 
 #!markdown
 
@@ -401,12 +423,21 @@ instance to_string result t u = fun x =>
 
 #!markdown
 
-## format''
+## format_debug
 
 #!spiral
 
-inl format'' (format : string) : std_string =
-    !\($'@@$"format\!(" + !format + ")"')
+inl format_debug x : string =
+    $'$"%A{!x}"'
+
+#!markdown
+
+## format_custom'
+
+#!spiral
+
+inl format_custom' format x : std_string =
+    !\\(x, $'"format\!(\\\"" + !format + "\\\", $0)"')
 
 #!markdown
 
@@ -417,17 +448,8 @@ inl format'' (format : string) : std_string =
 inl format' x : std_string =
     run_target function
         | Rust _ => fun () =>
-            !\\(x, $'@@$"format\!(""{{}}"", $0)"')
+            !\\(x, $'"format\!(\\\"{}\\\", $0)"')
         | _ => fun () => null ()
-
-#!markdown
-
-## format_debug
-
-#!spiral
-
-inl format_debug x : string =
-    $'$"%A{!x}"'
 
 #!markdown
 
@@ -436,7 +458,10 @@ inl format_debug x : string =
 #!spiral
 
 inl format_debug' x : std_string =
-    !\\(x, $'@@$"format\!(""{{:?}}"", $0)"')
+    run_target function
+        | Rust _ => fun () =>
+            !\\(x, $'"format\!(\\\"{:?}\\\", $0)"')
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -445,7 +470,31 @@ inl format_debug' x : std_string =
 #!spiral
 
 inl format_pretty' x : std_string =
-    !\\(x, $'@@$"format\!(""{{:#?}}"", $0)"')
+    run_target function
+        | Rust _ => fun () =>
+            !\\(x, $'"format\!(\\\"{:#?}\\\", $0)"')
+        | _ => fun () => null ()
+
+#!markdown
+
+## format_hex'
+
+#!spiral
+
+inl format_hex' x : std_string =
+    run_target function
+        | Rust _ => fun () =>
+            !\\(x, $'"format\!(\\\"{:x}\\\", $0)"')
+        | _ => fun () => null ()
+
+#!markdown
+
+## format''
+
+#!spiral
+
+inl format'' (format : string) : std_string =
+    !\($'@@$"format\!(" + !format + ")"')
 
 #!markdown
 
@@ -478,6 +527,61 @@ inl replace (old_value : string) (new_value : string) (s : string) : string =
 
 #!markdown
 
+## regex
+
+#!spiral
+
+nominal regex = $'regex_Regex'
+
+#!markdown
+
+## regex_error
+
+#!spiral
+
+nominal regex_error = $'regex_Error'
+
+#!markdown
+
+## new_regex
+
+#!spiral
+
+inl new_regex (pattern : string) : resultm.result' regex regex_error =
+    run_target function
+        | Rust (Native) => fun () =>
+            inl pattern = join pattern
+            !\\(pattern, $'$"regex::Regex::new(&$0)"')
+        | _ => fun () => null ()
+
+#!markdown
+
+## captures
+
+#!spiral
+
+nominal regex_captures = $'regex_Captures'
+
+#!markdown
+
+## regex_capture_matches
+
+#!spiral
+
+nominal regex_capture_matches = $'regex_CaptureMatches'
+
+#!markdown
+
+## regex_captures
+
+#!spiral
+
+inl regex_captures (s : string) (regex : regex) : am'.vec (mapm.hash_map (rust.ref' str) (rust.ref' str)) =
+    inl s = join s
+    !\\(regex, $'$"$0.captures_iter(&*!s).map(|caps| $0.capture_names().map(|x| x.and_then(|n| Some((n, caps.name(n)?.as_str())))).flatten().collect()).collect()"')
+
+#!markdown
+
 ## replace_regex
 
 #!spiral
@@ -485,13 +589,13 @@ inl replace (old_value : string) (new_value : string) (s : string) : string =
 inl replace_regex (pattern : string) (replacement : string) (s : string) : string =
     run_target function
         | Fsharp (Native) => fun () =>
+            inl replacement = join replacement
             $"System.Text.RegularExpressions.Regex.Replace (!s, !pattern, !replacement)"
         | Rust (Native) => fun () =>
-            open rust_operators
-            inl pattern = join pattern
             inl s = join s
             inl replacement = join replacement
-            !\\((pattern, s, replacement), $'$"regex::Regex::new(&$0).unwrap().replace_all(&$1, &*$2)"')
+            inl regex = pattern |> new_regex |> resultm.unwrap'
+            !\\((regex, s, replacement), $'$"$0.replace_all(&$1, &*$2)"')
             |> cow_to_std_string
             |> from_std_string
         | _ => fun () => null ()
@@ -507,7 +611,7 @@ inl replace_regex (pattern : string) (replacement : string) (s : string) : strin
 #!spiral
 
 //// test
-///! rust
+///! rust -d regex
 
 types ()
 " 123"
@@ -543,7 +647,7 @@ inl deserialize forall t. (json : string) : resultm.result' t std_string =
 
 inl borsh_deserialize forall t. (data : array_base u8) : resultm.result' t std_string =
     inl data = data |> am'.as_slice
-    !\($'"let mut !data = !data"')
+    (!\($'"true; let mut !data = !data"') : bool) |> ignore
     inl result = !\($'"borsh::BorshDeserialize::deserialize(&mut !data)"')
     result
     |> resultm.map_error' fun (x : borsh_io_error) => x |> format'
@@ -739,7 +843,7 @@ inl ellipsis (max : i32) (s : string) =
 
 #!spiral
 
-inl ellipsis_end (max : i64) (s : string) =
+let ellipsis_end (max : i64) (s : string) =
     inl len = sm.length s
     if len <= max
     then s

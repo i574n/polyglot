@@ -40,8 +40,8 @@ inl (<>.) forall t. (a : t) (b : t) : bool =
 inl (||>) (arg1, arg2) fn =
     arg2 |> fn arg1
 
-/// ## (/@)
-inl (/@) a b =
+/// ## (++)
+inl (++) a b =
     b |> append a
 
 /// ## target_runtime
@@ -65,30 +65,63 @@ inl defaultof forall t. () : t =
 inl emit forall t. (x : t) : t =
     $'!x '
 
+/// ## emit_unit
+inl emit_unit forall t. (x : t) : () =
+    $'!x '
+
+/// ## ref
+nominal ref t = $'`t ref'
+
+/// ## new_ref
+inl new_ref forall t. (x : t) : ref t =
+    $'ref !x '
+
+/// ## ref_value
+inl ref_value forall t. (x : ref t) : t =
+    $'!x.Value'
+
+/// ## ref_set_value
+inl ref_set_value forall t. (value : t) (ref : ref t) : ref t =
+    $'!ref.Value <- !value '
+    ref
+
 /// ## unbox
 inl unbox forall t u. (x : t) : u =
     $"!x |> unbox<`u>"
 
+/// ## capture
+inl capture forall t. (fn : () -> t) : t =
+    inl result = dyn true
+    $'let mutable _!result : `t option = None '
+    $'('
+    $'(fun () ->'
+    $'(fun () ->'
+    fn () |> emit_unit
+    $')'
+    $"|> fun x -> x ()"
+    $') () )'
+    $"|> fun x -> _!result <- Some x"
+    $'_!result.Value '
+
 /// ## run_target
 inl run_target forall t. (fn : target -> (() -> t)) : t =
-    inl close x =
-        $'!x\n#endif'
-    inl result : optionm'.option' t = optionm'.none' ()
-    ($"true in let mutable _!result = !result" : bool) |> ignore
-    $"\n#if FABLE_COMPILER || WASM || CONTRACT"
-    $"\n#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT"
-    fn (Rust Native) () |> close
-    $"\n#if FABLE_COMPILER_RUST && WASM"
-    fn (Rust Wasm) () |> close
-    $"\n#if FABLE_COMPILER_RUST && CONTRACT"
-    fn (Rust Contract) () |> close
-    $"\n#if FABLE_COMPILER_TYPESCRIPT"
-    fn (TypeScript Native) () |> close
-    $"\n#if FABLE_COMPILER_PYTHON"
-    fn (Python Native) () |> close
-    $"\n#else"
-    fn (Fsharp Native) () |> close
-    $"|> fun x -> _!result <- Some x"
+    inl result = dyn true
+    $'let mutable _!result : `t option = None '
+    $'\n#if FABLE_COMPILER || WASM || CONTRACT'
+    $'\n#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT'
+    fn (Rust Native) () |> emit_unit
+    $'#endif\n#if FABLE_COMPILER_RUST && WASM'
+    fn (Rust Wasm) () |> emit_unit
+    $'#endif\n#if FABLE_COMPILER_RUST && CONTRACT'
+    fn (Rust Contract) () |> emit_unit
+    $'#endif\n#if FABLE_COMPILER_TYPESCRIPT'
+    fn (TypeScript Native) () |> emit_unit
+    $'#endif\n#if FABLE_COMPILER_PYTHON'
+    fn (Python Native) () |> emit_unit
+    $'#endif\n#else'
+    fn (Fsharp Native) () |> emit_unit
+    $'#endif'
+    $'|> fun x -> _!result <- Some x'
     $'_!result.Value'
 
 /// ## exn
@@ -134,6 +167,14 @@ inl fix_condition x a b =
 /// ## any
 nominal any = $"obj"
 
+/// ## u8
+inl u8 forall t. (x : t) : u8 =
+    $"uint8 !x"
+
+/// ## u64
+inl u64 forall t. (x : t) : u64 =
+    $"uint64 !x"
+
 /// ## i32
 inl i32 forall t. (x : t) : i32 =
     $"int32 !x"
@@ -153,12 +194,16 @@ inl f64 forall t. (x : t) : f64 =
 /// ## unativeint
 nominal unativeint = $"unativeint"
 
-inl unativeint forall t {int}. (n : t) : unativeint =
+inl unativeint forall t. (n : t) : unativeint =
     $"unativeint !n"
 
 /// ## convert_i32
 inl convert_i32 forall t. (x : t) : i32 =
     x |> $'System.Convert.ToInt32'
+
+/// ## convert
+inl convert forall t u. (x : t) : u =
+    $'`u !x '
 
 /// ## pair
 type pair a b = $"(`a * `b)"
@@ -170,20 +215,21 @@ inl pair x y =
 inl null forall t. () : t =
     $"null |> unbox<`t>"
 
-/// ## get_entry_assembly_name
-inl get_entry_assembly_name () : string =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'
-        | Rust (Native) => fun () =>
-            open rust_operators
-            !\($'"env\!(\\"CARGO_PKG_NAME\\").into()"')
-        | target => fun () => null ()
-
 /// ## use
 inl use forall t. (x : t) : t =
     $"use !x = !x " : ()
     $'!x '
+
+/// ## pair
+
+/// ## new_pair
+inl new_pair forall a b. (a : a) (b : b) : pair a b =
+    $"!a, !b"
+
+/// ## from_pair
+inl from_pair forall a b. (pair : pair a b) : a * b =
+    $"let (a, b) = !pair"
+    $"a", $"b"
 
 /// ## get_union_fields
 inl get_union_fields forall union_type. () : list union_type =

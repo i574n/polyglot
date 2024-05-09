@@ -7,7 +7,7 @@ from fable_modules.fable_library.types import (int64, Array)
 from fable_modules.fable_library.util import (IEnumerable_1, IDisposable)
 from ......lib.spiral.common import (US0 as US0_4, Mut0 as Mut0_3, Mut1 as Mut1_3, Mut2 as Mut2_3, Mut3 as Mut3_3, State_trace_state as State_trace_state_3)
 from ......lib.spiral.crypto import hash_text
-from ......lib.spiral.file_system import (get_repository_root, get_source_directory, find_parent, normalize_path, new_file_uri, create_temp_directory, create_temp_directory_name, US0 as US0_2, Mut0 as Mut0_1, Mut1 as Mut1_1, Mut2 as Mut2_1, Mut3 as Mut3_1, State_trace_state as State_trace_state_1)
+from ......lib.spiral.file_system import (get_workspace_root, get_source_directory, find_parent, normalize_path, new_file_uri, create_temp_directory, create_temp_directory_name, US0 as US0_2, Mut0 as Mut0_1, Mut1 as Mut1_1, Mut2 as Mut2_1, Mut3 as Mut3_1, State_trace_state as State_trace_state_1)
 from ......lib.spiral.networking import (US0 as US0_1, Mut0, Mut1, Mut2, Mut3, State_trace_state)
 from ......lib.spiral.runtime import (US0 as US0_3, Mut0 as Mut0_2, Mut1 as Mut1_2, Mut2 as Mut2_2, Mut3 as Mut3_2, State_trace_state as State_trace_state_2)
 from ......lib.spiral.sm import (concat, contains, ellipsis, ellipsis_end, ends_with, format_exception, replace, replace_regex, slice, split, split_string, starts_with, substring, to_lower, trim, trim_start, trim_end)
@@ -89,8 +89,8 @@ def SpiralSm_trim_end(x: Array[str]) -> Callable[[str], str]:
     return trim_end(x)
 
 
-def SpiralFileSystem_get_repository_root(__unit: None=None) -> str:
-    return get_repository_root()
+def SpiralFileSystem_get_workspace_root(__unit: None=None) -> str:
+    return get_workspace_root()
 
 
 def SpiralFileSystem_get_source_directory(__unit: None=None) -> str:

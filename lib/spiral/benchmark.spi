@@ -1,6 +1,4 @@
 /// ## benchmark (Polyglot)
-inl (/@) x = listm'.(/@) x
-
 inl gc_collect () =
     run_target function
         | Fsharp _ => fun () => $"System.GC.Collect ()"

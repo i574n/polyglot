@@ -9341,14 +9341,14 @@ assert_eq / actual: US0_0 2 / expected: US0_0 2
     <span class="n">inl</span> <span class="n">ar</span> <span class="o">=</span> <span class="n">a</span> <span class="p">;[]</span> <span class="o">|&gt;</span> <span class="n">mut</span>
     <span class="p">((),</span> <span class="n">seq</span><span class="p">)</span>
     <span class="o">||&gt;</span> <span class="n">fold</span> <span class="n">fun</span> <span class="n">_</span> <span class="n">x</span> <span class="o">=&gt;</span>
-        <span class="n">ar</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">ar</span> <span class="o">/@</span> <span class="n">a</span> <span class="p">;[</span><span class="n">x</span><span class="p">]</span>
+        <span class="n">ar</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">ar</span> <span class="o">++</span> <span class="n">a</span> <span class="p">;[</span><span class="n">x</span><span class="p">]</span>
     <span class="o">*</span><span class="n">ar</span>
 
 <span class="n">inl</span> <span class="n">to_array_</span> <span class="n">seq</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">ar</span> <span class="o">=</span> <span class="n">a</span> <span class="p">;[]</span> <span class="o">|&gt;</span> <span class="n">mut</span>
     <span class="p">((),</span> <span class="n">seq</span><span class="p">)</span>
     <span class="o">||&gt;</span> <span class="n">fold_</span> <span class="n">fun</span> <span class="n">_</span> <span class="n">x</span> <span class="o">=&gt;</span>
-        <span class="n">ar</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">ar</span> <span class="o">/@</span> <span class="n">a</span> <span class="p">;[</span><span class="n">x</span><span class="p">]</span>
+        <span class="n">ar</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">ar</span> <span class="o">++</span> <span class="n">a</span> <span class="p">;[</span><span class="n">x</span><span class="p">]</span>
     <span class="o">*</span><span class="n">ar</span>
 </pre></div>
 </div>

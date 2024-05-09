@@ -344,3 +344,53 @@ async {
 |> Async.RunSynchronously
 |> Result.mapError _.Message
 |> _assertEqual (Error ("A task was canceled."))
+
+#!markdown
+
+## retryAsync
+
+#!fsharp
+
+let inline retryAsync retries fn =
+    let rec loop retry lastError = async {
+        try
+            return!
+                if retry <= retries
+                then fn |> map Ok
+                else lastError |> Error |> init
+        with ex ->
+            trace Debug (fun () -> $"Async.retryAsync / retry: {retry}/{retries} / ex: {ex |> SpiralSm.format_exception}") _locals
+            do! Async.Sleep 1
+            return! loop (retry + 1) (ex |> SpiralSm.format_exception)
+    }
+    loop 1 "Async.retryAsync / invalid retries / retries: {retries}"
+
+#!fsharp
+
+//// test
+
+let retry_fn_test = ref 0
+async {
+    retry_fn_test.Value <- retry_fn_test.Value + 1
+    return retry_fn_test.Value
+}
+|> retryAsync 3
+|> Async.RunSynchronously
+|> _assertEqual (Ok 1)
+
+#!fsharp
+
+//// test
+
+let retry_fn_test = ref 0
+async {
+    return
+        if retry_fn_test.Value >= 2
+        then retry_fn_test.Value
+        else
+            retry_fn_test.Value <- retry_fn_test.Value + 1
+            failwith "test"
+}
+|> retryAsync 3
+|> Async.RunSynchronously
+|> _assertEqual (Ok 2)

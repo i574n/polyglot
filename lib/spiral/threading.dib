@@ -220,8 +220,7 @@ nominal arc t = $"std_sync_Arc<`t>"
 #!spiral
 
 inl new_arc forall t. (x : t) : arc t =
-    inl x = join x
-    !\($'"std::sync::Arc::new(!x)"')
+    !\\(x, $'"std::sync::Arc::new($0)"')
 
 #!markdown
 
@@ -238,7 +237,6 @@ nominal mutex t = $"std_sync_Mutex<`t>"
 #!spiral
 
 inl new_mutex forall t. (x : t) : mutex t =
-    // inl x = join x
     !\\(x, $'"std::sync::Mutex::new($0)"')
 
 #!markdown
@@ -284,6 +282,15 @@ nominal poison_error t = $"std_sync_PoisonError<`t>"
 
 inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard t) (poison_error (mutex_guard t)) =
     !\\(x, $'"$0.lock()"')
+
+#!markdown
+
+## mutex_guard_value
+
+#!spiral
+
+inl mutex_guard_value forall t. (x : mutex_guard t) : rust.ref' t =
+    !\\(x, $'"&$0"')
 
 #!markdown
 

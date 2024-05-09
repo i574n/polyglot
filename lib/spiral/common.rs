@@ -12,6 +12,7 @@ pub mod Common {
     use fable_library_rust::NativeArray_::new_empty;
     use fable_library_rust::Native_::interface_cast;
     use fable_library_rust::Native_::on_startup;
+    use fable_library_rust::Native_::refCell;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
     use fable_library_rust::Native_::Lrc;
@@ -20,7 +21,6 @@ pub mod Common {
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::Option_::defaultValue;
     use fable_library_rust::Option_::getValue;
-    use fable_library_rust::Option_::map;
     use fable_library_rust::Seq_::ofList;
     use fable_library_rust::String_::padLeft;
     use fable_library_rust::String_::sprintf;
@@ -259,40 +259,8 @@ pub mod Common {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
-    pub enum US4 {
-        US4_0(i64),
-        US4_1,
-    }
-    impl Common::US4 {
-        pub fn get_IsUS4_0(this_: &MutCell<Common::US4>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS4_1(this_: &MutCell<Common::US4>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
-    impl core::fmt::Display for Common::US4 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
     pub fn closure1(unitVar: (), v0_1: string) {
         ();
-    }
-    pub fn method0(v0_1: Option<i64>) -> Option<i64> {
-        v0_1
-    }
-    pub fn method1(v0_1: Option<i64>) -> Option<i64> {
-        v0_1
     }
     pub fn closure0(
         unitVar: (),
@@ -317,13 +285,45 @@ pub mod Common {
             l0: MutCell::new(Func1::new(move |v: string| Common::closure1((), v))),
         });
         let _v6: MutCell<Option<Option<i64>>> = MutCell::new(None::<Option<i64>>);
+        let _v7: MutCell<Option<string>> = MutCell::new(None::<string>);
+        let v10: Result<std::string::String, std::env::VarError> =
+            std::env::var(&*string("AUTOMATION"));
+        let v12: bool = true;
+        let _result = v10.map(|x| {
+            //;
+            let v14: std::string::String = x;
+            let v16: string = fable_library_rust::String_::fromString(v14);
+            let v18: bool = true;
+            v16
+        });
+        let v20: Result<string, std::env::VarError> = _result;
         {
-            let x: Option<i64> = Common::method1(None::<i64>);
-            _v6.set(Some(x))
+            let x: string = v20.unwrap_or(string(""));
+            _v7.set(Some(x))
         }
-        (v1_1, v0_1, v3_1, getValue(_v6.get().clone()), v5)
+        {
+            let v38: Common::US1 = if getValue(_v7.get().clone()) == string("True") {
+                Common::US1::US1_0({
+                    let _arg: DateTime = DateTime::now();
+                    _arg.ticks()
+                })
+            } else {
+                Common::US1::US1_1
+            };
+            {
+                let x_1: Option<i64> = match &v38 {
+                    Common::US1::US1_0(v38_0_0) => Some(match &v38 {
+                        Common::US1::US1_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    }),
+                    _ => None::<i64>,
+                };
+                _v6.set(Some(x_1))
+            }
+            (v1_1, v0_1, v3_1, getValue(_v6.get().clone()), v5)
+        }
     }
-    pub fn method2(v0_1: Func0<()>) -> Func0<()> {
+    pub fn method0(v0_1: Func0<()>) -> Func0<()> {
         v0_1
     }
     pub fn closure2(unitVar: (), v0_1: Func0<()>) -> LrcPtr<dyn IDisposable> {
@@ -366,13 +366,7 @@ pub mod Common {
             Common::closure10((), ())
         )
     }
-    pub fn closure12(unitVar: (), v0_1: i64) -> Common::US4 {
-        Common::US4::US4_0(v0_1)
-    }
-    pub fn method5() -> Func1<i64, Common::US4> {
-        Func1::new(move |v: i64| Common::closure12((), v))
-    }
-    pub fn method6() -> string {
+    pub fn method3() -> string {
         string("")
     }
     pub fn closure11(
@@ -392,86 +386,100 @@ pub mod Common {
                 Option<i64>,
                 LrcPtr<Common::Mut3>,
             ) = getValue(Common::State::trace_state().get().clone());
+            let v7: Option<i64> = patternInput.3.clone();
             let _v9: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let v13: Common::US4 = defaultValue(
-                Common::US4::US4_1,
-                map(Common::method5(), patternInput.3.clone()),
-            );
-            let v31: DateTime = match &v13 {
-                Common::US4::US4_0(v13_0_0) => {
-                    let v19: TimeSpan = TimeSpan::new_ticks(
-                        {
-                            let _arg: DateTime = DateTime::now();
-                            _arg.ticks()
-                        } - match &v13 {
-                            Common::US4::US4_0(x) => x.clone(),
-                            _ => unreachable!(),
-                        },
-                    );
-                    DateTime::new_ymdhms_milli(
-                        1_i32,
-                        1_i32,
-                        1_i32,
-                        v19.hours(),
-                        v19.minutes(),
-                        v19.seconds(),
-                        v19.milliseconds(),
-                    )
-                }
-                _ => DateTime::now(),
-            };
+            let _v10: LrcPtr<MutCell<Option<Common::US1>>> = refCell(None::<Common::US1>);
             {
-                let x: string = v31.toString(string("hh:mm:ss"));
-                _v9.set(Some(x))
+                let x_2: Option<Common::US1> = match &v7 {
+                    None => None::<Common::US1>,
+                    Some(v7_0_0) => {
+                        let x: i64 = v7_0_0.clone();
+                        Some((Func0::new({
+                            let x = x.clone();
+                            move || Common::US1::US1_0(x)
+                        }))())
+                    }
+                };
+                _v10.set(x_2)
             }
             {
-                let v61: string = getValue(_v9.get().clone());
-                let v62: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v74: string = padLeft(
-                    toLower(match &v0_1 {
-                        Common::US0::US0_1 => string("Debug"),
-                        Common::US0::US0_2 => string("Info"),
-                        Common::US0::US0_0 => string("Verbose"),
-                        Common::US0::US0_3 => string("Warning"),
-                        _ => string("Critical"),
-                    }),
-                    7_i32,
-                    ' ',
-                );
-                let _v75: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v91: &str = match &v0_1 {
-                    Common::US0::US0_1 => inline_colorization::color_bright_blue,
-                    Common::US0::US0_2 => inline_colorization::color_bright_green,
-                    Common::US0::US0_0 => inline_colorization::color_bright_black,
-                    Common::US0::US0_3 => inline_colorization::color_bright_yellow,
-                    _ => inline_colorization::color_bright_red,
+                let v15: Common::US1 = defaultValue(Common::US1::US1_1, _v10.get().clone());
+                let v33: DateTime = match &v15 {
+                    Common::US1::US1_0(v15_0_0) => {
+                        let v21: TimeSpan = TimeSpan::new_ticks(
+                            {
+                                let _arg: DateTime = DateTime::now();
+                                _arg.ticks()
+                            } - match &v15 {
+                                Common::US1::US1_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            },
+                        );
+                        DateTime::new_ymdhms_milli(
+                            1_i32,
+                            1_i32,
+                            1_i32,
+                            v21.hours(),
+                            v21.minutes(),
+                            v21.seconds(),
+                            v21.milliseconds(),
+                        )
+                    }
+                    _ => DateTime::now(),
                 };
-                let v93: &str = fable_library_rust::String_::LrcStr::as_str(&v74);
-                let v95: &str = inline_colorization::color_reset;
-                let v97: string = string("format!(\"{v91}{v93}{v95}\")");
-                let v98: std::string::String = format!("{v91}{v93}{v95}");
                 {
-                    let x_1: string = fable_library_rust::String_::fromString(v98);
-                    _v75.set(Some(x_1))
+                    let x_3: string = v33.toString(string("hh:mm:ss"));
+                    _v9.set(Some(x_3))
                 }
-                trimEndChars(
-                    trimStartChars(
-                        sprintf!(
-                            "{} {} #{} {} / {}",
-                            v61,
-                            getValue(_v75.get().clone()),
-                            v62,
-                            v1_1(),
-                            v2_1()
+                {
+                    let v66: string = getValue(_v9.get().clone());
+                    let v67: i64 = (patternInput.0.clone()).l0.get().clone();
+                    let v79: string = padLeft(
+                        toLower(match &v0_1 {
+                            Common::US0::US0_1 => string("Debug"),
+                            Common::US0::US0_2 => string("Info"),
+                            Common::US0::US0_0 => string("Verbose"),
+                            Common::US0::US0_3 => string("Warning"),
+                            _ => string("Critical"),
+                        }),
+                        7_i32,
+                        ' ',
+                    );
+                    let _v80: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v95: &str = match &v0_1 {
+                        Common::US0::US0_1 => inline_colorization::color_bright_blue,
+                        Common::US0::US0_2 => inline_colorization::color_bright_green,
+                        Common::US0::US0_0 => inline_colorization::color_bright_black,
+                        Common::US0::US0_3 => inline_colorization::color_yellow,
+                        _ => inline_colorization::color_bright_red,
+                    };
+                    let v97: &str = &*v79;
+                    let v99: &str = inline_colorization::color_reset;
+                    let v101: string = string("format!(\"{v95}{v97}{v99}\")");
+                    let v102: std::string::String = format!("{v95}{v97}{v99}");
+                    {
+                        let x_4: string = fable_library_rust::String_::fromString(v102);
+                        _v80.set(Some(x_4))
+                    }
+                    trimEndChars(
+                        trimStartChars(
+                            sprintf!(
+                                "{} {} #{} {} / {}",
+                                v66,
+                                getValue(_v80.get().clone()),
+                                v67,
+                                v1_1(),
+                                v2_1()
+                            ),
+                            new_empty::<char>(),
                         ),
-                        new_empty::<char>(),
-                    ),
-                    new_array(&[' ', '/']),
-                )
+                        new_array(&[' ', '/']),
+                    )
+                }
             }
         }
     }
-    pub fn method7(v0_1: Common::US0, v1_1: Func0<string>) {
+    pub fn method4(v0_1: Common::US0, v1_1: Func0<string>) {
         fn v2_1() -> (
             LrcPtr<Common::Mut0>,
             LrcPtr<Common::Mut1>,
@@ -542,8 +550,8 @@ pub mod Common {
             }
         }
     }
-    pub fn method4(v0_1: Common::US0, v1_1: Func0<string>, v2_1: Func0<string>) {
-        Common::method7(
+    pub fn method2(v0_1: Common::US0, v1_1: Func0<string>, v2_1: Func0<string>) {
+        Common::method4(
             v0_1.clone(),
             Func0::new({
                 let v0_1 = v0_1.clone();
@@ -554,7 +562,7 @@ pub mod Common {
         );
     }
     pub fn closure7(v0_1: i32, v1_1: LrcPtr<Exception>) -> Common::US3 {
-        Common::method4(
+        Common::method2(
             Common::US0::US0_3,
             Func0::new(move || Common::closure8((), ())),
             Func0::new({
@@ -570,12 +578,12 @@ pub mod Common {
             Common::US3::US3_1
         }
     }
-    pub fn method3(v0_1: i32, v1_1: Func0<()>, v2_1: i32) -> Common::US2 {
+    pub fn method1(v0_1: i32, v1_1: Func0<()>, v2_1: i32) -> Common::US2 {
         let v0_1: MutCell<i32> = MutCell::new(v0_1);
         let v1_1 = MutCell::new(v1_1.clone());
         let v2_1: MutCell<i32> = MutCell::new(v2_1);
-        '_method3: loop {
-            break '_method3 ({
+        '_method1: loop {
+            break '_method1 ({
                 let v6: Common::US3 = try_catch(
                     || {
                         Common::closure6(
@@ -602,14 +610,14 @@ pub mod Common {
                         v0_1.set(v0_1_temp);
                         v1_1.set(v1_1_temp);
                         v2_1.set(v2_1_temp);
-                        continue '_method3;
+                        continue '_method1;
                     }
                 }
             });
         }
     }
     pub fn closure4(v0_1: i32, v1_1: Func0<()>) -> Option<()> {
-        let v3_1: Common::US2 = Common::method3(v0_1, v1_1, 0_i32);
+        let v3_1: Common::US2 = Common::method1(v0_1, v1_1, 0_i32);
         match &v3_1 {
             Common::US2::US2_0 => Some(()),
             _ => None::<()>,
@@ -621,22 +629,22 @@ pub mod Common {
             move |v: Func0<()>| Common::closure4(v0_1, v)
         })
     }
-    pub fn method8(v0_1: Func0<()>) -> Func0<()> {
+    pub fn method5(v0_1: Func0<()>) -> Func0<()> {
         v0_1
     }
-    pub fn closure14(v0_1: LrcPtr<Lazy_1<()>>, unitVar: ()) {
+    pub fn closure13(v0_1: LrcPtr<Lazy_1<()>>, unitVar: ()) {
         v0_1.get_Value();
         ()
     }
-    pub fn closure13(unitVar: (), v0_1: Func0<()>) -> Func0<()> {
-        let v1_1 = Common::method8(v0_1);
+    pub fn closure12(unitVar: (), v0_1: Func0<()>) -> Func0<()> {
+        let v1_1 = Common::method5(v0_1);
         let v2_1: LrcPtr<Lazy_1<()>> = LazyExtensions::Create(Func0::new({
             let v1_1 = v1_1.clone();
             move || v1_1()
         }));
         Func0::new({
             let v2_1 = v2_1.clone();
-            move || Common::closure14(v2_1.clone(), ())
+            move || Common::closure13(v2_1.clone(), ())
         })
     }
     pub fn v0() -> Func0<(
@@ -679,7 +687,7 @@ pub mod Common {
     }
     pub fn v3() -> Func1<Func0<()>, Func0<()>> {
         static v3: OnceInit<Func1<Func0<()>, Func0<()>>> = OnceInit::new();
-        v3.get_or_init(|| Func1::new(move |v: Func0<()>| Common::closure13((), v)))
+        v3.get_or_init(|| Func1::new(move |v: Func0<()>| Common::closure12((), v)))
             .clone()
     }
     pub fn memoize(x: Func0<()>) -> Func0<()> {

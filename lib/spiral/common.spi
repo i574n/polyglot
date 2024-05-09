@@ -2,6 +2,7 @@
 
 /// ## types
 inl types () =
+    env.types ()
     rust.types ()
     sm'.types ()
 
@@ -17,17 +18,6 @@ inl upcast forall t u. (x : t) : u =
 /// ## downcast
 inl downcast forall t u. (x : t) : u =
     $'!x :?> `u '
-
-/// ## pair
-
-/// ## new_pair
-inl new_pair forall a b. (a : a) (b : b) : pair a b =
-    $"!a, !b"
-
-/// ## from_pair
-inl from_pair forall a b. (pair : pair a b) : a * b =
-    $"let (a, b) = !pair"
-    $"a", $"b"
 
 /// ## memoize
 nominal lazy t = $'Lazy<`t>'
@@ -68,10 +58,6 @@ inl join_body_unit body d x =
 /// ## nameof
 inl nameof x : string =
     $"nameof !x"
-
-/// ## get_environment_variable
-inl get_environment_variable (var : string) : string =
-    $"System.Environment.GetEnvironmentVariable !var"
 
 /// ## disposable
 nominal disposable t = $"System.IDisposable"
@@ -115,8 +101,7 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
             fun ex =>
                 trace Warning
                     fun () => "retry_fn"
-                    fun () =>
-                        $'$"retry: {!retry} / ex: %A{!ex} / {!_locals ()}"'
+                    fun () => $'$"retry: {!retry} / ex: %A{!ex} / {!_locals ()}"'
                 sleep 1
                 None
         |> function

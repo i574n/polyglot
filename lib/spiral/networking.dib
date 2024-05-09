@@ -30,9 +30,10 @@ inl types () =
 #!spiral
 
 inl types () =
+    types ()
+    env.types ()
     rust.types ()
     sm'.types ()
-    types ()
 
 #!markdown
 

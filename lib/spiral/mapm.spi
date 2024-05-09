@@ -2,8 +2,10 @@ open rust_operators
 
 inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::HashMap<$0, $1>\")>]\n#endif\ntype std_collections_HashMap<'K, 'V> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::BTreeMap<$0, $1>\")>]\n#endif\ntype std_collections_BTreeMap<'K, 'V> = class end"
 
 nominal hash_map k v = $"std_collections_HashMap<`k, `v>"
+nominal b_tree_map k v = $"std_collections_BTreeMap<`k, `v>"
 nominal map k v = $"Map<`k, `v>"
 
 inl item forall k v. (k : k) (map : map k v) : v =
@@ -14,6 +16,9 @@ inl of_array forall k v. (array : a _ (k * v)) : map k v =
 
 inl new_hash_map () : hash_map _ _ =
     !\($'"std::collections::HashMap::new()"')
+
+inl new_b_tree_map () : b_tree_map _ _ =
+    !\($'"std::collections::BTreeMap::new()"')
 
 inl get forall k v. (key : k) (map : hash_map k v) : optionm'.option' v =
     inl key = join key
@@ -27,8 +32,17 @@ inl insert forall k v. (key : k) (value : v) (map : hash_map k v) : optionm'.opt
 inl map forall k v w. (fn : v -> w) (map : hash_map k v) : hash_map k w =
     !\\((map, fn), $'"$0.into_iter().map(|(k, v)| (k, $1(v))).collect()"')
 
+inl hash_map_count forall k v. (map : hash_map k v) : i32 =
+    !\\(map, $'"$0.count()"')
+
 inl from_vec forall k v. (vec : am'.vec (k * v)) : hash_map k v =
     !\($'"std::collections::HashMap::from_iter(!vec)"')
+
+inl from_vec_pairs forall k v. (vec : am'.vec (pair k v)) : hash_map k v =
+    !\($'"std::collections::HashMap::from_iter(!vec.iter().map(|x| x.as_ref()).map(|&(ref k, ref v)| (k.clone(), v.clone())))"')
+
+inl b_tree_map_from_vec_pairs forall k v. (vec : am'.vec (pair k v)) : b_tree_map k v =
+    !\($'"std::collections::BTreeMap::from_iter(!vec.iter().map(|x| x.as_ref()).map(|&(ref k, ref v)| (k.clone(), v.clone())))"')
 
 inl from_array forall k v. (array : array_base (k * v)) : hash_map k v =
     array |> am'.to_vec |> from_vec

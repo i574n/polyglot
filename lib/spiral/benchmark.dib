@@ -14,10 +14,6 @@ open testing
 
 #!spiral
 
-inl (/@) x = listm'.(/@) x
-
-#!spiral
-
 inl gc_collect () =
     run_target function
         | Fsharp _ => fun () => $"System.GC.Collect ()"

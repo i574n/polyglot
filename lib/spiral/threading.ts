@@ -70,24 +70,16 @@ export function US0__get_IsUS0_1(this$: FSharpRef<US0_$union>, unitArg: void): b
     }
 }
 
-export function closure1(unitVar: void, v0_1: any): US0_$union {
-    return US0_US0_0(v0_1);
-}
-
-export function method0(): ((arg0: any) => US0_$union) {
-    return (v: any): US0_$union => closure1(undefined, v);
-}
-
-export function closure2(v0_1: any, unitVar: void): void {
+export function closure1(v0_1: any, unitVar: void): void {
     let _v1: Option<void> = undefined;
     defaultOf();
     _v1 = some(undefined);
     value_1(_v1);
 }
 
-export function method1(v0_1: any): (() => void) {
+export function method0(v0_1: any): (() => void) {
     return (): void => {
-        closure2(v0_1, undefined);
+        closure1(v0_1, undefined);
     };
 }
 

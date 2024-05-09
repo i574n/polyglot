@@ -7,7 +7,7 @@ from fable_modules.fable_library.async_builder import (Async, CancellationToken)
 from fable_modules.fable_library.list import (cons, FSharpList, of_array, to_array, fold_back, empty)
 from fable_modules.fable_library.long import op_addition
 from fable_modules.fable_library.map import (find, of_seq)
-from fable_modules.fable_library.option import (some, value as value_2, default_arg, map)
+from fable_modules.fable_library.option import (some, value as value_2, default_arg)
 from fable_modules.fable_library.reflection import (TypeInfo, int64_type, record_type, bool_type, union_type, string_type, unit_type, lambda_type, int32_type, char_type, tuple_type, class_type, option_type, array_type, uint8_type)
 from fable_modules.fable_library.string_ import (replace, to_text, interpolate, pad_left, trim_end, trim_start)
 from fable_modules.fable_library.types import (int64, Record, Array, Union, FSharpRef, uint8)
@@ -15,7 +15,7 @@ from fable_modules.fable_library.util import (create_atom, to_enumerable, compar
 
 State_trace_state: tuple[Mut0, Mut1, Mut2, int64 | None, Mut3] | None = create_atom(None)
 
-def _expr118() -> TypeInfo:
+def _expr112() -> TypeInfo:
     return record_type("Runtime.Mut0", [], Mut0, lambda: [("l0", int64_type)])
 
 
@@ -23,9 +23,9 @@ def _expr118() -> TypeInfo:
 class Mut0(Record):
     l0: int64
 
-Mut0_reflection = _expr118
+Mut0_reflection = _expr112
 
-def _expr119() -> TypeInfo:
+def _expr113() -> TypeInfo:
     return record_type("Runtime.Mut1", [], Mut1, lambda: [("l0", bool_type)])
 
 
@@ -33,9 +33,9 @@ def _expr119() -> TypeInfo:
 class Mut1(Record):
     l0: bool
 
-Mut1_reflection = _expr119
+Mut1_reflection = _expr113
 
-def _expr120() -> TypeInfo:
+def _expr114() -> TypeInfo:
     return union_type("Runtime.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -51,9 +51,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr120
+US0_reflection = _expr114
 
-def _expr121() -> TypeInfo:
+def _expr115() -> TypeInfo:
     return record_type("Runtime.Mut2", [], Mut2, lambda: [("l0", US0_reflection())])
 
 
@@ -61,9 +61,9 @@ def _expr121() -> TypeInfo:
 class Mut2(Record):
     l0: US0
 
-Mut2_reflection = _expr121
+Mut2_reflection = _expr115
 
-def _expr122() -> TypeInfo:
+def _expr116() -> TypeInfo:
     return record_type("Runtime.Mut3", [], Mut3, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -71,9 +71,9 @@ def _expr122() -> TypeInfo:
 class Mut3(Record):
     l0: Callable[[str], None]
 
-Mut3_reflection = _expr122
+Mut3_reflection = _expr116
 
-def _expr123() -> TypeInfo:
+def _expr117() -> TypeInfo:
     return union_type("Runtime.US1", [], US1, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -89,9 +89,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr123
+US1_reflection = _expr117
 
-def _expr124() -> TypeInfo:
+def _expr118() -> TypeInfo:
     return record_type("Runtime.Mut4", [], Mut4, lambda: [("l0", int32_type)])
 
 
@@ -99,9 +99,9 @@ def _expr124() -> TypeInfo:
 class Mut4(Record):
     l0: int
 
-Mut4_reflection = _expr124
+Mut4_reflection = _expr118
 
-def _expr125() -> TypeInfo:
+def _expr119() -> TypeInfo:
     return union_type("Runtime.UH0", [], UH0, lambda: [[], [("Item1", char_type), ("Item2", UH0_reflection())]])
 
 
@@ -116,9 +116,9 @@ class UH0(Union):
         return ["UH0_0", "UH0_1"]
 
 
-UH0_reflection = _expr125
+UH0_reflection = _expr119
 
-def _expr126() -> TypeInfo:
+def _expr120() -> TypeInfo:
     return union_type("Runtime.US3", [], US3, lambda: [[], []])
 
 
@@ -134,9 +134,9 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr126
+US3_reflection = _expr120
 
-def _expr127() -> TypeInfo:
+def _expr121() -> TypeInfo:
     return union_type("Runtime.US2", [], US2, lambda: [[], [("f1_0", US3_reflection())], []])
 
 
@@ -152,9 +152,9 @@ class US2(Union):
         return ["US2_0", "US2_1", "US2_2"]
 
 
-US2_reflection = _expr127
+US2_reflection = _expr121
 
-def _expr128() -> TypeInfo:
+def _expr122() -> TypeInfo:
     return union_type("Runtime.US4", [], US4, lambda: [[("f0_0", string_type)], []])
 
 
@@ -170,9 +170,9 @@ class US4(Union):
         return ["US4_0", "US4_1"]
 
 
-US4_reflection = _expr128
+US4_reflection = _expr122
 
-def _expr129() -> TypeInfo:
+def _expr123() -> TypeInfo:
     return union_type("Runtime.US5", [], US5, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -188,9 +188,9 @@ class US5(Union):
         return ["US5_0", "US5_1"]
 
 
-US5_reflection = _expr129
+US5_reflection = _expr123
 
-def _expr130() -> TypeInfo:
+def _expr124() -> TypeInfo:
     return union_type("Runtime.US6", [], US6, lambda: [[("f0_0", lambda_type(tuple_type(bool_type, string_type, int32_type), class_type("Microsoft.FSharp.Control.FSharpAsync`1", [unit_type])))], []])
 
 
@@ -206,9 +206,9 @@ class US6(Union):
         return ["US6_0", "US6_1"]
 
 
-US6_reflection = _expr130
+US6_reflection = _expr124
 
-def _expr131() -> TypeInfo:
+def _expr125() -> TypeInfo:
     return union_type("Runtime.US7", [], US7, lambda: [[("f0_0", class_type("System.Threading.CancellationToken"))], []])
 
 
@@ -224,9 +224,9 @@ class US7(Union):
         return ["US7_0", "US7_1"]
 
 
-US7_reflection = _expr131
+US7_reflection = _expr125
 
-def _expr132() -> TypeInfo:
+def _expr126() -> TypeInfo:
     return record_type("Runtime.Heap0", [], Heap0, lambda: [("l0", option_type(class_type("System.Threading.CancellationToken"))), ("l1", string_type), ("l2", array_type(tuple_type(string_type, string_type))), ("l3", option_type(lambda_type(tuple_type(bool_type, string_type, int32_type), class_type("Microsoft.FSharp.Control.FSharpAsync`1", [unit_type])))), ("l4", option_type(lambda_type(class_type("Runtime.std_sync_Arc`1", [class_type("Runtime.std_sync_Mutex`1", [class_type("Runtime.std_process_ChildStdin")])]), unit_type))), ("l5", option_type(string_type))])
 
 
@@ -239,9 +239,9 @@ class Heap0(Record):
     l4: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None
     l5: str | None
 
-Heap0_reflection = _expr132
+Heap0_reflection = _expr126
 
-def _expr133() -> TypeInfo:
+def _expr127() -> TypeInfo:
     return union_type("Runtime.UH1", [], UH1, lambda: [[], [("Item1", string_type), ("Item2", UH1_reflection())]])
 
 
@@ -256,9 +256,9 @@ class UH1(Union):
         return ["UH1_0", "UH1_1"]
 
 
-UH1_reflection = _expr133
+UH1_reflection = _expr127
 
-def _expr134() -> TypeInfo:
+def _expr128() -> TypeInfo:
     return union_type("Runtime.US8", [], US8, lambda: [[], [("f1_0", char_type)], [("f2_0", uint8_type)]])
 
 
@@ -274,7 +274,7 @@ class US8(Union):
         return ["US8_0", "US8_1", "US8_2"]
 
 
-US8_reflection = _expr134
+US8_reflection = _expr128
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:
@@ -562,11 +562,11 @@ def closure3(unit_var: None, unit_var_1: None) -> str:
 
 
 
-def method2(__unit: None=None) -> tuple[str, str]:
+def method3(__unit: None=None) -> tuple[str, str]:
     return ("", "")
 
 
-def method3(v0_1: int, v1_1: Mut4) -> bool:
+def method4(v0_1: int, v1_1: Mut4) -> bool:
     return v1_1.l0 < v0_1
 
 
@@ -575,20 +575,20 @@ def closure6(v0_1: str, v1_1: UH0) -> UH0:
 
 
 def closure5(unit_var: None, v0_1: str) -> Callable[[UH0], UH0]:
-    def _arrow135(v: UH0, unit_var: Any=unit_var, v0_1: Any=v0_1) -> UH0:
+    def _arrow129(v: UH0, unit_var: Any=unit_var, v0_1: Any=v0_1) -> UH0:
         return closure6(v0_1, v)
 
-    return _arrow135
+    return _arrow129
 
 
-def method4(__unit: None=None) -> Callable[[str, UH0], UH0]:
-    def _arrow136(v: str) -> Callable[[UH0], UH0]:
+def method5(__unit: None=None) -> Callable[[str, UH0], UH0]:
+    def _arrow130(v: str) -> Callable[[UH0], UH0]:
         return closure5(None, v)
 
-    return _arrow136
+    return _arrow130
 
 
-def method5(v0_1_mut: str, v1_1_mut: str, v2_1_mut: UH0, v3_1_mut: US2) -> tuple[str, str]:
+def method6(v0_1_mut: str, v1_1_mut: str, v2_1_mut: UH0, v3_1_mut: US2) -> tuple[str, str]:
     while True:
         (v0_1, v1_1, v2_1, v3_1) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut)
         if v2_1.tag == 1:
@@ -777,65 +777,43 @@ def method5(v0_1_mut: str, v1_1_mut: str, v2_1_mut: UH0, v3_1_mut: US2) -> tuple
         break
 
 
-def closure7(unit_var: None, v0_1: str) -> US4:
-    return US4(0, v0_1)
-
-
-def method6(__unit: None=None) -> Callable[[str], US4]:
-    def _arrow137(v: str) -> US4:
-        return closure7(None, v)
-
-    return _arrow137
-
-
-def closure8(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: str | None, unit_var: None) -> str:
+def closure7(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: str | None, unit_var: None) -> str:
     return to_text(interpolate("execute_with_options_async / options: %A%P()", [(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1)]))
 
 
-def closure9(unit_var: None, unit_var_1: None) -> str:
+def closure8(unit_var: None, unit_var_1: None) -> str:
     return ""
 
 
 def method7(__unit: None=None) -> Callable[[], str]:
-    def _arrow138(__unit: None=None) -> str:
-        return closure9(None, None)
+    def _arrow131(__unit: None=None) -> str:
+        return closure8(None, None)
 
-    return _arrow138
-
-
-def closure11(unit_var: None, v0_1: int64) -> US5:
-    return US5(0, v0_1)
+    return _arrow131
 
 
-def method9(__unit: None=None) -> Callable[[int64], US5]:
-    def _arrow139(v: int64) -> US5:
-        return closure11(None, v)
-
-    return _arrow139
-
-
-def method10(__unit: None=None) -> str:
+def method9(__unit: None=None) -> str:
     return ""
 
 
-def closure10(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_var: None) -> str:
+def closure9(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_var: None) -> str:
     if State_trace_state() is None:
         State_trace_state(closure0(None, None))
 
     pattern_input: tuple[Mut0, Mut1, Mut2, int64 | None, Mut3] = value_2(State_trace_state())
     _v9: str | None = None
-    x: str = method10()
+    x: str = method9()
     _v9 = x
-    v61: str = value_2(_v9)
-    v62: int64 = pattern_input[0].l0
-    v72: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
-    _v75: str | None = None
-    x_1: str = pad_left(v72.lower(), 7, " ")
-    _v75 = x_1
-    return trim_end(trim_start(((((((((("" + v61) + " ") + value_2(_v75)) + " #") + str(v62)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
+    v66: str = value_2(_v9)
+    v67: int64 = pattern_input[0].l0
+    v77: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
+    _v80: str | None = None
+    x_1: str = pad_left(v77.lower(), 7, " ")
+    _v80 = x_1
+    return trim_end(trim_start(((((((((("" + v66) + " ") + value_2(_v80)) + " #") + str(v67)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
 
 
-def method11(v0_1: US0, v1_1: Callable[[], str]) -> None:
+def method10(v0_1: US0, v1_1: Callable[[], str]) -> None:
     def v2_1(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
         return closure0(None, None)
 
@@ -849,17 +827,17 @@ def method11(v0_1: US0, v1_1: Callable[[], str]) -> None:
 
     pattern_input_1: tuple[Mut0, Mut1, Mut2, int64 | None, Mut3] = value_2(State_trace_state())
     v13: US0 = pattern_input_1[2].l0
-    class ObjectExpr140:
+    class ObjectExpr132:
         @property
         def Compare(self) -> Callable[[US0, US0], int]:
             return compare
 
-    class ObjectExpr141:
+    class ObjectExpr133:
         @property
         def Compare(self) -> Callable[[US0, US0], int]:
             return compare
 
-    if False if (pattern_input_1[1].l0 == False) else (find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr140())) >= find(v13, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr141()))):
+    if False if (pattern_input_1[1].l0 == False) else (find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr132())) >= find(v13, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr133()))):
         v21: int64 = op_addition(v3_1.l0, int64(1))
         v3_1.l0 = v21
         v22: str = ("" + v1_1(None)) + ""
@@ -873,104 +851,84 @@ def method11(v0_1: US0, v1_1: Callable[[], str]) -> None:
 
 def method8(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str]) -> None:
     def v3_1(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> str:
-        return closure10(v0_1, v1_1, v2_1, None)
+        return closure9(v0_1, v1_1, v2_1, None)
 
-    method11(v0_1, v3_1)
-
-
-def closure13(unit_var: None, v0_1: Callable[[tuple[bool, str, int]], Async[None]]) -> US6:
-    return US6(0, v0_1)
+    method10(v0_1, v3_1)
 
 
-def method12(__unit: None=None) -> Callable[[Callable[[tuple[bool, str, int]], Async[None]]], US6]:
-    def _arrow142(v: Callable[[tuple[bool, str, int]], Async[None]]) -> US6:
-        return closure13(None, v)
-
-    return _arrow142
-
-
-def closure14(v0_1: str, unit_var: None) -> str:
+def closure11(v0_1: str, unit_var: None) -> str:
     return ("> " + v0_1) + ""
+
+
+def closure10(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: str | None, v6_1: None, v7: Any, v8: None) -> None:
+    _v9: Async[None] | None = None
+    _v9 = None
+    v36: Async[None] = value_2(_v9)
+    _v37: None | None = None
+    _v37 = some(None)
+    value_2(_v37)
 
 
 def closure12(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: str | None, v6_1: None, v7: Any, v8: None) -> None:
     _v9: Async[None] | None = None
     _v9 = None
-    v34: Async[None] = value_2(_v9)
-    _v35: None | None = None
-    _v35 = some(None)
-    value_2(_v35)
+    v37: Async[None] = value_2(_v9)
+    _v38: None | None = None
+    _v38 = some(None)
+    value_2(_v38)
 
 
-def closure15(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: str | None, v6_1: None, v7: Any, v8: None) -> None:
-    _v9: Async[None] | None = None
-    _v9 = None
-    v35: Async[None] = value_2(_v9)
-    _v36: None | None = None
-    _v36 = some(None)
-    value_2(_v36)
-
-
-def closure16(unit_var: None, v0_1: CancellationToken) -> US7:
-    return US7(0, v0_1)
-
-
-def method13(__unit: None=None) -> Callable[[CancellationToken], US7]:
-    def _arrow143(v: CancellationToken) -> US7:
-        return closure16(None, v)
-
-    return _arrow143
-
-
-def closure17(v0_1: None, unit_var: None) -> None:
+def closure13(v0_1: None, unit_var: None) -> None:
     _v1: bool | None = None
     _v1 = None
     if value_2(_v1) == False:
-        _v11: None | None = None
-        _v11 = some(None)
-        value_2(_v11)
+        _v10: None | None = None
+        _v10 = some(None)
+        value_2(_v10)
 
 
 
-def closure18(v0_1: Any, unit_var: None) -> str:
+def closure14(v0_1: Any, unit_var: None) -> str:
     return to_text(interpolate("execute_with_options_async / WaitForExitAsync / ex: %A%P()", [v0_1]))
 
 
-def method14(__unit: None=None) -> str:
+def method11(__unit: None=None) -> str:
     return "\n"
 
 
-def closure19(v0_1: int, v1_1: str, unit_var: None) -> str:
+def closure15(v0_1: int, v1_1: str, unit_var: None) -> str:
     return ((("execute_with_options_async / exit_code: " + str(v0_1)) + " / output.Length: ") + str(len(v1_1))) + ""
 
 
+def method2(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None=None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None=None, v5_1: str | None=None) -> Async[tuple[int, str]]:
+    _v6: Async[tuple[int, str]] | None = None
+    _v6 = None
+    return value_2(_v6)
+
+
 def closure4(unit_var: None, v0_1: str) -> Async[tuple[int, str]]:
-    _v6: Async[tuple[int, str]] | None = None
-    _v6 = None
-    return value_2(_v6)
+    return method2(None, v0_1, [], None, None, None)
 
 
-def closure20(unit_var: None, _arg: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]) -> Async[tuple[int, str]]:
-    _v6: Async[tuple[int, str]] | None = None
-    _v6 = None
-    return value_2(_v6)
+def closure16(unit_var: None, _arg: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]) -> Async[tuple[int, str]]:
+    return method2(_arg[0], _arg[1], _arg[2], _arg[3], _arg[4], _arg[5])
 
 
-def closure21(unit_var: None, v0_1: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]:
+def closure17(unit_var: None, v0_1: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]:
     v8: Heap0 = v0_1(Heap0(None, "", [], None, None, None))
     return (v8.l0, v8.l1, v8.l2, v8.l3, v8.l4, v8.l5)
 
 
-def method18(v0_1: UH1, v1_1: UH1) -> UH1:
+def method15(v0_1: UH1, v1_1: UH1) -> UH1:
     if v0_1.tag == 0:
         return v1_1
 
     else: 
-        return UH1(1, v0_1.fields[0], method18(v0_1.fields[1], v1_1))
+        return UH1(1, v0_1.fields[0], method15(v0_1.fields[1], v1_1))
 
 
 
-def method17(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tuple[UH1, str]:
+def method14(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tuple[UH1, str]:
     while True:
         (v0_1, v1_1, v2_1, v3_1) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut)
         if v3_1.tag == 1:
@@ -981,32 +939,32 @@ def method17(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
                     v107: str = v2_1.fields[0]
                     if "\"" == v107:
                         if equals(v3_1, US8(1, "\\")):
-                            return method16(v0_1, v1_1, v108, v3_1, US8(0))
+                            return method13(v0_1, v1_1, v108, v3_1, US8(0))
 
                         elif "\\" == v105:
                             if not equals(v3_1, US8(2, uint8(0))):
-                                return method16(("" + v0_1) + "\"", v1_1, v108, v3_1, US8(1, "\""))
+                                return method13(("" + v0_1) + "\"", v1_1, v108, v3_1, US8(1, "\""))
 
                             elif equals(v3_1, US8(1, "\\")):
-                                return method16(("" + v0_1) + "\"", v1_1, v108, v3_1, US8(1, "\""))
+                                return method13(("" + v0_1) + "\"", v1_1, v108, v3_1, US8(1, "\""))
 
                             else: 
-                                return method16(v0_1, v1_1, v108, v3_1, US8(0))
+                                return method13(v0_1, v1_1, v108, v3_1, US8(0))
 
 
                         elif "\\" == v107:
-                            return method16(v0_1, v1_1, v108, v3_1, US8(2, uint8(1)))
+                            return method13(v0_1, v1_1, v108, v3_1, US8(2, uint8(1)))
 
                         elif equals(v3_1, US8(2, uint8(0))):
-                            return method16(("" + v0_1) + "\"", v1_1, v108, v3_1, US8(1, "\""))
+                            return method13(("" + v0_1) + "\"", v1_1, v108, v3_1, US8(1, "\""))
 
                         else: 
-                            return method16("", method18(v1_1, UH1(1, v0_1, UH1(0))), v108, v3_1, US8(0))
+                            return method13("", method15(v1_1, UH1(1, v0_1, UH1(0))), v108, v3_1, US8(0))
 
 
                     elif "\\" == v105:
                         if "\\" == v107:
-                            return method16(v0_1, v1_1, v108, v3_1, US8(2, uint8(1)))
+                            return method13(v0_1, v1_1, v108, v3_1, US8(2, uint8(1)))
 
                         elif " " == v107:
                             v0_1_mut = ("" + v0_1) + " "
@@ -1024,7 +982,7 @@ def method17(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
 
 
                     elif "\\" == v107:
-                        return method16(v0_1, v1_1, v108, v3_1, US8(2, uint8(1)))
+                        return method13(v0_1, v1_1, v108, v3_1, US8(2, uint8(1)))
 
                     elif " " == v107:
                         v0_1_mut = ("" + v0_1) + " "
@@ -1042,10 +1000,10 @@ def method17(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
 
 
                 elif "\\" == v105:
-                    return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
                 else: 
-                    return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
             elif "\\" == v105:
@@ -1054,17 +1012,17 @@ def method17(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
                     v219: str = v2_1.fields[0]
                     if "\"" == v219:
                         if not equals(v3_1, US8(2, uint8(0))):
-                            return method16(("" + v0_1) + "\"", v1_1, v220, v3_1, US8(1, "\""))
+                            return method13(("" + v0_1) + "\"", v1_1, v220, v3_1, US8(1, "\""))
 
                         elif equals(v3_1, US8(1, "\\")):
-                            return method16(("" + v0_1) + "\"", v1_1, v220, v3_1, US8(1, "\""))
+                            return method13(("" + v0_1) + "\"", v1_1, v220, v3_1, US8(1, "\""))
 
                         else: 
-                            return method16(v0_1, v1_1, v220, v3_1, US8(0))
+                            return method13(v0_1, v1_1, v220, v3_1, US8(0))
 
 
                     elif "\\" == v219:
-                        return method16(v0_1, v1_1, v220, v3_1, US8(2, uint8(1)))
+                        return method13(v0_1, v1_1, v220, v3_1, US8(2, uint8(1)))
 
                     elif " " == v219:
                         v0_1_mut = ("" + v0_1) + " "
@@ -1082,21 +1040,21 @@ def method17(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
 
 
                 else: 
-                    return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
             elif v2_1.tag == 1:
                 v270: UH0 = v2_1.fields[1]
                 v269: str = v2_1.fields[0]
                 if "\\" == v269:
-                    return method16(v0_1, v1_1, v270, v3_1, US8(2, uint8(1)))
+                    return method13(v0_1, v1_1, v270, v3_1, US8(2, uint8(1)))
 
                 elif "\"" == v269:
                     if equals(v3_1, US8(2, uint8(0))):
-                        return method16(("" + v0_1) + "\"", v1_1, v270, v3_1, US8(1, "\""))
+                        return method13(("" + v0_1) + "\"", v1_1, v270, v3_1, US8(1, "\""))
 
                     else: 
-                        return method16("", method18(v1_1, UH1(1, v0_1, UH1(0))), v270, v3_1, US8(0))
+                        return method13("", method15(v1_1, UH1(1, v0_1, UH1(0))), v270, v3_1, US8(0))
 
 
                 elif " " == v269:
@@ -1115,7 +1073,7 @@ def method17(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
 
 
             else: 
-                return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
         elif v3_1.tag == 0:
@@ -1123,14 +1081,14 @@ def method17(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
                 v5_1: UH0 = v2_1.fields[1]
                 v4_1: str = v2_1.fields[0]
                 if "\"" == v4_1:
-                    return method16("", v1_1, v5_1, v3_1, US8(1, "\""))
+                    return method13("", v1_1, v5_1, v3_1, US8(1, "\""))
 
                 elif "\\" == v4_1:
-                    return method16(v0_1, v1_1, v5_1, v3_1, US8(2, uint8(0)))
+                    return method13(v0_1, v1_1, v5_1, v3_1, US8(2, uint8(0)))
 
                 elif " " == v4_1:
                     v0_1_mut = ""
-                    v1_1_mut = v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0)))
+                    v1_1_mut = v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0)))
                     v2_1_mut = v5_1
                     v3_1_mut = v3_1
                     continue
@@ -1144,7 +1102,7 @@ def method17(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
 
 
             else: 
-                return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
         else: 
@@ -1153,7 +1111,7 @@ def method17(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
                 v46: UH0 = v2_1.fields[1]
                 v45: str = v2_1.fields[0]
                 if "\\" == v45:
-                    return method16(v0_1, v1_1, v46, v3_1, US8(1, "\\"))
+                    return method13(v0_1, v1_1, v46, v3_1, US8(1, "\\"))
 
                 elif "\"" == v45:
                     if True if (v3_1.tag == 0) else False:
@@ -1164,7 +1122,7 @@ def method17(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
                         continue
 
                     else: 
-                        return method16(("" + v0_1) + "\"", v1_1, v46, v3_1, US8(2, v44))
+                        return method13(("" + v0_1) + "\"", v1_1, v46, v3_1, US8(2, v44))
 
 
                 elif " " == v45:
@@ -1199,16 +1157,16 @@ def method17(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
 
 
             elif uint8(1) == v44:
-                return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
             else: 
-                return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
         break
 
 
-def method16(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mut: US8) -> tuple[UH1, str]:
+def method13(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mut: US8) -> tuple[UH1, str]:
     while True:
         (v0_1, v1_1, v2_1, v3_1, v4_1) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut, v4_1_mut)
         if v4_1.tag == 1:
@@ -1270,7 +1228,7 @@ def method16(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
 
                         else: 
                             v0_1_mut = ""
-                            v1_1_mut = method18(v1_1, UH1(1, v0_1, UH1(0)))
+                            v1_1_mut = method15(v1_1, UH1(1, v0_1, UH1(0)))
                             v2_1_mut = v109
                             v3_1_mut = v4_1
                             v4_1_mut = US8(0)
@@ -1287,10 +1245,10 @@ def method16(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
                             continue
 
                         elif " " == v108:
-                            return method17(("" + v0_1) + " ", v1_1, v109, v4_1)
+                            return method14(("" + v0_1) + " ", v1_1, v109, v4_1)
 
                         else: 
-                            return method17(((("" + v0_1) + "") + str(v108)) + "", v1_1, v109, v4_1)
+                            return method14(((("" + v0_1) + "") + str(v108)) + "", v1_1, v109, v4_1)
 
 
                     elif "\\" == v108:
@@ -1302,17 +1260,17 @@ def method16(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
                         continue
 
                     elif " " == v108:
-                        return method17(("" + v0_1) + " ", v1_1, v109, v4_1)
+                        return method14(("" + v0_1) + " ", v1_1, v109, v4_1)
 
                     else: 
-                        return method17(((("" + v0_1) + "") + str(v108)) + "", v1_1, v109, v4_1)
+                        return method14(((("" + v0_1) + "") + str(v108)) + "", v1_1, v109, v4_1)
 
 
                 elif "\\" == v106:
-                    return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
                 else: 
-                    return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
             elif "\\" == v106:
@@ -1354,14 +1312,14 @@ def method16(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
                         continue
 
                     elif " " == v220:
-                        return method17(("" + v0_1) + " ", v1_1, v221, v4_1)
+                        return method14(("" + v0_1) + " ", v1_1, v221, v4_1)
 
                     else: 
-                        return method17(((("" + v0_1) + "") + str(v220)) + "", v1_1, v221, v4_1)
+                        return method14(((("" + v0_1) + "") + str(v220)) + "", v1_1, v221, v4_1)
 
 
                 else: 
-                    return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
             elif v2_1.tag == 1:
@@ -1386,7 +1344,7 @@ def method16(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
 
                     else: 
                         v0_1_mut = ""
-                        v1_1_mut = method18(v1_1, UH1(1, v0_1, UH1(0)))
+                        v1_1_mut = method15(v1_1, UH1(1, v0_1, UH1(0)))
                         v2_1_mut = v271
                         v3_1_mut = v4_1
                         v4_1_mut = US8(0)
@@ -1394,14 +1352,14 @@ def method16(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
 
 
                 elif " " == v270:
-                    return method17(("" + v0_1) + " ", v1_1, v271, v4_1)
+                    return method14(("" + v0_1) + " ", v1_1, v271, v4_1)
 
                 else: 
-                    return method17(((("" + v0_1) + "") + str(v270)) + "", v1_1, v271, v4_1)
+                    return method14(((("" + v0_1) + "") + str(v270)) + "", v1_1, v271, v4_1)
 
 
             else: 
-                return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
         elif v4_1.tag == 0:
@@ -1425,14 +1383,14 @@ def method16(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
                     continue
 
                 elif " " == v5_1:
-                    return method17("", v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v6_1, v4_1)
+                    return method14("", v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v6_1, v4_1)
 
                 else: 
-                    return method17(((("" + v0_1) + "") + str(v5_1)) + "", v1_1, v6_1, v4_1)
+                    return method14(((("" + v0_1) + "") + str(v5_1)) + "", v1_1, v6_1, v4_1)
 
 
             else: 
-                return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
         else: 
@@ -1450,7 +1408,7 @@ def method16(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
 
                 elif "\"" == v46:
                     if True if (v3_1.tag == 0) else False:
-                        return method17(v0_1, v1_1, v47, v4_1)
+                        return method14(v0_1, v1_1, v47, v4_1)
 
                     else: 
                         v0_1_mut = ("" + v0_1) + "\""
@@ -1462,7 +1420,7 @@ def method16(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
 
 
                 elif " " == v46:
-                    return method17(("" + v0_1) + " ", v1_1, v47, v4_1)
+                    return method14(("" + v0_1) + " ", v1_1, v47, v4_1)
 
                 elif uint8(1) == v45:
                     if not equals(v3_1, v4_1):
@@ -1474,121 +1432,134 @@ def method16(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
                         continue
 
                     else: 
-                        return method17(((("" + v0_1) + "") + str(v46)) + "", v1_1, v47, v4_1)
+                        return method14(((("" + v0_1) + "") + str(v46)) + "", v1_1, v47, v4_1)
 
 
                 else: 
-                    return method17(((("" + v0_1) + "") + str(v46)) + "", v1_1, v47, v4_1)
+                    return method14(((("" + v0_1) + "") + str(v46)) + "", v1_1, v47, v4_1)
 
 
             elif uint8(1) == v45:
-                return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
             else: 
-                return (v1_1 if (v0_1 == "") else method18(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+                return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
         break
 
 
-def method19(v0_1: UH1, v1_1: FSharpList[str]) -> FSharpList[str]:
+def method16(v0_1: UH1, v1_1: FSharpList[str]) -> FSharpList[str]:
     if v0_1.tag == 0:
         return v1_1
 
     else: 
-        return cons(v0_1.fields[0], method19(v0_1.fields[1], v1_1))
+        return cons(v0_1.fields[0], method16(v0_1.fields[1], v1_1))
 
 
 
-def method15(v0_1: str) -> Array[str]:
+def method12(v0_1: str) -> Array[str]:
     _v0: (str | None) | None = None
     _v0 = some(v0_1)
-    v6_1: str | None = value_2(_v0)
-    v9: US4 = default_arg(map(method6(), v6_1), US4(1))
-    v12: str = v9.fields[0] if (v9.tag == 0) else ""
-    v13: int = len(v12) or 0
-    v14: Array[str] = fill([0] * v13, 0, v13, "")
-    v15: Mut4 = Mut4(0)
-    while method3(v13, v15):
-        v17: int = v15.l0 or 0
-        v18: str = v12[v17]
-        v14[v17] = v18
-        v19: int = (v17 + 1) or 0
-        v15.l0 = v19 or 0
-    v21: FSharpList[str] = of_array(v14)
-    return to_array(method19(method16("", UH1(0), fold_back(uncurry2(method4()), v21, UH0(0)), US8(0), US8(0))[0], empty()))
+    v5_1: str | None = value_2(_v0)
+    _v6: FSharpRef[US4 | None] = FSharpRef(None)
+    x_3: US4 | None
+    if v5_1 is None:
+        x_3 = None
+
+    else: 
+        x_1: str = v5_1
+        def x_2(__unit: None=None, v0_1: Any=v0_1) -> US4:
+            return US4(0, x_1)
+
+        x_3 = x_2(None)
+
+    _v6.contents = x_3
+    v11: US4 = default_arg(_v6.contents, US4(1))
+    v14: str = v11.fields[0] if (v11.tag == 0) else ""
+    v15: int = len(v14) or 0
+    v16: Array[str] = fill([0] * v15, 0, v15, "")
+    v17: Mut4 = Mut4(0)
+    while method4(v15, v17):
+        v19: int = v17.l0 or 0
+        v20: str = v14[v19]
+        v16[v19] = v20
+        v21: int = (v19 + 1) or 0
+        v17.l0 = v21 or 0
+    v23: FSharpList[str] = of_array(v16)
+    return to_array(method16(method13("", UH1(0), fold_back(uncurry2(method5()), v23, UH0(0)), US8(0), US8(0))[0], empty()))
 
 
-def closure22(unit_var: None, v0_1: str) -> Array[str]:
-    return method15(v0_1)
+def closure18(unit_var: None, v0_1: str) -> Array[str]:
+    return method12(v0_1)
 
 
-def _arrow144(__unit: None=None) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
+def _arrow134(__unit: None=None) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
     return closure0(None, None)
 
 
-v0: Callable[[], tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]] = _arrow144
+v0: Callable[[], tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]] = _arrow134
 
 
 if State_trace_state() is None:
     State_trace_state(v0(None))
 
 
-def _arrow145(__unit: None=None) -> bool:
+def _arrow135(__unit: None=None) -> bool:
     return closure2(None, None)
 
 
-v1: Callable[[], bool] = _arrow145
+v1: Callable[[], bool] = _arrow135
 
 def is_windows(__unit: None=None) -> bool:
     return v1(None)
 
 
-def _arrow146(__unit: None=None) -> str:
+def _arrow136(__unit: None=None) -> str:
     return closure3(None, None)
 
 
-v2: Callable[[], str] = _arrow146
+v2: Callable[[], str] = _arrow136
 
 def get_executable_suffix(__unit: None=None) -> str:
     return v2(None)
 
 
-def _arrow147(v: str) -> Async[tuple[int, str]]:
+def _arrow137(v: str) -> Async[tuple[int, str]]:
     return closure4(None, v)
 
 
-v3: Callable[[str], Async[tuple[int, str]]] = _arrow147
+v3: Callable[[str], Async[tuple[int, str]]] = _arrow137
 
 def execute_async(x: str) -> Async[tuple[int, str]]:
     return v3(x)
 
 
-def _arrow148(_arg10: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]) -> Async[tuple[int, str]]:
-    return closure20(None, _arg10)
+def _arrow138(_arg10: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]) -> Async[tuple[int, str]]:
+    return closure16(None, _arg10)
 
 
-v4: Callable[[tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]], Async[tuple[int, str]]] = _arrow148
+v4: Callable[[tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]], Async[tuple[int, str]]] = _arrow138
 
 def execute_with_options_async(x: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]) -> Async[tuple[int, str]]:
     return v4(x)
 
 
-def _arrow149(v: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]:
-    return closure21(None, v)
+def _arrow139(v: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]:
+    return closure17(None, v)
 
 
-v5: Callable[[Callable[[Heap0], Heap0]], tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]] = _arrow149
+v5: Callable[[Callable[[Heap0], Heap0]], tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]] = _arrow139
 
 def execution_options(x: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]:
     return v5(x)
 
 
-def _arrow150(v: str) -> Array[str]:
-    return closure22(None, v)
+def _arrow140(v: str) -> Array[str]:
+    return closure18(None, v)
 
 
-v6: Callable[[str], Array[str]] = _arrow150
+v6: Callable[[str], Array[str]] = _arrow140
 
 def split_args(x: str) -> Array[str]:
     return v6(x)

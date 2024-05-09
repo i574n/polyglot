@@ -3,7 +3,7 @@ import { hash_text } from "../../lib/spiral/crypto.fsx";
 import { trim_end, trim_start, trim, to_lower, substring, starts_with, split_string, split, slice, replace_regex, replace, format_exception, ends_with, ellipsis_end, ellipsis, contains, concat } from "../../lib/spiral/sm.fsx";
 import { int32 } from "../../../polyglot/deps/Fable/src/fable-library-ts/Int32.js";
 import { int64 } from "../../../polyglot/deps/Fable/src/fable-library-ts/BigInt.js";
-import { State_trace_state, Mut3, Mut2, Mut1, Mut0, US0_US0_0, US0_US0_4, US0_US0_3, US0_US0_2, US0_US0_1, create_temp_directory_name, create_temp_directory, new_file_uri, normalize_path, find_parent, get_source_directory, get_repository_root } from "../../lib/spiral/file_system.fsx";
+import { State_trace_state, Mut3, Mut2, Mut1, Mut0, US0_US0_0, US0_US0_4, US0_US0_3, US0_US0_2, US0_US0_1, create_temp_directory_name, create_temp_directory, new_file_uri, normalize_path, find_parent, get_source_directory, get_workspace_root } from "../../lib/spiral/file_system.fsx";
 import { IDisposable } from "../../../polyglot/deps/Fable/src/fable-library-ts/Util.js";
 import { some, Option, map, defaultArgWith } from "../../../polyglot/deps/Fable/src/fable-library-ts/Option.js";
 import { State_trace_state as State_trace_state_1, Mut3 as Mut3_1, Mut2 as Mut2_1, Mut1 as Mut1_1, Mut0 as Mut0_1, US0_US0_0 as US0_US0_0_1, US0_US0_4 as US0_US0_4_1, US0_US0_3 as US0_US0_3_1, US0_US0_2 as US0_US0_2_1, US0_US0_1 as US0_US0_1_1 } from "../../lib/spiral/networking.fsx";
@@ -86,8 +86,8 @@ export function SpiralSm_trim_end(x: string[]): ((arg0: string) => string) {
     return trim_end(x);
 }
 
-export function SpiralFileSystem_get_repository_root(): string {
-    return get_repository_root();
+export function SpiralFileSystem_get_workspace_root(): string {
+    return get_workspace_root();
 }
 
 export function SpiralFileSystem_get_source_directory(): string {
@@ -148,4 +148,3 @@ export function get_trace_level(): US0_$union {
         throw new Error("lib.get_trace_level / trace_state=None");
     });
 }
-

@@ -8,6 +8,7 @@ pub mod Trace {
     use fable_library_rust::NativeArray_::new_array;
     use fable_library_rust::NativeArray_::new_empty;
     use fable_library_rust::Native_::on_startup;
+    use fable_library_rust::Native_::refCell;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
     use fable_library_rust::Native_::LrcPtr;
@@ -15,7 +16,6 @@ pub mod Trace {
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::Option_::defaultValue;
     use fable_library_rust::Option_::getValue;
-    use fable_library_rust::Option_::map;
     use fable_library_rust::Seq_::ofList;
     use fable_library_rust::String_::padLeft;
     use fable_library_rust::String_::sprintf;
@@ -177,40 +177,8 @@ pub mod Trace {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
-    pub enum US2 {
-        US2_0(i64),
-        US2_1,
-    }
-    impl Trace::US2 {
-        pub fn get_IsUS2_0(this_: &MutCell<Trace::US2>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS2_1(this_: &MutCell<Trace::US2>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
-    impl core::fmt::Display for Trace::US2 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
     pub fn closure1(unitVar: (), v0_1: string) {
         ();
-    }
-    pub fn method0(v0_1: Option<i64>) -> Option<i64> {
-        v0_1
-    }
-    pub fn method1(v0_1: Option<i64>) -> Option<i64> {
-        v0_1
     }
     pub fn closure0(
         unitVar: (),
@@ -235,19 +203,45 @@ pub mod Trace {
             l0: MutCell::new(Func1::new(move |v: string| Trace::closure1((), v))),
         });
         let _v6: MutCell<Option<Option<i64>>> = MutCell::new(None::<Option<i64>>);
+        let _v7: MutCell<Option<string>> = MutCell::new(None::<string>);
+        let v10: Result<std::string::String, std::env::VarError> =
+            std::env::var(&*string("AUTOMATION"));
+        let v12: bool = true;
+        let _result = v10.map(|x| {
+            //;
+            let v14: std::string::String = x;
+            let v16: string = fable_library_rust::String_::fromString(v14);
+            let v18: bool = true;
+            v16
+        });
+        let v20: Result<string, std::env::VarError> = _result;
         {
-            let x: Option<i64> = Trace::method1(None::<i64>);
-            _v6.set(Some(x))
+            let x: string = v20.unwrap_or(string(""));
+            _v7.set(Some(x))
         }
-        (v1_1, v0_1, v3, getValue(_v6.get().clone()), v5)
+        {
+            let v38: Trace::US1 = if getValue(_v7.get().clone()) == string("True") {
+                Trace::US1::US1_0({
+                    let _arg: DateTime = DateTime::now();
+                    _arg.ticks()
+                })
+            } else {
+                Trace::US1::US1_1
+            };
+            {
+                let x_1: Option<i64> = match &v38 {
+                    Trace::US1::US1_0(v38_0_0) => Some(match &v38 {
+                        Trace::US1::US1_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    }),
+                    _ => None::<i64>,
+                };
+                _v6.set(Some(x_1))
+            }
+            (v1_1, v0_1, v3, getValue(_v6.get().clone()), v5)
+        }
     }
-    pub fn closure6(unitVar: (), v0_1: i64) -> Trace::US2 {
-        Trace::US2::US2_0(v0_1)
-    }
-    pub fn method3() -> Func1<i64, Trace::US2> {
-        Func1::new(move |v: i64| Trace::closure6((), v))
-    }
-    pub fn method4() -> string {
+    pub fn method1() -> string {
         string("")
     }
     pub fn closure5(
@@ -267,86 +261,100 @@ pub mod Trace {
                 Option<i64>,
                 LrcPtr<Trace::Mut3>,
             ) = getValue(Trace::State::trace_state().get().clone());
+            let v7: Option<i64> = patternInput.3.clone();
             let _v9: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let v13: Trace::US2 = defaultValue(
-                Trace::US2::US2_1,
-                map(Trace::method3(), patternInput.3.clone()),
-            );
-            let v31: DateTime = match &v13 {
-                Trace::US2::US2_0(v13_0_0) => {
-                    let v19: TimeSpan = TimeSpan::new_ticks(
-                        {
-                            let _arg: DateTime = DateTime::now();
-                            _arg.ticks()
-                        } - match &v13 {
-                            Trace::US2::US2_0(x) => x.clone(),
-                            _ => unreachable!(),
-                        },
-                    );
-                    DateTime::new_ymdhms_milli(
-                        1_i32,
-                        1_i32,
-                        1_i32,
-                        v19.hours(),
-                        v19.minutes(),
-                        v19.seconds(),
-                        v19.milliseconds(),
-                    )
-                }
-                _ => DateTime::now(),
-            };
+            let _v10: LrcPtr<MutCell<Option<Trace::US1>>> = refCell(None::<Trace::US1>);
             {
-                let x: string = v31.toString(string("hh:mm:ss"));
-                _v9.set(Some(x))
+                let x_2: Option<Trace::US1> = match &v7 {
+                    None => None::<Trace::US1>,
+                    Some(v7_0_0) => {
+                        let x: i64 = v7_0_0.clone();
+                        Some((Func0::new({
+                            let x = x.clone();
+                            move || Trace::US1::US1_0(x)
+                        }))())
+                    }
+                };
+                _v10.set(x_2)
             }
             {
-                let v61: string = getValue(_v9.get().clone());
-                let v62: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v74: string = padLeft(
-                    toLower(match &v0_1 {
-                        Trace::US0::US0_1 => string("Debug"),
-                        Trace::US0::US0_2 => string("Info"),
-                        Trace::US0::US0_0 => string("Verbose"),
-                        Trace::US0::US0_3 => string("Warning"),
-                        _ => string("Critical"),
-                    }),
-                    7_i32,
-                    ' ',
-                );
-                let _v75: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v91: &str = match &v0_1 {
-                    Trace::US0::US0_1 => inline_colorization::color_bright_blue,
-                    Trace::US0::US0_2 => inline_colorization::color_bright_green,
-                    Trace::US0::US0_0 => inline_colorization::color_bright_black,
-                    Trace::US0::US0_3 => inline_colorization::color_bright_yellow,
-                    _ => inline_colorization::color_bright_red,
+                let v15: Trace::US1 = defaultValue(Trace::US1::US1_1, _v10.get().clone());
+                let v33: DateTime = match &v15 {
+                    Trace::US1::US1_0(v15_0_0) => {
+                        let v21: TimeSpan = TimeSpan::new_ticks(
+                            {
+                                let _arg: DateTime = DateTime::now();
+                                _arg.ticks()
+                            } - match &v15 {
+                                Trace::US1::US1_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            },
+                        );
+                        DateTime::new_ymdhms_milli(
+                            1_i32,
+                            1_i32,
+                            1_i32,
+                            v21.hours(),
+                            v21.minutes(),
+                            v21.seconds(),
+                            v21.milliseconds(),
+                        )
+                    }
+                    _ => DateTime::now(),
                 };
-                let v93: &str = fable_library_rust::String_::LrcStr::as_str(&v74);
-                let v95: &str = inline_colorization::color_reset;
-                let v97: string = string("format!(\"{v91}{v93}{v95}\")");
-                let v98: std::string::String = format!("{v91}{v93}{v95}");
                 {
-                    let x_1: string = fable_library_rust::String_::fromString(v98);
-                    _v75.set(Some(x_1))
+                    let x_3: string = v33.toString(string("hh:mm:ss"));
+                    _v9.set(Some(x_3))
                 }
-                trimEndChars(
-                    trimStartChars(
-                        sprintf!(
-                            "{} {} #{} {} / {}",
-                            v61,
-                            getValue(_v75.get().clone()),
-                            v62,
-                            v1_1(),
-                            v2()
+                {
+                    let v66: string = getValue(_v9.get().clone());
+                    let v67: i64 = (patternInput.0.clone()).l0.get().clone();
+                    let v79: string = padLeft(
+                        toLower(match &v0_1 {
+                            Trace::US0::US0_1 => string("Debug"),
+                            Trace::US0::US0_2 => string("Info"),
+                            Trace::US0::US0_0 => string("Verbose"),
+                            Trace::US0::US0_3 => string("Warning"),
+                            _ => string("Critical"),
+                        }),
+                        7_i32,
+                        ' ',
+                    );
+                    let _v80: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v95: &str = match &v0_1 {
+                        Trace::US0::US0_1 => inline_colorization::color_bright_blue,
+                        Trace::US0::US0_2 => inline_colorization::color_bright_green,
+                        Trace::US0::US0_0 => inline_colorization::color_bright_black,
+                        Trace::US0::US0_3 => inline_colorization::color_yellow,
+                        _ => inline_colorization::color_bright_red,
+                    };
+                    let v97: &str = &*v79;
+                    let v99: &str = inline_colorization::color_reset;
+                    let v101: string = string("format!(\"{v95}{v97}{v99}\")");
+                    let v102: std::string::String = format!("{v95}{v97}{v99}");
+                    {
+                        let x_4: string = fable_library_rust::String_::fromString(v102);
+                        _v80.set(Some(x_4))
+                    }
+                    trimEndChars(
+                        trimStartChars(
+                            sprintf!(
+                                "{} {} #{} {} / {}",
+                                v66,
+                                getValue(_v80.get().clone()),
+                                v67,
+                                v1_1(),
+                                v2()
+                            ),
+                            new_empty::<char>(),
                         ),
-                        new_empty::<char>(),
-                    ),
-                    new_array(&[' ', '/']),
-                )
+                        new_array(&[' ', '/']),
+                    )
+                }
             }
         }
     }
-    pub fn method5(v0_1: Trace::US0, v1_1: Func0<string>) {
+    pub fn method2(v0_1: Trace::US0, v1_1: Func0<string>) {
         fn v2() -> (
             LrcPtr<Trace::Mut0>,
             LrcPtr<Trace::Mut1>,
@@ -417,8 +425,8 @@ pub mod Trace {
             }
         }
     }
-    pub fn method2(v0_1: Trace::US0, v1_1: Func0<string>, v2: Func0<string>) {
-        Trace::method5(
+    pub fn method0(v0_1: Trace::US0, v1_1: Func0<string>, v2: Func0<string>) {
+        Trace::method2(
             v0_1.clone(),
             Func0::new({
                 let v0_1 = v0_1.clone();
@@ -429,7 +437,7 @@ pub mod Trace {
         );
     }
     pub fn closure4(v0_1: Trace::US0, v1_1: Func0<string>, v2: Func0<string>) {
-        Trace::method2(v0_1, v1_1, v2);
+        Trace::method0(v0_1, v1_1, v2);
     }
     pub fn closure3(v0_1: Trace::US0, v1_1: Func0<string>) -> Func1<Func0<string>, ()> {
         Func1::new({

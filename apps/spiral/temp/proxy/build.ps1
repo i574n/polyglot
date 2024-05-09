@@ -12,4 +12,4 @@ cargo fmt
 
 echo "fn main(){}" >> "$PSScriptRoot/proxy.rs"
 
-cargo build --manifest-path "$PSScriptRoot/Cargo.toml"
+cargo +nightly build --manifest-path "$PSScriptRoot/Cargo.toml"

@@ -104,11 +104,11 @@ inl (||>) (arg1, arg2) fn =
 
 #!markdown
 
-## (/@)
+## (++)
 
 #!spiral
 
-inl (/@) a b =
+inl (++) a b =
     b |> append a
 
 #!markdown
@@ -154,6 +154,51 @@ inl emit forall t. (x : t) : t =
 
 #!markdown
 
+## emit_unit
+
+#!spiral
+
+inl emit_unit forall t. (x : t) : () =
+    $'!x '
+
+#!markdown
+
+## ref
+
+#!spiral
+
+nominal ref t = $'`t ref'
+
+#!markdown
+
+## new_ref
+
+#!spiral
+
+inl new_ref forall t. (x : t) : ref t =
+    $'ref !x '
+
+#!markdown
+
+## ref_value
+
+#!spiral
+
+inl ref_value forall t. (x : ref t) : t =
+    $'!x.Value'
+
+#!markdown
+
+## ref_set_value
+
+#!spiral
+
+inl ref_set_value forall t. (value : t) (ref : ref t) : ref t =
+    $'!ref.Value <- !value '
+    ref
+
+#!markdown
+
 ## unbox
 
 #!spiral
@@ -163,29 +208,47 @@ inl unbox forall t u. (x : t) : u =
 
 #!markdown
 
+## capture
+
+#!spiral
+
+inl capture forall t. (fn : () -> t) : t =
+    inl result = dyn true
+    $'let mutable _!result : `t option = None '
+    $'('
+    $'(fun () ->'
+    $'(fun () ->'
+    fn () |> emit_unit
+    $')'
+    $"|> fun x -> x ()"
+    $') () )'
+    $"|> fun x -> _!result <- Some x"
+    $'_!result.Value '
+
+#!markdown
+
 ## run_target
 
 #!spiral
 
 inl run_target forall t. (fn : target -> (() -> t)) : t =
-    inl close x =
-        $'!x\n#endif'
-    inl result : optionm'.option' t = optionm'.none' ()
-    ($"true in let mutable _!result = !result" : bool) |> ignore
-    $"\n#if FABLE_COMPILER || WASM || CONTRACT"
-    $"\n#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT"
-    fn (Rust Native) () |> close
-    $"\n#if FABLE_COMPILER_RUST && WASM"
-    fn (Rust Wasm) () |> close
-    $"\n#if FABLE_COMPILER_RUST && CONTRACT"
-    fn (Rust Contract) () |> close
-    $"\n#if FABLE_COMPILER_TYPESCRIPT"
-    fn (TypeScript Native) () |> close
-    $"\n#if FABLE_COMPILER_PYTHON"
-    fn (Python Native) () |> close
-    $"\n#else"
-    fn (Fsharp Native) () |> close
-    $"|> fun x -> _!result <- Some x"
+    inl result = dyn true
+    $'let mutable _!result : `t option = None '
+    $'\n#if FABLE_COMPILER || WASM || CONTRACT'
+    $'\n#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT'
+    fn (Rust Native) () |> emit_unit
+    $'#endif\n#if FABLE_COMPILER_RUST && WASM'
+    fn (Rust Wasm) () |> emit_unit
+    $'#endif\n#if FABLE_COMPILER_RUST && CONTRACT'
+    fn (Rust Contract) () |> emit_unit
+    $'#endif\n#if FABLE_COMPILER_TYPESCRIPT'
+    fn (TypeScript Native) () |> emit_unit
+    $'#endif\n#if FABLE_COMPILER_PYTHON'
+    fn (Python Native) () |> emit_unit
+    $'#endif\n#else'
+    fn (Fsharp Native) () |> emit_unit
+    $'#endif'
+    $'|> fun x -> _!result <- Some x'
     $'_!result.Value'
 
 #!spiral
@@ -282,6 +345,24 @@ nominal any = $"obj"
 
 #!markdown
 
+## u8
+
+#!spiral
+
+inl u8 forall t. (x : t) : u8 =
+    $"uint8 !x"
+
+#!markdown
+
+## u64
+
+#!spiral
+
+inl u64 forall t. (x : t) : u64 =
+    $"uint64 !x"
+
+#!markdown
+
 ## i32
 
 #!spiral
@@ -324,7 +405,7 @@ inl f64 forall t. (x : t) : f64 =
 
 nominal unativeint = $"unativeint"
 
-inl unativeint forall t {int}. (n : t) : unativeint =
+inl unativeint forall t. (n : t) : unativeint =
     $"unativeint !n"
 
 #!markdown
@@ -335,6 +416,15 @@ inl unativeint forall t {int}. (n : t) : unativeint =
 
 inl convert_i32 forall t. (x : t) : i32 =
     x |> $'System.Convert.ToInt32'
+
+#!markdown
+
+## convert
+
+#!spiral
+
+inl convert forall t u. (x : t) : u =
+    $'`u !x '
 
 #!markdown
 
@@ -358,21 +448,6 @@ inl null forall t. () : t =
 
 #!markdown
 
-## get_entry_assembly_name
-
-#!spiral
-
-inl get_entry_assembly_name () : string =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'
-        | Rust (Native) => fun () =>
-            open rust_operators
-            !\($'"env\!(\\"CARGO_PKG_NAME\\").into()"')
-        | target => fun () => null ()
-
-#!markdown
-
 ## use
 
 #!spiral
@@ -380,6 +455,51 @@ inl get_entry_assembly_name () : string =
 inl use forall t. (x : t) : t =
     $"use !x = !x " : ()
     $'!x '
+
+#!markdown
+
+## pair
+
+#!spiral
+
+//// test
+
+pair 1i32 2i32
+|> _assert_eq (1, 2)
+
+#!markdown
+
+## new_pair
+
+#!spiral
+
+inl new_pair forall a b. (a : a) (b : b) : pair a b =
+    $"!a, !b"
+
+#!markdown
+
+## from_pair
+
+#!spiral
+
+inl from_pair forall a b. (pair : pair a b) : a * b =
+    $"let (a, b) = !pair"
+    $"a", $"b"
+
+#!spiral
+
+//// test
+
+new_pair "a" 1i32
+|> from_pair
+|> _assert_eq ("a", 1i32)
+
+#!spiral
+
+//// test
+
+new_pair "a" (new_pair 1i32 "b")
+|> from_pair
 
 #!markdown
 

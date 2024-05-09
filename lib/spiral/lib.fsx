@@ -255,11 +255,11 @@ module SpiralSm =
 #endif
 
 module SpiralFileSystem =
-    let get_repository_root () =
+    let get_workspace_root () =
 #if !INTERACTIVE
-        File_system.get_repository_root ()
+        File_system.get_workspace_root ()
 #else
-        get_repository_root ()
+        get_workspace_root ()
 #endif
 
     let get_source_directory () =

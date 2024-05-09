@@ -1,4 +1,8 @@
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("_")>]
+#endif
+type Any = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>]
 #endif
 type Func0<'T> = class end
@@ -83,6 +87,14 @@ type std_rc_Rc<'T> = class end
 #endif
 type std_rc_Weak<'T> = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::collections::HashMap<$0, $1>")>]
+#endif
+type std_collections_HashMap<'K, 'V> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::collections::BTreeMap<$0, $1>")>]
+#endif
+type std_collections_BTreeMap<'K, 'V> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("str")>]
 #endif
 type Str = class end
@@ -139,13 +151,29 @@ type std_string_String = class end
 #endif
 type std_slice_Windows<'T> = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("regex::Regex")>]
+#endif
+type regex_Regex = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("regex::Captures")>]
+#endif
+type regex_Captures = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("regex::CaptureMatches")>]
+#endif
+type regex_CaptureMatches = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("regex::Error")>]
+#endif
+type regex_Error = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("[$0]")>]
 #endif
 type Slice<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("[$0; $1]")>]
+[<Fable.Core.Erase; Fable.Core.Emit("_")>]
 #endif
-type Slice'<'T, 'U> = class end
+type Slice'<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("Vec<$0>")>]
 #endif
@@ -191,22 +219,6 @@ type chrono_Utc = class end
 #endif
 type std_time_Duration = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader<$0>")>]
-#endif
-type async_std_io_BufReader<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader<$0>")>]
-#endif
-type std_io_BufReader<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::io::Error")>]
-#endif
-type std_io_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::io::Lines<$0>")>]
-#endif
-type std_io_Lines<'T> = class end
-#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::fs::File")>]
 #endif
 type std_fs_File = class end
@@ -239,33 +251,33 @@ type async_walkdir_Filtering = class end
 #endif
 type async_walkdir_WalkDir = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>]
+[<Fable.Core.Erase; Fable.Core.Emit("std::env::VarError")>]
 #endif
-type std_future_Future<'T> = class end
+type std_env_VarError = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>]
+[<Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader<$0>")>]
 #endif
-type futures_future_TryJoinAll<'T> = class end
+type async_std_io_BufReader<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter<$0>")>]
+[<Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader<$0>")>]
 #endif
-type rayon_vec_IntoIter<'T> = class end
+type std_io_BufReader<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map<$0, _>")>]
+[<Fable.Core.Erase; Fable.Core.Emit("std::io::Error")>]
 #endif
-type rayon_iter_Map<'T> = class end
+type std_io_Error = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")>]
+[<Fable.Core.Erase; Fable.Core.Emit("std::io::Lines<$0>")>]
 #endif
-type futures_lite_stream_StreamExt = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse<$0>")>]
-#endif
-type core_iter_Fuse<'T> = class end
+type std_io_Lines<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("clap::Arg")>]
 #endif
 type clap_Arg = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("clap::ArgAction")>]
+#endif
+type clap_ArgAction = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("clap::Command")>]
 #endif
@@ -323,6 +335,30 @@ type std_sync_mpsc_Receiver<'T> = class end
 #endif
 type std_sync_mpsc_Sender<'T> = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>]
+#endif
+type std_future_Future<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>]
+#endif
+type futures_future_TryJoinAll<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter<$0>")>]
+#endif
+type rayon_vec_IntoIter<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map<$0, _>")>]
+#endif
+type rayon_iter_Map<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")>]
+#endif
+type futures_lite_stream_StreamExt = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse<$0>")>]
+#endif
+type core_iter_Fuse<'T> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("sha2::Sha256")>]
 #endif
 type sha2_Sha256 = class end
@@ -338,78 +374,73 @@ and method2 () : string =
     let v0 : string = ""
     v0
 and closure0 () (v0 : string) : string =
-    let v1 : string option = None
-    let v2 : bool = true in let mutable _v1 = v1
+    let v1 : bool = true
+    let mutable _v1 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v3 : string = null |> unbox<string>
-    v3
-#endif
-    
+    let v2 : string = null |> unbox<string>
+    v2 
+    #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v4 : string = null |> unbox<string>
-    v4
-#endif
-    
+    let v3 : string = null |> unbox<string>
+    v3 
+    #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v5 : string = null |> unbox<string>
-    v5
-#endif
-    
+    let v4 : string = null |> unbox<string>
+    v4 
+    #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v6 : string = "crypto"
-    let v7 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v6
-    let v8 : string = "v7.createHash($0)"
-    let v9 : string = "sha256"
-    let v10 : obj = Fable.Core.JsInterop.emitJsExpr v9 v8
-    let v11 : string = "$0.update($1, 'utf8')"
-    let v12 : obj = Fable.Core.JsInterop.emitJsExpr struct (v10, v0) v11
-    let v13 : string = "$0.digest($1)"
-    let v14 : string = "hex"
-    let v15 : string = Fable.Core.JsInterop.emitJsExpr struct (v12, v14) v13
-    v15
-#endif
-    
+    let v5 : string = "crypto"
+    let v6 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v5
+    let v7 : string = "v6.createHash($0)"
+    let v8 : string = "sha256"
+    let v9 : obj = Fable.Core.JsInterop.emitJsExpr v8 v7
+    let v10 : string = "$0.update($1, 'utf8')"
+    let v11 : obj = Fable.Core.JsInterop.emitJsExpr struct (v9, v0) v10
+    let v12 : string = "$0.digest($1)"
+    let v13 : string = "hex"
+    let v14 : string = Fable.Core.JsInterop.emitJsExpr struct (v11, v13) v12
+    v14 
+    #endif
 #if FABLE_COMPILER_PYTHON
-    let v16 : string = null |> unbox<string>
-    v16
-#endif
-    
+    let v15 : string = null |> unbox<string>
+    v15 
+    #endif
 #else
-    let v17 : string = method0(v0)
-    let v18 : (unit -> System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
-    let v19 : System.Security.Cryptography.SHA256 = v18 ()
-    use v19 = v19 
-    let v20 : System.Security.Cryptography.SHA256 = v19 
-    let v21 : (string -> (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
-    let v22 : (uint8 []) = v21 v17
-    let v23 : ((uint8 []) -> (uint8 [])) = v20.ComputeHash
-    let v24 : (uint8 []) = v23 v22
-    let v25 : int32 = v24.Length
-    let v26 : (string []) = Array.zeroCreate<string> (v25)
-    let v27 : Mut0 = {l0 = 0} : Mut0
-    while method1(v25, v27) do
-        let v29 : int32 = v27.l0
-        let v30 : uint8 = v24.[int v29]
-        let v31 : (string -> string) = v30.ToString
-        let v32 : string = "x2"
-        let v33 : string = v31 v32
-        v26.[int v29] <- v33
-        let v34 : int32 = v29 + 1
-        v27.l0 <- v34
+    let v16 : string = method0(v0)
+    let v17 : (unit -> System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
+    let v18 : System.Security.Cryptography.SHA256 = v17 ()
+    use v18 = v18 
+    let v19 : System.Security.Cryptography.SHA256 = v18 
+    let v20 : (string -> (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
+    let v21 : (uint8 []) = v20 v16
+    let v22 : ((uint8 []) -> (uint8 [])) = v19.ComputeHash
+    let v23 : (uint8 []) = v22 v21
+    let v24 : int32 = v23.Length
+    let v25 : (string []) = Array.zeroCreate<string> (v24)
+    let v26 : Mut0 = {l0 = 0} : Mut0
+    while method1(v24, v26) do
+        let v28 : int32 = v26.l0
+        let v29 : uint8 = v23.[int v28]
+        let v30 : (string -> string) = v29.ToString
+        let v31 : string = "x2"
+        let v32 : string = v30 v31
+        v25.[int v28] <- v32
+        let v33 : int32 = v28 + 1
+        v26.l0 <- v33
         ()
-    let v35 : string seq = seq { for i = 0 to v26.Length - 1 do yield v26.[i] }
-    let v36 : string = method2()
-    let v37 : (string -> (string seq -> string)) = String.concat
-    let v38 : (string seq -> string) = v37 v36
-    let v39 : string = v38 v35
-    v39
-#endif
+    let v34 : string seq = seq { for i = 0 to v25.Length - 1 do yield v25.[i] }
+    let v35 : string = method2()
+    let v36 : (string -> (string seq -> string)) = String.concat
+    let v37 : (string seq -> string) = v36 v35
+    let v38 : string = v37 v34
+    v38 
+    #endif
     |> fun x -> _v1 <- Some x
-    let v40 : string = _v1.Value
-    v40
+    let v39 : string = _v1.Value
+    v39
 let v0 : (string -> string) = closure0()
 let hash_text x = v0 x
 ()

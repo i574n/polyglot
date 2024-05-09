@@ -2,6 +2,7 @@
 
 /// ## types
 inl types () =
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype Any = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func0<$0>\")>]\n#endif\ntype Func0<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func1<$0, $1>\")>]\n#endif\ntype Func0<'T, 'U> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>]\n#endif\ntype Box<'T> = class end"
@@ -24,6 +25,7 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>]\n#endif\ntype std_rc_Rc<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Weak<$0>\")>]\n#endif\ntype std_rc_Weak<'T> = class end"
 
+nominal any' = $"Any"
 nominal cow t = $"std_borrow_Cow<`t>"
 nominal ref_cell t = $"std_cell_RefCell<`t>"
 nominal rc t = $"std_rc_Rc<`t>"
@@ -55,11 +57,11 @@ inl emit_expr forall a t. (args : a) (code : string) : t =
     real
         $"Fable.Core.RustInterop.emitRustExpr !args !code" : t
 
-/// ## (~!\)
+/// ## (~!\\)
 inl (~!\) forall t. (code : string) : t =
     emit_expr () code
 
-/// ## (~!\\)
+/// ## (~!\\\\)
 inl (~!\\) forall t u. ((args : t), (code : string)) : u =
     emit_expr args code
 
@@ -146,20 +148,22 @@ inl box_pin forall t. (x : t) : pin (box t) =
     inl x = join x
     !\($'"Box::pin(!x)"')
 
+/// ## to_ref
+inl to_ref forall t. (x : t) : ref' t =
+    !\\(x, $'"&$0"')
+
 /// ## deref
 inl deref forall t. (ref : ref' t) : t =
-    inl ref = join ref
-    !\($'"*!ref"')
+    !\\(ref, $'"*$0"')
 
 /// ## ops_deref
 inl ops_deref forall t. (ref : t) : t =
     inl ref = join ref
     !\($'"core::ops::Deref::deref(&!ref)"')
 
-/// ## func0_get
-inl func0_get forall t. (x : func0 t) : t =
-    inl x = join x
-    !\($'"!x()"')
+/// ## func0_invoke
+inl func0_invoke forall t. (x : func0 t) : t =
+    !\\(x, $'"$0()"')
 
 /// ## func0_move
 inl func0_move forall t. (fn : func0 t) : t =
@@ -172,15 +176,15 @@ inl move forall t. (fn : () -> t) : func0 t =
 
 /// ## to_static_ref_unbox
 inl to_static_ref_unbox forall t. (x : ref' t) : static_ref' t =
-    $"!x |> unbox"
+    x |> unbox
 
 /// ## from_static_ref_unbox
 inl from_static_ref_unbox forall t. (x : static_ref' t) : ref' t =
-    $"!x |> unbox"
+    x |> unbox
 
 /// ## box_leak
 inl box_leak forall t. (x : box t) : static_ref' (mut' t) =
-    emit_expr () $"\"Box::leak(!x)\""
+    !\\(x, $'"Box::leak($0)"')
 
 /// ## drop
 inl drop forall t. (x : t) : () =
@@ -189,10 +193,6 @@ inl drop forall t. (x : t) : () =
 /// ## break
 inl break () : () =
     (!\($'"true; break"') : bool) |> ignore
-
-/// ## loop
-inl loop (fn : () -> ()) : () =
-    (!\\(fn, $'"true; loop { $0() }"') : bool) |> ignore
 
 /// ## fix_closure
 inl fix_closure depth' x' =
@@ -232,6 +232,21 @@ inl fix_closure depth' x' =
     elif depth = 8
     then !\($'"{{{{{{{{ //"')
 
+/// ## loop
+inl loop (depth : i32) (fn : () -> ()) : () =
+    (!\($'"true; loop { // rust.loop"') : bool) |> ignore
+    fn ()
+
+    listm.init depth id
+    |> listm.iter fun n =>
+        (!\($'"true; } // rust.loop"') : bool) |> ignore
+
+    (!\($'"true; } // rust.loop"') : bool) |> ignore
+
+    listm.init depth id
+    |> listm.iter fun n =>
+        (!\($'"true; { // rust.loop"') : bool) |> ignore
+
 /// ## run_tests
 inl run_tests tests =
     (!\($'"true; () //"') : bool) |> ignore
@@ -245,3 +260,9 @@ inl run_tests tests =
     tests
     |> listm.iter fun name, fn =>
         !\($'"{ //"') : ()
+
+/// ## capture
+inl capture forall t. (fn : () -> t) : t =
+    (!\($'"true; let _result = (move || { //"') : bool) |> ignore
+    (!\\(fn (), $'"true; $0 })()"') : bool) |> ignore
+    !\($'"_result"')

@@ -1,19 +1,17 @@
 [package]
 name = "plot"
-version = "0.0.1"
-edition = "2021"
-workspace = "../../"
-description = ""
-repository.workspace = true
+version.workspace = true
+edition.workspace = true
 license-file.workspace = true
+repository.workspace = true
 
 [dependencies]
-fable_library_rust = { path = "../../lib/rust/fable/fable_modules/fable-library-rust", default-features = false, features = ["static_do_bindings", "datetime", "guid", "threaded"] }
-serde_json = { version = "~1.0", features = ["arbitrary_precision"] }
+fable_library_rust = { workspace = true }
+inline_colorization = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+regex = { workspace = true }
 plotters = { version = "~0.3", default-features = false, features = ["svg_backend", "line_series", "point_series"] }
-inline_colorization = "~0.1"
-chrono = "~0.4"
-regex = "~1.10"
 
 [[bin]]
 name = "plot"

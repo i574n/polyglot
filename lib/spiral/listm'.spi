@@ -52,15 +52,11 @@ inl to_array' forall dim t. (items : list' t) : a dim t =
 instance append list t =
     listm.append
 
-/// ## /@
-inl (/@) a b =
-    b |> append a
-
 /// ## collect
 inl collect forall t r. (fn : t -> list r) (items : list t) : list r =
     items
     |> listm.map fn
-    |> listm.fold (/@) []
+    |> listm.fold (++) []
 
 /// ## init_series
 inl init_series start end inc =

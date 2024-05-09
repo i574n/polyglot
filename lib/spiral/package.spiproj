@@ -2,6 +2,7 @@ packages:
     |core-
 modules:
     guid
+    base-
     rust
     rust_operators
     ts
@@ -9,15 +10,17 @@ modules:
     optionm'
     optionm'_operators
     resultm
-    base-
     console
     listm'
+    iter_prototypes
+    iter
     am'
-    listm'_operators
     seq
     math
+    mapm
     sm'
     sm'_operators
+    env
     date_time
     trace-
     common-
@@ -29,7 +32,6 @@ modules:
     file_system_operators
     crypto
     wasm
-    mapm
     networking
     benchmark
     util

@@ -198,46 +198,45 @@ type timestamp_guid = guid.guid
 type date_time_guid = guid.guid
 
 /// ## date_time_guid_from_date_time
-inl date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
-    inl guid = guid |> sm'.obj_to_string
-    inl prefix, time_zone =
-        run_target function
-            | Fsharp (Native) => fun () =>
-                inl prefix = date_time |> format (join "yyyyMMdd-HHmm-ssff-ffff-f")
-                inl time_zone = date_time |> get_utc_offset (time_zone_local ())
-                inl time_zone_signal = (hours time_zone > 0) |> convert_i32
-                inl time_zone_value = time_zone |> time_span_format (join "hhmm")
-                inl time_zone = $'$"{!time_zone_signal}{!time_zone_value}"' : string
-                prefix, time_zone
-            | Rust (Native) => fun () =>
-                inl epoch =
-                    date_time_utc 1970 1 1 0 0 0
-                    |> to_universal_time
-                inl date_time =
-                    date_time
-                    |> specify_date_kind Local
-                    |> to_universal_time
-                inl unixticks =
-                    match date_time |> ticks, epoch |> ticks with
-                    | timestamp date_time, timestamp epoch => date_time - epoch
-                inl prefix =
-                    unixticks / 10
-                    |> from_timestamp_micros
-                    |> optionm.map (
-                        to_local
-                        >> format'' "%Y%m%d-%H%M-%S%f"
-                        >> sm'.from_std_string
-                        >> fun s => $'$"{!s.[0..17]}-{!s.[18..21]}-{!s.[22]}"'
-                    )
-                    |> optionm'.default_value ""
-                inl time_zone = date_time |> get_utc_offset (time_zone_local ())
-                inl time_zone_signal = if hours time_zone > 0 then 1u8 else 0
-                inl time_zone_value = time_zone |> time_span_format "hh:mm"
-                inl time_zone = $'$"{!time_zone_signal}{!time_zone_value.[0..1]}{!time_zone_value.[3..4]}"' : string
-                prefix, time_zone
-            | _ => fun () => null ()
-
-    $'`date_time_guid $"{!prefix}{!time_zone}{!guid.[!prefix.Length + !time_zone.Length..]}"' : date_time_guid
+let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
+    inl parse prefix time_zone : date_time_guid =
+        inl guid = guid |> sm'.obj_to_string
+        $'`date_time_guid $"{!prefix}{!time_zone}{!guid.[!prefix.Length + !time_zone.Length..]}"'
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl prefix = date_time |> format (join "yyyyMMdd-HHmm-ssff-ffff-f")
+            inl time_zone = date_time |> get_utc_offset (time_zone_local ())
+            inl time_zone_signal = (hours time_zone > 0) |> convert_i32
+            inl time_zone_value = time_zone |> time_span_format (join "hhmm")
+            inl time_zone = $'$"{!time_zone_signal}{!time_zone_value}"' : string
+            parse prefix time_zone
+        | Rust (Native) => fun () =>
+            inl epoch =
+                date_time_utc 1970 1 1 0 0 0
+                |> to_universal_time
+            inl date_time =
+                date_time
+                |> specify_date_kind Local
+                |> to_universal_time
+            inl unixticks =
+                match date_time |> ticks, epoch |> ticks with
+                | timestamp date_time, timestamp epoch => date_time - epoch
+            inl prefix =
+                unixticks / 10
+                |> from_timestamp_micros
+                |> optionm.map (
+                    to_local
+                    >> format'' "%Y%m%d-%H%M-%S%f"
+                    >> sm'.from_std_string
+                    >> fun s => $'$"{!s.[0..17]}-{!s.[18..21]}-{!s.[22]}"'
+                )
+                |> optionm'.default_value ""
+            inl time_zone = date_time |> get_utc_offset (time_zone_local ())
+            inl time_zone_signal = if hours time_zone > 0 then 1u8 else 0
+            inl time_zone_value = time_zone |> time_span_format "hh:mm"
+            inl time_zone = $'$"{!time_zone_signal}{!time_zone_value.[0..1]}{!time_zone_value.[3..4]}"' : string
+            parse prefix time_zone
+        | _ => fun () => null ()
 
 /// ## date_time_from_guid
 inl date_time_from_guid (date_time_guid : date_time_guid) =

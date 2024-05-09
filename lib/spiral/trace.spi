@@ -4,6 +4,7 @@
 inl types () =
     rust.types ()
     sm'.types ()
+    env.types ()
 
 /// ## trace_level
 union trace_level =
@@ -30,24 +31,18 @@ instance of_string trace_level = function
 
 /// ## repl_start
 inl repl_start () : optionm'.option' i64 =
-    inl result : optionm'.option' (optionm'.option' i64) = optionm'.none' ()
-    $"let mutable _!result = !result"
-    $'#if INTERACTIVE || \!FABLE_COMPILER' : ()
-    if get_entry_assembly_name () <> "Microsoft.DotNet.Interactive.App"
-    then date_time.now () |> date_time.ticks |> Some
-    else None
-    |> optionm'.box
-    |> fun x =>
-        inl x = join x
-        $'!x '
-    $'#else' : ()
-    (None : option i64) |> optionm'.box
-    |> fun x =>
-        inl x = join x
-        $'!x '
-    $'#endif' : ()
-    $"|> fun x -> _!result <- Some x"
-    $'_!result.Value'
+    run_target function
+        | Fsharp (Native) => fun () =>
+            if env.get_entry_assembly_name () = "dotnet-repl"
+            then date_time.now () |> date_time.ticks |> fun (date_time.timestamp x) => x |> Some
+            else None
+            |> optionm'.box
+        | Rust (Native) => fun () =>
+            if env.get_environment_variable "AUTOMATION" = "True"
+            then date_time.now () |> date_time.ticks |> fun (date_time.timestamp x) => x |> Some
+            else None
+            |> optionm'.box
+        | _ => fun () => optionm'.none' ()
 
 /// ## trace_state
 type trace_state =
@@ -110,7 +105,7 @@ let rec trace_raw level fn =
         *trace_state.trace_file text
 
 /// ## trace
-let trace (level : trace_level) (fn : () -> string) (locals : () -> string) =
+let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string) =
     fun () =>
         inl trace_state = get_trace_state ()
         inl time =
@@ -148,7 +143,7 @@ let trace (level : trace_level) (fn : () -> string) (locals : () -> string) =
                     | Verbose => !\($'"inline_colorization::color_bright_black"')
                     | Debug => !\($'"inline_colorization::color_bright_blue"')
                     | Info => !\($'"inline_colorization::color_bright_green"')
-                    | Warning => !\($'"inline_colorization::color_bright_yellow"')
+                    | Warning => !\($'"inline_colorization::color_yellow"')
                     | Critical => !\($'"inline_colorization::color_bright_red"')
                 inl level_str = level_str |> sm'.as_str
                 inl color_reset : rust.ref' sm'.str = !\($'"inline_colorization::color_reset"')
@@ -156,8 +151,7 @@ let trace (level : trace_level) (fn : () -> string) (locals : () -> string) =
                 |> sm'.format''
                 |> sm'.from_std_string
             | _ => fun () => level_str
-        inl text = fn ()
-        $'$"{!time} {!level_str} #{!count} %s{!text} / %s{!locals ()}"'
+        $'$"{!time} {!level_str} #{!count} %s{!text_fn ()} / %s{!locals ()}"'
         |> sm'.trim_start ;[]
         |> sm'.trim_end ;[ ' '; '/' ]
     |> trace_raw level

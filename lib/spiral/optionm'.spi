@@ -32,26 +32,33 @@ nominal option' t = $"`t option"
 inl none' forall t. () : option' t =
     $'None'
 
+/// ## some'
 inl some' forall t. (x : t) : option' t =
     $'Some !x '
-
-/// ## map
-inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
-    $'!x |> Option.map !fn '
 
 /// ## default_value'
 inl default_value' forall t. (value : t) (x : option' t) : t =
     $'!x |> Option.defaultValue !value '
 
-/// ## unbox
-inl unbox forall t. (x : option' t) : option t =
-    // x
-    // |> map Some
-    // |> default_value' None
-    inl some x : option t = Some x
-    inl some = join some
-    inl none : option t = None
-    $'!x |> Option.map !some |> Option.defaultValue !none '
+/// ## try'
+inl try' forall t. (x : option' t) : t =
+    !\\(x, $'"$0?"')
+
+/// ## map
+inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
+    inl result : option' u = none' ()
+    $'let _!result = ref !result '
+    $'match !x with'
+    $'| Some x -> ('
+    $'(fun () ->'
+    $'(fun () ->'
+    inl x = dyn $'x'
+    x |> fn |> emit_unit
+    $')'
+    $"|> fun x -> x () |> Some"
+    $') () ) | None -> None'
+    $"|> fun x -> _!result.Value <- x"
+    $'_!result.Value '
 
 /// ## box
 inl box forall t. (x : option t) : option' t =
@@ -62,9 +69,27 @@ inl box forall t. (x : option t) : option' t =
     | Some x => some' x
     | None => none' ()
 
+/// ## map'
+inl map' forall t u. (fn : t -> u) (x : option' t) : option' u =
+    (!\($'"true; let _result = !x.map(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
+    !\($'"_result"')
+
+/// ## map''
+inl map'' forall t u. (fn : t -> u) (x : option' t) : option' u =
+    $'!x |> Option.map !fn '
+
+/// ## unbox
+inl unbox forall t. (x : option' t) : option t =
+    x |> map Some |> default_value' None
+    // inl some x : option t = Some x
+    // inl some = join some
+    // inl none : option t = None
+    // $'!x |> Option.map !some |> Option.defaultValue !none '
+
 /// ## of_obj
 inl of_obj forall t. (x : t) : option' t =
-    ($"true in let mutable _!x = None" : bool) |> ignore
+    $'let mutable _!x = None'
     $"#if \!FABLE_COMPILER && \!WASM && \!CONTRACT"
     ((x |> $'Option.ofObj') : option' t)
     |> fun x => $'!x '
@@ -73,10 +98,6 @@ inl of_obj forall t. (x : t) : option' t =
     $"#endif"
     $"|> fun x -> _!x <- Some x"
     $'_!x.Value'
-
-/// ## try'
-inl try' forall t. (x : option' t) : t =
-    !\\(x, $'"$0?"')
 
 /// ## flatten
 inl flatten x =
@@ -92,14 +113,9 @@ inl unwrap forall t. (x : option' t) : t =
 inl unwrap_or forall t. (def : t) (x : option' t) : t =
     !\($'"!x.unwrap_or(!def)"')
 
-/// ## map'
-inl map' forall t u. (fn : t -> u) (x : option' t) : option' u =
-    !\\((x, fn), $'"$0.map(|x| $1(x))"')
-
 /// ## rc_upgrade
 inl rc_upgrade forall t. (x : rust.weak_rc t) : option' (rust.rc t) =
-    inl x = join x
-    !\($'"std::rc::Weak::upgrade(&!x)"')
+    !\\(x, $'"std::rc::Weak::upgrade(&$0)"')
 
 /// ## rc_into_inner
 inl rc_into_inner forall t. (x : rust.rc t) : option' t =

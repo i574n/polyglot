@@ -208,9 +208,9 @@ details > div {
 </html>
 """
 
-html |> Microsoft.DotNet.Interactive.Formatting.Html.ToHtmlContent
-
 disposable.Dispose ()
+
+html |> Microsoft.DotNet.Interactive.Formatting.Html.ToHtmlContent
 
 #!markdown
 

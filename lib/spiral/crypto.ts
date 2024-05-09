@@ -35,10 +35,10 @@ export function method2(): string {
 
 export function closure0(unitVar: void, v0_1: string): string {
     let _v1: Option<string> = undefined;
-    const v7: ICryptoCreateHash = crypto;
-    const v10: any = v7.createHash("sha256");
-    const v12: any = v10.update(v0_1, 'utf8');
-    const x: string = v12.digest("hex");
+    const v6: ICryptoCreateHash = crypto;
+    const v9: any = v6.createHash("sha256");
+    const v11: any = v9.update(v0_1, 'utf8');
+    const x: string = v11.digest("hex");
     _v1 = x;
     return value(_v1);
 }

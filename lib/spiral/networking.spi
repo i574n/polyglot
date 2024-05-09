@@ -8,9 +8,10 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Response\")>]\n#endif\ntype reqwest_Response = class end"
 
 inl types () =
+    types ()
+    env.types ()
     rust.types ()
     sm'.types ()
-    types ()
 
 /// ## reqwest_response
 nominal reqwest_response = $"reqwest_Response"

@@ -24,10 +24,6 @@ open benchmark
 open Lib
 #endif
 
-#!spiral
-
-inl (/@) x = listm'.(/@) x
-
 #!markdown
 
 ## TestCaseResult
@@ -840,7 +836,7 @@ inl get_solutions () =
         //     let resultList =
         //         List.fold (fun acc x =>
         //             let rotate (text : string) (letter : string) = text.Substring (1, input.Length - 1) + letter
-        //             [ rotate (if acc.IsEmpty then input else acc.Head) (string x) ] /@ acc
+        //             [ rotate (if acc.IsEmpty then input else acc.Head) (string x) ] ++ acc
         //         ) [] (Seq.toList input)
 
         //     List.foldBack (fun acc x => x + acc + " ") resultList ""
@@ -897,7 +893,7 @@ inl get_solutions () =
         //         let rec loop (acc : list (list char)) = function
         //             | _ when acc.Length = list.Length => acc
         //             | head :: tail =>
-        //                 let item = tail /@ [ head ]
+        //                 let item = tail ++ [ head ]
         //                 loop (item :: acc) item
         //             | [] => []
         //         loop [] list

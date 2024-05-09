@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 . ../../../scripts/core.ps1
 
 
-{ cargo build --release --target wasm32-unknown-unknown } | Invoke-Block
+{ cargo +nightly build --release --target wasm32-unknown-unknown } | Invoke-Block
 New-Item dist -ItemType Directory -Force | Out-Null
 Copy-Item ../../../target/wasm32-unknown-unknown/release/chat_contract.wasm dist/chat.wasm -Force
 

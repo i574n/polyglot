@@ -16,10 +16,6 @@
 
 open testing
 
-#!spiral
-
-open listm'_operators
-
 #!markdown
 
 ## init_series
@@ -1239,7 +1235,7 @@ inl forces_string () =
     [
         ExternalForce (0, fixed_linear_spring 5384 0 (zero_vec ()))
         ExternalForce (63, fixed_linear_spring 5384 0 (0.65 *^ i_hat ()))
-    ] /@ (
+    ] ++ (
         listm'.init_series 0 59 1
         |> listm.map (fun n => InternalForce (n, n + 1, linear_spring 5384 0))
     )
@@ -1289,8 +1285,8 @@ let main () =
                 seq.iterate' (string_update 0.000025) initial_state |> fun f => f 0f64
             inl rs =
                 [ zero_vec () ]
-                /@ (sts |> listm.map (fun (particle_state st) => st.pos_vec))
-                /@ [ 0.65 *^ i_hat () ]
+                ++ (sts |> listm.map (fun (particle_state st) => st.pos_vec))
+                ++ [ 0.65 *^ i_hat () ]
             inl x, y =
                 rs
                 |> listm.map (fun r => r.x, r.y)
@@ -1550,7 +1546,7 @@ inl forces_string () =
     [
         ExternalForce (0i32, fixed_linear_spring 5384 0 (zero_vec ()))
         ExternalForce (63, fixed_linear_spring 5384 0 (0.65 *^ i_hat ()))
-    ] /@ (
+    ] ++ (
         listm'.init_series 0 59 1
         |> listm.map (fun n => InternalForce (n, n + 1, linear_spring 5384 0))
     )
@@ -1584,8 +1580,8 @@ let main () =
                 stream.iterate (string_update 0.000025) initial_state |> stream.item n
             inl x, y =
                 [ zero_vec () ]
-                /@ (sts |> stream.map (fun (particle_state st) => st.pos_vec) |> stream.to_list)
-                /@ [ 0.65 *^ i_hat () ]
+                ++ (sts |> stream.map (fun (particle_state st) => st.pos_vec) |> stream.to_list)
+                ++ [ 0.65 *^ i_hat () ]
                 |> listm.map (fun r => r.x, r.y)
                 |> stream.from_list
                 |> stream.unzip

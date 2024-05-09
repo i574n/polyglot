@@ -29,8 +29,9 @@ inl buf_read_lines forall t. (buf_reader : buf_reader t) : lines (buf_reader t) 
     !\($'"std::io::BufRead::lines(!buf_reader)"')
 
 /// ## buf_reader_read
-inl buf_reader_read forall t dim. (slice : am'.slice' dim dim) (buf_reader : buf_reader t) : resultm.result' dim io_error =
-    !\($'"std::io::Read::read(!buf_reader, !slice)"')
+inl buf_reader_read forall el dim. (slice : am'.slice' el dim) (buf_reader : buf_reader el) : resultm.result' unativeint io_error =
+    (!\($'"true; let mut !slice = !slice"') : bool) |> ignore
+    !\($'"std::io::Read::read(&mut !buf_reader, &mut !slice)"')
 
 /// ## stream
 union rec stream t =
@@ -207,12 +208,3 @@ inl unzip s =
             inl x = dyn x
             join body x
     loop s
-
-/// ## enumerate
-inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
-    open rust_operators
-    inl (a ar) = ar
-    inl ar = ar |> am'.to_vec
-    !\($'"!ar.into_iter().enumerate().map(std::rc::Rc::new).collect()"')
-    |> am'.vec_map from_pair
-    |> am'.from_vec

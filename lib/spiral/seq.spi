@@ -135,14 +135,14 @@ inl to_array seq =
     inl ar = a ;[] |> mut
     ((), seq)
     ||> fold fun _ x =>
-        ar <- *ar /@ a ;[x]
+        ar <- *ar ++ a ;[x]
     *ar
 
 inl to_array_ seq =
     inl ar = a ;[] |> mut
     ((), seq)
     ||> fold_ fun _ x =>
-        ar <- *ar /@ a ;[x]
+        ar <- *ar ++ a ;[x]
     *ar
 
 /// ## take_while

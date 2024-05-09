@@ -132,11 +132,11 @@ inl hash_text (input : string) =
 
 #!markdown
 
-## get_file_hash
+## get_file_hash'
 
 #!spiral
 
-inl get_file_hash (path : string) : result string string =
+inl get_file_hash' (path : string) : result string string =
     inl path = path |> file_system.normalize_path
     inl exit_code, result =
         runtime.execution_options fun x => { x with
@@ -144,30 +144,41 @@ inl get_file_hash (path : string) : result string string =
         }
         |> runtime.execute_with_options
     if exit_code = 0
-    then Ok result
-    else Error result
+    then result |> sm'.to_lower |> Ok
+    else result |> Error
 
 #!spiral
 
 //// test
 //// print_code=false
-///! rust
 
 types ()
 inl temp_folder, disposable = file_system.create_temp_directory ()
+disposable |> use |> ignore
+inl file_name = "test.txt"
+inl path = temp_folder </> file_name
+"" |> file_system.write_all_text_async path |> async.run_synchronously
+path
+|> get_file_hash'
+|> resultm.get
+|> _assert_eq "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
-inl file_name = join "test.txt"
+#!spiral
+
+//// test
+//// print_code=false
+///! rust -d chrono futures-lite regex
+
+types ()
+inl temp_folder, disposable = file_system.create_temp_directory ()
+inl file_name = "test.txt"
 inl path = temp_folder </> file_name
 "" |> file_system.write_all_text path
 path
-|> get_file_hash
+|> get_file_hash'
 |> resultm.get
-|> _assert_eq "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+|> _assert_eq "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 disposable |> use |> ignore
-
-#!markdown
-
-## hash_file
 
 #!markdown
 
@@ -184,7 +195,7 @@ nominal sha256' = $'sha2_Sha256'
 #!spiral
 
 inl new_sha256 () : sha256' =
-    !\($'"sha2::Sha256::new()"')
+    !\($'"sha2::Digest::new()"')
 
 #!markdown
 
@@ -192,8 +203,8 @@ inl new_sha256 () : sha256' =
 
 #!spiral
 
-inl hasher_update forall t dim. (slice : am'.slice' t dim) (hasher : sha256') : () =
-    !\($'"!hasher"')
+inl hasher_update forall el dim. (slice : rust.ref' (am'.slice' el dim)) (hasher : sha256') : () =
+    !\($'"sha2::Digest::update(&mut !hasher, !slice)"')
 
 #!markdown
 
@@ -201,34 +212,58 @@ inl hasher_update forall t dim. (slice : am'.slice' t dim) (hasher : sha256') : 
 
 #!spiral
 
-inl hasher_finalize (hasher : sha256') : sm'.std_string =
-    !\($'"!hasher"')
+inl hasher_finalize (hasher : sha256') : rust.ref' (am'.slice u8) =
+    !\($'"&sha2::Digest::finalize(!hasher)"')
 
 #!markdown
 
-## hash_file
+## get_file_hash
 
 #!spiral
 
-inl hash_file (path : string) : result string string =
+inl get_file_hash (path : string) : result string string =
     inl path = path |> file_system.normalize_path
     inl file = path |> file_system.file_open |> resultm.unwrap'
     inl reader = file |> stream.new_buf_reader
+    (!\($'"true; let mut !reader = !reader"') : bool) |> ignore
     inl hasher = new_sha256 ()
-    inl buffer : _ i32 i32 = (0, 1014) |> am'.new_slice
+    (!\($'"true; let mut !hasher = !hasher"') : bool) |> ignore
+    
+    real
+        inl size = 1024
+        inl zero = unativeint `i32 0
+        inl buffer = am'.new_slice `u8 `@size 0u8
 
-    rust.loop fun () =>
-        inl count = reader |> stream.buf_reader_read buffer |> resultm.unwrap'
-        if count = 0 then rust.break ()
-        hasher |> hasher_update (buffer |> am'.slice_range (am'.Start 0) (am'.End fun _ => count))
+        rust.loop 2 fun () =>
+            inl count = stream.buf_reader_read `u8 `@size buffer reader
+            inl count = resultm.unwrap' `unativeint `(stream.io_error) count
 
-    hasher |> hasher_finalize |> sm'.from_std_string |> Ok
+            if (=.) `unativeint count zero then rust.break ()
+
+            hasher_update `u8 `@size
+                (
+                    am'.slice_range `u8 `@size
+                        (am'.Start `unativeint zero)
+                        (am'.End `unativeint ((fun _ => count) : unativeint -> unativeint))
+                        buffer
+                )
+                hasher
+
+    hasher
+    |> hasher_finalize
+    |> am'.slice_to_vec
+    |> am'.vec_map' (sm'.format_custom' "{:02x}" >> sm'.from_std_string)
+    |> am'.from_vec
+    |> fun x => x : _ i32 _
+    |> seq.of_array'
+    |> sm'.concat ""
+    |> Ok
 
 #!spiral
 
 //// test
 //// print_code=false
-///! rust
+///! rust -d chrono regex sha2
 
 types ()
 inl temp_folder, disposable = file_system.create_temp_directory ()
@@ -237,9 +272,27 @@ inl file_name = join "test.txt"
 inl path = temp_folder </> file_name
 "" |> file_system.write_all_text path
 path
-|> hash_file
+|> get_file_hash
 |> resultm.get
-|> _assert_eq "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+|> _assert_eq "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+disposable |> use |> ignore
+
+#!spiral
+
+//// test
+//// print_code=false
+///! rust -d chrono regex sha2
+
+types ()
+inl temp_folder, disposable = file_system.create_temp_directory ()
+
+inl file_name = join "test.txt"
+inl path = temp_folder </> file_name
+" " |> file_system.write_all_text path
+path
+|> get_file_hash
+|> resultm.get
+|> _assert_eq "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
 disposable |> use |> ignore
 
 #!markdown

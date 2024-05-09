@@ -12,12 +12,6 @@
 
 open testing
 
-#!spiral
-
-//// test
-
-prototype append t : t -> t -> t
-
 #!markdown
 
 ## list'
@@ -134,20 +128,11 @@ inl to_array' forall dim t. (items : list' t) : a dim t =
 instance append list t =
     listm.append
 
-#!markdown
-
-## /@
-
-#!spiral
-
-inl (/@) a b =
-    b |> append a
-
 #!spiral
 
 //// test
 
-[ "a"; "b" ] /@ [ "c"; "d" ]
+[ "a"; "b" ] ++ [ "c"; "d" ]
 |> _assert_eq [ "a"; "b"; "c"; "d" ]
 
 #!markdown
@@ -159,7 +144,7 @@ inl (/@) a b =
 inl collect forall t r. (fn : t -> list r) (items : list t) : list r =
     items
     |> listm.map fn
-    |> listm.fold (/@) []
+    |> listm.fold (++) []
 
 #!markdown
 

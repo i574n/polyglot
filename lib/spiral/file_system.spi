@@ -14,11 +14,12 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::WalkDir\")>]\n#endif\ntype async_walkdir_WalkDir = class end"
 
 inl types () =
-    sm'.types ()
-    rust.types ()
-    date_time.types ()
-    stream.types ()
     types ()
+    date_time.types ()
+    env.types ()
+    rust.types ()
+    sm'.types ()
+    stream.types ()
 
 /// ## file_mode
 nominal file_mode' = $'System.IO.FileMode'
@@ -157,6 +158,8 @@ inl ts_path_join (b : string) (a : string) : string =
 /// ## (< />)
 let (</>) (a : string) (b : string) : string =
     run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.IO.Path.Combine (!a, !b)'
         | Rust (Native) => fun () =>
             a
             |> sm'.to_std_string
@@ -165,8 +168,6 @@ let (</>) (a : string) (b : string) : string =
             |> path_buf_display
             |> sm'.format'
             |> sm'.from_std_string
-        | Fsharp (Native) => fun () =>
-            $'System.IO.Path.Combine (!a, !b)'
         | TypeScript _ => fun () =>
             a |> ts_path_join b
         | _ => fun () => null ()
@@ -350,8 +351,8 @@ inl get_full_path (path : string) : string =
                         match x, level with
                         | "..", _ => level + 1, acc
                         | ".", _ => level, acc
-                        | _, 0 when x |> sm'.ends_with ":" => 0, a ;[ $'$"{!current_dir.[0]}:"' ] /@ acc
-                        | _, 0 => 0, a ;[ x ] /@ acc
+                        | _, 0 when x |> sm'.ends_with ":" => 0, a ;[ $'$"{!current_dir.[0]}:"' ] ++ acc
+                        | _, 0 => 0, a ;[ x ] ++ acc
                         | _ => level - 1, acc
                 |> snd
                 |> seq.of_array'
@@ -370,9 +371,9 @@ inl create_temp_directory_name () =
     run_target function
         | Fsharp (Native)
         | Rust (Native) => fun () =>
-            inl assembly = get_entry_assembly_name ()
+            inl assembly_name = env.get_entry_assembly_name ()
             get_temp_path ()
-            </> ($'$"\!{!assembly}"' : string)
+            </> ($'$"\!{!assembly_name}"' : string)
             </> (date_time.now () |> date_time.new_guid_from_date_time |> sm'.obj_to_string)
         | _ => fun () => null ()
 
@@ -416,6 +417,11 @@ inl directory_exists (path : string) : bool =
 /// ## directory_get_parent
 inl directory_get_parent (path : string) : optionm'.option' string =
     run_target function
+        | Fsharp (Native) => fun () =>
+            inl parent : directory_info = path |> $'System.IO.Directory.GetParent'
+            if parent =. null ()
+            then None
+            else parent |> directory_info_full_name |> Some
         | Rust (Native) => fun () =>
             path
             |> sm'.to_std_string
@@ -426,11 +432,6 @@ inl directory_get_parent (path : string) : optionm'.option' string =
             |> sm'.format'
             |> sm'.from_std_string
             |> Some
-        | Fsharp (Native) => fun () =>
-            inl parent : directory_info = path |> $'System.IO.Directory.GetParent'
-            if parent =. null ()
-            then None
-            else parent |> directory_info_full_name |> Some
         | TypeScript _ => fun () =>
             global "type IPathDirname = abstract dirname: path: string -> string"
             inl fs : $'IPathDirname' = ts.import_all "path"
@@ -754,8 +755,8 @@ inl find_parent name is_file root_dir =
             | None => failwith $'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\' (until \'{!dir}\')"""'
     loop root_dir
 
-/// ## get_repository_root
-inl get_repository_root () =
+/// ## get_workspace_root
+inl get_workspace_root () =
     get_source_directory ()
     |> find_parent ("polyglot" </> ".paket") false
     |> fun root => root </> "polyglot"
@@ -780,12 +781,12 @@ let rec trace_file text =
     | Fsharp (Native) => fun () =>
         try_unit
             fun () =>
-                inl assembly_name = get_entry_assembly_name ()
+                inl assembly_name = env.get_entry_assembly_name ()
                 inl guid = date_time.now () |> date_time.new_guid_from_date_time
                 inl file_name = $'$"{!assembly_name}_{!guid}.txt"'
-                
-                inl repository_root = get_repository_root ()
-                inl trace_dir = repository_root </> "target/polyglot/trace"
+
+                inl workspace_root = get_workspace_root ()
+                inl trace_dir = workspace_root </> "target/polyglot/trace"
                 trace_dir |> create_directory |> ignore
                 inl path = trace_dir </> file_name
                 text |> write_all_text_async path |> async.run_synchronously
@@ -818,7 +819,7 @@ inl main () =
     $"let find_parent x = !find_parent x" : ()
     $"let normalize_path x = !normalize_path x" : ()
     $"let new_file_uri x = !new_file_uri x" : ()
-    $"let get_repository_root () = !get_repository_root ()" : ()
+    $"let get_workspace_root () = !get_workspace_root ()" : ()
     $"let init_trace_file x = !init_trace_file x" : ()
     inl combine x = (</>) x
     $"let (</>) x = !combine x" : ()

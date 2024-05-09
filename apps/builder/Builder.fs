@@ -51,13 +51,18 @@ module Builder =
     }
 
     /// ## persistCodeProject
-    let inline persistCodeProject packages modules name code = async {
+    let inline persistCodeProject packages modules name hash code = async {
         trace Debug
             (fun () -> "persistCodeProject")
-            (fun () -> $"packages: {packages} / modules: {modules} / name: {name} / code.Length: {code |> String.length} / {_locals ()}")
+            (fun () -> $"packages: {packages} / modules: {modules} / name: {name} / hash: {hash} / code.Length: {code |> String.length} / {_locals ()}")
 
-        let repositoryRoot = SpiralFileSystem.get_repository_root ()
-        let targetDir = repositoryRoot </> "target/polyglot/builder" </> name
+        let workspaceRoot = SpiralFileSystem.get_workspace_root ()
+
+        let targetDir =
+            let targetDir = workspaceRoot </> "target/polyglot/builder" </> name
+            match hash with
+            | Some hash -> targetDir </> "packages" </> hash
+            | None -> targetDir
         System.IO.Directory.CreateDirectory targetDir |> ignore
 
         let filePath = targetDir </> $"{name}.fs" |> System.IO.Path.GetFullPath
@@ -65,7 +70,7 @@ module Builder =
 
         let modulesCode =
             modules
-            |> List.map (fun path -> $"""<Compile Include="{repositoryRoot </> path}" />""")
+            |> List.map (fun path -> $"""<Compile Include="{workspaceRoot </> path}" />""")
             |> SpiralSm.concat "\n        "
 
         let fsprojPath = targetDir </> $"{name}.fsproj"
@@ -88,7 +93,7 @@ module Builder =
         <Compile Include="{filePath}" />
     </ItemGroup>
 
-    <Import Project="{repositoryRoot}/.paket/Paket.Restore.targets" />
+    <Import Project="{workspaceRoot}/.paket/Paket.Restore.targets" />
 </Project>
 """
         do! fsprojCode |> SpiralFileSystem.write_all_text_exists fsprojPath
@@ -104,7 +109,7 @@ module Builder =
 
     /// ## buildCode
     let inline buildCode runtime packages modules outputDir name code = async {
-        let! fsprojPath = code |> persistCodeProject packages modules name
+        let! fsprojPath = code |> persistCodeProject packages modules name None
         let! exitCode = fsprojPath |> buildProject runtime outputDir
         if exitCode > 0 then
             let! fsprojText = fsprojPath |> SpiralFileSystem.read_all_text_async
@@ -145,7 +150,7 @@ module Builder =
         let fullPath = path |> System.IO.Path.GetFullPath
         let name = fullPath |> System.IO.Path.GetFileNameWithoutExtension
         let! code = fullPath |> readFile
-        return! code |> persistCodeProject packages modules name
+        return! code |> persistCodeProject packages modules name None
     }
 
     /// ## Arguments

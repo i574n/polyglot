@@ -237,13 +237,7 @@ pub mod Trace {
         }
         (v1_1, v0_1, v3, getValue(_v6.get().clone()), v5)
     }
-    pub fn closure6(unitVar: (), v0_1: i64) -> Trace::US2 {
-        Trace::US2::US2_0(v0_1)
-    }
-    pub fn method3() -> Func1<i64, Trace::US2> {
-        Func1::new(move |v: i64| Trace::closure6((), v))
-    }
-    pub fn method4() -> string {
+    pub fn method3() -> string {
         string("")
     }
     pub fn closure5(
@@ -265,13 +259,13 @@ pub mod Trace {
             ) = getValue(Trace::State::trace_state().get().clone());
             let _v9: MutCell<Option<string>> = MutCell::new(None::<string>);
             {
-                let x: string = Trace::method4();
+                let x: string = Trace::method3();
                 _v9.set(Some(x))
             }
             {
-                let v61: string = getValue(_v9.get().clone());
-                let v62: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v74: string = padLeft(
+                let v66: string = getValue(_v9.get().clone());
+                let v67: i64 = (patternInput.0.clone()).l0.get().clone();
+                let v79: string = padLeft(
                     toLower(match &v0_1 {
                         Trace::US0::US0_1 => string("Debug"),
                         Trace::US0::US0_2 => string("Info"),
@@ -282,29 +276,29 @@ pub mod Trace {
                     7_i32,
                     ' ',
                 );
-                let _v75: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v139: &str = match &v0_1 {
+                let _v80: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v143: &str = match &v0_1 {
                     Trace::US0::US0_1 => inline_colorization::color_bright_blue,
                     Trace::US0::US0_2 => inline_colorization::color_bright_green,
                     Trace::US0::US0_0 => inline_colorization::color_bright_black,
-                    Trace::US0::US0_3 => inline_colorization::color_bright_yellow,
+                    Trace::US0::US0_3 => inline_colorization::color_yellow,
                     _ => inline_colorization::color_bright_red,
                 };
-                let v141: &str = fable_library_rust::String_::LrcStr::as_str(&v74);
-                let v143: &str = inline_colorization::color_reset;
-                let v145: string = string("format!(\"{v139}{v141}{v143}\")");
-                let v146: std::string::String = format!("{v139}{v141}{v143}");
+                let v145: &str = &*v79;
+                let v147: &str = inline_colorization::color_reset;
+                let v149: string = string("format!(\"{v143}{v145}{v147}\")");
+                let v150: std::string::String = format!("{v143}{v145}{v147}");
                 {
-                    let x_1: string = fable_library_rust::String_::fromString(v146);
-                    _v75.set(Some(x_1))
+                    let x_1: string = fable_library_rust::String_::fromString(v150);
+                    _v80.set(Some(x_1))
                 }
                 trimEndChars(
                     trimStartChars(
                         sprintf!(
                             "{} {} #{} {} / {}",
-                            v61,
-                            getValue(_v75.get().clone()),
-                            v62,
+                            v66,
+                            getValue(_v80.get().clone()),
+                            v67,
                             v1_1(),
                             v2()
                         ),
@@ -315,7 +309,7 @@ pub mod Trace {
             }
         }
     }
-    pub fn method5(v0_1: Trace::US0, v1_1: Func0<string>) {
+    pub fn method4(v0_1: Trace::US0, v1_1: Func0<string>) {
         fn v2() -> (
             LrcPtr<Trace::Mut0>,
             LrcPtr<Trace::Mut1>,
@@ -387,7 +381,7 @@ pub mod Trace {
         }
     }
     pub fn method2(v0_1: Trace::US0, v1_1: Func0<string>, v2: Func0<string>) {
-        Trace::method5(
+        Trace::method4(
             v0_1.clone(),
             Func0::new({
                 let v0_1 = v0_1.clone();
