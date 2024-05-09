@@ -600,6 +600,9 @@ module Eval =
         if cargoTomlPath |> File.Exists |> not then
             do! emptyCargoTomlContent () |> SpiralFileSystem.write_all_text_exists cargoTomlPath
 
+        if workspaceCargoTomlPath |> File.Exists |> not then
+            do! emptyCargoTomlContent () |> SpiralFileSystem.write_all_text_exists workspaceCargoTomlPath
+
         let libLinkTargetPath = workspaceRoot </> "lib/rust/fable/fable_modules/fable-library-rust"
         let libLinkPath = projectDir </> $"fable_modules/fable-library-rust"
 
@@ -668,8 +671,8 @@ module Eval =
                 let cargoTomlContent = spiralBuilderResult.["cargo_toml_content"]
                 let workspaceCargoTomlContent = spiralBuilderResult.["workspace_cargo_toml_content"]
 
-                if workspaceCargoTomlContent = "" then
-                    trace Warning (fun () -> $"Eval.run / workspaceCargoTomlContent is empty / spiralBuilderResult: {spiralBuilderResult}") _locals
+                do! cargoTomlContent |> SpiralFileSystem.write_all_text_exists cargoTomlPath
+                do! workspaceCargoTomlContent |> SpiralFileSystem.write_all_text_exists workspaceCargoTomlPath
 
                 try
                     let rangeRsPath = libLinkPath </> "src/Range.rs"
@@ -682,20 +685,8 @@ module Eval =
                 with ex ->
                     trace Debug (fun () -> $"Eval.run / Range.rs error / cargoFmtResult: {ex |> SpiralSm.format_exception} / spiralBuilderResult: {spiralBuilderResult}") _locals
 
-                let cargoTomlPathExists = cargoTomlPath |> File.Exists
-                let! cargoTomlPathContent = cargoTomlPath |> SpiralFileSystem.read_all_text_async
-                let cargoTomlPathContentLength = cargoTomlPathContent |> String.length
-
-                let workspaceCargoTomlPathExists = workspaceCargoTomlPath |> File.Exists
-                let! workspaceCargoTomlPathContent = workspaceCargoTomlPath |> SpiralFileSystem.read_all_text_async
-                let workspaceCargoTomlPathContentLength = workspaceCargoTomlPathContent |> String.length
-
-                trace Debug (fun () -> $"Eval.run / workspaceCargoTomlPathExists: {workspaceCargoTomlPathExists} / workspaceCargoTomlPathContentLength: {workspaceCargoTomlPathContentLength} / cargoTomlPathExists: {cargoTomlPathExists} / cargoTomlPathContentLength: {cargoTomlPathContentLength}") _locals
-
                 let! exitCode, cargoFmtResult =
                     async {
-                        do! cargoTomlContent |> SpiralFileSystem.write_all_text_exists cargoTomlPath
-                        do! workspaceCargoTomlContent |> SpiralFileSystem.write_all_text_exists workspaceCargoTomlPath
 
                         let! exitCode, cargoFmtResult =
                             SpiralRuntime.execution_options (fun x ->
