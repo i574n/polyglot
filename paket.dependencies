@@ -23,4 +23,3 @@ nuget Microsoft.AspNetCore.SignalR.Client.Core == 7.0.0
 nuget Microsoft.AspNetCore.SignalR.Protocols.Json == 7.0.0
 nuget Microsoft.Extensions.Features == 7.0.0
 nuget System.Reactive.Linq ~> 6.0.0 prerelease
-nuget Tomlyn ~> 0.17.0

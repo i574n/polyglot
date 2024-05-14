@@ -122,25 +122,6 @@ function Get-LastSortedItem {
     (Get-ChildItem -Path $Path -Filter $Filter -Recurse | Sort-Object { [regex]::Replace($_.FullName, '\d+', { $args[0].Value.PadLeft(20) }) })[-1]
 }
 
-function Update-Toml {
-    param (
-        [Parameter(Mandatory)]
-        [string] $tomlPath,
-        [Parameter(Mandatory)]
-        [scriptblock] $ContentModifier
-    )
-
-    if (!(Test-Path $tomlPath)) {
-        New-Item $tomlPath -ItemType File -Force | Out-Null
-    }
-
-    $tomlContent = Get-Content $tomlPath | ConvertFrom-Toml
-
-    $tomlContent = &$ContentModifier $tomlContent
-
-    $tomlContent | ConvertTo-Toml -Depth 3 | Set-Content -Path $tomlPath
-}
-
 function Update-Json {
     param (
         [Parameter(Mandatory)]

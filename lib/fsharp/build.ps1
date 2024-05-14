@@ -18,8 +18,7 @@ if (!$fast) {
         --execute-command "../../target/release/spiral_builder$(_exe) dib --path CommonFSharp.dib --retries 3" `
         --execute-command "../../target/release/spiral_builder$(_exe) dib --path FileSystem.dib --retries 3" `
         --execute-command "../../target/release/spiral_builder$(_exe) dib --path Runtime.dib --retries 3" `
-        --execute-command "../../target/release/spiral_builder$(_exe) dib --path Toml.dib --retries 3" `
     } | Invoke-Block
 }
 
-{ . ../../apps/parser/dist/DibParser$(_exe) Async.dib fs AsyncSeq.dib fs Common.dib fs CommonFSharp.dib fs FileSystem.dib fs Runtime.dib fs Toml.dib fs } | Invoke-Block
+{ . ../../apps/parser/dist/DibParser$(_exe) Async.dib fs AsyncSeq.dib fs Common.dib fs CommonFSharp.dib fs FileSystem.dib fs Runtime.dib fs } | Invoke-Block

@@ -7,9 +7,7 @@ $ErrorActionPreference = "Stop"
 . ../../../scripts/core.ps1
 
 
-if (!$fast) {
-    Invoke-Dib build.dib
-}
+{ dotnet fable --optimize --lang rs --extension .rs } | Invoke-Block
 
 $libPath = "./fable_modules/fable-library-rust"
 

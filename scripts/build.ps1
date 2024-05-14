@@ -6,4 +6,4 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-Invoke-Dib build.dib
+{ . ../target/release/spiral_builder$(_exe) dib --path build.dib } | Invoke-Block

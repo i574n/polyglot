@@ -12,7 +12,7 @@ $dibParserExe = "dist/DibParser$(_exe)"
 if ($fast -and (Test-Path $dibParserExe)) {
     { . $dibParserExe DibParser.dib fs } | Invoke-Block
 } else {
-    Invoke-Dib DibParser.dib -EnvironmentVariables @{ "ARGS" = "DibParser.dib fs" }
+    { . ../../target/release/spiral_builder$(_exe) dib --path DibParser.dib } | Invoke-Block -EnvironmentVariables @{ "ARGS" = "DibParser.dib fs" }
 }
 
 $runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
@@ -20,8 +20,8 @@ $builderArgs = @("DibParser.fs", $runtime, "--packages", "Argu", "FParsec", "FSh
 { . ../builder/dist/Builder$(_exe) @builderArgs } | Invoke-Block
 
 if (!$fast) {
-    Invoke-Dib JsonParser.dib
-    Invoke-Dib Parser.dib
+    { . ../../target/release/spiral_builder$(_exe) dib --path JsonParser.dib } | Invoke-Block
+    { . ../../target/release/spiral_builder$(_exe) dib --path Parser.dib } | Invoke-Block
 }
 
 { . dist/DibParser$(_exe) JsonParser.dib fs Parser.dib fs } | Invoke-Block

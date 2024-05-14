@@ -73,10 +73,6 @@ npx -y playwright@1.42.1 install
 
 #!pwsh
 
-{ Install-Module -Name PSToml -Scope CurrentUser -WhatIf } | Invoke-Block -OnError Continue
-
-#!pwsh
-
 { ~/.bun/bin/bun install --cwd .. --frozen-lockfile } | Invoke-Block
 
 #!pwsh

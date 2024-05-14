@@ -698,6 +698,15 @@ $'$"pwsh -c \\\"$x -replace \'(id=\\\\\\"cell-id=)[a-fA-F0-9]{{8}}\', {{ \`$_[1]
 |> split_args
 |> _assert_eq' ;[ "pwsh"; "-c"; "$x -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { `$_[1] + `$counter++ }" ]
 
+#!spiral
+
+//// test
+//// print_code=false
+
+$'$"a --b --c d --e \\\"c:/f f/test.hangul.md\\\" --output \\\"c:/md.pdf\\\" --set tex.template.add \\\"\\\\usepackage{{cjkutf8-ko}}\\\" rendering.highlight.theme \\\"Solarized (dark)\\\""'
+|> split_args
+|> _assert_eq' ;[ "a"; "--b"; "--c"; "d"; "--e"; "c:/f f/test.hangul.md"; "--output"; "c:/md.pdf"; "--set"; "tex.template.add"; "\\usepackage{cjkutf8-ko}"; "rendering.highlight.theme"; "Solarized (dark)" ]
+
 #!markdown
 
 ## stdin_write_all
@@ -998,6 +1007,10 @@ let execute_with_options (options : execution_options) : i32 * string =
             |> from_pair
         | _ => fun () => null ()
 
+#!markdown
+
+### execute
+
 #!spiral
 
 inl execute command =
@@ -1005,6 +1018,10 @@ inl execute command =
         command = command
     }
     |> execute_with_options
+
+#!markdown
+
+### test 1
 
 #!spiral
 

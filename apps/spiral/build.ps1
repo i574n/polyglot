@@ -9,7 +9,7 @@ $ErrorActionPreference = "Stop"
 
 
 if (!$fast) {
-    Invoke-Dib Supervisor.dib -Retries 3
+    { . ../../target/release/spiral_builder$(_exe) dib --path Supervisor.dib --retries 3 } | Invoke-Block
 }
 
 { . ../parser/dist/DibParser$(_exe) Supervisor.dib fs } | Invoke-Block
@@ -19,7 +19,7 @@ $builderArgs = @("Supervisor.fs", $runtime, "--packages", "Argu", "FSharp.Contro
 { . ../builder/dist/Builder$(_exe) @builderArgs } | Invoke-Block
 
 if (!$fast) {
-    Invoke-Dib Eval.dib -Retries 3
+    { . ../../target/release/spiral_builder$(_exe) dib --path Eval.dib --retries 3 } | Invoke-Block
 }
 
 { . ../parser/dist/DibParser$(_exe) Eval.dib fs } | Invoke-Block

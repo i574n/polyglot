@@ -78,4 +78,3 @@ NUGET
     System.Security.Cryptography.ProtectedData (8.0)
     System.Threading.Channels (8.0)
     System.Threading.Tasks.Extensions (4.5.4)
-    Tomlyn (0.17)

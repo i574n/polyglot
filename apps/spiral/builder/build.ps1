@@ -12,7 +12,6 @@ $ErrorActionPreference = "Stop"
 $projectName = "spiral_builder"
 
 if (!$fast -and !$SkipNotebook) {
-    { cargo +nightly build --release } | Invoke-Block
     { . ../dist/Supervisor$(_exe) --execute-command "../../../target/release/spiral_builder$(_exe) dib --path $projectName.dib" } | Invoke-Block -Retries 3
 }
 
