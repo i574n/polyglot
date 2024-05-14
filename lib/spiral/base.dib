@@ -567,3 +567,32 @@ fields
 |> listm'.to_array'
 |> fun x => x : a i32 _
 |> _assert_eq (a ;[ Native; Wasm; Contract ])
+
+#!markdown
+
+## memoize
+
+#!spiral
+
+nominal lazy t = $'Lazy<`t>'
+
+inl memoize forall t. (fn : () -> t) : () -> t =
+    inl fn = join fn
+    inl result : lazy t = $'lazy !fn ()'
+    fun () => $'!result.Value'
+
+#!spiral
+
+//// test
+
+inl count = mut 0i32
+inl add =
+    fun () => count <- *count + 1
+    |> memoize
+
+add ()
+add ()
+add ()
+
+*count
+|> _assert_eq 1

@@ -235,6 +235,15 @@ inl ref_map forall t u. (fn : t -> u) (x : ref' t) : ref' u =
 
 #!markdown
 
+## cow_as_ref
+
+#!spiral
+
+inl cow_as_ref forall t. (s : cow t) : ref' t =
+    !\\(s, $'"$0.as_ref()"')
+
+#!markdown
+
 ## from_mut
 
 #!spiral

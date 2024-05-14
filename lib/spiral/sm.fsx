@@ -107,6 +107,10 @@ type base64_DecodeError = class end
 #endif
 type borsh_io_Error = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("encoding_rs::Encoding")>]
+#endif
+type encoding_rs_Encoding = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")>]
 #endif
 type js_sys_JsString = class end

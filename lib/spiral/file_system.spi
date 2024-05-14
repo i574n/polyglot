@@ -796,13 +796,13 @@ let rec trace_file text =
 
 /// ## init_trace_file
 inl init_trace_file enabled =
-    inl state_trace_file = get_trace_state () .trace_file
+    inl state_trace_file = get_trace_state_or_init None .trace_file
     state_trace_file <- if enabled then trace_file else ignore
 
 /// ## main
 inl main () =
     types ()
-    init_trace_state ()
+    init_trace_state None
     $"let delete_directory_async x = !delete_directory_async x" : ()
     $"let wait_for_file_access x = !wait_for_file_access x" : ()
     $"let wait_for_file_access_read x = !wait_for_file_access_read x" : ()

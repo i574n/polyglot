@@ -22,7 +22,7 @@ mod module_b448d9d1 {
         }
         pub fn v0() -> Func0<i32> {
             static v0: OnceInit<Func0<i32>> = OnceInit::new();
-            v0.get_or_insert_with(|| Func0::new(move || Test::closure0((), ())))
+            v0.get_or_init(|| Func0::new(move || Test::closure0((), ())))
                 .clone()
         }
         on_startup!(());

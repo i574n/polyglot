@@ -274,8 +274,8 @@ module Supervisor =
         let! result =
             outputChild
             |> Async.map (function
-                | Some (Ok (Some (message, errors, _))) ->
-                    message, errors |> List.distinct |> List.rev
+                | Some (Ok (Some (fsxCode, errors, _))) ->
+                    fsxCode, errors |> List.distinct |> List.rev
                 | Some (Error ex) ->
                     trace Critical (fun () -> $"buildFile / error: {ex |> serializeObj}") _locals
                     None, []
@@ -302,9 +302,10 @@ module Supervisor =
 
         let codeDir = packagesDir </> hashHex
 
+        let mainPath = codeDir </> "main.spi"
+
         codeDir |> System.IO.Directory.CreateDirectory |> ignore
 
-        let mainPath = codeDir </> "main.spi"
         do! code |> SpiralFileSystem.write_all_text_exists mainPath
 
         let spiprojPath = codeDir </> "package.spiproj"
@@ -318,15 +319,28 @@ modules:
 """
         do! spiprojCode |> SpiralFileSystem.write_all_text_exists spiprojPath
 
-        return mainPath
+        let fsxPath = codeDir </> "main.fsx"
+
+        if fsxPath |> System.IO.File.Exists |> not
+        then return mainPath, None
+        else
+            let! oldCode = mainPath |> SpiralFileSystem.read_all_text_async
+            if oldCode <> code
+            then return mainPath, None
+            else
+                let! fsxCode = fsxPath |> SpiralFileSystem.read_all_text_async
+                return mainPath, Some (fsxPath, fsxCode |> SpiralSm.replace "\r\n" "\n")
     }
 
     /// ## buildCode
     let inline buildCode timeout cancellationToken code = async {
-        let! mainPath = persistCode code
-        let port = getCompilerPort ()
-        let! fsxPath, fsxCode = mainPath |> buildFile timeout port cancellationToken
-        return fsxCode
+        let! mainPath, fsx = code |> persistCode
+        match fsx with
+        | Some (fsxPath, fsxCode) -> return mainPath, (fsxPath, Some fsxCode), []
+        | None ->
+            let port = getCompilerPort ()
+            let! fsxPath, (fsxCode, errors) = mainPath |> buildFile timeout port cancellationToken
+            return mainPath, (fsxPath, fsxCode), errors
     }
 
     /// ## getFileTokenRange
@@ -380,9 +394,26 @@ modules:
 
     /// ## getCodeTokenRange
     let inline getCodeTokenRange cancellationToken code = async {
-        let! mainPath = persistCode code
-        let port = getCompilerPort ()
-        return! mainPath |> getFileTokenRange (Some port) cancellationToken
+        let! mainPath, _ = persistCode code
+
+        let codeDir = mainPath |> System.IO.Path.GetDirectoryName
+        let tokensPath = codeDir </> "tokens.json"
+        let! tokens = async {
+            if tokensPath |> System.IO.File.Exists |> not
+            then return None
+            else
+                let! text = tokensPath |> SpiralFileSystem.read_all_text_async
+
+                return
+                    if text.Length > 2
+                    then text |> FSharp.Json.Json.deserialize<int array> |> Some
+                    else None
+        }
+        match tokens with
+        | Some tokens -> return tokens |> Some
+        | None ->
+            let port = getCompilerPort ()
+            return! mainPath |> getFileTokenRange (Some port) cancellationToken
     }
 
     /// ## Arguments

@@ -61,6 +61,10 @@
 
 #!pwsh
 
+{ pwsh ../apps/spiral/vscode/build.ps1 } | Invoke-Block
+
+#!pwsh
+
 { pwsh ../apps/perf/build.ps1 } | Invoke-Block
 
 #!pwsh

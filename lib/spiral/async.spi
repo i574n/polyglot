@@ -358,7 +358,7 @@ inl merge_cancellation_token_with_default_async
 
 /// ## with_trace_level
 inl with_trace_level forall t. level fn : _ t = new_async fun () =>
-    inl trace_state = get_trace_state ()
+    inl trace_state = get_trace_state_or_init None
     inl old_trace_level = *trace_state.level
     inl trace_level = trace_state.level
     try_finally

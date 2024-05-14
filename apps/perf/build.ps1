@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 
 
 if (!$fast) {
-    { . ../spiral/dist/Supervisor$(_exe) --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 Perf.dib -Retries 3`"" } | Invoke-Block
+    { . ../spiral/dist/Supervisor$(_exe) --execute-command "../../target/release/spiral_builder$(_exe) dib --path Perf.dib --retries 3" } | Invoke-Block
 }
 
 { . ../parser/dist/DibParser$(_exe) Perf.dib fs } | Invoke-Block

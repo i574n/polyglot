@@ -8,34 +8,14 @@ from fable_modules.fable_library.list import (cons, FSharpList, of_array, to_arr
 from fable_modules.fable_library.long import op_addition
 from fable_modules.fable_library.map import (find, of_seq)
 from fable_modules.fable_library.option import (some, value as value_2, default_arg)
-from fable_modules.fable_library.reflection import (TypeInfo, int64_type, record_type, bool_type, union_type, string_type, unit_type, lambda_type, int32_type, char_type, tuple_type, class_type, option_type, array_type, uint8_type)
+from fable_modules.fable_library.reflection import (TypeInfo, union_type, int64_type, record_type, bool_type, string_type, unit_type, lambda_type, int32_type, char_type, tuple_type, class_type, option_type, array_type, uint8_type)
 from fable_modules.fable_library.string_ import (replace, to_text, interpolate, pad_left, trim_end, trim_start)
-from fable_modules.fable_library.types import (int64, Record, Array, Union, FSharpRef, uint8)
+from fable_modules.fable_library.types import (int64, Array, Union, Record, FSharpRef, uint8)
 from fable_modules.fable_library.util import (create_atom, to_enumerable, compare, equals, uncurry2)
 
 State_trace_state: tuple[Mut0, Mut1, Mut2, int64 | None, Mut3] | None = create_atom(None)
 
-def _expr112() -> TypeInfo:
-    return record_type("Runtime.Mut0", [], Mut0, lambda: [("l0", int64_type)])
-
-
-@dataclass(eq = False, repr = False, slots = True)
-class Mut0(Record):
-    l0: int64
-
-Mut0_reflection = _expr112
-
-def _expr113() -> TypeInfo:
-    return record_type("Runtime.Mut1", [], Mut1, lambda: [("l0", bool_type)])
-
-
-@dataclass(eq = False, repr = False, slots = True)
-class Mut1(Record):
-    l0: bool
-
-Mut1_reflection = _expr113
-
-def _expr114() -> TypeInfo:
+def _expr188() -> TypeInfo:
     return union_type("Runtime.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -51,9 +31,29 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr114
+US0_reflection = _expr188
 
-def _expr115() -> TypeInfo:
+def _expr189() -> TypeInfo:
+    return record_type("Runtime.Mut0", [], Mut0, lambda: [("l0", int64_type)])
+
+
+@dataclass(eq = False, repr = False, slots = True)
+class Mut0(Record):
+    l0: int64
+
+Mut0_reflection = _expr189
+
+def _expr190() -> TypeInfo:
+    return record_type("Runtime.Mut1", [], Mut1, lambda: [("l0", bool_type)])
+
+
+@dataclass(eq = False, repr = False, slots = True)
+class Mut1(Record):
+    l0: bool
+
+Mut1_reflection = _expr190
+
+def _expr191() -> TypeInfo:
     return record_type("Runtime.Mut2", [], Mut2, lambda: [("l0", US0_reflection())])
 
 
@@ -61,9 +61,9 @@ def _expr115() -> TypeInfo:
 class Mut2(Record):
     l0: US0
 
-Mut2_reflection = _expr115
+Mut2_reflection = _expr191
 
-def _expr116() -> TypeInfo:
+def _expr192() -> TypeInfo:
     return record_type("Runtime.Mut3", [], Mut3, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -71,9 +71,9 @@ def _expr116() -> TypeInfo:
 class Mut3(Record):
     l0: Callable[[str], None]
 
-Mut3_reflection = _expr116
+Mut3_reflection = _expr192
 
-def _expr117() -> TypeInfo:
+def _expr193() -> TypeInfo:
     return union_type("Runtime.US1", [], US1, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -89,9 +89,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr117
+US1_reflection = _expr193
 
-def _expr118() -> TypeInfo:
+def _expr194() -> TypeInfo:
     return record_type("Runtime.Mut4", [], Mut4, lambda: [("l0", int32_type)])
 
 
@@ -99,9 +99,9 @@ def _expr118() -> TypeInfo:
 class Mut4(Record):
     l0: int
 
-Mut4_reflection = _expr118
+Mut4_reflection = _expr194
 
-def _expr119() -> TypeInfo:
+def _expr195() -> TypeInfo:
     return union_type("Runtime.UH0", [], UH0, lambda: [[], [("Item1", char_type), ("Item2", UH0_reflection())]])
 
 
@@ -116,9 +116,9 @@ class UH0(Union):
         return ["UH0_0", "UH0_1"]
 
 
-UH0_reflection = _expr119
+UH0_reflection = _expr195
 
-def _expr120() -> TypeInfo:
+def _expr196() -> TypeInfo:
     return union_type("Runtime.US3", [], US3, lambda: [[], []])
 
 
@@ -134,9 +134,9 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr120
+US3_reflection = _expr196
 
-def _expr121() -> TypeInfo:
+def _expr197() -> TypeInfo:
     return union_type("Runtime.US2", [], US2, lambda: [[], [("f1_0", US3_reflection())], []])
 
 
@@ -152,9 +152,9 @@ class US2(Union):
         return ["US2_0", "US2_1", "US2_2"]
 
 
-US2_reflection = _expr121
+US2_reflection = _expr197
 
-def _expr122() -> TypeInfo:
+def _expr198() -> TypeInfo:
     return union_type("Runtime.US4", [], US4, lambda: [[("f0_0", string_type)], []])
 
 
@@ -170,10 +170,10 @@ class US4(Union):
         return ["US4_0", "US4_1"]
 
 
-US4_reflection = _expr122
+US4_reflection = _expr198
 
-def _expr123() -> TypeInfo:
-    return union_type("Runtime.US5", [], US5, lambda: [[("f0_0", int64_type)], []])
+def _expr199() -> TypeInfo:
+    return union_type("Runtime.US5", [], US5, lambda: [[("f0_0", lambda_type(tuple_type(bool_type, string_type, int32_type), class_type("Microsoft.FSharp.Control.FSharpAsync`1", [unit_type])))], []])
 
 
 class US5(Union):
@@ -188,10 +188,10 @@ class US5(Union):
         return ["US5_0", "US5_1"]
 
 
-US5_reflection = _expr123
+US5_reflection = _expr199
 
-def _expr124() -> TypeInfo:
-    return union_type("Runtime.US6", [], US6, lambda: [[("f0_0", lambda_type(tuple_type(bool_type, string_type, int32_type), class_type("Microsoft.FSharp.Control.FSharpAsync`1", [unit_type])))], []])
+def _expr200() -> TypeInfo:
+    return union_type("Runtime.US6", [], US6, lambda: [[("f0_0", class_type("System.Threading.CancellationToken"))], []])
 
 
 class US6(Union):
@@ -206,27 +206,9 @@ class US6(Union):
         return ["US6_0", "US6_1"]
 
 
-US6_reflection = _expr124
+US6_reflection = _expr200
 
-def _expr125() -> TypeInfo:
-    return union_type("Runtime.US7", [], US7, lambda: [[("f0_0", class_type("System.Threading.CancellationToken"))], []])
-
-
-class US7(Union):
-    __slots__ = ["tag", "fields"]
-    def __init__(self, tag: int, *fields: Any) -> None:
-        super().__init__()
-        self.tag: int = tag or 0
-        self.fields: Array[Any] = list(fields)
-
-    @staticmethod
-    def cases() -> list[str]:
-        return ["US7_0", "US7_1"]
-
-
-US7_reflection = _expr125
-
-def _expr126() -> TypeInfo:
+def _expr201() -> TypeInfo:
     return record_type("Runtime.Heap0", [], Heap0, lambda: [("l0", option_type(class_type("System.Threading.CancellationToken"))), ("l1", string_type), ("l2", array_type(tuple_type(string_type, string_type))), ("l3", option_type(lambda_type(tuple_type(bool_type, string_type, int32_type), class_type("Microsoft.FSharp.Control.FSharpAsync`1", [unit_type])))), ("l4", option_type(lambda_type(class_type("Runtime.std_sync_Arc`1", [class_type("Runtime.std_sync_Mutex`1", [class_type("Runtime.std_process_ChildStdin")])]), unit_type))), ("l5", option_type(string_type))])
 
 
@@ -239,9 +221,9 @@ class Heap0(Record):
     l4: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None
     l5: str | None
 
-Heap0_reflection = _expr126
+Heap0_reflection = _expr201
 
-def _expr127() -> TypeInfo:
+def _expr202() -> TypeInfo:
     return union_type("Runtime.UH1", [], UH1, lambda: [[], [("Item1", string_type), ("Item2", UH1_reflection())]])
 
 
@@ -256,13 +238,13 @@ class UH1(Union):
         return ["UH1_0", "UH1_1"]
 
 
-UH1_reflection = _expr127
+UH1_reflection = _expr202
 
-def _expr128() -> TypeInfo:
-    return union_type("Runtime.US8", [], US8, lambda: [[], [("f1_0", char_type)], [("f2_0", uint8_type)]])
+def _expr203() -> TypeInfo:
+    return union_type("Runtime.US7", [], US7, lambda: [[], [("f1_0", char_type)], [("f2_0", uint8_type), ("f2_1", char_type)]])
 
 
-class US8(Union):
+class US7(Union):
     __slots__ = ["tag", "fields"]
     def __init__(self, tag: int, *fields: Any) -> None:
         super().__init__()
@@ -271,10 +253,10 @@ class US8(Union):
 
     @staticmethod
     def cases() -> list[str]:
-        return ["US8_0", "US8_1", "US8_2"]
+        return ["US7_0", "US7_1", "US7_2"]
 
 
-US8_reflection = _expr128
+US7_reflection = _expr203
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:
@@ -456,24 +438,6 @@ def US6__get_IsUS6_1(this: FSharpRef[US6], unit_arg: None) -> bool:
 
 
 
-def US7__get_IsUS7_0(this: FSharpRef[US7], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US7__get_IsUS7_1(this: FSharpRef[US7], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
 def UH1__get_IsUH1_0(this: UH1, unit_arg: None) -> bool:
     if this.tag == 0:
         return True
@@ -492,7 +456,7 @@ def UH1__get_IsUH1_1(this: UH1, unit_arg: None) -> bool:
 
 
 
-def US8__get_IsUS8_0(this: FSharpRef[US8], unit_arg: None) -> bool:
+def US7__get_IsUS7_0(this: FSharpRef[US7], unit_arg: None) -> bool:
     if this.tag == 0:
         return True
 
@@ -501,7 +465,7 @@ def US8__get_IsUS8_0(this: FSharpRef[US8], unit_arg: None) -> bool:
 
 
 
-def US8__get_IsUS8_1(this: FSharpRef[US8], unit_arg: None) -> bool:
+def US7__get_IsUS7_1(this: FSharpRef[US7], unit_arg: None) -> bool:
     if this.tag == 1:
         return True
 
@@ -510,7 +474,7 @@ def US8__get_IsUS8_1(this: FSharpRef[US8], unit_arg: None) -> bool:
 
 
 
-def US8__get_IsUS8_2(this: FSharpRef[US8], unit_arg: None) -> bool:
+def US7__get_IsUS7_2(this: FSharpRef[US7], unit_arg: None) -> bool:
     if this.tag == 2:
         return True
 
@@ -523,26 +487,25 @@ def closure1(unit_var: None, v0_1: str) -> None:
     pass
 
 
-def method0(v0_1: int64 | None=None) -> int64 | None:
-    return v0_1
+def method0(__unit: None=None) -> str:
+    return ""
 
 
-def method1(v0_1: int64 | None=None) -> int64 | None:
-    return v0_1
+def method1(__unit: None=None) -> str:
+    return "AUTOMATION"
 
 
-def closure0(unit_var: None, unit_var_1: None) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
-    v0_1: Mut1 = Mut1(True)
-    v1_1: Mut0 = Mut0(int64(0))
-    v3_1: Mut2 = Mut2(US0(0))
-    def v4_1(v: str, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> None:
+def closure0(unit_var: None, v0_1: US0) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
+    v1_1: Mut1 = Mut1(True)
+    v2_1: Mut0 = Mut0(int64(0))
+    v3_1: Mut2 = Mut2(v0_1)
+    def v4_1(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
         closure1(None, v)
 
     v5_1: Mut3 = Mut3(v4_1)
     _v6: (int64 | None) | None = None
-    x: int64 | None = method1(None)
-    _v6 = some(x)
-    return (v1_1, v0_1, v3_1, value_2(_v6), v5_1)
+    _v6 = some(None)
+    return (v2_1, v1_1, v3_1, value_2(_v6), v5_1)
 
 
 def closure2(unit_var: None, unit_var_1: None) -> bool:
@@ -575,17 +538,17 @@ def closure6(v0_1: str, v1_1: UH0) -> UH0:
 
 
 def closure5(unit_var: None, v0_1: str) -> Callable[[UH0], UH0]:
-    def _arrow129(v: UH0, unit_var: Any=unit_var, v0_1: Any=v0_1) -> UH0:
+    def _arrow204(v: UH0, unit_var: Any=unit_var, v0_1: Any=v0_1) -> UH0:
         return closure6(v0_1, v)
 
-    return _arrow129
+    return _arrow204
 
 
 def method5(__unit: None=None) -> Callable[[str, UH0], UH0]:
-    def _arrow130(v: str) -> Callable[[UH0], UH0]:
+    def _arrow205(v: str) -> Callable[[UH0], UH0]:
         return closure5(None, v)
 
-    return _arrow130
+    return _arrow205
 
 
 def method6(v0_1_mut: str, v1_1_mut: str, v2_1_mut: UH0, v3_1_mut: US2) -> tuple[str, str]:
@@ -786,10 +749,10 @@ def closure8(unit_var: None, unit_var_1: None) -> str:
 
 
 def method7(__unit: None=None) -> Callable[[], str]:
-    def _arrow131(__unit: None=None) -> str:
+    def _arrow206(__unit: None=None) -> str:
         return closure8(None, None)
 
-    return _arrow131
+    return _arrow206
 
 
 def method9(__unit: None=None) -> str:
@@ -798,54 +761,54 @@ def method9(__unit: None=None) -> str:
 
 def closure9(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_var: None) -> str:
     if State_trace_state() is None:
-        State_trace_state(closure0(None, None))
+        State_trace_state(closure0(None, US0(0)))
 
     pattern_input: tuple[Mut0, Mut1, Mut2, int64 | None, Mut3] = value_2(State_trace_state())
-    _v9: str | None = None
+    _v10: str | None = None
     x: str = method9()
-    _v9 = x
-    v66: str = value_2(_v9)
-    v67: int64 = pattern_input[0].l0
-    v77: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
-    _v80: str | None = None
-    x_1: str = pad_left(v77.lower(), 7, " ")
-    _v80 = x_1
-    return trim_end(trim_start(((((((((("" + v66) + " ") + value_2(_v80)) + " #") + str(v67)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
+    _v10 = x
+    v67: str = value_2(_v10)
+    v68: int64 = pattern_input[0].l0
+    v78: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
+    _v81: str | None = None
+    x_1: str = pad_left(v78.lower(), 7, " ")
+    _v81 = x_1
+    return trim_end(trim_start(((((((((("" + v67) + " ") + value_2(_v81)) + " #") + str(v68)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
 
 
 def method10(v0_1: US0, v1_1: Callable[[], str]) -> None:
-    def v2_1(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
-        return closure0(None, None)
+    def v2_1(v: US0, v0_1: Any=v0_1, v1_1: Any=v1_1) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
+        return closure0(None, v)
 
     if State_trace_state() is None:
-        State_trace_state(v2_1(None))
+        State_trace_state(v2_1(US0(0)))
 
     pattern_input: tuple[Mut0, Mut1, Mut2, int64 | None, Mut3] = value_2(State_trace_state())
-    v3_1: Mut0 = pattern_input[0]
+    v4_1: Mut0 = pattern_input[0]
     if State_trace_state() is None:
-        State_trace_state(v2_1(None))
+        State_trace_state(v2_1(US0(0)))
 
     pattern_input_1: tuple[Mut0, Mut1, Mut2, int64 | None, Mut3] = value_2(State_trace_state())
-    v13: US0 = pattern_input_1[2].l0
-    class ObjectExpr132:
+    v15: US0 = pattern_input_1[2].l0
+    class ObjectExpr207:
         @property
         def Compare(self) -> Callable[[US0, US0], int]:
             return compare
 
-    class ObjectExpr133:
+    class ObjectExpr208:
         @property
         def Compare(self) -> Callable[[US0, US0], int]:
             return compare
 
-    if False if (pattern_input_1[1].l0 == False) else (find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr132())) >= find(v13, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr133()))):
-        v21: int64 = op_addition(v3_1.l0, int64(1))
-        v3_1.l0 = v21
-        v22: str = ("" + v1_1(None)) + ""
-        _v23: None | None = None
-        print(v22)
-        _v23 = some(None)
-        value_2(_v23)
-        pattern_input[4].l0(v22)
+    if False if (pattern_input_1[1].l0 == False) else (find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr207())) >= find(v15, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr208()))):
+        v23: int64 = op_addition(v4_1.l0, int64(1))
+        v4_1.l0 = v23
+        v24: str = ("" + v1_1(None)) + ""
+        _v25: None | None = None
+        print(v24)
+        _v25 = some(None)
+        value_2(_v25)
+        pattern_input[4].l0(v24)
 
 
 
@@ -860,7 +823,7 @@ def closure11(v0_1: str, unit_var: None) -> str:
     return ("> " + v0_1) + ""
 
 
-def closure10(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: str | None, v6_1: None, v7: Any, v8: None) -> None:
+def closure10(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: str | None, v6_1: None, v7_1: Any, v8: None) -> None:
     _v9: Async[None] | None = None
     _v9 = None
     v36: Async[None] = value_2(_v9)
@@ -869,7 +832,7 @@ def closure10(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, 
     value_2(_v37)
 
 
-def closure12(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: str | None, v6_1: None, v7: Any, v8: None) -> None:
+def closure12(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: str | None, v6_1: None, v7_1: Any, v8: None) -> None:
     _v9: Async[None] | None = None
     _v9 = None
     v37: Async[None] = value_2(_v9)
@@ -928,113 +891,159 @@ def method15(v0_1: UH1, v1_1: UH1) -> UH1:
 
 
 
-def method14(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tuple[UH1, str]:
+def method14(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US7) -> tuple[UH1, str]:
     while True:
         (v0_1, v1_1, v2_1, v3_1) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut)
         if v3_1.tag == 1:
-            v105: str = v3_1.fields[0]
-            if "\"" == v105:
+            v259: str = v3_1.fields[0]
+            if "\"" == v259:
                 if v2_1.tag == 1:
-                    v108: UH0 = v2_1.fields[1]
-                    v107: str = v2_1.fields[0]
-                    if "\"" == v107:
-                        if equals(v3_1, US8(1, "\\")):
-                            return method13(v0_1, v1_1, v108, v3_1, US8(0))
+                    v262: UH0 = v2_1.fields[1]
+                    v261: str = v2_1.fields[0]
+                    if "\"" == v261:
+                        return method13(v0_1, v1_1, v262, v3_1, US7(0))
 
-                        elif "\\" == v105:
-                            if not equals(v3_1, US8(2, uint8(0))):
-                                return method13(("" + v0_1) + "\"", v1_1, v108, v3_1, US8(1, "\""))
+                    elif "\\" == v259:
+                        if "\\" == v261:
+                            return method13(v0_1, v1_1, v262, v3_1, US7(2, uint8(0), v261))
 
-                            elif equals(v3_1, US8(1, "\\")):
-                                return method13(("" + v0_1) + "\"", v1_1, v108, v3_1, US8(1, "\""))
+                        elif "`" == v261:
+                            return method13(v0_1, v1_1, v262, v3_1, US7(2, uint8(0), v261))
 
-                            else: 
-                                return method13(v0_1, v1_1, v108, v3_1, US8(0))
-
-
-                        elif "\\" == v107:
-                            return method13(v0_1, v1_1, v108, v3_1, US8(2, uint8(1)))
-
-                        elif equals(v3_1, US8(2, uint8(0))):
-                            return method13(("" + v0_1) + "\"", v1_1, v108, v3_1, US8(1, "\""))
-
-                        else: 
-                            return method13("", method15(v1_1, UH1(1, v0_1, UH1(0))), v108, v3_1, US8(0))
-
-
-                    elif "\\" == v105:
-                        if "\\" == v107:
-                            return method13(v0_1, v1_1, v108, v3_1, US8(2, uint8(1)))
-
-                        elif " " == v107:
+                        elif " " == v261:
                             v0_1_mut = ("" + v0_1) + " "
                             v1_1_mut = v1_1
-                            v2_1_mut = v108
+                            v2_1_mut = v262
                             v3_1_mut = v3_1
                             continue
 
                         else: 
-                            v0_1_mut = ((("" + v0_1) + "") + str(v107)) + ""
+                            v0_1_mut = ((("" + v0_1) + "") + str(v261)) + ""
                             v1_1_mut = v1_1
-                            v2_1_mut = v108
+                            v2_1_mut = v262
                             v3_1_mut = v3_1
                             continue
 
 
-                    elif "\\" == v107:
-                        return method13(v0_1, v1_1, v108, v3_1, US8(2, uint8(1)))
+                    elif "`" == v259:
+                        if "\\" == v261:
+                            return method13(v0_1, v1_1, v262, v3_1, US7(2, uint8(0), v261))
 
-                    elif " " == v107:
+                        elif "`" == v261:
+                            return method13(v0_1, v1_1, v262, v3_1, US7(2, uint8(0), v261))
+
+                        elif " " == v261:
+                            v0_1_mut = ("" + v0_1) + " "
+                            v1_1_mut = v1_1
+                            v2_1_mut = v262
+                            v3_1_mut = v3_1
+                            continue
+
+                        else: 
+                            v0_1_mut = ((("" + v0_1) + "") + str(v261)) + ""
+                            v1_1_mut = v1_1
+                            v2_1_mut = v262
+                            v3_1_mut = v3_1
+                            continue
+
+
+                    elif "\\" == v261:
+                        return method13(v0_1, v1_1, v262, v3_1, US7(2, uint8(0), v261))
+
+                    elif "`" == v261:
+                        return method13(v0_1, v1_1, v262, v3_1, US7(2, uint8(0), v261))
+
+                    elif " " == v261:
                         v0_1_mut = ("" + v0_1) + " "
                         v1_1_mut = v1_1
-                        v2_1_mut = v108
+                        v2_1_mut = v262
                         v3_1_mut = v3_1
                         continue
 
                     else: 
-                        v0_1_mut = ((("" + v0_1) + "") + str(v107)) + ""
+                        v0_1_mut = ((("" + v0_1) + "") + str(v261)) + ""
                         v1_1_mut = v1_1
-                        v2_1_mut = v108
+                        v2_1_mut = v262
                         v3_1_mut = v3_1
                         continue
 
 
-                elif "\\" == v105:
+                elif "\\" == v259:
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                elif "`" == v259:
                     return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
                 else: 
                     return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
-            elif "\\" == v105:
+            elif "\\" == v259:
                 if v2_1.tag == 1:
-                    v220: UH0 = v2_1.fields[1]
-                    v219: str = v2_1.fields[0]
-                    if "\"" == v219:
-                        if not equals(v3_1, US8(2, uint8(0))):
-                            return method13(("" + v0_1) + "\"", v1_1, v220, v3_1, US8(1, "\""))
-
-                        elif equals(v3_1, US8(1, "\\")):
-                            return method13(("" + v0_1) + "\"", v1_1, v220, v3_1, US8(1, "\""))
+                    v372: UH0 = v2_1.fields[1]
+                    v371: str = v2_1.fields[0]
+                    if "\"" == v371:
+                        if (not equals(v3_1, US7(2, uint8(0), "`"))) if (not equals(v3_1, US7(2, uint8(0), "\\"))) else False:
+                            return method13(((("" + v0_1) + "") + str(v259)) + "\"", v1_1, v372, v3_1, US7(1, "\""))
 
                         else: 
-                            return method13(v0_1, v1_1, v220, v3_1, US8(0))
+                            return method13(((("" + v0_1) + "") + str(v259)) + "\"", v1_1, v372, v3_1, US7(1, "\""))
 
 
-                    elif "\\" == v219:
-                        return method13(v0_1, v1_1, v220, v3_1, US8(2, uint8(1)))
+                    elif "\\" == v371:
+                        return method13(v0_1, v1_1, v372, v3_1, US7(2, uint8(0), v371))
 
-                    elif " " == v219:
+                    elif "`" == v371:
+                        return method13(v0_1, v1_1, v372, v3_1, US7(2, uint8(0), v371))
+
+                    elif " " == v371:
                         v0_1_mut = ("" + v0_1) + " "
                         v1_1_mut = v1_1
-                        v2_1_mut = v220
+                        v2_1_mut = v372
                         v3_1_mut = v3_1
                         continue
 
                     else: 
-                        v0_1_mut = ((("" + v0_1) + "") + str(v219)) + ""
+                        v0_1_mut = ((("" + v0_1) + "") + str(v371)) + ""
                         v1_1_mut = v1_1
-                        v2_1_mut = v220
+                        v2_1_mut = v372
+                        v3_1_mut = v3_1
+                        continue
+
+
+                else: 
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+            elif "`" == v259:
+                if v2_1.tag == 1:
+                    v426: UH0 = v2_1.fields[1]
+                    v425: str = v2_1.fields[0]
+                    if "\"" == v425:
+                        if (not equals(v3_1, US7(2, uint8(0), "`"))) if (not equals(v3_1, US7(2, uint8(0), "\\"))) else False:
+                            return method13(((("" + v0_1) + "") + str(v259)) + "\"", v1_1, v426, v3_1, US7(1, "\""))
+
+                        else: 
+                            return method13(((("" + v0_1) + "") + str(v259)) + "\"", v1_1, v426, v3_1, US7(1, "\""))
+
+
+                    elif "\\" == v425:
+                        return method13(v0_1, v1_1, v426, v3_1, US7(2, uint8(0), v425))
+
+                    elif "`" == v425:
+                        return method13(v0_1, v1_1, v426, v3_1, US7(2, uint8(0), v425))
+
+                    elif " " == v425:
+                        v0_1_mut = ("" + v0_1) + " "
+                        v1_1_mut = v1_1
+                        v2_1_mut = v426
+                        v3_1_mut = v3_1
+                        continue
+
+                    else: 
+                        v0_1_mut = ((("" + v0_1) + "") + str(v425)) + ""
+                        v1_1_mut = v1_1
+                        v2_1_mut = v426
                         v3_1_mut = v3_1
                         continue
 
@@ -1044,30 +1053,28 @@ def method14(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
 
 
             elif v2_1.tag == 1:
-                v270: UH0 = v2_1.fields[1]
-                v269: str = v2_1.fields[0]
-                if "\\" == v269:
-                    return method13(v0_1, v1_1, v270, v3_1, US8(2, uint8(1)))
+                v479: UH0 = v2_1.fields[1]
+                v478: str = v2_1.fields[0]
+                if "\\" == v478:
+                    return method13(v0_1, v1_1, v479, v3_1, US7(2, uint8(0), v478))
 
-                elif "\"" == v269:
-                    if equals(v3_1, US8(2, uint8(0))):
-                        return method13(("" + v0_1) + "\"", v1_1, v270, v3_1, US8(1, "\""))
+                elif "`" == v478:
+                    return method13(v0_1, v1_1, v479, v3_1, US7(2, uint8(0), v478))
 
-                    else: 
-                        return method13("", method15(v1_1, UH1(1, v0_1, UH1(0))), v270, v3_1, US8(0))
+                elif "\"" == v478:
+                    return method13("", method15(v1_1, UH1(1, v0_1, UH1(0))), v479, v3_1, US7(0))
 
-
-                elif " " == v269:
+                elif " " == v478:
                     v0_1_mut = ("" + v0_1) + " "
                     v1_1_mut = v1_1
-                    v2_1_mut = v270
+                    v2_1_mut = v479
                     v3_1_mut = v3_1
                     continue
 
                 else: 
-                    v0_1_mut = ((("" + v0_1) + "") + str(v269)) + ""
+                    v0_1_mut = ((("" + v0_1) + "") + str(v478)) + ""
                     v1_1_mut = v1_1
-                    v2_1_mut = v270
+                    v2_1_mut = v479
                     v3_1_mut = v3_1
                     continue
 
@@ -1081,10 +1088,13 @@ def method14(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
                 v5_1: UH0 = v2_1.fields[1]
                 v4_1: str = v2_1.fields[0]
                 if "\"" == v4_1:
-                    return method13("", v1_1, v5_1, v3_1, US8(1, "\""))
+                    return method13("", v1_1, v5_1, v3_1, US7(1, "\""))
 
                 elif "\\" == v4_1:
-                    return method13(v0_1, v1_1, v5_1, v3_1, US8(2, uint8(0)))
+                    return method13(v0_1, v1_1, v5_1, v3_1, US7(2, uint8(0), v4_1))
+
+                elif "`" == v4_1:
+                    return method13(v0_1, v1_1, v5_1, v3_1, US7(2, uint8(0), v4_1))
 
                 elif " " == v4_1:
                     v0_1_mut = ""
@@ -1106,57 +1116,181 @@ def method14(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
 
 
         else: 
-            v44: uint8 = v3_1.fields[0]
+            v52: str = v3_1.fields[1]
+            v51: uint8 = v3_1.fields[0]
             if v2_1.tag == 1:
-                v46: UH0 = v2_1.fields[1]
-                v45: str = v2_1.fields[0]
-                if "\\" == v45:
-                    return method13(v0_1, v1_1, v46, v3_1, US8(1, "\\"))
+                v54: UH0 = v2_1.fields[1]
+                v53: str = v2_1.fields[0]
+                if "\\" == v53:
+                    return method13(v0_1, v1_1, v54, v3_1, US7(1, v53))
 
-                elif "\"" == v45:
-                    if True if (v3_1.tag == 0) else False:
-                        v0_1_mut = v0_1
+                elif "`" == v53:
+                    return method13(v0_1, v1_1, v54, v3_1, US7(1, v53))
+
+                elif uint8(0) == v51:
+                    if "\\" == v52:
+                        if "\"" == v53:
+                            return method13(((("" + v0_1) + "") + str(v52)) + "\"", v1_1, v54, v3_1, US7(2, v51, v52))
+
+                        elif " " == v53:
+                            v0_1_mut = ("" + v0_1) + " "
+                            v1_1_mut = v1_1
+                            v2_1_mut = v54
+                            v3_1_mut = v3_1
+                            continue
+
+                        elif uint8(1) == v51:
+                            if not equals(v3_1, v3_1):
+                                v0_1_mut = ((("" + v0_1) + "\\") + str(v53)) + ""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v54
+                                v3_1_mut = v3_1
+                                continue
+
+                            else: 
+                                v0_1_mut = ((("" + v0_1) + "") + str(v53)) + ""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v54
+                                v3_1_mut = v3_1
+                                continue
+
+
+                        else: 
+                            v0_1_mut = ((("" + v0_1) + "") + str(v53)) + ""
+                            v1_1_mut = v1_1
+                            v2_1_mut = v54
+                            v3_1_mut = v3_1
+                            continue
+
+
+                    elif "`" == v52:
+                        if "\"" == v53:
+                            return method13(((("" + v0_1) + "") + str(v52)) + "\"", v1_1, v54, v3_1, US7(2, v51, v52))
+
+                        elif " " == v53:
+                            v0_1_mut = ("" + v0_1) + " "
+                            v1_1_mut = v1_1
+                            v2_1_mut = v54
+                            v3_1_mut = v3_1
+                            continue
+
+                        elif uint8(1) == v51:
+                            if not equals(v3_1, v3_1):
+                                v0_1_mut = ((("" + v0_1) + "\\") + str(v53)) + ""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v54
+                                v3_1_mut = v3_1
+                                continue
+
+                            else: 
+                                v0_1_mut = ((("" + v0_1) + "") + str(v53)) + ""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v54
+                                v3_1_mut = v3_1
+                                continue
+
+
+                        else: 
+                            v0_1_mut = ((("" + v0_1) + "") + str(v53)) + ""
+                            v1_1_mut = v1_1
+                            v2_1_mut = v54
+                            v3_1_mut = v3_1
+                            continue
+
+
+                    elif "\"" == v53:
+                        return method13(((("" + v0_1) + "") + str(v52)) + "\"", v1_1, v54, v3_1, US7(2, v51, v52))
+
+                    elif " " == v53:
+                        v0_1_mut = ("" + v0_1) + " "
                         v1_1_mut = v1_1
-                        v2_1_mut = v46
+                        v2_1_mut = v54
                         v3_1_mut = v3_1
                         continue
 
+                    elif uint8(1) == v51:
+                        if not equals(v3_1, v3_1):
+                            v0_1_mut = ((("" + v0_1) + "\\") + str(v53)) + ""
+                            v1_1_mut = v1_1
+                            v2_1_mut = v54
+                            v3_1_mut = v3_1
+                            continue
+
+                        else: 
+                            v0_1_mut = ((("" + v0_1) + "") + str(v53)) + ""
+                            v1_1_mut = v1_1
+                            v2_1_mut = v54
+                            v3_1_mut = v3_1
+                            continue
+
+
                     else: 
-                        return method13(("" + v0_1) + "\"", v1_1, v46, v3_1, US8(2, v44))
+                        v0_1_mut = ((("" + v0_1) + "") + str(v53)) + ""
+                        v1_1_mut = v1_1
+                        v2_1_mut = v54
+                        v3_1_mut = v3_1
+                        continue
 
 
-                elif " " == v45:
+                elif "\"" == v53:
+                    return method13(((("" + v0_1) + "") + str(v52)) + "\"", v1_1, v54, v3_1, US7(2, v51, v52))
+
+                elif " " == v53:
                     v0_1_mut = ("" + v0_1) + " "
                     v1_1_mut = v1_1
-                    v2_1_mut = v46
+                    v2_1_mut = v54
                     v3_1_mut = v3_1
                     continue
 
-                elif uint8(1) == v44:
+                elif uint8(1) == v51:
                     if not equals(v3_1, v3_1):
-                        v0_1_mut = ((("" + v0_1) + "\\") + str(v45)) + ""
+                        v0_1_mut = ((("" + v0_1) + "\\") + str(v53)) + ""
                         v1_1_mut = v1_1
-                        v2_1_mut = v46
+                        v2_1_mut = v54
                         v3_1_mut = v3_1
                         continue
 
                     else: 
-                        v0_1_mut = ((("" + v0_1) + "") + str(v45)) + ""
+                        v0_1_mut = ((("" + v0_1) + "") + str(v53)) + ""
                         v1_1_mut = v1_1
-                        v2_1_mut = v46
+                        v2_1_mut = v54
                         v3_1_mut = v3_1
                         continue
 
 
                 else: 
-                    v0_1_mut = ((("" + v0_1) + "") + str(v45)) + ""
+                    v0_1_mut = ((("" + v0_1) + "") + str(v53)) + ""
                     v1_1_mut = v1_1
-                    v2_1_mut = v46
+                    v2_1_mut = v54
                     v3_1_mut = v3_1
                     continue
 
 
-            elif uint8(1) == v44:
+            elif uint8(0) == v51:
+                if "\\" == v52:
+                    if uint8(1) == v51:
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                    else: 
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                elif "`" == v52:
+                    if uint8(1) == v51:
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                    else: 
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                elif uint8(1) == v51:
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                else: 
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+            elif uint8(1) == v51:
                 return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
             else: 
@@ -1166,156 +1300,578 @@ def method14(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8) -> tupl
         break
 
 
-def method13(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mut: US8) -> tuple[UH1, str]:
+def method13(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US7, v4_1_mut: US7) -> tuple[UH1, str]:
     while True:
         (v0_1, v1_1, v2_1, v3_1, v4_1) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut, v4_1_mut)
         if v4_1.tag == 1:
-            v106: str = v4_1.fields[0]
-            if "\"" == v106:
-                if v2_1.tag == 1:
-                    v109: UH0 = v2_1.fields[1]
-                    v108: str = v2_1.fields[0]
-                    if "\"" == v108:
-                        if equals(v3_1, US8(1, "\\")):
+            v581: str = v4_1.fields[0]
+            if "\"" == v581:
+                if v3_1.tag == 1:
+                    if v2_1.tag == 1:
+                        v585: UH0 = v2_1.fields[1]
+                        v584: str = v2_1.fields[0]
+                        if "\"" == v584:
                             v0_1_mut = v0_1
                             v1_1_mut = v1_1
-                            v2_1_mut = v109
+                            v2_1_mut = v585
                             v3_1_mut = v4_1
-                            v4_1_mut = US8(0)
+                            v4_1_mut = US7(0)
                             continue
 
-                        elif "\\" == v106:
-                            if not equals(v3_1, US8(2, uint8(0))):
-                                v0_1_mut = ("" + v0_1) + "\""
+                        elif "\\" == v581:
+                            if "\\" == v584:
+                                v0_1_mut = v0_1
                                 v1_1_mut = v1_1
-                                v2_1_mut = v109
+                                v2_1_mut = v585
                                 v3_1_mut = v4_1
-                                v4_1_mut = US8(1, "\"")
+                                v4_1_mut = US7(2, uint8(0), v584)
                                 continue
 
-                            elif equals(v3_1, US8(1, "\\")):
-                                v0_1_mut = ("" + v0_1) + "\""
+                            elif "`" == v584:
+                                v0_1_mut = v0_1
                                 v1_1_mut = v1_1
-                                v2_1_mut = v109
+                                v2_1_mut = v585
                                 v3_1_mut = v4_1
-                                v4_1_mut = US8(1, "\"")
+                                v4_1_mut = US7(2, uint8(0), v584)
+                                continue
+
+                            elif " " == v584:
+                                return method14(("" + v0_1) + " ", v1_1, v585, v4_1)
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v584)) + "", v1_1, v585, v4_1)
+
+
+                        elif "`" == v581:
+                            if "\\" == v584:
+                                v0_1_mut = v0_1
+                                v1_1_mut = v1_1
+                                v2_1_mut = v585
+                                v3_1_mut = v4_1
+                                v4_1_mut = US7(2, uint8(0), v584)
+                                continue
+
+                            elif "`" == v584:
+                                v0_1_mut = v0_1
+                                v1_1_mut = v1_1
+                                v2_1_mut = v585
+                                v3_1_mut = v4_1
+                                v4_1_mut = US7(2, uint8(0), v584)
+                                continue
+
+                            elif " " == v584:
+                                return method14(("" + v0_1) + " ", v1_1, v585, v4_1)
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v584)) + "", v1_1, v585, v4_1)
+
+
+                        elif "\\" == v584:
+                            v0_1_mut = v0_1
+                            v1_1_mut = v1_1
+                            v2_1_mut = v585
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(2, uint8(0), v584)
+                            continue
+
+                        elif "`" == v584:
+                            v0_1_mut = v0_1
+                            v1_1_mut = v1_1
+                            v2_1_mut = v585
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(2, uint8(0), v584)
+                            continue
+
+                        elif " " == v584:
+                            return method14(("" + v0_1) + " ", v1_1, v585, v4_1)
+
+                        else: 
+                            return method14(((("" + v0_1) + "") + str(v584)) + "", v1_1, v585, v4_1)
+
+
+                    elif "\\" == v581:
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                    elif "`" == v581:
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                    else: 
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                elif "\\" == v581:
+                    if v2_1.tag == 1:
+                        v695: UH0 = v2_1.fields[1]
+                        v694: str = v2_1.fields[0]
+                        if "\"" == v694:
+                            if (not equals(v3_1, US7(2, uint8(0), "`"))) if (not equals(v3_1, US7(2, uint8(0), "\\"))) else False:
+                                v0_1_mut = ((("" + v0_1) + "") + str(v581)) + "\""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v695
+                                v3_1_mut = v4_1
+                                v4_1_mut = US7(1, "\"")
                                 continue
 
                             else: 
                                 v0_1_mut = v0_1
                                 v1_1_mut = v1_1
-                                v2_1_mut = v109
+                                v2_1_mut = v695
                                 v3_1_mut = v4_1
-                                v4_1_mut = US8(0)
+                                v4_1_mut = US7(0)
                                 continue
 
 
-                        elif "\\" == v108:
+                        elif "\\" == v694:
                             v0_1_mut = v0_1
                             v1_1_mut = v1_1
-                            v2_1_mut = v109
+                            v2_1_mut = v695
                             v3_1_mut = v4_1
-                            v4_1_mut = US8(2, uint8(1))
+                            v4_1_mut = US7(2, uint8(1), v694)
                             continue
 
-                        elif equals(v3_1, US8(2, uint8(0))):
-                            v0_1_mut = ("" + v0_1) + "\""
-                            v1_1_mut = v1_1
-                            v2_1_mut = v109
-                            v3_1_mut = v4_1
-                            v4_1_mut = US8(1, "\"")
-                            continue
-
-                        else: 
-                            v0_1_mut = ""
-                            v1_1_mut = method15(v1_1, UH1(1, v0_1, UH1(0)))
-                            v2_1_mut = v109
-                            v3_1_mut = v4_1
-                            v4_1_mut = US8(0)
-                            continue
-
-
-                    elif "\\" == v106:
-                        if "\\" == v108:
+                        elif "`" == v694:
                             v0_1_mut = v0_1
                             v1_1_mut = v1_1
-                            v2_1_mut = v109
+                            v2_1_mut = v695
                             v3_1_mut = v4_1
-                            v4_1_mut = US8(2, uint8(1))
+                            v4_1_mut = US7(2, uint8(1), v694)
                             continue
 
-                        elif " " == v108:
-                            return method14(("" + v0_1) + " ", v1_1, v109, v4_1)
+                        elif v3_1.tag == 2:
+                            if uint8(0) == v3_1.fields[0]:
+                                if " " == v694:
+                                    return method14(("" + v0_1) + " ", v1_1, v695, v4_1)
+
+                                else: 
+                                    return method14(((("" + v0_1) + "") + str(v694)) + "", v1_1, v695, v4_1)
+
+
+                            elif " " == v694:
+                                return method14(("" + v0_1) + " ", v1_1, v695, v4_1)
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v694)) + "", v1_1, v695, v4_1)
+
+
+                        elif " " == v694:
+                            return method14(("" + v0_1) + " ", v1_1, v695, v4_1)
 
                         else: 
-                            return method14(((("" + v0_1) + "") + str(v108)) + "", v1_1, v109, v4_1)
+                            return method14(((("" + v0_1) + "") + str(v694)) + "", v1_1, v695, v4_1)
 
 
-                    elif "\\" == v108:
-                        v0_1_mut = v0_1
-                        v1_1_mut = v1_1
-                        v2_1_mut = v109
-                        v3_1_mut = v4_1
-                        v4_1_mut = US8(2, uint8(1))
-                        continue
+                    elif v3_1.tag == 2:
+                        if uint8(0) == v3_1.fields[0]:
+                            return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
-                    elif " " == v108:
-                        return method14(("" + v0_1) + " ", v1_1, v109, v4_1)
+                        else: 
+                            return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
 
                     else: 
-                        return method14(((("" + v0_1) + "") + str(v108)) + "", v1_1, v109, v4_1)
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
-                elif "\\" == v106:
+                elif "`" == v581:
+                    if v2_1.tag == 1:
+                        v791: UH0 = v2_1.fields[1]
+                        v790: str = v2_1.fields[0]
+                        if "\"" == v790:
+                            if (not equals(v3_1, US7(2, uint8(0), "`"))) if (not equals(v3_1, US7(2, uint8(0), "\\"))) else False:
+                                v0_1_mut = ((("" + v0_1) + "") + str(v581)) + "\""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v791
+                                v3_1_mut = v4_1
+                                v4_1_mut = US7(1, "\"")
+                                continue
+
+                            else: 
+                                v0_1_mut = v0_1
+                                v1_1_mut = v1_1
+                                v2_1_mut = v791
+                                v3_1_mut = v4_1
+                                v4_1_mut = US7(0)
+                                continue
+
+
+                        elif "\\" == v790:
+                            v0_1_mut = v0_1
+                            v1_1_mut = v1_1
+                            v2_1_mut = v791
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(2, uint8(1), v790)
+                            continue
+
+                        elif "`" == v790:
+                            v0_1_mut = v0_1
+                            v1_1_mut = v1_1
+                            v2_1_mut = v791
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(2, uint8(1), v790)
+                            continue
+
+                        elif v3_1.tag == 2:
+                            if uint8(0) == v3_1.fields[0]:
+                                if " " == v790:
+                                    return method14(("" + v0_1) + " ", v1_1, v791, v4_1)
+
+                                else: 
+                                    return method14(((("" + v0_1) + "") + str(v790)) + "", v1_1, v791, v4_1)
+
+
+                            elif " " == v790:
+                                return method14(("" + v0_1) + " ", v1_1, v791, v4_1)
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v790)) + "", v1_1, v791, v4_1)
+
+
+                        elif " " == v790:
+                            return method14(("" + v0_1) + " ", v1_1, v791, v4_1)
+
+                        else: 
+                            return method14(((("" + v0_1) + "") + str(v790)) + "", v1_1, v791, v4_1)
+
+
+                    elif v3_1.tag == 2:
+                        if uint8(0) == v3_1.fields[0]:
+                            return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                        else: 
+                            return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                    else: 
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                elif v2_1.tag == 1:
+                    v886: UH0 = v2_1.fields[1]
+                    v885: str = v2_1.fields[0]
+                    if "\\" == v885:
+                        v0_1_mut = v0_1
+                        v1_1_mut = v1_1
+                        v2_1_mut = v886
+                        v3_1_mut = v4_1
+                        v4_1_mut = US7(2, uint8(1), v885)
+                        continue
+
+                    elif "`" == v885:
+                        v0_1_mut = v0_1
+                        v1_1_mut = v1_1
+                        v2_1_mut = v886
+                        v3_1_mut = v4_1
+                        v4_1_mut = US7(2, uint8(1), v885)
+                        continue
+
+                    elif v3_1.tag == 2:
+                        if uint8(0) == v3_1.fields[0]:
+                            if "\"" == v885:
+                                v0_1_mut = ("" + v0_1) + ""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v886
+                                v3_1_mut = v4_1
+                                v4_1_mut = US7(1, "\"")
+                                continue
+
+                            elif " " == v885:
+                                return method14(("" + v0_1) + " ", v1_1, v886, v4_1)
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v885)) + "", v1_1, v886, v4_1)
+
+
+                        elif "\"" == v885:
+                            v0_1_mut = ""
+                            v1_1_mut = method15(v1_1, UH1(1, v0_1, UH1(0)))
+                            v2_1_mut = v886
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(0)
+                            continue
+
+                        elif " " == v885:
+                            return method14(("" + v0_1) + " ", v1_1, v886, v4_1)
+
+                        else: 
+                            return method14(((("" + v0_1) + "") + str(v885)) + "", v1_1, v886, v4_1)
+
+
+                    elif "\"" == v885:
+                        v0_1_mut = ""
+                        v1_1_mut = method15(v1_1, UH1(1, v0_1, UH1(0)))
+                        v2_1_mut = v886
+                        v3_1_mut = v4_1
+                        v4_1_mut = US7(0)
+                        continue
+
+                    elif " " == v885:
+                        return method14(("" + v0_1) + " ", v1_1, v886, v4_1)
+
+                    else: 
+                        return method14(((("" + v0_1) + "") + str(v885)) + "", v1_1, v886, v4_1)
+
+
+                elif v3_1.tag == 2:
+                    if uint8(0) == v3_1.fields[0]:
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                    else: 
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                else: 
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+            elif "\\" == v581:
+                if v2_1.tag == 1:
+                    v998: UH0 = v2_1.fields[1]
+                    v997: str = v2_1.fields[0]
+                    if "\"" == v997:
+                        if (not equals(v3_1, US7(2, uint8(0), "`"))) if (not equals(v3_1, US7(2, uint8(0), "\\"))) else False:
+                            v0_1_mut = ((("" + v0_1) + "") + str(v581)) + "\""
+                            v1_1_mut = v1_1
+                            v2_1_mut = v998
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(1, "\"")
+                            continue
+
+                        elif v3_1.tag == 1:
+                            v0_1_mut = ((("" + v0_1) + "") + str(v581)) + "\""
+                            v1_1_mut = v1_1
+                            v2_1_mut = v998
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(1, "\"")
+                            continue
+
+                        else: 
+                            v0_1_mut = v0_1
+                            v1_1_mut = v1_1
+                            v2_1_mut = v998
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(0)
+                            continue
+
+
+                    elif v3_1.tag == 1:
+                        if "\\" == v997:
+                            v0_1_mut = v0_1
+                            v1_1_mut = v1_1
+                            v2_1_mut = v998
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(2, uint8(0), v997)
+                            continue
+
+                        elif "`" == v997:
+                            v0_1_mut = v0_1
+                            v1_1_mut = v1_1
+                            v2_1_mut = v998
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(2, uint8(0), v997)
+                            continue
+
+                        elif " " == v997:
+                            return method14(("" + v0_1) + " ", v1_1, v998, v4_1)
+
+                        else: 
+                            return method14(((("" + v0_1) + "") + str(v997)) + "", v1_1, v998, v4_1)
+
+
+                    elif "\\" == v997:
+                        v0_1_mut = v0_1
+                        v1_1_mut = v1_1
+                        v2_1_mut = v998
+                        v3_1_mut = v4_1
+                        v4_1_mut = US7(2, uint8(1), v997)
+                        continue
+
+                    elif "`" == v997:
+                        v0_1_mut = v0_1
+                        v1_1_mut = v1_1
+                        v2_1_mut = v998
+                        v3_1_mut = v4_1
+                        v4_1_mut = US7(2, uint8(1), v997)
+                        continue
+
+                    elif v3_1.tag == 2:
+                        if uint8(0) == v3_1.fields[0]:
+                            if " " == v997:
+                                return method14(("" + v0_1) + " ", v1_1, v998, v4_1)
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v997)) + "", v1_1, v998, v4_1)
+
+
+                        elif " " == v997:
+                            return method14(("" + v0_1) + " ", v1_1, v998, v4_1)
+
+                        else: 
+                            return method14(((("" + v0_1) + "") + str(v997)) + "", v1_1, v998, v4_1)
+
+
+                    elif " " == v997:
+                        return method14(("" + v0_1) + " ", v1_1, v998, v4_1)
+
+                    else: 
+                        return method14(((("" + v0_1) + "") + str(v997)) + "", v1_1, v998, v4_1)
+
+
+                elif v3_1.tag == 2:
+                    if uint8(0) == v3_1.fields[0]:
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                    else: 
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                elif v3_1.tag == 1:
                     return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
                 else: 
                     return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
-            elif "\\" == v106:
+            elif "`" == v581:
                 if v2_1.tag == 1:
-                    v221: UH0 = v2_1.fields[1]
-                    v220: str = v2_1.fields[0]
-                    if "\"" == v220:
-                        if not equals(v3_1, US8(2, uint8(0))):
-                            v0_1_mut = ("" + v0_1) + "\""
+                    v1137: UH0 = v2_1.fields[1]
+                    v1136: str = v2_1.fields[0]
+                    if "\"" == v1136:
+                        if (not equals(v3_1, US7(2, uint8(0), "`"))) if (not equals(v3_1, US7(2, uint8(0), "\\"))) else False:
+                            v0_1_mut = ((("" + v0_1) + "") + str(v581)) + "\""
                             v1_1_mut = v1_1
-                            v2_1_mut = v221
+                            v2_1_mut = v1137
                             v3_1_mut = v4_1
-                            v4_1_mut = US8(1, "\"")
+                            v4_1_mut = US7(1, "\"")
                             continue
 
-                        elif equals(v3_1, US8(1, "\\")):
-                            v0_1_mut = ("" + v0_1) + "\""
+                        elif v3_1.tag == 1:
+                            v0_1_mut = ((("" + v0_1) + "") + str(v581)) + "\""
                             v1_1_mut = v1_1
-                            v2_1_mut = v221
+                            v2_1_mut = v1137
                             v3_1_mut = v4_1
-                            v4_1_mut = US8(1, "\"")
+                            v4_1_mut = US7(1, "\"")
                             continue
 
                         else: 
                             v0_1_mut = v0_1
                             v1_1_mut = v1_1
-                            v2_1_mut = v221
+                            v2_1_mut = v1137
                             v3_1_mut = v4_1
-                            v4_1_mut = US8(0)
+                            v4_1_mut = US7(0)
                             continue
 
 
-                    elif "\\" == v220:
+                    elif v3_1.tag == 1:
+                        if "\\" == v1136:
+                            v0_1_mut = v0_1
+                            v1_1_mut = v1_1
+                            v2_1_mut = v1137
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(2, uint8(0), v1136)
+                            continue
+
+                        elif "`" == v1136:
+                            v0_1_mut = v0_1
+                            v1_1_mut = v1_1
+                            v2_1_mut = v1137
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(2, uint8(0), v1136)
+                            continue
+
+                        elif " " == v1136:
+                            return method14(("" + v0_1) + " ", v1_1, v1137, v4_1)
+
+                        else: 
+                            return method14(((("" + v0_1) + "") + str(v1136)) + "", v1_1, v1137, v4_1)
+
+
+                    elif "\\" == v1136:
                         v0_1_mut = v0_1
                         v1_1_mut = v1_1
-                        v2_1_mut = v221
+                        v2_1_mut = v1137
                         v3_1_mut = v4_1
-                        v4_1_mut = US8(2, uint8(1))
+                        v4_1_mut = US7(2, uint8(1), v1136)
                         continue
 
-                    elif " " == v220:
-                        return method14(("" + v0_1) + " ", v1_1, v221, v4_1)
+                    elif "`" == v1136:
+                        v0_1_mut = v0_1
+                        v1_1_mut = v1_1
+                        v2_1_mut = v1137
+                        v3_1_mut = v4_1
+                        v4_1_mut = US7(2, uint8(1), v1136)
+                        continue
+
+                    elif v3_1.tag == 2:
+                        if uint8(0) == v3_1.fields[0]:
+                            if " " == v1136:
+                                return method14(("" + v0_1) + " ", v1_1, v1137, v4_1)
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v1136)) + "", v1_1, v1137, v4_1)
+
+
+                        elif " " == v1136:
+                            return method14(("" + v0_1) + " ", v1_1, v1137, v4_1)
+
+                        else: 
+                            return method14(((("" + v0_1) + "") + str(v1136)) + "", v1_1, v1137, v4_1)
+
+
+                    elif " " == v1136:
+                        return method14(("" + v0_1) + " ", v1_1, v1137, v4_1)
 
                     else: 
-                        return method14(((("" + v0_1) + "") + str(v220)) + "", v1_1, v221, v4_1)
+                        return method14(((("" + v0_1) + "") + str(v1136)) + "", v1_1, v1137, v4_1)
+
+
+                elif v3_1.tag == 2:
+                    if uint8(0) == v3_1.fields[0]:
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                    else: 
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                elif v3_1.tag == 1:
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                else: 
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+            elif v3_1.tag == 1:
+                if v2_1.tag == 1:
+                    v1276: UH0 = v2_1.fields[1]
+                    v1275: str = v2_1.fields[0]
+                    if "\\" == v1275:
+                        v0_1_mut = v0_1
+                        v1_1_mut = v1_1
+                        v2_1_mut = v1276
+                        v3_1_mut = v4_1
+                        v4_1_mut = US7(2, uint8(0), v1275)
+                        continue
+
+                    elif "`" == v1275:
+                        v0_1_mut = v0_1
+                        v1_1_mut = v1_1
+                        v2_1_mut = v1276
+                        v3_1_mut = v4_1
+                        v4_1_mut = US7(2, uint8(0), v1275)
+                        continue
+
+                    elif "\"" == v1275:
+                        v0_1_mut = ""
+                        v1_1_mut = method15(v1_1, UH1(1, v0_1, UH1(0)))
+                        v2_1_mut = v1276
+                        v3_1_mut = v4_1
+                        v4_1_mut = US7(0)
+                        continue
+
+                    elif " " == v1275:
+                        return method14(("" + v0_1) + " ", v1_1, v1276, v4_1)
+
+                    else: 
+                        return method14(((("" + v0_1) + "") + str(v1275)) + "", v1_1, v1276, v4_1)
 
 
                 else: 
@@ -1323,39 +1879,77 @@ def method13(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
 
 
             elif v2_1.tag == 1:
-                v271: UH0 = v2_1.fields[1]
-                v270: str = v2_1.fields[0]
-                if "\\" == v270:
+                v1319: UH0 = v2_1.fields[1]
+                v1318: str = v2_1.fields[0]
+                if "\\" == v1318:
                     v0_1_mut = v0_1
                     v1_1_mut = v1_1
-                    v2_1_mut = v271
+                    v2_1_mut = v1319
                     v3_1_mut = v4_1
-                    v4_1_mut = US8(2, uint8(1))
+                    v4_1_mut = US7(2, uint8(1), v1318)
                     continue
 
-                elif "\"" == v270:
-                    if equals(v3_1, US8(2, uint8(0))):
-                        v0_1_mut = ("" + v0_1) + "\""
-                        v1_1_mut = v1_1
-                        v2_1_mut = v271
-                        v3_1_mut = v4_1
-                        v4_1_mut = US8(1, "\"")
-                        continue
+                elif "`" == v1318:
+                    v0_1_mut = v0_1
+                    v1_1_mut = v1_1
+                    v2_1_mut = v1319
+                    v3_1_mut = v4_1
+                    v4_1_mut = US7(2, uint8(1), v1318)
+                    continue
 
-                    else: 
+                elif v3_1.tag == 2:
+                    if uint8(0) == v3_1.fields[0]:
+                        if "\"" == v1318:
+                            v0_1_mut = ("" + v0_1) + ""
+                            v1_1_mut = v1_1
+                            v2_1_mut = v1319
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(1, "\"")
+                            continue
+
+                        elif " " == v1318:
+                            return method14(("" + v0_1) + " ", v1_1, v1319, v4_1)
+
+                        else: 
+                            return method14(((("" + v0_1) + "") + str(v1318)) + "", v1_1, v1319, v4_1)
+
+
+                    elif "\"" == v1318:
                         v0_1_mut = ""
                         v1_1_mut = method15(v1_1, UH1(1, v0_1, UH1(0)))
-                        v2_1_mut = v271
+                        v2_1_mut = v1319
                         v3_1_mut = v4_1
-                        v4_1_mut = US8(0)
+                        v4_1_mut = US7(0)
                         continue
 
+                    elif " " == v1318:
+                        return method14(("" + v0_1) + " ", v1_1, v1319, v4_1)
 
-                elif " " == v270:
-                    return method14(("" + v0_1) + " ", v1_1, v271, v4_1)
+                    else: 
+                        return method14(((("" + v0_1) + "") + str(v1318)) + "", v1_1, v1319, v4_1)
+
+
+                elif "\"" == v1318:
+                    v0_1_mut = ""
+                    v1_1_mut = method15(v1_1, UH1(1, v0_1, UH1(0)))
+                    v2_1_mut = v1319
+                    v3_1_mut = v4_1
+                    v4_1_mut = US7(0)
+                    continue
+
+                elif " " == v1318:
+                    return method14(("" + v0_1) + " ", v1_1, v1319, v4_1)
 
                 else: 
-                    return method14(((("" + v0_1) + "") + str(v270)) + "", v1_1, v271, v4_1)
+                    return method14(((("" + v0_1) + "") + str(v1318)) + "", v1_1, v1319, v4_1)
+
+
+            elif v3_1.tag == 2:
+                if uint8(0) == v3_1.fields[0]:
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                else: 
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
 
             else: 
@@ -1371,7 +1965,7 @@ def method13(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
                     v1_1_mut = v1_1
                     v2_1_mut = v6_1
                     v3_1_mut = v4_1
-                    v4_1_mut = US8(1, "\"")
+                    v4_1_mut = US7(1, "\"")
                     continue
 
                 elif "\\" == v5_1:
@@ -1379,7 +1973,15 @@ def method13(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
                     v1_1_mut = v1_1
                     v2_1_mut = v6_1
                     v3_1_mut = v4_1
-                    v4_1_mut = US8(2, uint8(0))
+                    v4_1_mut = US7(2, uint8(0), v5_1)
+                    continue
+
+                elif "`" == v5_1:
+                    v0_1_mut = v0_1
+                    v1_1_mut = v1_1
+                    v2_1_mut = v6_1
+                    v3_1_mut = v4_1
+                    v4_1_mut = US7(2, uint8(0), v5_1)
                     continue
 
                 elif " " == v5_1:
@@ -1394,52 +1996,392 @@ def method13(v0_1_mut: str, v1_1_mut: UH1, v2_1_mut: UH0, v3_1_mut: US8, v4_1_mu
 
 
         else: 
-            v45: uint8 = v4_1.fields[0]
+            v53: str = v4_1.fields[1]
+            v52: uint8 = v4_1.fields[0]
             if v2_1.tag == 1:
-                v47: UH0 = v2_1.fields[1]
-                v46: str = v2_1.fields[0]
-                if "\\" == v46:
+                v55: UH0 = v2_1.fields[1]
+                v54: str = v2_1.fields[0]
+                if "\\" == v54:
                     v0_1_mut = v0_1
                     v1_1_mut = v1_1
-                    v2_1_mut = v47
+                    v2_1_mut = v55
                     v3_1_mut = v4_1
-                    v4_1_mut = US8(1, "\\")
+                    v4_1_mut = US7(1, v54)
                     continue
 
-                elif "\"" == v46:
-                    if True if (v3_1.tag == 0) else False:
-                        return method14(v0_1, v1_1, v47, v4_1)
+                elif "`" == v54:
+                    v0_1_mut = v0_1
+                    v1_1_mut = v1_1
+                    v2_1_mut = v55
+                    v3_1_mut = v4_1
+                    v4_1_mut = US7(1, v54)
+                    continue
+
+                elif v3_1.tag == 0:
+                    if "\"" == v54:
+                        return method14(v0_1, v1_1, v55, v4_1)
+
+                    elif uint8(0) == v52:
+                        if "\\" == v53:
+                            if " " == v54:
+                                return method14(("" + v0_1) + " ", v1_1, v55, v4_1)
+
+                            elif uint8(1) == v52:
+                                if not equals(v3_1, v4_1):
+                                    v0_1_mut = ((("" + v0_1) + "\\") + str(v54)) + ""
+                                    v1_1_mut = v1_1
+                                    v2_1_mut = v55
+                                    v3_1_mut = v4_1
+                                    v4_1_mut = v3_1
+                                    continue
+
+                                else: 
+                                    return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                        elif "`" == v53:
+                            if " " == v54:
+                                return method14(("" + v0_1) + " ", v1_1, v55, v4_1)
+
+                            elif uint8(1) == v52:
+                                if not equals(v3_1, v4_1):
+                                    v0_1_mut = ((("" + v0_1) + "\\") + str(v54)) + ""
+                                    v1_1_mut = v1_1
+                                    v2_1_mut = v55
+                                    v3_1_mut = v4_1
+                                    v4_1_mut = v3_1
+                                    continue
+
+                                else: 
+                                    return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                        elif " " == v54:
+                            return method14(("" + v0_1) + " ", v1_1, v55, v4_1)
+
+                        elif uint8(1) == v52:
+                            if not equals(v3_1, v4_1):
+                                v0_1_mut = ((("" + v0_1) + "\\") + str(v54)) + ""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v55
+                                v3_1_mut = v4_1
+                                v4_1_mut = v3_1
+                                continue
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                        else: 
+                            return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                    elif " " == v54:
+                        return method14(("" + v0_1) + " ", v1_1, v55, v4_1)
+
+                    elif uint8(1) == v52:
+                        if not equals(v3_1, v4_1):
+                            v0_1_mut = ((("" + v0_1) + "\\") + str(v54)) + ""
+                            v1_1_mut = v1_1
+                            v2_1_mut = v55
+                            v3_1_mut = v4_1
+                            v4_1_mut = v3_1
+                            continue
+
+                        else: 
+                            return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
 
                     else: 
-                        v0_1_mut = ("" + v0_1) + "\""
+                        return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                elif uint8(0) == v52:
+                    if "\\" == v53:
+                        if v3_1.tag == 1:
+                            if "\"" == v3_1.fields[0]:
+                                v0_1_mut = ((((("" + v0_1) + "") + str(v53)) + "") + str(v54)) + ""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v55
+                                v3_1_mut = v4_1
+                                v4_1_mut = US7(1, "\"")
+                                continue
+
+                            elif "\"" == v54:
+                                v0_1_mut = ((("" + v0_1) + "") + str(v53)) + "\""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v55
+                                v3_1_mut = v4_1
+                                v4_1_mut = US7(2, v52, v53)
+                                continue
+
+                            elif " " == v54:
+                                return method14(("" + v0_1) + " ", v1_1, v55, v4_1)
+
+                            elif uint8(1) == v52:
+                                if not equals(v3_1, v4_1):
+                                    v0_1_mut = ((("" + v0_1) + "\\") + str(v54)) + ""
+                                    v1_1_mut = v1_1
+                                    v2_1_mut = v55
+                                    v3_1_mut = v4_1
+                                    v4_1_mut = v3_1
+                                    continue
+
+                                else: 
+                                    return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                        elif "\"" == v54:
+                            v0_1_mut = ((("" + v0_1) + "") + str(v53)) + "\""
+                            v1_1_mut = v1_1
+                            v2_1_mut = v55
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(2, v52, v53)
+                            continue
+
+                        elif " " == v54:
+                            return method14(("" + v0_1) + " ", v1_1, v55, v4_1)
+
+                        elif uint8(1) == v52:
+                            if not equals(v3_1, v4_1):
+                                v0_1_mut = ((("" + v0_1) + "\\") + str(v54)) + ""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v55
+                                v3_1_mut = v4_1
+                                v4_1_mut = v3_1
+                                continue
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                        else: 
+                            return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                    elif "`" == v53:
+                        if v3_1.tag == 1:
+                            if "\"" == v3_1.fields[0]:
+                                v0_1_mut = ((((("" + v0_1) + "") + str(v53)) + "") + str(v54)) + ""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v55
+                                v3_1_mut = v4_1
+                                v4_1_mut = US7(1, "\"")
+                                continue
+
+                            elif "\"" == v54:
+                                v0_1_mut = ((("" + v0_1) + "") + str(v53)) + "\""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v55
+                                v3_1_mut = v4_1
+                                v4_1_mut = US7(2, v52, v53)
+                                continue
+
+                            elif " " == v54:
+                                return method14(("" + v0_1) + " ", v1_1, v55, v4_1)
+
+                            elif uint8(1) == v52:
+                                if not equals(v3_1, v4_1):
+                                    v0_1_mut = ((("" + v0_1) + "\\") + str(v54)) + ""
+                                    v1_1_mut = v1_1
+                                    v2_1_mut = v55
+                                    v3_1_mut = v4_1
+                                    v4_1_mut = v3_1
+                                    continue
+
+                                else: 
+                                    return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                        elif "\"" == v54:
+                            v0_1_mut = ((("" + v0_1) + "") + str(v53)) + "\""
+                            v1_1_mut = v1_1
+                            v2_1_mut = v55
+                            v3_1_mut = v4_1
+                            v4_1_mut = US7(2, v52, v53)
+                            continue
+
+                        elif " " == v54:
+                            return method14(("" + v0_1) + " ", v1_1, v55, v4_1)
+
+                        elif uint8(1) == v52:
+                            if not equals(v3_1, v4_1):
+                                v0_1_mut = ((("" + v0_1) + "\\") + str(v54)) + ""
+                                v1_1_mut = v1_1
+                                v2_1_mut = v55
+                                v3_1_mut = v4_1
+                                v4_1_mut = v3_1
+                                continue
+
+                            else: 
+                                return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                        else: 
+                            return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                    elif "\"" == v54:
+                        v0_1_mut = ((("" + v0_1) + "") + str(v53)) + "\""
                         v1_1_mut = v1_1
-                        v2_1_mut = v47
+                        v2_1_mut = v55
                         v3_1_mut = v4_1
-                        v4_1_mut = US8(2, v45)
+                        v4_1_mut = US7(2, v52, v53)
                         continue
 
+                    elif " " == v54:
+                        return method14(("" + v0_1) + " ", v1_1, v55, v4_1)
 
-                elif " " == v46:
-                    return method14(("" + v0_1) + " ", v1_1, v47, v4_1)
+                    elif uint8(1) == v52:
+                        if not equals(v3_1, v4_1):
+                            v0_1_mut = ((("" + v0_1) + "\\") + str(v54)) + ""
+                            v1_1_mut = v1_1
+                            v2_1_mut = v55
+                            v3_1_mut = v4_1
+                            v4_1_mut = v3_1
+                            continue
 
-                elif uint8(1) == v45:
+                        else: 
+                            return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                    else: 
+                        return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
+
+
+                elif "\"" == v54:
+                    v0_1_mut = ((("" + v0_1) + "") + str(v53)) + "\""
+                    v1_1_mut = v1_1
+                    v2_1_mut = v55
+                    v3_1_mut = v4_1
+                    v4_1_mut = US7(2, v52, v53)
+                    continue
+
+                elif " " == v54:
+                    return method14(("" + v0_1) + " ", v1_1, v55, v4_1)
+
+                elif uint8(1) == v52:
                     if not equals(v3_1, v4_1):
-                        v0_1_mut = ((("" + v0_1) + "\\") + str(v46)) + ""
+                        v0_1_mut = ((("" + v0_1) + "\\") + str(v54)) + ""
                         v1_1_mut = v1_1
-                        v2_1_mut = v47
+                        v2_1_mut = v55
                         v3_1_mut = v4_1
                         v4_1_mut = v3_1
                         continue
 
                     else: 
-                        return method14(((("" + v0_1) + "") + str(v46)) + "", v1_1, v47, v4_1)
+                        return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
 
 
                 else: 
-                    return method14(((("" + v0_1) + "") + str(v46)) + "", v1_1, v47, v4_1)
+                    return method14(((("" + v0_1) + "") + str(v54)) + "", v1_1, v55, v4_1)
 
 
-            elif uint8(1) == v45:
+            elif v3_1.tag == 0:
+                if uint8(0) == v52:
+                    if "\\" == v53:
+                        if uint8(1) == v52:
+                            return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                        else: 
+                            return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                    elif "`" == v53:
+                        if uint8(1) == v52:
+                            return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                        else: 
+                            return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                    elif uint8(1) == v52:
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                    else: 
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                elif uint8(1) == v52:
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                else: 
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+            elif uint8(0) == v52:
+                if "\\" == v53:
+                    if v3_1.tag == 1:
+                        if "\"" == v3_1.fields[0]:
+                            if uint8(1) == v52:
+                                return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                            else: 
+                                return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                        elif uint8(1) == v52:
+                            return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                        else: 
+                            return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                    elif uint8(1) == v52:
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                    else: 
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                elif "`" == v53:
+                    if v3_1.tag == 1:
+                        if "\"" == v3_1.fields[0]:
+                            if uint8(1) == v52:
+                                return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                            else: 
+                                return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                        elif uint8(1) == v52:
+                            return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                        else: 
+                            return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                    elif uint8(1) == v52:
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                    else: 
+                        return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+                elif uint8(1) == v52:
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+                else: 
+                    return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
+
+
+            elif uint8(1) == v52:
                 return (v1_1 if (v0_1 == "") else method15(v1_1, UH1(1, v0_1, UH1(0))), v0_1)
 
             else: 
@@ -1487,81 +2429,83 @@ def method12(v0_1: str) -> Array[str]:
         v21: int = (v19 + 1) or 0
         v17.l0 = v21 or 0
     v23: FSharpList[str] = of_array(v16)
-    return to_array(method16(method13("", UH1(0), fold_back(uncurry2(method5()), v23, UH0(0)), US8(0), US8(0))[0], empty()))
+    return to_array(method16(method13("", UH1(0), fold_back(uncurry2(method5()), v23, UH0(0)), US7(0), US7(0))[0], empty()))
 
 
 def closure18(unit_var: None, v0_1: str) -> Array[str]:
     return method12(v0_1)
 
 
-def _arrow134(__unit: None=None) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
-    return closure0(None, None)
+def _arrow209(v: US0) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
+    return closure0(None, v)
 
 
-v0: Callable[[], tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]] = _arrow134
+v0: Callable[[US0], tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]] = _arrow209
+
+v1: US0 = US0(0)
 
 
 if State_trace_state() is None:
-    State_trace_state(v0(None))
+    State_trace_state(v0(v1))
 
 
-def _arrow135(__unit: None=None) -> bool:
+def _arrow210(__unit: None=None) -> bool:
     return closure2(None, None)
 
 
-v1: Callable[[], bool] = _arrow135
+v2: Callable[[], bool] = _arrow210
 
 def is_windows(__unit: None=None) -> bool:
-    return v1(None)
-
-
-def _arrow136(__unit: None=None) -> str:
-    return closure3(None, None)
-
-
-v2: Callable[[], str] = _arrow136
-
-def get_executable_suffix(__unit: None=None) -> str:
     return v2(None)
 
 
-def _arrow137(v: str) -> Async[tuple[int, str]]:
+def _arrow211(__unit: None=None) -> str:
+    return closure3(None, None)
+
+
+v3: Callable[[], str] = _arrow211
+
+def get_executable_suffix(__unit: None=None) -> str:
+    return v3(None)
+
+
+def _arrow212(v: str) -> Async[tuple[int, str]]:
     return closure4(None, v)
 
 
-v3: Callable[[str], Async[tuple[int, str]]] = _arrow137
+v4: Callable[[str], Async[tuple[int, str]]] = _arrow212
 
 def execute_async(x: str) -> Async[tuple[int, str]]:
-    return v3(x)
-
-
-def _arrow138(_arg10: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]) -> Async[tuple[int, str]]:
-    return closure16(None, _arg10)
-
-
-v4: Callable[[tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]], Async[tuple[int, str]]] = _arrow138
-
-def execute_with_options_async(x: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]) -> Async[tuple[int, str]]:
     return v4(x)
 
 
-def _arrow139(v: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]:
-    return closure17(None, v)
+def _arrow213(_arg10: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]) -> Async[tuple[int, str]]:
+    return closure16(None, _arg10)
 
 
-v5: Callable[[Callable[[Heap0], Heap0]], tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]] = _arrow139
+v5: Callable[[tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]], Async[tuple[int, str]]] = _arrow213
 
-def execution_options(x: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]:
+def execute_with_options_async(x: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]) -> Async[tuple[int, str]]:
     return v5(x)
 
 
-def _arrow140(v: str) -> Array[str]:
+def _arrow214(v: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]:
+    return closure17(None, v)
+
+
+v6: Callable[[Callable[[Heap0], Heap0]], tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]] = _arrow214
+
+def execution_options(x: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]:
+    return v6(x)
+
+
+def _arrow215(v: str) -> Array[str]:
     return closure18(None, v)
 
 
-v6: Callable[[str], Array[str]] = _arrow140
+v7: Callable[[str], Array[str]] = _arrow215
 
 def split_args(x: str) -> Array[str]:
-    return v6(x)
+    return v7(x)
 
 

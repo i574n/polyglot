@@ -499,6 +499,17 @@ inl vec_map' forall t u. (fn : t -> u) (ar : vec t) : vec u =
 
 #!markdown
 
+## vec_fold'
+
+#!spiral
+
+inl vec_fold' forall t u. (fn : u -> t -> u) (init : u) (ar : vec t) : u =
+    (!\\(ar, $'"true; let _result = $0.into_iter().fold(!init, |acc, x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"acc"') !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
+    !\($'"_result"')
+
+#!markdown
+
 ## vec_iter
 
 #!spiral

@@ -83,24 +83,6 @@ pub mod Runtime {
                 .clone()
         }
     }
-    #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
-    pub struct Mut0 {
-        pub l0: MutCell<i64>,
-    }
-    impl core::fmt::Display for Runtime::Mut0 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
-    #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
-    pub struct Mut1 {
-        pub l0: MutCell<bool>,
-    }
-    impl core::fmt::Display for Runtime::Mut1 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US0 {
         US0_0,
@@ -147,6 +129,24 @@ pub mod Runtime {
         }
     }
     impl core::fmt::Display for Runtime::US0 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
+    pub struct Mut0 {
+        pub l0: MutCell<i64>,
+    }
+    impl core::fmt::Display for Runtime::Mut0 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
+    pub struct Mut1 {
+        pub l0: MutCell<bool>,
+    }
+    impl core::fmt::Display for Runtime::Mut1 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
@@ -412,7 +412,7 @@ pub mod Runtime {
     pub enum US7 {
         US7_0,
         US7_1(char),
-        US7_2(u8),
+        US7_2(u8, char),
     }
     impl Runtime::US7 {
         pub fn get_IsUS7_0(this_: &MutCell<Runtime::US7>, unitArg: ()) -> bool {
@@ -445,9 +445,15 @@ pub mod Runtime {
     pub fn closure1(unitVar: (), v0_1: string) {
         ();
     }
+    pub fn method0() -> string {
+        string("")
+    }
+    pub fn method1() -> string {
+        string("AUTOMATION")
+    }
     pub fn closure0(
         unitVar: (),
-        unitVar_1: (),
+        v0_1: Runtime::US0,
     ) -> (
         LrcPtr<Runtime::Mut0>,
         LrcPtr<Runtime::Mut1>,
@@ -455,14 +461,14 @@ pub mod Runtime {
         Option<i64>,
         LrcPtr<Runtime::Mut3>,
     ) {
-        let v0_1: LrcPtr<Runtime::Mut1> = LrcPtr::new(Runtime::Mut1 {
+        let v1_1: LrcPtr<Runtime::Mut1> = LrcPtr::new(Runtime::Mut1 {
             l0: MutCell::new(true),
         });
-        let v1_1: LrcPtr<Runtime::Mut0> = LrcPtr::new(Runtime::Mut0 {
+        let v2_1: LrcPtr<Runtime::Mut0> = LrcPtr::new(Runtime::Mut0 {
             l0: MutCell::new(0_i64),
         });
         let v3_1: LrcPtr<Runtime::Mut2> = LrcPtr::new(Runtime::Mut2 {
-            l0: MutCell::new(Runtime::US0::US0_0),
+            l0: MutCell::new(v0_1),
         });
         let v5_1: LrcPtr<Runtime::Mut3> = LrcPtr::new(Runtime::Mut3 {
             l0: MutCell::new(Func1::new(move |v: string| Runtime::closure1((), v))),
@@ -480,12 +486,13 @@ pub mod Runtime {
             v16
         });
         let v20: Result<string, std::env::VarError> = _result;
+        let v21: string = Runtime::method0();
         {
-            let x: string = v20.unwrap_or(string(""));
+            let x: string = v20.unwrap_or(v21);
             _v7.set(Some(x))
         }
         {
-            let v38: Runtime::US1 = if getValue(_v7.get().clone()) == string("True") {
+            let v39: Runtime::US1 = if getValue(_v7.get().clone()) == string("True") {
                 Runtime::US1::US1_0({
                     let _arg: DateTime = DateTime::now();
                     _arg.ticks()
@@ -494,8 +501,8 @@ pub mod Runtime {
                 Runtime::US1::US1_1
             };
             {
-                let x_1: Option<i64> = match &v38 {
-                    Runtime::US1::US1_0(v38_0_0) => Some(match &v38 {
+                let x_1: Option<i64> = match &v39 {
+                    Runtime::US1::US1_0(v39_0_0) => Some(match &v39 {
                         Runtime::US1::US1_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
@@ -503,7 +510,7 @@ pub mod Runtime {
                 };
                 _v6.set(Some(x_1))
             }
-            (v1_1, v0_1, v3_1, getValue(_v6.get().clone()), v5_1)
+            (v2_1, v1_1, v3_1, getValue(_v6.get().clone()), v5_1)
         }
     }
     pub fn closure2(unitVar: (), unitVar_1: ()) -> bool {
@@ -526,10 +533,10 @@ pub mod Runtime {
             string("")
         }
     }
-    pub fn method1() -> (string, string) {
+    pub fn method3() -> (string, string) {
         (string(""), string(""))
     }
-    pub fn method2(v0_1: i32, v1_1: LrcPtr<Runtime::Mut4>) -> bool {
+    pub fn method4(v0_1: i32, v1_1: LrcPtr<Runtime::Mut4>) -> bool {
         v1_1.l0.get().clone() < v0_1
     }
     pub fn closure6(v0_1: char, v1_1: LrcPtr<Runtime::UH0>) -> LrcPtr<Runtime::UH0> {
@@ -541,10 +548,10 @@ pub mod Runtime {
             move |v: LrcPtr<Runtime::UH0>| Runtime::closure6(v0_1, v)
         })
     }
-    pub fn method3() -> Func1<char, Func1<LrcPtr<Runtime::UH0>, LrcPtr<Runtime::UH0>>> {
+    pub fn method5() -> Func1<char, Func1<LrcPtr<Runtime::UH0>, LrcPtr<Runtime::UH0>>> {
         Func1::new(move |v: char| Runtime::closure5((), v))
     }
-    pub fn method4(
+    pub fn method6(
         v0_1: string,
         v1_1: string,
         v2_1: LrcPtr<Runtime::UH0>,
@@ -554,8 +561,8 @@ pub mod Runtime {
         let v1_1: MutCell<string> = MutCell::new(v1_1.clone());
         let v2_1: MutCell<LrcPtr<Runtime::UH0>> = MutCell::new(v2_1.clone());
         let v3_1: MutCell<Runtime::US2> = MutCell::new(v3_1.clone());
-        '_method4: loop {
-            break '_method4 (if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
+        '_method6: loop {
+            break '_method6 (if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
                 v2_1.get().clone().as_ref()
             {
                 let v5_1: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
@@ -576,7 +583,7 @@ pub mod Runtime {
                         v1_1.set(v1_1_temp);
                         v2_1.set(v2_1_temp);
                         v3_1.set(v3_1_temp);
-                        continue '_method4;
+                        continue '_method6;
                     } else {
                         match &v3_1.get().clone() {
                             Runtime::US2::US2_1(v3_1_1_0) => {
@@ -590,7 +597,7 @@ pub mod Runtime {
                                     v1_1.set(v1_1_temp);
                                     v2_1.set(v2_1_temp);
                                     v3_1.set(v3_1_temp);
-                                    continue '_method4;
+                                    continue '_method6;
                                 } else {
                                     if ' ' == v4_1 {
                                         let v0_1_temp: string = v0_1.get().clone();
@@ -601,7 +608,7 @@ pub mod Runtime {
                                         v1_1.set(v1_1_temp);
                                         v2_1.set(v2_1_temp);
                                         v3_1.set(v3_1_temp);
-                                        continue '_method4;
+                                        continue '_method6;
                                     } else {
                                         let v0_1_temp: string = v0_1.get().clone();
                                         let v1_1_temp: string =
@@ -612,7 +619,7 @@ pub mod Runtime {
                                         v1_1.set(v1_1_temp);
                                         v2_1.set(v2_1_temp);
                                         v3_1.set(v3_1_temp);
-                                        continue '_method4;
+                                        continue '_method6;
                                     }
                                 }
                             }
@@ -626,7 +633,7 @@ pub mod Runtime {
                                     v1_1.set(v1_1_temp);
                                     v2_1.set(v2_1_temp);
                                     v3_1.set(v3_1_temp);
-                                    continue '_method4;
+                                    continue '_method6;
                                 } else {
                                     let v0_1_temp: string = v0_1.get().clone();
                                     let v1_1_temp: string =
@@ -637,7 +644,7 @@ pub mod Runtime {
                                     v1_1.set(v1_1_temp);
                                     v2_1.set(v2_1_temp);
                                     v3_1.set(v3_1_temp);
-                                    continue '_method4;
+                                    continue '_method6;
                                 }
                             }
                             _ => {
@@ -649,7 +656,7 @@ pub mod Runtime {
                                 v1_1.set(v1_1_temp);
                                 v2_1.set(v2_1_temp);
                                 v3_1.set(v3_1_temp);
-                                continue '_method4;
+                                continue '_method6;
                             }
                         }
                     }
@@ -664,7 +671,7 @@ pub mod Runtime {
                             v1_1.set(v1_1_temp);
                             v2_1.set(v2_1_temp);
                             v3_1.set(v3_1_temp);
-                            continue '_method4;
+                            continue '_method6;
                         } else {
                             match &v3_1.get().clone() {
                                 Runtime::US2::US2_1(v3_1_1_0) => {
@@ -678,7 +685,7 @@ pub mod Runtime {
                                         v1_1.set(v1_1_temp);
                                         v2_1.set(v2_1_temp);
                                         v3_1.set(v3_1_temp);
-                                        continue '_method4;
+                                        continue '_method6;
                                     } else {
                                         if ' ' == v4_1 {
                                             let v0_1_temp: string = v0_1.get().clone();
@@ -689,7 +696,7 @@ pub mod Runtime {
                                             v1_1.set(v1_1_temp);
                                             v2_1.set(v2_1_temp);
                                             v3_1.set(v3_1_temp);
-                                            continue '_method4;
+                                            continue '_method6;
                                         } else {
                                             let v0_1_temp: string = v0_1.get().clone();
                                             let v1_1_temp: string =
@@ -700,7 +707,7 @@ pub mod Runtime {
                                             v1_1.set(v1_1_temp);
                                             v2_1.set(v2_1_temp);
                                             v3_1.set(v3_1_temp);
-                                            continue '_method4;
+                                            continue '_method6;
                                         }
                                     }
                                 }
@@ -714,7 +721,7 @@ pub mod Runtime {
                                         v1_1.set(v1_1_temp);
                                         v2_1.set(v2_1_temp);
                                         v3_1.set(v3_1_temp);
-                                        continue '_method4;
+                                        continue '_method6;
                                     } else {
                                         let v0_1_temp: string = v0_1.get().clone();
                                         let v1_1_temp: string =
@@ -725,7 +732,7 @@ pub mod Runtime {
                                         v1_1.set(v1_1_temp);
                                         v2_1.set(v2_1_temp);
                                         v3_1.set(v3_1_temp);
-                                        continue '_method4;
+                                        continue '_method6;
                                     }
                                 }
                                 _ => {
@@ -738,7 +745,7 @@ pub mod Runtime {
                                     v1_1.set(v1_1_temp);
                                     v2_1.set(v2_1_temp);
                                     v3_1.set(v3_1_temp);
-                                    continue '_method4;
+                                    continue '_method6;
                                 }
                             }
                         }
@@ -756,7 +763,7 @@ pub mod Runtime {
                                         v1_1.set(v1_1_temp);
                                         v2_1.set(v2_1_temp);
                                         v3_1.set(v3_1_temp);
-                                        continue '_method4;
+                                        continue '_method6;
                                     } else {
                                         let v0_1_temp: string = v0_1.get().clone();
                                         let v1_1_temp: string =
@@ -767,7 +774,7 @@ pub mod Runtime {
                                         v1_1.set(v1_1_temp);
                                         v2_1.set(v2_1_temp);
                                         v3_1.set(v3_1_temp);
-                                        continue '_method4;
+                                        continue '_method6;
                                     }
                                 } else {
                                     if ' ' == v4_1 {
@@ -779,7 +786,7 @@ pub mod Runtime {
                                         v1_1.set(v1_1_temp);
                                         v2_1.set(v2_1_temp);
                                         v3_1.set(v3_1_temp);
-                                        continue '_method4;
+                                        continue '_method6;
                                     } else {
                                         let v0_1_temp: string = v0_1.get().clone();
                                         let v1_1_temp: string =
@@ -790,7 +797,7 @@ pub mod Runtime {
                                         v1_1.set(v1_1_temp);
                                         v2_1.set(v2_1_temp);
                                         v3_1.set(v3_1_temp);
-                                        continue '_method4;
+                                        continue '_method6;
                                     }
                                 }
                             }
@@ -804,7 +811,7 @@ pub mod Runtime {
                                     v1_1.set(v1_1_temp);
                                     v2_1.set(v2_1_temp);
                                     v3_1.set(v3_1_temp);
-                                    continue '_method4;
+                                    continue '_method6;
                                 } else {
                                     let v0_1_temp: string = v0_1.get().clone();
                                     let v1_1_temp: string =
@@ -815,7 +822,7 @@ pub mod Runtime {
                                     v1_1.set(v1_1_temp);
                                     v2_1.set(v2_1_temp);
                                     v3_1.set(v3_1_temp);
-                                    continue '_method4;
+                                    continue '_method6;
                                 }
                             }
                             _ => {
@@ -827,7 +834,7 @@ pub mod Runtime {
                                 v1_1.set(v1_1_temp);
                                 v2_1.set(v2_1_temp);
                                 v3_1.set(v3_1_temp);
-                                continue '_method4;
+                                continue '_method6;
                             }
                         }
                     }
@@ -876,10 +883,10 @@ pub mod Runtime {
     pub fn closure8(unitVar: (), unitVar_1: ()) -> string {
         string("")
     }
-    pub fn method5() -> Func0<string> {
+    pub fn method7() -> Func0<string> {
         Func0::new(move || Runtime::closure8((), ()))
     }
-    pub fn method7() -> string {
+    pub fn method9() -> string {
         string("")
     }
     pub fn closure9(
@@ -889,7 +896,7 @@ pub mod Runtime {
         unitVar: (),
     ) -> string {
         if Runtime::State::trace_state().get().clone().is_none() {
-            Runtime::State::trace_state().set(Some(Runtime::closure0((), ())));
+            Runtime::State::trace_state().set(Some(Runtime::closure0((), Runtime::US0::US0_0)));
         }
         {
             let patternInput: (
@@ -899,31 +906,31 @@ pub mod Runtime {
                 Option<i64>,
                 LrcPtr<Runtime::Mut3>,
             ) = getValue(Runtime::State::trace_state().get().clone());
-            let v7: Option<i64> = patternInput.3.clone();
-            let _v9: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let _v10: LrcPtr<MutCell<Option<Runtime::US1>>> = refCell(None::<Runtime::US1>);
+            let v8: Option<i64> = patternInput.3.clone();
+            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v11: LrcPtr<MutCell<Option<Runtime::US1>>> = refCell(None::<Runtime::US1>);
             {
-                let x_2: Option<Runtime::US1> = match &v7 {
+                let x_2: Option<Runtime::US1> = match &v8 {
                     None => None::<Runtime::US1>,
-                    Some(v7_0_0) => {
-                        let x: i64 = v7_0_0.clone();
+                    Some(v8_0_0) => {
+                        let x: i64 = v8_0_0.clone();
                         Some((Func0::new({
                             let x = x.clone();
                             move || Runtime::US1::US1_0(x)
                         }))())
                     }
                 };
-                _v10.set(x_2)
+                _v11.set(x_2)
             }
             {
-                let v15: Runtime::US1 = defaultValue(Runtime::US1::US1_1, _v10.get().clone());
-                let v33: DateTime = match &v15 {
-                    Runtime::US1::US1_0(v15_0_0) => {
-                        let v21: TimeSpan = TimeSpan::new_ticks(
+                let v16: Runtime::US1 = defaultValue(Runtime::US1::US1_1, _v11.get().clone());
+                let v34: DateTime = match &v16 {
+                    Runtime::US1::US1_0(v16_0_0) => {
+                        let v22: TimeSpan = TimeSpan::new_ticks(
                             {
                                 let _arg: DateTime = DateTime::now();
                                 _arg.ticks()
-                            } - match &v15 {
+                            } - match &v16 {
                                 Runtime::US1::US1_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -932,22 +939,22 @@ pub mod Runtime {
                             1_i32,
                             1_i32,
                             1_i32,
-                            v21.hours(),
-                            v21.minutes(),
-                            v21.seconds(),
-                            v21.milliseconds(),
+                            v22.hours(),
+                            v22.minutes(),
+                            v22.seconds(),
+                            v22.milliseconds(),
                         )
                     }
                     _ => DateTime::now(),
                 };
                 {
-                    let x_3: string = v33.toString(string("hh:mm:ss"));
-                    _v9.set(Some(x_3))
+                    let x_3: string = v34.toString(string("hh:mm:ss"));
+                    _v10.set(Some(x_3))
                 }
                 {
-                    let v66: string = getValue(_v9.get().clone());
-                    let v67: i64 = (patternInput.0.clone()).l0.get().clone();
-                    let v79: string = padLeft(
+                    let v67: string = getValue(_v10.get().clone());
+                    let v68: i64 = (patternInput.0.clone()).l0.get().clone();
+                    let v80: string = padLeft(
                         toLower(match &v0_1 {
                             Runtime::US0::US0_1 => string("Debug"),
                             Runtime::US0::US0_2 => string("Info"),
@@ -958,29 +965,29 @@ pub mod Runtime {
                         7_i32,
                         ' ',
                     );
-                    let _v80: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v95: &str = match &v0_1 {
+                    let _v81: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v96: &str = match &v0_1 {
                         Runtime::US0::US0_1 => inline_colorization::color_bright_blue,
                         Runtime::US0::US0_2 => inline_colorization::color_bright_green,
                         Runtime::US0::US0_0 => inline_colorization::color_bright_black,
                         Runtime::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v97: &str = &*v79;
-                    let v99: &str = inline_colorization::color_reset;
-                    let v101: string = string("format!(\"{v95}{v97}{v99}\")");
-                    let v102: std::string::String = format!("{v95}{v97}{v99}");
+                    let v98: &str = &*v80;
+                    let v100: &str = inline_colorization::color_reset;
+                    let v102: string = string("format!(\"{v96}{v98}{v100}\")");
+                    let v103: std::string::String = format!("{v96}{v98}{v100}");
                     {
-                        let x_4: string = fable_library_rust::String_::fromString(v102);
-                        _v80.set(Some(x_4))
+                        let x_4: string = fable_library_rust::String_::fromString(v103);
+                        _v81.set(Some(x_4))
                     }
                     trimEndChars(
                         trimStartChars(
                             sprintf!(
                                 "{} {} #{} {} / {}",
-                                v66,
-                                getValue(_v80.get().clone()),
                                 v67,
+                                getValue(_v81.get().clone()),
+                                v68,
                                 v1_1(),
                                 v2_1()
                             ),
@@ -992,18 +999,20 @@ pub mod Runtime {
             }
         }
     }
-    pub fn method8(v0_1: Runtime::US0, v1_1: Func0<string>) {
-        fn v2_1() -> (
+    pub fn method10(v0_1: Runtime::US0, v1_1: Func0<string>) {
+        fn v2_1(
+            v: Runtime::US0,
+        ) -> (
             LrcPtr<Runtime::Mut0>,
             LrcPtr<Runtime::Mut1>,
             LrcPtr<Runtime::Mut2>,
             Option<i64>,
             LrcPtr<Runtime::Mut3>,
         ) {
-            Runtime::closure0((), ())
+            Runtime::closure0((), v)
         }
         if Runtime::State::trace_state().get().clone().is_none() {
-            Runtime::State::trace_state().set(Some(v2_1()));
+            Runtime::State::trace_state().set(Some(v2_1(Runtime::US0::US0_0)));
         }
         {
             let patternInput: (
@@ -1013,9 +1022,9 @@ pub mod Runtime {
                 Option<i64>,
                 LrcPtr<Runtime::Mut3>,
             ) = getValue(Runtime::State::trace_state().get().clone());
-            let v3_1: LrcPtr<Runtime::Mut0> = patternInput.0.clone();
+            let v4_1: LrcPtr<Runtime::Mut0> = patternInput.0.clone();
             if Runtime::State::trace_state().get().clone().is_none() {
-                Runtime::State::trace_state().set(Some(v2_1()));
+                Runtime::State::trace_state().set(Some(v2_1(Runtime::US0::US0_0)));
             }
             {
                 let patternInput_1: (
@@ -1025,7 +1034,7 @@ pub mod Runtime {
                     Option<i64>,
                     LrcPtr<Runtime::Mut3>,
                 ) = getValue(Runtime::State::trace_state().get().clone());
-                let v13: Runtime::US0 = (patternInput_1.2.clone()).l0.get().clone();
+                let v15: Runtime::US0 = (patternInput_1.2.clone()).l0.get().clone();
                 if if (patternInput_1.1.clone()).l0.get().clone() == false {
                     false
                 } else {
@@ -1039,7 +1048,7 @@ pub mod Runtime {
                             LrcPtr::new((Runtime::US0::US0_4, 4_i32)),
                         ])))),
                     ) >= find(
-                        v13,
+                        v15,
                         ofSeq(ofList(ofArray(new_array(&[
                             LrcPtr::new((Runtime::US0::US0_0, 0_i32)),
                             LrcPtr::new((Runtime::US0::US0_1, 1_i32)),
@@ -1049,22 +1058,22 @@ pub mod Runtime {
                         ])))),
                     )
                 } {
-                    let v21: i64 = v3_1.l0.get().clone() + 1_i64;
-                    v3_1.l0.set(v21);
+                    let v23: i64 = v4_1.l0.get().clone() + 1_i64;
+                    v4_1.l0.set(v23);
                     {
-                        let v22: string = sprintf!("{}", v1_1());
-                        let _v23: MutCell<Option<()>> = MutCell::new(None::<()>);
-                        println!("{}", v22.clone());
-                        _v23.set(Some(()));
-                        getValue(_v23.get().clone());
-                        ((patternInput.4.clone()).l0.get().clone())(v22)
+                        let v24: string = sprintf!("{}", v1_1());
+                        let _v25: MutCell<Option<()>> = MutCell::new(None::<()>);
+                        println!("{}", v24.clone());
+                        _v25.set(Some(()));
+                        getValue(_v25.get().clone());
+                        ((patternInput.4.clone()).l0.get().clone())(v24)
                     }
                 }
             }
         }
     }
-    pub fn method6(v0_1: Runtime::US0, v1_1: Func0<string>, v2_1: Func0<string>) {
-        Runtime::method8(
+    pub fn method8(v0_1: Runtime::US0, v1_1: Func0<string>, v2_1: Func0<string>) {
+        Runtime::method10(
             v0_1.clone(),
             Func0::new({
                 let v0_1 = v0_1.clone();
@@ -1085,7 +1094,7 @@ pub mod Runtime {
         v4_1: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
         v5_1: Option<string>,
         v6_1: (),
-        v7: LrcPtr<ConcurrentStack_1<string>>,
+        v7_1: LrcPtr<ConcurrentStack_1<string>>,
         v8: (),
     ) {
         let _v9: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
@@ -1110,7 +1119,7 @@ pub mod Runtime {
         v4_1: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
         v5_1: Option<string>,
         v6_1: (),
-        v7: LrcPtr<ConcurrentStack_1<string>>,
+        v7_1: LrcPtr<ConcurrentStack_1<string>>,
         v8: (),
     ) {
         let _v9: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
@@ -1147,7 +1156,7 @@ pub mod Runtime {
             v0_1
         )
     }
-    pub fn method9() -> string {
+    pub fn method11() -> string {
         string("\n")
     }
     pub fn closure15(v0_1: i32, v1_1: string, unitVar: ()) -> string {
@@ -1157,7 +1166,7 @@ pub mod Runtime {
             length(v1_1)
         )
     }
-    pub fn method0(
+    pub fn method2(
         v0_1: Option<CancellationToken>,
         v1_1: string,
         v2_1: Array<(string, string)>,
@@ -1174,7 +1183,7 @@ pub mod Runtime {
         getValue(_v6.get().clone())
     }
     pub fn closure4(unitVar: (), v0_1: string) -> Arc<Async<(i32, string)>> {
-        Runtime::method0(
+        Runtime::method2(
             None::<CancellationToken>,
             v0_1,
             new_empty::<(string, string)>(),
@@ -1194,7 +1203,7 @@ pub mod Runtime {
             Option<string>,
         ),
     ) -> Arc<Async<(i32, string)>> {
-        Runtime::method0(
+        Runtime::method2(
             _arg.0.clone(),
             _arg.1.clone(),
             _arg.2.clone(),
@@ -1231,7 +1240,7 @@ pub mod Runtime {
             v8.l5.clone(),
         )
     }
-    pub fn method13(
+    pub fn method15(
         v0_1: LrcPtr<Runtime::UH1>,
         v1_1: LrcPtr<Runtime::UH1>,
     ) -> LrcPtr<Runtime::UH1> {
@@ -1242,7 +1251,7 @@ pub mod Runtime {
                     Runtime::UH1::UH1_1(x, _) => x.clone(),
                     _ => unreachable!(),
                 },
-                Runtime::method13(
+                Runtime::method15(
                     match v0_1.as_ref() {
                         Runtime::UH1::UH1_1(_, x) => x.clone(),
                         _ => unreachable!(),
@@ -1252,7 +1261,7 @@ pub mod Runtime {
             )),
         }
     }
-    pub fn method12(
+    pub fn method14(
         v0_1: string,
         v1_1: LrcPtr<Runtime::UH1>,
         v2_1: LrcPtr<Runtime::UH0>,
@@ -1262,385 +1271,524 @@ pub mod Runtime {
         let v1_1: MutCell<LrcPtr<Runtime::UH1>> = MutCell::new(v1_1.clone());
         let v2_1: MutCell<LrcPtr<Runtime::UH0>> = MutCell::new(v2_1.clone());
         let v3_1: MutCell<Runtime::US7> = MutCell::new(v3_1.clone());
-        '_method12: loop {
-            break '_method12 (match &v3_1.get().clone() {
+        '_method14: loop {
+            break '_method14 (match &v3_1.get().clone() {
                 Runtime::US7::US7_1(v3_1_1_0) => {
-                    let v105: char = v3_1_1_0.clone();
-                    if '\"' == v105 {
+                    let v259: char = v3_1_1_0.clone();
+                    if '\"' == v259 {
                         if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) = v2_1.get().clone().as_ref()
                         {
-                            let v108: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
+                            let v262: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
                                 Runtime::UH0::UH0_1(_, x) => x.clone(),
                                 _ => unreachable!(),
                             };
-                            let v107: char = match v2_1.get().clone().as_ref() {
+                            let v261: char = match v2_1.get().clone().as_ref() {
                                 Runtime::UH0::UH0_1(x, _) => x.clone(),
                                 _ => unreachable!(),
                             };
-                            if '\"' == v107 {
-                                if v3_1.get().clone() == Runtime::US7::US7_1('\\') {
-                                    Runtime::method11(
+                            if '\"' == v261 {
+                                Runtime::method13(
+                                    v0_1.get().clone(),
+                                    v1_1.get().clone(),
+                                    v262.clone(),
+                                    v3_1.get().clone(),
+                                    Runtime::US7::US7_0,
+                                )
+                            } else {
+                                if '\\' == v259 {
+                                    if '\\' == v261 {
+                                        Runtime::method13(
+                                            v0_1.get().clone(),
+                                            v1_1.get().clone(),
+                                            v262.clone(),
+                                            v3_1.get().clone(),
+                                            Runtime::US7::US7_2(0_u8, v261),
+                                        )
+                                    } else {
+                                        if '`' == v261 {
+                                            Runtime::method13(
+                                                v0_1.get().clone(),
+                                                v1_1.get().clone(),
+                                                v262.clone(),
+                                                v3_1.get().clone(),
+                                                Runtime::US7::US7_2(0_u8, v261),
+                                            )
+                                        } else {
+                                            if ' ' == v261 {
+                                                let v0_1_temp: string =
+                                                    sprintf!("{} ", v0_1.get().clone());
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v262.clone();
+                                                let v3_1_temp: Runtime::US7 = v3_1.get().clone();
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                continue '_method14;
+                                            } else {
+                                                let v0_1_temp: string =
+                                                    sprintf!("{}{}", v0_1.get().clone(), v261);
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v262.clone();
+                                                let v3_1_temp: Runtime::US7 = v3_1.get().clone();
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                continue '_method14;
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if '`' == v259 {
+                                        if '\\' == v261 {
+                                            Runtime::method13(
+                                                v0_1.get().clone(),
+                                                v1_1.get().clone(),
+                                                v262.clone(),
+                                                v3_1.get().clone(),
+                                                Runtime::US7::US7_2(0_u8, v261),
+                                            )
+                                        } else {
+                                            if '`' == v261 {
+                                                Runtime::method13(
+                                                    v0_1.get().clone(),
+                                                    v1_1.get().clone(),
+                                                    v262.clone(),
+                                                    v3_1.get().clone(),
+                                                    Runtime::US7::US7_2(0_u8, v261),
+                                                )
+                                            } else {
+                                                if ' ' == v261 {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{} ", v0_1.get().clone());
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v262.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v3_1.get().clone();
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    continue '_method14;
+                                                } else {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{}{}", v0_1.get().clone(), v261);
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v262;
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v3_1.get().clone();
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    continue '_method14;
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if '\\' == v261 {
+                                            Runtime::method13(
+                                                v0_1.get().clone(),
+                                                v1_1.get().clone(),
+                                                v262.clone(),
+                                                v3_1.get().clone(),
+                                                Runtime::US7::US7_2(0_u8, v261),
+                                            )
+                                        } else {
+                                            if '`' == v261 {
+                                                Runtime::method13(
+                                                    v0_1.get().clone(),
+                                                    v1_1.get().clone(),
+                                                    v262.clone(),
+                                                    v3_1.get().clone(),
+                                                    Runtime::US7::US7_2(0_u8, v261),
+                                                )
+                                            } else {
+                                                if ' ' == v261 {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{} ", v0_1.get().clone());
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v262.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v3_1.get().clone();
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    continue '_method14;
+                                                } else {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{}{}", v0_1.get().clone(), v261);
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v262.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v3_1.get().clone();
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    continue '_method14;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if '\\' == v259 {
+                                (
+                                    if v0_1.get().clone() == string("") {
+                                        v1_1.get().clone()
+                                    } else {
+                                        Runtime::method15(
+                                            v1_1.get().clone(),
+                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                v0_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                            )),
+                                        )
+                                    },
+                                    v0_1.get().clone(),
+                                )
+                            } else {
+                                if '`' == v259 {
+                                    (
+                                        if v0_1.get().clone() == string("") {
+                                            v1_1.get().clone()
+                                        } else {
+                                            Runtime::method15(
+                                                v1_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                    v0_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_0),
+                                                )),
+                                            )
+                                        },
                                         v0_1.get().clone(),
-                                        v1_1.get().clone(),
-                                        v108.clone(),
-                                        v3_1.get().clone(),
-                                        Runtime::US7::US7_0,
                                     )
                                 } else {
-                                    if '\\' == v105 {
-                                        if !(v3_1.get().clone() == Runtime::US7::US7_2(0_u8)) {
-                                            Runtime::method11(
-                                                sprintf!("{}\"", v0_1.get().clone()),
+                                    (
+                                        if v0_1.get().clone() == string("") {
+                                            v1_1.get().clone()
+                                        } else {
+                                            Runtime::method15(
                                                 v1_1.get().clone(),
-                                                v108.clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                    v0_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_0),
+                                                )),
+                                            )
+                                        },
+                                        v0_1.get().clone(),
+                                    )
+                                }
+                            }
+                        }
+                    } else {
+                        if '\\' == v259 {
+                            if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
+                                v2_1.get().clone().as_ref()
+                            {
+                                let v372: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
+                                    Runtime::UH0::UH0_1(_, x) => x.clone(),
+                                    _ => unreachable!(),
+                                };
+                                let v371: char = match v2_1.get().clone().as_ref() {
+                                    Runtime::UH0::UH0_1(x, _) => x.clone(),
+                                    _ => unreachable!(),
+                                };
+                                if '\"' == v371 {
+                                    if if !(v3_1.get().clone() == Runtime::US7::US7_2(0_u8, '\\')) {
+                                        !(v3_1.get().clone() == Runtime::US7::US7_2(0_u8, '`'))
+                                    } else {
+                                        false
+                                    } {
+                                        Runtime::method13(
+                                            sprintf!("{}{}\"", v0_1.get().clone(), v259),
+                                            v1_1.get().clone(),
+                                            v372.clone(),
+                                            v3_1.get().clone(),
+                                            Runtime::US7::US7_1('\"'),
+                                        )
+                                    } else {
+                                        Runtime::method13(
+                                            sprintf!("{}{}\"", v0_1.get().clone(), v259),
+                                            v1_1.get().clone(),
+                                            v372.clone(),
+                                            v3_1.get().clone(),
+                                            Runtime::US7::US7_1('\"'),
+                                        )
+                                    }
+                                } else {
+                                    if '\\' == v371 {
+                                        Runtime::method13(
+                                            v0_1.get().clone(),
+                                            v1_1.get().clone(),
+                                            v372.clone(),
+                                            v3_1.get().clone(),
+                                            Runtime::US7::US7_2(0_u8, v371),
+                                        )
+                                    } else {
+                                        if '`' == v371 {
+                                            Runtime::method13(
+                                                v0_1.get().clone(),
+                                                v1_1.get().clone(),
+                                                v372.clone(),
+                                                v3_1.get().clone(),
+                                                Runtime::US7::US7_2(0_u8, v371),
+                                            )
+                                        } else {
+                                            if ' ' == v371 {
+                                                let v0_1_temp: string =
+                                                    sprintf!("{} ", v0_1.get().clone());
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v372;
+                                                let v3_1_temp: Runtime::US7 = v3_1.get().clone();
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                continue '_method14;
+                                            } else {
+                                                let v0_1_temp: string =
+                                                    sprintf!("{}{}", v0_1.get().clone(), v371);
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v372.clone();
+                                                let v3_1_temp: Runtime::US7 = v3_1.get().clone();
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                continue '_method14;
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                (
+                                    if v0_1.get().clone() == string("") {
+                                        v1_1.get().clone()
+                                    } else {
+                                        Runtime::method15(
+                                            v1_1.get().clone(),
+                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                v0_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                            )),
+                                        )
+                                    },
+                                    v0_1.get().clone(),
+                                )
+                            }
+                        } else {
+                            if '`' == v259 {
+                                if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
+                                    v2_1.get().clone().as_ref()
+                                {
+                                    let v426: LrcPtr<Runtime::UH0> =
+                                        match v2_1.get().clone().as_ref() {
+                                            Runtime::UH0::UH0_1(_, x) => x.clone(),
+                                            _ => unreachable!(),
+                                        };
+                                    let v425: char = match v2_1.get().clone().as_ref() {
+                                        Runtime::UH0::UH0_1(x, _) => x.clone(),
+                                        _ => unreachable!(),
+                                    };
+                                    if '\"' == v425 {
+                                        if if !(v3_1.get().clone()
+                                            == Runtime::US7::US7_2(0_u8, '\\'))
+                                        {
+                                            !(v3_1.get().clone() == Runtime::US7::US7_2(0_u8, '`'))
+                                        } else {
+                                            false
+                                        } {
+                                            Runtime::method13(
+                                                sprintf!("{}{}\"", v0_1.get().clone(), v259),
+                                                v1_1.get().clone(),
+                                                v426.clone(),
                                                 v3_1.get().clone(),
                                                 Runtime::US7::US7_1('\"'),
                                             )
                                         } else {
-                                            if v3_1.get().clone() == Runtime::US7::US7_1('\\') {
-                                                Runtime::method11(
-                                                    sprintf!("{}\"", v0_1.get().clone()),
-                                                    v1_1.get().clone(),
-                                                    v108.clone(),
-                                                    v3_1.get().clone(),
-                                                    Runtime::US7::US7_1('\"'),
-                                                )
-                                            } else {
-                                                Runtime::method11(
-                                                    v0_1.get().clone(),
-                                                    v1_1.get().clone(),
-                                                    v108.clone(),
-                                                    v3_1.get().clone(),
-                                                    Runtime::US7::US7_0,
-                                                )
-                                            }
+                                            Runtime::method13(
+                                                sprintf!("{}{}\"", v0_1.get().clone(), v259),
+                                                v1_1.get().clone(),
+                                                v426.clone(),
+                                                v3_1.get().clone(),
+                                                Runtime::US7::US7_1('\"'),
+                                            )
                                         }
                                     } else {
-                                        if '\\' == v107 {
-                                            Runtime::method11(
+                                        if '\\' == v425 {
+                                            Runtime::method13(
                                                 v0_1.get().clone(),
                                                 v1_1.get().clone(),
-                                                v108.clone(),
+                                                v426.clone(),
                                                 v3_1.get().clone(),
-                                                Runtime::US7::US7_2(1_u8),
+                                                Runtime::US7::US7_2(0_u8, v425),
                                             )
                                         } else {
-                                            if v3_1.get().clone() == Runtime::US7::US7_2(0_u8) {
-                                                Runtime::method11(
-                                                    sprintf!("{}\"", v0_1.get().clone()),
+                                            if '`' == v425 {
+                                                Runtime::method13(
+                                                    v0_1.get().clone(),
                                                     v1_1.get().clone(),
-                                                    v108.clone(),
+                                                    v426.clone(),
                                                     v3_1.get().clone(),
-                                                    Runtime::US7::US7_1('\"'),
+                                                    Runtime::US7::US7_2(0_u8, v425),
                                                 )
                                             } else {
-                                                Runtime::method11(
+                                                if ' ' == v425 {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{} ", v0_1.get().clone());
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v426;
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v3_1.get().clone();
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    continue '_method14;
+                                                } else {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{}{}", v0_1.get().clone(), v425);
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v426.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v3_1.get().clone();
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    continue '_method14;
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    (
+                                        if v0_1.get().clone() == string("") {
+                                            v1_1.get().clone()
+                                        } else {
+                                            Runtime::method15(
+                                                v1_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                    v0_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_0),
+                                                )),
+                                            )
+                                        },
+                                        v0_1.get().clone(),
+                                    )
+                                }
+                            } else {
+                                if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
+                                    v2_1.get().clone().as_ref()
+                                {
+                                    let v479: LrcPtr<Runtime::UH0> =
+                                        match v2_1.get().clone().as_ref() {
+                                            Runtime::UH0::UH0_1(_, x) => x.clone(),
+                                            _ => unreachable!(),
+                                        };
+                                    let v478: char = match v2_1.get().clone().as_ref() {
+                                        Runtime::UH0::UH0_1(x, _) => x.clone(),
+                                        _ => unreachable!(),
+                                    };
+                                    if '\\' == v478 {
+                                        Runtime::method13(
+                                            v0_1.get().clone(),
+                                            v1_1.get().clone(),
+                                            v479.clone(),
+                                            v3_1.get().clone(),
+                                            Runtime::US7::US7_2(0_u8, v478),
+                                        )
+                                    } else {
+                                        if '`' == v478 {
+                                            Runtime::method13(
+                                                v0_1.get().clone(),
+                                                v1_1.get().clone(),
+                                                v479.clone(),
+                                                v3_1.get().clone(),
+                                                Runtime::US7::US7_2(0_u8, v478),
+                                            )
+                                        } else {
+                                            if '\"' == v478 {
+                                                Runtime::method13(
                                                     string(""),
-                                                    Runtime::method13(
+                                                    Runtime::method15(
                                                         v1_1.get().clone(),
                                                         LrcPtr::new(Runtime::UH1::UH1_1(
                                                             v0_1.get().clone(),
                                                             LrcPtr::new(Runtime::UH1::UH1_0),
                                                         )),
                                                     ),
-                                                    v108.clone(),
+                                                    v479.clone(),
                                                     v3_1.get().clone(),
                                                     Runtime::US7::US7_0,
                                                 )
+                                            } else {
+                                                if ' ' == v478 {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{} ", v0_1.get().clone());
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v479;
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v3_1.get().clone();
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    continue '_method14;
+                                                } else {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{}{}", v0_1.get().clone(), v478);
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v479.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v3_1.get().clone();
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    continue '_method14;
+                                                }
                                             }
                                         }
                                     }
-                                }
-                            } else {
-                                if '\\' == v105 {
-                                    if '\\' == v107 {
-                                        Runtime::method11(
-                                            v0_1.get().clone(),
-                                            v1_1.get().clone(),
-                                            v108.clone(),
-                                            v3_1.get().clone(),
-                                            Runtime::US7::US7_2(1_u8),
-                                        )
-                                    } else {
-                                        if ' ' == v107 {
-                                            let v0_1_temp: string =
-                                                sprintf!("{} ", v0_1.get().clone());
-                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                                v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v108.clone();
-                                            let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                            v0_1.set(v0_1_temp);
-                                            v1_1.set(v1_1_temp);
-                                            v2_1.set(v2_1_temp);
-                                            v3_1.set(v3_1_temp);
-                                            continue '_method12;
-                                        } else {
-                                            let v0_1_temp: string =
-                                                sprintf!("{}{}", v0_1.get().clone(), v107);
-                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                                v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v108.clone();
-                                            let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                            v0_1.set(v0_1_temp);
-                                            v1_1.set(v1_1_temp);
-                                            v2_1.set(v2_1_temp);
-                                            v3_1.set(v3_1_temp);
-                                            continue '_method12;
-                                        }
-                                    }
                                 } else {
-                                    if '\\' == v107 {
-                                        Runtime::method11(
-                                            v0_1.get().clone(),
-                                            v1_1.get().clone(),
-                                            v108,
-                                            v3_1.get().clone(),
-                                            Runtime::US7::US7_2(1_u8),
-                                        )
-                                    } else {
-                                        if ' ' == v107 {
-                                            let v0_1_temp: string =
-                                                sprintf!("{} ", v0_1.get().clone());
-                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                                v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v108.clone();
-                                            let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                            v0_1.set(v0_1_temp);
-                                            v1_1.set(v1_1_temp);
-                                            v2_1.set(v2_1_temp);
-                                            v3_1.set(v3_1_temp);
-                                            continue '_method12;
+                                    (
+                                        if v0_1.get().clone() == string("") {
+                                            v1_1.get().clone()
                                         } else {
-                                            let v0_1_temp: string =
-                                                sprintf!("{}{}", v0_1.get().clone(), v107);
-                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                                v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v108.clone();
-                                            let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                            v0_1.set(v0_1_temp);
-                                            v1_1.set(v1_1_temp);
-                                            v2_1.set(v2_1_temp);
-                                            v3_1.set(v3_1_temp);
-                                            continue '_method12;
-                                        }
-                                    }
-                                }
-                            }
-                        } else {
-                            if '\\' == v105 {
-                                (
-                                    if v0_1.get().clone() == string("") {
-                                        v1_1.get().clone()
-                                    } else {
-                                        Runtime::method13(
-                                            v1_1.get().clone(),
-                                            LrcPtr::new(Runtime::UH1::UH1_1(
-                                                v0_1.get().clone(),
-                                                LrcPtr::new(Runtime::UH1::UH1_0),
-                                            )),
-                                        )
-                                    },
-                                    v0_1.get().clone(),
-                                )
-                            } else {
-                                (
-                                    if v0_1.get().clone() == string("") {
-                                        v1_1.get().clone()
-                                    } else {
-                                        Runtime::method13(
-                                            v1_1.get().clone(),
-                                            LrcPtr::new(Runtime::UH1::UH1_1(
-                                                v0_1.get().clone(),
-                                                LrcPtr::new(Runtime::UH1::UH1_0),
-                                            )),
-                                        )
-                                    },
-                                    v0_1.get().clone(),
-                                )
-                            }
-                        }
-                    } else {
-                        if '\\' == v105 {
-                            if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
-                                v2_1.get().clone().as_ref()
-                            {
-                                let v220: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
-                                    Runtime::UH0::UH0_1(_, x) => x.clone(),
-                                    _ => unreachable!(),
-                                };
-                                let v219: char = match v2_1.get().clone().as_ref() {
-                                    Runtime::UH0::UH0_1(x, _) => x.clone(),
-                                    _ => unreachable!(),
-                                };
-                                if '\"' == v219 {
-                                    if !(v3_1.get().clone() == Runtime::US7::US7_2(0_u8)) {
-                                        Runtime::method11(
-                                            sprintf!("{}\"", v0_1.get().clone()),
-                                            v1_1.get().clone(),
-                                            v220.clone(),
-                                            v3_1.get().clone(),
-                                            Runtime::US7::US7_1('\"'),
-                                        )
-                                    } else {
-                                        if v3_1.get().clone() == Runtime::US7::US7_1('\\') {
-                                            Runtime::method11(
-                                                sprintf!("{}\"", v0_1.get().clone()),
+                                            Runtime::method15(
                                                 v1_1.get().clone(),
-                                                v220.clone(),
-                                                v3_1.get().clone(),
-                                                Runtime::US7::US7_1('\"'),
+                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                    v0_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_0),
+                                                )),
                                             )
-                                        } else {
-                                            Runtime::method11(
-                                                v0_1.get().clone(),
-                                                v1_1.get().clone(),
-                                                v220.clone(),
-                                                v3_1.get().clone(),
-                                                Runtime::US7::US7_0,
-                                            )
-                                        }
-                                    }
-                                } else {
-                                    if '\\' == v219 {
-                                        Runtime::method11(
-                                            v0_1.get().clone(),
-                                            v1_1.get().clone(),
-                                            v220.clone(),
-                                            v3_1.get().clone(),
-                                            Runtime::US7::US7_2(1_u8),
-                                        )
-                                    } else {
-                                        if ' ' == v219 {
-                                            let v0_1_temp: string =
-                                                sprintf!("{} ", v0_1.get().clone());
-                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                                v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v220;
-                                            let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                            v0_1.set(v0_1_temp);
-                                            v1_1.set(v1_1_temp);
-                                            v2_1.set(v2_1_temp);
-                                            v3_1.set(v3_1_temp);
-                                            continue '_method12;
-                                        } else {
-                                            let v0_1_temp: string =
-                                                sprintf!("{}{}", v0_1.get().clone(), v219);
-                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                                v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v220.clone();
-                                            let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                            v0_1.set(v0_1_temp);
-                                            v1_1.set(v1_1_temp);
-                                            v2_1.set(v2_1_temp);
-                                            v3_1.set(v3_1_temp);
-                                            continue '_method12;
-                                        }
-                                    }
-                                }
-                            } else {
-                                (
-                                    if v0_1.get().clone() == string("") {
-                                        v1_1.get().clone()
-                                    } else {
-                                        Runtime::method13(
-                                            v1_1.get().clone(),
-                                            LrcPtr::new(Runtime::UH1::UH1_1(
-                                                v0_1.get().clone(),
-                                                LrcPtr::new(Runtime::UH1::UH1_0),
-                                            )),
-                                        )
-                                    },
-                                    v0_1.get().clone(),
-                                )
-                            }
-                        } else {
-                            if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
-                                v2_1.get().clone().as_ref()
-                            {
-                                let v270: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
-                                    Runtime::UH0::UH0_1(_, x) => x.clone(),
-                                    _ => unreachable!(),
-                                };
-                                let v269: char = match v2_1.get().clone().as_ref() {
-                                    Runtime::UH0::UH0_1(x, _) => x.clone(),
-                                    _ => unreachable!(),
-                                };
-                                if '\\' == v269 {
-                                    Runtime::method11(
+                                        },
                                         v0_1.get().clone(),
-                                        v1_1.get().clone(),
-                                        v270.clone(),
-                                        v3_1.get().clone(),
-                                        Runtime::US7::US7_2(1_u8),
                                     )
-                                } else {
-                                    if '\"' == v269 {
-                                        if v3_1.get().clone() == Runtime::US7::US7_2(0_u8) {
-                                            Runtime::method11(
-                                                sprintf!("{}\"", v0_1.get().clone()),
-                                                v1_1.get().clone(),
-                                                v270.clone(),
-                                                v3_1.get().clone(),
-                                                Runtime::US7::US7_1('\"'),
-                                            )
-                                        } else {
-                                            Runtime::method11(
-                                                string(""),
-                                                Runtime::method13(
-                                                    v1_1.get().clone(),
-                                                    LrcPtr::new(Runtime::UH1::UH1_1(
-                                                        v0_1.get().clone(),
-                                                        LrcPtr::new(Runtime::UH1::UH1_0),
-                                                    )),
-                                                ),
-                                                v270.clone(),
-                                                v3_1.get().clone(),
-                                                Runtime::US7::US7_0,
-                                            )
-                                        }
-                                    } else {
-                                        if ' ' == v269 {
-                                            let v0_1_temp: string =
-                                                sprintf!("{} ", v0_1.get().clone());
-                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                                v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v270;
-                                            let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                            v0_1.set(v0_1_temp);
-                                            v1_1.set(v1_1_temp);
-                                            v2_1.set(v2_1_temp);
-                                            v3_1.set(v3_1_temp);
-                                            continue '_method12;
-                                        } else {
-                                            let v0_1_temp: string =
-                                                sprintf!("{}{}", v0_1.get().clone(), v269);
-                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                                v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v270.clone();
-                                            let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                            v0_1.set(v0_1_temp);
-                                            v1_1.set(v1_1_temp);
-                                            v2_1.set(v2_1_temp);
-                                            v3_1.set(v3_1_temp);
-                                            continue '_method12;
-                                        }
-                                    }
                                 }
-                            } else {
-                                (
-                                    if v0_1.get().clone() == string("") {
-                                        v1_1.get().clone()
-                                    } else {
-                                        Runtime::method13(
-                                            v1_1.get().clone(),
-                                            LrcPtr::new(Runtime::UH1::UH1_1(
-                                                v0_1.get().clone(),
-                                                LrcPtr::new(Runtime::UH1::UH1_0),
-                                            )),
-                                        )
-                                    },
-                                    v0_1.get().clone(),
-                                )
                             }
                         }
                     }
@@ -1656,7 +1804,7 @@ pub mod Runtime {
                             _ => unreachable!(),
                         };
                         if '\"' == v4_1 {
-                            Runtime::method11(
+                            Runtime::method13(
                                 string(""),
                                 v1_1.get().clone(),
                                 v5_1.clone(),
@@ -1665,46 +1813,56 @@ pub mod Runtime {
                             )
                         } else {
                             if '\\' == v4_1 {
-                                Runtime::method11(
+                                Runtime::method13(
                                     v0_1.get().clone(),
                                     v1_1.get().clone(),
                                     v5_1.clone(),
                                     v3_1.get().clone(),
-                                    Runtime::US7::US7_2(0_u8),
+                                    Runtime::US7::US7_2(0_u8, v4_1),
                                 )
                             } else {
-                                if ' ' == v4_1 {
-                                    let v0_1_temp: string = string("");
-                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                        if v0_1.get().clone() == string("") {
-                                            v1_1.get().clone()
-                                        } else {
-                                            Runtime::method13(
-                                                v1_1.get().clone(),
-                                                LrcPtr::new(Runtime::UH1::UH1_1(
-                                                    v0_1.get().clone(),
-                                                    LrcPtr::new(Runtime::UH1::UH1_0),
-                                                )),
-                                            )
-                                        };
-                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5_1;
-                                    let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                    v0_1.set(v0_1_temp);
-                                    v1_1.set(v1_1_temp);
-                                    v2_1.set(v2_1_temp);
-                                    v3_1.set(v3_1_temp);
-                                    continue '_method12;
+                                if '`' == v4_1 {
+                                    Runtime::method13(
+                                        v0_1.get().clone(),
+                                        v1_1.get().clone(),
+                                        v5_1.clone(),
+                                        v3_1.get().clone(),
+                                        Runtime::US7::US7_2(0_u8, v4_1),
+                                    )
                                 } else {
-                                    let v0_1_temp: string =
-                                        sprintf!("{}{}", v0_1.get().clone(), v4_1);
-                                    let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5_1.clone();
-                                    let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                    v0_1.set(v0_1_temp);
-                                    v1_1.set(v1_1_temp);
-                                    v2_1.set(v2_1_temp);
-                                    v3_1.set(v3_1_temp);
-                                    continue '_method12;
+                                    if ' ' == v4_1 {
+                                        let v0_1_temp: string = string("");
+                                        let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            };
+                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5_1;
+                                        let v3_1_temp: Runtime::US7 = v3_1.get().clone();
+                                        v0_1.set(v0_1_temp);
+                                        v1_1.set(v1_1_temp);
+                                        v2_1.set(v2_1_temp);
+                                        v3_1.set(v3_1_temp);
+                                        continue '_method14;
+                                    } else {
+                                        let v0_1_temp: string =
+                                            sprintf!("{}{}", v0_1.get().clone(), v4_1);
+                                        let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
+                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5_1.clone();
+                                        let v3_1_temp: Runtime::US7 = v3_1.get().clone();
+                                        v0_1.set(v0_1_temp);
+                                        v1_1.set(v1_1_temp);
+                                        v2_1.set(v2_1_temp);
+                                        v3_1.set(v3_1_temp);
+                                        continue '_method14;
+                                    }
                                 }
                             }
                         }
@@ -1713,7 +1871,7 @@ pub mod Runtime {
                             if v0_1.get().clone() == string("") {
                                 v1_1.get().clone()
                             } else {
-                                Runtime::method13(
+                                Runtime::method15(
                                     v1_1.get().clone(),
                                     LrcPtr::new(Runtime::UH1::UH1_1(
                                         v0_1.get().clone(),
@@ -1725,144 +1883,499 @@ pub mod Runtime {
                         )
                     }
                 }
-                Runtime::US7::US7_2(v3_1_2_0) => {
-                    let v44: u8 = match &v3_1.get().clone() {
-                        Runtime::US7::US7_2(x) => x.clone(),
+                Runtime::US7::US7_2(v3_1_2_0, v3_1_2_1) => {
+                    let v52: char = match &v3_1.get().clone() {
+                        Runtime::US7::US7_2(_, x) => x.clone(),
+                        _ => unreachable!(),
+                    };
+                    let v51: u8 = match &v3_1.get().clone() {
+                        Runtime::US7::US7_2(x, _) => x.clone(),
                         _ => unreachable!(),
                     };
                     if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) = v2_1.get().clone().as_ref() {
-                        let v46: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
+                        let v54: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
                             Runtime::UH0::UH0_1(_, x) => x.clone(),
                             _ => unreachable!(),
                         };
-                        let v45: char = match v2_1.get().clone().as_ref() {
+                        let v53: char = match v2_1.get().clone().as_ref() {
                             Runtime::UH0::UH0_1(x, _) => x.clone(),
                             _ => unreachable!(),
                         };
-                        if '\\' == v45 {
-                            Runtime::method11(
+                        if '\\' == v53 {
+                            Runtime::method13(
                                 v0_1.get().clone(),
                                 v1_1.get().clone(),
-                                v46.clone(),
+                                v54.clone(),
                                 v3_1.get().clone(),
-                                Runtime::US7::US7_1('\\'),
+                                Runtime::US7::US7_1(v53),
                             )
                         } else {
-                            if '\"' == v45 {
-                                if if let Runtime::US7::US7_0 = &v3_1.get().clone() {
-                                    true
-                                } else {
-                                    false
-                                } {
-                                    let v0_1_temp: string = v0_1.get().clone();
-                                    let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v46.clone();
-                                    let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                    v0_1.set(v0_1_temp);
-                                    v1_1.set(v1_1_temp);
-                                    v2_1.set(v2_1_temp);
-                                    v3_1.set(v3_1_temp);
-                                    continue '_method12;
-                                } else {
-                                    Runtime::method11(
-                                        sprintf!("{}\"", v0_1.get().clone()),
-                                        v1_1.get().clone(),
-                                        v46.clone(),
-                                        v3_1.get().clone(),
-                                        Runtime::US7::US7_2(v44),
-                                    )
-                                }
+                            if '`' == v53 {
+                                Runtime::method13(
+                                    v0_1.get().clone(),
+                                    v1_1.get().clone(),
+                                    v54.clone(),
+                                    v3_1.get().clone(),
+                                    Runtime::US7::US7_1(v53),
+                                )
                             } else {
-                                if ' ' == v45 {
-                                    let v0_1_temp: string = sprintf!("{} ", v0_1.get().clone());
-                                    let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v46.clone();
-                                    let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                    v0_1.set(v0_1_temp);
-                                    v1_1.set(v1_1_temp);
-                                    v2_1.set(v2_1_temp);
-                                    v3_1.set(v3_1_temp);
-                                    continue '_method12;
-                                } else {
-                                    if 1_u8 == v44 {
-                                        if !(v3_1.get().clone() == v3_1.get().clone()) {
-                                            let v0_1_temp: string =
-                                                sprintf!("{}\\{}", v0_1.get().clone(), v45);
-                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                                v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v46.clone();
-                                            let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                            v0_1.set(v0_1_temp);
-                                            v1_1.set(v1_1_temp);
-                                            v2_1.set(v2_1_temp);
-                                            v3_1.set(v3_1_temp);
-                                            continue '_method12;
+                                if 0_u8 == v51 {
+                                    if '\\' == v52 {
+                                        if '\"' == v53 {
+                                            Runtime::method13(
+                                                sprintf!("{}{}\"", v0_1.get().clone(), v52),
+                                                v1_1.get().clone(),
+                                                v54.clone(),
+                                                v3_1.get().clone(),
+                                                Runtime::US7::US7_2(v51, v52),
+                                            )
                                         } else {
-                                            let v0_1_temp: string =
-                                                sprintf!("{}{}", v0_1.get().clone(), v45);
-                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                                v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v46.clone();
-                                            let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                            v0_1.set(v0_1_temp);
-                                            v1_1.set(v1_1_temp);
-                                            v2_1.set(v2_1_temp);
-                                            v3_1.set(v3_1_temp);
-                                            continue '_method12;
+                                            if ' ' == v53 {
+                                                let v0_1_temp: string =
+                                                    sprintf!("{} ", v0_1.get().clone());
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v54.clone();
+                                                let v3_1_temp: Runtime::US7 = v3_1.get().clone();
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                continue '_method14;
+                                            } else {
+                                                if 1_u8 == v51 {
+                                                    if !(v3_1.get().clone() == v3_1.get().clone()) {
+                                                        let v0_1_temp: string = sprintf!(
+                                                            "{}\\{}",
+                                                            v0_1.get().clone(),
+                                                            v53
+                                                        );
+                                                        let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                            v1_1.get().clone();
+                                                        let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                            v54.clone();
+                                                        let v3_1_temp: Runtime::US7 =
+                                                            v3_1.get().clone();
+                                                        v0_1.set(v0_1_temp);
+                                                        v1_1.set(v1_1_temp);
+                                                        v2_1.set(v2_1_temp);
+                                                        v3_1.set(v3_1_temp);
+                                                        continue '_method14;
+                                                    } else {
+                                                        let v0_1_temp: string = sprintf!(
+                                                            "{}{}",
+                                                            v0_1.get().clone(),
+                                                            v53
+                                                        );
+                                                        let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                            v1_1.get().clone();
+                                                        let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                            v54.clone();
+                                                        let v3_1_temp: Runtime::US7 =
+                                                            v3_1.get().clone();
+                                                        v0_1.set(v0_1_temp);
+                                                        v1_1.set(v1_1_temp);
+                                                        v2_1.set(v2_1_temp);
+                                                        v3_1.set(v3_1_temp);
+                                                        continue '_method14;
+                                                    }
+                                                } else {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{}{}", v0_1.get().clone(), v53);
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v54.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v3_1.get().clone();
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    continue '_method14;
+                                                }
+                                            }
                                         }
                                     } else {
-                                        let v0_1_temp: string =
-                                            sprintf!("{}{}", v0_1.get().clone(), v45);
-                                        let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v46.clone();
-                                        let v3_1_temp: Runtime::US7 = v3_1.get().clone();
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        continue '_method12;
+                                        if '`' == v52 {
+                                            if '\"' == v53 {
+                                                Runtime::method13(
+                                                    sprintf!("{}{}\"", v0_1.get().clone(), v52),
+                                                    v1_1.get().clone(),
+                                                    v54.clone(),
+                                                    v3_1.get().clone(),
+                                                    Runtime::US7::US7_2(v51, v52),
+                                                )
+                                            } else {
+                                                if ' ' == v53 {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{} ", v0_1.get().clone());
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v54.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v3_1.get().clone();
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    continue '_method14;
+                                                } else {
+                                                    if 1_u8 == v51 {
+                                                        if !(v3_1.get().clone()
+                                                            == v3_1.get().clone())
+                                                        {
+                                                            let v0_1_temp: string = sprintf!(
+                                                                "{}\\{}",
+                                                                v0_1.get().clone(),
+                                                                v53
+                                                            );
+                                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                                v1_1.get().clone();
+                                                            let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                                v54.clone();
+                                                            let v3_1_temp: Runtime::US7 =
+                                                                v3_1.get().clone();
+                                                            v0_1.set(v0_1_temp);
+                                                            v1_1.set(v1_1_temp);
+                                                            v2_1.set(v2_1_temp);
+                                                            v3_1.set(v3_1_temp);
+                                                            continue '_method14;
+                                                        } else {
+                                                            let v0_1_temp: string = sprintf!(
+                                                                "{}{}",
+                                                                v0_1.get().clone(),
+                                                                v53
+                                                            );
+                                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                                v1_1.get().clone();
+                                                            let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                                v54.clone();
+                                                            let v3_1_temp: Runtime::US7 =
+                                                                v3_1.get().clone();
+                                                            v0_1.set(v0_1_temp);
+                                                            v1_1.set(v1_1_temp);
+                                                            v2_1.set(v2_1_temp);
+                                                            v3_1.set(v3_1_temp);
+                                                            continue '_method14;
+                                                        }
+                                                    } else {
+                                                        let v0_1_temp: string = sprintf!(
+                                                            "{}{}",
+                                                            v0_1.get().clone(),
+                                                            v53
+                                                        );
+                                                        let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                            v1_1.get().clone();
+                                                        let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                            v54.clone();
+                                                        let v3_1_temp: Runtime::US7 =
+                                                            v3_1.get().clone();
+                                                        v0_1.set(v0_1_temp);
+                                                        v1_1.set(v1_1_temp);
+                                                        v2_1.set(v2_1_temp);
+                                                        v3_1.set(v3_1_temp);
+                                                        continue '_method14;
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            if '\"' == v53 {
+                                                Runtime::method13(
+                                                    sprintf!("{}{}\"", v0_1.get().clone(), v52),
+                                                    v1_1.get().clone(),
+                                                    v54.clone(),
+                                                    v3_1.get().clone(),
+                                                    Runtime::US7::US7_2(v51, v52),
+                                                )
+                                            } else {
+                                                if ' ' == v53 {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{} ", v0_1.get().clone());
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v54.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v3_1.get().clone();
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    continue '_method14;
+                                                } else {
+                                                    if 1_u8 == v51 {
+                                                        if !(v3_1.get().clone()
+                                                            == v3_1.get().clone())
+                                                        {
+                                                            let v0_1_temp: string = sprintf!(
+                                                                "{}\\{}",
+                                                                v0_1.get().clone(),
+                                                                v53
+                                                            );
+                                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                                v1_1.get().clone();
+                                                            let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                                v54.clone();
+                                                            let v3_1_temp: Runtime::US7 =
+                                                                v3_1.get().clone();
+                                                            v0_1.set(v0_1_temp);
+                                                            v1_1.set(v1_1_temp);
+                                                            v2_1.set(v2_1_temp);
+                                                            v3_1.set(v3_1_temp);
+                                                            continue '_method14;
+                                                        } else {
+                                                            let v0_1_temp: string = sprintf!(
+                                                                "{}{}",
+                                                                v0_1.get().clone(),
+                                                                v53
+                                                            );
+                                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                                v1_1.get().clone();
+                                                            let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                                v54.clone();
+                                                            let v3_1_temp: Runtime::US7 =
+                                                                v3_1.get().clone();
+                                                            v0_1.set(v0_1_temp);
+                                                            v1_1.set(v1_1_temp);
+                                                            v2_1.set(v2_1_temp);
+                                                            v3_1.set(v3_1_temp);
+                                                            continue '_method14;
+                                                        }
+                                                    } else {
+                                                        let v0_1_temp: string = sprintf!(
+                                                            "{}{}",
+                                                            v0_1.get().clone(),
+                                                            v53
+                                                        );
+                                                        let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                            v1_1.get().clone();
+                                                        let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                            v54.clone();
+                                                        let v3_1_temp: Runtime::US7 =
+                                                            v3_1.get().clone();
+                                                        v0_1.set(v0_1_temp);
+                                                        v1_1.set(v1_1_temp);
+                                                        v2_1.set(v2_1_temp);
+                                                        v3_1.set(v3_1_temp);
+                                                        continue '_method14;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if '\"' == v53 {
+                                        Runtime::method13(
+                                            sprintf!("{}{}\"", v0_1.get().clone(), v52),
+                                            v1_1.get().clone(),
+                                            v54.clone(),
+                                            v3_1.get().clone(),
+                                            Runtime::US7::US7_2(v51, v52),
+                                        )
+                                    } else {
+                                        if ' ' == v53 {
+                                            let v0_1_temp: string =
+                                                sprintf!("{} ", v0_1.get().clone());
+                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                v1_1.get().clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v54.clone();
+                                            let v3_1_temp: Runtime::US7 = v3_1.get().clone();
+                                            v0_1.set(v0_1_temp);
+                                            v1_1.set(v1_1_temp);
+                                            v2_1.set(v2_1_temp);
+                                            v3_1.set(v3_1_temp);
+                                            continue '_method14;
+                                        } else {
+                                            if 1_u8 == v51 {
+                                                if !(v3_1.get().clone() == v3_1.get().clone()) {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{}\\{}", v0_1.get().clone(), v53);
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v54.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v3_1.get().clone();
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    continue '_method14;
+                                                } else {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{}{}", v0_1.get().clone(), v53);
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v54.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v3_1.get().clone();
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    continue '_method14;
+                                                }
+                                            } else {
+                                                let v0_1_temp: string =
+                                                    sprintf!("{}{}", v0_1.get().clone(), v53);
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v54.clone();
+                                                let v3_1_temp: Runtime::US7 = v3_1.get().clone();
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                continue '_method14;
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
                     } else {
-                        if 1_u8 == v44 {
-                            (
-                                if v0_1.get().clone() == string("") {
-                                    v1_1.get().clone()
-                                } else {
-                                    Runtime::method13(
-                                        v1_1.get().clone(),
-                                        LrcPtr::new(Runtime::UH1::UH1_1(
-                                            v0_1.get().clone(),
-                                            LrcPtr::new(Runtime::UH1::UH1_0),
-                                        )),
+                        if 0_u8 == v51 {
+                            if '\\' == v52 {
+                                if 1_u8 == v51 {
+                                    (
+                                        if v0_1.get().clone() == string("") {
+                                            v1_1.get().clone()
+                                        } else {
+                                            Runtime::method15(
+                                                v1_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                    v0_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_0),
+                                                )),
+                                            )
+                                        },
+                                        v0_1.get().clone(),
                                     )
-                                },
-                                v0_1.get().clone(),
-                            )
+                                } else {
+                                    (
+                                        if v0_1.get().clone() == string("") {
+                                            v1_1.get().clone()
+                                        } else {
+                                            Runtime::method15(
+                                                v1_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                    v0_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_0),
+                                                )),
+                                            )
+                                        },
+                                        v0_1.get().clone(),
+                                    )
+                                }
+                            } else {
+                                if '`' == v52 {
+                                    if 1_u8 == v51 {
+                                        (
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            },
+                                            v0_1.get().clone(),
+                                        )
+                                    } else {
+                                        (
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            },
+                                            v0_1.get().clone(),
+                                        )
+                                    }
+                                } else {
+                                    if 1_u8 == v51 {
+                                        (
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            },
+                                            v0_1.get().clone(),
+                                        )
+                                    } else {
+                                        (
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            },
+                                            v0_1.get().clone(),
+                                        )
+                                    }
+                                }
+                            }
                         } else {
-                            (
-                                if v0_1.get().clone() == string("") {
-                                    v1_1.get().clone()
-                                } else {
-                                    Runtime::method13(
-                                        v1_1.get().clone(),
-                                        LrcPtr::new(Runtime::UH1::UH1_1(
-                                            v0_1.get().clone(),
-                                            LrcPtr::new(Runtime::UH1::UH1_0),
-                                        )),
-                                    )
-                                },
-                                v0_1.get().clone(),
-                            )
+                            if 1_u8 == v51 {
+                                (
+                                    if v0_1.get().clone() == string("") {
+                                        v1_1.get().clone()
+                                    } else {
+                                        Runtime::method15(
+                                            v1_1.get().clone(),
+                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                v0_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                            )),
+                                        )
+                                    },
+                                    v0_1.get().clone(),
+                                )
+                            } else {
+                                (
+                                    if v0_1.get().clone() == string("") {
+                                        v1_1.get().clone()
+                                    } else {
+                                        Runtime::method15(
+                                            v1_1.get().clone(),
+                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                v0_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                            )),
+                                        )
+                                    },
+                                    v0_1.get().clone(),
+                                )
+                            }
                         }
                     }
                 }
             });
         }
     }
-    pub fn method11(
+    pub fn method13(
         v0_1: string,
         v1_1: LrcPtr<Runtime::UH1>,
         v2_1: LrcPtr<Runtime::UH0>,
@@ -1874,26 +2387,27 @@ pub mod Runtime {
         let v2_1: MutCell<LrcPtr<Runtime::UH0>> = MutCell::new(v2_1.clone());
         let v3_1: MutCell<Runtime::US7> = MutCell::new(v3_1.clone());
         let v4_1: MutCell<Runtime::US7> = MutCell::new(v4_1.clone());
-        '_method11: loop {
-            break '_method11 (match &v4_1.get().clone() {
+        '_method13: loop {
+            break '_method13 (match &v4_1.get().clone() {
                 Runtime::US7::US7_1(v4_1_1_0) => {
-                    let v106: char = v4_1_1_0.clone();
-                    if '\"' == v106 {
-                        if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) = v2_1.get().clone().as_ref()
-                        {
-                            let v109: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
-                                Runtime::UH0::UH0_1(_, x) => x.clone(),
-                                _ => unreachable!(),
-                            };
-                            let v108: char = match v2_1.get().clone().as_ref() {
-                                Runtime::UH0::UH0_1(x, _) => x.clone(),
-                                _ => unreachable!(),
-                            };
-                            if '\"' == v108 {
-                                if v3_1.get().clone() == Runtime::US7::US7_1('\\') {
+                    let v581: char = v4_1_1_0.clone();
+                    if '\"' == v581 {
+                        if let Runtime::US7::US7_1(v3_1_1_0) = &v3_1.get().clone() {
+                            if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
+                                v2_1.get().clone().as_ref()
+                            {
+                                let v585: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
+                                    Runtime::UH0::UH0_1(_, x) => x.clone(),
+                                    _ => unreachable!(),
+                                };
+                                let v584: char = match v2_1.get().clone().as_ref() {
+                                    Runtime::UH0::UH0_1(x, _) => x.clone(),
+                                    _ => unreachable!(),
+                                };
+                                if '\"' == v584 {
                                     let v0_1_temp: string = v0_1.get().clone();
                                     let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v109.clone();
+                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v585.clone();
                                     let v3_1_temp: Runtime::US7 = v4_1.get().clone();
                                     let v4_1_temp: Runtime::US7 = Runtime::US7::US7_0;
                                     v0_1.set(v0_1_temp);
@@ -1901,15 +2415,245 @@ pub mod Runtime {
                                     v2_1.set(v2_1_temp);
                                     v3_1.set(v3_1_temp);
                                     v4_1.set(v4_1_temp);
-                                    continue '_method11;
+                                    continue '_method13;
                                 } else {
-                                    if '\\' == v106 {
-                                        if !(v3_1.get().clone() == Runtime::US7::US7_2(0_u8)) {
-                                            let v0_1_temp: string =
-                                                sprintf!("{}\"", v0_1.get().clone());
+                                    if '\\' == v581 {
+                                        if '\\' == v584 {
+                                            let v0_1_temp: string = v0_1.get().clone();
                                             let v1_1_temp: LrcPtr<Runtime::UH1> =
                                                 v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v109.clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v585.clone();
+                                            let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                            let v4_1_temp: Runtime::US7 =
+                                                Runtime::US7::US7_2(0_u8, v584);
+                                            v0_1.set(v0_1_temp);
+                                            v1_1.set(v1_1_temp);
+                                            v2_1.set(v2_1_temp);
+                                            v3_1.set(v3_1_temp);
+                                            v4_1.set(v4_1_temp);
+                                            continue '_method13;
+                                        } else {
+                                            if '`' == v584 {
+                                                let v0_1_temp: string = v0_1.get().clone();
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v585.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 =
+                                                    Runtime::US7::US7_2(0_u8, v584);
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            } else {
+                                                if ' ' == v584 {
+                                                    Runtime::method14(
+                                                        sprintf!("{} ", v0_1.get().clone()),
+                                                        v1_1.get().clone(),
+                                                        v585.clone(),
+                                                        v4_1.get().clone(),
+                                                    )
+                                                } else {
+                                                    Runtime::method14(
+                                                        sprintf!("{}{}", v0_1.get().clone(), v584),
+                                                        v1_1.get().clone(),
+                                                        v585.clone(),
+                                                        v4_1.get().clone(),
+                                                    )
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if '`' == v581 {
+                                            if '\\' == v584 {
+                                                let v0_1_temp: string = v0_1.get().clone();
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v585.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 =
+                                                    Runtime::US7::US7_2(0_u8, v584);
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            } else {
+                                                if '`' == v584 {
+                                                    let v0_1_temp: string = v0_1.get().clone();
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v585.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v4_1.get().clone();
+                                                    let v4_1_temp: Runtime::US7 =
+                                                        Runtime::US7::US7_2(0_u8, v584);
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    v4_1.set(v4_1_temp);
+                                                    continue '_method13;
+                                                } else {
+                                                    if ' ' == v584 {
+                                                        Runtime::method14(
+                                                            sprintf!("{} ", v0_1.get().clone()),
+                                                            v1_1.get().clone(),
+                                                            v585,
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    } else {
+                                                        Runtime::method14(
+                                                            sprintf!(
+                                                                "{}{}",
+                                                                v0_1.get().clone(),
+                                                                v584
+                                                            ),
+                                                            v1_1.get().clone(),
+                                                            v585.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            if '\\' == v584 {
+                                                let v0_1_temp: string = v0_1.get().clone();
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v585.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 =
+                                                    Runtime::US7::US7_2(0_u8, v584);
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            } else {
+                                                if '`' == v584 {
+                                                    let v0_1_temp: string = v0_1.get().clone();
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v585.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v4_1.get().clone();
+                                                    let v4_1_temp: Runtime::US7 =
+                                                        Runtime::US7::US7_2(0_u8, v584);
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    v4_1.set(v4_1_temp);
+                                                    continue '_method13;
+                                                } else {
+                                                    if ' ' == v584 {
+                                                        Runtime::method14(
+                                                            sprintf!("{} ", v0_1.get().clone()),
+                                                            v1_1.get().clone(),
+                                                            v585.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    } else {
+                                                        Runtime::method14(
+                                                            sprintf!(
+                                                                "{}{}",
+                                                                v0_1.get().clone(),
+                                                                v584
+                                                            ),
+                                                            v1_1.get().clone(),
+                                                            v585.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                if '\\' == v581 {
+                                    (
+                                        if v0_1.get().clone() == string("") {
+                                            v1_1.get().clone()
+                                        } else {
+                                            Runtime::method15(
+                                                v1_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                    v0_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_0),
+                                                )),
+                                            )
+                                        },
+                                        v0_1.get().clone(),
+                                    )
+                                } else {
+                                    if '`' == v581 {
+                                        (
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            },
+                                            v0_1.get().clone(),
+                                        )
+                                    } else {
+                                        (
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            },
+                                            v0_1.get().clone(),
+                                        )
+                                    }
+                                }
+                            }
+                        } else {
+                            if '\\' == v581 {
+                                if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
+                                    v2_1.get().clone().as_ref()
+                                {
+                                    let v695: LrcPtr<Runtime::UH0> =
+                                        match v2_1.get().clone().as_ref() {
+                                            Runtime::UH0::UH0_1(_, x) => x.clone(),
+                                            _ => unreachable!(),
+                                        };
+                                    let v694: char = match v2_1.get().clone().as_ref() {
+                                        Runtime::UH0::UH0_1(x, _) => x.clone(),
+                                        _ => unreachable!(),
+                                    };
+                                    if '\"' == v694 {
+                                        if if !(v3_1.get().clone()
+                                            == Runtime::US7::US7_2(0_u8, '\\'))
+                                        {
+                                            !(v3_1.get().clone() == Runtime::US7::US7_2(0_u8, '`'))
+                                        } else {
+                                            false
+                                        } {
+                                            let v0_1_temp: string =
+                                                sprintf!("{}{}\"", v0_1.get().clone(), v581);
+                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                v1_1.get().clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v695.clone();
                                             let v3_1_temp: Runtime::US7 = v4_1.get().clone();
                                             let v4_1_temp: Runtime::US7 = Runtime::US7::US7_1('\"');
                                             v0_1.set(v0_1_temp);
@@ -1917,59 +2661,210 @@ pub mod Runtime {
                                             v2_1.set(v2_1_temp);
                                             v3_1.set(v3_1_temp);
                                             v4_1.set(v4_1_temp);
-                                            continue '_method11;
+                                            continue '_method13;
                                         } else {
-                                            if v3_1.get().clone() == Runtime::US7::US7_1('\\') {
-                                                let v0_1_temp: string =
-                                                    sprintf!("{}\"", v0_1.get().clone());
-                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                                    v1_1.get().clone();
-                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v109.clone();
-                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
-                                                let v4_1_temp: Runtime::US7 =
-                                                    Runtime::US7::US7_1('\"');
-                                                v0_1.set(v0_1_temp);
-                                                v1_1.set(v1_1_temp);
-                                                v2_1.set(v2_1_temp);
-                                                v3_1.set(v3_1_temp);
-                                                v4_1.set(v4_1_temp);
-                                                continue '_method11;
-                                            } else {
-                                                let v0_1_temp: string = v0_1.get().clone();
-                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                                    v1_1.get().clone();
-                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v109.clone();
-                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
-                                                let v4_1_temp: Runtime::US7 = Runtime::US7::US7_0;
-                                                v0_1.set(v0_1_temp);
-                                                v1_1.set(v1_1_temp);
-                                                v2_1.set(v2_1_temp);
-                                                v3_1.set(v3_1_temp);
-                                                v4_1.set(v4_1_temp);
-                                                continue '_method11;
-                                            }
-                                        }
-                                    } else {
-                                        if '\\' == v108 {
                                             let v0_1_temp: string = v0_1.get().clone();
                                             let v1_1_temp: LrcPtr<Runtime::UH1> =
                                                 v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v109.clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v695.clone();
                                             let v3_1_temp: Runtime::US7 = v4_1.get().clone();
-                                            let v4_1_temp: Runtime::US7 = Runtime::US7::US7_2(1_u8);
+                                            let v4_1_temp: Runtime::US7 = Runtime::US7::US7_0;
                                             v0_1.set(v0_1_temp);
                                             v1_1.set(v1_1_temp);
                                             v2_1.set(v2_1_temp);
                                             v3_1.set(v3_1_temp);
                                             v4_1.set(v4_1_temp);
-                                            continue '_method11;
+                                            continue '_method13;
+                                        }
+                                    } else {
+                                        if '\\' == v694 {
+                                            let v0_1_temp: string = v0_1.get().clone();
+                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                v1_1.get().clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v695.clone();
+                                            let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                            let v4_1_temp: Runtime::US7 =
+                                                Runtime::US7::US7_2(1_u8, v694);
+                                            v0_1.set(v0_1_temp);
+                                            v1_1.set(v1_1_temp);
+                                            v2_1.set(v2_1_temp);
+                                            v3_1.set(v3_1_temp);
+                                            v4_1.set(v4_1_temp);
+                                            continue '_method13;
                                         } else {
-                                            if v3_1.get().clone() == Runtime::US7::US7_2(0_u8) {
-                                                let v0_1_temp: string =
-                                                    sprintf!("{}\"", v0_1.get().clone());
+                                            if '`' == v694 {
+                                                let v0_1_temp: string = v0_1.get().clone();
                                                 let v1_1_temp: LrcPtr<Runtime::UH1> =
                                                     v1_1.get().clone();
-                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v109.clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v695.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 =
+                                                    Runtime::US7::US7_2(1_u8, v694);
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            } else {
+                                                if let Runtime::US7::US7_2(v3_1_2_0, v3_1_2_1) =
+                                                    &v3_1.get().clone()
+                                                {
+                                                    if 0_u8
+                                                        == match &v3_1.get().clone() {
+                                                            Runtime::US7::US7_2(x, _) => x.clone(),
+                                                            _ => unreachable!(),
+                                                        }
+                                                    {
+                                                        if ' ' == v694 {
+                                                            Runtime::method14(
+                                                                sprintf!("{} ", v0_1.get().clone()),
+                                                                v1_1.get().clone(),
+                                                                v695.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        } else {
+                                                            Runtime::method14(
+                                                                sprintf!(
+                                                                    "{}{}",
+                                                                    v0_1.get().clone(),
+                                                                    v694
+                                                                ),
+                                                                v1_1.get().clone(),
+                                                                v695,
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        }
+                                                    } else {
+                                                        if ' ' == v694 {
+                                                            Runtime::method14(
+                                                                sprintf!("{} ", v0_1.get().clone()),
+                                                                v1_1.get().clone(),
+                                                                v695.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        } else {
+                                                            Runtime::method14(
+                                                                sprintf!(
+                                                                    "{}{}",
+                                                                    v0_1.get().clone(),
+                                                                    v694
+                                                                ),
+                                                                v1_1.get().clone(),
+                                                                v695.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        }
+                                                    }
+                                                } else {
+                                                    if ' ' == v694 {
+                                                        Runtime::method14(
+                                                            sprintf!("{} ", v0_1.get().clone()),
+                                                            v1_1.get().clone(),
+                                                            v695.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    } else {
+                                                        Runtime::method14(
+                                                            sprintf!(
+                                                                "{}{}",
+                                                                v0_1.get().clone(),
+                                                                v694
+                                                            ),
+                                                            v1_1.get().clone(),
+                                                            v695.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if let Runtime::US7::US7_2(v3_1_2_0, v3_1_2_1) =
+                                        &v3_1.get().clone()
+                                    {
+                                        if 0_u8
+                                            == match &v3_1.get().clone() {
+                                                Runtime::US7::US7_2(x, _) => x.clone(),
+                                                _ => unreachable!(),
+                                            }
+                                        {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
+                                            )
+                                        } else {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
+                                            )
+                                        }
+                                    } else {
+                                        (
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            },
+                                            v0_1.get().clone(),
+                                        )
+                                    }
+                                }
+                            } else {
+                                if '`' == v581 {
+                                    if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
+                                        v2_1.get().clone().as_ref()
+                                    {
+                                        let v791: LrcPtr<Runtime::UH0> =
+                                            match v2_1.get().clone().as_ref() {
+                                                Runtime::UH0::UH0_1(_, x) => x.clone(),
+                                                _ => unreachable!(),
+                                            };
+                                        let v790: char = match v2_1.get().clone().as_ref() {
+                                            Runtime::UH0::UH0_1(x, _) => x.clone(),
+                                            _ => unreachable!(),
+                                        };
+                                        if '\"' == v790 {
+                                            if if !(v3_1.get().clone()
+                                                == Runtime::US7::US7_2(0_u8, '\\'))
+                                            {
+                                                !(v3_1.get().clone()
+                                                    == Runtime::US7::US7_2(0_u8, '`'))
+                                            } else {
+                                                false
+                                            } {
+                                                let v0_1_temp: string =
+                                                    sprintf!("{}{}\"", v0_1.get().clone(), v581);
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v791.clone();
                                                 let v3_1_temp: Runtime::US7 = v4_1.get().clone();
                                                 let v4_1_temp: Runtime::US7 =
                                                     Runtime::US7::US7_1('\"');
@@ -1978,18 +2873,12 @@ pub mod Runtime {
                                                 v2_1.set(v2_1_temp);
                                                 v3_1.set(v3_1_temp);
                                                 v4_1.set(v4_1_temp);
-                                                continue '_method11;
+                                                continue '_method13;
                                             } else {
-                                                let v0_1_temp: string = string("");
+                                                let v0_1_temp: string = v0_1.get().clone();
                                                 let v1_1_temp: LrcPtr<Runtime::UH1> =
-                                                    Runtime::method13(
-                                                        v1_1.get().clone(),
-                                                        LrcPtr::new(Runtime::UH1::UH1_1(
-                                                            v0_1.get().clone(),
-                                                            LrcPtr::new(Runtime::UH1::UH1_0),
-                                                        )),
-                                                    );
-                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v109.clone();
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v791.clone();
                                                 let v3_1_temp: Runtime::US7 = v4_1.get().clone();
                                                 let v4_1_temp: Runtime::US7 = Runtime::US7::US7_0;
                                                 v0_1.set(v0_1_temp);
@@ -1997,126 +2886,456 @@ pub mod Runtime {
                                                 v2_1.set(v2_1_temp);
                                                 v3_1.set(v3_1_temp);
                                                 v4_1.set(v4_1_temp);
-                                                continue '_method11;
+                                                continue '_method13;
+                                            }
+                                        } else {
+                                            if '\\' == v790 {
+                                                let v0_1_temp: string = v0_1.get().clone();
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v791.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 =
+                                                    Runtime::US7::US7_2(1_u8, v790);
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            } else {
+                                                if '`' == v790 {
+                                                    let v0_1_temp: string = v0_1.get().clone();
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v791.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v4_1.get().clone();
+                                                    let v4_1_temp: Runtime::US7 =
+                                                        Runtime::US7::US7_2(1_u8, v790);
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    v4_1.set(v4_1_temp);
+                                                    continue '_method13;
+                                                } else {
+                                                    if let Runtime::US7::US7_2(v3_1_2_0, v3_1_2_1) =
+                                                        &v3_1.get().clone()
+                                                    {
+                                                        if 0_u8
+                                                            == match &v3_1.get().clone() {
+                                                                Runtime::US7::US7_2(x, _) => {
+                                                                    x.clone()
+                                                                }
+                                                                _ => unreachable!(),
+                                                            }
+                                                        {
+                                                            if ' ' == v790 {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{} ",
+                                                                        v0_1.get().clone()
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v791.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v790
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v791,
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        } else {
+                                                            if ' ' == v790 {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{} ",
+                                                                        v0_1.get().clone()
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v791.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v790
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v791.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        }
+                                                    } else {
+                                                        if ' ' == v790 {
+                                                            Runtime::method14(
+                                                                sprintf!("{} ", v0_1.get().clone()),
+                                                                v1_1.get().clone(),
+                                                                v791.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        } else {
+                                                            Runtime::method14(
+                                                                sprintf!(
+                                                                    "{}{}",
+                                                                    v0_1.get().clone(),
+                                                                    v790
+                                                                ),
+                                                                v1_1.get().clone(),
+                                                                v791.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
-                                    }
-                                }
-                            } else {
-                                if '\\' == v106 {
-                                    if '\\' == v108 {
-                                        let v0_1_temp: string = v0_1.get().clone();
-                                        let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v109.clone();
-                                        let v3_1_temp: Runtime::US7 = v4_1.get().clone();
-                                        let v4_1_temp: Runtime::US7 = Runtime::US7::US7_2(1_u8);
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        v4_1.set(v4_1_temp);
-                                        continue '_method11;
                                     } else {
-                                        if ' ' == v108 {
-                                            Runtime::method12(
-                                                sprintf!("{} ", v0_1.get().clone()),
-                                                v1_1.get().clone(),
-                                                v109.clone(),
-                                                v4_1.get().clone(),
-                                            )
+                                        if let Runtime::US7::US7_2(v3_1_2_0, v3_1_2_1) =
+                                            &v3_1.get().clone()
+                                        {
+                                            if 0_u8
+                                                == match &v3_1.get().clone() {
+                                                    Runtime::US7::US7_2(x, _) => x.clone(),
+                                                    _ => unreachable!(),
+                                                }
+                                            {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            } else {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            }
                                         } else {
-                                            Runtime::method12(
-                                                sprintf!("{}{}", v0_1.get().clone(), v108),
-                                                v1_1.get().clone(),
-                                                v109.clone(),
-                                                v4_1.get().clone(),
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
                                             )
                                         }
                                     }
                                 } else {
-                                    if '\\' == v108 {
-                                        let v0_1_temp: string = v0_1.get().clone();
-                                        let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v109.clone();
-                                        let v3_1_temp: Runtime::US7 = v4_1.get().clone();
-                                        let v4_1_temp: Runtime::US7 = Runtime::US7::US7_2(1_u8);
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        v4_1.set(v4_1_temp);
-                                        continue '_method11;
-                                    } else {
-                                        if ' ' == v108 {
-                                            Runtime::method12(
-                                                sprintf!("{} ", v0_1.get().clone()),
-                                                v1_1.get().clone(),
-                                                v109.clone(),
-                                                v4_1.get().clone(),
-                                            )
+                                    if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
+                                        v2_1.get().clone().as_ref()
+                                    {
+                                        let v886: LrcPtr<Runtime::UH0> =
+                                            match v2_1.get().clone().as_ref() {
+                                                Runtime::UH0::UH0_1(_, x) => x.clone(),
+                                                _ => unreachable!(),
+                                            };
+                                        let v885: char = match v2_1.get().clone().as_ref() {
+                                            Runtime::UH0::UH0_1(x, _) => x.clone(),
+                                            _ => unreachable!(),
+                                        };
+                                        if '\\' == v885 {
+                                            let v0_1_temp: string = v0_1.get().clone();
+                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                v1_1.get().clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v886.clone();
+                                            let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                            let v4_1_temp: Runtime::US7 =
+                                                Runtime::US7::US7_2(1_u8, v885);
+                                            v0_1.set(v0_1_temp);
+                                            v1_1.set(v1_1_temp);
+                                            v2_1.set(v2_1_temp);
+                                            v3_1.set(v3_1_temp);
+                                            v4_1.set(v4_1_temp);
+                                            continue '_method13;
                                         } else {
-                                            Runtime::method12(
-                                                sprintf!("{}{}", v0_1.get().clone(), v108),
-                                                v1_1.get().clone(),
-                                                v109.clone(),
-                                                v4_1.get().clone(),
+                                            if '`' == v885 {
+                                                let v0_1_temp: string = v0_1.get().clone();
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v886.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 =
+                                                    Runtime::US7::US7_2(1_u8, v885);
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            } else {
+                                                if let Runtime::US7::US7_2(v3_1_2_0, v3_1_2_1) =
+                                                    &v3_1.get().clone()
+                                                {
+                                                    if 0_u8
+                                                        == match &v3_1.get().clone() {
+                                                            Runtime::US7::US7_2(x, _) => x.clone(),
+                                                            _ => unreachable!(),
+                                                        }
+                                                    {
+                                                        if '\"' == v885 {
+                                                            let v0_1_temp: string =
+                                                                sprintf!("{}", v0_1.get().clone());
+                                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                                v1_1.get().clone();
+                                                            let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                                v886.clone();
+                                                            let v3_1_temp: Runtime::US7 =
+                                                                v4_1.get().clone();
+                                                            let v4_1_temp: Runtime::US7 =
+                                                                Runtime::US7::US7_1('\"');
+                                                            v0_1.set(v0_1_temp);
+                                                            v1_1.set(v1_1_temp);
+                                                            v2_1.set(v2_1_temp);
+                                                            v3_1.set(v3_1_temp);
+                                                            v4_1.set(v4_1_temp);
+                                                            continue '_method13;
+                                                        } else {
+                                                            if ' ' == v885 {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{} ",
+                                                                        v0_1.get().clone()
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v886.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v885
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v886.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        }
+                                                    } else {
+                                                        if '\"' == v885 {
+                                                            let v0_1_temp: string = string("");
+                                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                                Runtime::method15(
+                                                                    v1_1.get().clone(),
+                                                                    LrcPtr::new(
+                                                                        Runtime::UH1::UH1_1(
+                                                                            v0_1.get().clone(),
+                                                                            LrcPtr::new(
+                                                                                Runtime::UH1::UH1_0,
+                                                                            ),
+                                                                        ),
+                                                                    ),
+                                                                );
+                                                            let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                                v886.clone();
+                                                            let v3_1_temp: Runtime::US7 =
+                                                                v4_1.get().clone();
+                                                            let v4_1_temp: Runtime::US7 =
+                                                                Runtime::US7::US7_0;
+                                                            v0_1.set(v0_1_temp);
+                                                            v1_1.set(v1_1_temp);
+                                                            v2_1.set(v2_1_temp);
+                                                            v3_1.set(v3_1_temp);
+                                                            v4_1.set(v4_1_temp);
+                                                            continue '_method13;
+                                                        } else {
+                                                            if ' ' == v885 {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{} ",
+                                                                        v0_1.get().clone()
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v886,
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v885
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v886.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        }
+                                                    }
+                                                } else {
+                                                    if '\"' == v885 {
+                                                        let v0_1_temp: string = string("");
+                                                        let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                            Runtime::method15(
+                                                                v1_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                    v0_1.get().clone(),
+                                                                    LrcPtr::new(
+                                                                        Runtime::UH1::UH1_0,
+                                                                    ),
+                                                                )),
+                                                            );
+                                                        let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                            v886.clone();
+                                                        let v3_1_temp: Runtime::US7 =
+                                                            v4_1.get().clone();
+                                                        let v4_1_temp: Runtime::US7 =
+                                                            Runtime::US7::US7_0;
+                                                        v0_1.set(v0_1_temp);
+                                                        v1_1.set(v1_1_temp);
+                                                        v2_1.set(v2_1_temp);
+                                                        v3_1.set(v3_1_temp);
+                                                        v4_1.set(v4_1_temp);
+                                                        continue '_method13;
+                                                    } else {
+                                                        if ' ' == v885 {
+                                                            Runtime::method14(
+                                                                sprintf!("{} ", v0_1.get().clone()),
+                                                                v1_1.get().clone(),
+                                                                v886.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        } else {
+                                                            Runtime::method14(
+                                                                sprintf!(
+                                                                    "{}{}",
+                                                                    v0_1.get().clone(),
+                                                                    v885
+                                                                ),
+                                                                v1_1.get().clone(),
+                                                                v886.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if let Runtime::US7::US7_2(v3_1_2_0, v3_1_2_1) =
+                                            &v3_1.get().clone()
+                                        {
+                                            if 0_u8
+                                                == match &v3_1.get().clone() {
+                                                    Runtime::US7::US7_2(x, _) => x.clone(),
+                                                    _ => unreachable!(),
+                                                }
+                                            {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            } else {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            }
+                                        } else {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
                                             )
                                         }
                                     }
                                 }
                             }
-                        } else {
-                            if '\\' == v106 {
-                                (
-                                    if v0_1.get().clone() == string("") {
-                                        v1_1.get().clone()
-                                    } else {
-                                        Runtime::method13(
-                                            v1_1.get().clone(),
-                                            LrcPtr::new(Runtime::UH1::UH1_1(
-                                                v0_1.get().clone(),
-                                                LrcPtr::new(Runtime::UH1::UH1_0),
-                                            )),
-                                        )
-                                    },
-                                    v0_1.get().clone(),
-                                )
-                            } else {
-                                (
-                                    if v0_1.get().clone() == string("") {
-                                        v1_1.get().clone()
-                                    } else {
-                                        Runtime::method13(
-                                            v1_1.get().clone(),
-                                            LrcPtr::new(Runtime::UH1::UH1_1(
-                                                v0_1.get().clone(),
-                                                LrcPtr::new(Runtime::UH1::UH1_0),
-                                            )),
-                                        )
-                                    },
-                                    v0_1.get().clone(),
-                                )
-                            }
                         }
                     } else {
-                        if '\\' == v106 {
+                        if '\\' == v581 {
                             if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
                                 v2_1.get().clone().as_ref()
                             {
-                                let v221: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
+                                let v998: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
                                     Runtime::UH0::UH0_1(_, x) => x.clone(),
                                     _ => unreachable!(),
                                 };
-                                let v220: char = match v2_1.get().clone().as_ref() {
+                                let v997: char = match v2_1.get().clone().as_ref() {
                                     Runtime::UH0::UH0_1(x, _) => x.clone(),
                                     _ => unreachable!(),
                                 };
-                                if '\"' == v220 {
-                                    if !(v3_1.get().clone() == Runtime::US7::US7_2(0_u8)) {
+                                if '\"' == v997 {
+                                    if if !(v3_1.get().clone() == Runtime::US7::US7_2(0_u8, '\\')) {
+                                        !(v3_1.get().clone() == Runtime::US7::US7_2(0_u8, '`'))
+                                    } else {
+                                        false
+                                    } {
                                         let v0_1_temp: string =
-                                            sprintf!("{}\"", v0_1.get().clone());
+                                            sprintf!("{}{}\"", v0_1.get().clone(), v581);
                                         let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v221.clone();
+                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v998.clone();
                                         let v3_1_temp: Runtime::US7 = v4_1.get().clone();
                                         let v4_1_temp: Runtime::US7 = Runtime::US7::US7_1('\"');
                                         v0_1.set(v0_1_temp);
@@ -2124,14 +3343,14 @@ pub mod Runtime {
                                         v2_1.set(v2_1_temp);
                                         v3_1.set(v3_1_temp);
                                         v4_1.set(v4_1_temp);
-                                        continue '_method11;
+                                        continue '_method13;
                                     } else {
-                                        if v3_1.get().clone() == Runtime::US7::US7_1('\\') {
+                                        if let Runtime::US7::US7_1(v3_1_1_0) = &v3_1.get().clone() {
                                             let v0_1_temp: string =
-                                                sprintf!("{}\"", v0_1.get().clone());
+                                                sprintf!("{}{}\"", v0_1.get().clone(), v581);
                                             let v1_1_temp: LrcPtr<Runtime::UH1> =
                                                 v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v221.clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v998.clone();
                                             let v3_1_temp: Runtime::US7 = v4_1.get().clone();
                                             let v4_1_temp: Runtime::US7 = Runtime::US7::US7_1('\"');
                                             v0_1.set(v0_1_temp);
@@ -2139,12 +3358,12 @@ pub mod Runtime {
                                             v2_1.set(v2_1_temp);
                                             v3_1.set(v3_1_temp);
                                             v4_1.set(v4_1_temp);
-                                            continue '_method11;
+                                            continue '_method13;
                                         } else {
                                             let v0_1_temp: string = v0_1.get().clone();
                                             let v1_1_temp: LrcPtr<Runtime::UH1> =
                                                 v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v221;
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v998.clone();
                                             let v3_1_temp: Runtime::US7 = v4_1.get().clone();
                                             let v4_1_temp: Runtime::US7 = Runtime::US7::US7_0;
                                             v0_1.set(v0_1_temp);
@@ -2152,148 +3371,898 @@ pub mod Runtime {
                                             v2_1.set(v2_1_temp);
                                             v3_1.set(v3_1_temp);
                                             v4_1.set(v4_1_temp);
-                                            continue '_method11;
+                                            continue '_method13;
                                         }
                                     }
                                 } else {
-                                    if '\\' == v220 {
-                                        let v0_1_temp: string = v0_1.get().clone();
-                                        let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v221.clone();
-                                        let v3_1_temp: Runtime::US7 = v4_1.get().clone();
-                                        let v4_1_temp: Runtime::US7 = Runtime::US7::US7_2(1_u8);
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        v4_1.set(v4_1_temp);
-                                        continue '_method11;
-                                    } else {
-                                        if ' ' == v220 {
-                                            Runtime::method12(
-                                                sprintf!("{} ", v0_1.get().clone()),
-                                                v1_1.get().clone(),
-                                                v221.clone(),
-                                                v4_1.get().clone(),
-                                            )
-                                        } else {
-                                            Runtime::method12(
-                                                sprintf!("{}{}", v0_1.get().clone(), v220),
-                                                v1_1.get().clone(),
-                                                v221.clone(),
-                                                v4_1.get().clone(),
-                                            )
-                                        }
-                                    }
-                                }
-                            } else {
-                                (
-                                    if v0_1.get().clone() == string("") {
-                                        v1_1.get().clone()
-                                    } else {
-                                        Runtime::method13(
-                                            v1_1.get().clone(),
-                                            LrcPtr::new(Runtime::UH1::UH1_1(
-                                                v0_1.get().clone(),
-                                                LrcPtr::new(Runtime::UH1::UH1_0),
-                                            )),
-                                        )
-                                    },
-                                    v0_1.get().clone(),
-                                )
-                            }
-                        } else {
-                            if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
-                                v2_1.get().clone().as_ref()
-                            {
-                                let v271: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
-                                    Runtime::UH0::UH0_1(_, x) => x.clone(),
-                                    _ => unreachable!(),
-                                };
-                                let v270: char = match v2_1.get().clone().as_ref() {
-                                    Runtime::UH0::UH0_1(x, _) => x.clone(),
-                                    _ => unreachable!(),
-                                };
-                                if '\\' == v270 {
-                                    let v0_1_temp: string = v0_1.get().clone();
-                                    let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v271.clone();
-                                    let v3_1_temp: Runtime::US7 = v4_1.get().clone();
-                                    let v4_1_temp: Runtime::US7 = Runtime::US7::US7_2(1_u8);
-                                    v0_1.set(v0_1_temp);
-                                    v1_1.set(v1_1_temp);
-                                    v2_1.set(v2_1_temp);
-                                    v3_1.set(v3_1_temp);
-                                    v4_1.set(v4_1_temp);
-                                    continue '_method11;
-                                } else {
-                                    if '\"' == v270 {
-                                        if v3_1.get().clone() == Runtime::US7::US7_2(0_u8) {
-                                            let v0_1_temp: string =
-                                                sprintf!("{}\"", v0_1.get().clone());
+                                    if let Runtime::US7::US7_1(v3_1_1_0) = &v3_1.get().clone() {
+                                        if '\\' == v997 {
+                                            let v0_1_temp: string = v0_1.get().clone();
                                             let v1_1_temp: LrcPtr<Runtime::UH1> =
                                                 v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v271.clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v998.clone();
                                             let v3_1_temp: Runtime::US7 = v4_1.get().clone();
-                                            let v4_1_temp: Runtime::US7 = Runtime::US7::US7_1('\"');
+                                            let v4_1_temp: Runtime::US7 =
+                                                Runtime::US7::US7_2(0_u8, v997);
                                             v0_1.set(v0_1_temp);
                                             v1_1.set(v1_1_temp);
                                             v2_1.set(v2_1_temp);
                                             v3_1.set(v3_1_temp);
                                             v4_1.set(v4_1_temp);
-                                            continue '_method11;
+                                            continue '_method13;
                                         } else {
-                                            let v0_1_temp: string = string("");
-                                            let v1_1_temp: LrcPtr<Runtime::UH1> = Runtime::method13(
+                                            if '`' == v997 {
+                                                let v0_1_temp: string = v0_1.get().clone();
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v998.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 =
+                                                    Runtime::US7::US7_2(0_u8, v997);
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            } else {
+                                                if ' ' == v997 {
+                                                    Runtime::method14(
+                                                        sprintf!("{} ", v0_1.get().clone()),
+                                                        v1_1.get().clone(),
+                                                        v998.clone(),
+                                                        v4_1.get().clone(),
+                                                    )
+                                                } else {
+                                                    Runtime::method14(
+                                                        sprintf!("{}{}", v0_1.get().clone(), v997),
+                                                        v1_1.get().clone(),
+                                                        v998.clone(),
+                                                        v4_1.get().clone(),
+                                                    )
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if '\\' == v997 {
+                                            let v0_1_temp: string = v0_1.get().clone();
+                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                v1_1.get().clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v998.clone();
+                                            let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                            let v4_1_temp: Runtime::US7 =
+                                                Runtime::US7::US7_2(1_u8, v997);
+                                            v0_1.set(v0_1_temp);
+                                            v1_1.set(v1_1_temp);
+                                            v2_1.set(v2_1_temp);
+                                            v3_1.set(v3_1_temp);
+                                            v4_1.set(v4_1_temp);
+                                            continue '_method13;
+                                        } else {
+                                            if '`' == v997 {
+                                                let v0_1_temp: string = v0_1.get().clone();
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v998.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 =
+                                                    Runtime::US7::US7_2(1_u8, v997);
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            } else {
+                                                if let Runtime::US7::US7_2(v3_1_2_0, v3_1_2_1) =
+                                                    &v3_1.get().clone()
+                                                {
+                                                    if 0_u8
+                                                        == match &v3_1.get().clone() {
+                                                            Runtime::US7::US7_2(x, _) => x.clone(),
+                                                            _ => unreachable!(),
+                                                        }
+                                                    {
+                                                        if ' ' == v997 {
+                                                            Runtime::method14(
+                                                                sprintf!("{} ", v0_1.get().clone()),
+                                                                v1_1.get().clone(),
+                                                                v998.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        } else {
+                                                            Runtime::method14(
+                                                                sprintf!(
+                                                                    "{}{}",
+                                                                    v0_1.get().clone(),
+                                                                    v997
+                                                                ),
+                                                                v1_1.get().clone(),
+                                                                v998.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        }
+                                                    } else {
+                                                        if ' ' == v997 {
+                                                            Runtime::method14(
+                                                                sprintf!("{} ", v0_1.get().clone()),
+                                                                v1_1.get().clone(),
+                                                                v998.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        } else {
+                                                            Runtime::method14(
+                                                                sprintf!(
+                                                                    "{}{}",
+                                                                    v0_1.get().clone(),
+                                                                    v997
+                                                                ),
+                                                                v1_1.get().clone(),
+                                                                v998.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        }
+                                                    }
+                                                } else {
+                                                    if ' ' == v997 {
+                                                        Runtime::method14(
+                                                            sprintf!("{} ", v0_1.get().clone()),
+                                                            v1_1.get().clone(),
+                                                            v998.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    } else {
+                                                        Runtime::method14(
+                                                            sprintf!(
+                                                                "{}{}",
+                                                                v0_1.get().clone(),
+                                                                v997
+                                                            ),
+                                                            v1_1.get().clone(),
+                                                            v998.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                match &v3_1.get().clone() {
+                                    Runtime::US7::US7_2(v3_1_2_0, v3_1_2_1) => {
+                                        if 0_u8
+                                            == match &v3_1.get().clone() {
+                                                Runtime::US7::US7_2(x, _) => x.clone(),
+                                                _ => unreachable!(),
+                                            }
+                                        {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
+                                            )
+                                        } else {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
+                                            )
+                                        }
+                                    }
+                                    Runtime::US7::US7_1(v3_1_1_0) => (
+                                        if v0_1.get().clone() == string("") {
+                                            v1_1.get().clone()
+                                        } else {
+                                            Runtime::method15(
                                                 v1_1.get().clone(),
                                                 LrcPtr::new(Runtime::UH1::UH1_1(
                                                     v0_1.get().clone(),
                                                     LrcPtr::new(Runtime::UH1::UH1_0),
                                                 )),
-                                            );
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v271.clone();
+                                            )
+                                        },
+                                        v0_1.get().clone(),
+                                    ),
+                                    _ => (
+                                        if v0_1.get().clone() == string("") {
+                                            v1_1.get().clone()
+                                        } else {
+                                            Runtime::method15(
+                                                v1_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                    v0_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_0),
+                                                )),
+                                            )
+                                        },
+                                        v0_1.get().clone(),
+                                    ),
+                                }
+                            }
+                        } else {
+                            if '`' == v581 {
+                                if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
+                                    v2_1.get().clone().as_ref()
+                                {
+                                    let v1137: LrcPtr<Runtime::UH0> =
+                                        match v2_1.get().clone().as_ref() {
+                                            Runtime::UH0::UH0_1(_, x) => x.clone(),
+                                            _ => unreachable!(),
+                                        };
+                                    let v1136: char = match v2_1.get().clone().as_ref() {
+                                        Runtime::UH0::UH0_1(x, _) => x.clone(),
+                                        _ => unreachable!(),
+                                    };
+                                    if '\"' == v1136 {
+                                        if if !(v3_1.get().clone()
+                                            == Runtime::US7::US7_2(0_u8, '\\'))
+                                        {
+                                            !(v3_1.get().clone() == Runtime::US7::US7_2(0_u8, '`'))
+                                        } else {
+                                            false
+                                        } {
+                                            let v0_1_temp: string =
+                                                sprintf!("{}{}\"", v0_1.get().clone(), v581);
+                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                v1_1.get().clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v1137.clone();
                                             let v3_1_temp: Runtime::US7 = v4_1.get().clone();
-                                            let v4_1_temp: Runtime::US7 = Runtime::US7::US7_0;
+                                            let v4_1_temp: Runtime::US7 = Runtime::US7::US7_1('\"');
                                             v0_1.set(v0_1_temp);
                                             v1_1.set(v1_1_temp);
                                             v2_1.set(v2_1_temp);
                                             v3_1.set(v3_1_temp);
                                             v4_1.set(v4_1_temp);
-                                            continue '_method11;
+                                            continue '_method13;
+                                        } else {
+                                            if let Runtime::US7::US7_1(v3_1_1_0) =
+                                                &v3_1.get().clone()
+                                            {
+                                                let v0_1_temp: string =
+                                                    sprintf!("{}{}\"", v0_1.get().clone(), v581);
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v1137.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 =
+                                                    Runtime::US7::US7_1('\"');
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            } else {
+                                                let v0_1_temp: string = v0_1.get().clone();
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v1137.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 = Runtime::US7::US7_0;
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            }
                                         }
                                     } else {
-                                        if ' ' == v270 {
-                                            Runtime::method12(
-                                                sprintf!("{} ", v0_1.get().clone()),
-                                                v1_1.get().clone(),
-                                                v271.clone(),
-                                                v4_1.get().clone(),
-                                            )
+                                        if let Runtime::US7::US7_1(v3_1_1_0) = &v3_1.get().clone() {
+                                            if '\\' == v1136 {
+                                                let v0_1_temp: string = v0_1.get().clone();
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v1137.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 =
+                                                    Runtime::US7::US7_2(0_u8, v1136);
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            } else {
+                                                if '`' == v1136 {
+                                                    let v0_1_temp: string = v0_1.get().clone();
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v1137.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v4_1.get().clone();
+                                                    let v4_1_temp: Runtime::US7 =
+                                                        Runtime::US7::US7_2(0_u8, v1136);
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    v4_1.set(v4_1_temp);
+                                                    continue '_method13;
+                                                } else {
+                                                    if ' ' == v1136 {
+                                                        Runtime::method14(
+                                                            sprintf!("{} ", v0_1.get().clone()),
+                                                            v1_1.get().clone(),
+                                                            v1137.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    } else {
+                                                        Runtime::method14(
+                                                            sprintf!(
+                                                                "{}{}",
+                                                                v0_1.get().clone(),
+                                                                v1136
+                                                            ),
+                                                            v1_1.get().clone(),
+                                                            v1137.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    }
+                                                }
+                                            }
                                         } else {
-                                            Runtime::method12(
-                                                sprintf!("{}{}", v0_1.get().clone(), v270),
-                                                v1_1.get().clone(),
-                                                v271.clone(),
-                                                v4_1.get().clone(),
+                                            if '\\' == v1136 {
+                                                let v0_1_temp: string = v0_1.get().clone();
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v1137.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 =
+                                                    Runtime::US7::US7_2(1_u8, v1136);
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            } else {
+                                                if '`' == v1136 {
+                                                    let v0_1_temp: string = v0_1.get().clone();
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v1137.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v4_1.get().clone();
+                                                    let v4_1_temp: Runtime::US7 =
+                                                        Runtime::US7::US7_2(1_u8, v1136);
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    v4_1.set(v4_1_temp);
+                                                    continue '_method13;
+                                                } else {
+                                                    if let Runtime::US7::US7_2(v3_1_2_0, v3_1_2_1) =
+                                                        &v3_1.get().clone()
+                                                    {
+                                                        if 0_u8
+                                                            == match &v3_1.get().clone() {
+                                                                Runtime::US7::US7_2(x, _) => {
+                                                                    x.clone()
+                                                                }
+                                                                _ => unreachable!(),
+                                                            }
+                                                        {
+                                                            if ' ' == v1136 {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{} ",
+                                                                        v0_1.get().clone()
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v1137.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v1136
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v1137.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        } else {
+                                                            if ' ' == v1136 {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{} ",
+                                                                        v0_1.get().clone()
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v1137.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v1136
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v1137.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        }
+                                                    } else {
+                                                        if ' ' == v1136 {
+                                                            Runtime::method14(
+                                                                sprintf!("{} ", v0_1.get().clone()),
+                                                                v1_1.get().clone(),
+                                                                v1137.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        } else {
+                                                            Runtime::method14(
+                                                                sprintf!(
+                                                                    "{}{}",
+                                                                    v0_1.get().clone(),
+                                                                    v1136
+                                                                ),
+                                                                v1_1.get().clone(),
+                                                                v1137.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    match &v3_1.get().clone() {
+                                        Runtime::US7::US7_2(v3_1_2_0, v3_1_2_1) => {
+                                            if 0_u8
+                                                == match &v3_1.get().clone() {
+                                                    Runtime::US7::US7_2(x, _) => x.clone(),
+                                                    _ => unreachable!(),
+                                                }
+                                            {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            } else {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            }
+                                        }
+                                        Runtime::US7::US7_1(v3_1_1_0) => (
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            },
+                                            v0_1.get().clone(),
+                                        ),
+                                        _ => (
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            },
+                                            v0_1.get().clone(),
+                                        ),
+                                    }
+                                }
+                            } else {
+                                if let Runtime::US7::US7_1(v3_1_1_0) = &v3_1.get().clone() {
+                                    if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
+                                        v2_1.get().clone().as_ref()
+                                    {
+                                        let v1276: LrcPtr<Runtime::UH0> =
+                                            match v2_1.get().clone().as_ref() {
+                                                Runtime::UH0::UH0_1(_, x) => x.clone(),
+                                                _ => unreachable!(),
+                                            };
+                                        let v1275: char = match v2_1.get().clone().as_ref() {
+                                            Runtime::UH0::UH0_1(x, _) => x.clone(),
+                                            _ => unreachable!(),
+                                        };
+                                        if '\\' == v1275 {
+                                            let v0_1_temp: string = v0_1.get().clone();
+                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                v1_1.get().clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v1276.clone();
+                                            let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                            let v4_1_temp: Runtime::US7 =
+                                                Runtime::US7::US7_2(0_u8, v1275);
+                                            v0_1.set(v0_1_temp);
+                                            v1_1.set(v1_1_temp);
+                                            v2_1.set(v2_1_temp);
+                                            v3_1.set(v3_1_temp);
+                                            v4_1.set(v4_1_temp);
+                                            continue '_method13;
+                                        } else {
+                                            if '`' == v1275 {
+                                                let v0_1_temp: string = v0_1.get().clone();
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v1276.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 =
+                                                    Runtime::US7::US7_2(0_u8, v1275);
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            } else {
+                                                if '\"' == v1275 {
+                                                    let v0_1_temp: string = string("");
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        );
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v1276.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v4_1.get().clone();
+                                                    let v4_1_temp: Runtime::US7 =
+                                                        Runtime::US7::US7_0;
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    v4_1.set(v4_1_temp);
+                                                    continue '_method13;
+                                                } else {
+                                                    if ' ' == v1275 {
+                                                        Runtime::method14(
+                                                            sprintf!("{} ", v0_1.get().clone()),
+                                                            v1_1.get().clone(),
+                                                            v1276.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    } else {
+                                                        Runtime::method14(
+                                                            sprintf!(
+                                                                "{}{}",
+                                                                v0_1.get().clone(),
+                                                                v1275
+                                                            ),
+                                                            v1_1.get().clone(),
+                                                            v1276.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        (
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            },
+                                            v0_1.get().clone(),
+                                        )
+                                    }
+                                } else {
+                                    if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
+                                        v2_1.get().clone().as_ref()
+                                    {
+                                        let v1319: LrcPtr<Runtime::UH0> =
+                                            match v2_1.get().clone().as_ref() {
+                                                Runtime::UH0::UH0_1(_, x) => x.clone(),
+                                                _ => unreachable!(),
+                                            };
+                                        let v1318: char = match v2_1.get().clone().as_ref() {
+                                            Runtime::UH0::UH0_1(x, _) => x.clone(),
+                                            _ => unreachable!(),
+                                        };
+                                        if '\\' == v1318 {
+                                            let v0_1_temp: string = v0_1.get().clone();
+                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                v1_1.get().clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v1319.clone();
+                                            let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                            let v4_1_temp: Runtime::US7 =
+                                                Runtime::US7::US7_2(1_u8, v1318);
+                                            v0_1.set(v0_1_temp);
+                                            v1_1.set(v1_1_temp);
+                                            v2_1.set(v2_1_temp);
+                                            v3_1.set(v3_1_temp);
+                                            v4_1.set(v4_1_temp);
+                                            continue '_method13;
+                                        } else {
+                                            if '`' == v1318 {
+                                                let v0_1_temp: string = v0_1.get().clone();
+                                                let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                    v1_1.get().clone();
+                                                let v2_1_temp: LrcPtr<Runtime::UH0> = v1319.clone();
+                                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                                let v4_1_temp: Runtime::US7 =
+                                                    Runtime::US7::US7_2(1_u8, v1318);
+                                                v0_1.set(v0_1_temp);
+                                                v1_1.set(v1_1_temp);
+                                                v2_1.set(v2_1_temp);
+                                                v3_1.set(v3_1_temp);
+                                                v4_1.set(v4_1_temp);
+                                                continue '_method13;
+                                            } else {
+                                                if let Runtime::US7::US7_2(v3_1_2_0, v3_1_2_1) =
+                                                    &v3_1.get().clone()
+                                                {
+                                                    if 0_u8
+                                                        == match &v3_1.get().clone() {
+                                                            Runtime::US7::US7_2(x, _) => x.clone(),
+                                                            _ => unreachable!(),
+                                                        }
+                                                    {
+                                                        if '\"' == v1318 {
+                                                            let v0_1_temp: string =
+                                                                sprintf!("{}", v0_1.get().clone());
+                                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                                v1_1.get().clone();
+                                                            let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                                v1319.clone();
+                                                            let v3_1_temp: Runtime::US7 =
+                                                                v4_1.get().clone();
+                                                            let v4_1_temp: Runtime::US7 =
+                                                                Runtime::US7::US7_1('\"');
+                                                            v0_1.set(v0_1_temp);
+                                                            v1_1.set(v1_1_temp);
+                                                            v2_1.set(v2_1_temp);
+                                                            v3_1.set(v3_1_temp);
+                                                            v4_1.set(v4_1_temp);
+                                                            continue '_method13;
+                                                        } else {
+                                                            if ' ' == v1318 {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{} ",
+                                                                        v0_1.get().clone()
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v1319.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v1318
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v1319.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        }
+                                                    } else {
+                                                        if '\"' == v1318 {
+                                                            let v0_1_temp: string = string("");
+                                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                                Runtime::method15(
+                                                                    v1_1.get().clone(),
+                                                                    LrcPtr::new(
+                                                                        Runtime::UH1::UH1_1(
+                                                                            v0_1.get().clone(),
+                                                                            LrcPtr::new(
+                                                                                Runtime::UH1::UH1_0,
+                                                                            ),
+                                                                        ),
+                                                                    ),
+                                                                );
+                                                            let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                                v1319.clone();
+                                                            let v3_1_temp: Runtime::US7 =
+                                                                v4_1.get().clone();
+                                                            let v4_1_temp: Runtime::US7 =
+                                                                Runtime::US7::US7_0;
+                                                            v0_1.set(v0_1_temp);
+                                                            v1_1.set(v1_1_temp);
+                                                            v2_1.set(v2_1_temp);
+                                                            v3_1.set(v3_1_temp);
+                                                            v4_1.set(v4_1_temp);
+                                                            continue '_method13;
+                                                        } else {
+                                                            if ' ' == v1318 {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{} ",
+                                                                        v0_1.get().clone()
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v1319,
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v1318
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v1319.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        }
+                                                    }
+                                                } else {
+                                                    if '\"' == v1318 {
+                                                        let v0_1_temp: string = string("");
+                                                        let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                            Runtime::method15(
+                                                                v1_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                    v0_1.get().clone(),
+                                                                    LrcPtr::new(
+                                                                        Runtime::UH1::UH1_0,
+                                                                    ),
+                                                                )),
+                                                            );
+                                                        let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                            v1319.clone();
+                                                        let v3_1_temp: Runtime::US7 =
+                                                            v4_1.get().clone();
+                                                        let v4_1_temp: Runtime::US7 =
+                                                            Runtime::US7::US7_0;
+                                                        v0_1.set(v0_1_temp);
+                                                        v1_1.set(v1_1_temp);
+                                                        v2_1.set(v2_1_temp);
+                                                        v3_1.set(v3_1_temp);
+                                                        v4_1.set(v4_1_temp);
+                                                        continue '_method13;
+                                                    } else {
+                                                        if ' ' == v1318 {
+                                                            Runtime::method14(
+                                                                sprintf!("{} ", v0_1.get().clone()),
+                                                                v1_1.get().clone(),
+                                                                v1319.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        } else {
+                                                            Runtime::method14(
+                                                                sprintf!(
+                                                                    "{}{}",
+                                                                    v0_1.get().clone(),
+                                                                    v1318
+                                                                ),
+                                                                v1_1.get().clone(),
+                                                                v1319.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if let Runtime::US7::US7_2(v3_1_2_0, v3_1_2_1) =
+                                            &v3_1.get().clone()
+                                        {
+                                            if 0_u8
+                                                == match &v3_1.get().clone() {
+                                                    Runtime::US7::US7_2(x, _) => x.clone(),
+                                                    _ => unreachable!(),
+                                                }
+                                            {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            } else {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            }
+                                        } else {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
                                             )
                                         }
                                     }
                                 }
-                            } else {
-                                (
-                                    if v0_1.get().clone() == string("") {
-                                        v1_1.get().clone()
-                                    } else {
-                                        Runtime::method13(
-                                            v1_1.get().clone(),
-                                            LrcPtr::new(Runtime::UH1::UH1_1(
-                                                v0_1.get().clone(),
-                                                LrcPtr::new(Runtime::UH1::UH1_0),
-                                            )),
-                                        )
-                                    },
-                                    v0_1.get().clone(),
-                                )
                             }
                         }
                     }
@@ -2319,45 +4288,59 @@ pub mod Runtime {
                             v2_1.set(v2_1_temp);
                             v3_1.set(v3_1_temp);
                             v4_1.set(v4_1_temp);
-                            continue '_method11;
+                            continue '_method13;
                         } else {
                             if '\\' == v5_1 {
                                 let v0_1_temp: string = v0_1.get().clone();
                                 let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                                let v2_1_temp: LrcPtr<Runtime::UH0> = v6_1;
+                                let v2_1_temp: LrcPtr<Runtime::UH0> = v6_1.clone();
                                 let v3_1_temp: Runtime::US7 = v4_1.get().clone();
-                                let v4_1_temp: Runtime::US7 = Runtime::US7::US7_2(0_u8);
+                                let v4_1_temp: Runtime::US7 = Runtime::US7::US7_2(0_u8, v5_1);
                                 v0_1.set(v0_1_temp);
                                 v1_1.set(v1_1_temp);
                                 v2_1.set(v2_1_temp);
                                 v3_1.set(v3_1_temp);
                                 v4_1.set(v4_1_temp);
-                                continue '_method11;
+                                continue '_method13;
                             } else {
-                                if ' ' == v5_1 {
-                                    Runtime::method12(
-                                        string(""),
-                                        if v0_1.get().clone() == string("") {
-                                            v1_1.get().clone()
-                                        } else {
-                                            Runtime::method13(
-                                                v1_1.get().clone(),
-                                                LrcPtr::new(Runtime::UH1::UH1_1(
-                                                    v0_1.get().clone(),
-                                                    LrcPtr::new(Runtime::UH1::UH1_0),
-                                                )),
-                                            )
-                                        },
-                                        v6_1.clone(),
-                                        v4_1.get().clone(),
-                                    )
+                                if '`' == v5_1 {
+                                    let v0_1_temp: string = v0_1.get().clone();
+                                    let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
+                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v6_1.clone();
+                                    let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                    let v4_1_temp: Runtime::US7 = Runtime::US7::US7_2(0_u8, v5_1);
+                                    v0_1.set(v0_1_temp);
+                                    v1_1.set(v1_1_temp);
+                                    v2_1.set(v2_1_temp);
+                                    v3_1.set(v3_1_temp);
+                                    v4_1.set(v4_1_temp);
+                                    continue '_method13;
                                 } else {
-                                    Runtime::method12(
-                                        sprintf!("{}{}", v0_1.get().clone(), v5_1),
-                                        v1_1.get().clone(),
-                                        v6_1.clone(),
-                                        v4_1.get().clone(),
-                                    )
+                                    if ' ' == v5_1 {
+                                        Runtime::method14(
+                                            string(""),
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            },
+                                            v6_1.clone(),
+                                            v4_1.get().clone(),
+                                        )
+                                    } else {
+                                        Runtime::method14(
+                                            sprintf!("{}{}", v0_1.get().clone(), v5_1),
+                                            v1_1.get().clone(),
+                                            v6_1.clone(),
+                                            v4_1.get().clone(),
+                                        )
+                                    }
                                 }
                             }
                         }
@@ -2366,7 +4349,7 @@ pub mod Runtime {
                             if v0_1.get().clone() == string("") {
                                 v1_1.get().clone()
                             } else {
-                                Runtime::method13(
+                                Runtime::method15(
                                     v1_1.get().clone(),
                                     LrcPtr::new(Runtime::UH1::UH1_1(
                                         v0_1.get().clone(),
@@ -2378,139 +4361,1266 @@ pub mod Runtime {
                         )
                     }
                 }
-                Runtime::US7::US7_2(v4_1_2_0) => {
-                    let v45: u8 = match &v4_1.get().clone() {
-                        Runtime::US7::US7_2(x) => x.clone(),
+                Runtime::US7::US7_2(v4_1_2_0, v4_1_2_1) => {
+                    let v53: char = match &v4_1.get().clone() {
+                        Runtime::US7::US7_2(_, x) => x.clone(),
+                        _ => unreachable!(),
+                    };
+                    let v52: u8 = match &v4_1.get().clone() {
+                        Runtime::US7::US7_2(x, _) => x.clone(),
                         _ => unreachable!(),
                     };
                     if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) = v2_1.get().clone().as_ref() {
-                        let v47: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
+                        let v55: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
                             Runtime::UH0::UH0_1(_, x) => x.clone(),
                             _ => unreachable!(),
                         };
-                        let v46: char = match v2_1.get().clone().as_ref() {
+                        let v54: char = match v2_1.get().clone().as_ref() {
                             Runtime::UH0::UH0_1(x, _) => x.clone(),
                             _ => unreachable!(),
                         };
-                        if '\\' == v46 {
+                        if '\\' == v54 {
                             let v0_1_temp: string = v0_1.get().clone();
                             let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                            let v2_1_temp: LrcPtr<Runtime::UH0> = v47.clone();
+                            let v2_1_temp: LrcPtr<Runtime::UH0> = v55.clone();
                             let v3_1_temp: Runtime::US7 = v4_1.get().clone();
-                            let v4_1_temp: Runtime::US7 = Runtime::US7::US7_1('\\');
+                            let v4_1_temp: Runtime::US7 = Runtime::US7::US7_1(v54);
                             v0_1.set(v0_1_temp);
                             v1_1.set(v1_1_temp);
                             v2_1.set(v2_1_temp);
                             v3_1.set(v3_1_temp);
                             v4_1.set(v4_1_temp);
-                            continue '_method11;
+                            continue '_method13;
                         } else {
-                            if '\"' == v46 {
-                                if if let Runtime::US7::US7_0 = &v3_1.get().clone() {
-                                    true
-                                } else {
-                                    false
-                                } {
-                                    Runtime::method12(
-                                        v0_1.get().clone(),
-                                        v1_1.get().clone(),
-                                        v47.clone(),
-                                        v4_1.get().clone(),
-                                    )
-                                } else {
-                                    let v0_1_temp: string = sprintf!("{}\"", v0_1.get().clone());
-                                    let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
-                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v47.clone();
-                                    let v3_1_temp: Runtime::US7 = v4_1.get().clone();
-                                    let v4_1_temp: Runtime::US7 = Runtime::US7::US7_2(v45);
-                                    v0_1.set(v0_1_temp);
-                                    v1_1.set(v1_1_temp);
-                                    v2_1.set(v2_1_temp);
-                                    v3_1.set(v3_1_temp);
-                                    v4_1.set(v4_1_temp);
-                                    continue '_method11;
-                                }
+                            if '`' == v54 {
+                                let v0_1_temp: string = v0_1.get().clone();
+                                let v1_1_temp: LrcPtr<Runtime::UH1> = v1_1.get().clone();
+                                let v2_1_temp: LrcPtr<Runtime::UH0> = v55.clone();
+                                let v3_1_temp: Runtime::US7 = v4_1.get().clone();
+                                let v4_1_temp: Runtime::US7 = Runtime::US7::US7_1(v54);
+                                v0_1.set(v0_1_temp);
+                                v1_1.set(v1_1_temp);
+                                v2_1.set(v2_1_temp);
+                                v3_1.set(v3_1_temp);
+                                v4_1.set(v4_1_temp);
+                                continue '_method13;
                             } else {
-                                if ' ' == v46 {
-                                    Runtime::method12(
-                                        sprintf!("{} ", v0_1.get().clone()),
-                                        v1_1.get().clone(),
-                                        v47.clone(),
-                                        v4_1.get().clone(),
-                                    )
+                                if let Runtime::US7::US7_0 = &v3_1.get().clone() {
+                                    if '\"' == v54 {
+                                        Runtime::method14(
+                                            v0_1.get().clone(),
+                                            v1_1.get().clone(),
+                                            v55.clone(),
+                                            v4_1.get().clone(),
+                                        )
+                                    } else {
+                                        if 0_u8 == v52 {
+                                            if '\\' == v53 {
+                                                if ' ' == v54 {
+                                                    Runtime::method14(
+                                                        sprintf!("{} ", v0_1.get().clone()),
+                                                        v1_1.get().clone(),
+                                                        v55.clone(),
+                                                        v4_1.get().clone(),
+                                                    )
+                                                } else {
+                                                    if 1_u8 == v52 {
+                                                        if !(v3_1.get().clone()
+                                                            == v4_1.get().clone())
+                                                        {
+                                                            let v0_1_temp: string = sprintf!(
+                                                                "{}\\{}",
+                                                                v0_1.get().clone(),
+                                                                v54
+                                                            );
+                                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                                v1_1.get().clone();
+                                                            let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                                v55.clone();
+                                                            let v3_1_temp: Runtime::US7 =
+                                                                v4_1.get().clone();
+                                                            let v4_1_temp: Runtime::US7 =
+                                                                v3_1.get().clone();
+                                                            v0_1.set(v0_1_temp);
+                                                            v1_1.set(v1_1_temp);
+                                                            v2_1.set(v2_1_temp);
+                                                            v3_1.set(v3_1_temp);
+                                                            v4_1.set(v4_1_temp);
+                                                            continue '_method13;
+                                                        } else {
+                                                            Runtime::method14(
+                                                                sprintf!(
+                                                                    "{}{}",
+                                                                    v0_1.get().clone(),
+                                                                    v54
+                                                                ),
+                                                                v1_1.get().clone(),
+                                                                v55.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        }
+                                                    } else {
+                                                        Runtime::method14(
+                                                            sprintf!(
+                                                                "{}{}",
+                                                                v0_1.get().clone(),
+                                                                v54
+                                                            ),
+                                                            v1_1.get().clone(),
+                                                            v55.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    }
+                                                }
+                                            } else {
+                                                if '`' == v53 {
+                                                    if ' ' == v54 {
+                                                        Runtime::method14(
+                                                            sprintf!("{} ", v0_1.get().clone()),
+                                                            v1_1.get().clone(),
+                                                            v55.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    } else {
+                                                        if 1_u8 == v52 {
+                                                            if !(v3_1.get().clone()
+                                                                == v4_1.get().clone())
+                                                            {
+                                                                let v0_1_temp: string = sprintf!(
+                                                                    "{}\\{}",
+                                                                    v0_1.get().clone(),
+                                                                    v54
+                                                                );
+                                                                let v1_1_temp: LrcPtr<
+                                                                    Runtime::UH1,
+                                                                > = v1_1.get().clone();
+                                                                let v2_1_temp: LrcPtr<
+                                                                    Runtime::UH0,
+                                                                > = v55.clone();
+                                                                let v3_1_temp: Runtime::US7 =
+                                                                    v4_1.get().clone();
+                                                                let v4_1_temp: Runtime::US7 =
+                                                                    v3_1.get().clone();
+                                                                v0_1.set(v0_1_temp);
+                                                                v1_1.set(v1_1_temp);
+                                                                v2_1.set(v2_1_temp);
+                                                                v3_1.set(v3_1_temp);
+                                                                v4_1.set(v4_1_temp);
+                                                                continue '_method13;
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v54
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v55.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        } else {
+                                                            Runtime::method14(
+                                                                sprintf!(
+                                                                    "{}{}",
+                                                                    v0_1.get().clone(),
+                                                                    v54
+                                                                ),
+                                                                v1_1.get().clone(),
+                                                                v55.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        }
+                                                    }
+                                                } else {
+                                                    if ' ' == v54 {
+                                                        Runtime::method14(
+                                                            sprintf!("{} ", v0_1.get().clone()),
+                                                            v1_1.get().clone(),
+                                                            v55.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    } else {
+                                                        if 1_u8 == v52 {
+                                                            if !(v3_1.get().clone()
+                                                                == v4_1.get().clone())
+                                                            {
+                                                                let v0_1_temp: string = sprintf!(
+                                                                    "{}\\{}",
+                                                                    v0_1.get().clone(),
+                                                                    v54
+                                                                );
+                                                                let v1_1_temp: LrcPtr<
+                                                                    Runtime::UH1,
+                                                                > = v1_1.get().clone();
+                                                                let v2_1_temp: LrcPtr<
+                                                                    Runtime::UH0,
+                                                                > = v55.clone();
+                                                                let v3_1_temp: Runtime::US7 =
+                                                                    v4_1.get().clone();
+                                                                let v4_1_temp: Runtime::US7 =
+                                                                    v3_1.get().clone();
+                                                                v0_1.set(v0_1_temp);
+                                                                v1_1.set(v1_1_temp);
+                                                                v2_1.set(v2_1_temp);
+                                                                v3_1.set(v3_1_temp);
+                                                                v4_1.set(v4_1_temp);
+                                                                continue '_method13;
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v54
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v55.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        } else {
+                                                            Runtime::method14(
+                                                                sprintf!(
+                                                                    "{}{}",
+                                                                    v0_1.get().clone(),
+                                                                    v54
+                                                                ),
+                                                                v1_1.get().clone(),
+                                                                v55.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            if ' ' == v54 {
+                                                Runtime::method14(
+                                                    sprintf!("{} ", v0_1.get().clone()),
+                                                    v1_1.get().clone(),
+                                                    v55.clone(),
+                                                    v4_1.get().clone(),
+                                                )
+                                            } else {
+                                                if 1_u8 == v52 {
+                                                    if !(v3_1.get().clone() == v4_1.get().clone()) {
+                                                        let v0_1_temp: string = sprintf!(
+                                                            "{}\\{}",
+                                                            v0_1.get().clone(),
+                                                            v54
+                                                        );
+                                                        let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                            v1_1.get().clone();
+                                                        let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                            v55.clone();
+                                                        let v3_1_temp: Runtime::US7 =
+                                                            v4_1.get().clone();
+                                                        let v4_1_temp: Runtime::US7 =
+                                                            v3_1.get().clone();
+                                                        v0_1.set(v0_1_temp);
+                                                        v1_1.set(v1_1_temp);
+                                                        v2_1.set(v2_1_temp);
+                                                        v3_1.set(v3_1_temp);
+                                                        v4_1.set(v4_1_temp);
+                                                        continue '_method13;
+                                                    } else {
+                                                        Runtime::method14(
+                                                            sprintf!(
+                                                                "{}{}",
+                                                                v0_1.get().clone(),
+                                                                v54
+                                                            ),
+                                                            v1_1.get().clone(),
+                                                            v55.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    }
+                                                } else {
+                                                    Runtime::method14(
+                                                        sprintf!("{}{}", v0_1.get().clone(), v54),
+                                                        v1_1.get().clone(),
+                                                        v55.clone(),
+                                                        v4_1.get().clone(),
+                                                    )
+                                                }
+                                            }
+                                        }
+                                    }
                                 } else {
-                                    if 1_u8 == v45 {
-                                        if !(v3_1.get().clone() == v4_1.get().clone()) {
+                                    if 0_u8 == v52 {
+                                        if '\\' == v53 {
+                                            if let Runtime::US7::US7_1(v3_1_1_0) =
+                                                &v3_1.get().clone()
+                                            {
+                                                if '\"'
+                                                    == match &v3_1.get().clone() {
+                                                        Runtime::US7::US7_1(x) => x.clone(),
+                                                        _ => unreachable!(),
+                                                    }
+                                                {
+                                                    let v0_1_temp: string = sprintf!(
+                                                        "{}{}{}",
+                                                        v0_1.get().clone(),
+                                                        v53,
+                                                        v54
+                                                    );
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v55.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v4_1.get().clone();
+                                                    let v4_1_temp: Runtime::US7 =
+                                                        Runtime::US7::US7_1('\"');
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    v4_1.set(v4_1_temp);
+                                                    continue '_method13;
+                                                } else {
+                                                    if '\"' == v54 {
+                                                        let v0_1_temp: string = sprintf!(
+                                                            "{}{}\"",
+                                                            v0_1.get().clone(),
+                                                            v53
+                                                        );
+                                                        let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                            v1_1.get().clone();
+                                                        let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                            v55.clone();
+                                                        let v3_1_temp: Runtime::US7 =
+                                                            v4_1.get().clone();
+                                                        let v4_1_temp: Runtime::US7 =
+                                                            Runtime::US7::US7_2(v52, v53);
+                                                        v0_1.set(v0_1_temp);
+                                                        v1_1.set(v1_1_temp);
+                                                        v2_1.set(v2_1_temp);
+                                                        v3_1.set(v3_1_temp);
+                                                        v4_1.set(v4_1_temp);
+                                                        continue '_method13;
+                                                    } else {
+                                                        if ' ' == v54 {
+                                                            Runtime::method14(
+                                                                sprintf!("{} ", v0_1.get().clone()),
+                                                                v1_1.get().clone(),
+                                                                v55.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        } else {
+                                                            if 1_u8 == v52 {
+                                                                if !(v3_1.get().clone()
+                                                                    == v4_1.get().clone())
+                                                                {
+                                                                    let v0_1_temp: string = sprintf!(
+                                                                        "{}\\{}",
+                                                                        v0_1.get().clone(),
+                                                                        v54
+                                                                    );
+                                                                    let v1_1_temp: LrcPtr<
+                                                                        Runtime::UH1,
+                                                                    > = v1_1.get().clone();
+                                                                    let v2_1_temp: LrcPtr<
+                                                                        Runtime::UH0,
+                                                                    > = v55.clone();
+                                                                    let v3_1_temp: Runtime::US7 =
+                                                                        v4_1.get().clone();
+                                                                    let v4_1_temp: Runtime::US7 =
+                                                                        v3_1.get().clone();
+                                                                    v0_1.set(v0_1_temp);
+                                                                    v1_1.set(v1_1_temp);
+                                                                    v2_1.set(v2_1_temp);
+                                                                    v3_1.set(v3_1_temp);
+                                                                    v4_1.set(v4_1_temp);
+                                                                    continue '_method13;
+                                                                } else {
+                                                                    Runtime::method14(
+                                                                        sprintf!(
+                                                                            "{}{}",
+                                                                            v0_1.get().clone(),
+                                                                            v54
+                                                                        ),
+                                                                        v1_1.get().clone(),
+                                                                        v55.clone(),
+                                                                        v4_1.get().clone(),
+                                                                    )
+                                                                }
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v54
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v55.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            } else {
+                                                if '\"' == v54 {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{}{}\"", v0_1.get().clone(), v53);
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v55.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v4_1.get().clone();
+                                                    let v4_1_temp: Runtime::US7 =
+                                                        Runtime::US7::US7_2(v52, v53);
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    v4_1.set(v4_1_temp);
+                                                    continue '_method13;
+                                                } else {
+                                                    if ' ' == v54 {
+                                                        Runtime::method14(
+                                                            sprintf!("{} ", v0_1.get().clone()),
+                                                            v1_1.get().clone(),
+                                                            v55.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    } else {
+                                                        if 1_u8 == v52 {
+                                                            if !(v3_1.get().clone()
+                                                                == v4_1.get().clone())
+                                                            {
+                                                                let v0_1_temp: string = sprintf!(
+                                                                    "{}\\{}",
+                                                                    v0_1.get().clone(),
+                                                                    v54
+                                                                );
+                                                                let v1_1_temp: LrcPtr<
+                                                                    Runtime::UH1,
+                                                                > = v1_1.get().clone();
+                                                                let v2_1_temp: LrcPtr<
+                                                                    Runtime::UH0,
+                                                                > = v55.clone();
+                                                                let v3_1_temp: Runtime::US7 =
+                                                                    v4_1.get().clone();
+                                                                let v4_1_temp: Runtime::US7 =
+                                                                    v3_1.get().clone();
+                                                                v0_1.set(v0_1_temp);
+                                                                v1_1.set(v1_1_temp);
+                                                                v2_1.set(v2_1_temp);
+                                                                v3_1.set(v3_1_temp);
+                                                                v4_1.set(v4_1_temp);
+                                                                continue '_method13;
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v54
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v55.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        } else {
+                                                            Runtime::method14(
+                                                                sprintf!(
+                                                                    "{}{}",
+                                                                    v0_1.get().clone(),
+                                                                    v54
+                                                                ),
+                                                                v1_1.get().clone(),
+                                                                v55.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            if '`' == v53 {
+                                                if let Runtime::US7::US7_1(v3_1_1_0) =
+                                                    &v3_1.get().clone()
+                                                {
+                                                    if '\"'
+                                                        == match &v3_1.get().clone() {
+                                                            Runtime::US7::US7_1(x) => x.clone(),
+                                                            _ => unreachable!(),
+                                                        }
+                                                    {
+                                                        let v0_1_temp: string = sprintf!(
+                                                            "{}{}{}",
+                                                            v0_1.get().clone(),
+                                                            v53,
+                                                            v54
+                                                        );
+                                                        let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                            v1_1.get().clone();
+                                                        let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                            v55.clone();
+                                                        let v3_1_temp: Runtime::US7 =
+                                                            v4_1.get().clone();
+                                                        let v4_1_temp: Runtime::US7 =
+                                                            Runtime::US7::US7_1('\"');
+                                                        v0_1.set(v0_1_temp);
+                                                        v1_1.set(v1_1_temp);
+                                                        v2_1.set(v2_1_temp);
+                                                        v3_1.set(v3_1_temp);
+                                                        v4_1.set(v4_1_temp);
+                                                        continue '_method13;
+                                                    } else {
+                                                        if '\"' == v54 {
+                                                            let v0_1_temp: string = sprintf!(
+                                                                "{}{}\"",
+                                                                v0_1.get().clone(),
+                                                                v53
+                                                            );
+                                                            let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                                v1_1.get().clone();
+                                                            let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                                v55.clone();
+                                                            let v3_1_temp: Runtime::US7 =
+                                                                v4_1.get().clone();
+                                                            let v4_1_temp: Runtime::US7 =
+                                                                Runtime::US7::US7_2(v52, v53);
+                                                            v0_1.set(v0_1_temp);
+                                                            v1_1.set(v1_1_temp);
+                                                            v2_1.set(v2_1_temp);
+                                                            v3_1.set(v3_1_temp);
+                                                            v4_1.set(v4_1_temp);
+                                                            continue '_method13;
+                                                        } else {
+                                                            if ' ' == v54 {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{} ",
+                                                                        v0_1.get().clone()
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v55.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            } else {
+                                                                if 1_u8 == v52 {
+                                                                    if !(v3_1.get().clone()
+                                                                        == v4_1.get().clone())
+                                                                    {
+                                                                        let v0_1_temp: string = sprintf!(
+                                                                            "{}\\{}",
+                                                                            v0_1.get().clone(),
+                                                                            v54
+                                                                        );
+                                                                        let v1_1_temp: LrcPtr<
+                                                                            Runtime::UH1,
+                                                                        > = v1_1.get().clone();
+                                                                        let v2_1_temp: LrcPtr<
+                                                                            Runtime::UH0,
+                                                                        > = v55.clone();
+                                                                        let v3_1_temp:
+                                                                                         Runtime::US7 =
+                                                                                     v4_1.get().clone();
+                                                                        let v4_1_temp:
+                                                                                         Runtime::US7 =
+                                                                                     v3_1.get().clone();
+                                                                        v0_1.set(v0_1_temp);
+                                                                        v1_1.set(v1_1_temp);
+                                                                        v2_1.set(v2_1_temp);
+                                                                        v3_1.set(v3_1_temp);
+                                                                        v4_1.set(v4_1_temp);
+                                                                        continue '_method13;
+                                                                    } else {
+                                                                        Runtime::method14(
+                                                                            sprintf!(
+                                                                                "{}{}",
+                                                                                v0_1.get().clone(),
+                                                                                v54
+                                                                            ),
+                                                                            v1_1.get().clone(),
+                                                                            v55.clone(),
+                                                                            v4_1.get().clone(),
+                                                                        )
+                                                                    }
+                                                                } else {
+                                                                    Runtime::method14(
+                                                                        sprintf!(
+                                                                            "{}{}",
+                                                                            v0_1.get().clone(),
+                                                                            v54
+                                                                        ),
+                                                                        v1_1.get().clone(),
+                                                                        v55.clone(),
+                                                                        v4_1.get().clone(),
+                                                                    )
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                } else {
+                                                    if '\"' == v54 {
+                                                        let v0_1_temp: string = sprintf!(
+                                                            "{}{}\"",
+                                                            v0_1.get().clone(),
+                                                            v53
+                                                        );
+                                                        let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                            v1_1.get().clone();
+                                                        let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                            v55.clone();
+                                                        let v3_1_temp: Runtime::US7 =
+                                                            v4_1.get().clone();
+                                                        let v4_1_temp: Runtime::US7 =
+                                                            Runtime::US7::US7_2(v52, v53);
+                                                        v0_1.set(v0_1_temp);
+                                                        v1_1.set(v1_1_temp);
+                                                        v2_1.set(v2_1_temp);
+                                                        v3_1.set(v3_1_temp);
+                                                        v4_1.set(v4_1_temp);
+                                                        continue '_method13;
+                                                    } else {
+                                                        if ' ' == v54 {
+                                                            Runtime::method14(
+                                                                sprintf!("{} ", v0_1.get().clone()),
+                                                                v1_1.get().clone(),
+                                                                v55.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        } else {
+                                                            if 1_u8 == v52 {
+                                                                if !(v3_1.get().clone()
+                                                                    == v4_1.get().clone())
+                                                                {
+                                                                    let v0_1_temp: string = sprintf!(
+                                                                        "{}\\{}",
+                                                                        v0_1.get().clone(),
+                                                                        v54
+                                                                    );
+                                                                    let v1_1_temp: LrcPtr<
+                                                                        Runtime::UH1,
+                                                                    > = v1_1.get().clone();
+                                                                    let v2_1_temp: LrcPtr<
+                                                                        Runtime::UH0,
+                                                                    > = v55.clone();
+                                                                    let v3_1_temp: Runtime::US7 =
+                                                                        v4_1.get().clone();
+                                                                    let v4_1_temp: Runtime::US7 =
+                                                                        v3_1.get().clone();
+                                                                    v0_1.set(v0_1_temp);
+                                                                    v1_1.set(v1_1_temp);
+                                                                    v2_1.set(v2_1_temp);
+                                                                    v3_1.set(v3_1_temp);
+                                                                    v4_1.set(v4_1_temp);
+                                                                    continue '_method13;
+                                                                } else {
+                                                                    Runtime::method14(
+                                                                        sprintf!(
+                                                                            "{}{}",
+                                                                            v0_1.get().clone(),
+                                                                            v54
+                                                                        ),
+                                                                        v1_1.get().clone(),
+                                                                        v55.clone(),
+                                                                        v4_1.get().clone(),
+                                                                    )
+                                                                }
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v54
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v55.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            } else {
+                                                if '\"' == v54 {
+                                                    let v0_1_temp: string =
+                                                        sprintf!("{}{}\"", v0_1.get().clone(), v53);
+                                                    let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                        v1_1.get().clone();
+                                                    let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                        v55.clone();
+                                                    let v3_1_temp: Runtime::US7 =
+                                                        v4_1.get().clone();
+                                                    let v4_1_temp: Runtime::US7 =
+                                                        Runtime::US7::US7_2(v52, v53);
+                                                    v0_1.set(v0_1_temp);
+                                                    v1_1.set(v1_1_temp);
+                                                    v2_1.set(v2_1_temp);
+                                                    v3_1.set(v3_1_temp);
+                                                    v4_1.set(v4_1_temp);
+                                                    continue '_method13;
+                                                } else {
+                                                    if ' ' == v54 {
+                                                        Runtime::method14(
+                                                            sprintf!("{} ", v0_1.get().clone()),
+                                                            v1_1.get().clone(),
+                                                            v55.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    } else {
+                                                        if 1_u8 == v52 {
+                                                            if !(v3_1.get().clone()
+                                                                == v4_1.get().clone())
+                                                            {
+                                                                let v0_1_temp: string = sprintf!(
+                                                                    "{}\\{}",
+                                                                    v0_1.get().clone(),
+                                                                    v54
+                                                                );
+                                                                let v1_1_temp: LrcPtr<
+                                                                    Runtime::UH1,
+                                                                > = v1_1.get().clone();
+                                                                let v2_1_temp: LrcPtr<
+                                                                    Runtime::UH0,
+                                                                > = v55.clone();
+                                                                let v3_1_temp: Runtime::US7 =
+                                                                    v4_1.get().clone();
+                                                                let v4_1_temp: Runtime::US7 =
+                                                                    v3_1.get().clone();
+                                                                v0_1.set(v0_1_temp);
+                                                                v1_1.set(v1_1_temp);
+                                                                v2_1.set(v2_1_temp);
+                                                                v3_1.set(v3_1_temp);
+                                                                v4_1.set(v4_1_temp);
+                                                                continue '_method13;
+                                                            } else {
+                                                                Runtime::method14(
+                                                                    sprintf!(
+                                                                        "{}{}",
+                                                                        v0_1.get().clone(),
+                                                                        v54
+                                                                    ),
+                                                                    v1_1.get().clone(),
+                                                                    v55.clone(),
+                                                                    v4_1.get().clone(),
+                                                                )
+                                                            }
+                                                        } else {
+                                                            Runtime::method14(
+                                                                sprintf!(
+                                                                    "{}{}",
+                                                                    v0_1.get().clone(),
+                                                                    v54
+                                                                ),
+                                                                v1_1.get().clone(),
+                                                                v55.clone(),
+                                                                v4_1.get().clone(),
+                                                            )
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if '\"' == v54 {
                                             let v0_1_temp: string =
-                                                sprintf!("{}\\{}", v0_1.get().clone(), v46);
+                                                sprintf!("{}{}\"", v0_1.get().clone(), v53);
                                             let v1_1_temp: LrcPtr<Runtime::UH1> =
                                                 v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v47.clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v55.clone();
                                             let v3_1_temp: Runtime::US7 = v4_1.get().clone();
-                                            let v4_1_temp: Runtime::US7 = v3_1.get().clone();
+                                            let v4_1_temp: Runtime::US7 =
+                                                Runtime::US7::US7_2(v52, v53);
                                             v0_1.set(v0_1_temp);
                                             v1_1.set(v1_1_temp);
                                             v2_1.set(v2_1_temp);
                                             v3_1.set(v3_1_temp);
                                             v4_1.set(v4_1_temp);
-                                            continue '_method11;
+                                            continue '_method13;
                                         } else {
-                                            Runtime::method12(
-                                                sprintf!("{}{}", v0_1.get().clone(), v46),
-                                                v1_1.get().clone(),
-                                                v47.clone(),
-                                                v4_1.get().clone(),
-                                            )
+                                            if ' ' == v54 {
+                                                Runtime::method14(
+                                                    sprintf!("{} ", v0_1.get().clone()),
+                                                    v1_1.get().clone(),
+                                                    v55.clone(),
+                                                    v4_1.get().clone(),
+                                                )
+                                            } else {
+                                                if 1_u8 == v52 {
+                                                    if !(v3_1.get().clone() == v4_1.get().clone()) {
+                                                        let v0_1_temp: string = sprintf!(
+                                                            "{}\\{}",
+                                                            v0_1.get().clone(),
+                                                            v54
+                                                        );
+                                                        let v1_1_temp: LrcPtr<Runtime::UH1> =
+                                                            v1_1.get().clone();
+                                                        let v2_1_temp: LrcPtr<Runtime::UH0> =
+                                                            v55.clone();
+                                                        let v3_1_temp: Runtime::US7 =
+                                                            v4_1.get().clone();
+                                                        let v4_1_temp: Runtime::US7 =
+                                                            v3_1.get().clone();
+                                                        v0_1.set(v0_1_temp);
+                                                        v1_1.set(v1_1_temp);
+                                                        v2_1.set(v2_1_temp);
+                                                        v3_1.set(v3_1_temp);
+                                                        v4_1.set(v4_1_temp);
+                                                        continue '_method13;
+                                                    } else {
+                                                        Runtime::method14(
+                                                            sprintf!(
+                                                                "{}{}",
+                                                                v0_1.get().clone(),
+                                                                v54
+                                                            ),
+                                                            v1_1.get().clone(),
+                                                            v55.clone(),
+                                                            v4_1.get().clone(),
+                                                        )
+                                                    }
+                                                } else {
+                                                    Runtime::method14(
+                                                        sprintf!("{}{}", v0_1.get().clone(), v54),
+                                                        v1_1.get().clone(),
+                                                        v55.clone(),
+                                                        v4_1.get().clone(),
+                                                    )
+                                                }
+                                            }
                                         }
-                                    } else {
-                                        Runtime::method12(
-                                            sprintf!("{}{}", v0_1.get().clone(), v46),
-                                            v1_1.get().clone(),
-                                            v47.clone(),
-                                            v4_1.get().clone(),
-                                        )
                                     }
                                 }
                             }
                         }
                     } else {
-                        if 1_u8 == v45 {
-                            (
-                                if v0_1.get().clone() == string("") {
-                                    v1_1.get().clone()
-                                } else {
-                                    Runtime::method13(
-                                        v1_1.get().clone(),
-                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                        if let Runtime::US7::US7_0 = &v3_1.get().clone() {
+                            if 0_u8 == v52 {
+                                if '\\' == v53 {
+                                    if 1_u8 == v52 {
+                                        (
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            },
                                             v0_1.get().clone(),
-                                            LrcPtr::new(Runtime::UH1::UH1_0),
-                                        )),
+                                        )
+                                    } else {
+                                        (
+                                            if v0_1.get().clone() == string("") {
+                                                v1_1.get().clone()
+                                            } else {
+                                                Runtime::method15(
+                                                    v1_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_1(
+                                                        v0_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_0),
+                                                    )),
+                                                )
+                                            },
+                                            v0_1.get().clone(),
+                                        )
+                                    }
+                                } else {
+                                    if '`' == v53 {
+                                        if 1_u8 == v52 {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
+                                            )
+                                        } else {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
+                                            )
+                                        }
+                                    } else {
+                                        if 1_u8 == v52 {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
+                                            )
+                                        } else {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
+                                            )
+                                        }
+                                    }
+                                }
+                            } else {
+                                if 1_u8 == v52 {
+                                    (
+                                        if v0_1.get().clone() == string("") {
+                                            v1_1.get().clone()
+                                        } else {
+                                            Runtime::method15(
+                                                v1_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                    v0_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_0),
+                                                )),
+                                            )
+                                        },
+                                        v0_1.get().clone(),
                                     )
-                                },
-                                v0_1.get().clone(),
-                            )
+                                } else {
+                                    (
+                                        if v0_1.get().clone() == string("") {
+                                            v1_1.get().clone()
+                                        } else {
+                                            Runtime::method15(
+                                                v1_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                    v0_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_0),
+                                                )),
+                                            )
+                                        },
+                                        v0_1.get().clone(),
+                                    )
+                                }
+                            }
                         } else {
-                            (
-                                if v0_1.get().clone() == string("") {
-                                    v1_1.get().clone()
+                            if 0_u8 == v52 {
+                                if '\\' == v53 {
+                                    if let Runtime::US7::US7_1(v3_1_1_0) = &v3_1.get().clone() {
+                                        if '\"'
+                                            == match &v3_1.get().clone() {
+                                                Runtime::US7::US7_1(x) => x.clone(),
+                                                _ => unreachable!(),
+                                            }
+                                        {
+                                            if 1_u8 == v52 {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            } else {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            }
+                                        } else {
+                                            if 1_u8 == v52 {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            } else {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            }
+                                        }
+                                    } else {
+                                        if 1_u8 == v52 {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
+                                            )
+                                        } else {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
+                                            )
+                                        }
+                                    }
                                 } else {
-                                    Runtime::method13(
-                                        v1_1.get().clone(),
-                                        LrcPtr::new(Runtime::UH1::UH1_1(
-                                            v0_1.get().clone(),
-                                            LrcPtr::new(Runtime::UH1::UH1_0),
-                                        )),
+                                    if '`' == v53 {
+                                        if let Runtime::US7::US7_1(v3_1_1_0) = &v3_1.get().clone() {
+                                            if '\"'
+                                                == match &v3_1.get().clone() {
+                                                    Runtime::US7::US7_1(x) => x.clone(),
+                                                    _ => unreachable!(),
+                                                }
+                                            {
+                                                if 1_u8 == v52 {
+                                                    (
+                                                        if v0_1.get().clone() == string("") {
+                                                            v1_1.get().clone()
+                                                        } else {
+                                                            Runtime::method15(
+                                                                v1_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                    v0_1.get().clone(),
+                                                                    LrcPtr::new(
+                                                                        Runtime::UH1::UH1_0,
+                                                                    ),
+                                                                )),
+                                                            )
+                                                        },
+                                                        v0_1.get().clone(),
+                                                    )
+                                                } else {
+                                                    (
+                                                        if v0_1.get().clone() == string("") {
+                                                            v1_1.get().clone()
+                                                        } else {
+                                                            Runtime::method15(
+                                                                v1_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                    v0_1.get().clone(),
+                                                                    LrcPtr::new(
+                                                                        Runtime::UH1::UH1_0,
+                                                                    ),
+                                                                )),
+                                                            )
+                                                        },
+                                                        v0_1.get().clone(),
+                                                    )
+                                                }
+                                            } else {
+                                                if 1_u8 == v52 {
+                                                    (
+                                                        if v0_1.get().clone() == string("") {
+                                                            v1_1.get().clone()
+                                                        } else {
+                                                            Runtime::method15(
+                                                                v1_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                    v0_1.get().clone(),
+                                                                    LrcPtr::new(
+                                                                        Runtime::UH1::UH1_0,
+                                                                    ),
+                                                                )),
+                                                            )
+                                                        },
+                                                        v0_1.get().clone(),
+                                                    )
+                                                } else {
+                                                    (
+                                                        if v0_1.get().clone() == string("") {
+                                                            v1_1.get().clone()
+                                                        } else {
+                                                            Runtime::method15(
+                                                                v1_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                    v0_1.get().clone(),
+                                                                    LrcPtr::new(
+                                                                        Runtime::UH1::UH1_0,
+                                                                    ),
+                                                                )),
+                                                            )
+                                                        },
+                                                        v0_1.get().clone(),
+                                                    )
+                                                }
+                                            }
+                                        } else {
+                                            if 1_u8 == v52 {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            } else {
+                                                (
+                                                    if v0_1.get().clone() == string("") {
+                                                        v1_1.get().clone()
+                                                    } else {
+                                                        Runtime::method15(
+                                                            v1_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_1(
+                                                                v0_1.get().clone(),
+                                                                LrcPtr::new(Runtime::UH1::UH1_0),
+                                                            )),
+                                                        )
+                                                    },
+                                                    v0_1.get().clone(),
+                                                )
+                                            }
+                                        }
+                                    } else {
+                                        if 1_u8 == v52 {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
+                                            )
+                                        } else {
+                                            (
+                                                if v0_1.get().clone() == string("") {
+                                                    v1_1.get().clone()
+                                                } else {
+                                                    Runtime::method15(
+                                                        v1_1.get().clone(),
+                                                        LrcPtr::new(Runtime::UH1::UH1_1(
+                                                            v0_1.get().clone(),
+                                                            LrcPtr::new(Runtime::UH1::UH1_0),
+                                                        )),
+                                                    )
+                                                },
+                                                v0_1.get().clone(),
+                                            )
+                                        }
+                                    }
+                                }
+                            } else {
+                                if 1_u8 == v52 {
+                                    (
+                                        if v0_1.get().clone() == string("") {
+                                            v1_1.get().clone()
+                                        } else {
+                                            Runtime::method15(
+                                                v1_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                    v0_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_0),
+                                                )),
+                                            )
+                                        },
+                                        v0_1.get().clone(),
                                     )
-                                },
-                                v0_1.get().clone(),
-                            )
+                                } else {
+                                    (
+                                        if v0_1.get().clone() == string("") {
+                                            v1_1.get().clone()
+                                        } else {
+                                            Runtime::method15(
+                                                v1_1.get().clone(),
+                                                LrcPtr::new(Runtime::UH1::UH1_1(
+                                                    v0_1.get().clone(),
+                                                    LrcPtr::new(Runtime::UH1::UH1_0),
+                                                )),
+                                            )
+                                        },
+                                        v0_1.get().clone(),
+                                    )
+                                }
+                            }
                         }
                     }
                 }
             });
         }
     }
-    pub fn method14(v0_1: LrcPtr<Runtime::UH1>, v1_1: List<string>) -> List<string> {
+    pub fn method16(v0_1: LrcPtr<Runtime::UH1>, v1_1: List<string>) -> List<string> {
         match v0_1.as_ref() {
             Runtime::UH1::UH1_0 => v1_1.clone(),
             Runtime::UH1::UH1_1(v0_1_1_0, v0_1_1_1) => cons(
@@ -2518,7 +5628,7 @@ pub mod Runtime {
                     Runtime::UH1::UH1_1(x, _) => x.clone(),
                     _ => unreachable!(),
                 },
-                Runtime::method14(
+                Runtime::method16(
                     match v0_1.as_ref() {
                         Runtime::UH1::UH1_1(_, x) => x.clone(),
                         _ => unreachable!(),
@@ -2528,7 +5638,7 @@ pub mod Runtime {
             ),
         }
     }
-    pub fn method10(v0_1: string) -> Array<string> {
+    pub fn method12(v0_1: string) -> Array<string> {
         let _v0: MutCell<Option<Option<string>>> = MutCell::new(None::<Option<string>>);
         _v0.set(Some(Some(v0_1)));
         {
@@ -2561,7 +5671,7 @@ pub mod Runtime {
                 let v17: LrcPtr<Runtime::Mut4> = LrcPtr::new(Runtime::Mut4 {
                     l0: MutCell::new(0_i32),
                 });
-                while Runtime::method2(v15, v17.clone()) {
+                while Runtime::method4(v15, v17.clone()) {
                     let v19: i32 = v17.l0.get().clone();
                     let v20: char = getCharAt(v14.clone(), v19);
                     v16.get_mut()[v19 as usize] = v20;
@@ -2573,13 +5683,13 @@ pub mod Runtime {
                 }
                 {
                     let v23: List<char> = ofArray(v16.clone());
-                    toArray(Runtime::method14(
-                        (Runtime::method11(
+                    toArray(Runtime::method16(
+                        (Runtime::method13(
                             string(""),
                             LrcPtr::new(Runtime::UH1::UH1_0),
                             foldBack(
                                 Func2::new(move |b0: char, b1: LrcPtr<Runtime::UH0>| {
-                                    (Runtime::method3())(b0)(b1)
+                                    (Runtime::method5())(b0)(b1)
                                 }),
                                 v23,
                                 LrcPtr::new(Runtime::UH0::UH0_0),
@@ -2596,55 +5706,65 @@ pub mod Runtime {
         }
     }
     pub fn closure18(unitVar: (), v0_1: string) -> Array<string> {
-        Runtime::method10(v0_1)
+        Runtime::method12(v0_1)
     }
-    pub fn v0() -> Func0<(
-        LrcPtr<Runtime::Mut0>,
-        LrcPtr<Runtime::Mut1>,
-        LrcPtr<Runtime::Mut2>,
-        Option<i64>,
-        LrcPtr<Runtime::Mut3>,
-    )> {
+    pub fn v0() -> Func1<
+        Runtime::US0,
+        (
+            LrcPtr<Runtime::Mut0>,
+            LrcPtr<Runtime::Mut1>,
+            LrcPtr<Runtime::Mut2>,
+            Option<i64>,
+            LrcPtr<Runtime::Mut3>,
+        ),
+    > {
         static v0: OnceInit<
-            Func0<(
-                LrcPtr<Runtime::Mut0>,
-                LrcPtr<Runtime::Mut1>,
-                LrcPtr<Runtime::Mut2>,
-                Option<i64>,
-                LrcPtr<Runtime::Mut3>,
-            )>,
+            Func1<
+                Runtime::US0,
+                (
+                    LrcPtr<Runtime::Mut0>,
+                    LrcPtr<Runtime::Mut1>,
+                    LrcPtr<Runtime::Mut2>,
+                    Option<i64>,
+                    LrcPtr<Runtime::Mut3>,
+                ),
+            >,
         > = OnceInit::new();
-        v0.get_or_init(|| Func0::new(move || Runtime::closure0((), ())))
+        v0.get_or_init(|| Func1::new(move |v: Runtime::US0| Runtime::closure0((), v)))
             .clone()
     }
+    pub fn v1() -> Runtime::US0 {
+        static v1: OnceInit<Runtime::US0> = OnceInit::new();
+        v1.get_or_init(|| Runtime::US0::US0_0).clone()
+    }
     on_startup!(if Runtime::State::trace_state().get().clone().is_none() {
-        Runtime::State::trace_state().set(Some((Runtime::v0())()));
+        Runtime::State::trace_state().set(Some((Runtime::v0())(Runtime::v1())));
     });
-    pub fn v1() -> Func0<bool> {
-        static v1: OnceInit<Func0<bool>> = OnceInit::new();
-        v1.get_or_init(|| Func0::new(move || Runtime::closure2((), ())))
+    pub fn v2() -> Func0<bool> {
+        static v2: OnceInit<Func0<bool>> = OnceInit::new();
+        v2.get_or_init(|| Func0::new(move || Runtime::closure2((), ())))
             .clone()
     }
     pub fn is_windows() -> bool {
-        (Runtime::v1())()
+        (Runtime::v2())()
     }
-    pub fn v2() -> Func0<string> {
-        static v2: OnceInit<Func0<string>> = OnceInit::new();
-        v2.get_or_init(|| Func0::new(move || Runtime::closure3((), ())))
+    pub fn v3() -> Func0<string> {
+        static v3: OnceInit<Func0<string>> = OnceInit::new();
+        v3.get_or_init(|| Func0::new(move || Runtime::closure3((), ())))
             .clone()
     }
     pub fn get_executable_suffix() -> string {
-        (Runtime::v2())()
+        (Runtime::v3())()
     }
-    pub fn v3() -> Func1<string, Arc<Async<(i32, string)>>> {
-        static v3: OnceInit<Func1<string, Arc<Async<(i32, string)>>>> = OnceInit::new();
-        v3.get_or_init(|| Func1::new(move |v: string| Runtime::closure4((), v)))
+    pub fn v4() -> Func1<string, Arc<Async<(i32, string)>>> {
+        static v4: OnceInit<Func1<string, Arc<Async<(i32, string)>>>> = OnceInit::new();
+        v4.get_or_init(|| Func1::new(move |v: string| Runtime::closure4((), v)))
             .clone()
     }
     pub fn execute_async(x: string) -> Arc<Async<(i32, string)>> {
-        (Runtime::v3())(x)
+        (Runtime::v4())(x)
     }
-    pub fn v4() -> Func1<
+    pub fn v5() -> Func1<
         (
             Option<CancellationToken>,
             string,
@@ -2655,7 +5775,7 @@ pub mod Runtime {
         ),
         Arc<Async<(i32, string)>>,
     > {
-        static v4: OnceInit<
+        static v5: OnceInit<
             Func1<
                 (
                     Option<CancellationToken>,
@@ -2668,7 +5788,7 @@ pub mod Runtime {
                 Arc<Async<(i32, string)>>,
             >,
         > = OnceInit::new();
-        v4.get_or_init(|| {
+        v5.get_or_init(|| {
             Func1::new(
                 move |arg10_0040: (
                     Option<CancellationToken>,
@@ -2692,9 +5812,9 @@ pub mod Runtime {
             Option<string>,
         ),
     ) -> Arc<Async<(i32, string)>> {
-        (Runtime::v4())(x)
+        (Runtime::v5())(x)
     }
-    pub fn v5() -> Func1<
+    pub fn v6() -> Func1<
         Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>,
         (
             Option<CancellationToken>,
@@ -2705,7 +5825,7 @@ pub mod Runtime {
             Option<string>,
         ),
     > {
-        static v5: OnceInit<
+        static v6: OnceInit<
             Func1<
                 Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>,
                 (
@@ -2718,7 +5838,7 @@ pub mod Runtime {
                 ),
             >,
         > = OnceInit::new();
-        v5.get_or_init(|| {
+        v6.get_or_init(|| {
             Func1::new(
                 move |v: Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>| {
                     Runtime::closure17((), v)
@@ -2737,15 +5857,15 @@ pub mod Runtime {
         Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
         Option<string>,
     ) {
-        (Runtime::v5())(x)
+        (Runtime::v6())(x)
     }
-    pub fn v6() -> Func1<string, Array<string>> {
-        static v6: OnceInit<Func1<string, Array<string>>> = OnceInit::new();
-        v6.get_or_init(|| Func1::new(move |v: string| Runtime::closure18((), v)))
+    pub fn v7() -> Func1<string, Array<string>> {
+        static v7: OnceInit<Func1<string, Array<string>>> = OnceInit::new();
+        v7.get_or_init(|| Func1::new(move |v: string| Runtime::closure18((), v)))
             .clone()
     }
     pub fn split_args(x: string) -> Array<string> {
-        (Runtime::v6())(x)
+        (Runtime::v7())(x)
     }
     on_startup!(());
 }

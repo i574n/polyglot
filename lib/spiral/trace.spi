@@ -32,13 +32,16 @@ instance of_string trace_level = function
 /// ## repl_start
 inl repl_start () : optionm'.option' i64 =
     run_target function
-        | Fsharp (Native) => fun () =>
-            if env.get_entry_assembly_name () = "dotnet-repl"
-            then date_time.now () |> date_time.ticks |> fun (date_time.timestamp x) => x |> Some
-            else None
-            |> optionm'.box
-        | Rust (Native) => fun () =>
-            if env.get_environment_variable "AUTOMATION" = "True"
+        | Fsharp (Native) & x
+        | Rust (Native) & x => fun () =>
+            inl automation = env.get_environment_variable "AUTOMATION"
+            // inl target =
+            //     match x with
+            //     | Fsharp (Native) => "Fsharp (Native)"
+            //     | Rust (Native) => "Rust (Native)"
+            // inl assembly_name = env.get_entry_assembly_name ()
+            // console.write_line ($'$"repl_start / automation: \'{!automation}\' / target: {!target} / assembly_name: {!assembly_name}"' : string)
+            if automation = "True"
             then date_time.now () |> date_time.ticks |> fun (date_time.timestamp x) => x |> Some
             else None
             |> optionm'.box
@@ -54,23 +57,26 @@ type trace_state =
         repl_start : optionm'.option' i64
     }
 
-inl new_trace_state () =
+inl new_trace_state trace_level =
     {
         enabled = mut true
         count = mut 0i64
-        level = mut Verbose
+        level = mut trace_level
         trace_file = mut ignore
         repl_start = repl_start ()
     } : trace_state
 
 /// ## init_trace_state
-inl init_trace_state () : () =
+inl init_trace_state trace_level : () =
+    inl trace_level =
+        trace_level
+        |> optionm'.default_value Verbose
     global "module State = let mutable trace_state = None"
-    $"if State.trace_state.IsNone then State.trace_state <- !new_trace_state () |> Some" : ()
+    $"if State.trace_state.IsNone then State.trace_state <- !new_trace_state !trace_level |> Some" : ()
 
-/// ## get_trace_state
-inl get_trace_state () : trace_state =
-    init_trace_state ()
+/// ## get_trace_state_or_init
+inl get_trace_state_or_init trace_level : trace_state =
+    init_trace_state trace_level
     $'State.trace_state.Value'
 
 /// ## _locals
@@ -78,7 +84,7 @@ inl _locals () = ""
 
 /// ## test_trace_level
 inl test_trace_level level : bool =
-    inl state = get_trace_state ()
+    inl state = get_trace_state_or_init None
     inl level' = *state.level
     if *state.enabled |> not
     then false
@@ -89,7 +95,7 @@ inl test_trace_level level : bool =
 
 /// ## trace_raw
 let rec trace_raw level fn =
-    inl trace_state = get_trace_state ()
+    inl trace_state = get_trace_state_or_init None
     if level |> test_trace_level then
         inl count = trace_state.count
         count <- *trace_state.count + 1
@@ -107,7 +113,7 @@ let rec trace_raw level fn =
 /// ## trace
 let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string) =
     fun () =>
-        inl trace_state = get_trace_state ()
+        inl trace_state = get_trace_state_or_init None
         inl time =
             run_target fun target =>
                 match target with
@@ -159,5 +165,5 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string)
 /// ## main
 inl main () =
     types ()
-    init_trace_state ()
+    init_trace_state None
     $"let trace x = !trace x" : ()

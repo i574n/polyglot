@@ -27,6 +27,7 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::BufReader<$0>\")>]\n#endif\ntype std_io_BufReader<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>]\n#endif\ntype std_io_Error = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Lines<$0>\")>]\n#endif\ntype std_io_Lines<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs_io::DecodeReaderBytes<$0, $1>\")>]\n#endif\ntype encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end"
 
 #!markdown
 
@@ -77,6 +78,26 @@ nominal lines t = $'std_io_Lines<`t>'
 
 inl buf_read_lines forall t. (buf_reader : buf_reader t) : lines (buf_reader t) =
     !\($'"std::io::BufRead::lines(!buf_reader)"')
+
+#!markdown
+
+## decode_reader_bytes
+
+#!spiral
+
+nominal decode_reader_bytes t u = $'encoding_rs_io_DecodeReaderBytes<`t, `u>'
+
+#!markdown
+
+## decode_reader_bytes_build
+
+#!spiral
+
+inl decode_reader_bytes_build forall t. (x : t) : decode_reader_bytes t (am'.vec u8) =
+    // !\($'"encoding_rs_io::DecodeReaderBytesBuilder::new().encoding(Some(encoding_rs::UTF_8)).build(!x)"')
+    // !\($'"encoding_rs_io::DecodeReaderBytesBuilder::new().encoding(Some(encoding_rs::UTF_8)).utf8_passthru(true).build(!x)"')
+    !\($'"encoding_rs_io::DecodeReaderBytesBuilder::new().utf8_passthru(true).build(!x)"')
+    // !\($'"encoding_rs_io::DecodeReaderBytes::new(!x)"')
 
 #!markdown
 

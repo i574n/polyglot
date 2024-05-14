@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
 
 #!markdown
 
@@ -33,16 +33,26 @@ inl types () =
 
 #!markdown
 
-## get_command_args
+## get_args
 
 #!spiral
 
-inl get_command_args () =
+inl get_args () =
     {
-        file = "file"
-        package_dir = "package-dir"
-        args = "args"
-        trace_level = "trace-level"
+        fsharp = "fsharp", {
+            path = "path", 'p'
+            package_dir = "package-dir", 'd'
+            args = "args", 'a'
+        }
+        rust = "rust", {
+            deps = "deps", 'd'
+        }
+        dib = "dib", {
+            path = "path", 'p'
+            retries = "retries", 'r'
+            working_directory = "working_directory", 'w'
+        }
+        trace_level = "trace-level", 't'
     }
 
 #!markdown
@@ -54,67 +64,48 @@ inl get_command_args () =
 let get_command () =
     ##"command"
     |> runtime.new_command
-    |> runtime.command_arg (
-        runtime.new_arg ##(get_command_args () .file)
-        |> runtime.arg_short 'f'
-        |> runtime.arg_long ##(get_command_args () .file)
-        |> runtime.arg_required true
+    |> runtime.command_init_arg (get_args () .trace_level) (
+        real runtime.arg_union `trace_level ignore
     )
-    |> runtime.command_arg (
-        runtime.new_arg ##(get_command_args () .package_dir)
-        |> runtime.arg_short 'p'
-        |> runtime.arg_long ##(get_command_args () .package_dir)
-        |> runtime.arg_required true
-    )
-    |> runtime.command_arg (
-        runtime.new_arg ##(get_command_args () .args)
-        |> runtime.arg_short 'a'
-        |> runtime.arg_long ##(get_command_args () .args)
-    )
-    |> runtime.command_arg (
-        runtime.new_arg ##(get_command_args () .trace_level)
-        |> runtime.arg_short 't'
-        |> runtime.arg_long ##(get_command_args () .trace_level)
-        |> real runtime.arg_union `trace_level ignore
-    )
-
-#!markdown
-
-## get_subcommands_args
-
-#!spiral
-
-inl get_subcommands_args () =
-    {
-        rust = "rust", {
-            deps = "deps"
-        }
-    }
-
-#!markdown
-
-## get_subcommands
-
-#!spiral
-
-let get_subcommands () =
-    ##"command"
-    |> runtime.new_command
     |> runtime.command_subcommand_required true
     |> runtime.command_subcommand (
-        ##(get_subcommands_args () .rust |> fst)
+        ##(get_args () .fsharp |> fst)
         |> runtime.new_command
-        |> runtime.command_arg (
-            runtime.new_arg ##((get_subcommands_args () .rust |> snd).deps)
-            |> runtime.arg_short 'd'
-            |> runtime.arg_long ##((get_subcommands_args () .rust |> snd).deps)
-            |> runtime.arg_value_names ;[ ##"NAME"; ##"VERSION" ]
-            |> runtime.arg_num_args_range (
+        |> runtime.command_init_arg ((get_args () .fsharp |> snd).path) (
+            runtime.arg_required true
+        )
+        |> runtime.command_init_arg ((get_args () .fsharp |> snd).package_dir) (
+            runtime.arg_required true
+        )
+        |> runtime.command_init_arg ((get_args () .fsharp |> snd).args) (
+            id
+        )
+    )
+    |> runtime.command_subcommand (
+        ##(get_args () .rust |> fst)
+        |> runtime.new_command
+        |> runtime.command_init_arg ((get_args () .rust |> snd).deps) (
+            runtime.arg_value_names ;[ ##"NAME"; ##"VERSION" ]
+            >> runtime.arg_num_args_range (
                 runtime.new_value_range
                     (am'.Start (1i32 |> unativeint))
                     (am'.End id)
             )
-            |> runtime.arg_action runtime.Append
+            >> runtime.arg_action runtime.Append
+        )
+    )
+    |> runtime.command_subcommand (
+        ##(get_args () .dib |> fst)
+        |> runtime.new_command
+        |> runtime.command_init_arg ((get_args () .dib |> snd).path) (
+            runtime.arg_required true
+            // >> runtime.arg_value_parser (runtime.value_parser_path_buf ())
+        )
+        |> runtime.command_init_arg ((get_args () .dib |> snd).retries) (
+            runtime.arg_value_parser (runtime.value_parser_expr "u8")
+        )
+        |> runtime.command_init_arg ((get_args () .dib |> snd).working_directory) (
+            id
         )
     )
 
@@ -138,104 +129,233 @@ inl get_cargo_toml_content { hash deps } : string =
 
 #!markdown
 
+## process_dib
+
+#!spiral
+
+inl process_dib { path retries working_directory } =
+    inl exit_code, repl_result =
+        let rec loop retry =
+            inl exit_code, repl_result =
+                runtime.execution_options fun x => { x with
+                    command = $'$"dotnet repl --exit-after-run --run \\\"{!path}\\\" --output-path \\\"{!path}.ipynb\\\""'
+                    environment_variables = ;[ "AUTOMATION", "True" ]
+                    working_directory
+                }
+                |> runtime.execute_with_options
+            
+            if exit_code = 0 || retry >= retries
+            then exit_code, repl_result
+            else
+                trace Debug
+                    fun () => $'"spiral_builder.run / repl error"'
+                    fun () => $'$"exit_code: {!exit_code} / retry: {!retry}/{!retries} / repl_result: {!repl_result} / {!_locals ()}"'
+                loop (retry + 1)
+        loop 1
+
+    inl exit_code, result =
+        if exit_code <>. 0
+        then exit_code, repl_result
+        else
+            inl exit_code, jupyter_result =
+                runtime.execution_options fun x => { x with
+                    command = $'$"jupyter nbconvert \\\"{!path}.ipynb\\\" --to html --HTMLExporter.theme=dark"'
+                }
+                |> runtime.execute_with_options
+
+            trace Debug
+                fun () => $'"spiral_builder.run / dib / jupyter nbconvert"'
+                fun () => $'$"exit_code: {!exit_code} / jupyter_result.Length: {!jupyter_result.Length} / {!_locals ()}"'
+
+            if exit_code <>. 0
+            then exit_code, $'$"repl_result: {!repl_result}\n\njupyter_result: {!jupyter_result}"'
+            else
+                inl exit_code, pwsh_replace_html_result =
+                    inl path = path |> sm'.replace "'" "''"
+                    runtime.execution_options fun x => { x with
+                        command = $'$"pwsh -c \\\"$counter = 1; $path = \'{!path}.html\'; (Get-Content $path -Raw) -replace \'(id=\\\\\\"cell-id=)[a-fA-F0-9]{{8}}\', {{ $_.Groups[1].Value + $counter++ }} | Set-Content $path\\\""'
+                    }
+                    |> runtime.execute_with_options
+
+                trace Debug
+                    fun () => $'"spiral_builder.run / dib / html cell ids"'
+                    fun () => $'$"exit_code: {!exit_code} / pwsh_replace_html_result.Length: {!pwsh_replace_html_result.Length} / {!_locals ()}"'
+
+                $'$"{!path}.html"'
+                |> file_system.read_all_text
+                |> sm'.replace "\r\n" "\n"
+                |> file_system.write_all_text $'$"{!path}.html"'
+
+                $'$"{!path}.ipynb"'
+                |> file_system.read_all_text
+                |> sm'.replace "\\r\\n" "\\n"
+                |> file_system.write_all_text $'$"{!path}.ipynb"'
+
+                exit_code, $'$"repl_result: {!repl_result}\n\njupyter_result: {!jupyter_result}\n\npwsh_replace_html_result: {!pwsh_replace_html_result}"'
+
+    trace Debug
+        fun () => $'"spiral_builder.run / dib"'
+        fun () => $'$"exit_code: {!exit_code} / result.Length: {!result.Length} / {!_locals ()}"'
+
+    if exit_code <>. 0
+    then failwith $'$"spiral_builder.run / dib / exit_code: {!exit_code} / result: {!result} / {!_locals ()}"'
+    ;[
+        "stdio",
+        result
+    ]
+
+#!markdown
+
+## process_fsharp
+
+#!spiral
+
+inl process_fsharp { path package_dir deps } =
+    inl path = path |> file_system.get_full_path
+    inl package_dir = package_dir |> file_system.get_full_path
+    inl hash = package_dir |> file_system.get_file_name
+
+    inl deps =
+        deps
+        |> am'.vec_map fun dep =>
+            inl dep = dep |> sm'.from_std_string
+            if dep |> sm'.contains "="
+            then dep
+            else $'$"{!dep}=\\"*\\""'
+        |> am'.from_vec
+        |> fun x => x : _ i32 _
+        |> seq.of_array'
+        |> sm'.concat "\n"
+
+    ;[
+        "cargo_toml_content",
+        get_cargo_toml_content { hash deps }
+
+        "workspace_cargo_toml_content",
+        get_workspace_cargo_toml_content ()
+    ]
+
+#!markdown
+
 ## run
 
 #!spiral
 
-let run { file package_dir args }
-    : async.future_pin (resultm.result' string string) =
-
-    inl file = file |> file_system.get_full_path
-    inl package_dir = package_dir |> file_system.get_full_path
-    inl hash = package_dir |> file_system.get_file_name
-
-    trace Debug
-        fun () => $'"spiral_builder.run"'
-        fun () => $'$"file: {!file} / package_dir: {!package_dir} / hash: {!hash} / args: {!args} / {!_locals ()}"'
-
+let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' string string) =
     fun () =>
-        inl subcommands =
-            get_subcommands ()
-            |> runtime.command_get_matches_from ($'$"spiral_builder {!args}"' |> runtime.split_args)
+        match matches |> runtime.matches_subcommand |> optionm'.unbox with
+        | Some (subcommand, arg_matches)
+                when sm'.from_std_string subcommand = (get_args () .fsharp |> fst) =>
+            inl path =
+                arg_matches
+                |> runtime.matches_get_one ((get_args () .fsharp |> snd).path |> fst)
+                |> optionm'.unbox
+                |> optionm.value
+                |> sm'.from_std_string
 
-        inl cargo_toml_content =
-            match subcommands |> runtime.matches_subcommand |> optionm'.unbox with
-            | Some (subcommand, arg_matches)
-                when sm'.from_std_string subcommand = (get_subcommands_args () .rust |> fst)
-                =>
-                inl deps =
-                    arg_matches
-                    |> runtime.matches_get_many ((get_subcommands_args () .rust |> snd).deps)
-                    |> optionm'.unbox
-                    |> optionm'.default_value (;[] |> am'.to_vec)
-                
-                inl len = deps |> am'.vec_len |> i32
-                
-                inl deps =
-                    deps
-                    |> am'.vec_map fun dep =>
-                        inl dep = dep |> sm'.from_std_string
-                        if dep |> sm'.contains "="
-                        then dep
-                        else $'$"{!dep}=\\"*\\""'
-                    |> am'.from_vec
-                    |> fun x => x : _ i32 _
-                    |> seq.of_array'
-                    |> sm'.concat "\n"
+            inl package_dir =
+                arg_matches
+                |> runtime.matches_get_one ((get_args () .fsharp |> snd).package_dir |> fst)
+                |> optionm'.unbox
+                |> optionm.value
+                |> sm'.from_std_string
 
-                inl cargo_toml_content = get_cargo_toml_content { hash deps }
-                cargo_toml_content
+            inl args =
+                arg_matches
+                |> runtime.matches_get_one ((get_args () .fsharp |> snd).args |> fst)
+                |> optionm'.unbox
+                |> optionm.map sm'.from_std_string
+            
+            inl result =
+                match args with
+                | Some args =>
+                    get_command ()
+                    |> runtime.command_get_matches_from ($'$"_ {!args}"' |> runtime.split_args)
+                    |> run
+                    |> async.block_on
+                    |> resultm.unwrap'
+                | None => "{}"
+                |> sm'.deserialize
+                |> resultm.unwrap'
+            
+            inl deps =
+                result
+                |> mapm.get ("deps" |> sm'.to_std_string)
+                |> optionm'.unwrap
+                |> sm'.from_std_string
+                |> sm'.deserialize
+                |> resultm.unwrap'
 
-            | Some (subcommand, arg_matches) =>
-                trace Debug
-                    fun () => $'"spiral_builder.run"'
-                    fun () => $'$"subcommand: {!subcommand} / {!_locals ()}"'
+            process_fsharp { path package_dir deps }
 
-                inl cargo_toml_content = get_cargo_toml_content { hash deps = "" }
-                cargo_toml_content
-            | _ => ""
+        | Some (subcommand, arg_matches)
+                when sm'.from_std_string subcommand = (get_args () .rust |> fst) =>
+            inl deps : am'.vec sm'.std_string =
+                arg_matches
+                |> runtime.matches_get_many ((get_args () .rust |> snd).deps |> fst)
+                |> optionm'.unbox
+                |> optionm'.default_value (;[] |> am'.to_vec)
 
-        inl workspace_cargo_toml_content = get_workspace_cargo_toml_content ()
-        
-        inl result =
             ;[
-                "cargo_toml_content", cargo_toml_content
-                "workspace_cargo_toml_content", workspace_cargo_toml_content
+                "deps",
+                deps |> sm'.serialize |> resultm.unwrap' |> sm'.from_std_string
             ]
-            |> am'.to_vec
-            |> am'.vec_map' fun k, v =>
-                new_pair (sm'.to_std_string k) (sm'.to_std_string v)
-            |> mapm.b_tree_map_from_vec_pairs
 
-        trace Debug
-            fun () => $'"spiral_builder.run"'
-            fun () => $'$"result: %A{!result} / {!_locals ()}"'
-        
-        result
+        | Some (subcommand, arg_matches)
+            when sm'.from_std_string subcommand = (get_args () .dib |> fst)
+            =>
+            inl path =
+                arg_matches
+                |> runtime.matches_get_one ((get_args () .dib |> snd).path |> fst)
+                |> optionm'.map'' (
+                    sm'.from_std_string
+                    >> file_system.absolute_path
+                )
+                |> optionm'.unwrap
+
+            inl retries =
+                arg_matches
+                |> runtime.matches_get_one ((get_args () .dib |> snd).retries |> fst)
+                |> optionm'.default_value' 1u8
+
+            inl working_directory : optionm'.option' string =
+                arg_matches
+                |> runtime.matches_get_one ((get_args () .dib |> snd).working_directory |> fst)
+
+            process_dib { path retries working_directory }
+
+        | Some (subcommand, arg_matches) =>
+            trace Debug
+                fun () => $'"spiral_builder.run"'
+                fun () => $'$"subcommand: {!subcommand} / {!_locals ()}"'
+
+            ;[]
+        | _ => ;[]
+        |> am'.to_vec
+        |> am'.vec_map' fun k, v =>
+            new_pair (sm'.to_std_string k) (sm'.to_std_string v)
+        |> mapm.b_tree_map_from_vec_pairs
         |> sm'.serialize
         |> resultm.map_error' (sm'.format' >> sm'.from_std_string)
         |> resultm.map' sm'.from_std_string
-    |> async.future_init (4, 3) 1
+    |> async.future_init (3, 2) 1
 
 #!spiral
 
 //// test
 //// print_code=false
-//// trace=false
-///! rust -d clap futures-lite regex serde_json
+///! rust -d clap encoding encoding_rs encoding_rs_io futures-lite regex serde_json
 
 types ()
-run {
-    file = "file"
-    package_dir = "package_dir"
-    args = "rust"
-}
+get_command ()
+|> runtime.command_get_matches_from ($'$"_ fsharp -p p -d d -a rust"' |> runtime.split_args)
+|> run
 |> async.block_on
 |> resultm.unwrap'
 |> _assert_eq (
     ;[
         "cargo_toml_content",
-        get_cargo_toml_content { hash = "package_dir"; deps = "" }
+        get_cargo_toml_content { hash = "d"; deps = "" }
 
         "workspace_cargo_toml_content",
         get_workspace_cargo_toml_content ()
@@ -253,21 +373,18 @@ run {
 
 //// test
 //// print_code=false
-//// trace=false
-///! rust -d clap futures-lite regex serde_json
+///! rust -d clap encoding encoding_rs encoding_rs_io futures-lite regex serde_json
 
 types ()
-run {
-    file = "file"
-    package_dir = "package_dir"
-    args = "rust --deps a b=\'1\'"
-}
+get_command ()
+|> runtime.command_get_matches_from ($'$"_ fsharp -p p -d d -a \\\"rust --deps a b=\'1\'\\\""' |> runtime.split_args)
+|> run
 |> async.block_on
 |> resultm.unwrap'
 |> _assert_eq (
     ;[
         "cargo_toml_content",
-        get_cargo_toml_content { hash = "package_dir"; deps = "a=\"*\"\nb=\'1\'" }
+        get_cargo_toml_content { hash = "d"; deps = "a=\"*\"\nb=\'1\'" }
 
         "workspace_cargo_toml_content",
         get_workspace_cargo_toml_content ()
@@ -280,6 +397,33 @@ run {
     |> resultm.unwrap'
     |> sm'.from_std_string
 )
+
+#!spiral
+
+//// test
+//// print_code=false
+///! rust -d chrono clap encoding encoding_rs encoding_rs_io futures-lite regex serde_json
+
+types ()
+inl temp_folder, disposable = file_system.create_temp_directory ()
+inl file_name = "test.dib"
+inl path = temp_folder </> file_name |> file_system.normalize_path
+
+"#!meta\n\n{\"kernelInfo\":{\"defaultKernelName\":\"fsharp\",\"items\":[]}}\n\n#!fsharp\n\n3 - 6"
+|> file_system.write_all_text path
+
+get_command ()
+|> runtime.command_get_matches_from ($'$"_ dib -p {!path}"' |> runtime.split_args)
+|> run
+|> async.block_on
+|> resultm.unwrap'
+|> __assert_string_contains false "<pre>-3 "
+
+$'$"{!path}.html"'
+|> file_system.read_all_text
+|> __assert_string_contains false "\"cell-id=1\""
+
+disposable |> use |> ignore
 
 #!markdown
 
@@ -302,50 +446,31 @@ inl tests () =
 ///! 
 
 inl main (args : array_base string) =
-    inl trace_state = get_trace_state ()
+    inl trace_state = get_trace_state_or_init None
+
+    inl command = get_command ()
+    inl arg_matches = command |> runtime.command_get_matches
+    
+    inl trace_level =
+        arg_matches
+        |> runtime.matches_get_one (get_args () .trace_level |> fst)
+        |> optionm'.unbox
+        |> optionm.map sm'.from_std_string
+
     inl trace_state_level = trace_state.level
-    trace_state_level <- Info
+    match trace_level with
+    | Some trace_level =>
+        inl trace_state_level = trace_state.level
+        trace_state_level <- trace_level |> of_string
+    | None => ()
 
     trace Debug
         fun () => $'$"spiral_builder.main"'
         fun () => $'$"args: {!args} / {!_locals ()}"'
 
-    inl command = get_command ()
-    inl arg_matches = command |> runtime.command_get_matches
-
-    inl file =
-        arg_matches
-        |> runtime.matches_get_one (get_command_args () .file)
-        |> optionm'.unbox
-        |> optionm.value
-        |> sm'.from_std_string
-
-    inl package_dir =
-        arg_matches
-        |> runtime.matches_get_one (get_command_args () .package_dir)
-        |> optionm'.unbox
-        |> optionm.value
-        |> sm'.from_std_string
-
-    inl args =
-        arg_matches
-        |> runtime.matches_get_one (get_command_args () .args)
-        |> optionm'.unbox
-        |> optionm.map sm'.from_std_string
-        |> optionm'.default_value ""
-
-    inl trace_level =
-        arg_matches
-        |> runtime.matches_get_one (get_command_args () .trace_level)
-        |> optionm'.unbox
-        |> optionm.map sm'.from_std_string
-
-    match trace_level with
-    | Some trace_level => trace_state_level <- trace_level |> of_string
-    | None => ()
-
     inl result =
-        run { file package_dir args }
+        arg_matches
+        |> run
         |> async.block_on
         |> resultm.unwrap'
 

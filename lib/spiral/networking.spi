@@ -175,7 +175,7 @@ inl get_available_port timeout initial_port : _ i32 =
 /// ## main
 inl main () =
     types ()
-    init_trace_state ()
+    init_trace_state None
     $"let test_port_open x = !test_port_open x" : ()
     $"let test_port_open_timeout x = !test_port_open_timeout x" : ()
     $"let wait_for_port_access x = !wait_for_port_access x" : ()

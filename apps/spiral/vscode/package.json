@@ -1,0 +1,61 @@
+{
+  "name": "spiral-vscode",
+  "displayName": "Spiral IDE",
+  "description": "Auxiliary utilities for Spiral in VSCode",
+  "version": "0.0.1",
+  "engines": {
+      "vscode": "^1.89.0"
+  },
+  "bugs": {
+    "url": "https://github.com/i574n/polyglot/issues"
+  },
+  "repository": {
+    "url": "https://github.com/i574n/polyglot"
+  },
+  "publisher": "i574n",
+  "categories": [
+      "Notebooks",
+      "Programming Languages",
+      "Testing",
+      "Debuggers",
+      "AI",
+      "Data Science",
+      "Visualization",
+      "Education"
+  ],
+  "activationEvents": [
+    "onLanguage:spiral",
+    "onUri",
+    "onNotebook:dotnet-interactive",
+    "onNotebook:dotnet-interactive-window",
+    "onNotebook:jupyter-notebook",
+    "onNotebook:polyglot-notebook",
+    "onNotebook:polyglot-notebook-window",
+    "onNotebook:jupyter-notebook",
+    "onCommand:dotnet-interactive.acquire",
+    "onCommand:polyglot-notebook.fileNew",
+    "onCommand:polyglot-notebook.newNotebook",
+    "onCommand:polyglot-notebook.openNotebook",
+    "onCommand:polyglot-notebook.saveAsNotebook",
+    "onView:polyglot-notebook-panel-values"
+  ],
+  "main": "./out/src/extension.js",
+  "extensionDependencies": [
+    "ms-dotnettools.dotnet-interactive-vscode",
+    "mrakgr.spiral-lang-vscode"
+  ],
+  "contributes": {
+      "commands": []
+  },
+  "scripts": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+      "typescript": "~5.4",
+      "@vscode/vsce": "~2.26",
+      "vscode": "~1.1",
+      "@types/node": "~20.12",
+      "@types/vscode": "~1.89"
+  }
+}

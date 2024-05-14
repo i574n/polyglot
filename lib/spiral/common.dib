@@ -74,35 +74,6 @@ inl downcast forall t u. (x : t) : u =
 
 #!markdown
 
-## memoize
-
-#!spiral
-
-nominal lazy t = $'Lazy<`t>'
-
-inl memoize forall t. (fn : () -> t) : () -> t =
-    inl fn = join fn
-    inl result : lazy t = $'lazy !fn ()'
-    fun () => $'!result.Value'
-
-#!spiral
-
-//// test
-
-inl count = mut 0i32
-inl add =
-    fun () => count <- *count + 1
-    |> memoize
-
-add ()
-add ()
-add ()
-
-*count
-|> _assert_eq 1
-
-#!markdown
-
 ## to_any
 
 #!spiral
@@ -378,6 +349,19 @@ fun () =>
 #!spiral
 
 //// test
+///! rust
+
+types ()
+inl retry_fn_test = mut 0i32
+fun () =>
+    retry_fn_test <- *retry_fn_test + 1
+    *retry_fn_test
+|> retry_fn 3i32
+|> _assert_eq' (Some 1i32)
+
+#!spiral
+
+//// test
 
 inl retry_fn_test = mut 0i32
 fun () =>
@@ -389,6 +373,22 @@ fun () =>
 |> retry_fn 3i32
 |> _assert_eq (Some 2i32)
 
+#!spiral
+
+//// test
+///! rust
+
+types ()
+inl retry_fn_test = mut 0i32
+fun () =>
+    if *retry_fn_test >= 2
+    then *retry_fn_test
+    else
+        retry_fn_test <- *retry_fn_test + 1
+        failwith "test"
+|> retry_fn 3i32
+|> _assert_eq' (Some 2i32)
+
 #!markdown
 
 ## main
@@ -397,7 +397,7 @@ fun () =>
 
 inl main () =
     types ()
-    init_trace_state ()
+    init_trace_state None
     inl new_disposable x : _ () = new_disposable x
     $"let new_disposable x = !new_disposable x" : ()
 

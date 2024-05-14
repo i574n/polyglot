@@ -107,6 +107,10 @@ type base64_DecodeError = class end
 #endif
 type borsh_io_Error = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("encoding_rs::Encoding")>]
+#endif
+type encoding_rs_Encoding = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")>]
 #endif
 type js_sys_JsString = class end
@@ -270,6 +274,10 @@ type std_io_Error = class end
 [<Fable.Core.Erase; Fable.Core.Emit("std::io::Lines<$0>")>]
 #endif
 type std_io_Lines<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("encoding_rs_io::DecodeReaderBytes<$0, $1>")>]
+#endif
+type encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("clap::Arg")>]
 #endif

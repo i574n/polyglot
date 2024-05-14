@@ -6,6 +6,7 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>]\n#endif\ntype Str = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"base64::DecodeError\")>]\n#endif\ntype base64_DecodeError = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"borsh::io::Error\")>]\n#endif\ntype borsh_io_Error = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs::Encoding\")>]\n#endif\ntype encoding_rs_Encoding = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::JsString\")>]\n#endif\ntype js_sys_JsString = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Error\")>]\n#endif\ntype serde_json_Error = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>]\n#endif\ntype serde_json_Value = class end"
@@ -165,8 +166,8 @@ inl as_str_std (s : std_string) : rust.ref' str =
 inl into_boxed_str (s : std_string) : rust.box str =
     !\\(s, $'"$0.into_boxed_str()"')
 
-/// ## as_os_ref
-inl as_os_ref (s : os_string) : rust.ref' os_str =
+/// ## os_string_as_ref
+inl os_string_as_ref (s : os_string) : rust.ref' os_str =
     !\\(s, $'"$0.as_ref()"')
 
 /// ## to_os_string
@@ -355,6 +356,36 @@ inl base64_decode (s : std_string) : result std_string std_string =
     |> fun x =>
         join x ()
         |> resultm.unbox
+
+/// ## encoding'
+nominal encoding' = $'encoding_rs_Encoding'
+
+/// ## encoding_utf8'
+inl encoding_utf8' () : rust.ref' encoding' =
+    !\($'"encoding_rs::UTF_8"')
+
+/// ## encoding_1252
+inl encoding_1252' () : rust.ref' encoding' =
+    !\($'"encoding_rs::WINDOWS_1252"')
+
+/// ## encoding_encode
+inl encoding_encode' (encoding : rust.ref' encoding') (text : string) : rust.cow (am'.slice u8) =
+    !\\((encoding, text), $'"$0.encode(&*$1).0"')
+
+/// ## write_all_text
+inl write_all_text (path : string) (text : string) : () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl text = join text
+            $'System.IO.File.WriteAllText (!path, !text)'
+        | Rust (Native) => fun () =>
+            open rust_operators
+            !\\((path, text), $'"std::fs::write(&*$0, &*$1).unwrap()"')
+        | _ => fun () => null ()
+
+/// ## utf8_decode
+inl utf8_decode (data : am'.vec u8) : resultm.result' std_string (rust.cow str) =
+    !\($'$"encoding::Encoding::decode(encoding::all::UTF_8, &!data, encoding::DecoderTrap::Replace)"')
 
 /// ## concat_array_trailing
 inl concat_array_trailing (separator : string) (input : a i32 string) =

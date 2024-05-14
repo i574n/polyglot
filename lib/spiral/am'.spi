@@ -221,6 +221,12 @@ inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
 inl vec_map' forall t u. (fn : t -> u) (ar : vec t) : vec u =
     !\\((ar, fn), $'"$0.into_iter().map(|x| $1(x.clone())).collect()"')
 
+/// ## vec_fold'
+inl vec_fold' forall t u. (fn : u -> t -> u) (init : u) (ar : vec t) : u =
+    (!\\(ar, $'"true; let _result = $0.into_iter().fold(!init, |acc, x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"acc"') !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
+    !\($'"_result"')
+
 /// ## vec_iter
 inl vec_iter forall t. (fn : t -> ()) (ar : vec t) : () =
     !\\((ar, fn), $'"$0.iter().map(|x| { $1(x.clone()); }).collect()"')

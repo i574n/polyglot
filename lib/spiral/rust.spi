@@ -134,6 +134,10 @@ inl to_mut forall t. (x : t) : t =
 inl ref_map forall t u. (fn : t -> u) (x : ref' t) : ref' u =
     !\($'"!fn(!x)"')
 
+/// ## cow_as_ref
+inl cow_as_ref forall t. (s : cow t) : ref' t =
+    !\\(s, $'"$0.as_ref()"')
+
 /// ## from_mut
 inl from_mut forall t. (x : mut' t) : t =
     !\($'"!x"')

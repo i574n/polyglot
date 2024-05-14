@@ -294,43 +294,48 @@ inl execute_async command =
 union args_parse_step =
     | Start
     | Quoted : char
-    | Escaped : u8
+    | Escaped : u8 * char
 
 let split_args (args : string) : array_base string =
     let rec loop (acc, current) (chars : list char) (step, last) =
         // trace Verbose (fun () => $'$"split_args / current: %A{!current} / acc: %A{!acc} / step: %A{!step} / last: %A{!last}"') _locals
-        match step, chars with
-        | Start, ('"' :: tail) =>
+        match step, last, chars with
+        | Start, _, ('"' :: tail) =>
             loop (acc, "") tail (Quoted '"', step)
-        | Escaped _, ('\\' :: tail) =>
-            loop (acc, current) tail (Quoted '\\', step)
-        | Escaped _, ('"' :: tail) when last = Start =>
+        | Escaped _, _, (('\\' | '\`') & c :: tail) =>
+            loop (acc, current) tail (Quoted c, step)
+        | Escaped _, Start, ('"' :: tail) =>
             loop (acc, current) tail (step, step)
-        | Quoted ('"'), ('"' :: tail) when last =. Quoted '\\' =>
+        | Quoted ('"'), Quoted _, ('"' :: tail) =>
             loop (acc, current) tail (Start, step)
-        | Quoted ('\\'), ('"' :: tail) when last <>. Escaped 0 =>
-            loop (acc, $'$"{!current}\\\""') tail (Quoted '"', step)
-        | Quoted ('\\'), ('"' :: tail) when last =. Quoted '\\' =>
-            loop (acc, $'$"{!current}\\\""') tail (Quoted '"', step)
-        | Quoted ('\\'), ('"' :: tail) =>
+        | Escaped (0, ('\\' | '\`') & c), Quoted ('"'), (c' :: tail) =>
+            loop (acc, $'$"{!current}{!c}{!c'}"') tail (Quoted '"', step)
+        | Quoted (('\\' | '\`') as c), _, ('"' :: tail)
+                when last <>. Escaped (0, '\\') && last <>. Escaped (0, '\`') =>
+            loop (acc, $'$"{!current}{!c}\\\""') tail (Quoted '"', step)
+        | Quoted (('\\' | '\`') as c), Quoted _, ('"' :: tail) =>
+            loop (acc, $'$"{!current}{!c}\\\""') tail (Quoted '"', step)
+        | Quoted ('\\' | '\`'), _, ('"' :: tail) =>
             loop (acc, current) tail (Start, step)
-        | Escaped n, ('"' :: tail) =>
-            loop (acc, $'$"{!current}\\\""') tail (Escaped n, step)
-        | Quoted _, ('\\' :: tail) =>
-            loop (acc, current) tail (Escaped 1, step)
-        | Quoted _, ('"' :: tail) when last =. Escaped 0 =>
-            loop (acc, $'$"{!current}\\\""') tail (Quoted '"', step)
-        | Quoted _, ('"' :: tail) =>
+        | Escaped (n, c), _, ('"' :: tail) =>
+            loop (acc, $'$"{!current}{!c}\\\""') tail (Escaped (n, c), step)
+        | Quoted _, Quoted _, (('\\' | '\`') & c :: tail) =>
+            loop (acc, current) tail (Escaped (0, c), step)
+        | Quoted _, _, (('\\' | '\`') & c :: tail) =>
+            loop (acc, current) tail (Escaped (1, c), step)
+        | Quoted _, Escaped (0, _), ('"' :: tail) =>
+            loop (acc, $'$"{!current}"') tail (Quoted '"', step)
+        | Quoted _, _, ('"' :: tail) =>
             loop (acc ++ [ current ], "") tail (Start, step)
-        | (Escaped _ | Quoted _), (' ' :: tail) =>
+        | (Escaped _ | Quoted _), _, (' ' :: tail) =>
             loop (acc, $'$"{!current} "') tail (step, step)
-        | _, ('\\' :: tail) =>
-            loop (acc, current) tail (Escaped 0, step)
-        | _, (' ' :: tail) =>
+        | _, _, (('\\' | '\`') & c :: tail) =>
+            loop (acc, current) tail (Escaped (0, c), step)
+        | _, _, (' ' :: tail) =>
             loop ((if current = "" then acc else acc ++ [ current ]), "") tail (step, step)
-        | Escaped (1), (char :: tail) when last <>. step =>
+        | Escaped (1, _), _, (char :: tail) when last <>. step =>
             loop (acc, $'$"{!current}\\{!char}"') tail (last, step)
-        | _, (char :: tail) =>
+        | _, _, (char :: tail) =>
             loop (acc, $'$"{!current}{!char}"') tail (step, step)
         | _ =>
             (if current = "" then acc else acc ++ [ current ]), current
@@ -364,6 +369,81 @@ inl stdin_flush (stdin : threading.mutex_guard child_stdin) : () =
     (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
     (!\\(stdin, $'"true; std::io::Write::flush(&mut *$0).unwrap()"') : bool) |> ignore
 
+/// ## new_process_command
+inl new_process_command (file_name : string) : process_command =
+    !\\(file_name, $'"std::process::Command::new(&*$0)"')
+
+/// ## process_stdio_piped
+inl process_stdio_piped () : stdio =
+    !\($'"std::process::Stdio::piped()"')
+
+/// ## process_command_args
+inl process_command_args (args : am'.vec sm'.std_string) (c : process_command) : rust.ref' (rust.mut' process_command) =
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    !\\((c, args), $'"std::process::Command::args(&mut $0, &*$1)"')
+
+/// ## process_command_stdout
+inl process_command_stdout (stdio : stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+    !\\(c, $'"std::process::Command::stdout($0, std::process::Stdio::piped())"')
+
+/// ## process_command_stderr
+inl process_command_stderr (stdio : stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+    !\\(c, $'"std::process::Command::stderr($0, std::process::Stdio::piped())"')
+
+/// ## process_command_stdin
+inl process_command_stdin (stdio : stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+    !\\(c, $'"std::process::Command::stdin($0, std::process::Stdio::piped())"')
+
+/// ## process_command_current_dir
+inl process_command_current_dir (dir : string) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+    !\\(dir, $'"std::process::Command::current_dir(!c, &*$0)"')
+
+/// ## process_command_env
+inl process_command_env (key : string) (value : string) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+    !\\((key, value), $'"std::process::Command::env(!c, &*$0, &*$1)"')
+
+/// ## process_command_spawn
+inl process_command_spawn (c : rust.ref' (rust.mut' process_command)) : resultm.result' child stream.io_error =
+    !\\(c, $'"std::process::Command::spawn($0)"')
+
+/// ## std_line
+inl std_line
+    (stdout : bool)
+    (channel_sender : threading.arc (threading.mutex (sender sm'.std_string)))
+    (line : resultm.result' sm'.std_string stream.io_error)
+    =
+    run_target function
+        | Rust (Native) => fun () =>
+            inl line =
+                match
+                    line
+                    |> resultm.map_error' sm'.format'
+                    |> resultm.unbox
+                with
+                | Ok line =>
+                    inl line =
+                        line
+                        |> sm'.from_std_string
+                        // |> sm'.as_bytes
+                        // |> am'.slice_to_vec
+                        |> sm'.encoding_encode' (sm'.encoding_utf8' ())
+                        |> rust.cow_as_ref
+                        |> sm'.str_from_utf8
+                        // |> sm'.utf8_decode
+                        |> resultm.unwrap'
+                        |> sm'.ref_to_std_string
+                        // String::from_utf8_lossy(line.as_bytes()).into()
+                    inl line_log = line |> sm'.from_std_string
+                    trace Verbose (fun () => $'$"> {!line_log}"') _locals
+                    line
+                | Error e =>
+                    trace Critical
+                        fun () => $'$"runtime.std_line"'
+                        fun () => $'$"e: {!e} / {!_locals ()}"'
+                    $'$"\\e[4;7m{!e}\\e[0m"' |> sm'.to_std_string
+            (!\\((channel_sender, line), $'"true; $0.lock().unwrap().send($1).unwrap()"') : bool) |> ignore
+        | _ => fun () => null ()
+
 /// ## execute_with_options
 let execute_with_options (options : execution_options) : i32 * string =
     run_target function
@@ -384,129 +464,111 @@ let execute_with_options (options : execution_options) : i32 * string =
 
             fun () =>
                 fun () =>
-                    inl command : process_command = !\\(file_name, $'"std::process::Command::new(&*$0)"')
-
-                    (!\($'"true; let mut !command = !command"') : bool) |> ignore
-                    inl command : rust.ref' (rust.mut' process_command) = !\\((command, arguments), $'"std::process::Command::args(&mut $0, &*$1)"')
-
-                    (!\($'"true; let mut !command = !command"') : bool) |> ignore
-                    inl command : rust.ref' (rust.mut' process_command) = !\\(command, $'"std::process::Command::stdout(&mut $0, std::process::Stdio::piped())"')
-
-                    (!\($'"true; let mut !command = !command"') : bool) |> ignore
-                    inl command : rust.ref' (rust.mut' process_command) = !\\(command, $'"std::process::Command::stderr(&mut $0, std::process::Stdio::piped())"')
-
-                    (!\($'"true; let mut !command = !command"') : bool) |> ignore
-                    inl command : rust.ref' (rust.mut' process_command) = !\\(command, $'"std::process::Command::stdin(&mut $0, std::process::Stdio::piped())"')
-
-                    inl command =
+                    file_name
+                    |> new_process_command
+                    |> process_command_args arguments
+                    |> process_command_stdout (process_stdio_piped ())
+                    |> process_command_stderr (process_stdio_piped ())
+                    |> process_command_stdin (process_stdio_piped ())
+                    |> fun command =>
                         match options.working_directory |> optionm'.unbox with
-                        | Some working_directory =>
-                            inl working_directory = join working_directory
-                            !\($'"std::process::Command::current_dir(!command, &*!working_directory)"')
+                        | Some working_directory => command |> process_command_current_dir working_directory
                         | None => command
+                    |> fun command =>
+                        match options.environment_variables with
+                        | ;[] => command
+                        | vars =>
+                            (command, vars |> am'.to_vec)
+                            ||> am'.vec_fold' fun command (key, value) =>
+                                command |> process_command_env key value
+                    |> process_command_spawn
+                    |> resultm.map_error' sm'.format'
+                    |> resultm.map' (optionm'.some' >> threading.new_arc_mutex)
+                    |> resultm.unbox'
+                    |> function
+                        | Ok child =>
+                            inl stdout : child_stdout = !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdout.take().unwrap()"')
+                            inl stderr : child_stderr = !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stderr.take().unwrap()"')
+                            inl stdin : child_stdin = !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdin.take().unwrap()"')
+                            inl stdout = stdout |> optionm'.some' |> threading.new_arc_mutex
+                            inl stderr = stderr |> optionm'.some' |> threading.new_arc_mutex
+                            inl stdin = stdin |> optionm'.some' |> threading.new_arc_mutex
 
-                    (!\($'"true; let mut !command = !command"') : bool) |> ignore
-                    inl command : resultm.result' child stream.io_error = !\\(command, $'"std::process::Command::spawn(&mut $0)"')
+                            inl channel_sender, channel_receiver : sender sm'.std_string * threading.arc (receiver sm'.std_string) =
+                                !\($'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"')
+                            inl channel_receiver = join channel_receiver
+                            (!\\(channel_receiver, $'"true; let !channel_receiver = !channel_receiver"') : bool) |> ignore
 
-                    match
-                        command
-                        |> resultm.map_error' sm'.format'
-                        |> resultm.map' (optionm'.some' >> threading.new_arc_mutex)
-                        |> resultm.unbox'
-                    with
-                    | Ok child =>
-                        inl stdout : child_stdout = !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdout.take().unwrap()"')
-                        inl stderr : child_stderr = !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stderr.take().unwrap()"')
-                        inl stdin : child_stdin = !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdin.take().unwrap()"')
-                        inl stdout = stdout |> optionm'.some' |> threading.new_arc_mutex
-                        inl stderr = stderr |> optionm'.some' |> threading.new_arc_mutex
-                        inl stdin = stdin |> optionm'.some' |> threading.new_arc_mutex
+                            inl channel_sender = channel_sender |> threading.new_arc_mutex
+                            inl channel_sender' = channel_sender |> rust.clone
+                            inl channel_sender'' = channel_sender |> rust.clone
+                            inl channel_receiver' = channel_receiver |> threading.new_arc_mutex
 
-                        inl channel_sender, channel_receiver : sender sm'.std_string * threading.arc (receiver sm'.std_string) =
-                            !\($'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"')
-                        inl channel_receiver = join channel_receiver
-                        (!\\(channel_receiver, $'"true; let !channel_receiver = !channel_receiver"') : bool) |> ignore
 
-                        inl channel_sender = channel_sender |> threading.new_arc_mutex
-                        inl channel_sender' = channel_sender |> rust.clone
-                        inl channel_sender'' = channel_sender |> rust.clone
-                        inl channel_receiver' = channel_receiver |> threading.new_arc_mutex
+                            inl stdout_thread : threading.join_handle () =
+                                !\($'"std::thread::spawn(move || { //"')
+                            inl stdout' : child_stdout =
+                                !\($'"!stdout.lock().unwrap().take().unwrap()"')
+                            inl stdout_lines =
+                                stdout'
+                                |> stream.decode_reader_bytes_build
+                                |> stream.new_buf_reader
+                                |> threading.new_arc_mutex
+                            inl std_line' = std_line true channel_sender'
+                            (!\\((stdout_lines, std_line'), $'"true; for line in std::io::BufRead::lines(std::io::Read::by_ref(&mut *$0.lock().unwrap())).collect::<Vec<_>>() { $1(line) }"') : bool) |> ignore
+                            (!\($'"true; })"') : bool) |> ignore
 
-                        inl std_line (stdout : bool) channel_sender (line : _ _ stream.io_error) =
-                            run_target function
-                                | Rust (Native) => fun () =>
-                                    inl line =
-                                        match line |> resultm.map_error' sm'.format' |> resultm.unbox with
-                                        | Ok (line : sm'.std_string) =>
-                                            trace Verbose (fun () => $'$"> {!line}"') _locals
-                                            line
-                                        | Error (e : sm'.std_string) =>
-                                            trace Critical
-                                                fun () => $'$"runtime.execute_with_options / std_line"'
-                                                fun () => $'$"e: {!e} / {!_locals ()}"'
-                                            $'$"[{!e}]"' |> sm'.to_std_string
-                                    (!\\((channel_sender, line), $'"true; $0.lock().unwrap().send($1).unwrap()"') : bool) |> ignore
-                                | _ => fun () => null ()
+                            inl stderr_thread : threading.join_handle () =
+                                !\($'"std::thread::spawn(move || { //"')
+                            inl stderr' : child_stderr =
+                                !\($'"!stderr.lock().unwrap().take().unwrap()"')
+                            inl stderr_lines =
+                                stderr'
+                                |> stream.decode_reader_bytes_build
+                                |> stream.new_buf_reader
+                                |> threading.new_arc_mutex
+                            inl std_line' = std_line false channel_sender
+                            (!\\((stderr_lines, std_line'), $'"true; for line in std::io::BufRead::lines(std::io::Read::by_ref(&mut *$0.lock().unwrap())).collect::<Vec<_>>() { $1(line) }"') : bool) |> ignore
+                            (!\($'"true; })"') : bool) |> ignore
 
-                        inl stdout_thread : threading.join_handle () = !\($'"std::thread::spawn(move || { //"')
-                        inl stdout' : child_stdout = !\($'"!stdout.lock().unwrap().take().unwrap()"')
-                        inl stdout_lines =
-                            stdout'
-                            |> stream.new_buf_reader
-                            |> stream.buf_read_lines
-                            |> threading.new_arc_mutex
-                        inl std_line' = std_line true channel_sender'
-                        (!\\((stdout_lines, std_line'), $'"true; for line in $0.lock().unwrap().by_ref() { $1(line) }"') : bool) |> ignore
-                        (!\($'"true; })"') : bool) |> ignore
+                            match options.stdin |> optionm'.unbox with
+                            | Some stdin' =>
+                                inl stdin : optionm'.option' child_stdin =
+                                    !\($'"!stdin.lock().unwrap().take()"')
+                                stdin
+                                |> optionm'.map' threading.new_arc_mutex
+                                |> optionm'.unbox
+                                |> function
+                                    | Some stdin =>
+                                        stdin |> stdin'
+                                        stdin
+                                        |> threading.arc_mutex_lock
+                                        |> resultm.unwrap'
+                                        |> stdin_flush
+                                    | None => ()
+                            | None => ()
 
-                        inl stderr_thread : threading.join_handle () = !\($'"std::thread::spawn(move || { //"')
-                        inl stderr' : child_stderr = !\($'"!stderr.lock().unwrap().take().unwrap()"')
-                        inl stderr_lines =
-                            stderr'
-                            |> stream.new_buf_reader
-                            |> stream.buf_read_lines
-                            |> threading.new_arc_mutex
-                        inl std_line' = std_line false channel_sender
-                        (!\\((stderr_lines, std_line'), $'"true; for line in $0.lock().unwrap().by_ref() { $1(line) }"') : bool) |> ignore
-                        (!\($'"true; })"') : bool) |> ignore
-                        
-                        match options.stdin |> optionm'.unbox with
-                        | Some stdin' =>
-                            inl stdin : optionm'.option' child_stdin =
-                                !\($'"!stdin.lock().unwrap().take()"')
-                            stdin
-                            |> optionm'.map' threading.new_arc_mutex
-                            |> optionm'.unbox
-                            |> function
-                                | Some stdin =>
-                                    stdin |> stdin'
-                                    stdin
-                                    |> threading.arc_mutex_lock
-                                    |> resultm.unwrap'
-                                    |> stdin_flush
-                                | None => ()
-                        | None => ()
+                            inl output : resultm.result' output stream.io_error =
+                                !\\(child, $'"$0.lock().unwrap().take().unwrap().wait_with_output()"')
+                            inl output = output |> resultm.map_error' sm'.format'
 
-                        inl output : resultm.result' output stream.io_error = !\\(child, $'"$0.lock().unwrap().take().unwrap().wait_with_output()"')
-                        inl output = output |> resultm.map_error' sm'.format'
+                            (!\($'"true; !stdout_thread.join().unwrap()"') : bool) |> ignore
+                            (!\($'"true; !stderr_thread.join().unwrap()"') : bool) |> ignore
 
-                        (!\($'"true; !stdout_thread.join().unwrap()"') : bool) |> ignore
-                        (!\($'"true; !stderr_thread.join().unwrap()"') : bool) |> ignore
-
-                        match output |> resultm.unbox with
-                        | Ok output =>
-                            inl exit_code : i32 = !\\(output, $'"$0.status.code().unwrap()"')
-                            exit_code, None, Some channel_receiver'
+                            match output |> resultm.unbox with
+                            | Ok output =>
+                                inl exit_code : i32 = !\\(output, $'"$0.status.code().unwrap()"')
+                                exit_code, None, Some channel_receiver'
+                            | Error error =>
+                                trace Critical
+                                    fun () => $'$"runtime.execute_with_options / output error"'
+                                    fun () => $'$"error: {!error} / {!_locals ()}"'
+                                -2i32, error |> Some, None
                         | Error error =>
                             trace Critical
-                                fun () => $'$"runtime.execute_with_options / output error"'
+                                fun () => $'$"runtime.execute_with_options / child error"'
                                 fun () => $'$"error: {!error} / {!_locals ()}"'
-                            -2i32, error |> Some, None
-                    | Error error =>
-                        trace Critical
-                            fun () => $'$"runtime.execute_with_options / child error"'
-                            fun () => $'$"error: {!error} / {!_locals ()}"'
-                        -1i32, error |> Some, None
+                            -1i32, error |> Some, None
                     |> function
                         | exit_code, std_trace, channel_receiver =>
                             inl std_trace =
@@ -618,6 +680,14 @@ inl value_parser_possible_values (values : array_base string) : value_parser =
         |> am'.vec_map (sm'.to_std_string >> rust.new_box >> rust.box_leak >> new_possible_value)
     !\\(values, $'"clap::builder::PossibleValuesParser::new($0).into()"')
 
+/// ## value_parser_path_buf
+inl value_parser_path_buf () : value_parser =
+    !\($'"clap::value_parser\!(std::path::PathBuf)"')
+
+/// ## value_parser_expr
+inl value_parser_expr (expr : string) : value_parser =
+    !\($'"clap::value_parser\!(" + !expr + ").into()"')
+
 /// ## arg_value_parser
 inl arg_value_parser (values : value_parser) (arg : arg) : arg =
     !\\((arg, values), $'"$0.value_parser($1)"')
@@ -680,11 +750,21 @@ inl command_get_matches_from (args : array_base string) (command : command) : ar
     inl args = args |> am'.to_vec |> am'.vec_map sm'.to_std_string
     !\\(command, $'"clap::Command::get_matches_from($0, !args)"')
 
+/// ## command_init_arg
+inl command_init_arg (long, short) fn command =
+    command
+    |> command_arg (
+        new_arg ##long
+        |> arg_short short
+        |> arg_long ##long
+        |> fn
+    )
+
 /// ## matches_get_one
-inl matches_get_one (x : string) (matches : arg_matches) : optionm'.option' sm'.std_string =
+inl matches_get_one forall t. (x : string) (matches : arg_matches) : optionm'.option' t =
     inl x = join x
     inl x = x |> sm'.as_str
-    !\($'"clap::ArgMatches::get_one(&!matches, !x).cloned()"')
+    !\\(matches, $'"clap::ArgMatches::get_one(&$0, !x).cloned()"')
 
 /// ## matches_get_flag
 inl matches_get_flag (x : string) (matches : arg_matches) : bool =
@@ -693,7 +773,7 @@ inl matches_get_flag (x : string) (matches : arg_matches) : bool =
     !\($'"clap::ArgMatches::get_flag(&!matches, !x)"')
 
 /// ## matches_get_many
-inl matches_get_many (x : string) (matches : arg_matches) : optionm'.option' (am'.vec sm'.std_string) =
+inl matches_get_many forall t. (x : string) (matches : arg_matches) : optionm'.option' (am'.vec t) =
     inl x = join x
     inl x = x |> sm'.as_str
     !\\(matches, $'"clap::ArgMatches::get_many(&$0, !x).map(|x| x.cloned().into_iter().collect())"')
@@ -706,8 +786,7 @@ inl matches_get_occurrences (x : string) (matches : arg_matches) : optionm'.opti
 
 /// ## matches_subcommand
 inl matches_subcommand (matches : arg_matches) : optionm'.option' (sm'.std_string * arg_matches) =
-    inl matches = matches |> rust.clone
-    !\\(sm'.ref_to_std_string, $'"clap::ArgMatches::subcommand(Box::leak(Box::new(!matches))).map(|(a, b)| ($0(a), b.clone()))"')
+    !\\((matches, sm'.ref_to_std_string), $'"clap::ArgMatches::subcommand(Box::leak(Box::new($0))).map(|(a, b)| ($1(a), b.clone()))"')
 
 /// ## matches_values_of
 inl matches_values_of (x : string) (matches : arg_matches) : array_base sm'.std_string =
@@ -728,7 +807,7 @@ inl command_subcommand (subcommand : command) (command : command) : command =
 /// ## main
 inl main () =
     types ()
-    init_trace_state ()
+    init_trace_state None
     $"let is_windows () = !is_windows ()" : ()
     $"let get_executable_suffix () = !get_executable_suffix ()" : ()
     $"let execute_async x = !execute_async x" : ()

@@ -13,7 +13,7 @@ $projectName = "spiral_builder"
 
 if (!$fast -and !$SkipNotebook) {
     { cargo +nightly build --release } | Invoke-Block
-    { . ../dist/Supervisor$(_exe) --execute-command "pwsh -c `"../../../scripts/invoke-dib.ps1 $projectName.dib -Retries 3`"" } | Invoke-Block
+    { . ../dist/Supervisor$(_exe) --execute-command "../../../target/release/spiral_builder$(_exe) dib --path $projectName.dib" } | Invoke-Block -Retries 3
 }
 
 { . ../../parser/dist/DibParser$(_exe) "$projectName.dib" spi } | Invoke-Block
@@ -31,6 +31,7 @@ $targetDir = GetTargetDir $projectName
     -replace "../../../../lib", "../../../lib" `
     -replace ".fsx`"]", ".rs`"]" `
     | FixRust `
+    | FixRust2 `
     | Set-Content "$projectName.rs"
 
 cargo fmt --

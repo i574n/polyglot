@@ -161,8 +161,9 @@ function Update-Json {
 }
 
 function EnsureSymbolicLink([string] $Path, [string] $Target) {
-    $Path = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot $Path))
-    $Target = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot $Target))
+    $Location = Get-Location
+    $Path = [IO.Path]::GetFullPath((Join-Path $Location $Path))
+    $Target = [IO.Path]::GetFullPath((Join-Path $Location $Target))
 
     if (-Not (Test-Path (Split-Path $Path))) {
         Write-Output "Parent directory does not exist: $Path"
@@ -171,7 +172,9 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
 
     if (Test-Path $Path) {
         $attr = (Get-Item $Path).Attributes
-        if ($null -ne $attr -and (-not ($attr -band [IO.FileAttributes]::Directory))) {
+        if ($null -ne $attr `
+                -and (-not ($attr -band [IO.FileAttributes]::Directory)) `
+                -and ((-not ($attr -band [IO.FileAttributes]::ReparsePoint)))) {
             Write-Output "Removing file: $Path ($attr)"
             Remove-Item $Path
         }
@@ -215,7 +218,9 @@ function Invoke-Dib {
         [Parameter(Position = 1, ValueFromRemainingArguments)]
         [Object[]] $_args
     )
-    $mergedArgs = @{ "ScriptBlock" = { dotnet repl --run "$path" --output-path "$path.ipynb" --exit-after-run } }
+    $mergedArgs = @{
+        "ScriptBlock" = { dotnet repl --run "$path" --output-path "$path.ipynb" --exit-after-run }
+    }
     $key = $null
     foreach ($item in $_args) {
         if ($item -match "^-") {
@@ -226,6 +231,8 @@ function Invoke-Dib {
         }
     }
     Write-Output "core.Invoke-Dib / Get-Location: $(Get-Location) / path: $path / _args: $($_args | ConvertTo-Json)"
+
+    $mergedArgs["EnvironmentVariables"] = @{ AUTOMATION = $True }
 
     { Invoke-Block @mergedArgs } | Invoke-Block
 

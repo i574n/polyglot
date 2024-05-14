@@ -19,14 +19,6 @@ inl upcast forall t u. (x : t) : u =
 inl downcast forall t u. (x : t) : u =
     $'!x :?> `u '
 
-/// ## memoize
-nominal lazy t = $'Lazy<`t>'
-
-inl memoize forall t. (fn : () -> t) : () -> t =
-    inl fn = join fn
-    inl result : lazy t = $'lazy !fn ()'
-    fun () => $'!result.Value'
-
 /// ## to_any
 inl to_any forall t. (obj : t) : any =
     $"!obj"
@@ -112,7 +104,7 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
 /// ## main
 inl main () =
     types ()
-    init_trace_state ()
+    init_trace_state None
     inl new_disposable x : _ () = new_disposable x
     $"let new_disposable x = !new_disposable x" : ()
 

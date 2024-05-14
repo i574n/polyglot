@@ -389,26 +389,14 @@ module Eval =
 
                 async {
                     try
-                        let! mainPath = newAllCode |> Supervisor.persistCode
-
-                        let port = Supervisor.getCompilerPort ()
-
                         let! codeChoice =
-                            mainPath
-                            |> Supervisor.buildFile timeout port cancellationToken
+                            newAllCode
+                            |> Supervisor.buildCode timeout cancellationToken
                             |> Async.catch
                             |> Async.runWithTimeoutAsync timeout
 
-                        let result =
-                            match codeChoice with
-                            | Some (Ok (fsxPath, code)) -> Some (fsxPath, code)
-                            | Some (Error ex) ->
-                                trace Critical (fun () -> $"Eval / errors: {ex |> SpiralSm.format_exception}") _locals
-                                None
-                            | _ -> None
-
-                        match result with
-                        | Some (fsxPath, (Some code, spiralErrors)) ->
+                        match codeChoice with
+                        | Some (Ok (_mainPath, (fsxPath, Some code), spiralErrors)) ->
                             let spiralErrors =
                                 mapErrors (Warning, spiralErrors, lastTopLevelIndex) allCode
                             let inline _trace (fn : unit -> string) =
@@ -463,6 +451,14 @@ module Eval =
                                             |> Array.map (fun (e1, e2, e3, _) ->
                                                 (e1, e2, e3, ("", (0, 0), (0, 0)))
                                             )
+                                        let errors =
+                                            if errors |> Array.isEmpty
+                                            then errors
+                                            else
+                                                errors
+                                                |> Array.append [|
+                                                    TraceLevel.Critical, $"Eval.eval / fsi_eval error / fsxPath: {fsxPath} / builderArgs: %A{builderArgs} / code: {code}", 0, ("", (0, 0), (0, 0))
+                                                |]
                                         Some (ch, errors)
                                     with ex ->
                                         trace Critical (fun () -> $"Eval.eval / ex: {ex |> SpiralSm.format_exception}") _locals
@@ -513,6 +509,14 @@ module Eval =
                                             errors
                                             |> Array.append spiralErrors
                                             |> Array.append errors2
+                                        let errors =
+                                            if errors |> Array.isEmpty
+                                            then errors
+                                            else
+                                                errors
+                                                |> Array.append [|
+                                                    TraceLevel.Critical, $"Eval.eval / fsi_eval error / fsxPath: {fsxPath} / builderArgs: %A{builderArgs} / code: {code}", 0, ("", (0, 0), (0, 0))
+                                                |]
                                         match ch with
                                         | Choice1Of2 v ->
                                             allCode <- newAllCode
@@ -527,9 +531,17 @@ module Eval =
                                     return Ok(v), errors
                                 | Choice2Of2 ex ->
                                     return Error ex, errors
-                        | Some (_, (None, errors)) when errors |> List.isEmpty |> not ->
+                        | Some (Ok (_, _, errors)) when errors |> List.isEmpty |> not ->
                             return errors.[0] |> fst |> Exception |> Error,
                             mapErrors (TraceLevel.Critical, errors, lastTopLevelIndex) allCode
+                        | Some (Error ex) ->
+                            trace Critical (fun () -> $"Eval.eval / ex: {ex |> SpiralSm.format_exception}") _locals
+                            return Error (Exception $"Spiral error or timeout / ex: {ex |> SpiralSm.format_exception}"),
+                            [|
+                                (
+                                    TraceLevel.Critical, $"Diag: Spiral error or timeout / ex: %A{ex}", 0, ("", (0, 0), (0, 0))
+                                )
+                            |]
                         | _ ->
                             return Error (Exception "Spiral error or timeout"),
                             [|
@@ -538,7 +550,7 @@ module Eval =
                                 )
                             |]
                     with ex ->
-                        trace Critical (fun () -> $"Eval / ex: {ex |> SpiralSm.format_exception}") _locals
+                        trace Critical (fun () -> $"Eval.eval / ex: {ex |> SpiralSm.format_exception}") _locals
                         return Error (Exception $"Spiral error or timeout (4_) / ex: {ex |> SpiralSm.format_exception}"),
                         [|
                             (
@@ -556,7 +568,7 @@ module Eval =
                     |]
                 )
             with ex ->
-                trace Critical (fun () -> $"Eval / ex: {ex |> SpiralSm.format_exception}") _locals
+                trace Critical (fun () -> $"Eval.eval / ex: {ex |> SpiralSm.format_exception}") _locals
                 Error (Exception $"Spiral error or timeout (3) / ex: {ex |> SpiralSm.format_exception}"),
                 [|
                     (
@@ -628,13 +640,12 @@ module Eval =
             then None
             else Some workspaceRoot
 
-
         let! exitCode, spiralBuilderResult =
             let command =
                 let path =
                     workspaceRoot </> $@"target/release/spiral_builder{SpiralRuntime.get_executable_suffix ()}"
                     |> System.IO.Path.GetFullPath
-                $"{path} --file \"{fsprojPath}\" --package-dir \"{projectDir}\" --args \"{args}\""
+                $"{path} --trace-level %A{traceLevel} fsharp --path \"{fsprojPath}\" --package-dir \"{projectDir}\" --args \"{args}\""
             SpiralRuntime.execution_options (fun x ->
                 { x with
                     l1 = command
@@ -778,7 +789,7 @@ module Eval =
                             |> SpiralSm.concat "\n"
                             |> Ok
                         with ex ->
-                            $"ex: {ex} / cargoRunResult: {cargoRunResult} / spiralBuilderResult: {spiralBuilderResult}" |> Error
+                            $"ex: {ex} / rsPath: {rsPath} / cargoRunResult: {cargoRunResult} / spiralBuilderResult: {spiralBuilderResult}" |> Error
 
                     let result =
                         [
@@ -793,7 +804,7 @@ module Eval =
 
                     return result
                 else
-                    return Some (Error $"exitCode: {exitCode} / cargoRunResult: {cargoRunResult}")
+                    return Some (Error $"exitCode: {exitCode} / rsPath: {rsPath} / cargoRunResult: {cargoRunResult}")
     }
 
     /// ## Arguments

@@ -12,7 +12,7 @@ $ErrorActionPreference = "Stop"
 $projectName = "math"
 
 if (!$fast && !$SkipNotebook) {
-    { . ../../apps/spiral/dist/Supervisor$(_exe) --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 $projectName.dib -Retries $($fast -or !$env:CI ? 1 : 5)`"" } | Invoke-Block
+    { . ../../apps/spiral/dist/Supervisor$(_exe) --execute-command "../../target/release/spiral_builder$(_exe) dib --path $projectName.dib --retries $($fast -or !$env:CI ? 1 : 5)" } | Invoke-Block
 }
 
 { . ../../apps/parser/dist/DibParser$(_exe) "$projectName.dib" spi } | Invoke-Block

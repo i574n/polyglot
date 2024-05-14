@@ -94,7 +94,7 @@ module Async =
                     trace Debug (fun () -> $"runWithTimeoutAsync") _locals
                     None
                 | Error ex ->
-                    trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> SpiralSm.format_exception}") _locals
+                    trace Critical (fun () -> $"runWithTimeoutAsync** / ex: %A{ex}") _locals
                     None
             )
     }

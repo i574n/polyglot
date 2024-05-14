@@ -13,6 +13,9 @@ regex = { workspace = true }
 clap = { workspace = true }
 futures-lite = { workspace = true }
 serde_json = { workspace = true }
+encoding = "~0.2"
+encoding_rs = "~0.8"
+encoding_rs_io = "~0.1"
 
 [dev-dependencies]
 

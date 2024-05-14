@@ -264,3 +264,11 @@ inl get_union_fields_untag forall union_type. () : list union_type =
                         (Nil `union_type, 0i32)
                 inl result = fst `(list union_type) `i32 result
                 listm.rev `union_type result
+
+/// ## memoize
+nominal lazy t = $'Lazy<`t>'
+
+inl memoize forall t. (fn : () -> t) : () -> t =
+    inl fn = join fn
+    inl result : lazy t = $'lazy !fn ()'
+    fun () => $'!result.Value'

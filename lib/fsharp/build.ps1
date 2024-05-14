@@ -10,14 +10,15 @@ $ErrorActionPreference = "Stop"
 
 if (!$fast) {
     { . ../../apps/spiral/dist/Supervisor$(_exe) `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 Async.dib`" -Retries 3" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 AsyncSeq.dib`" -Retries 3" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 Common.dib`" -Retries 3" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 CommonFSharp.dib`" -Retries 3" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 FileSystem.dib -Retries 3`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 Runtime.dib -Retries 3`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 Toml.dib -Retries 3`"" `
+        --exit-on-error `
         $(!$sequential ? @("--parallel") : @()) `
+        --execute-command "../../target/release/spiral_builder$(_exe) dib --path Async.dib --retries 3" `
+        --execute-command "../../target/release/spiral_builder$(_exe) dib --path AsyncSeq.dib --retries 3" `
+        --execute-command "../../target/release/spiral_builder$(_exe) dib --path Common.dib --retries 3" `
+        --execute-command "../../target/release/spiral_builder$(_exe) dib --path CommonFSharp.dib --retries 3" `
+        --execute-command "../../target/release/spiral_builder$(_exe) dib --path FileSystem.dib --retries 3" `
+        --execute-command "../../target/release/spiral_builder$(_exe) dib --path Runtime.dib --retries 3" `
+        --execute-command "../../target/release/spiral_builder$(_exe) dib --path Toml.dib --retries 3" `
     } | Invoke-Block
 }
 

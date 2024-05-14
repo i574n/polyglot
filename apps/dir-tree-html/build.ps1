@@ -9,8 +9,8 @@ $ErrorActionPreference = "Stop"
 
 
 if (!$fast) {
-    Invoke-Dib DirTreeHtml.dib
-    
+    { . ../spiral/dist/Supervisor$(_exe) --execute-command "../../target/release/spiral_builder$(_exe) dib --path DirTreeHtml.dib" } | Invoke-Block
+
     Get-Content ../../lib/spiral/networking.fsx | Write-Output
 }
 

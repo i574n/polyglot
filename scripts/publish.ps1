@@ -59,6 +59,7 @@ rsync -av `
     --include '*.spir' `
     --include '*.toml' `
     --include '*.ts' `
+    --include '*.vsix' `
     --include '*.wasm' `
     --include '*.webm' `
     --include '*.yaml' `
