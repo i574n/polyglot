@@ -60,7 +60,7 @@ class Mut2(Record):
 
 Mut2_reflection = _expr113
 
-def _expr115() -> TypeInfo:
+def _expr114() -> TypeInfo:
     return record_type("Trace.Mut3", [], Mut3, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -68,9 +68,9 @@ def _expr115() -> TypeInfo:
 class Mut3(Record):
     l0: Callable[[str], None]
 
-Mut3_reflection = _expr115
+Mut3_reflection = _expr114
 
-def _expr116() -> TypeInfo:
+def _expr115() -> TypeInfo:
     return union_type("Trace.US1", [], US1, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -86,7 +86,7 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr116
+US1_reflection = _expr115
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:

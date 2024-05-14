@@ -36,7 +36,7 @@ $targetDir = GetTargetDir $projectName
 cargo fmt --
 
 { cargo +nightly test --release -- --show-output } | Invoke-Block
-{ cargo +nightly build --release } | Invoke-Block
+{ cargo +nightly build --release } | Invoke-Block -OnError Continue
 
 if ($env:CI) {
     Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
