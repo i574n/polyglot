@@ -33,10 +33,10 @@ if (!$fast) {
             --execute-command "../../target/release/spiral_builder$(_exe) dib --path stream.dib --retries 3" `
             --execute-command "../../target/release/spiral_builder$(_exe) dib --path seq.dib --retries 3" `
             --execute-command "../../target/release/spiral_builder$(_exe) dib --path threading.dib --retries 3" `
+            --execute-command "../../target/release/spiral_builder$(_exe) dib --path file_system.dib --retries 3" `
             --execute-command "../../target/release/spiral_builder$(_exe) dib --path physics.dib --retries 3" `
             --execute-command "../../target/release/spiral_builder$(_exe) dib --path benchmark.dib --retries 3" `
             --execute-command "../../target/release/spiral_builder$(_exe) dib --path networking.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path file_system.dib --retries 3" `
     } | Invoke-Block
 }
 

@@ -75,7 +75,7 @@ $path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/System.
 $dir = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/lib"
 New-Item $dir -ItemType Directory -Force | Out-Null
 Copy-Item "$ScriptDir/../deps/Fable/src/fable-library-ts/lib/ts/big.js" $(Join-Path $dir "big.js") -Force
-# { bun build big.ts --minify --target=node --outfile=big.js } | Invoke-Block -Location $dir
+# { ~/.bun/bin/bun build big.ts --minify --target=node --outfile=big.js } | Invoke-Block -Location $dir
 # Remove-Item $(Join-Path $dir "big.ts") -Force -ErrorAction Ignore
 
 Write-Output "Packaging..."

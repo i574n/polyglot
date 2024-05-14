@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 . ../../../scripts/core.ps1
 
 
-{ bun install --frozen-lockfile } | Invoke-Block
+{ ~/.bun/bin/bun install --frozen-lockfile } | Invoke-Block
 
 EnsureSymbolicLink -Path "./LICENSE" -Target "../../../LICENSE"
 

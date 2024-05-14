@@ -591,11 +591,14 @@ let execute_with_options (options : execution_options) : i32 * string =
             |> from_pair
         | _ => fun () => null ()
 
+/// ### execute
 inl execute command =
     execution_options fun x => { x with
         command = command
     }
     |> execute_with_options
+
+/// ### test 1
 
 /// ## command
 nominal command = $'clap_Command'

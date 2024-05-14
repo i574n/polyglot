@@ -21,10 +21,6 @@
 
 #!pwsh
 
-{ pwsh ../lib/rust/fable/build.ps1 } | Invoke-Block
-
-#!pwsh
-
 { pwsh ../apps/spiral/builder/build.ps1 } | Invoke-Block
 
 #!pwsh

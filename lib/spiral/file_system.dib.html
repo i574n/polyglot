@@ -9891,7 +9891,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240513-2022-2675-7594-700400ed1703" / expected: '\\'
+<pre>assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240514-1249-4867-6736-600400de5649" / expected: '\\'
 </pre>
 </div>
 </div>
@@ -9924,7 +9924,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!spiral_builder_e420b432c1bbe37c6212f00a5f19ae7e304a650657d0446f22abd9c98d13aafe\20240513-2022-3138-9300-0000009afb30" / expected: '\\'
+assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!spiral_builder_e420b432c1bbe37c6212f00a5f19ae7e304a650657d0446f22abd9c98d13aafe\20240514-1250-0588-7158-00000058946f" / expected: '\\'
 
 
 </pre>
@@ -11440,10 +11440,6 @@ mod module_ccfa04bf {
 }
 pub use module_ccfa04bf::*;
 
-pub fn main() -&gt; Result&lt;(), String&gt; {
-    Ok(())
-}
-
 </pre>
 </div>
 </div>
@@ -12610,7 +12606,7 @@ assert_eq / actual: "spiral" / expected: "spiral"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_builder_d3a4fa669c1aa1689de5f1ff1b098cbc7aaa1851c72cb19e4a8fe091d8071a89\20240513-2022-5440-9722-00000054d68e
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_builder_d3a4fa669c1aa1689de5f1ff1b098cbc7aaa1851c72cb19e4a8fe091d8071a89\20240514-1250-2624-2263-000000440398
 assert_eq / actual: true / expected: true
 assert_eq / actual: false / expected: false
 </pre>
@@ -15872,8 +15868,8 @@ method0()
 
 00:00:00   debug #1 1
 00:00:00   debug #2 2
-00:00:00   debug #3 3
-00:00:00   debug #4 _1
+00:00:00   debug #3 _1
+00:00:00   debug #4 3
 00:00:00   debug #5 _2
 00:00:00   debug #6 4
 00:00:00   debug #7 file_system.delete_directory_async / path: test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
@@ -15881,7 +15877,7 @@ method0()
 00:00:02   debug #9 _3
 00:00:02   debug #10 5
 00:00:02   debug #11 6
-assert_between / actual: 122L / expected: struct (50L, 150L)
+assert_between / actual: 125L / expected: struct (50L, 150L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -19473,15 +19469,15 @@ method0()
 00:00:00   debug #4 _1
 00:00:00   debug #5 _2
 00:00:00   debug #6 4
-00:00:01   debug #7 file_system.wait_for_file_access / path: test.txt / retry: 100 / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240513-2023-0050-5019-50040046fb1e\test.txt' because it is being used by another process.
-00:00:01   debug #8 _3
-00:00:01   debug #9 _4
+00:00:01   debug #7 file_system.wait_for_file_access / path: test.txt / retry: 100 / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240514-1250-3021-2120-200400d3bb4d\test.txt' because it is being used by another process.
+00:00:02   debug #8 _3
+00:00:02   debug #9 _4
 00:00:02   debug #10 _5
 00:00:02   debug #11 _6
 00:00:02   debug #12 5
 00:00:02   debug #13 6
 00:00:02   debug #14 7
-assert_between / actual: 126L / expected: struct (50L, 150L)
+assert_between / actual: 128L / expected: struct (50L, 150L)
 assert_eq / actual: "1" / expected: "1"
 assert_eq / actual: true / expected: true
 </pre>
@@ -22991,12 +22987,12 @@ method0()
 00:00:00   debug #4 _1
 00:00:00   debug #5 _2
 00:00:00   debug #6 4
-00:00:00 warning #7 delete_file_async / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240513-2023-0562-6248-60040098979d\test.txt' because it is being used by another process.
-00:00:01 warning #8 delete_file_async / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240513-2023-0562-6248-60040098979d\test.txt' because it is being used by another process.
-00:00:02   debug #9 _3
+00:00:00 warning #7 delete_file_async / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240514-1250-3317-1756-100400e68ace\test.txt' because it is being used by another process.
+00:00:01 warning #8 delete_file_async / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240514-1250-3317-1756-100400e68ace\test.txt' because it is being used by another process.
+00:00:01   debug #9 _3
 00:00:02   debug #10 5
 00:00:02   debug #11 6
-assert_between / actual: 124L / expected: struct (50L, 150L)
+assert_between / actual: 128L / expected: struct (50L, 150L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -26850,12 +26846,12 @@ method0()
 00:00:00   debug #6 4
 00:00:00 warning #7 move_file_async / old_path: test.txt / new_path: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
 00:00:01 warning #8 move_file_async / old_path: test.txt / new_path: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
-00:00:02   debug #9 _3
+00:00:01   debug #9 _3
 00:00:02   debug #10 5
 00:00:02   debug #11 6
 00:00:02   debug #12 7
 00:00:02   debug #13 8
-assert_between / actual: 120L / expected: struct (50L, 150L)
+assert_between / actual: 128L / expected: struct (50L, 150L)
 assert_between / actual: 0L / expected: struct (0L, 0L)
 assert_eq / actual: "0" / expected: "0"
 assert_eq / actual: true / expected: true
@@ -27809,10 +27805,6 @@ mod module_ccfa04bf {
 }
 pub use module_ccfa04bf::*;
 
-pub fn main() -&gt; Result&lt;(), String&gt; {
-    Ok(())
-}
-
 </pre>
 </div>
 </div>
@@ -27910,7 +27902,7 @@ pub fn main() -&gt; Result&lt;(), String&gt; {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 52L / expected: 52L
+<pre>assert_eq / actual: 58L / expected: 58L
 </pre>
 </div>
 </div>

@@ -5,7 +5,7 @@ Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../../scripts/core.ps1
 
-# { bun build --target node --outdir out `
+# { ~/.bun/bin/bun build --target node --outdir out `
 #     src/extension.ts `
 #     media/cellOutputScrollButtons.ts `
 # } | Invoke-Block
