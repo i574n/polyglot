@@ -4,7 +4,7 @@
   "description": "Auxiliary utilities for Spiral in VSCode",
   "version": "0.0.1",
   "engines": {
-      "vscode": "^1.89.0"
+    "vscode": "^1.89.0"
   },
   "bugs": {
     "url": "https://github.com/i574n/polyglot/issues"
@@ -14,14 +14,14 @@
   },
   "publisher": "i574n",
   "categories": [
-      "Notebooks",
-      "Programming Languages",
-      "Testing",
-      "Debuggers",
-      "AI",
-      "Data Science",
-      "Visualization",
-      "Education"
+    "Notebooks",
+    "Programming Languages",
+    "Testing",
+    "Debuggers",
+    "AI",
+    "Data Science",
+    "Visualization",
+    "Education"
   ],
   "activationEvents": [
     "onLanguage:spiral",
@@ -45,17 +45,18 @@
     "mrakgr.spiral-lang-vscode"
   ],
   "contributes": {
-      "commands": []
+    "commands": []
   },
   "scripts": {
+    "outdated-pre": "npm-check-updates --target greatest"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-      "typescript": "~5.4",
-      "@vscode/vsce": "~2.26",
-      "vscode": "~1.1",
-      "@types/node": "~20.12",
-      "@types/vscode": "~1.89"
+    "npm-check-updates": "~17.0.0-5",
+    "typescript": "next",
+    "@vscode/vsce": "~2.26",
+    "vscode": "~1.1",
+    "@types/node": "~20.12",
+    "@types/vscode": "~1.89"
   }
 }

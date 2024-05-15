@@ -7896,7 +7896,7 @@ a.anchor-link {
                 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutAsync"</span><span class="p">)</span> <span class="n">_locals</span>
                 <span class="kc">None</span>
             <span class="o">|</span> <span class="n">Error</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutAsync** / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">_locals</span>
+                <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutAsync** / ex: %A</span><span class="si">{ex}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
                 <span class="kc">None</span>
         <span class="p">)</span>
 <span class="p">}</span>
@@ -8014,7 +8014,15 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 critical #4 runWithTimeoutAsync** / ex: System.Exception: error / timeout: 60
+<pre>00:00:01 critical #4 runWithTimeoutAsync** / ex: System.Exception: error
+   at FSI_0035.it@4-119.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1962-4.Invoke(Unit unitVar) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1964
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 60
 &lt;null&gt;
 
 </pre>
