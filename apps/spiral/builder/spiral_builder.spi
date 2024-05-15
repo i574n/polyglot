@@ -95,6 +95,7 @@ inl process_dib { path retries working_directory } =
                 runtime.execution_options fun x => { x with
                     command = $'$"dotnet repl --exit-after-run --run \\\"{!path}\\\" --output-path \\\"{!path}.ipynb\\\""'
                     environment_variables = ;[ "AUTOMATION", "True" ]
+                    trace = false
                     working_directory
                 }
                 |> runtime.execute_with_options

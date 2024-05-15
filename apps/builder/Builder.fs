@@ -40,7 +40,7 @@ module Builder =
                     SpiralRuntime.execution_options (fun x ->
                         { x with
                             l1 = command
-                            l5 = Some fileDir
+                            l6 = Some fileDir
                         }
                     )
                     |> SpiralRuntime.execute_with_options_async

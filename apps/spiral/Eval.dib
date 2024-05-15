@@ -551,7 +551,7 @@ let inline eval
                                             TraceLevel.Critical, error, 0, ("", (0, 0), (0, 0))
                                         )
                                     |]
-                            
+
                             if errors |> Array.isEmpty |> not
                             then return Error (Exception "Eval.eval / fsx error"), errors
                             else
@@ -658,7 +658,7 @@ let run file args traceLevel = async {
     let! code = file |> SpiralFileSystem.read_all_text_async
 
     let hashHex = code |> SpiralCrypto.hash_text
-    
+
     let workspaceName = "spiral_eval"
 
     let! fsprojPath =
@@ -675,11 +675,11 @@ let run file args traceLevel = async {
 
     let cargoTomlPath = projectDir </> $"Cargo.toml"
     let workspaceCargoTomlPath = workspaceDir </> $"Cargo.toml"
-    
+
     let emptyCargoTomlContent () =
         let id = System.Random().Next (1000000000, 2000000000)
         $"[package]\nname = \"spiral_eval_{id}\"\nversion = \"0.0.1\"\nedition = \"2021\"\n\n[[bin]]\nname = \"spiral_eval_{id}\"\npath = \"spiral_eval.rs\""
-    
+
     if cargoTomlPath |> File.Exists |> not then
         do! emptyCargoTomlContent () |> SpiralFileSystem.write_all_text_exists cargoTomlPath
 
@@ -720,7 +720,7 @@ let run file args traceLevel = async {
         SpiralRuntime.execution_options (fun x ->
             { x with
                 l1 = command
-                l5 = workspaceRootExternal
+                l6 = workspaceRootExternal
             }
         )
         |> SpiralRuntime.execute_with_options_async
@@ -735,7 +735,7 @@ let run file args traceLevel = async {
             SpiralRuntime.execution_options (fun x ->
                 { x with
                     l1 = $"dotnet fable \"{fsprojPath}\" --optimize --lang rs --extension .rs --outDir \"{projectDir}\""
-                    l5 = workspaceRootExternal
+                    l6 = workspaceRootExternal
                 }
             )
             |> SpiralRuntime.execute_with_options_async
@@ -774,7 +774,7 @@ let run file args traceLevel = async {
                         SpiralRuntime.execution_options (fun x ->
                             { x with
                                 l1 = $"cargo fmt --manifest-path \"{cargoTomlPath}\" --"
-                                l5 = workspaceRootExternal
+                                l6 = workspaceRootExternal
                             }
                         )
                         |> SpiralRuntime.execute_with_options_async
@@ -786,7 +786,7 @@ let run file args traceLevel = async {
                             System.Text.RegularExpressions.Regex.Match
                                 (cargoFmtResult, @"failed to read `(.*?Cargo.toml)`")
                             |> fun m -> m.Groups.[1].Value
-                        
+
                         if missingTomlPath |> File.Exists |> not then
                             do! emptyCargoTomlContent () |> SpiralFileSystem.write_all_text_exists missingTomlPath
 
@@ -836,11 +836,11 @@ let run file args traceLevel = async {
                             "RUSTFLAGS", "-C prefer-dynamic -C strip=symbols -C link-arg=-s -C debuginfo=0"
                             // "RUSTFLAGS", "-C prefer-dynamic -C link-arg=-s -C debuginfo=0 -C strip=symbols"
                         |]
-                        l5 = workspaceRootExternal
+                        l6 = workspaceRootExternal
                     }
                 )
                 |> SpiralRuntime.execute_with_options_async
-            
+
             [ ".d"; ".exe"; ".pdb"; "" ]
             |> List.map (fun ext -> workspaceDir </> $"target/debug/spiral_builder_{hashHex}{ext}")
             |> List.filter File.Exists
@@ -861,7 +861,7 @@ let run file args traceLevel = async {
                         |> Ok
                     with ex ->
                         $"ex: {ex} / rsPath: {rsPath} / cargoRunResult: {cargoRunResult} / spiralBuilderResult: {spiralBuilderResult}" |> Error
-                
+
                 let result =
                     [
                         "extension", "rs"

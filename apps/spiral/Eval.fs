@@ -649,7 +649,7 @@ module Eval =
             SpiralRuntime.execution_options (fun x ->
                 { x with
                     l1 = command
-                    l5 = workspaceRootExternal
+                    l6 = workspaceRootExternal
                 }
             )
             |> SpiralRuntime.execute_with_options_async
@@ -664,7 +664,7 @@ module Eval =
                 SpiralRuntime.execution_options (fun x ->
                     { x with
                         l1 = $"dotnet fable \"{fsprojPath}\" --optimize --lang rs --extension .rs --outDir \"{projectDir}\""
-                        l5 = workspaceRootExternal
+                        l6 = workspaceRootExternal
                     }
                 )
                 |> SpiralRuntime.execute_with_options_async
@@ -703,7 +703,7 @@ module Eval =
                             SpiralRuntime.execution_options (fun x ->
                                 { x with
                                     l1 = $"cargo fmt --manifest-path \"{cargoTomlPath}\" --"
-                                    l5 = workspaceRootExternal
+                                    l6 = workspaceRootExternal
                                 }
                             )
                             |> SpiralRuntime.execute_with_options_async
@@ -765,7 +765,7 @@ module Eval =
                                 "RUSTFLAGS", "-C prefer-dynamic -C strip=symbols -C link-arg=-s -C debuginfo=0"
                                 // "RUSTFLAGS", "-C prefer-dynamic -C link-arg=-s -C debuginfo=0 -C strip=symbols"
                             |]
-                            l5 = workspaceRootExternal
+                            l6 = workspaceRootExternal
                         }
                     )
                     |> SpiralRuntime.execute_with_options_async

@@ -150,7 +150,7 @@ let inline awaitCompiler port cancellationToken = async {
                                 }
                                 do! loop 0
                         })
-                        l5 = Some workspaceRoot
+                        l6 = Some workspaceRoot
                     }
                 )
                 |> SpiralRuntime.execute_with_options_async
@@ -397,7 +397,7 @@ modules:
     do! spiprojCode |> SpiralFileSystem.write_all_text_exists spiprojPath
 
     let fsxPath = codeDir </> "main.fsx"
-    
+
     if fsxPath |> System.IO.File.Exists |> not
     then return mainPath, None
     else

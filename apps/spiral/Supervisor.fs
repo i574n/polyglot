@@ -98,7 +98,7 @@ module Supervisor =
                                     }
                                     do! loop 0
                             })
-                            l5 = Some workspaceRoot
+                            l6 = Some workspaceRoot
                         }
                     )
                     |> SpiralRuntime.execute_with_options_async
