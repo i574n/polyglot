@@ -20,8 +20,8 @@ dotnet fable --optimize --lang rs --extension .rs
 #     --extension .rs `
 #     --outDir "$ScriptDir"
 
-cargo fmt --
+cargo +nightly fmt --
 
-cargo build --release
+cargo +nightly build --release
 
 { . "$ScriptDir/../../../../target/release/cli" } | Invoke-Block

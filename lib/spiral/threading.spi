@@ -1,77 +1,73 @@
-// // # threading
-
+/// # threading
 open rust_operators
 
-// // ## cancellation_token
+/// ## types
+inl types () =
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::thread::JoinHandle<$0>\")>]\n#endif\ntype std_thread_JoinHandle<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>]\n#endif\ntype std_sync_Arc<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Mutex<$0>\")>]\n#endif\ntype std_sync_Mutex<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::MutexGuard<$0>\")>]\n#endif\ntype std_sync_MutexGuard<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::PoisonError<$0>\")>]\n#endif\ntype std_sync_PoisonError<'T> = class end"
 
+/// ## join_handle
+nominal join_handle t = $'std_thread_JoinHandle<`t>'
+
+/// ## cancellation_token
 nominal cancellation_token = $'System.Threading.CancellationToken'
 
-// // ## cancellation_token_source
-
+/// ## cancellation_token_source
 nominal cancellation_token_source = $'System.Threading.CancellationTokenSource'
 
-// // ## cancellation_token_registration
-
+/// ## cancellation_token_registration
 nominal cancellation_token_registration = $'System.Threading.CancellationTokenRegistration'
 
-// // ## cancellation_source_token
-
+/// ## cancellation_source_token
 inl cancellation_source_token (x : cancellation_token_source) : cancellation_token =
     $'!x.Token'
 
-// // ## cancellation_source_cancel
-
+/// ## cancellation_source_cancel
 inl cancellation_source_cancel (x : cancellation_token_source) : () =
     run_target function
         | Fsharp (Native) => fun () =>
             $'!x.Cancel' ()
         | _ => fun () => null ()
 
-// // ## create_linked_token_source
-
+/// ## create_linked_token_source
 inl create_linked_token_source (x : array_base cancellation_token) : cancellation_token_source =
     x |> $'System.Threading.CancellationTokenSource.CreateLinkedTokenSource'
 
-// // ## sleep
-
+/// ## sleep
 inl sleep (duration : date_time.duration) : () =
     inl duration = join duration
     !\($'"std::thread::sleep(!duration)"')
 
-// // ## concurrent_stack
-
+/// ## concurrent_stack
 nominal concurrent_stack t = $'System.Collections.Concurrent.ConcurrentStack<`t>'
 
-// // ## concurrent_stack_push
-
+/// ## concurrent_stack_push
 inl concurrent_stack_push forall t. (item : t) (stack : concurrent_stack t) : () =
     $'!stack.Push' item
 
-// // ## token_none
-
+/// ## token_none
 inl token_none () : cancellation_token =
     $'`cancellation_token.None'
 
-// // ## new_concurrent_stack
-
+/// ## new_concurrent_stack
 inl new_concurrent_stack forall t. () : concurrent_stack t =
     $'System.Collections.Concurrent.ConcurrentStack<`t>' ()
 
-// // ## token_register
-
+/// ## token_register
 inl token_register (fn : () -> ()) (ct : cancellation_token) : cancellation_token_registration =
     fn |> $'!ct.Register'
 
-// // ## new_cancellation_token_source
-
+/// ## new_cancellation_token_source
 inl new_cancellation_token_source () : cancellation_token_source =
     $'new `cancellation_token_source ()'
 
 inl token_cancellation_requested (ct : cancellation_token) : bool =
     $'!ct.IsCancellationRequested'
 
-// // ## new_disposable_token
-
+/// ## new_disposable_token
 inl new_disposable_token (merge_token : optionm'.option' cancellation_token) =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -86,7 +82,44 @@ inl new_disposable_token (merge_token : optionm'.option' cancellation_token) =
             cts |> cancellation_source_token, disposable
         | _ => fun () => null ()
 
-// // ## main
+/// ## arc
+nominal arc t = $"std_sync_Arc<`t>"
 
+/// ## new_arc
+inl new_arc forall t. (x : t) : arc t =
+    !\\(x, $'"std::sync::Arc::new($0)"')
+
+/// ## mutex
+nominal mutex t = $"std_sync_Mutex<`t>"
+
+/// ## new_mutex
+inl new_mutex forall t. (x : t) : mutex t =
+    !\\(x, $'"std::sync::Mutex::new($0)"')
+
+/// ## new_arc_mutex
+inl new_arc_mutex forall t. (x : t) : arc (mutex t) =
+    x |> new_mutex |> new_arc
+
+/// ## arc_clone
+inl arc_clone forall t. (x : arc t) : arc t =
+    inl x = join x
+    !\($'"std::sync::Arc::clone(&!x)"')
+
+/// ## mutex_guard
+nominal mutex_guard t = $"std_sync_MutexGuard<`t>"
+
+/// ## poison_error
+nominal poison_error t = $"std_sync_PoisonError<`t>"
+
+/// ## mutex_lock
+inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard t) (poison_error (mutex_guard t)) =
+    !\\(x, $'"$0.lock()"')
+
+/// ## mutex_guard_value
+inl mutex_guard_value forall t. (x : mutex_guard t) : rust.ref' t =
+    !\\(x, $'"&$0"')
+
+/// ## main
 inl main () =
+    types ()
     $"let new_disposable_token x = !new_disposable_token x" : ()

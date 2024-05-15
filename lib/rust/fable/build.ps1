@@ -1,4 +1,5 @@
 param(
+    $fast,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -6,8 +7,16 @@ $ErrorActionPreference = "Stop"
 . ../../../scripts/core.ps1
 
 
-Invoke-Dib build.dib
+{ dotnet fable --optimize --lang rs --extension .rs } | Invoke-Block
 
-$targetDir = "./fable_modules/fable-library-rust/target"
+$libPath = "./fable_modules/fable-library-rust"
 
-Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
+$rsPath = "$libPath/src/Range.rs"
+
+(Get-Content $rsPath) `
+    -replace "use crate::String_::fromCharCode;", "use crate::String_::fromChar;" `
+    -replace "fromCharCode\(c\)", "std::char::from_u32(c).unwrap()" `
+    | Set-Content $rsPath
+
+{ cargo check } | Invoke-Block -Location $libPath -OnError Continue
+{ cargo clippy } | Invoke-Block -Location $libPath -OnError Continue

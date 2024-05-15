@@ -2,7 +2,7 @@ pub mod Polyglot {
     use super::*;
     pub mod Common {
         use super::*;
-        use crate::Lib::SpiralTrace;
+        use crate::Lib::SpiralTrace::trace as trace_1;
         use crate::Trace::US0;
         use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::LrcPtr;
@@ -16,6 +16,8 @@ pub mod Polyglot {
             static q: OnceInit<string> = OnceInit::new();
             q.get_or_init(|| string("\"")).clone()
         }
+        ///
+        /// ## TraceLevel
         #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum TraceLevel {
             Verbose,
@@ -69,6 +71,8 @@ pub mod Polyglot {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
         }
+        ///
+        /// ## trace
         pub fn to_trace_level(_arg: LrcPtr<Polyglot::Common::TraceLevel>) -> US0 {
             match _arg.as_ref() {
                 Polyglot::Common::TraceLevel::Debug => US0::US0_1,
@@ -81,9 +85,9 @@ pub mod Polyglot {
         pub fn trace(
             level: LrcPtr<Polyglot::Common::TraceLevel>,
             r#fn: Func0<string>,
-            getLocals: Func0<string>,
+            locals: Func0<string>,
         ) {
-            (SpiralTrace::trace(Polyglot::Common::to_trace_level(level)))(r#fn)(getLocals);
+            (trace_1(Polyglot::Common::to_trace_level(level)))(r#fn)(locals);
         }
     }
 }

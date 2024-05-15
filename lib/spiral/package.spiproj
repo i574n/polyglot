@@ -2,6 +2,7 @@ packages:
     |core-
 modules:
     guid
+    base-
     rust
     rust_operators
     ts
@@ -9,29 +10,30 @@ modules:
     optionm'
     optionm'_operators
     resultm
-    base-
     console
-    am'
     listm'
-    listm'_operators
+    iter_prototypes
+    iter
+    am'
     seq
     math
+    mapm
     sm'
     sm'_operators
-    crypto
+    env
     date_time
     trace-
     common-
-    wasm
-    mapm
     threading
     async
-    networking
-    benchmark
     stream
+    runtime
     file_system
     file_system_operators
-    runtime
+    crypto
+    wasm
+    networking
+    benchmark
     util
     physics
     leptos/

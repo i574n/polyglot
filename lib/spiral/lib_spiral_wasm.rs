@@ -84,3 +84,13 @@ pub use _Sm::Sm;
 #[path = "./crypto_wasm.rs"]
 pub mod _Crypto;
 pub use _Crypto::Crypto;
+
+#[allow(non_camel_case_types)]
+#[allow(non_snake_case)]
+#[allow(non_upper_case_globals)]
+#[allow(unreachable_code)]
+#[allow(unused_imports)]
+#[allow(unused_variables)]
+#[path = "./common_wasm.rs"]
+pub mod _Common;
+pub use _Common::Common;

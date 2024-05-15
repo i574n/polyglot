@@ -1,94 +1,37 @@
-// // # common
+/// # common
 
-// // ## prototype
+/// ## types
+inl types () =
+    env.types ()
+    rust.types ()
+    sm'.types ()
 
+/// ## prototype
 prototype (~:>) r : forall t. t -> r
 
-// // ## run_target
+/// ## run_target
 
-// // ## upcast
-
+/// ## upcast
 inl upcast forall t u. (x : t) : u =
     $'!x :> `u '
 
-// // ## downcast
-
+/// ## downcast
 inl downcast forall t u. (x : t) : u =
     $'!x :?> `u '
 
-// // ## unativeint
-
-nominal unativeint = $"unativeint"
-
-inl unativeint forall t {int}. (n : t) : unativeint =
-    $"unativeint !n"
-
-// // ## pair
-
-// // ## new_pair
-
-inl new_pair forall a b. (a : a) (b : b) : pair a b =
-    $"!a, !b"
-
-// // ## from_pair
-
-inl from_pair forall a b. (pair : pair a b) : a * b =
-    $"let (a, b) = !pair"
-    $"a", $"b"
-
-// // ## memoize
-
-nominal lazy t = $'Lazy<`t>'
-
-inl memoize forall t. (fn : () -> t) : () -> t =
-    inl fn = join fn
-    inl result : lazy t = $'lazy !fn ()'
-    fun () => $'!result.Value'
-
-// // ## to_any
-
+/// ## to_any
 inl to_any forall t. (obj : t) : any =
     $"!obj"
 
 instance (~:>) any = to_any
 
-// // ## (+.)
+/// ## (||>)
 
-inl (+.) forall t. (a : t) (b : t) : t =
-    $"!a + !b"
-
-// // ## (-.)
-
-inl (-.) forall t. (a : t) (b : t) : t =
-    $"!a - !b"
-
-// // ## (*.)
-
-inl (*.) forall t. (a : t) (b : t) : t =
-    $"!a * !b"
-
-// // ## (/.)
-
-inl (/.) forall t. (a : t) (b : t) : t =
-    $"!a / !b"
-
-// // ## (=.)
-
-inl (=.) forall t. (a : t) (b : t) : bool =
-    $"!a = !b"
-
-// // ## (||>)
-
-inl (||>) (arg1, arg2) fn =
-    arg2 |> fn arg1
-
-// // ## flip
-
+/// ## flip
 inl flip fn a b =
     fn b a
 
-// // ## join_body
-
+/// ## join_body
 inl join_body body acc x =
     if var_is x |> not
     then body acc x
@@ -96,8 +39,7 @@ inl join_body body acc x =
         inl acc = dyn acc
         join body acc x
 
-// // ## join_body_unit
-
+/// ## join_body_unit
 inl join_body_unit body d x =
     if var_is d |> not
     then body x
@@ -105,52 +47,42 @@ inl join_body_unit body d x =
         inl x = dyn x
         join body x
 
-// // ## nameof
-
+/// ## nameof
 inl nameof x : string =
     $"nameof !x"
 
-// // ## get_environment_variable
-
-inl get_environment_variable (var : string) : string =
-    $"System.Environment.GetEnvironmentVariable !var"
-
-// // ## disposable
-
+/// ## disposable
 nominal disposable t = $"System.IDisposable"
 
-// // ## dispose
-
+/// ## dispose
 inl dispose (disposable : disposable _) : () =
     disposable |> $'_.Dispose()'
 
-// // ## new_disposable
-
+/// ## new_disposable
 inl new_disposable (fn : () -> ()) : disposable _ =
     run_target function
-        | Fsharp _ => fun () => $'{ new System.IDisposable with member _.Dispose () = !fn () }'
-        // | Rust _ =>
-        //     fun () =>
-                // $'{ new System.IDisposable with member _.Dispose () = Fable.Core.RustInterop.emitRustExpr () "!fn()" }'
+        | Rust _ => fun () =>
+            global "type Disposable (f : unit -> unit) = interface System.IDisposable with member _.Dispose () = f ()"
+            $'new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr !fn "$0()" )'
+        | Fsharp _ => fun () =>
+            inl fn = join fn
+            $'{ new System.IDisposable with member _.Dispose () = !fn () }'
         | _ => fun () => null ()
 
-// // ## return
-
+/// ## return
 inl return forall t. (x : t) : () =
     $'return !x '
 
 inl return' forall t. (x : t) : t =
     $'return !x '
 
-// // ## sleep
-
+/// ## sleep
 inl sleep (n : i32) : () =
     run_target function
         | Fsharp (Native) => fun () => $'System.Threading.Thread.Sleep' n
         | _ => fun () => ()
 
-// // ## retry_fn
-
+/// ## retry_fn
 inl retry_fn forall t. retries (fn : () -> t) : option t =
     let rec loop retry =
         try
@@ -159,8 +91,9 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
                 then fn () |> Some
                 else None
             fun ex =>
-                inl get_locals () = $'$"retry: {!retry} / ex: {ex |> SpiralSm.format_exception} / {!get_locals ()}"' : string
-                // trace Warning (fun () => "retry_fn") getLocals
+                trace Warning
+                    fun () => "retry_fn"
+                    fun () => $'$"retry: {!retry} / ex: %A{!ex} / {!_locals ()}"'
                 sleep 1
                 None
         |> function
@@ -168,11 +101,14 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
             | None => loop (retry + 1)
     loop 0
 
-// // ## main
-
+/// ## main
 inl main () =
+    types ()
+    init_trace_state None
     inl new_disposable x : _ () = new_disposable x
     $"let new_disposable x = !new_disposable x" : ()
 
     inl retry_fn (r : i32) (x : () -> _) : optionm'.option' () = retry_fn r x |> optionm'.box
     $"let retry_fn x = !retry_fn x" : ()
+    inl memoize (fn : () -> ()) : () -> () = memoize fn
+    $"let memoize x = !memoize x" : ()

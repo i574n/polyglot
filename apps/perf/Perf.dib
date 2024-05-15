@@ -13,7 +13,7 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 open benchmark
@@ -23,10 +23,6 @@ open benchmark
 #if !INTERACTIVE
 open Lib
 #endif
-
-#!spiral
-
-inl (/@) x = listm'.(/@) x
 
 #!markdown
 
@@ -829,9 +825,9 @@ rotateStringsTests
 
 #!spiral
 
-// // test
-// // timeout=60000
-// // print_code=true
+//// test
+//// timeout=60000
+//// print_code=true
 
 inl get_solutions () =
     [
@@ -840,7 +836,7 @@ inl get_solutions () =
         //     let resultList =
         //         List.fold (fun acc x =>
         //             let rotate (text : string) (letter : string) = text.Substring (1, input.Length - 1) + letter
-        //             [ rotate (if acc.IsEmpty then input else acc.Head) (string x) ] /@ acc
+        //             [ rotate (if acc.IsEmpty then input else acc.Head) (string x) ] ++ acc
         //         ) [] (Seq.toList input)
 
         //     List.foldBack (fun acc x => x + acc + " ") resultList ""
@@ -897,7 +893,7 @@ inl get_solutions () =
         //         let rec loop (acc : list (list char)) = function
         //             | _ when acc.Length = list.Length => acc
         //             | head :: tail =>
-        //                 let item = tail /@ [ head ]
+        //                 let item = tail ++ [ head ]
         //                 loop (item :: acc) item
         //             | [] => []
         //         loop [] list
@@ -965,7 +961,7 @@ inl get_solutions () =
         // fun input =>
         //     Array.singleton 0
         //     |> Array.append (a ;[ 1 .. input.Length - 1 ])
-        // //    |> Array.Parallel.map (fun i => input.[ i .. ] + input.[ .. i - 1 ])
+        ////    |> Array.Parallel.map (fun i => input.[ i .. ] + input.[ .. i - 1 ])
         //     |> SpiralSm.concat " "
     ]
 
@@ -995,11 +991,11 @@ rotate_strings_tests ()
 
 #!spiral
 
-// // test
-// // rust=
-// // print_code=false
+//// test
+//// print_code=false
 
 // rotate_strings_tests ()
+()
 
 #!markdown
 
@@ -1007,9 +1003,9 @@ rotate_strings_tests ()
 
 #!spiral
 
-// // test
-// // timeout=90000
-// // print_code=true
+//// test
+//// timeout=90000
+//// print_code=true
 
 inl binary_search_semi_open_1 arr target left right =
     inl rec body left right =
@@ -1258,9 +1254,3 @@ let rec hasAnyPairCloseToEachotherTests =
     runAll (nameof hasAnyPairCloseToEachotherTests) _count solutions testCases
 hasAnyPairCloseToEachotherTests
 |> sortResultList
-
-#!spiral
-
-// // test
-
-()

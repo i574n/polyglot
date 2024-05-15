@@ -126,7 +126,6 @@ details > div {{
 """
 
     /// ## Arguments
-
     [<RequireQualifiedAccess>]
     type Arguments =
         | [<Argu.ArguAttributes.ExactlyOnce>] Dir of string
@@ -139,7 +138,6 @@ details > div {{
                 | Html _ -> nameof Html
 
     /// ## main
-
     let main args =
         let argsMap = args |> Runtime.parseArgsMap<Arguments>
 

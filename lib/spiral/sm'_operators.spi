@@ -1,5 +1,5 @@
 inl (~#) s =
-    s |> sm'.raw_string_literal
+    s |> sm'.(~#)
 
 inl (~##) s =
-    s |> sm'.raw_string_literal_static
+    s |> sm'.(~##)

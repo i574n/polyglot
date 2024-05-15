@@ -12,7 +12,7 @@ open rust_operators
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -69,6 +69,24 @@ inl flatten forall t u. (x : result (result t u) u) : result t u =
 
 #!markdown
 
+## try'
+
+#!spiral
+
+inl try' forall t u. (x : result' t u) : t =
+    !\\(x, $'"$0?"')
+
+#!markdown
+
+## unwrap'
+
+#!spiral
+
+inl unwrap' forall t u. (x : result' t u) : t =
+    !\\(x, $'"$0.unwrap()"')
+
+#!markdown
+
 ## get
 
 #!spiral
@@ -77,6 +95,53 @@ inl get forall t e. (source : result t e) : t =
     match source with
     | Ok x => x
     | Error x => failwith $'$"resultm.get / Result value was Error: {!x}"'
+
+#!markdown
+
+## unbox
+
+#!spiral
+
+inl unbox forall t u. (x : result' t u) : result t u =
+    inl ok x : result t u = Ok x
+    inl error x : result t u = Error x
+    real
+        typecase t with
+        | () => $"match !x with Ok () -> !ok () | Error x -> !error x" : result t u
+        | _ => $"match !x with Ok x -> !ok x | Error x -> !error x" : result t u
+
+#!markdown
+
+## unbox'
+
+#!spiral
+
+inl unbox' forall t u. (x : result' t u) : result t u =
+    inl ok x : result t u = Ok x
+    inl error x : result t u = Error x
+    real
+        typecase t with
+        | () =>
+            (~!\\)
+                `((result' t u -> result t u) * (result' t u -> result t u))
+                `(result t u)
+                ((ok, error), ($'"match !x { Ok(()) => $0(()), Err(e) => $1(e) }"' : string))
+        | _ =>
+            (~!\\)
+                `((result' t u -> result t u) * (result' t u -> result t u))
+                `(result t u)
+                ((ok, error), ($'"match !x { Ok(x) => $0(x), Err(e) => $1(e) }"' : string))
+
+#!markdown
+
+## box
+
+#!spiral
+
+inl box forall t u. (x : result t u) : result' t u =
+    match x with
+    | Ok x => $"Ok !x"
+    | Error err => $"Error !err"
 
 #!markdown
 
@@ -107,8 +172,20 @@ inl map_error forall t e u. (fn : e -> u) (source : result t e) : result t u =
 #!spiral
 
 inl map' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
+    (!\\(source, $'"true; let _result = $0.map(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
+    !\($'"_result"')
+
+#!markdown
+
+## map''
+
+#!spiral
+
+inl map'' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
+    inl fn = join fn
     inl source = join source
-    !\\((source, fn), $'"$0.map(|x| $1(x))"')
+    !\($'"!source.map(|x| !fn(x))"')
 
 #!markdown
 
@@ -122,43 +199,50 @@ inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u 
 
 #!markdown
 
-## unbox
+## map_error''
 
 #!spiral
 
-inl unbox forall t u. (x : result' t u) : result t u =
-    inl ok x : result t u = Ok x
-    inl error x : result t u = Error x
-    $"match !x with Ok x -> !ok x | Error x -> !error x"
+inl map_error'' forall t e u. (fn : e -> u) (source : result' t e) : result' t u =
+    (!\\(source, $'"true; let _result = $0.map_err(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
+    !\($'"_result"')
 
 #!markdown
 
-## box
+## option_ok_or
 
 #!spiral
 
-inl box forall t u. (x : result t u) : result' t u =
-    match x with
-    | Ok x => $"Ok !x"
-    | Error err => $"Error !err"
+inl option_ok_or forall t e. (e : e) (source : optionm'.option' t) : result' t e =
+    !\\(source, $'"$0.ok_or(!e)"')
 
 #!markdown
 
-## try'
+## as_ref
 
 #!spiral
 
-inl try' forall t u. (x : result' t u) : t =
-    !\\(x, $'"$0?"')
+inl as_ref forall t e. (source : result' t e) : result' (rust.ref' t) (rust.ref' e) =
+    !\($'"!source.as_ref()"')
 
 #!markdown
 
-## unwrap'
+## as_ref'
 
 #!spiral
 
-inl unwrap' forall t u. (x : result' t u) : t =
-    !\\(x, $'"$0.unwrap()"')
+inl as_ref' forall t e. (source : rust.ref' (result' t e)) : result' (rust.ref' t) (rust.ref' e) =
+    !\($'"!source.as_ref()"')
+
+#!markdown
+
+## unwrap_or'
+
+#!spiral
+
+inl unwrap_or' forall t u. (default : t) (x : result' t u) : t =
+    !\\((x, default), $'"$0.unwrap_or($1)"')
 
 #!markdown
 
@@ -209,8 +293,8 @@ inl rc_try_unwrap forall t. (x : rust.rc t) : result' t (rust.rc t) =
 
 #!spiral
 
-// // test
-// // rust=true
+//// test
+///! rust
 
 types ()
 rust.new_rc ()

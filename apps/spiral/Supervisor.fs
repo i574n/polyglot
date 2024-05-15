@@ -13,7 +13,6 @@ module Supervisor =
     open Microsoft.AspNetCore.SignalR.Client
 
     /// ## sendJson
-
     let inline sendJson (port : int) (json : string) = async {
         let! portOpen = SpiralNetworking.test_port_open port
         if portOpen then
@@ -22,25 +21,23 @@ module Supervisor =
                 do! connection.StartAsync () |> Async.AwaitTask
                 let! result = connection.InvokeAsync<string>("ClientToServerMsg", json) |> Async.AwaitTask
                 do! connection.StopAsync () |> Async.AwaitTask
-                trace Debug (fun () -> $"sendJson / port: {port} / json: {json} / result.Length: {result |> Option.ofObj |> Option.map String.length}") getLocals
+                trace Verbose (fun () -> $"sendJson / port: {port} / json: {json |> SpiralSm.ellipsis_end 200} / result: {result |> Option.ofObj |> Option.map (SpiralSm.ellipsis_end 200)}") _locals
                 return Some result
             with ex ->
-                trace Critical (fun () -> $"sendJson / port: {port} / json: {json} / ex: {ex |> SpiralSm.format_exception}") getLocals
+                trace Critical (fun () -> $"sendJson / port: {port} / json: {json |> SpiralSm.ellipsis_end 200} / ex: {ex |> SpiralSm.format_exception}") _locals
                 return None
         else
-            trace Debug (fun () -> "sendJson / error: port not open") getLocals
+            trace Debug (fun () -> "sendJson / error: port not open") _locals
             return None
     }
 
     /// ## sendObj
-
     let inline sendObj port obj =
         obj
         |> System.Text.Json.JsonSerializer.Serialize
         |> sendJson port
 
     /// ## awaitCompiler
-
     type VSCPos = {| line : int; character : int |}
     type VSCRange = VSCPos * VSCPos
     type RString = VSCRange * string
@@ -53,53 +50,66 @@ module Supervisor =
         | ParserErrors of {| uri : string; errors : RString list |}
         | TypeErrors of {| uri : string; errors : RString list |}
 
-    let repositoryRoot = SpiralFileSystem.get_repository_root ()
+    let workspaceRoot = SpiralFileSystem.get_workspace_root ()
 
     let inline awaitCompiler port cancellationToken = async {
+        let host = "127.0.0.1"
         let struct (ct, disposable) = cancellationToken |> SpiralThreading.new_disposable_token
         let! ct = ct |> SpiralAsync.merge_cancellation_token_with_default_async
 
         let compiler = MailboxProcessor.Start (fun inbox -> async {
-            let! availablePort = SpiralNetworking.get_available_port (Some 60) port
+            let! availablePort = SpiralNetworking.get_available_port (Some 500) port
             if availablePort <> port then
                 inbox.Post (port, false)
             else
                 let compilerPath =
-                    repositoryRoot </> "deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release"
+                    workspaceRoot </> "deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release"
                     |> System.IO.Path.GetFullPath
 
                 let dllPath = compilerPath </> "Spiral.dll"
 
-                let command = $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64"
-                let onLine = fun struct (_, line, _) -> async {
-                    if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
-                        do! SpiralNetworking.wait_for_port_access (Some 500) true availablePort |> Async.Ignore
-
-                        let rec loop retry = async {
-                            let getLocals () = $"port: {availablePort} / retry: {retry} / {getLocals ()}"
-                            try
-                                let pingObj = {| Ping = true |}
-                                let! pingResult = pingObj |> sendObj availablePort
-                                trace Verbose (fun () -> $"awaitCompiler / Ping / result: {pingResult}") getLocals
-                            with ex ->
-                                trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") getLocals
-                                do! Async.Sleep 10
-                                do! loop (retry + 1)
-                        }
-                        do! loop 0
-                        inbox.Post (availablePort, true)
-                }
-
                 let! exitCode, result =
-                    SpiralRuntime.execute_with_options_async struct (Some ct, command, Some onLine, Some repositoryRoot)
+                    SpiralRuntime.execution_options (fun x ->
+                        { x with
+                            l0 = Some ct
+                            l1 = $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64"
+                            l3 = Some (fun struct (_, line, _) -> async {
+                                if line |> SpiralSm.contains $"System.IO.IOException: Failed to bind to address http://{host}:{port}: address already in use." then
+                                    inbox.Post (port, false)
 
-                trace Debug (fun () -> $"awaitCompiler / exitCode: {exitCode} / result: {result}") getLocals
+                                if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
+                                    let rec loop retry = async {
+                                        do!
+                                            SpiralNetworking.wait_for_port_access (Some 100) true availablePort
+                                            |> Async.runWithTimeoutAsync 2000
+                                            |> Async.Ignore
+
+                                        let _locals () = $"port: {availablePort} / retry: {retry} / {_locals ()}"
+                                        try
+                                            let pingObj = {| Ping = true |}
+                                            let! pingResult = pingObj |> sendObj availablePort
+                                            trace Verbose (fun () -> $"awaitCompiler / Ping / result: '{pingResult}'") _locals
+
+                                            inbox.Post (availablePort, true)
+                                        with ex ->
+                                            trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") _locals
+                                            do! Async.Sleep 10
+                                            do! loop (retry + 1)
+                                    }
+                                    do! loop 0
+                            })
+                            l6 = Some workspaceRoot
+                        }
+                    )
+                    |> SpiralRuntime.execute_with_options_async
+
+                trace Debug (fun () -> $"awaitCompiler / exitCode: {exitCode} / result: {result}") _locals
                 disposable.Dispose ()
         }, ct)
 
         let! serverPort, managed = compiler.Receive ()
 
-        let connection = HubConnectionBuilder().WithUrl($"http://127.0.0.1:{serverPort}").Build ()
+        let connection = HubConnectionBuilder().WithUrl($"http://{host}:{serverPort}").Build ()
         do! connection.StartAsync () |> Async.AwaitTask
 
         let event = Event<_> ()
@@ -119,7 +129,10 @@ module Supervisor =
                     do! connection.StopAsync () |> Async.AwaitTask
                     disposable.Dispose ()
                     if managed
-                    then do! SpiralNetworking.wait_for_port_access (Some 2000) false serverPort |> Async.Ignore
+                    then do!
+                        SpiralNetworking.wait_for_port_access (Some 100) false serverPort
+                        |> Async.runWithTimeoutAsync 2000
+                        |> Async.Ignore
                 }
                 |> Async.RunSynchronously
             )
@@ -131,29 +144,17 @@ module Supervisor =
             disposable'
     }
 
-    /// ## getFileUri
-
-    let inline getFileUri (path : string) =
-        let path =
-            if SpiralRuntime.is_windows () |> not
-            then path
-            else $"{path.[0] |> System.Char.ToLower}{path.[1..]}" |> SpiralSm.replace "\\" "/"
-        $"file:///{path |> SpiralSm.trim_start [| '/' |]}"
-
     /// ## getFilePathFromUri
-
     let inline getFilePathFromUri uri =
         match System.Uri.TryCreate (uri, System.UriKind.Absolute) with
         | true, uri -> uri.AbsolutePath |> System.IO.Path.GetFullPath
         | _ -> failwith "invalid uri"
 
     /// ## getCompilerPort
-
     let inline getCompilerPort () =
         13805
 
     /// ## serialize_obj
-
     let serializeObj obj =
             obj
             |> FSharp.Json.Json.serialize
@@ -162,7 +163,6 @@ module Supervisor =
             |> SpiralSm.replace "\\n" "\n"
 
     /// ## buildFile
-
     let inline buildFile timeout port cancellationToken path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let fileDir = fullPath |> System.IO.Path.GetDirectoryName
@@ -244,11 +244,11 @@ module Supervisor =
                     | _ -> fsxContentResult, errors, typeErrorCount
             )
             |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors, typeErrorCount) ->
-                trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 400} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") getLocals
+                trace Debug (fun () -> $"buildFile / takeWhileInclusive / path: {path} / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 400} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") _locals
 #if INTERACTIVE
                 let errorWait = 2
 #else
-                let errorWait = 5
+                let errorWait = 4
 #endif
                 match fsxContent, errors with
                 | None, [] when typeErrorCount > errorWait -> false
@@ -261,30 +261,40 @@ module Supervisor =
             |> Async.runWithTimeoutAsync timeout
             |> Async.StartChild
 
-        let fileOpenObj = {| FileOpen = {| uri = fullPath |> getFileUri; spiText = code |} |}
+        let fullPathUri = fullPath |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
+
+        let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
         let! _fileOpenResult = fileOpenObj |> sendObj serverPort
 
-        do! Async.Sleep 60
+        // do! Async.Sleep 60
 
-        let buildFileObj = {| BuildFile = {| uri = fullPath |> getFileUri; backend = "Fsharp" |} |}
+        let buildFileObj = {| BuildFile = {| uri = fullPathUri; backend = "Fsharp" |} |}
         let! _buildFileResult = buildFileObj |> sendObj serverPort
 
-        return!
+        let! result =
             outputChild
             |> Async.map (function
-                | Some (Ok (Some (message, errors, _))) ->
-                    message, errors |> List.distinct |> List.rev
+                | Some (Ok (Some (fsxCode, errors, _))) ->
+                    fsxCode, errors |> List.distinct |> List.rev
                 | Some (Error ex) ->
-                    trace Critical (fun () -> $"buildFile / error: {ex |> serializeObj}") getLocals
+                    trace Critical (fun () -> $"buildFile / error: {ex |> serializeObj}") _locals
                     None, []
                 | _ -> None, []
             )
+
+        if fileDir |> SpiralSm.starts_with (workspaceRoot </> "target") then
+            let fileDirUri = fileDir |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
+            let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
+            let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
+            ()
+
+        let fsxPath = fileDir </> $"{fileName}.fsx"
+        return fsxPath, result
     }
 
     /// ## persistCode
-
     let inline persistCode code = async {
-        let targetDir = repositoryRoot </> "target/polyglot/spiral_eval"
+        let targetDir = workspaceRoot </> "target/polyglot/spiral_eval"
 
         let packagesDir = targetDir </> "packages"
 
@@ -292,14 +302,15 @@ module Supervisor =
 
         let codeDir = packagesDir </> hashHex
 
+        let mainPath = codeDir </> "main.spi"
+
         codeDir |> System.IO.Directory.CreateDirectory |> ignore
 
-        let mainPath = codeDir </> "main.spi"
         do! code |> SpiralFileSystem.write_all_text_exists mainPath
 
         let spiprojPath = codeDir </> "package.spiproj"
         let spiprojCode =
-            $"""packageDir: {repositoryRoot </> "lib"}
+            $"""packageDir: {workspaceRoot </> "lib"}
 packages:
     |core-
     spiral-
@@ -308,19 +319,31 @@ modules:
 """
         do! spiprojCode |> SpiralFileSystem.write_all_text_exists spiprojPath
 
-        return mainPath
+        let fsxPath = codeDir </> "main.fsx"
+
+        if fsxPath |> System.IO.File.Exists |> not
+        then return mainPath, None
+        else
+            let! oldCode = mainPath |> SpiralFileSystem.read_all_text_async
+            if oldCode <> code
+            then return mainPath, None
+            else
+                let! fsxCode = fsxPath |> SpiralFileSystem.read_all_text_async
+                return mainPath, Some (fsxPath, fsxCode |> SpiralSm.replace "\r\n" "\n")
     }
 
     /// ## buildCode
-
     let inline buildCode timeout cancellationToken code = async {
-        let! mainPath = persistCode code
-        let port = getCompilerPort ()
-        return! mainPath |> buildFile timeout port cancellationToken
+        let! mainPath, fsx = code |> persistCode
+        match fsx with
+        | Some (fsxPath, fsxCode) -> return mainPath, (fsxPath, Some fsxCode), []
+        | None ->
+            let port = getCompilerPort ()
+            let! fsxPath, (fsxCode, errors) = mainPath |> buildFile timeout port cancellationToken
+            return mainPath, (fsxPath, fsxCode), errors
     }
 
     /// ## getFileTokenRange
-
     let inline getFileTokenRange port cancellationToken path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let! code = fullPath |> SpiralFileSystem.read_all_text_async
@@ -335,14 +358,18 @@ modules:
             | None -> (getCompilerPort (), FSharp.Control.AsyncSeq.empty, token, new_disposable id) |> Async.init
         use _ = disposable
 
-        let fileOpenObj = {| FileOpen = {| uri = fullPath |> getFileUri; spiText = code |} |}
+        let fullPathUri = fullPath |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
+
+        let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
         let! _fileOpenResult = fileOpenObj |> sendObj serverPort
+
+        // do! Async.Sleep 60
 
         let fileTokenRangeObj =
             {|
                 FileTokenRange =
                     {|
-                        uri = fullPath |> getFileUri
+                        uri = fullPathUri
                         range =
                             [|
                                 {| line = 0; character = 0 |}
@@ -355,19 +382,41 @@ modules:
             |> sendObj serverPort
             |> Async.withCancellationToken ct
 
+        let fileDir = fullPath |> System.IO.Path.GetDirectoryName
+        if fileDir |> SpiralSm.starts_with (workspaceRoot </> "target") then
+            let fileDirUri = fileDir |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
+            let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
+            let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
+            ()
+
         return fileTokenRangeResult |> Option.map FSharp.Json.Json.deserialize<int array>
     }
 
     /// ## getCodeTokenRange
-
     let inline getCodeTokenRange cancellationToken code = async {
-        let! mainPath = persistCode code
-        let port = getCompilerPort ()
-        return! mainPath |> getFileTokenRange (Some port) cancellationToken
+        let! mainPath, _ = persistCode code
+
+        let codeDir = mainPath |> System.IO.Path.GetDirectoryName
+        let tokensPath = codeDir </> "tokens.json"
+        let! tokens = async {
+            if tokensPath |> System.IO.File.Exists |> not
+            then return None
+            else
+                let! text = tokensPath |> SpiralFileSystem.read_all_text_async
+
+                return
+                    if text.Length > 2
+                    then text |> FSharp.Json.Json.deserialize<int array> |> Some
+                    else None
+        }
+        match tokens with
+        | Some tokens -> return tokens |> Some
+        | None ->
+            let port = getCompilerPort ()
+            return! mainPath |> getFileTokenRange (Some port) cancellationToken
     }
 
     /// ## Arguments
-
     [<RequireQualifiedAccess>]
     type Arguments =
         | Build_File of string * string
@@ -376,6 +425,7 @@ modules:
         | [<Argu.ArguAttributes.Unique>] Timeout of int
         | [<Argu.ArguAttributes.Unique>] Port of int
         | [<Argu.ArguAttributes.Unique>] Parallel
+        | [<Argu.ArguAttributes.Unique>] Exit_On_Error
 
         interface Argu.IArgParserTemplate with
             member s.Usage =
@@ -386,9 +436,9 @@ modules:
                 | Timeout _ -> nameof Timeout
                 | Port _ -> nameof Port
                 | Parallel -> nameof Parallel
+                | Exit_On_Error-> nameof Exit_On_Error
 
     /// ## main
-
     let main args =
         let argsMap = args |> Runtime.parseArgsMap<Arguments>
 
@@ -431,6 +481,8 @@ modules:
 
         let isParallel = argsMap |> Map.containsKey (nameof Arguments.Parallel)
 
+        let isExitOnError = argsMap |> Map.containsKey (nameof Arguments.Exit_On_Error)
+
         async {
             let port = port |> Option.defaultWith getCompilerPort
             let struct (localToken, disposable) = SpiralThreading.new_disposable_token None
@@ -440,12 +492,12 @@ modules:
             let buildFileAsync =
                 buildFileActions
                 |> List.map (fun (inputPath, outputPath) -> async {
-                    let! outputCode, errors = inputPath |> buildFile timeout serverPort None
+                    let! _fsxPath, (outputCode, errors) = inputPath |> buildFile timeout serverPort None
 
                     errors
                     |> List.map snd
                     |> List.iter (fun error ->
-                        trace Critical (fun () -> $"main / error: {error |> serializeObj}") getLocals
+                        trace Critical (fun () -> $"main / error: {error |> serializeObj}") _locals
                     )
 
                     match outputCode with
@@ -453,6 +505,9 @@ modules:
                         do! outputCode |> SpiralFileSystem.write_all_text_async outputPath
                         return 0
                     | None ->
+                        if isExitOnError
+                        then System.Environment.Exit 1
+
                         return 1
                 })
 
@@ -465,6 +520,9 @@ modules:
                         do! tokenRange |> FSharp.Json.Json.serialize |> SpiralFileSystem.write_all_text_async outputPath
                         return 0
                     | None ->
+                        if isExitOnError
+                        then System.Environment.Exit 1
+
                         return 1
                 })
 
@@ -472,9 +530,18 @@ modules:
                 executeCommandActions
                 |> List.map (fun command -> async {
                     let! exitCode, result =
-                        SpiralRuntime.execute_with_options_async struct (Some compilerToken, command, None, None)
+                        SpiralRuntime.execution_options (fun x ->
+                            { x with
+                                l0 = Some compilerToken
+                                l1 = command
+                            }
+                        )
+                        |> SpiralRuntime.execute_with_options_async
 
-                    trace Debug (fun () -> $"main / executeCommand / exitCode: {exitCode}") getLocals
+                    trace Debug (fun () -> $"main / executeCommand / exitCode: {exitCode} / command: {command}") _locals
+
+                    if isExitOnError && exitCode > 0
+                    then System.Environment.Exit exitCode
 
                     return exitCode
                 })

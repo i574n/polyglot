@@ -17,7 +17,7 @@
 
 #!pwsh
 
-rustup update
+rustup +nightly update
 
 #!pwsh
 
@@ -25,11 +25,15 @@ rustup update
 
 #!pwsh
 
+{ cargo +nightly install sccache --locked } | Invoke-Block -OnError Continue
+
+#!pwsh
+
 { cargo +nightly install wasm-pack --locked } | Invoke-Block -OnError Continue
 
 #!pwsh
 
-{ cargo +nightly install trunk --version 0.19.1 } | Invoke-Block -OnError Continue
+{ cargo +nightly install trunk --version 0.20.0 } | Invoke-Block -OnError Continue
 
 #!pwsh
 
@@ -66,10 +70,6 @@ npx -y playwright@1.42.1 install
 #!pwsh
 
 { Set-PSRepository -Name PSGallery -InstallationPolicy Trusted } | Invoke-Block -OnError Continue
-
-#!pwsh
-
-{ Install-Module -Name PSToml -Scope CurrentUser -WhatIf } | Invoke-Block -OnError Continue
 
 #!pwsh
 

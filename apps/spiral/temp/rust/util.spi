@@ -178,8 +178,8 @@ inl new_string (str : ref' str) : string =
 
 inl string_slice (str : string) : ref' str =
     inl str = join str
-    // // emit_expr () $"\"!str.to_string()\""
-    // // emit_expr () $"\"alloc::string::to_string(!str)\""
+    //// emit_expr () $"\"!str.to_string()\""
+    //// emit_expr () $"\"alloc::string::to_string(!str)\""
     // emit_expr str "($0).to_string()"
     // emit_expr str $"\"String::from(core::ops::Deref::deref($0))\""
     emit_expr str $"\"fable_library_rust::String_::LrcStr::as_str($0)\""
@@ -187,8 +187,8 @@ inl string_slice (str : string) : ref' str =
 
 inl to_std_string (str : ref' str) : std_string =
     // inl str = join str
-    // // emit_expr () $"\"!str.to_string()\""
-    // // emit_expr () $"\"alloc::string::to_string(!str)\""
+    //// emit_expr () $"\"!str.to_string()\""
+    //// emit_expr () $"\"alloc::string::to_string(!str)\""
     // emit_expr str "($0).to_string()"
     emit_expr str $"\"String::from(core::ops::Deref::deref($0))\""
     // emit_expr str $"\"String::from(*$0)\""
@@ -197,9 +197,9 @@ inl to_std_string (str : ref' str) : std_string =
 // inl to_std_string' (str : string) : std_string =
 //     emit_expr str "std::string::String::from($0.to_string())"
 
-// // inl deref_ref forall t. (x : ref' t) : t =
-// //     inl x = join x
-// //     emit_expr () $"\"!x.to_string()\""
+//// inl deref_ref forall t. (x : ref' t) : t =
+////     inl x = join x
+////     emit_expr () $"\"!x.to_string()\""
 
 // inl to_string_ref forall t. (x : ref' t) : t =
 //     // inl x = join x
@@ -409,7 +409,7 @@ instance (~!!) emit_type t' = fun (x : t) =>
         // typecase t with
         // | string => emit_expr `std_string `(emit_type t') (format `t x) "$0"
         // | string' => emit_expr `string' `(emit_type t') x "$0"
-        // // | string => emit_expr `string' `(emit_type t') (x |> format `t) "$0"
+        //// | string => emit_expr `string' `(emit_type t') (x |> format `t) "$0"
         // | _ =>
             inl x : std_string = format `t x
             real_unbox `std_string `(emit_type t') x
@@ -1294,14 +1294,14 @@ inl with_load_event forall t.
             // $"\"  !event(value0);\"" /+
             // $"\"};\"" /+
             // $"\"let closure = Box::new(closure);\"" /+
-            // // $"\"let closure = wasm_bindgen::closure::Closure::wrap(closure);\"" /+
+            //// $"\"let closure = wasm_bindgen::closure::Closure::wrap(closure);\"" /+
             // $"\"let closure : wasm_bindgen::closure::Closure<dyn Fn(web_sys::Event) -> ()> = wasm_bindgen::closure::Closure::new(closure);\"" /+
             // $"\"let closure = closure.as_ref();\"" /+
             // $"\"let closure = wasm_bindgen::JsCast::unchecked_ref(closure);\"" /+
-            // //  $"\"let dom = <dominator::Dom as Into<web_sys::HtmlIFrameElement>>::into(!dom);\"" /+
-            // // $"\"let dom : web_sys::HtmlIFrameElement = !dom;\"" /+
-            // // $"\"let dom = &$0;\"" /+
-            // // $"\"let dom = (*dom).clone(); \"" /+
+            ////  $"\"let dom = <dominator::Dom as Into<web_sys::HtmlIFrameElement>>::into(!dom);\"" /+
+            //// $"\"let dom : web_sys::HtmlIFrameElement = !dom;\"" /+
+            //// $"\"let dom = &$0;\"" /+
+            //// $"\"let dom = (*dom).clone(); \"" /+
             // $"\"let ev = dom.add_event_listener_with_callback(\\\"load\\\", closure);\"" /+
             // $"\"ev.unwrap();\"" /+
             $"\"()\"")

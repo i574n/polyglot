@@ -8,16 +8,15 @@
 
 #!fsharp
 
-#!import ../../lib/fsharp/Notebooks.dib
-#!import ../../lib/fsharp/Testing.dib
-
-#!fsharp
-
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
 #r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"
-#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
+
+#!fsharp
+
+#!import ../../lib/fsharp/Notebooks.dib
+#!import ../../lib/fsharp/Testing.dib
 
 #!fsharp
 
@@ -63,7 +62,7 @@ type FileSystemChange =
 
 let inline watchDirectoryWithFilter filter shouldReadContent path =
     let fullPath = path |> System.IO.Path.GetFullPath
-    let getLocals () = $"filter: {filter} / {getLocals ()}"
+    let _locals () = $"filter: {filter} / {_locals ()}"
 
     let watcher =
         new System.IO.FileSystemWatcher (
@@ -161,7 +160,7 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
 
     let disposable =
         new_disposable (fun () ->
-            trace Debug (fun () -> "watchWithFilter / Disposing watch stream") getLocals
+            trace Debug (fun () -> "watchWithFilter / Disposing watch stream") _locals
             watcher.EnableRaisingEvents <- false
             watcher.Dispose ()
         )
@@ -229,8 +228,8 @@ let inline testEventsRaw
         |> List.rev
         |> List.map (fun (diff, n, event) -> $"{n} / {diff} / {event}" |> SpiralSm.ellipsis_end 100L)
         |> SpiralSm.concat "\n"
-    let getLocals () = $"eventsLog: \n{eventsLog} / {getLocals ()}"
-    trace Debug (fun () -> "testEventsRaw") getLocals
+    let _locals () = $"eventsLog: \n{eventsLog} / {_locals ()}"
+    trace Debug (fun () -> "testEventsRaw") _locals
 
     events
     |> Seq.toList

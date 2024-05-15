@@ -12,14 +12,14 @@ module Builder =
     open SpiralFileSystem.Operators
 
     /// ## buildProject
-
     let inline buildProject runtime outputDir path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let fileDir = fullPath |> System.IO.Path.GetDirectoryName
         let extension = fullPath |> System.IO.Path.GetExtension
 
-        let getLocals () = $"fullPath: {fullPath} / {getLocals ()}"
-        trace Debug (fun () -> "buildProject") getLocals
+        trace Debug
+            (fun () -> "buildProject")
+            (fun () -> $"fullPath: {fullPath} / {_locals ()}")
 
         match extension with
         | ".fsproj" -> ()
@@ -37,7 +37,13 @@ module Builder =
             |> List.map (fun runtime -> async {
                 let command = $@"dotnet publish ""{path}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
                 let! exitCode, _result =
-                    SpiralRuntime.execute_with_options_async struct (None, command, None, Some fileDir)
+                    SpiralRuntime.execution_options (fun x ->
+                        { x with
+                            l1 = command
+                            l6 = Some fileDir
+                        }
+                    )
+                    |> SpiralRuntime.execute_with_options_async
                 return exitCode
             })
             |> Async.Sequential
@@ -45,13 +51,18 @@ module Builder =
     }
 
     /// ## persistCodeProject
+    let inline persistCodeProject packages modules name hash code = async {
+        trace Debug
+            (fun () -> "persistCodeProject")
+            (fun () -> $"packages: {packages} / modules: {modules} / name: {name} / hash: {hash} / code.Length: {code |> String.length} / {_locals ()}")
 
-    let inline persistCodeProject packages modules name code = async {
-        let getLocals () = $"packages: {packages} / modules: {modules} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
-        trace Debug (fun () -> "persistCodeProject") getLocals
+        let workspaceRoot = SpiralFileSystem.get_workspace_root ()
 
-        let repositoryRoot = SpiralFileSystem.get_repository_root ()
-        let targetDir = repositoryRoot </> "target/polyglot/builder" </> name
+        let targetDir =
+            let targetDir = workspaceRoot </> "target/polyglot/builder" </> name
+            match hash with
+            | Some hash -> targetDir </> "packages" </> hash
+            | None -> targetDir
         System.IO.Directory.CreateDirectory targetDir |> ignore
 
         let filePath = targetDir </> $"{name}.fs" |> System.IO.Path.GetFullPath
@@ -59,7 +70,7 @@ module Builder =
 
         let modulesCode =
             modules
-            |> List.map (fun path -> $"""<Compile Include="{repositoryRoot </> path}" />""")
+            |> List.map (fun path -> $"""<Compile Include="{workspaceRoot </> path}" />""")
             |> SpiralSm.concat "\n        "
 
         let fsprojPath = targetDir </> $"{name}.fsproj"
@@ -82,7 +93,7 @@ module Builder =
         <Compile Include="{filePath}" />
     </ItemGroup>
 
-    <Import Project="{repositoryRoot}/.paket/Paket.Restore.targets" />
+    <Import Project="{workspaceRoot}/.paket/Paket.Restore.targets" />
 </Project>
 """
         do! fsprojCode |> SpiralFileSystem.write_all_text_exists fsprojPath
@@ -97,14 +108,18 @@ module Builder =
     }
 
     /// ## buildCode
-
     let inline buildCode runtime packages modules outputDir name code = async {
-        let! fsprojPath = code |> persistCodeProject packages modules name
-        return! fsprojPath |> buildProject runtime outputDir
+        let! fsprojPath = code |> persistCodeProject packages modules name None
+        let! exitCode = fsprojPath |> buildProject runtime outputDir
+        if exitCode > 0 then
+            let! fsprojText = fsprojPath |> SpiralFileSystem.read_all_text_async
+            trace Critical
+                (fun () -> "buildCode")
+                (fun () -> $"code: {code |> SpiralSm.ellipsis_end 400} / fsprojText: {fsprojText} / {_locals ()}")
+        return exitCode
     }
 
     /// ## readFile
-
     let inline readFile path = async {
         let! code = path |> SpiralFileSystem.read_all_text_async
 
@@ -122,7 +137,6 @@ module Builder =
     }
 
     /// ## buildFile
-
     let inline buildFile runtime packages modules path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let dir = fullPath |> System.IO.Path.GetDirectoryName
@@ -132,16 +146,14 @@ module Builder =
     }
 
     /// ## persistFile
-
     let inline persistFile packages modules path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let name = fullPath |> System.IO.Path.GetFileNameWithoutExtension
         let! code = fullPath |> readFile
-        return! code |> persistCodeProject packages modules name
+        return! code |> persistCodeProject packages modules name None
     }
 
     /// ## Arguments
-
     [<RequireQualifiedAccess>]
     type Arguments =
         | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce>] Path of path : string
@@ -160,7 +172,6 @@ module Builder =
                 | Persist_Only -> nameof Persist_Only
 
     /// ## main
-
     let main args =
         let argsMap = args |> Runtime.parseArgsMap<Arguments>
 

@@ -9,68 +9,68 @@
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/builder/build.ps1" } | Invoke-Block
+{ pwsh ../apps/builder/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/parser/build.ps1" } | Invoke-Block
+{ pwsh ../apps/parser/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/spiral/build.ps1" } | Invoke-Block
+{ pwsh ../apps/spiral/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../lib/rust/fable/build.ps1" } | Invoke-Block
+{ pwsh ../apps/spiral/builder/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/spiral/rust_builder/build.ps1" } | Invoke-Block
+{ pwsh ../lib/fsharp/build.ps1 -sequential 1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../lib/fsharp/build.ps1" -sequential 1 } | Invoke-Block
+{ pwsh ../lib/math/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../lib/math/build.ps1" } | Invoke-Block
+{ pwsh ../apps/plot/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/plot/build.ps1" } | Invoke-Block
+{ pwsh ../apps/perf/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../lib/spiral/build.ps1" -sequential 1 } | Invoke-Block
+{ pwsh ../apps/dir-tree-html/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/scheduler/build.ps1" } | Invoke-Block
+{ pwsh ../lib/spiral/build.ps1 -sequential 1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/chat/build.ps1" } | Invoke-Block
+{ pwsh ../apps/scheduler/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/spiral/temp/extension/build.ps1" } | Invoke-Block
+{ pwsh ../apps/chat/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/spiral/temp/test/build.ps1" } | Invoke-Block
+{ pwsh ../apps/spiral/temp/extension/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/perf/build.ps1" } | Invoke-Block
+{ pwsh ../apps/spiral/temp/test/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/dir-tree-html/build.ps1" } | Invoke-Block
+{ pwsh ../apps/spiral/vscode/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/ipfs/build.ps1" } | Invoke-Block
+{ pwsh ../apps/ipfs/build.ps1 } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/outdated.ps1" } | Invoke-Block
+{ pwsh ./outdated.ps1 } | Invoke-Block

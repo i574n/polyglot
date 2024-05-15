@@ -32,7 +32,6 @@ rsync -av `
     --include '*.css' `
     --include '*.csproj' `
     --include '*.dependencies' `
-    --include '*.dart' `
     --include '*.dib' `
     --include '*.editorconfig' `
     --include '*.exs' `
@@ -50,7 +49,6 @@ rsync -av `
     --include '*.md' `
     --include '*.nix' `
     --include '*.out' `
-    --include '*.php' `
     --include '*.ps1' `
     --include '*.py' `
     --include '*.references' `
@@ -61,6 +59,7 @@ rsync -av `
     --include '*.spir' `
     --include '*.toml' `
     --include '*.ts' `
+    --include '*.vsix' `
     --include '*.wasm' `
     --include '*.webm' `
     --include '*.yaml' `
@@ -78,4 +77,4 @@ Get-ChildItem -Path ../dist -Recurse -Force | Where-Object { $_.Name.StartsWith(
     Rename-Item -Path $_.FullName -NewName "_$($_.Name.Substring(1))"
 }
 
-{ . ../apps/dir-tree-html/dist/DirTreeHtml$(GetExecutableSuffix) --dir ../dist --html ../dist/index.html } | Invoke-Block
+{ . ../apps/dir-tree-html/dist/DirTreeHtml$(_exe) --dir ../dist --html ../dist/index.html } | Invoke-Block

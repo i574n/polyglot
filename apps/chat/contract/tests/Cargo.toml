@@ -1,15 +1,13 @@
 [package]
 name = "chat_contract_tests"
-version = "0.0.1"
-edition = "2021"
-workspace = "../../../../"
-description = ""
-repository.workspace = true
+version.workspace = true
+edition.workspace = true
 license-file.workspace = true
+repository.workspace = true
 
 [dependencies]
+serde_json = { workspace = true }
 anyhow = "~1.0"
-serde_json = { version = "~1.0", features = ["arbitrary_precision"] }
 tokio = { version = ">=1.28", features = ["full"] }
 near-workspaces = { version = "~0.10", features = ["experimental", "unstable"] }
 

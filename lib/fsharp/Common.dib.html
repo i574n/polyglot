@@ -7648,7 +7648,7 @@ a.anchor-link {
     <span class="o">|</span> <span class="ne">Warning</span>
     <span class="o">|</span> <span class="n">Critical</span>
 
-<span class="n">let</span> <span class="n">inline</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="s2">""</span>
+<span class="n">let</span> <span class="n">inline</span> <span class="n">_locals</span> <span class="p">()</span> <span class="o">=</span> <span class="s2">""</span>
 </pre></div>
 </div>
 </div>
@@ -7680,9 +7680,9 @@ a.anchor-link {
     <span class="o">|</span> <span class="ne">Warning</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_3</span>
     <span class="o">|</span> <span class="n">Critical</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_4</span>
 
-<span class="n">let</span> <span class="n">trace</span> <span class="n">level</span> <span class="n">fn</span> <span class="n">getLocals</span> <span class="o">=</span>
+<span class="n">let</span> <span class="n">trace</span> <span class="n">level</span> <span class="n">fn</span> <span class="nb">locals</span> <span class="o">=</span>
     <span class="n">let</span> <span class="n">level</span> <span class="o">=</span> <span class="n">level</span> <span class="o">|&gt;</span> <span class="n">to_trace_level</span>
-    <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">trace</span> <span class="n">level</span> <span class="n">fn</span> <span class="n">getLocals</span>
+    <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">trace</span> <span class="n">level</span> <span class="n">fn</span> <span class="nb">locals</span>
 </pre></div>
 </div>
 </div>
@@ -7698,7 +7698,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"test"</span><span class="p">)</span> <span class="n">getLocals</span>
+<span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"test"</span><span class="p">)</span> <span class="n">_locals</span>
 </pre></div>
 </div>
 </div>
@@ -7711,7 +7711,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 debug #1 test
+<pre>00:00:00   debug #1 test
 </pre>
 </div>
 </div>

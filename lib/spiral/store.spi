@@ -33,7 +33,7 @@ inl transaction_read_only (store_names : array_base string) (rexie : wasm.rexie)
     inl store_names =
         store_names
         |> am'.to_vec
-        |> am'.vec_map sm'.to_std_string
+        |> am'.vec_map' sm'.to_std_string
     inl rexie = join rexie
     !\($'"!rexie.transaction(&!store_names, rexie::TransactionMode::ReadOnly)"')
     |> resultm.map_error' fun (x : wasm.rexie_error) => x |> sm'.format'

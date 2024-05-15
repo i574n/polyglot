@@ -45,14 +45,15 @@ function Invoke-Block {
         }
     }
 
+    $OldLocation = Get-Location
     if ($Location -ne "") {
-        $OldLocation = Get-Location
         Set-Location $Location
     }
 
     $result = $null
 
-    while ($Retries -gt 0) {
+    $retry = 1
+    while ($retry -le $Retries) {
         try {
             $Error.Clear()
             $exitcode = 0
@@ -73,10 +74,10 @@ function Invoke-Block {
             $exitcode = -1
         }
         if ($exitcode -ne 0 -or $Error.Count -gt 0) {
-            $msg = "`n# Invoke-Block / `$Retry: $Retries / `$Location: $Location / Get-Location: $(Get-Location) / `$OnError: $OnError / `$exitcode: $exitcode / `$EnvVars: $($EnvironmentVariables | ConvertTo-Json) / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
+            $msg = "`n# Invoke-Block / `$retry: $retry/$Retries / `$Location: $Location / Get-Location: $(Get-Location) / `$OnError: $OnError / `$exitcode: $exitcode / `$EnvVars: $($EnvironmentVariables | ConvertTo-Json) / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
 
             Write-Host $msg
-            if ($OnError -eq "Stop" -and $Retries -le 1) {
+            if ($OnError -eq "Stop" -and $retry -eq $Retries) {
                 if ($host.Name -match "Interactive") {
                     [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Publish([Microsoft.DotNet.Interactive.Events.CommandFailed]::new([System.Exception]::new($msg), [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Command))
                 } else {
@@ -84,15 +85,13 @@ function Invoke-Block {
                 }
             }
             $Error.Clear()
-            $Retries--
+            $retry++
             continue
         }
         break
     }
 
-    if ($Location -ne "") {
-        Set-Location $OldLocation
-    }
+    Set-Location $OldLocation
 
     if (!($Linux -and $IsWindows)) {
         if ($EnvironmentVariables) {
@@ -123,25 +122,6 @@ function Get-LastSortedItem {
     (Get-ChildItem -Path $Path -Filter $Filter -Recurse | Sort-Object { [regex]::Replace($_.FullName, '\d+', { $args[0].Value.PadLeft(20) }) })[-1]
 }
 
-function Update-Toml {
-    param (
-        [Parameter(Mandatory)]
-        [string] $tomlPath,
-        [Parameter(Mandatory)]
-        [scriptblock] $ContentModifier
-    )
-
-    if (!(Test-Path $tomlPath)) {
-        New-Item -ItemType File -Path $tomlPath -Force | Out-Null
-    }
-
-    $tomlContent = Get-Content $tomlPath | ConvertFrom-Toml
-
-    $tomlContent = &$ContentModifier $tomlContent
-
-    $tomlContent | ConvertTo-Toml -Depth 3 | Set-Content -Path $tomlPath
-}
-
 function Update-Json {
     param (
         [Parameter(Mandatory)]
@@ -151,7 +131,7 @@ function Update-Json {
     )
 
     if (!(Test-Path $jsonPath)) {
-        New-Item -ItemType File -Path $jsonPath -Force | Out-Null
+        New-Item $jsonPath -ItemType File -Force | Out-Null
     }
 
     $jsonContent = Get-Content $jsonPath | ConvertFrom-Json
@@ -162,8 +142,9 @@ function Update-Json {
 }
 
 function EnsureSymbolicLink([string] $Path, [string] $Target) {
-    $Path = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot $Path))
-    $Target = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot $Target))
+    $Location = Get-Location
+    $Path = [IO.Path]::GetFullPath((Join-Path $Location $Path))
+    $Target = [IO.Path]::GetFullPath((Join-Path $Location $Target))
 
     if (-Not (Test-Path (Split-Path $Path))) {
         Write-Output "Parent directory does not exist: $Path"
@@ -172,7 +153,9 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
 
     if (Test-Path $Path) {
         $attr = (Get-Item $Path).Attributes
-        if ($null -ne $attr -and (-not ($attr -band [IO.FileAttributes]::Directory))) {
+        if ($null -ne $attr `
+                -and (-not ($attr -band [IO.FileAttributes]::Directory)) `
+                -and ((-not ($attr -band [IO.FileAttributes]::ReparsePoint)))) {
             Write-Output "Removing file: $Path ($attr)"
             Remove-Item $Path
         }
@@ -200,7 +183,7 @@ function Search-Command {
     }
 }
 
-function GetExecutableSuffix {
+function _exe {
     if ($IsWindows) {
         return ".exe"
     } else {
@@ -216,7 +199,9 @@ function Invoke-Dib {
         [Parameter(Position = 1, ValueFromRemainingArguments)]
         [Object[]] $_args
     )
-    $mergedArgs = @{ "ScriptBlock" = { dotnet repl --run "$path" --output-path "$path.ipynb" --exit-after-run } }
+    $mergedArgs = @{
+        "ScriptBlock" = { dotnet repl --run "$path" --output-path "$path.ipynb" --exit-after-run }
+    }
     $key = $null
     foreach ($item in $_args) {
         if ($item -match "^-") {
@@ -227,6 +212,8 @@ function Invoke-Dib {
         }
     }
     Write-Output "core.Invoke-Dib / Get-Location: $(Get-Location) / path: $path / _args: $($_args | ConvertTo-Json)"
+
+    $mergedArgs["EnvironmentVariables"] = @{ AUTOMATION = $True }
 
     { Invoke-Block @mergedArgs } | Invoke-Block
 

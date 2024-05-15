@@ -41,17 +41,17 @@ if ($IsLinux) {
     curl -fsSL https://bun.sh/install | bash
     $env:PATH = "~/.bun/bin:$env:PATH"
 
-    if (!(Search-Command "mono")) {
-        sudo apt-add-repository 'deb https://download.mono-project.com/repo/ubuntu stable-focal main'
-        sudo apt install -y mono-complete
-    }
+    # if (!(Search-Command "mono")) {
+    #     sudo apt-add-repository 'deb https://download.mono-project.com/repo/ubuntu stable-focal main'
+    #     sudo apt install -y mono-complete
+    # }
 }
 
 pip install -r ../requirements.txt
 
 dotnet tool restore
 
-{ . $ScriptDir/dep_paket.ps1 } | Invoke-Block
+# { . $ScriptDir/dep_paket.ps1 } | Invoke-Block
 
 { dotnet paket restore } | Invoke-Block
 
@@ -63,3 +63,5 @@ dotnet tool restore
 Set-Location $ScriptDir
 
 Invoke-Dib init.dib
+{ pwsh ../lib/rust/fable/build.ps1 } | Invoke-Block
+{ cargo +nightly build --release } | Invoke-Block -Location ../apps/spiral/builder

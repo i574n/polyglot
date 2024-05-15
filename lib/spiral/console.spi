@@ -1,7 +1,6 @@
-// // # console
+/// # console
 
-// // ## write_line
-
+/// ## write_line
 inl write_line obj : () =
     $"System.Console.WriteLine !obj"
 

@@ -1,85 +1,139 @@
-// // # base
+/// # base
 
+/// ## array
 inl array x = x
 
-// // ## prototype
-
+/// ## prototype
 prototype append t : t -> t -> t
 prototype of_string t : string -> t
 prototype to_string t : t -> string
 
-// // ## (||>)
+/// ## not'
+inl not' x =
+    join not x
 
+/// ## (+.)
+inl (+.) forall t. (a : t) (b : t) : t =
+    $"!a + !b"
+
+/// ## (-.)
+inl (-.) forall t. (a : t) (b : t) : t =
+    $"!a - !b"
+
+/// ## (*.)
+inl (*.) forall t. (a : t) (b : t) : t =
+    $"!a * !b"
+
+/// ## (/.)
+inl (/.) forall t. (a : t) (b : t) : t =
+    $"!a / !b"
+
+/// ## (=.)
+inl (=.) forall t. (a : t) (b : t) : bool =
+    $"!a = !b"
+
+/// ## (<>.)
+inl (<>.) forall t. (a : t) (b : t) : bool =
+    $"!a <> !b"
+
+/// ## (||>)
 inl (||>) (arg1, arg2) fn =
     arg2 |> fn arg1
 
-// // ## (/@)
-
-inl (/@) a b =
+/// ## (++)
+inl (++) a b =
     b |> append a
 
-// // ## target
-
+/// ## target_runtime
 union target_runtime =
     | Native
     | Wasm
     | Contract
 
+/// ## target
 union target =
     | Rust : target_runtime
     | Fsharp : target_runtime
     | TypeScript : target_runtime
+    | Python : target_runtime
 
-// // ## defaultof
-
+/// ## defaultof
 inl defaultof forall t. () : t =
     $'Unchecked.defaultof<`t>'
 
-// // ## emit
-
+/// ## emit
 inl emit forall t. (x : t) : t =
     $'!x '
 
-// // ## unbox
+/// ## emit_unit
+inl emit_unit forall t. (x : t) : () =
+    $'!x '
 
+/// ## ref
+nominal ref t = $'`t ref'
+
+/// ## new_ref
+inl new_ref forall t. (x : t) : ref t =
+    $'ref !x '
+
+/// ## ref_value
+inl ref_value forall t. (x : ref t) : t =
+    $'!x.Value'
+
+/// ## ref_set_value
+inl ref_set_value forall t. (value : t) (ref : ref t) : ref t =
+    $'!ref.Value <- !value '
+    ref
+
+/// ## unbox
 inl unbox forall t u. (x : t) : u =
     $"!x |> unbox<`u>"
 
-// // ## run_target
-
-inl run_target forall t. (fn : target -> (() -> t)) : t =
-    inl close x =
-        $'!x\n#endif'
-    inl result : optionm'.option' t = optionm'.none' ()
-    ($"true in let mutable _!result = !result" : bool) |> ignore
-    $"#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT"
-    fn (Rust Native) () |> close
-    $"#if FABLE_COMPILER_RUST && WASM"
-    fn (Rust Wasm) () |> close
-    $"#if FABLE_COMPILER_RUST && CONTRACT"
-    fn (Rust Contract) () |> close
-    $"#if \!FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!FABLE_COMPILER_TYPESCRIPT && \!WASM && \!CONTRACT"
-    fn (Fsharp Native) () |> close
-    $"#if FABLE_COMPILER_TYPESCRIPT"
-    fn (TypeScript Native) () |> close
-    $"#if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART"
-    ((real defaultof `t ()) : t) |> close
+/// ## capture
+inl capture forall t. (fn : () -> t) : t =
+    inl result = dyn true
+    $'let mutable _!result : `t option = None '
+    $'('
+    $'(fun () ->'
+    $'(fun () ->'
+    fn () |> emit_unit
+    $')'
+    $"|> fun x -> x ()"
+    $') () )'
     $"|> fun x -> _!result <- Some x"
+    $'_!result.Value '
+
+/// ## run_target
+inl run_target forall t. (fn : target -> (() -> t)) : t =
+    inl result = dyn true
+    $'let mutable _!result : `t option = None '
+    $'\n#if FABLE_COMPILER || WASM || CONTRACT'
+    $'\n#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT'
+    fn (Rust Native) () |> emit_unit
+    $'#endif\n#if FABLE_COMPILER_RUST && WASM'
+    fn (Rust Wasm) () |> emit_unit
+    $'#endif\n#if FABLE_COMPILER_RUST && CONTRACT'
+    fn (Rust Contract) () |> emit_unit
+    $'#endif\n#if FABLE_COMPILER_TYPESCRIPT'
+    fn (TypeScript Native) () |> emit_unit
+    $'#endif\n#if FABLE_COMPILER_PYTHON'
+    fn (Python Native) () |> emit_unit
+    $'#endif\n#else'
+    fn (Fsharp Native) () |> emit_unit
+    $'#endif'
+    $'|> fun x -> _!result <- Some x'
     $'_!result.Value'
 
-// // ## exn
-
+/// ## exn
 nominal exn = $"exn"
 
-// // ## try
-
+/// ## try
 inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
     inl none = None : option t
     inl some (s : t) = Some s
     $'try !fn () |> !some with ex -> !ex_fn ex '
 
-// // ## try_unit
-
+/// ## try_unit
 inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
     $"try"
     fn ()
@@ -90,8 +144,7 @@ inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
     $'(*'
     $'*)'
 
-// // ## try_finally
-
+/// ## try_finally
 inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
     $"try"
     fn ()
@@ -102,53 +155,120 @@ inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
     $'(*'
     $'*)'
 
-// // ## any
+/// ## fix_condition
+inl fix_condition x a b =
+    if x ()
+    then a () |> fun x => $'(*' : ()
+    else
+        $'*) else' : ()
+        b () |> fun x => $'(*' : ()
+    |> fun x => $'*)' : ()
 
+/// ## any
 nominal any = $"obj"
 
+/// ## u8
+inl u8 forall t. (x : t) : u8 =
+    $"uint8 !x"
 
-// // ## i32
+/// ## u64
+inl u64 forall t. (x : t) : u64 =
+    $"uint64 !x"
 
+/// ## i32
 inl i32 forall t. (x : t) : i32 =
     $"int32 !x"
 
-// // ## i64
-
+/// ## i64
 inl i64 forall t. (x : t) : i64 =
     $"int64 !x"
 
-// // ## f32
-
+/// ## f32
 inl f32 forall t. (x : t) : f32 =
     $"float32 !x"
 
-// // ## f64
-
+/// ## f64
 inl f64 forall t. (x : t) : f64 =
     $"float !x"
 
-// // ## pair
+/// ## unativeint
+nominal unativeint = $"unativeint"
 
+inl unativeint forall t. (n : t) : unativeint =
+    $"unativeint !n"
+
+/// ## convert_i32
+inl convert_i32 forall t. (x : t) : i32 =
+    x |> $'System.Convert.ToInt32'
+
+/// ## convert
+inl convert forall t u. (x : t) : u =
+    $'`u !x '
+
+/// ## pair
 type pair a b = $"(`a * `b)"
 
 inl pair x y =
     x, y
 
-// // ## null
-
+/// ## null
 inl null forall t. () : t =
     $"null |> unbox<`t>"
 
-// // ## get_entry_assembly_name
-
-inl get_entry_assembly_name () : string =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'
-        | target => fun () => null ()
-
-// // ## use
-
+/// ## use
 inl use forall t. (x : t) : t =
     $"use !x = !x " : ()
     $'!x '
+
+/// ## pair
+
+/// ## new_pair
+inl new_pair forall a b. (a : a) (b : b) : pair a b =
+    $"!a, !b"
+
+/// ## from_pair
+inl from_pair forall a b. (pair : pair a b) : a * b =
+    $"let (a, b) = !pair"
+    $"a", $"b"
+
+/// ## get_union_fields
+inl get_union_fields forall union_type. () : list union_type =
+    real
+        real_core.union_to_record
+            `union_type
+            forall union_record_type. =>
+                real_core.record_type_fold
+                    fun acc key =>
+                        forall value. =>
+                            inl item = real_core.nominal_create `union_type (key, ())
+                            (::) `union_type item acc
+                    (Nil `union_type)
+                    `union_record_type
+
+/// ## get_union_fields_untag
+inl get_union_fields_untag forall union_type. () : list union_type =
+    real
+        real_core.union_to_record
+            `union_type
+            forall union_record_type. =>
+                inl result =
+                    real_core.record_type_fold_back
+                        fun _key =>
+                            forall value. (acc, (i : i32)) =>
+                                inl item : union_type =
+                                    real_core.union_untag `union_type i
+                                        (fun k => forall v. => real_core.nominal_create `union_type (k, ()))
+                                        (fun _ => failwith `union_type "Invalid tag.")
+                                (::) `union_type item acc, (+) `i32 i 1
+                        `union_record_type
+                        (Nil `union_type, 0i32)
+                inl result = fst `(list union_type) `i32 result
+                listm.rev `union_type result
+
+/// ## memoize
+nominal lazy t = $'Lazy<`t>'
+
+inl memoize forall t. (fn : () -> t) : () -> t =
+    inl fn = join fn
+    inl result : lazy t = $'lazy !fn ()'
+    fun () => $'!result.Value'

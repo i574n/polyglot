@@ -1,5 +1,5 @@
-import { Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { Union } from "../../../polyglot/deps/Fable/src/fable-library-ts/Types.js";
+import { union_type, TypeInfo } from "../../../polyglot/deps/Fable/src/fable-library-ts/Reflection.js";
 import { US0_$union, US0_US0_0, US0_US0_4, US0_US0_3, US0_US0_2, US0_US0_1 } from "../../lib/spiral/trace.fsx";
 import { SpiralTrace_trace } from "../../lib/spiral/lib.fsx";
 
@@ -118,7 +118,7 @@ export function to_trace_level(_arg: TraceLevel_$union): US0_$union {
     }
 }
 
-export function trace(level: TraceLevel_$union, fn: (() => string), getLocals: (() => string)): void {
-    SpiralTrace_trace(to_trace_level(level))(fn)(getLocals);
+export function trace(level: TraceLevel_$union, fn: (() => string), locals: (() => string)): void {
+    SpiralTrace_trace(to_trace_level(level))(fn)(locals);
 }
 

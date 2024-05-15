@@ -8,9 +8,22 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
+
+#!markdown
+
+## types 
+
+#!spiral
+
+inl types () =
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::iter::Fuse<$0>\")>]\n#endif\ntype core_iter_Fuse<'T> = class end"
+
+#!spiral
+
+nominal fuse t = $'core_iter_Fuse<`t>'
 
 #!markdown
 
@@ -31,7 +44,7 @@ inl of_array' forall dim t. (items : a dim t) : seq' t =
 
 #!spiral
 
-// // test
+//// test
 
 (a ;[ "a"; "b" ] : _ i32 _)
 |> of_array'
@@ -43,26 +56,10 @@ inl of_array forall dim t. (items : a dim t) : seq' t =
 
 #!spiral
 
-// // test
+//// test
 
 (a ;[ "a"; "b" ] : _ i32 _)
 |> of_array
-
-#!markdown
-
-## of_string
-
-#!spiral
-
-inl of_string (s : string) : seq' char =
-    s |> unbox
-
-#!spiral
-
-// // test
-
-"ab"
-|> of_string
 
 #!markdown
 
@@ -75,7 +72,7 @@ inl to_array' forall dim t. (items : seq' t) : a dim t =
 
 #!spiral
 
-// // test
+//// test
 
 (a ;[ "a"; "b" ] : _ i32 _)
 |> of_array'
@@ -93,13 +90,13 @@ inl to_list' forall t. (items : seq' t) : listm'.list' t =
 
 #!spiral
 
-// // test
+//// test
 
-"ab"
-|> of_string
+(a ;[ "a"; "b" ] : _ i32 _)
+|> of_array
 |> to_list'
 |> listm'.unbox
-|> _assert_eq ([ 'a'; 'b' ])
+|> _assert_eq ([ "a"; "b" ])
 
 #!markdown
 
@@ -140,7 +137,7 @@ inl from_list list =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 print_and_return
 |> from_list
@@ -161,7 +158,7 @@ inl map fn s =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> from_list
@@ -183,7 +180,7 @@ inl mapi fn s =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 print_and_return
 |> from_list
@@ -218,7 +215,7 @@ inl choose forall dim {number} t u. (fn : t -> option u) (s : seq dim t) : seq d
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 print_and_return
 |> from_list
@@ -239,7 +236,7 @@ inl indexed s =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 ((*) 2)
 |> from_list
@@ -258,7 +255,7 @@ inl zip n seq1 seq2 =
 
 #!spiral
 
-// // test
+//// test
 
 ((listm.init 10i32 id |> from_list), (listm.init 10i32 ((*) 2) |> from_list))
 ||> zip 5i32
@@ -276,7 +273,7 @@ inl zip_with fn seq1 seq2 =
 
 #!spiral
 
-// // test
+//// test
 
 ((listm.init 10i32 id |> from_list), (listm.init 10i32 ((*) 2) |> from_list))
 ||> zip_with (optionm'.choose (+))
@@ -317,7 +314,7 @@ inl sum_ seq =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> from_list
@@ -343,7 +340,7 @@ inl to_list_ seq =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> from_list
@@ -365,7 +362,7 @@ inl from_array forall dim {number; int} el. (array : a dim el) : seq dim el =
 
 #!spiral
 
-// // test
+//// test
 
 a ;[ 1; 2; 3 ]
 |> from_array
@@ -382,19 +379,19 @@ inl to_array seq =
     inl ar = a ;[] |> mut
     ((), seq)
     ||> fold fun _ x =>
-        ar <- *ar /@ a ;[x]
+        ar <- *ar ++ a ;[x]
     *ar
 
 inl to_array_ seq =
     inl ar = a ;[] |> mut
     ((), seq)
     ||> fold_ fun _ x =>
-        ar <- *ar /@ a ;[x]
+        ar <- *ar ++ a ;[x]
     *ar
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> from_list
@@ -417,7 +414,7 @@ inl take_while cond seq =
 
 #!spiral
 
-// // test
+//// test
 
 listm.init 10i32 id
 |> from_list
@@ -427,7 +424,7 @@ listm.init 10i32 id
 
 #!spiral
 
-// // test
+//// test
 
 stream.new_finite_stream print_and_return 10i32
 |> flip stream.try_item
@@ -450,7 +447,7 @@ inl take_while_ cond seq =
 
 #!spiral
 
-// // test
+//// test
 
 stream.new_infinite_stream_ print_and_return
 |> flip stream.try_item
@@ -460,7 +457,7 @@ stream.new_infinite_stream_ print_and_return
 
 #!spiral
 
-// // test
+//// test
 
 stream.new_infinite_stream_ print_and_return
 |> stream.memoize
@@ -474,7 +471,7 @@ stream.new_infinite_stream_ print_and_return
 
 #!spiral
 
-// // test
+//// test
 
 stream.new_finite_stream print_and_return 10i32
 |> stream.memoize
@@ -514,7 +511,7 @@ inl memoize_ seq =
 
 #!spiral
 
-// // test
+//// test
 
 inl seq =
     fun n =>
@@ -546,7 +543,7 @@ inl iterate f x0 num_steps =
 
 #!spiral
 
-// // test
+//// test
 
 10i32 |> iterate ((*) 2) 1i32
 |> _assert_eq 1024
@@ -562,7 +559,7 @@ inl iterate_ f x0 num_steps =
 
 #!spiral
 
-// // test
+//// test
 
 10i32 |> iterate_ ((*) 2) 1i32
 |> _assert_eq 1024
@@ -575,7 +572,7 @@ inl iterate' f x0 num_steps =
 
 #!spiral
 
-// // test
+//// test
 
 10i32 |> iterate' ((*) 2) 1i32
 |> _assert_eq 1024

@@ -12,7 +12,6 @@ module FileSystem =
     open SpiralFileSystem.Operators
 
     /// ## watchDirectory
-
     [<RequireQualifiedAccess>]
     type FileSystemChangeType =
         | Failure
@@ -32,7 +31,7 @@ module FileSystem =
 
     let inline watchDirectoryWithFilter filter shouldReadContent path =
         let fullPath = path |> System.IO.Path.GetFullPath
-        let getLocals () = $"filter: {filter} / {getLocals ()}"
+        let _locals () = $"filter: {filter} / {_locals ()}"
 
         let watcher =
             new System.IO.FileSystemWatcher (
@@ -130,7 +129,7 @@ module FileSystem =
 
         let disposable =
             new_disposable (fun () ->
-                trace Debug (fun () -> "watchWithFilter / Disposing watch stream") getLocals
+                trace Debug (fun () -> "watchWithFilter / Disposing watch stream") _locals
                 watcher.EnableRaisingEvents <- false
                 watcher.Dispose ()
             )

@@ -1,13 +1,15 @@
-import { IDisposable, compare, equals, defaultOf, IComparable, IEquatable, createAtom } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { map, defaultArg, value as value_3, some, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { compare, defaultOf, IComparable, IEquatable, IDisposable, createAtom } from "../../deps/Fable/src/fable-library-ts/Util.js";
+import { defaultArg, value as value_3, some, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 import { op_Addition, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
-import { FSharpRef, Union, Record } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { string_type, class_type, union_type, bool_type, record_type, int64_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { interpolate, toText, trimStart, trimEnd } from "../../deps/Fable/src/fable-library-ts/String.js";
-import * as fs from "fs";
+import { lambda_type, unit_type, string_type, bool_type, record_type, int64_type, union_type, class_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { FSharpRef, Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
+import { replace, interpolate, toText, trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
+import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import * as path from "path";
+import * as fs from "fs";
 
-export let State_trace_state = createAtom<Option<[Mut0, Mut1, Mut1, Mut2, Option<int64>]>>(void 0);
+export let State_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Option<int64>, Mut3]>>(undefined);
 
 export interface IFsExistsSync {
     existsSync(path: string): boolean
@@ -17,32 +19,27 @@ export interface IPathJoin {
     join(...paths: string[]): string
 }
 
+export class Disposable implements IDisposable {
+    readonly f: (() => void);
+    constructor(f: (() => void)) {
+        this.f = f;
+    }
+    Dispose(): void {
+        const _: Disposable = this;
+        _.f();
+    }
+}
+
+export function Disposable_$reflection(): TypeInfo {
+    return class_type("File_system.Disposable", undefined, Disposable);
+}
+
+export function Disposable_$ctor_3A5B6456(f: (() => void)): Disposable {
+    return new Disposable(f);
+}
+
 export interface IPathDirname {
     dirname(path: string): string
-}
-
-export class Mut0 extends Record implements IEquatable<Mut0>, IComparable<Mut0> {
-    l0: int64;
-    constructor(l0: int64) {
-        super();
-        this.l0 = l0;
-    }
-}
-
-export function Mut0_$reflection(): TypeInfo {
-    return record_type("File_system.Mut0", [], Mut0, () => [["l0", int64_type]]);
-}
-
-export class Mut1 extends Record implements IEquatable<Mut1>, IComparable<Mut1> {
-    l0: boolean;
-    constructor(l0: boolean) {
-        super();
-        this.l0 = l0;
-    }
-}
-
-export function Mut1_$reflection(): TypeInfo {
-    return record_type("File_system.Mut1", [], Mut1, () => [["l0", bool_type]]);
 }
 
 export type US0_$union = 
@@ -93,6 +90,30 @@ export function US0_$reflection(): TypeInfo {
     return union_type("File_system.US0", [], US0, () => [[], [], [], [], []]);
 }
 
+export class Mut0 extends Record implements IEquatable<Mut0>, IComparable<Mut0> {
+    l0: int64;
+    constructor(l0: int64) {
+        super();
+        this.l0 = l0;
+    }
+}
+
+export function Mut0_$reflection(): TypeInfo {
+    return record_type("File_system.Mut0", [], Mut0, () => [["l0", int64_type]]);
+}
+
+export class Mut1 extends Record implements IEquatable<Mut1>, IComparable<Mut1> {
+    l0: boolean;
+    constructor(l0: boolean) {
+        super();
+        this.l0 = l0;
+    }
+}
+
+export function Mut1_$reflection(): TypeInfo {
+    return record_type("File_system.Mut1", [], Mut1, () => [["l0", bool_type]]);
+}
+
 export class Mut2 extends Record implements IEquatable<Mut2>, IComparable<Mut2> {
     l0: US0_$union;
     constructor(l0: US0_$union) {
@@ -103,6 +124,18 @@ export class Mut2 extends Record implements IEquatable<Mut2>, IComparable<Mut2> 
 
 export function Mut2_$reflection(): TypeInfo {
     return record_type("File_system.Mut2", [], Mut2, () => [["l0", US0_$reflection()]]);
+}
+
+export class Mut3 extends Record {
+    l0: ((arg0: string) => void);
+    constructor(l0: ((arg0: string) => void)) {
+        super();
+        this.l0 = l0;
+    }
+}
+
+export function Mut3_$reflection(): TypeInfo {
+    return record_type("File_system.Mut3", [], Mut3, () => [["l0", lambda_type(string_type, unit_type)]]);
 }
 
 export type US1_$union = 
@@ -255,15 +288,15 @@ export type US5_$union =
 
 export type US5_$cases = {
     0: ["US5_0", [int64]],
-    1: ["US5_1", []]
+    1: ["US5_1", [Error]]
 }
 
 export function US5_US5_0(f0_0: int64) {
     return new US5<0>(0, [f0_0]);
 }
 
-export function US5_US5_1() {
-    return new US5<1>(1, []);
+export function US5_US5_1(f1_0: Error) {
+    return new US5<1>(1, [f1_0]);
 }
 
 export class US5<Tag extends keyof US5_$cases> extends Union<Tag, US5_$cases[Tag][0]> {
@@ -276,7 +309,7 @@ export class US5<Tag extends keyof US5_$cases> extends Union<Tag, US5_$cases[Tag
 }
 
 export function US5_$reflection(): TypeInfo {
-    return union_type("File_system.US5", [], US5, () => [[["f0_0", int64_type]], []]);
+    return union_type("File_system.US5", [], US5, () => [[["f0_0", int64_type]], [["f1_0", class_type("System.Exception")]]]);
 }
 
 export type US6_$union = 
@@ -314,16 +347,16 @@ export type US7_$union =
     | US7<1>
 
 export type US7_$cases = {
-    0: ["US7_0", [int64]],
-    1: ["US7_1", [Error]]
+    0: ["US7_0", [any]],
+    1: ["US7_1", []]
 }
 
-export function US7_US7_0(f0_0: int64) {
+export function US7_US7_0(f0_0: any) {
     return new US7<0>(0, [f0_0]);
 }
 
-export function US7_US7_1(f1_0: Error) {
-    return new US7<1>(1, [f1_0]);
+export function US7_US7_1() {
+    return new US7<1>(1, []);
 }
 
 export class US7<Tag extends keyof US7_$cases> extends Union<Tag, US7_$cases[Tag][0]> {
@@ -336,7 +369,7 @@ export class US7<Tag extends keyof US7_$cases> extends Union<Tag, US7_$cases[Tag
 }
 
 export function US7_$reflection(): TypeInfo {
-    return union_type("File_system.US7", [], US7, () => [[["f0_0", int64_type]], [["f1_0", class_type("System.Exception")]]]);
+    return union_type("File_system.US7", [], US7, () => [[["f0_0", string_type]], []]);
 }
 
 export type US8_$union = 
@@ -367,6 +400,36 @@ export class US8<Tag extends keyof US8_$cases> extends Union<Tag, US8_$cases[Tag
 
 export function US8_$reflection(): TypeInfo {
     return union_type("File_system.US8", [], US8, () => [[["f0_0", string_type]], []]);
+}
+
+export type US9_$union = 
+    | US9<0>
+    | US9<1>
+
+export type US9_$cases = {
+    0: ["US9_0", []],
+    1: ["US9_1", [any]]
+}
+
+export function US9_US9_0() {
+    return new US9<0>(0, []);
+}
+
+export function US9_US9_1(f1_0: any) {
+    return new US9<1>(1, [f1_0]);
+}
+
+export class US9<Tag extends keyof US9_$cases> extends Union<Tag, US9_$cases[Tag][0]> {
+    constructor(readonly tag: Tag, readonly fields: US9_$cases[Tag][1]) {
+        super();
+    }
+    cases() {
+        return ["US9_0", "US9_1"];
+    }
+}
+
+export function US9_$reflection(): TypeInfo {
+    return union_type("File_system.US9", [], US9, () => [[], [["f1_0", string_type]]]);
 }
 
 export function US0__get_IsUS0_0(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
@@ -594,133 +657,186 @@ export function US8__get_IsUS8_1(this$: FSharpRef<US8_$union>, unitArg: void): b
     }
 }
 
-export function method0(v0_1: Option<int64>): Option<int64> {
+export function US9__get_IsUS9_0(this$: FSharpRef<US9_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function US9__get_IsUS9_1(this$: FSharpRef<US9_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 1) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function closure1(unitVar: void, v0_1: string): void {
+}
+
+export function method0(): string {
+    return "";
+}
+
+export function method1(): string {
+    return "AUTOMATION";
+}
+
+export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Option<int64>, Mut3] {
+    const v1_1: Mut1 = new Mut1(true);
+    const v2_1: Mut0 = new Mut0(0n);
+    const v3_1: Mut2 = new Mut2(v0_1);
+    const v5_1: Mut3 = new Mut3((v: string): void => {
+        closure1(undefined, v);
+    });
+    let _v6: Option<Option<int64>> = undefined;
+    _v6 = some(undefined);
+    return [v2_1, v1_1, v3_1, value_3(_v6), v5_1] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
+}
+
+export function method3(v0_1: string): string {
     return v0_1;
 }
 
-export function method1(v0_1: Option<int64>): Option<int64> {
-    return v0_1;
+export function closure3(unitVar: void, unitVar_1: void): string {
+    return "file_system.delete_directory_async";
 }
 
-export function closure0(unitVar: void, unitVar_1: void): [Mut0, Mut1, Mut1, Mut2, Option<int64>] {
-    const v0_1: Mut1 = new Mut1(true);
-    const v1_1: Mut0 = new Mut0(0n);
-    const v3_1: Mut2 = new Mut2(US0_US0_0());
-    const v4_1: Mut1 = new Mut1(false);
-    let _v5: Option<Option<int64>> = void 0;
-    const x: Option<int64> = method1(void 0);
-    _v5 = some(x);
-    return [v1_1, v4_1, v0_1, v3_1, value_3(_v5)] as [Mut0, Mut1, Mut1, Mut2, Option<int64>];
-}
-
-export function closure3(unitVar: void, v0_1: string): string {
-    let _v1: Option<string> = void 0;
+export function closure5(unitVar: void, v0_1: string): string {
+    let _v1: Option<string> = undefined;
     const x: string = defaultOf();
     _v1 = x;
     return value_3(_v1);
 }
 
-export function closure4(unitVar: void, unitVar_1: void): string {
+export function closure6(unitVar: void, unitVar_1: void): string {
     return "";
 }
 
-export function method3(v0_1: string, v1_1: string): string {
-    return `path: ${closure3(void 0, v0_1)} / ex: ${v1_1} / ${closure4(void 0, void 0)}`;
+export function closure4(v0_1: string, v1_1: string, unitVar: void): string {
+    return `path: ${closure5(undefined, v0_1)} / ex: ${v1_1} / ${closure6(undefined, undefined)}`;
 }
 
-export function closure2(v0_1: string, v1_1: string, unitVar: void): string {
-    return method3(v0_1, v1_1);
+export function method5(): string {
+    return "";
+}
+
+export function closure7(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string), unitVar: void): string {
+    if (State_trace_state() == null) {
+        State_trace_state(closure0(undefined, US0_US0_0()));
+    }
+    const patternInput: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value_3(State_trace_state());
+    let _v10: Option<string> = undefined;
+    const x: string = method5();
+    _v10 = x;
+    const v67: string = value_3(_v10);
+    const v68: int64 = patternInput[0].l0;
+    const v78: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
+    let _v81: Option<string> = undefined;
+    const x_1: string = padLeft(v78.toLocaleLowerCase(), 7, " ");
+    _v81 = x_1;
+    return trimEnd(trimStart(`${v67} ${value_3(_v81)} #${v68} ${v1_1()} / ${v2_1()}`), " ", "/");
+}
+
+export function method6(v0_1: US0_$union, v1_1: (() => string)): void {
+    const v2_1 = (v: US0_$union): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(undefined, v);
+    if (State_trace_state() == null) {
+        State_trace_state(v2_1(US0_US0_0()));
+    }
+    const patternInput: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value_3(State_trace_state());
+    const v4_1: Mut0 = patternInput[0];
+    if (State_trace_state() == null) {
+        State_trace_state(v2_1(US0_US0_0()));
+    }
+    const patternInput_1: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value_3(State_trace_state());
+    const v15_1: US0_$union = patternInput_1[2].l0;
+    if ((patternInput_1[1].l0 === false) ? false : (find<US0_$union, int32>(v0_1, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
+        Compare: compare,
+    })) >= find<US0_$union, int32>(v15_1, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
+        Compare: compare,
+    })))) {
+        const v23: int64 = toInt64(op_Addition(v4_1.l0, 1n));
+        v4_1.l0 = v23;
+        const v24 = `${v1_1()}`;
+        let _v25: Option<void> = undefined;
+        console.log(v24);
+        _v25 = some(undefined);
+        value_3(_v25);
+        patternInput[4].l0(v24);
+    }
+}
+
+export function method4(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
+    method6(v0_1, (): string => closure7(v0_1, v1_1, v2_1, undefined));
 }
 
 export function method2(v0_1: string, v1_1: int64): any {
-    let _v2: Option<any> = void 0;
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
 }
 
-export function closure1(unitVar: void, v0_1: string): any {
-    let _v1: Option<any> = void 0;
+export function closure2(unitVar: void, v0_1: string): any {
+    let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
     return value_3(_v1);
 }
 
-export function method5(v0_1: string, v1_1: int64, v2_1: string): string {
-    return `path: ${closure3(void 0, v0_1)} / retry: ${v1_1} / ex: ${v2_1} / ${closure4(void 0, void 0)}`;
+export function closure10(unitVar: void, unitVar_1: void): string {
+    return "file_system.wait_for_file_access";
 }
 
-export function closure7(v0_1: string, v1_1: int64, v2_1: string, unitVar: void): string {
-    return method5(v0_1, v1_1, v2_1);
+export function closure11(v0_1: string, v1_1: int64, v2_1: string, unitVar: void): string {
+    return `path: ${closure5(undefined, v0_1)} / retry: ${v1_1} / ex: ${v2_1} / ${closure6(undefined, undefined)}`;
 }
 
-export function method4(v0_1: string, v1_1: US4_$union, v2_1: US3_$union, v3_1: int64): any {
-    let _v4: Option<any> = void 0;
+export function method7(v0_1: string, v1_1: US4_$union, v2_1: US3_$union, v3_1: int64): any {
+    let _v4: Option<any> = undefined;
     const x: any = defaultOf();
     _v4 = x;
     return value_3(_v4);
 }
 
-export function closure6(v0_1: US2_$union, v1_1: string): any {
-    let _v2: Option<any> = void 0;
+export function closure9(v0_1: US2_$union, v1_1: string): any {
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
 }
 
-export function closure5(unitVar: void, v0_1: US2_$union): ((arg0: string) => any) {
-    return (v: string): any => closure6(v0_1, v);
+export function closure8(unitVar: void, v0_1: US2_$union): ((arg0: string) => any) {
+    return (v: string): any => closure9(v0_1, v);
 }
 
-export function method6(v0_1: string, v1_1: int64): any {
-    let _v2: Option<any> = void 0;
+export function method8(v0_1: string, v1_1: int64): any {
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
 }
 
-export function closure8(unitVar: void, v0_1: string): any {
-    let _v1: Option<any> = void 0;
+export function closure12(unitVar: void, v0_1: string): any {
+    let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
     return value_3(_v1);
 }
 
-export function closure9(unitVar: void, v0_1: string): any {
-    let _v1: Option<any> = void 0;
+export function closure13(unitVar: void, v0_1: string): any {
+    let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
     return value_3(_v1);
-}
-
-export function method7(v0_1: string): string {
-    return v0_1;
-}
-
-export function closure11(v0_1: string, v1_1: string): any {
-    let _v2: Option<any> = void 0;
-    const x: any = defaultOf();
-    _v2 = x;
-    return value_3(_v2);
-}
-
-export function closure10(unitVar: void, v0_1: string): ((arg0: string) => any) {
-    return (v: string): any => closure11(v0_1, v);
-}
-
-export function closure13(v0_1: string, v1_1: string): any {
-    let _v2: Option<any> = void 0;
-    const x: any = defaultOf();
-    _v2 = x;
-    return value_3(_v2);
-}
-
-export function closure12(unitVar: void, v0_1: string): ((arg0: string) => any) {
-    return (v: string): any => closure13(v0_1, v);
 }
 
 export function closure15(v0_1: string, v1_1: string): any {
-    let _v2: Option<any> = void 0;
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
@@ -730,273 +846,339 @@ export function closure14(unitVar: void, v0_1: string): ((arg0: string) => any) 
     return (v: string): any => closure15(v0_1, v);
 }
 
-export function closure17(unitVar: void, unitVar_1: void): string {
-    return "delete_file_async";
-}
-
-export function closure19(unitVar: void, v0_1: int64): US5_$union {
-    return US5_US5_0(v0_1);
-}
-
-export function method10(): ((arg0: int64) => US5_$union) {
-    return (v: int64): US5_$union => closure19(void 0, v);
-}
-
-export function method11(): string {
-    return "";
-}
-
-export function closure18(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string), unitVar: void): string {
-    if (equals(State_trace_state(), void 0)) {
-        State_trace_state(closure0(void 0, void 0));
-    }
-    const patternInput: [Mut0, Mut1, Mut1, Mut2, Option<int64>] = value_3(State_trace_state());
-    let _v9: Option<string> = void 0;
-    const x: string = method11();
-    _v9 = x;
-    const v61: string = value_3(_v9);
-    const v62: int64 = patternInput[0].l0;
-    const v72: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v74: Option<string> = void 0;
-    const x_1: string = v72.toLocaleLowerCase();
-    _v74 = x_1;
-    return trimEnd(trimStart(`${v61} ${value_3(_v74)} #${v62} ${v1_1()} / ${v2_1()}`), " ", "/");
-}
-
-export function method9(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
-    const v3_1 = (): [Mut0, Mut1, Mut1, Mut2, Option<int64>] => closure0(void 0, void 0);
-    if (equals(State_trace_state(), void 0)) {
-        State_trace_state(v3_1());
-    }
-    const v4_1: Mut0 = value_3(State_trace_state())[0];
-    if (equals(State_trace_state(), void 0)) {
-        State_trace_state(v3_1());
-    }
-    const patternInput_1: [Mut0, Mut1, Mut1, Mut2, Option<int64>] = value_3(State_trace_state());
-    const v14_1: US0_$union = patternInput_1[3].l0;
-    if (patternInput_1[2].l0 && (compare(v0_1, v14_1) >= 0)) {
-        const v19: int64 = toInt64(op_Addition(v4_1.l0, 1n));
-        v4_1.l0 = v19;
-        const v21 = `${closure18(v0_1, v1_1, v2_1, void 0)}`;
-        let _v22: Option<void> = void 0;
-        console.log(v21);
-        _v22 = some(void 0);
-        value_3(_v22);
-    }
-}
-
-export function method8(v0_1: string, v1_1: int64): any {
-    let _v2: Option<any> = void 0;
+export function closure17(v0_1: string, v1_1: string): any {
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
 }
 
-export function closure16(unitVar: void, v0_1: string): any {
-    let _v1: Option<any> = void 0;
+export function closure16(unitVar: void, v0_1: string): ((arg0: string) => any) {
+    return (v: string): any => closure17(v0_1, v);
+}
+
+export function closure19(v0_1: string, v1_1: string): any {
+    let _v2: Option<any> = undefined;
+    const x: any = defaultOf();
+    _v2 = x;
+    return value_3(_v2);
+}
+
+export function closure18(unitVar: void, v0_1: string): ((arg0: string) => any) {
+    return (v: string): any => closure19(v0_1, v);
+}
+
+export function closure21(unitVar: void, unitVar_1: void): string {
+    return "delete_file_async";
+}
+
+export function closure22(v0_1: string, v1_1: Error, unitVar: void): string {
+    let _v2: Option<string> = undefined;
+    const x: string = toText(interpolate("%A%P()", [v1_1]));
+    _v2 = x;
+    const v9_1: string = value_3(_v2);
+    return `path: ${closure5(undefined, v0_1)} / ex: ${v9_1} / ${closure6(undefined, undefined)}`;
+}
+
+export function method9(v0_1: string, v1_1: int64): any {
+    let _v2: Option<any> = undefined;
+    const x: any = defaultOf();
+    _v2 = x;
+    return value_3(_v2);
+}
+
+export function closure20(unitVar: void, v0_1: string): any {
+    let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
     return value_3(_v1);
 }
 
-export function closure22(unitVar: void, unitVar_1: void): string {
+export function closure25(unitVar: void, unitVar_1: void): string {
     return "move_file_async";
 }
 
-export function method13(v0_1: string, v1_1: string, v2_1: Error): string {
-    let _v3: Option<string> = void 0;
+export function closure26(v0_1: string, v1_1: string, v2_1: Error, unitVar: void): string {
+    let _v3: Option<string> = undefined;
     const x: string = toText(interpolate("%A%P()", [v2_1]));
     _v3 = x;
-    const v11_1: string = value_3(_v3);
-    const v12_1 = (v: string): string => closure3(void 0, v);
-    return `old_path: ${v12_1(v1_1)} / new_path: ${v12_1(v0_1)} / ex: ${v11_1} / ${closure4(void 0, void 0)}`;
+    const v10_1: string = value_3(_v3);
+    const v11_1 = (v: string): string => closure5(undefined, v);
+    return `old_path: ${v11_1(v1_1)} / new_path: ${v11_1(v0_1)} / ex: ${v10_1} / ${closure6(undefined, undefined)}`;
 }
 
-export function closure23(v0_1: string, v1_1: string, v2_1: Error, unitVar: void): string {
-    return method13(v0_1, v1_1, v2_1);
-}
-
-export function method12(v0_1: string, v1_1: string, v2_1: int64): any {
-    let _v3: Option<any> = void 0;
+export function method10(v0_1: string, v1_1: string, v2_1: int64): any {
+    let _v3: Option<any> = undefined;
     const x: any = defaultOf();
     _v3 = x;
     return value_3(_v3);
 }
 
-export function closure21(v0_1: string, v1_1: string): any {
-    let _v2: Option<any> = void 0;
+export function closure24(v0_1: string, v1_1: string): any {
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
 }
 
-export function closure20(unitVar: void, v0_1: string): ((arg0: string) => any) {
-    return (v: string): any => closure21(v0_1, v);
+export function closure23(unitVar: void, v0_1: string): ((arg0: string) => any) {
+    return (v: string): any => closure24(v0_1, v);
 }
 
-export function closure25(unitVar: void, v0_1: int64): US6_$union {
-    return US6_US6_0(v0_1);
+export function closure28(unitVar: void, v0_1: int64): US5_$union {
+    return US5_US5_0(v0_1);
 }
 
-export function closure26(unitVar: void, v0_1: Error): US6_$union {
-    return US6_US6_1(v0_1);
-}
-
-export function closure27(unitVar: void, unitVar_1: void): string {
-    return "run_with_timeout_async";
-}
-
-export function closure28(unitVar: void, unitVar_1: void): string {
-    return `timeout: ${1000} / ${closure4(void 0, void 0)}`;
-}
-
-export function closure29(v0_1: string, unitVar: void): string {
-    return `run_with_timeout_async** / ex: ${v0_1}`;
+export function closure29(unitVar: void, v0_1: Error): US5_$union {
+    return US5_US5_1(v0_1);
 }
 
 export function closure30(unitVar: void, unitVar_1: void): string {
+    return "run_with_timeout_async";
+}
+
+export function closure31(unitVar: void, unitVar_1: void): string {
+    return `timeout: ${1000} / ${closure6(undefined, undefined)}`;
+}
+
+export function closure32(v0_1: string, unitVar: void): string {
+    return `run_with_timeout_async** / ex: ${v0_1}`;
+}
+
+export function closure33(unitVar: void, unitVar_1: void): string {
     return "read_all_text_retry_async";
 }
 
-export function method15(v0_1: int64, v1_1: string): string {
-    return `retry: ${v0_1} / ex: ${v1_1} / ${closure4(void 0, void 0)}`;
+export function method12(v0_1: int64, v1_1: string): string {
+    return `retry: ${v0_1} / ex: ${v1_1} / ${closure6(undefined, undefined)}`;
 }
 
-export function closure31(v0_1: int64, v1_1: string, unitVar: void): string {
-    return method15(v0_1, v1_1);
+export function closure34(v0_1: int64, v1_1: string, unitVar: void): string {
+    return method12(v0_1, v1_1);
 }
 
-export function method14(v0_1: string, v1_1: int64): any {
-    let _v2: Option<any> = void 0;
+export function method11(v0_1: string, v1_1: int64): any {
+    let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
     return value_3(_v2);
 }
 
-export function closure24(unitVar: void, v0_1: string): any {
-    let _v1: Option<any> = void 0;
+export function closure27(unitVar: void, v0_1: string): any {
+    let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
     return value_3(_v1);
 }
 
-export function closure33(unitVar: void, unitVar_1: void): string {
-    let _v0: Option<string> = void 0;
-    const x: string = defaultOf();
-    _v0 = x;
-    return value_3(_v0);
+export function method13(): string {
+    return "CARGO_PKG_NAME";
+}
+
+export function method15(v0_1: string): string {
+    return v0_1;
 }
 
 export function method16(v0_1: string): string {
     return v0_1;
 }
 
-export function method17(v0_1: string): string {
+export function method14(v0_1: string, v1_1: string): string {
+    let _v2: Option<string> = undefined;
+    const v33: IPathJoin = path;
+    const v34: string = method15(v0_1);
+    const v35: string = method16(v1_1);
+    const x: string = v33.join(v34, v35);
+    _v2 = x;
+    return value_3(_v2);
+}
+
+export function method18(v0_1: any): any {
     return v0_1;
 }
 
-export function closure32(unitVar: void, unitVar_1: void): string {
-    let _v0: Option<string> = void 0;
+export function method19(v0_1: any): any {
+    return v0_1;
+}
+
+export function method20(): string {
+    return "yyyyMMdd-HHmm-ssff-ffff-f";
+}
+
+export function method21(): string {
+    return "hhmm";
+}
+
+export function method17(v0_1: string, v1_1: Date): string {
+    let _v2: Option<string> = undefined;
+    const x: string = defaultOf();
+    _v2 = x;
+    return value_3(_v2);
+}
+
+export function closure35(unitVar: void, unitVar_1: void): string {
+    let _v0: Option<string> = undefined;
     const x: string = defaultOf();
     _v0 = x;
     return value_3(_v0);
 }
 
-export function closure35(v0_1: string, v1_1: string, unitVar: void): string {
-    return `temp_folder: ${v0_1} / result: ${v1_1} ${closure4(void 0, void 0)}`;
+export function method22(v0_1: string): string {
+    return v0_1;
 }
 
-export function closure36(v0_1: string, unitVar: void): void {
-    let _v1: Option<any> = void 0;
+export function closure37(unitVar: void, v0_1: any): any {
+    let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
-    const v10_1: any = value_3(_v1);
-    let _v11: Option<any> = void 0;
-    const x_1: any = defaultOf();
-    _v11 = x_1;
-    const v20: any = value_3(_v11);
-    let _v21: Option<void> = void 0;
+    return value_3(_v1);
+}
+
+export function method23(): ((arg0: any) => any) {
+    return (v: any): any => closure37(undefined, v);
+}
+
+export function closure38(unitVar: void, unitVar_1: void): US9_$union {
+    return US9_US9_0();
+}
+
+export function closure39(unitVar: void, v0_1: any): US9_$union {
+    return US9_US9_1(v0_1);
+}
+
+export function closure40(unitVar: void, unitVar_1: void): string {
+    return "file_system.create_directory";
+}
+
+export function closure41(v0_1: string, v1_1: any, unitVar: void): string {
+    return `dir: ${v0_1} / error: ${v1_1} / ${closure6(undefined, undefined)}`;
+}
+
+export function closure42(unitVar: void, unitVar_1: void): string {
+    return "file_system.create_directory";
+}
+
+export function closure43(v0_1: string, unitVar: void): string {
+    return `dir: ${v0_1} / ${closure6(undefined, undefined)}`;
+}
+
+export function closure44(v0_1: string, unitVar: void): void {
+    let _v1: Option<void> = undefined;
     defaultOf();
-    _v21 = some(void 0);
-    value_3(_v21);
+    _v1 = some(undefined);
+    value_3(_v1);
 }
 
-export function closure34(unitVar: void, unitVar_1: void): [string, IDisposable] {
-    let _v0: Option<[string, IDisposable]> = void 0;
-    const patternInput: [string, IDisposable] = defaultOf();
-    _v0 = ([patternInput[0], patternInput[1]] as [string, IDisposable]);
-    const patternInput_1: [string, IDisposable] = value_3(_v0);
-    return [patternInput_1[0], patternInput_1[1]] as [string, IDisposable];
+export function method24(v0_1: string): (() => void) {
+    return (): void => {
+        closure44(v0_1, undefined);
+    };
 }
 
-export function closure37(unitVar: void, unitVar_1: void): string {
+export function closure45(unitVar: void, unitVar_1: void): string {
+    return "file_system.create_directory";
+}
+
+export function closure46(v0_1: string, v1_1: string, unitVar: void): string {
+    return `dir: ${v0_1} / result: ${v1_1} ${closure6(undefined, undefined)}`;
+}
+
+export function closure47(v0_1: string, unitVar: void): void {
+    let _v1: Option<any> = undefined;
+    const x: any = defaultOf();
+    _v1 = x;
+    const v9_1: any = value_3(_v1);
+    let _v10: Option<any> = undefined;
+    const x_1: any = defaultOf();
+    _v10 = x_1;
+    const v18_1: any = value_3(_v10);
+    let _v19: Option<void> = undefined;
+    defaultOf();
+    _v19 = some(undefined);
+    value_3(_v19);
+}
+
+export function method25(v0_1: string): (() => void) {
+    return (): void => {
+        closure47(v0_1, undefined);
+    };
+}
+
+export function closure36(unitVar: void, unitVar_1: void): [string, IDisposable] {
+    let _v0: Option<string> = undefined;
+    const x: string = defaultOf();
+    _v0 = x;
+    const v134: string = value_3(_v0);
+    let _v135: Option<IDisposable> = undefined;
+    const x_1: IDisposable = defaultOf();
+    _v135 = x_1;
+    return [v134, value_3(_v135)] as [string, IDisposable];
+}
+
+export function closure48(unitVar: void, unitVar_1: void): string {
     return "C:\\home\\git\\polyglot\\lib\\spiral";
 }
 
-export function closure41(unitVar: void, v0_1: string): boolean {
-    let _v1: Option<boolean> = void 0;
-    const v20: IFsExistsSync = fs;
-    const x: boolean = v20.existsSync(v0_1);
+export function closure52(unitVar: void, v0_1: string): boolean {
+    let _v1: Option<boolean> = undefined;
+    const v16_1: IFsExistsSync = fs;
+    const x: boolean = v16_1.existsSync(v0_1);
     _v1 = x;
     return value_3(_v1);
 }
 
-export function closure42(unitVar: void, v0_1: string): boolean {
-    let _v1: Option<boolean> = void 0;
-    const v20: IFsExistsSync = fs;
-    const x: boolean = v20.existsSync(v0_1);
+export function closure53(unitVar: void, v0_1: string): boolean {
+    let _v1: Option<boolean> = undefined;
+    const v16_1: IFsExistsSync = fs;
+    const x: boolean = v16_1.existsSync(v0_1);
     _v1 = x;
     return value_3(_v1);
 }
 
-export function closure43(unitVar: void, v0_1: string): Option<string> {
-    let _v1: Option<US8_$union> = void 0;
-    const v38: IPathDirname = path;
-    const x: US8_$union = US8_US8_0(v38.dirname(v0_1));
+export function closure54(unitVar: void, v0_1: string): Option<string> {
+    let _v1: Option<US8_$union> = undefined;
+    const v31: IPathDirname = path;
+    const x: US8_$union = US8_US8_0(v31.dirname(v0_1));
     _v1 = x;
-    const v43: US8_$union = value_3(_v1);
-    if (v43.tag === /* US8_0 */ 0) {
-        return v43.fields[0];
+    const v51: US8_$union = value_3(_v1);
+    if (v51.tag === /* US8_0 */ 0) {
+        return v51.fields[0];
     }
     else {
-        return void 0;
+        return undefined;
     }
 }
 
-export function method19(): ((arg0: string) => Option<string>) {
-    return (v: string): Option<string> => closure43(void 0, v);
+export function method27(): ((arg0: string) => Option<string>) {
+    return (v: string): Option<string> => closure54(undefined, v);
 }
 
-export function closure44(unitVar: void, v0_1: string): US8_$union {
-    return US8_US8_0(v0_1);
-}
-
-export function method20(): ((arg0: string) => US8_$union) {
-    return (v: string): US8_$union => closure44(void 0, v);
-}
-
-export function method21(v0_1_mut: string, v1_1_mut: boolean, v2_1_mut: string, v3_1_mut: string): string {
-    method21:
+export function method28(v0_1_mut: string, v1_1_mut: boolean, v2_1_mut: string, v3_1_mut: string): string {
+    method28:
     while (true) {
         const v0_1: string = v0_1_mut, v1_1: boolean = v1_1_mut, v2_1: string = v2_1_mut, v3_1: string = v3_1_mut;
-        let _v4: Option<string> = void 0;
-        const v28: IPathJoin = path;
-        const v29: string = method16(v3_1);
-        const v30: string = method17(v0_1);
-        const x: string = v28.join(v29, v30);
-        _v4 = x;
-        if ((v1_1 ? ((v: string): boolean => closure41(void 0, v)) : ((v_1: string): boolean => closure42(void 0, v_1)))(value_3(_v4))) {
+        if ((v1_1 ? ((v: string): boolean => closure52(undefined, v)) : ((v_1: string): boolean => closure53(undefined, v_1)))(method14(v3_1, v0_1))) {
             return v3_1;
         }
         else {
-            const v40: Option<string> = method19()(v3_1);
-            const v43: US8_$union = defaultArg(map<string, US8_$union>(method20(), v40), US8_US8_1());
-            if (v43.tag === /* US8_0 */ 0) {
+            const v10_1: Option<string> = method27()(v3_1);
+            const _v11: FSharpRef<Option<US8_$union>> = new FSharpRef<Option<US8_$union>>(undefined);
+            let x_2: Option<US8_$union>;
+            if (v10_1 == null) {
+                x_2 = undefined;
+            }
+            else {
+                const x: string = value_3(v10_1);
+                x_2 = ((): US8_$union => US8_US8_0(x))();
+            }
+            _v11.contents = x_2;
+            const v16_1: US8_$union = defaultArg(_v11.contents, US8_US8_1());
+            if (v16_1.tag === /* US8_0 */ 0) {
                 v0_1_mut = v0_1;
                 v1_1_mut = v1_1;
                 v2_1_mut = v2_1;
-                v3_1_mut = v43.fields[0];
-                continue method21;
+                v3_1_mut = v16_1.fields[0];
+                continue method28;
             }
             else {
                 throw new Error(`No parent for ${v1_1 ? "file" : "dir"} '${v0_1}' at '${v2_1}' (until '${v3_1}')`);
@@ -1006,21 +1188,25 @@ export function method21(v0_1_mut: string, v1_1_mut: boolean, v2_1_mut: string, 
     }
 }
 
-export function method18(v0_1: string, v1_1: boolean, v2_1: string): string {
-    let _v3: Option<string> = void 0;
-    const v27: IPathJoin = path;
-    const v28: string = method16(v2_1);
-    const v29: string = method17(v0_1);
-    const x: string = v27.join(v28, v29);
-    _v3 = x;
-    if ((v1_1 ? ((v: string): boolean => closure41(void 0, v)) : ((v_1: string): boolean => closure42(void 0, v_1)))(value_3(_v3))) {
+export function method26(v0_1: string, v1_1: boolean, v2_1: string): string {
+    if ((v1_1 ? ((v: string): boolean => closure52(undefined, v)) : ((v_1: string): boolean => closure53(undefined, v_1)))(method14(v2_1, v0_1))) {
         return v2_1;
     }
     else {
-        const v39: Option<string> = method19()(v2_1);
-        const v42: US8_$union = defaultArg(map<string, US8_$union>(method20(), v39), US8_US8_1());
-        if (v42.tag === /* US8_0 */ 0) {
-            return method21(v0_1, v1_1, v2_1, v42.fields[0]);
+        const v9_1: Option<string> = method27()(v2_1);
+        const _v10: FSharpRef<Option<US8_$union>> = new FSharpRef<Option<US8_$union>>(undefined);
+        let x_2: Option<US8_$union>;
+        if (v9_1 == null) {
+            x_2 = undefined;
+        }
+        else {
+            const x: string = value_3(v9_1);
+            x_2 = ((): US8_$union => US8_US8_0(x))();
+        }
+        _v10.contents = x_2;
+        const v15_1: US8_$union = defaultArg(_v10.contents, US8_US8_1());
+        if (v15_1.tag === /* US8_0 */ 0) {
+            return method28(v0_1, v1_1, v2_1, v15_1.fields[0]);
         }
         else {
             throw new Error(`No parent for ${v1_1 ? "file" : "dir"} '${v0_1}' at '${v2_1}' (until '${v2_1}')`);
@@ -1028,60 +1214,77 @@ export function method18(v0_1: string, v1_1: boolean, v2_1: string): string {
     }
 }
 
-export function closure40(v0_1: string, v1_1: boolean, v2_1: string): string {
-    return method18(v0_1, v1_1, v2_1);
+export function closure51(v0_1: string, v1_1: boolean, v2_1: string): string {
+    return method26(v0_1, v1_1, v2_1);
 }
 
-export function closure39(v0_1: string, v1_1: boolean): ((arg0: string) => string) {
-    return (v: string): string => closure40(v0_1, v1_1, v);
+export function closure50(v0_1: string, v1_1: boolean): ((arg0: string) => string) {
+    return (v: string): string => closure51(v0_1, v1_1, v);
 }
 
-export function closure38(unitVar: void, v0_1: string): ((arg0: boolean) => ((arg0: string) => string)) {
-    return (v: boolean): ((arg0: string) => string) => closure39(v0_1, v);
+export function closure49(unitVar: void, v0_1: string): ((arg0: boolean) => ((arg0: string) => string)) {
+    return (v: boolean): ((arg0: string) => string) => closure50(v0_1, v);
 }
 
-export function method22(): string {
-    return "polyglot";
+export function method29(v0_1: string): string {
+    return v0_1;
 }
 
-export function method23(): string {
-    return ".paket";
+export function method30(): string {
+    return "";
 }
 
-export function method24(): string {
-    return "polyglot";
+export function method31(): string {
+    return "^\\\\\\\\\\?\\\\";
 }
 
-export function method25(): string {
-    return ".paket";
+export function method32(): string {
+    return "";
 }
 
-export function method27(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string): string {
-    method27:
+export function closure55(unitVar: void, v0_1: string): string {
+    let _arg: string;
+    let _v1: Option<string> = undefined;
+    const x: string = defaultOf();
+    _v1 = x;
+    const v29: string = value_3(_v1);
+    return replace(`${(_arg = v29[0], _arg.toLocaleLowerCase())}${v29.slice(1, v29.length)}`, "\\", "/");
+}
+
+export function closure56(unitVar: void, v0_1: string): string {
+    return `file:///${trimStart(v0_1, "/")}`;
+}
+
+export function method34(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string): string {
+    method34:
     while (true) {
         const v0_1: string = v0_1_mut, v1_1: string = v1_1_mut, v2_1: string = v2_1_mut;
-        let _v3: Option<string> = void 0;
-        const v27: IPathJoin = path;
-        const v28: string = method16(v2_1);
-        const v29: string = method17(v0_1);
-        const x: string = v27.join(v28, v29);
-        _v3 = x;
-        const v33: string = value_3(_v3);
-        let _v34: Option<boolean> = void 0;
-        const v53: IFsExistsSync = fs;
-        const x_1: boolean = v53.existsSync(v33);
-        _v34 = x_1;
-        if (value_3(_v34)) {
+        const v3_1: string = method14(v2_1, v0_1);
+        let _v4: Option<boolean> = undefined;
+        const v19_1: IFsExistsSync = fs;
+        const x: boolean = v19_1.existsSync(v3_1);
+        _v4 = x;
+        if (value_3(_v4)) {
             return v2_1;
         }
         else {
-            const v59: Option<string> = method19()(v2_1);
-            const v62: US8_$union = defaultArg(map<string, US8_$union>(method20(), v59), US8_US8_1());
-            if (v62.tag === /* US8_0 */ 0) {
+            const v27: Option<string> = method27()(v2_1);
+            const _v28: FSharpRef<Option<US8_$union>> = new FSharpRef<Option<US8_$union>>(undefined);
+            let x_3: Option<US8_$union>;
+            if (v27 == null) {
+                x_3 = undefined;
+            }
+            else {
+                const x_1: string = value_3(v27);
+                x_3 = ((): US8_$union => US8_US8_0(x_1))();
+            }
+            _v28.contents = x_3;
+            const v33: US8_$union = defaultArg(_v28.contents, US8_US8_1());
+            if (v33.tag === /* US8_0 */ 0) {
                 v0_1_mut = v0_1;
                 v1_1_mut = v1_1;
-                v2_1_mut = v62.fields[0];
-                continue method27;
+                v2_1_mut = v33.fields[0];
+                continue method34;
             }
             else {
                 throw new Error(`No parent for ${"dir"} '${v0_1}' at '${v1_1}' (until '${v2_1}')`);
@@ -1091,26 +1294,30 @@ export function method27(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string): 
     }
 }
 
-export function method26(v0_1: string, v1_1: string): string {
-    let _v2: Option<string> = void 0;
-    const v26: IPathJoin = path;
-    const v27: string = method16(v1_1);
-    const v28: string = method17(v0_1);
-    const x: string = v26.join(v27, v28);
-    _v2 = x;
-    const v32: string = value_3(_v2);
-    let _v33: Option<boolean> = void 0;
-    const v52: IFsExistsSync = fs;
-    const x_1: boolean = v52.existsSync(v32);
-    _v33 = x_1;
-    if (value_3(_v33)) {
+export function method33(v0_1: string, v1_1: string): string {
+    const v2_1: string = method14(v1_1, v0_1);
+    let _v3: Option<boolean> = undefined;
+    const v18_1: IFsExistsSync = fs;
+    const x: boolean = v18_1.existsSync(v2_1);
+    _v3 = x;
+    if (value_3(_v3)) {
         return v1_1;
     }
     else {
-        const v58: Option<string> = method19()(v1_1);
-        const v61: US8_$union = defaultArg(map<string, US8_$union>(method20(), v58), US8_US8_1());
-        if (v61.tag === /* US8_0 */ 0) {
-            return method27(v0_1, v1_1, v61.fields[0]);
+        const v26: Option<string> = method27()(v1_1);
+        const _v27: FSharpRef<Option<US8_$union>> = new FSharpRef<Option<US8_$union>>(undefined);
+        let x_3: Option<US8_$union>;
+        if (v26 == null) {
+            x_3 = undefined;
+        }
+        else {
+            const x_1: string = value_3(v26);
+            x_3 = ((): US8_$union => US8_US8_0(x_1))();
+        }
+        _v27.contents = x_3;
+        const v32: US8_$union = defaultArg(_v27.contents, US8_US8_1());
+        if (v32.tag === /* US8_0 */ 0) {
+            return method34(v0_1, v1_1, v32.fields[0]);
         }
         else {
             throw new Error(`No parent for ${"dir"} '${v0_1}' at '${v1_1}' (until '${v1_1}')`);
@@ -1118,140 +1325,163 @@ export function method26(v0_1: string, v1_1: string): string {
     }
 }
 
-export function method28(): string {
-    return "polyglot";
+export function closure57(unitVar: void, unitVar_1: void): string {
+    return method14(method33(method14("polyglot", ".paket"), "C:\\home\\git\\polyglot\\lib\\spiral"), "polyglot");
 }
 
-export function closure45(unitVar: void, unitVar_1: void): string {
-    let _v1: Option<string> = void 0;
-    const v27: IPathJoin = path;
-    const v28: string = method24();
-    const v29: string = method25();
-    const x: string = v27.join(v28, v29);
-    _v1 = x;
-    let _v35: Option<string> = void 0;
-    const v58: IPathJoin = path;
-    const v59: string = method16(method26(value_3(_v1), "C:\\home\\git\\polyglot\\lib\\spiral"));
-    const v60: string = method28();
-    const x_1: string = v58.join(v59, v60);
-    _v35 = x_1;
-    return value_3(_v35);
+export function method35(v0_1: string): void {
+    let _v1: Option<void> = undefined;
+    _v1 = some(undefined);
+    value_3(_v1);
 }
 
-export function closure47(v0_1: string, v1_1: string): string {
-    let _v2: Option<string> = void 0;
-    const v26: IPathJoin = path;
-    const v27: string = method16(v0_1);
-    const v28: string = method17(v1_1);
-    const x: string = v26.join(v27, v28);
-    _v2 = x;
-    return value_3(_v2);
+export function closure59(unitVar: void, v0_1: string): void {
+    method35(v0_1);
 }
 
-export function closure46(unitVar: void, v0_1: string): ((arg0: string) => string) {
-    return (v: string): string => closure47(v0_1, v);
+export function closure58(unitVar: void, v0_1: boolean): void {
+    if (State_trace_state() == null) {
+        State_trace_state(closure0(undefined, US0_US0_0()));
+    }
+    const patternInput: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value_3(State_trace_state());
+    const v10_1: ((arg0: string) => void) = v0_1 ? ((v_1: string): void => {
+        closure59(undefined, v_1);
+    }) : ((v_2: string): void => {
+        closure1(undefined, v_2);
+    });
+    patternInput[4].l0 = v10_1;
 }
 
-export const v0 = (): [Mut0, Mut1, Mut1, Mut2, Option<int64>] => closure0(void 0, void 0);
-
-if (equals(State_trace_state(), void 0)) {
-    State_trace_state(v0());
+export function closure61(v0_1: string, v1_1: string): string {
+    return method14(v0_1, v1_1);
 }
 
-export const v1 = (v: string): any => closure1(void 0, v);
+export function closure60(unitVar: void, v0_1: string): ((arg0: string) => string) {
+    return (v: string): string => closure61(v0_1, v);
+}
+
+export const v0 = (v: US0_$union): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(undefined, v);
+
+export const v1: US0_$union = US0_US0_0();
+
+if (State_trace_state() == null) {
+    State_trace_state(v0(v1));
+}
+
+export const v2 = (v: string): any => closure2(undefined, v);
 
 export function delete_directory_async(x: string): any {
-    return v1(x);
-}
-
-export const v2 = (v: US2_$union): ((arg0: string) => any) => closure5(void 0, v);
-
-export function wait_for_file_access(x: US2_$union): ((arg0: string) => any) {
     return v2(x);
 }
 
-export const v3 = (v: string): any => closure8(void 0, v);
+export const v3 = (v: US2_$union): ((arg0: string) => any) => closure8(undefined, v);
 
-export function wait_for_file_access_read(x: string): any {
+export function wait_for_file_access(x: US2_$union): ((arg0: string) => any) {
     return v3(x);
 }
 
-export const v4 = (v: string): any => closure9(void 0, v);
+export const v4 = (v: string): any => closure12(undefined, v);
 
-export function read_all_text_async(x: string): any {
+export function wait_for_file_access_read(x: string): any {
     return v4(x);
 }
 
-export const v5 = (v: string): ((arg0: string) => any) => closure10(void 0, v);
+export const v5 = (v: string): any => closure13(undefined, v);
 
-export function file_exists_content(x: string): ((arg0: string) => any) {
+export function read_all_text_async(x: string): any {
     return v5(x);
 }
 
-export const v6 = (v: string): ((arg0: string) => any) => closure12(void 0, v);
+export const v6 = (v: string): ((arg0: string) => any) => closure14(undefined, v);
 
-export function write_all_text_async(x: string): ((arg0: string) => any) {
+export function file_exists_content(x: string): ((arg0: string) => any) {
     return v6(x);
 }
 
-export const v7 = (v: string): ((arg0: string) => any) => closure14(void 0, v);
+export const v7 = (v: string): ((arg0: string) => any) => closure16(undefined, v);
 
-export function write_all_text_exists(x: string): ((arg0: string) => any) {
+export function write_all_text_async(x: string): ((arg0: string) => any) {
     return v7(x);
 }
 
-export const v8 = (v: string): any => closure16(void 0, v);
+export const v8 = (v: string): ((arg0: string) => any) => closure18(undefined, v);
 
-export function delete_file_async(x: string): any {
+export function write_all_text_exists(x: string): ((arg0: string) => any) {
     return v8(x);
 }
 
-export const v9 = (v: string): ((arg0: string) => any) => closure20(void 0, v);
+export const v9 = (v: string): any => closure20(undefined, v);
 
-export function move_file_async(x: string): ((arg0: string) => any) {
+export function delete_file_async(x: string): any {
     return v9(x);
 }
 
-export const v10 = (v: string): any => closure24(void 0, v);
+export const v10 = (v: string): ((arg0: string) => any) => closure23(undefined, v);
 
-export function read_all_text_retry_async(x: string): any {
+export function move_file_async(x: string): ((arg0: string) => any) {
     return v10(x);
 }
 
-export const v11 = (): string => closure32(void 0, void 0);
+export const v11 = (v: string): any => closure27(undefined, v);
 
-export function create_temp_directory_name(): string {
-    return v11();
+export function read_all_text_retry_async(x: string): any {
+    return v11(x);
 }
 
-export const v12 = (): [string, IDisposable] => closure34(void 0, void 0);
+export const v12 = (): string => closure35(undefined, undefined);
 
-export function create_temp_directory(): [string, IDisposable] {
+export function create_temp_directory_name(): string {
     return v12();
 }
 
-export const v13 = (): string => closure37(void 0, void 0);
+export const v13 = (): [string, IDisposable] => closure36(undefined, undefined);
 
-export function get_source_directory(): string {
+export function create_temp_directory(): [string, IDisposable] {
     return v13();
 }
 
-export const v14 = (v: string): ((arg0: boolean) => ((arg0: string) => string)) => closure38(void 0, v);
+export const v14 = (): string => closure48(undefined, undefined);
+
+export function get_source_directory(): string {
+    return v14();
+}
+
+export const v15 = (v: string): ((arg0: boolean) => ((arg0: string) => string)) => closure49(undefined, v);
 
 export function find_parent(x: string): ((arg0: boolean) => ((arg0: string) => string)) {
-    return v14(x);
+    return v15(x);
 }
 
-export const v15 = (): string => closure45(void 0, void 0);
+export const v16 = (v: string): string => closure55(undefined, v);
 
-export function get_repository_root(): string {
-    return v15();
+export function normalize_path(x: string): string {
+    return v16(x);
 }
 
-export const v16 = (v: string): ((arg0: string) => string) => closure46(void 0, v);
+export const v17 = (v: string): string => closure56(undefined, v);
+
+export function new_file_uri(x: string): string {
+    return v17(x);
+}
+
+export const v18 = (): string => closure57(undefined, undefined);
+
+export function get_workspace_root(): string {
+    return v18();
+}
+
+export const v19 = (v: boolean): void => {
+    closure58(undefined, v);
+};
+
+export function init_trace_file(x: boolean): void {
+    v19(x);
+}
+
+export const v20 = (v: string): ((arg0: string) => string) => closure60(undefined, v);
 
 export function op_LessDivideGreater(x: string): ((arg0: string) => string) {
-    return v16(x);
+    return v20(x);
 }
 
 

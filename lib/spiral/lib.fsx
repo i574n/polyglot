@@ -96,6 +96,20 @@ module SpiralRuntime =
         execute_with_options_async x
 #endif
 
+    let execution_options x =
+#if !INTERACTIVE
+        Runtime.execution_options x
+#else
+        execution_options x
+#endif
+
+    let split_args x =
+#if !INTERACTIVE
+        Runtime.split_args x
+#else
+        split_args x
+#endif
+
 module SpiralDateTime =
     let format_iso8601 x =
 #if !INTERACTIVE
@@ -170,6 +184,13 @@ module SpiralSm =
         replace x
 #endif
 
+    let replace_regex x =
+#if !INTERACTIVE
+        Sm.replace_regex x
+#else
+        replace_regex x
+#endif
+
     let slice x =
 #if !INTERACTIVE
         Sm.slice x
@@ -234,11 +255,11 @@ module SpiralSm =
 #endif
 
 module SpiralFileSystem =
-    let get_repository_root () =
+    let get_workspace_root () =
 #if !INTERACTIVE
-        File_system.get_repository_root ()
+        File_system.get_workspace_root ()
 #else
-        get_repository_root ()
+        get_workspace_root ()
 #endif
 
     let get_source_directory () =
@@ -253,6 +274,20 @@ module SpiralFileSystem =
         File_system.find_parent x
 #else
         find_parent x
+#endif
+
+    let normalize_path x =
+#if !INTERACTIVE
+        File_system.normalize_path x
+#else
+        normalize_path x
+#endif
+
+    let new_file_uri x =
+#if !INTERACTIVE
+        File_system.new_file_uri x
+#else
+        new_file_uri x
 #endif
 
     let create_temp_directory () =
@@ -277,6 +312,34 @@ module SpiralFileSystem =
 #else
         delete_directory_async x
 #endif
+
+    let init_trace_file x =
+#if !INTERACTIVE
+        File_system.init_trace_file x
+#else
+        init_trace_file x
+#endif
+
+#if !INTERACTIVE
+        let struct (_, _, _, _, trace_file) = File_system.State.trace_state |> Option.get
+        let new_trace_file = trace_file.l0
+
+        let struct (_, _, _, _, trace_file) = Networking.State.trace_state |> Option.get
+        trace_file.l0 <- new_trace_file
+
+        let struct (_, _, _, _, trace_file) = Runtime.State.trace_state |> Option.get
+        trace_file.l0 <- new_trace_file
+
+        let struct (_, _, _, _, trace_file) = Trace.State.trace_state |> Option.get
+        trace_file.l0 <- new_trace_file
+
+        let struct (_, _, _, _, trace_file) = Common.State.trace_state |> Option.get
+        trace_file.l0 <- new_trace_file
+#else
+        let struct (_, _, _, _, trace_file) = State.trace_state |> Option.get
+        let new_trace_file = trace_file.l0
+#endif
+        trace_file.l0 <- new_trace_file
 
     let wait_for_file_access x =
 #if !INTERACTIVE
@@ -354,21 +417,8 @@ module SpiralFileSystem =
 
 let set_trace_level new_level =
 #if !INTERACTIVE
-
-    if File_system.State.trace_state = None then printfn "@1"
-    else
-        let struct (_, _, _, level, _) = File_system.State.trace_state |> Option.get
-        level.l0 <-
-            match new_level with
-            | Trace.US0_0 -> File_system.US0_0
-            | Trace.US0_1 -> File_system.US0_1
-            | Trace.US0_2 -> File_system.US0_2
-            | Trace.US0_3 -> File_system.US0_3
-            | Trace.US0_4 -> File_system.US0_4
-
-    if Networking.State.trace_state = None then printfn "@2"
-    else
-        let struct (_, _, _, level, _) = Networking.State.trace_state |> Option.get
+    Networking.State.trace_state
+    |> Option.iter (fun struct (_, _, level, _, _) ->
         level.l0 <-
             match new_level with
             | Trace.US0_0 -> Networking.US0_0
@@ -376,10 +426,21 @@ let set_trace_level new_level =
             | Trace.US0_2 -> Networking.US0_2
             | Trace.US0_3 -> Networking.US0_3
             | Trace.US0_4 -> Networking.US0_4
+    )
 
-    if Runtime.State.trace_state = None then printfn "@3"
-    else
-        let struct (_, _, _, level, _) = Runtime.State.trace_state |> Option.get
+    File_system.State.trace_state
+    |> Option.iter (fun struct (_, _, level, _, _) ->
+        level.l0 <-
+            match new_level with
+            | Trace.US0_0 -> File_system.US0_0
+            | Trace.US0_1 -> File_system.US0_1
+            | Trace.US0_2 -> File_system.US0_2
+            | Trace.US0_3 -> File_system.US0_3
+            | Trace.US0_4 -> File_system.US0_4
+    )
+
+    Runtime.State.trace_state
+    |> Option.iter (fun struct (_, _, level, _, _) ->
         level.l0 <-
             match new_level with
             | Trace.US0_0 -> Runtime.US0_0
@@ -387,25 +448,34 @@ let set_trace_level new_level =
             | Trace.US0_2 -> Runtime.US0_2
             | Trace.US0_3 -> Runtime.US0_3
             | Trace.US0_4 -> Runtime.US0_4
+    )
 
-    if Trace.State.trace_state = None then printfn "@4"
-    else
-        let struct (_, _, _, level, _) = Trace.State.trace_state |> Option.get
+    Common.State.trace_state
+    |> Option.iter (fun struct (_, _, level, _, _) ->
+        level.l0 <-
+            match new_level with
+            | Trace.US0_0 -> Common.US0_0
+            | Trace.US0_1 -> Common.US0_1
+            | Trace.US0_2 -> Common.US0_2
+            | Trace.US0_3 -> Common.US0_3
+            | Trace.US0_4 -> Common.US0_4
+    )
+
+    Trace.State.trace_state
 #else
-    if State.trace_state = None then printfn "@5"
-    else
-        let struct (_, _, _, level, _) = State.trace_state |> Option.get
+    State.trace_state
 #endif
+    |> Option.iter (fun (struct (_, _, level, _, _)) ->
         level.l0 <- new_level
+    )
 
 let get_trace_level () =
 #if !INTERACTIVE
-    if Trace.State.trace_state = None then printfn "@6"; SpiralTrace.TraceLevel.US0_0
-    else
-        let struct (_, _, _, level, _) = Trace.State.trace_state |> Option.get
+    Trace.State.trace_state
 #else
-    if State.trace_state = None then printfn "@7"; SpiralTrace.TraceLevel.US0_0
-    else
-        let struct (_, _, _, level, _) = State.trace_state |> Option.get
+    State.trace_state
 #endif
+    |> Option.map (fun struct (_, _, level, _, _) ->
         level.l0
+    )
+    |> Option.defaultWith (fun () -> failwith "lib.get_trace_level / trace_state=None")

@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "outdated-pre": "npm-check-updates --target greatest",
-    "start": "bun index.ts"
+    "start": "~/.bun/bin/bun index.ts"
   },
   "dependencies": {
     "nft.storage": "~7.1"

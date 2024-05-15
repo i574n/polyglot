@@ -7543,7 +7543,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="nb">open</span> <span class="n">testing</span>
 </pre></div>
@@ -7625,7 +7625,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="nb">eval</span> <span class="n">I</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">I</span>
@@ -7695,140 +7695,103 @@ a.anchor-link {
     | UH0_2
     | UH0_3 of UH0 * UH0
 let rec method0 () : unit =
-    let v0 : UH0 = UH0_0
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : UH0 = UH0_0
     let v5 : UH0 = UH0_0
-    let v6 : UH0 = UH0_0
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
-    let v8 : UH0 = UH0_0
-    let v9 : string = $"%A{v8}"
-    System.Console.WriteLine v9
-    let v13 : UH0 = UH0_0
-    let v14 : UH0 = UH0_0
-    let v15 : string = $"__expect / actual: %A{v13} / expected: %A{v14}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
+    let v10 : UH0 = UH0_0
+    let v11 : UH0 = UH0_0
+    let v12 : string = $"{v3} / actual: %A{v10} / expected: %A{v11}"
+    System.Console.WriteLine v12
     let v16 : UH0 = UH0_0
-    let v17 : string = $"%A{v16}"
-    System.Console.WriteLine v17
-    let v21 : UH0 = UH0_0
+    let v17 : UH0 = UH0_0
+    let v18 : string = $"{v3} / actual: %A{v16} / expected: %A{v17}"
+    System.Console.WriteLine v18
     let v22 : UH0 = UH0_0
-    let v23 : string = $"__expect / actual: %A{v21} / expected: %A{v22}"
-    let v24 : UH0 = UH0_0
-    let v25 : string = $"%A{v24}"
-    System.Console.WriteLine v25
+    let v23 : UH0 = UH0_0
+    let v24 : string = $"{v3} / actual: %A{v22} / expected: %A{v23}"
+    System.Console.WriteLine v24
+    let v28 : UH0 = UH0_0
     let v29 : UH0 = UH0_0
-    let v30 : UH0 = UH0_0
-    let v31 : string = $"__expect / actual: %A{v29} / expected: %A{v30}"
-    let v32 : UH0 = UH0_0
-    let v33 : string = $"%A{v32}"
-    System.Console.WriteLine v33
-    let v37 : UH0 = UH0_0
-    let v38 : UH0 = UH0_0
-    let v39 : string = $"__expect / actual: %A{v37} / expected: %A{v38}"
-    let v40 : UH0 = UH0_1
-    let v41 : string = $"%A{v40}"
-    System.Console.WriteLine v41
-    let v45 : UH0 = UH0_1
-    let v46 : UH0 = UH0_1
-    let v47 : string = $"__expect / actual: %A{v45} / expected: %A{v46}"
+    let v30 : string = $"{v3} / actual: %A{v28} / expected: %A{v29}"
+    System.Console.WriteLine v30
+    let v34 : UH0 = UH0_1
+    let v35 : UH0 = UH0_1
+    let v36 : string = $"{v3} / actual: %A{v34} / expected: %A{v35}"
+    System.Console.WriteLine v36
     let v48 : UH0 = UH0_1
     let v49 : UH0 = UH0_0
     let v50 : UH0 = UH0_3(v48, v49)
-    let v51 : string = $"%A{v50}"
-    System.Console.WriteLine v51
-    let v63 : UH0 = UH0_1
-    let v64 : UH0 = UH0_0
-    let v65 : UH0 = UH0_3(v63, v64)
+    let v51 : UH0 = UH0_1
+    let v52 : UH0 = UH0_0
+    let v53 : UH0 = UH0_3(v51, v52)
+    let v54 : string = $"{v3} / actual: %A{v50} / expected: %A{v53}"
+    System.Console.WriteLine v54
     let v66 : UH0 = UH0_1
-    let v67 : UH0 = UH0_0
+    let v67 : UH0 = UH0_1
     let v68 : UH0 = UH0_3(v66, v67)
-    let v69 : string = $"__expect / actual: %A{v65} / expected: %A{v68}"
+    let v69 : UH0 = UH0_1
     let v70 : UH0 = UH0_1
-    let v71 : UH0 = UH0_1
-    let v72 : UH0 = UH0_3(v70, v71)
-    let v73 : string = $"%A{v72}"
-    System.Console.WriteLine v73
-    let v85 : UH0 = UH0_1
-    let v86 : UH0 = UH0_1
-    let v87 : UH0 = UH0_3(v85, v86)
-    let v88 : UH0 = UH0_1
-    let v89 : UH0 = UH0_1
-    let v90 : UH0 = UH0_3(v88, v89)
-    let v91 : string = $"__expect / actual: %A{v87} / expected: %A{v90}"
-    let v92 : UH0 = UH0_0
-    let v93 : string = $"%A{v92}"
-    System.Console.WriteLine v93
-    let v97 : UH0 = UH0_0
-    let v98 : UH0 = UH0_0
-    let v99 : string = $"__expect / actual: %A{v97} / expected: %A{v98}"
-    let v100 : UH0 = UH0_1
-    let v101 : string = $"%A{v100}"
-    System.Console.WriteLine v101
-    let v105 : UH0 = UH0_1
-    let v106 : UH0 = UH0_1
-    let v107 : string = $"__expect / actual: %A{v105} / expected: %A{v106}"
-    let v108 : UH0 = UH0_2
-    let v109 : string = $"%A{v108}"
-    System.Console.WriteLine v109
-    let v113 : UH0 = UH0_2
-    let v114 : UH0 = UH0_2
-    let v115 : string = $"__expect / actual: %A{v113} / expected: %A{v114}"
-    let v116 : UH0 = UH0_2
-    let v117 : string = $"%A{v116}"
-    System.Console.WriteLine v117
-    let v121 : UH0 = UH0_2
-    let v122 : UH0 = UH0_2
-    let v123 : string = $"__expect / actual: %A{v121} / expected: %A{v122}"
-    let v124 : UH0 = UH0_0
-    let v125 : string = $"%A{v124}"
-    System.Console.WriteLine v125
-    let v129 : UH0 = UH0_0
-    let v130 : UH0 = UH0_0
-    let v131 : string = $"__expect / actual: %A{v129} / expected: %A{v130}"
-    let v132 : UH0 = UH0_0
-    let v133 : string = $"%A{v132}"
-    System.Console.WriteLine v133
-    let v137 : UH0 = UH0_0
-    let v138 : UH0 = UH0_0
-    let v139 : string = $"__expect / actual: %A{v137} / expected: %A{v138}"
-    let v140 : UH0 = UH0_0
-    let v141 : string = $"%A{v140}"
-    System.Console.WriteLine v141
-    let v145 : UH0 = UH0_0
-    let v146 : UH0 = UH0_0
-    let v147 : string = $"__expect / actual: %A{v145} / expected: %A{v146}"
-    let v148 : UH0 = UH0_2
-    let v149 : string = $"%A{v148}"
-    System.Console.WriteLine v149
-    let v153 : UH0 = UH0_2
-    let v154 : UH0 = UH0_2
-    let v155 : string = $"__expect / actual: %A{v153} / expected: %A{v154}"
-    let v156 : UH0 = UH0_1
-    let v157 : string = $"%A{v156}"
-    System.Console.WriteLine v157
-    let v161 : UH0 = UH0_1
-    let v162 : UH0 = UH0_1
-    let v163 : string = $"__expect / actual: %A{v161} / expected: %A{v162}"
+    let v71 : UH0 = UH0_3(v69, v70)
+    let v72 : string = $"{v3} / actual: %A{v68} / expected: %A{v71}"
+    System.Console.WriteLine v72
+    let v76 : UH0 = UH0_0
+    let v77 : UH0 = UH0_0
+    let v78 : string = $"{v3} / actual: %A{v76} / expected: %A{v77}"
+    System.Console.WriteLine v78
+    let v82 : UH0 = UH0_1
+    let v83 : UH0 = UH0_1
+    let v84 : string = $"{v3} / actual: %A{v82} / expected: %A{v83}"
+    System.Console.WriteLine v84
+    let v88 : UH0 = UH0_2
+    let v89 : UH0 = UH0_2
+    let v90 : string = $"{v3} / actual: %A{v88} / expected: %A{v89}"
+    System.Console.WriteLine v90
+    let v94 : UH0 = UH0_2
+    let v95 : UH0 = UH0_2
+    let v96 : string = $"{v3} / actual: %A{v94} / expected: %A{v95}"
+    System.Console.WriteLine v96
+    let v100 : UH0 = UH0_0
+    let v101 : UH0 = UH0_0
+    let v102 : string = $"{v3} / actual: %A{v100} / expected: %A{v101}"
+    System.Console.WriteLine v102
+    let v106 : UH0 = UH0_0
+    let v107 : UH0 = UH0_0
+    let v108 : string = $"{v3} / actual: %A{v106} / expected: %A{v107}"
+    System.Console.WriteLine v108
+    let v112 : UH0 = UH0_0
+    let v113 : UH0 = UH0_0
+    let v114 : string = $"{v3} / actual: %A{v112} / expected: %A{v113}"
+    System.Console.WriteLine v114
+    let v118 : UH0 = UH0_2
+    let v119 : UH0 = UH0_2
+    let v120 : string = $"{v3} / actual: %A{v118} / expected: %A{v119}"
+    System.Console.WriteLine v120
+    let v124 : UH0 = UH0_1
+    let v125 : UH0 = UH0_1
+    let v126 : string = $"{v3} / actual: %A{v124} / expected: %A{v125}"
+    System.Console.WriteLine v126
     ()
 method0()
 
-UH0_0
-UH0_0
-UH0_0
-UH0_0
-UH0_0
-UH0_1
-UH0_3 (UH0_1, UH0_0)
-UH0_3 (UH0_1, UH0_1)
-UH0_0
-UH0_1
-UH0_2
-UH0_2
-UH0_0
-UH0_0
-UH0_0
-UH0_2
-UH0_1
+assert_eq / actual: UH0_0 / expected: UH0_0
+assert_eq / actual: UH0_0 / expected: UH0_0
+assert_eq / actual: UH0_0 / expected: UH0_0
+assert_eq / actual: UH0_0 / expected: UH0_0
+assert_eq / actual: UH0_0 / expected: UH0_0
+assert_eq / actual: UH0_1 / expected: UH0_1
+assert_eq / actual: UH0_3 (UH0_1, UH0_0) / expected: UH0_3 (UH0_1, UH0_0)
+assert_eq / actual: UH0_3 (UH0_1, UH0_1) / expected: UH0_3 (UH0_1, UH0_1)
+assert_eq / actual: UH0_0 / expected: UH0_0
+assert_eq / actual: UH0_1 / expected: UH0_1
+assert_eq / actual: UH0_2 / expected: UH0_2
+assert_eq / actual: UH0_2 / expected: UH0_2
+assert_eq / actual: UH0_0 / expected: UH0_0
+assert_eq / actual: UH0_0 / expected: UH0_0
+assert_eq / actual: UH0_0 / expected: UH0_0
+assert_eq / actual: UH0_2 / expected: UH0_2
+assert_eq / actual: UH0_1 / expected: UH0_1
 </pre>
 </div>
 </div>

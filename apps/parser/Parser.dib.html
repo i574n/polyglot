@@ -7716,11 +7716,10 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>InputState
-      lines: [  ]
-      position: Position
-        line: 0
-        column: 0
+<pre>{ lines = [||]
+  position = { line = 0
+               column = 0 } }
+
 </pre>
 </div>
 </div>
@@ -7752,11 +7751,10 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>InputState
-      lines: [ Hello ,  World ]
-      position: Position
-        line: 0
-        column: 0
+<pre>{ lines = [|"Hello "; " World"|]
+  position = { line = 0
+               column = 0 } }
+
 </pre>
 </div>
 </div>
@@ -7840,13 +7838,12 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>InputState
-      lines: [ Hello World ]
-      position: Position
-        line: 0
-        column: 1
-FSharpOption&lt;Char&gt;
-      Value: H
+<pre>{ lines = [|"Hello World"|]
+  position = { line = 0
+               column = 1 } }
+
+Some 'H'
+
 </pre>
 </div>
 </div>
@@ -7881,13 +7878,12 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>InputState
-      lines: [ Hello, , World ]
-      position: Position
-        line: 0
-        column: 1
-FSharpOption&lt;Char&gt;
-      Value: H
+<pre>{ lines = [|"Hello"; ""; "World"|]
+  position = { line = 0
+               column = 1 } }
+
+Some 'H'
+
 </pre>
 </div>
 </div>
@@ -8123,15 +8119,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - H
-      - InputState
-          lines: [ Hello ]
-          position: Position
-            line: 0
-            column: 1
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success ('H', { lines = [|"Hello"|]
+                position = { line = 0
+                             column = 1 } })
+
 </pre>
 </div>
 </div>
@@ -8172,15 +8163,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Failure
-      Item1: H
-      Item2: Unexpected 'W'
-      Item3: ParserPosition
-        currentLine: World
-        line: 0
-        column: 0
-      IsSuccess: False
-      IsFailure: True
+<pre>Failure ("H", "Unexpected 'W'", { currentLine = "World"
+                                  line = 0
+                                  column = 0 })
+
 </pre>
 </div>
 </div>
@@ -8255,15 +8241,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - e
-      - InputState
-          lines: [ Hello ]
-          position: Position
-            line: 0
-            column: 2
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success ('e', { lines = [|"Hello"|]
+                position = { line = 0
+                             column = 2 } })
+
 </pre>
 </div>
 </div>
@@ -8305,15 +8286,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Failure
-      Item1: e
-      Item2: Unexpected 'o'
-      Item3: ParserPosition
-        currentLine: World
-        line: 0
-        column: 1
-      IsSuccess: False
-      IsFailure: True
+<pre>Failure ("e", "Unexpected 'o'", { currentLine = "World"
+                                  line = 0
+                                  column = 1 })
+
 </pre>
 </div>
 </div>
@@ -8370,15 +8346,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - Hello
-      - InputState
-          lines: [ Hello ]
-          position: Position
-            line: 0
-            column: 0
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success ("Hello", { lines = [|"Hello"|]
+                    position = { line = 0
+                                 column = 0 } })
+
 </pre>
 </div>
 </div>
@@ -8461,15 +8432,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - H
-      - InputState
-          lines: [ Hello ]
-          position: Position
-            line: 0
-            column: 1
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success ("H", { lines = [|"Hello"|]
+                position = { line = 0
+                             column = 1 } })
+
 </pre>
 </div>
 </div>
@@ -8558,15 +8524,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - He
-      - InputState
-          lines: [ Hello ]
-          position: Position
-            line: 0
-            column: 2
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success ("He", { lines = [|"Hello"|]
+                 position = { line = 0
+                              column = 2 } })
+
 </pre>
 </div>
 </div>
@@ -8641,15 +8602,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - ( H, e )
-      - InputState
-          lines: [ Hello ]
-          position: Position
-            line: 0
-            column: 2
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success (('H', 'e'), { lines = [|"Hello"|]
+                       position = { line = 0
+                                    column = 2 } })
+
 </pre>
 </div>
 </div>
@@ -8725,15 +8681,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - h
-      - InputState
-          lines: [ hello ]
-          position: Position
-            line: 0
-            column: 1
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success ('h', { lines = [|"hello"|]
+                position = { line = 0
+                             column = 1 } })
+
 </pre>
 </div>
 </div>
@@ -8789,15 +8740,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - h
-      - InputState
-          lines: [ hello ]
-          position: Position
-            line: 0
-            column: 1
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success ('h', { lines = [|"hello"|]
+                position = { line = 0
+                             column = 1 } })
+
 </pre>
 </div>
 </div>
@@ -8855,15 +8801,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - [ H, e ]
-      - InputState
-          lines: [ Hello ]
-          position: Position
-            line: 0
-            column: 2
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success (['H'; 'e'], { lines = [|"Hello"|]
+                       position = { line = 0
+                                    column = 2 } })
+
 </pre>
 </div>
 </div>
@@ -8941,15 +8882,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - [  ]
-      - InputState
-          lines: [ hello ]
-          position: Position
-            line: 0
-            column: 0
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success ([], { lines = [|"hello"|]
+               position = { line = 0
+                            column = 0 } })
+
 </pre>
 </div>
 </div>
@@ -9011,15 +8947,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Failure
-      Item1: many1 H
-      Item2: Unexpected 'h'
-      Item3: ParserPosition
-        currentLine: hello
-        line: 0
-        column: 0
-      IsSuccess: False
-      IsFailure: True
+<pre>Failure ("many1 H", "Unexpected 'h'", { currentLine = "hello"
+                                        line = 0
+                                        column = 0 })
+
 </pre>
 </div>
 </div>
@@ -9077,15 +9008,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - &lt;null&gt;
-      - InputState
-          lines: [ hello ]
-          position: Position
-            line: 0
-            column: 0
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success (None, { lines = [|"hello"|]
+                 position = { line = 0
+                              column = 0 } })
+
 </pre>
 </div>
 </div>
@@ -9175,15 +9101,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - [ H, e, l, l, o ]
-      - InputState
-          lines: [ [Hello] ]
-          position: Position
-            line: 0
-            column: 7
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success (['H'; 'e'; 'l'; 'l'; 'o'], { lines = [|"[Hello]"|]
+                                      position = { line = 0
+                                                   column = 7 } })
+
 </pre>
 </div>
 </div>
@@ -9254,18 +9175,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - FSharpList&lt;FSharpList&lt;Char&gt;&gt;
-[ H, e, l, l, o ]
-[ W, o, r, l, d, 
- ]
-      - InputState
-          lines: [ Hello,World ]
-          position: Position
-            line: 1
-            column: 0
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success ([['H'; 'e'; 'l'; 'l'; 'o']; ['W'; 'o'; 'r'; 'l'; 'd'; '\010']], { lines = [|"Hello,World"|]
+                                                                           position = { line = 1
+                                                                                        column = 0 } })
+
 </pre>
 </div>
 </div>
@@ -9337,15 +9250,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - [ H, e, l, l, o ]
-      - InputState
-          lines: [ Hello ]
-          position: Position
-            line: 0
-            column: 5
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success (['H'; 'e'; 'l'; 'l'; 'o'], { lines = [|"Hello"|]
+                                      position = { line = 0
+                                                   column = 5 } })
+
 </pre>
 </div>
 </div>
@@ -9431,15 +9339,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - Hello
-      - InputState
-          lines: [ Hello ]
-          position: Position
-            line: 0
-            column: 5
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success ("Hello", { lines = [|"Hello"|]
+                    position = { line = 0
+                                 column = 5 } })
+
 </pre>
 </div>
 </div>
@@ -9498,15 +9401,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - Hello
-      - InputState
-          lines: [ Hello ]
-          position: Position
-            line: 0
-            column: 5
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success ("Hello", { lines = [|"Hello"|]
+                    position = { line = 0
+                                 column = 5 } })
+
 </pre>
 </div>
 </div>
@@ -9588,16 +9486,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       -         - [  ,   ]
-        - Hello
-      - InputState
-          lines: [   Hello ]
-          position: Position
-            line: 0
-            column: 7
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success (([' '; ' '], "Hello"), { lines = [|"  Hello"|]
+                                  position = { line = 0
+                                               column = 7 } })
+
 </pre>
 </div>
 </div>
@@ -9653,15 +9545,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Failure
-      Item1: digit
-      Item2: Unexpected 'H'
-      Item3: ParserPosition
-        currentLine: Hello
-        line: 0
-        column: 0
-      IsSuccess: False
-      IsFailure: True
+<pre>Failure ("digit", "Unexpected 'H'", { currentLine = "Hello"
+                                      line = 0
+                                      column = 0 })
+
 </pre>
 </div>
 </div>
@@ -9724,15 +9611,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - -123
-      - InputState
-          lines: [ -123 ]
-          position: Position
-            line: 0
-            column: 4
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success (-123, { lines = [|"-123"|]
+                 position = { line = 0
+                              column = 4 } })
+
 </pre>
 </div>
 </div>
@@ -9795,15 +9677,10 @@ FSharpOption&lt;Char&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Success
-      Item:       - -123.45
-      - InputState
-          lines: [ -123.45 ]
-          position: Position
-            line: 0
-            column: 7
-    - IsSuccess: True
-      IsFailure: False
+<pre>Success (-123.45, { lines = [|"-123.45"|]
+                    position = { line = 0
+                                 column = 7 } })
+
 </pre>
 </div>
 </div>

@@ -13,7 +13,7 @@ open sm'_operators
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -24,11 +24,17 @@ open testing
 #!spiral
 
 inl types () =
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::DateTime<$0>\")>] type chrono_DateTime<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Local\")>] type chrono_Local = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::NaiveDateTime\")>] type chrono_NaiveDateTime = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Utc\")>] type chrono_Utc = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::time::Duration\")>] type std_time_Duration = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::DateTime<$0>\")>]\n#endif\ntype chrono_DateTime<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Local\")>]\n#endif\ntype chrono_Local = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::NaiveDateTime\")>]\n#endif\ntype chrono_NaiveDateTime = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Utc\")>]\n#endif\ntype chrono_Utc = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::time::Duration\")>]\n#endif\ntype std_time_Duration = class end"
+
+#!spiral
+
+inl types () =
+    sm'.types ()
+    types ()
 
 #!spiral
 
@@ -54,6 +60,18 @@ inl date_time_milliseconds
 
 #!markdown
 
+## date_time_utc
+
+#!spiral
+
+inl date_time_utc
+    (year : int) (month : int) (day : int) (hour : int) (minute : int) (second : int)
+    : date_time
+    =
+    $'System.DateTime (!year, !month, !day, !hour, !minute, !second, System.DateTimeKind.Utc)'
+
+#!markdown
+
 ## naive_utc
 
 #!spiral
@@ -74,14 +92,13 @@ inl to_local (date_time : date_time' utc) : date_time' local =
 
 #!markdown
 
-## from_timestamp'
+## from_timestamp_micros
 
 #!spiral
 
-inl from_timestamp' forall t {number; int}. (timestamp : t) : option (date_time' utc) =
-    inl timestamp = join timestamp
+inl from_timestamp_micros forall t {number; int}. (timestamp : t) : option (date_time' utc) =
     inl result : optionm'.option' (date_time' utc) =
-        !\($'"chrono::DateTime::from_timestamp_micros(!timestamp / 1000i64)"')
+        !\\(timestamp, $'"chrono::DateTime::from_timestamp_micros($0)"')
     result |> optionm'.unbox
 
 #!markdown
@@ -139,11 +156,10 @@ inl format'' (format : string) (date_time : date_time' _) : sm'.std_string =
 
 #!spiral
 
-inl format_timestamp (timestamp : sm'.std_string) =
+inl format_timestamp forall t {number; int}. (timestamp : t) =
     inl timestamp = join timestamp
-    timestamp
-    |> fun x => !\($'"!x.parse().unwrap()"') : i64
-    |> from_timestamp'
+    (timestamp / 1000)
+    |> from_timestamp_micros
     |> optionm.map fun x =>
         x
         |> to_local
@@ -163,161 +179,64 @@ inl duration_from_millis (ms : u64) : duration =
 
 #!markdown
 
-## get_environment_variable
+## min_value
 
 #!spiral
 
-inl get_environment_variable (var : string) : string =
-    $"System.Environment.GetEnvironmentVariable !var"
-
-#!spiral
-
-// // test
-
-inl test_guid () =
-    guid.new_guid "FEDCBA98-7654-3210-FEDC-BA9876543210"
-
-#!spiral
-
-type timestamp_guid = guid.guid
-type date_time_guid = guid.guid
+inl min_value () : date_time =
+    $'System.DateTime.MinValue'
 
 #!markdown
 
-## date_time_guid_from_date_time
+## max_value
 
 #!spiral
 
-inl date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
-    inl guid = guid |> sm'.obj_to_string
-    inl prefix = $'!date_time.ToString "yyyyMMdd-HHmm-ssff-ffff-f"' : string
-    $'`date_time_guid $"{!prefix}{!guid.[!prefix.Length..]}"' : date_time_guid
-
-#!spiral
-
-// // test
-
-date_time_guid_from_date_time (test_guid ()) $'System.DateTime.MinValue'
-|> sm'.obj_to_string
-|> _assert_eq' "00010101-0000-0000-0000-0a9876543210"
-
-#!spiral
-
-// // test
-
-date_time_guid_from_date_time (test_guid ()) $'System.DateTime.MaxValue'
-|> sm'.obj_to_string
-|> _assert_eq $'$"99991231-2359-5999-9999-9{(!test_guid() |> string).[^10..]}"'
-
-#!spiral
-
-// // test
-
-date_time_guid_from_date_time (test_guid ()) $'System.DateTime.UnixEpoch'
-|> sm'.obj_to_string
-|> _assert_eq $'$"19700101-0000-0000-0000-0{(!test_guid () |> string).[^10..]}"'
+inl max_value () : date_time =
+    $'System.DateTime.MaxValue'
 
 #!markdown
 
-## date_time_from_guid
+## unix_epoch
 
 #!spiral
 
-inl date_time_from_guid (date_time_guid : date_time_guid) =
-    inl date_time_guid = date_time_guid |> sm'.obj_to_string
-    inl sm'_replace = join sm'.replace
-    run_target function
-        | Rust _ => fun () =>
-            $'System.DateTime.Parse (!date_time_guid.[..24] |> !sm'_replace "-" "")' : date_time
-        | _ => fun () => $'System.DateTime.ParseExact (!date_time_guid.[..24] |> !sm'_replace "-" "", "yyyyMMddHHmmssfffffff", null)' : date_time
-
-#!spiral
-
-// // test
-
-date_time_from_guid (guid.new_guid "00010101-0000-0000-0000-0a9876543210")
-|> _assert_eq' $'System.DateTime.MinValue'
-
-#!spiral
-
-// // test
-
-date_time_from_guid (guid.new_guid $'$"99991231-2359-5999-9999-9{(!test_guid () |> string).[^10..]}"')
-|> _assert_eq' $'System.DateTime.MaxValue'
-
-#!spiral
-
-// // test
-
-date_time_from_guid (guid.new_guid $'$"19700101-0000-0000-0000-0{(!test_guid () |> string).[^10..]}"')
-|> _assert_eq' $'System.DateTime.UnixEpoch'
+inl unix_epoch () : date_time =
+    $'System.DateTime.UnixEpoch'
 
 #!markdown
 
-## timestamp_guid_from_timestamp
+## to_universal_time
 
 #!spiral
 
-inl timestamp_guid_from_timestamp (guid : guid.guid) (timestamp : timestamp) : timestamp_guid =
-    inl guid = guid |> sm'.obj_to_string
-    inl timestamp = timestamp |> sm'.obj_to_string |> sm'.pad_left 18i32 '0'
-    $'`timestamp_guid $"{!timestamp.[0..7]}-{!timestamp.[8..11]}-{!timestamp.[12..15]}-{!timestamp.[16..17]}{!guid.[21..]}"'
-
-#!spiral
-
-// // test
-
-timestamp_guid_from_timestamp (test_guid ()) (timestamp 0i64)
-|> _assert_eq' (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")
-
-#!spiral
-
-// // test
-
-timestamp_guid_from_timestamp (test_guid ()) (timestamp 999999999999999999i64)
-|> _assert_eq' (guid.new_guid $'$"99999999-9999-9999-99dc-b{(!test_guid () |> string).[^10..]}"')
+inl to_universal_time (date_time : date_time) : date_time =
+    date_time |> $'_.ToUniversalTime()'
 
 #!markdown
 
-## timestamp_from_guid
+## date_time_kind
 
 #!spiral
 
-inl timestamp_from_guid (guid : date_time_guid) : timestamp =
-    inl guid = guid |> sm'.obj_to_string
-    $'`i64 $"{!guid.[0..7]}{!guid.[9..12]}{!guid.[14..17]}{!guid.[19..20]}"'
-
-#!spiral
-
-// // test
-
-timestamp_from_guid (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")
-|> _assert_eq (timestamp 0)
-
-#!spiral
-
-// // test
-
-timestamp_from_guid (guid.new_guid $'$"99999999-9999-9999-99{(!test_guid () |> string).[^14..]}"')
-|> _assert_eq (timestamp 999999999999999999)
+union date_time_kind =
+    | Unspecified
+    | Utc
+    | Local
 
 #!markdown
 
-## now
+## specify_date_kind
 
 #!spiral
 
-inl now () : date_time =
-    $'System.DateTime.Now'
-
-#!markdown
-
-## utc_now
-
-#!spiral
-
-inl utc_now () : date_time =
-    $'System.DateTime.UtcNow'
+inl specify_date_kind (kind : date_time_kind) (date_time : date_time) : date_time =
+    inl kind : $'System.DateTimeKind' =
+        match kind with
+        | Unspecified => $'System.DateTimeKind.Unspecified'
+        | Utc => $'System.DateTimeKind.Utc'
+        | Local => $'System.DateTimeKind.Local'
+    $'System.DateTime.SpecifyKind (!date_time, !kind)'
 
 #!markdown
 
@@ -338,6 +257,15 @@ inl time_span x : time_span =
 
 inl new_time_span (a : date_time) (b : date_time) : time_span =
     $'!b - !a '
+
+#!markdown
+
+## time_span_format
+
+#!spiral
+
+inl time_span_format (format : string) (time_span : time_span) : string =
+    $'!time_span.ToString' format
 
 #!markdown
 
@@ -386,6 +314,329 @@ inl total_seconds (time_span : time_span) : f64 =
 
 #!markdown
 
+## time_zone_info
+
+#!spiral
+
+nominal time_zone_info = $'System.TimeZoneInfo'
+
+#!markdown
+
+## time_zone_local
+
+#!spiral
+
+inl time_zone_local () : time_zone_info =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.TimeZoneInfo.Local'
+        | Rust (Native) => fun () =>
+            open rust_operators
+            !\($'"0i64.into()"')
+        | _ => fun () => null ()
+
+#!markdown
+
+## get_utc_offset
+
+#!spiral
+
+inl get_utc_offset (time_zone_info : time_zone_info) (date_time : date_time) : time_span =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            date_time |> $'_.GetUtcOffset' (time_zone_local ())
+        | _ => fun () =>
+            time_span ()
+
+#!markdown
+
+## add_days
+
+#!spiral
+
+inl add_days (days : i32) (date_time : date_time) : date_time =
+    $'!date_time.AddDays' days
+
+#!markdown
+
+## now
+
+#!spiral
+
+inl now () : date_time =
+    $'System.DateTime.Now'
+
+#!markdown
+
+## utc_now
+
+#!spiral
+
+inl utc_now () : date_time =
+    $'System.DateTime.UtcNow'
+
+#!markdown
+
+## timestamp_guid
+
+#!spiral
+
+type timestamp_guid = guid.guid
+
+#!markdown
+
+## date_time_guid
+
+#!spiral
+
+type date_time_guid = guid.guid
+
+#!spiral
+
+//// test
+
+inl test_guid () =
+    guid.new_guid "FEDCBA98-7654-3210-FEDC-BA9876543210"
+
+#!markdown
+
+## date_time_guid_from_date_time
+
+#!spiral
+
+let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
+    inl parse prefix time_zone : date_time_guid =
+        inl guid = guid |> sm'.obj_to_string
+        $'`date_time_guid $"{!prefix}{!time_zone}{!guid.[!prefix.Length + !time_zone.Length..]}"'
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl prefix = date_time |> format (join "yyyyMMdd-HHmm-ssff-ffff-f")
+            inl time_zone = date_time |> get_utc_offset (time_zone_local ())
+            inl time_zone_signal = (hours time_zone > 0) |> convert_i32
+            inl time_zone_value = time_zone |> time_span_format (join "hhmm")
+            inl time_zone = $'$"{!time_zone_signal}{!time_zone_value}"' : string
+            parse prefix time_zone
+        | Rust (Native) => fun () =>
+            inl epoch =
+                date_time_utc 1970 1 1 0 0 0
+                |> to_universal_time
+            inl date_time =
+                date_time
+                |> specify_date_kind Local
+                |> to_universal_time
+            inl unixticks =
+                match date_time |> ticks, epoch |> ticks with
+                | timestamp date_time, timestamp epoch => date_time - epoch
+            inl prefix =
+                unixticks / 10
+                |> from_timestamp_micros
+                |> optionm.map (
+                    to_local
+                    >> format'' "%Y%m%d-%H%M-%S%f"
+                    >> sm'.from_std_string
+                    >> fun s => $'$"{!s.[0..17]}-{!s.[18..21]}-{!s.[22]}"'
+                )
+                |> optionm'.default_value ""
+            inl time_zone = date_time |> get_utc_offset (time_zone_local ())
+            inl time_zone_signal = if hours time_zone > 0 then 1u8 else 0
+            inl time_zone_value = time_zone |> time_span_format "hh:mm"
+            inl time_zone = $'$"{!time_zone_signal}{!time_zone_value.[0..1]}{!time_zone_value.[3..4]}"' : string
+            parse prefix time_zone
+        | _ => fun () => null ()
+
+#!spiral
+
+//// test
+//// print_code=false
+
+types ()
+now () |> to_universal_time |> date_time_guid_from_date_time (test_guid ()) |> sm'.obj_to_string
+|> console.write_line
+
+#!spiral
+
+//// test
+//// print_code=false
+///! rust -d chrono
+
+types ()
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
+now ()
+|> to_universal_time
+|> date_time_guid_from_date_time (test_guid ())
+|> sm'.obj_to_string
+|> fun s => s |> _assert_eq' $'$"{!s.[0..29]}{!suffix}"'
+
+#!spiral
+
+//// test
+//// print_code=false
+
+types ()
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
+min_value ()
+|> specify_date_kind Local
+|> date_time_guid_from_date_time (test_guid ())
+|> sm'.obj_to_string
+|> fun s => s |> _assert_eq' $'$"00010101-0000-0000-0000-0{!s.[25..29]}{!suffix}"'
+
+#!spiral
+
+//// test
+//// print_code=false
+///! rust -d chrono
+
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
+types ()
+min_value ()
+|> specify_date_kind Local
+|> date_time_guid_from_date_time (test_guid ())
+|> sm'.obj_to_string
+|> fun s => s |> _assert_eq' $'$"00010101-0000-0000-0000-0{!s.[25..29]}{!suffix}"'
+
+#!spiral
+
+//// test
+//// print_code=false
+
+types ()
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
+max_value ()
+|> specify_date_kind Utc
+|> add_days -1
+|> date_time_guid_from_date_time (test_guid ())
+|> sm'.obj_to_string
+|> fun s => s |> _assert_eq $'$"99991230-2359-5999-9999-9{!s.[25..29]}{!suffix}"'
+
+#!spiral
+
+//// test
+//// print_code=false
+///! rust -d chrono
+
+types ()
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
+max_value ()
+|> specify_date_kind Utc
+|> add_days -1
+|> date_time_guid_from_date_time (test_guid ())
+|> sm'.obj_to_string
+|> fun s => s |> _assert_eq $'$"99991230-2359-5999-9999-0{!s.[25..29]}{!suffix}"'
+
+#!spiral
+
+//// test
+//// print_code=false
+
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
+unix_epoch ()
+|> specify_date_kind Utc
+|> add_days 1
+|> date_time_guid_from_date_time (test_guid ())
+|> sm'.obj_to_string
+|> fun s => s |> _assert_eq $'$"19700102-0000-0000-0000-0{!s.[25..29]}{!suffix}"'
+
+#!spiral
+
+//// test
+//// print_code=false
+///! rust -d chrono
+
+types ()
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
+unix_epoch ()
+|> specify_date_kind Utc
+|> add_days 1
+|> date_time_guid_from_date_time (test_guid ())
+|> sm'.obj_to_string
+|> fun s => s |> _assert_eq $'$"19700102-0000-0000-0000-0{!s.[25..29]}{!suffix}"'
+
+#!markdown
+
+## date_time_from_guid
+
+#!spiral
+
+inl date_time_from_guid (date_time_guid : date_time_guid) =
+    inl date_time_guid = date_time_guid |> sm'.obj_to_string
+    inl sm'_replace = join sm'.replace
+    run_target function
+        | Rust _ => fun () =>
+            $'System.DateTime.Parse (!date_time_guid.[..24] |> !sm'_replace "-" "")' : date_time
+        | _ => fun () => $'System.DateTime.ParseExact (!date_time_guid.[..24] |> !sm'_replace "-" "", "yyyyMMddHHmmssfffffff", null)' : date_time
+
+#!spiral
+
+//// test
+
+date_time_from_guid (guid.new_guid "00010101-0000-0000-0000-0a9876543210")
+|> _assert_eq' (min_value ())
+
+#!spiral
+
+//// test
+
+date_time_from_guid (guid.new_guid $'$"99991231-2359-5999-9999-9{(!test_guid () |> string).[^10..]}"')
+|> _assert_eq' (max_value ())
+
+#!spiral
+
+//// test
+
+date_time_from_guid (guid.new_guid $'$"19700101-0000-0000-0000-0{(!test_guid () |> string).[^10..]}"')
+|> _assert_eq' $'System.DateTime.UnixEpoch'
+
+#!markdown
+
+## timestamp_guid_from_timestamp
+
+#!spiral
+
+inl timestamp_guid_from_timestamp (guid : guid.guid) (timestamp : timestamp) : timestamp_guid =
+    inl guid = guid |> sm'.obj_to_string
+    inl timestamp = timestamp |> sm'.obj_to_string |> sm'.pad_left 18i32 '0'
+    $'`timestamp_guid $"{!timestamp.[0..7]}-{!timestamp.[8..11]}-{!timestamp.[12..15]}-{!timestamp.[16..17]}{!guid.[21..]}"'
+
+#!spiral
+
+//// test
+
+timestamp_guid_from_timestamp (test_guid ()) (timestamp 0i64)
+|> _assert_eq' (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")
+
+#!spiral
+
+//// test
+
+timestamp_guid_from_timestamp (test_guid ()) (timestamp 999999999999999999i64)
+|> _assert_eq' (guid.new_guid $'$"99999999-9999-9999-99dc-b{(!test_guid () |> string).[^10..]}"')
+
+#!markdown
+
+## timestamp_from_guid
+
+#!spiral
+
+inl timestamp_from_guid (guid : date_time_guid) : timestamp =
+    inl guid = guid |> sm'.obj_to_string
+    $'`i64 $"{!guid.[0..7]}{!guid.[9..12]}{!guid.[14..17]}{!guid.[19..20]}"'
+
+#!spiral
+
+//// test
+
+timestamp_from_guid (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")
+|> _assert_eq (timestamp 0)
+
+#!spiral
+
+//// test
+
+timestamp_from_guid (guid.new_guid $'$"99999999-9999-9999-99{(!test_guid () |> string).[^14..]}"')
+|> _assert_eq (timestamp 999999999999999999)
+
+#!markdown
+
 ## new_guid_from_date_time
 
 #!spiral
@@ -396,7 +647,8 @@ inl new_guid_from_date_time (date_time : date_time) =
 
 #!spiral
 
-// // test
+//// test
+//// print_code=false
 
 utc_now ()
 |> new_guid_from_date_time
@@ -416,7 +668,7 @@ inl new_guid_from_timestamp (timestamp : timestamp) =
 
 #!spiral
 
-// // test
+//// test
 
 utc_now ()
 |> ticks
@@ -425,28 +677,6 @@ utc_now ()
 |> fun (timestamp timestamp) => (timestamp - (utc_now () |> ticks |> fun (timestamp x) => x)) / 100000i64
 |> _assert_eq 0i64
 
-#!fsharp
-
-//// test
-
-type DateTimeWithZone = {
-    DateTime: System.DateTimeOffset
-    TimeZone: System.TimeZoneInfo
-}
-
-try
-    let now = System.DateTimeOffset.Now
-    let timeZoneInfo = System.TimeZoneInfo.Local
-    let dateTimeWithZone = { DateTime = now; TimeZone = timeZoneInfo }
-
-    printfn "DateTime: %O" dateTimeWithZone.DateTime
-    printfn "Time Zone: %s" dateTimeWithZone.TimeZone.DisplayName
-    printfn "Is DST: %b" (timeZoneInfo.IsDaylightSavingTime(dateTimeWithZone.DateTime.DateTime))
-    printfn "v1: %s" (dateTimeWithZone.TimeZone.GetUtcOffset(now) |> string)
-    printfn "v2: %s" (dateTimeWithZone.TimeZone |> string)
-with ex ->
-    printfn "error: %A" ex
-
 #!markdown
 
 ## main
@@ -454,6 +684,7 @@ with ex ->
 #!spiral
 
 inl main () =
+    types ()
     $"let date_time_guid_from_date_time x = !date_time_guid_from_date_time x" : ()
     $"let date_time_from_guid x = !date_time_from_guid x" : ()
     $"let timestamp_guid_from_timestamp x = !timestamp_guid_from_timestamp x" : ()

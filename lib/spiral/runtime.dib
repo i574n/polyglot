@@ -9,14 +9,14 @@
 #!spiral
 
 open rust_operators
-open file_system_operators
 open sm'_operators
 
 #!spiral
 
-// // test
+//// test
 
 open testing
+open file_system_operators
 
 #!markdown
 
@@ -25,18 +25,114 @@ open testing
 #!spiral
 
 inl types () =
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Arg\")>] type clap_Arg = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Command\")>] type clap_Command = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"clap::ArgMatches\")>] type clap_ArgMatches = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Arg\")>]\n#endif\ntype clap_Arg = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::ArgAction\")>]\n#endif\ntype clap_ArgAction = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Command\")>]\n#endif\ntype clap_Command = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::ArgMatches\")>]\n#endif\ntype clap_ArgMatches = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::builder::ValueRange\")>]\n#endif\ntype clap_builder_ValueRange = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::builder::ValueParser\")>]\n#endif\ntype clap_builder_ValueParser = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::builder::PossibleValue\")>]\n#endif\ntype clap_builder_PossibleValue = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Child\")>]\n#endif\ntype std_process_Child = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStderr\")>]\n#endif\ntype std_process_ChildStderr = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdout\")>]\n#endif\ntype std_process_ChildStdout = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdin\")>]\n#endif\ntype std_process_ChildStdin = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Command\")>]\n#endif\ntype std_process_Command = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Output\")>]\n#endif\ntype std_process_Output = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Stdio\")>]\n#endif\ntype std_process_Stdio = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::mpsc::Receiver<$0>\")>]\n#endif\ntype std_sync_mpsc_Receiver<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::mpsc::Sender<$0>\")>]\n#endif\ntype std_sync_mpsc_Sender<'T> = class end"
 
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER // runtime.types"
-    rust.types ()
-    sm'.types ()
     types ()
-    global "#endif // runtime.types"
+    am'.types ()
+    async.types ()
+    env.types ()
+    rust.types ()
+    seq.types ()
+    sm'.types ()
+    threading.types ()
+
+#!spiral
+
+//// test
+
+inl types () =
+    file_system.types ()
+    types ()
+
+#!markdown
+
+## child
+
+#!spiral
+
+nominal child = $'std_process_Child'
+
+#!markdown
+
+## child_stderr
+
+#!spiral
+
+nominal child_stderr = $"std_process_ChildStderr"
+
+#!markdown
+
+## child_stdout
+
+#!spiral
+
+nominal child_stdout = $"std_process_ChildStdout"
+
+#!markdown
+
+## child_stdin
+
+#!spiral
+
+nominal child_stdin = $"std_process_ChildStdin"
+
+#!markdown
+
+## process_command
+
+#!spiral
+
+nominal process_command = $'std_process_Command'
+
+#!markdown
+
+## stdio
+
+#!spiral
+
+nominal stdio = $'std_process_Stdio'
+
+#!markdown
+
+## output
+
+#!spiral
+
+nominal output = $'std_process_Output'
+
+#!markdown
+
+## receiver
+
+#!spiral
+
+nominal receiver t = $'std_sync_mpsc_Receiver<`t>'
+
+#!markdown
+
+## sender
+
+#!spiral
+
+nominal sender t = $'std_sync_mpsc_Sender<`t>'
 
 #!markdown
 
@@ -71,6 +167,8 @@ inl is_windows () : bool =
     run_target function
         | Fsharp (Native) => fun () =>
             Windows |> os_platform |> is_os_platform
+        | Rust (Native) => fun () =>
+            !\($'"cfg\!(windows)"')
         | _ => fun () => null ()
 
 #!markdown
@@ -86,19 +184,25 @@ inl get_executable_suffix () =
 
 #!spiral
 
-// // test
+//// test
 
 get_executable_suffix ()
 
 #!markdown
 
-## split_command
+## quoted
 
 #!spiral
 
 union quoted =
     | Quoted
     | NotQuoted
+
+#!markdown
+
+## split_command
+
+#!spiral
 
 union command_parse_step =
     | Start
@@ -115,11 +219,11 @@ inl split_command (command : string) =
         | Arguments, (char :: tail) => loop (path, $'$"{!args}{!char}"') tail Arguments
         | _, (char :: tail) => loop ($'$"{!path}{!char}"', args) tail step
         | _ => path |> sm'.replace @"\" "/", args
-    loop (join "", "") (command |> seq.of_string |> seq.to_list' |> listm'.unbox) Start
+    loop (join "", "") (command |> sm'.to_char_array |> am'.to_list' |> listm'.unbox) Start
 
 #!spiral
 
-// // test
+//// test
 
 split_command ""
 |> _assert_eq ("", "")
@@ -199,7 +303,7 @@ inl event_data (e : data_received_event_args) : string =
 
 #!markdown
 
-## execute_async
+## execution_line
 
 #!spiral
 
@@ -210,25 +314,56 @@ type execution_line =
         error : bool
     }
 
+#!markdown
+
+## execution_options
+
+#!spiral
+
 type execution_options =
     {
         command : string
-        working_directory : optionm'.option' string
         cancellation_token : optionm'.option' threading.cancellation_token
+        environment_variables : array_base (string * string)
         on_line : optionm'.option' (execution_line -> async.async ())
+        stdin : optionm'.option' (threading.arc (threading.mutex child_stdin) -> ())
+        trace : bool
+        working_directory : optionm'.option' string
     }
 
-inl execute_with_options_async (options : execution_options) : _ (i32 * string) =
+inl execution_options (fn : execution_options -> execution_options) : execution_options =
+    {
+        command = ""
+        cancellation_token = None |> optionm'.box
+        environment_variables = ;[]
+        on_line = None |> optionm'.box
+        stdin = None |> optionm'.box
+        trace = true
+        working_directory = None |> optionm'.box
+    }
+    |> fn
+
+#!markdown
+
+## execute_with_options_async
+
+#!spiral
+
+let execute_with_options_async (options : execution_options) : _ (i32 * string) =
     run_target function
         | Fsharp (Native) => fun () =>
             fun () =>
                 inl file_name, arguments = options.command |> split_command
                 inl working_directory = options.working_directory |> optionm'.unbox |> optionm'.default_value ""
 
-                trace Debug (fun () => $'$"execute_with_options_async / options: %A{!options}"') (join get_locals)
+                trace Debug (fun () => $'$"execute_with_options_async / options: %A{!options}"') (join _locals)
 
                 inl utf8 = sm'.encoding_utf8 ()
                 inl start_info : process_start_info = $'System.Diagnostics.ProcessStartInfo (Arguments = !arguments, StandardOutputEncoding = !utf8, WorkingDirectory = !working_directory, FileName = !file_name, CreateNoWindow = true, RedirectStandardError = true, RedirectStandardOutput = true, UseShellExecute = false)'
+
+                (a options.environment_variables : _ i32 _)
+                |> am.iter fun key, value =>
+                    $'!start_info.EnvironmentVariables.[!key] <- !value '
 
                 inl proc = start_info |> new_process |> use
                 inl output : _ string = threading.new_concurrent_stack ()
@@ -247,10 +382,13 @@ inl execute_with_options_async (options : execution_options) : _ (i32 * string) 
                             |> async.do
                         | None => ()
 
-                        trace Verbose (fun () => $'$"> {!data}"') get_locals
+                        inl text = $'$"> {!data}"'
+                        if options.trace
+                        then trace Verbose (fun () => text) _locals
+                        else text |> console.write_line
 
-                        inl l = if error then "[" else ""
-                        inl r = if error then "]" else ""
+                        inl l = if error then "\\e[4;7m" else ""
+                        inl r = if error then "\\e[0m" else ""
                         output |> threading.concurrent_stack_push $'$"{!l}{!data}{!r}"'
 
                 proc |> process_add_output_data_received (event false >> async.start_immediate)
@@ -289,7 +427,7 @@ inl execute_with_options_async (options : execution_options) : _ (i32 * string) 
                                 inl ex' = ex |> sm'.format_exception
                                 output |> threading.concurrent_stack_push ex'
                                 inl ex : async.task_canceled_exception = ex |> unbox
-                                trace Warning (fun () => $'$"execute_with_options_async / WaitForExitAsync / ex: %A{!ex}"') (join get_locals)
+                                trace Warning (fun () => $'$"execute_with_options_async / WaitForExitAsync / ex: %A{!ex}"') (join _locals)
                                 (limit.min : i32) |> return
                     |> async.new_async_unit
                     |> async.let'
@@ -302,7 +440,7 @@ inl execute_with_options_async (options : execution_options) : _ (i32 * string) 
 
                 trace Debug (fun () =>
                     $'$"execute_with_options_async / exit_code: {!exit_code} / output.Length: {!output.Length}"'
-                ) (join get_locals)
+                ) (join _locals)
 
                 (exit_code, output) |> return
             |> async.new_async_unit
@@ -310,43 +448,47 @@ inl execute_with_options_async (options : execution_options) : _ (i32 * string) 
             global "#if FABLE_COMPILER\n[<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]\nmodule System =\n module Diagnostics =\n  type Process = unit\n  type DataReceivedEventArgs = unit\n#endif"
             null ()
 
-inl execute_async command =
-    execute_with_options_async
-        {
-            command = command
-            cancellation_token = None |> optionm'.box
-            on_line = None |> optionm'.box
-            working_directory = None |> optionm'.box
-        }
+#!markdown
 
-inl execution_options (fn : execution_options -> execution_options) : execution_options =
-    {
-        command = ""
-        cancellation_token = None |> optionm'.box
-        on_line = None |> optionm'.box
-        working_directory = None |> optionm'.box
-    }
-    |> fn
+## execute_async
 
 #!spiral
 
-// // test
-// // print_code=true
+inl execute_async command =
+    execution_options fun x => { x with
+        command = command
+    }
+    |> execute_with_options_async
 
+#!spiral
+
+//// test
+//// print_code=false
+
+types ()
 inl temp_folder, disposable = file_system.create_temp_directory ()
 disposable |> use |> ignore
 inl file_name = "test.txt"
 inl path = temp_folder </> file_name
 
+inl content = "╭─[ 你好，世界！こんにちは世界！ ]─╮"
 fun () =>
     inl exit_code, result = execute_async $'\@$"pwsh -c ""Get-Content {!path}"""' |> async.let'
-    exit_code |> _assert_eq 1
+    exit_code |> join _assert_eq 1
     result |> _assert_string_contains "not exist"
 
-    "0" |> file_system.write_all_text_async path |> async.do
+    content |> file_system.write_all_text_async path |> async.do
 
     execution_options fun x => { x with
-        command = $'\@$"pwsh -c ""Get-Content {!file_name}"""'
+        command = $'\@$"cat ""{!file_name}"""'
+        working_directory = Some temp_folder |> optionm'.box
+    }
+    |> execute_with_options_async
+    |> async.let'
+    |> ignore
+
+    execution_options fun x => { x with
+        command = $'\@$"pwsh -c ""[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Content {!file_name}"""'
         working_directory = Some temp_folder |> optionm'.box
     }
     |> execute_with_options_async
@@ -355,44 +497,40 @@ fun () =>
 |> async.run_with_timeout 10000
 |> function
     | Some (exit_code, output) =>
-        exit_code |> _assert_eq 0i32
-        output |> _assert_eq (join "0")
+        exit_code |> join _assert_eq 0i32
+        output |> join _assert_eq content
         true
     | _ => false
 |> _assert_eq true
 
 #!spiral
 
-// // test
-// // print_code=true
+//// test
 
-inl temp_folder, disposable = file_system.create_temp_directory ()
+file_system.types ()
+inl temp_dir, disposable = file_system.create_temp_directory ()
 disposable |> use |> ignore
-inl file_name = "test.txt"
-inl path = temp_folder </> file_name
-
-inl command = $'\@$"pwsh -c ""Get-Content {!path}"""'
-
 fun () =>
+    inl path = temp_dir </> "test.txt"
     "0" |> file_system.write_all_text_async path |> async.do
 
     inl cts = threading.new_cancellation_token_source ()
-    trace Debug (fun () => "1") get_locals
+    trace Debug (fun () => "1") _locals
     inl result =
         execution_options fun x => { x with
-            command
+            command = $'\@$"pwsh -c ""Get-Content {!path}"""'
             cancellation_token = cts |> threading.cancellation_source_token |> Some |> optionm'.box
         }
         |> execute_with_options_async
         |> async.start_child
         |> async.let'
-    trace Debug (fun () => "2") get_locals
+    trace Debug (fun () => "2") _locals
     async.sleep 100 |> async.do
-    trace Debug (fun () => "3") get_locals
+    trace Debug (fun () => "3") _locals
     cts |> threading.cancellation_source_cancel
-    trace Debug (fun () => "4") get_locals
+    trace Debug (fun () => "4") _locals
     inl exit_code, output = result |> async.let'
-    trace Debug (fun () => "5") get_locals
+    trace Debug (fun () => "5") _locals
     (exit_code, output) |> return
 |> async.new_async_unit
 |> async.run_with_timeout 10000
@@ -403,6 +541,547 @@ fun () =>
         true
     | _ => false
 |> _assert_eq true
+
+#!markdown
+
+## split_args
+
+#!spiral
+
+union args_parse_step =
+    | Start
+    | Quoted : char
+    | Escaped : u8 * char
+
+let split_args (args : string) : array_base string =
+    let rec loop (acc, current) (chars : list char) (step, last) =
+        // trace Verbose (fun () => $'$"split_args / current: %A{!current} / acc: %A{!acc} / step: %A{!step} / last: %A{!last}"') _locals
+        match step, last, chars with
+        | Start, _, ('"' :: tail) =>
+            loop (acc, "") tail (Quoted '"', step)
+        | Escaped _, _, (('\\' | '\`') & c :: tail) =>
+            loop (acc, current) tail (Quoted c, step)
+        | Escaped _, Start, ('"' :: tail) =>
+            loop (acc, current) tail (step, step)
+        | Quoted ('"'), Quoted _, ('"' :: tail) =>
+            loop (acc, current) tail (Start, step)
+        | Escaped (0, ('\\' | '\`') & c), Quoted ('"'), (c' :: tail) =>
+            loop (acc, $'$"{!current}{!c}{!c'}"') tail (Quoted '"', step)
+        | Quoted (('\\' | '\`') as c), _, ('"' :: tail)
+                when last <>. Escaped (0, '\\') && last <>. Escaped (0, '\`') =>
+            loop (acc, $'$"{!current}{!c}\\\""') tail (Quoted '"', step)
+        | Quoted (('\\' | '\`') as c), Quoted _, ('"' :: tail) =>
+            loop (acc, $'$"{!current}{!c}\\\""') tail (Quoted '"', step)
+        | Quoted ('\\' | '\`'), _, ('"' :: tail) =>
+            loop (acc, current) tail (Start, step)
+        | Escaped (n, c), _, ('"' :: tail) =>
+            loop (acc, $'$"{!current}{!c}\\\""') tail (Escaped (n, c), step)
+        | Quoted _, Quoted _, (('\\' | '\`') & c :: tail) =>
+            loop (acc, current) tail (Escaped (0, c), step)
+        | Quoted _, _, (('\\' | '\`') & c :: tail) =>
+            loop (acc, current) tail (Escaped (1, c), step)
+        | Quoted _, Escaped (0, _), ('"' :: tail) =>
+            loop (acc, $'$"{!current}"') tail (Quoted '"', step)
+        | Quoted _, _, ('"' :: tail) =>
+            loop (acc ++ [ current ], "") tail (Start, step)
+        | (Escaped _ | Quoted _), _, (' ' :: tail) =>
+            loop (acc, $'$"{!current} "') tail (step, step)
+        | _, _, (('\\' | '\`') & c :: tail) =>
+            loop (acc, current) tail (Escaped (0, c), step)
+        | _, _, (' ' :: tail) =>
+            loop ((if current = "" then acc else acc ++ [ current ]), "") tail (step, step)
+        | Escaped (1, _), _, (char :: tail) when last <>. step =>
+            loop (acc, $'$"{!current}\\{!char}"') tail (last, step)
+        | _, _, (char :: tail) =>
+            loop (acc, $'$"{!current}{!char}"') tail (step, step)
+        | _ =>
+            (if current = "" then acc else acc ++ [ current ]), current
+    loop
+        ([], "")
+        (
+            args
+            |> optionm'.of_obj
+            |> optionm'.unbox
+            |> optionm'.default_value ""
+            |> sm'.to_char_array
+            |> am'.to_list'
+            |> listm'.unbox
+        )
+        (Start, Start)
+    |> fst
+    |> listm'.box
+    |> listm'.to_array'
+    |> fun (a x : _ i32 _) => x
+
+#!spiral
+
+//// test
+//// print_code=false
+
+"a b \"c d\" e"
+|> split_args
+|> _assert_eq' ;[ "a"; "b"; "c d"; "e" ]
+
+#!spiral
+
+//// test
+//// print_code=false
+
+"a b e"
+|> split_args
+|> _assert_eq' ;[ "a"; "b"; "e" ]
+
+#!spiral
+
+//// test
+//// print_code=false
+
+"\"a b\" \"e\" \"f\""
+|> split_args
+|> _assert_eq' ;[ "a b"; "e"; "f" ]
+
+#!spiral
+
+//// test
+//// print_code=false
+
+"a -b \"c \\\"d\\\"\""
+|> split_args
+|> _assert_eq' ;[ "a"; "-b"; "c \\\"d\\\"" ]
+
+#!spiral
+
+//// test
+//// print_code=false
+
+"a -b \"c \\\"d\\\" e\""
+|> split_args
+|> _assert_eq' ;[ "a"; "-b"; "c \\\"d\\\" e" ]
+
+#!spiral
+
+//// test
+//// print_code=false
+
+"a -b \"c \`\"d\`\" e\""
+|> split_args
+|> _assert_eq' ;[ "a"; "-b"; "c \`\"d\`\" e" ]
+
+#!spiral
+
+//// test
+//// print_code=false
+
+$'$"--text \\\\\\"\'\'\' value \'\'\'\\\\\\" "'
+|> split_args
+|> _assert_eq' ;[ "--text"; "''' value '''" ]
+
+#!spiral
+
+//// test
+//// print_code=false
+
+$'\@$"run ""get c:\\test.txt"""'
+|> split_args
+|> _assert_eq' ;[ "run"; "get c:\\test.txt" ]
+
+#!spiral
+
+//// test
+//// print_code=false
+
+"pwsh -c \"$x -replace '(id=`\"cell-id=)[a-fA-F0-9]{8}', { `$_[1] + `$counter++ }\""
+|> split_args
+|> _assert_eq' ;[ "pwsh"; "-c"; "$x -replace '(id=`\"cell-id=)[a-fA-F0-9]{8}', { `$_[1] + `$counter++ }" ]
+
+#!spiral
+
+//// test
+//// print_code=false
+
+$'$"pwsh -c \\\"$x -replace \'(id=\\\\\\"cell-id=)[a-fA-F0-9]{{8}}\', {{ \`$_[1] + \`$counter++ }}\\\""'
+|> split_args
+|> _assert_eq' ;[ "pwsh"; "-c"; "$x -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { `$_[1] + `$counter++ }" ]
+
+#!spiral
+
+//// test
+//// print_code=false
+
+$'$"a --b --c d --e \\\"c:/f f/test.hangul.md\\\" --output \\\"c:/md.pdf\\\" --set tex.template.add \\\"\\\\usepackage{{cjkutf8-ko}}\\\" rendering.highlight.theme \\\"Solarized (dark)\\\""'
+|> split_args
+|> _assert_eq' ;[ "a"; "--b"; "--c"; "d"; "--e"; "c:/f f/test.hangul.md"; "--output"; "c:/md.pdf"; "--set"; "tex.template.add"; "\\usepackage{cjkutf8-ko}"; "rendering.highlight.theme"; "Solarized (dark)" ]
+
+#!markdown
+
+## stdin_write_all
+
+#!spiral
+
+inl stdin_write_all (stdin : threading.mutex_guard child_stdin) (text : string) : () =
+    inl stream = text |> sm'.as_bytes
+    inl stdin = join stdin
+    (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
+    (!\\(stdin, $'"true; std::io::Write::write_all(&mut *$0, !stream).unwrap()"') : bool) |> ignore
+
+#!markdown
+
+## stdin_flush
+
+#!spiral
+
+inl stdin_flush (stdin : threading.mutex_guard child_stdin) : () =
+    inl stdin = join stdin
+    (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
+    (!\\(stdin, $'"true; std::io::Write::flush(&mut *$0).unwrap()"') : bool) |> ignore
+
+#!markdown
+
+## new_process_command
+
+#!spiral
+
+inl new_process_command (file_name : string) : process_command =
+    !\\(file_name, $'"std::process::Command::new(&*$0)"')
+
+#!markdown
+
+## process_stdio_piped
+
+#!spiral
+
+inl process_stdio_piped () : stdio =
+    !\($'"std::process::Stdio::piped()"')
+
+#!markdown
+
+## process_command_args
+
+#!spiral
+
+inl process_command_args (args : am'.vec sm'.std_string) (c : process_command) : rust.ref' (rust.mut' process_command) =
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    !\\((c, args), $'"std::process::Command::args(&mut $0, &*$1)"')
+
+#!markdown
+
+## process_command_stdout
+
+#!spiral
+
+inl process_command_stdout (stdio : stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+    !\\(c, $'"std::process::Command::stdout($0, std::process::Stdio::piped())"')
+
+#!markdown
+
+## process_command_stderr
+
+#!spiral
+
+inl process_command_stderr (stdio : stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+    !\\(c, $'"std::process::Command::stderr($0, std::process::Stdio::piped())"')
+
+#!markdown
+
+## process_command_stdin
+
+#!spiral
+
+inl process_command_stdin (stdio : stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+    !\\(c, $'"std::process::Command::stdin($0, std::process::Stdio::piped())"')
+
+#!markdown
+
+## process_command_current_dir
+
+#!spiral
+
+inl process_command_current_dir (dir : string) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+    !\\(dir, $'"std::process::Command::current_dir(!c, &*$0)"')
+
+#!markdown
+
+## process_command_env
+
+#!spiral
+
+inl process_command_env (key : string) (value : string) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+    !\\((key, value), $'"std::process::Command::env(!c, &*$0, &*$1)"')
+
+#!markdown
+
+## process_command_spawn
+
+#!spiral
+
+inl process_command_spawn (c : rust.ref' (rust.mut' process_command)) : resultm.result' child stream.io_error =
+    !\\(c, $'"std::process::Command::spawn($0)"')
+
+#!markdown
+
+## stdio_line
+
+#!spiral
+
+inl stdio_line
+    (stdout : bool)
+    (trace' : bool)
+    (channel_sender : threading.arc (threading.mutex (sender sm'.std_string)))
+    (line : resultm.result' sm'.std_string stream.io_error)
+    =
+    run_target function
+        | Rust (Native) => fun () =>
+            inl line =
+                inl highlight text =
+                    $'$"\\e[4;7m{!text}\\e[0m"'
+                match
+                    line
+                    |> resultm.map_error' sm'.format'
+                    |> resultm.unbox
+                with
+                | Ok line =>
+                    inl line =
+                        line
+                        |> sm'.from_std_string
+                        // |> sm'.as_bytes
+                        // |> am'.slice_to_vec
+                        |> sm'.encoding_encode' (sm'.encoding_utf8' ())
+                        |> rust.cow_as_ref
+                        |> sm'.str_from_utf8
+                        // |> sm'.utf8_decode
+                        |> resultm.unwrap'
+                        |> sm'.ref_to_std_string
+                        // String::from_utf8_lossy(line.as_bytes()).into()
+                    inl line_log = line |> sm'.from_std_string
+                    inl text =
+                        if stdout
+                        then line_log
+                        else line_log |> highlight
+                    if trace'
+                    then trace Verbose (fun () => text) _locals
+                    else text |> console.write_line
+                    line
+                | Error e =>
+                    trace Critical
+                        fun () => $'$"runtime.stdio_line"'
+                        fun () => $'$"e: {!e} / {!_locals ()}"'
+                    e |> highlight |> sm'.to_std_string
+            (!\\((channel_sender, line), $'"true; $0.lock().unwrap().send($1).unwrap()"') : bool) |> ignore
+        | _ => fun () => null ()
+
+#!markdown
+
+## execute_with_options
+
+#!spiral
+
+let execute_with_options (options : execution_options) : i32 * string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            options |> execute_with_options_async |> async.run_synchronously
+        | Rust (Native) => fun () =>
+            inl command = join options.command
+            inl file_name, arguments = command |> split_command
+            inl arguments =
+                arguments
+                |> split_args
+                |> am'.to_vec
+                |> am'.vec_map sm'.to_std_string
+
+            trace Debug
+                fun () => $'$"runtime.execute_with_options"'
+                fun () => $'$"file_name: {!file_name} / arguments: %A{!arguments} / options: %A{!options} / {!_locals ()}"'
+
+            fun () =>
+                fun () =>
+                    file_name
+                    |> new_process_command
+                    |> process_command_args arguments
+                    |> process_command_stdout (process_stdio_piped ())
+                    |> process_command_stderr (process_stdio_piped ())
+                    |> process_command_stdin (process_stdio_piped ())
+                    |> fun command =>
+                        match options.working_directory |> optionm'.unbox with
+                        | Some working_directory => command |> process_command_current_dir working_directory
+                        | None => command
+                    |> fun command =>
+                        match options.environment_variables with
+                        | ;[] => command
+                        | vars =>
+                            (command, vars |> am'.to_vec)
+                            ||> am'.vec_fold' fun command (key, value) =>
+                                command |> process_command_env key value
+                    |> process_command_spawn
+                    |> resultm.map_error' sm'.format'
+                    |> resultm.map' (optionm'.some' >> threading.new_arc_mutex)
+                    |> resultm.unbox'
+                    |> function
+                        | Ok child =>
+                            inl stdout : child_stdout = !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdout.take().unwrap()"')
+                            inl stderr : child_stderr = !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stderr.take().unwrap()"')
+                            inl stdin : child_stdin = !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdin.take().unwrap()"')
+                            inl stdout = stdout |> optionm'.some' |> threading.new_arc_mutex
+                            inl stderr = stderr |> optionm'.some' |> threading.new_arc_mutex
+                            inl stdin = stdin |> optionm'.some' |> threading.new_arc_mutex
+
+                            inl channel_sender, channel_receiver : sender sm'.std_string * threading.arc (receiver sm'.std_string) =
+                                !\($'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"')
+                            inl channel_receiver = join channel_receiver
+                            (!\\(channel_receiver, $'"true; let !channel_receiver = !channel_receiver"') : bool) |> ignore
+
+                            inl channel_sender = channel_sender |> threading.new_arc_mutex
+                            inl channel_sender' = channel_sender |> rust.clone
+                            inl channel_sender'' = channel_sender |> rust.clone
+                            inl channel_receiver' = channel_receiver |> threading.new_arc_mutex
+
+
+                            inl stdout_thread : threading.join_handle () =
+                                !\($'"std::thread::spawn(move || { //"')
+                            inl stdout' : child_stdout =
+                                !\($'"!stdout.lock().unwrap().take().unwrap()"')
+                            inl stdout_lines =
+                                stdout'
+                                |> stream.decode_reader_bytes_build
+                                |> stream.new_buf_reader
+                                |> threading.new_arc_mutex
+                            inl stdio_line' = stdio_line true options.trace channel_sender'
+                            (!\\((stdout_lines, stdio_line'), $'"true; for line in std::io::BufRead::lines(std::io::Read::by_ref(&mut *$0.lock().unwrap())).collect::<Vec<_>>() { $1(line) }"') : bool) |> ignore
+                            (!\($'"true; })"') : bool) |> ignore
+
+                            inl stderr_thread : threading.join_handle () =
+                                !\($'"std::thread::spawn(move || { //"')
+                            inl stderr' : child_stderr =
+                                !\($'"!stderr.lock().unwrap().take().unwrap()"')
+                            inl stderr_lines =
+                                stderr'
+                                |> stream.decode_reader_bytes_build
+                                |> stream.new_buf_reader
+                                |> threading.new_arc_mutex
+                            inl stdio_line' = stdio_line false options.trace channel_sender
+                            (!\\((stderr_lines, stdio_line'), $'"true; for line in std::io::BufRead::lines(std::io::Read::by_ref(&mut *$0.lock().unwrap())).collect::<Vec<_>>() { $1(line) }"') : bool) |> ignore
+                            (!\($'"true; })"') : bool) |> ignore
+
+                            match options.stdin |> optionm'.unbox with
+                            | Some stdin' =>
+                                inl stdin : optionm'.option' child_stdin =
+                                    !\($'"!stdin.lock().unwrap().take()"')
+                                stdin
+                                |> optionm'.map' threading.new_arc_mutex
+                                |> optionm'.unbox
+                                |> function
+                                    | Some stdin =>
+                                        stdin |> stdin'
+                                        stdin
+                                        |> threading.arc_mutex_lock
+                                        |> resultm.unwrap'
+                                        |> stdin_flush
+                                    | None => ()
+                            | None => ()
+
+                            inl output : resultm.result' output stream.io_error =
+                                !\\(child, $'"$0.lock().unwrap().take().unwrap().wait_with_output()"')
+                            inl output = output |> resultm.map_error' sm'.format'
+
+                            (!\($'"true; !stdout_thread.join().unwrap()"') : bool) |> ignore
+                            (!\($'"true; !stderr_thread.join().unwrap()"') : bool) |> ignore
+
+                            match output |> resultm.unbox with
+                            | Ok output =>
+                                inl exit_code : i32 = !\\(output, $'"$0.status.code().unwrap()"')
+                                exit_code, None, Some channel_receiver'
+                            | Error error =>
+                                trace Critical
+                                    fun () => $'$"runtime.execute_with_options / output error"'
+                                    fun () => $'$"error: {!error} / {!_locals ()}"'
+                                -2i32, error |> Some, None
+                        | Error error =>
+                            trace Critical
+                                fun () => $'$"runtime.execute_with_options / child error"'
+                                fun () => $'$"error: {!error} / {!_locals ()}"'
+                            -1i32, error |> Some, None
+                    |> function
+                        | exit_code, std_trace, channel_receiver =>
+                            inl std_trace =
+                                channel_receiver
+                                |> optionm.map fun channel_receiver =>
+                                    !\\(channel_receiver, $'"$0.lock().unwrap().iter().collect::<Vec<String>>().join(\\"\\\\n\\")"')
+                                |> optionm.map sm'.from_std_string
+                                |> optionm'.default_value (
+                                    std_trace
+                                    |> optionm.map sm'.from_std_string
+                                    |> optionm'.default_value ""
+                                )
+                            trace Verbose
+                                fun () => $'$"runtime.execute_with_options / result"'
+                                fun () => $'$"exit_code: {!exit_code} / std_trace.Length: {!std_trace.Length} / {!_locals ()}"'
+                            new_pair exit_code std_trace
+                |> capture
+            |> async.future_init (3, 2) 1
+            |> async.block_on
+            |> from_pair
+        | _ => fun () => null ()
+
+#!markdown
+
+### execute
+
+#!spiral
+
+inl execute command =
+    execution_options fun x => { x with
+        command = command
+    }
+    |> execute_with_options
+
+#!markdown
+
+### test 1
+
+#!spiral
+
+//// test
+//// print_code=false
+///! rust -d chrono encoding encoding_rs encoding_rs_io futures-lite regex
+
+types ()
+inl temp_folder, disposable = file_system.create_temp_directory ()
+inl content = "╭─[ 你好，世界！こんにちは世界！ ]─╮"
+// inl content = "test"
+fun () =>
+    inl file_name = join "test.txt"
+    inl path = temp_folder </> file_name |> file_system.normalize_path
+    inl exit_code, result =
+        execute $'\@$"pwsh -c ""[IO.File]::ReadAllText(\'{!path}\')"""'
+    exit_code |> _assert_eq 1
+    result |> _assert_string_contains "not find file"
+
+    content |> file_system.write_all_text path
+
+    execution_options fun x => { x with
+        command = $'\@$"cat ""{!file_name}"""'
+        working_directory = Some temp_folder |> optionm'.box
+    }
+    |> execute_with_options
+    |> ignore
+
+    execution_options fun x => { x with
+        command = $'\@$"pwsh -c ""[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText(\'{!file_name}\')"""'
+        working_directory = Some temp_folder |> optionm'.box
+    }
+    |> execute_with_options
+|> fun fn => fn () |> Some
+|> function
+    | Some (exit_code, output) =>
+        exit_code |> _assert_eq 0i32
+        output |> _assert_eq content
+        true
+    | _ => false
+|> _assert_eq true
+disposable |> use |> ignore
+
+#!markdown
+
+## command
 
 #!spiral
 
@@ -419,17 +1098,16 @@ inl new_command (s : rust.static_ref' sm'.str) : command =
 
 #!spiral
 
-// // test
-// // print_code=false
-// // rust=
+//// test
+//// print_code=false
+///! rust -d clap
 
 types ()
-inl command = ##"command" |> new_command
-trace Debug
-    fun () => $'$"rust_builder"'
-    fun () =>
-        inl command = command |> sm'.format_pretty'
-        $'$"command: {!command} / {!get_locals ()}"'
+##"command"
+|> new_command
+|> sm'.format_pretty'
+|> sm'.from_std_string
+|> _assert_string_contains "command"
 
 #!markdown
 
@@ -450,17 +1128,16 @@ inl new_arg (s : rust.static_ref' sm'.str) : arg =
 
 #!spiral
 
-// // test
-// // print_code=false
-// // rust=
+//// test
+//// print_code=false
+///! rust -d clap
 
 types ()
-inl arg = ##"arg" |> new_arg
-trace Debug
-    fun () => $'$"rust_builder"'
-    fun () =>
-        inl arg = arg |> sm'.format_pretty'
-        $'$"arg: {!arg} / {!get_locals ()}"'
+##"arg"
+|> new_arg
+|> sm'.format_pretty'
+|> sm'.from_std_string
+|> _assert_string_contains "arg"
 
 #!markdown
 
@@ -482,12 +1159,203 @@ inl arg_required (value : bool) (arg : arg) : arg =
 
 #!markdown
 
-## arg_index
+## arg_short
 
 #!spiral
 
-inl arg_index (value : i32) (arg : arg) : arg =
-    !\\((arg, value), $'"$0.index($1)"')
+inl arg_short (value : char) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.short($1)"')
+
+#!markdown
+
+## arg_long
+
+#!spiral
+
+inl arg_long (value : rust.static_ref' sm'.str) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.long($1)"')
+
+#!markdown
+
+## arg_value_names
+
+#!spiral
+
+inl arg_value_names (values : array_base (rust.static_ref' sm'.str)) (arg : arg) : arg =
+    inl values = values |> am'.to_vec
+    !\\((arg, values), $'"$0.value_names($1)"')
+
+#!markdown
+
+## arg_num_args
+
+#!spiral
+
+inl arg_num_args (value : i32) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.num_args($1)"')
+
+#!markdown
+
+## value_range
+
+#!spiral
+
+nominal value_range = $'clap_builder_ValueRange'
+
+#!markdown
+
+## new_value_range
+
+#!spiral
+
+inl new_value_range start end : value_range =
+    inl len = 0i32 |> unativeint
+    inl start, end =
+        open am'
+        match start, end with
+        | Start start, End fn =>
+            start, len |> fn
+        | End start_fn, End end_fn =>
+            start_fn len, end_fn len
+    match start, end with
+    | start, end when end =. len => !\($'"clap::builder::ValueRange::new(!start..)"')
+    | start, end => !\($'"clap::builder::ValueRange::new(!start..!end)"')
+
+#!markdown
+
+## arg_num_args_range
+
+#!spiral
+
+inl arg_num_args_range (value : value_range) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.num_args($1)"')
+
+#!markdown
+
+## arg_value_name
+
+#!spiral
+
+inl arg_value_name (value : string) (arg : arg) : arg =
+    inl value = value |> sm'.as_str
+    !\\((arg, value), $'"$0.value_name($1)"')
+
+#!markdown
+
+## value_parser
+
+#!spiral
+
+nominal value_parser = $'clap_builder_ValueParser'
+
+#!markdown
+
+## possible_value
+
+#!spiral
+
+nominal possible_value = $'clap_builder_PossibleValue'
+
+#!markdown
+
+## new_possible_value
+
+#!spiral
+
+inl new_possible_value forall t. (x : t) : possible_value =
+    !\\(x, $'"clap::builder::PossibleValue::new(&**$0)"')
+
+#!markdown
+
+## value_parser_possible_values
+
+#!spiral
+
+inl value_parser_possible_values (values : array_base string) : value_parser =
+    inl values =
+        values
+        |> am'.to_vec
+        |> am'.vec_map (sm'.to_std_string >> rust.new_box >> rust.box_leak >> new_possible_value)
+    !\\(values, $'"clap::builder::PossibleValuesParser::new($0).into()"')
+
+#!markdown
+
+## value_parser_path_buf
+
+#!spiral
+
+inl value_parser_path_buf () : value_parser =
+    !\($'"clap::value_parser\!(std::path::PathBuf)"')
+
+#!markdown
+
+## value_parser_expr
+
+#!spiral
+
+inl value_parser_expr (expr : string) : value_parser =
+    !\($'"clap::value_parser\!(" + !expr + ").into()"')
+
+#!markdown
+
+## arg_value_parser
+
+#!spiral
+
+inl arg_value_parser (values : value_parser) (arg : arg) : arg =
+    !\\((arg, values), $'"$0.value_parser($1)"')
+
+#!markdown
+
+## arg_union
+
+#!spiral
+
+inl arg_union forall union_type {to_string}. (fn : union_type -> ()) (arg : arg) : arg =
+    arg
+    |> arg_value_parser (
+        real get_union_fields_untag `union_type ()
+        |> fun x => x : list union_type
+        |> listm.map to_string
+        |> listm'.box
+        |> listm'.to_array'
+        |> fun (a x : _ i32 _) => x
+        |> value_parser_possible_values
+    )
+
+#!markdown
+
+## arg_action
+
+#!spiral
+
+nominal arg_action' = $'clap_ArgAction'
+
+union arg_action =
+    | Set
+    | Append
+    | SetTrue
+    | SetFalse
+    | Count
+    | Help
+    | HelpShort
+    | HelpLong
+    | Version
+
+inl arg_action = function
+    | Set => !\($'"clap::ArgAction::Set"') : arg_action'
+    | Append => !\($'"clap::ArgAction::Append"') : arg_action'
+    | SetTrue => !\($'"clap::ArgAction::SetTrue"') : arg_action'
+    | SetFalse => !\($'"clap::ArgAction::SetFalse"') : arg_action'
+    | Count => !\($'"clap::ArgAction::Count"') : arg_action'
+    | Help => !\($'"clap::ArgAction::Help"') : arg_action'
+    | HelpShort => !\($'"clap::ArgAction::HelpShort"') : arg_action'
+    | HelpLong => !\($'"clap::ArgAction::HelpLong"') : arg_action'
+    | Version => !\($'"clap::ArgAction::Version"') : arg_action'
+
+inl arg_action (value : arg_action) (arg : arg) : arg =
+    inl value = value |> arg_action
+    !\\((arg, value), $'"$0.action($1)"')
 
 #!markdown
 
@@ -517,14 +1385,90 @@ inl command_get_matches (command : command) : arg_matches =
 
 #!markdown
 
+## command_get_matches_from
+
+#!spiral
+
+inl command_get_matches_from (args : array_base string) (command : command) : arg_matches =
+    inl args = args |> am'.to_vec |> am'.vec_map sm'.to_std_string
+    !\\(command, $'"clap::Command::get_matches_from($0, !args)"')
+
+#!markdown
+
+## command_init_arg
+
+#!spiral
+
+inl command_init_arg (long, short) fn command =
+    command
+    |> command_arg (
+        new_arg ##long
+        |> arg_short short
+        |> arg_long ##long
+        |> fn
+    )
+
+#!markdown
+
 ## matches_get_one
 
 #!spiral
 
-inl matches_get_one (x : string) (matches : arg_matches) : optionm'.option' sm'.std_string =
+inl matches_get_one forall t. (x : string) (matches : arg_matches) : optionm'.option' t =
     inl x = join x
     inl x = x |> sm'.as_str
-    !\($'"clap::ArgMatches::get_one(&!matches, !x).cloned()"')
+    !\\(matches, $'"clap::ArgMatches::get_one(&$0, !x).cloned()"')
+
+#!markdown
+
+## matches_get_flag
+
+#!spiral
+
+inl matches_get_flag (x : string) (matches : arg_matches) : bool =
+    inl x = join x
+    inl x = x |> sm'.as_str
+    !\($'"clap::ArgMatches::get_flag(&!matches, !x)"')
+
+#!markdown
+
+## matches_get_many
+
+#!spiral
+
+inl matches_get_many forall t. (x : string) (matches : arg_matches) : optionm'.option' (am'.vec t) =
+    inl x = join x
+    inl x = x |> sm'.as_str
+    !\\(matches, $'"clap::ArgMatches::get_many(&$0, !x).map(|x| x.cloned().into_iter().collect())"')
+
+#!markdown
+
+## matches_get_occurrences
+
+#!spiral
+
+inl matches_get_occurrences (x : string) (matches : arg_matches) : optionm'.option' (array_base sm'.std_string) =
+    inl x = join x
+    inl x = x |> sm'.as_str
+    !\($'"clap::ArgMatches::get_occurrences(&!matches, !x).cloned()"')
+
+#!markdown
+
+## matches_subcommand
+
+#!spiral
+
+inl matches_subcommand (matches : arg_matches) : optionm'.option' (sm'.std_string * arg_matches) =
+    !\\((matches, sm'.ref_to_std_string), $'"clap::ArgMatches::subcommand(Box::leak(Box::new($0))).map(|(a, b)| ($1(a), b.clone()))"')
+
+#!markdown
+
+## matches_values_of
+
+#!spiral
+
+inl matches_values_of (x : string) (matches : arg_matches) : array_base sm'.std_string =
+    !\\((matches, x), $'"clap::ArgMatches::values_of($0, &*$1)"')
 
 #!markdown
 
@@ -537,14 +1481,40 @@ inl command_debug_assert (command : command) : () =
 
 #!markdown
 
+## command_subcommand_required
+
+#!spiral
+
+inl command_subcommand_required (value : bool) (command : command) : command =
+    !\\(command, $'"clap::Command::subcommand_required($0, !value)"')
+
+#!markdown
+
+## command_subcommand
+
+#!spiral
+
+inl command_subcommand (subcommand : command) (command : command) : command =
+    !\\(command, $'"clap::Command::subcommand($0, !subcommand)"')
+
+#!markdown
+
 ## main
 
 #!spiral
 
 inl main () =
     types ()
-    init_trace_state ()
+    init_trace_state None
     $"let is_windows () = !is_windows ()" : ()
     $"let get_executable_suffix () = !get_executable_suffix ()" : ()
     $"let execute_async x = !execute_async x" : ()
     $"let execute_with_options_async x = !execute_with_options_async x" : ()
+    inl execution_options fn =
+        execution_options fun x =>
+            x
+            |> heap
+            |> fn
+            |> fun x => !x
+    $"let execution_options x = !execution_options x" : ()
+    $"let split_args x = !split_args x" : ()

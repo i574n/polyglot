@@ -7571,7 +7571,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="nb">open</span> <span class="n">testing</span>
 </pre></div>
@@ -7600,11 +7600,94 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="cancellation_token">cancellation_token<a class="anchor-link" href="#cancellation_token">¶</a></h2>
+<h2 id="types">types<a class="anchor-link" href="#types">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::thread::JoinHandle&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_thread_JoinHandle&lt;'T&gt; = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::sync::Arc&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_sync_Arc&lt;'T&gt; = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::sync::Mutex&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_sync_Mutex&lt;'T&gt; = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::sync::MutexGuard&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_sync_MutexGuard&lt;'T&gt; = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::sync::PoisonError&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_sync_PoisonError&lt;'T&gt; = class end"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="join_handle">join_handle<a class="anchor-link" href="#join_handle">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">join_handle</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_thread_JoinHandle&lt;`t&gt;'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="cancellation_token">cancellation_token<a class="anchor-link" href="#cancellation_token">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7633,7 +7716,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7643,7 +7726,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7672,7 +7755,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7682,7 +7765,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7711,7 +7794,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7721,7 +7804,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7751,7 +7834,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7761,7 +7844,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7794,7 +7877,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7804,7 +7887,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7834,7 +7917,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7844,7 +7927,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7875,7 +7958,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7885,7 +7968,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7914,7 +7997,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7924,7 +8007,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7954,7 +8037,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7964,7 +8047,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7994,7 +8077,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8004,7 +8087,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8034,7 +8117,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8044,7 +8127,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8074,7 +8157,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8084,7 +8167,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8113,7 +8196,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8143,7 +8226,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8153,7 +8236,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8193,7 +8276,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8201,7 +8284,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">inl</span> <span class="n">run</span> <span class="n">fn</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">token</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">new_disposable_token</span> <span class="p">(</span><span class="kc">None</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box)</span>
@@ -8236,321 +8319,755 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type Mut0 = {mutable l0 : int32}
+<pre>type Disposable (f : unit -&gt; unit) = interface System.IDisposable with member _.Dispose () = f ()
+type Mut0 = {mutable l0 : int32}
 and [&lt;Struct&gt;] US0 =
     | US0_0 of f0_0 : System.Threading.CancellationToken
     | US0_1
-let rec closure0 () (v0 : System.Threading.CancellationToken) : US0 =
-    US0_0(v0)
-and method2 () : (System.Threading.CancellationToken -&gt; US0) =
-    closure0()
-and closure1 (v0 : System.Threading.CancellationTokenSource) () : unit =
-    let v1 : unit option = None
-    let v2 : bool = true in let mutable _v1 = v1
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+let rec closure0 (v0 : System.Threading.CancellationTokenSource) () : unit =
+    let v1 : bool = true
+    let mutable _v1 : unit option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
-    ()
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    () 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     null |&gt; unbox&lt;unit&gt;
-    ()
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    () 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     null |&gt; unbox&lt;unit&gt;
-    ()
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v3 : (unit -&gt; unit) = v0.Cancel
-    v3 ()
-    ()
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
     null |&gt; unbox&lt;unit&gt;
-    ()
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;unit&gt;
-    ()
-#endif
+    () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    null |&gt; unbox&lt;unit&gt;
+    () 
+    #endif
+#else
+    let v2 : (unit -&gt; unit) = v0.Cancel
+    v2 ()
+    () 
+    #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     _v1.Value
     ()
+and method2 (v0 : System.Threading.CancellationTokenSource) : (unit -&gt; unit) =
+    closure0(v0)
 and method1 (v0 : Mut0) : unit =
     let v1 : System.Threading.CancellationToken option = None
-    let v2 : struct (System.Threading.CancellationToken * System.IDisposable) option = None
-    let v3 : bool = true in let mutable _v2 = v2
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let struct (v4 : System.Threading.CancellationToken, v5 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
-    struct (v4, v5)
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let struct (v6 : System.Threading.CancellationToken, v7 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
-    struct (v6, v7)
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let struct (v8 : System.Threading.CancellationToken, v9 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
-    struct (v8, v9)
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v10 : System.Threading.CancellationTokenSource = new System.Threading.CancellationTokenSource ()
-    let v11 : (System.Threading.CancellationToken -&gt; US0) = method2()
-    let v12 : US0 = US0_1
-    let v13 : US0 = v1 |&gt; Option.map v11 |&gt; Option.defaultValue v12 
-    let v20 : System.Threading.CancellationTokenSource =
-        match v13 with
+    let v2 : bool = true
+    let mutable _v2 : struct (System.Threading.CancellationToken * System.IDisposable) option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let struct (v3 : System.Threading.CancellationToken, v4 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
+    struct (v3, v4) 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let struct (v5 : System.Threading.CancellationToken, v6 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
+    struct (v5, v6) 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let struct (v7 : System.Threading.CancellationToken, v8 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
+    struct (v7, v8) 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let struct (v9 : System.Threading.CancellationToken, v10 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
+    struct (v9, v10) 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let struct (v11 : System.Threading.CancellationToken, v12 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
+    struct (v11, v12) 
+    #endif
+#else
+    let v13 : System.Threading.CancellationTokenSource = new System.Threading.CancellationTokenSource ()
+    let v14 : US0 option = None
+    let _v14 = ref v14 
+    match v1 with
+    | Some x -&gt; (
+    (fun () -&gt;
+    (fun () -&gt;
+    let v15 : System.Threading.CancellationToken = x
+    let v16 : US0 = US0_0(v15)
+    v16 
+    )
+    |&gt; fun x -&gt; x () |&gt; Some
+    ) () ) | None -&gt; None
+    |&gt; fun x -&gt; _v14.Value &lt;- x
+    let v17 : US0 option = _v14.Value 
+    let v18 : US0 = US0_1
+    let v19 : US0 = v17 |&gt; Option.defaultValue v18 
+    let v26 : System.Threading.CancellationTokenSource =
+        match v19 with
         | US0_1 -&gt; (* None *)
-            v10
-        | US0_0(v14) -&gt; (* Some *)
-            let v15 : System.Threading.CancellationToken = v10.Token
-            let v16 : (System.Threading.CancellationToken []) = [|v15; v14|]
-            let v17 : ((System.Threading.CancellationToken []) -&gt; System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-            v17 v16
-    let v21 : System.IDisposable option = None
-    let v22 : bool = true in let mutable _v21 = v21
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v23 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
-    v23
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v24 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
-    v24
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v25 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
-    v25
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v26 : (unit -&gt; unit) = closure1(v20)
-    let v27 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v26 () }
-    v27
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v28 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
-    v28
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v29 : System.IDisposable = Unchecked.defaultof&lt;System.IDisposable&gt;
-    v29
-#endif
-    |&gt; fun x -&gt; _v21 &lt;- Some x
-    let v30 : System.IDisposable = _v21.Value
-    let v31 : System.Threading.CancellationToken = v20.Token
-    struct (v31, v30)
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let struct (v32 : System.Threading.CancellationToken, v33 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
-    struct (v32, v33)
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let struct (v34 : System.Threading.CancellationToken, v35 : System.IDisposable) = Unchecked.defaultof&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
-    struct (v34, v35)
-#endif
+            v13
+        | US0_0(v20) -&gt; (* Some *)
+            let v21 : System.Threading.CancellationToken = v13.Token
+            let v22 : (System.Threading.CancellationToken []) = [|v21; v20|]
+            let v23 : ((System.Threading.CancellationToken []) -&gt; System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+            v23 v22
+    let v27 : bool = true
+    let mutable _v27 : System.IDisposable option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v28 : (unit -&gt; unit) = closure0(v26)
+    let v29 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v28 "$0()" )
+    v29 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v30 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v28 "$0()" )
+    v30 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v31 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v28 "$0()" )
+    v31 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v32 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
+    v32 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v33 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
+    v33 
+    #endif
+#else
+    let v34 : (unit -&gt; unit) = method2(v26)
+    let v35 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v34 () }
+    v35 
+    #endif
+    |&gt; fun x -&gt; _v27 &lt;- Some x
+    let v36 : System.IDisposable = _v27.Value
+    let v37 : System.Threading.CancellationToken = v26.Token
+    struct (v37, v36) 
+    #endif
     |&gt; fun x -&gt; _v2 &lt;- Some x
-    let struct (v36 : System.Threading.CancellationToken, v37 : System.IDisposable) = _v2.Value
-    use v37 = v37 
-    let v38 : System.IDisposable = v37 
-    let v39 : int32 = v0.l0
-    let v40 : bool = v36.IsCancellationRequested
-    let v41 : int32 =
-        if v40 then
+    let struct (v38 : System.Threading.CancellationToken, v39 : System.IDisposable) = _v2.Value
+    use v39 = v39 
+    let v40 : System.IDisposable = v39 
+    let v41 : int32 = v0.l0
+    let v42 : bool = v38.IsCancellationRequested
+    let v43 : int32 =
+        if v42 then
             10
         else
             1
-    let v42 : int32 = v39 + v41
-    v0.l0 &lt;- v42
-    let v43 : Async&lt;unit&gt; option = None
-    let v44 : bool = true in let mutable _v43 = v43
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v45 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v45
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v44 : int32 = v41 + v43
+    v0.l0 &lt;- v44
+    let v45 : bool = true
+    let mutable _v45 : Async&lt;unit&gt; option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v46 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v46
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    v46 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v47 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v47
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v48 : Async&lt;unit&gt; option = None
-    let mutable _v48 = v48
+    v47 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v48 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v48 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v49 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v49 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v50 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v50 
+    #endif
+#else
+    let v51 : Async&lt;unit&gt; option = None
+    let mutable _v51 = v51
     async {
-    let v49 : int32 = v0.l0
-    let v50 : bool = v36.IsCancellationRequested
-    let v51 : int32 =
-        if v50 then
+    let v52 : int32 = v0.l0
+    let v53 : bool = v38.IsCancellationRequested
+    let v54 : int32 =
+        if v53 then
             10
         else
             1
-    let v52 : int32 = v49 + v51
-    v0.l0 &lt;- v52
+    let v55 : int32 = v52 + v54
+    v0.l0 &lt;- v55
     }
-    |&gt; fun x -&gt; _v48 &lt;- Some x
-    let v53 : Async&lt;unit&gt; = _v48 |&gt; Option.get
-    v53
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v54 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v54
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v55 : Async&lt;unit&gt; = Unchecked.defaultof&lt;Async&lt;unit&gt;&gt;
-    v55
-#endif
-    |&gt; fun x -&gt; _v43 &lt;- Some x
-    let v56 : Async&lt;unit&gt; = _v43.Value
-    let v57 : unit option = None
-    let v58 : bool = true in let mutable _v57 = v57
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    |&gt; fun x -&gt; _v51 &lt;- Some x
+    let v56 : Async&lt;unit&gt; = _v51 |&gt; Option.get
+    v56 
+    #endif
+    |&gt; fun x -&gt; _v45 &lt;- Some x
+    let v57 : Async&lt;unit&gt; = _v45.Value
+    let v58 : bool = true
+    let mutable _v58 : unit option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
-    ()
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    () 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     null |&gt; unbox&lt;unit&gt;
-    ()
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    () 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     null |&gt; unbox&lt;unit&gt;
-    ()
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    null |&gt; unbox&lt;unit&gt;
+    () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    null |&gt; unbox&lt;unit&gt;
+    () 
+    #endif
+#else
     let v59 : (Async&lt;unit&gt; -&gt; unit) = Async.Start
-    v59 v56
-    ()
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    null |&gt; unbox&lt;unit&gt;
-    ()
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;unit&gt;
-    ()
-#endif
-    |&gt; fun x -&gt; _v57 &lt;- Some x
-    _v57.Value
+    v59 v57
+    () 
+    #endif
+    |&gt; fun x -&gt; _v58 &lt;- Some x
+    _v58.Value
     ()
 and method3 (v0 : bool) : bool =
     v0
 and method0 () : unit =
-    let v0 : Async&lt;int32&gt; option = None
-    let v1 : bool = true in let mutable _v0 = v0
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v0 : bool = true
+    let mutable _v0 : Async&lt;int32&gt; option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v1 : Async&lt;int32&gt; = null |&gt; unbox&lt;Async&lt;int32&gt;&gt;
+    v1 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v2 : Async&lt;int32&gt; = null |&gt; unbox&lt;Async&lt;int32&gt;&gt;
-    v2
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    v2 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v3 : Async&lt;int32&gt; = null |&gt; unbox&lt;Async&lt;int32&gt;&gt;
-    v3
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    v3 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
     let v4 : Async&lt;int32&gt; = null |&gt; unbox&lt;Async&lt;int32&gt;&gt;
-    v4
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v5 : Async&lt;int32&gt; option = None
-    let mutable _v5 = v5
+    v4 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v5 : Async&lt;int32&gt; = null |&gt; unbox&lt;Async&lt;int32&gt;&gt;
+    v5 
+    #endif
+#else
+    let v6 : Async&lt;int32&gt; option = None
+    let mutable _v6 = v6
     async {
-    let v6 : Mut0 = {l0 = 0} : Mut0
-    method1(v6)
-    let v7 : Async&lt;unit&gt; option = None
-    let v8 : bool = true in let mutable _v7 = v7
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v7 : Mut0 = {l0 = 0} : Mut0
+    method1(v7)
+    let v8 : bool = true
+    let mutable _v8 : Async&lt;unit&gt; option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v9 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v9
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    v9 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v10 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v10
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    v10 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v11 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v11
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v12 : (int32 -&gt; Async&lt;unit&gt;) = Async.Sleep
-    let v13 : Async&lt;unit&gt; = v12 10
-    v13
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v14 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v14
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v15 : Async&lt;unit&gt; = Unchecked.defaultof&lt;Async&lt;unit&gt;&gt;
-    v15
-#endif
-    |&gt; fun x -&gt; _v7 &lt;- Some x
-    let v16 : Async&lt;unit&gt; = _v7.Value
+    v11 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v12 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v12 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v13 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v13 
+    #endif
+#else
+    let v14 : (int32 -&gt; Async&lt;unit&gt;) = Async.Sleep
+    let v15 : Async&lt;unit&gt; = v14 10
+    v15 
+    #endif
+    |&gt; fun x -&gt; _v8 &lt;- Some x
+    let v16 : Async&lt;unit&gt; = _v8.Value
     do! v16 
-    let v17 : int32 = v6.l0
+    let v17 : int32 = v7.l0
     return v17 
     }
-    |&gt; fun x -&gt; _v5 &lt;- Some x
-    let v18 : Async&lt;int32&gt; = _v5 |&gt; Option.get
-    v18
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v19 : Async&lt;int32&gt; = null |&gt; unbox&lt;Async&lt;int32&gt;&gt;
-    v19
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v20 : Async&lt;int32&gt; = Unchecked.defaultof&lt;Async&lt;int32&gt;&gt;
-    v20
-#endif
+    |&gt; fun x -&gt; _v6 &lt;- Some x
+    let v18 : Async&lt;int32&gt; = _v6 |&gt; Option.get
+    v18 
+    #endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
-    let v21 : Async&lt;int32&gt; = _v0.Value
-    let v22 : int32 option = None
-    let v23 : bool = true in let mutable _v22 = v22
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v19 : Async&lt;int32&gt; = _v0.Value
+    let v20 : bool = true
+    let mutable _v20 : int32 option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v21 : int32 = null |&gt; unbox&lt;int32&gt;
+    v21 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v22 : int32 = null |&gt; unbox&lt;int32&gt;
+    v22 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v23 : int32 = null |&gt; unbox&lt;int32&gt;
+    v23 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
     let v24 : int32 = null |&gt; unbox&lt;int32&gt;
-    v24
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    v24 
+    #endif
+#if FABLE_COMPILER_PYTHON
     let v25 : int32 = null |&gt; unbox&lt;int32&gt;
-    v25
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v26 : int32 = null |&gt; unbox&lt;int32&gt;
-    v26
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v27 : (Async&lt;int32&gt; -&gt; int32) = Async.RunSynchronously
-    let v28 : int32 = v27 v21
-    v28
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v29 : int32 = null |&gt; unbox&lt;int32&gt;
-    v29
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v30 : int32 = Unchecked.defaultof&lt;int32&gt;
-    v30
-#endif
-    |&gt; fun x -&gt; _v22 &lt;- Some x
-    let v31 : int32 = _v22.Value
-    let v32 : string = $"%A{v31}"
-    System.Console.WriteLine v32
-    let v33 : bool = v31 = 11
-    let v35 : bool =
-        if v33 then
+    v25 
+    #endif
+#else
+    let v26 : (Async&lt;int32&gt; -&gt; int32) = Async.RunSynchronously
+    let v27 : int32 = v26 v19
+    v27 
+    #endif
+    |&gt; fun x -&gt; _v20 &lt;- Some x
+    let v28 : int32 = _v20.Value
+    let v29 : bool = v28 = 11
+    let v31 : bool =
+        if v29 then
             true
         else
-            method3(v33)
-    let v36 : string = $"__expect / actual: %A{v31} / expected: %A{11}"
-    let v37 : bool = v35 = false
-    if v37 then
-        failwith&lt;unit&gt; v36
+            method3(v29)
+    let v32 : string = "assert_eq"
+    let v33 : string = $"{v32} / actual: %A{v28} / expected: %A{11}"
+    System.Console.WriteLine v33
+    let v34 : bool = v31 = false
+    if v34 then
+        failwith&lt;unit&gt; v33
 method0()
 
-11
+assert_eq / actual: 11 / expected: 11
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="arc">arc<a class="anchor-link" href="#arc">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">arc</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_sync_Arc&lt;`t&gt;"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="new_arc">new_arc<a class="anchor-link" href="#new_arc">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_arc</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">arc</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::sync::Arc::new($0)"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="mutex">mutex<a class="anchor-link" href="#mutex">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">mutex</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_sync_Mutex&lt;`t&gt;"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="new_mutex">new_mutex<a class="anchor-link" href="#new_mutex">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_mutex</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">mutex</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::sync::Mutex::new($0)"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="new_arc_mutex">new_arc_mutex<a class="anchor-link" href="#new_arc_mutex">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_arc_mutex</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">arc</span> <span class="p">(</span><span class="n">mutex</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">new_mutex</span> <span class="o">|&gt;</span> <span class="n">new_arc</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="arc_clone">arc_clone<a class="anchor-link" href="#arc_clone">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arc_clone</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">arc</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">arc</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::sync::Arc::clone(&amp;!x)"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="mutex_guard">mutex_guard<a class="anchor-link" href="#mutex_guard">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">mutex_guard</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_sync_MutexGuard&lt;`t&gt;"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="poison_error">poison_error<a class="anchor-link" href="#poison_error">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">poison_error</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_sync_PoisonError&lt;`t&gt;"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="mutex_lock">mutex_lock<a class="anchor-link" href="#mutex_lock">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arc_mutex_lock</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">arc</span> <span class="p">(</span><span class="n">mutex</span> <span class="n">t</span><span class="p">))</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (mutex_guard t) (poison_error (mutex_guard t)) =</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.lock()"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="mutex_guard_value">mutex_guard_value<a class="anchor-link" href="#mutex_guard_value">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">mutex_guard_value</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">mutex_guard</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' t =</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"&amp;$0"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8560,7 +9077,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8569,6 +9086,7 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">types</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let new_disposable_token x = !new_disposable_token x"</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -8582,116 +9100,158 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type [&lt;Struct&gt;] US0 =
+<pre>#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle&lt;$0&gt;")&gt;]
+#endif
+type std_thread_JoinHandle&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
+#endif
+type std_sync_Arc&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
+#endif
+type std_sync_Mutex&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard&lt;$0&gt;")&gt;]
+#endif
+type std_sync_MutexGuard&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError&lt;$0&gt;")&gt;]
+#endif
+type std_sync_PoisonError&lt;'T&gt; = class end
+type Disposable (f : unit -&gt; unit) = interface System.IDisposable with member _.Dispose () = f ()
+type [&lt;Struct&gt;] US0 =
     | US0_0 of f0_0 : System.Threading.CancellationToken
     | US0_1
-let rec closure1 () (v0 : System.Threading.CancellationToken) : US0 =
-    US0_0(v0)
-and method0 () : (System.Threading.CancellationToken -&gt; US0) =
-    closure1()
-and closure2 (v0 : System.Threading.CancellationTokenSource) () : unit =
-    let v1 : unit option = None
-    let v2 : bool = true in let mutable _v1 = v1
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+let rec closure1 (v0 : System.Threading.CancellationTokenSource) () : unit =
+    let v1 : bool = true
+    let mutable _v1 : unit option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
-    ()
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    () 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     null |&gt; unbox&lt;unit&gt;
-    ()
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    () 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     null |&gt; unbox&lt;unit&gt;
-    ()
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v3 : (unit -&gt; unit) = v0.Cancel
-    v3 ()
-    ()
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
     null |&gt; unbox&lt;unit&gt;
-    ()
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;unit&gt;
-    ()
-#endif
+    () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    null |&gt; unbox&lt;unit&gt;
+    () 
+    #endif
+#else
+    let v2 : (unit -&gt; unit) = v0.Cancel
+    v2 ()
+    () 
+    #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     _v1.Value
     ()
+and method0 (v0 : System.Threading.CancellationTokenSource) : (unit -&gt; unit) =
+    closure1(v0)
 and closure0 () (v0 : System.Threading.CancellationToken option) : struct (System.Threading.CancellationToken * System.IDisposable) =
-    let v1 : struct (System.Threading.CancellationToken * System.IDisposable) option = None
-    let v2 : bool = true in let mutable _v1 = v1
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let struct (v3 : System.Threading.CancellationToken, v4 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
-    struct (v3, v4)
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let struct (v5 : System.Threading.CancellationToken, v6 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
-    struct (v5, v6)
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let struct (v7 : System.Threading.CancellationToken, v8 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
-    struct (v7, v8)
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v9 : System.Threading.CancellationTokenSource = new System.Threading.CancellationTokenSource ()
-    let v10 : (System.Threading.CancellationToken -&gt; US0) = method0()
-    let v11 : US0 = US0_1
-    let v12 : US0 = v0 |&gt; Option.map v10 |&gt; Option.defaultValue v11 
-    let v19 : System.Threading.CancellationTokenSource =
-        match v12 with
+    let v1 : bool = true
+    let mutable _v1 : struct (System.Threading.CancellationToken * System.IDisposable) option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let struct (v2 : System.Threading.CancellationToken, v3 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
+    struct (v2, v3) 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let struct (v4 : System.Threading.CancellationToken, v5 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
+    struct (v4, v5) 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let struct (v6 : System.Threading.CancellationToken, v7 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
+    struct (v6, v7) 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let struct (v8 : System.Threading.CancellationToken, v9 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
+    struct (v8, v9) 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let struct (v10 : System.Threading.CancellationToken, v11 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
+    struct (v10, v11) 
+    #endif
+#else
+    let v12 : System.Threading.CancellationTokenSource = new System.Threading.CancellationTokenSource ()
+    let v13 : US0 option = None
+    let _v13 = ref v13 
+    match v0 with
+    | Some x -&gt; (
+    (fun () -&gt;
+    (fun () -&gt;
+    let v14 : System.Threading.CancellationToken = x
+    let v15 : US0 = US0_0(v14)
+    v15 
+    )
+    |&gt; fun x -&gt; x () |&gt; Some
+    ) () ) | None -&gt; None
+    |&gt; fun x -&gt; _v13.Value &lt;- x
+    let v16 : US0 option = _v13.Value 
+    let v17 : US0 = US0_1
+    let v18 : US0 = v16 |&gt; Option.defaultValue v17 
+    let v25 : System.Threading.CancellationTokenSource =
+        match v18 with
         | US0_1 -&gt; (* None *)
-            v9
-        | US0_0(v13) -&gt; (* Some *)
-            let v14 : System.Threading.CancellationToken = v9.Token
-            let v15 : (System.Threading.CancellationToken []) = [|v14; v13|]
-            let v16 : ((System.Threading.CancellationToken []) -&gt; System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-            v16 v15
-    let v20 : System.IDisposable option = None
-    let v21 : bool = true in let mutable _v20 = v20
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v22 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
-    v22
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v23 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
-    v23
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v24 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
-    v24
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v25 : (unit -&gt; unit) = closure2(v19)
-    let v26 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v25 () }
-    v26
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v27 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
-    v27
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v28 : System.IDisposable = Unchecked.defaultof&lt;System.IDisposable&gt;
-    v28
-#endif
-    |&gt; fun x -&gt; _v20 &lt;- Some x
-    let v29 : System.IDisposable = _v20.Value
-    let v30 : System.Threading.CancellationToken = v19.Token
-    struct (v30, v29)
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let struct (v31 : System.Threading.CancellationToken, v32 : System.IDisposable) = null |&gt; unbox&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
-    struct (v31, v32)
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let struct (v33 : System.Threading.CancellationToken, v34 : System.IDisposable) = Unchecked.defaultof&lt;struct (System.Threading.CancellationToken * System.IDisposable)&gt;
-    struct (v33, v34)
-#endif
+            v12
+        | US0_0(v19) -&gt; (* Some *)
+            let v20 : System.Threading.CancellationToken = v12.Token
+            let v21 : (System.Threading.CancellationToken []) = [|v20; v19|]
+            let v22 : ((System.Threading.CancellationToken []) -&gt; System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+            v22 v21
+    let v26 : bool = true
+    let mutable _v26 : System.IDisposable option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v27 : (unit -&gt; unit) = closure1(v25)
+    let v28 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v27 "$0()" )
+    v28 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v29 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v27 "$0()" )
+    v29 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v30 : System.IDisposable = new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr v27 "$0()" )
+    v30 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v31 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
+    v31 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v32 : System.IDisposable = null |&gt; unbox&lt;System.IDisposable&gt;
+    v32 
+    #endif
+#else
+    let v33 : (unit -&gt; unit) = method0(v25)
+    let v34 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v33 () }
+    v34 
+    #endif
+    |&gt; fun x -&gt; _v26 &lt;- Some x
+    let v35 : System.IDisposable = _v26.Value
+    let v36 : System.Threading.CancellationToken = v25.Token
+    struct (v36, v35) 
+    #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
-    let struct (v35 : System.Threading.CancellationToken, v36 : System.IDisposable) = _v1.Value
-    struct (v35, v36)
+    let struct (v37 : System.Threading.CancellationToken, v38 : System.IDisposable) = _v1.Value
+    struct (v37, v38)
 let v0 : (System.Threading.CancellationToken option -&gt; struct (System.Threading.CancellationToken * System.IDisposable)) = closure0()
 let new_disposable_token x = v0 x
 ()

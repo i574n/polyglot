@@ -6,7 +6,7 @@ inl render icon (class : () -> sm'.std_string) props : _ button =
     button
         ([
             $'"class=move || \\\"inline-flex shrink-0 items-center [justify-content:center] pb-[8px] pt-[8px] px-[12px] \\\".to_owned() + &!class(())"'
-        ] /@ props)
+        ] ++ props)
         fun () =>
             :>(;[
                 icon |> element_to_view

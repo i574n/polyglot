@@ -47,10 +47,10 @@ if ($extensionsPath.Count -gt 0) {
     Copy-Item $path "$extensionSrcPath/compiler" -Recurse -Force
 
     if (!$fast) {
-        { bun install } | Invoke-Block -Location $extensionSrcPath
-        { bunx tsc --build } | Invoke-Block -Location $extensionSrcPath
+        { ~/.bun/bin/bun install } | Invoke-Block -Location $extensionSrcPath
+        { ~/.bun/bin/bunx tsc --build } | Invoke-Block -Location $extensionSrcPath
     }
-    { bunx @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath
+    { ~/.bun/bin/bunx @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath
 }
 
 foreach ($extensionsPath in $extensionsPath) {
@@ -73,7 +73,7 @@ foreach ($extensionsPath in $extensionsPath) {
                     Write-Output "Failed to delete $destPath"
                 }
             } else {
-                New-Item -Path $destPath -Force | Out-Null
+                New-Item $destPath -Force | Out-Null
             }
 
             Move-Item $_.FullName $destPath -Force -ErrorAction SilentlyContinue

@@ -8,9 +8,20 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
+
+#!markdown
+
+## types
+
+#!spiral
+
+inl types () =
+    env.types ()
+    rust.types ()
+    sm'.types ()
 
 #!markdown
 
@@ -26,21 +37,21 @@ prototype (~:>) r : forall t. t -> r
 
 #!spiral
 
-// // test
+//// test
 
 run_target function
-    | Fsharp (Native) => fun () => $"1uy"
-    | _ => fun () => $"2uy"
+    | Fsharp (Native) => fun () => $'1uy'
+    | _ => fun () => $'2uy'
 |> _assert_eq 1u8
 
 #!spiral
 
-// // test
-// // rust=
+//// test
+///! rust
 
 run_target function
-    | Rust (Native) => fun () => $"1uy"
-    | _ => fun () => $"2uy"
+    | Rust (Native) => fun () => $'1uy'
+    | _ => fun () => $'2uy'
 |> _assert_eq 1u8
 
 #!markdown
@@ -63,91 +74,6 @@ inl downcast forall t u. (x : t) : u =
 
 #!markdown
 
-## unativeint
-
-#!spiral
-
-nominal unativeint = $"unativeint"
-
-inl unativeint forall t {int}. (n : t) : unativeint =
-    $"unativeint !n"
-
-#!markdown
-
-## pair
-
-#!spiral
-
-// // test
-
-pair 1i32 2i32
-|> _assert_eq (1, 2)
-
-#!markdown
-
-## new_pair
-
-#!spiral
-
-inl new_pair forall a b. (a : a) (b : b) : pair a b =
-    $"!a, !b"
-
-#!markdown
-
-## from_pair
-
-#!spiral
-
-inl from_pair forall a b. (pair : pair a b) : a * b =
-    $"let (a, b) = !pair"
-    $"a", $"b"
-
-#!spiral
-
-// // test
-
-new_pair "a" 1i32
-|> from_pair
-|> _assert_eq ("a", 1i32)
-
-#!spiral
-
-// // test
-
-new_pair "a" (new_pair 1i32 "b")
-|> from_pair
-
-#!markdown
-
-## memoize
-
-#!spiral
-
-nominal lazy t = $'Lazy<`t>'
-
-inl memoize forall t. (fn : () -> t) : () -> t =
-    inl fn = join fn
-    inl result : lazy t = $'lazy !fn ()'
-    fun () => $'!result.Value'
-
-#!spiral
-
-// // test
-
-inl count = mut 0i32
-inl add =
-    fun () => count <- *count + 1
-    |> memoize
-
-add ()
-add ()
-add ()
-
-*count
-|> _assert_eq 1
-
-#!markdown
-
 ## to_any
 
 #!spiral
@@ -159,61 +85,11 @@ instance (~:>) any = to_any
 
 #!markdown
 
-## (+.)
-
-#!spiral
-
-inl (+.) forall t. (a : t) (b : t) : t =
-    $"!a + !b"
-
-#!markdown
-
-## (-.)
-
-#!spiral
-
-inl (-.) forall t. (a : t) (b : t) : t =
-    $"!a - !b"
-
-#!markdown
-
-## (*.)
-
-#!spiral
-
-inl (*.) forall t. (a : t) (b : t) : t =
-    $"!a * !b"
-
-#!markdown
-
-## (/.)
-
-#!spiral
-
-inl (/.) forall t. (a : t) (b : t) : t =
-    $"!a / !b"
-
-#!markdown
-
-## (=.)
-
-#!spiral
-
-inl (=.) forall t. (a : t) (b : t) : bool =
-    $"!a = !b"
-
-#!markdown
-
 ## (||>)
 
 #!spiral
 
-inl (||>) (arg1, arg2) fn =
-    arg2 |> fn arg1
-
-#!spiral
-
-// // test
+//// test
 
 (3i32, 2i32)
 ||> fun a b => a - b
@@ -230,7 +106,7 @@ inl flip fn a b =
 
 #!spiral
 
-// // test
+//// test
 
 (1i32, 2i32)
 ||> flip pair
@@ -251,7 +127,7 @@ inl join_body body acc x =
 
 #!spiral
 
-// // test
+//// test
 
 inl rec fold_list f s = function
     | Cons (x, x') => fold_list f (f s x) x'
@@ -259,7 +135,7 @@ inl rec fold_list f s = function
 
 #!spiral
 
-// // test
+//// test
 
 [ 5i32; 4; join 3; 2; 1 ]
 |> fold_list (+) 0
@@ -267,7 +143,7 @@ inl rec fold_list f s = function
 
 #!spiral
 
-// // test
+//// test
 
 [ 5i32; 4; join 3; 2; 1 ]
 |> fold_list (join_body (+)) 0
@@ -288,7 +164,7 @@ inl join_body_unit body d x =
 
 #!spiral
 
-// // test
+//// test
 
 [ 5i32; 4; join 3; 2; 1 ]
 |> fold_list (fun acc n => join_body_unit ((+) acc) n n) 0
@@ -303,18 +179,9 @@ inl join_body_unit body d x =
 inl nameof x : string =
     $"nameof !x"
 
-#!markdown
-
-## get_environment_variable
-
 #!spiral
 
-inl get_environment_variable (var : string) : string =
-    $"System.Environment.GetEnvironmentVariable !var"
-
-#!spiral
-
-// // test
+//// test
 
 fun () => failwith "test"
 |> _throws
@@ -346,25 +213,39 @@ inl dispose (disposable : disposable _) : () =
 
 inl new_disposable (fn : () -> ()) : disposable _ =
     run_target function
-        | Fsharp _ => fun () => $'{ new System.IDisposable with member _.Dispose () = !fn () }'
-        // | Rust _ =>
-        //     fun () =>
-                // $'{ new System.IDisposable with member _.Dispose () = Fable.Core.RustInterop.emitRustExpr () "!fn()" }'
+        | Rust _ => fun () =>
+            global "type Disposable (f : unit -> unit) = interface System.IDisposable with member _.Dispose () = f ()"
+            $'new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr !fn "$0()" )'
+        | Fsharp _ => fun () =>
+            inl fn = join fn
+            $'{ new System.IDisposable with member _.Dispose () = !fn () }'
         | _ => fun () => null ()
 
 #!spiral
 
-// // test
+//// test
 
 inl new_disposable_test = mut 0i32
-new_disposable (fun () => new_disposable_test <- *new_disposable_test + 1)
+new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
 |> fun x => x : disposable ()
 |> dispose
 *new_disposable_test |> _assert_eq 1
 
 #!spiral
 
-// // test
+//// test
+//// print_code=false
+///! rust
+
+inl new_disposable_test = mut 0i32
+new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
+|> fun x => x : disposable ()
+|> dispose
+*new_disposable_test |> _assert_eq 1
+
+#!spiral
+
+//// test
 
 inl new_disposable_test = mut 0i32
 fun () =>
@@ -380,7 +261,7 @@ fun () =>
 
 #!spiral
 
-// // test
+//// test
 
 inl new_disposable_test = mut 0i32
 fun () =>
@@ -395,7 +276,7 @@ fun () =>
 
 #!spiral
 
-// // test
+//// test
 
 inl new_disposable_test = mut 0i32
 fun () =>
@@ -444,8 +325,9 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
                 then fn () |> Some
                 else None
             fun ex =>
-                inl get_locals () = $'$"retry: {!retry} / ex: {ex |> SpiralSm.format_exception} / {!get_locals ()}"' : string
-                // trace Warning (fun () => "retry_fn") getLocals
+                trace Warning
+                    fun () => "retry_fn"
+                    fun () => $'$"retry: {!retry} / ex: %A{!ex} / {!_locals ()}"'
                 sleep 1
                 None
         |> function
@@ -455,7 +337,7 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
 
 #!spiral
 
-// // test
+//// test
 
 inl retry_fn_test = mut 0i32
 fun () =>
@@ -466,7 +348,20 @@ fun () =>
 
 #!spiral
 
-// // test
+//// test
+///! rust
+
+types ()
+inl retry_fn_test = mut 0i32
+fun () =>
+    retry_fn_test <- *retry_fn_test + 1
+    *retry_fn_test
+|> retry_fn 3i32
+|> _assert_eq' (Some 1i32)
+
+#!spiral
+
+//// test
 
 inl retry_fn_test = mut 0i32
 fun () =>
@@ -478,6 +373,22 @@ fun () =>
 |> retry_fn 3i32
 |> _assert_eq (Some 2i32)
 
+#!spiral
+
+//// test
+///! rust
+
+types ()
+inl retry_fn_test = mut 0i32
+fun () =>
+    if *retry_fn_test >= 2
+    then *retry_fn_test
+    else
+        retry_fn_test <- *retry_fn_test + 1
+        failwith "test"
+|> retry_fn 3i32
+|> _assert_eq' (Some 2i32)
+
 #!markdown
 
 ## main
@@ -485,8 +396,12 @@ fun () =>
 #!spiral
 
 inl main () =
+    types ()
+    init_trace_state None
     inl new_disposable x : _ () = new_disposable x
     $"let new_disposable x = !new_disposable x" : ()
 
     inl retry_fn (r : i32) (x : () -> _) : optionm'.option' () = retry_fn r x |> optionm'.box
     $"let retry_fn x = !retry_fn x" : ()
+    inl memoize (fn : () -> ()) : () -> () = memoize fn
+    $"let memoize x = !memoize x" : ()

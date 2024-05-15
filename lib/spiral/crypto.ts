@@ -21,25 +21,29 @@ export function Mut0_$reflection(): TypeInfo {
     return record_type("Crypto.Mut0", [], Mut0, () => [["l0", int32_type]]);
 }
 
-export function method0(v0_1: int32, v1: Mut0): boolean {
+export function method0(v0_1: string): string {
+    return v0_1;
+}
+
+export function method1(v0_1: int32, v1: Mut0): boolean {
     return v1.l0 < v0_1;
 }
 
-export function method1(): string {
+export function method2(): string {
     return "";
 }
 
 export function closure0(unitVar: void, v0_1: string): string {
-    let _v1: Option<string> = void 0;
-    const v29: ICryptoCreateHash = crypto;
-    const v32: any = v29.createHash("sha256");
-    const v34: any = v32.update(v0_1, 'utf8');
-    const x: string = v34.digest("hex");
+    let _v1: Option<string> = undefined;
+    const v6: ICryptoCreateHash = crypto;
+    const v9: any = v6.createHash("sha256");
+    const v11: any = v9.update(v0_1, 'utf8');
+    const x: string = v11.digest("hex");
     _v1 = x;
     return value(_v1);
 }
 
-export const v0 = (v: string): string => closure0(void 0, v);
+export const v0 = (v: string): string => closure0(undefined, v);
 
 export function hash_text(x: string): string {
     return v0(x);

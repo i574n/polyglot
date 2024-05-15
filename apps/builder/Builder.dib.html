@@ -7547,7 +7547,6 @@ a.anchor-link {
 <span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"</span>
 </pre></div>
 </div>
 </div>
@@ -7642,8 +7641,9 @@ a.anchor-link {
     <span class="n">let</span> <span class="n">fileDir</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetDirectoryName</span>
     <span class="n">let</span> <span class="n">extension</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetExtension</span>
 
-    <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"fullPath: </span><span class="si">{fullPath}</span><span class="s2"> / {getLocals ()}"</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"buildProject"</span><span class="p">)</span> <span class="n">getLocals</span>
+    <span class="n">trace</span> <span class="n">Debug</span>
+        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"buildProject"</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"fullPath: </span><span class="si">{fullPath}</span><span class="s2"> / {_locals ()}"</span><span class="p">)</span>
 
     <span class="k">match</span> <span class="n">extension</span> <span class="k">with</span>
     <span class="o">|</span> <span class="s2">".fsproj"</span> <span class="o">-&gt;</span> <span class="p">()</span>
@@ -7661,7 +7661,13 @@ a.anchor-link {
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">runtime</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
             <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"dotnet publish ""</span><span class="si">{path}</span><span class="s2">"" --configuration Release --output ""</span><span class="si">{outputDir}</span><span class="s2">"" --runtime </span><span class="si">{runtime}</span><span class="s2">"</span>
             <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">_result</span> <span class="o">=</span>
-                <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="n">fileDir</span><span class="p">)</span>
+                <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execution_options</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
+                    <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
+                        <span class="n">l1</span> <span class="o">=</span> <span class="n">command</span>
+                        <span class="n">l6</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">fileDir</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+                <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span>
             <span class="k">return</span> <span class="n">exitCode</span>
         <span class="p">})</span>
         <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sequential</span>
@@ -7691,12 +7697,18 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">name</span> <span class="n">code</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"packages: </span><span class="si">{packages}</span><span class="s2"> / modules: </span><span class="si">{modules}</span><span class="s2"> / name: </span><span class="si">{name}</span><span class="s2"> / code.Length: {code |&gt; String.length} / {getLocals ()}"</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"persistCodeProject"</span><span class="p">)</span> <span class="n">getLocals</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">name</span> <span class="nb">hash</span> <span class="n">code</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
+    <span class="n">trace</span> <span class="n">Debug</span>
+        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"persistCodeProject"</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"packages: </span><span class="si">{packages}</span><span class="s2"> / modules: </span><span class="si">{modules}</span><span class="s2"> / name: </span><span class="si">{name}</span><span class="s2"> / hash: </span><span class="si">{hash}</span><span class="s2"> / code.Length: {code |&gt; String.length} / {_locals ()}"</span><span class="p">)</span>
 
-    <span class="n">let</span> <span class="n">repositoryRoot</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">get_repository_root</span> <span class="p">()</span>
-    <span class="n">let</span> <span class="n">targetDir</span> <span class="o">=</span> <span class="n">repositoryRoot</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target/polyglot/builder"</span> <span class="o">&lt;/&gt;</span> <span class="n">name</span>
+    <span class="n">let</span> <span class="n">workspaceRoot</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">get_workspace_root</span> <span class="p">()</span>
+
+    <span class="n">let</span> <span class="n">targetDir</span> <span class="o">=</span>
+        <span class="n">let</span> <span class="n">targetDir</span> <span class="o">=</span> <span class="n">workspaceRoot</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target/polyglot/builder"</span> <span class="o">&lt;/&gt;</span> <span class="n">name</span>
+        <span class="k">match</span> <span class="nb">hash</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">Some</span> <span class="nb">hash</span> <span class="o">-&gt;</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"packages"</span> <span class="o">&lt;/&gt;</span> <span class="nb">hash</span>
+        <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span> <span class="n">targetDir</span>
     <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="n">targetDir</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 
     <span class="n">let</span> <span class="n">filePath</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{name}</span><span class="s2">.fs"</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
@@ -7704,7 +7716,7 @@ a.anchor-link {
 
     <span class="n">let</span> <span class="n">modulesCode</span> <span class="o">=</span>
         <span class="n">modules</span>
-        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">path</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"""&lt;Compile Include="{repositoryRoot &lt;/&gt; path}" /&gt;"""</span><span class="p">)</span>
+        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">path</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"""&lt;Compile Include="{workspaceRoot &lt;/&gt; path}" /&gt;"""</span><span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">        "</span>
 
     <span class="n">let</span> <span class="n">fsprojPath</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{name}</span><span class="s2">.fsproj"</span>
@@ -7727,7 +7739,7 @@ a.anchor-link {
 <span class="s2">        &lt;Compile Include="</span><span class="si">{filePath}</span><span class="s2">" /&gt;</span>
 <span class="s2">    &lt;/ItemGroup&gt;</span>
 
-<span class="s2">    &lt;Import Project="</span><span class="si">{repositoryRoot}</span><span class="s2">/.paket/Paket.Restore.targets" /&gt;</span>
+<span class="s2">    &lt;Import Project="</span><span class="si">{workspaceRoot}</span><span class="s2">/.paket/Paket.Restore.targets" /&gt;</span>
 <span class="s2">&lt;/Project&gt;</span>
 <span class="s2">"""</span>
     <span class="n">do</span><span class="err">!</span> <span class="n">fsprojCode</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_exists</span> <span class="n">fsprojPath</span>
@@ -7765,8 +7777,14 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">buildCode</span> <span class="n">runtime</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">outputDir</span> <span class="n">name</span> <span class="n">code</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">fsprojPath</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">name</span>
-    <span class="k">return</span><span class="err">!</span> <span class="n">fsprojPath</span> <span class="o">|&gt;</span> <span class="n">buildProject</span> <span class="n">runtime</span> <span class="n">outputDir</span>
+    <span class="n">let</span><span class="err">!</span> <span class="n">fsprojPath</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">name</span> <span class="kc">None</span>
+    <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span> <span class="o">=</span> <span class="n">fsprojPath</span> <span class="o">|&gt;</span> <span class="n">buildProject</span> <span class="n">runtime</span> <span class="n">outputDir</span>
+    <span class="k">if</span> <span class="n">exitCode</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">then</span>
+        <span class="n">let</span><span class="err">!</span> <span class="n">fsprojText</span> <span class="o">=</span> <span class="n">fsprojPath</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_async</span>
+        <span class="n">trace</span> <span class="n">Critical</span>
+            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"buildCode"</span><span class="p">)</span>
+            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"code: {code |&gt; SpiralSm.ellipsis_end 400} / fsprojText: </span><span class="si">{fsprojText}</span><span class="s2"> / {_locals ()}"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">exitCode</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -7799,41 +7817,41 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 debug #1 persistCodeProject / packages: [] / modules: [] / name: test1 / code.Length: 15
-00:00:01 debug #2 buildProject / fullPath: /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj
-00:00:03 debug #1 execute_with_options_async / options: struct (None,
+<pre>00:00:01   debug #1 persistCodeProject / packages: [] / modules: [] / name: test1 / hash:  / code.Length: 15
+00:00:01   debug #2 buildProject / fullPath: /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj
+00:00:03   debug #1 execute_with_options_async / options: struct (None,
         "dotnet publish "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj" --configuration Release --output "dist" --runtime linux-x64",
-        None,
+        [||], None, None, true,
         Some "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1")
 00:00:03 verbose #2 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:03 verbose #3 &gt;   Determining projects to restore...
-00:00:04 verbose #4 &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
+00:00:04 verbose #3 &gt;   Determining projects to restore...
+00:00:04 verbose #4 &gt;   Paket version 8.1.0-alpha002+df391903d7590864c0bba48fdc34b50ddcc94cc2
 00:00:04 verbose #5 &gt;   The last full restore is still up to date. Nothing left to do.
 00:00:04 verbose #6 &gt;   Total time taken: 0 milliseconds
-00:00:04 verbose #7 &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
+00:00:05 verbose #7 &gt;   Paket version 8.1.0-alpha002+df391903d7590864c0bba48fdc34b50ddcc94cc2
 00:00:05 verbose #8 &gt;   Restoring /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj
 00:00:05 verbose #9 &gt;   Starting restore process.
 00:00:05 verbose #10 &gt;   Total time taken: 0 milliseconds
-00:00:07 verbose #11 &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj (in 1.79 sec).
+00:00:07 verbose #11 &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj (in 1.7 sec).
 00:00:07 verbose #12 &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj]
-00:00:08 verbose #13 &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fs(1,16): warning FS0988: Main module of program is empty: nothing will happen when it is run [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj]
+00:00:09 verbose #13 &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fs(1,16): warning FS0988: Main module of program is empty: nothing will happen when it is run [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj]
 00:00:09 verbose #14 &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/bin/Release/net9.0/linux-x64/test1.dll
-00:00:09 verbose #15 &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/dist
-00:00:09 debug #16 execute_with_options_async / exit_code: 0 / output.Length: 1365
-00:00:09 debug #17 execute_with_options_async / options: struct (None,
+00:00:10 verbose #15 &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/dist
+00:00:10   debug #16 execute_with_options_async / exit_code: 0 / output.Length: 1364
+00:00:10   debug #17 execute_with_options_async / options: struct (None,
         "dotnet publish "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj" --configuration Release --output "dist" --runtime win-x64",
-        None,
+        [||], None, None, true,
         Some "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1")
-00:00:09 verbose #18 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:10 verbose #18 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
 00:00:10 verbose #19 &gt;   Determining projects to restore...
-00:00:12 verbose #20 &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj (in 1.69 sec).
+00:00:12 verbose #20 &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj (in 1.5 sec).
 00:00:12 verbose #21 &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj]
 00:00:13 verbose #22 &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fs(1,16): warning FS0988: Main module of program is empty: nothing will happen when it is run [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj]
 00:00:14 verbose #23 &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/bin/Release/net9.0/win-x64/test1.dll
 00:00:14 verbose #24 &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/dist
-00:00:14 debug #25 execute_with_options_async / exit_code: 0 / output.Length: 965
-FSharpOption&lt;Int32&gt;
-      Value: 0
+00:00:14   debug #25 execute_with_options_async / exit_code: 0 / output.Length: 964
+Some 0
+
 </pre>
 </div>
 </div>
@@ -7865,37 +7883,59 @@ FSharpOption&lt;Int32&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:13 debug #3 persistCodeProject / packages: [] / modules: [] / name: test2 / code.Length: 15
-00:00:13 debug #4 buildProject / fullPath: /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj
-00:00:14 debug #26 execute_with_options_async / options: struct (None,
+<pre>00:00:13   debug #3 persistCodeProject / packages: [] / modules: [] / name: test2 / hash:  / code.Length: 15
+00:00:13   debug #4 buildProject / fullPath: /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj
+00:00:14   debug #26 execute_with_options_async / options: struct (None,
         "dotnet publish "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj" --configuration Release --output "dist" --runtime linux-x64",
-        None,
+        [||], None, None, true,
         Some "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2")
 00:00:14 verbose #27 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
 00:00:15 verbose #28 &gt;   Determining projects to restore...
-00:00:15 verbose #29 &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
+00:00:15 verbose #29 &gt;   Paket version 8.1.0-alpha002+df391903d7590864c0bba48fdc34b50ddcc94cc2
 00:00:15 verbose #30 &gt;   The last full restore is still up to date. Nothing left to do.
 00:00:15 verbose #31 &gt;   Total time taken: 0 milliseconds
-00:00:16 verbose #32 &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
+00:00:16 verbose #32 &gt;   Paket version 8.1.0-alpha002+df391903d7590864c0bba48fdc34b50ddcc94cc2
 00:00:16 verbose #33 &gt;   Restoring /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj
 00:00:16 verbose #34 &gt;   Starting restore process.
 00:00:16 verbose #35 &gt;   Total time taken: 0 milliseconds
-00:00:17 verbose #36 &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj (in 302 ms).
+00:00:17 verbose #36 &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj (in 261 ms).
 00:00:17 verbose #37 &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj]
 00:00:18 verbose #38 &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj]
-00:00:18 debug #39 execute_with_options_async / exit_code: 1 / output.Length: 1138
-00:00:18 debug #40 execute_with_options_async / options: struct (None,
+00:00:18   debug #39 execute_with_options_async / exit_code: 1 / output.Length: 1138
+00:00:18   debug #40 execute_with_options_async / options: struct (None,
         "dotnet publish "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj" --configuration Release --output "dist" --runtime win-x64",
-        None,
+        [||], None, None, true,
         Some "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2")
 00:00:18 verbose #41 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
 00:00:19 verbose #42 &gt;   Determining projects to restore...
-00:00:19 verbose #43 &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj (in 278 ms).
+00:00:19 verbose #43 &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj (in 264 ms).
 00:00:19 verbose #44 &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj]
-00:00:21 verbose #45 &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj]
-00:00:21 debug #46 execute_with_options_async / exit_code: 1 / output.Length: 740
-FSharpOption&lt;Int32&gt;
-      Value: 2
+00:00:20 verbose #45 &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj]
+00:00:20   debug #46 execute_with_options_async / exit_code: 1 / output.Length: 740
+00:00:19 critical #5 buildCode / code: 1 + a |&gt; ignore / fsprojText: &lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+    &lt;PropertyGroup&gt;
+        &lt;TargetFramework&gt;net9.0&lt;/TargetFramework&gt;
+        &lt;LangVersion&gt;preview&lt;/LangVersion&gt;
+        &lt;RollForward&gt;Major&lt;/RollForward&gt;
+        &lt;TargetLatestRuntimePatch&gt;true&lt;/TargetLatestRuntimePatch&gt;
+        &lt;PublishAot&gt;false&lt;/PublishAot&gt;
+        &lt;PublishTrimmed&gt;false&lt;/PublishTrimmed&gt;
+        &lt;PublishSingleFile&gt;true&lt;/PublishSingleFile&gt;
+        &lt;SelfContained&gt;true&lt;/SelfContained&gt;
+        &lt;Version&gt;0.0.1-alpha.1&lt;/Version&gt;
+        &lt;OutputType&gt;Exe&lt;/OutputType&gt;
+    &lt;/PropertyGroup&gt;
+
+    &lt;ItemGroup&gt;
+        
+        &lt;Compile Include="/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fs" /&gt;
+    &lt;/ItemGroup&gt;
+
+    &lt;Import Project="/home/runner/work/polyglot/polyglot/.paket/Paket.Restore.targets" /&gt;
+&lt;/Project&gt;
+
+Some 2
+
 </pre>
 </div>
 </div>
@@ -7994,7 +8034,7 @@ FSharpOption&lt;Int32&gt;
     <span class="n">let</span> <span class="n">fullPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
     <span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFileNameWithoutExtension</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">code</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">readFile</span>
-    <span class="k">return</span><span class="err">!</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">name</span>
+    <span class="k">return</span><span class="err">!</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">name</span> <span class="kc">None</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -8064,7 +8104,7 @@ FSharpOption&lt;Int32&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>USAGE: dotnet-repl [--help] [--packages [&lt;packages&gt;...]]
+<pre>"USAGE: dotnet-repl [--help] [--packages [&lt;packages&gt;...]]
                    [--modules [&lt;modules&gt;...]] [--runtime &lt;runtime&gt;]
                    [--persist-only] &lt;path&gt;
 
@@ -8081,6 +8121,7 @@ OPTIONS:
     --runtime &lt;runtime&gt;   Runtime
     --persist-only        Persist_Only
     --help                display this list of options.
+"
 </pre>
 </div>
 </div>
@@ -8155,7 +8196,7 @@ OPTIONS:
 
 <span class="n">let</span> <span class="n">args</span> <span class="o">=</span>
     <span class="n">System</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">GetEnvironmentVariable</span> <span class="s2">"ARGS"</span>
-    <span class="o">|&gt;</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">splitArgs</span>
+    <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">split_args</span>
     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toArray</span>
 
 <span class="k">match</span> <span class="n">args</span> <span class="k">with</span>
@@ -8173,7 +8214,8 @@ OPTIONS:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<div class="dni-plaintext"><pre>0</pre></div><style>
+<div class="dni-plaintext"><pre>0
+</pre></div><style>
 .dni-code-hint {
     font-style: italic;
     overflow: hidden;
@@ -8210,27 +8252,27 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:20 debug #5 persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.CommandLine; ... ] / modules: [lib/spiral/common.fsx; lib/spiral/sm.fsx; lib/spiral/crypto.fsx; ... ] / name: Builder / code.Length: 6976
-00:00:20 debug #6 buildProject / fullPath: /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj
-00:00:21 debug #47 execute_with_options_async / options: struct (None,
+<pre>00:00:19   debug #6 persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.Reactive.Linq] / modules: [lib/spiral/common.fsx; lib/spiral/sm.fsx; lib/spiral/crypto.fsx; ... ] / name: Builder / hash:  / code.Length: 7651
+00:00:19   debug #7 buildProject / fullPath: /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj
+00:00:21   debug #47 execute_with_options_async / options: struct (None,
         "dotnet publish "/home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj" --configuration Release --output "/home/runner/work/polyglot/polyglot/apps/builder/dist" --runtime linux-x64",
-        None,
+        [||], None, None, true,
         Some
           "/home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder")
 00:00:21 verbose #48 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:22 verbose #49 &gt;   Determining projects to restore...
-00:00:22 verbose #50 &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
+00:00:21 verbose #49 &gt;   Determining projects to restore...
+00:00:22 verbose #50 &gt;   Paket version 8.1.0-alpha002+df391903d7590864c0bba48fdc34b50ddcc94cc2
 00:00:22 verbose #51 &gt;   The last full restore is still up to date. Nothing left to do.
 00:00:22 verbose #52 &gt;   Total time taken: 0 milliseconds
-00:00:22 verbose #53 &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
-00:00:23 verbose #54 &gt;   Restoring /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj
+00:00:22 verbose #53 &gt;   Paket version 8.1.0-alpha002+df391903d7590864c0bba48fdc34b50ddcc94cc2
+00:00:22 verbose #54 &gt;   Restoring /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj
 00:00:23 verbose #55 &gt;   Starting restore process.
 00:00:23 verbose #56 &gt;   Total time taken: 0 milliseconds
-00:00:24 verbose #57 &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj (in 332 ms).
-00:00:24 verbose #58 &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj]
-00:00:30 verbose #59 &gt;   Builder -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/bin/Release/net9.0/linux-x64/Builder.dll
+00:00:23 verbose #57 &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj (in 297 ms).
+00:00:23 verbose #58 &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj]
+00:00:31 verbose #59 &gt;   Builder -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/bin/Release/net9.0/linux-x64/Builder.dll
 00:00:31 verbose #60 &gt;   Builder -&gt; /home/runner/work/polyglot/polyglot/apps/builder/dist
-00:00:31 debug #61 execute_with_options_async / exit_code: 0 / output.Length: 1119
+00:00:31   debug #61 execute_with_options_async / exit_code: 0 / output.Length: 1119
 </pre>
 </div>
 </div>

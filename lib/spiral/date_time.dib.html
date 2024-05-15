@@ -7572,7 +7572,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="nb">open</span> <span class="n">testing</span>
 </pre></div>
@@ -7614,11 +7614,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">chrono::DateTime&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;] type chrono_DateTime&lt;'T&gt; = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">chrono::Local</span><span class="se">\"</span><span class="s2">)&gt;] type chrono_Local = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">chrono::NaiveDateTime</span><span class="se">\"</span><span class="s2">)&gt;] type chrono_NaiveDateTime = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">chrono::Utc</span><span class="se">\"</span><span class="s2">)&gt;] type chrono_Utc = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::time::Duration</span><span class="se">\"</span><span class="s2">)&gt;] type std_time_Duration = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">chrono::DateTime&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type chrono_DateTime&lt;'T&gt; = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">chrono::Local</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type chrono_Local = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">chrono::NaiveDateTime</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type chrono_NaiveDateTime = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">chrono::Utc</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type chrono_Utc = class end"</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::time::Duration</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_time_Duration = class end"</span>
 </pre></div>
 </div>
 </div>
@@ -7639,6 +7639,36 @@ a.anchor-link {
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">sm</span><span class="s1">'.types ()</span>
+    <span class="n">types</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7673,7 +7703,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7683,7 +7713,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7716,7 +7746,50 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="date_time_utc">date_time_utc<a class="anchor-link" href="#date_time_utc">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">date_time_utc</span>
+    <span class="p">(</span><span class="n">year</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="p">(</span><span class="n">month</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="p">(</span><span class="n">day</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="p">(</span><span class="n">hour</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="p">(</span><span class="n">minute</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="p">(</span><span class="n">second</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="p">:</span> <span class="n">date_time</span>
+    <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'System.DateTime (!year, !month, !day, !hour, !minute, !second, System.DateTimeKind.Utc)'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7726,7 +7799,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7757,7 +7830,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7767,7 +7840,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7798,17 +7871,17 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="from_timestamp'">from_timestamp'<a class="anchor-link" href="#from_timestamp'">¶</a></h2>
+<h2 id="from_timestamp_micros">from_timestamp_micros<a class="anchor-link" href="#from_timestamp_micros">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7816,10 +7889,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">from_timestamp</span><span class="s1">' forall t {number; int}. (timestamp : t) : option (date_time'</span> <span class="n">utc</span><span class="p">)</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">timestamp</span> <span class="o">=</span> <span class="n">join</span> <span class="n">timestamp</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">from_timestamp_micros</span> <span class="n">forall</span> <span class="n">t</span> <span class="p">{</span><span class="n">number</span><span class="p">;</span> <span class="nb">int</span><span class="p">}</span><span class="o">.</span> <span class="p">(</span><span class="n">timestamp</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span> <span class="p">(</span><span class="n">date_time</span><span class="s1">' utc) =</span>
     <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">date_time</span><span class="s1">' utc) =</span>
-        <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"chrono::DateTime::from_timestamp_micros(!timestamp / 1000i64)"'</span><span class="p">)</span>
+        <span class="err">!</span>\\<span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"chrono::DateTime::from_timestamp_micros($0)"'</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
 </pre></div>
 </div>
@@ -7841,7 +7913,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7851,7 +7923,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7881,7 +7953,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7891,7 +7963,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7921,7 +7993,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7931,7 +8003,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7961,7 +8033,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7971,7 +8043,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8003,7 +8075,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8013,7 +8085,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8045,7 +8117,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8055,7 +8127,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8063,11 +8135,10 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">format_timestamp</span> <span class="p">(</span><span class="n">timestamp</span> <span class="p">:</span> <span class="n">sm</span><span class="s1">'.std_string) =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">format_timestamp</span> <span class="n">forall</span> <span class="n">t</span> <span class="p">{</span><span class="n">number</span><span class="p">;</span> <span class="nb">int</span><span class="p">}</span><span class="o">.</span> <span class="p">(</span><span class="n">timestamp</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">timestamp</span> <span class="o">=</span> <span class="n">join</span> <span class="n">timestamp</span>
-    <span class="n">timestamp</span>
-    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x.parse().unwrap()"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">i64</span>
-    <span class="o">|&gt;</span> <span class="n">from_timestamp</span><span class="s1">'</span>
+    <span class="p">(</span><span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">from_timestamp_micros</span>
     <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
         <span class="n">x</span>
         <span class="o">|&gt;</span> <span class="n">to_local</span>
@@ -8094,7 +8165,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8104,7 +8175,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8135,17 +8206,17 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="get_environment_variable">get_environment_variable<a class="anchor-link" href="#get_environment_variable">¶</a></h2>
+<h2 id="min_value">min_value<a class="anchor-link" href="#min_value">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8153,8 +8224,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get_environment_variable</span> <span class="p">(</span><span class="n">var</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"System.Environment.GetEnvironmentVariable !var"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">min_value</span> <span class="p">()</span> <span class="p">:</span> <span class="n">date_time</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'System.DateTime.MinValue'</span>
 </pre></div>
 </div>
 </div>
@@ -8174,7 +8245,18 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="max_value">max_value<a class="anchor-link" href="#max_value">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8182,7 +8264,852 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">max_value</span> <span class="p">()</span> <span class="p">:</span> <span class="n">date_time</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'System.DateTime.MaxValue'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="unix_epoch">unix_epoch<a class="anchor-link" href="#unix_epoch">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unix_epoch</span> <span class="p">()</span> <span class="p">:</span> <span class="n">date_time</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'System.DateTime.UnixEpoch'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="to_universal_time">to_universal_time<a class="anchor-link" href="#to_universal_time">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_universal_time</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="p">:</span> <span class="n">date_time</span> <span class="o">=</span>
+    <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.ToUniversalTime()'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="date_time_kind">date_time_kind<a class="anchor-link" href="#date_time_kind">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">date_time_kind</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Unspecified</span>
+    <span class="o">|</span> <span class="n">Utc</span>
+    <span class="o">|</span> <span class="n">Local</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="specify_date_kind">specify_date_kind<a class="anchor-link" href="#specify_date_kind">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">specify_date_kind</span> <span class="p">(</span><span class="n">kind</span> <span class="p">:</span> <span class="n">date_time_kind</span><span class="p">)</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="p">:</span> <span class="n">date_time</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">kind</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'System.DateTimeKind'</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">kind</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">Unspecified</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.DateTimeKind.Unspecified'</span>
+        <span class="o">|</span> <span class="n">Utc</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.DateTimeKind.Utc'</span>
+        <span class="o">|</span> <span class="n">Local</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.DateTimeKind.Local'</span>
+    <span class="err">$</span><span class="s1">'System.DateTime.SpecifyKind (!date_time, !kind)'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="time_span">time_span<a class="anchor-link" href="#time_span">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">time_span</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.TimeSpan'</span>
+
+<span class="n">inl</span> <span class="n">time_span</span> <span class="n">x</span> <span class="p">:</span> <span class="n">time_span</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'`time_span !x '</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="new_time_span">new_time_span<a class="anchor-link" href="#new_time_span">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_time_span</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="p">:</span> <span class="n">time_span</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'!b - !a '</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="time_span_format">time_span_format<a class="anchor-link" href="#time_span_format">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">time_span_format</span> <span class="p">(</span><span class="nb">format</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'!time_span.ToString'</span> <span class="nb">format</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="hours">hours<a class="anchor-link" href="#hours">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hours</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
+    <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Hours'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="milliseconds">milliseconds<a class="anchor-link" href="#milliseconds">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">milliseconds</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
+    <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Milliseconds'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="minutes">minutes<a class="anchor-link" href="#minutes">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">minutes</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
+    <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Minutes'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="seconds">seconds<a class="anchor-link" href="#seconds">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">seconds</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
+    <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Seconds'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="total_seconds">total_seconds<a class="anchor-link" href="#total_seconds">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">total_seconds</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">f64</span> <span class="o">=</span>
+    <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.TotalSeconds'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="time_zone_info">time_zone_info<a class="anchor-link" href="#time_zone_info">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">time_zone_info</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.TimeZoneInfo'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="time_zone_local">time_zone_local<a class="anchor-link" href="#time_zone_local">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">time_zone_local</span> <span class="p">()</span> <span class="p">:</span> <span class="n">time_zone_info</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'System.TimeZoneInfo.Local'</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="nb">open</span> <span class="n">rust_operators</span>
+            <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"0i64.into()"'</span><span class="p">)</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="get_utc_offset">get_utc_offset<a class="anchor-link" href="#get_utc_offset">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get_utc_offset</span> <span class="p">(</span><span class="n">time_zone_info</span> <span class="p">:</span> <span class="n">time_zone_info</span><span class="p">)</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="p">:</span> <span class="n">time_span</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.GetUtcOffset'</span> <span class="p">(</span><span class="n">time_zone_local</span> <span class="p">())</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">time_span</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=66">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="add_days">add_days<a class="anchor-link" href="#add_days">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">add_days</span> <span class="p">(</span><span class="n">days</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="p">:</span> <span class="n">date_time</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'!date_time.AddDays'</span> <span class="n">days</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=68">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="now">now<a class="anchor-link" href="#now">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=69">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">now</span> <span class="p">()</span> <span class="p">:</span> <span class="n">date_time</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'System.DateTime.Now'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=70">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="utc_now">utc_now<a class="anchor-link" href="#utc_now">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=71">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">utc_now</span> <span class="p">()</span> <span class="p">:</span> <span class="n">date_time</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'System.DateTime.UtcNow'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=72">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="timestamp_guid">timestamp_guid<a class="anchor-link" href="#timestamp_guid">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=73">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">timestamp_guid</span> <span class="o">=</span> <span class="n">guid</span><span class="o">.</span><span class="n">guid</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=74">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="date_time_guid">date_time_guid<a class="anchor-link" href="#date_time_guid">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">date_time_guid</span> <span class="o">=</span> <span class="n">guid</span><span class="o">.</span><span class="n">guid</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=76">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">inl</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="s2">"FEDCBA98-7654-3210-FEDC-BA9876543210"</span>
@@ -8205,37 +9132,8 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">timestamp_guid</span> <span class="o">=</span> <span class="n">guid</span><span class="o">.</span><span class="n">guid</span>
-<span class="nb">type</span> <span class="n">date_time_guid</span> <span class="o">=</span> <span class="n">guid</span><span class="o">.</span><span class="n">guid</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=77">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8245,7 +9143,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=78">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8253,10 +9151,45 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">guid</span> <span class="p">:</span> <span class="n">guid</span><span class="o">.</span><span class="n">guid</span><span class="p">)</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">guid</span> <span class="o">=</span> <span class="n">guid</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
-    <span class="n">inl</span> <span class="n">prefix</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'!date_time.ToString "yyyyMMdd-HHmm-ssff-ffff-f"'</span> <span class="p">:</span> <span class="n">string</span>
-    <span class="err">$</span><span class="s1">'`date_time_guid $"{!prefix}{!guid.[!prefix.Length..]}"'</span> <span class="p">:</span> <span class="n">date_time_guid</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">guid</span> <span class="p">:</span> <span class="n">guid</span><span class="o">.</span><span class="n">guid</span><span class="p">)</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">parse</span> <span class="n">prefix</span> <span class="n">time_zone</span> <span class="p">:</span> <span class="n">date_time_guid</span> <span class="o">=</span>
+        <span class="n">inl</span> <span class="n">guid</span> <span class="o">=</span> <span class="n">guid</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
+        <span class="err">$</span><span class="s1">'`date_time_guid $"{!prefix}{!time_zone}{!guid.[!prefix.Length + !time_zone.Length..]}"'</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">prefix</span> <span class="o">=</span> <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="nb">format</span> <span class="p">(</span><span class="n">join</span> <span class="s2">"yyyyMMdd-HHmm-ssff-ffff-f"</span><span class="p">)</span>
+            <span class="n">inl</span> <span class="n">time_zone</span> <span class="o">=</span> <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="n">get_utc_offset</span> <span class="p">(</span><span class="n">time_zone_local</span> <span class="p">())</span>
+            <span class="n">inl</span> <span class="n">time_zone_signal</span> <span class="o">=</span> <span class="p">(</span><span class="n">hours</span> <span class="n">time_zone</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">convert_i32</span>
+            <span class="n">inl</span> <span class="n">time_zone_value</span> <span class="o">=</span> <span class="n">time_zone</span> <span class="o">|&gt;</span> <span class="n">time_span_format</span> <span class="p">(</span><span class="n">join</span> <span class="s2">"hhmm"</span><span class="p">)</span>
+            <span class="n">inl</span> <span class="n">time_zone</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'$"{!time_zone_signal}{!time_zone_value}"'</span> <span class="p">:</span> <span class="n">string</span>
+            <span class="n">parse</span> <span class="n">prefix</span> <span class="n">time_zone</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">epoch</span> <span class="o">=</span>
+                <span class="n">date_time_utc</span> <span class="mi">1970</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+                <span class="o">|&gt;</span> <span class="n">to_universal_time</span>
+            <span class="n">inl</span> <span class="n">date_time</span> <span class="o">=</span>
+                <span class="n">date_time</span>
+                <span class="o">|&gt;</span> <span class="n">specify_date_kind</span> <span class="n">Local</span>
+                <span class="o">|&gt;</span> <span class="n">to_universal_time</span>
+            <span class="n">inl</span> <span class="n">unixticks</span> <span class="o">=</span>
+                <span class="k">match</span> <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="n">ticks</span><span class="p">,</span> <span class="n">epoch</span> <span class="o">|&gt;</span> <span class="n">ticks</span> <span class="k">with</span>
+                <span class="o">|</span> <span class="n">timestamp</span> <span class="n">date_time</span><span class="p">,</span> <span class="n">timestamp</span> <span class="n">epoch</span> <span class="o">=&gt;</span> <span class="n">date_time</span> <span class="o">-</span> <span class="n">epoch</span>
+            <span class="n">inl</span> <span class="n">prefix</span> <span class="o">=</span>
+                <span class="n">unixticks</span> <span class="o">/</span> <span class="mi">10</span>
+                <span class="o">|&gt;</span> <span class="n">from_timestamp_micros</span>
+                <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span>
+                    <span class="n">to_local</span>
+                    <span class="o">&gt;&gt;</span> <span class="nb">format</span><span class="s1">''</span> <span class="s2">"%Y%m</span><span class="si">%d</span><span class="s2">-%H%M-%S</span><span class="si">%f</span><span class="s2">"</span>
+                    <span class="o">&gt;&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
+                    <span class="o">&gt;&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"{!s.[0..17]}-{!s.[18..21]}-{!s.[22]}"'</span>
+                <span class="p">)</span>
+                <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value ""</span>
+            <span class="n">inl</span> <span class="n">time_zone</span> <span class="o">=</span> <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="n">get_utc_offset</span> <span class="p">(</span><span class="n">time_zone_local</span> <span class="p">())</span>
+            <span class="n">inl</span> <span class="n">time_zone_signal</span> <span class="o">=</span> <span class="k">if</span> <span class="n">hours</span> <span class="n">time_zone</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">then</span> <span class="mi">1</span><span class="n">u8</span> <span class="k">else</span> <span class="mi">0</span>
+            <span class="n">inl</span> <span class="n">time_zone_value</span> <span class="o">=</span> <span class="n">time_zone</span> <span class="o">|&gt;</span> <span class="n">time_span_format</span> <span class="s2">"hh:mm"</span>
+            <span class="n">inl</span> <span class="n">time_zone</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'$"{!time_zone_signal}{!time_zone_value.[0..1]}{!time_zone_value.[3..4]}"'</span> <span class="p">:</span> <span class="n">string</span>
+            <span class="n">parse</span> <span class="n">prefix</span> <span class="n">time_zone</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8276,7 +9209,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=79">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8284,11 +9217,12 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
-<span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="err">$</span><span class="s1">'System.DateTime.MinValue'</span>
-<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' "00010101-0000-0000-0000-0a9876543210"</span>
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">now</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">to_universal_time</span> <span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
+<span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
 </pre></div>
 </div>
 </div>
@@ -8301,40 +9235,13 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
-    let v0 : string = "FEDCBA98-7654-3210-FEDC-BA9876543210"
-    let v1 : System.Guid = System.Guid v0 
-    let v2 : System.DateTime = System.DateTime.MinValue
-    let v3 : (System.Guid -&gt; string) = _.ToString()
-    let v4 : string = v3 v1
-    let v5 : string = v2.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v6 : System.Guid = System.Guid $"{v5}{v4.[v5.Length..]}"
-    let v7 : (System.Guid -&gt; string) = _.ToString()
-    let v8 : string = v7 v6
-    let v9 : string = $"%A{v8}"
-    System.Console.WriteLine v9
-    let v10 : string = "00010101-0000-0000-0000-0a9876543210"
-    let v11 : bool = v8 = v10
-    let v13 : bool =
-        if v11 then
-            true
-        else
-            method1(v11)
-    let v14 : string = $"__expect / actual: %A{v8} / expected: %A{v10}"
-    let v15 : bool = v13 = false
-    if v15 then
-        failwith&lt;unit&gt; v14
-method0()
-
-"00010101-0000-0000-0000-0a9876543210"
+<pre>20240515-0612-3655-5515-500000543210
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=80">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8342,11 +9249,17 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span>
 
-<span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="err">$</span><span class="s1">'System.DateTime.MaxValue'</span>
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun x =&gt; x - 6i32) (am'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
+<span class="n">now</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">to_universal_time</span>
+<span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span>
 <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="err">$</span><span class="s1">'$"99991231-2359-5999-9999-9{(!test_guid() |&gt; string).[^10..]}"'</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' $'</span><span class="err">$</span><span class="s2">"{!s.[0..29]}{!suffix}"</span><span class="s1">'</span>
 </pre></div>
 </div>
 </div>
@@ -8359,45 +9272,13 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec closure0 () () : System.Guid =
-    let v0 : string = "FEDCBA98-7654-3210-FEDC-BA9876543210"
-    let v1 : System.Guid = System.Guid v0 
-    v1
-and method1 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
-    let v0 : string = "FEDCBA98-7654-3210-FEDC-BA9876543210"
-    let v1 : System.Guid = System.Guid v0 
-    let v2 : System.DateTime = System.DateTime.MaxValue
-    let v3 : (System.Guid -&gt; string) = _.ToString()
-    let v4 : string = v3 v1
-    let v5 : string = v2.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v6 : System.Guid = System.Guid $"{v5}{v4.[v5.Length..]}"
-    let v7 : (System.Guid -&gt; string) = _.ToString()
-    let v8 : string = v7 v6
-    let v9 : (unit -&gt; System.Guid) = closure0()
-    let v10 : string = $"99991231-2359-5999-9999-9{(v9() |&gt; string).[^10..]}"
-    let v11 : string = $"%A{v8}"
-    System.Console.WriteLine v11
-    let v12 : bool = v8 = v10
-    let v14 : bool =
-        if v12 then
-            true
-        else
-            method1(v12)
-    let v15 : string = $"__expect / actual: %A{v8} / expected: %A{v10}"
-    let v16 : bool = v14 = false
-    if v16 then
-        failwith&lt;unit&gt; v15
-method0()
-
-"99991231-2359-5999-9999-9a9876543210"
+<pre>assert_eq' / actual: "20240515-0612-4738-7074-000000543210" / expected: "20240515-0612-4738-7074-000000543210"
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=81">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8405,11 +9286,16 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
-<span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="err">$</span><span class="s1">'System.DateTime.UnixEpoch'</span>
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun x =&gt; x - 6i32) (am'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
+<span class="n">min_value</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">specify_date_kind</span> <span class="n">Local</span>
+<span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span>
 <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="err">$</span><span class="s1">'$"19700101-0000-0000-0000-0{(!test_guid () |&gt; string).[^10..]}"'</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' $'</span><span class="err">$</span><span class="s2">"00010101-0000-0000-0000-0{!s.[25..29]}{!suffix}"</span><span class="s1">'</span>
 </pre></div>
 </div>
 </div>
@@ -8422,46 +9308,200 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec closure0 () () : System.Guid =
-    let v0 : string = "FEDCBA98-7654-3210-FEDC-BA9876543210"
-    let v1 : System.Guid = System.Guid v0 
-    v1
-and method1 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
-    let v0 : string = "FEDCBA98-7654-3210-FEDC-BA9876543210"
-    let v1 : System.Guid = System.Guid v0 
-    let v2 : System.DateTime = System.DateTime.UnixEpoch
-    let v3 : (System.Guid -&gt; string) = _.ToString()
-    let v4 : string = v3 v1
-    let v5 : string = v2.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v6 : System.Guid = System.Guid $"{v5}{v4.[v5.Length..]}"
-    let v7 : (System.Guid -&gt; string) = _.ToString()
-    let v8 : string = v7 v6
-    let v9 : (unit -&gt; System.Guid) = closure0()
-    let v10 : string = $"19700101-0000-0000-0000-0{(v9 () |&gt; string).[^10..]}"
-    let v11 : string = $"%A{v8}"
-    System.Console.WriteLine v11
-    let v12 : bool = v8 = v10
-    let v14 : bool =
-        if v12 then
-            true
-        else
-            method1(v12)
-    let v15 : string = $"__expect / actual: %A{v8} / expected: %A{v10}"
-    let v16 : bool = v14 = false
-    if v16 then
-        failwith&lt;unit&gt; v15
-method0()
+<pre>assert_eq' / actual: "00010101-0000-0000-0000-000000543210" / expected: "00010101-0000-0000-0000-000000543210"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=82">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span>
 
-"19700101-0000-0000-0000-0a9876543210"
+<span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun x =&gt; x - 6i32) (am'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">min_value</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">specify_date_kind</span> <span class="n">Local</span>
+<span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' $'</span><span class="err">$</span><span class="s2">"00010101-0000-0000-0000-0{!s.[25..29]}{!suffix}"</span><span class="s1">'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>assert_eq' / actual: "00010101-0000-0000-0000-000000543210" / expected: "00010101-0000-0000-0000-000000543210"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=83">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun x =&gt; x - 6i32) (am'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
+<span class="n">max_value</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">specify_date_kind</span> <span class="n">Utc</span>
+<span class="o">|&gt;</span> <span class="n">add_days</span> <span class="o">-</span><span class="mi">1</span>
+<span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="err">$</span><span class="s1">'$"99991230-2359-5999-9999-9{!s.[25..29]}{!suffix}"'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>assert_eq / actual: "99991230-2359-5999-9999-900000543210" / expected: "99991230-2359-5999-9999-900000543210"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=84">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span>
+
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun x =&gt; x - 6i32) (am'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
+<span class="n">max_value</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">specify_date_kind</span> <span class="n">Utc</span>
+<span class="o">|&gt;</span> <span class="n">add_days</span> <span class="o">-</span><span class="mi">1</span>
+<span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="err">$</span><span class="s1">'$"99991230-2359-5999-9999-0{!s.[25..29]}{!suffix}"'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>assert_eq / actual: "99991230-2359-5999-9999-000000543210" / expected: "99991230-2359-5999-9999-000000543210"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=85">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+
+<span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun x =&gt; x - 6i32) (am'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
+<span class="n">unix_epoch</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">specify_date_kind</span> <span class="n">Utc</span>
+<span class="o">|&gt;</span> <span class="n">add_days</span> <span class="mi">1</span>
+<span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="err">$</span><span class="s1">'$"19700102-0000-0000-0000-0{!s.[25..29]}{!suffix}"'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>assert_eq / actual: "19700102-0000-0000-0000-000000543210" / expected: "19700102-0000-0000-0000-000000543210"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=86">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span>
+
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">range</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.End fun x =&gt; x - 6i32) (am'</span><span class="o">.</span><span class="n">End</span> <span class="nb">id</span><span class="p">)</span>
+<span class="n">unix_epoch</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">specify_date_kind</span> <span class="n">Utc</span>
+<span class="o">|&gt;</span> <span class="n">add_days</span> <span class="mi">1</span>
+<span class="o">|&gt;</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="err">$</span><span class="s1">'$"19700102-0000-0000-0000-0{!s.[25..29]}{!suffix}"'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>assert_eq / actual: "19700102-0000-0000-0000-000000543210" / expected: "19700102-0000-0000-0000-000000543210"
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=87">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8471,7 +9511,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=88">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8505,7 +9545,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=89">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8513,10 +9553,10 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">date_time_from_guid</span> <span class="p">(</span><span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="s2">"00010101-0000-0000-0000-0a9876543210"</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' $'</span><span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">MinValue</span><span class="s1">'</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (min_value ())</span>
 </pre></div>
 </div>
 </div>
@@ -8546,56 +9586,59 @@ and method0 () : unit =
     let v2 : (System.Guid -&gt; string) = _.ToString()
     let v3 : string = v2 v1
     let v4 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
-    let v5 : System.DateTime option = None
-    let v6 : bool = true in let mutable _v5 = v5
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v5 : bool = true
+    let mutable _v5 : System.DateTime option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v6 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
+    v6 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v7 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
-    v7
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    v7 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v8 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
-    v8
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v9 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
-    v9
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    v8 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v9 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v9 
+    #endif
+#if FABLE_COMPILER_PYTHON
     let v10 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v10
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    v10 
+    #endif
+#else
     let v11 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v11
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v12 : System.DateTime = Unchecked.defaultof&lt;System.DateTime&gt;
-    v12
-#endif
+    v11 
+    #endif
     |&gt; fun x -&gt; _v5 &lt;- Some x
-    let v13 : System.DateTime = _v5.Value
-    let v14 : System.DateTime = System.DateTime.MinValue
-    let v15 : string = $"%A{v13}"
-    System.Console.WriteLine v15
-    let v16 : bool = v13 = v14
-    let v18 : bool =
-        if v16 then
+    let v12 : System.DateTime = _v5.Value
+    let v13 : System.DateTime = System.DateTime.MinValue
+    let v14 : bool = v12 = v13
+    let v16 : bool =
+        if v14 then
             true
         else
-            method2(v16)
-    let v19 : string = $"__expect / actual: %A{v13} / expected: %A{v14}"
-    let v20 : bool = v18 = false
-    if v20 then
-        failwith&lt;unit&gt; v19
+            method2(v14)
+    let v17 : string = "assert_eq'"
+    let v18 : string = $"{v17} / actual: %A{v12} / expected: %A{v13}"
+    System.Console.WriteLine v18
+    let v19 : bool = v16 = false
+    if v19 then
+        failwith&lt;unit&gt; v18
 method0()
 
-01/01/0001 00:00:00
+assert_eq' / actual: 01/01/0001 00:00:00 / expected: 01/01/0001 00:00:00
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=90">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8603,10 +9646,10 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">date_time_from_guid</span> <span class="p">(</span><span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="err">$</span><span class="s1">'$"99991231-2359-5999-9999-9{(!test_guid () |&gt; string).[^10..]}"'</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' $'</span><span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">MaxValue</span><span class="s1">'</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (max_value ())</span>
 </pre></div>
 </div>
 </div>
@@ -8641,56 +9684,59 @@ and method0 () : unit =
     let v3 : (System.Guid -&gt; string) = _.ToString()
     let v4 : string = v3 v2
     let v5 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
-    let v6 : System.DateTime option = None
-    let v7 : bool = true in let mutable _v6 = v6
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v6 : bool = true
+    let mutable _v6 : System.DateTime option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v7 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
+    v7 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v8 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v8
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    v8 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v9 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v9
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v10 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v10
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    v9 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v10 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v10 
+    #endif
+#if FABLE_COMPILER_PYTHON
     let v11 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v11
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    v11 
+    #endif
+#else
     let v12 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v12
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v13 : System.DateTime = Unchecked.defaultof&lt;System.DateTime&gt;
-    v13
-#endif
+    v12 
+    #endif
     |&gt; fun x -&gt; _v6 &lt;- Some x
-    let v14 : System.DateTime = _v6.Value
-    let v15 : System.DateTime = System.DateTime.MaxValue
-    let v16 : string = $"%A{v14}"
-    System.Console.WriteLine v16
-    let v17 : bool = v14 = v15
-    let v19 : bool =
-        if v17 then
+    let v13 : System.DateTime = _v6.Value
+    let v14 : System.DateTime = System.DateTime.MaxValue
+    let v15 : bool = v13 = v14
+    let v17 : bool =
+        if v15 then
             true
         else
-            method2(v17)
-    let v20 : string = $"__expect / actual: %A{v14} / expected: %A{v15}"
-    let v21 : bool = v19 = false
-    if v21 then
-        failwith&lt;unit&gt; v20
+            method2(v15)
+    let v18 : string = "assert_eq'"
+    let v19 : string = $"{v18} / actual: %A{v13} / expected: %A{v14}"
+    System.Console.WriteLine v19
+    let v20 : bool = v17 = false
+    if v20 then
+        failwith&lt;unit&gt; v19
 method0()
 
-12/31/9999 23:59:59
+assert_eq' / actual: 12/31/9999 23:59:59 / expected: 12/31/9999 23:59:59
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=91">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8698,7 +9744,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">date_time_from_guid</span> <span class="p">(</span><span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="err">$</span><span class="s1">'$"19700101-0000-0000-0000-0{(!test_guid () |&gt; string).[^10..]}"'</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' $'</span><span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">UnixEpoch</span><span class="s1">'</span>
@@ -8736,57 +9782,60 @@ and method0 () : unit =
     let v3 : (System.Guid -&gt; string) = _.ToString()
     let v4 : string = v3 v2
     let v5 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
-    let v6 : System.DateTime option = None
-    let v7 : bool = true in let mutable _v6 = v6
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v6 : bool = true
+    let mutable _v6 : System.DateTime option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v7 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
+    v7 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v8 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v8
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    v8 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v9 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v9
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v10 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v10
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    v9 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v10 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v10 
+    #endif
+#if FABLE_COMPILER_PYTHON
     let v11 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v11
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    v11 
+    #endif
+#else
     let v12 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v12
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v13 : System.DateTime = Unchecked.defaultof&lt;System.DateTime&gt;
-    v13
-#endif
+    v12 
+    #endif
     |&gt; fun x -&gt; _v6 &lt;- Some x
-    let v14 : System.DateTime = _v6.Value
-    let v15 : System.DateTime = System.DateTime.UnixEpoch
-    let v16 : string = $"%A{v14}"
-    System.Console.WriteLine v16
-    let v17 : bool = v14 = v15
-    let v19 : bool =
-        if v17 then
+    let v13 : System.DateTime = _v6.Value
+    let v14 : System.DateTime = System.DateTime.UnixEpoch
+    let v15 : bool = v13 = v14
+    let v17 : bool =
+        if v15 then
             true
         else
-            method2(v17)
-    let v20 : string = $"__expect / actual: %A{v14} / expected: %A{v15}"
-    let v21 : bool = v19 = false
-    if v21 then
-        failwith&lt;unit&gt; v20
+            method2(v15)
+    let v18 : string = "assert_eq'"
+    let v19 : string = $"{v18} / actual: %A{v13} / expected: %A{v14}"
+    System.Console.WriteLine v19
+    let v20 : bool = v17 = false
+    if v20 then
+        failwith&lt;unit&gt; v19
 method0()
 
-01/01/1970 00:00:00
+assert_eq' / actual: 01/01/1970 00:00:00 / expected: 01/01/1970 00:00:00
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=92">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8796,7 +9845,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=93">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8827,7 +9876,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=94">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8835,7 +9884,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">timestamp_guid_from_timestamp</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="p">(</span><span class="n">timestamp</span> <span class="mi">0</span><span class="n">i64</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")</span>
@@ -8864,27 +9913,27 @@ and method0 () : unit =
     let v7 : System.Guid = System.Guid $"{v6.[0..7]}-{v6.[8..11]}-{v6.[12..15]}-{v6.[16..17]}{v3.[21..]}"
     let v8 : string = "00000000-0000-0000-00dc-ba9876543210"
     let v9 : System.Guid = System.Guid v8 
-    let v10 : string = $"%A{v7}"
-    System.Console.WriteLine v10
-    let v11 : bool = v7 = v9
-    let v13 : bool =
-        if v11 then
+    let v10 : bool = v7 = v9
+    let v12 : bool =
+        if v10 then
             true
         else
-            method1(v11)
-    let v14 : string = $"__expect / actual: %A{v7} / expected: %A{v9}"
-    let v15 : bool = v13 = false
+            method1(v10)
+    let v13 : string = "assert_eq'"
+    let v14 : string = $"{v13} / actual: %A{v7} / expected: %A{v9}"
+    System.Console.WriteLine v14
+    let v15 : bool = v12 = false
     if v15 then
         failwith&lt;unit&gt; v14
 method0()
 
-00000000-0000-0000-00dc-ba9876543210
+assert_eq' / actual: 00000000-0000-0000-00dc-ba9876543210 / expected: 00000000-0000-0000-00dc-ba9876543210
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=95">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8892,7 +9941,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">timestamp_guid_from_timestamp</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="p">(</span><span class="n">timestamp</span> <span class="mi">999999999999999999</span><span class="n">i64</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (guid.new_guid $'</span><span class="err">$</span><span class="s2">"99999999-9999-9999-99dc-b{(!test_guid () |&gt; string).[^10..]}"</span><span class="s1">')</span>
@@ -8926,28 +9975,28 @@ and method0 () : unit =
     let v8 : (unit -&gt; System.Guid) = closure0()
     let v9 : string = $"99999999-9999-9999-99dc-b{(v8 () |&gt; string).[^10..]}"
     let v10 : System.Guid = System.Guid v9 
-    let v11 : string = $"%A{v7}"
-    System.Console.WriteLine v11
-    let v12 : bool = v7 = v10
-    let v14 : bool =
-        if v12 then
+    let v11 : bool = v7 = v10
+    let v13 : bool =
+        if v11 then
             true
         else
-            method1(v12)
-    let v15 : string = $"__expect / actual: %A{v7} / expected: %A{v10}"
-    let v16 : bool = v14 = false
+            method1(v11)
+    let v14 : string = "assert_eq'"
+    let v15 : string = $"{v14} / actual: %A{v7} / expected: %A{v10}"
+    System.Console.WriteLine v15
+    let v16 : bool = v13 = false
     if v16 then
         failwith&lt;unit&gt; v15
 method0()
 
-99999999-9999-9999-99dc-ba9876543210
+assert_eq' / actual: 99999999-9999-9999-99dc-ba9876543210 / expected: 99999999-9999-9999-99dc-ba9876543210
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=96">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8957,7 +10006,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=97">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8987,7 +10036,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=98">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8995,7 +10044,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">timestamp_from_guid</span> <span class="p">(</span><span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="s2">"00000000-0000-0000-00dc-ba9876543210"</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">timestamp</span> <span class="mi">0</span><span class="p">)</span>
@@ -9019,27 +10068,27 @@ and method0 () : unit =
     let v2 : (System.Guid -&gt; string) = _.ToString()
     let v3 : string = v2 v1
     let v4 : int64 = int64 $"{v3.[0..7]}{v3.[9..12]}{v3.[14..17]}{v3.[19..20]}"
-    let v5 : string = $"%A{v4}"
-    System.Console.WriteLine v5
-    let v6 : bool = v4 = 0L
-    let v8 : bool =
-        if v6 then
+    let v5 : bool = v4 = 0L
+    let v7 : bool =
+        if v5 then
             true
         else
-            method1(v6)
-    let v9 : string = $"__expect / actual: %A{v4} / expected: %A{0L}"
-    let v10 : bool = v8 = false
+            method1(v5)
+    let v8 : string = "assert_eq"
+    let v9 : string = $"{v8} / actual: %A{v4} / expected: %A{0L}"
+    System.Console.WriteLine v9
+    let v10 : bool = v7 = false
     if v10 then
         failwith&lt;unit&gt; v9
 method0()
 
-0L
+assert_eq / actual: 0L / expected: 0L
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=99">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9047,7 +10096,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">timestamp_from_guid</span> <span class="p">(</span><span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="err">$</span><span class="s1">'$"99999999-9999-9999-99{(!test_guid () |&gt; string).[^14..]}"'</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">timestamp</span> <span class="mi">999999999999999999</span><span class="p">)</span>
@@ -9076,390 +10125,28 @@ and method0 () : unit =
     let v3 : (System.Guid -&gt; string) = _.ToString()
     let v4 : string = v3 v2
     let v5 : int64 = int64 $"{v4.[0..7]}{v4.[9..12]}{v4.[14..17]}{v4.[19..20]}"
-    let v6 : string = $"%A{v5}"
-    System.Console.WriteLine v6
-    let v7 : bool = v5 = 999999999999999999L
-    let v9 : bool =
-        if v7 then
+    let v6 : bool = v5 = 999999999999999999L
+    let v8 : bool =
+        if v6 then
             true
         else
-            method1(v7)
-    let v10 : string = $"__expect / actual: %A{v5} / expected: %A{999999999999999999L}"
-    let v11 : bool = v9 = false
+            method1(v6)
+    let v9 : string = "assert_eq"
+    let v10 : string = $"{v9} / actual: %A{v5} / expected: %A{999999999999999999L}"
+    System.Console.WriteLine v10
+    let v11 : bool = v8 = false
     if v11 then
         failwith&lt;unit&gt; v10
 method0()
 
-999999999999999999L
+assert_eq / actual: 999999999999999999L / expected: 999999999999999999L
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="now">now<a class="anchor-link" href="#now">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">now</span> <span class="p">()</span> <span class="p">:</span> <span class="n">date_time</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'System.DateTime.Now'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="utc_now">utc_now<a class="anchor-link" href="#utc_now">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">utc_now</span> <span class="p">()</span> <span class="p">:</span> <span class="n">date_time</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'System.DateTime.UtcNow'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="time_span">time_span<a class="anchor-link" href="#time_span">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">time_span</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.TimeSpan'</span>
-
-<span class="n">inl</span> <span class="n">time_span</span> <span class="n">x</span> <span class="p">:</span> <span class="n">time_span</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'`time_span !x '</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="new_time_span">new_time_span<a class="anchor-link" href="#new_time_span">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_time_span</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="p">:</span> <span class="n">time_span</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'!b - !a '</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="hours">hours<a class="anchor-link" href="#hours">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=60">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hours</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Hours'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="milliseconds">milliseconds<a class="anchor-link" href="#milliseconds">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">milliseconds</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Milliseconds'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=63">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="minutes">minutes<a class="anchor-link" href="#minutes">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=64">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">minutes</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Minutes'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=65">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="seconds">seconds<a class="anchor-link" href="#seconds">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=66">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">seconds</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
-    <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Seconds'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="total_seconds">total_seconds<a class="anchor-link" href="#total_seconds">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">total_seconds</span> <span class="p">(</span><span class="n">time_span</span> <span class="p">:</span> <span class="n">time_span</span><span class="p">)</span> <span class="p">:</span> <span class="n">f64</span> <span class="o">=</span>
-    <span class="n">time_span</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.TotalSeconds'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=69">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=100">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9469,7 +10156,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=70">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=101">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9499,7 +10186,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=71">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=102">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9507,7 +10194,8 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
 <span class="n">utc_now</span> <span class="p">()</span>
 <span class="o">|&gt;</span> <span class="n">new_guid_from_date_time</span>
@@ -9526,82 +10214,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec closure2 (v0 : string, v1 : string) (v2 : string) : string =
-    let v3 : string = v2.Replace (v0, v1)
-    v3
-and closure1 (v0 : string) (v1 : string) : (string -&gt; string) =
-    closure2(v0, v1)
-and closure0 () (v0 : string) : (string -&gt; (string -&gt; string)) =
-    closure1(v0)
-and method1 () : (string -&gt; (string -&gt; (string -&gt; string))) =
-    closure0()
-and method2 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
-    let v0 : System.DateTime = System.DateTime.UtcNow
-    let v1 : System.Guid = System.Guid.NewGuid ()
-    let v2 : (System.Guid -&gt; string) = _.ToString()
-    let v3 : string = v2 v1
-    let v4 : string = v0.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v5 : System.Guid = System.Guid $"{v4}{v3.[v4.Length..]}"
-    let v6 : (System.Guid -&gt; string) = _.ToString()
-    let v7 : string = v6 v5
-    let v8 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
-    let v9 : System.DateTime option = None
-    let v10 : bool = true in let mutable _v9 = v9
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v11 : System.DateTime = System.DateTime.Parse (v7.[..24] |&gt; v8 "-" "")
-    v11
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v12 : System.DateTime = System.DateTime.Parse (v7.[..24] |&gt; v8 "-" "")
-    v12
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v13 : System.DateTime = System.DateTime.Parse (v7.[..24] |&gt; v8 "-" "")
-    v13
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v14 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v14
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v15 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v15
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v16 : System.DateTime = Unchecked.defaultof&lt;System.DateTime&gt;
-    v16
-#endif
-    |&gt; fun x -&gt; _v9 &lt;- Some x
-    let v17 : System.DateTime = _v9.Value
-    let v18 : System.DateTime = System.DateTime.UtcNow
-    let v19 : System.TimeSpan = v18 - v17 
-    let v20 : (System.TimeSpan -&gt; float) = _.TotalSeconds
-    let v21 : float = v20 v19
-    let v22 : int32 = int32 v21
-    let v23 : string = $"%A{v22}"
-    System.Console.WriteLine v23
-    let v24 : bool = v22 = 0
-    let v26 : bool =
-        if v24 then
-            true
-        else
-            method2(v24)
-    let v27 : string = $"__expect / actual: %A{v22} / expected: %A{0}"
-    let v28 : bool = v26 = false
-    if v28 then
-        failwith&lt;unit&gt; v27
-method0()
-
-0
+<pre>assert_eq / actual: 0 / expected: 0
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=72">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=103">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9611,7 +10231,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=73">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=104">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9641,7 +10261,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=74">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=105">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9649,7 +10269,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">utc_now</span> <span class="p">()</span>
 <span class="o">|&gt;</span> <span class="n">ticks</span>
@@ -9690,77 +10310,28 @@ and method0 () : unit =
     let v15 : int64 = v14 v13
     let v16 : int64 = v12 - v15
     let v17 : int64 = v16 / 100000L
-    let v18 : string = $"%A{v17}"
-    System.Console.WriteLine v18
-    let v19 : bool = v17 = 0L
-    let v21 : bool =
-        if v19 then
+    let v18 : bool = v17 = 0L
+    let v20 : bool =
+        if v18 then
             true
         else
-            method1(v19)
-    let v22 : string = $"__expect / actual: %A{v17} / expected: %A{0L}"
-    let v23 : bool = v21 = false
+            method1(v18)
+    let v21 : string = "assert_eq"
+    let v22 : string = $"{v21} / actual: %A{v17} / expected: %A{0L}"
+    System.Console.WriteLine v22
+    let v23 : bool = v20 = false
     if v23 then
         failwith&lt;unit&gt; v22
 method0()
 
-0L
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="nb">type</span> <span class="n">DateTimeWithZone</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">DateTime</span><span class="p">:</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTimeOffset</span>
-    <span class="n">TimeZone</span><span class="p">:</span> <span class="n">System</span><span class="o">.</span><span class="n">TimeZoneInfo</span>
-<span class="p">}</span>
-
-<span class="k">try</span>
-    <span class="n">let</span> <span class="n">now</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTimeOffset</span><span class="o">.</span><span class="n">Now</span>
-    <span class="n">let</span> <span class="n">timeZoneInfo</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">TimeZoneInfo</span><span class="o">.</span><span class="n">Local</span>
-    <span class="n">let</span> <span class="n">dateTimeWithZone</span> <span class="o">=</span> <span class="p">{</span> <span class="n">DateTime</span> <span class="o">=</span> <span class="n">now</span><span class="p">;</span> <span class="n">TimeZone</span> <span class="o">=</span> <span class="n">timeZoneInfo</span> <span class="p">}</span>
-
-    <span class="n">printfn</span> <span class="s2">"DateTime: %O"</span> <span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">DateTime</span>
-    <span class="n">printfn</span> <span class="s2">"Time Zone: </span><span class="si">%s</span><span class="s2">"</span> <span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">TimeZone</span><span class="o">.</span><span class="n">DisplayName</span>
-    <span class="n">printfn</span> <span class="s2">"Is DST: %b"</span> <span class="p">(</span><span class="n">timeZoneInfo</span><span class="o">.</span><span class="n">IsDaylightSavingTime</span><span class="p">(</span><span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">DateTime</span><span class="p">))</span>
-    <span class="n">printfn</span> <span class="s2">"v1: </span><span class="si">%s</span><span class="s2">"</span> <span class="p">(</span><span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">TimeZone</span><span class="o">.</span><span class="n">GetUtcOffset</span><span class="p">(</span><span class="n">now</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">string</span><span class="p">)</span>
-    <span class="n">printfn</span> <span class="s2">"v2: </span><span class="si">%s</span><span class="s2">"</span> <span class="p">(</span><span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">TimeZone</span> <span class="o">|&gt;</span> <span class="n">string</span><span class="p">)</span>
-<span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-    <span class="n">printfn</span> <span class="s2">"error: %A"</span> <span class="n">ex</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>DateTime: 04/18/2024 13:04:52 +00:00
-Time Zone: (UTC) Coordinated Universal Time
-Is DST: false
-v1: 00:00:00
-v2: (UTC) Coordinated Universal Time
+assert_eq / actual: 0L / expected: 0L
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=106">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9770,7 +10341,7 @@ v2: (UTC) Coordinated Universal Time
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=77">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=107">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9779,6 +10350,7 @@ v2: (UTC) Coordinated Universal Time
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">types</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let date_time_guid_from_date_time x = !date_time_guid_from_date_time x"</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let date_time_from_guid x = !date_time_from_guid x"</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let timestamp_guid_from_timestamp x = !timestamp_guid_from_timestamp x"</span> <span class="p">:</span> <span class="p">()</span>
@@ -9799,12 +10371,529 @@ v2: (UTC) Coordinated Universal Time
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec closure1 (v0 : System.Guid) (v1 : System.DateTime) : System.Guid =
-    let v2 : (System.Guid -&gt; string) = _.ToString()
-    let v3 : string = v2 v0
-    let v4 : string = v1.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v5 : System.Guid = System.Guid $"{v4}{v3.[v4.Length..]}"
-    v5
+<pre>#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("_")&gt;]
+#endif
+type Any = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func0&lt;$0&gt;")&gt;]
+#endif
+type Func0&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func1&lt;$0, $1&gt;")&gt;]
+#endif
+type Func0&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Box&lt;$0&gt;")&gt;]
+#endif
+type Box&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("dyn $0")&gt;]
+#endif
+type Dyn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("$0 + Send")&gt;]
+#endif
+type Send&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn() -&gt; $0")&gt;]
+#endif
+type Fn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn()")&gt;]
+#endif
+type FnUnit = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("FnOnce() -&gt; $0")&gt;]
+#endif
+type FnOnce&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0)")&gt;]
+#endif
+type ActionFn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")&gt;]
+#endif
+type ActionFn2&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("impl $0")&gt;]
+#endif
+type Impl&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("mut $0")&gt;]
+#endif
+type Mut&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;]
+#endif
+type Ref&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;'static $0")&gt;]
+#endif
+type StaticRef&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("MutCell&lt;$0&gt;")&gt;]
+#endif
+type MutCell&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::any::Any")&gt;]
+#endif
+type std_any_Any = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow&lt;$0&gt;")&gt;]
+#endif
+type std_borrow_Cow&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell&lt;$0&gt;")&gt;]
+#endif
+type std_cell_RefCell&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin&lt;$0&gt;")&gt;]
+#endif
+type std_pin_Pin&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc&lt;$0&gt;")&gt;]
+#endif
+type std_rc_Rc&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak&lt;$0&gt;")&gt;]
+#endif
+type std_rc_Weak&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::collections::HashMap&lt;$0, $1&gt;")&gt;]
+#endif
+type std_collections_HashMap&lt;'K, 'V&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::collections::BTreeMap&lt;$0, $1&gt;")&gt;]
+#endif
+type std_collections_BTreeMap&lt;'K, 'V&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;]
+#endif
+type Str = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")&gt;]
+#endif
+type base64_DecodeError = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")&gt;]
+#endif
+type borsh_io_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("encoding_rs::Encoding")&gt;]
+#endif
+type encoding_rs_Encoding = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")&gt;]
+#endif
+type js_sys_JsString = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")&gt;]
+#endif
+type serde_json_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")&gt;]
+#endif
+type serde_json_Value = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")&gt;]
+#endif
+type serde_wasm_bindgen_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")&gt;]
+#endif
+type std_ffi_OsStr = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")&gt;]
+#endif
+type std_ffi_OsString = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fmt::Display&lt;$0&gt;")&gt;]
+#endif
+type std_fmt_Display&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")&gt;]
+#endif
+type std_str_Utf8Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::FromUtf8Error")&gt;]
+#endif
+type std_string_FromUtf8Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;]
+#endif
+type std_string_String = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::slice::Windows&lt;$0&gt;")&gt;]
+#endif
+type std_slice_Windows&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("regex::Regex")&gt;]
+#endif
+type regex_Regex = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("regex::Captures")&gt;]
+#endif
+type regex_Captures = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("regex::CaptureMatches")&gt;]
+#endif
+type regex_CaptureMatches = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("regex::Error")&gt;]
+#endif
+type regex_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("chrono::DateTime&lt;$0&gt;")&gt;]
+#endif
+type chrono_DateTime&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("chrono::Local")&gt;]
+#endif
+type chrono_Local = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("chrono::NaiveDateTime")&gt;]
+#endif
+type chrono_NaiveDateTime = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("chrono::Utc")&gt;]
+#endif
+type chrono_Utc = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::time::Duration")&gt;]
+#endif
+type std_time_Duration = class end
+type [&lt;Struct&gt;] US0 =
+    | US0_0 of f0_0 : chrono_DateTime&lt;chrono_Utc&gt;
+    | US0_1
+and [&lt;Struct&gt;] US1 =
+    | US1_0 of f0_0 : string
+    | US1_1
+let rec method1 (v0 : chrono_DateTime&lt;chrono_Utc&gt;) : chrono_DateTime&lt;chrono_Utc&gt; =
+    v0
+and method2 (v0 : chrono_DateTime&lt;chrono_Local&gt;) : chrono_DateTime&lt;chrono_Local&gt; =
+    v0
+and method3 () : string =
+    let v0 : string = "yyyyMMdd-HHmm-ssff-ffff-f"
+    v0
+and method4 () : string =
+    let v0 : string = "hhmm"
+    v0
+and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
+    let v2 : bool = true
+    let mutable _v2 : System.Guid option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v3 : System.DateTime = System.DateTime (1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc)
+    let v4 : (System.DateTime -&gt; System.DateTime) = _.ToUniversalTime()
+    let v5 : System.DateTime = v4 v3
+    let v6 : System.DateTimeKind = System.DateTimeKind.Local
+    let v7 : System.DateTime = System.DateTime.SpecifyKind (v1, v6)
+    let v8 : (System.DateTime -&gt; System.DateTime) = _.ToUniversalTime()
+    let v9 : System.DateTime = v8 v7
+    let v10 : (System.DateTime -&gt; int64) = _.Ticks
+    let v11 : int64 = v10 v9
+    let v12 : (System.DateTime -&gt; int64) = _.Ticks
+    let v13 : int64 = v12 v5
+    let v14 : int64 = v11 - v13
+    let v15 : int64 = v14 / 10L
+    let v16 : string = "chrono::DateTime::from_timestamp_micros($0)"
+    let v17 : chrono_DateTime&lt;chrono_Utc&gt; option = Fable.Core.RustInterop.emitRustExpr v15 v16
+    let v18 : US0 option = None
+    let _v18 = ref v18 
+    match v17 with
+    | Some x -&gt; (
+    (fun () -&gt;
+    (fun () -&gt;
+    let v19 : chrono_DateTime&lt;chrono_Utc&gt; = x
+    let v20 : US0 = US0_0(v19)
+    v20 
+    )
+    |&gt; fun x -&gt; x () |&gt; Some
+    ) () ) | None -&gt; None
+    |&gt; fun x -&gt; _v18.Value &lt;- x
+    let v21 : US0 option = _v18.Value 
+    let v22 : US0 = US0_1
+    let v23 : US0 = v21 |&gt; Option.defaultValue v22 
+    let v42 : US1 =
+        match v23 with
+        | US0_1 -&gt; (* None *)
+            US1_1
+        | US0_0(v24) -&gt; (* Some *)
+            let v25 : chrono_DateTime&lt;chrono_Utc&gt; = method1(v24)
+            let v26 : string = "v25.naive_utc()"
+            let v27 : chrono_NaiveDateTime = Fable.Core.RustInterop.emitRustExpr () v26
+            let v28 : string = "chrono::offset::TimeZone::from_utc_datetime(&amp;chrono::Local, &amp;v27)"
+            let v29 : chrono_DateTime&lt;chrono_Local&gt; = Fable.Core.RustInterop.emitRustExpr () v28
+            let v30 : string = "%Y%m%d-%H%M-%S%f"
+            let v31 : string = "r#\"" + v30 + "\"#"
+            let v32 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v31
+            let v33 : chrono_DateTime&lt;chrono_Local&gt; = method2(v29)
+            let v34 : string = "v33.format(v32).to_string()"
+            let v35 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v34
+            let v36 : string = "fable_library_rust::String_::fromString($0)"
+            let v37 : string = Fable.Core.RustInterop.emitRustExpr v35 v36
+            let v38 : string = $"{v37.[0..17]}-{v37.[18..21]}-{v37.[22]}"
+            US1_0(v38)
+    let v46 : string =
+        match v42 with
+        | US1_1 -&gt; (* None *)
+            let v44 : string = ""
+            v44
+        | US1_0(v43) -&gt; (* Some *)
+            v43
+    let v47 : bool = true
+    let mutable _v47 : System.TimeZoneInfo option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v48 : string = "0i64.into()"
+    let v49 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v48
+    v49 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v50 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v50 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v51 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v51 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v52 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v52 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v53 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v53 
+    #endif
+#else
+    let v54 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    v54 
+    #endif
+    |&gt; fun x -&gt; _v47 &lt;- Some x
+    let v55 : System.TimeZoneInfo = _v47.Value
+    let v56 : bool = true
+    let mutable _v56 : System.TimeSpan option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v57 : System.TimeSpan = System.TimeSpan () 
+    v57 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v58 : System.TimeSpan = System.TimeSpan () 
+    v58 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v59 : System.TimeSpan = System.TimeSpan () 
+    v59 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v60 : System.TimeSpan = System.TimeSpan () 
+    v60 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v61 : System.TimeSpan = System.TimeSpan () 
+    v61 
+    #endif
+#else
+    let v62 : (System.TimeZoneInfo -&gt; (System.DateTime -&gt; System.TimeSpan)) = _.GetUtcOffset
+    let v63 : bool = true
+    let mutable _v63 : System.TimeZoneInfo option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v64 : string = "0i64.into()"
+    let v65 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v64
+    v65 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v66 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v66 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v67 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v67 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v68 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v68 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v69 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v69 
+    #endif
+#else
+    let v70 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    v70 
+    #endif
+    |&gt; fun x -&gt; _v63 &lt;- Some x
+    let v71 : System.TimeZoneInfo = _v63.Value
+    let v72 : (System.DateTime -&gt; System.TimeSpan) = v62 v71
+    let v73 : System.TimeSpan = v72 v9
+    v73 
+    #endif
+    |&gt; fun x -&gt; _v56 &lt;- Some x
+    let v74 : System.TimeSpan = _v56.Value
+    let v75 : (System.TimeSpan -&gt; int32) = _.Hours
+    let v76 : int32 = v75 v74
+    let v77 : bool = v76 &gt; 0
+    let v78 : uint8 =
+        if v77 then
+            1uy
+        else
+            0uy
+    let v79 : (string -&gt; string) = v74.ToString
+    let v80 : string = "hh:mm"
+    let v81 : string = v79 v80
+    let v82 : string = $"{v78}{v81.[0..1]}{v81.[3..4]}"
+    let v83 : (System.Guid -&gt; string) = _.ToString()
+    let v84 : string = v83 v0
+    let v85 : System.Guid = System.Guid $"{v46}{v82}{v84.[v46.Length + v82.Length..]}"
+    v85 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v86 : System.Guid = null |&gt; unbox&lt;System.Guid&gt;
+    v86 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v87 : System.Guid = null |&gt; unbox&lt;System.Guid&gt;
+    v87 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v88 : System.Guid = null |&gt; unbox&lt;System.Guid&gt;
+    v88 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v89 : System.Guid = null |&gt; unbox&lt;System.Guid&gt;
+    v89 
+    #endif
+#else
+    let v90 : string = method3()
+    let v91 : (string -&gt; string) = v1.ToString
+    let v92 : string = v91 v90
+    let v93 : bool = true
+    let mutable _v93 : System.TimeZoneInfo option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v94 : string = "0i64.into()"
+    let v95 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v94
+    v95 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v96 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v96 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v97 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v97 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v98 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v98 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v99 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v99 
+    #endif
+#else
+    let v100 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    v100 
+    #endif
+    |&gt; fun x -&gt; _v93 &lt;- Some x
+    let v101 : System.TimeZoneInfo = _v93.Value
+    let v102 : bool = true
+    let mutable _v102 : System.TimeSpan option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v103 : System.TimeSpan = System.TimeSpan () 
+    v103 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v104 : System.TimeSpan = System.TimeSpan () 
+    v104 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v105 : System.TimeSpan = System.TimeSpan () 
+    v105 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v106 : System.TimeSpan = System.TimeSpan () 
+    v106 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v107 : System.TimeSpan = System.TimeSpan () 
+    v107 
+    #endif
+#else
+    let v108 : (System.TimeZoneInfo -&gt; (System.DateTime -&gt; System.TimeSpan)) = _.GetUtcOffset
+    let v109 : bool = true
+    let mutable _v109 : System.TimeZoneInfo option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v110 : string = "0i64.into()"
+    let v111 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v110
+    v111 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v112 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v112 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v113 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v113 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v114 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v114 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v115 : System.TimeZoneInfo = null |&gt; unbox&lt;System.TimeZoneInfo&gt;
+    v115 
+    #endif
+#else
+    let v116 : System.TimeZoneInfo = System.TimeZoneInfo.Local
+    v116 
+    #endif
+    |&gt; fun x -&gt; _v109 &lt;- Some x
+    let v117 : System.TimeZoneInfo = _v109.Value
+    let v118 : (System.DateTime -&gt; System.TimeSpan) = v108 v117
+    let v119 : System.TimeSpan = v118 v1
+    v119 
+    #endif
+    |&gt; fun x -&gt; _v102 &lt;- Some x
+    let v120 : System.TimeSpan = _v102.Value
+    let v121 : (System.TimeSpan -&gt; int32) = _.Hours
+    let v122 : int32 = v121 v120
+    let v123 : bool = v122 &gt; 0
+    let v124 : (bool -&gt; int32) = System.Convert.ToInt32
+    let v125 : int32 = v124 v123
+    let v126 : string = method4()
+    let v127 : (string -&gt; string) = v120.ToString
+    let v128 : string = v127 v126
+    let v129 : string = $"{v125}{v128}"
+    let v130 : (System.Guid -&gt; string) = _.ToString()
+    let v131 : string = v130 v0
+    let v132 : System.Guid = System.Guid $"{v92}{v129}{v131.[v92.Length + v129.Length..]}"
+    v132 
+    #endif
+    |&gt; fun x -&gt; _v2 &lt;- Some x
+    let v133 : System.Guid = _v2.Value
+    v133
+and closure1 (v0 : System.Guid) (v1 : System.DateTime) : System.Guid =
+    method0(v0, v1)
 and closure0 () (v0 : System.Guid) : (System.DateTime -&gt; System.Guid) =
     closure1(v0)
 and closure5 (v0 : string, v1 : string) (v2 : string) : string =
@@ -9814,41 +10903,44 @@ and closure4 (v0 : string) (v1 : string) : (string -&gt; string) =
     closure5(v0, v1)
 and closure3 () (v0 : string) : (string -&gt; (string -&gt; string)) =
     closure4(v0)
-and method0 () : (string -&gt; (string -&gt; (string -&gt; string))) =
+and method5 () : (string -&gt; (string -&gt; (string -&gt; string))) =
     closure3()
 and closure2 () (v0 : System.Guid) : System.DateTime =
     let v1 : (System.Guid -&gt; string) = _.ToString()
     let v2 : string = v1 v0
-    let v3 : (string -&gt; (string -&gt; (string -&gt; string))) = method0()
-    let v4 : System.DateTime option = None
-    let v5 : bool = true in let mutable _v4 = v4
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v3 : (string -&gt; (string -&gt; (string -&gt; string))) = method5()
+    let v4 : bool = true
+    let mutable _v4 : System.DateTime option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v5 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
+    v5 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v6 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
-    v6
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    v6 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v7 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
-    v7
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v8 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
-    v8
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    v7 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v8 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v8 
+    #endif
+#if FABLE_COMPILER_PYTHON
     let v9 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v9
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    v9 
+    #endif
+#else
     let v10 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v10
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v11 : System.DateTime = Unchecked.defaultof&lt;System.DateTime&gt;
-    v11
-#endif
+    v10 
+    #endif
     |&gt; fun x -&gt; _v4 &lt;- Some x
-    let v12 : System.DateTime = _v4.Value
-    v12
+    let v11 : System.DateTime = _v4.Value
+    v11
 and closure7 (v0 : System.Guid) (v1 : int64) : System.Guid =
     let v2 : (System.Guid -&gt; string) = _.ToString()
     let v3 : string = v2 v0
@@ -9866,11 +10958,7 @@ and closure8 () (v0 : System.Guid) : int64 =
     v3
 and closure9 () (v0 : System.DateTime) : System.Guid =
     let v1 : System.Guid = System.Guid.NewGuid ()
-    let v2 : (System.Guid -&gt; string) = _.ToString()
-    let v3 : string = v2 v1
-    let v4 : string = v0.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v5 : System.Guid = System.Guid $"{v4}{v3.[v4.Length..]}"
-    v5
+    method0(v1, v0)
 and closure10 () (v0 : int64) : System.Guid =
     let v1 : System.Guid = System.Guid.NewGuid ()
     let v2 : (System.Guid -&gt; string) = _.ToString()

@@ -1,0 +1,24 @@
+[package]
+name = "spiral_builder"
+version.workspace = true
+edition.workspace = true
+license-file.workspace = true
+repository.workspace = true
+
+[dependencies]
+fable_library_rust = { workspace = true }
+inline_colorization = { workspace = true }
+chrono = { workspace = true }
+regex = { workspace = true }
+clap = { workspace = true }
+futures-lite = { workspace = true }
+serde_json = { workspace = true }
+encoding = "~0.2"
+encoding_rs = "~0.8"
+encoding_rs_io = "~0.1"
+
+[dev-dependencies]
+
+[[bin]]
+name = "spiral_builder"
+path = "spiral_builder.rs"

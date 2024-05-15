@@ -8,7 +8,6 @@
 #r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
 #r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"
-#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
 #r @"../../../../../../../.nuget/packages/fsharp.json/0.4.1/lib/netstandard2.0/FSharp.Json.dll"
 
 #!fsharp
@@ -37,10 +36,10 @@ open SpiralFileSystem.Operators
 
 #!fsharp
 
-let repositoryRoot = SpiralFileSystem.get_repository_root ()
-let tmpSpiralPath = repositoryRoot </> "target/polyglot/plotting"
-let linePlotsDataPath = tmpSpiralPath </> "line-data"
-let linePlotsSvgPath = tmpSpiralPath </> "line-svg"
+let workspaceRoot = SpiralFileSystem.get_workspace_root ()
+let tmpSpiralPath = workspaceRoot </> "target/polyglot/plotting"
+let linePlotsDataPath = tmpSpiralPath </> "line_data"
+let linePlotsSvgPath = tmpSpiralPath </> "line_svg"
 
 [ tmpSpiralPath; linePlotsDataPath; linePlotsSvgPath ]
 |> List.iter (fun dir -> if Directory.Exists dir |> not then Directory.CreateDirectory dir |> ignore)
@@ -57,11 +56,23 @@ Formatter.Register<struct (string * string * string * struct (string * float arr
 
                 let ct = Microsoft.DotNet.Interactive.KernelInvocationContext.Current.CancellationToken
 
-                let plotExePath = repositoryRoot </> $"target/release/plot{SpiralRuntime.get_executable_suffix ()}"
+                let oldLevel = get_trace_level ()
+                SpiralTrace.TraceLevel.US0_2
+                |> set_trace_level
+                use _ = (new_disposable (fun () ->
+                    oldLevel |> set_trace_level
+                ))
+
+                let plotExePath = workspaceRoot </> $"target/release/plot{SpiralRuntime.get_executable_suffix ()}"
                 let! exitCode, result =
-                    SpiralRuntime.execute_with_options_async struct (
-                        Some ct, plotExePath, None, Some repositoryRoot
+                    SpiralRuntime.execution_options (fun x ->
+                        { x with
+                            l0 = Some ct
+                            l1 = plotExePath
+                            l6 = Some workspaceRoot
+                        }
                     )
+                    |> SpiralRuntime.execute_with_options_async
                 if exitCode <> 0 then
                     return failwith $"plot failed with exit code {exitCode} and output {result}"
             return! svgPath |> SpiralFileSystem.read_all_text_async

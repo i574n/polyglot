@@ -4,6 +4,7 @@ pub mod Threading {
     use fable_library_rust::Native_::defaultOf;
     use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::unbox;
+    use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
     use fable_library_rust::Native_::LrcPtr;
     use fable_library_rust::Native_::MutCell;
@@ -11,6 +12,29 @@ pub mod Threading {
     use fable_library_rust::Option_::getValue;
     type CancellationToken = ();
     type CancellationTokenSource = ();
+    #[derive(Clone, Debug)]
+    pub struct Disposable {
+        f: Func0<()>,
+    }
+    impl Threading::Disposable {
+        pub fn _ctor__3A5B6456(f: Func0<()>) -> LrcPtr<Threading::Disposable> {
+            let f_1;
+            ();
+            f_1 = f;
+            ();
+            LrcPtr::new(Threading::Disposable { f: f_1 })
+        }
+    }
+    impl core::fmt::Display for Threading::Disposable {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    impl IDisposable for Disposable {
+        fn Dispose(&self) {
+            (self.f)();
+        }
+    }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US0 {
         US0_0(CancellationToken),
@@ -37,18 +61,18 @@ pub mod Threading {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    pub fn closure1(unitVar: (), v0_1: CancellationToken) -> Threading::US0 {
-        Threading::US0::US0_0(v0_1)
-    }
-    pub fn method0() -> Func1<CancellationToken, Threading::US0> {
-        Func1::new(move |v: CancellationToken| Threading::closure1((), v))
-    }
-    pub fn closure2(v0_1: LrcPtr<CancellationTokenSource>, unitVar: ()) {
+    pub fn closure1(v0_1: LrcPtr<CancellationTokenSource>, unitVar: ()) {
         let _v1: MutCell<Option<()>> = MutCell::new(None::<()>);
         defaultOf::<()>();
         _v1.set(Some(()));
         getValue(_v1.get().clone());
         ()
+    }
+    pub fn method0(v0_1: LrcPtr<CancellationTokenSource>) -> Func0<()> {
+        Func0::new({
+            let v0_1 = v0_1.clone();
+            move || Threading::closure1(v0_1.clone(), ())
+        })
     }
     pub fn closure0(
         unitVar: (),

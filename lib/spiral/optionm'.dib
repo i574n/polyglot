@@ -8,7 +8,7 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
@@ -27,7 +27,7 @@ inl default_value d =
 
 #!spiral
 
-// // test
+//// test
 
 None
 |> default_value 3i32
@@ -44,7 +44,7 @@ inl (/??) a b =
 
 #!spiral
 
-// // test
+//// test
 
 None /?? 3i32
 |> _assert_eq 3i32
@@ -61,7 +61,7 @@ inl default_with fn = function
 
 #!spiral
 
-// // test
+//// test
 
 None
 |> default_with fun () => 3i32
@@ -80,7 +80,7 @@ inl choose fn a b =
 
 #!spiral
 
-// // test
+//// test
 
 (Some 2i32, Some 3)
 ||> choose (+)
@@ -98,7 +98,7 @@ inl iter fn = function
 
 #!spiral
 
-// // test
+//// test
 
 inl n = mut 1i32
 inl fn =
@@ -126,19 +126,14 @@ nominal option' t = $"`t option"
 inl none' forall t. () : option' t =
     $'None'
 
+#!markdown
+
+## some'
+
 #!spiral
 
 inl some' forall t. (x : t) : option' t =
     $'Some !x '
-
-#!markdown
-
-## map
-
-#!spiral
-
-inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
-    $'!x |> Option.map !fn '
 
 #!markdown
 
@@ -151,18 +146,33 @@ inl default_value' forall t. (value : t) (x : option' t) : t =
 
 #!markdown
 
-## unbox
+## try'
 
 #!spiral
 
-inl unbox forall t. (x : option' t) : option t =
-    // x
-    // |> map Some
-    // |> default_value' None
-    inl some x : option t = Some x
-    inl some = join some
-    inl none : option t = None
-    $'!x |> Option.map !some |> Option.defaultValue !none '
+inl try' forall t. (x : option' t) : t =
+    !\\(x, $'"$0?"')
+
+#!markdown
+
+## map
+
+#!spiral
+
+inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
+    inl result : option' u = none' ()
+    $'let _!result = ref !result '
+    $'match !x with'
+    $'| Some x -> ('
+    $'(fun () ->'
+    $'(fun () ->'
+    inl x = dyn $'x'
+    x |> fn |> emit_unit
+    $')'
+    $"|> fun x -> x () |> Some"
+    $') () ) | None -> None'
+    $"|> fun x -> _!result.Value <- x"
+    $'_!result.Value '
 
 #!markdown
 
@@ -178,24 +188,96 @@ inl box forall t. (x : option t) : option' t =
     | Some x => some' x
     | None => none' ()
 
+#!markdown
+
+## map'
+
 #!spiral
 
-// // test
+inl map' forall t u. (fn : t -> u) (x : option' t) : option' u =
+    (!\($'"true; let _result = !x.map(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
+    !\($'"_result"')
+
+#!markdown
+
+## map''
+
+#!spiral
+
+inl map'' forall t u. (fn : t -> u) (x : option' t) : option' u =
+    $'!x |> Option.map !fn '
+
+#!markdown
+
+## unbox
+
+#!spiral
+
+inl unbox forall t. (x : option' t) : option t =
+    x |> map Some |> default_value' None
+    // inl some x : option t = Some x
+    // inl some = join some
+    // inl none : option t = None
+    // $'!x |> Option.map !some |> Option.defaultValue !none '
+
+#!spiral
+
+//// test
 
 inl x = Some 3i32
 inl y : option i32 = None
 inl x' = x |> box |> unbox
-inl y' = y |> box |> unbox
+inl y' = y |> box |> map id |> unbox
 (x', y') |> _assert_eq (x, y)
-
-#!markdown
-
-## try'
 
 #!spiral
 
-inl try' forall t. (x : option' t) : t =
-    !\\(x, $'"$0?"')
+//// test
+//// print_code=true
+///! rust
+
+inl x = Some 3i32
+inl y : option i32 = None
+inl x' = x |> box |> unbox
+inl y' = y |> box |> map id |> unbox
+(x', y') |> _assert_eq' (x, y)
+
+#!markdown
+
+## of_obj
+
+#!spiral
+
+inl of_obj forall t. (x : t) : option' t =
+    $'let mutable _!x = None'
+    $"#if \!FABLE_COMPILER && \!WASM && \!CONTRACT"
+    ((x |> $'Option.ofObj') : option' t)
+    |> fun x => $'!x '
+    $"#else"
+    $'Some !x '
+    $"#endif"
+    $"|> fun x -> _!x <- Some x"
+    $'_!x.Value'
+
+#!spiral
+
+//// test
+
+null ()
+|> of_obj
+|> unbox
+|> _assert_eq (None : option string)
+
+#!spiral
+
+//// test
+///! rust
+
+""
+|> of_obj
+|> unbox
+|> _assert_eq' (Some "")
 
 #!markdown
 
@@ -215,7 +297,7 @@ inl flatten x =
 #!spiral
 
 inl unwrap forall t. (x : option' t) : t =
-    !\($'"!x.unwrap()"')
+    !\\(x, $'"$0.unwrap()"')
 
 #!markdown
 
@@ -233,8 +315,7 @@ inl unwrap_or forall t. (def : t) (x : option' t) : t =
 #!spiral
 
 inl rc_upgrade forall t. (x : rust.weak_rc t) : option' (rust.rc t) =
-    inl x = join x
-    !\($'"std::rc::Weak::upgrade(&!x)"')
+    !\\(x, $'"std::rc::Weak::upgrade(&$0)"')
 
 #!markdown
 
@@ -247,9 +328,9 @@ inl rc_into_inner forall t. (x : rust.rc t) : option' t =
 
 #!spiral
 
-// // test
-// // rust=true
-// // print_code=false
+//// test
+//// print_code=false
+///! rust
 
 types ()
 rust.new_rc 0i32

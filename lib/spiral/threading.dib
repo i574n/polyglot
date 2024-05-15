@@ -12,9 +12,30 @@ open rust_operators
 
 #!spiral
 
-// // test
+//// test
 
 open testing
+
+#!markdown
+
+## types
+
+#!spiral
+
+inl types () =
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::thread::JoinHandle<$0>\")>]\n#endif\ntype std_thread_JoinHandle<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>]\n#endif\ntype std_sync_Arc<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Mutex<$0>\")>]\n#endif\ntype std_sync_Mutex<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::MutexGuard<$0>\")>]\n#endif\ntype std_sync_MutexGuard<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::PoisonError<$0>\")>]\n#endif\ntype std_sync_PoisonError<'T> = class end"
+
+#!markdown
+
+## join_handle
+
+#!spiral
+
+nominal join_handle t = $'std_thread_JoinHandle<`t>'
 
 #!markdown
 
@@ -160,7 +181,7 @@ inl new_disposable_token (merge_token : optionm'.option' cancellation_token) =
 
 #!spiral
 
-// // test
+//// test
 
 inl run fn =
     inl token, disposable = new_disposable_token (None |> optionm'.box)
@@ -186,9 +207,97 @@ fun () =>
 
 #!markdown
 
+## arc
+
+#!spiral
+
+nominal arc t = $"std_sync_Arc<`t>"
+
+#!markdown
+
+## new_arc
+
+#!spiral
+
+inl new_arc forall t. (x : t) : arc t =
+    !\\(x, $'"std::sync::Arc::new($0)"')
+
+#!markdown
+
+## mutex
+
+#!spiral
+
+nominal mutex t = $"std_sync_Mutex<`t>"
+
+#!markdown
+
+## new_mutex
+
+#!spiral
+
+inl new_mutex forall t. (x : t) : mutex t =
+    !\\(x, $'"std::sync::Mutex::new($0)"')
+
+#!markdown
+
+## new_arc_mutex
+
+#!spiral
+
+inl new_arc_mutex forall t. (x : t) : arc (mutex t) =
+    x |> new_mutex |> new_arc
+
+#!markdown
+
+## arc_clone
+
+#!spiral
+
+inl arc_clone forall t. (x : arc t) : arc t =
+    inl x = join x
+    !\($'"std::sync::Arc::clone(&!x)"')
+
+#!markdown
+
+## mutex_guard
+
+#!spiral
+
+nominal mutex_guard t = $"std_sync_MutexGuard<`t>"
+
+#!markdown
+
+## poison_error
+
+#!spiral
+
+nominal poison_error t = $"std_sync_PoisonError<`t>"
+
+#!markdown
+
+## mutex_lock
+
+#!spiral
+
+inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard t) (poison_error (mutex_guard t)) =
+    !\\(x, $'"$0.lock()"')
+
+#!markdown
+
+## mutex_guard_value
+
+#!spiral
+
+inl mutex_guard_value forall t. (x : mutex_guard t) : rust.ref' t =
+    !\\(x, $'"&$0"')
+
+#!markdown
+
 ## main
 
 #!spiral
 
 inl main () =
+    types ()
     $"let new_disposable_token x = !new_disposable_token x" : ()

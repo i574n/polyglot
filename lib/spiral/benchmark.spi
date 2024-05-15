@@ -1,7 +1,4 @@
-// // ## benchmark (Polyglot)
-
-inl (/@) x = listm'.(/@) x
-
+/// ## benchmark (Polyglot)
 inl gc_collect () =
     run_target function
         | Fsharp _ => fun () => $"System.GC.Collect ()"
@@ -21,8 +18,7 @@ inl stopwatch_elapsed_milliseconds (stopwatch : stopwatch) : i64 =
 inl stopwatch_start (stopwatch : stopwatch) : () =
     $"!stopwatch.Start ()"
 
-// // ## test_case_result
-
+/// ## test_case_result
 type test_case_result =
     {
         Input : string
@@ -31,8 +27,7 @@ type test_case_result =
         TimeList : a u64 i64
     }
 
-// // ## run
-
+/// ## run
 inl run forall input expected.
     count
     (solutions : list (string * (input -> expected)))
@@ -77,8 +72,7 @@ inl run forall input expected.
         TimeList = results_with_time |> am.map snd
     }
 
-// // ## run_all
-
+/// ## run_all
 inl run_all forall input expected.
     test_name
     count
@@ -92,8 +86,7 @@ inl run_all forall input expected.
     |> listm.toArray
     |> am.map (run count solutions)
 
-// // ## sort_result_list
-
+/// ## sort_result_list
 inl sort_result_list results =
     inl table =
         inl rows =
@@ -160,7 +153,7 @@ inl sort_result_list results =
                 row
                 |> listm'.indexed
                 |> listm.map fun (i, cell) =>
-                    cell |> sm'.pad_right (lengthMap |> mapm.item i |> conv)
+                    cell |> sm'.pad_right (lengthMap |> mapm.item i |> conv) ' '
                 |> listm.toArray
             newRow, color
 
@@ -192,48 +185,48 @@ inl sort_result_list results =
     |> am.iter fun ((i : i32), avg) =>
         printfn ($"$\"Test case %d{!i + 1}. Average Time: %A{!avg}  \"" : string)
 
-// // ## empty2Tests
+/// ## empty2Tests
 
-// // Test: Empty2
-// //
-// // Solution: (a, a)
-// // Test case 1. A. Time: 59L
-// //
-// // Solution: (a, a)
-// // Test case 1. A. Time: 53L
-// //
-// // Input   | Expected        | Result  | Best
-// // ---     | ---             | ---     | ---
-// // (a, a)  | a               | a       | (1, 59)
-// // (a, a)  | a               | a       | (1, 53)
-// //
-// // Averages
-// // Test case 1. Average Time: 56L
-// //
-// // Ranking
-// // Test case 1. Average Time: 56L
+/// Test: Empty2
+/// 
+/// Solution: (a, a)
+/// Test case 1. A. Time: 59L
+/// 
+/// Solution: (a, a)
+/// Test case 1. A. Time: 53L
+/// 
+/// Input   | Expected        | Result  | Best
+/// ---     | ---             | ---     | ---
+/// (a, a)  | a               | a       | (1, 59)
+/// (a, a)  | a               | a       | (1, 53)
+/// 
+/// Averages
+/// Test case 1. Average Time: 56L
+/// 
+/// Ranking
+/// Test case 1. Average Time: 56L
 
-// // ## emptyTests
+/// ## emptyTests
 
-// // Test: Empty
-// //
-// // Solution: 0
-// // Test case 1. A. Time: 61L
-// //
-// // Solution: 2
-// // Test case 1. A. Time: 62L
-// //
-// // Solution: 5
-// // Test case 1. A. Time: 70L
-// //
-// // Input   | Expected        | Result  | Best
-// // ---     | ---             | ---     | ---
-// // 0       | 0               | 0       | (1, 61)
-// // 2       | 2               | 2       | (1, 62)
-// // 5       | 5               | 5       | (1, 70)
-// //
-// // Averages
-// // Test case 1. Average Time: 64L
-// //
-// // Ranking
-// // Test case 1. Average Time: 64L
+/// Test: Empty
+/// 
+/// Solution: 0
+/// Test case 1. A. Time: 61L
+/// 
+/// Solution: 2
+/// Test case 1. A. Time: 62L
+/// 
+/// Solution: 5
+/// Test case 1. A. Time: 70L
+/// 
+/// Input   | Expected        | Result  | Best
+/// ---     | ---             | ---     | ---
+/// 0       | 0               | 0       | (1, 61)
+/// 2       | 2               | 2       | (1, 62)
+/// 5       | 5               | 5       | (1, 70)
+/// 
+/// Averages
+/// Test case 1. Average Time: 64L
+/// 
+/// Ranking
+/// Test case 1. Average Time: 64L

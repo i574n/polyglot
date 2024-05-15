@@ -1,42 +1,53 @@
-// // # crypto
+/// # crypto
+open rust_operators
 
-// // ## sha256
+/// ## types
+inl types () =
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"sha2::Sha256\")>]\n#endif\ntype sha2_Sha256 = class end"
 
+inl types () =
+    sm'.types ()
+    am'.types ()
+    threading.types ()
+    rust.types ()
+    date_time.types ()
+    file_system.types ()
+    stream.types ()
+    runtime.types ()
+    types ()
+
+/// ## sha256
 nominal sha256 = $'System.Security.Cryptography.SHA256'
 
 inl sha256 () : sha256 =
     $'`sha256.Create' ()
 
-// // ## sha256_compute_hash
-
+/// ## sha256_compute_hash
 inl sha256_compute_hash (x : sha256) (data : a i32 u8) : a i32 u8 =
     data |> $'!x.ComputeHash'
 
-// // ## create_hash
-
+/// ## create_hash
 inl create_hash (x : string) : any =
     open ts_operators
     global "type ICryptoCreateHash = abstract createHash: x: string -> obj"
     inl crypto : $'ICryptoCreateHash' = ts.import_all "crypto"
     !\\(x, $'"!crypto.createHash($0)"')
 
-// // ## hash_update
-
+/// ## hash_update
 inl hash_update (s : string) (x : any) : any =
     open ts_operators
     !\\((x, s), $'"$0.update($1, \'utf8\')"')
 
-// // ## hash_digest
-
+/// ## hash_digest
 inl hash_digest (s : string) (x : any) : string =
     open ts_operators
     !\\((x, s), $'"$0.digest($1)"')
 
-// // ## hash_text
-
+/// ## hash_text
 inl hash_text (input : string) =
     run_target function
         | Fsharp (Native) => fun () =>
+            inl input = join input
             inl sha256 = sha256 () |> use
             input
             |> sm'.utf8_get_bytes
@@ -50,7 +61,73 @@ inl hash_text (input : string) =
             |> hash_digest "hex"
         | _ => fun () => null ()
 
-// // ## main
+/// ## get_file_hash'
+inl get_file_hash' (path : string) : result string string =
+    inl path = path |> file_system.normalize_path
+    inl exit_code, result =
+        runtime.execution_options fun x => { x with
+            command = $'$"pwsh -c \\\"(Get-FileHash \'{!path}\' -Algorithm SHA256).Hash\\\""'
+        }
+        |> runtime.execute_with_options
+    if exit_code = 0
+    then result |> sm'.to_lower |> Ok
+    else result |> Error
 
+/// ## sha256'
+nominal sha256' = $'sha2_Sha256'
+
+/// ## new_sha256
+inl new_sha256 () : sha256' =
+    !\($'"sha2::Digest::new()"')
+
+/// ## hasher_update
+inl hasher_update forall el dim. (slice : rust.ref' (am'.slice' el dim)) (hasher : sha256') : () =
+    !\($'"sha2::Digest::update(&mut !hasher, !slice)"')
+
+/// ## hasher_finalize
+inl hasher_finalize (hasher : sha256') : rust.ref' (am'.slice u8) =
+    !\($'"&sha2::Digest::finalize(!hasher)"')
+
+/// ## get_file_hash
+inl get_file_hash (path : string) : result string string =
+    inl path = path |> file_system.normalize_path
+    inl file = path |> file_system.file_open |> resultm.unwrap'
+    inl reader = file |> stream.new_buf_reader
+    (!\($'"true; let mut !reader = !reader"') : bool) |> ignore
+    inl hasher = new_sha256 ()
+    (!\($'"true; let mut !hasher = !hasher"') : bool) |> ignore
+    
+    real
+        inl size = 1024
+        inl zero = unativeint `i32 0
+        inl buffer = am'.new_slice `u8 `@size 0u8
+
+        rust.loop 2 fun () =>
+            inl count = stream.buf_reader_read `u8 `@size buffer reader
+            inl count = resultm.unwrap' `unativeint `(stream.io_error) count
+
+            if (=.) `unativeint count zero then rust.break ()
+
+            hasher_update `u8 `@size
+                (
+                    am'.slice_range `u8 `@size
+                        (am'.Start `unativeint zero)
+                        (am'.End `unativeint ((fun _ => count) : unativeint -> unativeint))
+                        buffer
+                )
+                hasher
+
+    hasher
+    |> hasher_finalize
+    |> am'.slice_to_vec
+    |> am'.vec_map' (sm'.format_custom' "{:02x}" >> sm'.from_std_string)
+    |> am'.from_vec
+    |> fun x => x : _ i32 _
+    |> seq.of_array'
+    |> sm'.concat ""
+    |> Ok
+
+/// ## main
 inl main () =
+    types ()
     $"let hash_text x = !hash_text x" : ()

@@ -7,4 +7,4 @@ $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
 
 
-{ cargo build --release } | Invoke-Block
+{ cargo +nightly build --release } | Invoke-Block

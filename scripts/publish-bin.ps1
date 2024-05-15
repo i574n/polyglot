@@ -113,4 +113,4 @@ if ($Error.Count -gt 0) {
     exit 1
 }
 
-{ . ../apps/dir-tree-html/dist/DirTreeHtml$(GetExecutableSuffix) --dir . --html index.html } | Invoke-Block
+{ . ../apps/dir-tree-html/dist/DirTreeHtml$(_exe) --dir . --html index.html } | Invoke-Block

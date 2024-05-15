@@ -1,11 +1,55 @@
-// // # stream
+/// # stream
+open rust_operators
 
+/// ## types
+inl types () =
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_std::io::BufReader<$0>\")>]\n#endif\ntype async_std_io_BufReader<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::BufReader<$0>\")>]\n#endif\ntype std_io_BufReader<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>]\n#endif\ntype std_io_Error = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Lines<$0>\")>]\n#endif\ntype std_io_Lines<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs_io::DecodeReaderBytes<$0, $1>\")>]\n#endif\ntype encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end"
+
+/// ## io_error
+nominal io_error = $"std_io_Error"
+
+/// ## buf_reader
+nominal buf_reader t = $'std_io_BufReader<`t>'
+
+/// ## async_buf_reader
+nominal async_buf_reader t = $'async_std_io_BufReader<`t>'
+
+/// ## new_buf_reader
+inl new_buf_reader forall t. (x : t) : buf_reader t =
+    !\($'"std::io::BufReader::new(!x)"')
+
+/// ## lines
+nominal lines t = $'std_io_Lines<`t>'
+
+/// ## buf_read_lines
+inl buf_read_lines forall t. (buf_reader : buf_reader t) : lines (buf_reader t) =
+    !\($'"std::io::BufRead::lines(!buf_reader)"')
+
+/// ## decode_reader_bytes
+nominal decode_reader_bytes t u = $'encoding_rs_io_DecodeReaderBytes<`t, `u>'
+
+/// ## decode_reader_bytes_build
+inl decode_reader_bytes_build forall t. (x : t) : decode_reader_bytes t (am'.vec u8) =
+    // !\($'"encoding_rs_io::DecodeReaderBytesBuilder::new().encoding(Some(encoding_rs::UTF_8)).build(!x)"')
+    // !\($'"encoding_rs_io::DecodeReaderBytesBuilder::new().encoding(Some(encoding_rs::UTF_8)).utf8_passthru(true).build(!x)"')
+    !\($'"encoding_rs_io::DecodeReaderBytesBuilder::new().utf8_passthru(true).build(!x)"')
+    // !\($'"encoding_rs_io::DecodeReaderBytes::new(!x)"')
+
+/// ## buf_reader_read
+inl buf_reader_read forall el dim. (slice : am'.slice' el dim) (buf_reader : buf_reader el) : resultm.result' unativeint io_error =
+    (!\($'"true; let mut !slice = !slice"') : bool) |> ignore
+    !\($'"std::io::Read::read(&mut !buf_reader, &mut !slice)"')
+
+/// ## stream
 union rec stream t =
     | StreamCons : t * (() -> stream t)
     | StreamNil
 
-// // ## fold
-
+/// ## fold
 inl fold fn init s =
     inl rec body acc = function
         | StreamCons (st, fn') => loop (fn acc st) (fn' ())
@@ -13,8 +57,7 @@ inl fold fn init s =
     and inl loop acc = join_body body acc
     loop init s
 
-// // ## fold_back
-
+/// ## fold_back
 inl fold_back fn s init =
     inl rec body acc = function
         | StreamCons (st, fn') => fn st (loop acc (fn' ()))
@@ -22,29 +65,25 @@ inl fold_back fn s init =
     and inl loop acc = join_body body acc
     loop init s
 
-// // ## to_list
-
+/// ## to_list
 inl to_list s =
     (s, [])
     ||> fold_back fun x acc =>
         x :: acc
 
-// // ## rev
-
+/// ## rev
 inl rev s =
     (StreamNil, s)
     ||> fold fun s x =>
         StreamCons (x, fun () => s)
 
-// // ## from_list
-
+/// ## from_list
 inl from_list list =
     (list, StreamNil)
     ||> listm.foldBack fun x acc =>
         StreamCons (x, fun () => acc)
 
-// // ## try_item
-
+/// ## try_item
 inl try_item i s =
     inl rec body i = function
         | StreamCons (x, _) when i <= 0 => Some x
@@ -62,8 +101,7 @@ inl try_item i s =
 inl item i =
     try_item i >> optionm.value
 
-// // ## new_infinite_stream
-
+/// ## new_infinite_stream
 inl new_infinite_stream fn =
     inl rec loop n =
         StreamCons (fn n, fun () => loop (n + 1))
@@ -74,8 +112,7 @@ inl new_infinite_stream_ fn =
         StreamCons (fn n, fun () => loop (n + 1))
     loop 0
 
-// // ## new_finite_stream
-
+/// ## new_finite_stream
 inl new_finite_stream fn max =
     inl rec loop n =
         if n >= max
@@ -83,8 +120,7 @@ inl new_finite_stream fn max =
         else StreamCons (fn n, fun () => loop (n + 1))
     loop 0
 
-// // ## memoize
-
+/// ## memoize
 union memoized_stream t =
     | NotComputed : () -> stream t
     | Computed : stream t
@@ -105,8 +141,7 @@ inl memoize s =
     and inl loop s' = join_body_unit body s s'
     loop (fun () => s)
 
-// // ## unfold
-
+/// ## unfold
 inl unfold f x0 =
     inl rec body x =
         match f x with
@@ -115,13 +150,11 @@ inl unfold f x0 =
     and inl loop x = join_body_unit body x0 x
     loop x0
 
-// // ## iterate
-
+/// ## iterate
 inl iterate f =
     unfold (fun x => Some (x, f x))
 
-// // ## take_while
-
+/// ## take_while
 inl take_while cond s =
     inl rec body i = function
         | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
@@ -129,13 +162,11 @@ inl take_while cond s =
     and inl loop i = join_body body i
     loop 0 s
 
-// // ## sum
-
+/// ## sum
 inl sum seq =
     seq |> fold (+) 0
 
-// // ## indexed
-
+/// ## indexed
 inl indexed s =
     ((StreamNil, 0), s)
     ||> fold fun (acc, i) x =>
@@ -143,15 +174,13 @@ inl indexed s =
     |> fst
     |> rev
 
-// // ## map
-
+/// ## map
 inl map fn s =
     (s, StreamNil)
     ||> fold_back fun x acc =>
         StreamCons (fn x, fun () => acc)
 
-// // ## zip_with
-
+/// ## zip_with
 inl zip_with fn s1 s2 =
     inl rec loop s1 s2 =
         match s1, s2 with
@@ -168,16 +197,14 @@ inl zip_with_ fn s1 s2 =
         | StreamNil, _ | _, StreamNil => StreamNil
     loop s1 s2
 
-// // ## zip
-
+/// ## zip
 inl zip s1 s2 =
     zip_with pair s1 s2
 
 inl zip_ s1 s2 =
     zip_with_ pair s1 s2
 
-// // ## unzip
-
+/// ## unzip
 inl unzip s =
     inl rec body s =
         match s with
@@ -192,13 +219,3 @@ inl unzip s =
             inl x = dyn x
             join body x
     loop s
-
-// // ## enumerate
-
-inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
-    open rust_operators
-    inl (a ar) = ar
-    inl ar = ar |> am'.to_vec
-    !\($'"!ar.into_iter().enumerate().map(std::rc::Rc::new).collect()"')
-    |> am'.vec_map from_pair
-    |> am'.from_vec

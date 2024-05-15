@@ -7543,39 +7543,40 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__expect</span> <span class="n">fn</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
-    <span class="k">if</span> <span class="n">log</span> <span class="n">then</span>
-        <span class="n">a</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug |&gt; console.write_line</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__expect</span> <span class="n">fn</span> <span class="n">log</span> <span class="n">name</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span> <span class="n">a</span> <span class="n">b</span>
     <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span>
         <span class="n">result</span> <span class="o">||</span> <span class="n">join</span> <span class="n">result</span>
-    <span class="k">if</span> <span class="n">log</span>
-    <span class="n">then</span> <span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">__expect / actual: %A</span><span class="si">{!a}</span><span class="s2"> / expected: %A{!b}</span><span class="se">\"</span><span class="s2">"</span>
-    <span class="k">else</span> <span class="s2">"__expect"</span>
+    <span class="k">if</span> <span class="n">log</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+    <span class="n">then</span> <span class="s2">"__expect"</span>
+    <span class="k">else</span>
+        <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'$"{!name} / actual: %A</span><span class="si">{!a}</span><span class="s1"> / expected: %A{!b}"'</span>
+        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+        <span class="n">text</span>
     <span class="o">|&gt;</span> <span class="k">assert</span> <span class="n">result</span>
 
-<span class="n">inl</span> <span class="n">__assert_approx_eq</span> <span class="n">log</span> <span class="n">e</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span> <span class="nb">abs</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">e</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">defaultWith</span> <span class="mf">0.00000001</span><span class="p">))</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span>
+<span class="n">inl</span> <span class="n">__assert_approx_eq</span> <span class="n">log</span> <span class="n">e</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span> <span class="nb">abs</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">e</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">defaultWith</span> <span class="mf">0.00000001</span><span class="p">))</span> <span class="n">log</span> <span class="s2">"assert_approx_eq"</span> <span class="n">b</span> <span class="n">a</span>
 <span class="n">inl</span> <span class="n">_assert_approx_eq</span> <span class="n">e</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_approx_eq</span> <span class="n">true</span> <span class="n">e</span> <span class="n">b</span> <span class="n">a</span>
 
-<span class="n">inl</span> <span class="n">__assert_eq</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">=</span><span class="p">)</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span>
+<span class="n">inl</span> <span class="n">__assert_eq</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">=</span><span class="p">)</span> <span class="n">log</span> <span class="s2">"assert_eq"</span> <span class="n">b</span> <span class="n">a</span>
 <span class="n">inl</span> <span class="n">_assert_eq</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_eq</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
-<span class="n">inl</span> <span class="n">__assert_eq</span><span class="s1">' log b a = __expect (=.) log b a</span>
+<span class="n">inl</span> <span class="n">__assert_eq</span><span class="s1">' log b a = __expect (=.) log "assert_eq'</span><span class="s2">" b a</span>
 <span class="n">inl</span> <span class="n">_assert_eq</span><span class="s1">' b a = __assert_eq'</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
-<span class="n">inl</span> <span class="n">__assert_ne</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="ow">not</span><span class="p">)</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span>
+<span class="n">inl</span> <span class="n">__assert_ne</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&lt;&gt;.</span><span class="p">)</span> <span class="n">log</span> <span class="s2">"assert_ne"</span> <span class="n">b</span> <span class="n">a</span>
 <span class="n">inl</span> <span class="n">_assert_ne</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_ne</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
-<span class="n">inl</span> <span class="n">__assert_gt</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&gt;</span><span class="p">)</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span>
+<span class="n">inl</span> <span class="n">__assert_gt</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&gt;</span><span class="p">)</span> <span class="n">log</span> <span class="s2">"assert_gt"</span> <span class="n">b</span> <span class="n">a</span>
 <span class="n">inl</span> <span class="n">_assert_gt</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_gt</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
-<span class="n">inl</span> <span class="n">__assert_ge</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&gt;=</span><span class="p">)</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span>
+<span class="n">inl</span> <span class="n">__assert_ge</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&gt;=</span><span class="p">)</span> <span class="n">log</span> <span class="s2">"assert_ge"</span> <span class="n">b</span> <span class="n">a</span>
 <span class="n">inl</span> <span class="n">_assert_ge</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_ge</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
-<span class="n">inl</span> <span class="n">__assert_lt</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&lt;</span><span class="p">)</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span>
+<span class="n">inl</span> <span class="n">__assert_lt</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&lt;</span><span class="p">)</span> <span class="n">log</span> <span class="s2">"assert_lt"</span> <span class="n">b</span> <span class="n">a</span>
 <span class="n">inl</span> <span class="n">_assert_lt</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_lt</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
-<span class="n">inl</span> <span class="n">__assert_le</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&lt;=</span><span class="p">)</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span>
+<span class="n">inl</span> <span class="n">__assert_le</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&lt;=</span><span class="p">)</span> <span class="n">log</span> <span class="s2">"assert_le"</span> <span class="n">b</span> <span class="n">a</span>
 <span class="n">inl</span> <span class="n">_assert_le</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_le</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
 <span class="n">inl</span> <span class="n">__assert_contains</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="n">log</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="n">a</span> <span class="o">=</span>
@@ -7587,10 +7588,10 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'List.tryFind'</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="n">b</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
             <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">t</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">&lt;&gt;</span> <span class="kc">None</span>
-        <span class="n">log</span> <span class="n">b</span> <span class="n">a</span>
+        <span class="n">log</span> <span class="s2">"assert_contains"</span> <span class="n">b</span> <span class="n">a</span>
 <span class="n">inl</span> <span class="n">_assert_contains</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_contains</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
-<span class="n">inl</span> <span class="n">__assert_string_contains</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="n">sm</span><span class="s1">'.contains log a b</span>
+<span class="n">inl</span> <span class="n">__assert_string_contains</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="n">sm</span><span class="s1">'.contains log "assert_string_contains" a b</span>
 <span class="n">inl</span> <span class="n">_assert_string_contains</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_string_contains</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
 <span class="n">inl</span> <span class="n">_throws</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">:</span> <span class="n">option</span> <span class="n">exn</span> <span class="o">=</span>
@@ -7600,10 +7601,10 @@ a.anchor-link {
 
 <span class="n">inl</span> <span class="n">__assert_between</span> <span class="n">log</span> <span class="n">a</span> <span class="n">b</span> <span class="n">actual</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">assert_between</span> <span class="n">actual</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span>
-        <span class="n">__assert_ge</span> <span class="n">log</span> <span class="n">a</span> <span class="n">actual</span>
-        <span class="n">__assert_le</span> <span class="n">log</span> <span class="n">b</span> <span class="n">actual</span>
+        <span class="n">__assert_ge</span> <span class="n">false</span> <span class="n">a</span> <span class="n">actual</span>
+        <span class="n">__assert_le</span> <span class="n">false</span> <span class="n">b</span> <span class="n">actual</span>
         <span class="n">true</span>
-    <span class="n">__expect</span> <span class="n">assert_between</span> <span class="n">log</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="n">actual</span>
+    <span class="n">__expect</span> <span class="n">assert_between</span> <span class="n">log</span> <span class="s2">"assert_between"</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="n">actual</span>
 <span class="n">inl</span> <span class="n">_assert_between</span> <span class="n">a</span> <span class="n">b</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">__assert_between</span> <span class="n">true</span> <span class="n">a</span> <span class="n">b</span> <span class="n">actual</span>
 </pre></div>
 </div>
@@ -7632,7 +7633,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="mi">1</span><span class="n">f64</span>
 <span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">2</span>
@@ -7649,13 +7650,13 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{1.0}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{1.0} / expected: %A{2.0}"
+    let v0 : string = "assert_approx_eq"
+    let v1 : string = $"{v0} / actual: %A{1.0} / expected: %A{2.0}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-1.0
+assert_approx_eq / actual: 1.0 / expected: 2.0
 </pre>
 </div>
 </div>
@@ -7669,7 +7670,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="s2">"abcd"</span>
 <span class="o">|&gt;</span> <span class="n">_assert_contains</span> <span class="s1">'b'</span>
@@ -7691,44 +7692,53 @@ method0()
 let rec closure0 () (v0 : char) : bool =
     let v1 : bool = 'b' = v0
     v1
-and closure1 () (v0 : char) : US0 =
-    US0_0(v0)
-and method1 () : (char -&gt; US0) =
-    closure1()
-and method2 (v0 : bool) : bool =
+and method1 (v0 : bool) : bool =
     v0
 and method0 () : unit =
-    let v0 : string = "abcd"
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
-    let v2 : (string -&gt; char list) = List.ofSeq
-    let v3 : char list = v2 v0
-    let v4 : ((char -&gt; bool) -&gt; (char list -&gt; char option)) = List.tryFind
-    let v5 : (char -&gt; bool) = closure0()
-    let v6 : (char list -&gt; char option) = v4 v5
-    let v7 : char option = v6 v3
-    let v8 : (char -&gt; US0) = method1()
-    let v9 : US0 = US0_1
-    let v10 : US0 = v7 |&gt; Option.map v8 |&gt; Option.defaultValue v9 
-    let v12 : bool =
-        match v10 with
+    let v0 : (string -&gt; char list) = List.ofSeq
+    let v1 : string = "abcd"
+    let v2 : char list = v0 v1
+    let v3 : ((char -&gt; bool) -&gt; (char list -&gt; char option)) = List.tryFind
+    let v4 : (char -&gt; bool) = closure0()
+    let v5 : (char list -&gt; char option) = v3 v4
+    let v6 : char option = v5 v2
+    let v7 : US0 option = None
+    let _v7 = ref v7 
+    match v6 with
+    | Some x -&gt; (
+    (fun () -&gt;
+    (fun () -&gt;
+    let v8 : char = x
+    let v9 : US0 = US0_0(v8)
+    v9 
+    )
+    |&gt; fun x -&gt; x () |&gt; Some
+    ) () ) | None -&gt; None
+    |&gt; fun x -&gt; _v7.Value &lt;- x
+    let v10 : US0 option = _v7.Value 
+    let v11 : US0 = US0_1
+    let v12 : US0 = v10 |&gt; Option.defaultValue v11 
+    let v14 : bool =
+        match v12 with
         | US0_1 -&gt; (* None *)
             true
         | _ -&gt;
             false
-    let v13 : bool = v12 &lt;&gt; true
-    let v15 : bool =
-        if v13 then
+    let v15 : bool = v14 &lt;&gt; true
+    let v17 : bool =
+        if v15 then
             true
         else
-            method2(v13)
-    let v16 : string = $"__expect / actual: %A{v0} / expected: %A{'b'}"
-    let v17 : bool = v15 = false
-    if v17 then
-        failwith&lt;unit&gt; v16
+            method1(v15)
+    let v18 : string = "assert_contains"
+    let v19 : string = $"{v18} / actual: %A{v1} / expected: %A{'b'}"
+    System.Console.WriteLine v19
+    let v20 : bool = v17 = false
+    if v20 then
+        failwith&lt;unit&gt; v19
 method0()
 
-"abcd"
+assert_contains / actual: "abcd" / expected: 'b'
 </pre>
 </div>
 </div>
@@ -7742,7 +7752,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="p">(</span><span class="n">dyn</span> <span class="mi">1</span><span class="n">f64</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">2</span>
@@ -7762,29 +7772,29 @@ method0()
     v0
 and method0 () : unit =
     let v0 : float = 1.0
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
-    let v2 : float = 2.0 - v0
-    let v3 : float =  -v2
-    let v4 : bool = v2 &gt;= v3
-    let v5 : float =
-        if v4 then
-            v2
+    let v1 : float = 2.0 - v0
+    let v2 : float =  -v1
+    let v3 : bool = v1 &gt;= v2
+    let v4 : float =
+        if v3 then
+            v1
         else
-            v3
-    let v6 : bool = v5 &lt; 3.0
-    let v8 : bool =
-        if v6 then
+            v2
+    let v5 : bool = v4 &lt; 3.0
+    let v7 : bool =
+        if v5 then
             true
         else
-            method1(v6)
-    let v9 : string = $"__expect / actual: %A{v0} / expected: %A{2.0}"
-    let v10 : bool = v8 = false
+            method1(v5)
+    let v8 : string = "assert_approx_eq"
+    let v9 : string = $"{v8} / actual: %A{v0} / expected: %A{2.0}"
+    System.Console.WriteLine v9
+    let v10 : bool = v7 = false
     if v10 then
         failwith&lt;unit&gt; v9
 method0()
 
-1.0
+assert_approx_eq / actual: 1.0 / expected: 2.0
 </pre>
 </div>
 </div>

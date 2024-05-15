@@ -45,7 +45,7 @@ export function Mut1_$reflection(): TypeInfo {
     return record_type("File_system.Mut1", [], Mut1, () => [["l0", bool_type]]);
 }
 
-export type US0_$union = 
+export type US0_$union =
     | US0<0>
     | US0<1>
     | US0<2>
@@ -105,7 +105,7 @@ export function Mut2_$reflection(): TypeInfo {
     return record_type("File_system.Mut2", [], Mut2, () => [["l0", US0_$reflection()]]);
 }
 
-export type US1_$union = 
+export type US1_$union =
     | US1<0>
     | US1<1>
 
@@ -135,7 +135,7 @@ export function US1_$reflection(): TypeInfo {
     return union_type("File_system.US1", [], US1, () => [[["f0_0", int64_type]], []]);
 }
 
-export type US3_$union = 
+export type US3_$union =
     | US3<0>
     | US3<1>
     | US3<2>
@@ -171,7 +171,7 @@ export function US3_$reflection(): TypeInfo {
     return union_type("File_system.US3", [], US3, () => [[], [], []]);
 }
 
-export type US4_$union = 
+export type US4_$union =
     | US4<0>
     | US4<1>
     | US4<2>
@@ -219,7 +219,7 @@ export function US4_$reflection(): TypeInfo {
     return union_type("File_system.US4", [], US4, () => [[], [], [], [], []]);
 }
 
-export type US2_$union = 
+export type US2_$union =
     | US2<0>
     | US2<1>
 
@@ -249,7 +249,7 @@ export function US2_$reflection(): TypeInfo {
     return union_type("File_system.US2", [], US2, () => [[["f0_0", US3_$reflection()], ["f0_1", US4_$reflection()]], []]);
 }
 
-export type US5_$union = 
+export type US5_$union =
     | US5<0>
     | US5<1>
 
@@ -279,7 +279,7 @@ export function US5_$reflection(): TypeInfo {
     return union_type("File_system.US5", [], US5, () => [[["f0_0", int64_type]], []]);
 }
 
-export type US6_$union = 
+export type US6_$union =
     | US6<0>
     | US6<1>
 
@@ -309,7 +309,7 @@ export function US6_$reflection(): TypeInfo {
     return union_type("File_system.US6", [], US6, () => [[["f0_0", int64_type]], [["f1_0", class_type("System.Exception")]]]);
 }
 
-export type US7_$union = 
+export type US7_$union =
     | US7<0>
     | US7<1>
 
@@ -339,7 +339,7 @@ export function US7_$reflection(): TypeInfo {
     return union_type("File_system.US7", [], US7, () => [[["f0_0", int64_type]], [["f1_0", class_type("System.Exception")]]]);
 }
 
-export type US8_$union = 
+export type US8_$union =
     | US8<0>
     | US8<1>
 
@@ -1244,7 +1244,7 @@ export function find_parent(x: string): ((arg0: boolean) => ((arg0: string) => s
 
 export const v15 = (): string => closure45(void 0, void 0);
 
-export function get_repository_root(): string {
+export function get_workspace_root(): string {
     return v15();
 }
 
@@ -1253,5 +1253,3 @@ export const v16 = (v: string): ((arg0: string) => string) => closure46(void 0, 
 export function op_LessDivideGreater(x: string): ((arg0: string) => string) {
     return v16(x);
 }
-
-

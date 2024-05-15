@@ -8,39 +8,40 @@
 
 #!spiral
 
-inl __expect fn log b a =
-    if log then
-        a |> sm'.format_debug |> console.write_line
+inl __expect fn log name b a =
     inl result = fn a b
     inl result =
         result || join result
-    if log
-    then $"$\"__expect / actual: %A{!a} / expected: %A{!b}\""
-    else "__expect"
+    if log |> not
+    then "__expect"
+    else
+        inl text = $'$"{!name} / actual: %A{!a} / expected: %A{!b}"'
+        text |> console.write_line
+        text
     |> assert result
 
-inl __assert_approx_eq log e b a = __expect (fun a b => abs (b - a) < (e |> optionm.defaultWith 0.00000001)) log b a
+inl __assert_approx_eq log e b a = __expect (fun a b => abs (b - a) < (e |> optionm.defaultWith 0.00000001)) log "assert_approx_eq" b a
 inl _assert_approx_eq e b a = __assert_approx_eq true e b a
 
-inl __assert_eq log b a = __expect (=) log b a
+inl __assert_eq log b a = __expect (=) log "assert_eq" b a
 inl _assert_eq b a = __assert_eq true b a
 
-inl __assert_eq' log b a = __expect (=.) log b a
+inl __assert_eq' log b a = __expect (=.) log "assert_eq'" b a
 inl _assert_eq' b a = __assert_eq' true b a
 
-inl __assert_ne log b a = __expect (fun a b => a = b |> fun x => join x |> not) log b a
+inl __assert_ne log b a = __expect (<>.) log "assert_ne" b a
 inl _assert_ne b a = __assert_ne true b a
 
-inl __assert_gt log b a = __expect (>) log b a
+inl __assert_gt log b a = __expect (>) log "assert_gt" b a
 inl _assert_gt b a = __assert_gt true b a
 
-inl __assert_ge log b a = __expect (>=) log b a
+inl __assert_ge log b a = __expect (>=) log "assert_ge" b a
 inl _assert_ge b a = __assert_ge true b a
 
-inl __assert_lt log b a = __expect (<) log b a
+inl __assert_lt log b a = __expect (<) log "assert_lt" b a
 inl _assert_lt b a = __assert_lt true b a
 
-inl __assert_le log b a = __expect (<=) log b a
+inl __assert_le log b a = __expect (<=) log "assert_le" b a
 inl _assert_le b a = __assert_le true b a
 
 inl __assert_contains forall t. log (b : t) a =
@@ -52,10 +53,10 @@ inl __assert_contains forall t. log (b : t) a =
             |> $'List.tryFind' ((=) b)
             |> optionm'.unbox
             |> fun (x : _ t) => x <> None
-        log b a
+        log "assert_contains" b a
 inl _assert_contains b a = __assert_contains true b a
 
-inl __assert_string_contains log b a = __expect sm'.contains log a b
+inl __assert_string_contains log b a = __expect sm'.contains log "assert_string_contains" a b
 inl _assert_string_contains b a = __assert_string_contains true b a
 
 inl _throws (fn : () -> ()) : option exn =
@@ -65,29 +66,29 @@ inl _throws (fn : () -> ()) : option exn =
 
 inl __assert_between log a b actual =
     inl assert_between actual (a, b) =
-        __assert_ge log a actual
-        __assert_le log b actual
+        __assert_ge false a actual
+        __assert_le false b actual
         true
-    __expect assert_between log (a, b) actual
+    __expect assert_between log "assert_between" (a, b) actual
 inl _assert_between a b actual = __assert_between true a b actual
 
 #!spiral
 
-// // test
+//// test
 
 1f64
 |> _assert_approx_eq (Some 3) 2
 
 #!spiral
 
-// // test
+//// test
 
 "abcd"
 |> _assert_contains 'b'
 
 #!spiral
 
-// // test
+//// test
 
 (dyn 1f64)
 |> _assert_approx_eq (Some 3) 2

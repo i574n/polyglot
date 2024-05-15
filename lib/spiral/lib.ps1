@@ -5,7 +5,38 @@ function FixRust {
     )
     process {
         $text `
-            -replace "get_or_insert_with", "get_or_init"
+            -replace "get_or_insert_with", "get_or_init" `
+            -replace "_self_.", "self."
+    }
+}
+
+function FixRust2 {
+    param (
+        [Parameter(Mandatory, ValueFromPipeline)]
+        $text
+    )
+    process {
+        $text `
+            -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();" `
+            -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;" `
+            -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();" `
+            -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();"
+    }
+}
+
+function TsVersion {
+    "4.17.0"
+}
+
+function FixTypeScript {
+    param (
+        [Parameter(Mandatory, ValueFromPipeline)]
+        $text
+    )
+    process {
+        $text `
+            -replace "\./fable_modules/fable-library-ts.$(TsVersion)/", "./deps/Fable/src/fable-library-ts/" `
+            -replace "from `"\./deps/", "from `"../../polyglot/deps/"
     }
 }
 
@@ -30,63 +61,72 @@ function CopyTarget {
         $to = "$root/lib/$lib/$name$_runtime.$Language"
         Copy-Item $from $to -Force
 
+        $text = Get-Content $to
 
         if ($Language -eq "ts") {
-            (Get-Content $to) `
-                -replace "../../fable_modules/fable-library-ts.4.14.0/", "../../deps/Fable/src/fable-library-ts/" `
+            $text = $text `
                 -replace "this\$.tag", "(this$ as any)['tag']" `
                 -replace "../../../../../../../../", "../../" `
-                | Set-Content $to
+                | FixTypeScript
         }
         if ($Language -eq "rs") {
-            (Get-Content $to) `
+            $text = $text `
                 -replace [regex]::Escape("),);"), "));" `
                 -replace [regex]::Escape("},);"), "});" `
-                | FixRust `
-                | Set-Content $to
+                | FixRust
 
+            if ($name -in @("date_time", "file_system")) {
+                $text = $text `
+                    -replace "use fable_library_rust::System::TimeZoneInfo;", "type TimeZoneInfo = i64;"
+            }
             if ($name -in @("async_", "runtime", "threading", "networking", "file_system")) {
-                (Get-Content $to) `
-                    -replace "use fable_library_rust::Async_::Async;", "type Async<T> = T;" `
-                    | Set-Content $to
+                $text = $text `
+                    -replace "use fable_library_rust::Async_::Async;", "type Async<T> = T;"
             }
             if ($name -in @("async_", "runtime", "threading")) {
-                (Get-Content $to) `
-                    -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();" `
-                    | Set-Content $to
+                $text = $text `
+                    -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();"
             }
             if ($name -in @("threading")) {
-                (Get-Content $to) `
-                    -replace "use fable_library_rust::System::Threading::CancellationTokenSource;", "type CancellationTokenSource = ();" `
-                    | Set-Content $to
-            }
-            if ($name -in @("runtime", "threading", "file_system")) {
-                (Get-Content $to) `
-                    -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();" `
-                    | Set-Content $to
+                $text = $text `
+                    -replace "use fable_library_rust::System::Threading::CancellationTokenSource;", "type CancellationTokenSource = ();"
             }
             if ($name -eq "runtime") {
-                (Get-Content $to) `
+                $text = $text `
                     -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();" `
-                    -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;" `
-                    | Set-Content $to
+                    -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;"
             }
-            if ($name -eq "common" -and !$Runtime) {
-                (Get-Content $to) `
-                    -replace "defaultOf\(\)", "defaultOf::<std::sync::Arc<dyn IDisposable>>()" `
-                    | Set-Content $to
+            if ($name -in @("runtime", "threading", "file_system")) {
+                $text = $text `
+                    -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();"
             }
-            if ($name -eq "common" -and ($Runtime -eq "wasm" -or $Runtime -eq "contract")) {
-                (Get-Content $to) `
-                    -replace "defaultOf\(\)", "defaultOf::<std::rc::Rc<dyn IDisposable>>()" `
-                    | Set-Content $to
+            if ($name -in @("common") -and !$Runtime) {
+                $text = $text `
+                    -replace "defaultOf\(\)", "defaultOf::<std::sync::Arc<dyn IDisposable>>()"
             }
-            if ($name -eq "lib") {
-                (Get-Content $to) `
-                    -replace "trace_state\(\)", "trace_state().get().clone()" `
-                    | Set-Content $to
+            if ($name -in @("file_system") -and $Runtime -eq "contract") {
+                $text = $text `
+                    -replace "defaultOf\(\),", "defaultOf::<std::rc::Rc<dyn IDisposable>>(),"
+            }
+            if ($name -in @("file_system") -and $Runtime -ne "contract") {
+                $text = $text `
+                    -replace "defaultOf\(\),", "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
+            }
+            if ($name -in @("common") -and $Runtime -in @("wasm", "contract")) {
+                $text = $text `
+                    -replace "defaultOf\(\),", "defaultOf::<std::rc::Rc<dyn IDisposable>>(),"
+            }
+            if ($name -eq "file_system" -and $Runtime -in @("wasm", "contract")) {
+                $text = $text `
+                    -replace "chrono::Utc", "()" `
+                    -replace "chrono::Local", "()" `
+                    -replace "chrono::DateTime", "Option" `
+                    -replace "use fable_library_rust::DateTime_::DateTime;", "type DateTime = ();" `
+                    -replace "use fable_library_rust::Guid_::Guid;", "type Guid = ();" `
             }
         }
+
+        $text | Set-Content $to
     }
 
     CopyItem "fsharp" "Common"
@@ -128,9 +168,10 @@ function BuildFable {
         [string] $Language,
         [string] $Runtime
     )
-    dotnet fable "$TargetDir/$ProjectName.fsproj" --optimize --lang $Language --extension ".$Language" --outDir $TargetDir/target/$Language $($Runtime ? @("--define", $Runtime) : @())
-
     $root = "$PSScriptRoot/../.."
+
+    { dotnet fable "$TargetDir/$ProjectName.fsproj" --optimize --lang $Language --extension ".$Language" --outDir $TargetDir/target/$Language $($Runtime ? @("--define", $Runtime) : @()) } | Invoke-Block -Location $root
+
     CopyTarget $TargetDir $root $Language $Runtime.ToLower()
 }
 

@@ -5,6 +5,7 @@ test-results/
 node_modules/
 fable_modules/
 dist/
+out/
 deps/
 artifacts/
 bin/
@@ -17,3 +18,4 @@ paket-files/
 .history/
 
 apps/lib
+apps/LICENSE

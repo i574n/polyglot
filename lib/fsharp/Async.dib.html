@@ -7700,7 +7700,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="runWithTimeoutAsync">runWithTimeoutAsync<a class="anchor-link" href="#runWithTimeoutAsync">¶</a></h2>
+<h2 id="runWithTimeoutChoiceAsync">runWithTimeoutChoiceAsync<a class="anchor-link" href="#runWithTimeoutChoiceAsync">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7712,12 +7712,12 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">runWithTimeoutAsync_</span> <span class="p">(</span><span class="n">timeout</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"timeout: </span><span class="si">{timeout}</span><span class="s2"> / {getLocals ()}"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">runWithTimeoutChoiceAsync</span> <span class="p">(</span><span class="n">timeout</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="n">fn</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">_locals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"timeout: </span><span class="si">{timeout}</span><span class="s2"> / {_locals ()}"</span>
 
     <span class="n">let</span> <span class="n">timeoutTask</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
         <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="n">timeout</span>
-        <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
+        <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutChoiceAsync"</span><span class="p">)</span> <span class="n">_locals</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="p">}</span>
 
@@ -7730,11 +7730,14 @@ a.anchor-link {
             <span class="n">ex</span><span class="o">.</span><span class="n">InnerExceptions</span>
             <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">exists</span> <span class="p">(</span><span class="n">function</span> <span class="p">:</span><span class="err">?</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">Tasks</span><span class="o">.</span><span class="n">TaskCanceledException</span> <span class="o">-&gt;</span> <span class="n">true</span> <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span><span class="p">)</span>
             <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-            <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
+            <span class="n">trace</span> <span class="ne">Warning</span>
+                <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutChoiceAsync"</span><span class="p">)</span>
+                <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {_locals ()}"</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="o">|</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutAsync** / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
+            <span class="n">trace</span> <span class="n">Critical</span>
+                <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutChoiceAsync"</span><span class="p">)</span>
+                <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {_locals ()}"</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span>
     <span class="p">}</span>
 
@@ -7753,9 +7756,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">runWithTimeout_</span> <span class="n">timeout</span> <span class="n">fn</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">runWithTimeoutChoice</span> <span class="n">timeout</span> <span class="n">fn</span> <span class="o">=</span>
     <span class="n">fn</span>
-    <span class="o">|&gt;</span> <span class="n">runWithTimeoutAsync_</span> <span class="n">timeout</span>
+    <span class="o">|&gt;</span> <span class="n">runWithTimeoutChoiceAsync</span> <span class="n">timeout</span>
     <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
 </pre></div>
 </div>
@@ -7773,7 +7776,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">120</span>
-<span class="o">|&gt;</span> <span class="n">runWithTimeout_</span> <span class="mi">10</span>
+<span class="o">|&gt;</span> <span class="n">runWithTimeoutChoice</span> <span class="mi">10</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="kc">None</span>
 </pre></div>
 </div>
@@ -7787,8 +7790,9 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 debug #1 runWithTimeoutAsync / timeout: 10
+<pre>00:00:00   debug #1 runWithTimeoutChoiceAsync / timeout: 10
 &lt;null&gt;
+
 </pre>
 </div>
 </div>
@@ -7805,7 +7809,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
-<span class="o">|&gt;</span> <span class="n">runWithTimeout_</span> <span class="mi">60</span>
+<span class="o">|&gt;</span> <span class="n">runWithTimeoutChoice</span> <span class="mi">60</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
@@ -7819,8 +7823,8 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
+<pre>Some ()
+
 </pre>
 </div>
 </div>
@@ -7839,7 +7843,7 @@ a.anchor-link {
 <span class="k">async</span> <span class="p">{</span>
     <span class="k">raise</span> <span class="p">(</span><span class="n">exn</span> <span class="s2">"error"</span><span class="p">)</span>
 <span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">runWithTimeout_</span> <span class="mi">60</span>
+<span class="o">|&gt;</span> <span class="n">runWithTimeoutChoice</span> <span class="mi">60</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="kc">None</span>
 </pre></div>
 </div>
@@ -7853,8 +7857,9 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 critical #2 runWithTimeoutAsync** / ex: System.Exception: error / timeout: 60
+<pre>00:00:00 critical #2 runWithTimeoutChoiceAsync / ex: System.Exception: error / timeout: 60
 &lt;null&gt;
+
 </pre>
 </div>
 </div>
@@ -7867,7 +7872,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="runWithTimeoutChildAsync">runWithTimeoutChildAsync<a class="anchor-link" href="#runWithTimeoutChildAsync">¶</a></h2>
+<h2 id="runWithTimeoutAsync">runWithTimeoutAsync<a class="anchor-link" href="#runWithTimeoutAsync">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7879,8 +7884,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">runWithTimeoutChildAsync</span> <span class="p">(</span><span class="n">timeout</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="n">fn</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"timeout: </span><span class="si">{timeout}</span><span class="s2"> / {getLocals ()}"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">runWithTimeoutAsync</span> <span class="p">(</span><span class="n">timeout</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="n">fn</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
+    <span class="n">let</span> <span class="n">_locals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"timeout: </span><span class="si">{timeout}</span><span class="s2"> / {_locals ()}"</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span> <span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
     <span class="k">return</span><span class="err">!</span>
         <span class="n">child</span>
@@ -7888,10 +7893,10 @@ a.anchor-link {
         <span class="o">|&gt;</span> <span class="nb">map</span> <span class="p">(</span><span class="n">function</span>
             <span class="o">|</span> <span class="n">Ok</span> <span class="n">result</span> <span class="o">-&gt;</span> <span class="n">Some</span> <span class="n">result</span>
             <span class="o">|</span> <span class="n">Error</span> <span class="p">(:</span><span class="err">?</span> <span class="n">System</span><span class="o">.</span><span class="n">TimeoutException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">)</span> <span class="o">-&gt;</span>
-                <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutChildAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
+                <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutAsync"</span><span class="p">)</span> <span class="n">_locals</span>
                 <span class="kc">None</span>
             <span class="o">|</span> <span class="n">Error</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutChildAsync** / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
+                <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutAsync** / ex: %A</span><span class="si">{ex}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
                 <span class="kc">None</span>
         <span class="p">)</span>
 <span class="p">}</span>
@@ -7908,16 +7913,16 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">runWithTimeoutChild</span> <span class="n">timeout</span> <span class="n">fn</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">runWithTimeout</span> <span class="n">timeout</span> <span class="n">fn</span> <span class="o">=</span>
     <span class="n">fn</span>
-    <span class="o">|&gt;</span> <span class="n">runWithTimeoutChildAsync</span> <span class="n">timeout</span>
+    <span class="o">|&gt;</span> <span class="n">runWithTimeoutAsync</span> <span class="n">timeout</span>
     <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7925,12 +7930,27 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">runWithTimeoutAsync</span> <span class="n">timeout</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">runWithTimeoutChildAsync</span> <span class="n">timeout</span> <span class="n">fn</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">let</span> <span class="n">inline</span> <span class="n">runWithTimeout</span> <span class="n">timeout</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">runWithTimeoutChild</span> <span class="n">timeout</span> <span class="n">fn</span>
+<span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">60</span>
+<span class="o">|&gt;</span> <span class="n">runWithTimeout</span> <span class="mi">10</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="kc">None</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:01   debug #3 runWithTimeoutAsync / timeout: 10
+&lt;null&gt;
+
+</pre>
 </div>
 </div>
 </div>
@@ -7945,9 +7965,9 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">60</span>
-<span class="o">|&gt;</span> <span class="n">runWithTimeoutChild</span> <span class="mi">10</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="kc">None</span>
+<span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
+<span class="o">|&gt;</span> <span class="n">runWithTimeout</span> <span class="mi">60</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -7960,8 +7980,8 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 debug #3 runWithTimeoutChildAsync / timeout: 10
-&lt;null&gt;
+<pre>Some ()
+
 </pre>
 </div>
 </div>
@@ -7977,42 +7997,10 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
-<span class="o">|&gt;</span> <span class="n">runWithTimeoutChild</span> <span class="mi">60</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
 <span class="k">async</span> <span class="p">{</span>
     <span class="k">raise</span> <span class="p">(</span><span class="n">exn</span> <span class="s2">"error"</span><span class="p">)</span>
 <span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">runWithTimeoutChild</span> <span class="mi">60</span>
+<span class="o">|&gt;</span> <span class="n">runWithTimeout</span> <span class="mi">60</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="kc">None</span>
 </pre></div>
 </div>
@@ -8026,15 +8014,24 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 critical #4 runWithTimeoutChildAsync** / ex: System.Exception: error / timeout: 60
+<pre>00:00:01 critical #4 runWithTimeoutAsync** / ex: System.Exception: error
+   at FSI_0035.it@4-119.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1962-4.Invoke(Unit unitVar) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1964
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 60
 &lt;null&gt;
+
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8044,7 +8041,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8053,22 +8050,24 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">runWithTimeoutStrict</span> <span class="p">(</span><span class="n">timeout</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"timeout: </span><span class="si">{timeout}</span><span class="s2"> / {getLocals ()}"</span>
+    <span class="n">let</span> <span class="n">_locals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"timeout: </span><span class="si">{timeout}</span><span class="s2"> / {_locals ()}"</span>
 
     <span class="n">let</span> <span class="n">timeoutTask</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
         <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="n">timeout</span>
-        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">getLocals</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">_locals</span>
     <span class="p">}</span>
 
     <span class="n">let</span> <span class="n">task</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
         <span class="k">try</span>
-            <span class="k">return</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span> <span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">,</span> <span class="n">getLocals</span>
+            <span class="k">return</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span> <span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">,</span> <span class="n">_locals</span>
         <span class="k">with</span>
         <span class="o">|</span> <span class="p">:</span><span class="err">?</span> <span class="n">System</span><span class="o">.</span><span class="n">TimeoutException</span> <span class="k">as</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">getLocals</span>
+            <span class="n">let</span> <span class="n">_locals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {_locals ()}"</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">_locals</span>
         <span class="o">|</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutStrict / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
+            <span class="n">trace</span> <span class="n">Critical</span>
+                <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutStrict / async error"</span><span class="p">)</span>
+                <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {_locals ()}"</span><span class="p">)</span>
             <span class="k">return</span> <span class="k">raise</span> <span class="n">ex</span>
     <span class="p">}</span>
 
@@ -8078,8 +8077,8 @@ a.anchor-link {
         <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">Tasks</span><span class="o">.</span><span class="n">Task</span><span class="o">.</span><span class="n">WhenAny</span>
         <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">task</span> <span class="o">-&gt;</span>
             <span class="k">match</span> <span class="n">task</span><span class="o">.</span><span class="n">Result</span><span class="o">.</span><span class="n">Result</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">getLocals</span> <span class="o">-&gt;</span>
-                <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutStrict"</span><span class="p">)</span> <span class="n">getLocals</span>
+            <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">_locals</span> <span class="o">-&gt;</span>
+                <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutStrict"</span><span class="p">)</span> <span class="n">_locals</span>
                 <span class="kc">None</span>
             <span class="o">|</span> <span class="n">result</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">result</span>
     <span class="k">with</span>
@@ -8087,19 +8086,21 @@ a.anchor-link {
         <span class="n">ex</span><span class="o">.</span><span class="n">InnerExceptions</span>
         <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">exists</span> <span class="p">(</span><span class="n">function</span> <span class="p">:</span><span class="err">?</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">Tasks</span><span class="o">.</span><span class="n">TaskCanceledException</span> <span class="o">-&gt;</span> <span class="n">true</span> <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span><span class="p">)</span>
         <span class="o">-&gt;</span>
-        <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-        <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutStrict"</span><span class="p">)</span> <span class="n">getLocals</span>
+        <span class="n">trace</span> <span class="ne">Warning</span>
+            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutStrict"</span><span class="p">)</span>
+            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {_locals ()}"</span><span class="p">)</span>
         <span class="kc">None</span>
     <span class="o">|</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-        <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-        <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutStrict**"</span><span class="p">)</span> <span class="n">getLocals</span>
+        <span class="n">trace</span> <span class="n">Critical</span>
+            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutStrict / task error"</span><span class="p">)</span>
+            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {_locals ()}"</span><span class="p">)</span>
         <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8124,14 +8125,15 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 debug #5 runWithTimeoutStrict / ex: System.TimeoutException: The operation has timed out. / timeout: 10
+<pre>00:00:01   debug #5 runWithTimeoutStrict / ex: System.TimeoutException: The operation has timed out. / timeout: 10
 &lt;null&gt;
+
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8156,14 +8158,14 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSharpOption&lt;Unit&gt;
-      Value: &lt;null&gt;
+<pre>Some ()
+
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8190,16 +8192,17 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 critical #6 runWithTimeoutStrict / ex: System.Exception: error / timeout: 60
-00:00:01 critical #7 runWithTimeoutStrict** / ex: System.AggregateException: One or more errors occurred. (error) / timeout: 60
+<pre>00:00:01 critical #6 runWithTimeoutStrict / async error / ex: System.Exception: error / timeout: 60
+00:00:01 critical #7 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (error) / timeout: 60
 &lt;null&gt;
+
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8209,7 +8212,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8228,7 +8231,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8238,7 +8241,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8254,7 +8257,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8280,13 +8283,14 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>1
+
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8296,7 +8300,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8312,7 +8316,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8355,9 +8359,125 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSharpResult&lt;Int32,String&gt;
-      ResultValue: 0
-      ErrorValue: A task was canceled.
+<pre>Error "A task was canceled."
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="retryAsync">retryAsync<a class="anchor-link" href="#retryAsync">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">retryAsync</span> <span class="n">retries</span> <span class="n">fn</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="n">lastError</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
+        <span class="k">try</span>
+            <span class="k">return</span><span class="err">!</span>
+                <span class="k">if</span> <span class="n">retry</span> <span class="o">&lt;=</span> <span class="n">retries</span>
+                <span class="n">then</span> <span class="n">fn</span> <span class="o">|&gt;</span> <span class="nb">map</span> <span class="n">Ok</span>
+                <span class="k">else</span> <span class="n">lastError</span> <span class="o">|&gt;</span> <span class="n">Error</span> <span class="o">|&gt;</span> <span class="n">init</span>
+        <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
+            <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Async.retryAsync / retry: </span><span class="si">{retry}</span><span class="s2">/</span><span class="si">{retries}</span><span class="s2"> / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">_locals</span>
+            <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1</span>
+            <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">format_exception</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">loop</span> <span class="mi">1</span> <span class="s2">"Async.retryAsync / invalid retries / retries: </span><span class="si">{retries}</span><span class="s2">"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">let</span> <span class="n">retry_fn_test</span> <span class="o">=</span> <span class="n">ref</span> <span class="mi">0</span>
+<span class="k">async</span> <span class="p">{</span>
+    <span class="n">retry_fn_test</span><span class="o">.</span><span class="n">Value</span> <span class="o">&lt;-</span> <span class="n">retry_fn_test</span><span class="o">.</span><span class="n">Value</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">retry_fn_test</span><span class="o">.</span><span class="n">Value</span>
+<span class="p">}</span>
+<span class="o">|&gt;</span> <span class="n">retryAsync</span> <span class="mi">3</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Ok</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Ok 1
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">let</span> <span class="n">retry_fn_test</span> <span class="o">=</span> <span class="n">ref</span> <span class="mi">0</span>
+<span class="k">async</span> <span class="p">{</span>
+    <span class="k">return</span>
+        <span class="k">if</span> <span class="n">retry_fn_test</span><span class="o">.</span><span class="n">Value</span> <span class="o">&gt;=</span> <span class="mi">2</span>
+        <span class="n">then</span> <span class="n">retry_fn_test</span><span class="o">.</span><span class="n">Value</span>
+        <span class="k">else</span>
+            <span class="n">retry_fn_test</span><span class="o">.</span><span class="n">Value</span> <span class="o">&lt;-</span> <span class="n">retry_fn_test</span><span class="o">.</span><span class="n">Value</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">failwith</span> <span class="s2">"test"</span>
+<span class="p">}</span>
+<span class="o">|&gt;</span> <span class="n">retryAsync</span> <span class="mi">3</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Ok</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:01   debug #8 Async.retryAsync / retry: 1/3 / ex: System.Exception: test
+00:00:01   debug #9 Async.retryAsync / retry: 2/3 / ex: System.Exception: test
+Ok 2
+
 </pre>
 </div>
 </div>

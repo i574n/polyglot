@@ -1,8 +1,8 @@
-import { Record } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
-import { IComparable, IEquatable } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { record_type, int32_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { value, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { Record } from "../../../polyglot/deps/Fable/src/fable-library-ts/Types.js";
+import { int32 } from "../../../polyglot/deps/Fable/src/fable-library-ts/Int32.js";
+import { IComparable, IEquatable } from "../../../polyglot/deps/Fable/src/fable-library-ts/Util.js";
+import { record_type, int32_type, TypeInfo } from "../../../polyglot/deps/Fable/src/fable-library-ts/Reflection.js";
+import { value, Option } from "../../../polyglot/deps/Fable/src/fable-library-ts/Option.js";
 import * as crypto from "crypto";
 
 export interface ICryptoCreateHash {
@@ -30,7 +30,7 @@ export function method1(): string {
 }
 
 export function closure0(unitVar: void, v0_1: string): string {
-    let _v1: Option<string> = void 0;
+    let _v1: Option<string> = undefined;
     const v29: ICryptoCreateHash = crypto;
     const v32: any = v29.createHash("sha256");
     const v34: any = v32.update(v0_1, 'utf8');
@@ -39,7 +39,7 @@ export function closure0(unitVar: void, v0_1: string): string {
     return value(_v1);
 }
 
-export const v0 = (v: string): string => closure0(void 0, v);
+export const v0 = (v: string): string => closure0(undefined, v);
 
 export function hash_text(x: string): string {
     return v0(x);

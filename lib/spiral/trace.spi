@@ -1,15 +1,12 @@
-// // # trace
+/// # trace
 
-// // ## types
-
+/// ## types
 inl types () =
-    global "#if FABLE_COMPILER // trace.types"
     rust.types ()
     sm'.types ()
-    global "#endif // trace.types"
+    env.types ()
 
-// // ## trace_level
-
+/// ## trace_level
 union trace_level =
     | Verbose
     | Debug
@@ -30,76 +27,75 @@ instance of_string trace_level = function
     | "Info" => Info
     | "Warning" => Warning
     | "Critical" => Critical
+    | x => failwith $'$"of_string trace_level / x: {!x}"'
 
-// // ## repl_start
-
+/// ## repl_start
 inl repl_start () : optionm'.option' i64 =
-    inl result : optionm'.option' (optionm'.option' i64) = optionm'.none' ()
-    $"let mutable _!result = !result"
-    $'#if INTERACTIVE || \!FABLE_COMPILER' : ()
-    if get_entry_assembly_name () <> "Microsoft.DotNet.Interactive.App"
-    then date_time.now () |> date_time.ticks |> Some
-    else None
-    |> optionm'.box
-    |> fun x =>
-        inl x = join x
-        $'!x '
-    $'#else' : ()
-    (None : option i64) |> optionm'.box
-    |> fun x =>
-        inl x = join x
-        $'!x '
-    $'#endif' : ()
-    $"|> fun x -> _!result <- Some x"
-    $'_!result.Value'
+    run_target function
+        | Fsharp (Native) & x
+        | Rust (Native) & x => fun () =>
+            inl automation = env.get_environment_variable "AUTOMATION"
+            // inl target =
+            //     match x with
+            //     | Fsharp (Native) => "Fsharp (Native)"
+            //     | Rust (Native) => "Rust (Native)"
+            // inl assembly_name = env.get_entry_assembly_name ()
+            // console.write_line ($'$"repl_start / automation: \'{!automation}\' / target: {!target} / assembly_name: {!assembly_name}"' : string)
+            if automation = "True"
+            then date_time.now () |> date_time.ticks |> fun (date_time.timestamp x) => x |> Some
+            else None
+            |> optionm'.box
+        | _ => fun () => optionm'.none' ()
 
-// // ## trace_state
-
+/// ## trace_state
 type trace_state =
     {
         count : mut i64
-        dump : mut bool
+        trace_file : mut (string -> ())
         enabled : mut bool
         level : mut trace_level
         repl_start : optionm'.option' i64
     }
 
-inl new_trace_state () =
+inl new_trace_state trace_level =
     {
         enabled = mut true
         count = mut 0i64
-        level = mut Verbose
-        dump = mut false
+        level = mut trace_level
+        trace_file = mut ignore
         repl_start = repl_start ()
     } : trace_state
 
-// // ## init_trace_state
-
-inl init_trace_state () : () =
+/// ## init_trace_state
+inl init_trace_state trace_level : () =
+    inl trace_level =
+        trace_level
+        |> optionm'.default_value Verbose
     global "module State = let mutable trace_state = None"
-    $"if State.trace_state = None then State.trace_state <- !new_trace_state () |> Some" : ()
+    $"if State.trace_state.IsNone then State.trace_state <- !new_trace_state !trace_level |> Some" : ()
 
-// // ## get_trace_state
-
-inl get_trace_state () : trace_state =
-    init_trace_state ()
+/// ## get_trace_state_or_init
+inl get_trace_state_or_init trace_level : trace_state =
+    init_trace_state trace_level
     $'State.trace_state.Value'
 
-// // ## get_locals
+/// ## _locals
+inl _locals () = ""
 
-inl get_locals () = ""
-
-// // ## test_trace_level
-
+/// ## test_trace_level
 inl test_trace_level level : bool =
-    inl state = get_trace_state ()
+    inl state = get_trace_state_or_init None
     inl level' = *state.level
-    *state.enabled && $'!level >= !level' '
+    if *state.enabled |> not
+    then false
+    else
+        inl level : i32 = real real_core.union_tag level
+        inl level' : i32 = real real_core.union_tag level'
+        level >= level'
 
-// // ## trace_raw
-
-inl trace_raw level fn =
-    inl trace_state = get_trace_state ()
+/// ## trace_raw
+let rec trace_raw level fn =
+    inl trace_state = get_trace_state_or_init None
     if level |> test_trace_level then
         inl count = trace_state.count
         count <- *trace_state.count + 1
@@ -112,29 +108,12 @@ inl trace_raw level fn =
         | _ => fun () =>
             $'System.Console.WriteLine !text '
 
-        // run_target function
-        // | Fsharp (Native) => fun () =>
-        //     if *trace_state.dump then
-        //         try_unit
-        //             fun () =>
-        //                 // open file_system_operators
-        //                 // inl tmp_path = file_system.get_temp_path ()
-        //                 // inl log_dir = tmp_path </> "!polyglot"
-        //                 // file_system.create_directory log_dir |> ignore
-        //                 // inl guid = date_time.new_guid_from_date_time (date_time.now ())
-        //                 // inl log_file = log_dir </> $'$"{!guid}.txt"'
-        //                 // file_system.write_all_text_async log_file text |> async.run_synchronously
-        //                 ()
-        //             fun ex =>
-        //                 inl ex = ex |> sm'.format_exception
-        //                 trace_raw Critical (fun () => $'$"trace / ex: {!ex}"')
-        // | _ => fun () => ()
+        *trace_state.trace_file text
 
-// // ## trace
-
-let trace (level : trace_level) (fn : () -> string) (get_locals : () -> string) =
+/// ## trace
+let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string) =
     fun () =>
-        inl trace_state = get_trace_state ()
+        inl trace_state = get_trace_state_or_init None
         inl time =
             run_target fun target =>
                 match target with
@@ -160,7 +139,7 @@ let trace (level : trace_level) (fn : () -> string) (get_locals : () -> string) 
                         $'!date_time.ToString !format '
                 | _ => fun () => join ""
         inl count = *trace_state.count
-        inl level_str = level |> to_string |> sm'.to_lower
+        inl level_str = level |> to_string |> sm'.to_lower |> sm'.pad_left 7 ' '
         inl level_str =
             run_target function
             | Rust _ => fun () =>
@@ -170,7 +149,7 @@ let trace (level : trace_level) (fn : () -> string) (get_locals : () -> string) 
                     | Verbose => !\($'"inline_colorization::color_bright_black"')
                     | Debug => !\($'"inline_colorization::color_bright_blue"')
                     | Info => !\($'"inline_colorization::color_bright_green"')
-                    | Warning => !\($'"inline_colorization::color_bright_yellow"')
+                    | Warning => !\($'"inline_colorization::color_yellow"')
                     | Critical => !\($'"inline_colorization::color_bright_red"')
                 inl level_str = level_str |> sm'.as_str
                 inl color_reset : rust.ref' sm'.str = !\($'"inline_colorization::color_reset"')
@@ -178,14 +157,13 @@ let trace (level : trace_level) (fn : () -> string) (get_locals : () -> string) 
                 |> sm'.format''
                 |> sm'.from_std_string
             | _ => fun () => level_str
-        $'$"{!time} {!level_str} #{!count} %s{!fn ()} / %s{!get_locals ()}"'
+        $'$"{!time} {!level_str} #{!count} %s{!text_fn ()} / %s{!locals ()}"'
         |> sm'.trim_start ;[]
         |> sm'.trim_end ;[ ' '; '/' ]
     |> trace_raw level
 
-// // ## main
-
+/// ## main
 inl main () =
     types ()
-    init_trace_state ()
+    init_trace_state None
     $"let trace x = !trace x" : ()

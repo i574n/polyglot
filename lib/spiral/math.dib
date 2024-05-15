@@ -8,48 +8,48 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
 
 #!spiral
 
-// // test
+//// test
 
 2 * 2 / 0.4f64 |> sqrt
 |> _assert_approx_eq None 3.1622776601683795
 
 #!spiral
 
-// // test
+//// test
 
 2f64 / 3
 |> _assert_approx_eq None 0.6666666666666666
 
 #!spiral
 
-// // test
+//// test
 
 2f64 |> log
 |> _assert_approx_eq None 0.6931471805599453
 
 #!spiral
 
-// // test
+//// test
 
 pi
 |> _assert_approx_eq None 3.141592653589793f64
 
 #!spiral
 
-// // test
+//// test
 
 pi |> cos
 |> _assert_eq -1f64
 
 #!spiral
 
-// // test
+//// test
 
 pi
 |> cos
@@ -58,7 +58,7 @@ pi
 
 #!spiral
 
-// // test
+//// test
 
 pi / 2 |> cos
 |> _assert_approx_eq None 0.00000000000000006123233995736766f64
@@ -74,7 +74,7 @@ inl atan2 (y : f64) (x : f64) =
 
 #!spiral
 
-// // test
+//// test
 
 0 |> atan2 1
 |> _assert_eq 1.5707963267948966
@@ -99,7 +99,7 @@ inl floor forall t {float}. (n : t) : t =
 
 #!spiral
 
-// // test
+//// test
 
 0.6 |> floor
 |> _assert_eq 0f64
@@ -115,7 +115,7 @@ inl ceil forall t {float}. (n : t) : t =
 
 #!spiral
 
-// // test
+//// test
 
 0.6 |> ceil
 |> _assert_eq 1f64
@@ -131,7 +131,7 @@ inl round forall t {float}. (n : t) : t =
 
 #!spiral
 
-// // test
+//// test
 
 0.5 |> round
 |> _assert_eq 0f64
@@ -156,7 +156,7 @@ inl log_base (new_base : f64) (a : f64) =
 
 #!spiral
 
-// // test
+//// test
 
 100 |> log_base 10
 |> _assert_eq 2
@@ -172,14 +172,14 @@ inl round forall t {float}. (x : t) : t =
 
 #!spiral
 
-// // test
+//// test
 
 0.5 |> round
 |> _assert_eq 0f64
 
 #!spiral
 
-// // test
+//// test
 
 0.6 |> round
 |> _assert_eq 1f64
@@ -195,7 +195,7 @@ inl square x =
 
 #!spiral
 
-// // test
+//// test
 
 5f64
 |> sqrt
@@ -204,7 +204,7 @@ inl square x =
 
 #!spiral
 
-// // test
+//// test
 
 e () |> square
 |> _assert_approx_eq None 7.3890560989306495

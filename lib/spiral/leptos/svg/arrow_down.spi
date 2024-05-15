@@ -8,7 +8,7 @@ inl render (class : () -> string) props : _ svg =
         $'"viewBox=\\\"0 0 20 20\\\""'
         $'"fill=\\\"currentColor\\\""'
         $'"class=move || \\\" \\\".to_owned() + &!class(())"'
-        ] /@ props) fun () =>
+        ] ++ props) fun () =>
         :>(;[
             path [
                 $'"fill-rule=\\\"evenodd\\\""'

@@ -7543,7 +7543,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="nb">open</span> <span class="n">testing</span>
 </pre></div>
@@ -7572,11 +7572,79 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="seq'">seq'<a class="anchor-link" href="#seq'">¶</a></h2>
+<h2 id="types">types<a class="anchor-link" href="#types">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">core::iter::Fuse&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type core_iter_Fuse&lt;'T&gt; = class end"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">fuse</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'core_iter_Fuse&lt;`t&gt;'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="seq'">seq'<a class="anchor-link" href="#seq'">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7605,7 +7673,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7615,7 +7683,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7644,7 +7712,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7652,7 +7720,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span> <span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">of_array</span><span class="s1">'</span>
@@ -7718,7 +7786,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7747,7 +7815,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7755,7 +7823,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span> <span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">of_array</span>
@@ -7822,87 +7890,6 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="of_string">of_string<a class="anchor-link" href="#of_string">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">of_string</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">seq</span><span class="s1">' char =</span>
-    <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">unbox</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="s2">"ab"</span>
-<span class="o">|&gt;</span> <span class="n">of_string</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>ab</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : char seq =
-    let v0 : string = "ab"
-    let v1 : char seq = v0 |&gt; unbox&lt;char seq&gt;
-    v1
-method0()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7950,7 +7937,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span> <span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">of_array</span><span class="s1">'</span>
@@ -7992,30 +7979,30 @@ and method0 () : unit =
     let v4 : (string seq -&gt; (string [])) = Seq.toArray
     let v5 : (string []) = v4 v3
     let v6 : (string []) = [|v0; v1|]
-    let v7 : string = $"%A{v5}"
-    System.Console.WriteLine v7
-    let v8 : int32 = v5.Length
-    let v9 : int32 = v6.Length
-    let v10 : bool = v8 = v9
-    let v11 : bool = v10 &lt;&gt; true
-    let v14 : bool =
-        if v11 then
+    let v7 : int32 = v5.Length
+    let v8 : int32 = v6.Length
+    let v9 : bool = v7 = v8
+    let v10 : bool = v9 &lt;&gt; true
+    let v13 : bool =
+        if v10 then
             false
         else
-            let v12 : int32 = 0
-            method1(v5, v6, v12)
-    let v16 : bool =
-        if v14 then
+            let v11 : int32 = 0
+            method1(v5, v6, v11)
+    let v15 : bool =
+        if v13 then
             true
         else
-            method2(v14)
-    let v17 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
-    let v18 : bool = v16 = false
+            method2(v13)
+    let v16 : string = "assert_eq"
+    let v17 : string = $"{v16} / actual: %A{v5} / expected: %A{v6}"
+    System.Console.WriteLine v17
+    let v18 : bool = v15 = false
     if v18 then
         failwith&lt;unit&gt; v17
 method0()
 
-[|"a"; "b"|]
+assert_eq / actual: [|"a"; "b"|] / expected: [|"a"; "b"|]
 </pre>
 </div>
 </div>
@@ -8069,13 +8056,13 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="s2">"ab"</span>
-<span class="o">|&gt;</span> <span class="n">of_string</span>
+<span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span> <span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">of_array</span>
 <span class="o">|&gt;</span> <span class="n">to_list</span><span class="s1">'</span>
 <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.unbox</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">([</span> <span class="s1">'a'</span><span class="p">;</span> <span class="s1">'b'</span> <span class="p">])</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">([</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span> <span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -8090,38 +8077,39 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type UH0 =
     | UH0_0
-    | UH0_1 of char * UH0
-let rec closure1 (v0 : char) (v1 : UH0) : UH0 =
+    | UH0_1 of string * UH0
+let rec closure1 (v0 : string) (v1 : UH0) : UH0 =
     UH0_1(v0, v1)
-and closure0 () (v0 : char) : (UH0 -&gt; UH0) =
+and closure0 () (v0 : string) : (UH0 -&gt; UH0) =
     closure1(v0)
-and method1 () : (char -&gt; (UH0 -&gt; UH0)) =
+and method1 () : (string -&gt; (UH0 -&gt; UH0)) =
     closure0()
 and method2 (v0 : bool) : bool =
     v0
 and method0 () : unit =
-    let v0 : string = "ab"
-    let v1 : char seq = v0 |&gt; unbox&lt;char seq&gt;
-    let v2 : (char seq -&gt; char list) = Seq.toList
-    let v3 : char list = v2 v1
-    let v4 : ((char -&gt; (UH0 -&gt; UH0)) -&gt; (char list -&gt; (UH0 -&gt; UH0))) = List.foldBack
-    let v5 : (char -&gt; (UH0 -&gt; UH0)) = method1()
-    let v6 : (char list -&gt; (UH0 -&gt; UH0)) = v4 v5
-    let v7 : (UH0 -&gt; UH0) = v6 v3
-    let v8 : UH0 = UH0_0
-    let v9 : UH0 = v7 v8
-    let v10 : string = $"%A{v9}"
-    System.Console.WriteLine v10
-    let v24 : bool =
-        match v9 with
-        | UH0_1(v14, v15) -&gt; (* Cons *)
-            let v16 : bool = v14 = 'a'
-            if v16 then
-                match v15 with
-                | UH0_1(v17, v18) -&gt; (* Cons *)
-                    let v19 : bool = v17 = 'b'
-                    if v19 then
-                        match v18 with
+    let v0 : string = "a"
+    let v1 : string = "b"
+    let v2 : (string []) = [|v0; v1|]
+    let v3 : ((string []) -&gt; string seq) = Seq.ofArray
+    let v4 : string seq = v3 v2
+    let v5 : (string seq -&gt; string list) = Seq.toList
+    let v6 : string list = v5 v4
+    let v7 : ((string -&gt; (UH0 -&gt; UH0)) -&gt; (string list -&gt; (UH0 -&gt; UH0))) = List.foldBack
+    let v8 : (string -&gt; (UH0 -&gt; UH0)) = method1()
+    let v9 : (string list -&gt; (UH0 -&gt; UH0)) = v7 v8
+    let v10 : (UH0 -&gt; UH0) = v9 v6
+    let v11 : UH0 = UH0_0
+    let v12 : UH0 = v10 v11
+    let v26 : bool =
+        match v12 with
+        | UH0_1(v16, v17) -&gt; (* Cons *)
+            let v18 : bool = v16 = "a"
+            if v18 then
+                match v17 with
+                | UH0_1(v19, v20) -&gt; (* Cons *)
+                    let v21 : bool = v19 = "b"
+                    if v21 then
+                        match v20 with
                         | UH0_0 -&gt; (* Nil *)
                             true
                         | _ -&gt;
@@ -8134,21 +8122,23 @@ and method0 () : unit =
                 false
         | _ -&gt;
             false
-    let v26 : bool =
-        if v24 then
+    let v28 : bool =
+        if v26 then
             true
         else
-            method2(v24)
-    let v27 : UH0 = UH0_0
-    let v28 : UH0 = UH0_1('b', v27)
-    let v29 : UH0 = UH0_1('a', v28)
-    let v30 : string = $"__expect / actual: %A{v9} / expected: %A{v29}"
-    let v31 : bool = v26 = false
-    if v31 then
-        failwith&lt;unit&gt; v30
+            method2(v26)
+    let v29 : string = "assert_eq"
+    let v30 : UH0 = UH0_0
+    let v31 : UH0 = UH0_1(v1, v30)
+    let v32 : UH0 = UH0_1(v0, v31)
+    let v33 : string = $"{v29} / actual: %A{v12} / expected: %A{v32}"
+    System.Console.WriteLine v33
+    let v34 : bool = v28 = false
+    if v34 then
+        failwith&lt;unit&gt; v33
 method0()
 
-UH0_1 ('a', UH0_1 ('b', UH0_0))
+assert_eq / actual: UH0_1 ("a", UH0_1 ("b", UH0_0)) / expected: UH0_1 ("a", UH0_1 ("b", UH0_0))
 </pre>
 </div>
 </div>
@@ -8323,7 +8313,7 @@ UH0_1 ('a', UH0_1 ('b', UH0_0))
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="n">print_and_return</span>
 <span class="o">|&gt;</span> <span class="n">from_list</span>
@@ -8355,12 +8345,11 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v0 : US0 = US0_0(5)
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : US0 = US0_0(5)
     let v5 : US0 = US0_0(5)
-    let v6 : US0 = US0_0(5)
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
     ()
 method0()
 
@@ -8374,7 +8363,7 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
-US0_0 5
+assert_eq / actual: US0_0 5 / expected: US0_0 5
 </pre>
 </div>
 </div>
@@ -8431,7 +8420,7 @@ US0_0 5
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">from_list</span>
@@ -8454,16 +8443,15 @@ US0_0 5
     | US0_0 of f0_0 : int32
     | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_0(10)
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : US0 = US0_0(10)
     let v5 : US0 = US0_0(10)
-    let v6 : US0 = US0_0(10)
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
     ()
 method0()
 
-US0_0 10
+assert_eq / actual: US0_0 10 / expected: US0_0 10
 </pre>
 </div>
 </div>
@@ -8520,7 +8508,7 @@ US0_0 10
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="n">print_and_return</span>
 <span class="o">|&gt;</span> <span class="n">from_list</span>
@@ -8553,12 +8541,11 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v0 : US0 = US0_0(10)
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : US0 = US0_0(10)
     let v5 : US0 = US0_0(10)
-    let v6 : US0 = US0_0(10)
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
     ()
 method0()
 
@@ -8572,7 +8559,7 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
-US0_0 10
+assert_eq / actual: US0_0 10 / expected: US0_0 10
 </pre>
 </div>
 </div>
@@ -8642,7 +8629,7 @@ US0_0 10
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="n">print_and_return</span>
 <span class="o">|&gt;</span> <span class="n">from_list</span>
@@ -8675,12 +8662,11 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v0 : US0 = US0_0(2)
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : US0 = US0_0(2)
     let v5 : US0 = US0_0(2)
-    let v6 : US0 = US0_0(2)
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
     ()
 method0()
 
@@ -8694,7 +8680,7 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
-US0_0 2
+assert_eq / actual: US0_0 2 / expected: US0_0 2
 </pre>
 </div>
 </div>
@@ -8750,7 +8736,7 @@ US0_0 2
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">from_list</span>
@@ -8773,16 +8759,15 @@ US0_0 2
     | US0_0 of f0_0 : int32 * f0_1 : int32
     | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_0(5, 10)
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : US0 = US0_0(5, 10)
     let v5 : US0 = US0_0(5, 10)
-    let v6 : US0 = US0_0(5, 10)
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
     ()
 method0()
 
-US0_0 (5, 10)
+assert_eq / actual: US0_0 (5, 10) / expected: US0_0 (5, 10)
 </pre>
 </div>
 </div>
@@ -8836,7 +8821,7 @@ US0_0 (5, 10)
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="p">((</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span> <span class="o">|&gt;</span> <span class="n">from_list</span><span class="p">),</span> <span class="p">(</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">from_list</span><span class="p">))</span>
 <span class="o">||&gt;</span> <span class="nb">zip</span> <span class="mi">5</span><span class="n">i32</span>
@@ -8857,19 +8842,17 @@ US0_0 (5, 10)
     | US0_0 of f0_0 : int32
     | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_0(5)
-    let v1 : US0 = US0_0(10)
-    let v2 : string = $"%A{struct (v0, v1)}"
-    System.Console.WriteLine v2
+    let v6 : string = "assert_eq"
+    let v7 : US0 = US0_0(5)
+    let v8 : US0 = US0_0(10)
     let v9 : US0 = US0_0(5)
     let v10 : US0 = US0_0(10)
-    let v11 : US0 = US0_0(5)
-    let v12 : US0 = US0_0(10)
-    let v13 : string = $"__expect / actual: %A{struct (v9, v10)} / expected: %A{struct (v11, v12)}"
+    let v11 : string = $"{v6} / actual: %A{struct (v7, v8)} / expected: %A{struct (v9, v10)}"
+    System.Console.WriteLine v11
     ()
 method0()
 
-struct (US0_0 5, US0_0 10)
+assert_eq / actual: struct (US0_0 5, US0_0 10) / expected: struct (US0_0 5, US0_0 10)
 </pre>
 </div>
 </div>
@@ -8924,7 +8907,7 @@ struct (US0_0 5, US0_0 10)
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="p">((</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span> <span class="o">|&gt;</span> <span class="n">from_list</span><span class="p">),</span> <span class="p">(</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">from_list</span><span class="p">))</span>
 <span class="o">||&gt;</span> <span class="n">zip_with</span> <span class="p">(</span><span class="n">optionm</span><span class="s1">'.choose (+))</span>
@@ -8946,16 +8929,15 @@ struct (US0_0 5, US0_0 10)
     | US0_0 of f0_0 : int32
     | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_0(6)
-    let v1 : string = $"%A{v0}"
-    System.Console.WriteLine v1
+    let v3 : string = "assert_eq"
+    let v4 : US0 = US0_0(6)
     let v5 : US0 = US0_0(6)
-    let v6 : US0 = US0_0(6)
-    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
+    System.Console.WriteLine v6
     ()
 method0()
 
-US0_0 6
+assert_eq / actual: US0_0 6 / expected: US0_0 6
 </pre>
 </div>
 </div>
@@ -9063,7 +9045,7 @@ US0_0 6
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">from_list</span>
@@ -9083,13 +9065,13 @@ US0_0 6
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{45}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{45} / expected: %A{45}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{45} / expected: %A{45}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-45
+assert_eq / actual: 45 / expected: 45
 </pre>
 </div>
 </div>
@@ -9150,7 +9132,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">from_list</span>
@@ -9173,19 +9155,18 @@ method0()
     | UH0_0
     | UH0_1 of int32 * UH0
 let rec method0 () : unit =
-    let v0 : UH0 = UH0_0
-    let v1 : UH0 = UH0_1(9, v0)
-    let v2 : UH0 = UH0_1(8, v1)
-    let v3 : UH0 = UH0_1(7, v2)
-    let v4 : UH0 = UH0_1(6, v3)
-    let v5 : UH0 = UH0_1(5, v4)
-    let v6 : UH0 = UH0_1(4, v5)
-    let v7 : UH0 = UH0_1(3, v6)
-    let v8 : UH0 = UH0_1(2, v7)
-    let v9 : UH0 = UH0_1(1, v8)
-    let v10 : UH0 = UH0_1(0, v9)
-    let v11 : string = $"%A{v10}"
-    System.Console.WriteLine v11
+    let v88 : string = "assert_eq"
+    let v89 : UH0 = UH0_0
+    let v90 : UH0 = UH0_1(9, v89)
+    let v91 : UH0 = UH0_1(8, v90)
+    let v92 : UH0 = UH0_1(7, v91)
+    let v93 : UH0 = UH0_1(6, v92)
+    let v94 : UH0 = UH0_1(5, v93)
+    let v95 : UH0 = UH0_1(4, v94)
+    let v96 : UH0 = UH0_1(3, v95)
+    let v97 : UH0 = UH0_1(2, v96)
+    let v98 : UH0 = UH0_1(1, v97)
+    let v99 : UH0 = UH0_1(0, v98)
     let v100 : UH0 = UH0_0
     let v101 : UH0 = UH0_1(9, v100)
     let v102 : UH0 = UH0_1(8, v101)
@@ -9197,22 +9178,21 @@ let rec method0 () : unit =
     let v108 : UH0 = UH0_1(2, v107)
     let v109 : UH0 = UH0_1(1, v108)
     let v110 : UH0 = UH0_1(0, v109)
-    let v111 : UH0 = UH0_0
-    let v112 : UH0 = UH0_1(9, v111)
-    let v113 : UH0 = UH0_1(8, v112)
-    let v114 : UH0 = UH0_1(7, v113)
-    let v115 : UH0 = UH0_1(6, v114)
-    let v116 : UH0 = UH0_1(5, v115)
-    let v117 : UH0 = UH0_1(4, v116)
-    let v118 : UH0 = UH0_1(3, v117)
-    let v119 : UH0 = UH0_1(2, v118)
-    let v120 : UH0 = UH0_1(1, v119)
-    let v121 : UH0 = UH0_1(0, v120)
-    let v122 : string = $"__expect / actual: %A{v110} / expected: %A{v121}"
+    let v111 : string = $"{v88} / actual: %A{v99} / expected: %A{v110}"
+    System.Console.WriteLine v111
     ()
 method0()
 
-UH0_1
+assert_eq / actual: UH0_1
+  (0,
+   UH0_1
+     (1,
+      UH0_1
+        (2,
+         UH0_1
+           (3,
+            UH0_1
+              (4, UH0_1 (5, UH0_1 (6, UH0_1 (7, UH0_1 (8, UH0_1 (9, UH0_0)))))))))) / expected: UH0_1
   (0,
    UH0_1
      (1,
@@ -9278,7 +9258,7 @@ UH0_1
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">a</span> <span class="p">;[</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span> <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">from_array</span>
@@ -9311,28 +9291,28 @@ and method0 () : unit =
         else
             let v4 : int32 = v0.[int 1]
             US0_0(v4)
-    let v7 : string = $"%A{v6}"
-    System.Console.WriteLine v7
-    let v11 : bool =
+    let v10 : bool =
         match v6 with
-        | US0_0(v9) -&gt; (* Some *)
-            let v10 : bool = v9 = 2
-            v10
+        | US0_0(v8) -&gt; (* Some *)
+            let v9 : bool = v8 = 2
+            v9
         | _ -&gt;
             false
-    let v13 : bool =
-        if v11 then
+    let v12 : bool =
+        if v10 then
             true
         else
-            method1(v11)
+            method1(v10)
+    let v13 : string = "assert_eq"
     let v14 : US0 = US0_0(2)
-    let v15 : string = $"__expect / actual: %A{v6} / expected: %A{v14}"
-    let v16 : bool = v13 = false
+    let v15 : string = $"{v13} / actual: %A{v6} / expected: %A{v14}"
+    System.Console.WriteLine v15
+    let v16 : bool = v12 = false
     if v16 then
         failwith&lt;unit&gt; v15
 method0()
 
-US0_0 2
+assert_eq / actual: US0_0 2 / expected: US0_0 2
 </pre>
 </div>
 </div>
@@ -9361,14 +9341,14 @@ US0_0 2
     <span class="n">inl</span> <span class="n">ar</span> <span class="o">=</span> <span class="n">a</span> <span class="p">;[]</span> <span class="o">|&gt;</span> <span class="n">mut</span>
     <span class="p">((),</span> <span class="n">seq</span><span class="p">)</span>
     <span class="o">||&gt;</span> <span class="n">fold</span> <span class="n">fun</span> <span class="n">_</span> <span class="n">x</span> <span class="o">=&gt;</span>
-        <span class="n">ar</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">ar</span> <span class="o">/@</span> <span class="n">a</span> <span class="p">;[</span><span class="n">x</span><span class="p">]</span>
+        <span class="n">ar</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">ar</span> <span class="o">++</span> <span class="n">a</span> <span class="p">;[</span><span class="n">x</span><span class="p">]</span>
     <span class="o">*</span><span class="n">ar</span>
 
 <span class="n">inl</span> <span class="n">to_array_</span> <span class="n">seq</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">ar</span> <span class="o">=</span> <span class="n">a</span> <span class="p">;[]</span> <span class="o">|&gt;</span> <span class="n">mut</span>
     <span class="p">((),</span> <span class="n">seq</span><span class="p">)</span>
     <span class="o">||&gt;</span> <span class="n">fold_</span> <span class="n">fun</span> <span class="n">_</span> <span class="n">x</span> <span class="o">=&gt;</span>
-        <span class="n">ar</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">ar</span> <span class="o">/@</span> <span class="n">a</span> <span class="p">;[</span><span class="n">x</span><span class="p">]</span>
+        <span class="n">ar</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">ar</span> <span class="o">++</span> <span class="n">a</span> <span class="p">;[</span><span class="n">x</span><span class="p">]</span>
     <span class="o">*</span><span class="n">ar</span>
 </pre></div>
 </div>
@@ -9397,7 +9377,7 @@ US0_0 2
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">from_list</span>
@@ -9673,30 +9653,30 @@ and method0 () : unit =
     v1.l0 &lt;- v142
     let v152 : (int32 []) = v1.l0
     let v153 : (int32 []) = [|0; 1; 2; 3; 4; 5; 6; 7; 8; 9|]
-    let v154 : string = $"%A{v152}"
-    System.Console.WriteLine v154
-    let v155 : int32 = v152.Length
-    let v156 : int32 = v153.Length
-    let v157 : bool = v155 = v156
-    let v158 : bool = v157 &lt;&gt; true
-    let v161 : bool =
-        if v158 then
+    let v154 : int32 = v152.Length
+    let v155 : int32 = v153.Length
+    let v156 : bool = v154 = v155
+    let v157 : bool = v156 &lt;&gt; true
+    let v160 : bool =
+        if v157 then
             false
         else
-            let v159 : int32 = 0
-            method2(v152, v153, v159)
-    let v163 : bool =
-        if v161 then
+            let v158 : int32 = 0
+            method2(v152, v153, v158)
+    let v162 : bool =
+        if v160 then
             true
         else
-            method3(v161)
-    let v164 : string = $"__expect / actual: %A{v152} / expected: %A{v153}"
-    let v165 : bool = v163 = false
+            method3(v160)
+    let v163 : string = "assert_eq"
+    let v164 : string = $"{v163} / actual: %A{v152} / expected: %A{v153}"
+    System.Console.WriteLine v164
+    let v165 : bool = v162 = false
     if v165 then
         failwith&lt;unit&gt; v164
 method0()
 
-[|0; 1; 2; 3; 4; 5; 6; 7; 8; 9|]
+assert_eq / actual: [|0; 1; 2; 3; 4; 5; 6; 7; 8; 9|] / expected: [|0; 1; 2; 3; 4; 5; 6; 7; 8; 9|]
 </pre>
 </div>
 </div>
@@ -9754,7 +9734,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">from_list</span>
@@ -9774,13 +9754,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{10}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{10} / expected: %A{10}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{10} / expected: %A{10}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-10
+assert_eq / actual: 10 / expected: 10
 </pre>
 </div>
 </div>
@@ -9794,7 +9774,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">stream</span><span class="o">.</span><span class="n">new_finite_stream</span> <span class="n">print_and_return</span> <span class="mi">10</span><span class="n">i32</span>
 <span class="o">|&gt;</span> <span class="n">flip</span> <span class="n">stream</span><span class="o">.</span><span class="n">try_item</span>
@@ -9830,9 +9810,9 @@ method0()
     printfn $"print_and_return / x: {3}"
     printfn $"print_and_return / x: {4}"
     printfn $"print_and_return / x: {5}"
-    let v0 : string = $"%A{10}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{10} / expected: %A{10}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{10} / expected: %A{10}"
+    System.Console.WriteLine v1
     ()
 method0()
 
@@ -9852,7 +9832,7 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
-10
+assert_eq / actual: 10 / expected: 10
 </pre>
 </div>
 </div>
@@ -9910,7 +9890,7 @@ print_and_return / x: 5
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">stream</span><span class="o">.</span><span class="n">new_infinite_stream_</span> <span class="n">print_and_return</span>
 <span class="o">|&gt;</span> <span class="n">flip</span> <span class="n">stream</span><span class="o">.</span><span class="n">try_item</span>
@@ -9996,16 +9976,16 @@ and method0 () : unit =
     let v4 : UH1 = method2(v1, v2, v3)
     let v5 : int32 = 0
     let v6 : int32 = method5(v4, v5)
-    let v7 : string = $"%A{v6}"
-    System.Console.WriteLine v7
-    let v8 : bool = v6 = 10
-    let v10 : bool =
-        if v8 then
+    let v7 : bool = v6 = 10
+    let v9 : bool =
+        if v7 then
             true
         else
-            method6(v8)
-    let v11 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
-    let v12 : bool = v10 = false
+            method6(v7)
+    let v10 : string = "assert_eq"
+    let v11 : string = $"{v10} / actual: %A{v6} / expected: %A{10}"
+    System.Console.WriteLine v11
+    let v12 : bool = v9 = false
     if v12 then
         failwith&lt;unit&gt; v11
 method0()
@@ -10026,7 +10006,7 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
-10
+assert_eq / actual: 10 / expected: 10
 </pre>
 </div>
 </div>
@@ -10040,7 +10020,7 @@ print_and_return / x: 5
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">stream</span><span class="o">.</span><span class="n">new_infinite_stream_</span> <span class="n">print_and_return</span>
 <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">memoize</span>
@@ -10160,16 +10140,16 @@ and method0 () : unit =
     let v7 : UH1 = method3(v4, v5, v6)
     let v8 : int32 = 0
     let v9 : int32 = method6(v7, v8)
-    let v10 : string = $"%A{v9}"
-    System.Console.WriteLine v10
-    let v11 : bool = v9 = 10
-    let v13 : bool =
-        if v11 then
+    let v10 : bool = v9 = 10
+    let v12 : bool =
+        if v10 then
             true
         else
-            method7(v11)
-    let v14 : string = $"__expect / actual: %A{v9} / expected: %A{10}"
-    let v15 : bool = v13 = false
+            method7(v10)
+    let v13 : string = "assert_eq"
+    let v14 : string = $"{v13} / actual: %A{v9} / expected: %A{10}"
+    System.Console.WriteLine v14
+    let v15 : bool = v12 = false
     if v15 then
         failwith&lt;unit&gt; v14
 method0()
@@ -10180,7 +10160,7 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
-10
+assert_eq / actual: 10 / expected: 10
 </pre>
 </div>
 </div>
@@ -10194,7 +10174,7 @@ print_and_return / x: 5
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">stream</span><span class="o">.</span><span class="n">new_finite_stream</span> <span class="n">print_and_return</span> <span class="mi">10</span><span class="n">i32</span>
 <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">memoize</span>
@@ -10362,16 +10342,16 @@ and method0 () : unit =
     let v21 : UH1 = method1(v18, v19, v20)
     let v22 : int32 = 0
     let v23 : int32 = method4(v21, v22)
-    let v24 : string = $"%A{v23}"
-    System.Console.WriteLine v24
-    let v25 : bool = v23 = 10
-    let v27 : bool =
-        if v25 then
+    let v24 : bool = v23 = 10
+    let v26 : bool =
+        if v24 then
             true
         else
-            method5(v25)
-    let v28 : string = $"__expect / actual: %A{v23} / expected: %A{10}"
-    let v29 : bool = v27 = false
+            method5(v24)
+    let v27 : string = "assert_eq"
+    let v28 : string = $"{v27} / actual: %A{v23} / expected: %A{10}"
+    System.Console.WriteLine v28
+    let v29 : bool = v26 = false
     if v29 then
         failwith&lt;unit&gt; v28
 method0()
@@ -10382,7 +10362,7 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
-10
+assert_eq / actual: 10 / expected: 10
 </pre>
 </div>
 </div>
@@ -10453,7 +10433,7 @@ print_and_return / x: 5
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">inl</span> <span class="n">seq</span> <span class="o">=</span>
     <span class="n">fun</span> <span class="n">n</span> <span class="o">=&gt;</span>
@@ -10582,16 +10562,16 @@ and method0 () : unit =
     let v4 : UH1 = method1(v1, v2, v3)
     let v5 : int32 = 0
     let v6 : int32 = method4(v4, v5)
-    let v7 : string = $"%A{v6}"
-    System.Console.WriteLine v7
-    let v8 : bool = v6 = 10
-    let v10 : bool =
-        if v8 then
+    let v7 : bool = v6 = 10
+    let v9 : bool =
+        if v7 then
             true
         else
-            method5(v8)
-    let v11 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
-    let v12 : bool = v10 = false
+            method5(v7)
+    let v10 : string = "assert_eq"
+    let v11 : string = $"{v10} / actual: %A{v6} / expected: %A{10}"
+    System.Console.WriteLine v11
+    let v12 : bool = v9 = false
     if v12 then
         failwith&lt;unit&gt; v11
     let v13 : UH1 = UH1_0
@@ -10599,18 +10579,17 @@ and method0 () : unit =
     let v15 : UH1 = method6(v1, v13, v14)
     let v16 : int32 = 0
     let v17 : int32 = method4(v15, v16)
-    let v18 : string = $"%A{v17}"
-    System.Console.WriteLine v18
-    let v19 : bool = v17 = 10
-    let v21 : bool =
-        if v19 then
+    let v18 : bool = v17 = 10
+    let v20 : bool =
+        if v18 then
             true
         else
-            method5(v19)
-    let v22 : string = $"__expect / actual: %A{v17} / expected: %A{10}"
-    let v23 : bool = v21 = false
-    if v23 then
-        failwith&lt;unit&gt; v22
+            method5(v18)
+    let v21 : string = $"{v10} / actual: %A{v17} / expected: %A{10}"
+    System.Console.WriteLine v21
+    let v22 : bool = v20 = false
+    if v22 then
+        failwith&lt;unit&gt; v21
 method0()
 
 print_and_return / x: 0
@@ -10619,8 +10598,8 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
-10
-10
+assert_eq / actual: 10 / expected: 10
+assert_eq / actual: 10 / expected: 10
 </pre>
 </div>
 </div>
@@ -10678,7 +10657,7 @@ print_and_return / x: 5
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="mi">10</span><span class="n">i32</span> <span class="o">|&gt;</span> <span class="n">iterate</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">1</span><span class="n">i32</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1024</span>
@@ -10695,13 +10674,13 @@ print_and_return / x: 5
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{1024}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{1024} / expected: %A{1024}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-1024
+assert_eq / actual: 1024 / expected: 1024
 </pre>
 </div>
 </div>
@@ -10748,7 +10727,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="mi">10</span><span class="n">i32</span> <span class="o">|&gt;</span> <span class="n">iterate_</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">1</span><span class="n">i32</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1024</span>
@@ -10778,21 +10757,21 @@ and method0 () : unit =
     let v0 : int32 = 1
     let v1 : int32 = 10
     let v2 : int32 = method1(v0, v1)
-    let v3 : string = $"%A{v2}"
-    System.Console.WriteLine v3
-    let v4 : bool = v2 = 1024
-    let v6 : bool =
-        if v4 then
+    let v3 : bool = v2 = 1024
+    let v5 : bool =
+        if v3 then
             true
         else
-            method2(v4)
-    let v7 : string = $"__expect / actual: %A{v2} / expected: %A{1024}"
-    let v8 : bool = v6 = false
+            method2(v3)
+    let v6 : string = "assert_eq"
+    let v7 : string = $"{v6} / actual: %A{v2} / expected: %A{1024}"
+    System.Console.WriteLine v7
+    let v8 : bool = v5 = false
     if v8 then
         failwith&lt;unit&gt; v7
 method0()
 
-1024
+assert_eq / actual: 1024 / expected: 1024
 </pre>
 </div>
 </div>
@@ -10836,7 +10815,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="mi">10</span><span class="n">i32</span> <span class="o">|&gt;</span> <span class="n">iterate</span><span class="s1">' ((*) 2) 1i32</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1024</span>
@@ -10853,13 +10832,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"%A{1024}"
-    System.Console.WriteLine v0
-    let v1 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
+    let v0 : string = "assert_eq"
+    let v1 : string = $"{v0} / actual: %A{1024} / expected: %A{1024}"
+    System.Console.WriteLine v1
     ()
 method0()
 
-1024
+assert_eq / actual: 1024 / expected: 1024
 </pre>
 </div>
 </div>

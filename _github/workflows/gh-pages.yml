@@ -15,39 +15,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: moonrepo/setup-rust@v1
         with:
-          node-version: 21
+          channel: 'nightly'
+          components: 'clippy,rust-src,rustfmt'
+          targets: 'wasm32-unknown-unknown'
 
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.100-preview.1.24101.2'
+          cache: true
+          cache-dependency-path: paket.lock
 
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions/setup-node@v3
         with:
-          inherit-toolchain: true
+          node-version: 21
 
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
-          cache: 'pip'
-
-      - uses: actions/cache@v3
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-2024-03-15-${{ hashFiles('**/paket.lock') }}
-          restore-keys: ${{ runner.os }}-nuget-2024-03-18-
-
-      - uses: actions/cache@v3
-        with:
-            path: |
-                ~/.cargo/bin/
-                ~/.cargo/registry/index/
-                ~/.cargo/registry/cache/
-                ~/.cargo/git/db/
-                target/
-            key: ${{ runner.os }}-cargo-2024-03-15-${{ hashFiles('**/Cargo.lock') }}
-            restore-keys: ${{ runner.os }}-cargo-2024-03-18-
+          python-version: '3.12'
 
       - run: pwsh scripts/init.ps1
 

@@ -1,11 +1,9 @@
 /// ## Perf (Polyglot)
-
 #if !INTERACTIVE
 open Lib
 #endif
 
 /// ## TestCaseResult
-
 type TestCaseResult =
     {
         Input: string
@@ -15,7 +13,6 @@ type TestCaseResult =
     }
 
 /// ## run
-
 let run count (solutions: (string * ('TInput -> 'TExpected)) list) (input, expected) =
     let inputStr =
         match box input with
@@ -67,7 +64,6 @@ let run count (solutions: (string * ('TInput -> 'TExpected)) list) (input, expec
     }
 
 /// ## runAll
-
 let runAll testName count (solutions: (string * ('TInput -> 'TExpected)) list) testCases =
     printfn ""
     printfn ""
@@ -77,7 +73,6 @@ let runAll testName count (solutions: (string * ('TInput -> 'TExpected)) list) t
     |> Seq.toList
 
 /// ## sortResultList
-
 let sortResultList resultList =
     let table =
         let rows =
@@ -182,74 +177,74 @@ let mutable _count =
 /// ## empty3Tests
 
 /// Test: Empty3
-///
+/// 
 /// Solution: (a, a)
 /// Test case 1. A. Time: 91L
-///
+/// 
 /// Solution: (a, a)
 /// Test case 1. A. Time: 56L
-///
+/// 
 /// Input  | Expected      | Result | Best
 /// ---    | ---           | ---    | ---
 /// (a, a) | a             | a      | (1, 91)
 /// (a, a) | a             | a      | (1, 56)
-///
+/// 
 /// Averages
 /// Test case 1. Average Time: 73L
-///
+/// 
 /// Ranking
 /// Test case 1. Average Time: 73L
 
 /// ## empty2Tests
 
 /// Test: Empty2
-///
+/// 
 /// Solution: (a, a)
 /// Test case 1. A. Time: 59L
-///
+/// 
 /// Solution: (a, a)
 /// Test case 1. A. Time: 53L
-///
+/// 
 /// Input   | Expected        | Result  | Best
 /// ---     | ---             | ---     | ---
 /// (a, a)  | a               | a       | (1, 59)
 /// (a, a)  | a               | a       | (1, 53)
-///
+/// 
 /// Averages
 /// Test case 1. Average Time: 56L
-///
+/// 
 /// Ranking
 /// Test case 1. Average Time: 56L
 
 /// ## emptyTests
 
 /// Test: Empty
-///
+/// 
 /// Solution: 0
 /// Test case 1. A. Time: 61L
-///
+/// 
 /// Solution: 2
 /// Test case 1. A. Time: 62L
-///
+/// 
 /// Solution: 5
 /// Test case 1. A. Time: 70L
-///
+/// 
 /// Input   | Expected        | Result  | Best
 /// ---     | ---             | ---     | ---
 /// 0       | 0               | 0       | (1, 61)
 /// 2       | 2               | 2       | (1, 62)
 /// 5       | 5               | 5       | (1, 70)
-///
+/// 
 /// Averages
 /// Test case 1. Average Time: 64L
-///
+/// 
 /// Ranking
 /// Test case 1. Average Time: 64L
 
 /// ## uniqueLettersTests
 
 /// Test: UniqueLetters
-///
+/// 
 /// Solution: abc
 /// Test case 1. A. Time: 1512L
 /// Test case 2. B. Time: 1947L
@@ -262,7 +257,7 @@ let mutable _count =
 /// Test case 9. I. Time: 1495L
 /// Test case 10. J. Time: 1245L
 /// Test case 11. K. Time: 1219L
-///
+/// 
 /// Solution: accabb
 /// Test case 1. A. Time: 1648L
 /// Test case 2. B. Time: 2061L
@@ -275,7 +270,7 @@ let mutable _count =
 /// Test case 9. I. Time: 1445L
 /// Test case 10. J. Time: 1636L
 /// Test case 11. K. Time: 1317L
-///
+/// 
 /// Solution: pprrqqpp
 /// Test case 1. A. Time: 2255L
 /// Test case 2. B. Time: 2408L
@@ -288,7 +283,7 @@ let mutable _count =
 /// Test case 9. I. Time: 1537L
 /// Test case 10. J. Time: 1522L
 /// Test case 11. K. Time: 1322L
-///
+/// 
 /// Solution: aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb
 /// Test case 1. A. Time: 13073L
 /// Test case 2. B. Time: 11519L
@@ -301,14 +296,14 @@ let mutable _count =
 /// Test case 9. I. Time: 6133L
 /// Test case 10. J. Time: 5993L
 /// Test case 11. K. Time: 2040L
-///
+/// 
 /// Input                                                                           | Expected        | Result  | Best
 /// ---                                                                             | ---             | ---     | ---
 /// abc                                                                             | abc             | abc     | (11, 1219)
 /// accabb                                                                          | acb             | acb     | (11, 1317)
 /// pprrqqpp                                                                        | prq             | prq     | (11, 1322)
 /// aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb | acb             | acb     | (11, 2040)
-///
+/// 
 /// Averages
 /// Test case 1. Average Time: 4622L
 /// Test case 2. Average Time: 4483L
@@ -321,7 +316,7 @@ let mutable _count =
 /// Test case 9. Average Time: 2652L
 /// Test case 10. Average Time: 2599L
 /// Test case 11. Average Time: 1474L
-///
+/// 
 /// Ranking
 /// Test case 1. Average Time: 4622L
 /// Test case 2. Average Time: 4483L
@@ -338,9 +333,9 @@ let mutable _count =
 /// ## rotateStringsTests
 
 /// https://www.hackerrank.com/challenges/rotate-string/forum
-///
+/// 
 /// Test: RotateStrings
-///
+/// 
 /// Solution: abc
 /// Test case 1. A. Time: 1842L
 /// Test case 2. B. Time: 1846L
@@ -353,7 +348,7 @@ let mutable _count =
 /// Test case 9. FA. Time: 1651L
 /// Test case 10. FB. Time: 3764L
 /// Test case 11. FC. Time: 5415L
-///
+/// 
 /// Solution: abcde
 /// Test case 1. A. Time: 3356L
 /// Test case 2. B. Time: 2592L
@@ -366,7 +361,7 @@ let mutable _count =
 /// Test case 9. FA. Time: 2175L
 /// Test case 10. FB. Time: 3275L
 /// Test case 11. FC. Time: 5266L
-///
+/// 
 /// Solution: abcdefghi
 /// Test case 1. A. Time: 4492L
 /// Test case 2. B. Time: 3526L
@@ -379,7 +374,7 @@ let mutable _count =
 /// Test case 9. FA. Time: 3275L
 /// Test case 10. FB. Time: 4635L
 /// Test case 11. FC. Time: 5616L
-///
+/// 
 /// Solution: abab
 /// Test case 1. A. Time: 2093L
 /// Test case 2. B. Time: 1843L
@@ -392,7 +387,7 @@ let mutable _count =
 /// Test case 9. FA. Time: 1620L
 /// Test case 10. FB. Time: 2319L
 /// Test case 11. FC. Time: 3918L
-///
+/// 
 /// Solution: aa
 /// Test case 1. A. Time: 1107L
 /// Test case 2. B. Time: 1241L
@@ -405,7 +400,7 @@ let mutable _count =
 /// Test case 9. FA. Time: 1180L
 /// Test case 10. FB. Time: 1733L
 /// Test case 11. FC. Time: 2817L
-///
+/// 
 /// Solution: z
 /// Test case 1. A. Time: 816L
 /// Test case 2. B. Time: 745L
@@ -418,7 +413,7 @@ let mutable _count =
 /// Test case 9. FA. Time: 232L
 /// Test case 10. FB. Time: 773L
 /// Test case 11. FC. Time: 1789L
-///
+/// 
 /// Input           | Expected                                                                                        | Result                                                                                          | Best
 /// ---             | ---                                                                                             | ---                                                                                             | ---
 /// abc             | bca cab abc                                                                                     | bca cab abc                                                                                     | (8, 1517)
@@ -427,7 +422,7 @@ let mutable _count =
 /// abab            | baba abab baba abab                                                                             | baba abab baba abab                                                                             | (8, 1558)
 /// aa              | aa aa                                                                                           | aa aa                                                                                           | (1, 1107)
 /// z               | z                                                                                               | z                                                                                               | (9, 232)
-///
+/// 
 /// Averages
 /// Test case 1. Average Time: 2284L
 /// Test case 2. Average Time: 1965L
@@ -440,7 +435,7 @@ let mutable _count =
 /// Test case 9. Average Time: 1688L
 /// Test case 10. Average Time: 2749L
 /// Test case 11. Average Time: 4136L
-///
+/// 
 /// Ranking
 /// Test case 11. Average Time: 4136L
 /// Test case 6. Average Time: 3103L
@@ -461,22 +456,22 @@ let mutable _count =
 /// ## returnLettersWithOddCountTests
 
 /// Test: ReturnLettersWithOddCount
-///
+/// 
 /// Solution: 1
 /// Test case 1. A. Time: 645L
-///
+/// 
 /// Solution: 2
 /// Test case 1. A. Time: 663L
-///
+/// 
 /// Solution: 3
 /// Test case 1. A. Time: 680L
-///
+/// 
 /// Solution: 9
 /// Test case 1. A. Time: 730L
-///
+/// 
 /// Solution: 10
 /// Test case 1. A. Time: 815L
-///
+/// 
 /// Input   | Expected        | Result          | Best
 /// ---     | ---             | ---             | ---
 /// 1       | a               | a               | (1, 645)
@@ -484,32 +479,32 @@ let mutable _count =
 /// 3       | aaa             | aaa             | (1, 680)
 /// 9       | aaaaaaaaa       | aaaaaaaaa       | (1, 730)
 /// 10      | baaaaaaaaa      | baaaaaaaaa      | (1, 815)
-///
+/// 
 /// Averages
 /// Test case 1. Average Time: 706L
-///
+/// 
 /// Ranking
 /// Test case 1. Average Time: 706L
 
 /// ## hasAnyPairCloseToEachotherTests
 
 /// Test: HasAnyPairCloseToEachother
-///
+/// 
 /// Solution: 0
 /// Test case 1. A. Time: 137L
-///
+/// 
 /// Solution: 1,2
 /// Test case 1. A. Time: 186L
-///
+/// 
 /// Solution: 3,5
 /// Test case 1. A. Time: 206L
-///
+/// 
 /// Solution: 3,4,6
 /// Test case 1. A. Time: 149L
-///
+/// 
 /// Solution: 2,4,6
 /// Test case 1. A. Time: 150L
-///
+/// 
 /// Input   | Expected        | Result  | Best
 /// ---     | ---             | ---     | ---
 /// 0       | False           | False   | (1, 137)
@@ -517,9 +512,9 @@ let mutable _count =
 /// 3,5     | False           | False   | (1, 206)
 /// 3,4,6   | True            | True    | (1, 149)
 /// 2,4,6   | False           | False   | (1, 150)
-///
+/// 
 /// Averages
 /// Test case 1. Average Time: 165L
-///
+/// 
 /// Ranking
 /// Test case 1. Average Time: 165L

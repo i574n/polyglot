@@ -7543,9 +7543,38 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">rust_operators</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="nb">open</span> <span class="n">testing</span>
+<span class="nb">open</span> <span class="n">file_system_operators</span>
 </pre></div>
 </div>
 </div>
@@ -7566,7 +7595,84 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="types">types<a class="anchor-link" href="#types">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">sha2::Sha256</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type sha2_Sha256 = class end"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">sm</span><span class="s1">'.types ()</span>
+    <span class="n">am</span><span class="s1">'.types ()</span>
+    <span class="n">threading</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">rust</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">date_time</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">file_system</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">stream</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">runtime</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">types</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7576,7 +7682,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7608,7 +7714,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7618,7 +7724,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7648,7 +7754,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7658,7 +7764,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7691,7 +7797,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7701,7 +7807,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7732,7 +7838,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7742,7 +7848,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7773,7 +7879,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7783,7 +7889,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7794,6 +7900,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hash_text</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">join</span> <span class="nb">input</span>
             <span class="n">inl</span> <span class="n">sha256</span> <span class="o">=</span> <span class="n">sha256</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">use</span>
             <span class="nb">input</span>
             <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.utf8_get_bytes</span>
@@ -7825,7 +7932,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7833,7 +7940,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="s2">""</span>
 <span class="o">|&gt;</span> <span class="n">hash_text</span>
@@ -7852,101 +7959,108 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type ICryptoCreateHash = abstract createHash: x: string -&gt; obj
 type Mut0 = {mutable l0 : int32}
-let rec method1 (v0 : int32, v1 : Mut0) : bool =
+let rec method1 () : string =
+    let v0 : string = ""
+    v0
+and method2 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
-and method2 () : string =
+and method3 () : string =
     let v0 : string = ""
     v0
-and method3 (v0 : bool) : bool =
+and method4 (v0 : bool) : bool =
     v0
 and method0 () : unit =
-    let v0 : string option = None
-    let v1 : bool = true in let mutable _v0 = v0
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v0 : bool = true
+    let mutable _v0 : string option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v1 : string = null |&gt; unbox&lt;string&gt;
+    v1 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v2 : string = null |&gt; unbox&lt;string&gt;
-    v2
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    v2 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v3 : string = null |&gt; unbox&lt;string&gt;
-    v3
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v4 : string = null |&gt; unbox&lt;string&gt;
-    v4
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v5 : (unit -&gt; System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
-    let v6 : System.Security.Cryptography.SHA256 = v5 ()
-    use v6 = v6 
-    let v7 : System.Security.Cryptography.SHA256 = v6 
-    let v8 : (string -&gt; (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
-    let v9 : string = ""
-    let v10 : (uint8 []) = v8 v9
-    let v11 : ((uint8 []) -&gt; (uint8 [])) = v7.ComputeHash
-    let v12 : (uint8 []) = v11 v10
-    let v13 : int32 = v12.Length
-    let v14 : (string []) = Array.zeroCreate&lt;string&gt; (v13)
-    let v15 : Mut0 = {l0 = 0} : Mut0
-    while method1(v13, v15) do
-        let v17 : int32 = v15.l0
-        let v18 : uint8 = v12.[int v17]
-        let v19 : (string -&gt; string) = v18.ToString
-        let v20 : string = "x2"
-        let v21 : string = v19 v20
-        v14.[int v17] &lt;- v21
-        let v22 : int32 = v17 + 1
-        v15.l0 &lt;- v22
+    v3 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v4 : string = "crypto"
+    let v5 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v4
+    let v6 : string = "v5.createHash($0)"
+    let v7 : string = "sha256"
+    let v8 : obj = Fable.Core.JsInterop.emitJsExpr v7 v6
+    let v9 : string = "$0.update($1, 'utf8')"
+    let v10 : string = ""
+    let v11 : obj = Fable.Core.JsInterop.emitJsExpr struct (v8, v10) v9
+    let v12 : string = "$0.digest($1)"
+    let v13 : string = "hex"
+    let v14 : string = Fable.Core.JsInterop.emitJsExpr struct (v11, v13) v12
+    v14 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v15 : string = null |&gt; unbox&lt;string&gt;
+    v15 
+    #endif
+#else
+    let v16 : string = method1()
+    let v17 : (unit -&gt; System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
+    let v18 : System.Security.Cryptography.SHA256 = v17 ()
+    use v18 = v18 
+    let v19 : System.Security.Cryptography.SHA256 = v18 
+    let v20 : (string -&gt; (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
+    let v21 : (uint8 []) = v20 v16
+    let v22 : ((uint8 []) -&gt; (uint8 [])) = v19.ComputeHash
+    let v23 : (uint8 []) = v22 v21
+    let v24 : int32 = v23.Length
+    let v25 : (string []) = Array.zeroCreate&lt;string&gt; (v24)
+    let v26 : Mut0 = {l0 = 0} : Mut0
+    while method2(v24, v26) do
+        let v28 : int32 = v26.l0
+        let v29 : uint8 = v23.[int v28]
+        let v30 : (string -&gt; string) = v29.ToString
+        let v31 : string = "x2"
+        let v32 : string = v30 v31
+        v25.[int v28] &lt;- v32
+        let v33 : int32 = v28 + 1
+        v26.l0 &lt;- v33
         ()
-    let v23 : string seq = seq { for i = 0 to v14.Length - 1 do yield v14.[i] }
-    let v24 : string = method2()
-    let v25 : (string -&gt; (string seq -&gt; string)) = String.concat
-    let v26 : (string seq -&gt; string) = v25 v24
-    let v27 : string = v26 v23
-    v27
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v28 : string = "crypto"
-    let v29 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v28
-    let v30 : string = "v29.createHash($0)"
-    let v31 : string = "sha256"
-    let v32 : obj = Fable.Core.JsInterop.emitJsExpr v31 v30
-    let v33 : string = "$0.update($1, 'utf8')"
-    let v34 : obj = Fable.Core.JsInterop.emitJsExpr struct (v32, v9) v33
-    let v35 : string = "$0.digest($1)"
-    let v36 : string = "hex"
-    let v37 : string = Fable.Core.JsInterop.emitJsExpr struct (v34, v36) v35
-    v37
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v38 : string = Unchecked.defaultof&lt;string&gt;
-    v38
-#endif
+    let v34 : string seq = seq { for i = 0 to v25.Length - 1 do yield v25.[i] }
+    let v35 : string = method3()
+    let v36 : (string -&gt; (string seq -&gt; string)) = String.concat
+    let v37 : (string seq -&gt; string) = v36 v35
+    let v38 : string = v37 v34
+    v38 
+    #endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
     let v39 : string = _v0.Value
-    let v40 : string = $"%A{v39}"
-    System.Console.WriteLine v40
-    let v42 : bool = v39 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    let v44 : bool =
-        if v42 then
+    let v41 : bool = v39 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    let v43 : bool =
+        if v41 then
             true
         else
-            method3(v42)
+            method4(v41)
+    let v44 : string = "assert_eq"
     let v45 : string = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    let v46 : string = $"__expect / actual: %A{v39} / expected: %A{v45}"
-    let v47 : bool = v44 = false
+    let v46 : string = $"{v44} / actual: %A{v39} / expected: %A{v45}"
+    System.Console.WriteLine v46
+    let v47 : bool = v43 = false
     if v47 then
         failwith&lt;unit&gt; v46
 method0()
 
-"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7954,7 +8068,7 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="s2">" "</span>
 <span class="o">|&gt;</span> <span class="n">hash_text</span>
@@ -7973,102 +8087,563 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type ICryptoCreateHash = abstract createHash: x: string -&gt; obj
 type Mut0 = {mutable l0 : int32}
-let rec method1 (v0 : int32, v1 : Mut0) : bool =
+let rec method1 () : string =
+    let v0 : string = " "
+    v0
+and method2 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
-and method2 () : string =
+and method3 () : string =
     let v0 : string = ""
     v0
-and method3 (v0 : bool) : bool =
+and method4 (v0 : bool) : bool =
     v0
 and method0 () : unit =
-    let v0 : string option = None
-    let v1 : bool = true in let mutable _v0 = v0
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v0 : bool = true
+    let mutable _v0 : string option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v1 : string = null |&gt; unbox&lt;string&gt;
+    v1 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v2 : string = null |&gt; unbox&lt;string&gt;
-    v2
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    v2 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v3 : string = null |&gt; unbox&lt;string&gt;
-    v3
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v4 : string = null |&gt; unbox&lt;string&gt;
-    v4
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v5 : (unit -&gt; System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
-    let v6 : System.Security.Cryptography.SHA256 = v5 ()
-    use v6 = v6 
-    let v7 : System.Security.Cryptography.SHA256 = v6 
-    let v8 : (string -&gt; (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
-    let v9 : string = " "
-    let v10 : (uint8 []) = v8 v9
-    let v11 : ((uint8 []) -&gt; (uint8 [])) = v7.ComputeHash
-    let v12 : (uint8 []) = v11 v10
-    let v13 : int32 = v12.Length
-    let v14 : (string []) = Array.zeroCreate&lt;string&gt; (v13)
-    let v15 : Mut0 = {l0 = 0} : Mut0
-    while method1(v13, v15) do
-        let v17 : int32 = v15.l0
-        let v18 : uint8 = v12.[int v17]
-        let v19 : (string -&gt; string) = v18.ToString
-        let v20 : string = "x2"
-        let v21 : string = v19 v20
-        v14.[int v17] &lt;- v21
-        let v22 : int32 = v17 + 1
-        v15.l0 &lt;- v22
+    v3 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v4 : string = "crypto"
+    let v5 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v4
+    let v6 : string = "v5.createHash($0)"
+    let v7 : string = "sha256"
+    let v8 : obj = Fable.Core.JsInterop.emitJsExpr v7 v6
+    let v9 : string = "$0.update($1, 'utf8')"
+    let v10 : string = " "
+    let v11 : obj = Fable.Core.JsInterop.emitJsExpr struct (v8, v10) v9
+    let v12 : string = "$0.digest($1)"
+    let v13 : string = "hex"
+    let v14 : string = Fable.Core.JsInterop.emitJsExpr struct (v11, v13) v12
+    v14 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v15 : string = null |&gt; unbox&lt;string&gt;
+    v15 
+    #endif
+#else
+    let v16 : string = method1()
+    let v17 : (unit -&gt; System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
+    let v18 : System.Security.Cryptography.SHA256 = v17 ()
+    use v18 = v18 
+    let v19 : System.Security.Cryptography.SHA256 = v18 
+    let v20 : (string -&gt; (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
+    let v21 : (uint8 []) = v20 v16
+    let v22 : ((uint8 []) -&gt; (uint8 [])) = v19.ComputeHash
+    let v23 : (uint8 []) = v22 v21
+    let v24 : int32 = v23.Length
+    let v25 : (string []) = Array.zeroCreate&lt;string&gt; (v24)
+    let v26 : Mut0 = {l0 = 0} : Mut0
+    while method2(v24, v26) do
+        let v28 : int32 = v26.l0
+        let v29 : uint8 = v23.[int v28]
+        let v30 : (string -&gt; string) = v29.ToString
+        let v31 : string = "x2"
+        let v32 : string = v30 v31
+        v25.[int v28] &lt;- v32
+        let v33 : int32 = v28 + 1
+        v26.l0 &lt;- v33
         ()
-    let v23 : string seq = seq { for i = 0 to v14.Length - 1 do yield v14.[i] }
-    let v24 : string = method2()
-    let v25 : (string -&gt; (string seq -&gt; string)) = String.concat
-    let v26 : (string seq -&gt; string) = v25 v24
-    let v27 : string = v26 v23
-    v27
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v28 : string = "crypto"
-    let v29 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v28
-    let v30 : string = "v29.createHash($0)"
-    let v31 : string = "sha256"
-    let v32 : obj = Fable.Core.JsInterop.emitJsExpr v31 v30
-    let v33 : string = "$0.update($1, 'utf8')"
-    let v34 : obj = Fable.Core.JsInterop.emitJsExpr struct (v32, v9) v33
-    let v35 : string = "$0.digest($1)"
-    let v36 : string = "hex"
-    let v37 : string = Fable.Core.JsInterop.emitJsExpr struct (v34, v36) v35
-    v37
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v38 : string = Unchecked.defaultof&lt;string&gt;
-    v38
-#endif
+    let v34 : string seq = seq { for i = 0 to v25.Length - 1 do yield v25.[i] }
+    let v35 : string = method3()
+    let v36 : (string -&gt; (string seq -&gt; string)) = String.concat
+    let v37 : (string seq -&gt; string) = v36 v35
+    let v38 : string = v37 v34
+    v38 
+    #endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
     let v39 : string = _v0.Value
-    let v40 : string = $"%A{v39}"
-    System.Console.WriteLine v40
-    let v42 : bool = v39 = "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
-    let v44 : bool =
-        if v42 then
+    let v41 : bool = v39 = "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
+    let v43 : bool =
+        if v41 then
             true
         else
-            method3(v42)
+            method4(v41)
+    let v44 : string = "assert_eq"
     let v45 : string = "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
-    let v46 : string = $"__expect / actual: %A{v39} / expected: %A{v45}"
-    let v47 : bool = v44 = false
+    let v46 : string = $"{v44} / actual: %A{v39} / expected: %A{v45}"
+    System.Console.WriteLine v46
+    let v47 : bool = v43 = false
     if v47 then
         failwith&lt;unit&gt; v46
 method0()
 
-"36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
+assert_eq / actual: "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068" / expected: "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="get_file_hash'">get_file_hash'<a class="anchor-link" href="#get_file_hash'">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get_file_hash</span><span class="s1">' (path : string) : result string string =</span>
+    <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">normalize_path</span>
+    <span class="n">inl</span> <span class="n">exit_code</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span>
+        <span class="n">runtime</span><span class="o">.</span><span class="n">execution_options</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
+            <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'$"pwsh -c </span><span class="se">\\\"</span><span class="s1">(Get-FileHash </span><span class="se">\'</span><span class="s1">{!path}</span><span class="se">\'</span><span class="s1"> -Algorithm SHA256).Hash</span><span class="se">\\\"</span><span class="s1">"'</span>
+        <span class="p">}</span>
+        <span class="o">|&gt;</span> <span class="n">runtime</span><span class="o">.</span><span class="n">execute_with_options</span>
+    <span class="k">if</span> <span class="n">exit_code</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">then</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_lower |&gt; Ok</span>
+    <span class="k">else</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">Error</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">temp_folder</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">file_system</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
+<span class="n">disposable</span> <span class="o">|&gt;</span> <span class="n">use</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+<span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s2">"test.txt"</span>
+<span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">temp_folder</span> <span class="o">&lt;/&gt;</span> <span class="n">file_name</span>
+<span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">run_synchronously</span>
+<span class="n">path</span>
+<span class="o">|&gt;</span> <span class="n">get_file_hash</span><span class="s1">'</span>
+<span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">get</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:00   debug #1 execute_with_options_async / options: struct (None,
+        "pwsh -c "(Get-FileHash '/tmp/!dotnet-repl/20240515-0610-2464-6418-600000dd14ac/test.txt' -Algorithm SHA256).Hash"",
+        [||], None, None, true, None)
+00:00:00 verbose #2 &gt; E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855
+00:00:00   debug #3 execute_with_options_async / exit_code: 0 / output.Length: 64
+assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span> <span class="n">encoding_rs</span> <span class="n">encoding_rs_io</span> <span class="n">futures</span><span class="o">-</span><span class="n">lite</span> <span class="n">regex</span>
+
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">temp_folder</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">file_system</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s2">"test.txt"</span>
+<span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">temp_folder</span> <span class="o">&lt;/&gt;</span> <span class="n">file_name</span>
+<span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">write_all_text</span> <span class="n">path</span>
+<span class="n">path</span>
+<span class="o">|&gt;</span> <span class="n">get_file_hash</span><span class="s1">'</span>
+<span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">get</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"</span>
+<span class="n">disposable</span> <span class="o">|&gt;</span> <span class="n">use</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: /tmp/!spiral_builder_639942ffbd8a8ed67cd9ad47cca718b468a69d76c4f0273a120ce395882fb5d6/20240515-0610-4008-3067-00000058fa6c
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "(Get-FileHash '/tmp/!spiral_builder_639942ffbd8a8ed67cd9ad47cca718b468a69d76c4f0273a120ce395882fb5d6/20240515-0610-4008-3067-00000058fa6c/test.txt' -Algorithm SHA256).Hash"] / options: (None, "pwsh -c "(Get-FileHash '/tmp/!spiral_builder_639942ffbd8a8ed67cd9ad47cca718b468a69d76c4f0273a120ce395882fb5d6/20240515-0610-4008-3067-00000058fa6c/test.txt' -Algorithm SHA256).Hash"", Array(MutCell([])), None, None, true, None)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 64
+assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="sha256'">sha256'<a class="anchor-link" href="#sha256'">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">sha256</span><span class="s1">' = $'</span><span class="n">sha2_Sha256</span><span class="s1">'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="new_sha256">new_sha256<a class="anchor-link" href="#new_sha256">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_sha256</span> <span class="p">()</span> <span class="p">:</span> <span class="n">sha256</span><span class="s1">' =</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"sha2::Digest::new()"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="hasher_update">hasher_update<a class="anchor-link" href="#hasher_update">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hasher_update</span> <span class="n">forall</span> <span class="n">el</span> <span class="n">dim</span><span class="o">.</span> <span class="p">(</span><span class="nb">slice</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' (am'</span><span class="o">.</span><span class="n">slice</span><span class="s1">' el dim)) (hasher : sha256'</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"sha2::Digest::update(&amp;mut !hasher, !slice)"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="hasher_finalize">hasher_finalize<a class="anchor-link" href="#hasher_finalize">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hasher_finalize</span> <span class="p">(</span><span class="n">hasher</span> <span class="p">:</span> <span class="n">sha256</span><span class="s1">') : rust.ref'</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.slice u8) =</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"&amp;sha2::Digest::finalize(!hasher)"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="get_file_hash">get_file_hash<a class="anchor-link" href="#get_file_hash">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get_file_hash</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">result</span> <span class="n">string</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">normalize_path</span>
+    <span class="n">inl</span> <span class="n">file</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">file_open</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
+    <span class="n">inl</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">file</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">new_buf_reader</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !reader = !reader"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="n">inl</span> <span class="n">hasher</span> <span class="o">=</span> <span class="n">new_sha256</span> <span class="p">()</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let mut !hasher = !hasher"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    
+    <span class="n">real</span>
+        <span class="n">inl</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">1024</span>
+        <span class="n">inl</span> <span class="n">zero</span> <span class="o">=</span> <span class="n">unativeint</span> <span class="err">`</span><span class="n">i32</span> <span class="mi">0</span>
+        <span class="n">inl</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.new_slice `u8 `@size 0u8</span>
+
+        <span class="n">rust</span><span class="o">.</span><span class="n">loop</span> <span class="mi">2</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">count</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">buf_reader_read</span> <span class="err">`</span><span class="n">u8</span> <span class="err">`</span><span class="nd">@size</span> <span class="n">buffer</span> <span class="n">reader</span>
+            <span class="n">inl</span> <span class="n">count</span> <span class="o">=</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">' `unativeint `(stream.io_error) count</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">=.</span><span class="p">)</span> <span class="err">`</span><span class="n">unativeint</span> <span class="n">count</span> <span class="n">zero</span> <span class="n">then</span> <span class="n">rust</span><span class="o">.</span><span class="k">break</span> <span class="p">()</span>
+
+            <span class="n">hasher_update</span> <span class="err">`</span><span class="n">u8</span> <span class="err">`</span><span class="nd">@size</span>
+                <span class="p">(</span>
+                    <span class="n">am</span><span class="s1">'.slice_range `u8 `@size</span>
+                        <span class="p">(</span><span class="n">am</span><span class="s1">'.Start `unativeint zero)</span>
+                        <span class="p">(</span><span class="n">am</span><span class="s1">'.End `unativeint ((fun _ =&gt; count) : unativeint -&gt; unativeint))</span>
+                        <span class="n">buffer</span>
+                <span class="p">)</span>
+                <span class="n">hasher</span>
+
+    <span class="n">hasher</span>
+    <span class="o">|&gt;</span> <span class="n">hasher_finalize</span>
+    <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.slice_to_vec</span>
+    <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map'</span> <span class="p">(</span><span class="n">sm</span><span class="s1">'.format_custom'</span> <span class="s2">"</span><span class="si">{:02x}</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string)</span>
+    <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.from_vec</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span>
+    <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">of_array</span><span class="s1">'</span>
+    <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.concat ""</span>
+    <span class="o">|&gt;</span> <span class="n">Ok</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span> <span class="n">regex</span> <span class="n">sha2</span>
+
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">temp_folder</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">file_system</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
+
+<span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="n">join</span> <span class="s2">"test.txt"</span>
+<span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">temp_folder</span> <span class="o">&lt;/&gt;</span> <span class="n">file_name</span>
+<span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">write_all_text</span> <span class="n">path</span>
+<span class="n">path</span>
+<span class="o">|&gt;</span> <span class="n">get_file_hash</span>
+<span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">get</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"</span>
+<span class="n">disposable</span> <span class="o">|&gt;</span> <span class="n">use</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: /tmp/!spiral_builder_2aca700bbf8753c8756596231111e7ead581f0d848fba59776315e4a5116a402/20240515-0610-5541-3179-000000557f5e
+assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span> <span class="n">regex</span> <span class="n">sha2</span>
+
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">inl</span> <span class="n">temp_folder</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">file_system</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
+
+<span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="n">join</span> <span class="s2">"test.txt"</span>
+<span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">temp_folder</span> <span class="o">&lt;/&gt;</span> <span class="n">file_name</span>
+<span class="s2">" "</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">write_all_text</span> <span class="n">path</span>
+<span class="n">path</span>
+<span class="o">|&gt;</span> <span class="n">get_file_hash</span>
+<span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">get</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"</span>
+<span class="n">disposable</span> <span class="o">|&gt;</span> <span class="n">use</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: /tmp/!spiral_builder_de9674b126f970bf31cb9683f65c322ad03f4815dc86da5bc77824b44e0fe149/20240515-0611-0736-3855-00000049d137
+assert_eq / actual: "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068" / expected: "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8078,7 +8653,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8087,6 +8662,7 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">types</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let hash_text x = !hash_text x"</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -8100,76 +8676,454 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type ICryptoCreateHash = abstract createHash: x: string -&gt; obj
+<pre>#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("_")&gt;]
+#endif
+type Any = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func0&lt;$0&gt;")&gt;]
+#endif
+type Func0&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func1&lt;$0, $1&gt;")&gt;]
+#endif
+type Func0&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Box&lt;$0&gt;")&gt;]
+#endif
+type Box&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("dyn $0")&gt;]
+#endif
+type Dyn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("$0 + Send")&gt;]
+#endif
+type Send&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn() -&gt; $0")&gt;]
+#endif
+type Fn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn()")&gt;]
+#endif
+type FnUnit = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("FnOnce() -&gt; $0")&gt;]
+#endif
+type FnOnce&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0)")&gt;]
+#endif
+type ActionFn&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")&gt;]
+#endif
+type ActionFn2&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("impl $0")&gt;]
+#endif
+type Impl&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("mut $0")&gt;]
+#endif
+type Mut&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;]
+#endif
+type Ref&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;'static $0")&gt;]
+#endif
+type StaticRef&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("MutCell&lt;$0&gt;")&gt;]
+#endif
+type MutCell&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::any::Any")&gt;]
+#endif
+type std_any_Any = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow&lt;$0&gt;")&gt;]
+#endif
+type std_borrow_Cow&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell&lt;$0&gt;")&gt;]
+#endif
+type std_cell_RefCell&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin&lt;$0&gt;")&gt;]
+#endif
+type std_pin_Pin&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc&lt;$0&gt;")&gt;]
+#endif
+type std_rc_Rc&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak&lt;$0&gt;")&gt;]
+#endif
+type std_rc_Weak&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::collections::HashMap&lt;$0, $1&gt;")&gt;]
+#endif
+type std_collections_HashMap&lt;'K, 'V&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::collections::BTreeMap&lt;$0, $1&gt;")&gt;]
+#endif
+type std_collections_BTreeMap&lt;'K, 'V&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;]
+#endif
+type Str = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")&gt;]
+#endif
+type base64_DecodeError = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")&gt;]
+#endif
+type borsh_io_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("encoding_rs::Encoding")&gt;]
+#endif
+type encoding_rs_Encoding = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")&gt;]
+#endif
+type js_sys_JsString = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")&gt;]
+#endif
+type serde_json_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")&gt;]
+#endif
+type serde_json_Value = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")&gt;]
+#endif
+type serde_wasm_bindgen_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")&gt;]
+#endif
+type std_ffi_OsStr = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")&gt;]
+#endif
+type std_ffi_OsString = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fmt::Display&lt;$0&gt;")&gt;]
+#endif
+type std_fmt_Display&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")&gt;]
+#endif
+type std_str_Utf8Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::FromUtf8Error")&gt;]
+#endif
+type std_string_FromUtf8Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;]
+#endif
+type std_string_String = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::slice::Windows&lt;$0&gt;")&gt;]
+#endif
+type std_slice_Windows&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("regex::Regex")&gt;]
+#endif
+type regex_Regex = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("regex::Captures")&gt;]
+#endif
+type regex_Captures = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("regex::CaptureMatches")&gt;]
+#endif
+type regex_CaptureMatches = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("regex::Error")&gt;]
+#endif
+type regex_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("[$0]")&gt;]
+#endif
+type Slice&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("_")&gt;]
+#endif
+type Slice'&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Vec&lt;$0&gt;")&gt;]
+#endif
+type Vec&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle&lt;$0&gt;")&gt;]
+#endif
+type std_thread_JoinHandle&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;]
+#endif
+type std_sync_Arc&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex&lt;$0&gt;")&gt;]
+#endif
+type std_sync_Mutex&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard&lt;$0&gt;")&gt;]
+#endif
+type std_sync_MutexGuard&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError&lt;$0&gt;")&gt;]
+#endif
+type std_sync_PoisonError&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("chrono::DateTime&lt;$0&gt;")&gt;]
+#endif
+type chrono_DateTime&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("chrono::Local")&gt;]
+#endif
+type chrono_Local = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("chrono::NaiveDateTime")&gt;]
+#endif
+type chrono_NaiveDateTime = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("chrono::Utc")&gt;]
+#endif
+type chrono_Utc = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::time::Duration")&gt;]
+#endif
+type std_time_Duration = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::File")&gt;]
+#endif
+type std_fs_File = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")&gt;]
+#endif
+type std_fs_FileType = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::Display")&gt;]
+#endif
+type std_path_Display = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::Path")&gt;]
+#endif
+type std_path_Path = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::PathBuf")&gt;]
+#endif
+type std_path_PathBuf = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::DirEntry")&gt;]
+#endif
+type async_walkdir_DirEntry = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::Filtering")&gt;]
+#endif
+type async_walkdir_Filtering = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_walkdir::WalkDir")&gt;]
+#endif
+type async_walkdir_WalkDir = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::env::VarError")&gt;]
+#endif
+type std_env_VarError = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("async_std::io::BufReader&lt;$0&gt;")&gt;]
+#endif
+type async_std_io_BufReader&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader&lt;$0&gt;")&gt;]
+#endif
+type std_io_BufReader&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Error")&gt;]
+#endif
+type std_io_Error = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::io::Lines&lt;$0&gt;")&gt;]
+#endif
+type std_io_Lines&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("encoding_rs_io::DecodeReaderBytes&lt;$0, $1&gt;")&gt;]
+#endif
+type encoding_rs_io_DecodeReaderBytes&lt;'T, 'U&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Arg")&gt;]
+#endif
+type clap_Arg = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::ArgAction")&gt;]
+#endif
+type clap_ArgAction = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::Command")&gt;]
+#endif
+type clap_Command = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")&gt;]
+#endif
+type clap_ArgMatches = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::builder::ValueRange")&gt;]
+#endif
+type clap_builder_ValueRange = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::builder::ValueParser")&gt;]
+#endif
+type clap_builder_ValueParser = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("clap::builder::PossibleValue")&gt;]
+#endif
+type clap_builder_PossibleValue = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Child")&gt;]
+#endif
+type std_process_Child = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStderr")&gt;]
+#endif
+type std_process_ChildStderr = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")&gt;]
+#endif
+type std_process_ChildStdout = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")&gt;]
+#endif
+type std_process_ChildStdin = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Command")&gt;]
+#endif
+type std_process_Command = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Output")&gt;]
+#endif
+type std_process_Output = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::process::Stdio")&gt;]
+#endif
+type std_process_Stdio = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver&lt;$0&gt;")&gt;]
+#endif
+type std_sync_mpsc_Receiver&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender&lt;$0&gt;")&gt;]
+#endif
+type std_sync_mpsc_Sender&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::future::Future&lt;Output = $0&gt;")&gt;]
+#endif
+type std_future_Future&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll&lt;$0&gt;")&gt;]
+#endif
+type futures_future_TryJoinAll&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter&lt;$0&gt;")&gt;]
+#endif
+type rayon_vec_IntoIter&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map&lt;$0, _&gt;")&gt;]
+#endif
+type rayon_iter_Map&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")&gt;]
+#endif
+type futures_lite_stream_StreamExt = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse&lt;$0&gt;")&gt;]
+#endif
+type core_iter_Fuse&lt;'T&gt; = class end
+#if FABLE_COMPILER
+[&lt;Fable.Core.Erase; Fable.Core.Emit("sha2::Sha256")&gt;]
+#endif
+type sha2_Sha256 = class end
+type ICryptoCreateHash = abstract createHash: x: string -&gt; obj
 type Mut0 = {mutable l0 : int32}
-let rec method0 (v0 : int32, v1 : Mut0) : bool =
+let rec method0 (v0 : string) : string =
+    v0
+and method1 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
-and method1 () : string =
+and method2 () : string =
     let v0 : string = ""
     v0
 and closure0 () (v0 : string) : string =
-    let v1 : string option = None
-    let v2 : bool = true in let mutable _v1 = v1
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v1 : bool = true
+    let mutable _v1 : string option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v2 : string = null |&gt; unbox&lt;string&gt;
+    v2 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v3 : string = null |&gt; unbox&lt;string&gt;
-    v3
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    v3 
+    #endif
+#if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v4 : string = null |&gt; unbox&lt;string&gt;
-    v4
-#endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-    let v5 : string = null |&gt; unbox&lt;string&gt;
-    v5
-#endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v6 : (unit -&gt; System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
-    let v7 : System.Security.Cryptography.SHA256 = v6 ()
-    use v7 = v7 
-    let v8 : System.Security.Cryptography.SHA256 = v7 
-    let v9 : (string -&gt; (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
-    let v10 : (uint8 []) = v9 v0
-    let v11 : ((uint8 []) -&gt; (uint8 [])) = v8.ComputeHash
-    let v12 : (uint8 []) = v11 v10
-    let v13 : int32 = v12.Length
-    let v14 : (string []) = Array.zeroCreate&lt;string&gt; (v13)
-    let v15 : Mut0 = {l0 = 0} : Mut0
-    while method0(v13, v15) do
-        let v17 : int32 = v15.l0
-        let v18 : uint8 = v12.[int v17]
-        let v19 : (string -&gt; string) = v18.ToString
-        let v20 : string = "x2"
-        let v21 : string = v19 v20
-        v14.[int v17] &lt;- v21
-        let v22 : int32 = v17 + 1
-        v15.l0 &lt;- v22
+    v4 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v5 : string = "crypto"
+    let v6 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v5
+    let v7 : string = "v6.createHash($0)"
+    let v8 : string = "sha256"
+    let v9 : obj = Fable.Core.JsInterop.emitJsExpr v8 v7
+    let v10 : string = "$0.update($1, 'utf8')"
+    let v11 : obj = Fable.Core.JsInterop.emitJsExpr struct (v9, v0) v10
+    let v12 : string = "$0.digest($1)"
+    let v13 : string = "hex"
+    let v14 : string = Fable.Core.JsInterop.emitJsExpr struct (v11, v13) v12
+    v14 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v15 : string = null |&gt; unbox&lt;string&gt;
+    v15 
+    #endif
+#else
+    let v16 : string = method0(v0)
+    let v17 : (unit -&gt; System.Security.Cryptography.SHA256) = System.Security.Cryptography.SHA256.Create
+    let v18 : System.Security.Cryptography.SHA256 = v17 ()
+    use v18 = v18 
+    let v19 : System.Security.Cryptography.SHA256 = v18 
+    let v20 : (string -&gt; (uint8 [])) = System.Text.Encoding.UTF8.GetBytes
+    let v21 : (uint8 []) = v20 v16
+    let v22 : ((uint8 []) -&gt; (uint8 [])) = v19.ComputeHash
+    let v23 : (uint8 []) = v22 v21
+    let v24 : int32 = v23.Length
+    let v25 : (string []) = Array.zeroCreate&lt;string&gt; (v24)
+    let v26 : Mut0 = {l0 = 0} : Mut0
+    while method1(v24, v26) do
+        let v28 : int32 = v26.l0
+        let v29 : uint8 = v23.[int v28]
+        let v30 : (string -&gt; string) = v29.ToString
+        let v31 : string = "x2"
+        let v32 : string = v30 v31
+        v25.[int v28] &lt;- v32
+        let v33 : int32 = v28 + 1
+        v26.l0 &lt;- v33
         ()
-    let v23 : string seq = seq { for i = 0 to v14.Length - 1 do yield v14.[i] }
-    let v24 : string = method1()
-    let v25 : (string -&gt; (string seq -&gt; string)) = String.concat
-    let v26 : (string seq -&gt; string) = v25 v24
-    let v27 : string = v26 v23
-    v27
-#endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v28 : string = "crypto"
-    let v29 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v28
-    let v30 : string = "v29.createHash($0)"
-    let v31 : string = "sha256"
-    let v32 : obj = Fable.Core.JsInterop.emitJsExpr v31 v30
-    let v33 : string = "$0.update($1, 'utf8')"
-    let v34 : obj = Fable.Core.JsInterop.emitJsExpr struct (v32, v0) v33
-    let v35 : string = "$0.digest($1)"
-    let v36 : string = "hex"
-    let v37 : string = Fable.Core.JsInterop.emitJsExpr struct (v34, v36) v35
-    v37
-#endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v38 : string = Unchecked.defaultof&lt;string&gt;
-    v38
-#endif
+    let v34 : string seq = seq { for i = 0 to v25.Length - 1 do yield v25.[i] }
+    let v35 : string = method2()
+    let v36 : (string -&gt; (string seq -&gt; string)) = String.concat
+    let v37 : (string seq -&gt; string) = v36 v35
+    let v38 : string = v37 v34
+    v38 
+    #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     let v39 : string = _v1.Value
     v39

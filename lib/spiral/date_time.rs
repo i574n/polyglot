@@ -6,10 +6,15 @@ pub mod Date_time {
     use fable_library_rust::Guid_::parse;
     use fable_library_rust::Guid_::Guid;
     use fable_library_rust::Native_::on_startup;
+    use fable_library_rust::Native_::refCell;
+    use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
+    use fable_library_rust::Native_::LrcPtr;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
+    use fable_library_rust::Option_::defaultValue;
     use fable_library_rust::Option_::getValue;
+    use fable_library_rust::String_::getCharAt;
     use fable_library_rust::String_::getSlice;
     use fable_library_rust::String_::length;
     use fable_library_rust::String_::padLeft;
@@ -17,14 +22,172 @@ pub mod Date_time {
     use fable_library_rust::String_::sprintf;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::toString;
+    use fable_library_rust::TimeSpan_::zero;
+    use fable_library_rust::TimeSpan_::TimeSpan;
+    type TimeZoneInfo = i64;
+    #[derive(Clone, Debug)]
+    pub enum US0 {
+        US0_0(chrono::DateTime<chrono::Utc>),
+        US0_1,
+    }
+    impl Date_time::US0 {
+        pub fn get_IsUS0_0(this_: &MutCell<Date_time::US0>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS0_1(this_: &MutCell<Date_time::US0>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+    }
+    impl core::fmt::Display for Date_time::US0 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US1 {
+        US1_0(string),
+        US1_1,
+    }
+    impl Date_time::US1 {
+        pub fn get_IsUS1_0(this_: &MutCell<Date_time::US1>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS1_1(this_: &MutCell<Date_time::US1>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+    }
+    impl core::fmt::Display for Date_time::US1 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    pub fn method1(v0_1: chrono::DateTime<chrono::Utc>) -> chrono::DateTime<chrono::Utc> {
+        v0_1
+    }
+    pub fn method2(v0_1: chrono::DateTime<chrono::Local>) -> chrono::DateTime<chrono::Local> {
+        v0_1
+    }
+    pub fn method3() -> string {
+        string("yyyyMMdd-HHmm-ssff-ffff-f")
+    }
+    pub fn method4() -> string {
+        string("hhmm")
+    }
+    pub fn method0(v0_1: Guid, v1_1: DateTime) -> Guid {
+        let _v2: MutCell<Option<Guid>> = MutCell::new(None::<Guid>);
+        let v5_1: DateTime = {
+            let _arg: DateTime =
+                DateTime::new_ymdhms_kind(1970_i32, 1_i32, 1_i32, 0_i32, 0_i32, 0_i32, 1_i32);
+            _arg.toUniversalTime()
+        };
+        let v15: i64 = ({
+            let _arg_2: DateTime = {
+                let _arg_1: DateTime = DateTime::specifyKind(v1_1, 2_i32);
+                _arg_1.toUniversalTime()
+            };
+            _arg_2.ticks()
+        } - v5_1.ticks())
+            / 10_i64;
+        let v17: Option<chrono::DateTime<chrono::Utc>> =
+            chrono::DateTime::from_timestamp_micros(v15);
+        let _v18: LrcPtr<MutCell<Option<Date_time::US0>>> = refCell(None::<Date_time::US0>);
+        {
+            let x_2: Option<Date_time::US0> = match &v17 {
+                None => None::<Date_time::US0>,
+                Some(v17_0_0) => {
+                    let x: chrono::DateTime<chrono::Utc> = v17_0_0.clone();
+                    Some((Func0::new({
+                        let x = x.clone();
+                        move || Date_time::US0::US0_0(x.clone())
+                    }))())
+                }
+            };
+            _v18.set(x_2)
+        }
+        {
+            let v23: Date_time::US0 = defaultValue(Date_time::US0::US0_1, _v18.get().clone());
+            let v42: Date_time::US1 = match &v23 {
+                Date_time::US0::US0_0(v23_0_0) => {
+                    let v25: chrono::DateTime<chrono::Utc> = Date_time::method1(match &v23 {
+                        Date_time::US0::US0_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    });
+                    let v27: chrono::NaiveDateTime = v25.naive_utc();
+                    let v29: chrono::DateTime<chrono::Local> =
+                        chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &v27);
+                    let v31: string = string("r#\"%Y%m%d-%H%M-%S%f\"#");
+                    let v32: &str = r#"%Y%m%d-%H%M-%S%f"#;
+                    let v33: chrono::DateTime<chrono::Local> = Date_time::method2(v29);
+                    let v35: std::string::String = v33.format(v32).to_string();
+                    let v37: string = fable_library_rust::String_::fromString(v35);
+                    Date_time::US1::US1_0(sprintf!(
+                        "{}-{}-{}",
+                        getSlice(v37.clone(), Some(0_i32), Some(17_i32)),
+                        getSlice(v37.clone(), Some(18_i32), Some(21_i32)),
+                        getCharAt(v37, 22_i32)
+                    ))
+                }
+                _ => Date_time::US1::US1_1,
+            };
+            let v46: string = match &v42 {
+                Date_time::US1::US1_0(v42_0_0) => match &v42 {
+                    Date_time::US1::US1_0(x) => x.clone(),
+                    _ => unreachable!(),
+                },
+                _ => string(""),
+            };
+            let _v47: MutCell<Option<LrcPtr<TimeZoneInfo>>> =
+                MutCell::new(None::<LrcPtr<TimeZoneInfo>>);
+            {
+                let x_3: LrcPtr<TimeZoneInfo> = 0i64.into();
+                _v47.set(Some(x_3))
+            }
+            {
+                let v55: LrcPtr<TimeZoneInfo> = getValue(_v47.get().clone());
+                let _v56: MutCell<Option<TimeSpan>> = MutCell::new(None::<TimeSpan>);
+                _v56.set(Some(zero));
+                {
+                    let v74: TimeSpan = getValue(_v56.get().clone());
+                    let v78: u8 = if v74.hours() > 0_i32 { 1_u8 } else { 0_u8 };
+                    let v81: string = v74.to_string(string("hh:mm"));
+                    let v82: string = sprintf!(
+                        "{}{}{}",
+                        v78,
+                        getSlice(v81.clone(), Some(0_i32), Some(1_i32)),
+                        getSlice(v81, Some(3_i32), Some(4_i32))
+                    );
+                    {
+                        let x_5: Guid = parse(sprintf!(
+                            "{}{}{}",
+                            v46.clone(),
+                            v82.clone(),
+                            getSlice(toString(v0_1), Some(length(v46) + length(v82)), None::<i32>)
+                        ));
+                        _v2.set(Some(x_5))
+                    }
+                    getValue(_v2.get().clone())
+                }
+            }
+        }
+    }
     pub fn closure1(v0_1: Guid, v1_1: DateTime) -> Guid {
-        let v3_1: string = toString(v0_1);
-        let v4_1: string = v1_1.toString(string("yyyyMMdd-HHmm-ssff-ffff-f"));
-        parse(sprintf!(
-            "{}{}",
-            v4_1.clone(),
-            getSlice(v3_1, Some(length(v4_1)), None::<i32>)
-        ))
+        Date_time::method0(v0_1, v1_1)
     }
     pub fn closure0(unitVar: (), v0_1: Guid) -> Func1<DateTime, Guid> {
         Func1::new({
@@ -48,14 +211,14 @@ pub mod Date_time {
             move |v: string| Date_time::closure4(v0_1.clone(), v)
         })
     }
-    pub fn method0() -> Func1<string, Func1<string, Func1<string, string>>> {
+    pub fn method5() -> Func1<string, Func1<string, Func1<string, string>>> {
         Func1::new(move |v: string| Date_time::closure3((), v))
     }
     pub fn closure2(unitVar: (), v0_1: Guid) -> DateTime {
         let v2_1: string = toString(v0_1);
         let _v4: MutCell<Option<DateTime>> = MutCell::new(None::<DateTime>);
         {
-            let x: DateTime = DateTime::parse((Date_time::method0())(string("-"))(string(""))(
+            let x: DateTime = DateTime::parse((Date_time::method5())(string("-"))(string(""))(
                 getSlice(v2_1, None::<i32>, Some(24_i32)),
             ));
             _v4.set(Some(x))
@@ -91,13 +254,7 @@ pub mod Date_time {
         ))
     }
     pub fn closure9(unitVar: (), v0_1: DateTime) -> Guid {
-        let v3_1: string = toString(new_guid());
-        let v4_1: string = v0_1.toString(string("yyyyMMdd-HHmm-ssff-ffff-f"));
-        parse(sprintf!(
-            "{}{}",
-            v4_1.clone(),
-            getSlice(v3_1, Some(length(v4_1)), None::<i32>)
-        ))
+        Date_time::method0(new_guid(), v0_1)
     }
     pub fn closure10(unitVar: (), v0_1: i64) -> Guid {
         let v3_1: string = toString(new_guid());

@@ -28,10 +28,13 @@ pub mod Crypto {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    pub fn method0(v0_1: i32, v1: LrcPtr<Crypto::Mut0>) -> bool {
+    pub fn method0(v0_1: string) -> string {
+        v0_1
+    }
+    pub fn method1(v0_1: i32, v1: LrcPtr<Crypto::Mut0>) -> bool {
         v1.l0.get().clone() < v0_1
     }
-    pub fn method1() -> string {
+    pub fn method2() -> string {
         string("")
     }
     pub fn closure0(unitVar: (), v0_1: string) -> string {

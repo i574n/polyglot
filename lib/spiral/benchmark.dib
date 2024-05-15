@@ -8,13 +8,9 @@
 
 #!spiral
 
-// // test
+//// test
 
 open testing
-
-#!spiral
-
-inl (/@) x = listm'.(/@) x
 
 #!spiral
 
@@ -192,7 +188,7 @@ inl sort_result_list results =
                 row
                 |> listm'.indexed
                 |> listm.map fun (i, cell) =>
-                    cell |> sm'.pad_right (lengthMap |> mapm.item i |> conv)
+                    cell |> sm'.pad_right (lengthMap |> mapm.item i |> conv) ' '
                 |> listm.toArray
             newRow, color
 
@@ -226,7 +222,7 @@ inl sort_result_list results =
 
 #!spiral
 
-// // test
+//// test
 
 inl is_fast () =
     false
@@ -258,7 +254,7 @@ Test case 1. Average Time: 56L
 
 #!spiral
 
-// // test
+//// test
 
 inl get_solutions () =
     [
@@ -322,7 +318,7 @@ Test case 1. Average Time: 64L
 
 #!spiral
 
-// // test
+//// test
 
 inl get_solutions () =
     [
