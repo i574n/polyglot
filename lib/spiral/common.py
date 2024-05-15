@@ -31,7 +31,7 @@ def Disposable__ctor_3A5B6456(f: Callable[[], None]) -> Disposable:
     return Disposable(f)
 
 
-def _expr33() -> TypeInfo:
+def _expr34() -> TypeInfo:
     return union_type("Common.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -47,9 +47,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr33
+US0_reflection = _expr34
 
-def _expr35() -> TypeInfo:
+def _expr37() -> TypeInfo:
     return record_type("Common.Mut0", [], Mut0, lambda: [("l0", int64_type)])
 
 
@@ -57,9 +57,9 @@ def _expr35() -> TypeInfo:
 class Mut0(Record):
     l0: int64
 
-Mut0_reflection = _expr35
+Mut0_reflection = _expr37
 
-def _expr37() -> TypeInfo:
+def _expr39() -> TypeInfo:
     return record_type("Common.Mut1", [], Mut1, lambda: [("l0", bool_type)])
 
 
@@ -67,9 +67,9 @@ def _expr37() -> TypeInfo:
 class Mut1(Record):
     l0: bool
 
-Mut1_reflection = _expr37
+Mut1_reflection = _expr39
 
-def _expr39() -> TypeInfo:
+def _expr41() -> TypeInfo:
     return record_type("Common.Mut2", [], Mut2, lambda: [("l0", US0_reflection())])
 
 
@@ -77,9 +77,9 @@ def _expr39() -> TypeInfo:
 class Mut2(Record):
     l0: US0
 
-Mut2_reflection = _expr39
+Mut2_reflection = _expr41
 
-def _expr43() -> TypeInfo:
+def _expr46() -> TypeInfo:
     return record_type("Common.Mut3", [], Mut3, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -87,9 +87,9 @@ def _expr43() -> TypeInfo:
 class Mut3(Record):
     l0: Callable[[str], None]
 
-Mut3_reflection = _expr43
+Mut3_reflection = _expr46
 
-def _expr47() -> TypeInfo:
+def _expr50() -> TypeInfo:
     return union_type("Common.US1", [], US1, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -105,9 +105,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr47
+US1_reflection = _expr50
 
-def _expr49() -> TypeInfo:
+def _expr52() -> TypeInfo:
     return union_type("Common.US2", [], US2, lambda: [[], []])
 
 
@@ -123,9 +123,9 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr49
+US2_reflection = _expr52
 
-def _expr52() -> TypeInfo:
+def _expr54() -> TypeInfo:
     return union_type("Common.US3", [], US3, lambda: [[("f0_0", US2_reflection())], []])
 
 
@@ -141,7 +141,7 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr52
+US3_reflection = _expr54
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:

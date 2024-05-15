@@ -316,16 +316,16 @@ pub mod Networking {
         _v6.set(Some(None::<i64>));
         (v2_1, v1_1, v3_1, getValue(_v6.get().clone()), v5_1)
     }
-    pub fn closure3(v0_1: string, unitVar: ()) -> string {
-        sprintf!("test_port_open / ex: {}", v0_1)
+    pub fn closure4(v0_1: i32, v1_1: string, unitVar: ()) -> string {
+        sprintf!("networking.test_port_open / port: {} / ex: {}", v0_1, v1_1)
     }
-    pub fn closure4(unitVar: (), unitVar_1: ()) -> string {
+    pub fn closure5(unitVar: (), unitVar_1: ()) -> string {
         string("")
     }
     pub fn method3() -> string {
         string("")
     }
-    pub fn closure5(
+    pub fn closure6(
         v0_1: Networking::US0,
         v1_1: Func0<string>,
         v2_1: Func0<string>,
@@ -475,34 +475,11 @@ pub mod Networking {
                 let v0_1 = v0_1.clone();
                 let v1_1 = v1_1.clone();
                 let v2_1 = v2_1.clone();
-                move || Networking::closure5(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                move || Networking::closure6(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
             }),
         );
     }
-    pub fn closure2(unitVar: (), v0_1: i32) -> Arc<Async<bool>> {
-        let _v1: MutCell<Option<Arc<Async<bool>>>> = MutCell::new(None::<Arc<Async<bool>>>);
-        {
-            let x: Arc<Async<bool>> = defaultOf();
-            _v1.set(Some(x))
-        }
-        getValue(_v1.get().clone())
-    }
-    pub fn closure8(unitVar: (), v0_1: bool) -> Networking::US3 {
-        Networking::US3::US3_0(v0_1)
-    }
-    pub fn closure9(unitVar: (), v0_1: LrcPtr<Exception>) -> Networking::US3 {
-        Networking::US3::US3_1(v0_1)
-    }
-    pub fn closure10(unitVar: (), unitVar_1: ()) -> string {
-        string("run_with_timeout_async")
-    }
-    pub fn closure11(v0_1: i32, unitVar: ()) -> string {
-        sprintf!("timeout: {} / {}", v0_1, Networking::closure4((), ()))
-    }
-    pub fn closure12(v0_1: string, unitVar: ()) -> string {
-        sprintf!("run_with_timeout_async** / ex: {}", v0_1)
-    }
-    pub fn closure7(v0_1: i32, v1_1: i32) -> Arc<Async<bool>> {
+    pub fn closure3(v0_1: string, v1_1: i32) -> Arc<Async<bool>> {
         let _v2: MutCell<Option<Arc<Async<bool>>>> = MutCell::new(None::<Arc<Async<bool>>>);
         {
             let x: Arc<Async<bool>> = defaultOf();
@@ -510,64 +487,124 @@ pub mod Networking {
         }
         getValue(_v2.get().clone())
     }
-    pub fn closure6(unitVar: (), v0_1: i32) -> Func1<i32, Arc<Async<bool>>> {
+    pub fn closure2(unitVar: (), v0_1: string) -> Func1<i32, Arc<Async<bool>>> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: i32| Networking::closure7(v0_1, v)
+            move |v: i32| Networking::closure3(v0_1.clone(), v)
         })
     }
-    pub fn closure16(unitVar: (), unitVar_1: ()) -> string {
-        string("wait_for_port_access")
+    pub fn closure10(unitVar: (), v0_1: bool) -> Networking::US3 {
+        Networking::US3::US3_0(v0_1)
     }
-    pub fn closure17(v0_1: Option<i32>, v1_1: bool, v2_1: i32, v3_1: i64, unitVar: ()) -> string {
+    pub fn closure11(unitVar: (), v0_1: LrcPtr<Exception>) -> Networking::US3 {
+        Networking::US3::US3_1(v0_1)
+    }
+    pub fn closure12(unitVar: (), unitVar_1: ()) -> string {
+        string("run_with_timeout_async")
+    }
+    pub fn closure13(v0_1: i32, unitVar: ()) -> string {
+        sprintf!("timeout: {} / {}", v0_1, Networking::closure5((), ()))
+    }
+    pub fn closure14(v0_1: string, unitVar: ()) -> string {
+        sprintf!("run_with_timeout_async** / ex: {}", v0_1)
+    }
+    pub fn closure9(v0_1: i32, v1_1: string, v2_1: i32) -> Arc<Async<bool>> {
+        let _v3: MutCell<Option<Arc<Async<bool>>>> = MutCell::new(None::<Arc<Async<bool>>>);
+        {
+            let x: Arc<Async<bool>> = defaultOf();
+            _v3.set(Some(x))
+        }
+        getValue(_v3.get().clone())
+    }
+    pub fn closure8(v0_1: i32, v1_1: string) -> Func1<i32, Arc<Async<bool>>> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            let v1_1 = v1_1.clone();
+            move |v: i32| Networking::closure9(v0_1, v1_1.clone(), v)
+        })
+    }
+    pub fn closure7(unitVar: (), v0_1: i32) -> Func1<string, Func1<i32, Arc<Async<bool>>>> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            move |v: string| Networking::closure8(v0_1, v)
+        })
+    }
+    pub fn closure19(unitVar: (), unitVar_1: ()) -> string {
+        string("networking.wait_for_port_access")
+    }
+    pub fn closure20(v0_1: Option<i32>, v1_1: bool, v2_1: i32, v3_1: i64, unitVar: ()) -> string {
         sprintf!(
             "port: {} / retry: {} / timeout: {:?} / status: {} / {}",
             v2_1,
             v3_1,
             v0_1,
             v1_1,
-            Networking::closure4((), ())
+            Networking::closure5((), ())
         )
     }
-    pub fn method5(v0_1: Option<i32>, v1_1: bool, v2_1: i32, v3_1: i64) -> Arc<Async<i64>> {
-        let _v4: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
+    pub fn method5(
+        v0_1: Option<i32>,
+        v1_1: bool,
+        v2_1: string,
+        v3_1: i32,
+        v4_1: i64,
+    ) -> Arc<Async<i64>> {
+        let _v5: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
         {
             let x: Arc<Async<i64>> = defaultOf();
-            _v4.set(Some(x))
+            _v5.set(Some(x))
         }
-        getValue(_v4.get().clone())
+        getValue(_v5.get().clone())
     }
-    pub fn closure15(v0_1: Option<i32>, v1_1: bool, v2_1: i32) -> Arc<Async<i64>> {
-        Networking::method5(v0_1, v1_1, v2_1, 0_i64)
+    pub fn closure18(v0_1: Option<i32>, v1_1: bool, v2_1: string, v3_1: i32) -> Arc<Async<i64>> {
+        Networking::method5(v0_1, v1_1, v2_1, v3_1, 0_i64)
     }
-    pub fn closure14(v0_1: Option<i32>, v1_1: bool) -> Func1<i32, Arc<Async<i64>>> {
+    pub fn closure17(v0_1: Option<i32>, v1_1: bool, v2_1: string) -> Func1<i32, Arc<Async<i64>>> {
         Func1::new({
             let v0_1 = v0_1.clone();
             let v1_1 = v1_1.clone();
-            move |v: i32| Networking::closure15(v0_1.clone(), v1_1, v)
+            let v2_1 = v2_1.clone();
+            move |v: i32| Networking::closure18(v0_1.clone(), v1_1, v2_1.clone(), v)
         })
     }
-    pub fn closure13(unitVar: (), v0_1: Option<i32>) -> Func1<bool, Func1<i32, Arc<Async<i64>>>> {
+    pub fn closure16(v0_1: Option<i32>, v1_1: bool) -> Func1<string, Func1<i32, Arc<Async<i64>>>> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: bool| Networking::closure14(v0_1.clone(), v)
+            let v1_1 = v1_1.clone();
+            move |v: string| Networking::closure17(v0_1.clone(), v1_1, v)
         })
     }
-    pub fn method6(v0_1: Option<i32>, v1_1: i32) -> Arc<Async<i32>> {
-        let _v2: MutCell<Option<Arc<Async<i32>>>> = MutCell::new(None::<Arc<Async<i32>>>);
+    pub fn closure15(
+        unitVar: (),
+        v0_1: Option<i32>,
+    ) -> Func1<bool, Func1<string, Func1<i32, Arc<Async<i64>>>>> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            move |v: bool| Networking::closure16(v0_1.clone(), v)
+        })
+    }
+    pub fn method6(v0_1: Option<i32>, v1_1: string, v2_1: i32) -> Arc<Async<i32>> {
+        let _v3: MutCell<Option<Arc<Async<i32>>>> = MutCell::new(None::<Arc<Async<i32>>>);
         {
             let x: Arc<Async<i32>> = defaultOf();
-            _v2.set(Some(x))
+            _v3.set(Some(x))
         }
-        getValue(_v2.get().clone())
+        getValue(_v3.get().clone())
     }
-    pub fn closure19(v0_1: Option<i32>, v1_1: i32) -> Arc<Async<i32>> {
-        Networking::method6(v0_1, v1_1)
+    pub fn closure23(v0_1: Option<i32>, v1_1: string, v2_1: i32) -> Arc<Async<i32>> {
+        Networking::method6(v0_1, v1_1, v2_1)
     }
-    pub fn closure18(unitVar: (), v0_1: Option<i32>) -> Func1<i32, Arc<Async<i32>>> {
+    pub fn closure22(v0_1: Option<i32>, v1_1: string) -> Func1<i32, Arc<Async<i32>>> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: i32| Networking::closure19(v0_1.clone(), v)
+            let v1_1 = v1_1.clone();
+            move |v: i32| Networking::closure23(v0_1.clone(), v1_1.clone(), v)
+        })
+    }
+    pub fn closure21(unitVar: (), v0_1: Option<i32>) -> Func1<string, Func1<i32, Arc<Async<i32>>>> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            move |v: string| Networking::closure22(v0_1.clone(), v)
         })
     }
     pub fn v0() -> Func1<
@@ -604,37 +641,42 @@ pub mod Networking {
             Networking::State::trace_state().set(Some((Networking::v0())(Networking::v1())));
         }
     );
-    pub fn v2() -> Func1<i32, Arc<Async<bool>>> {
-        static v2: OnceInit<Func1<i32, Arc<Async<bool>>>> = OnceInit::new();
-        v2.get_or_init(|| Func1::new(move |v: i32| Networking::closure2((), v)))
+    pub fn v2() -> Func1<string, Func1<i32, Arc<Async<bool>>>> {
+        static v2: OnceInit<Func1<string, Func1<i32, Arc<Async<bool>>>>> = OnceInit::new();
+        v2.get_or_init(|| Func1::new(move |v: string| Networking::closure2((), v)))
             .clone()
     }
-    pub fn test_port_open(x: i32) -> Arc<Async<bool>> {
+    pub fn test_port_open(x: string) -> Func1<i32, Arc<Async<bool>>> {
         (Networking::v2())(x)
     }
-    pub fn v3() -> Func1<i32, Func1<i32, Arc<Async<bool>>>> {
-        static v3: OnceInit<Func1<i32, Func1<i32, Arc<Async<bool>>>>> = OnceInit::new();
-        v3.get_or_init(|| Func1::new(move |v: i32| Networking::closure6((), v)))
+    pub fn v3() -> Func1<i32, Func1<string, Func1<i32, Arc<Async<bool>>>>> {
+        static v3: OnceInit<Func1<i32, Func1<string, Func1<i32, Arc<Async<bool>>>>>> =
+            OnceInit::new();
+        v3.get_or_init(|| Func1::new(move |v: i32| Networking::closure7((), v)))
             .clone()
     }
-    pub fn test_port_open_timeout(x: i32) -> Func1<i32, Arc<Async<bool>>> {
+    pub fn test_port_open_timeout(x: i32) -> Func1<string, Func1<i32, Arc<Async<bool>>>> {
         (Networking::v3())(x)
     }
-    pub fn v4() -> Func1<Option<i32>, Func1<bool, Func1<i32, Arc<Async<i64>>>>> {
-        static v4: OnceInit<Func1<Option<i32>, Func1<bool, Func1<i32, Arc<Async<i64>>>>>> =
-            OnceInit::new();
-        v4.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure13((), v)))
+    pub fn v4() -> Func1<Option<i32>, Func1<bool, Func1<string, Func1<i32, Arc<Async<i64>>>>>> {
+        static v4: OnceInit<
+            Func1<Option<i32>, Func1<bool, Func1<string, Func1<i32, Arc<Async<i64>>>>>>,
+        > = OnceInit::new();
+        v4.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure15((), v)))
             .clone()
     }
-    pub fn wait_for_port_access(x: Option<i32>) -> Func1<bool, Func1<i32, Arc<Async<i64>>>> {
+    pub fn wait_for_port_access(
+        x: Option<i32>,
+    ) -> Func1<bool, Func1<string, Func1<i32, Arc<Async<i64>>>>> {
         (Networking::v4())(x)
     }
-    pub fn v5() -> Func1<Option<i32>, Func1<i32, Arc<Async<i32>>>> {
-        static v5: OnceInit<Func1<Option<i32>, Func1<i32, Arc<Async<i32>>>>> = OnceInit::new();
-        v5.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure18((), v)))
+    pub fn v5() -> Func1<Option<i32>, Func1<string, Func1<i32, Arc<Async<i32>>>>> {
+        static v5: OnceInit<Func1<Option<i32>, Func1<string, Func1<i32, Arc<Async<i32>>>>>> =
+            OnceInit::new();
+        v5.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure21((), v)))
             .clone()
     }
-    pub fn get_available_port(x: Option<i32>) -> Func1<i32, Arc<Async<i32>>> {
+    pub fn get_available_port(x: Option<i32>) -> Func1<string, Func1<i32, Arc<Async<i32>>>> {
         (Networking::v5())(x)
     }
     on_startup!(());

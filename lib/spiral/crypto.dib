@@ -150,7 +150,6 @@ inl get_file_hash' (path : string) : result string string =
 #!spiral
 
 //// test
-//// print_code=false
 
 types ()
 inl temp_folder, disposable = file_system.create_temp_directory ()
@@ -166,7 +165,6 @@ path
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d chrono encoding_rs encoding_rs_io futures-lite regex
 
 types ()
@@ -262,7 +260,6 @@ inl get_file_hash (path : string) : result string string =
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d chrono regex sha2
 
 types ()
@@ -280,7 +277,6 @@ disposable |> use |> ignore
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d chrono regex sha2
 
 types ()

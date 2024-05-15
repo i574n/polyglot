@@ -344,7 +344,6 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d clap encoding encoding_rs encoding_rs_io futures-lite regex serde_json
 
 types ()
@@ -373,7 +372,6 @@ get_command ()
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d clap encoding encoding_rs encoding_rs_io futures-lite regex serde_json
 
 types ()
@@ -402,7 +400,6 @@ get_command ()
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d chrono clap encoding encoding_rs encoding_rs_io futures-lite regex serde_json
 
 types ()

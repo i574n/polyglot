@@ -612,7 +612,6 @@ inl get_full_path (path : string) : string =
 #!spiral
 
 //// test
-//// print_code=false
 
 "."
 |> get_full_path
@@ -623,7 +622,6 @@ inl get_full_path (path : string) : string =
 #!spiral
 
 //// test
-//// print_code=false
 
 "dir/.././._file"
 |> get_full_path
@@ -632,7 +630,6 @@ inl get_full_path (path : string) : string =
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d regex
 
 types ()
@@ -648,7 +645,6 @@ types ()
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d regex
 
 types ()
@@ -675,7 +671,6 @@ inl create_temp_directory_name () =
 #!spiral
 
 //// test
-//// print_code=false
 
 types ()
 create_temp_directory_name ()
@@ -1060,7 +1055,6 @@ inl create_temp_directory () =
 #!spiral
 
 //// test
-//// print_code=false
 
 types ()
 inl path, disposable = create_temp_directory ()
@@ -1072,7 +1066,6 @@ path
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d chrono
 
 types ()
@@ -1463,7 +1456,6 @@ inl find_parent name is_file root_dir =
 #!spiral
 
 //// test
-//// print_code=false
 
 a ;[ ".paket", false; "paket.dependencies", true ]
 |> am.map fun (file, is_file) =>
@@ -1477,7 +1469,6 @@ a ;[ ".paket", false; "paket.dependencies", true ]
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust
 
 types ()
@@ -1588,7 +1579,6 @@ let rec trace_file text =
 #!spiral
 
 //// test
-//// print_code=false
 
 inl get_count dir : i64 =
     inl files = dir |> file_system.directory_get_files

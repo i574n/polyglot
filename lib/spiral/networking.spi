@@ -116,21 +116,21 @@ inl client_connect_async
     $'!client.ConnectAsync (!host, !port, !ct)'
 
 /// ## test_port_open
-inl test_port_open port : _ bool = async.new_async fun () =>
+inl test_port_open host port : _ bool = async.new_async fun () =>
     inl ct = async.cancellation_token () |> async.let'
     inl client = new_tcp_client () |> use
     try_unit
         fun () =>
-            client |> client_connect_async "127.0.0.1" port ct |> async.await_value_task_unit |> async.do
+            client |> client_connect_async host port ct |> async.await_value_task_unit |> async.do
             return true
         fun ex =>
             inl ex = ex |> sm'.format_exception
-            trace Verbose (fun () => $'$"test_port_open / ex: {!ex}"') _locals
+            trace Verbose (fun () => $'$"networking.test_port_open / port: {!port} / ex: {!ex}"') _locals
             return false
 
 /// ## test_port_open_timeout
-inl test_port_open_timeout timeout port : _ bool = async.new_async_unit fun () =>
-    test_port_open port
+inl test_port_open_timeout timeout host port : _ bool = async.new_async_unit fun () =>
+    test_port_open host port
     |> async.run_with_timeout_async timeout
     |> async.let'
     |> function
@@ -139,12 +139,12 @@ inl test_port_open_timeout timeout port : _ bool = async.new_async_unit fun () =
     |> return
 
 /// ## wait_for_port_access
-inl wait_for_port_access timeout status port : _ i64 =
+inl wait_for_port_access timeout status host port : _ i64 =
     let rec loop retry : _ i64 = async.new_async_unit fun () =>
         inl isPortOpen =
             match timeout |> optionm'.unbox with
-            | None => test_port_open port
-            | Some timeout => test_port_open_timeout timeout port
+            | None => test_port_open host port
+            | Some timeout => test_port_open_timeout timeout host port
             |> async.let'
 
         fix_condition
@@ -153,18 +153,18 @@ inl wait_for_port_access timeout status port : _ i64 =
             fun () =>
                 if retry % 100 = 0 then
                     inl _locals () = $'$"port: {!port} / retry: {!retry} / timeout: %A{!timeout} / status: {!status} / {!_locals ()}"'
-                    trace Verbose (fun () => "wait_for_port_access") _locals
+                    trace Verbose (fun () => "networking.wait_for_port_access") _locals
                 async.sleep 10 |> async.do
                 loop (retry + 1) |> async.return_await
     loop 0i64
 
 /// ## get_available_port
-inl get_available_port timeout initial_port : _ i32 =
+inl get_available_port timeout host initial_port : _ i32 =
     let rec loop port = async.new_async_unit fun () =>
         inl is_port_open =
             match timeout |> optionm'.unbox with
-            | None => test_port_open port
-            | Some timeout => test_port_open_timeout timeout port
+            | None => test_port_open host port
+            | Some timeout => test_port_open_timeout timeout host port
             |> async.let'
         fix_condition
             fun () => is_port_open |> not

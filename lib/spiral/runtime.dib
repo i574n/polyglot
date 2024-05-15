@@ -463,7 +463,6 @@ inl execute_async command =
 #!spiral
 
 //// test
-//// print_code=false
 
 types ()
 inl temp_folder, disposable = file_system.create_temp_directory ()
@@ -616,7 +615,6 @@ let split_args (args : string) : array_base string =
 #!spiral
 
 //// test
-//// print_code=false
 
 "a b \"c d\" e"
 |> split_args
@@ -625,7 +623,6 @@ let split_args (args : string) : array_base string =
 #!spiral
 
 //// test
-//// print_code=false
 
 "a b e"
 |> split_args
@@ -634,7 +631,6 @@ let split_args (args : string) : array_base string =
 #!spiral
 
 //// test
-//// print_code=false
 
 "\"a b\" \"e\" \"f\""
 |> split_args
@@ -643,7 +639,6 @@ let split_args (args : string) : array_base string =
 #!spiral
 
 //// test
-//// print_code=false
 
 "a -b \"c \\\"d\\\"\""
 |> split_args
@@ -652,7 +647,6 @@ let split_args (args : string) : array_base string =
 #!spiral
 
 //// test
-//// print_code=false
 
 "a -b \"c \\\"d\\\" e\""
 |> split_args
@@ -661,7 +655,6 @@ let split_args (args : string) : array_base string =
 #!spiral
 
 //// test
-//// print_code=false
 
 "a -b \"c \`\"d\`\" e\""
 |> split_args
@@ -670,7 +663,6 @@ let split_args (args : string) : array_base string =
 #!spiral
 
 //// test
-//// print_code=false
 
 $'$"--text \\\\\\"\'\'\' value \'\'\'\\\\\\" "'
 |> split_args
@@ -679,7 +671,6 @@ $'$"--text \\\\\\"\'\'\' value \'\'\'\\\\\\" "'
 #!spiral
 
 //// test
-//// print_code=false
 
 $'\@$"run ""get c:\\test.txt"""'
 |> split_args
@@ -688,7 +679,6 @@ $'\@$"run ""get c:\\test.txt"""'
 #!spiral
 
 //// test
-//// print_code=false
 
 "pwsh -c \"$x -replace '(id=`\"cell-id=)[a-fA-F0-9]{8}', { `$_[1] + `$counter++ }\""
 |> split_args
@@ -697,7 +687,6 @@ $'\@$"run ""get c:\\test.txt"""'
 #!spiral
 
 //// test
-//// print_code=false
 
 $'$"pwsh -c \\\"$x -replace \'(id=\\\\\\"cell-id=)[a-fA-F0-9]{{8}}\', {{ \`$_[1] + \`$counter++ }}\\\""'
 |> split_args
@@ -706,7 +695,6 @@ $'$"pwsh -c \\\"$x -replace \'(id=\\\\\\"cell-id=)[a-fA-F0-9]{{8}}\', {{ \`$_[1]
 #!spiral
 
 //// test
-//// print_code=false
 
 $'$"a --b --c d --e \\\"c:/f f/test.hangul.md\\\" --output \\\"c:/md.pdf\\\" --set tex.template.add \\\"\\\\usepackage{{cjkutf8-ko}}\\\" rendering.highlight.theme \\\"Solarized (dark)\\\""'
 |> split_args
@@ -1040,7 +1028,6 @@ inl execute command =
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d chrono encoding encoding_rs encoding_rs_io futures-lite regex
 
 types ()
@@ -1099,7 +1086,6 @@ inl new_command (s : rust.static_ref' sm'.str) : command =
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d clap
 
 types ()
@@ -1129,7 +1115,6 @@ inl new_arg (s : rust.static_ref' sm'.str) : arg =
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d clap
 
 types ()

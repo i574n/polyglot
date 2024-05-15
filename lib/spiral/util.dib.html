@@ -7535,7 +7535,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7551,20 +7551,6 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -7576,7 +7562,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7599,20 +7585,6 @@ a.anchor-link {
     <span class="o">|</span> <span class="n">App</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nb">eval</span> <span class="p">(</span><span class="n">App</span> <span class="p">(</span><span class="nb">eval</span> <span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">ski</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
 </div>
 </div>
 </div>
@@ -7689,93 +7661,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type UH0 =
-    | UH0_0
-    | UH0_1
-    | UH0_2
-    | UH0_3 of UH0 * UH0
-let rec method0 () : unit =
-    let v3 : string = "assert_eq"
-    let v4 : UH0 = UH0_0
-    let v5 : UH0 = UH0_0
-    let v6 : string = $"{v3} / actual: %A{v4} / expected: %A{v5}"
-    System.Console.WriteLine v6
-    let v10 : UH0 = UH0_0
-    let v11 : UH0 = UH0_0
-    let v12 : string = $"{v3} / actual: %A{v10} / expected: %A{v11}"
-    System.Console.WriteLine v12
-    let v16 : UH0 = UH0_0
-    let v17 : UH0 = UH0_0
-    let v18 : string = $"{v3} / actual: %A{v16} / expected: %A{v17}"
-    System.Console.WriteLine v18
-    let v22 : UH0 = UH0_0
-    let v23 : UH0 = UH0_0
-    let v24 : string = $"{v3} / actual: %A{v22} / expected: %A{v23}"
-    System.Console.WriteLine v24
-    let v28 : UH0 = UH0_0
-    let v29 : UH0 = UH0_0
-    let v30 : string = $"{v3} / actual: %A{v28} / expected: %A{v29}"
-    System.Console.WriteLine v30
-    let v34 : UH0 = UH0_1
-    let v35 : UH0 = UH0_1
-    let v36 : string = $"{v3} / actual: %A{v34} / expected: %A{v35}"
-    System.Console.WriteLine v36
-    let v48 : UH0 = UH0_1
-    let v49 : UH0 = UH0_0
-    let v50 : UH0 = UH0_3(v48, v49)
-    let v51 : UH0 = UH0_1
-    let v52 : UH0 = UH0_0
-    let v53 : UH0 = UH0_3(v51, v52)
-    let v54 : string = $"{v3} / actual: %A{v50} / expected: %A{v53}"
-    System.Console.WriteLine v54
-    let v66 : UH0 = UH0_1
-    let v67 : UH0 = UH0_1
-    let v68 : UH0 = UH0_3(v66, v67)
-    let v69 : UH0 = UH0_1
-    let v70 : UH0 = UH0_1
-    let v71 : UH0 = UH0_3(v69, v70)
-    let v72 : string = $"{v3} / actual: %A{v68} / expected: %A{v71}"
-    System.Console.WriteLine v72
-    let v76 : UH0 = UH0_0
-    let v77 : UH0 = UH0_0
-    let v78 : string = $"{v3} / actual: %A{v76} / expected: %A{v77}"
-    System.Console.WriteLine v78
-    let v82 : UH0 = UH0_1
-    let v83 : UH0 = UH0_1
-    let v84 : string = $"{v3} / actual: %A{v82} / expected: %A{v83}"
-    System.Console.WriteLine v84
-    let v88 : UH0 = UH0_2
-    let v89 : UH0 = UH0_2
-    let v90 : string = $"{v3} / actual: %A{v88} / expected: %A{v89}"
-    System.Console.WriteLine v90
-    let v94 : UH0 = UH0_2
-    let v95 : UH0 = UH0_2
-    let v96 : string = $"{v3} / actual: %A{v94} / expected: %A{v95}"
-    System.Console.WriteLine v96
-    let v100 : UH0 = UH0_0
-    let v101 : UH0 = UH0_0
-    let v102 : string = $"{v3} / actual: %A{v100} / expected: %A{v101}"
-    System.Console.WriteLine v102
-    let v106 : UH0 = UH0_0
-    let v107 : UH0 = UH0_0
-    let v108 : string = $"{v3} / actual: %A{v106} / expected: %A{v107}"
-    System.Console.WriteLine v108
-    let v112 : UH0 = UH0_0
-    let v113 : UH0 = UH0_0
-    let v114 : string = $"{v3} / actual: %A{v112} / expected: %A{v113}"
-    System.Console.WriteLine v114
-    let v118 : UH0 = UH0_2
-    let v119 : UH0 = UH0_2
-    let v120 : string = $"{v3} / actual: %A{v118} / expected: %A{v119}"
-    System.Console.WriteLine v120
-    let v124 : UH0 = UH0_1
-    let v125 : UH0 = UH0_1
-    let v126 : string = $"{v3} / actual: %A{v124} / expected: %A{v125}"
-    System.Console.WriteLine v126
-    ()
-method0()
-
-assert_eq / actual: UH0_0 / expected: UH0_0
+<pre>assert_eq / actual: UH0_0 / expected: UH0_0
 assert_eq / actual: UH0_0 / expected: UH0_0
 assert_eq / actual: UH0_0 / expected: UH0_0
 assert_eq / actual: UH0_0 / expected: UH0_0

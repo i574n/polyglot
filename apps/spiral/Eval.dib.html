@@ -8044,7 +8044,7 @@ a.anchor-link {
                     <span class="n">then</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"="</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryItem</span> <span class="mi">1</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="s2">"true"</span><span class="p">)</span>
                     <span class="k">else</span> <span class="kc">None</span>
                 <span class="p">)</span>
-                <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="n">true</span>
+                <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="n">false</span>
 
             <span class="n">let</span> <span class="n">isTrace</span> <span class="o">=</span>
                 <span class="n">lines</span>
@@ -8602,7 +8602,6 @@ a.anchor-link {
 <span class="nb">type</span> <span class="n">Arguments</span> <span class="o">=</span>
     <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">ExactlyOnce</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">File</span> <span class="n">of</span> <span class="n">string</span>
     <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">ExactlyOnce</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Args</span> <span class="n">of</span> <span class="n">string</span>
-    <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">Unique</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Print_Code</span>
     <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">Unique</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Trace_Level</span> <span class="n">of</span> <span class="n">TraceLevel</span>
 
     <span class="n">interface</span> <span class="n">Argu</span><span class="o">.</span><span class="n">IArgParserTemplate</span> <span class="k">with</span>
@@ -8610,7 +8609,6 @@ a.anchor-link {
             <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
             <span class="o">|</span> <span class="n">File</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">File</span>
             <span class="o">|</span> <span class="n">Args</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">Args</span>
-            <span class="o">|</span> <span class="n">Print_Code</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">Print_Code</span>
             <span class="o">|</span> <span class="n">Trace_Level</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">Trace_Level</span>
 </pre></div>
 </div>
@@ -8640,14 +8638,13 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>"USAGE: dotnet-repl [--help] --file &lt;string&gt; --args &lt;string&gt; [--print-code]
+<pre>"USAGE: dotnet-repl [--help] --file &lt;string&gt; --args &lt;string&gt;
                    [--trace-level &lt;verbose|debug|info|warning|critical&gt;]
 
 OPTIONS:
 
     --file &lt;string&gt;       File
     --args &lt;string&gt;       Args
-    --print-code          Print_Code
     --trace-level &lt;verbose|debug|info|warning|critical&gt;
                           Trace_Level
     --help                display this list of options.

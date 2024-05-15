@@ -447,7 +447,6 @@ let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
 #!spiral
 
 //// test
-//// print_code=false
 
 types ()
 now () |> to_universal_time |> date_time_guid_from_date_time (test_guid ()) |> sm'.obj_to_string
@@ -456,7 +455,6 @@ now () |> to_universal_time |> date_time_guid_from_date_time (test_guid ()) |> s
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d chrono
 
 types ()
@@ -470,7 +468,6 @@ now ()
 #!spiral
 
 //// test
-//// print_code=false
 
 types ()
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
@@ -483,7 +480,6 @@ min_value ()
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d chrono
 
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
@@ -497,7 +493,6 @@ min_value ()
 #!spiral
 
 //// test
-//// print_code=false
 
 types ()
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
@@ -511,7 +506,6 @@ max_value ()
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d chrono
 
 types ()
@@ -526,7 +520,6 @@ max_value ()
 #!spiral
 
 //// test
-//// print_code=false
 
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 unix_epoch ()
@@ -539,7 +532,6 @@ unix_epoch ()
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust -d chrono
 
 types ()
@@ -648,7 +640,6 @@ inl new_guid_from_date_time (date_time : date_time) =
 #!spiral
 
 //// test
-//// print_code=false
 
 utc_now ()
 |> new_guid_from_date_time

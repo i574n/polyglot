@@ -19,7 +19,7 @@ let run count (solutions: (string * ('TInput -> 'TExpected)) list) (input, expec
         | :? System.Collections.ICollection as input ->
             System.Linq.Enumerable.Cast<obj> input
             |> Seq.map string
-            |> String.concat ","
+            |> SpiralSm.concat ","
         | _ -> input.ToString ()
 
     printfn ""

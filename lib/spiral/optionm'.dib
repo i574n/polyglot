@@ -234,7 +234,6 @@ inl y' = y |> box |> map id |> unbox
 #!spiral
 
 //// test
-//// print_code=true
 ///! rust
 
 inl x = Some 3i32
@@ -329,7 +328,6 @@ inl rc_into_inner forall t. (x : rust.rc t) : option' t =
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust
 
 types ()

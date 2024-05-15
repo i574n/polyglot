@@ -827,7 +827,6 @@ rotateStringsTests
 
 //// test
 //// timeout=60000
-//// print_code=true
 
 inl get_solutions () =
     [
@@ -992,7 +991,6 @@ rotate_strings_tests ()
 #!spiral
 
 //// test
-//// print_code=false
 
 // rotate_strings_tests ()
 ()
@@ -1005,7 +1003,6 @@ rotate_strings_tests ()
 
 //// test
 //// timeout=90000
-//// print_code=true
 
 inl binary_search_semi_open_1 arr target left right =
     inl rec body left right =

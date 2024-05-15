@@ -240,7 +240,6 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string)
 #!spiral
 
 //// test
-//// print_code=false
 
 trace Debug (fun () => "test") _locals
 trace Debug (fun () => "test") _locals
@@ -251,7 +250,6 @@ get_trace_state_or_init None .count
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust
 
 types ()

@@ -298,7 +298,7 @@ module Eval =
                         then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
                         else None
                     )
-                    |> Option.defaultValue true
+                    |> Option.defaultValue false
 
                 let isTrace =
                     lines
@@ -812,7 +812,6 @@ module Eval =
     type Arguments =
         | [<Argu.ArguAttributes.ExactlyOnce>] File of string
         | [<Argu.ArguAttributes.ExactlyOnce>] Args of string
-        | [<Argu.ArguAttributes.Unique>] Print_Code
         | [<Argu.ArguAttributes.Unique>] Trace_Level of TraceLevel
 
         interface Argu.IArgParserTemplate with
@@ -820,7 +819,6 @@ module Eval =
                 match s with
                 | File _ -> nameof File
                 | Args _ -> nameof Args
-                | Print_Code -> nameof Print_Code
                 | Trace_Level _ -> nameof Trace_Level
 
     /// ## main

@@ -7670,517 +7670,444 @@ a.anchor-link {
         [||], None, None, true, None)
 00:00:01 verbose #2 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 spiral_builder.main / args: MutCell(["dib", "--path", "test.dib", "--retries", "3"])
 00:00:01 verbose #3 &gt; 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / file_name: dotnet / arguments: ["repl", "--exit-after-run", "--run", "c:/home/git/polyglot/apps/spiral/temp/test/test.dib", "--output-path", "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb"] / options: (None, "dotnet repl --exit-after-run --run "c:/home/git/polyglot/apps/spiral/temp/test/test.dib" --output-path "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb"", Array(MutCell([("AUTOMATION", "True")])), None, None, false, None)
-00:00:11 verbose #4 &gt;
-00:00:11 verbose #5 &gt; ── markdown ────────────────────────────────────────────────────────────────────
-00:00:11 verbose #6 &gt; ╭──────────────────────────────────────────────────────────────────────────────╮
-00:00:11 verbose #7 &gt; │ # test (Polyglot)                                                            │
-00:00:11 verbose #8 &gt; ╰──────────────────────────────────────────────────────────────────────────────╯
-00:00:11 verbose #9 &gt;
-00:00:11 verbose #10 &gt; ── spiral ──────────────────────────────────────────────────────────────────────
-00:00:11 verbose #11 &gt; //// test
-00:00:11 verbose #12 &gt;
-00:00:11 verbose #13 &gt; open testing
-00:00:11 verbose #14 &gt;
-00:00:11 verbose #15 &gt; ── spiral - import ─────────────────────────────────────────────────────────────
-00:00:11 verbose #16 &gt; #r
-00:00:11 verbose #17 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
-00:00:11 verbose #18 &gt; otNet.Interactive.Spiral.dll"
-00:00:11 verbose #19 &gt; open Microsoft.DotNet.Interactive.Spiral.SpiralKernelHelpers
-00:00:11 verbose #20 &gt; #r
-00:00:11 verbose #21 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
-00:00:11 verbose #22 &gt; otNet.Interactive.dll"
-00:00:11 verbose #23 &gt; open type Microsoft.DotNet.Interactive.Kernel
-00:00:11 verbose #24 &gt;
-00:00:11 verbose #25 &gt; ╭─[ 4.10s - stdout ]───────────────────────────────────────────────────────────╮
-00:00:11 verbose #26 &gt; │ ()                                                                           │
-00:00:11 verbose #27 &gt; │                                                                              │
-00:00:11 verbose #28 &gt; │                                                                              │
-00:00:11 verbose #29 &gt; ╰──────────────────────────────────────────────────────────────────────────────╯
-00:00:11 verbose #30 &gt;
-00:00:11 verbose #31 &gt; ── spiral ──────────────────────────────────────────────────────────────────────
-00:00:11 verbose #32 &gt; nominal i = ()
-00:00:11 verbose #33 &gt; nominal e = ()
-00:00:11 verbose #34 &gt; nominal s = ()
-00:00:11 verbose #35 &gt; nominal n = ()
-00:00:11 verbose #36 &gt; nominal t = ()
-00:00:11 verbose #37 &gt; nominal f = ()
-00:00:11 verbose #38 &gt; nominal j = ()
-00:00:11 verbose #39 &gt; nominal p = ()
-00:00:11 verbose #40 &gt;
-00:00:11 verbose #41 &gt; union sensing =
-00:00:11 verbose #42 &gt;     | Si : s * i
-00:00:11 verbose #43 &gt;     | Se : s * e
-00:00:11 verbose #44 &gt;
-00:00:11 verbose #45 &gt; union intuition =
-00:00:11 verbose #46 &gt;     | Ni : n * i
-00:00:11 verbose #47 &gt;     | Ne : n * e
-00:00:11 verbose #48 &gt;
-00:00:11 verbose #49 &gt; union thinking =
-00:00:11 verbose #50 &gt;     | Ti : t * i
-00:00:11 verbose #51 &gt;     | Te : t * e
-00:00:11 verbose #52 &gt;
-00:00:11 verbose #53 &gt; union feeling =
-00:00:11 verbose #54 &gt;     | Fi : f * i
-00:00:11 verbose #55 &gt;     | Fe : f * e
-00:00:11 verbose #56 &gt;
-00:00:11 verbose #57 &gt; union function_stack =
-00:00:11 verbose #58 &gt;     | FS : sensing * intuition * thinking * feeling
-00:00:11 verbose #59 &gt;
-00:00:11 verbose #60 &gt; union personality_type =
-00:00:11 verbose #61 &gt;     | ISTJ : i * s * t * j * function_stack
-00:00:11 verbose #62 &gt;     | ISFJ : i * s * f * j * function_stack
-00:00:11 verbose #63 &gt;     | INFJ : i * n * f * j * function_stack
-00:00:11 verbose #64 &gt;     | INTJ : i * n * t * j * function_stack
-00:00:11 verbose #65 &gt;     | ISTP : i * s * t * p * function_stack
-00:00:11 verbose #66 &gt;     | ISFP : i * s * f * p * function_stack
-00:00:11 verbose #67 &gt;     | INFP : i * n * f * p * function_stack
-00:00:11 verbose #68 &gt;     | INTP : i * n * t * p * function_stack
-00:00:11 verbose #69 &gt;     | ESTP : e * s * t * p * function_stack
-00:00:11 verbose #70 &gt;     | ESFP : e * s * f * p * function_stack
-00:00:11 verbose #71 &gt;     | ENFP : e * n * f * p * function_stack
-00:00:11 verbose #72 &gt;     | ENTP : e * n * t * p * function_stack
-00:00:11 verbose #73 &gt;     | ESTJ : e * s * t * j * function_stack
-00:00:11 verbose #74 &gt;     | ESFJ : e * s * f * j * function_stack
-00:00:11 verbose #75 &gt;     | ENFJ : e * n * f * j * function_stack
-00:00:11 verbose #76 &gt;     | ENTJ : e * n * t * j * function_stack
-00:00:11 verbose #77 &gt;
-00:00:11 verbose #78 &gt;
-00:00:11 verbose #79 &gt; inl main () =
-00:00:11 verbose #80 &gt;     inl istj_stack = FS ((Si (s, i)), Ne (n, e), (Te (t, e)), (Fi (f, i)))
-00:00:11 verbose #81 &gt;     inl istj_personality = ISTJ (i, s, t, j, istj_stack)
-00:00:11 verbose #82 &gt;     // inl isfj_stack = FS ((Si (s, i)), Ne (n, e), (Fe (f, e)), (Ti (t, i)))
-00:00:11 verbose #83 &gt;     // inl isfj_personality = ISFJ (i, s, f, j, isfj_stack)
-00:00:11 verbose #84 &gt;
-00:00:11 verbose #85 &gt;     ;[[
-00:00:11 verbose #86 &gt;         istj_personality
-00:00:11 verbose #87 &gt;     ]]
-00:00:11 verbose #88 &gt;     |&gt; fun x =&gt; $'$"%A{!x}"' : string
-00:00:11 verbose #89 &gt;     |&gt; console.write_line
-00:00:11 verbose #90 &gt;
-00:00:11 verbose #91 &gt; inl main () =
-00:00:11 verbose #92 &gt;     $"!main ()" : ()
-00:00:11 verbose #93 &gt;
-00:00:11 verbose #94 &gt; ╭─[ 1.28s - stdout ]───────────────────────────────────────────────────────────╮
-00:00:11 verbose #95 &gt; │ type [&lt;Struct&gt;] US0 =                                                        │
-00:00:11 verbose #96 &gt; │     | US0_0                                                                  │
-00:00:11 verbose #97 &gt; │     | US0_1                                                                  │
-00:00:11 verbose #98 &gt; │ and [&lt;Struct&gt;] US1 =                                                         │
-00:00:11 verbose #99 &gt; │     | US1_0                                                                  │
-00:00:11 verbose #100 &gt; │     | US1_1                                                                  │
-00:00:11 verbose #101 &gt; │ and [&lt;Struct&gt;] US2 =                                                         │
-00:00:11 verbose #102 &gt; │     | US2_0                                                                  │
-00:00:11 verbose #103 &gt; │     | US2_1                                                                  │
-00:00:11 verbose #104 &gt; │ and [&lt;Struct&gt;] US3 =                                                         │
-00:00:11 verbose #105 &gt; │     | US3_0                                                                  │
-00:00:11 verbose #106 &gt; │     | US3_1                                                                  │
-00:00:11 verbose #107 &gt; │ and [&lt;Struct&gt;] US4 =                                                         │
-00:00:11 verbose #108 &gt; │     | US4_0 of f0_0 : US0 * f0_1 : US1 * f0_2 : US2 * f0_3 : US3             │
-00:00:11 verbose #109 &gt; │ and [&lt;Struct&gt;] US5 =                                                         │
-00:00:11 verbose #110 &gt; │     | US5_0 of f0_0 : US4                                                    │
-00:00:11 verbose #111 &gt; │     | US5_1 of f1_0 : US4                                                    │
-00:00:11 verbose #112 &gt; │     | US5_2 of f2_0 : US4                                                    │
-00:00:11 verbose #113 &gt; │     | US5_3 of f3_0 : US4                                                    │
-00:00:11 verbose #114 &gt; │     | US5_4 of f4_0 : US4                                                    │
-00:00:11 verbose #115 &gt; │     | US5_5 of f5_0 : US4                                                    │
-00:00:11 verbose #116 &gt; │     | US5_6 of f6_0 : US4                                                    │
-00:00:11 verbose #117 &gt; │     | US5_7 of f7_0 : US4                                                    │
-00:00:11 verbose #118 &gt; │     | US5_8 of f8_0 : US4                                                    │
-00:00:11 verbose #119 &gt; │     | US5_9 of f9_0 : US4                                                    │
-00:00:11 verbose #120 &gt; │     | US5_10 of f10_0 : US4                                                  │
-00:00:11 verbose #121 &gt; │     | US5_11 of f11_0 : US4                                                  │
-00:00:11 verbose #122 &gt; │     | US5_12 of f12_0 : US4                                                  │
-00:00:11 verbose #123 &gt; │     | US5_13 of f13_0 : US4                                                  │
-00:00:11 verbose #124 &gt; │     | US5_14 of f14_0 : US4                                                  │
-00:00:11 verbose #125 &gt; │     | US5_15 of f15_0 : US4                                                  │
-00:00:11 verbose #126 &gt; │ let rec closure0 () () : unit =                                              │
-00:00:11 verbose #127 &gt; │     let v0 : US0 = US0_0                                                     │
-00:00:11 verbose #128 &gt; │     let v1 : US1 = US1_1                                                     │
-00:00:11 verbose #129 &gt; │     let v2 : US2 = US2_1                                                     │
-00:00:11 verbose #130 &gt; │     let v3 : US3 = US3_0                                                     │
-00:00:11 verbose #131 &gt; │     let v4 : US4 = US4_0(v0, v1, v2, v3)                                     │
-00:00:11 verbose #132 &gt; │     let v5 : US5 = US5_0(v4)                                                 │
-00:00:11 verbose #133 &gt; │     let v6 : (US5 []) = [|v5|]                                               │
-00:00:11 verbose #134 &gt; │     let v7 : string = $"%A{v6}"                                              │
-00:00:11 verbose #135 &gt; │     System.Console.WriteLine v7                                              │
-00:00:11 verbose #136 &gt; │     ()                                                                       │
-00:00:11 verbose #137 &gt; │ let v0 : (unit -&gt; unit) = closure0()                                         │
-00:00:11 verbose #138 &gt; │ v0 ()                                                                        │
-00:00:11 verbose #139 &gt; │ ()                                                                           │
-00:00:11 verbose #140 &gt; │                                                                              │
-00:00:11 verbose #141 &gt; │ [|US5_0 (US4_0 (US0_0, US1_1, US2_1, US3_0))|]                               │
-00:00:11 verbose #142 &gt; │                                                                              │
-00:00:11 verbose #143 &gt; ╰──────────────────────────────────────────────────────────────────────────────╯
-00:00:11 verbose #144 &gt;
-00:00:11 verbose #145 &gt; ── fsharp ──────────────────────────────────────────────────────────────────────
-00:00:11 verbose #146 &gt; type PhonologicalFeature =
-00:00:11 verbose #147 &gt;     | VowelFeature of
-00:00:11 verbose #148 &gt;         height: Height
-00:00:11 verbose #149 &gt;         * backness: Backness
-00:00:11 verbose #150 &gt;         * roundedness: Roundedness
-00:00:11 verbose #151 &gt;         * tone: Option&lt;Tone&gt;
-00:00:11 verbose #152 &gt;         * stress: Option&lt;Stress&gt;
-00:00:11 verbose #153 &gt;         * length: Option&lt;Length&gt;
-00:00:11 verbose #154 &gt;     | ConsonantFeature of
-00:00:11 verbose #155 &gt;         place: PlaceOfArticulation
-00:00:11 verbose #156 &gt;         * manner: MannerOfArticulation
-00:00:11 verbose #157 &gt;         * voicing: Voicing
-00:00:11 verbose #158 &gt;         * length: Option&lt;Length&gt;
-00:00:11 verbose #159 &gt;     | VowelHarmonyFeature
-00:00:11 verbose #160 &gt;     | PitchAccentFeature
-00:00:11 verbose #161 &gt;
-00:00:11 verbose #162 &gt; and Stress = Primary | Secondary
-00:00:11 verbose #163 &gt; and Length = Long | Short | HalfLong
-00:00:11 verbose #164 &gt;
-00:00:11 verbose #165 &gt; and Height =
-00:00:11 verbose #166 &gt;     | High | NearHigh | HighMid
-00:00:11 verbose #167 &gt;     | Mid | LowMid | NearLow
-00:00:11 verbose #168 &gt;     | Low
-00:00:11 verbose #169 &gt;
-00:00:11 verbose #170 &gt; and Backness = Front | Central | Back
-00:00:11 verbose #171 &gt;
-00:00:11 verbose #172 &gt; and Roundedness = Rounded | Unrounded
-00:00:11 verbose #173 &gt;
-00:00:11 verbose #174 &gt; and PlaceOfArticulation =
-00:00:11 verbose #175 &gt;     | Bilabial | Labiodental | Dental
-00:00:11 verbose #176 &gt;     | Alveolar | Postalveolar | Retroflex
-00:00:11 verbose #177 &gt;     | Palatal | Velar | Uvular
-00:00:11 verbose #178 &gt;     | Pharyngeal | Epiglottal | Glottal
-00:00:11 verbose #179 &gt;
-00:00:11 verbose #180 &gt; and MannerOfArticulation =
-00:00:11 verbose #181 &gt;     | Plosive | Nasal | Trill
-00:00:11 verbose #182 &gt;     | TapOrFlap | Fricative | LateralFricative
-00:00:11 verbose #183 &gt;     | Approximant | LateralApproximant
-00:00:11 verbose #184 &gt;
-00:00:11 verbose #185 &gt; and Voicing = Voiced | Voiceless
-00:00:11 verbose #186 &gt;
-00:00:11 verbose #187 &gt; and SecondaryArticulation =
-00:00:11 verbose #188 &gt;     | Labialization | Palatalization | Velarization
-00:00:11 verbose #189 &gt;     | Pharyngealization | Aspiration
-00:00:11 verbose #190 &gt;
-00:00:11 verbose #191 &gt; and Tone =
-00:00:11 verbose #192 &gt;     | LevelTone of int
-00:00:11 verbose #193 &gt;     | ContourTone of int list
-00:00:11 verbose #194 &gt;
-00:00:11 verbose #195 &gt; and MorphologicalFeature =
-00:00:11 verbose #196 &gt;     | RootFeature of string
-00:00:11 verbose #197 &gt;     | AffixFeature of AffixType * string
-00:00:11 verbose #198 &gt;     | IncorporationFeature of string * MorphologicalFeature
-00:00:11 verbose #199 &gt;     | NonConcatenativePattern of string * string
-00:00:11 verbose #200 &gt;     | AgglutinativeAffixFeature of AgglutinativeAffixType * string
-00:00:11 verbose #201 &gt;     | HonorificFeature of HonorificType * string
-00:00:11 verbose #202 &gt;
-00:00:11 verbose #203 &gt; and AgglutinativeAffixType = Suffix | Prefix
-00:00:11 verbose #204 &gt;
-00:00:11 verbose #205 &gt; and HonorificType = VerbHonorific | NounHonorific
-00:00:11 verbose #206 &gt;
-00:00:11 verbose #207 &gt; and AffixType =
-00:00:11 verbose #208 &gt;     | Prefix | Suffix | Infix
-00:00:11 verbose #209 &gt;     | Circumfix
-00:00:11 verbose #210 &gt;
-00:00:11 verbose #211 &gt; type SyntacticFeature =
-00:00:11 verbose #212 &gt;     | WordFeature of MorphologicalFeature list * LexicalCategory
-00:00:11 verbose #213 &gt;     | PhraseFeature of PhraseType * SyntacticFeature list
-00:00:11 verbose #214 &gt;     | GrammaticalRelation of GrammaticalRelationType * SyntacticFeature list
-00:00:11 verbose #215 &gt;     | SOVOrderFeature
-00:00:11 verbose #216 &gt;     | TopicCommentFeature
-00:00:11 verbose #217 &gt;
-00:00:11 verbose #218 &gt; and GrammaticalRelationType =
-00:00:11 verbose #219 &gt;     | Ergative | Absolutive | Nominative
-00:00:11 verbose #220 &gt;     | Accusative
-00:00:11 verbose #221 &gt;
-00:00:11 verbose #222 &gt; and LexicalCategory =
-00:00:11 verbose #223 &gt;     | Noun | Verb | Adjective
-00:00:11 verbose #224 &gt;     | Adverb | Pronoun | Preposition
-00:00:11 verbose #225 &gt;     | Conjunction | Determiner | Interjection
-00:00:11 verbose #226 &gt;
-00:00:11 verbose #227 &gt; and PhraseType =
-00:00:11 verbose #228 &gt;     | NP | VP | AP
-00:00:11 verbose #229 &gt;     | PP | CP
-00:00:11 verbose #230 &gt;
-00:00:11 verbose #231 &gt; and SemanticFeature =
-00:00:11 verbose #232 &gt;     | Meaning of string
-00:00:11 verbose #233 &gt;     | SemanticRole of SemanticRoleType * SemanticFeature
-00:00:11 verbose #234 &gt;
-00:00:11 verbose #235 &gt; and SemanticRoleType =
-00:00:11 verbose #236 &gt;     | Agent | Patient | Instrument
-00:00:11 verbose #237 &gt;     | Location | Time | Cause
-00:00:11 verbose #238 &gt;
-00:00:11 verbose #239 &gt; and PragmaticFeature =
-00:00:11 verbose #240 &gt;     | UseContext of string
-00:00:11 verbose #241 &gt;     | PolitenessLevel of Politeness
-00:00:11 verbose #242 &gt;     | SpeechAct of SpeechActType
-00:00:11 verbose #243 &gt;     | SpeechLevel of SpeechLevelType
-00:00:11 verbose #244 &gt;
-00:00:11 verbose #245 &gt; and Politeness = Formal | Informal | Neutral
-00:00:11 verbose #246 &gt;
-00:00:11 verbose #247 &gt; and SpeechActType =
-00:00:11 verbose #248 &gt;     | Assertive | Directive | Commissive
-00:00:11 verbose #249 &gt;     | Expressive | Declarative
-00:00:11 verbose #250 &gt;
-00:00:11 verbose #251 &gt; and SpeechLevelType =
-00:00:11 verbose #252 &gt;     | FormalHigh | FormalLow | InformalHigh
-00:00:11 verbose #253 &gt;     | InformalLow | Neutral
-00:00:11 verbose #254 &gt;
-00:00:11 verbose #255 &gt; type LinguisticFeature =
-00:00:11 verbose #256 &gt;     | Phonological of PhonologicalFeature
-00:00:11 verbose #257 &gt;     | Morphological of MorphologicalFeature
-00:00:11 verbose #258 &gt;     | Syntactic of SyntacticFeature
-00:00:11 verbose #259 &gt;     | Semantic of SemanticFeature
-00:00:11 verbose #260 &gt;     | Pragmatic of PragmaticFeature
-00:00:11 verbose #261 &gt;
-00:00:11 verbose #262 &gt; type LanguageConstruct =
-00:00:11 verbose #263 &gt;     | LanguageElement of LinguisticFeature
-00:00:11 verbose #264 &gt;     | LanguageStructure of LanguageConstruct list
-00:00:11 verbose #265 &gt;     | TranslationElement of TranslationFeature
-00:00:11 verbose #266 &gt;
-00:00:11 verbose #267 &gt; and TranslationFeature =
-00:00:11 verbose #268 &gt;     | LinkedPhonological of PhonologicalFeature * PhonologicalFeature
-00:00:11 verbose #269 &gt;     | LinkedMorphological of MorphologicalFeature * MorphologicalFeature
-00:00:11 verbose #270 &gt;     | LinkedSyntactic of SyntacticFeature * SyntacticFeature
-00:00:11 verbose #271 &gt;     | LinkedSemantic of SemanticFeature * SemanticFeature
-00:00:11 verbose #272 &gt;
-00:00:11 verbose #273 &gt; type Discourse = DiscourseUnit of LanguageConstruct list
-00:00:11 verbose #274 &gt;
-00:00:11 verbose #275 &gt; type LanguageModel =
-00:00:11 verbose #276 &gt;     | Model of discourse: Discourse
-00:00:11 verbose #277 &gt;
-00:00:11 verbose #278 &gt; ── fsharp - import ─────────────────────────────────────────────────────────────
-00:00:11 verbose #279 &gt; #r
-00:00:11 verbose #280 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.A
-00:00:11 verbose #281 &gt; spNetCore.Html.Abstractions.dll"
-00:00:11 verbose #282 &gt; #r
-00:00:11 verbose #283 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
-00:00:11 verbose #284 &gt; otNet.Interactive.dll"
-00:00:11 verbose #285 &gt; #r
-00:00:11 verbose #286 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
-00:00:11 verbose #287 &gt; otNet.Interactive.FSharp.dll"
-00:00:11 verbose #288 &gt; #r
-00:00:11 verbose #289 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
-00:00:11 verbose #290 &gt; otNet.Interactive.Formatting.dll"
-00:00:11 verbose #291 &gt; open System
-00:00:11 verbose #292 &gt; open System.IO
-00:00:11 verbose #293 &gt; open System.Text
-00:00:11 verbose #294 &gt; open Microsoft.DotNet.Interactive.Formatting
-00:00:11 verbose #295 &gt;
-00:00:11 verbose #296 &gt; ── fsharp - import ─────────────────────────────────────────────────────────────
-00:00:11 verbose #297 &gt; #r
-00:00:11 verbose #298 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
-00:00:11 verbose #299 &gt; otNet.Interactive.FSharp.dll"
-00:00:11 verbose #300 &gt; open Microsoft.DotNet.Interactive.FSharp.FSharpKernelHelpers
-00:00:11 verbose #301 &gt; #r
-00:00:11 verbose #302 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
-00:00:11 verbose #303 &gt; otNet.Interactive.dll"
-00:00:11 verbose #304 &gt; open type Microsoft.DotNet.Interactive.Kernel
-00:00:11 verbose #305 &gt;
-00:00:11 verbose #306 &gt; ── fsharp - import ─────────────────────────────────────────────────────────────
-00:00:11 verbose #307 &gt; Formatter.Register(fun(x: obj)(writer: TextWriter)-&gt;fprintfn writer "%120A" x)
-00:00:11 verbose #308 &gt;
-00:00:11 verbose #309 &gt; ── fsharp - import ─────────────────────────────────────────────────────────────
-00:00:11 verbose #310 &gt; Formatter.Register(fun(x: System.Collections.IEnumerable)(writer:
-00:00:11 verbose #311 &gt; TextWriter)-&gt;fprintfn writer "%120A" x)
-00:00:11 verbose #312 &gt;
-00:00:11 verbose #313 &gt; ── fsharp - import ─────────────────────────────────────────────────────────────
-00:00:11 verbose #314 &gt; type PhonologicalFeature =
-00:00:11 verbose #315 &gt;     | VowelFeature of
-00:00:11 verbose #316 &gt;         height: Height
-00:00:11 verbose #317 &gt;         * backness: Backness
-00:00:11 verbose #318 &gt;         * roundedness: Roundedness
-00:00:11 verbose #319 &gt;         * tone: Option&lt;Tone&gt;
-00:00:11 verbose #320 &gt;         * stress: Option&lt;Stress&gt;
-00:00:11 verbose #321 &gt;         * length: Option&lt;Length&gt;
-00:00:11 verbose #322 &gt;     | ConsonantFeature of
-00:00:11 verbose #323 &gt;         place: PlaceOfArticulation
-00:00:11 verbose #324 &gt;         * manner: MannerOfArticulation
-00:00:11 verbose #325 &gt;         * voicing: Voicing
-00:00:11 verbose #326 &gt;         * length: Option&lt;Length&gt;
-00:00:11 verbose #327 &gt;     | VowelHarmonyFeature
-00:00:11 verbose #328 &gt;     | PitchAccentFeature
-00:00:11 verbose #329 &gt;
-00:00:11 verbose #330 &gt; and Stress = Primary | Secondary
-00:00:11 verbose #331 &gt; and Length = Long | Short | HalfLong
-00:00:11 verbose #332 &gt;
-00:00:11 verbose #333 &gt; and Height =
-00:00:11 verbose #334 &gt;     | High | NearHigh | HighMid
-00:00:11 verbose #335 &gt;     | Mid | LowMid | NearLow
-00:00:11 verbose #336 &gt;     | Low
-00:00:11 verbose #337 &gt;
-00:00:11 verbose #338 &gt; and Backness = Front | Central | Back
-00:00:11 verbose #339 &gt;
-00:00:11 verbose #340 &gt; and Roundedness = Rounded | Unrounded
-00:00:11 verbose #341 &gt;
-00:00:11 verbose #342 &gt; and PlaceOfArticulation =
-00:00:11 verbose #343 &gt;     | Bilabial | Labiodental | Dental
-00:00:11 verbose #344 &gt;     | Alveolar | Postalveolar | Retroflex
-00:00:11 verbose #345 &gt;     | Palatal | Velar | Uvular
-00:00:11 verbose #346 &gt;     | Pharyngeal | Epiglottal | Glottal
-00:00:11 verbose #347 &gt;
-00:00:11 verbose #348 &gt; and MannerOfArticulation =
-00:00:11 verbose #349 &gt;     | Plosive | Nasal | Trill
-00:00:11 verbose #350 &gt;     | TapOrFlap | Fricative | LateralFricative
-00:00:11 verbose #351 &gt;     | Approximant | LateralApproximant
-00:00:11 verbose #352 &gt;
-00:00:11 verbose #353 &gt; and Voicing = Voiced | Voiceless
-00:00:11 verbose #354 &gt;
-00:00:11 verbose #355 &gt; and SecondaryArticulation =
-00:00:11 verbose #356 &gt;     | Labialization | Palatalization | Velarization
-00:00:11 verbose #357 &gt;     | Pharyngealization | Aspiration
-00:00:11 verbose #358 &gt;
-00:00:11 verbose #359 &gt; and Tone =
-00:00:11 verbose #360 &gt;     | LevelTone of int
-00:00:11 verbose #361 &gt;     | ContourTone of int list
-00:00:11 verbose #362 &gt;
-00:00:11 verbose #363 &gt; and MorphologicalFeature =
-00:00:11 verbose #364 &gt;     | RootFeature of string
-00:00:11 verbose #365 &gt;     | AffixFeature of AffixType * string
-00:00:11 verbose #366 &gt;     | IncorporationFeature of string * MorphologicalFeature
-00:00:11 verbose #367 &gt;     | NonConcatenativePattern of string * string
-00:00:11 verbose #368 &gt;     | AgglutinativeAffixFeature of AgglutinativeAffixType * string
-00:00:11 verbose #369 &gt;     | Honori...
-00:00:11 verbose #370 &gt;
-00:00:11 verbose #371 &gt; ── fsharp ──────────────────────────────────────────────────────────────────────
-00:00:11 verbose #372 &gt; let testEnglish =
-00:00:11 verbose #373 &gt;     Model(
-00:00:11 verbose #374 &gt;         DiscourseUnit [[
-00:00:11 verbose #375 &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
-00:00:11 verbose #376 &gt; Voiced, Some(HalfLong))));
-00:00:11 verbose #377 &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
-00:00:11 verbose #378 &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
-00:00:11 verbose #379 &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
-00:00:11 verbose #380 &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
-00:00:11 verbose #381 &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
-00:00:11 verbose #382 &gt; Voiceless, Some(HalfLong))));
-00:00:11 verbose #383 &gt;             LanguageElement (Morphological (RootFeature "I"));
-00:00:11 verbose #384 &gt;             LanguageElement (Morphological (RootFeature "see"));
-00:00:11 verbose #385 &gt;             LanguageElement (Morphological (RootFeature "a"));
-00:00:11 verbose #386 &gt;             LanguageElement (Morphological (RootFeature "cat"));
-00:00:11 verbose #387 &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:11 verbose #388 &gt; ([[RootFeature "I"]], Pronoun)]])));
-00:00:11 verbose #389 &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
-00:00:11 verbose #390 &gt; ([[RootFeature "see"]], Verb)]])));
-00:00:11 verbose #391 &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:11 verbose #392 &gt; ([[RootFeature "a"; RootFeature "cat"]], Noun)]])));
-00:00:11 verbose #393 &gt;             LanguageElement (Semantic (Meaning "Perception act of a feline by
-00:00:11 verbose #394 &gt; the speaker"));
-00:00:11 verbose #395 &gt;             LanguageElement (Pragmatic (UseContext "Statement of an action being
-00:00:11 verbose #396 &gt; observed"))
-00:00:11 verbose #397 &gt;         ]]
-00:00:11 verbose #398 &gt;     )
-00:00:11 verbose #399 &gt;
-00:00:11 verbose #400 &gt; let testPortuguese =
-00:00:11 verbose #401 &gt;     Model(
-00:00:11 verbose #402 &gt;         DiscourseUnit [[
-00:00:11 verbose #403 &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
-00:00:11 verbose #404 &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
-00:00:11 verbose #405 &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
-00:00:11 verbose #406 &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
-00:00:11 verbose #407 &gt;             LanguageElement (Phonological (VowelFeature (Mid, Back, Rounded,
-00:00:11 verbose #408 &gt; Some(LevelTone 3), Some(Primary), Some(Short))));
-00:00:11 verbose #409 &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
-00:00:11 verbose #410 &gt; Voiceless, Some(HalfLong))));
-00:00:11 verbose #411 &gt;             LanguageElement (Morphological (RootFeature "Eu"));
-00:00:11 verbose #412 &gt;             LanguageElement (Morphological (RootFeature "ver" |&gt; ignore;
-00:00:11 verbose #413 &gt; AffixFeature (Suffix, "o")));
-00:00:11 verbose #414 &gt;             LanguageElement (Morphological (RootFeature "um"));
-00:00:11 verbose #415 &gt;             LanguageElement (Morphological (RootFeature "gato"));
-00:00:11 verbose #416 &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:11 verbose #417 &gt; ([[RootFeature "Eu"]], Pronoun)]])));
-00:00:11 verbose #418 &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
-00:00:11 verbose #419 &gt; ([[RootFeature "vejo"]], Verb)]])));
-00:00:11 verbose #420 &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:11 verbose #421 &gt; ([[RootFeature "um"; RootFeature "gato"]], Noun)]])));
-00:00:11 verbose #422 &gt;             LanguageElement (Semantic (Meaning "Ação de percepção de um felino
-00:00:11 verbose #423 &gt; pelo falante"));
-00:00:11 verbose #424 &gt;             LanguageElement (Pragmatic (UseContext "Declaração de uma ação sendo
-00:00:11 verbose #425 &gt; observada"))
-00:00:11 verbose #426 &gt;         ]]
-00:00:11 verbose #427 &gt;     )
-00:00:11 verbose #428 &gt;
-00:00:11 verbose #429 &gt; let testKorean =
-00:00:11 verbose #430 &gt;     Model(
-00:00:11 verbose #431 &gt;         DiscourseUnit [[
-00:00:11 verbose #432 &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
-00:00:11 verbose #433 &gt; Voiced, Some(Short))));
-00:00:11 verbose #434 &gt;             LanguageElement (Phonological (VowelFeature (High, Back, Rounded,
-00:00:11 verbose #435 &gt; None, None, Some(Short))));
-00:00:11 verbose #436 &gt;             LanguageElement (Phonological (VowelFeature (Mid, Front, Unrounded,
-00:00:11 verbose #437 &gt; None, None, Some(Long))));
-00:00:11 verbose #438 &gt;             LanguageElement (Phonological (ConsonantFeature (Bilabial, Plosive,
-00:00:11 verbose #439 &gt; Voiceless, Some(Short))));
-00:00:11 verbose #440 &gt;             LanguageElement (Morphological (RootFeature "나"));
-00:00:11 verbose #441 &gt;             LanguageElement (Morphological (RootFeature "보다"));
-00:00:11 verbose #442 &gt;             LanguageElement (Morphological (AffixFeature (Suffix, "아")));
-00:00:11 verbose #443 &gt;             LanguageElement (Morphological (RootFeature "고양이"));
-00:00:11 verbose #444 &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:11 verbose #445 &gt; ([[RootFeature "나"]], Pronoun)]])));
-00:00:11 verbose #446 &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
-00:00:11 verbose #447 &gt; ([[RootFeature "보다"; AffixFeature (Suffix, "아")]], Verb)]])));
-00:00:11 verbose #448 &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:11 verbose #449 &gt; ([[RootFeature "고양이"]], Noun)]])));
-00:00:11 verbose #450 &gt;             LanguageElement (Semantic (Meaning "화자에 의한 고양이의 관찰
-00:00:11 verbose #451 &gt; 행위"));
-00:00:11 verbose #452 &gt;             LanguageElement (Pragmatic (UseContext "관찰되고 있는 행동의 진술"))
-00:00:11 verbose #453 &gt;         ]]
-00:00:11 verbose #454 &gt;     )
-00:00:11 verbose #455 &gt;
-00:00:11 verbose #456 &gt; ── markdown ────────────────────────────────────────────────────────────────────
-00:00:11 verbose #457 &gt; ╭──────────────────────────────────────────────────────────────────────────────╮
-00:00:11 verbose #458 &gt; │ ## main                                                                      │
-00:00:11 verbose #459 &gt; ╰──────────────────────────────────────────────────────────────────────────────╯
-00:00:11 verbose #460 &gt;
-00:00:11 verbose #461 &gt; ── spiral ──────────────────────────────────────────────────────────────────────
-00:00:11 verbose #462 &gt; inl main (_args : array_base string) =
-00:00:11 verbose #463 &gt;     0i32
-00:00:11 verbose #464 &gt;
-00:00:11 verbose #465 &gt; inl main () =
-00:00:11 verbose #466 &gt;     $"let main args = !main args" : ()
-00:00:11 verbose #467 &gt;
-00:00:11 verbose #468 &gt; ╭─[ 39.54ms - stdout ]─────────────────────────────────────────────────────────╮
-00:00:11 verbose #469 &gt; │ let rec closure0 () (v0 : (string [])) : int32 =                             │
-00:00:11 verbose #470 &gt; │     0                                                                        │
-00:00:11 verbose #471 &gt; │ let v0 : ((string []) -&gt; int32) = closure0()                                 │
-00:00:11 verbose #472 &gt; │ let main args = v0 args                                                      │
-00:00:11 verbose #473 &gt; │ ()                                                                           │
-00:00:11 verbose #474 &gt; │                                                                              │
-00:00:11 verbose #475 &gt; │                                                                              │
-00:00:11 verbose #476 &gt; ╰──────────────────────────────────────────────────────────────────────────────╯
-00:00:11 verbose #477 &gt;
-00:00:11 verbose #478 &gt; ── spiral ──────────────────────────────────────────────────────────────────────
-00:00:11 verbose #479 &gt; inl app () =
-00:00:11 verbose #480 &gt;     "test" |&gt; console.write_line
-00:00:11 verbose #481 &gt;     0i32
-00:00:11 verbose #482 &gt;
-00:00:11 verbose #483 &gt; inl main () =
-00:00:11 verbose #484 &gt;     print_static "&lt;test&gt;"
-00:00:11 verbose #485 &gt;
-00:00:11 verbose #486 &gt;     app
-00:00:11 verbose #487 &gt;     |&gt; dyn
-00:00:11 verbose #488 &gt;     |&gt; ignore
-00:00:11 verbose #489 &gt;
-00:00:11 verbose #490 &gt;     print_static "&lt;/test&gt;"
-00:00:11 verbose #491 &gt;
-00:00:11 verbose #492 &gt; ╭─[ 31.33ms - stdout ]─────────────────────────────────────────────────────────╮
-00:00:11 verbose #493 &gt; │ let rec closure0 () () : int32 =                                             │
-00:00:11 verbose #494 &gt; │     let v0 : string = "test"                                                 │
-00:00:11 verbose #495 &gt; │     System.Console.WriteLine v0                                              │
-00:00:11 verbose #496 &gt; │     0                                                                        │
-00:00:11 verbose #497 &gt; │ let v0 : (unit -&gt; int32) = closure0()                                        │
-00:00:11 verbose #498 &gt; │ ()                                                                           │
-00:00:11 verbose #499 &gt; │                                                                              │
-00:00:11 verbose #500 &gt; │                                                                              │
-00:00:11 verbose #501 &gt; ╰──────────────────────────────────────────────────────────────────────────────╯
-00:00:11 verbose #502 &gt; 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #3 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 20009
-00:00:11 verbose #503 &gt; 00:00:10 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options / file_name: jupyter / arguments: ["nbconvert", "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb", "--to", "html", "--HTMLExporter.theme=dark"] / options: (None, "jupyter nbconvert "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb" --to html --HTMLExporter.theme=dark", Array(MutCell([])), None, None, true, None)
-00:00:16 verbose #504 &gt; 00:00:14 <span class="ansi-black-intense-fg">verbose</span> #5 \e[4;7m[NbConvertApp] Converting notebook c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb to html\e[0m
-00:00:16 verbose #505 &gt; 00:00:14 <span class="ansi-black-intense-fg">verbose</span> #6 \e[4;7mC:\Users\i574n\scoop\apps\python\current\Lib\site-packages\nbformat\__init__.py:93: MissingIDFieldWarning: Code cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\e[0m
-00:00:16 verbose #506 &gt; 00:00:14 <span class="ansi-black-intense-fg">verbose</span> #7 \e[4;7m  validate(nb)\e[0m
-00:00:16 verbose #507 &gt; 00:00:14 <span class="ansi-black-intense-fg">verbose</span> #8 \e[4;7m[NbConvertApp] Writing 321537 bytes to c:\home\git\polyglot\apps\spiral\temp\test\test.dib.html\e[0m
-00:00:16 verbose #508 &gt; 00:00:14 <span class="ansi-black-intense-fg">verbose</span> #9 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 621
-00:00:16 verbose #509 &gt; 00:00:14 <span class="ansi-blue-intense-fg">  debug</span> #10 spiral_builder.run / dib / jupyter nbconvert / exit_code: 0 / jupyter_result.Length: 621
-00:00:16 verbose #510 &gt; 00:00:14 <span class="ansi-blue-intense-fg">  debug</span> #11 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "$counter = 1; $path = 'c:/home/git/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"] / options: (None, "pwsh -c "$counter = 1; $path = 'c:/home/git/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"", Array(MutCell([])), None, None, true, None)
-00:00:17 verbose #511 &gt; 00:00:15 <span class="ansi-black-intense-fg">verbose</span> #12 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 0
-00:00:17 verbose #512 &gt; 00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #13 spiral_builder.run / dib / html cell ids / exit_code: 0 / pwsh_replace_html_result.Length: 0
-00:00:17 verbose #513 &gt; 00:00:16 <span class="ansi-blue-intense-fg">  debug</span> #14 spiral_builder.run / dib / exit_code: 0 / result.Length: 20689
-00:00:17   debug #514 execute_with_options_async / exit_code: 0 / output.Length: 23068
+00:00:12 verbose #4 &gt;
+00:00:12 verbose #5 &gt; ── markdown ────────────────────────────────────────────────────────────────────
+00:00:12 verbose #6 &gt; ╭──────────────────────────────────────────────────────────────────────────────╮
+00:00:12 verbose #7 &gt; │ # test (Polyglot)                                                            │
+00:00:12 verbose #8 &gt; ╰──────────────────────────────────────────────────────────────────────────────╯
+00:00:12 verbose #9 &gt;
+00:00:12 verbose #10 &gt; ── spiral ──────────────────────────────────────────────────────────────────────
+00:00:12 verbose #11 &gt; //// test
+00:00:12 verbose #12 &gt;
+00:00:12 verbose #13 &gt; open testing
+00:00:12 verbose #14 &gt;
+00:00:12 verbose #15 &gt; ── spiral - import ─────────────────────────────────────────────────────────────
+00:00:12 verbose #16 &gt; #r
+00:00:12 verbose #17 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
+00:00:12 verbose #18 &gt; otNet.Interactive.Spiral.dll"
+00:00:12 verbose #19 &gt; open Microsoft.DotNet.Interactive.Spiral.SpiralKernelHelpers
+00:00:12 verbose #20 &gt; #r
+00:00:12 verbose #21 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
+00:00:12 verbose #22 &gt; otNet.Interactive.dll"
+00:00:12 verbose #23 &gt; open type Microsoft.DotNet.Interactive.Kernel
+00:00:12 verbose #24 &gt;
+00:00:12 verbose #25 &gt; ── spiral ──────────────────────────────────────────────────────────────────────
+00:00:12 verbose #26 &gt; nominal i = ()
+00:00:12 verbose #27 &gt; nominal e = ()
+00:00:12 verbose #28 &gt; nominal s = ()
+00:00:12 verbose #29 &gt; nominal n = ()
+00:00:12 verbose #30 &gt; nominal t = ()
+00:00:12 verbose #31 &gt; nominal f = ()
+00:00:12 verbose #32 &gt; nominal j = ()
+00:00:12 verbose #33 &gt; nominal p = ()
+00:00:12 verbose #34 &gt;
+00:00:12 verbose #35 &gt; union sensing =
+00:00:12 verbose #36 &gt;     | Si : s * i
+00:00:12 verbose #37 &gt;     | Se : s * e
+00:00:12 verbose #38 &gt;
+00:00:12 verbose #39 &gt; union intuition =
+00:00:12 verbose #40 &gt;     | Ni : n * i
+00:00:12 verbose #41 &gt;     | Ne : n * e
+00:00:12 verbose #42 &gt;
+00:00:12 verbose #43 &gt; union thinking =
+00:00:12 verbose #44 &gt;     | Ti : t * i
+00:00:12 verbose #45 &gt;     | Te : t * e
+00:00:12 verbose #46 &gt;
+00:00:12 verbose #47 &gt; union feeling =
+00:00:12 verbose #48 &gt;     | Fi : f * i
+00:00:12 verbose #49 &gt;     | Fe : f * e
+00:00:12 verbose #50 &gt;
+00:00:12 verbose #51 &gt; union function_stack =
+00:00:12 verbose #52 &gt;     | FS : sensing * intuition * thinking * feeling
+00:00:12 verbose #53 &gt;
+00:00:12 verbose #54 &gt; union personality_type =
+00:00:12 verbose #55 &gt;     | ISTJ : i * s * t * j * function_stack
+00:00:12 verbose #56 &gt;     | ISFJ : i * s * f * j * function_stack
+00:00:12 verbose #57 &gt;     | INFJ : i * n * f * j * function_stack
+00:00:12 verbose #58 &gt;     | INTJ : i * n * t * j * function_stack
+00:00:12 verbose #59 &gt;     | ISTP : i * s * t * p * function_stack
+00:00:12 verbose #60 &gt;     | ISFP : i * s * f * p * function_stack
+00:00:12 verbose #61 &gt;     | INFP : i * n * f * p * function_stack
+00:00:12 verbose #62 &gt;     | INTP : i * n * t * p * function_stack
+00:00:12 verbose #63 &gt;     | ESTP : e * s * t * p * function_stack
+00:00:12 verbose #64 &gt;     | ESFP : e * s * f * p * function_stack
+00:00:12 verbose #65 &gt;     | ENFP : e * n * f * p * function_stack
+00:00:12 verbose #66 &gt;     | ENTP : e * n * t * p * function_stack
+00:00:12 verbose #67 &gt;     | ESTJ : e * s * t * j * function_stack
+00:00:12 verbose #68 &gt;     | ESFJ : e * s * f * j * function_stack
+00:00:12 verbose #69 &gt;     | ENFJ : e * n * f * j * function_stack
+00:00:12 verbose #70 &gt;     | ENTJ : e * n * t * j * function_stack
+00:00:12 verbose #71 &gt;
+00:00:12 verbose #72 &gt;
+00:00:12 verbose #73 &gt; inl main () =
+00:00:12 verbose #74 &gt;     inl istj_stack = FS ((Si (s, i)), Ne (n, e), (Te (t, e)), (Fi (f, i)))
+00:00:12 verbose #75 &gt;     inl istj_personality = ISTJ (i, s, t, j, istj_stack)
+00:00:12 verbose #76 &gt;     // inl isfj_stack = FS ((Si (s, i)), Ne (n, e), (Fe (f, e)), (Ti (t, i)))
+00:00:12 verbose #77 &gt;     // inl isfj_personality = ISFJ (i, s, f, j, isfj_stack)
+00:00:12 verbose #78 &gt;
+00:00:12 verbose #79 &gt;     ;[[
+00:00:12 verbose #80 &gt;         istj_personality
+00:00:12 verbose #81 &gt;     ]]
+00:00:12 verbose #82 &gt;     |&gt; fun x =&gt; $'$"%A{!x}"' : string
+00:00:12 verbose #83 &gt;     |&gt; console.write_line
+00:00:12 verbose #84 &gt;
+00:00:12 verbose #85 &gt; inl main () =
+00:00:12 verbose #86 &gt;     $"!main ()" : ()
+00:00:12 verbose #87 &gt;
+00:00:12 verbose #88 &gt; ╭─[ 1.31s - stdout ]───────────────────────────────────────────────────────────╮
+00:00:12 verbose #89 &gt; │ [|US5_0 (US4_0 (US0_0, US1_1, US2_1, US3_0))|]                               │
+00:00:12 verbose #90 &gt; │                                                                              │
+00:00:12 verbose #91 &gt; ╰──────────────────────────────────────────────────────────────────────────────╯
+00:00:12 verbose #92 &gt;
+00:00:12 verbose #93 &gt; ── fsharp ──────────────────────────────────────────────────────────────────────
+00:00:12 verbose #94 &gt; type PhonologicalFeature =
+00:00:12 verbose #95 &gt;     | VowelFeature of
+00:00:12 verbose #96 &gt;         height: Height
+00:00:12 verbose #97 &gt;         * backness: Backness
+00:00:12 verbose #98 &gt;         * roundedness: Roundedness
+00:00:12 verbose #99 &gt;         * tone: Option&lt;Tone&gt;
+00:00:12 verbose #100 &gt;         * stress: Option&lt;Stress&gt;
+00:00:12 verbose #101 &gt;         * length: Option&lt;Length&gt;
+00:00:12 verbose #102 &gt;     | ConsonantFeature of
+00:00:12 verbose #103 &gt;         place: PlaceOfArticulation
+00:00:12 verbose #104 &gt;         * manner: MannerOfArticulation
+00:00:12 verbose #105 &gt;         * voicing: Voicing
+00:00:12 verbose #106 &gt;         * length: Option&lt;Length&gt;
+00:00:12 verbose #107 &gt;     | VowelHarmonyFeature
+00:00:12 verbose #108 &gt;     | PitchAccentFeature
+00:00:12 verbose #109 &gt;
+00:00:12 verbose #110 &gt; and Stress = Primary | Secondary
+00:00:12 verbose #111 &gt; and Length = Long | Short | HalfLong
+00:00:12 verbose #112 &gt;
+00:00:12 verbose #113 &gt; and Height =
+00:00:12 verbose #114 &gt;     | High | NearHigh | HighMid
+00:00:12 verbose #115 &gt;     | Mid | LowMid | NearLow
+00:00:12 verbose #116 &gt;     | Low
+00:00:12 verbose #117 &gt;
+00:00:12 verbose #118 &gt; and Backness = Front | Central | Back
+00:00:12 verbose #119 &gt;
+00:00:12 verbose #120 &gt; and Roundedness = Rounded | Unrounded
+00:00:12 verbose #121 &gt;
+00:00:12 verbose #122 &gt; and PlaceOfArticulation =
+00:00:12 verbose #123 &gt;     | Bilabial | Labiodental | Dental
+00:00:12 verbose #124 &gt;     | Alveolar | Postalveolar | Retroflex
+00:00:12 verbose #125 &gt;     | Palatal | Velar | Uvular
+00:00:12 verbose #126 &gt;     | Pharyngeal | Epiglottal | Glottal
+00:00:12 verbose #127 &gt;
+00:00:12 verbose #128 &gt; and MannerOfArticulation =
+00:00:12 verbose #129 &gt;     | Plosive | Nasal | Trill
+00:00:12 verbose #130 &gt;     | TapOrFlap | Fricative | LateralFricative
+00:00:12 verbose #131 &gt;     | Approximant | LateralApproximant
+00:00:12 verbose #132 &gt;
+00:00:12 verbose #133 &gt; and Voicing = Voiced | Voiceless
+00:00:12 verbose #134 &gt;
+00:00:12 verbose #135 &gt; and SecondaryArticulation =
+00:00:12 verbose #136 &gt;     | Labialization | Palatalization | Velarization
+00:00:12 verbose #137 &gt;     | Pharyngealization | Aspiration
+00:00:12 verbose #138 &gt;
+00:00:12 verbose #139 &gt; and Tone =
+00:00:12 verbose #140 &gt;     | LevelTone of int
+00:00:12 verbose #141 &gt;     | ContourTone of int list
+00:00:12 verbose #142 &gt;
+00:00:12 verbose #143 &gt; and MorphologicalFeature =
+00:00:12 verbose #144 &gt;     | RootFeature of string
+00:00:12 verbose #145 &gt;     | AffixFeature of AffixType * string
+00:00:12 verbose #146 &gt;     | IncorporationFeature of string * MorphologicalFeature
+00:00:12 verbose #147 &gt;     | NonConcatenativePattern of string * string
+00:00:12 verbose #148 &gt;     | AgglutinativeAffixFeature of AgglutinativeAffixType * string
+00:00:12 verbose #149 &gt;     | HonorificFeature of HonorificType * string
+00:00:12 verbose #150 &gt;
+00:00:12 verbose #151 &gt; and AgglutinativeAffixType = Suffix | Prefix
+00:00:12 verbose #152 &gt;
+00:00:12 verbose #153 &gt; and HonorificType = VerbHonorific | NounHonorific
+00:00:12 verbose #154 &gt;
+00:00:12 verbose #155 &gt; and AffixType =
+00:00:12 verbose #156 &gt;     | Prefix | Suffix | Infix
+00:00:12 verbose #157 &gt;     | Circumfix
+00:00:12 verbose #158 &gt;
+00:00:12 verbose #159 &gt; type SyntacticFeature =
+00:00:12 verbose #160 &gt;     | WordFeature of MorphologicalFeature list * LexicalCategory
+00:00:12 verbose #161 &gt;     | PhraseFeature of PhraseType * SyntacticFeature list
+00:00:12 verbose #162 &gt;     | GrammaticalRelation of GrammaticalRelationType * SyntacticFeature list
+00:00:12 verbose #163 &gt;     | SOVOrderFeature
+00:00:12 verbose #164 &gt;     | TopicCommentFeature
+00:00:12 verbose #165 &gt;
+00:00:12 verbose #166 &gt; and GrammaticalRelationType =
+00:00:12 verbose #167 &gt;     | Ergative | Absolutive | Nominative
+00:00:12 verbose #168 &gt;     | Accusative
+00:00:12 verbose #169 &gt;
+00:00:12 verbose #170 &gt; and LexicalCategory =
+00:00:12 verbose #171 &gt;     | Noun | Verb | Adjective
+00:00:12 verbose #172 &gt;     | Adverb | Pronoun | Preposition
+00:00:12 verbose #173 &gt;     | Conjunction | Determiner | Interjection
+00:00:12 verbose #174 &gt;
+00:00:12 verbose #175 &gt; and PhraseType =
+00:00:12 verbose #176 &gt;     | NP | VP | AP
+00:00:12 verbose #177 &gt;     | PP | CP
+00:00:12 verbose #178 &gt;
+00:00:12 verbose #179 &gt; and SemanticFeature =
+00:00:12 verbose #180 &gt;     | Meaning of string
+00:00:12 verbose #181 &gt;     | SemanticRole of SemanticRoleType * SemanticFeature
+00:00:12 verbose #182 &gt;
+00:00:12 verbose #183 &gt; and SemanticRoleType =
+00:00:12 verbose #184 &gt;     | Agent | Patient | Instrument
+00:00:12 verbose #185 &gt;     | Location | Time | Cause
+00:00:12 verbose #186 &gt;
+00:00:12 verbose #187 &gt; and PragmaticFeature =
+00:00:12 verbose #188 &gt;     | UseContext of string
+00:00:12 verbose #189 &gt;     | PolitenessLevel of Politeness
+00:00:12 verbose #190 &gt;     | SpeechAct of SpeechActType
+00:00:12 verbose #191 &gt;     | SpeechLevel of SpeechLevelType
+00:00:12 verbose #192 &gt;
+00:00:12 verbose #193 &gt; and Politeness = Formal | Informal | Neutral
+00:00:12 verbose #194 &gt;
+00:00:12 verbose #195 &gt; and SpeechActType =
+00:00:12 verbose #196 &gt;     | Assertive | Directive | Commissive
+00:00:12 verbose #197 &gt;     | Expressive | Declarative
+00:00:12 verbose #198 &gt;
+00:00:12 verbose #199 &gt; and SpeechLevelType =
+00:00:12 verbose #200 &gt;     | FormalHigh | FormalLow | InformalHigh
+00:00:12 verbose #201 &gt;     | InformalLow | Neutral
+00:00:12 verbose #202 &gt;
+00:00:12 verbose #203 &gt; type LinguisticFeature =
+00:00:12 verbose #204 &gt;     | Phonological of PhonologicalFeature
+00:00:12 verbose #205 &gt;     | Morphological of MorphologicalFeature
+00:00:12 verbose #206 &gt;     | Syntactic of SyntacticFeature
+00:00:12 verbose #207 &gt;     | Semantic of SemanticFeature
+00:00:12 verbose #208 &gt;     | Pragmatic of PragmaticFeature
+00:00:12 verbose #209 &gt;
+00:00:12 verbose #210 &gt; type LanguageConstruct =
+00:00:12 verbose #211 &gt;     | LanguageElement of LinguisticFeature
+00:00:12 verbose #212 &gt;     | LanguageStructure of LanguageConstruct list
+00:00:12 verbose #213 &gt;     | TranslationElement of TranslationFeature
+00:00:12 verbose #214 &gt;
+00:00:12 verbose #215 &gt; and TranslationFeature =
+00:00:12 verbose #216 &gt;     | LinkedPhonological of PhonologicalFeature * PhonologicalFeature
+00:00:12 verbose #217 &gt;     | LinkedMorphological of MorphologicalFeature * MorphologicalFeature
+00:00:12 verbose #218 &gt;     | LinkedSyntactic of SyntacticFeature * SyntacticFeature
+00:00:12 verbose #219 &gt;     | LinkedSemantic of SemanticFeature * SemanticFeature
+00:00:12 verbose #220 &gt;
+00:00:12 verbose #221 &gt; type Discourse = DiscourseUnit of LanguageConstruct list
+00:00:12 verbose #222 &gt;
+00:00:12 verbose #223 &gt; type LanguageModel =
+00:00:12 verbose #224 &gt;     | Model of discourse: Discourse
+00:00:12 verbose #225 &gt;
+00:00:12 verbose #226 &gt; ── fsharp - import ─────────────────────────────────────────────────────────────
+00:00:12 verbose #227 &gt; #r
+00:00:12 verbose #228 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.A
+00:00:12 verbose #229 &gt; spNetCore.Html.Abstractions.dll"
+00:00:12 verbose #230 &gt; #r
+00:00:12 verbose #231 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
+00:00:12 verbose #232 &gt; otNet.Interactive.dll"
+00:00:12 verbose #233 &gt; #r
+00:00:12 verbose #234 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
+00:00:12 verbose #235 &gt; otNet.Interactive.FSharp.dll"
+00:00:12 verbose #236 &gt; #r
+00:00:12 verbose #237 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
+00:00:12 verbose #238 &gt; otNet.Interactive.Formatting.dll"
+00:00:12 verbose #239 &gt; open System
+00:00:12 verbose #240 &gt; open System.IO
+00:00:12 verbose #241 &gt; open System.Text
+00:00:12 verbose #242 &gt; open Microsoft.DotNet.Interactive.Formatting
+00:00:12 verbose #243 &gt;
+00:00:12 verbose #244 &gt; ── fsharp - import ─────────────────────────────────────────────────────────────
+00:00:12 verbose #245 &gt; #r
+00:00:12 verbose #246 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
+00:00:12 verbose #247 &gt; otNet.Interactive.FSharp.dll"
+00:00:12 verbose #248 &gt; open Microsoft.DotNet.Interactive.FSharp.FSharpKernelHelpers
+00:00:12 verbose #249 &gt; #r
+00:00:12 verbose #250 &gt; "C:/Users/i574n/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.D
+00:00:12 verbose #251 &gt; otNet.Interactive.dll"
+00:00:12 verbose #252 &gt; open type Microsoft.DotNet.Interactive.Kernel
+00:00:12 verbose #253 &gt;
+00:00:12 verbose #254 &gt; ── fsharp - import ─────────────────────────────────────────────────────────────
+00:00:12 verbose #255 &gt; Formatter.Register(fun(x: obj)(writer: TextWriter)-&gt;fprintfn writer "%120A" x)
+00:00:12 verbose #256 &gt;
+00:00:12 verbose #257 &gt; ── fsharp - import ─────────────────────────────────────────────────────────────
+00:00:12 verbose #258 &gt; Formatter.Register(fun(x: System.Collections.IEnumerable)(writer:
+00:00:12 verbose #259 &gt; TextWriter)-&gt;fprintfn writer "%120A" x)
+00:00:12 verbose #260 &gt;
+00:00:12 verbose #261 &gt; ── fsharp - import ─────────────────────────────────────────────────────────────
+00:00:12 verbose #262 &gt; type PhonologicalFeature =
+00:00:12 verbose #263 &gt;     | VowelFeature of
+00:00:12 verbose #264 &gt;         height: Height
+00:00:12 verbose #265 &gt;         * backness: Backness
+00:00:12 verbose #266 &gt;         * roundedness: Roundedness
+00:00:12 verbose #267 &gt;         * tone: Option&lt;Tone&gt;
+00:00:12 verbose #268 &gt;         * stress: Option&lt;Stress&gt;
+00:00:12 verbose #269 &gt;         * length: Option&lt;Length&gt;
+00:00:12 verbose #270 &gt;     | ConsonantFeature of
+00:00:12 verbose #271 &gt;         place: PlaceOfArticulation
+00:00:12 verbose #272 &gt;         * manner: MannerOfArticulation
+00:00:12 verbose #273 &gt;         * voicing: Voicing
+00:00:12 verbose #274 &gt;         * length: Option&lt;Length&gt;
+00:00:12 verbose #275 &gt;     | VowelHarmonyFeature
+00:00:12 verbose #276 &gt;     | PitchAccentFeature
+00:00:12 verbose #277 &gt;
+00:00:12 verbose #278 &gt; and Stress = Primary | Secondary
+00:00:12 verbose #279 &gt; and Length = Long | Short | HalfLong
+00:00:12 verbose #280 &gt;
+00:00:12 verbose #281 &gt; and Height =
+00:00:12 verbose #282 &gt;     | High | NearHigh | HighMid
+00:00:12 verbose #283 &gt;     | Mid | LowMid | NearLow
+00:00:12 verbose #284 &gt;     | Low
+00:00:12 verbose #285 &gt;
+00:00:12 verbose #286 &gt; and Backness = Front | Central | Back
+00:00:12 verbose #287 &gt;
+00:00:12 verbose #288 &gt; and Roundedness = Rounded | Unrounded
+00:00:12 verbose #289 &gt;
+00:00:12 verbose #290 &gt; and PlaceOfArticulation =
+00:00:12 verbose #291 &gt;     | Bilabial | Labiodental | Dental
+00:00:12 verbose #292 &gt;     | Alveolar | Postalveolar | Retroflex
+00:00:12 verbose #293 &gt;     | Palatal | Velar | Uvular
+00:00:12 verbose #294 &gt;     | Pharyngeal | Epiglottal | Glottal
+00:00:12 verbose #295 &gt;
+00:00:12 verbose #296 &gt; and MannerOfArticulation =
+00:00:12 verbose #297 &gt;     | Plosive | Nasal | Trill
+00:00:12 verbose #298 &gt;     | TapOrFlap | Fricative | LateralFricative
+00:00:12 verbose #299 &gt;     | Approximant | LateralApproximant
+00:00:12 verbose #300 &gt;
+00:00:12 verbose #301 &gt; and Voicing = Voiced | Voiceless
+00:00:12 verbose #302 &gt;
+00:00:12 verbose #303 &gt; and SecondaryArticulation =
+00:00:12 verbose #304 &gt;     | Labialization | Palatalization | Velarization
+00:00:12 verbose #305 &gt;     | Pharyngealization | Aspiration
+00:00:12 verbose #306 &gt;
+00:00:12 verbose #307 &gt; and Tone =
+00:00:12 verbose #308 &gt;     | LevelTone of int
+00:00:12 verbose #309 &gt;     | ContourTone of int list
+00:00:12 verbose #310 &gt;
+00:00:12 verbose #311 &gt; and MorphologicalFeature =
+00:00:12 verbose #312 &gt;     | RootFeature of string
+00:00:12 verbose #313 &gt;     | AffixFeature of AffixType * string
+00:00:12 verbose #314 &gt;     | IncorporationFeature of string * MorphologicalFeature
+00:00:12 verbose #315 &gt;     | NonConcatenativePattern of string * string
+00:00:12 verbose #316 &gt;     | AgglutinativeAffixFeature of AgglutinativeAffixType * string
+00:00:12 verbose #317 &gt;     | Honori...
+00:00:12 verbose #318 &gt;
+00:00:12 verbose #319 &gt; ── fsharp ──────────────────────────────────────────────────────────────────────
+00:00:12 verbose #320 &gt; let testEnglish =
+00:00:12 verbose #321 &gt;     Model(
+00:00:12 verbose #322 &gt;         DiscourseUnit [[
+00:00:12 verbose #323 &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
+00:00:12 verbose #324 &gt; Voiced, Some(HalfLong))));
+00:00:12 verbose #325 &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
+00:00:12 verbose #326 &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
+00:00:12 verbose #327 &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
+00:00:12 verbose #328 &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
+00:00:12 verbose #329 &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
+00:00:12 verbose #330 &gt; Voiceless, Some(HalfLong))));
+00:00:12 verbose #331 &gt;             LanguageElement (Morphological (RootFeature "I"));
+00:00:12 verbose #332 &gt;             LanguageElement (Morphological (RootFeature "see"));
+00:00:12 verbose #333 &gt;             LanguageElement (Morphological (RootFeature "a"));
+00:00:12 verbose #334 &gt;             LanguageElement (Morphological (RootFeature "cat"));
+00:00:12 verbose #335 &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:12 verbose #336 &gt; ([[RootFeature "I"]], Pronoun)]])));
+00:00:12 verbose #337 &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
+00:00:12 verbose #338 &gt; ([[RootFeature "see"]], Verb)]])));
+00:00:12 verbose #339 &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:12 verbose #340 &gt; ([[RootFeature "a"; RootFeature "cat"]], Noun)]])));
+00:00:12 verbose #341 &gt;             LanguageElement (Semantic (Meaning "Perception act of a feline by
+00:00:12 verbose #342 &gt; the speaker"));
+00:00:12 verbose #343 &gt;             LanguageElement (Pragmatic (UseContext "Statement of an action being
+00:00:12 verbose #344 &gt; observed"))
+00:00:12 verbose #345 &gt;         ]]
+00:00:12 verbose #346 &gt;     )
+00:00:12 verbose #347 &gt;
+00:00:12 verbose #348 &gt; let testPortuguese =
+00:00:12 verbose #349 &gt;     Model(
+00:00:12 verbose #350 &gt;         DiscourseUnit [[
+00:00:12 verbose #351 &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
+00:00:12 verbose #352 &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
+00:00:12 verbose #353 &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
+00:00:12 verbose #354 &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
+00:00:12 verbose #355 &gt;             LanguageElement (Phonological (VowelFeature (Mid, Back, Rounded,
+00:00:12 verbose #356 &gt; Some(LevelTone 3), Some(Primary), Some(Short))));
+00:00:12 verbose #357 &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
+00:00:12 verbose #358 &gt; Voiceless, Some(HalfLong))));
+00:00:12 verbose #359 &gt;             LanguageElement (Morphological (RootFeature "Eu"));
+00:00:12 verbose #360 &gt;             LanguageElement (Morphological (RootFeature "ver" |&gt; ignore;
+00:00:12 verbose #361 &gt; AffixFeature (Suffix, "o")));
+00:00:12 verbose #362 &gt;             LanguageElement (Morphological (RootFeature "um"));
+00:00:12 verbose #363 &gt;             LanguageElement (Morphological (RootFeature "gato"));
+00:00:12 verbose #364 &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:12 verbose #365 &gt; ([[RootFeature "Eu"]], Pronoun)]])));
+00:00:12 verbose #366 &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
+00:00:12 verbose #367 &gt; ([[RootFeature "vejo"]], Verb)]])));
+00:00:12 verbose #368 &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:12 verbose #369 &gt; ([[RootFeature "um"; RootFeature "gato"]], Noun)]])));
+00:00:12 verbose #370 &gt;             LanguageElement (Semantic (Meaning "Ação de percepção de um felino
+00:00:12 verbose #371 &gt; pelo falante"));
+00:00:12 verbose #372 &gt;             LanguageElement (Pragmatic (UseContext "Declaração de uma ação sendo
+00:00:12 verbose #373 &gt; observada"))
+00:00:12 verbose #374 &gt;         ]]
+00:00:12 verbose #375 &gt;     )
+00:00:12 verbose #376 &gt;
+00:00:12 verbose #377 &gt; let testKorean =
+00:00:12 verbose #378 &gt;     Model(
+00:00:12 verbose #379 &gt;         DiscourseUnit [[
+00:00:12 verbose #380 &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
+00:00:12 verbose #381 &gt; Voiced, Some(Short))));
+00:00:12 verbose #382 &gt;             LanguageElement (Phonological (VowelFeature (High, Back, Rounded,
+00:00:12 verbose #383 &gt; None, None, Some(Short))));
+00:00:12 verbose #384 &gt;             LanguageElement (Phonological (VowelFeature (Mid, Front, Unrounded,
+00:00:12 verbose #385 &gt; None, None, Some(Long))));
+00:00:12 verbose #386 &gt;             LanguageElement (Phonological (ConsonantFeature (Bilabial, Plosive,
+00:00:12 verbose #387 &gt; Voiceless, Some(Short))));
+00:00:12 verbose #388 &gt;             LanguageElement (Morphological (RootFeature "나"));
+00:00:12 verbose #389 &gt;             LanguageElement (Morphological (RootFeature "보다"));
+00:00:12 verbose #390 &gt;             LanguageElement (Morphological (AffixFeature (Suffix, "아")));
+00:00:12 verbose #391 &gt;             LanguageElement (Morphological (RootFeature "고양이"));
+00:00:12 verbose #392 &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:12 verbose #393 &gt; ([[RootFeature "나"]], Pronoun)]])));
+00:00:12 verbose #394 &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
+00:00:12 verbose #395 &gt; ([[RootFeature "보다"; AffixFeature (Suffix, "아")]], Verb)]])));
+00:00:12 verbose #396 &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:12 verbose #397 &gt; ([[RootFeature "고양이"]], Noun)]])));
+00:00:12 verbose #398 &gt;             LanguageElement (Semantic (Meaning "화자에 의한 고양이의 관찰
+00:00:12 verbose #399 &gt; 행위"));
+00:00:12 verbose #400 &gt;             LanguageElement (Pragmatic (UseContext "관찰되고 있는 행동의 진술"))
+00:00:12 verbose #401 &gt;         ]]
+00:00:12 verbose #402 &gt;     )
+00:00:12 verbose #403 &gt;
+00:00:12 verbose #404 &gt; ── markdown ────────────────────────────────────────────────────────────────────
+00:00:12 verbose #405 &gt; ╭──────────────────────────────────────────────────────────────────────────────╮
+00:00:12 verbose #406 &gt; │ ## main                                                                      │
+00:00:12 verbose #407 &gt; ╰──────────────────────────────────────────────────────────────────────────────╯
+00:00:12 verbose #408 &gt;
+00:00:12 verbose #409 &gt; ── spiral ──────────────────────────────────────────────────────────────────────
+00:00:12 verbose #410 &gt; inl main (_args : array_base string) =
+00:00:12 verbose #411 &gt;     0i32
+00:00:12 verbose #412 &gt;
+00:00:12 verbose #413 &gt; inl main () =
+00:00:12 verbose #414 &gt;     $"let main args = !main args" : ()
+00:00:12 verbose #415 &gt;
+00:00:12 verbose #416 &gt; ── spiral ──────────────────────────────────────────────────────────────────────
+00:00:12 verbose #417 &gt; inl app () =
+00:00:12 verbose #418 &gt;     "test" |&gt; console.write_line
+00:00:12 verbose #419 &gt;     0i32
+00:00:12 verbose #420 &gt;
+00:00:12 verbose #421 &gt; inl main () =
+00:00:12 verbose #422 &gt;     print_static "&lt;test&gt;"
+00:00:12 verbose #423 &gt;
+00:00:12 verbose #424 &gt;     app
+00:00:12 verbose #425 &gt;     |&gt; dyn
+00:00:12 verbose #426 &gt;     |&gt; ignore
+00:00:12 verbose #427 &gt;
+00:00:12 verbose #428 &gt;     print_static "&lt;/test&gt;"
+00:00:12 verbose #429 &gt; 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #3 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 14336
+00:00:12 verbose #430 &gt; 00:00:10 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options / file_name: jupyter / arguments: ["nbconvert", "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb", "--to", "html", "--HTMLExporter.theme=dark"] / options: (None, "jupyter nbconvert "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb" --to html --HTMLExporter.theme=dark", Array(MutCell([])), None, None, true, None)
+00:00:16 verbose #431 &gt; 00:00:14 <span class="ansi-black-intense-fg">verbose</span> #5 \e[4;7m[NbConvertApp] Converting notebook c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb to html\e[0m
+00:00:16 verbose #432 &gt; 00:00:14 <span class="ansi-black-intense-fg">verbose</span> #6 \e[4;7mC:\Users\i574n\scoop\apps\python\current\Lib\site-packages\nbformat\__init__.py:93: MissingIDFieldWarning: Code cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\e[0m
+00:00:16 verbose #433 &gt; 00:00:14 <span class="ansi-black-intense-fg">verbose</span> #7 \e[4;7m  validate(nb)\e[0m
+00:00:16 verbose #434 &gt; 00:00:14 <span class="ansi-black-intense-fg">verbose</span> #8 \e[4;7m[NbConvertApp] Writing 318992 bytes to c:\home\git\polyglot\apps\spiral\temp\test\test.dib.html\e[0m
+00:00:16 verbose #435 &gt; 00:00:14 <span class="ansi-black-intense-fg">verbose</span> #9 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 621
+00:00:16 verbose #436 &gt; 00:00:14 <span class="ansi-blue-intense-fg">  debug</span> #10 spiral_builder.run / dib / jupyter nbconvert / exit_code: 0 / jupyter_result.Length: 621
+00:00:16 verbose #437 &gt; 00:00:14 <span class="ansi-blue-intense-fg">  debug</span> #11 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "$counter = 1; $path = 'c:/home/git/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"] / options: (None, "pwsh -c "$counter = 1; $path = 'c:/home/git/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"", Array(MutCell([])), None, None, true, None)
+00:00:17 verbose #438 &gt; 00:00:15 <span class="ansi-black-intense-fg">verbose</span> #12 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 0
+00:00:17 verbose #439 &gt; 00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #13 spiral_builder.run / dib / html cell ids / exit_code: 0 / pwsh_replace_html_result.Length: 0
+00:00:17 verbose #440 &gt; 00:00:16 <span class="ansi-blue-intense-fg">  debug</span> #14 spiral_builder.run / dib / exit_code: 0 / result.Length: 15016
+00:00:17   debug #441 execute_with_options_async / exit_code: 0 / output.Length: 17395
 00:00:17   debug #1 main / executeCommand / exitCode: 0 / command: ../../../../target/release/spiral_builder.exe dib --path test.dib --retries 3
 </pre>
 </div>
@@ -8262,16 +8189,18 @@ a.anchor-link {
 00:00:01   debug #2 run_with_timeout_async / timeout: 500
 00:00:01   debug #1 buildFile / takeWhileInclusive / path: test.spi / fsxContent:  / errors: [] / typeErrorCount: 0
 00:00:01   debug #2 buildFile / takeWhileInclusive / path: test.spi / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:01 verbose #3 sendJson / port: 13805 / json: {"FileOpen":{"spiText":"/// # test (Polyglot)\nnominal i = ()\nnominal e = ()\nnominal s = ()\nnomin...0022\u003C/test\u003E\u0022\n","uri":"file:///c:/home/git/polyglot/apps/spiral/temp/test/test.spi"}} / result:
-00:00:01 verbose #4 sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/apps/spiral/temp/test/test.spi"}} / result:
-00:00:02   debug #5 buildFile / takeWhileInclusive / path: test.spi / fsxContent: let rec closure0 () () : int32 =
+00:00:02 verbose #3 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"/// # test (Polyglot)\nnominal i = ()\nnominal e = ()\nnominal s = ()\nnomin...0022\u003C/test\u003E\u0022\n","uri":"file:///c:/home/git/polyglot/apps/spiral/temp/test/test.spi"}} / result:
+00:00:02 verbose #4 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/apps/spiral/temp/test/test.spi"}} / result:
+00:00:02   debug #5 buildFile / takeWhileInclusive / path: test.spi / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:03   debug #6 buildFile / takeWhileInclusive / path: test.spi / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:04   debug #7 buildFile / takeWhileInclusive / path: test.spi / fsxContent: let rec closure0 () () : int32 =
     let v0 : string = "test"
     System.Console.WriteLine v0
     0
 let v0 : (unit -&gt; int32) = closure0()
 ()
  / errors: [] / typeErrorCount: 0
-00:00:02   debug #6 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:04   debug #8 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 </pre>
 </div>
 </div>
@@ -8322,16 +8251,28 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Fable 4.17.0: F# to Rust compiler (status: alpha)
 
-Thanks to the contributor! @2sComplement
+Thanks to the contributor! @jbeeko
 Stand with Ukraine! https://standwithukraine.com.ua/
 
 Parsing test.fsproj...
-Retrieving project options from cache, in case of issues run `dotnet fable clean` or try `--noCache` option.
-Project and references (1 source files) parsed in 205ms
+.&gt; cmd /C dotnet restore test.fable-temp.csproj -p:FABLE_COMPILER=true -p:FABLE_COMPILER_4=true -p:FABLE_COMPILER_RUST=true
+  Determining projects to restore...
+  Paket version 8.1.0-alpha002+df391903d7590864c0bba48fdc34b50ddcc94cc2
+  The last full restore is still up to date. Nothing left to do.
+  Total time taken: 0 milliseconds
+  Paket version 8.1.0-alpha002+df391903d7590864c0bba48fdc34b50ddcc94cc2
+  Restoring C:\home\git\polyglot\apps\spiral\temp\test\test.fable-temp.csproj
+  Starting restore process.
+  Total time taken: 0 milliseconds
+  Restored C:\home\git\polyglot\apps\spiral\temp\test\test.fable-temp.csproj (in 339 ms).
+.&gt; cmd /C dotnet restore C:/home/git/polyglot/apps/spiral/temp/test/test.fsproj
+  Determining projects to restore...
+  Restored C:\home\git\polyglot\apps\spiral\temp\test\test.fsproj (in 333 ms).
+Project and references (1 source files) parsed in 9189ms
 
 Started Fable compilation...
 
-Fable compilation finished in 1330ms
+Fable compilation finished in 2113ms
 
 .\test.fsx(6,0): (6,2) warning FABLE: For Rust, support for F# static and module do bindings is disabled by default. It can be enabled with the 'static_do_bindings' feature. Use at your own risk!
 </pre>
@@ -8435,7 +8376,8 @@ Fable compilation finished in 1330ms
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-red-intense-fg ansi-bold">   Compiling spiral_temp_test v0.0.1 (C:\home\git\polyglot\apps\spiral\temp\test)</span>
+<pre><span class="ansi-red-intense-fg ansi-bold">   Compiling fable_library_rust v0.1.0 (C:\home\git\polyglot\lib\rust\fable\fable_modules\fable-library-rust)</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling spiral_temp_test v0.0.1 (C:\home\git\polyglot\apps\spiral\temp\test)</span>
 <span class="ansi-red-intense-fg ansi-bold">warning: struct `Cart` is never constructed</span>
 <span class="ansi-red-intense-fg ansi-bold">  --&gt; apps\spiral\temp\test\./main.rs:41:8</span>
 <span class="ansi-red-intense-fg ansi-bold">   |</span>
@@ -8507,7 +8449,7 @@ Fable compilation finished in 1330ms
 <span class="ansi-red-intense-fg ansi-bold">    |    ^^^^^^^^^^^^^^^^</span>
 
 <span class="ansi-red-intense-fg ansi-bold">warning: `spiral_temp_test` (bin "spiral_temp_test") generated 10 warnings</span>
-<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 5.46s</span>
+<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 12.23s</span>
 </pre>
 </div>
 </div>
@@ -8545,8 +8487,9 @@ Fable compilation finished in 1330ms
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-red-intense-fg ansi-bold">   Compiling spiral_temp_test v0.0.1 (C:\home\git\polyglot\apps\spiral\temp\test)</span>
-<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 20.62s</span>
+<pre><span class="ansi-red-intense-fg ansi-bold">   Compiling fable_library_rust v0.1.0 (C:\home\git\polyglot\lib\rust\fable\fable_modules\fable-library-rust)</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling spiral_temp_test v0.0.1 (C:\home\git\polyglot\apps\spiral\temp\test)</span>
+<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 26.33s</span>
 <span class="ansi-red-intense-fg ansi-bold">     Running unittests main.rs (C:\home\git\polyglot\target\release\deps\spiral_temp_test-44448f7b035eb90e.exe)</span>
 
 running 3 tests
@@ -8557,262 +8500,262 @@ test adding_and_then_removing_an_item_from_the_cart_leaves_the_cart_unchanged ..
 successes:
 
 ---- prop_parse_format_idempotent stdout ----
-input=Identifier("cWfB77u77c1YEKQKRGLAhNu6q")
-input=StringLiteral("u7.")
-input=Identifier("SEfqu0Uh5ePcp67E9992jkmR9aTpbr")
-input=StringLiteral("aT`P&lt;F:nP'ick&amp;t#od8X=m")
-input=Comment("YM.P?*N*Y?&lt;&gt;P)Eo:*cy?Y TLkcvc")
-input=Identifier("gaxDBVV8h1qkIgJ1NUM3vCMyz")
+input=StringLiteral(".XvC&amp;")
+input=Identifier("VfU3pMWTjLLTek39fVQ45tV1")
+input=StringLiteral("~ixIrD%$!/]_&lt;dt:U$q")
 input=Operator("*")
-input=Comment("f#*.A0&amp;9Y3{Qd.qMnC&lt;)Z")
-input=StringLiteral(":*E_D+8&amp;;T./")
-input=Identifier("cl75HQXTms4S")
-input=Comment("t${\"{%M3$|\\/")
-input=Identifier("SXLeBKqhJ2939YvyZ04V")
-input=StringLiteral("WM?FP;['`'[")
-input=StringLiteral("$}$fE1hN")
-input=Identifier("G7BN8V2A3sb9UqK7ilGosZCZRDN")
+input=Comment("Q(Z14J{o\\&amp;A\\fk~&gt;t``N&lt;kVF'")
+input=Integer(-3429030356006871348)
+input=Comment("%$Z((M")
+input=StringLiteral("=S!B)!FA%?&amp;QdJJnvS+Lver%{/%=6")
+input=Integer(5798471401886745910)
+input=Comment("2'7%91^8y%&lt;Js*m.\"V|n")
+input=Identifier("ft0")
+input=Integer(-3382552800301090548)
+input=Operator("-")
 input=Operator("(")
-input=Integer(-3004075849482605843)
+input=StringLiteral("`sft.z*=M:=]&amp;Z")
+input=Comment("'(:gKh{ Kna%|n??{?:W0_m]Le?G@1")
+input=StringLiteral("Zij^|&amp;6&amp;SnI=Jr4zB=")
 input=Operator("/")
-input=Integer(-6297344000173191978)
-input=Comment("9%w`'Wou\\{u_|$0*uH??#b#8+._")
-input=Identifier("V5ePKxiJ71G3kv3I25GGi")
-input=Identifier("phZ6hccIX2mJrLiGih931eocDO")
-input=StringLiteral(",n")
-input=Identifier("I4Wp3CDDk8O2VKD7jPEW95QA40clOpmU7")
-input=Identifier("K50lDDYk4kP6NVWAi1")
-input=Identifier("m")
-input=Identifier("mn45")
-input=Operator("(")
-input=StringLiteral("DPPR'V")
-input=StringLiteral("kB%)?r&amp;I=M65Y1P1'P@Xdr+{u/")
-input=Operator(")")
-input=StringLiteral("%Q'?fd4H-JD")
-input=Identifier("FVt95V5IJv4OONN2P85rmjbk5Df46")
-input=Integer(3744520261887479730)
-input=Identifier("Xxmhddq0NgqOQQXxU2S1N7q")
-input=Integer(-8950349229875986669)
-input=StringLiteral("5Wi`")
-input=Identifier("H4tG")
+input=StringLiteral("~$Uj$")
+input=Integer(-8937870083996505685)
+input=Operator("=")
+input=Comment("`56j=.`~6C&lt;:%#;!:I'}]_{y`*lMLm")
+input=Integer(-4741969422945310948)
+input=Comment("'$/*")
+input=Identifier("iX7KBpB9LsBeBVw8d05PzfAnLmv9p87J1")
+input=Comment("~4vE?o;4P&amp;7")
+input=Operator("*")
+input=Comment("TNEO$'@.Y/_$d(%:g(}#q{")
+input=StringLiteral("$/G_%#:+`:,]S`p=")
+input=Operator("*")
+input=StringLiteral("f1A%Y.X5!$vnOwb&gt;N oy/*`@H=*yx")
+input=Identifier("RJ80WK9Po649D34sb99i35DVBs1XVu")
+input=Integer(8835173269982704467)
+input=Identifier("x4198yzpPbhqIpP7Vs8s5zILsGr65")
+input=StringLiteral("?='{`KL*}LV`v_5")
+input=StringLiteral("%$(a]]&gt;Ig")
+input=Integer(-3269056022913268590)
+input=Identifier("saJhbjxY1OFl")
+input=StringLiteral("*O/Obj&amp;&amp;.")
+input=Identifier("jH1S4gMvZQz4l959AKpyX5c1371Dl5")
+input=Comment("0?l{&lt;$t")
+input=Operator("*")
+input=Comment("yw(0'1xTIHeV1&amp;O{v.D")
+input=StringLiteral("] bp:4r:*E026Q/")
 input=Operator("+")
-input=Operator("*")
-input=Operator("*")
-input=Operator("-")
-input=Comment("'&amp;9xX\"75O:QO&amp;")
-input=StringLiteral("KNx$*nj.$5w?#g`Z|oA$")
-input=Comment("")
-input=Identifier("l6")
-input=StringLiteral("nCe.-}[HgIrar%R{")
-input=Identifier("b68Cv2bVBlVaeXsx9B7xs43aLGjY4a11m")
-input=Integer(-3821411325349370667)
-input=Integer(4545749918377091950)
-input=Identifier("Vc1GZ1iIStT8L73hL8T0jWag4gIq")
-input=StringLiteral("/2Lm'grM")
-input=StringLiteral("t#`d:4f=PNsxLn&lt;9m2O3qq/Sd9mpfT")
-input=Integer(-4733101073311901628)
-input=Operator("-")
-input=Identifier("r9Qwl5S2PDI4xwR328gwgAIrYFGg")
+input=StringLiteral("&amp;C{")
+input=Operator("=")
+input=StringLiteral("xV#14HIS|u}0=hJc}ZB`r/CXd&lt;")
+input=Identifier("ELl0nu5bqDc26cdVEmwdj")
+input=StringLiteral("%$_I")
+input=Integer(-5381835300275635949)
+input=Integer(7216200758509205952)
+input=StringLiteral("H@%.k8.r;W'Z2:Gz,oE6&amp;&lt;8uSo~")
+input=Identifier("BLY0GQe02")
+input=Identifier("gxns1qywv1aCXX")
+input=Comment("!V/n.1")
+input=Identifier("n4a9bWbA1nigQ09B1ZpRD")
+input=Integer(-3052034577040249219)
+input=Identifier("OVu")
+input=Identifier("oZSM9eTRZ6iH2hoV8yyR51HB43s2wc")
+input=StringLiteral("kn=SL]_Q'}'V?B~")
+input=Identifier("HSK1GI28ZaXU6OigBke")
+input=Operator("+")
+input=Identifier("m1MFWmM1UT8iFs3xH4W066O")
+input=Operator("(")
+input=StringLiteral("cHe/oj]$^r7*bW_o_a.:N_4d&lt;'8_")
+input=StringLiteral("*uaS&lt;,'?$f;2VNeT!.dMt$C")
+input=Identifier("qvXWX99wfh")
+input=StringLiteral(")4''JqEVZUuzD&amp;U@")
+input=Operator(")")
+input=Comment("N|/HAJ:L%&lt;O$&lt;2rIOAt8@'JSP3P#*&amp;4")
 input=Operator("/")
-input=StringLiteral("_:Z/1'IV(Z}")
-input=Identifier("fu8APM6kp4co3C12a4h0LhlH5TCO0z")
-input=Integer(-1724731330277946718)
-input=StringLiteral("Y9~w")
-input=Identifier("jTcj8k6Pv0laix5MA19Pak31bro")
-input=Integer(-5761434756803199065)
-input=Integer(-4463636197495819860)
+input=Identifier("QqiKB4JthiGz2I7m1mjymuW8nc3S")
+input=Comment("jsX")
+input=Operator("*")
+input=Integer(3697507295579829824)
+input=Comment("[Ue:jRr-\"6~\"")
+input=Operator("*")
+input=Identifier("Hi68mp4gIJqsN6ZUTPz48xXWkDvc2M")
+input=Operator("+")
+input=Identifier("jJaFhyC7DZIqjdwCBPMXcmgBU")
+input=Integer(-5652597855208480260)
+input=Integer(-4541906528955276174)
+input=Comment("`{hoO$mi$c==^SE")
+input=StringLiteral("ohUpV/6&amp;7$g&lt;D")
+input=Operator("(")
+input=Integer(4475614973871408955)
+input=Operator("=")
+input=Operator("=")
+input=Operator("-")
+input=Identifier("QcPev6rmMQ0z4Ff0rnJOO4Dbqs")
+input=Operator("+")
+input=Integer(-2353673531621094493)
+input=StringLiteral("'(")
+input=Comment("JmY;?e6^{Y?lF%+:=7o")
+input=Integer(-6476265623662663264)
+input=StringLiteral("C^3cn'B]YDp75.:hs2W'%")
+input=Comment("'")
+input=Identifier("x7bB5K1617R6296AJJknW6E0JUQ")
+input=Integer(-5250283396594343432)
+input=Integer(-6070108929630530440)
+input=Comment("h3l=.")
+input=Integer(-8029862459099099009)
+input=Operator(")")
+input=Identifier("eb4uEAtE2Anw3kHVJ9xqyD85JWpqGG")
+input=Identifier("SsYeHDs9")
+input=Integer(-7182094055105863410)
+input=StringLiteral("J")
+input=StringLiteral("s^|.ILN0'[P8uvhwraV&amp;9")
+input=Operator("/")
+input=Operator("*")
+input=Identifier("Px5NZpgXcZmKTe2w73NDOC")
+input=Identifier("cR1DjvzOh6")
+input=Comment("s~!,@~")
+input=StringLiteral("%==/%K.f{YL;^+ieD//`RS89;")
+input=Identifier("jxqzmjKJ6evO8S7y9sU8vJ4DQh4")
+input=Integer(-8837865784847908318)
+input=Operator("+")
+input=Operator("/")
+input=Comment(":{/lRXrL|)\"l`&gt;")
+input=Identifier("WnU")
+input=Comment("7'*.5&lt;_&amp;sOH$YZbz^W-=&lt;SM*(L'wt@b")
+input=Identifier("iK239A4afcm5K79y8nKTBk8axBTE1h")
+input=Operator("-")
+input=StringLiteral("`")
+input=Operator("/")
+input=StringLiteral("E9GkP$")
+input=Comment("O")
+input=Comment("$KON'':Ig*_=/-bsVJ::)%Ih@xb")
+input=Identifier("vg")
+input=Comment("_`9t5n.jW0y/_'%P&lt;fynIMM`lv")
+input=Operator("-")
+input=Identifier("mDSNX6AK56i8z0tq8")
+input=Comment("p\"\\&lt;bbLM?&amp;$:L'$8&gt;RBFg@%]")
+input=Integer(-7098425224402195175)
+input=Operator("(")
+input=Identifier("iuU50q28j0")
+input=StringLiteral("vJ?=`G%`:]9`#A/q?5A ")
+input=StringLiteral("s$yO&amp;.@!G?'%&amp;{HN8&lt;&amp;a:K86'K}")
+input=Integer(7175317644292036072)
+input=StringLiteral("l'{*glD2:{&amp;m&lt;&amp;}/@6kK&amp;cW")
+input=Comment("`&lt;=\\?Asqt?h7&lt;%\"Y2Mn{2ae-,\\$\":^")
+input=Identifier("y2xqmtikZuYWC576zGF8ZCERM")
+input=Comment("MDT`=a2{")
+input=Integer(8736406032279261422)
+input=Identifier("j6q3t6hKe17DpMJtVSwy2D9fMPo878Jm")
+input=StringLiteral("fJ989,/n")
+input=Operator("(")
 input=StringLiteral("")
-input=Integer(403758178988209901)
-input=Comment(":'/?yG$5%gr\"{`:*x{.&amp;w0S{`eRfX")
-input=StringLiteral("?.tiM(:{,=Y}")
-input=StringLiteral("s$s:l`vgQ)un&amp;lwAt.Xw")
-input=Operator("-")
+input=Identifier("tQkE6vrd")
+input=StringLiteral("u5")
+input=Identifier("vQmHaN79ofJFR3Yr")
+input=Comment(".sO%Dn/34%s9")
 input=Operator(")")
-input=Operator(")")
-input=Identifier("f0hrlAvq67txWO41zkqmsTH9")
-input=StringLiteral("x?B8?y+X$.+ps`3??N")
-input=StringLiteral("R`qr7K=")
-input=Integer(-8820261401646529974)
-input=Comment("e|F='kAD/$:&gt;,|\\_*]K$y?:0\"]")
-input=StringLiteral("}Uy/9")
-input=Identifier("o8nLcUp8T2f0lyzmYXQV6wRt")
-input=Comment("HO\"1-/5G&amp;pur'/Cxo.$^$(\"k")
-input=Comment("\"J}8\\*G%.Dw8{`%p4*\\d&lt;@B'C\\_H")
-input=Identifier("jAuYoeeU4B0oim6Y")
-input=Operator("+")
-input=Operator("-")
-input=Comment("Id:^TN$eUQ~zo'{8")
+input=StringLiteral("%ux]{ Mxo%@A?&amp;q%%L4'J8W")
+input=Comment("K&lt;.7M-w[6U\\y\"'`9+1[")
+input=StringLiteral("=&amp;eiI{")
+input=StringLiteral("zau$/iJQ$:*")
+input=Identifier("zrw")
+input=Comment("u\"S&lt;!k?$?LP}v+NuN%")
+input=Operator("/")
+input=StringLiteral("g6$?$p=8AG;RG?S!%U")
+input=Comment("A*}L9n")
+input=StringLiteral("`nz&amp;zx&lt;H*{=r0lN2Gc/'# ")
+input=Comment("~k&lt;MM`M2^{Oy?*'|m\\N^%o4.")
+input=Comment("uz$_*WF.:96(T!6bX`$e&lt;7")
 input=Operator("(")
-input=Integer(4082131928591306662)
-input=StringLiteral("s 6`IfHM^@#N~5A/")
-input=Integer(6765181542592206554)
-input=Integer(-5286324626314325815)
-input=Comment("KH&amp;")
-input=StringLiteral("4x:ho&lt;.J]:@s6@)")
-input=Identifier("CTh2JWkuP8IExovnZWyt1p")
-input=StringLiteral(":$1__&lt;`Y`_5q(?&gt;$:./&amp;&lt;*%3V!x")
-input=Identifier("hAT9GxgiI")
-input=Identifier("BL")
+input=Operator("(")
+input=Comment("1{/y#:$,*U$")
+input=StringLiteral("G.")
+input=Comment("J0 5")
+input=StringLiteral("^9&amp;yhY&amp;x")
+input=Operator("-")
+input=Identifier("EBn")
+input=Integer(7383206148717819434)
+input=Integer(1179250282074136036)
+input=Operator(")")
+input=StringLiteral("9qL&amp;}xw`&gt;?&lt;ywt-")
+input=Operator("+")
+input=Identifier("sHG8u4Z99M55allUoRZ86gN")
+input=Comment("[\\m_(ry_1y\"::v%z*#Lb&lt;~/+hu@Y7")
+input=Comment("d}**B'*4KcluSl9\\P[!")
+input=Comment("Av~wJS&lt;&gt;Th&amp;&amp;U*")
+input=Identifier("wymcMR7l5k631")
+input=Operator("=")
+input=StringLiteral("$I")
+input=Identifier("xmj98pY")
+input=Integer(6118576818334762100)
+input=Operator("-")
+input=StringLiteral("=,bcw,2l3U.8E8=[&lt;'sJ}}SS2")
+input=StringLiteral("I{.+a&lt;G`e:&lt;z")
+input=Comment(":$~\"'.{j\"s[$je$Zt/U*q*\"")
+input=Integer(3513000141452094614)
 input=Operator("+")
 input=Operator("=")
-input=Integer(2723903578095698840)
-input=Comment("'e'{q")
-input=Comment("8\"&amp;")
-input=Comment("L/}UI:,=?Y(/")
-input=StringLiteral("TP/*ca&lt;")
-input=StringLiteral("&lt;y=0'JNV*f")
-input=StringLiteral("c/{{:umYA")
-input=Identifier("Dd92FfNvKwtIECAFs118Ry54q")
-input=Operator(")")
-input=Identifier("z0s8g1yK18o3lkq")
-input=Operator("=")
-input=Operator("=")
+input=Comment("")
+input=Identifier("ZL7u7Q")
+input=Identifier("pr0H8rWQzoGFgaNWWepN0EbXHeHCq")
+input=StringLiteral("!${*R*P%':f !@=f")
+input=Comment("")
+input=Operator("/")
+input=StringLiteral("HdD}{J")
+input=Integer(6774278526416631308)
+input=Operator("-")
+input=StringLiteral("rFy&amp;RR*dZ?@=ZQ-e@Q0m'")
+input=Integer(-1648834205313731922)
+input=Integer(1937456307249100045)
+input=Comment("($xLt:.0Xy.$9n=&amp;/3Kb;")
+input=Comment("e_?GXCAlk%v=Jg{e^A{")
+input=StringLiteral("J%Nzrw.;0~0DK.=4*kqU*%:#Wk`X6f1")
+input=Integer(-1322978615167616368)
+input=Identifier("SIY2u48D9NL")
+input=Identifier("clteLJi8ay5283BU0bxvsUGFa21foO")
 input=Operator("(")
-input=Comment("[&lt;bXH%_.yO'b.$VpH")
+input=Operator("=")
+input=Comment("C*K.&amp;Jl?X'kO%dS&gt;")
+input=Comment("?l?t")
+input=Operator("(")
+input=StringLiteral("V`)I/Nw`.%b..g4&lt;??d:kj8")
+input=StringLiteral("&amp;{?t=tcxmtm'd%KYD(Qb'")
+input=Operator("+")
+input=Integer(6633886772152729206)
+input=Operator("-")
+input=StringLiteral("{i|`vn")
+input=Operator("(")
+input=Identifier("qOmv4jX9F6uquU5c8O7LB")
 input=Operator("*")
-input=Comment("5N!f t7:$7%$2@&lt;T{&amp;")
-input=StringLiteral(":P^q{~Q.hWc+kmV&lt;")
-input=Identifier("hsWNDYK7z8CT3tYj62qj224")
-input=Integer(-7154979319746678274)
-input=Comment("G$?'N/;HZ@:*H")
-input=Integer(4815486509210749838)
-input=Operator("=")
-input=Integer(844093504536469720)
-input=Operator("+")
-input=Operator("-")
-input=Operator("=")
-input=Identifier("PSvpDcSP1f1cs")
-input=Identifier("Nu3ZX17U23IdmU2sJ0")
-input=Comment("#5:nQ`.(99i")
-input=StringLiteral("e;&amp;{#^$od*.d`!``{$*rZ")
-input=StringLiteral("L.269%D7??{F4seSGN$zl&lt;MK")
-input=Integer(7980488024335305900)
-input=Identifier("Ze")
-input=Identifier("r51IZ8861hjK")
-input=Identifier("wzF6tnFwgl8ST5DXqKFF03R6yE")
-input=StringLiteral("$B &amp;/aD=57 9?0E.k&amp;&lt;j /=%")
-input=Identifier("p4v7Pe1jpJzscGMEbdnSC58O")
+input=Comment("0&lt;`[\\_u!!+]+Rqp'Z9mnc\"x/HcG@n")
+input=StringLiteral("s?s^yr&gt;P&amp;%p?=|^Bs")
+input=Integer(7300778161870232527)
+input=Comment("`8YYCA!$%'{&lt;{=s'''A/x|.9AlAe")
+input=Comment("\\*E,$*")
+input=StringLiteral("`X'T&gt;$%-%&lt;%%%ut@[$'6^d")
 input=Operator(")")
-input=Identifier("pS0uX92M")
-input=StringLiteral("$}?mf%&amp;!y")
-input=Comment("~S]/}'p.;BQ:/]S'tsKO&gt;.")
-input=Comment("\"+N.&lt;4%AEx`wXP\";Y-N&amp;}\"D")
 input=Operator("(")
-input=StringLiteral("E*kr:;:iBY3")
-input=StringLiteral("W`%t_")
-input=Comment("P$og&amp;/2")
-input=Operator("/")
-input=Integer(-7542203563965099865)
-input=Identifier("JbjI9ut0z8uE91GiISkgpe6")
-input=Operator("=")
-input=Identifier("s")
-input=StringLiteral("2g0$|-:j:BbngS.fe|*")
-input=Comment("Dl]e{{h&lt;?@c")
-input=Identifier("Dzi00pk3T2W0RgCu73o")
-input=Comment("$$N*j:&amp;.&amp;r~Mzu2z)L&lt;3$ih&amp;js0$_")
-input=Operator("=")
-input=StringLiteral("A/w}D&gt;?/?AS`IL(JG0g")
-input=Operator("+")
-input=Operator("=")
-input=Comment("`&lt;6")
-input=Comment("p2\\6zl{`)27X\\H'")
-input=Comment("8mSV%q%\"+P.KPF*E\\:HI=|$")
-input=Integer(-2086574543976157728)
-input=Integer(-8646797897138649380)
-input=Integer(1960046772283191495)
-input=Comment("y")
-input=Identifier("G9d")
-input=Identifier("zt7nVgtDOGR19Zs5CXz4XSq3o")
-input=Identifier("bYi9pBuPOaa3FQ9DQ")
-input=Integer(-2284839153836223188)
-input=Identifier("d27V")
-input=StringLiteral("X~&lt;C}&amp;=$1k%Rp,T:*E")
-input=Comment("X$$?h?+)*yQ:\"7%n.:Lq%+Gw{\\q%`%")
-input=Operator("=")
-input=Identifier("Vt1Lpl")
-input=Comment("I+?kz]hOz{rJX?'?oa*zPh?&lt;.U$")
-input=Comment("=Dd&amp;N`&lt;,`y:]20H::/'Z.?%S3Bq.X")
-input=Comment(".z1`:I[z/'m|\\8.'{5j:%n&lt;h=v$u0s@D")
-input=Integer(5505302453492197470)
-input=Comment("|G6$On'Q&amp;\\o'|\\i?N=sK0&lt;=VAC8\\'=")
-input=Operator("-")
-input=Comment("^'*by_Xw{nKwx'?&gt;'fK$x.G-Wjb")
-input=Operator(")")
-input=Integer(-710055890272026313)
-input=Comment("7&amp;\"")
-input=Identifier("HmNGKlYi1gd")
-input=Operator("/")
-input=Identifier("IkN6XZz7bJ188P993t9xA48Pm9gd")
-input=Integer(-6270362785849142515)
-input=Comment("@~-*y{y\\hCr{'$\"$*2:")
+input=Integer(-4587663141004947545)
+input=Comment("7,^Q,!*dG;^&amp;$NInQ")
+input=StringLiteral("F&gt;J&amp;g-r;$)&lt;F?c0db'Y {O`Xg4+$")
+input=StringLiteral("l#p$c*]{A}}%*kc.'YZ_Q$V&lt;CB'pI")
 input=Operator("*")
-input=Identifier("h23GfQlbd")
+input=Integer(-1917529850851210637)
 input=Operator("+")
-input=Operator("(")
-input=Identifier("JAhpN13")
-input=Comment("o}?$%m8,*s\"(&amp;lqw`A")
-input=Operator("(")
-input=Identifier("YkqUJq3urN7VphYdaa2p77hbg")
-input=StringLiteral("T&lt;NR/`r2c#$5&lt;%uO'")
-input=StringLiteral("IJ8=Iz{aIh+e")
-input=Comment("p:wx*&lt;&lt;8q$8%`L7h:@FfAk[?51")
-input=Identifier("g7Qk")
-input=Identifier("x0HQd4f0lda4cSIK")
-input=Identifier("VytgmoZl3ZDKHV7ja8843c2F34PZQP7Ju")
-input=Operator(")")
-input=Integer(4155562005857776089)
-input=StringLiteral("&gt;{{4?v&amp;q=(Jx/'MCzPXk2=&lt;*R_{~9`")
-input=Identifier("DWCe7p27379G710BZe6se4")
-input=Comment("^$WfxV7:!")
-input=Comment("Z%s*&amp;VAJ b=\\/")
-input=Comment("=p%&amp;\"='&amp;B^&amp;(x=/\"\"k}+%6_b \\&gt;")
-input=Comment("\\[\\-RhU:- w?*bS")
-input=StringLiteral("OulT18EO")
-input=Comment("Xbg_")
-input=StringLiteral("hI+&lt;=b.K`P&lt;S]%&lt;%=up%M77&amp;?t")
-input=StringLiteral("?#KvQrB&amp;3r:|w&amp;$PB:U9:")
-input=StringLiteral("Tm*}p=':.G6/*&lt;79(N_'QW3$tE_4.")
-input=Identifier("rk")
 input=Operator("*")
-input=StringLiteral(".R/N:8S")
-input=Comment("y3%&gt;tU$v")
-input=StringLiteral("'&gt;9XE&lt;NX|&lt;$i**&gt;[U&lt;mX$]")
-input=Identifier("V61QP80RzYD")
-input=StringLiteral("K/Ju*~e/+}$?M]q&gt;rH`r}-")
-input=Identifier("S9sJIfYHQd")
-input=Identifier("FqCp3x67O10P")
-input=StringLiteral("W")
-input=Operator("=")
-input=StringLiteral("w`GOE+6un~.(+mo%a($`lyDRTwor")
-input=Operator("=")
-input=Identifier("iXMBmct4XK969584yEz17N60BEMURY8k")
-input=Comment("=+pd")
-input=StringLiteral("3@I`dX%:G'*Yp$F{?.[O]xn%-*Fl&lt;&lt;#")
-input=Identifier("P22783tOtFVn0Ss1u75UX8JpnR")
-input=StringLiteral("{9D``9T/9!I%w:=_$&gt;*?.v=` =|E?M}]")
-input=Operator("-")
-input=Identifier("vnT763EYB8h8a0JPm055w")
-input=StringLiteral("&amp;9&gt;?VwJ6F&amp;{PX[`RG?$/$$1*~{")
-input=Comment("pzq~&lt;")
-input=Identifier("qNTKSp80qM3M54K77F86AL6AFA1Ih")
-input=Operator("=")
-input=Operator("(")
-input=Operator("/")
-input=Operator("+")
+input=Comment("&gt;iY-t%i+9{5x1\\An&amp;&lt;I&amp;s6_@5%?")
+input=Comment("U%sm:$:*PFP$'-Ib7*UQ94zl.AW'?.")
+input=Identifier("My9GAhxgNu7qlqlhC9t213EX")
 input=Operator(")")
-input=Operator("/")
-input=StringLiteral("/DbF;/`p2&gt;!n&lt;&lt;a'?}@TrG@{z,PhP?")
-input=Integer(2395866000332682837)
-input=StringLiteral(".kvD=.Oz{k.5M~{z")
-input=Identifier("qG2N616Jq3MV51BxTqVh2kNAzq1N")
-input=Identifier("v1R3Ec9B2DFmQ")
-input=StringLiteral("&gt;w*-c1&lt;UcF?e%t=/~DO*Kw=&gt;")
 input=Operator("=")
-input=StringLiteral("Lg**j/=UE/1l??L&gt;HrJ=)y")
-input=Integer(7925587222213765956)
-input=Comment("?s@:.y-!a^{&gt;.")
-input=Operator("/")
-input=Identifier("ntwxQ")
+input=StringLiteral("/[")
+input=Operator("+")
+input=Comment("l&lt;~.CA/?DJ")
+input=Identifier("Y00T")
+input=StringLiteral(".&lt;.t:0P{K&gt;WUBci{H+?Ge=")
+input=Operator("=")
+input=Integer(5092941645144922278)
+input=Identifier("P4iX0C93c0DYohcCf4")
 
 
 successes:
@@ -8820,7 +8763,7 @@ successes:
     prop_parse_format_idempotent
     test_parse_number
 
-test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
 
 </pre>
 </div>
