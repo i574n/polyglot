@@ -31,7 +31,7 @@ def Disposable__ctor_3A5B6456(f: Callable[[], None]) -> Disposable:
     return Disposable(f)
 
 
-def _expr32() -> TypeInfo:
+def _expr33() -> TypeInfo:
     return union_type("Common.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -47,7 +47,7 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr32
+US0_reflection = _expr33
 
 def _expr35() -> TypeInfo:
     return record_type("Common.Mut0", [], Mut0, lambda: [("l0", int64_type)])
@@ -59,7 +59,7 @@ class Mut0(Record):
 
 Mut0_reflection = _expr35
 
-def _expr36() -> TypeInfo:
+def _expr37() -> TypeInfo:
     return record_type("Common.Mut1", [], Mut1, lambda: [("l0", bool_type)])
 
 
@@ -67,7 +67,7 @@ def _expr36() -> TypeInfo:
 class Mut1(Record):
     l0: bool
 
-Mut1_reflection = _expr36
+Mut1_reflection = _expr37
 
 def _expr39() -> TypeInfo:
     return record_type("Common.Mut2", [], Mut2, lambda: [("l0", US0_reflection())])

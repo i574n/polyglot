@@ -15,7 +15,7 @@ from fable_modules.fable_library.util import (create_atom, to_enumerable, compar
 
 State_trace_state: tuple[Mut0, Mut1, Mut2, int64 | None, Mut3] | None = create_atom(None)
 
-def _expr145() -> TypeInfo:
+def _expr179() -> TypeInfo:
     return union_type("Runtime.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -31,9 +31,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr145
+US0_reflection = _expr179
 
-def _expr146() -> TypeInfo:
+def _expr180() -> TypeInfo:
     return record_type("Runtime.Mut0", [], Mut0, lambda: [("l0", int64_type)])
 
 
@@ -41,9 +41,9 @@ def _expr146() -> TypeInfo:
 class Mut0(Record):
     l0: int64
 
-Mut0_reflection = _expr146
+Mut0_reflection = _expr180
 
-def _expr147() -> TypeInfo:
+def _expr181() -> TypeInfo:
     return record_type("Runtime.Mut1", [], Mut1, lambda: [("l0", bool_type)])
 
 
@@ -51,9 +51,9 @@ def _expr147() -> TypeInfo:
 class Mut1(Record):
     l0: bool
 
-Mut1_reflection = _expr147
+Mut1_reflection = _expr181
 
-def _expr148() -> TypeInfo:
+def _expr182() -> TypeInfo:
     return record_type("Runtime.Mut2", [], Mut2, lambda: [("l0", US0_reflection())])
 
 
@@ -61,9 +61,9 @@ def _expr148() -> TypeInfo:
 class Mut2(Record):
     l0: US0
 
-Mut2_reflection = _expr148
+Mut2_reflection = _expr182
 
-def _expr149() -> TypeInfo:
+def _expr183() -> TypeInfo:
     return record_type("Runtime.Mut3", [], Mut3, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -71,9 +71,9 @@ def _expr149() -> TypeInfo:
 class Mut3(Record):
     l0: Callable[[str], None]
 
-Mut3_reflection = _expr149
+Mut3_reflection = _expr183
 
-def _expr150() -> TypeInfo:
+def _expr184() -> TypeInfo:
     return union_type("Runtime.US1", [], US1, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -89,9 +89,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr150
+US1_reflection = _expr184
 
-def _expr151() -> TypeInfo:
+def _expr185() -> TypeInfo:
     return record_type("Runtime.Mut4", [], Mut4, lambda: [("l0", int32_type)])
 
 
@@ -99,9 +99,9 @@ def _expr151() -> TypeInfo:
 class Mut4(Record):
     l0: int
 
-Mut4_reflection = _expr151
+Mut4_reflection = _expr185
 
-def _expr152() -> TypeInfo:
+def _expr186() -> TypeInfo:
     return union_type("Runtime.UH0", [], UH0, lambda: [[], [("Item1", char_type), ("Item2", UH0_reflection())]])
 
 
@@ -116,9 +116,9 @@ class UH0(Union):
         return ["UH0_0", "UH0_1"]
 
 
-UH0_reflection = _expr152
+UH0_reflection = _expr186
 
-def _expr153() -> TypeInfo:
+def _expr187() -> TypeInfo:
     return union_type("Runtime.US3", [], US3, lambda: [[], []])
 
 
@@ -134,9 +134,9 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr153
+US3_reflection = _expr187
 
-def _expr154() -> TypeInfo:
+def _expr188() -> TypeInfo:
     return union_type("Runtime.US2", [], US2, lambda: [[], [("f1_0", US3_reflection())], []])
 
 
@@ -152,9 +152,9 @@ class US2(Union):
         return ["US2_0", "US2_1", "US2_2"]
 
 
-US2_reflection = _expr154
+US2_reflection = _expr188
 
-def _expr155() -> TypeInfo:
+def _expr189() -> TypeInfo:
     return union_type("Runtime.US4", [], US4, lambda: [[("f0_0", string_type)], []])
 
 
@@ -170,9 +170,9 @@ class US4(Union):
         return ["US4_0", "US4_1"]
 
 
-US4_reflection = _expr155
+US4_reflection = _expr189
 
-def _expr157() -> TypeInfo:
+def _expr190() -> TypeInfo:
     return union_type("Runtime.US5", [], US5, lambda: [[("f0_0", lambda_type(tuple_type(bool_type, string_type, int32_type), class_type("Microsoft.FSharp.Control.FSharpAsync`1", [unit_type])))], []])
 
 
@@ -188,9 +188,9 @@ class US5(Union):
         return ["US5_0", "US5_1"]
 
 
-US5_reflection = _expr157
+US5_reflection = _expr190
 
-def _expr158() -> TypeInfo:
+def _expr191() -> TypeInfo:
     return union_type("Runtime.US6", [], US6, lambda: [[("f0_0", class_type("System.Threading.CancellationToken"))], []])
 
 
@@ -206,10 +206,10 @@ class US6(Union):
         return ["US6_0", "US6_1"]
 
 
-US6_reflection = _expr158
+US6_reflection = _expr191
 
-def _expr162() -> TypeInfo:
-    return record_type("Runtime.Heap0", [], Heap0, lambda: [("l0", option_type(class_type("System.Threading.CancellationToken"))), ("l1", string_type), ("l2", array_type(tuple_type(string_type, string_type))), ("l3", option_type(lambda_type(tuple_type(bool_type, string_type, int32_type), class_type("Microsoft.FSharp.Control.FSharpAsync`1", [unit_type])))), ("l4", option_type(lambda_type(class_type("Runtime.std_sync_Arc`1", [class_type("Runtime.std_sync_Mutex`1", [class_type("Runtime.std_process_ChildStdin")])]), unit_type))), ("l5", option_type(string_type))])
+def _expr192() -> TypeInfo:
+    return record_type("Runtime.Heap0", [], Heap0, lambda: [("l0", option_type(class_type("System.Threading.CancellationToken"))), ("l1", string_type), ("l2", array_type(tuple_type(string_type, string_type))), ("l3", option_type(lambda_type(tuple_type(bool_type, string_type, int32_type), class_type("Microsoft.FSharp.Control.FSharpAsync`1", [unit_type])))), ("l4", option_type(lambda_type(class_type("Runtime.std_sync_Arc`1", [class_type("Runtime.std_sync_Mutex`1", [class_type("Runtime.std_process_ChildStdin")])]), unit_type))), ("l5", bool_type), ("l6", option_type(string_type))])
 
 
 @dataclass(eq = False, repr = False, slots = True)
@@ -219,11 +219,12 @@ class Heap0(Record):
     l2: Array[tuple[str, str]]
     l3: Callable[[tuple[bool, str, int]], Async[None]] | None
     l4: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None
-    l5: str | None
+    l5: bool
+    l6: str | None
 
-Heap0_reflection = _expr162
+Heap0_reflection = _expr192
 
-def _expr165() -> TypeInfo:
+def _expr193() -> TypeInfo:
     return union_type("Runtime.UH1", [], UH1, lambda: [[], [("Item1", string_type), ("Item2", UH1_reflection())]])
 
 
@@ -238,9 +239,9 @@ class UH1(Union):
         return ["UH1_0", "UH1_1"]
 
 
-UH1_reflection = _expr165
+UH1_reflection = _expr193
 
-def _expr166() -> TypeInfo:
+def _expr194() -> TypeInfo:
     return union_type("Runtime.US7", [], US7, lambda: [[], [("f1_0", char_type)], [("f2_0", uint8_type), ("f2_1", char_type)]])
 
 
@@ -256,7 +257,7 @@ class US7(Union):
         return ["US7_0", "US7_1", "US7_2"]
 
 
-US7_reflection = _expr166
+US7_reflection = _expr194
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:
@@ -538,17 +539,17 @@ def closure6(v0_1: str, v1_1: UH0) -> UH0:
 
 
 def closure5(unit_var: None, v0_1: str) -> Callable[[UH0], UH0]:
-    def _arrow175(v: UH0, unit_var: Any=unit_var, v0_1: Any=v0_1) -> UH0:
+    def _arrow196(v: UH0, unit_var: Any=unit_var, v0_1: Any=v0_1) -> UH0:
         return closure6(v0_1, v)
 
-    return _arrow175
+    return _arrow196
 
 
 def method5(__unit: None=None) -> Callable[[str, UH0], UH0]:
-    def _arrow177(v: str) -> Callable[[UH0], UH0]:
+    def _arrow197(v: str) -> Callable[[UH0], UH0]:
         return closure5(None, v)
 
-    return _arrow177
+    return _arrow197
 
 
 def method6(v0_1_mut: str, v1_1_mut: str, v2_1_mut: UH0, v3_1_mut: US2) -> tuple[str, str]:
@@ -740,8 +741,8 @@ def method6(v0_1_mut: str, v1_1_mut: str, v2_1_mut: UH0, v3_1_mut: US2) -> tuple
         break
 
 
-def closure7(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: str | None, unit_var: None) -> str:
-    return to_text(interpolate("execute_with_options_async / options: %A%P()", [(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1)]))
+def closure7(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: bool, v6_1: str | None, unit_var: None) -> str:
+    return to_text(interpolate("execute_with_options_async / options: %A%P()", [(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1)]))
 
 
 def closure8(unit_var: None, unit_var_1: None) -> str:
@@ -749,10 +750,10 @@ def closure8(unit_var: None, unit_var_1: None) -> str:
 
 
 def method7(__unit: None=None) -> Callable[[], str]:
-    def _arrow185(__unit: None=None) -> str:
+    def _arrow198(__unit: None=None) -> str:
         return closure8(None, None)
 
-    return _arrow185
+    return _arrow198
 
 
 def method9(__unit: None=None) -> str:
@@ -790,17 +791,17 @@ def method10(v0_1: US0, v1_1: Callable[[], str]) -> None:
 
     pattern_input_1: tuple[Mut0, Mut1, Mut2, int64 | None, Mut3] = value_2(State_trace_state())
     v15: US0 = pattern_input_1[2].l0
-    class ObjectExpr194:
+    class ObjectExpr199:
         @property
         def Compare(self) -> Callable[[US0, US0], int]:
             return compare
 
-    class ObjectExpr196:
+    class ObjectExpr200:
         @property
         def Compare(self) -> Callable[[US0, US0], int]:
             return compare
 
-    if False if (pattern_input_1[1].l0 == False) else (find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr194())) >= find(v15, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr196()))):
+    if False if (pattern_input_1[1].l0 == False) else (find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr199())) >= find(v15, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr200()))):
         v23: int64 = op_addition(v4_1.l0, int64(1))
         v4_1.l0 = v23
         v24: str = ("" + v1_1(None)) + ""
@@ -820,25 +821,25 @@ def method8(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str]) -> None
 
 
 def closure11(v0_1: str, unit_var: None) -> str:
-    return ("> " + v0_1) + ""
+    return v0_1
 
 
-def closure10(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: str | None, v6_1: None, v7_1: Any, v8: None) -> None:
-    _v9: Async[None] | None = None
-    _v9 = None
-    v36: Async[None] = value_2(_v9)
-    _v37: None | None = None
-    _v37 = some(None)
-    value_2(_v37)
+def closure10(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: bool, v6_1: str | None, v7_1: None, v8: Any, v9: None) -> None:
+    _v10: Async[None] | None = None
+    _v10 = None
+    v38: Async[None] = value_2(_v10)
+    _v39: None | None = None
+    _v39 = some(None)
+    value_2(_v39)
 
 
-def closure12(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: str | None, v6_1: None, v7_1: Any, v8: None) -> None:
-    _v9: Async[None] | None = None
-    _v9 = None
-    v37: Async[None] = value_2(_v9)
-    _v38: None | None = None
-    _v38 = some(None)
-    value_2(_v38)
+def closure12(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: bool, v6_1: str | None, v7_1: None, v8: Any, v9: None) -> None:
+    _v10: Async[None] | None = None
+    _v10 = None
+    v39: Async[None] = value_2(_v10)
+    _v40: None | None = None
+    _v40 = some(None)
+    value_2(_v40)
 
 
 def closure13(v0_1: None, unit_var: None) -> None:
@@ -863,23 +864,23 @@ def closure15(v0_1: int, v1_1: str, unit_var: None) -> str:
     return ((("execute_with_options_async / exit_code: " + str(v0_1)) + " / output.Length: ") + str(len(v1_1))) + ""
 
 
-def method2(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None=None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None=None, v5_1: str | None=None) -> Async[tuple[int, str]]:
-    _v6: Async[tuple[int, str]] | None = None
-    _v6 = None
-    return value_2(_v6)
+def method2(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: bool, v6_1: str | None=None) -> Async[tuple[int, str]]:
+    _v7: Async[tuple[int, str]] | None = None
+    _v7 = None
+    return value_2(_v7)
 
 
 def closure4(unit_var: None, v0_1: str) -> Async[tuple[int, str]]:
-    return method2(None, v0_1, [], None, None, None)
+    return method2(None, v0_1, [], None, None, True, None)
 
 
-def closure16(unit_var: None, _arg: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]) -> Async[tuple[int, str]]:
-    return method2(_arg[0], _arg[1], _arg[2], _arg[3], _arg[4], _arg[5])
+def closure16(unit_var: None, _arg: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, bool, str | None]) -> Async[tuple[int, str]]:
+    return method2(_arg[0], _arg[1], _arg[2], _arg[3], _arg[4], _arg[5], _arg[6])
 
 
-def closure17(unit_var: None, v0_1: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]:
-    v8: Heap0 = v0_1(Heap0(None, "", [], None, None, None))
-    return (v8.l0, v8.l1, v8.l2, v8.l3, v8.l4, v8.l5)
+def closure17(unit_var: None, v0_1: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, bool, str | None]:
+    v8: Heap0 = v0_1(Heap0(None, "", [], None, None, True, None))
+    return (v8.l0, v8.l1, v8.l2, v8.l3, v8.l4, v8.l5, v8.l6)
 
 
 def method15(v0_1: UH1, v1_1: UH1) -> UH1:
@@ -2436,11 +2437,11 @@ def closure18(unit_var: None, v0_1: str) -> Array[str]:
     return method12(v0_1)
 
 
-def _arrow200(v: US0) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
+def _arrow209(v: US0) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
     return closure0(None, v)
 
 
-v0: Callable[[US0], tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]] = _arrow200
+v0: Callable[[US0], tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]] = _arrow209
 
 v1: US0 = US0(0)
 
@@ -2449,61 +2450,61 @@ if State_trace_state() is None:
     State_trace_state(v0(v1))
 
 
-def _arrow201(__unit: None=None) -> bool:
+def _arrow210(__unit: None=None) -> bool:
     return closure2(None, None)
 
 
-v2: Callable[[], bool] = _arrow201
+v2: Callable[[], bool] = _arrow210
 
 def is_windows(__unit: None=None) -> bool:
     return v2(None)
 
 
-def _arrow202(__unit: None=None) -> str:
+def _arrow211(__unit: None=None) -> str:
     return closure3(None, None)
 
 
-v3: Callable[[], str] = _arrow202
+v3: Callable[[], str] = _arrow211
 
 def get_executable_suffix(__unit: None=None) -> str:
     return v3(None)
 
 
-def _arrow203(v: str) -> Async[tuple[int, str]]:
+def _arrow212(v: str) -> Async[tuple[int, str]]:
     return closure4(None, v)
 
 
-v4: Callable[[str], Async[tuple[int, str]]] = _arrow203
+v4: Callable[[str], Async[tuple[int, str]]] = _arrow212
 
 def execute_async(x: str) -> Async[tuple[int, str]]:
     return v4(x)
 
 
-def _arrow204(_arg10: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]) -> Async[tuple[int, str]]:
+def _arrow213(_arg10: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, bool, str | None]) -> Async[tuple[int, str]]:
     return closure16(None, _arg10)
 
 
-v5: Callable[[tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]], Async[tuple[int, str]]] = _arrow204
+v5: Callable[[tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, bool, str | None]], Async[tuple[int, str]]] = _arrow213
 
-def execute_with_options_async(x: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]) -> Async[tuple[int, str]]:
+def execute_with_options_async(x: tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, bool, str | None]) -> Async[tuple[int, str]]:
     return v5(x)
 
 
-def _arrow205(v: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]:
+def _arrow214(v: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, bool, str | None]:
     return closure17(None, v)
 
 
-v6: Callable[[Callable[[Heap0], Heap0]], tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]] = _arrow205
+v6: Callable[[Callable[[Heap0], Heap0]], tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, bool, str | None]] = _arrow214
 
-def execution_options(x: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, str | None]:
+def execution_options(x: Callable[[Heap0], Heap0]) -> tuple[CancellationToken | None, str, Array[tuple[str, str]], Callable[[tuple[bool, str, int]], Async[None]] | None, Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, bool, str | None]:
     return v6(x)
 
 
-def _arrow206(v: str) -> Array[str]:
+def _arrow215(v: str) -> Array[str]:
     return closure18(None, v)
 
 
-v7: Callable[[str], Array[str]] = _arrow206
+v7: Callable[[str], Array[str]] = _arrow215
 
 def split_args(x: str) -> Array[str]:
     return v7(x)

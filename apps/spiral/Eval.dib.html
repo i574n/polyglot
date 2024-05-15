@@ -8231,7 +8231,7 @@ a.anchor-link {
                                             <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
                                         <span class="p">)</span>
                                     <span class="o">|</span><span class="p">]</span>
-                            
+
                             <span class="k">if</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">|&gt;</span> <span class="ow">not</span>
                             <span class="n">then</span> <span class="k">return</span> <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="s2">"Eval.eval / fsx error"</span><span class="p">),</span> <span class="n">errors</span>
                             <span class="k">else</span>
@@ -8355,7 +8355,7 @@ a.anchor-link {
     <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>file<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.read_all_text_async
 
     <span class="n">let</span> <span class="n">hashHex</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">SpiralCrypto</span><span class="o">.</span><span class="n">hash_text</span>
-    
+
     <span class="n">let</span> <span class="n">workspaceName</span> <span class="o">=</span> <span class="s2">"spiral_eval"</span>
 
     <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">fsprojPath</span><span class="w"> </span><span class="o">=</span>
@@ -8372,11 +8372,11 @@ a.anchor-link {
 
     <span class="n">let</span> <span class="n">cargoTomlPath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"Cargo.toml"</span>
     <span class="n">let</span> <span class="n">workspaceCargoTomlPath</span> <span class="o">=</span> <span class="n">workspaceDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"Cargo.toml"</span>
-    
+
     <span class="n">let</span> <span class="n">emptyCargoTomlContent</span> <span class="p">()</span> <span class="o">=</span>
         <span class="n">let</span> <span class="nb">id</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Random</span><span class="p">()</span><span class="o">.</span><span class="n">Next</span> <span class="p">(</span><span class="mi">1000000000</span><span class="p">,</span> <span class="mi">2000000000</span><span class="p">)</span>
         <span class="err">$</span><span class="s2">"[package]</span><span class="se">\n</span><span class="s2">name = </span><span class="se">\"</span><span class="s2">spiral_eval_</span><span class="si">{id}</span><span class="se">\"\n</span><span class="s2">version = </span><span class="se">\"</span><span class="s2">0.0.1</span><span class="se">\"\n</span><span class="s2">edition = </span><span class="se">\"</span><span class="s2">2021</span><span class="se">\"\n\n</span><span class="s2">[[bin]]</span><span class="se">\n</span><span class="s2">name = </span><span class="se">\"</span><span class="s2">spiral_eval_</span><span class="si">{id}</span><span class="se">\"\n</span><span class="s2">path = </span><span class="se">\"</span><span class="s2">spiral_eval.rs</span><span class="se">\"</span><span class="s2">"</span>
-    
+
     <span class="k">if</span> <span class="n">cargoTomlPath</span> <span class="o">|&gt;</span> <span class="n">File</span><span class="o">.</span><span class="n">Exists</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="n">then</span>
         <span class="n">do</span><span class="o">!</span><span class="w"> </span>emptyCargoTomlContent<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_exists<span class="w"> </span>cargoTomlPath
 
@@ -8417,7 +8417,7 @@ a.anchor-link {
         <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execution_options</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
             <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
                 <span class="n">l1</span> <span class="o">=</span> <span class="n">command</span>
-                <span class="n">l5</span> <span class="o">=</span> <span class="n">workspaceRootExternal</span>
+                <span class="n">l6</span> <span class="o">=</span> <span class="n">workspaceRootExternal</span>
             <span class="p">}</span>
         <span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span>
@@ -8432,7 +8432,7 @@ a.anchor-link {
             <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execution_options</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
                 <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
                     <span class="n">l1</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"dotnet fable </span><span class="se">\"</span><span class="si">{fsprojPath}</span><span class="se">\"</span><span class="s2"> --optimize --lang rs --extension .rs --outDir </span><span class="se">\"</span><span class="si">{projectDir}</span><span class="se">\"</span><span class="s2">"</span>
-                    <span class="n">l5</span> <span class="o">=</span> <span class="n">workspaceRootExternal</span>
+                    <span class="n">l6</span> <span class="o">=</span> <span class="n">workspaceRootExternal</span>
                 <span class="p">}</span>
             <span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span>
@@ -8471,7 +8471,7 @@ a.anchor-link {
                         <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execution_options</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
                             <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
                                 <span class="n">l1</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"cargo fmt --manifest-path </span><span class="se">\"</span><span class="si">{cargoTomlPath}</span><span class="se">\"</span><span class="s2"> --"</span>
-                                <span class="n">l5</span> <span class="o">=</span> <span class="n">workspaceRootExternal</span>
+                                <span class="n">l6</span> <span class="o">=</span> <span class="n">workspaceRootExternal</span>
                             <span class="p">}</span>
                         <span class="p">)</span>
                         <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span>
@@ -8483,7 +8483,7 @@ a.anchor-link {
                             <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">RegularExpressions</span><span class="o">.</span><span class="n">Regex</span><span class="o">.</span><span class="n">Match</span>
                                 <span class="p">(</span><span class="n">cargoFmtResult</span><span class="p">,</span> <span class="o">@</span><span class="s2">"failed to read `(.*?Cargo.toml)`"</span><span class="p">)</span>
                             <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">m</span> <span class="o">-&gt;</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span>
-                        
+
                         <span class="k">if</span> <span class="n">missingTomlPath</span> <span class="o">|&gt;</span> <span class="n">File</span><span class="o">.</span><span class="n">Exists</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="n">then</span>
                             <span class="n">do</span><span class="o">!</span><span class="w"> </span>emptyCargoTomlContent<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_exists<span class="w"> </span>missingTomlPath
 
@@ -8533,11 +8533,11 @@ a.anchor-link {
                             <span class="s2">"RUSTFLAGS"</span><span class="p">,</span> <span class="s2">"-C prefer-dynamic -C strip=symbols -C link-arg=-s -C debuginfo=0"</span>
                             <span class="o">//</span> <span class="s2">"RUSTFLAGS"</span><span class="p">,</span> <span class="s2">"-C prefer-dynamic -C link-arg=-s -C debuginfo=0 -C strip=symbols"</span>
                         <span class="o">|</span><span class="p">]</span>
-                        <span class="n">l5</span> <span class="o">=</span> <span class="n">workspaceRootExternal</span>
+                        <span class="n">l6</span> <span class="o">=</span> <span class="n">workspaceRootExternal</span>
                     <span class="p">}</span>
                 <span class="p">)</span>
                 <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span>
-            
+
             <span class="p">[</span> <span class="s2">".d"</span><span class="p">;</span> <span class="s2">".exe"</span><span class="p">;</span> <span class="s2">".pdb"</span><span class="p">;</span> <span class="s2">""</span> <span class="p">]</span>
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">ext</span> <span class="o">-&gt;</span> <span class="n">workspaceDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"target/debug/spiral_builder_</span><span class="si">{hashHex}{ext}</span><span class="s2">"</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">filter</span> <span class="n">File</span><span class="o">.</span><span class="n">Exists</span>
@@ -8558,7 +8558,7 @@ a.anchor-link {
                         <span class="o">|&gt;</span> <span class="n">Ok</span>
                     <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
                         <span class="err">$</span><span class="s2">"ex: </span><span class="si">{ex}</span><span class="s2"> / rsPath: </span><span class="si">{rsPath}</span><span class="s2"> / cargoRunResult: </span><span class="si">{cargoRunResult}</span><span class="s2"> / spiralBuilderResult: </span><span class="si">{spiralBuilderResult}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">Error</span>
-                
+
                 <span class="n">let</span> <span class="n">result</span> <span class="o">=</span>
                     <span class="p">[</span>
                         <span class="s2">"extension"</span><span class="p">,</span> <span class="s2">"rs"</span>

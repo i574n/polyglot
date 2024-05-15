@@ -416,11 +416,11 @@ def pad_right(x: int) -> Callable[[str, str], str]:
     return v3(x)
 
 
-def _arrow33(v: str) -> Callable[[str, str], str]:
+def _arrow32(v: str) -> Callable[[str, str], str]:
     return closure10(None, v)
 
 
-v4: Callable[[str, str, str], str] = _arrow33
+v4: Callable[[str, str, str], str] = _arrow32
 
 def replace(x: str) -> Callable[[str, str], str]:
     return v4(x)
@@ -436,11 +436,11 @@ def replace_regex(x: str) -> Callable[[str, str], str]:
     return v5(x)
 
 
-def _arrow37(v: int) -> Callable[[int, str], str]:
+def _arrow36(v: int) -> Callable[[int, str], str]:
     return closure16(None, v)
 
 
-v6: Callable[[int, int, str], str] = _arrow37
+v6: Callable[[int, int, str], str] = _arrow36
 
 def slice(x: int) -> Callable[[int, str], str]:
     return v6(x)

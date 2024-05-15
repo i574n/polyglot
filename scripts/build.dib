@@ -37,6 +37,14 @@
 
 #!pwsh
 
+{ pwsh ../apps/perf/build.ps1 } | Invoke-Block
+
+#!pwsh
+
+{ pwsh ../apps/dir-tree-html/build.ps1 } | Invoke-Block
+
+#!pwsh
+
 { pwsh ../lib/spiral/build.ps1 -sequential 1 } | Invoke-Block
 
 #!pwsh
@@ -58,14 +66,6 @@
 #!pwsh
 
 { pwsh ../apps/spiral/vscode/build.ps1 } | Invoke-Block
-
-#!pwsh
-
-{ pwsh ../apps/perf/build.ps1 } | Invoke-Block
-
-#!pwsh
-
-{ pwsh ../apps/dir-tree-html/build.ps1 } | Invoke-Block
 
 #!pwsh
 

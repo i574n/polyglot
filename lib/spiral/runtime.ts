@@ -341,8 +341,9 @@ export class Heap0 extends Record {
     readonly l2: [string, string][];
     readonly l3: Option<((arg0: [boolean, string, int32]) => any)>;
     readonly l4: Option<((arg0: any) => void)>;
-    readonly l5: Option<string>;
-    constructor(l0: Option<any>, l1: string, l2: [string, string][], l3: Option<((arg0: [boolean, string, int32]) => any)>, l4: Option<((arg0: any) => void)>, l5: Option<string>) {
+    readonly l5: boolean;
+    readonly l6: Option<string>;
+    constructor(l0: Option<any>, l1: string, l2: [string, string][], l3: Option<((arg0: [boolean, string, int32]) => any)>, l4: Option<((arg0: any) => void)>, l5: boolean, l6: Option<string>) {
         super();
         this.l0 = l0;
         this.l1 = l1;
@@ -350,11 +351,12 @@ export class Heap0 extends Record {
         this.l3 = l3;
         this.l4 = l4;
         this.l5 = l5;
+        this.l6 = l6;
     }
 }
 
 export function Heap0_$reflection(): TypeInfo {
-    return record_type("Runtime.Heap0", [], Heap0, () => [["l0", option_type(class_type("System.Threading.CancellationToken"))], ["l1", string_type], ["l2", array_type(tuple_type(string_type, string_type))], ["l3", option_type(lambda_type(tuple_type(bool_type, string_type, int32_type), class_type("Microsoft.FSharp.Control.FSharpAsync`1", [unit_type])))], ["l4", option_type(lambda_type(string_type, unit_type))], ["l5", option_type(string_type)]]);
+    return record_type("Runtime.Heap0", [], Heap0, () => [["l0", option_type(class_type("System.Threading.CancellationToken"))], ["l1", string_type], ["l2", array_type(tuple_type(string_type, string_type))], ["l3", option_type(lambda_type(tuple_type(bool_type, string_type, int32_type), class_type("Microsoft.FSharp.Control.FSharpAsync`1", [unit_type])))], ["l4", option_type(lambda_type(string_type, unit_type))], ["l5", bool_type], ["l6", option_type(string_type)]]);
 }
 
 export type UH1_$union = 
@@ -907,8 +909,8 @@ export function method6(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union
     }
 }
 
-export function closure7(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: Option<string>, unitVar: void): string {
-    return toText(interpolate("execute_with_options_async / options: %A%P()", [[v0_1, v1_1, v2_1, v3_1, v4_1, v5_1] as [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>]]));
+export function closure7(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, unitVar: void): string {
+    return toText(interpolate("execute_with_options_async / options: %A%P()", [[v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1] as [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]]));
 }
 
 export function closure8(unitVar: void, unitVar_1: void): string {
@@ -973,29 +975,29 @@ export function method8(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => str
 }
 
 export function closure11(v0_1: string, unitVar: void): string {
-    return `> ${v0_1}`;
+    return v0_1;
 }
 
-export function closure10(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: Option<string>, v6_1: void, v7_1: any, v8: void): void {
-    let _v9: Option<any> = undefined;
+export function closure10(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, v7_1: void, v8: any, v9: void): void {
+    let _v10: Option<any> = undefined;
     const x: any = defaultOf();
-    _v9 = x;
-    const v36: any = value_2(_v9);
-    let _v37: Option<void> = undefined;
+    _v10 = x;
+    const v38: any = value_2(_v10);
+    let _v39: Option<void> = undefined;
     defaultOf();
-    _v37 = some(undefined);
-    value_2(_v37);
+    _v39 = some(undefined);
+    value_2(_v39);
 }
 
-export function closure12(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: Option<string>, v6_1: void, v7_1: any, v8: void): void {
-    let _v9: Option<any> = undefined;
+export function closure12(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, v7_1: void, v8: any, v9: void): void {
+    let _v10: Option<any> = undefined;
     const x: any = defaultOf();
-    _v9 = x;
-    const v37: any = value_2(_v9);
-    let _v38: Option<void> = undefined;
+    _v10 = x;
+    const v39: any = value_2(_v10);
+    let _v40: Option<void> = undefined;
     defaultOf();
-    _v38 = some(undefined);
-    value_2(_v38);
+    _v40 = some(undefined);
+    value_2(_v40);
 }
 
 export function closure13(v0_1: void, unitVar: void): void {
@@ -1022,24 +1024,24 @@ export function closure15(v0_1: int32, v1_1: string, unitVar: void): string {
     return `execute_with_options_async / exit_code: ${v0_1} / output.Length: ${v1_1.length}`;
 }
 
-export function method2(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: Option<string>): any {
-    let _v6: Option<any> = undefined;
+export function method2(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>): any {
+    let _v7: Option<any> = undefined;
     const x: any = defaultOf();
-    _v6 = x;
-    return value_2(_v6);
+    _v7 = x;
+    return value_2(_v7);
 }
 
 export function closure4(unitVar: void, v0_1: string): any {
-    return method2(undefined, v0_1, [], undefined, undefined, undefined);
+    return method2(undefined, v0_1, [], undefined, undefined, true, undefined);
 }
 
-export function closure16(unitVar: void, _arg: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>]): any {
-    return method2(_arg[0], _arg[1], _arg[2], _arg[3], _arg[4], _arg[5]);
+export function closure16(unitVar: void, _arg: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]): any {
+    return method2(_arg[0], _arg[1], _arg[2], _arg[3], _arg[4], _arg[5], _arg[6]);
 }
 
-export function closure17(unitVar: void, v0_1: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>] {
-    const v8: Heap0 = v0_1(new Heap0(undefined, "", [], undefined, undefined, undefined));
-    return [v8.l0, v8.l1, v8.l2, v8.l3, v8.l4, v8.l5] as [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>];
+export function closure17(unitVar: void, v0_1: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>] {
+    const v8: Heap0 = v0_1(new Heap0(undefined, "", [], undefined, undefined, true, undefined));
+    return [v8.l0, v8.l1, v8.l2, v8.l3, v8.l4, v8.l5, v8.l6] as [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>];
 }
 
 export function method15(v0_1: UH1_$union, v1_1: UH1_$union): UH1_$union {
@@ -2730,15 +2732,15 @@ export function execute_async(x: string): any {
     return v4(x);
 }
 
-export const v5 = (arg10$0040: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>]): any => closure16(undefined, arg10$0040);
+export const v5 = (arg10$0040: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]): any => closure16(undefined, arg10$0040);
 
-export function execute_with_options_async(x: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>]): any {
+export function execute_with_options_async(x: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]): any {
     return v5(x);
 }
 
-export const v6 = (v: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>] => closure17(undefined, v);
+export const v6 = (v: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>] => closure17(undefined, v);
 
-export function execution_options(x: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, Option<string>] {
+export function execution_options(x: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>] {
     return v6(x);
 }
 
