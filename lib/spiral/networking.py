@@ -321,11 +321,11 @@ def closure0(unit_var: None, v0_1: US0) -> tuple[Mut0, Mut1, Mut2, int64 | None,
     return (v2_1, v1_1, v3_1, value_1(_v6), v5_1)
 
 
-def closure3(v0_1: str, unit_var: None) -> str:
-    return ("test_port_open / ex: " + v0_1) + ""
+def closure4(v0_1: int, v1_1: str, unit_var: None) -> str:
+    return ((("networking.test_port_open / port: " + str(v0_1)) + " / ex: ") + v1_1) + ""
 
 
-def closure4(unit_var: None, unit_var_1: None) -> str:
+def closure5(unit_var: None, unit_var_1: None) -> str:
     return ""
 
 
@@ -333,7 +333,7 @@ def method3(__unit: None=None) -> str:
     return ""
 
 
-def closure5(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_var: None) -> str:
+def closure6(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_var: None) -> str:
     if State_trace_state() is None:
         State_trace_state(closure0(None, US0(0)))
 
@@ -388,104 +388,132 @@ def method4(v0_1: US0, v1_1: Callable[[], str]) -> None:
 
 def method2(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str]) -> None:
     def v3_1(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> str:
-        return closure5(v0_1, v1_1, v2_1, None)
+        return closure6(v0_1, v1_1, v2_1, None)
 
     method4(v0_1, v3_1)
 
 
-def closure2(unit_var: None, v0_1: int) -> Async[bool]:
-    _v1: Async[bool] | None = None
-    _v1 = None
-    return value_1(_v1)
-
-
-def closure8(unit_var: None, v0_1: bool) -> US3:
-    return US3(0, v0_1)
-
-
-def closure9(unit_var: None, v0_1: Exception) -> US3:
-    return US3(1, v0_1)
-
-
-def closure10(unit_var: None, unit_var_1: None) -> str:
-    return "run_with_timeout_async"
-
-
-def closure11(v0_1: int, unit_var: None) -> str:
-    return ((("timeout: " + str(v0_1)) + " / ") + closure4(None, None)) + ""
-
-
-def closure12(v0_1: str, unit_var: None) -> str:
-    return ("run_with_timeout_async** / ex: " + v0_1) + ""
-
-
-def closure7(v0_1: int, v1_1: int) -> Async[bool]:
+def closure3(v0_1: str, v1_1: int) -> Async[bool]:
     _v2: Async[bool] | None = None
     _v2 = None
     return value_1(_v2)
 
 
-def closure6(unit_var: None, v0_1: int) -> Callable[[int], Async[bool]]:
+def closure2(unit_var: None, v0_1: str) -> Callable[[int], Async[bool]]:
     def _arrow101(v: int, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[bool]:
-        return closure7(v0_1, v)
+        return closure3(v0_1, v)
 
     return _arrow101
 
 
-def closure16(unit_var: None, unit_var_1: None) -> str:
-    return "wait_for_port_access"
+def closure10(unit_var: None, v0_1: bool) -> US3:
+    return US3(0, v0_1)
 
 
-def closure17(v0_1: int | None, v1_1: bool, v2_1: int, v3_1: int64, unit_var: None) -> str:
-    return to_text(interpolate("port: %P() / retry: %P() / timeout: %A%P() / status: %P() / %P()", [v2_1, v3_1, v0_1, v1_1, closure4(None, None)]))
+def closure11(unit_var: None, v0_1: Exception) -> US3:
+    return US3(1, v0_1)
 
 
-def method5(v0_1: int | None, v1_1: bool, v2_1: int, v3_1: int64) -> Async[int64]:
-    _v4: Async[int64] | None = None
-    _v4 = None
-    return value_1(_v4)
+def closure12(unit_var: None, unit_var_1: None) -> str:
+    return "run_with_timeout_async"
 
 
-def closure15(v0_1: int | None, v1_1: bool, v2_1: int) -> Async[int64]:
-    return method5(v0_1, v1_1, v2_1, int64(0))
+def closure13(v0_1: int, unit_var: None) -> str:
+    return ((("timeout: " + str(v0_1)) + " / ") + closure5(None, None)) + ""
 
 
-def closure14(v0_1: int | None, v1_1: bool) -> Callable[[int], Async[int64]]:
-    def _arrow102(v: int, v0_1: Any=v0_1, v1_1: Any=v1_1) -> Async[int64]:
-        return closure15(v0_1, v1_1, v)
+def closure14(v0_1: str, unit_var: None) -> str:
+    return ("run_with_timeout_async** / ex: " + v0_1) + ""
+
+
+def closure9(v0_1: int, v1_1: str, v2_1: int) -> Async[bool]:
+    _v3: Async[bool] | None = None
+    _v3 = None
+    return value_1(_v3)
+
+
+def closure8(v0_1: int, v1_1: str) -> Callable[[int], Async[bool]]:
+    def _arrow102(v: int, v0_1: Any=v0_1, v1_1: Any=v1_1) -> Async[bool]:
+        return closure9(v0_1, v1_1, v)
 
     return _arrow102
 
 
-def closure13(unit_var: None, v0_1: int | None=None) -> Callable[[bool, int], Async[int64]]:
-    def _arrow103(v: bool, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[int], Async[int64]]:
-        return closure14(v0_1, v)
+def closure7(unit_var: None, v0_1: int) -> Callable[[str, int], Async[bool]]:
+    def _arrow103(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[int], Async[bool]]:
+        return closure8(v0_1, v)
 
     return _arrow103
 
 
-def method6(v0_1: int | None, v1_1: int) -> Async[int]:
-    _v2: Async[int] | None = None
-    _v2 = None
-    return value_1(_v2)
+def closure19(unit_var: None, unit_var_1: None) -> str:
+    return "networking.wait_for_port_access"
 
 
-def closure19(v0_1: int | None, v1_1: int) -> Async[int]:
-    return method6(v0_1, v1_1)
+def closure20(v0_1: int | None, v1_1: bool, v2_1: int, v3_1: int64, unit_var: None) -> str:
+    return to_text(interpolate("port: %P() / retry: %P() / timeout: %A%P() / status: %P() / %P()", [v2_1, v3_1, v0_1, v1_1, closure5(None, None)]))
 
 
-def closure18(unit_var: None, v0_1: int | None=None) -> Callable[[int], Async[int]]:
-    def _arrow104(v: int, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[int]:
-        return closure19(v0_1, v)
+def method5(v0_1: int | None, v1_1: bool, v2_1: str, v3_1: int, v4_1: int64) -> Async[int64]:
+    _v5: Async[int64] | None = None
+    _v5 = None
+    return value_1(_v5)
+
+
+def closure18(v0_1: int | None, v1_1: bool, v2_1: str, v3_1: int) -> Async[int64]:
+    return method5(v0_1, v1_1, v2_1, v3_1, int64(0))
+
+
+def closure17(v0_1: int | None, v1_1: bool, v2_1: str) -> Callable[[int], Async[int64]]:
+    def _arrow104(v: int, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> Async[int64]:
+        return closure18(v0_1, v1_1, v2_1, v)
 
     return _arrow104
 
 
-def _arrow105(v: US0) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
+def closure16(v0_1: int | None, v1_1: bool) -> Callable[[str, int], Async[int64]]:
+    def _arrow105(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1) -> Callable[[int], Async[int64]]:
+        return closure17(v0_1, v1_1, v)
+
+    return _arrow105
+
+
+def closure15(unit_var: None, v0_1: int | None=None) -> Callable[[bool, str, int], Async[int64]]:
+    def _arrow106(v: bool, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[str, int], Async[int64]]:
+        return closure16(v0_1, v)
+
+    return _arrow106
+
+
+def method6(v0_1: int | None, v1_1: str, v2_1: int) -> Async[int]:
+    _v3: Async[int] | None = None
+    _v3 = None
+    return value_1(_v3)
+
+
+def closure23(v0_1: int | None, v1_1: str, v2_1: int) -> Async[int]:
+    return method6(v0_1, v1_1, v2_1)
+
+
+def closure22(v0_1: int | None, v1_1: str) -> Callable[[int], Async[int]]:
+    def _arrow107(v: int, v0_1: Any=v0_1, v1_1: Any=v1_1) -> Async[int]:
+        return closure23(v0_1, v1_1, v)
+
+    return _arrow107
+
+
+def closure21(unit_var: None, v0_1: int | None=None) -> Callable[[str, int], Async[int]]:
+    def _arrow108(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[int], Async[int]]:
+        return closure22(v0_1, v)
+
+    return _arrow108
+
+
+def _arrow109(v: US0) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
     return closure0(None, v)
 
 
-v0: Callable[[US0], tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]] = _arrow105
+v0: Callable[[US0], tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]] = _arrow109
 
 v1: US0 = US0(0)
 
@@ -494,43 +522,43 @@ if State_trace_state() is None:
     State_trace_state(v0(v1))
 
 
-def _arrow106(v: int) -> Async[bool]:
+def _arrow110(v: str) -> Callable[[int], Async[bool]]:
     return closure2(None, v)
 
 
-v2: Callable[[int], Async[bool]] = _arrow106
+v2: Callable[[str, int], Async[bool]] = _arrow110
 
-def test_port_open(x: int) -> Async[bool]:
+def test_port_open(x: str) -> Callable[[int], Async[bool]]:
     return v2(x)
 
 
-def _arrow107(v: int) -> Callable[[int], Async[bool]]:
-    return closure6(None, v)
+def _arrow111(v: int) -> Callable[[str, int], Async[bool]]:
+    return closure7(None, v)
 
 
-v3: Callable[[int, int], Async[bool]] = _arrow107
+v3: Callable[[int, str, int], Async[bool]] = _arrow111
 
-def test_port_open_timeout(x: int) -> Callable[[int], Async[bool]]:
+def test_port_open_timeout(x: int) -> Callable[[str, int], Async[bool]]:
     return v3(x)
 
 
-def _arrow108(v: int | None=None) -> Callable[[bool, int], Async[int64]]:
-    return closure13(None, v)
+def _arrow112(v: int | None=None) -> Callable[[bool, str, int], Async[int64]]:
+    return closure15(None, v)
 
 
-v4: Callable[[int | None, bool, int], Async[int64]] = _arrow108
+v4: Callable[[int | None, bool, str, int], Async[int64]] = _arrow112
 
-def wait_for_port_access(x: int | None=None) -> Callable[[bool, int], Async[int64]]:
+def wait_for_port_access(x: int | None=None) -> Callable[[bool, str, int], Async[int64]]:
     return v4(x)
 
 
-def _arrow109(v: int | None=None) -> Callable[[int], Async[int]]:
-    return closure18(None, v)
+def _arrow113(v: int | None=None) -> Callable[[str, int], Async[int]]:
+    return closure21(None, v)
 
 
-v5: Callable[[int | None, int], Async[int]] = _arrow109
+v5: Callable[[int | None, str, int], Async[int]] = _arrow113
 
-def get_available_port(x: int | None=None) -> Callable[[int], Async[int]]:
+def get_available_port(x: int | None=None) -> Callable[[str, int], Async[int]]:
     return v5(x)
 
 

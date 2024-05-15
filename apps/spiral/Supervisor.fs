@@ -14,20 +14,21 @@ module Supervisor =
 
     /// ## sendJson
     let inline sendJson (port : int) (json : string) = async {
-        let! portOpen = SpiralNetworking.test_port_open port
+        let host = "127.0.0.1"
+        let! portOpen = SpiralNetworking.test_port_open host port
         if portOpen then
             try
-                let connection = HubConnectionBuilder().WithUrl($"http://127.0.0.1:{port}").Build()
+                let connection = HubConnectionBuilder().WithUrl($"http://{host}:{port}").Build()
                 do! connection.StartAsync () |> Async.AwaitTask
                 let! result = connection.InvokeAsync<string>("ClientToServerMsg", json) |> Async.AwaitTask
                 do! connection.StopAsync () |> Async.AwaitTask
-                trace Verbose (fun () -> $"sendJson / port: {port} / json: {json |> SpiralSm.ellipsis_end 200} / result: {result |> Option.ofObj |> Option.map (SpiralSm.ellipsis_end 200)}") _locals
+                trace Verbose (fun () -> $"Supervisor.sendJson / port: {port} / json: {json |> SpiralSm.ellipsis_end 200} / result: {result |> Option.ofObj |> Option.map (SpiralSm.ellipsis_end 200)}") _locals
                 return Some result
             with ex ->
-                trace Critical (fun () -> $"sendJson / port: {port} / json: {json |> SpiralSm.ellipsis_end 200} / ex: {ex |> SpiralSm.format_exception}") _locals
+                trace Critical (fun () -> $"Supervisor.sendJson / port: {port} / json: {json |> SpiralSm.ellipsis_end 200} / ex: {ex |> SpiralSm.format_exception}") _locals
                 return None
         else
-            trace Debug (fun () -> "sendJson / error: port not open") _locals
+            trace Debug (fun () -> "Supervisor.sendJson / port: {port} / error: port not open") _locals
             return None
     }
 
@@ -58,7 +59,7 @@ module Supervisor =
         let! ct = ct |> SpiralAsync.merge_cancellation_token_with_default_async
 
         let compiler = MailboxProcessor.Start (fun inbox -> async {
-            let! availablePort = SpiralNetworking.get_available_port (Some 500) port
+            let! availablePort = SpiralNetworking.get_available_port (Some 500) host port
             if availablePort <> port then
                 inbox.Post (port, false)
             else
@@ -80,7 +81,7 @@ module Supervisor =
                                 if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
                                     let rec loop retry = async {
                                         do!
-                                            SpiralNetworking.wait_for_port_access (Some 100) true availablePort
+                                            SpiralNetworking.wait_for_port_access (Some 100) true host availablePort
                                             |> Async.runWithTimeoutAsync 2000
                                             |> Async.Ignore
 
@@ -130,7 +131,7 @@ module Supervisor =
                     disposable.Dispose ()
                     if managed
                     then do!
-                        SpiralNetworking.wait_for_port_access (Some 100) false serverPort
+                        SpiralNetworking.wait_for_port_access (Some 100) false host serverPort
                         |> Async.runWithTimeoutAsync 2000
                         |> Async.Ignore
                 }

@@ -234,7 +234,6 @@ new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust
 
 inl new_disposable_test = mut 0i32

@@ -709,7 +709,6 @@ inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t
 #!spiral
 
 //// test
-//// print_code=false
 ///! rust
 
 types ()
