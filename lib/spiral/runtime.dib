@@ -80,6 +80,9 @@ nominal process_child = $'std_process_Child'
 
 nominal process_child_stderr = $"std_process_ChildStderr"
 
+inl process_child_stderr (child : rust.ref' (rust.mut' process_child)) : rust.ref' (rust.mut' (optionm'.option' process_child_stderr)) =
+    !\\(child, $'"&mut $0.stderr"')
+
 #!markdown
 
 ## process_child_stdout
@@ -88,6 +91,9 @@ nominal process_child_stderr = $"std_process_ChildStderr"
 
 nominal process_child_stdout = $"std_process_ChildStdout"
 
+inl process_child_stdout (child : rust.ref' (rust.mut' process_child)) : rust.ref' (rust.mut' (optionm'.option' process_child_stdout)) =
+    !\\(child, $'"&mut $0.stdout"')
+
 #!markdown
 
 ## process_child_stdin
@@ -95,6 +101,9 @@ nominal process_child_stdout = $"std_process_ChildStdout"
 #!spiral
 
 nominal process_child_stdin = $"std_process_ChildStdin"
+
+inl process_child_stdin (child : rust.ref' (rust.mut' process_child)) : rust.ref' (rust.mut' (optionm'.option' process_child_stdin)) =
+    !\\(child, $'"&mut $0.stdin"')
 
 #!markdown
 
@@ -1061,10 +1070,7 @@ let execute_with_options (options : execution_options) : i32 * string =
                                 |> child_wait_with_output
                                 |> resultm.map_error' sm'.format'
 
-                            [
-                                stderr_handle
-                                stdout_handle
-                            ]
+                            [ stderr_handle; stdout_handle ]
                             |> am'.new_vec
                             |> am'.vec_for_each' (threading.join' >> resultm.unwrap' >> ignore)
 

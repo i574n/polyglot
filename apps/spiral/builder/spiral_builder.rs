@@ -6662,6 +6662,11 @@ mod module_7e2cd9e0 {
             sprintf!("error: {} / {}", v0_1, Spiral_builder::closure6((), ()))
         }
         pub fn method45(
+            v0_1: std::sync::Arc<std::sync::Mutex<Option<std::process::Child>>>,
+        ) -> std::sync::Arc<std::sync::Mutex<Option<std::process::Child>>> {
+            v0_1
+        }
+        pub fn method46(
             v0_1: std::sync::Arc<std::sync::mpsc::Receiver<std::string::String>>,
         ) -> std::sync::Arc<std::sync::mpsc::Receiver<std::string::String>> {
             v0_1
@@ -6679,6 +6684,12 @@ mod module_7e2cd9e0 {
             sprintf!("e: {} / {}", v0_1, Spiral_builder::closure6((), ()))
         }
         pub fn closure25(v0_1: string, unitVar: ()) -> string {
+            v0_1
+        }
+        pub fn method47(
+            v0_1: std::sync::Arc<std::sync::Mutex<std::sync::mpsc::Sender<std::string::String>>>,
+        ) -> std::sync::Arc<std::sync::Mutex<std::sync::mpsc::Sender<std::string::String>>>
+        {
             v0_1
         }
         pub fn closure20(
@@ -6736,22 +6747,25 @@ mod module_7e2cd9e0 {
                     }
                 }
             };
-            let v43: Result<
+            let v42: std::sync::Arc<
+                std::sync::Mutex<std::sync::mpsc::Sender<std::string::String>>,
+            > = Spiral_builder::method47(v1_1);
+            let v44: Result<
                 std::sync::MutexGuard<std::sync::mpsc::Sender<std::string::String>>,
                 std::sync::PoisonError<
                     std::sync::MutexGuard<std::sync::mpsc::Sender<std::string::String>>,
                 >,
-            > = v1_1.lock();
-            let v45: std::sync::MutexGuard<std::sync::mpsc::Sender<std::string::String>> =
-                v43.unwrap();
-            let v47: &std::sync::mpsc::Sender<std::string::String> = &v45;
-            let v49: Result<(), std::sync::mpsc::SendError<std::string::String>> = v47.send(v41);
-            v49.unwrap();
+            > = v42.lock();
+            let v46: std::sync::MutexGuard<std::sync::mpsc::Sender<std::string::String>> =
+                v44.unwrap();
+            let v48: &std::sync::mpsc::Sender<std::string::String> = &v46;
+            let v50: Result<(), std::sync::mpsc::SendError<std::string::String>> = v48.send(v41);
+            v50.unwrap();
             _v3.set(Some(()));
             getValue(_v3.get().clone());
             ()
         }
-        pub fn method46() -> bool {
+        pub fn method48() -> bool {
             true
         }
         pub fn closure26(
@@ -6813,27 +6827,40 @@ mod module_7e2cd9e0 {
                     }
                 }
             };
-            let v48: Result<
+            let v47: std::sync::Arc<
+                std::sync::Mutex<std::sync::mpsc::Sender<std::string::String>>,
+            > = Spiral_builder::method47(v1_1);
+            let v49: Result<
                 std::sync::MutexGuard<std::sync::mpsc::Sender<std::string::String>>,
                 std::sync::PoisonError<
                     std::sync::MutexGuard<std::sync::mpsc::Sender<std::string::String>>,
                 >,
-            > = v1_1.lock();
-            let v50: std::sync::MutexGuard<std::sync::mpsc::Sender<std::string::String>> =
-                v48.unwrap();
-            let v52: &std::sync::mpsc::Sender<std::string::String> = &v50;
-            let v54: Result<(), std::sync::mpsc::SendError<std::string::String>> = v52.send(v46);
-            v54.unwrap();
+            > = v47.lock();
+            let v51: std::sync::MutexGuard<std::sync::mpsc::Sender<std::string::String>> =
+                v49.unwrap();
+            let v53: &std::sync::mpsc::Sender<std::string::String> = &v51;
+            let v55: Result<(), std::sync::mpsc::SendError<std::string::String>> = v53.send(v46);
+            v55.unwrap();
             _v3.set(Some(()));
             getValue(_v3.get().clone());
             ()
         }
-        pub fn method47(
+        pub fn method49(
+            v0_1: std::sync::Arc<std::sync::Mutex<Option<std::process::ChildStdin>>>,
+        ) -> std::sync::Arc<std::sync::Mutex<Option<std::process::ChildStdin>>> {
+            v0_1
+        }
+        pub fn method50(
+            v0_1: std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>,
+        ) -> std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>> {
+            v0_1
+        }
+        pub fn method51(
             v0_1: std::sync::MutexGuard<std::process::ChildStdin>,
         ) -> std::sync::MutexGuard<std::process::ChildStdin> {
             v0_1
         }
-        pub fn method48(v0_1: std::thread::JoinHandle<bool>) -> std::thread::JoinHandle<bool> {
+        pub fn method52(v0_1: std::thread::JoinHandle<bool>) -> std::thread::JoinHandle<bool> {
             v0_1
         }
         pub fn closure27(unitVar: (), v0_1: std::process::Output) -> Spiral_builder::US14 {
@@ -6848,6 +6875,15 @@ mod module_7e2cd9e0 {
         pub fn closure30(v0_1: std::string::String, unitVar: ()) -> string {
             sprintf!("error: {} / {}", v0_1, Spiral_builder::closure6((), ()))
         }
+        pub fn method53(
+            v0_1: std::sync::Arc<
+                std::sync::Mutex<std::sync::Arc<std::sync::mpsc::Receiver<std::string::String>>>,
+            >,
+        ) -> std::sync::Arc<
+            std::sync::Mutex<std::sync::Arc<std::sync::mpsc::Receiver<std::string::String>>>,
+        > {
+            v0_1
+        }
         pub fn closure31(unitVar: (), unitVar_1: ()) -> string {
             string("runtime.execute_with_options / result")
         }
@@ -6859,7 +6895,7 @@ mod module_7e2cd9e0 {
                 Spiral_builder::closure6((), ())
             )
         }
-        pub fn method49(v0_: i32, v0__1: string) -> LrcPtr<(i32, string)> {
+        pub fn method54(v0_: i32, v0__1: string) -> LrcPtr<(i32, string)> {
             LrcPtr::new((v0_, v0__1))
         }
         pub fn closure33(
@@ -6877,7 +6913,7 @@ mod module_7e2cd9e0 {
                 (v0_1, v1_1, v2, v3, v4, v5, v6)
             )
         }
-        pub fn method51() -> Func0<string> {
+        pub fn method56() -> Func0<string> {
             Func0::new(move || Spiral_builder::closure6((), ()))
         }
         pub fn closure35(v0_1: string, unitVar: ()) -> string {
@@ -6962,7 +6998,7 @@ mod module_7e2cd9e0 {
                 length(v1_1)
             )
         }
-        pub fn method50(
+        pub fn method55(
             v0_1: Option<CancellationToken>,
             v1_1: string,
             v2: Array<(string, string)>,
@@ -7216,57 +7252,114 @@ mod module_7e2cd9e0 {
                                                 let v118: std::sync::Arc<
                                                     std::sync::Mutex<Option<std::process::Child>>,
                                                 > = v117_0_0.clone();
-                                                let v120: std::process::ChildStdout = v118
-                                                    .clone()
-                                                    .lock()
-                                                    .unwrap()
-                                                    .as_mut()
-                                                    .unwrap()
-                                                    .stdout
-                                                    .take()
-                                                    .unwrap();
-                                                let v122: std::process::ChildStderr = v118
-                                                    .clone()
-                                                    .lock()
-                                                    .unwrap()
-                                                    .as_mut()
-                                                    .unwrap()
-                                                    .stderr
-                                                    .take()
-                                                    .unwrap();
-                                                let v124: std::process::ChildStdin = v118
-                                                    .clone()
-                                                    .lock()
-                                                    .unwrap()
-                                                    .as_mut()
-                                                    .unwrap()
-                                                    .stdin
-                                                    .take()
-                                                    .unwrap();
-                                                let v127: std::sync::Mutex<
+                                                let v119: std::sync::Arc<
+                                                    std::sync::Mutex<Option<std::process::Child>>,
+                                                > = Spiral_builder::method45(v118.clone());
+                                                let v121: Result<
+                                                    std::sync::MutexGuard<
+                                                        Option<std::process::Child>,
+                                                    >,
+                                                    std::sync::PoisonError<
+                                                        std::sync::MutexGuard<
+                                                            Option<std::process::Child>,
+                                                        >,
+                                                    >,
+                                                > = v119.lock();
+                                                let v123: std::sync::MutexGuard<
+                                                    Option<std::process::Child>,
+                                                > = v121.unwrap();
+                                                let v125: bool = true;
+                                                let mut v123 = v123;
+                                                let v127: &mut Option<std::process::Child> =
+                                                    &mut v123;
+                                                let v129: Option<&mut std::process::Child> =
+                                                    v127.as_mut();
+                                                let v131: &mut std::process::Child = v129.unwrap();
+                                                let v133: &mut Option<std::process::ChildStdout> =
+                                                    &mut v131.stdout;
+                                                let v135: Option<std::process::ChildStdout> =
+                                                    Option::take(v133);
+                                                let v137: std::process::ChildStdout = v135.unwrap();
+                                                let v140: std::sync::Mutex<
                                                     Option<std::process::ChildStdout>,
-                                                > = std::sync::Mutex::new(Some(v120));
-                                                let v129: std::sync::Arc<
+                                                > = std::sync::Mutex::new(Some(v137));
+                                                let v142: std::sync::Arc<
                                                     std::sync::Mutex<
                                                         Option<std::process::ChildStdout>,
                                                     >,
-                                                > = std::sync::Arc::new(v127);
-                                                let v132: std::sync::Mutex<
+                                                > = std::sync::Arc::new(v140);
+                                                let v143: std::sync::Arc<
+                                                    std::sync::Mutex<Option<std::process::Child>>,
+                                                > = Spiral_builder::method45(v118.clone());
+                                                let v145: Result<
+                                                    std::sync::MutexGuard<
+                                                        Option<std::process::Child>,
+                                                    >,
+                                                    std::sync::PoisonError<
+                                                        std::sync::MutexGuard<
+                                                            Option<std::process::Child>,
+                                                        >,
+                                                    >,
+                                                > = v143.lock();
+                                                let v147: std::sync::MutexGuard<
+                                                    Option<std::process::Child>,
+                                                > = v145.unwrap();
+                                                let v149: bool = true;
+                                                let mut v147 = v147;
+                                                let v151: &mut Option<std::process::Child> =
+                                                    &mut v147;
+                                                let v153: Option<&mut std::process::Child> =
+                                                    v151.as_mut();
+                                                let v155: &mut std::process::Child = v153.unwrap();
+                                                let v157: &mut Option<std::process::ChildStderr> =
+                                                    &mut v155.stderr;
+                                                let v159: Option<std::process::ChildStderr> =
+                                                    Option::take(v157);
+                                                let v161: std::process::ChildStderr = v159.unwrap();
+                                                let v164: std::sync::Mutex<
                                                     Option<std::process::ChildStderr>,
-                                                > = std::sync::Mutex::new(Some(v122));
-                                                let v134: std::sync::Arc<
+                                                > = std::sync::Mutex::new(Some(v161));
+                                                let v166: std::sync::Arc<
                                                     std::sync::Mutex<
                                                         Option<std::process::ChildStderr>,
                                                     >,
-                                                > = std::sync::Arc::new(v132);
-                                                let v137: std::sync::Mutex<
+                                                > = std::sync::Arc::new(v164);
+                                                let v167: std::sync::Arc<
+                                                    std::sync::Mutex<Option<std::process::Child>>,
+                                                > = Spiral_builder::method45(v118.clone());
+                                                let v169: Result<
+                                                    std::sync::MutexGuard<
+                                                        Option<std::process::Child>,
+                                                    >,
+                                                    std::sync::PoisonError<
+                                                        std::sync::MutexGuard<
+                                                            Option<std::process::Child>,
+                                                        >,
+                                                    >,
+                                                > = v167.lock();
+                                                let v171: std::sync::MutexGuard<
+                                                    Option<std::process::Child>,
+                                                > = v169.unwrap();
+                                                let v173: bool = true;
+                                                let mut v171 = v171;
+                                                let v175: &mut Option<std::process::Child> =
+                                                    &mut v171;
+                                                let v177: Option<&mut std::process::Child> =
+                                                    v175.as_mut();
+                                                let v179: &mut std::process::Child = v177.unwrap();
+                                                let v181: &mut Option<std::process::ChildStdin> =
+                                                    &mut v179.stdin;
+                                                let v183: Option<std::process::ChildStdin> =
+                                                    Option::take(v181);
+                                                let v185: std::process::ChildStdin = v183.unwrap();
+                                                let v188: std::sync::Mutex<
                                                     Option<std::process::ChildStdin>,
-                                                > = std::sync::Mutex::new(Some(v124));
-                                                let v139: std::sync::Arc<
+                                                > = std::sync::Mutex::new(Some(v185));
+                                                let v190: std::sync::Arc<
                                                     std::sync::Mutex<
                                                         Option<std::process::ChildStdin>,
                                                     >,
-                                                > = std::sync::Arc::new(v137);
+                                                > = std::sync::Arc::new(v188);
                                                 let patternInput_3: (
                                                     std::sync::mpsc::Sender<std::string::String>,
                                                     std::sync::Arc<
@@ -7279,45 +7372,45 @@ mod module_7e2cd9e0 {
                                                         std::sync::mpsc::channel();
                                                     (sender, std::sync::Arc::new(receiver))
                                                 };
-                                                let v143: std::sync::Arc<
+                                                let v194: std::sync::Arc<
                                                     std::sync::mpsc::Receiver<std::string::String>,
-                                                > = Spiral_builder::method45(
+                                                > = Spiral_builder::method46(
                                                     patternInput_3.1.clone(),
                                                 );
-                                                let v145: bool = true;
-                                                let v143 = v143;
-                                                let v147: std::sync::Mutex<
+                                                let v196: bool = true;
+                                                let v194 = v194;
+                                                let v198: std::sync::Mutex<
                                                     std::sync::mpsc::Sender<std::string::String>,
                                                 > = std::sync::Mutex::new(patternInput_3.0.clone());
-                                                let v149: std::sync::Arc<
+                                                let v200: std::sync::Arc<
                                                     std::sync::Mutex<
                                                         std::sync::mpsc::Sender<
                                                             std::string::String,
                                                         >,
                                                     >,
-                                                > = std::sync::Arc::new(v147);
-                                                let v151: std::sync::Arc<
+                                                > = std::sync::Arc::new(v198);
+                                                let v202: std::sync::Arc<
                                                     std::sync::Mutex<
                                                         std::sync::mpsc::Sender<
                                                             std::string::String,
                                                         >,
                                                     >,
-                                                > = v149.clone();
-                                                let v153: std::sync::Arc<
+                                                > = v200.clone();
+                                                let v204: std::sync::Arc<
                                                     std::sync::Mutex<
                                                         std::sync::mpsc::Sender<
                                                             std::string::String,
                                                         >,
                                                     >,
-                                                > = v149.clone();
-                                                let v155: std::sync::Mutex<
+                                                > = v200.clone();
+                                                let v206: std::sync::Mutex<
                                                     std::sync::Arc<
                                                         std::sync::mpsc::Receiver<
                                                             std::string::String,
                                                         >,
                                                     >,
-                                                > = std::sync::Mutex::new(v143);
-                                                let v157: std::sync::Arc<
+                                                > = std::sync::Mutex::new(v194);
+                                                let v208: std::sync::Arc<
                                                     std::sync::Mutex<
                                                         std::sync::Arc<
                                                             std::sync::mpsc::Receiver<
@@ -7325,92 +7418,92 @@ mod module_7e2cd9e0 {
                                                             >,
                                                         >,
                                                     >,
-                                                > = std::sync::Arc::new(v155);
+                                                > = std::sync::Arc::new(v206);
                                                 let __result = std::thread::spawn(move || {
                                                     //;
                                                     {
-                                                        let v160: std::process::ChildStdout =
-                                                            v129.lock().unwrap().take().unwrap();
-                                                        let v162:
+                                                        let v211: std::process::ChildStdout =
+                                                            v142.lock().unwrap().take().unwrap();
+                                                        let v213:
                                                                                 encoding_rs_io::DecodeReaderBytes<std::process::ChildStdout, Vec<u8>> =
-                                                                            encoding_rs_io::DecodeReaderBytesBuilder::new().utf8_passthru(true).build(v160);
-                                                        let v164: std::io::BufReader<
+                                                                            encoding_rs_io::DecodeReaderBytesBuilder::new().utf8_passthru(true).build(v211);
+                                                        let v215: std::io::BufReader<
                                                             encoding_rs_io::DecodeReaderBytes<
                                                                 std::process::ChildStdout,
                                                                 Vec<u8>,
                                                             >,
-                                                        > = std::io::BufReader::new(v162);
-                                                        let v166: std::sync::Mutex<
+                                                        > = std::io::BufReader::new(v213);
+                                                        let v217: std::sync::Mutex<
                                                             std::io::BufReader<
                                                                 encoding_rs_io::DecodeReaderBytes<
                                                                     std::process::ChildStdout,
                                                                     Vec<u8>,
                                                                 >,
                                                             >,
-                                                        > = std::sync::Mutex::new(v164);
-                                                        let v168:
+                                                        > = std::sync::Mutex::new(v215);
+                                                        let v219:
                                                                                 std::sync::Arc<std::sync::Mutex<std::io::BufReader<encoding_rs_io::DecodeReaderBytes<std::process::ChildStdout, Vec<u8>>>>> =
-                                                                            std::sync::Arc::new(v166);
-                                                        let v169:
+                                                                            std::sync::Arc::new(v217);
+                                                        let v220:
                                                                                 string =
                                                                             string("true; for line in std::io::BufRead::lines(std::io::Read::by_ref(&mut *$0.lock().unwrap())).collect::<Vec<_>>() { $1(line) }");
-                                                        let v171: bool = true;
+                                                        let v222: bool = true;
                                                         for line in std::io::BufRead::lines(
                                                             std::io::Read::by_ref(
-                                                                &mut *v168.lock().unwrap(),
+                                                                &mut *v219.lock().unwrap(),
                                                             ),
                                                         )
                                                         .collect::<Vec<_>>()
                                                         {
                                                             Func1::new({
-                                                                let v151 = v151.clone();
+                                                                let v202 = v202.clone();
                                                                 move
                                                                                                                                                                                                                   |v_2:
                                                                                                                                                                                                                        Result<std::string::String,
                                                                                                                                                                                                                               std::io::Error>|
                                                                                                                                                                                                                   Spiral_builder::closure20(v5,
-                                                                                                                                                                                                                                            v151.clone(),
+                                                                                                                                                                                                                                            v202.clone(),
                                                                                                                                                                                                                                             v_2)
                                                             })(
                                                                 line
                                                             )
                                                         }
-                                                        let v172: bool = Spiral_builder::method46();
-                                                        v172
+                                                        let v223: bool = Spiral_builder::method48();
+                                                        v223
                                                     }
                                                 });
                                                 {
                                                     //;
                                                     {
-                                                        let v176: std::thread::JoinHandle<bool> =
+                                                        let v227: std::thread::JoinHandle<bool> =
                                                             __result;
                                                         let __result = std::thread::spawn(
                                                             move || {
                                                                 //;
                                                                 {
-                                                                    let v179:
+                                                                    let v230:
                                                                                         std::process::ChildStderr =
-                                                                                    v134.lock().unwrap().take().unwrap();
-                                                                    let v181:
+                                                                                    v166.lock().unwrap().take().unwrap();
+                                                                    let v232:
                                                                                         encoding_rs_io::DecodeReaderBytes<std::process::ChildStderr, Vec<u8>> =
-                                                                                    encoding_rs_io::DecodeReaderBytesBuilder::new().utf8_passthru(true).build(v179);
-                                                                    let v183:
+                                                                                    encoding_rs_io::DecodeReaderBytesBuilder::new().utf8_passthru(true).build(v230);
+                                                                    let v234:
                                                                                         std::io::BufReader<encoding_rs_io::DecodeReaderBytes<std::process::ChildStderr, Vec<u8>>> =
-                                                                                    std::io::BufReader::new(v181);
-                                                                    let v185:
+                                                                                    std::io::BufReader::new(v232);
+                                                                    let v236:
                                                                                         std::sync::Mutex<std::io::BufReader<encoding_rs_io::DecodeReaderBytes<std::process::ChildStderr, Vec<u8>>>> =
-                                                                                    std::sync::Mutex::new(v183);
-                                                                    let v187:
+                                                                                    std::sync::Mutex::new(v234);
+                                                                    let v238:
                                                                                         std::sync::Arc<std::sync::Mutex<std::io::BufReader<encoding_rs_io::DecodeReaderBytes<std::process::ChildStderr, Vec<u8>>>>> =
-                                                                                    std::sync::Arc::new(v185);
-                                                                    let v188:
+                                                                                    std::sync::Arc::new(v236);
+                                                                    let v239:
                                                                                         string =
                                                                                     string("true; for line in std::io::BufRead::lines(std::io::Read::by_ref(&mut *$0.lock().unwrap())).collect::<Vec<_>>() { $1(line) }");
-                                                                    let v190: bool = true;
+                                                                    let v241: bool = true;
                                                                     for line in
                                                                         std::io::BufRead::lines(
                                                                             std::io::Read::by_ref(
-                                                                                &mut *v187
+                                                                                &mut *v238
                                                                                     .lock()
                                                                                     .unwrap(),
                                                                             ),
@@ -7418,31 +7511,31 @@ mod module_7e2cd9e0 {
                                                                         .collect::<Vec<_>>()
                                                                     {
                                                                         Func1::new({
-                                                                            let v149 = v149.clone();
+                                                                            let v200 = v200.clone();
                                                                             move
                                                                                                                                                                                                                           |v_3:
                                                                                                                                                                                                                                Result<std::string::String,
                                                                                                                                                                                                                                       std::io::Error>|
                                                                                                                                                                                                                           Spiral_builder::closure26(v5,
-                                                                                                                                                                                                                                                    v149.clone(),
+                                                                                                                                                                                                                                                    v200.clone(),
                                                                                                                                                                                                                                                     v_3)
                                                                         })(
                                                                             line
                                                                         )
                                                                     }
-                                                                    let v191: bool =
-                                                                        Spiral_builder::method46();
-                                                                    v191
+                                                                    let v242: bool =
+                                                                        Spiral_builder::method48();
+                                                                    v242
                                                                 }
                                                             },
                                                         );
                                                         {
                                                             //;
                                                             {
-                                                                let v195: std::thread::JoinHandle<
+                                                                let v246: std::thread::JoinHandle<
                                                                     bool,
                                                                 > = __result;
-                                                                let _v196: LrcPtr<
+                                                                let _v247: LrcPtr<
                                                                     MutCell<
                                                                         Option<
                                                                             Spiral_builder::US12,
@@ -7471,69 +7564,72 @@ mod module_7e2cd9e0 {
                                                                             ))
                                                                         }
                                                                     };
-                                                                    _v196.set(x_5)
+                                                                    _v247.set(x_5)
                                                                 }
                                                                 {
-                                                                    let v201:
+                                                                    let v252:
                                                                                                 Spiral_builder::US12 =
                                                                                             defaultValue(Spiral_builder::US12::US12_1,
-                                                                                                         _v196.get().clone());
-                                                                    match &v201
+                                                                                                         _v247.get().clone());
+                                                                    match &v252
                                                                                             {
-                                                                                            Spiral_builder::US12::US12_0(v201_0_0)
+                                                                                            Spiral_builder::US12::US12_0(v252_0_0)
                                                                                             =>
                                                                                             {
-                                                                                                let v204:
+                                                                                                let v254:
+                                                                                                        std::sync::Arc<std::sync::Mutex<Option<std::process::ChildStdin>>> =
+                                                                                                    Spiral_builder::method49(v190);
+                                                                                                let v256:
                                                                                                         Result<std::sync::MutexGuard<Option<std::process::ChildStdin>>,
                                                                                                                std::sync::PoisonError<std::sync::MutexGuard<Option<std::process::ChildStdin>>>> =
-                                                                                                    v139.lock();
-                                                                                                let v206:
+                                                                                                    v254.lock();
+                                                                                                let v258:
                                                                                                         std::sync::MutexGuard<Option<std::process::ChildStdin>> =
-                                                                                                    v204.unwrap();
-                                                                                                let v208:
+                                                                                                    v256.unwrap();
+                                                                                                let v260:
                                                                                                         bool =
-                                                                                                    true; let mut v206 = v206;
-                                                                                                let v210:
+                                                                                                    true; let mut v258 = v258;
+                                                                                                let v262:
                                                                                                         &mut Option<std::process::ChildStdin> =
-                                                                                                    &mut v206;
-                                                                                                let v212:
+                                                                                                    &mut v258;
+                                                                                                let v264:
                                                                                                         Option<std::process::ChildStdin> =
-                                                                                                    Option::take(v210);
-                                                                                                let v214:
+                                                                                                    Option::take(v262);
+                                                                                                let v266:
                                                                                                         bool =
-                                                                                                    true; let _result = v212.map(|x| { //;
-                                                                                                let v216:
+                                                                                                    true; let _result = v264.map(|x| { //;
+                                                                                                let v268:
                                                                                                         std::process::ChildStdin =
                                                                                                     x;
-                                                                                                let v218:
+                                                                                                let v270:
                                                                                                         std::sync::Mutex<std::process::ChildStdin> =
-                                                                                                    std::sync::Mutex::new(v216);
-                                                                                                let v220:
+                                                                                                    std::sync::Mutex::new(v268);
+                                                                                                let v272:
                                                                                                         std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>> =
-                                                                                                    std::sync::Arc::new(v218);
-                                                                                                let v222:
+                                                                                                    std::sync::Arc::new(v270);
+                                                                                                let v274:
                                                                                                         bool =
-                                                                                                    true; v220 });
-                                                                                                let v224:
+                                                                                                    true; v272 });
+                                                                                                let v276:
                                                                                                         Option<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>> =
                                                                                                     _result;
-                                                                                                let _v225:
+                                                                                                let _v277:
                                                                                                         LrcPtr<MutCell<Option<Spiral_builder::US13>>> =
                                                                                                     refCell(None::<Spiral_builder::US13>);
                                                                                                 {
                                                                                                     let x_8:
                                                                                                             Option<Spiral_builder::US13> =
-                                                                                                        match &v224
+                                                                                                        match &v276
                                                                                                             {
                                                                                                             None
                                                                                                             =>
                                                                                                             None::<Spiral_builder::US13>,
-                                                                                                            Some(v224_0_0)
+                                                                                                            Some(v276_0_0)
                                                                                                             =>
                                                                                                             {
                                                                                                                 let x_6:
                                                                                                                         std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>> =
-                                                                                                                    v224_0_0.clone();
+                                                                                                                    v276_0_0.clone();
                                                                                                                 Some((Func0::new({
                                                                                                                                      let x_6
                                                                                                                                          =
@@ -7544,21 +7640,21 @@ mod module_7e2cd9e0 {
                                                                                                                                  }))())
                                                                                                             }
                                                                                                         };
-                                                                                                    _v225.set(x_8)
+                                                                                                    _v277.set(x_8)
                                                                                                 }
                                                                                                 {
-                                                                                                    let v230:
+                                                                                                    let v282:
                                                                                                             Spiral_builder::US13 =
                                                                                                         defaultValue(Spiral_builder::US13::US13_1,
-                                                                                                                     _v225.get().clone());
-                                                                                                    match &v230
+                                                                                                                     _v277.get().clone());
+                                                                                                    match &v282
                                                                                                         {
-                                                                                                        Spiral_builder::US13::US13_0(v230_0_0)
+                                                                                                        Spiral_builder::US13::US13_0(v282_0_0)
                                                                                                         =>
                                                                                                         {
-                                                                                                            let v231:
+                                                                                                            let v283:
                                                                                                                     std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>> =
-                                                                                                                match &v230
+                                                                                                                match &v282
                                                                                                                     {
                                                                                                                     Spiral_builder::US13::US13_0(x)
                                                                                                                     =>
@@ -7567,7 +7663,7 @@ mod module_7e2cd9e0 {
                                                                                                                     =>
                                                                                                                     unreachable!(),
                                                                                                                 };
-                                                                                                            (match &v201
+                                                                                                            (match &v252
                                                                                                                  {
                                                                                                                  Spiral_builder::US12::US12_0(x)
                                                                                                                  =>
@@ -7575,21 +7671,24 @@ mod module_7e2cd9e0 {
                                                                                                                  _
                                                                                                                  =>
                                                                                                                  unreachable!(),
-                                                                                                             })(v231.clone());
+                                                                                                             })(v283.clone());
                                                                                                             {
-                                                                                                                let v233:
+                                                                                                                let v284:
+                                                                                                                        std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>> =
+                                                                                                                    Spiral_builder::method50(v283);
+                                                                                                                let v286:
                                                                                                                         Result<std::sync::MutexGuard<std::process::ChildStdin>,
                                                                                                                                std::sync::PoisonError<std::sync::MutexGuard<std::process::ChildStdin>>> =
-                                                                                                                    v231.lock();
-                                                                                                                let v236:
+                                                                                                                    v284.lock();
+                                                                                                                let v289:
                                                                                                                         std::sync::MutexGuard<std::process::ChildStdin> =
-                                                                                                                    Spiral_builder::method47(v233.unwrap());
-                                                                                                                let v238:
+                                                                                                                    Spiral_builder::method51(v286.unwrap());
+                                                                                                                let v291:
                                                                                                                         bool =
-                                                                                                                    true; let mut v236 = v236;
-                                                                                                                let v240:
+                                                                                                                    true; let mut v289 = v289;
+                                                                                                                let v293:
                                                                                                                         bool =
-                                                                                                                    true; std::io::Write::flush(&mut *v236).unwrap();
+                                                                                                                    true; std::io::Write::flush(&mut *v289).unwrap();
                                                                                                                 ()
                                                                                                             }
                                                                                                         }
@@ -7604,123 +7703,126 @@ mod module_7e2cd9e0 {
                                                                                             (),
                                                                                         }
                                                                     {
-                                                                        let v242:
+                                                                        let v294:
+                                                                                                    std::sync::Arc<std::sync::Mutex<Option<std::process::Child>>> =
+                                                                                                Spiral_builder::method45(v118);
+                                                                        let v296:
                                                                                                     Result<std::sync::MutexGuard<Option<std::process::Child>>,
                                                                                                            std::sync::PoisonError<std::sync::MutexGuard<Option<std::process::Child>>>> =
-                                                                                                v118.lock();
-                                                                        let v244:
+                                                                                                v294.lock();
+                                                                        let v298:
                                                                                                     std::sync::MutexGuard<Option<std::process::Child>> =
-                                                                                                v242.unwrap();
-                                                                        let v246: bool = true;
-                                                                        let mut v244 = v244;
-                                                                        let v248: &mut Option<
+                                                                                                v296.unwrap();
+                                                                        let v300: bool = true;
+                                                                        let mut v298 = v298;
+                                                                        let v302: &mut Option<
                                                                             std::process::Child,
-                                                                        > = &mut v244;
-                                                                        let v250: Option<
+                                                                        > = &mut v298;
+                                                                        let v304: Option<
                                                                             std::process::Child,
-                                                                        > = Option::take(v248);
-                                                                        let v252:
+                                                                        > = Option::take(v302);
+                                                                        let v306:
                                                                                                     std::process::Child =
-                                                                                                v250.unwrap();
-                                                                        let v254: Result<
+                                                                                                v304.unwrap();
+                                                                        let v308: Result<
                                                                             std::process::Output,
                                                                             std::io::Error,
-                                                                        > = v252.wait_with_output();
-                                                                        let v255 =
+                                                                        > = v306.wait_with_output();
+                                                                        let v309 =
                                                                                                 Spiral_builder::method44();
-                                                                        let v257: Result<
+                                                                        let v311: Result<
                                                                             std::process::Output,
                                                                             std::string::String,
-                                                                        > = v254
-                                                                            .map_err(|x| v255(x));
-                                                                        let v258:
+                                                                        > = v308
+                                                                            .map_err(|x| v309(x));
+                                                                        let v312:
                                                                                                     std::thread::JoinHandle<bool> =
-                                                                                                Spiral_builder::method48(v176);
-                                                                        let v262: string =
-                                                                            string("v258");
-                                                                        let v263:
+                                                                                                Spiral_builder::method52(v227);
+                                                                        let v316: string =
+                                                                            string("v312");
+                                                                        let v317:
                                                                                                     std::thread::JoinHandle<bool> =
-                                                                                                Spiral_builder::method48(v195);
-                                                                        let v268: string = append(
+                                                                                                Spiral_builder::method52(v246);
+                                                                        let v322: string = append(
                                                                             append(
                                                                                 string("vec!["),
                                                                                 append(
-                                                                                    string("v263,"),
-                                                                                    v262,
+                                                                                    string("v317,"),
+                                                                                    v316,
                                                                                 ),
                                                                             ),
                                                                             string("]"),
                                                                         );
-                                                                        let v269: Vec<
+                                                                        let v323: Vec<
                                                                             std::thread::JoinHandle<
                                                                                 bool,
                                                                             >,
-                                                                        > = vec![v263, v258];
-                                                                        let v271: bool = true;
-                                                                        v269.into_iter().for_each(|x| { //;
-                                                                                            let v273:
+                                                                        > = vec![v317, v312];
+                                                                        let v325: bool = true;
+                                                                        v323.into_iter().for_each(|x| { //;
+                                                                                            let v327:
                                                                                                     std::thread::JoinHandle<bool> =
                                                                                                 x;
-                                                                                            let v275:
+                                                                                            let v329:
                                                                                                     Result<bool,
                                                                                                            Box<dyn core::any::Any + 'static + Send>> =
-                                                                                                std::thread::JoinHandle::join(v273);
-                                                                                            let v277:
+                                                                                                std::thread::JoinHandle::join(v327);
+                                                                                            let v331:
                                                                                                     bool =
-                                                                                                v275.unwrap();
-                                                                                            let v279:
+                                                                                                v329.unwrap();
+                                                                                            let v333:
                                                                                                     bool =
                                                                                                 true; () });
-                                                                        let v282:
+                                                                        let v336:
                                                                                                     Spiral_builder::US14 =
-                                                                                                match &v257
+                                                                                                match &v311
                                                                                                     {
-                                                                                                    Err(v257_1_0)
+                                                                                                    Err(v311_1_0)
                                                                                                     =>
                                                                                                     Spiral_builder::closure28((),
-                                                                                                                              v257_1_0.clone()),
-                                                                                                    Ok(v257_0_0)
+                                                                                                                              v311_1_0.clone()),
+                                                                                                    Ok(v311_0_0)
                                                                                                     =>
                                                                                                     Spiral_builder::closure27((),
-                                                                                                                              v257_0_0.clone()),
+                                                                                                                              v311_0_0.clone()),
                                                                                                 };
-                                                                        match &v282
+                                                                        match &v336
                                                                                                 {
-                                                                                                Spiral_builder::US14::US14_0(v282_0_0)
+                                                                                                Spiral_builder::US14::US14_0(v336_0_0)
                                                                                                 =>
                                                                                                 {
-                                                                                                    let v285:
+                                                                                                    let v339:
                                                                                                             std::process::ExitStatus =
-                                                                                                        v282_0_0.clone().status;
-                                                                                                    let v287:
+                                                                                                        v336_0_0.clone().status;
+                                                                                                    let v341:
                                                                                                             Option<i32> =
-                                                                                                        v285.code();
-                                                                                                    (v287.unwrap(),
+                                                                                                        v339.code();
+                                                                                                    (v341.unwrap(),
                                                                                                      Spiral_builder::US2::US2_1,
-                                                                                                     Spiral_builder::US10::US10_0(v157))
+                                                                                                     Spiral_builder::US10::US10_0(v208))
                                                                                                 }
-                                                                                                Spiral_builder::US14::US14_1(v282_1_0)
+                                                                                                Spiral_builder::US14::US14_1(v336_1_0)
                                                                                                 =>
                                                                                                 {
-                                                                                                    let v292:
+                                                                                                    let v346:
                                                                                                             std::string::String =
-                                                                                                        v282_1_0.clone();
+                                                                                                        v336_1_0.clone();
                                                                                                     Spiral_builder::method5(Spiral_builder::US0::US0_4,
                                                                                                                             Func0::new(move
                                                                                                                                            ||
                                                                                                                                            Spiral_builder::closure29((),
                                                                                                                                                                      ())),
                                                                                                                             Func0::new({
-                                                                                                                                           let v292
+                                                                                                                                           let v346
                                                                                                                                                =
-                                                                                                                                               v292.clone();
+                                                                                                                                               v346.clone();
                                                                                                                                            move
                                                                                                                                                ||
-                                                                                                                                               Spiral_builder::closure30(v292.clone(),
+                                                                                                                                               Spiral_builder::closure30(v346.clone(),
                                                                                                                                                                          ())
                                                                                                                                        }));
                                                                                                     (-2_i32,
-                                                                                                     Spiral_builder::US2::US2_0(v292.clone()),
+                                                                                                     Spiral_builder::US2::US2_0(v346.clone()),
                                                                                                      Spiral_builder::US10::US10_1)
                                                                                                 }
                                                                                             }
@@ -7732,17 +7834,17 @@ mod module_7e2cd9e0 {
                                                 }
                                             }
                                             Spiral_builder::US9::US9_1(v117_1_0) => {
-                                                let v304: std::string::String = v117_1_0.clone();
+                                                let v358: std::string::String = v117_1_0.clone();
                                                 Spiral_builder::method5(
                                                     Spiral_builder::US0::US0_4,
                                                     Func0::new(move || {
                                                         Spiral_builder::closure18((), ())
                                                     }),
                                                     Func0::new({
-                                                        let v304 = v304.clone();
+                                                        let v358 = v358.clone();
                                                         move || {
                                                             Spiral_builder::closure19(
-                                                                v304.clone(),
+                                                                v358.clone(),
                                                                 (),
                                                             )
                                                         }
@@ -7750,15 +7852,15 @@ mod module_7e2cd9e0 {
                                                 );
                                                 (
                                                     -1_i32,
-                                                    Spiral_builder::US2::US2_0(v304.clone()),
+                                                    Spiral_builder::US2::US2_0(v358.clone()),
                                                     Spiral_builder::US10::US10_1,
                                                 )
                                             }
                                         };
-                                        let v315: Spiral_builder::US10 = patternInput_4.2.clone();
-                                        let v314: Spiral_builder::US2 = patternInput_4.1.clone();
-                                        let v313: i32 = patternInput_4.0.clone();
-                                        let v320: Option<
+                                        let v369: Spiral_builder::US10 = patternInput_4.2.clone();
+                                        let v368: Spiral_builder::US2 = patternInput_4.1.clone();
+                                        let v367: i32 = patternInput_4.0.clone();
+                                        let v374: Option<
                                             std::sync::Arc<
                                                 std::sync::Mutex<
                                                     std::sync::Arc<
@@ -7768,9 +7870,9 @@ mod module_7e2cd9e0 {
                                                     >,
                                                 >,
                                             >,
-                                        > = match &v315 {
-                                            Spiral_builder::US10::US10_0(v315_0_0) => {
-                                                Some(match &v315 {
+                                        > = match &v369 {
+                                            Spiral_builder::US10::US10_0(v369_0_0) => {
+                                                Some(match &v369 {
                                                     Spiral_builder::US10::US10_0(x) => x.clone(),
                                                     _ => unreachable!(),
                                                 })
@@ -7789,10 +7891,10 @@ mod module_7e2cd9e0 {
                                                 >
                                             }
                                         };
-                                        let v322: bool = true;
-                                        let _result = v320.map(|x| {
+                                        let v376: bool = true;
+                                        let _result = v374.map(|x| {
                                             //;
-                                            let v324: std::sync::Arc<
+                                            let v379: std::sync::Arc<
                                                 std::sync::Mutex<
                                                     std::sync::Arc<
                                                         std::sync::mpsc::Receiver<
@@ -7800,8 +7902,8 @@ mod module_7e2cd9e0 {
                                                         >,
                                                     >,
                                                 >,
-                                            > = x;
-                                            let v326: Result<
+                                            > = Spiral_builder::method53(x);
+                                            let v381: Result<
                                                 std::sync::MutexGuard<
                                                     std::sync::Arc<
                                                         std::sync::mpsc::Receiver<
@@ -7818,44 +7920,44 @@ mod module_7e2cd9e0 {
                                                         >,
                                                     >,
                                                 >,
-                                            > = v324.lock();
-                                            let v328: std::sync::MutexGuard<
+                                            > = v379.lock();
+                                            let v383: std::sync::MutexGuard<
                                                 std::sync::Arc<
                                                     std::sync::mpsc::Receiver<std::string::String>,
                                                 >,
-                                            > = v326.unwrap();
-                                            let v330 = v328.iter();
-                                            let v332: Vec<std::string::String> =
-                                                v330.collect::<Vec<_>>();
-                                            let v334: bool = true;
-                                            let _result = v332
+                                            > = v381.unwrap();
+                                            let v385 = v383.iter();
+                                            let v387: Vec<std::string::String> =
+                                                v385.collect::<Vec<_>>();
+                                            let v389: bool = true;
+                                            let _result = v387
                                                 .into_iter()
                                                 .map(|x| {
                                                     //;
-                                                    let v336: std::string::String = x;
-                                                    let v338: string =
+                                                    let v391: std::string::String = x;
+                                                    let v393: string =
                                                         fable_library_rust::String_::fromString(
-                                                            v336,
+                                                            v391,
                                                         );
-                                                    let v340: bool = true;
-                                                    v338
+                                                    let v395: bool = true;
+                                                    v393
                                                 })
                                                 .collect::<Vec<_>>();
-                                            let v342: Vec<string> = _result;
-                                            let v346: LrcPtr<dyn IEnumerable_1<string>> = ofArray_1(
-                                                fable_library_rust::NativeArray_::array_from(v342),
+                                            let v397: Vec<string> = _result;
+                                            let v401: LrcPtr<dyn IEnumerable_1<string>> = ofArray_1(
+                                                fable_library_rust::NativeArray_::array_from(v397),
                                             );
-                                            let v350: string =
-                                                join(Spiral_builder::method33(), toArray_1(v346));
-                                            let v352: bool = true;
-                                            v350
+                                            let v405: string =
+                                                join(Spiral_builder::method33(), toArray_1(v401));
+                                            let v407: bool = true;
+                                            v405
                                         });
-                                        let v354: Option<string> = _result;
-                                        let v361: Spiral_builder::US3 = match &v314 {
-                                            Spiral_builder::US2::US2_0(v314_0_0) => {
+                                        let v409: Option<string> = _result;
+                                        let v416: Spiral_builder::US3 = match &v368 {
+                                            Spiral_builder::US2::US2_0(v368_0_0) => {
                                                 Spiral_builder::US3::US3_0(
                                                     fable_library_rust::String_::fromString(
-                                                        match &v314 {
+                                                        match &v368 {
                                                             Spiral_builder::US2::US2_0(x) => {
                                                                 x.clone()
                                                             }
@@ -7866,43 +7968,43 @@ mod module_7e2cd9e0 {
                                             }
                                             _ => Spiral_builder::US3::US3_1,
                                         };
-                                        let v366: string = defaultValue(
-                                            match &v361 {
-                                                Spiral_builder::US3::US3_0(v361_0_0) => match &v361
+                                        let v421: string = defaultValue(
+                                            match &v416 {
+                                                Spiral_builder::US3::US3_0(v416_0_0) => match &v416
                                                 {
                                                     Spiral_builder::US3::US3_0(x) => x.clone(),
                                                     _ => unreachable!(),
                                                 },
                                                 _ => string(""),
                                             },
-                                            v354,
+                                            v409,
                                         );
                                         Spiral_builder::method5(
                                             Spiral_builder::US0::US0_0,
                                             Func0::new(move || Spiral_builder::closure31((), ())),
                                             Func0::new({
-                                                let v313 = v313.clone();
-                                                let v366 = v366.clone();
+                                                let v367 = v367.clone();
+                                                let v421 = v421.clone();
                                                 move || {
                                                     Spiral_builder::closure32(
-                                                        v313,
-                                                        v366.clone(),
+                                                        v367,
+                                                        v421.clone(),
                                                         (),
                                                     )
                                                 }
                                             }),
                                         );
-                                        LrcPtr::new((v313, v366.clone()))
+                                        LrcPtr::new((v367, v421.clone()))
                                     }
                                 }
                             }))();
                             _v48.set(Some(x_12))
                         }
                         {
-                            let v371: LrcPtr<(i32, string)> = getValue(_v48.get().clone());
-                            let v372: LrcPtr<(i32, string)> =
-                                Spiral_builder::method49(v371.0.clone(), v371.1.clone());
-                            v372
+                            let v426: LrcPtr<(i32, string)> = getValue(_v48.get().clone());
+                            let v427: LrcPtr<(i32, string)> =
+                                Spiral_builder::method54(v426.0.clone(), v426.1.clone());
+                            v427
                         }
                     }
                 });
@@ -7910,11 +8012,11 @@ mod module_7e2cd9e0 {
                     {
                         //;
                         {
-                            let v376: std::pin::Pin<
+                            let v431: std::pin::Pin<
                                 Box<dyn std::future::Future<Output = LrcPtr<(i32, string)>>>,
                             > = __result;
-                            let v378: LrcPtr<(i32, string)> = futures_lite::future::block_on(v376);
-                            _v7.set(Some((v378.0.clone(), v378.1.clone())));
+                            let v433: LrcPtr<(i32, string)> = futures_lite::future::block_on(v431);
+                            _v7.set(Some((v433.0.clone(), v433.1.clone())));
                             {
                                 let patternInput_5: (i32, string) = getValue(_v7.get().clone());
                                 (patternInput_5.0.clone(), patternInput_5.1.clone())
@@ -8022,7 +8124,7 @@ mod module_7e2cd9e0 {
                 Spiral_builder::closure6((), ())
             )
         }
-        pub fn method52(v0_1: string) -> string {
+        pub fn method57(v0_1: string) -> string {
             v0_1
         }
         pub fn closure46(unitVar: (), unitVar_1: ()) -> string {
@@ -8067,10 +8169,10 @@ mod module_7e2cd9e0 {
                 fable_library_rust::String_::fromString(v11)
             }
         }
-        pub fn method53() -> Func1<serde_json::Error, string> {
+        pub fn method58() -> Func1<serde_json::Error, string> {
             Func1::new(move |v: serde_json::Error| Spiral_builder::closure51((), v))
         }
-        pub fn method54(v0_1: Result<string, string>) -> Result<string, string> {
+        pub fn method59(v0_1: Result<string, string>) -> Result<string, string> {
             v0_1
         }
         pub fn method8(
@@ -9538,7 +9640,7 @@ mod module_7e2cd9e0 {
                         );
                         let v714: Result<std::string::String, serde_json::Error> =
                             serde_json::to_string(&v712);
-                        let v715 = Spiral_builder::method53();
+                        let v715 = Spiral_builder::method58();
                         let v717: Result<std::string::String, string> = v714.map_err(|x| v715(x));
                         let v719: bool = true;
                         let _result = v717.map(|x| {
@@ -9548,7 +9650,7 @@ mod module_7e2cd9e0 {
                             let v725: bool = true;
                             v723
                         });
-                        let v728: Result<string, string> = Spiral_builder::method54(_result);
+                        let v728: Result<string, string> = Spiral_builder::method59(_result);
                         v728
                     }
                 }

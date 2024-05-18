@@ -12,7 +12,7 @@ from fable_modules.fable_library.util import (create_atom, IDisposable, to_enume
 
 State_trace_state: tuple[Mut0, Mut1, Mut2, int64 | None, Mut3] | None = create_atom(None)
 
-def _expr25() -> TypeInfo:
+def _expr23() -> TypeInfo:
     return class_type("Common.Disposable", None, Disposable)
 
 
@@ -25,13 +25,13 @@ class Disposable(IDisposable):
         _.f(None)
 
 
-Disposable_reflection = _expr25
+Disposable_reflection = _expr23
 
 def Disposable__ctor_3A5B6456(f: Callable[[], None]) -> Disposable:
     return Disposable(f)
 
 
-def _expr42() -> TypeInfo:
+def _expr25() -> TypeInfo:
     return union_type("Common.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -47,9 +47,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr42
+US0_reflection = _expr25
 
-def _expr44() -> TypeInfo:
+def _expr27() -> TypeInfo:
     return record_type("Common.Mut0", [], Mut0, lambda: [("l0", int64_type)])
 
 
@@ -57,9 +57,9 @@ def _expr44() -> TypeInfo:
 class Mut0(Record):
     l0: int64
 
-Mut0_reflection = _expr44
+Mut0_reflection = _expr27
 
-def _expr46() -> TypeInfo:
+def _expr28() -> TypeInfo:
     return record_type("Common.Mut1", [], Mut1, lambda: [("l0", bool_type)])
 
 
@@ -67,9 +67,9 @@ def _expr46() -> TypeInfo:
 class Mut1(Record):
     l0: bool
 
-Mut1_reflection = _expr46
+Mut1_reflection = _expr28
 
-def _expr48() -> TypeInfo:
+def _expr29() -> TypeInfo:
     return record_type("Common.Mut2", [], Mut2, lambda: [("l0", US0_reflection())])
 
 
@@ -77,9 +77,9 @@ def _expr48() -> TypeInfo:
 class Mut2(Record):
     l0: US0
 
-Mut2_reflection = _expr48
+Mut2_reflection = _expr29
 
-def _expr52() -> TypeInfo:
+def _expr30() -> TypeInfo:
     return record_type("Common.Mut3", [], Mut3, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -87,9 +87,9 @@ def _expr52() -> TypeInfo:
 class Mut3(Record):
     l0: Callable[[str], None]
 
-Mut3_reflection = _expr52
+Mut3_reflection = _expr30
 
-def _expr55() -> TypeInfo:
+def _expr31() -> TypeInfo:
     return union_type("Common.US1", [], US1, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -105,9 +105,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr55
+US1_reflection = _expr31
 
-def _expr57() -> TypeInfo:
+def _expr32() -> TypeInfo:
     return union_type("Common.US2", [], US2, lambda: [[], []])
 
 
@@ -123,9 +123,9 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr57
+US2_reflection = _expr32
 
-def _expr59() -> TypeInfo:
+def _expr33() -> TypeInfo:
     return union_type("Common.US3", [], US3, lambda: [[("f0_0", US2_reflection())], []])
 
 
@@ -141,7 +141,7 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr59
+US3_reflection = _expr33
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:

@@ -8973,7 +8973,9 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">vec_for_each</span><span class="s1">' forall t. (fn : t -&gt; ()) (ar : vec t) : () =</span>
-    <span class="o">!</span><span class="se">\\</span><span class="o">((</span>ar,<span class="w"> </span>fn<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.into_iter().for_each(|x| { $1(x); })"'</span><span class="o">)</span>
+    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; !ar.into_iter().for_each(|x| { //"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
+    <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">fn</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'"x"'</span><span class="o">)</span>
+    <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; !x })"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
 </pre></div>
 </div>
 </div>

@@ -326,7 +326,8 @@ nominal poison_error t = $"std_sync_PoisonError<`t>"
 #!spiral
 
 inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard t) (poison_error (mutex_guard t)) =
-    !\\(x, $'"$0.lock()"')
+    inl x = join x
+    !\($'"!x.lock()"')
 
 #!markdown
 

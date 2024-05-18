@@ -110,13 +110,21 @@ inl unwrap forall t. (x : option' t) : t =
 
 /// ## take
 inl take forall t. (x : option' t) : option' t =
-    inl x = join x
-    (!\($'"true; let mut !x = !x"') : bool) |> ignore
+    (!\\(x, $'"true; let mut !x = !x"') : bool) |> ignore
+    !\\(x, $'"Option::take(&mut $0)"')
+
+/// ## ref_take'
+inl ref_take' forall t. (x : rust.ref' (option' t)) : option' t =
+    (!\\(x, $'"true; let mut !x = !x"') : bool) |> ignore
     !\\(x, $'"Option::take(&mut $0)"')
 
 /// ## ref_take
 inl ref_take forall t. (x : rust.ref' (rust.mut' (option' t))) : option' t =
     !\\(x, $'"Option::take($0)"')
+
+/// ## as_mut
+inl as_mut forall t. (x : rust.ref' (rust.mut' (option' t))) : option' (rust.ref' (rust.mut' t)) =
+    !\\(x, $'"$0.as_mut()"')
 
 /// ## unwrap_or
 inl unwrap_or forall t. (def : t) (x : option' t) : t =

@@ -39,11 +39,20 @@ nominal process_child = $'std_process_Child'
 /// ## process_child_stderr
 nominal process_child_stderr = $"std_process_ChildStderr"
 
+inl process_child_stderr (child : rust.ref' (rust.mut' process_child)) : rust.ref' (rust.mut' (optionm'.option' process_child_stderr)) =
+    !\\(child, $'"&mut $0.stderr"')
+
 /// ## process_child_stdout
 nominal process_child_stdout = $"std_process_ChildStdout"
 
+inl process_child_stdout (child : rust.ref' (rust.mut' process_child)) : rust.ref' (rust.mut' (optionm'.option' process_child_stdout)) =
+    !\\(child, $'"&mut $0.stdout"')
+
 /// ## process_child_stdin
 nominal process_child_stdin = $"std_process_ChildStdin"
+
+inl process_child_stdin (child : rust.ref' (rust.mut' process_child)) : rust.ref' (rust.mut' (optionm'.option' process_child_stdin)) =
+    !\\(child, $'"&mut $0.stdin"')
 
 /// ## process_command
 nominal process_command = $'std_process_Command'

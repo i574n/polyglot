@@ -148,7 +148,8 @@ nominal poison_error t = $"std_sync_PoisonError<`t>"
 
 /// ## arc_mutex_lock
 inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard t) (poison_error (mutex_guard t)) =
-    !\\(x, $'"$0.lock()"')
+    inl x = join x
+    !\($'"!x.lock()"')
 
 /// ## mutex_guard_ref
 inl mutex_guard_ref forall t. (x : mutex_guard t) : rust.ref' t =
