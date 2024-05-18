@@ -233,7 +233,9 @@ inl vec_for_each forall t. (fn : t -> ()) (ar : vec t) : () =
 
 /// ## vec_for_each'
 inl vec_for_each' forall t. (fn : t -> ()) (ar : vec t) : () =
-    !\\((ar, fn), $'"$0.into_iter().for_each(|x| { $1(x); })"')
+    (!\($'"true; !ar.into_iter().for_each(|x| { //"') : bool) |> ignore
+    inl x = fn !\($'"x"')
+    (!\($'"true; !x })"') : bool) |> ignore
 
 /// ## vec_filter
 inl vec_filter forall t. (fn : t -> bool) (ar : vec t) : vec t =

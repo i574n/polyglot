@@ -4332,67 +4332,34 @@ and method47 (v0 : std_sync_MutexGuard<std_process_ChildStdin>) : std_sync_Mutex
     v0
 and method48 (v0 : std_thread_JoinHandle<bool>) : std_thread_JoinHandle<bool> =
     v0
-and closure27 () (v0 : std_thread_JoinHandle<bool>) : unit =
-    let v1 : string = "std::thread::JoinHandle::join($0)"
-    let v2 : Result<bool, Box<LifetimeRef<Dyn<LifetimeJoin<core_any_Any, LifetimeRef<LifetimeJoin<StaticLifetime, Send<StaticLifetime>>>>>>>> = Fable.Core.RustInterop.emitRustExpr v0 v1
-    let v3 : string = "$0.unwrap()"
-    let v4 : bool = Fable.Core.RustInterop.emitRustExpr v2 v3
-    ()
-and closure28 () (v0 : std_process_Output) : US14 =
+and closure27 () (v0 : std_process_Output) : US14 =
     US14_0(v0)
-and closure29 () (v0 : std_string_String) : US14 =
+and closure28 () (v0 : std_string_String) : US14 =
     US14_1(v0)
-and closure30 () () : string =
+and closure29 () () : string =
     let v0 : string = $"runtime.execute_with_options / output error"
     v0
-and closure31 (v0 : std_string_String) () : string =
+and closure30 (v0 : std_string_String) () : string =
     let v1 : (unit -> string) = closure6()
     let v2 : string = $"error: {v0} / {v1 ()}"
     v2
-and closure32 () (v0 : std_sync_Arc<std_sync_Mutex<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>>>) : string =
-    let v1 : string = "$0.lock()"
-    let v2 : Result<std_sync_MutexGuard<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>>, std_sync_PoisonError<std_sync_MutexGuard<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>>>> = Fable.Core.RustInterop.emitRustExpr v0 v1
-    let v3 : string = "$0.unwrap()"
-    let v4 : std_sync_MutexGuard<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>> = Fable.Core.RustInterop.emitRustExpr v2 v3
-    let v5 : string = "v4.iter()"
-    let v6 : _ = Fable.Core.RustInterop.emitRustExpr () v5
-    let v7 : string = "v6.collect::<Vec<_>>()"
-    let v8 : Vec<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v7
-    let v9 : string = "true; let _result = v8.into_iter().map(|x| { //"
-    let v10 : bool = Fable.Core.RustInterop.emitRustExpr () v9
-    let v11 : string = "x"
-    let v12 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v11
-    let v13 : string = "fable_library_rust::String_::fromString($0)"
-    let v14 : string = Fable.Core.RustInterop.emitRustExpr v12 v13
-    let v15 : string = "true; $0 }).collect::<Vec<_>>()"
-    let v16 : bool = Fable.Core.RustInterop.emitRustExpr v14 v15
-    let v17 : string = "_result"
-    let v18 : Vec<string> = Fable.Core.RustInterop.emitRustExpr () v17
-    let v19 : string = "fable_library_rust::NativeArray_::array_from($0)"
-    let v20 : (string []) = Fable.Core.RustInterop.emitRustExpr v18 v19
-    let v21 : ((string []) -> string seq) = Seq.ofArray
-    let v22 : string seq = v21 v20
-    let v23 : string = method33()
-    let v24 : (string -> (string seq -> string)) = String.concat
-    let v25 : (string seq -> string) = v24 v23
-    v25 v22
-and closure33 () () : string =
+and closure31 () () : string =
     let v0 : string = $"runtime.execute_with_options / result"
     v0
-and closure34 (v0 : int32, v1 : string) () : string =
+and closure32 (v0 : int32, v1 : string) () : string =
     let v2 : (unit -> string) = closure6()
     let v3 : string = $"exit_code: {v0} / std_trace.Length: {v1.Length} / {v2 ()}"
     v3
 and method49 (v0 : (int32 * string)) : (int32 * string) =
     v0
-and closure35 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) () : string =
+and closure33 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) () : string =
     let v7 : string = $"execute_with_options_async / options: %A{struct (v0, v1, v2, v3, v4, v5, v6)}"
     v7
 and method51 () : (unit -> string) =
     closure6()
-and closure37 (v0 : string) () : string =
+and closure35 (v0 : string) () : string =
     v0
-and closure36 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option, v7 : System.Diagnostics.Process, v8 : System.Collections.Concurrent.ConcurrentStack<string>) (v9 : System.Diagnostics.DataReceivedEventArgs) : unit =
+and closure34 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option, v7 : System.Diagnostics.Process, v8 : System.Collections.Concurrent.ConcurrentStack<string>) (v9 : System.Diagnostics.DataReceivedEventArgs) : unit =
     let v10 : bool = true
     let mutable _v10 : Async<unit> option = None 
     
@@ -4454,7 +4421,7 @@ and closure36 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
         let v30 : string = $"> {v17}"
         if v5 then
             let v31 : US0 = US0_0
-            let v32 : (unit -> string) = closure37(v30)
+            let v32 : (unit -> string) = closure35(v30)
             let v33 : (unit -> string) = closure6()
             method5(v31, v32, v33)
         else
@@ -4504,7 +4471,7 @@ and closure36 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
     |> fun x -> _v39 <- Some x
     _v39.Value
     ()
-and closure38 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option, v7 : System.Diagnostics.Process, v8 : System.Collections.Concurrent.ConcurrentStack<string>) (v9 : System.Diagnostics.DataReceivedEventArgs) : unit =
+and closure36 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option, v7 : System.Diagnostics.Process, v8 : System.Collections.Concurrent.ConcurrentStack<string>) (v9 : System.Diagnostics.DataReceivedEventArgs) : unit =
     let v10 : bool = true
     let mutable _v10 : Async<unit> option = None 
     
@@ -4566,7 +4533,7 @@ and closure38 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
         let v30 : string = $"! {v17}"
         if v5 then
             let v31 : US0 = US0_0
-            let v32 : (unit -> string) = closure37(v30)
+            let v32 : (unit -> string) = closure35(v30)
             let v33 : (unit -> string) = closure6()
             method5(v31, v32, v33)
         else
@@ -4617,7 +4584,7 @@ and closure38 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
     |> fun x -> _v40 <- Some x
     _v40.Value
     ()
-and closure39 (v0 : System.Diagnostics.Process) () : unit =
+and closure37 (v0 : System.Diagnostics.Process) () : unit =
     let v1 : bool = true
     let mutable _v1 : bool option = None 
     
@@ -4684,10 +4651,10 @@ and closure39 (v0 : System.Diagnostics.Process) () : unit =
         |> fun x -> _v10 <- Some x
         _v10.Value
         ()
-and closure40 (v0 : System.Threading.Tasks.TaskCanceledException) () : string =
+and closure38 (v0 : System.Threading.Tasks.TaskCanceledException) () : string =
     let v1 : string = $"execute_with_options_async / WaitForExitAsync / ex: %A{v0}"
     v1
-and closure41 (v0 : int32, v1 : string) () : string =
+and closure39 (v0 : int32, v1 : string) () : string =
     let v2 : string = $"execute_with_options_async / exit_code: {v0} / output.Length: {v1.Length}"
     v2
 and method50 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) : Async<struct (int32 * string)> =
@@ -4791,7 +4758,7 @@ and method50 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : 
         | US3_0(v46) -> (* Some *)
             v46
     let v50 : US0 = US0_1
-    let v51 : (unit -> string) = closure35(v0, v1, v2, v3, v4, v5, v6)
+    let v51 : (unit -> string) = closure33(v0, v1, v2, v3, v4, v5, v6)
     let v52 : (unit -> string) = method51()
     method5(v50, v51, v52)
     let v53 : System.Text.Encoding = System.Text.Encoding.UTF8
@@ -4810,9 +4777,9 @@ and method50 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : 
     let v63 : System.Diagnostics.Process = v62 
     let v64 : (unit -> System.Collections.Concurrent.ConcurrentStack<string>) = System.Collections.Concurrent.ConcurrentStack<string>
     let v65 : System.Collections.Concurrent.ConcurrentStack<string> = v64 ()
-    let v66 : (System.Diagnostics.DataReceivedEventArgs -> unit) = closure36(v0, v1, v2, v3, v4, v5, v6, v63, v65)
+    let v66 : (System.Diagnostics.DataReceivedEventArgs -> unit) = closure34(v0, v1, v2, v3, v4, v5, v6, v63, v65)
     v63.OutputDataReceived.Add v66 
-    let v67 : (System.Diagnostics.DataReceivedEventArgs -> unit) = closure38(v0, v1, v2, v3, v4, v5, v6, v63, v65)
+    let v67 : (System.Diagnostics.DataReceivedEventArgs -> unit) = closure36(v0, v1, v2, v3, v4, v5, v6, v63, v65)
     v63.ErrorDataReceived.Add v67 
     let v68 : (unit -> bool) = v63.Start
     let v69 : bool = v68 ()
@@ -4925,7 +4892,7 @@ and method50 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : 
     let! v106 = v106 
     let v107 : System.Threading.CancellationToken = v106 
     let v108 : ((unit -> unit) -> System.Threading.CancellationTokenRegistration) = v107.Register
-    let v109 : (unit -> unit) = closure39(v63)
+    let v109 : (unit -> unit) = closure37(v63)
     let v110 : System.Threading.CancellationTokenRegistration = v108 v109
     use v110 = v110 
     let v111 : System.Threading.CancellationTokenRegistration = v110 
@@ -5032,7 +4999,7 @@ and method50 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : 
     v139 v138
     let v140 : System.Threading.Tasks.TaskCanceledException = v130 |> unbox<System.Threading.Tasks.TaskCanceledException>
     let v141 : US0 = US0_3
-    let v142 : (unit -> string) = closure40(v140)
+    let v142 : (unit -> string) = closure38(v140)
     let v143 : (unit -> string) = method51()
     method5(v141, v142, v143)
     return -2147483648 
@@ -5054,7 +5021,7 @@ and method50 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : 
     let v151 : (string seq -> string) = v150 v149
     let v152 : string = v151 v148
     let v153 : US0 = US0_1
-    let v154 : (unit -> string) = closure41(v146, v152)
+    let v154 : (unit -> string) = closure39(v146, v152)
     let v155 : (unit -> string) = method51()
     method5(v153, v154, v155)
     return struct (v146, v152) 
@@ -5210,16 +5177,16 @@ and method40 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : 
     let v115 : (std_sync_Arc<std_sync_Mutex<std_process_Child option>> -> US9) = closure16()
     let v116 : (std_string_String -> US9) = closure17()
     let v117 : US9 = Fable.Core.RustInterop.emitRustExpr struct (v115, v116) v114
-    let struct (v305 : int32, v306 : US2, v307 : US10) =
+    let struct (v313 : int32, v314 : US2, v315 : US10) =
         match v117 with
-        | US9_1(v296) -> (* Error *)
-            let v297 : US0 = US0_4
-            let v298 : (unit -> string) = closure18()
-            let v299 : (unit -> string) = closure19(v296)
-            method5(v297, v298, v299)
-            let v300 : US2 = US2_0(v296)
-            let v301 : US10 = US10_1
-            struct (-1, v300, v301)
+        | US9_1(v304) -> (* Error *)
+            let v305 : US0 = US0_4
+            let v306 : (unit -> string) = closure18()
+            let v307 : (unit -> string) = closure19(v304)
+            method5(v305, v306, v307)
+            let v308 : US2 = US2_0(v304)
+            let v309 : US10 = US10_1
+            struct (-1, v308, v309)
         | US9_0(v118) -> (* Ok *)
             let v119 : string = "$0.lock().unwrap().as_mut().unwrap().stdout.take().unwrap()"
             let v120 : std_process_ChildStdout = Fable.Core.RustInterop.emitRustExpr v118 v119
@@ -5405,141 +5372,180 @@ and method40 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : 
             let v267 : string = v266 + v262
             let v268 : string = "vec![" + v267 + "]"
             let v269 : Vec<std_thread_JoinHandle<bool>> = Fable.Core.RustInterop.emitRustExpr () v268
-            let v270 : string = "$0.into_iter().for_each(|x| { $1(x); })"
-            let v271 : (std_thread_JoinHandle<bool> -> unit) = closure27()
-            Fable.Core.RustInterop.emitRustExpr struct (v269, v271) v270
-            let v272 : (std_process_Output -> US14) = closure28()
-            let v273 : (std_string_String -> US14) = closure29()
-            let v274 : US14 = match v257 with Ok x -> v272 x | Error x -> v273 x
-            match v274 with
-            | US14_1(v284) -> (* Error *)
-                let v285 : US0 = US0_4
-                let v286 : (unit -> string) = closure30()
-                let v287 : (unit -> string) = closure31(v284)
-                method5(v285, v286, v287)
-                let v288 : US2 = US2_0(v284)
-                let v289 : US10 = US10_1
-                struct (-2, v288, v289)
-            | US14_0(v275) -> (* Ok *)
-                let v276 : string = "$0.status"
-                let v277 : std_process_ExitStatus = Fable.Core.RustInterop.emitRustExpr v275 v276
-                let v278 : string = "$0.code()"
-                let v279 : int32 option = Fable.Core.RustInterop.emitRustExpr v277 v278
-                let v280 : string = "$0.unwrap()"
-                let v281 : int32 = Fable.Core.RustInterop.emitRustExpr v279 v280
-                let v282 : US2 = US2_1
-                let v283 : US10 = US10_0(v157)
-                struct (v281, v282, v283)
-    let v312 : std_sync_Arc<std_sync_Mutex<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>>> option =
-        match v307 with
+            let v270 : string = "true; v269.into_iter().for_each(|x| { //"
+            let v271 : bool = Fable.Core.RustInterop.emitRustExpr () v270
+            let v272 : string = "x"
+            let v273 : std_thread_JoinHandle<bool> = Fable.Core.RustInterop.emitRustExpr () v272
+            let v274 : string = "std::thread::JoinHandle::join($0)"
+            let v275 : Result<bool, Box<LifetimeRef<Dyn<LifetimeJoin<core_any_Any, LifetimeRef<LifetimeJoin<StaticLifetime, Send<StaticLifetime>>>>>>>> = Fable.Core.RustInterop.emitRustExpr v273 v274
+            let v276 : string = "$0.unwrap()"
+            let v277 : bool = Fable.Core.RustInterop.emitRustExpr v275 v276
+            let v278 : string = "true; () })"
+            let v279 : bool = Fable.Core.RustInterop.emitRustExpr () v278
+            let v280 : (std_process_Output -> US14) = closure27()
+            let v281 : (std_string_String -> US14) = closure28()
+            let v282 : US14 = match v257 with Ok x -> v280 x | Error x -> v281 x
+            match v282 with
+            | US14_1(v292) -> (* Error *)
+                let v293 : US0 = US0_4
+                let v294 : (unit -> string) = closure29()
+                let v295 : (unit -> string) = closure30(v292)
+                method5(v293, v294, v295)
+                let v296 : US2 = US2_0(v292)
+                let v297 : US10 = US10_1
+                struct (-2, v296, v297)
+            | US14_0(v283) -> (* Ok *)
+                let v284 : string = "$0.status"
+                let v285 : std_process_ExitStatus = Fable.Core.RustInterop.emitRustExpr v283 v284
+                let v286 : string = "$0.code()"
+                let v287 : int32 option = Fable.Core.RustInterop.emitRustExpr v285 v286
+                let v288 : string = "$0.unwrap()"
+                let v289 : int32 = Fable.Core.RustInterop.emitRustExpr v287 v288
+                let v290 : US2 = US2_1
+                let v291 : US10 = US10_0(v157)
+                struct (v289, v290, v291)
+    let v320 : std_sync_Arc<std_sync_Mutex<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>>> option =
+        match v315 with
         | US10_1 -> (* None *)
-            let v310 : std_sync_Arc<std_sync_Mutex<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>>> option = None
-            v310
-        | US10_0(v308) -> (* Some *)
-            let v309 : std_sync_Arc<std_sync_Mutex<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>>> option = Some v308 
-            v309
-    let v313 : (std_sync_Arc<std_sync_Mutex<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>>> -> string) = closure32()
-    let v314 : string option = v312 |> Option.map v313 
-    let v321 : US3 =
-        match v306 with
+            let v318 : std_sync_Arc<std_sync_Mutex<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>>> option = None
+            v318
+        | US10_0(v316) -> (* Some *)
+            let v317 : std_sync_Arc<std_sync_Mutex<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>>> option = Some v316 
+            v317
+    let v321 : string = "true; let _result = v320.map(|x| { //"
+    let v322 : bool = Fable.Core.RustInterop.emitRustExpr () v321
+    let v323 : string = "x"
+    let v324 : std_sync_Arc<std_sync_Mutex<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>>> = Fable.Core.RustInterop.emitRustExpr () v323
+    let v325 : string = "$0.lock()"
+    let v326 : Result<std_sync_MutexGuard<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>>, std_sync_PoisonError<std_sync_MutexGuard<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>>>> = Fable.Core.RustInterop.emitRustExpr v324 v325
+    let v327 : string = "$0.unwrap()"
+    let v328 : std_sync_MutexGuard<std_sync_Arc<std_sync_mpsc_Receiver<std_string_String>>> = Fable.Core.RustInterop.emitRustExpr v326 v327
+    let v329 : string = "v328.iter()"
+    let v330 : _ = Fable.Core.RustInterop.emitRustExpr () v329
+    let v331 : string = "v330.collect::<Vec<_>>()"
+    let v332 : Vec<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v331
+    let v333 : string = "true; let _result = v332.into_iter().map(|x| { //"
+    let v334 : bool = Fable.Core.RustInterop.emitRustExpr () v333
+    let v335 : string = "x"
+    let v336 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v335
+    let v337 : string = "fable_library_rust::String_::fromString($0)"
+    let v338 : string = Fable.Core.RustInterop.emitRustExpr v336 v337
+    let v339 : string = "true; $0 }).collect::<Vec<_>>()"
+    let v340 : bool = Fable.Core.RustInterop.emitRustExpr v338 v339
+    let v341 : string = "_result"
+    let v342 : Vec<string> = Fable.Core.RustInterop.emitRustExpr () v341
+    let v343 : string = "fable_library_rust::NativeArray_::array_from($0)"
+    let v344 : (string []) = Fable.Core.RustInterop.emitRustExpr v342 v343
+    let v345 : ((string []) -> string seq) = Seq.ofArray
+    let v346 : string seq = v345 v344
+    let v347 : string = method33()
+    let v348 : (string -> (string seq -> string)) = String.concat
+    let v349 : (string seq -> string) = v348 v347
+    let v350 : string = v349 v346
+    let v351 : string = "true; $0 })"
+    let v352 : bool = Fable.Core.RustInterop.emitRustExpr v350 v351
+    let v353 : string = "_result"
+    let v354 : string option = Fable.Core.RustInterop.emitRustExpr () v353
+    let v361 : US3 =
+        match v314 with
         | US2_1 -> (* None *)
             US3_1
-        | US2_0(v315) -> (* Some *)
-            let v316 : string = "fable_library_rust::String_::fromString($0)"
-            let v317 : string = Fable.Core.RustInterop.emitRustExpr v315 v316
-            US3_0(v317)
-    let v325 : string =
-        match v321 with
+        | US2_0(v355) -> (* Some *)
+            let v356 : string = "fable_library_rust::String_::fromString($0)"
+            let v357 : string = Fable.Core.RustInterop.emitRustExpr v355 v356
+            US3_0(v357)
+    let v365 : string =
+        match v361 with
         | US3_1 -> (* None *)
-            let v323 : string = ""
-            v323
-        | US3_0(v322) -> (* Some *)
-            v322
-    let v326 : string = v314 |> Option.defaultValue v325 
-    let v327 : US0 = US0_0
-    let v328 : (unit -> string) = closure33()
-    let v329 : (unit -> string) = closure34(v305, v326)
-    method5(v327, v328, v329)
-    let v330 : (int32 * string) = v305, v326
-    v330 
+            let v363 : string = ""
+            v363
+        | US3_0(v362) -> (* Some *)
+            v362
+    let v366 : string = v354 |> Option.defaultValue v365 
+    let v367 : US0 = US0_0
+    let v368 : (unit -> string) = closure31()
+    let v369 : (unit -> string) = closure32(v313, v366)
+    method5(v367, v368, v369)
+    let v370 : (int32 * string) = v313, v366
+    v370 
     )
     |> fun x -> x ()
     ) () )
     |> fun x -> _v48 <- Some x
-    let v331 : (int32 * string) = _v48.Value 
-    let v332 : (int32 * string) = method49(v331)
-    let v333 : string = "v332 }}})"
-    Fable.Core.RustInterop.emitRustExpr () v333
-    let v334 : string = "{{ //"
-    Fable.Core.RustInterop.emitRustExpr () v334
-    let v335 : string = "__result"
-    let v336 : std_pin_Pin<Box<Dyn<std_future_Future<(int32 * string)>>>> = Fable.Core.RustInterop.emitRustExpr () v335
-    let v337 : string = "futures_lite::future::block_on($0)"
-    let v338 : (int32 * string) = Fable.Core.RustInterop.emitRustExpr v336 v337
-    let (a, b) = v338
-    let v339 : int32 = a
-    let v340 : string = b
-    struct (v339, v340) 
+    let v371 : (int32 * string) = _v48.Value 
+    let v372 : (int32 * string) = method49(v371)
+    let v373 : string = "v372 }}})"
+    Fable.Core.RustInterop.emitRustExpr () v373
+    let v374 : string = "{{ //"
+    Fable.Core.RustInterop.emitRustExpr () v374
+    let v375 : string = "__result"
+    let v376 : std_pin_Pin<Box<Dyn<std_future_Future<(int32 * string)>>>> = Fable.Core.RustInterop.emitRustExpr () v375
+    let v377 : string = "futures_lite::future::block_on($0)"
+    let v378 : (int32 * string) = Fable.Core.RustInterop.emitRustExpr v376 v377
+    let (a, b) = v378
+    let v379 : int32 = a
+    let v380 : string = b
+    struct (v379, v380) 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let struct (v341 : int32, v342 : string) = null |> unbox<struct (int32 * string)>
-    struct (v341, v342) 
+    let struct (v381 : int32, v382 : string) = null |> unbox<struct (int32 * string)>
+    struct (v381, v382) 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let struct (v343 : int32, v344 : string) = null |> unbox<struct (int32 * string)>
-    struct (v343, v344) 
+    let struct (v383 : int32, v384 : string) = null |> unbox<struct (int32 * string)>
+    struct (v383, v384) 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let struct (v345 : int32, v346 : string) = null |> unbox<struct (int32 * string)>
-    struct (v345, v346) 
+    let struct (v385 : int32, v386 : string) = null |> unbox<struct (int32 * string)>
+    struct (v385, v386) 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let struct (v347 : int32, v348 : string) = null |> unbox<struct (int32 * string)>
-    struct (v347, v348) 
+    let struct (v387 : int32, v388 : string) = null |> unbox<struct (int32 * string)>
+    struct (v387, v388) 
     #endif
 #else
-    let v349 : Async<struct (int32 * string)> = method50(v0, v1, v2, v3, v4, v5, v6)
-    let v350 : bool = true
-    let mutable _v350 : struct (int32 * string) option = None 
+    let v389 : Async<struct (int32 * string)> = method50(v0, v1, v2, v3, v4, v5, v6)
+    let v390 : bool = true
+    let mutable _v390 : struct (int32 * string) option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let struct (v351 : int32, v352 : string) = null |> unbox<struct (int32 * string)>
-    struct (v351, v352) 
+    let struct (v391 : int32, v392 : string) = null |> unbox<struct (int32 * string)>
+    struct (v391, v392) 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let struct (v353 : int32, v354 : string) = null |> unbox<struct (int32 * string)>
-    struct (v353, v354) 
+    let struct (v393 : int32, v394 : string) = null |> unbox<struct (int32 * string)>
+    struct (v393, v394) 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let struct (v355 : int32, v356 : string) = null |> unbox<struct (int32 * string)>
-    struct (v355, v356) 
+    let struct (v395 : int32, v396 : string) = null |> unbox<struct (int32 * string)>
+    struct (v395, v396) 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let struct (v357 : int32, v358 : string) = null |> unbox<struct (int32 * string)>
-    struct (v357, v358) 
+    let struct (v397 : int32, v398 : string) = null |> unbox<struct (int32 * string)>
+    struct (v397, v398) 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let struct (v359 : int32, v360 : string) = null |> unbox<struct (int32 * string)>
-    struct (v359, v360) 
+    let struct (v399 : int32, v400 : string) = null |> unbox<struct (int32 * string)>
+    struct (v399, v400) 
     #endif
 #else
-    let v361 : (Async<struct (int32 * string)> -> struct (int32 * string)) = Async.RunSynchronously
-    let struct (v362 : int32, v363 : string) = v361 v349
-    struct (v362, v363) 
+    let v401 : (Async<struct (int32 * string)> -> struct (int32 * string)) = Async.RunSynchronously
+    let struct (v402 : int32, v403 : string) = v401 v389
+    struct (v402, v403) 
     #endif
-    |> fun x -> _v350 <- Some x
-    let struct (v364 : int32, v365 : string) = _v350.Value
-    struct (v364, v365) 
+    |> fun x -> _v390 <- Some x
+    let struct (v404 : int32, v405 : string) = _v390.Value
+    struct (v404, v405) 
     #endif
     |> fun x -> _v7 <- Some x
-    let struct (v366 : int32, v367 : string) = _v7.Value
-    struct (v366, v367)
-and closure42 () () : string =
+    let struct (v406 : int32, v407 : string) = _v7.Value
+    struct (v406, v407)
+and closure40 () () : string =
     let v0 : string = "spiral_builder.run / repl error"
     v0
-and closure43 (v0 : uint8, v1 : uint8, v2 : string, v3 : int32) () : string =
+and closure41 (v0 : uint8, v1 : uint8, v2 : string, v3 : int32) () : string =
     let v4 : (unit -> string) = closure6()
     let v5 : string = $"exit_code: {v3} / retry: {v1}/{v0} / repl_result: {v2} / {v4 ()}"
     v5
@@ -5566,42 +5572,42 @@ and method39 (v0 : string option, v1 : uint8, v2 : string, v3 : uint8) : struct 
         struct (v14, v15)
     else
         let v19 : US0 = US0_1
-        let v20 : (unit -> string) = closure42()
-        let v21 : (unit -> string) = closure43(v1, v3, v15, v14)
+        let v20 : (unit -> string) = closure40()
+        let v21 : (unit -> string) = closure41(v1, v3, v15, v14)
         method5(v19, v20, v21)
         let v22 : uint8 = v3 + 1uy
         method39(v0, v1, v2, v22)
-and closure44 () () : string =
+and closure42 () () : string =
     let v0 : string = "spiral_builder.run / dib / jupyter nbconvert"
     v0
-and closure45 (v0 : string, v1 : int32) () : string =
+and closure43 (v0 : string, v1 : int32) () : string =
     let v2 : (unit -> string) = closure6()
     let v3 : string = $"exit_code: {v1} / jupyter_result.Length: {v0.Length} / {v2 ()}"
     v3
-and closure46 () () : string =
+and closure44 () () : string =
     let v0 : string = "spiral_builder.run / dib / html cell ids"
     v0
-and closure47 (v0 : string, v1 : int32) () : string =
+and closure45 (v0 : string, v1 : int32) () : string =
     let v2 : (unit -> string) = closure6()
     let v3 : string = $"exit_code: {v1} / pwsh_replace_html_result.Length: {v0.Length} / {v2 ()}"
     v3
 and method52 (v0 : string) : string =
     v0
-and closure48 () () : string =
+and closure46 () () : string =
     let v0 : string = "spiral_builder.run / dib"
     v0
-and closure49 (v0 : string, v1 : int32) () : string =
+and closure47 (v0 : string, v1 : int32) () : string =
     let v2 : (unit -> string) = closure6()
     let v3 : string = $"exit_code: {v1} / result.Length: {v0.Length} / {v2 ()}"
     v3
-and closure50 () () : string =
+and closure48 () () : string =
     let v0 : string = "spiral_builder.run"
     v0
-and closure51 (v0 : std_string_String) () : string =
+and closure49 (v0 : std_string_String) () : string =
     let v1 : (unit -> string) = closure6()
     let v2 : string = $"subcommand: {v0} / {v1 ()}"
     v2
-and closure52 () struct (v0 : string, v1 : string) : (std_string_String * std_string_String) =
+and closure50 () struct (v0 : string, v1 : string) : (std_string_String * std_string_String) =
     let v2 : string = "&*$0"
     let v3 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v0 v2
     let v4 : string = "String::from($0)"
@@ -5612,7 +5618,7 @@ and closure52 () struct (v0 : string, v1 : string) : (std_string_String * std_st
     let v9 : std_string_String = Fable.Core.RustInterop.emitRustExpr v7 v8
     let v10 : (std_string_String * std_string_String) = v5, v9
     v10
-and closure53 () (v0 : serde_json_Error) : string =
+and closure51 () (v0 : serde_json_Error) : string =
     let v1 : bool = true
     let mutable _v1 : std_string_String option = None 
     
@@ -5651,7 +5657,7 @@ and closure53 () (v0 : serde_json_Error) : string =
     let v13 : string = Fable.Core.RustInterop.emitRustExpr v11 v12
     v13
 and method53 () : (serde_json_Error -> string) =
-    closure53()
+    closure51()
 and method54 (v0 : Result<string, string>) : Result<string, string> =
     v0
 and method8 (v0 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_Future<Result<string, string>>>>> =
@@ -6740,8 +6746,8 @@ inline_colorization = "~0.1"
                                 let v597 : bool = true
                                 let struct (v598 : int32, v599 : string) = method40(v591, v596, v592, v593, v594, v597, v595)
                                 let v600 : US0 = US0_1
-                                let v601 : (unit -> string) = closure44()
-                                let v602 : (unit -> string) = closure45(v599, v598)
+                                let v601 : (unit -> string) = closure42()
+                                let v602 : (unit -> string) = closure43(v599, v598)
                                 method5(v600, v601, v602)
                                 let v603 : bool = v598 <> 0
                                 if v603 then
@@ -6762,8 +6768,8 @@ jupyter_result: {v599}"
                                     let v614 : bool = true
                                     let struct (v615 : int32, v616 : string) = method40(v608, v613, v609, v610, v611, v614, v612)
                                     let v617 : US0 = US0_1
-                                    let v618 : (unit -> string) = closure46()
-                                    let v619 : (unit -> string) = closure47(v616, v615)
+                                    let v618 : (unit -> string) = closure44()
+                                    let v619 : (unit -> string) = closure45(v616, v615)
                                     method5(v617, v618, v619)
                                     let v620 : string = $"{v575}.html"
                                     let v621 : bool = true
@@ -6988,8 +6994,8 @@ jupyter_result: {v599}
 pwsh_replace_html_result: {v616}"
                                     struct (v615, v684)
                         let v689 : US0 = US0_1
-                        let v690 : (unit -> string) = closure48()
-                        let v691 : (unit -> string) = closure49(v688, v687)
+                        let v690 : (unit -> string) = closure46()
+                        let v691 : (unit -> string) = closure47(v688, v687)
                         method5(v689, v690, v691)
                         let v692 : bool = v687 <> 0
                         if v692 then
@@ -7000,8 +7006,8 @@ pwsh_replace_html_result: {v616}"
                         [|struct (v695, v688)|]
                     else
                         let v697 : US0 = US0_1
-                        let v698 : (unit -> string) = closure50()
-                        let v699 : (unit -> string) = closure51(v12)
+                        let v698 : (unit -> string) = closure48()
+                        let v699 : (unit -> string) = closure49(v12)
                         method5(v697, v698, v699)
                         [||]
         | _ ->
@@ -7009,7 +7015,7 @@ pwsh_replace_html_result: {v616}"
     let v706 : string = "$0.to_vec()"
     let v707 : Vec<struct (string * string)> = Fable.Core.RustInterop.emitRustExpr v705 v706
     let v708 : string = "$0.into_iter().map(|x| $1(x.clone())).collect::<Vec<_>>()"
-    let v709 : (struct (string * string) -> (std_string_String * std_string_String)) = closure52()
+    let v709 : (struct (string * string) -> (std_string_String * std_string_String)) = closure50()
     let v710 : Vec<(std_string_String * std_string_String)> = Fable.Core.RustInterop.emitRustExpr struct (v707, v709) v708
     let v711 : string = "std::collections::BTreeMap::from_iter(v710.iter().map(|x| x.as_ref()).map(|&(ref k, ref v)| (k.clone(), v.clone())))"
     let v712 : std_collections_BTreeMap<std_string_String, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v711

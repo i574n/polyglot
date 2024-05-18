@@ -1091,7 +1091,7 @@ let execute_with_options (options : execution_options) : i32 * string =
                             inl std_trace =
                                 channel_receiver
                                 |> optionm'.box
-                                |> optionm'.map'' fun channel_receiver =>
+                                |> optionm'.map' fun channel_receiver =>
                                     channel_receiver
                                     |> threading.arc_mutex_lock
                                     |> resultm.unwrap'
