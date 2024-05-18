@@ -3,9 +3,9 @@
 #endif
 type std_env_VarError = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("_")>]
+[<Fable.Core.Erase; Fable.Core.Emit("core::any::Any")>]
 #endif
-type Any = class end
+type core_any_Any = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>]
 #endif
@@ -23,7 +23,7 @@ type Box<'T> = class end
 #endif
 type Dyn<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0 + Send")>]
+[<Fable.Core.Erase; Fable.Core.Emit("Send")>]
 #endif
 type Send<'T> = class end
 #if FABLE_COMPILER
@@ -59,9 +59,21 @@ type Mut<'T> = class end
 #endif
 type Ref<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("&'static $0")>]
+[<Fable.Core.Erase; Fable.Core.Emit("$0 + $1")>]
 #endif
-type StaticRef<'T> = class end
+type LifetimeJoin<'T, 'U> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("'static")>]
+#endif
+type StaticLifetime = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("$0")>]
+#endif
+type LifetimeRef<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("$0 $1")>]
+#endif
+type Lifetime<'T, 'U> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("MutCell<$0>")>]
 #endif

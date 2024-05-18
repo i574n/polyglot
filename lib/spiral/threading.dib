@@ -39,6 +39,51 @@ nominal join_handle t = $'std_thread_JoinHandle<`t>'
 
 #!markdown
 
+## spawn
+
+#!spiral
+
+inl spawn forall t. depth flag (x : () -> t) : join_handle t =
+    if flag = 1
+    then !\($'"let __result = std::thread::spawn(move || { //"')
+    else !\($'"let __result = std::thread::spawn(|| { //"')
+
+    let x' = x ()
+    inl x' = join x'
+
+    x' |> rust.fix_closure depth
+
+    !\($'"__result"')
+
+#!markdown
+
+## join'
+
+#!spiral
+
+inl join' forall t.
+    (x : join_handle t)
+    : resultm.result'
+        t
+        (
+            rust.box (
+                rust.lifetime_join'
+                    rust.dyn'
+                    (
+                        rust.lifetime_join
+                            rust.any
+                            (
+                                rust.lifetime_join'
+                                    rust.send
+                                    rust.static_lifetime
+                            )
+                    )
+            )
+        ) =
+    !\\(x, $'"std::thread::JoinHandle::join($0)"')
+
+#!markdown
+
 ## cancellation_token
 
 #!spiral
@@ -276,7 +321,7 @@ nominal poison_error t = $"std_sync_PoisonError<`t>"
 
 #!markdown
 
-## mutex_lock
+## arc_mutex_lock
 
 #!spiral
 
@@ -285,12 +330,22 @@ inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard 
 
 #!markdown
 
-## mutex_guard_value
+## mutex_guard_ref
 
 #!spiral
 
-inl mutex_guard_value forall t. (x : mutex_guard t) : rust.ref' t =
+inl mutex_guard_ref forall t. (x : mutex_guard t) : rust.ref' t =
     !\\(x, $'"&$0"')
+
+#!markdown
+
+## mutex_guard_ref_mut
+
+#!spiral
+
+inl mutex_guard_ref_mut forall t. (x : mutex_guard t) : rust.ref' (rust.mut' t) =
+    (!\($'"true; let mut !x = !x"') : bool) |> ignore
+    !\\(x, $'"&mut $0"')
 
 #!markdown
 

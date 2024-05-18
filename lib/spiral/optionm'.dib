@@ -251,8 +251,7 @@ inl y' = y |> box |> map id |> unbox
 inl of_obj forall t. (x : t) : option' t =
     $'let mutable _!x = None'
     $"#if \!FABLE_COMPILER && \!WASM && \!CONTRACT"
-    ((x |> $'Option.ofObj') : option' t)
-    |> fun x => $'!x '
+    ((x |> $'Option.ofObj') : option' t) |> emit_unit
     $"#else"
     $'Some !x '
     $"#endif"
@@ -297,6 +296,26 @@ inl flatten x =
 
 inl unwrap forall t. (x : option' t) : t =
     !\\(x, $'"$0.unwrap()"')
+
+#!markdown
+
+## take
+
+#!spiral
+
+inl take forall t. (x : option' t) : option' t =
+    inl x = join x
+    (!\($'"true; let mut !x = !x"') : bool) |> ignore
+    !\\(x, $'"Option::take(&mut $0)"')
+
+#!markdown
+
+## ref_take
+
+#!spiral
+
+inl ref_take forall t. (x : rust.ref' (rust.mut' (option' t))) : option' t =
+    !\\(x, $'"Option::take($0)"')
 
 #!markdown
 

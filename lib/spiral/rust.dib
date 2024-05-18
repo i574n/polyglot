@@ -19,12 +19,12 @@ open testing
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype Any = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::any::Any\")>]\n#endif\ntype core_any_Any = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func0<$0>\")>]\n#endif\ntype Func0<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func1<$0, $1>\")>]\n#endif\ntype Func0<'T, 'U> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>]\n#endif\ntype Box<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>]\n#endif\ntype Dyn<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0 + Send\")>]\n#endif\ntype Send<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Send\")>]\n#endif\ntype Send<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>]\n#endif\ntype Fn<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn()\")>]\n#endif\ntype FnUnit = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>]\n#endif\ntype FnOnce<'T> = class end"
@@ -33,7 +33,10 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>]\n#endif\ntype Impl<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>]\n#endif\ntype Mut<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>]\n#endif\ntype Ref<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"&'static $0\")>]\n#endif\ntype StaticRef<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0 + $1\")>]\n#endif\ntype LifetimeJoin<'T, 'U> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"'static\")>]\n#endif\ntype StaticLifetime = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0\")>]\n#endif\ntype LifetimeRef<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0 $1\")>]\n#endif\ntype Lifetime<'T, 'U> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"MutCell<$0>\")>]\n#endif\ntype MutCell<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::any::Any\")>]\n#endif\ntype std_any_Any = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::borrow::Cow<$0>\")>]\n#endif\ntype std_borrow_Cow<'T> = class end"
@@ -44,10 +47,17 @@ inl types () =
 
 #!spiral
 
-nominal any' = $"Any"
+nominal unit = $'unit'
+nominal any = $"core_any_Any"
 nominal cow t = $"std_borrow_Cow<`t>"
 nominal ref_cell t = $"std_cell_RefCell<`t>"
 nominal rc t = $"std_rc_Rc<`t>"
+nominal lifetime_join' (t : * -> *) u = $"LifetimeRef<`(t u)>"
+nominal lifetime_join t u = $"LifetimeJoin<`t, `u>"
+nominal lifetime t u = $"Lifetime<`t, `u>"
+nominal static_lifetime = $"StaticLifetime"
+nominal ref t = $"Ref<`t>"
+nominal static_ref t = ref (lifetime static_lifetime t)
 nominal weak_rc t = $"std_rc_Weak<`t>"
 nominal box t = $"Box<`t>"
 nominal mut_cell t = $"MutCell<`t>"
@@ -68,8 +78,8 @@ nominal func1 t u =
 nominal impl t = $"Impl<`t>"
 nominal mut' t = $"Mut<`t>"
 nominal ref' t = $"Ref<`t>"
-nominal send t = $"Send<`t>"
-nominal static_ref' t = $"StaticRef<`t>"
+nominal send t = lifetime_join t $"Send<`t>"
+nominal static_ref' t = static_ref t
 
 #!markdown
 
@@ -232,6 +242,15 @@ inl to_mut forall t. (x : t) : t =
 
 inl ref_map forall t u. (fn : t -> u) (x : ref' t) : ref' u =
     !\($'"!fn(!x)"')
+
+#!markdown
+
+## ref_invoke
+
+#!spiral
+
+inl ref_invoke forall t u. (fn : t -> u) (ref : ref' t) : u =
+    !\\(fn, $'"$0(!ref.clone())"')
 
 #!markdown
 

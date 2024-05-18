@@ -1,9 +1,9 @@
 #![allow(special_module_name)]
 
-pub mod js;
-pub mod timer;
 pub mod app;
+pub mod js;
 pub mod state;
+pub mod timer;
 
 use leptos::{logging::log, *};
 use wasm_bindgen::prelude::*;
@@ -15,8 +15,8 @@ pub fn app(window: &web_sys::Window) -> Result<(), JsValue> {
 
     log!("csr mode - mounting to body");
 
-    let window : std::rc::Rc<web_sys::Window> = std::rc::Rc::new(window.clone());
-    let window : &'static web_sys::Window = Box::leak(Box::new(window));
+    let window: std::rc::Rc<web_sys::Window> = std::rc::Rc::new(window.clone());
+    let window: &'static web_sys::Window = Box::leak(Box::new(window));
 
     mount_to_body(move || {
         view! { <crate::app::App window /> }

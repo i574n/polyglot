@@ -8411,7 +8411,7 @@ a.anchor-link {
     <span class="n">let</span><span class="o">!</span><span class="w"> </span>exitCode,<span class="w"> </span><span class="nv">spiralBuilderResult</span><span class="w"> </span><span class="o">=</span>
         <span class="n">let</span> <span class="n">command</span> <span class="o">=</span>
             <span class="n">let</span> <span class="n">path</span> <span class="o">=</span>
-                <span class="n">workspaceRoot</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="o">@</span><span class="s2">"target/release/spiral_builder{SpiralRuntime.get_executable_suffix ()}"</span>
+                <span class="n">workspaceRoot</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="o">@</span><span class="s2">"workspace/target/release/spiral_builder{SpiralRuntime.get_executable_suffix ()}"</span>
                 <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
             <span class="err">$</span><span class="s2">"</span><span class="si">{path}</span><span class="s2"> --trace-level %A</span><span class="si">{traceLevel}</span><span class="s2"> fsharp --path </span><span class="se">\"</span><span class="si">{fsprojPath}</span><span class="se">\"</span><span class="s2"> --package-dir </span><span class="se">\"</span><span class="si">{projectDir}</span><span class="se">\"</span><span class="s2"> --args </span><span class="se">\"</span><span class="si">{args}</span><span class="se">\"</span><span class="s2">"</span>
         <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execution_options</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
@@ -8523,16 +8523,18 @@ a.anchor-link {
                 <span class="err">$</span><span class="s2">"</span><span class="si">{rsCode}</span><span class="se">\n\n</span><span class="si">{mainCode}</span><span class="se">\n</span><span class="s2">"</span>
                 <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_exists</span> <span class="n">rsPath</span>
 
+            <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"cargo +nightly run --manifest-path </span><span class="se">\"</span><span class="si">{cargoTomlPath}</span><span class="se">\"</span><span class="s2">"</span>
+            <span class="n">let</span> <span class="n">environmentVariables</span> <span class="o">=</span> <span class="p">[</span><span class="o">|</span>
+                <span class="n">struct</span> <span class="p">(</span><span class="s2">"RUSTC_WRAPPER"</span><span class="p">,</span> <span class="s2">"sccache"</span><span class="p">)</span>
+                <span class="o">//</span> <span class="s2">"RUSTFLAGS"</span><span class="p">,</span> <span class="s2">"-C prefer-dynamic"</span>
+                <span class="s2">"RUSTFLAGS"</span><span class="p">,</span> <span class="s2">"-C prefer-dynamic -C strip=symbols -C link-arg=-s -C debuginfo=0"</span>
+                <span class="o">//</span> <span class="s2">"RUSTFLAGS"</span><span class="p">,</span> <span class="s2">"-C prefer-dynamic -C link-arg=-s -C debuginfo=0 -C strip=symbols"</span>
+            <span class="o">|</span><span class="p">]</span>
             <span class="n">let</span><span class="o">!</span><span class="w"> </span>exitCode,<span class="w"> </span><span class="nv">cargoRunResult</span><span class="w"> </span><span class="o">=</span>
                 <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execution_options</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
                     <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
-                        <span class="n">l1</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"cargo +nightly run --manifest-path </span><span class="se">\"</span><span class="si">{cargoTomlPath}</span><span class="se">\"</span><span class="s2">"</span>
-                        <span class="n">l2</span> <span class="o">=</span> <span class="p">[</span><span class="o">|</span>
-                            <span class="s2">"RUSTC_WRAPPER"</span><span class="p">,</span> <span class="s2">"sccache"</span>
-                            <span class="o">//</span> <span class="s2">"RUSTFLAGS"</span><span class="p">,</span> <span class="s2">"-C prefer-dynamic"</span>
-                            <span class="s2">"RUSTFLAGS"</span><span class="p">,</span> <span class="s2">"-C prefer-dynamic -C strip=symbols -C link-arg=-s -C debuginfo=0"</span>
-                            <span class="o">//</span> <span class="s2">"RUSTFLAGS"</span><span class="p">,</span> <span class="s2">"-C prefer-dynamic -C link-arg=-s -C debuginfo=0 -C strip=symbols"</span>
-                        <span class="o">|</span><span class="p">]</span>
+                        <span class="n">l1</span> <span class="o">=</span> <span class="n">command</span>
+                        <span class="n">l2</span> <span class="o">=</span> <span class="n">environmentVariables</span>
                         <span class="n">l6</span> <span class="o">=</span> <span class="n">workspaceRootExternal</span>
                     <span class="p">}</span>
                 <span class="p">)</span>
@@ -8543,6 +8545,12 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">filter</span> <span class="n">File</span><span class="o">.</span><span class="n">Exists</span>
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">iter</span> <span class="n">File</span><span class="o">.</span><span class="n">Delete</span>
 
+            <span class="n">let</span> <span class="n">externalCommand</span> <span class="o">=</span>
+                <span class="n">let</span> <span class="nb">vars</span> <span class="o">=</span>
+                    <span class="n">environmentVariables</span>
+                    <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">struct</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"$env:</span><span class="si">{k}</span><span class="s2">=''</span><span class="si">{v}</span><span class="s2">''"</span><span class="p">)</span>
+                    <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">";"</span>
+                <span class="err">$</span><span class="s2">"pwsh -c '</span><span class="si">{vars}</span><span class="s2">; </span><span class="si">{command}</span><span class="s2">'"</span>
             <span class="k">if</span> <span class="n">exitCode</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
                 <span class="n">let</span> <span class="n">output</span> <span class="o">=</span>
                     <span class="k">try</span>
@@ -8557,7 +8565,7 @@ a.anchor-link {
                         <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
                         <span class="o">|&gt;</span> <span class="n">Ok</span>
                     <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                        <span class="err">$</span><span class="s2">"ex: </span><span class="si">{ex}</span><span class="s2"> / rsPath: </span><span class="si">{rsPath}</span><span class="s2"> / cargoRunResult: </span><span class="si">{cargoRunResult}</span><span class="s2"> / spiralBuilderResult: </span><span class="si">{spiralBuilderResult}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">Error</span>
+                        <span class="err">$</span><span class="s2">"ex: </span><span class="si">{ex}</span><span class="s2"> / rsPath: </span><span class="si">{rsPath}</span><span class="s2"> / externalCommand: </span><span class="si">{externalCommand}</span><span class="s2"> / cargoRunResult: </span><span class="si">{cargoRunResult}</span><span class="s2"> / spiralBuilderResult: </span><span class="si">{spiralBuilderResult}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">Error</span>
 
                 <span class="n">let</span> <span class="n">result</span> <span class="o">=</span>
                     <span class="p">[</span>
@@ -8572,7 +8580,7 @@ a.anchor-link {
 
                 <span class="k">return</span> <span class="n">result</span>
             <span class="k">else</span>
-                <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Error</span> <span class="err">$</span><span class="s2">"exitCode: </span><span class="si">{exitCode}</span><span class="s2"> / rsPath: </span><span class="si">{rsPath}</span><span class="s2"> / cargoRunResult: </span><span class="si">{cargoRunResult}</span><span class="s2">"</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Error</span> <span class="err">$</span><span class="s2">"exitCode: </span><span class="si">{exitCode}</span><span class="s2"> / rsPath: </span><span class="si">{rsPath}</span><span class="s2"> / externalCommand: </span><span class="si">{externalCommand}</span><span class="s2"> / cargoRunResult: </span><span class="si">{cargoRunResult}</span><span class="s2">"</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>

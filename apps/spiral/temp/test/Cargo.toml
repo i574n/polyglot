@@ -1,5 +1,6 @@
 [package]
 name = "spiral_temp_test"
+workspace = "../../../../workspace"
 version.workspace = true
 edition.workspace = true
 license-file.workspace = true

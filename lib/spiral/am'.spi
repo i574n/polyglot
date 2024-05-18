@@ -209,17 +209,17 @@ inl vec_collect_into forall (c : * -> * -> *) t e.
 inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : vec t) : vec u =
     inl fn = join fn
     inl ar = join ar
-    !\($'"!ar.iter().enumerate().map(|(i, x)| !fn(i.try_into().unwrap())(x.clone())).collect()"')
+    !\($'"!ar.iter().enumerate().map(|(i, x)| !fn(i.try_into().unwrap())(x.clone())).collect::<Vec<_>>()"')
 
 /// ## vec_map
 inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
     (!\($'"true; let _result = !ar.into_iter().map(|x| { //"') : bool) |> ignore
-    (!\\(fn !\($'"x"'), $'"true; $0 }).collect()"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 }).collect::<Vec<_>>()"') : bool) |> ignore
     !\($'"_result"')
 
 /// ## vec_map'
 inl vec_map' forall t u. (fn : t -> u) (ar : vec t) : vec u =
-    !\\((ar, fn), $'"$0.into_iter().map(|x| $1(x.clone())).collect()"')
+    !\\((ar, fn), $'"$0.into_iter().map(|x| $1(x.clone())).collect::<Vec<_>>()"')
 
 /// ## vec_fold'
 inl vec_fold' forall t u. (fn : u -> t -> u) (init : u) (ar : vec t) : u =
@@ -227,15 +227,19 @@ inl vec_fold' forall t u. (fn : u -> t -> u) (init : u) (ar : vec t) : u =
     (!\\(fn !\($'"acc"') !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
     !\($'"_result"')
 
-/// ## vec_iter
-inl vec_iter forall t. (fn : t -> ()) (ar : vec t) : () =
-    !\\((ar, fn), $'"$0.iter().map(|x| { $1(x.clone()); }).collect()"')
+/// ## vec_for_each
+inl vec_for_each forall t. (fn : t -> ()) (ar : vec t) : () =
+    !\\((ar, fn), $'"$0.iter().for_each(|x| { $1(x.clone()); })"')
+
+/// ## vec_for_each'
+inl vec_for_each' forall t. (fn : t -> ()) (ar : vec t) : () =
+    !\\((ar, fn), $'"$0.into_iter().for_each(|x| { $1(x); })"')
 
 /// ## vec_filter
 inl vec_filter forall t. (fn : t -> bool) (ar : vec t) : vec t =
     inl fn = join fn
     inl ar = join ar
-    !\($'"!ar.into_iter().filter(|x| !fn(x.clone().clone())).collect()"')
+    !\($'"!ar.into_iter().filter(|x| !fn(x.clone().clone())).collect::<Vec<_>>()"')
 
 /// ## vec_len
 inl vec_len forall t. (vec : vec t) : unativeint =
@@ -243,7 +247,7 @@ inl vec_len forall t. (vec : vec t) : unativeint =
 
 /// ## vec_chunks
 inl vec_chunks forall t. (n : i32) (vec : vec t) : vec (vec t) =
-    !\\(vec, $'"$0.chunks(!n).map(|x| x.into_iter().map(|x| x.clone()).collect()).collect()"')
+    !\\(vec, $'"$0.chunks(!n).map(|x| x.into_iter().map(|x| x.clone()).collect::<Vec<_>>()).collect::<Vec<_>>()"')
 
 /// ## slice
 nominal slice t = $"Slice<`t>"
@@ -305,7 +309,7 @@ inl as_slice forall t. (x : array_base t) : rust.ref' (slice t) =
 
 /// ## slice_to_vec
 inl slice_to_vec forall t. (slice : rust.ref' (slice t)) : vec t =
-    !\\(slice, $'"$0.iter().map(|x| *x).collect()"')
+    !\\(slice, $'"$0.iter().map(|x| *x).collect::<Vec<_>>()"')
 
 /// ## any
 inl any forall t. (fn : t -> bool) (source : array_base t) : bool =
@@ -315,7 +319,10 @@ inl any forall t. (fn : t -> bool) (source : array_base t) : bool =
 open iter_prototypes
 
 instance iter_collect vec = fun (iter : iter_prototypes.into_iterator u) =>
-    !\($'"!iter.collect()"')
+    !\($'"!iter.collect::<Vec<_>>()"')
+
+instance iter_collect'' vec = fun (iter : iter_prototypes.into_iterator (t (u v))) =>
+    !\($'"!iter.collect::<Vec<_>>()"')
 
 /// ## enumerate
 inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
@@ -327,3 +334,13 @@ inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t
     |> iter_prototypes.iter_collect
     |> vec_map' from_pair
     |> from_vec
+
+/// ## new_vec
+inl new_vec forall t. (items : list t) : vec t =
+    inl items =
+        (items, ("", 0i32))
+        ||> listm.foldBack fun (x : t) (acc, i) =>
+            inl x = join x
+            $'"!x"' +. (if i = 0 then "" else ",") +. acc, i + 1
+        |> fst
+    !\($'"vec\![" + !items + "]"')

@@ -1,7 +1,7 @@
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("_")>]
+[<Fable.Core.Erase; Fable.Core.Emit("core::any::Any")>]
 #endif
-type Any = class end
+type core_any_Any = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>]
 #endif
@@ -19,7 +19,7 @@ type Box<'T> = class end
 #endif
 type Dyn<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0 + Send")>]
+[<Fable.Core.Erase; Fable.Core.Emit("Send")>]
 #endif
 type Send<'T> = class end
 #if FABLE_COMPILER
@@ -55,9 +55,21 @@ type Mut<'T> = class end
 #endif
 type Ref<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("&'static $0")>]
+[<Fable.Core.Erase; Fable.Core.Emit("$0 + $1")>]
 #endif
-type StaticRef<'T> = class end
+type LifetimeJoin<'T, 'U> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("'static")>]
+#endif
+type StaticLifetime = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("$0")>]
+#endif
+type LifetimeRef<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("$0 $1")>]
+#endif
+type Lifetime<'T, 'U> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("MutCell<$0>")>]
 #endif
@@ -327,6 +339,10 @@ type std_process_ChildStdin = class end
 #endif
 type std_process_Command = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::process::ExitStatus")>]
+#endif
+type std_process_ExitStatus = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::process::Output")>]
 #endif
 type std_process_Output = class end
@@ -339,17 +355,21 @@ type std_process_Stdio = class end
 #endif
 type std_sync_mpsc_Receiver<'T> = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::SendError<$0>")>]
+#endif
+type std_sync_mpsc_SendError<'T> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender<$0>")>]
 #endif
 type std_sync_mpsc_Sender<'T> = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("async_std::task::JoinHandle<$0>")>]
+#endif
+type async_std_task_JoinHandle<'T> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>]
 #endif
 type std_future_Future<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>]
-#endif
-type futures_future_TryJoinAll<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter<$0>")>]
 #endif
@@ -362,6 +382,18 @@ type rayon_iter_Map<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")>]
 #endif
 type futures_lite_stream_StreamExt = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>]
+#endif
+type futures_future_TryJoinAll<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("futures::future::Fuse<$0>")>]
+#endif
+type futures_future_Fuse<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("futures::future::JoinAll<$0>")>]
+#endif
+type futures_future_JoinAll<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse<$0>")>]
 #endif

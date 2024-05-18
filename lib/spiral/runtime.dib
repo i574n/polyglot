@@ -37,9 +37,11 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdout\")>]\n#endif\ntype std_process_ChildStdout = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdin\")>]\n#endif\ntype std_process_ChildStdin = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Command\")>]\n#endif\ntype std_process_Command = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ExitStatus\")>]\n#endif\ntype std_process_ExitStatus = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Output\")>]\n#endif\ntype std_process_Output = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Stdio\")>]\n#endif\ntype std_process_Stdio = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::mpsc::Receiver<$0>\")>]\n#endif\ntype std_sync_mpsc_Receiver<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::mpsc::SendError<$0>\")>]\n#endif\ntype std_sync_mpsc_SendError<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::mpsc::Sender<$0>\")>]\n#endif\ntype std_sync_mpsc_Sender<'T> = class end"
 
 #!spiral
@@ -64,35 +66,35 @@ inl types () =
 
 #!markdown
 
-## child
+## process_child
 
 #!spiral
 
-nominal child = $'std_process_Child'
+nominal process_child = $'std_process_Child'
 
 #!markdown
 
-## child_stderr
+## process_child_stderr
 
 #!spiral
 
-nominal child_stderr = $"std_process_ChildStderr"
+nominal process_child_stderr = $"std_process_ChildStderr"
 
 #!markdown
 
-## child_stdout
+## process_child_stdout
 
 #!spiral
 
-nominal child_stdout = $"std_process_ChildStdout"
+nominal process_child_stdout = $"std_process_ChildStdout"
 
 #!markdown
 
-## child_stdin
+## process_child_stdin
 
 #!spiral
 
-nominal child_stdin = $"std_process_ChildStdin"
+nominal process_child_stdin = $"std_process_ChildStdin"
 
 #!markdown
 
@@ -104,35 +106,61 @@ nominal process_command = $'std_process_Command'
 
 #!markdown
 
-## stdio
+## process_stdio
 
 #!spiral
 
-nominal stdio = $'std_process_Stdio'
+nominal process_stdio = $'std_process_Stdio'
 
 #!markdown
 
-## output
+## process_output
 
 #!spiral
 
-nominal output = $'std_process_Output'
+nominal process_output = $'std_process_Output'
 
 #!markdown
 
-## receiver
+## process_exit_status
 
 #!spiral
 
-nominal receiver t = $'std_sync_mpsc_Receiver<`t>'
+nominal process_exit_status = $'std_process_ExitStatus'
 
 #!markdown
 
-## sender
+## process_output_status
 
 #!spiral
 
-nominal sender t = $'std_sync_mpsc_Sender<`t>'
+inl process_output_status (output : process_output) : process_exit_status =
+    !\\(output, $'"$0.status"')
+
+#!markdown
+
+## process_exit_status_code
+
+#!spiral
+
+inl process_exit_status_code (status : process_exit_status) : optionm'.option' i32 =
+    !\\(status, $'"$0.code()"')
+
+#!markdown
+
+## channel_receiver
+
+#!spiral
+
+nominal channel_receiver t = $'std_sync_mpsc_Receiver<`t>'
+
+#!markdown
+
+## channel_sender
+
+#!spiral
+
+nominal channel_sender t = $'std_sync_mpsc_Sender<`t>'
 
 #!markdown
 
@@ -326,7 +354,7 @@ type execution_options =
         cancellation_token : optionm'.option' threading.cancellation_token
         environment_variables : array_base (string * string)
         on_line : optionm'.option' (execution_line -> async.async ())
-        stdin : optionm'.option' (threading.arc (threading.mutex child_stdin) -> ())
+        stdin : optionm'.option' (threading.arc (threading.mutex process_child_stdin) -> ())
         trace : bool
         working_directory : optionm'.option' string
     }
@@ -382,13 +410,16 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
                             |> async.do
                         | None => ()
 
-                        inl text = $'$"> {!data}"'
+                        inl text =
+                            if error
+                            then $'$"\! {!data}"'
+                            else $'$"> {!data}"'
                         if options.trace
                         then trace Verbose (fun () => text) _locals
                         else text |> console.write_line
 
-                        inl l = if error then "\\e[4;7m" else ""
-                        inl r = if error then "\\e[0m" else ""
+                        inl l = if error then $'"\\u001b[7;4m"' else ""
+                        inl r = if error then $'"\\u001b[0m"' else ""
                         output |> threading.concurrent_stack_push $'$"{!l}{!data}{!r}"'
 
                 proc |> process_add_output_data_received (event false >> async.start_immediate)
@@ -706,7 +737,7 @@ $'$"a --b --c d --e \\\"c:/f f/test.hangul.md\\\" --output \\\"c:/md.pdf\\\" --s
 
 #!spiral
 
-inl stdin_write_all (stdin : threading.mutex_guard child_stdin) (text : string) : () =
+inl stdin_write_all (stdin : threading.mutex_guard process_child_stdin) (text : string) : () =
     inl stream = text |> sm'.as_bytes
     inl stdin = join stdin
     (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
@@ -718,7 +749,7 @@ inl stdin_write_all (stdin : threading.mutex_guard child_stdin) (text : string) 
 
 #!spiral
 
-inl stdin_flush (stdin : threading.mutex_guard child_stdin) : () =
+inl stdin_flush (stdin : threading.mutex_guard process_child_stdin) : () =
     inl stdin = join stdin
     (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
     (!\\(stdin, $'"true; std::io::Write::flush(&mut *$0).unwrap()"') : bool) |> ignore
@@ -738,7 +769,7 @@ inl new_process_command (file_name : string) : process_command =
 
 #!spiral
 
-inl process_stdio_piped () : stdio =
+inl process_stdio_piped () : process_stdio =
     !\($'"std::process::Stdio::piped()"')
 
 #!markdown
@@ -757,7 +788,7 @@ inl process_command_args (args : am'.vec sm'.std_string) (c : process_command) :
 
 #!spiral
 
-inl process_command_stdout (stdio : stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+inl process_command_stdout (stdio : process_stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
     !\\(c, $'"std::process::Command::stdout($0, std::process::Stdio::piped())"')
 
 #!markdown
@@ -766,7 +797,7 @@ inl process_command_stdout (stdio : stdio) (c : rust.ref' (rust.mut' process_com
 
 #!spiral
 
-inl process_command_stderr (stdio : stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+inl process_command_stderr (stdio : process_stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
     !\\(c, $'"std::process::Command::stderr($0, std::process::Stdio::piped())"')
 
 #!markdown
@@ -775,7 +806,7 @@ inl process_command_stderr (stdio : stdio) (c : rust.ref' (rust.mut' process_com
 
 #!spiral
 
-inl process_command_stdin (stdio : stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+inl process_command_stdin (stdio : process_stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
     !\\(c, $'"std::process::Command::stdin($0, std::process::Stdio::piped())"')
 
 #!markdown
@@ -784,7 +815,11 @@ inl process_command_stdin (stdio : stdio) (c : rust.ref' (rust.mut' process_comm
 
 #!spiral
 
-inl process_command_current_dir (dir : string) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+inl process_command_current_dir
+    (dir : string)
+    (c : rust.ref' (rust.mut' process_command))
+    : rust.ref' (rust.mut' process_command)
+    =
     !\\(dir, $'"std::process::Command::current_dir(!c, &*$0)"')
 
 #!markdown
@@ -793,7 +828,12 @@ inl process_command_current_dir (dir : string) (c : rust.ref' (rust.mut' process
 
 #!spiral
 
-inl process_command_env (key : string) (value : string) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+inl process_command_env
+    (key : string)
+    (value : string)
+    (c : rust.ref' (rust.mut' process_command))
+    : rust.ref' (rust.mut' process_command)
+    =
     !\\((key, value), $'"std::process::Command::env(!c, &*$0, &*$1)"')
 
 #!markdown
@@ -802,8 +842,40 @@ inl process_command_env (key : string) (value : string) (c : rust.ref' (rust.mut
 
 #!spiral
 
-inl process_command_spawn (c : rust.ref' (rust.mut' process_command)) : resultm.result' child stream.io_error =
+inl process_command_spawn
+    (c : rust.ref' (rust.mut' process_command))
+    : resultm.result' process_child stream.io_error
+    =
     !\\(c, $'"std::process::Command::spawn($0)"')
+
+#!markdown
+
+## child_wait_with_output
+
+#!spiral
+
+inl child_wait_with_output
+    (child : process_child)
+    : resultm.result' process_output stream.io_error
+    =
+    !\\(child, $'"$0.wait_with_output()"')
+
+#!markdown
+
+## send_error
+
+#!spiral
+
+nominal send_error t = $"std_sync_mpsc_SendError<`t>"
+
+#!markdown
+
+## channel_send
+
+#!spiral
+
+inl channel_send forall t. (line : t) (sender : rust.ref' (channel_sender t)) : resultm.result' () (send_error sm'.std_string) =
+    !\\((sender, line), $'"$0.send($1)"')
 
 #!markdown
 
@@ -814,14 +886,14 @@ inl process_command_spawn (c : rust.ref' (rust.mut' process_command)) : resultm.
 inl stdio_line
     (stdout : bool)
     (trace' : bool)
-    (channel_sender : threading.arc (threading.mutex (sender sm'.std_string)))
+    (channel_sender : threading.arc (threading.mutex (channel_sender sm'.std_string)))
     (line : resultm.result' sm'.std_string stream.io_error)
     =
     run_target function
         | Rust (Native) => fun () =>
+            inl highlight text =
+                $'$"\\u001b[4;7m{!text}\\u001b[0m"'
             inl line =
-                inl highlight text =
-                    $'$"\\e[4;7m{!text}\\e[0m"'
                 match
                     line
                     |> resultm.map_error' sm'.format'
@@ -843,18 +915,25 @@ inl stdio_line
                     inl line_log = line |> sm'.from_std_string
                     inl text =
                         if stdout
-                        then line_log
-                        else line_log |> highlight
+                        then $'$"> {!line_log}"'
+                        else $'$"\! {!line_log}"'
                     if trace'
                     then trace Verbose (fun () => text) _locals
                     else text |> console.write_line
-                    line
+                    if stdout
+                    then line
+                    else line |> highlight |> sm'.to_std_string
                 | Error e =>
                     trace Critical
                         fun () => $'$"runtime.stdio_line"'
                         fun () => $'$"e: {!e} / {!_locals ()}"'
                     e |> highlight |> sm'.to_std_string
-            (!\\((channel_sender, line), $'"true; $0.lock().unwrap().send($1).unwrap()"') : bool) |> ignore
+            channel_sender
+            |> threading.arc_mutex_lock
+            |> resultm.unwrap'
+            |> threading.mutex_guard_ref
+            |> channel_send line
+            |> resultm.unwrap'
         | _ => fun () => null ()
 
 #!markdown
@@ -905,14 +984,17 @@ let execute_with_options (options : execution_options) : i32 * string =
                     |> resultm.unbox'
                     |> function
                         | Ok child =>
-                            inl stdout : child_stdout = !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdout.take().unwrap()"')
-                            inl stderr : child_stderr = !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stderr.take().unwrap()"')
-                            inl stdin : child_stdin = !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdin.take().unwrap()"')
+                            inl stdout : process_child_stdout =
+                                !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdout.take().unwrap()"')
+                            inl stderr : process_child_stderr =
+                                !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stderr.take().unwrap()"')
+                            inl stdin : process_child_stdin =
+                                !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdin.take().unwrap()"')
                             inl stdout = stdout |> optionm'.some' |> threading.new_arc_mutex
                             inl stderr = stderr |> optionm'.some' |> threading.new_arc_mutex
                             inl stdin = stdin |> optionm'.some' |> threading.new_arc_mutex
 
-                            inl channel_sender, channel_receiver : sender sm'.std_string * threading.arc (receiver sm'.std_string) =
+                            inl channel_sender, channel_receiver : channel_sender sm'.std_string * threading.arc (channel_receiver sm'.std_string) =
                                 !\($'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"')
                             inl channel_receiver = join channel_receiver
                             (!\\(channel_receiver, $'"true; let !channel_receiver = !channel_receiver"') : bool) |> ignore
@@ -922,38 +1004,41 @@ let execute_with_options (options : execution_options) : i32 * string =
                             inl channel_sender'' = channel_sender |> rust.clone
                             inl channel_receiver' = channel_receiver |> threading.new_arc_mutex
 
+                            inl stdout_handle =
+                                fun () =>
+                                    inl stdout' : process_child_stdout =
+                                        !\($'"!stdout.lock().unwrap().take().unwrap()"')
+                                    inl stdout_lines =
+                                        stdout'
+                                        |> stream.decode_reader_bytes_build
+                                        |> stream.new_buf_reader
+                                        |> threading.new_arc_mutex
+                                    inl stdio_line' = stdio_line true options.trace channel_sender'
+                                    (!\\((stdout_lines, stdio_line'), $'"true; for line in std::io::BufRead::lines(std::io::Read::by_ref(&mut *$0.lock().unwrap())).collect::<Vec<_>>() { $1(line) }"') : bool) |> ignore
+                                    true
+                                |> threading.spawn (2i32, 1i32) 1i32
 
-                            inl stdout_thread : threading.join_handle () =
-                                !\($'"std::thread::spawn(move || { //"')
-                            inl stdout' : child_stdout =
-                                !\($'"!stdout.lock().unwrap().take().unwrap()"')
-                            inl stdout_lines =
-                                stdout'
-                                |> stream.decode_reader_bytes_build
-                                |> stream.new_buf_reader
-                                |> threading.new_arc_mutex
-                            inl stdio_line' = stdio_line true options.trace channel_sender'
-                            (!\\((stdout_lines, stdio_line'), $'"true; for line in std::io::BufRead::lines(std::io::Read::by_ref(&mut *$0.lock().unwrap())).collect::<Vec<_>>() { $1(line) }"') : bool) |> ignore
-                            (!\($'"true; })"') : bool) |> ignore
-
-                            inl stderr_thread : threading.join_handle () =
-                                !\($'"std::thread::spawn(move || { //"')
-                            inl stderr' : child_stderr =
-                                !\($'"!stderr.lock().unwrap().take().unwrap()"')
-                            inl stderr_lines =
-                                stderr'
-                                |> stream.decode_reader_bytes_build
-                                |> stream.new_buf_reader
-                                |> threading.new_arc_mutex
-                            inl stdio_line' = stdio_line false options.trace channel_sender
-                            (!\\((stderr_lines, stdio_line'), $'"true; for line in std::io::BufRead::lines(std::io::Read::by_ref(&mut *$0.lock().unwrap())).collect::<Vec<_>>() { $1(line) }"') : bool) |> ignore
-                            (!\($'"true; })"') : bool) |> ignore
+                            inl stderr_handle =
+                                fun () =>
+                                    inl stderr' : process_child_stderr =
+                                        !\($'"!stderr.lock().unwrap().take().unwrap()"')
+                                    inl stderr_lines =
+                                        stderr'
+                                        |> stream.decode_reader_bytes_build
+                                        |> stream.new_buf_reader
+                                        |> threading.new_arc_mutex
+                                    inl stdio_line' = stdio_line false options.trace channel_sender
+                                    (!\\((stderr_lines, stdio_line'), $'"true; for line in std::io::BufRead::lines(std::io::Read::by_ref(&mut *$0.lock().unwrap())).collect::<Vec<_>>() { $1(line) }"') : bool) |> ignore
+                                    true
+                                |> threading.spawn (2i32, 1i32) 1i32
 
                             match options.stdin |> optionm'.unbox with
                             | Some stdin' =>
-                                inl stdin : optionm'.option' child_stdin =
-                                    !\($'"!stdin.lock().unwrap().take()"')
                                 stdin
+                                |> threading.arc_mutex_lock
+                                |> resultm.unwrap'
+                                |> threading.mutex_guard_ref_mut
+                                |> optionm'.ref_take
                                 |> optionm'.map' threading.new_arc_mutex
                                 |> optionm'.unbox
                                 |> function
@@ -966,16 +1051,30 @@ let execute_with_options (options : execution_options) : i32 * string =
                                     | None => ()
                             | None => ()
 
-                            inl output : resultm.result' output stream.io_error =
-                                !\\(child, $'"$0.lock().unwrap().take().unwrap().wait_with_output()"')
-                            inl output = output |> resultm.map_error' sm'.format'
+                            inl output =
+                                child
+                                |> threading.arc_mutex_lock
+                                |> resultm.unwrap'
+                                |> threading.mutex_guard_ref_mut
+                                |> optionm'.ref_take
+                                |> optionm'.unwrap
+                                |> child_wait_with_output
+                                |> resultm.map_error' sm'.format'
 
-                            (!\($'"true; !stdout_thread.join().unwrap()"') : bool) |> ignore
-                            (!\($'"true; !stderr_thread.join().unwrap()"') : bool) |> ignore
+                            [
+                                stderr_handle
+                                stdout_handle
+                            ]
+                            |> am'.new_vec
+                            |> am'.vec_for_each' (threading.join' >> resultm.unwrap' >> ignore)
 
                             match output |> resultm.unbox with
                             | Ok output =>
-                                inl exit_code : i32 = !\\(output, $'"$0.status.code().unwrap()"')
+                                inl exit_code =
+                                    output
+                                    |> process_output_status
+                                    |> process_exit_status_code
+                                    |> optionm'.unwrap
                                 exit_code, None, Some channel_receiver'
                             | Error error =>
                                 trace Critical
@@ -991,10 +1090,19 @@ let execute_with_options (options : execution_options) : i32 * string =
                         | exit_code, std_trace, channel_receiver =>
                             inl std_trace =
                                 channel_receiver
-                                |> optionm.map fun channel_receiver =>
-                                    !\\(channel_receiver, $'"$0.lock().unwrap().iter().collect::<Vec<String>>().join(\\"\\\\n\\")"')
-                                |> optionm.map sm'.from_std_string
-                                |> optionm'.default_value (
+                                |> optionm'.box
+                                |> optionm'.map'' fun channel_receiver =>
+                                    channel_receiver
+                                    |> threading.arc_mutex_lock
+                                    |> resultm.unwrap'
+                                    |> iter.iter
+                                    |> iter_prototypes.iter_collect''
+                                    |> am'.vec_map sm'.from_std_string
+                                    |> am'.from_vec
+                                    |> fun x => x : _ i32 _
+                                    |> seq.of_array
+                                    |> sm'.concat "\n"
+                                |> optionm'.default_value' (
                                     std_trace
                                     |> optionm.map sm'.from_std_string
                                     |> optionm'.default_value ""
@@ -1028,7 +1136,7 @@ inl execute command =
 #!spiral
 
 //// test
-///! rust -d chrono encoding encoding_rs encoding_rs_io futures-lite regex
+///! rust -d chrono encoding_rs encoding_rs_io futures futures-lite regex
 
 types ()
 inl temp_folder, disposable = file_system.create_temp_directory ()

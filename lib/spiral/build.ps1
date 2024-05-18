@@ -13,30 +13,30 @@ if (!$fast) {
         . ../../apps/spiral/dist/Supervisor$(_exe) `
             --exit-on-error `
             $(!$sequential ? @("--parallel") : @()) `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path sm'.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path rust.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path testing.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path guid.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path async.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path runtime.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path trace.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path am'.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path crypto.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path common.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path resultm.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path console.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path date_time.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path math.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path optionm'.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path listm'.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path util.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path stream.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path seq.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path threading.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path file_system.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path physics.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path benchmark.dib --retries 3" `
-            --execute-command "../../target/release/spiral_builder$(_exe) dib --path networking.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path sm'.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path rust.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path testing.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path guid.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path async.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path runtime.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path trace.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path am'.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path crypto.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path common.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path resultm.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path console.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path date_time.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path math.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path optionm'.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path listm'.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path util.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path stream.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path seq.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path threading.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path file_system.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path physics.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path benchmark.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path networking.dib --retries 3" `
     } | Invoke-Block
 }
 

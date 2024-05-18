@@ -3,7 +3,7 @@ param(
 )
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
-. ../../scripts/core.ps1
+. ../../../../scripts/core.ps1
 
 
 dotnet fable --optimize --lang rs --extension .rs
@@ -24,4 +24,4 @@ cargo +nightly fmt --
 
 cargo +nightly build --release
 
-{ . "$ScriptDir/../../../../target/release/cli" } | Invoke-Block
+{ . "$ScriptDir/target/release/cli" } | Invoke-Block

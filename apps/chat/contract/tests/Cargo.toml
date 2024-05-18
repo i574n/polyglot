@@ -1,5 +1,6 @@
 [package]
 name = "chat_contract_tests"
+workspace = "../../../../workspace"
 version.workspace = true
 edition.workspace = true
 license-file.workspace = true

@@ -165,7 +165,7 @@ path
 #!spiral
 
 //// test
-///! rust -d chrono encoding_rs encoding_rs_io futures-lite regex
+///! rust -d chrono encoding_rs encoding_rs_io futures futures-lite regex
 
 types ()
 inl temp_folder, disposable = file_system.create_temp_directory ()

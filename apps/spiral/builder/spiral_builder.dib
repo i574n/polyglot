@@ -344,7 +344,7 @@ let rec run (matches : runtime.arg_matches) : async.future_pin (resultm.result' 
 #!spiral
 
 //// test
-///! rust -d clap encoding encoding_rs encoding_rs_io futures-lite regex serde_json
+///! rust -d clap encoding_rs encoding_rs_io futures futures-lite regex serde_json
 
 types ()
 get_command ()
@@ -372,7 +372,7 @@ get_command ()
 #!spiral
 
 //// test
-///! rust -d clap encoding encoding_rs encoding_rs_io futures-lite regex serde_json
+///! rust -d clap encoding_rs encoding_rs_io futures futures-lite regex serde_json
 
 types ()
 get_command ()
@@ -400,7 +400,7 @@ get_command ()
 #!spiral
 
 //// test
-///! rust -d chrono clap encoding encoding_rs encoding_rs_io futures-lite regex serde_json
+///! rust -d chrono clap encoding_rs encoding_rs_io futures futures-lite regex serde_json
 
 types ()
 inl temp_folder, disposable = file_system.create_temp_directory ()

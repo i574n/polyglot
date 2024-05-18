@@ -3,3 +3,6 @@ nominal into_iterator t = $'_'
 
 /// ## iter_collect
 prototype iter_collect t u : into_iterator u -> t u
+
+/// ## iter_collect''
+prototype iter_collect'' w v : forall (t : * -> *) (u : * -> *). into_iterator (t (u v)) -> w v

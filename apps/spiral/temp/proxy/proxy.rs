@@ -1,521 +1,621 @@
 #![allow(dead_code)]
-#![allow(non_snake_case)]
 #![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
 #![allow(non_upper_case_globals)]
-#![allow(unused_parens)]
-#![allow(unused_imports)]
-#![allow(unused_variables)]
+#![allow(unreachable_code)]
 #![allow(unused_attributes)]
-pub mod Proxy {
-    use super::*;
-    use fable_library_rust::Native_::array;
-    use fable_library_rust::Native_::on_startup;
-    use fable_library_rust::Native_::Array;
-    use fable_library_rust::Native_::Func0;
-    use fable_library_rust::Native_::MutCell;
-    use fable_library_rust::String_::length;
-    use fable_library_rust::String_::string;
-    use fable_library_rust::String_::stringFrom;
-    use fable_library_rust::String_::toString;
-    pub fn method0() -> (string, string, string, bool) {
-        let v0_1: string = string("");
-        (v0_1.clone(), v0_1.clone(), v0_1, true)
-    }
-    pub fn method1(v0_1: string) -> std::string::String {
-        (&v0_1).to_string().clone()
-    }
-    pub fn method2(
-        v0_1: rocket::http::uri::Segments<'_, rocket::http::uri::fmt::Path>,
-    ) -> std::string::String {
-        format!("{:?}", &v0_1).clone()
-    }
-    pub fn method4(v0_1: i32, v1: string) -> string {
-        let v0_1: MutCell<i32> = MutCell::new(v0_1);
-        let v1: MutCell<string> = MutCell::new(v1.clone());
-        '_method4: loop {
-            break '_method4 (if length(v1.get()) < v0_1.get() {
-                let v0_1_temp: i32 = v0_1.get();
-                let v1_temp: string = stringFrom(format!("0{0}", &v1.get()));
-                v0_1.set(v0_1_temp);
-                v1.set(v1_temp);
-                continue '_method4;
-            } else {
-                v1.get()
-            });
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
+mod module_d4b04e8b {
+    pub mod Proxy {
+        use super::*;
+        use fable_library_rust::NativeArray_::new_array;
+        use fable_library_rust::NativeArray_::Array;
+        use fable_library_rust::Native_::box_;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::Native_::Any;
+        use fable_library_rust::Native_::Func0;
+        use fable_library_rust::Native_::LrcPtr;
+        use fable_library_rust::Native_::MutCell;
+        use fable_library_rust::Native_::OnceInit;
+        use fable_library_rust::String_::append;
+        use fable_library_rust::String_::length;
+        use fable_library_rust::String_::printfn;
+        use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::string;
+        use fable_library_rust::String_::substring2;
+        use fable_library_rust::String_::toString;
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+        pub enum US0 {
+            US0_0,
+            US0_1,
+            US0_2,
+            US0_3,
+            US0_4,
         }
-    }
-    pub fn method5(v0_1: u8) -> std::string::String {
-        format!("{:?}", &v0_1).clone()
-    }
-    pub fn method6(v0_1: Array<std::string::String>) -> std::string::String {
-        let v2 = core::ops::Deref::deref(&v0_1);
-        let v4 = &***&v2;
-        let v5 = &***&v4;
-        format!("{:?}", &v5).clone()
-    }
-    pub fn method7(v0_1: string) -> string {
-        v0_1
-    }
-    pub fn method8() -> string {
-        string("$1=$2")
-    }
-    pub fn method9() -> string {
-        string("[$1]")
-    }
-    pub fn method10() -> string {
-        string("\"")
-    }
-    pub fn method11() -> string {
-        string(" ")
-    }
-    pub fn method12() -> string {
-        string("006666")
-    }
-    pub fn method13() -> string {
-        string("385779")
-    }
-    pub fn method3(v0_1: i64, v1: Array<std::string::String>) {
-        let v3: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
-        let v9: string = Proxy::method4(6i32, toString(&((&v3).timestamp() - v0_1)));
-        let v11: u8 = rand::random::<u8>();
-        let v23: std::string::String = Proxy::method6(array(&[
-            Proxy::method1(string("timestamp")),
-            Proxy::method1(v9),
-            Proxy::method1(string("run_id")),
-            Proxy::method5(v11),
-            Proxy::method1(string("log_level")),
-            Proxy::method1(string("Debug")),
-        ]));
-        let v26: Array<std::string::String> = array(&[Proxy::method1(string("> parseUrls ()"))]);
-        let v28 = core::ops::Deref::deref(&v26);
-        let v30 = &***&v28;
-        let v31 = &***&v30;
-        let v34: std::string::String = format!("{:?}", &v31).clone();
-        let v37: string = toString(&format!("{}", &v34));
-        let v40: &str = r#""([^"]+)", "([^"]+)""#;
-        let v42: regex::RegexBuilder = regex::RegexBuilder::new(&v40);
-        let v44: &regex::Regex = &v42.build().unwrap();
-        let v45: string = Proxy::method7(v37);
-        let v47: &str = &v45.as_str();
-        let v48: string = Proxy::method8();
-        let v49: &str = &v48.as_str();
-        let v51: std::string::String = v44.replace_all(&v47, v49).to_string();
-        let v54: string = fable_library_rust::String_::fromStr(&v51);
-        let v57: &str = r#"\["(.*?)"\]"#;
-        let v58: regex::RegexBuilder = regex::RegexBuilder::new(&v57);
-        let v59: &regex::Regex = &v58.build().unwrap();
-        let v60: string = Proxy::method7(v54);
-        let v61: &str = &v60.as_str();
-        let v62: string = Proxy::method9();
-        let v63: &str = &v62.as_str();
-        let v64: std::string::String = v59.replace_all(&v61, v63).to_string();
-        let v66: string = fable_library_rust::String_::fromStr(&v64);
-        let v69: &str = r#"\\""#;
-        let v70: regex::RegexBuilder = regex::RegexBuilder::new(&v69);
-        let v71: &regex::Regex = &v70.build().unwrap();
-        let v72: string = Proxy::method7(v66);
-        let v73: &str = &v72.as_str();
-        let v74: string = Proxy::method10();
-        let v75: &str = &v74.as_str();
-        let v76: std::string::String = v71.replace_all(&v73, v75).to_string();
-        let v78: string = fable_library_rust::String_::fromStr(&v76);
-        let v81: &str = r#", "#;
-        let v82: regex::RegexBuilder = regex::RegexBuilder::new(&v81);
-        let v83: &regex::Regex = &v82.build().unwrap();
-        let v84: string = Proxy::method7(v78);
-        let v85: &str = &v84.as_str();
-        let v86: string = Proxy::method11();
-        let v87: &str = &v86.as_str();
-        let v88: std::string::String = v83.replace_all(&v85, v87).to_string();
-        let v91: std::string::String = Proxy::method1(fable_library_rust::String_::fromStr(&v88));
-        let v92 = core::ops::Deref::deref(&v1);
-        let v93 = &***&v92;
-        let v94 = &***&v93;
-        let v96: std::string::String = format!("{:?}", &v94).clone();
-        let v98: string = toString(&format!("{}", &v96));
-        let v100: &str = r#""([^"]+)", "([^"]+)""#;
-        let v101: regex::RegexBuilder = regex::RegexBuilder::new(&v100);
-        let v102: &regex::Regex = &v101.build().unwrap();
-        let v103: string = Proxy::method7(v98);
-        let v104: &str = &v103.as_str();
-        let v105: string = Proxy::method8();
-        let v106: &str = &v105.as_str();
-        let v107: std::string::String = v102.replace_all(&v104, v106).to_string();
-        let v109: string = fable_library_rust::String_::fromStr(&v107);
-        let v111: &str = r#"\["(.*?)"\]"#;
-        let v112: regex::RegexBuilder = regex::RegexBuilder::new(&v111);
-        let v113: &regex::Regex = &v112.build().unwrap();
-        let v114: string = Proxy::method7(v109);
-        let v115: &str = &v114.as_str();
-        let v116: string = Proxy::method9();
-        let v117: &str = &v116.as_str();
-        let v118: std::string::String = v113.replace_all(&v115, v117).to_string();
-        let v120: string = fable_library_rust::String_::fromStr(&v118);
-        let v122: &str = r#"\\""#;
-        let v123: regex::RegexBuilder = regex::RegexBuilder::new(&v122);
-        let v124: &regex::Regex = &v123.build().unwrap();
-        let v125: string = Proxy::method7(v120);
-        let v126: &str = &v125.as_str();
-        let v127: string = Proxy::method10();
-        let v128: &str = &v127.as_str();
-        let v129: std::string::String = v124.replace_all(&v126, v128).to_string();
-        let v131: string = fable_library_rust::String_::fromStr(&v129);
-        let v133: &str = r#", "#;
-        let v134: regex::RegexBuilder = regex::RegexBuilder::new(&v133);
-        let v135: &regex::Regex = &v134.build().unwrap();
-        let v136: string = Proxy::method7(v131);
-        let v137: &str = &v136.as_str();
-        let v138: string = Proxy::method11();
-        let v139: &str = &v138.as_str();
-        let v140: std::string::String = v135.replace_all(&v137, v139).to_string();
-        let v143: std::string::String = Proxy::method1(fable_library_rust::String_::fromStr(&v140));
-        let v145: string = toString(&format!("{}", &v23));
-        let v147: &str = r#""([^"]+)", "([^"]+)""#;
-        let v148: regex::RegexBuilder = regex::RegexBuilder::new(&v147);
-        let v149: &regex::Regex = &v148.build().unwrap();
-        let v150: string = Proxy::method7(v145);
-        let v151: &str = &v150.as_str();
-        let v152: string = Proxy::method8();
-        let v153: &str = &v152.as_str();
-        let v154: std::string::String = v149.replace_all(&v151, v153).to_string();
-        let v156: string = fable_library_rust::String_::fromStr(&v154);
-        let v158: &str = r#"\["(.*?)"\]"#;
-        let v159: regex::RegexBuilder = regex::RegexBuilder::new(&v158);
-        let v160: &regex::Regex = &v159.build().unwrap();
-        let v161: string = Proxy::method7(v156);
-        let v162: &str = &v161.as_str();
-        let v163: string = Proxy::method9();
-        let v164: &str = &v163.as_str();
-        let v165: std::string::String = v160.replace_all(&v162, v164).to_string();
-        let v167: string = fable_library_rust::String_::fromStr(&v165);
-        let v169: &str = r#"\\""#;
-        let v170: regex::RegexBuilder = regex::RegexBuilder::new(&v169);
-        let v171: &regex::Regex = &v170.build().unwrap();
-        let v172: string = Proxy::method7(v167);
-        let v173: &str = &v172.as_str();
-        let v174: string = Proxy::method10();
-        let v175: &str = &v174.as_str();
-        let v176: std::string::String = v171.replace_all(&v173, v175).to_string();
-        let v178: string = fable_library_rust::String_::fromStr(&v176);
-        let v180: &str = r#", "#;
-        let v181: regex::RegexBuilder = regex::RegexBuilder::new(&v180);
-        let v182: &regex::Regex = &v181.build().unwrap();
-        let v183: string = Proxy::method7(v178);
-        let v184: &str = &v183.as_str();
-        let v185: string = Proxy::method11();
-        let v186: &str = &v185.as_str();
-        let v187: std::string::String = v182.replace_all(&v184, v186).to_string();
-        let v190: std::string::String = Proxy::method1(fable_library_rust::String_::fromStr(&v187));
-        let v191: string = Proxy::method12();
-        let v192: &str = &v191.as_str();
-        let v196: &str = &v192[0i32 as usize..2i32 as usize];
-        let v198: string = fable_library_rust::String_::fromStr(&v196);
-        let v200: u8 = u8::from_str_radix(&v198, 16).unwrap();
-        let v201: string = Proxy::method12();
-        let v202: &str = &v201.as_str();
-        let v205: &str = &v202[2i32 as usize..4i32 as usize];
-        let v207: string = fable_library_rust::String_::fromStr(&v205);
-        let v208: u8 = u8::from_str_radix(&v207, 16).unwrap();
-        let v209: string = Proxy::method12();
-        let v210: &str = &v209.as_str();
-        let v213: &str = &v210[4i32 as usize..6i32 as usize];
-        let v215: string = fable_library_rust::String_::fromStr(&v213);
-        let v216: u8 = u8::from_str_radix(&v215, 16).unwrap();
-        let v218: colored::ColoredString =
-            colored::Colorize::truecolor(&*v143.to_string(), v200, v208, v216);
-        let v219: std::string::String = format!("{}", &v218);
-        let v220: string = Proxy::method13();
-        let v221: &str = &v220.as_str();
-        let v224: &str = &v221[0i32 as usize..2i32 as usize];
-        let v226: string = fable_library_rust::String_::fromStr(&v224);
-        let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
-        let v228: string = Proxy::method13();
-        let v229: &str = &v228.as_str();
-        let v232: &str = &v229[2i32 as usize..4i32 as usize];
-        let v234: string = fable_library_rust::String_::fromStr(&v232);
-        let v235: u8 = u8::from_str_radix(&v234, 16).unwrap();
-        let v236: string = Proxy::method13();
-        let v237: &str = &v236.as_str();
-        let v240: &str = &v237[4i32 as usize..6i32 as usize];
-        let v242: string = fable_library_rust::String_::fromStr(&v240);
-        let v243: u8 = u8::from_str_radix(&v242, 16).unwrap();
-        let v244: colored::ColoredString =
-            colored::Colorize::truecolor(&*v190.to_string(), v227, v235, v243);
-        let v245: std::string::String = format!("{}", &v244);
-        println!(
-            "{0}",
-            stringFrom(format!("{0} {1} {2}", &v91, &v219, &v245))
-        );
-        ()
-    }
-    pub fn closure1(
-        unitVar: (),
-        v0_1: rocket::http::uri::Segments<'_, rocket::http::uri::fmt::Path>,
-    ) {
-        let patternInput: (string, string, string, bool) = Proxy::method0();
-        let v6: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
-        Proxy::method3(
-            (&v6).timestamp(),
-            array(&[Proxy::method1(string("uri")), Proxy::method2(v0_1)]),
-        )
-    }
-    pub fn method15() -> string {
-        string("666666")
-    }
-    pub fn method14(v0_1: i64, v1: Array<std::string::String>) {
-        let v3: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
-        let v9: string = Proxy::method4(6i32, toString(&((&v3).timestamp() - v0_1)));
-        let v11: u8 = rand::random::<u8>();
-        let v23: std::string::String = Proxy::method6(array(&[
-            Proxy::method1(string("timestamp")),
-            Proxy::method1(v9),
-            Proxy::method1(string("run_id")),
-            Proxy::method5(v11),
-            Proxy::method1(string("log_level")),
-            Proxy::method1(string("Debug")),
-        ]));
-        let v26: Array<std::string::String> = array(&[Proxy::method1(string("> init ()"))]);
-        let v28 = core::ops::Deref::deref(&v26);
-        let v30 = &***&v28;
-        let v31 = &***&v30;
-        let v34: std::string::String = format!("{:?}", &v31).clone();
-        let v37: string = toString(&format!("{}", &v34));
-        let v40: &str = r#""([^"]+)", "([^"]+)""#;
-        let v42: regex::RegexBuilder = regex::RegexBuilder::new(&v40);
-        let v44: &regex::Regex = &v42.build().unwrap();
-        let v45: string = Proxy::method7(v37);
-        let v47: &str = &v45.as_str();
-        let v48: string = Proxy::method8();
-        let v49: &str = &v48.as_str();
-        let v51: std::string::String = v44.replace_all(&v47, v49).to_string();
-        let v54: string = fable_library_rust::String_::fromStr(&v51);
-        let v57: &str = r#"\["(.*?)"\]"#;
-        let v58: regex::RegexBuilder = regex::RegexBuilder::new(&v57);
-        let v59: &regex::Regex = &v58.build().unwrap();
-        let v60: string = Proxy::method7(v54);
-        let v61: &str = &v60.as_str();
-        let v62: string = Proxy::method9();
-        let v63: &str = &v62.as_str();
-        let v64: std::string::String = v59.replace_all(&v61, v63).to_string();
-        let v66: string = fable_library_rust::String_::fromStr(&v64);
-        let v69: &str = r#"\\""#;
-        let v70: regex::RegexBuilder = regex::RegexBuilder::new(&v69);
-        let v71: &regex::Regex = &v70.build().unwrap();
-        let v72: string = Proxy::method7(v66);
-        let v73: &str = &v72.as_str();
-        let v74: string = Proxy::method10();
-        let v75: &str = &v74.as_str();
-        let v76: std::string::String = v71.replace_all(&v73, v75).to_string();
-        let v78: string = fable_library_rust::String_::fromStr(&v76);
-        let v81: &str = r#", "#;
-        let v82: regex::RegexBuilder = regex::RegexBuilder::new(&v81);
-        let v83: &regex::Regex = &v82.build().unwrap();
-        let v84: string = Proxy::method7(v78);
-        let v85: &str = &v84.as_str();
-        let v86: string = Proxy::method11();
-        let v87: &str = &v86.as_str();
-        let v88: std::string::String = v83.replace_all(&v85, v87).to_string();
-        let v91: std::string::String = Proxy::method1(fable_library_rust::String_::fromStr(&v88));
-        let v92 = core::ops::Deref::deref(&v1);
-        let v93 = &***&v92;
-        let v94 = &***&v93;
-        let v96: std::string::String = format!("{:?}", &v94).clone();
-        let v98: string = toString(&format!("{}", &v96));
-        let v100: &str = r#""([^"]+)", "([^"]+)""#;
-        let v101: regex::RegexBuilder = regex::RegexBuilder::new(&v100);
-        let v102: &regex::Regex = &v101.build().unwrap();
-        let v103: string = Proxy::method7(v98);
-        let v104: &str = &v103.as_str();
-        let v105: string = Proxy::method8();
-        let v106: &str = &v105.as_str();
-        let v107: std::string::String = v102.replace_all(&v104, v106).to_string();
-        let v109: string = fable_library_rust::String_::fromStr(&v107);
-        let v111: &str = r#"\["(.*?)"\]"#;
-        let v112: regex::RegexBuilder = regex::RegexBuilder::new(&v111);
-        let v113: &regex::Regex = &v112.build().unwrap();
-        let v114: string = Proxy::method7(v109);
-        let v115: &str = &v114.as_str();
-        let v116: string = Proxy::method9();
-        let v117: &str = &v116.as_str();
-        let v118: std::string::String = v113.replace_all(&v115, v117).to_string();
-        let v120: string = fable_library_rust::String_::fromStr(&v118);
-        let v122: &str = r#"\\""#;
-        let v123: regex::RegexBuilder = regex::RegexBuilder::new(&v122);
-        let v124: &regex::Regex = &v123.build().unwrap();
-        let v125: string = Proxy::method7(v120);
-        let v126: &str = &v125.as_str();
-        let v127: string = Proxy::method10();
-        let v128: &str = &v127.as_str();
-        let v129: std::string::String = v124.replace_all(&v126, v128).to_string();
-        let v131: string = fable_library_rust::String_::fromStr(&v129);
-        let v133: &str = r#", "#;
-        let v134: regex::RegexBuilder = regex::RegexBuilder::new(&v133);
-        let v135: &regex::Regex = &v134.build().unwrap();
-        let v136: string = Proxy::method7(v131);
-        let v137: &str = &v136.as_str();
-        let v138: string = Proxy::method11();
-        let v139: &str = &v138.as_str();
-        let v140: std::string::String = v135.replace_all(&v137, v139).to_string();
-        let v143: std::string::String = Proxy::method1(fable_library_rust::String_::fromStr(&v140));
-        let v145: string = toString(&format!("{}", &v23));
-        let v147: &str = r#""([^"]+)", "([^"]+)""#;
-        let v148: regex::RegexBuilder = regex::RegexBuilder::new(&v147);
-        let v149: &regex::Regex = &v148.build().unwrap();
-        let v150: string = Proxy::method7(v145);
-        let v151: &str = &v150.as_str();
-        let v152: string = Proxy::method8();
-        let v153: &str = &v152.as_str();
-        let v154: std::string::String = v149.replace_all(&v151, v153).to_string();
-        let v156: string = fable_library_rust::String_::fromStr(&v154);
-        let v158: &str = r#"\["(.*?)"\]"#;
-        let v159: regex::RegexBuilder = regex::RegexBuilder::new(&v158);
-        let v160: &regex::Regex = &v159.build().unwrap();
-        let v161: string = Proxy::method7(v156);
-        let v162: &str = &v161.as_str();
-        let v163: string = Proxy::method9();
-        let v164: &str = &v163.as_str();
-        let v165: std::string::String = v160.replace_all(&v162, v164).to_string();
-        let v167: string = fable_library_rust::String_::fromStr(&v165);
-        let v169: &str = r#"\\""#;
-        let v170: regex::RegexBuilder = regex::RegexBuilder::new(&v169);
-        let v171: &regex::Regex = &v170.build().unwrap();
-        let v172: string = Proxy::method7(v167);
-        let v173: &str = &v172.as_str();
-        let v174: string = Proxy::method10();
-        let v175: &str = &v174.as_str();
-        let v176: std::string::String = v171.replace_all(&v173, v175).to_string();
-        let v178: string = fable_library_rust::String_::fromStr(&v176);
-        let v180: &str = r#", "#;
-        let v181: regex::RegexBuilder = regex::RegexBuilder::new(&v180);
-        let v182: &regex::Regex = &v181.build().unwrap();
-        let v183: string = Proxy::method7(v178);
-        let v184: &str = &v183.as_str();
-        let v185: string = Proxy::method11();
-        let v186: &str = &v185.as_str();
-        let v187: std::string::String = v182.replace_all(&v184, v186).to_string();
-        let v190: std::string::String = Proxy::method1(fable_library_rust::String_::fromStr(&v187));
-        let v191: string = Proxy::method15();
-        let v192: &str = &v191.as_str();
-        let v196: &str = &v192[0i32 as usize..2i32 as usize];
-        let v198: string = fable_library_rust::String_::fromStr(&v196);
-        let v200: u8 = u8::from_str_radix(&v198, 16).unwrap();
-        let v201: string = Proxy::method15();
-        let v202: &str = &v201.as_str();
-        let v205: &str = &v202[2i32 as usize..4i32 as usize];
-        let v207: string = fable_library_rust::String_::fromStr(&v205);
-        let v208: u8 = u8::from_str_radix(&v207, 16).unwrap();
-        let v209: string = Proxy::method15();
-        let v210: &str = &v209.as_str();
-        let v213: &str = &v210[4i32 as usize..6i32 as usize];
-        let v215: string = fable_library_rust::String_::fromStr(&v213);
-        let v216: u8 = u8::from_str_radix(&v215, 16).unwrap();
-        let v218: colored::ColoredString =
-            colored::Colorize::truecolor(&*v143.to_string(), v200, v208, v216);
-        let v219: std::string::String = format!("{}", &v218);
-        let v220: string = Proxy::method13();
-        let v221: &str = &v220.as_str();
-        let v224: &str = &v221[0i32 as usize..2i32 as usize];
-        let v226: string = fable_library_rust::String_::fromStr(&v224);
-        let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
-        let v228: string = Proxy::method13();
-        let v229: &str = &v228.as_str();
-        let v232: &str = &v229[2i32 as usize..4i32 as usize];
-        let v234: string = fable_library_rust::String_::fromStr(&v232);
-        let v235: u8 = u8::from_str_radix(&v234, 16).unwrap();
-        let v236: string = Proxy::method13();
-        let v237: &str = &v236.as_str();
-        let v240: &str = &v237[4i32 as usize..6i32 as usize];
-        let v242: string = fable_library_rust::String_::fromStr(&v240);
-        let v243: u8 = u8::from_str_radix(&v242, 16).unwrap();
-        let v244: colored::ColoredString =
-            colored::Colorize::truecolor(&*v190.to_string(), v227, v235, v243);
-        let v245: std::string::String = format!("{}", &v244);
-        println!(
-            "{0}",
-            stringFrom(format!("{0} {1} {2}", &v91, &v219, &v245))
-        );
-        ()
-    }
-        let patternInput: (string, string, string, bool) = Proxy::method0();
-        let v5: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
-        let v7: i64 = (&v5).timestamp();
-        fn v17(v: rocket::http::uri::Segments<'_, rocket::http::uri::fmt::Path>) {
-            Proxy::closure1((), v);
-        }
-        #[rocket::get("/<uri..>")]
-        pub async fn proxy(
-            uri: rocket::http::uri::Segments<'_, rocket::http::uri::fmt::Path>,
-            client: &rocket::State<reqwest::Client>,
-        ) -> Result<rocket::response::content::RawHtml<String>, rocket::http::Status> {
-            v17(uri.clone());
-            let uri = uri.collect::<Vec<_>>();
-            let uri = uri.join("/");
-            let uri = uri.replace(":/", "://");
-            let (host_url, url) = uri.split_once('|').unwrap_or(("", &uri));
-            let (host_protocol, host_host) = host_url
-                .split_once("://")
-                .unwrap_or(("https", "www.github.com"));
-            let (protocol, suffix) = url.split_once("://").unwrap_or((host_protocol, url));
-            let (host, path) = match (url.split_once("://"), suffix.split_once("/")) {
-                (Some(_), None) if suffix != "" => (suffix, ""),
-                _ => (host_host, suffix),
-            };
-            let new_url = match path {
-                "" => format!("{protocol}://{host}"),
-                _ => format!("{protocol}://{host}/{path}"),
-            };
-            println!("uri={uri}; new_url={new_url}; host={host}; path={path}; suffix={suffix}; host_url={host_url}; url={url}; host_host={host_host}; host_protocol={host_protocol}; protocol={protocol}");
-            let res = client
-                .get(new_url)
-                .send()
-                .await
-                .map_err(|_| rocket::http::Status::NotFound);
-            match res {
-                Ok(res) => {
-                    let content = res.text();
-                    let content = content.await;
-                    let content = content.map_err(|_| rocket::http::Status::InternalServerError);
-                    let content = content.unwrap();
-                    Ok(rocket::response::content::RawHtml(content))
+        impl Proxy::US0 {
+            pub fn get_IsUS0_0(this_: &MutCell<Proxy::US0>, unitArg: ()) -> bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
                 }
-                Err(status) => Err(status),
+            }
+            pub fn get_IsUS0_1(this_: &MutCell<Proxy::US0>, unitArg: ()) -> bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsUS0_2(this_: &MutCell<Proxy::US0>, unitArg: ()) -> bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsUS0_3(this_: &MutCell<Proxy::US0>, unitArg: ()) -> bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsUS0_4(this_: &MutCell<Proxy::US0>, unitArg: ()) -> bool {
+                if unreachable!() {
+                    true
+                } else {
+                    false
+                }
             }
         }
-        ();
-        #[rocket::get("/file/<file..>")]
-        pub async fn file(
-            file: std::path::PathBuf,
-            client: &rocket::State<reqwest::Client>,
-        ) -> std::option::Option<rocket::fs::NamedFile> {
-            rocket::fs::NamedFile::open(std::path::Path::new("./").join(file))
-                .await
-                .ok()
+        impl core::fmt::Display for Proxy::US0 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
         }
-        ();
-        ();
-        Proxy::method14(
-            v7,
-            array(&[
-                Proxy::method1(string("app end")),
-                Proxy::method1(string("???")),
-            ]),
-        );
-        0i32
+        pub fn method0() -> (string, string, string, bool) {
+            let v1 = box_(string(""));
+            (string(""), string(""), string(""), true)
+        }
+        pub fn method1(v0_1: string) -> std::string::String {
+            String::from(core::ops::Deref::deref(v0_1))
+        }
+        pub fn method2(
+            v0_1: rocket::http::uri::Segments<'_, rocket::http::uri::fmt::Path>,
+        ) -> std::string::String {
+            format!("{:?}", v0_1)
+        }
+        pub fn method4(v0_1: i32, v1: string) -> string {
+            let v0_1: MutCell<i32> = MutCell::new(v0_1);
+            let v1: MutCell<string> = MutCell::new(v1.clone());
+            '_method4: loop {
+                break '_method4 (if length(v1.get().clone()) < v0_1.get().clone() {
+                    let v0_1_temp: i32 = v0_1.get().clone();
+                    let v1_temp: string = sprintf!("0{}", v1.get().clone());
+                    v0_1.set(v0_1_temp);
+                    v1.set(v1_temp);
+                    continue '_method4;
+                } else {
+                    v1.get().clone()
+                });
+            }
+        }
+        pub fn method5(v0_1: u8) -> std::string::String {
+            format!("{:?}", v0_1)
+        }
+        pub fn method6(v0_1: std::string::String) -> std::string::String {
+            v0_1
+        }
+        pub fn method7(v0_1: Array<std::string::String>) -> std::string::String {
+            let v2: &Array<std::string::String> = v0_1;
+            let v5 = core::ops::Deref::deref(v2);
+            format!("{:?}", v5)
+        }
+        pub fn method8(v0_1: string) -> string {
+            v0_1
+        }
+        pub fn method9() -> string {
+            string("$1=$2")
+        }
+        pub fn method10(v0_1: std::string::String) -> std::string::String {
+            v0_1
+        }
+        pub fn method11() -> string {
+            string("[$1]")
+        }
+        pub fn method12() -> string {
+            string("\"")
+        }
+        pub fn method13() -> string {
+            string(" ")
+        }
+        pub fn method3(v0_1: i64, v1: Array<std::string::String>) {
+            let v3: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
+            let v9: string = Proxy::method4(6_i32, toString((v3).timestamp() - v0_1));
+            let v11: u8 = rand::random::<u8>();
+            let v25: std::string::String = Proxy::method7(new_array(&[
+                Proxy::method1(string("timestamp")),
+                Proxy::method1(v9),
+                Proxy::method1(string("run_id")),
+                Proxy::method5(v11),
+                Proxy::method1(string("log_level")),
+                Proxy::method6(format!("{:?}", Proxy::US0::US0_1)),
+            ]));
+            let v28: Array<std::string::String> =
+                new_array(&[Proxy::method1(string("> parseUrls ()"))]);
+            let v30: &Array<std::string::String> = v28;
+            let v33 = core::ops::Deref::deref(v30);
+            let v35: std::string::String = format!("{:?}", v33);
+            let v38: string = toString(format!("{}", v35));
+            let v40: string = string("r#\"\"([^\"]+)\", \"([^\"]+)\"\"#");
+            let v41: &str = r#""([^"]+)", "([^"]+)""#;
+            let v43: regex::RegexBuilder = regex::RegexBuilder::new(v41);
+            let v45: &regex::Regex = v43.build().unwrap();
+            let v46: string = Proxy::method8(v38);
+            let v48: &str = v46.as_str();
+            let v49: string = Proxy::method9();
+            let v51: &str = v49.as_str();
+            let v54: std::string::String = Proxy::method10(v45.replace_all(&v48, v51).to_string());
+            let v56: string = fable_library_rust::String_::fromString(v54);
+            let v58: string = string("r#\"\\[\"(.*?)\"\\]\"#");
+            let v59: &str = r#"\["(.*?)"\]"#;
+            let v60: regex::RegexBuilder = regex::RegexBuilder::new(v59);
+            let v61: &regex::Regex = v60.build().unwrap();
+            let v62: string = Proxy::method8(v56);
+            let v64: &str = v62.as_str();
+            let v65: string = Proxy::method11();
+            let v67: &str = v65.as_str();
+            let v69: std::string::String = Proxy::method10(v61.replace_all(&v64, v67).to_string());
+            let v71: string = fable_library_rust::String_::fromString(v69);
+            let v73: string = string("r#\"\\\\\"\"#");
+            let v74: &str = r#"\\""#;
+            let v75: regex::RegexBuilder = regex::RegexBuilder::new(v74);
+            let v76: &regex::Regex = v75.build().unwrap();
+            let v77: string = Proxy::method8(v71);
+            let v79: &str = v77.as_str();
+            let v80: string = Proxy::method12();
+            let v82: &str = v80.as_str();
+            let v84: std::string::String = Proxy::method10(v76.replace_all(&v79, v82).to_string());
+            let v86: string = fable_library_rust::String_::fromString(v84);
+            let v88: string = string("r#\", \"#");
+            let v89: &str = r#", "#;
+            let v90: regex::RegexBuilder = regex::RegexBuilder::new(v89);
+            let v91: &regex::Regex = v90.build().unwrap();
+            let v92: string = Proxy::method8(v86);
+            let v94: &str = v92.as_str();
+            let v95: string = Proxy::method13();
+            let v97: &str = v95.as_str();
+            let v99: std::string::String = Proxy::method10(v91.replace_all(&v94, v97).to_string());
+            let v102: std::string::String =
+                Proxy::method1(fable_library_rust::String_::fromString(v99));
+            let v104: &Array<std::string::String> = v1;
+            let v107 = core::ops::Deref::deref(v104);
+            let v109: std::string::String = format!("{:?}", v107);
+            let v111: string = toString(format!("{}", v109));
+            let v112: string = string("r#\"\"([^\"]+)\", \"([^\"]+)\"\"#");
+            let v113: &str = r#""([^"]+)", "([^"]+)""#;
+            let v114: regex::RegexBuilder = regex::RegexBuilder::new(v113);
+            let v115: &regex::Regex = v114.build().unwrap();
+            let v116: string = Proxy::method8(v111);
+            let v118: &str = v116.as_str();
+            let v119: string = Proxy::method9();
+            let v121: &str = v119.as_str();
+            let v123: std::string::String =
+                Proxy::method10(v115.replace_all(&v118, v121).to_string());
+            let v125: string = fable_library_rust::String_::fromString(v123);
+            let v126: string = string("r#\"\\[\"(.*?)\"\\]\"#");
+            let v127: &str = r#"\["(.*?)"\]"#;
+            let v128: regex::RegexBuilder = regex::RegexBuilder::new(v127);
+            let v129: &regex::Regex = v128.build().unwrap();
+            let v130: string = Proxy::method8(v125);
+            let v132: &str = v130.as_str();
+            let v133: string = Proxy::method11();
+            let v135: &str = v133.as_str();
+            let v137: std::string::String =
+                Proxy::method10(v129.replace_all(&v132, v135).to_string());
+            let v139: string = fable_library_rust::String_::fromString(v137);
+            let v140: string = string("r#\"\\\\\"\"#");
+            let v141: &str = r#"\\""#;
+            let v142: regex::RegexBuilder = regex::RegexBuilder::new(v141);
+            let v143: &regex::Regex = v142.build().unwrap();
+            let v144: string = Proxy::method8(v139);
+            let v146: &str = v144.as_str();
+            let v147: string = Proxy::method12();
+            let v149: &str = v147.as_str();
+            let v151: std::string::String =
+                Proxy::method10(v143.replace_all(&v146, v149).to_string());
+            let v153: string = fable_library_rust::String_::fromString(v151);
+            let v154: string = string("r#\", \"#");
+            let v155: &str = r#", "#;
+            let v156: regex::RegexBuilder = regex::RegexBuilder::new(v155);
+            let v157: &regex::Regex = v156.build().unwrap();
+            let v158: string = Proxy::method8(v153);
+            let v160: &str = v158.as_str();
+            let v161: string = Proxy::method13();
+            let v163: &str = v161.as_str();
+            let v165: std::string::String =
+                Proxy::method10(v157.replace_all(&v160, v163).to_string());
+            let v168: std::string::String =
+                Proxy::method1(fable_library_rust::String_::fromString(v165));
+            let v170: string = toString(format!("{}", v25));
+            let v171: string = string("r#\"\"([^\"]+)\", \"([^\"]+)\"\"#");
+            let v172: &str = r#""([^"]+)", "([^"]+)""#;
+            let v173: regex::RegexBuilder = regex::RegexBuilder::new(v172);
+            let v174: &regex::Regex = v173.build().unwrap();
+            let v175: string = Proxy::method8(v170);
+            let v177: &str = v175.as_str();
+            let v178: string = Proxy::method9();
+            let v180: &str = v178.as_str();
+            let v182: std::string::String =
+                Proxy::method10(v174.replace_all(&v177, v180).to_string());
+            let v184: string = fable_library_rust::String_::fromString(v182);
+            let v185: string = string("r#\"\\[\"(.*?)\"\\]\"#");
+            let v186: &str = r#"\["(.*?)"\]"#;
+            let v187: regex::RegexBuilder = regex::RegexBuilder::new(v186);
+            let v188: &regex::Regex = v187.build().unwrap();
+            let v189: string = Proxy::method8(v184);
+            let v191: &str = v189.as_str();
+            let v192: string = Proxy::method11();
+            let v194: &str = v192.as_str();
+            let v196: std::string::String =
+                Proxy::method10(v188.replace_all(&v191, v194).to_string());
+            let v198: string = fable_library_rust::String_::fromString(v196);
+            let v199: string = string("r#\"\\\\\"\"#");
+            let v200: &str = r#"\\""#;
+            let v201: regex::RegexBuilder = regex::RegexBuilder::new(v200);
+            let v202: &regex::Regex = v201.build().unwrap();
+            let v203: string = Proxy::method8(v198);
+            let v205: &str = v203.as_str();
+            let v206: string = Proxy::method12();
+            let v208: &str = v206.as_str();
+            let v210: std::string::String =
+                Proxy::method10(v202.replace_all(&v205, v208).to_string());
+            let v212: string = fable_library_rust::String_::fromString(v210);
+            let v213: string = string("r#\", \"#");
+            let v214: &str = r#", "#;
+            let v215: regex::RegexBuilder = regex::RegexBuilder::new(v214);
+            let v216: &regex::Regex = v215.build().unwrap();
+            let v217: string = Proxy::method8(v212);
+            let v219: &str = v217.as_str();
+            let v220: string = Proxy::method13();
+            let v222: &str = v220.as_str();
+            let v224: std::string::String =
+                Proxy::method10(v216.replace_all(&v219, v222).to_string());
+            let v227: std::string::String =
+                Proxy::method1(fable_library_rust::String_::fromString(v224));
+            let v229: string = substring2(string("006666"), 0_i32, 2_i32);
+            let v231: u8 = u8::from_str_radix(v229, 16).unwrap();
+            let v232: string = substring2(string("006666"), 2_i32, 4_i32);
+            let v233: u8 = u8::from_str_radix(v232, 16).unwrap();
+            let v234: string = substring2(string("006666"), 4_i32, 6_i32);
+            let v235: u8 = u8::from_str_radix(v234, 16).unwrap();
+            let v237: colored::ColoredString =
+                colored::Colorize::truecolor(&*v168.to_string(), v231, v233, v235);
+            let v238: std::string::String = format!("{}", v237);
+            let v240: string = substring2(string("385779"), 0_i32, 2_i32);
+            let v241: u8 = u8::from_str_radix(v240, 16).unwrap();
+            let v242: string = substring2(string("385779"), 2_i32, 4_i32);
+            let v243: u8 = u8::from_str_radix(v242, 16).unwrap();
+            let v244: string = substring2(string("385779"), 4_i32, 6_i32);
+            let v245: u8 = u8::from_str_radix(v244, 16).unwrap();
+            let v246: colored::ColoredString =
+                colored::Colorize::truecolor(&*v227.to_string(), v241, v243, v245);
+            let v248: string = sprintf!("{} {} {}", v102, v238, format!("{}", v246));
+            printfn!("{0}", v248);
+            ()
+        }
+        pub fn closure1(
+            unitVar: (),
+            v0_1: rocket::http::uri::Segments<'_, rocket::http::uri::fmt::Path>,
+        ) {
+            let patternInput: (string, string, string, bool) = Proxy::method0();
+            let v6: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
+            Proxy::method3(
+                (v6).timestamp(),
+                new_array(&[Proxy::method1(string("uri")), Proxy::method2(v0_1)]),
+            )
+        }
+        pub fn method14(v0_1: i64, v1: Array<std::string::String>) {
+            let v3: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
+            let v9: string = Proxy::method4(6_i32, toString((v3).timestamp() - v0_1));
+            let v11: u8 = rand::random::<u8>();
+            let v25: std::string::String = Proxy::method7(new_array(&[
+                Proxy::method1(string("timestamp")),
+                Proxy::method1(v9),
+                Proxy::method1(string("run_id")),
+                Proxy::method5(v11),
+                Proxy::method1(string("log_level")),
+                Proxy::method6(format!("{:?}", Proxy::US0::US0_1)),
+            ]));
+            let v28: Array<std::string::String> = new_array(&[Proxy::method1(string("> init ()"))]);
+            let v30: &Array<std::string::String> = v28;
+            let v33 = core::ops::Deref::deref(v30);
+            let v35: std::string::String = format!("{:?}", v33);
+            let v38: string = toString(format!("{}", v35));
+            let v40: string = string("r#\"\"([^\"]+)\", \"([^\"]+)\"\"#");
+            let v41: &str = r#""([^"]+)", "([^"]+)""#;
+            let v43: regex::RegexBuilder = regex::RegexBuilder::new(v41);
+            let v45: &regex::Regex = v43.build().unwrap();
+            let v46: string = Proxy::method8(v38);
+            let v48: &str = v46.as_str();
+            let v49: string = Proxy::method9();
+            let v51: &str = v49.as_str();
+            let v54: std::string::String = Proxy::method10(v45.replace_all(&v48, v51).to_string());
+            let v56: string = fable_library_rust::String_::fromString(v54);
+            let v58: string = string("r#\"\\[\"(.*?)\"\\]\"#");
+            let v59: &str = r#"\["(.*?)"\]"#;
+            let v60: regex::RegexBuilder = regex::RegexBuilder::new(v59);
+            let v61: &regex::Regex = v60.build().unwrap();
+            let v62: string = Proxy::method8(v56);
+            let v64: &str = v62.as_str();
+            let v65: string = Proxy::method11();
+            let v67: &str = v65.as_str();
+            let v69: std::string::String = Proxy::method10(v61.replace_all(&v64, v67).to_string());
+            let v71: string = fable_library_rust::String_::fromString(v69);
+            let v73: string = string("r#\"\\\\\"\"#");
+            let v74: &str = r#"\\""#;
+            let v75: regex::RegexBuilder = regex::RegexBuilder::new(v74);
+            let v76: &regex::Regex = v75.build().unwrap();
+            let v77: string = Proxy::method8(v71);
+            let v79: &str = v77.as_str();
+            let v80: string = Proxy::method12();
+            let v82: &str = v80.as_str();
+            let v84: std::string::String = Proxy::method10(v76.replace_all(&v79, v82).to_string());
+            let v86: string = fable_library_rust::String_::fromString(v84);
+            let v88: string = string("r#\", \"#");
+            let v89: &str = r#", "#;
+            let v90: regex::RegexBuilder = regex::RegexBuilder::new(v89);
+            let v91: &regex::Regex = v90.build().unwrap();
+            let v92: string = Proxy::method8(v86);
+            let v94: &str = v92.as_str();
+            let v95: string = Proxy::method13();
+            let v97: &str = v95.as_str();
+            let v99: std::string::String = Proxy::method10(v91.replace_all(&v94, v97).to_string());
+            let v102: std::string::String =
+                Proxy::method1(fable_library_rust::String_::fromString(v99));
+            let v104: &Array<std::string::String> = v1;
+            let v107 = core::ops::Deref::deref(v104);
+            let v109: std::string::String = format!("{:?}", v107);
+            let v111: string = toString(format!("{}", v109));
+            let v112: string = string("r#\"\"([^\"]+)\", \"([^\"]+)\"\"#");
+            let v113: &str = r#""([^"]+)", "([^"]+)""#;
+            let v114: regex::RegexBuilder = regex::RegexBuilder::new(v113);
+            let v115: &regex::Regex = v114.build().unwrap();
+            let v116: string = Proxy::method8(v111);
+            let v118: &str = v116.as_str();
+            let v119: string = Proxy::method9();
+            let v121: &str = v119.as_str();
+            let v123: std::string::String =
+                Proxy::method10(v115.replace_all(&v118, v121).to_string());
+            let v125: string = fable_library_rust::String_::fromString(v123);
+            let v126: string = string("r#\"\\[\"(.*?)\"\\]\"#");
+            let v127: &str = r#"\["(.*?)"\]"#;
+            let v128: regex::RegexBuilder = regex::RegexBuilder::new(v127);
+            let v129: &regex::Regex = v128.build().unwrap();
+            let v130: string = Proxy::method8(v125);
+            let v132: &str = v130.as_str();
+            let v133: string = Proxy::method11();
+            let v135: &str = v133.as_str();
+            let v137: std::string::String =
+                Proxy::method10(v129.replace_all(&v132, v135).to_string());
+            let v139: string = fable_library_rust::String_::fromString(v137);
+            let v140: string = string("r#\"\\\\\"\"#");
+            let v141: &str = r#"\\""#;
+            let v142: regex::RegexBuilder = regex::RegexBuilder::new(v141);
+            let v143: &regex::Regex = v142.build().unwrap();
+            let v144: string = Proxy::method8(v139);
+            let v146: &str = v144.as_str();
+            let v147: string = Proxy::method12();
+            let v149: &str = v147.as_str();
+            let v151: std::string::String =
+                Proxy::method10(v143.replace_all(&v146, v149).to_string());
+            let v153: string = fable_library_rust::String_::fromString(v151);
+            let v154: string = string("r#\", \"#");
+            let v155: &str = r#", "#;
+            let v156: regex::RegexBuilder = regex::RegexBuilder::new(v155);
+            let v157: &regex::Regex = v156.build().unwrap();
+            let v158: string = Proxy::method8(v153);
+            let v160: &str = v158.as_str();
+            let v161: string = Proxy::method13();
+            let v163: &str = v161.as_str();
+            let v165: std::string::String =
+                Proxy::method10(v157.replace_all(&v160, v163).to_string());
+            let v168: std::string::String =
+                Proxy::method1(fable_library_rust::String_::fromString(v165));
+            let v170: string = toString(format!("{}", v25));
+            let v171: string = string("r#\"\"([^\"]+)\", \"([^\"]+)\"\"#");
+            let v172: &str = r#""([^"]+)", "([^"]+)""#;
+            let v173: regex::RegexBuilder = regex::RegexBuilder::new(v172);
+            let v174: &regex::Regex = v173.build().unwrap();
+            let v175: string = Proxy::method8(v170);
+            let v177: &str = v175.as_str();
+            let v178: string = Proxy::method9();
+            let v180: &str = v178.as_str();
+            let v182: std::string::String =
+                Proxy::method10(v174.replace_all(&v177, v180).to_string());
+            let v184: string = fable_library_rust::String_::fromString(v182);
+            let v185: string = string("r#\"\\[\"(.*?)\"\\]\"#");
+            let v186: &str = r#"\["(.*?)"\]"#;
+            let v187: regex::RegexBuilder = regex::RegexBuilder::new(v186);
+            let v188: &regex::Regex = v187.build().unwrap();
+            let v189: string = Proxy::method8(v184);
+            let v191: &str = v189.as_str();
+            let v192: string = Proxy::method11();
+            let v194: &str = v192.as_str();
+            let v196: std::string::String =
+                Proxy::method10(v188.replace_all(&v191, v194).to_string());
+            let v198: string = fable_library_rust::String_::fromString(v196);
+            let v199: string = string("r#\"\\\\\"\"#");
+            let v200: &str = r#"\\""#;
+            let v201: regex::RegexBuilder = regex::RegexBuilder::new(v200);
+            let v202: &regex::Regex = v201.build().unwrap();
+            let v203: string = Proxy::method8(v198);
+            let v205: &str = v203.as_str();
+            let v206: string = Proxy::method12();
+            let v208: &str = v206.as_str();
+            let v210: std::string::String =
+                Proxy::method10(v202.replace_all(&v205, v208).to_string());
+            let v212: string = fable_library_rust::String_::fromString(v210);
+            let v213: string = string("r#\", \"#");
+            let v214: &str = r#", "#;
+            let v215: regex::RegexBuilder = regex::RegexBuilder::new(v214);
+            let v216: &regex::Regex = v215.build().unwrap();
+            let v217: string = Proxy::method8(v212);
+            let v219: &str = v217.as_str();
+            let v220: string = Proxy::method13();
+            let v222: &str = v220.as_str();
+            let v224: std::string::String =
+                Proxy::method10(v216.replace_all(&v219, v222).to_string());
+            let v227: std::string::String =
+                Proxy::method1(fable_library_rust::String_::fromString(v224));
+            let v229: string = substring2(string("666666"), 0_i32, 2_i32);
+            let v231: u8 = u8::from_str_radix(v229, 16).unwrap();
+            let v232: string = substring2(string("666666"), 2_i32, 4_i32);
+            let v233: u8 = u8::from_str_radix(v232, 16).unwrap();
+            let v234: string = substring2(string("666666"), 4_i32, 6_i32);
+            let v235: u8 = u8::from_str_radix(v234, 16).unwrap();
+            let v237: colored::ColoredString =
+                colored::Colorize::truecolor(&*v168.to_string(), v231, v233, v235);
+            let v238: std::string::String = format!("{}", v237);
+            let v240: string = substring2(string("385779"), 0_i32, 2_i32);
+            let v241: u8 = u8::from_str_radix(v240, 16).unwrap();
+            let v242: string = substring2(string("385779"), 2_i32, 4_i32);
+            let v243: u8 = u8::from_str_radix(v242, 16).unwrap();
+            let v244: string = substring2(string("385779"), 4_i32, 6_i32);
+            let v245: u8 = u8::from_str_radix(v244, 16).unwrap();
+            let v246: colored::ColoredString =
+                colored::Colorize::truecolor(&*v227.to_string(), v241, v243, v245);
+            let v248: string = sprintf!("{} {} {}", v102, v238, format!("{}", v246));
+            printfn!("{0}", v248);
+            ()
+        }
+        pub fn closure0(unitVar: (), unitVar_1: ()) -> i32 {
+            let patternInput: (string, string, string, bool) = Proxy::method0();
+            let v5: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
+            let v7: i64 = (v5).timestamp();
+            let v28: string =
+                string("   let (host_protocol, host_host) = host_url.split_once(\"://\").unwrap_or((\"https\", \"www.github.com\"));");
+            let v48: string =
+                string("   println!(\"uri={uri}; new_url={new_url}; host={host}; path={path}; suffix={suffix}; host_url={host_url}; url={url}; host_host={host_host}; host_protocol={host_protocol}; protocol={protocol}\");");
+            let v81: string =
+                append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(string("#[rocket::get(\"/<uri..>\")] async fn proxy(   uri: rocket::http::uri::Segments<\'_, rocket::http::uri::fmt::Path>,   client: &rocket::State<reqwest::Client> ) -> Result<rocket::response::content::RawHtml<String>, rocket::http::Status> {   v17(uri.clone());   let uri = uri.collect::<Vec<_>>();   let uri = uri.join(\"/\");   let uri = uri.replace(\":/\", \"://\");   let (host_url, url) = uri.split_once(\'|\').unwrap_or((\"\", &uri));"),
+                                                                                                                                                                                                             v28),
+                                                                                                                                                                                                      string("   let (protocol, suffix) = url.split_once(\"://\").unwrap_or((host_protocol, url));")),
+                                                                                                                                                                                               string("   let (host, path) = match (url.split_once(\"://\"), suffix.split_once(\"/\")) {")),
+                                                                                                                                                                                        string("     (Some(_), None) if suffix != \"\" => (suffix, \"\"),")),
+                                                                                                                                                                                 string("     _ => (host_host, suffix),")),
+                                                                                                                                                                          string("   };")),
+                                                                                                                                                                   string("   let new_url = match path {")),
+                                                                                                                                                            string("     \"\" => format!(\"{protocol}://{host}\"),")),
+                                                                                                                                                     string("     _ => format!(\"{protocol}://{host}/{path}\"),")),
+                                                                                                                                              string("   };")),
+                                                                                                                                       v48),
+                                                                                                                                string("   let res = client")),
+                                                                                                                         string("     .get(new_url)")),
+                                                                                                                  string("     .send()")),
+                                                                                                           string("     .await")),
+                                                                                                    string("     .map_err(|_| rocket::http::Status::NotFound);")),
+                                                                                             string("   match res {")),
+                                                                                      string("       Ok(res) => {")),
+                                                                               string("           let content = res.text();")),
+                                                                        string("           let content = content.await;")),
+                                                                 string("           let content = content.map_err(|_| rocket::http::Status::InternalServerError);")),
+                                                          string("           let content = content.unwrap();")),
+                                                   string("           Ok(rocket::response::content::RawHtml(content))")),
+                                            string("       }")),
+                                     string("       Err(status) => Err(status),")),
+                              string("   }")), string("} ()"));
+            #[rocket::get("/<uri..>")]
+            async fn proxy(
+                uri: rocket::http::uri::Segments<'_, rocket::http::uri::fmt::Path>,
+                client: &rocket::State<reqwest::Client>,
+            ) -> Result<rocket::response::content::RawHtml<String>, rocket::http::Status>
+            {
+                v17(uri.clone());
+                let uri = uri.collect::<Vec<_>>();
+                let uri = uri.join("/");
+                let uri = uri.replace(":/", "://");
+                let (host_url, url) = uri.split_once('|').unwrap_or(("", &uri));
+                let (host_protocol, host_host) = host_url
+                    .split_once("://")
+                    .unwrap_or(("https", "www.github.com"));
+                let (protocol, suffix) = url.split_once("://").unwrap_or((host_protocol, url));
+                let (host, path) = match (url.split_once("://"), suffix.split_once("/")) {
+                    (Some(_), None) if suffix != "" => (suffix, ""),
+                    _ => (host_host, suffix),
+                };
+                let new_url = match path {
+                    "" => format!("{protocol}://{host}"),
+                    _ => format!("{protocol}://{host}/{path}"),
+                };
+                println!("uri={uri}; new_url={new_url}; host={host}; path={path}; suffix={suffix}; host_url={host_url}; url={url}; host_host={host_host}; host_protocol={host_protocol}; protocol={protocol}");
+                let res = client
+                    .get(new_url)
+                    .send()
+                    .await
+                    .map_err(|_| rocket::http::Status::NotFound);
+                match res {
+                    Ok(res) => {
+                        let content = res.text();
+                        let content = content.await;
+                        let content =
+                            content.map_err(|_| rocket::http::Status::InternalServerError);
+                        let content = content.unwrap();
+                        Ok(rocket::response::content::RawHtml(content))
+                    }
+                    Err(status) => Err(status),
+                }
+            }
+            ();
+            {
+                let v98: string =
+                    string("#[rocket::get(\"/file/<file..>\")] async fn file(   file: std::path::PathBuf,   client: &rocket::State<reqwest::Client> ) -> std::option::Option<rocket::fs::NamedFile> {   rocket::fs::NamedFile::open(std::path::Path::new(\"./\").join(file))     .await     .ok()} ()");
+                #[rocket::get("/file/<file..>")]
+                async fn file(
+                    file: std::path::PathBuf,
+                    client: &rocket::State<reqwest::Client>,
+                ) -> std::option::Option<rocket::fs::NamedFile> {
+                    rocket::fs::NamedFile::open(std::path::Path::new("./").join(file))
+                        .await
+                        .ok()
+                }
+                ();
+                {
+                    let v109: string =
+                        string("#[rocket::launch] fn rocket() -> _ {    rocket::build()      .manage(reqwest::Client::new())      .mount(\"/\", rocket::routes![proxy, file])} ()");
+                    #[rocket::launch]
+                    fn rocket() -> _ {
+                        rocket::build()
+                            .manage(reqwest::Client::new())
+                            .mount("/", rocket::routes![proxy, file])
+                    }
+                    ();
+                    Proxy::method14(
+                        v7,
+                        new_array(&[
+                            Proxy::method1(string("app end")),
+                            Proxy::method1(string("???")),
+                        ]),
+                    );
+                    0_i32
+                }
+            }
+        }
+        pub fn v0() -> Func0<i32> {
+            static v0: OnceInit<Func0<i32>> = OnceInit::new();
+            v0.get_or_insert_with(|| Func0::new(move || Proxy::closure0((), ())))
+                .clone()
+        }
+        on_startup!((),);
     }
-    pub fn v0() -> Func0<i32> {
-        static v0: MutCell<Option<Func0<i32>>> = MutCell::new(None);
-        v0.get_or_init(move || Func0::new(move || Proxy::closure0((), ())))
-    }
-    on_startup!(());
 }
+pub use module_d4b04e8b::*;
 #[path = "../rust/Types.rs"]
-mod module_33165bf2;
-pub use module_33165bf2::*;
-
-#[rocket::launch]
-fn rocket() -> _ {
-    rocket::build()
-        .manage(reqwest::Client::new())
-        .mount("/", rocket::routes![Proxy::proxy, Proxy::file])
-}
-fn main(){}
+mod module_26514e41;
+pub use module_26514e41::*;
+fn main() {}
+fn main() {}
