@@ -559,6 +559,43 @@ let execute_with_options (options : execution_options) : i32 * string =
                     |> resultm.unbox'
                     |> function
                         | Ok child =>
+                            // inl stdout =
+                            //     child
+                            //     |> threading.arc_mutex_lock
+                            //     |> resultm.unwrap'
+                            //     |> threading.mutex_guard_ref_mut
+                            //     |> optionm'.as_mut
+                            //     |> optionm'.unwrap
+                            //     |> process_child_stdout
+                            //     |> optionm'.ref_take
+                            //     |> optionm'.unwrap
+                            //     |> optionm'.some'
+                            //     |> threading.new_arc_mutex
+                            // inl stderr =
+                            //     child
+                            //     |> threading.arc_mutex_lock
+                            //     |> resultm.unwrap'
+                            //     |> threading.mutex_guard_ref_mut
+                            //     |> optionm'.as_mut
+                            //     |> optionm'.unwrap
+                            //     |> process_child_stderr
+                            //     |> optionm'.ref_take
+                            //     |> optionm'.unwrap
+                            //     |> optionm'.some'
+                            //     |> threading.new_arc_mutex
+                            // inl stdin =
+                            //     child
+                            //     |> threading.arc_mutex_lock
+                            //     |> resultm.unwrap'
+                            //     |> threading.mutex_guard_ref_mut
+                            //     |> optionm'.as_mut
+                            //     |> optionm'.unwrap
+                            //     |> process_child_stdin
+                            //     |> optionm'.ref_take
+                            //     |> optionm'.unwrap
+                            //     |> optionm'.some'
+                            //     |> threading.new_arc_mutex
+
                             inl stdout : process_child_stdout =
                                 !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdout.take().unwrap()"')
                             inl stderr : process_child_stderr =
@@ -636,10 +673,7 @@ let execute_with_options (options : execution_options) : i32 * string =
                                 |> child_wait_with_output
                                 |> resultm.map_error' sm'.format'
 
-                            [
-                                stderr_handle
-                                stdout_handle
-                            ]
+                            [ stderr_handle; stdout_handle ]
                             |> am'.new_vec
                             |> am'.vec_for_each' (threading.join' >> resultm.unwrap' >> ignore)
 
