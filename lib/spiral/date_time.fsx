@@ -1,7 +1,7 @@
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("_")>]
+[<Fable.Core.Erase; Fable.Core.Emit("core::any::Any")>]
 #endif
-type Any = class end
+type core_any_Any = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>]
 #endif
@@ -19,7 +19,7 @@ type Box<'T> = class end
 #endif
 type Dyn<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0 + Send")>]
+[<Fable.Core.Erase; Fable.Core.Emit("Send")>]
 #endif
 type Send<'T> = class end
 #if FABLE_COMPILER
@@ -55,9 +55,21 @@ type Mut<'T> = class end
 #endif
 type Ref<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("&'static $0")>]
+[<Fable.Core.Erase; Fable.Core.Emit("$0 + $1")>]
 #endif
-type StaticRef<'T> = class end
+type LifetimeJoin<'T, 'U> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("'static")>]
+#endif
+type StaticLifetime = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("$0")>]
+#endif
+type LifetimeRef<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("$0 $1")>]
+#endif
+type Lifetime<'T, 'U> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("MutCell<$0>")>]
 #endif
@@ -252,372 +264,4 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
             let v25 : chrono_DateTime<chrono_Utc> = method1(v24)
             let v26 : string = "v25.naive_utc()"
             let v27 : chrono_NaiveDateTime = Fable.Core.RustInterop.emitRustExpr () v26
-            let v28 : string = "chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &v27)"
-            let v29 : chrono_DateTime<chrono_Local> = Fable.Core.RustInterop.emitRustExpr () v28
-            let v30 : string = "%Y%m%d-%H%M-%S%f"
-            let v31 : string = "r#\"" + v30 + "\"#"
-            let v32 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v31
-            let v33 : chrono_DateTime<chrono_Local> = method2(v29)
-            let v34 : string = "v33.format(v32).to_string()"
-            let v35 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v34
-            let v36 : string = "fable_library_rust::String_::fromString($0)"
-            let v37 : string = Fable.Core.RustInterop.emitRustExpr v35 v36
-            let v38 : string = $"{v37.[0..17]}-{v37.[18..21]}-{v37.[22]}"
-            US1_0(v38)
-    let v46 : string =
-        match v42 with
-        | US1_1 -> (* None *)
-            let v44 : string = ""
-            v44
-        | US1_0(v43) -> (* Some *)
-            v43
-    let v47 : bool = true
-    let mutable _v47 : System.TimeZoneInfo option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v48 : string = "0i64.into()"
-    let v49 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v48
-    v49 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v50 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v50 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v51 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v51 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v52 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v52 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v53 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v53 
-    #endif
-#else
-    let v54 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    v54 
-    #endif
-    |> fun x -> _v47 <- Some x
-    let v55 : System.TimeZoneInfo = _v47.Value
-    let v56 : bool = true
-    let mutable _v56 : System.TimeSpan option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v57 : System.TimeSpan = System.TimeSpan () 
-    v57 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v58 : System.TimeSpan = System.TimeSpan () 
-    v58 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v59 : System.TimeSpan = System.TimeSpan () 
-    v59 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v60 : System.TimeSpan = System.TimeSpan () 
-    v60 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v61 : System.TimeSpan = System.TimeSpan () 
-    v61 
-    #endif
-#else
-    let v62 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v63 : bool = true
-    let mutable _v63 : System.TimeZoneInfo option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v64 : string = "0i64.into()"
-    let v65 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v64
-    v65 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v66 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v66 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v67 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v67 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v68 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v68 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v69 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v69 
-    #endif
-#else
-    let v70 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    v70 
-    #endif
-    |> fun x -> _v63 <- Some x
-    let v71 : System.TimeZoneInfo = _v63.Value
-    let v72 : (System.DateTime -> System.TimeSpan) = v62 v71
-    let v73 : System.TimeSpan = v72 v9
-    v73 
-    #endif
-    |> fun x -> _v56 <- Some x
-    let v74 : System.TimeSpan = _v56.Value
-    let v75 : (System.TimeSpan -> int32) = _.Hours
-    let v76 : int32 = v75 v74
-    let v77 : bool = v76 > 0
-    let v78 : uint8 =
-        if v77 then
-            1uy
-        else
-            0uy
-    let v79 : (string -> string) = v74.ToString
-    let v80 : string = "hh:mm"
-    let v81 : string = v79 v80
-    let v82 : string = $"{v78}{v81.[0..1]}{v81.[3..4]}"
-    let v83 : (System.Guid -> string) = _.ToString()
-    let v84 : string = v83 v0
-    let v85 : System.Guid = System.Guid $"{v46}{v82}{v84.[v46.Length + v82.Length..]}"
-    v85 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v86 : System.Guid = null |> unbox<System.Guid>
-    v86 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v87 : System.Guid = null |> unbox<System.Guid>
-    v87 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v88 : System.Guid = null |> unbox<System.Guid>
-    v88 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v89 : System.Guid = null |> unbox<System.Guid>
-    v89 
-    #endif
-#else
-    let v90 : string = method3()
-    let v91 : (string -> string) = v1.ToString
-    let v92 : string = v91 v90
-    let v93 : bool = true
-    let mutable _v93 : System.TimeZoneInfo option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v94 : string = "0i64.into()"
-    let v95 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v94
-    v95 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v96 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v96 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v97 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v97 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v98 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v98 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v99 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v99 
-    #endif
-#else
-    let v100 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    v100 
-    #endif
-    |> fun x -> _v93 <- Some x
-    let v101 : System.TimeZoneInfo = _v93.Value
-    let v102 : bool = true
-    let mutable _v102 : System.TimeSpan option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v103 : System.TimeSpan = System.TimeSpan () 
-    v103 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v104 : System.TimeSpan = System.TimeSpan () 
-    v104 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v105 : System.TimeSpan = System.TimeSpan () 
-    v105 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v106 : System.TimeSpan = System.TimeSpan () 
-    v106 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v107 : System.TimeSpan = System.TimeSpan () 
-    v107 
-    #endif
-#else
-    let v108 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
-    let v109 : bool = true
-    let mutable _v109 : System.TimeZoneInfo option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v110 : string = "0i64.into()"
-    let v111 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v110
-    v111 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v112 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v112 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v113 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v113 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v114 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v114 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v115 : System.TimeZoneInfo = null |> unbox<System.TimeZoneInfo>
-    v115 
-    #endif
-#else
-    let v116 : System.TimeZoneInfo = System.TimeZoneInfo.Local
-    v116 
-    #endif
-    |> fun x -> _v109 <- Some x
-    let v117 : System.TimeZoneInfo = _v109.Value
-    let v118 : (System.DateTime -> System.TimeSpan) = v108 v117
-    let v119 : System.TimeSpan = v118 v1
-    v119 
-    #endif
-    |> fun x -> _v102 <- Some x
-    let v120 : System.TimeSpan = _v102.Value
-    let v121 : (System.TimeSpan -> int32) = _.Hours
-    let v122 : int32 = v121 v120
-    let v123 : bool = v122 > 0
-    let v124 : (bool -> int32) = System.Convert.ToInt32
-    let v125 : int32 = v124 v123
-    let v126 : string = method4()
-    let v127 : (string -> string) = v120.ToString
-    let v128 : string = v127 v126
-    let v129 : string = $"{v125}{v128}"
-    let v130 : (System.Guid -> string) = _.ToString()
-    let v131 : string = v130 v0
-    let v132 : System.Guid = System.Guid $"{v92}{v129}{v131.[v92.Length + v129.Length..]}"
-    v132 
-    #endif
-    |> fun x -> _v2 <- Some x
-    let v133 : System.Guid = _v2.Value
-    v133
-and closure1 (v0 : System.Guid) (v1 : System.DateTime) : System.Guid =
-    method0(v0, v1)
-and closure0 () (v0 : System.Guid) : (System.DateTime -> System.Guid) =
-    closure1(v0)
-and closure5 (v0 : string, v1 : string) (v2 : string) : string =
-    let v3 : string = v2.Replace (v0, v1)
-    v3
-and closure4 (v0 : string) (v1 : string) : (string -> string) =
-    closure5(v0, v1)
-and closure3 () (v0 : string) : (string -> (string -> string)) =
-    closure4(v0)
-and method5 () : (string -> (string -> (string -> string))) =
-    closure3()
-and closure2 () (v0 : System.Guid) : System.DateTime =
-    let v1 : (System.Guid -> string) = _.ToString()
-    let v2 : string = v1 v0
-    let v3 : (string -> (string -> (string -> string))) = method5()
-    let v4 : bool = true
-    let mutable _v4 : System.DateTime option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v5 : System.DateTime = System.DateTime.Parse (v2.[..24] |> v3 "-" "")
-    v5 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v6 : System.DateTime = System.DateTime.Parse (v2.[..24] |> v3 "-" "")
-    v6 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v7 : System.DateTime = System.DateTime.Parse (v2.[..24] |> v3 "-" "")
-    v7 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v8 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v8 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v9 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v9 
-    #endif
-#else
-    let v10 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v10 
-    #endif
-    |> fun x -> _v4 <- Some x
-    let v11 : System.DateTime = _v4.Value
-    v11
-and closure7 (v0 : System.Guid) (v1 : int64) : System.Guid =
-    let v2 : (System.Guid -> string) = _.ToString()
-    let v3 : string = v2 v0
-    let v4 : (int64 -> string) = _.ToString()
-    let v5 : string = v4 v1
-    let v6 : string = v5.PadLeft (18, '0')
-    let v7 : System.Guid = System.Guid $"{v6.[0..7]}-{v6.[8..11]}-{v6.[12..15]}-{v6.[16..17]}{v3.[21..]}"
-    v7
-and closure6 () (v0 : System.Guid) : (int64 -> System.Guid) =
-    closure7(v0)
-and closure8 () (v0 : System.Guid) : int64 =
-    let v1 : (System.Guid -> string) = _.ToString()
-    let v2 : string = v1 v0
-    let v3 : int64 = int64 $"{v2.[0..7]}{v2.[9..12]}{v2.[14..17]}{v2.[19..20]}"
-    v3
-and closure9 () (v0 : System.DateTime) : System.Guid =
-    let v1 : System.Guid = System.Guid.NewGuid ()
-    method0(v1, v0)
-and closure10 () (v0 : int64) : System.Guid =
-    let v1 : System.Guid = System.Guid.NewGuid ()
-    let v2 : (System.Guid -> string) = _.ToString()
-    let v3 : string = v2 v1
-    let v4 : (int64 -> string) = _.ToString()
-    let v5 : string = v4 v0
-    let v6 : string = v5.PadLeft (18, '0')
-    let v7 : System.Guid = System.Guid $"{v6.[0..7]}-{v6.[8..11]}-{v6.[12..15]}-{v6.[16..17]}{v3.[21..]}"
-    v7
-and closure12 (v0 : string) (v1 : System.DateTime) : string =
-    let v2 : (string -> string) = v1.ToString
-    v2 v0
-and closure11 () (v0 : string) : (System.DateTime -> string) =
-    closure12(v0)
-and closure13 () (v0 : System.DateTime) : string =
-    let v1 : (string -> string) = v0.ToString
-    let v2 : string = "yyyy-MM-ddTHH-mm-ss.fff"
-    v1 v2
-let v0 : (System.Guid -> (System.DateTime -> System.Guid)) = closure0()
-let date_time_guid_from_date_time x = v0 x
-let v1 : (System.Guid -> System.DateTime) = closure2()
-let date_time_from_guid x = v1 x
-let v2 : (System.Guid -> (int64 -> System.Guid)) = closure6()
-let timestamp_guid_from_timestamp x = v2 x
-let v3 : (System.Guid -> int64) = closure8()
-let timestamp_from_guid x = v3 x
-let v4 : (System.DateTime -> System.Guid) = closure9()
-let new_guid_from_date_time x = v4 x
-let v5 : (int64 -> System.Guid) = closure10()
-let new_guid_from_timestamp x = v5 x
-let v6 : (string -> (System.DateTime -> string)) = closure11()
-let format x = v6 x
-let v7 : (System.DateTime -> string) = closure13()
-let format_iso8601 x = v7 x
-()
+            let v28 : string = "chrono:

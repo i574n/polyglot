@@ -44,7 +44,7 @@
 
 #!pwsh
 
-{ . ../../../../apps/spiral/dist/Supervisor$(_exe) --execute-command "../../../../target/release/spiral_builder$(_exe) dib --path test.dib --retries 3" } | Invoke-Block
+{ . ../../../../apps/spiral/dist/Supervisor$(_exe) --execute-command "../../../../workspace/target/release/spiral_builder$(_exe) dib --path test.dib --retries 3" } | Invoke-Block
 
 #!markdown
 
@@ -119,4 +119,4 @@ cargo +nightly build --release
 
 #!pwsh
 
-{ . $ScriptDir/../../../../target/release/spiral_temp_test$(_exe) } | Invoke-Block
+{ . $ScriptDir/../../../../workspace/target/release/spiral_temp_test$(_exe) } | Invoke-Block

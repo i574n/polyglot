@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 
 
 if (!$fast) {
-    { . ../spiral/dist/Supervisor$(_exe) --execute-command "../../target/release/spiral_builder$(_exe) dib --path Tasks.dib --retries 3" } | Invoke-Block
+    { . ../spiral/dist/Supervisor$(_exe) --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path Tasks.dib --retries 3" } | Invoke-Block
 
     { . ../parser/dist/DibParser$(_exe) Tasks.dib spi } | Invoke-Block
 }

@@ -23,15 +23,14 @@ open rust_operators
 #!spiral
 
 inl types () =
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_std::task::JoinHandle<$0>\")>]\n#endif\ntype async_std_task_JoinHandle<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>]\n#endif\ntype std_future_Future<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>]\n#endif\ntype futures_future_TryJoinAll<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::vec::IntoIter<$0>\")>]\n#endif\ntype rayon_vec_IntoIter<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::iter::Map<$0, _>\")>]\n#endif\ntype rayon_iter_Map<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures_lite::stream::StreamExt\")>]\n#endif\ntype futures_lite_stream_StreamExt = class end"
-
-#!spiral
-
-nominal stream_ext = $'futures_lite_stream_StreamExt'
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>]\n#endif\ntype futures_future_TryJoinAll<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::Fuse<$0>\")>]\n#endif\ntype futures_future_Fuse<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::JoinAll<$0>\")>]\n#endif\ntype futures_future_JoinAll<'T> = class end"
 
 #!markdown
 
@@ -98,11 +97,27 @@ inl block_on_send forall t. (fn : future_pin_send t) : t =
 
 #!markdown
 
+## stream_ext
+
+#!spiral
+
+nominal stream_ext = $'futures_lite_stream_StreamExt'
+
+#!markdown
+
+## join_handle
+
+#!spiral
+
+nominal join_handle t = $'async_std_task_JoinHandle<`t>'
+
+#!markdown
+
 ## spawn
 
 #!spiral
 
-inl spawn forall t. (fn : future_pin t) : t =
+inl spawn forall t. (fn : future_pin_send t) : join_handle t =
     !\($'"async_std::task::spawn(!fn)"')
 
 #!markdown
@@ -119,11 +134,53 @@ inl try_join_all forall t. (x : am'.vec (future_pin (resultm.result' t sm'.std_s
 
 #!markdown
 
+## fuse
+
+#!spiral
+
+nominal fuse t = $"futures_future_Fuse<`t>"
+
+inl future_fuse forall t. (x : future_pin t) : fuse (future_pin t) =
+    !\($'"futures::future::FutureExt::fuse(!x)"')
+
+#!markdown
+
+## join_all
+
+#!spiral
+
+nominal join_all t = $"futures_future_JoinAll<`t>"
+
+inl join_all forall t. (x : am'.vec (future_pin t)) : join_all (future_pin t) =
+    inl x = join x
+    !\($'"futures::future::join_all(!x)"')
+
+#!markdown
+
+## join_all_send
+
+#!spiral
+
+inl join_all_send forall t. (x : am'.vec (future_pin_send t)) : join_all (future_pin_send t) =
+    inl x = join x
+    !\($'"futures::future::join_all(!x)"')
+
+#!markdown
+
+## await_handle
+
+#!spiral
+
+inl await_handle forall t. (x : join_handle t) : t =
+    !\($'"!x.await"')
+
+#!markdown
+
 ## await_all
 
 #!spiral
 
-inl await_all forall t. (x : try_join_all (future_pin (resultm.result' t sm'.std_string))) : resultm.result' (am'.vec t) sm'.std_string =
+inl await_all forall t. (x : join_all (future_pin t)) : am'.vec t =
     !\($'"!x.await"')
 
 #!markdown
@@ -132,7 +189,25 @@ inl await_all forall t. (x : try_join_all (future_pin (resultm.result' t sm'.std
 
 #!spiral
 
-inl await_all_send forall t. (x : try_join_all (future_pin_send (resultm.result' t sm'.std_string))) : resultm.result' (am'.vec t) sm'.std_string =
+inl await_all_send forall t. (x : join_all (future_pin_send t)) : am'.vec t =
+    !\($'"!x.await"')
+
+#!markdown
+
+## try_await_all
+
+#!spiral
+
+inl try_await_all forall t. (x : try_join_all (future_pin (resultm.result' t sm'.std_string))) : resultm.result' (am'.vec t) sm'.std_string =
+    !\($'"!x.await"')
+
+#!markdown
+
+## try_await_all_send
+
+#!spiral
+
+inl try_await_all_send forall t. (x : try_join_all (future_pin_send (resultm.result' t sm'.std_string))) : resultm.result' (am'.vec t) sm'.std_string =
     !\($'"!x.await"')
 
 #!markdown

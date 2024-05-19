@@ -1,4 +1,5 @@
 param(
+    $SkipPaket,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -16,7 +17,7 @@ function CheckToml {
     )
     $toml = [IO.Path]::GetFullPath("$ScriptDir/$toml")
     Write-Output "`nCheckToml / toml: $toml"
-    { cargo outdated -m $toml --exclude tokio @_args } | Invoke-Block
+    { cargo outdated -m $toml --exclude tokio @_args } | Invoke-Block -OnError Continue
 }
 
 function CheckJson {
@@ -25,13 +26,15 @@ function CheckJson {
     )
     $json = [IO.Path]::GetFullPath("$ScriptDir/$json").Replace("\", "/")
     Write-Output "`nCheckJson / json: $json"
-    { ~/.bun/bin/bun --cwd $json outdated-pre } | Invoke-Block
+    { ~/.bun/bin/bun --cwd $json outdated-pre } | Invoke-Block -OnError Continue
 }
 
 
-{ dotnet paket outdated --include-prereleases } | Invoke-Block
+if (!$SkipPaket) {
+    { dotnet paket outdated --include-prereleases } | Invoke-Block
+}
 
-CheckToml "../Cargo.toml" `-w
+CheckToml "../workspace/Cargo.toml" `-w
 
 CheckToml "../apps/chat/contract/Cargo.toml"
 CheckToml "../apps/chat/contract/tests/Cargo.toml"

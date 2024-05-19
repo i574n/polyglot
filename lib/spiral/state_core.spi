@@ -330,7 +330,7 @@ let use_requests forall t u.
                             |> resultm.box
                         |> async.future_init (3, 2) 1
                     |> async.try_join_all
-                    |> async.await_all
+                    |> async.try_await_all
                     |> resultm.try'
                     |> Ok
                     |> resultm.box
@@ -430,7 +430,7 @@ let use_requests forall t u.
                             |> resultm.box : _ _ sm'.std_string
                         |> async.future_init (2, 1) 1
                     |> async.try_join_all
-                    |> async.await_all
+                    |> async.try_await_all
                     |> resultm.try'
                     |> am'.from_vec
                     |> fun x => x : _ i32 _
@@ -467,7 +467,7 @@ let use_requests forall t u.
                     |> resultm.box
                 |> async.future_init (2, 1) 1
             |> async.try_join_all
-            |> async.await_all
+            |> async.try_await_all
             |> resultm.try'
             |> Ok
             |> fun x => x : _ _ sm'.std_string

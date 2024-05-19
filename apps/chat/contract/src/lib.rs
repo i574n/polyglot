@@ -56,10 +56,7 @@ impl State {
     }
 
     #[result_serializer(borsh)]
-    pub fn generate_cid_borsh(
-        &self,
-        #[serializer(borsh)] content: Vec<u8>,
-    ) -> String {
+    pub fn generate_cid_borsh(&self, #[serializer(borsh)] content: Vec<u8>) -> String {
         self.generate_cid(content)
     }
 

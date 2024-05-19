@@ -21,7 +21,7 @@ rustup +nightly update
 
 #!pwsh
 
-{ cargo +nightly install cargo-outdated } | Invoke-Block -OnError Continue
+{ cargo +nightly install --git https://github.com/i574n/cargo-outdated.git --locked } | Invoke-Block -OnError Continue
 
 #!pwsh
 
@@ -53,11 +53,11 @@ npm install -g @chialab/rna-bundler
 
 #!pwsh
 
-npm install -g @playwright/test@1.42.1
+npm install -g @playwright/test@1.44.0
 
 #!pwsh
 
-npx -y playwright@1.42.1 install
+npx -y playwright@1.44.0 install
 
 #!pwsh
 

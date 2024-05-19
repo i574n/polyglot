@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 . ../../../../scripts/core.ps1
 
 
-{ . ../../../../apps/spiral/dist/Supervisor$(_exe) --execute-command "../../../../target/release/spiral_builder$(_exe) dib --path build.dib" } | Invoke-Block
+{ . ../../../../apps/spiral/dist/Supervisor$(_exe) --execute-command "../../../../workspace/target/release/spiral_builder$(_exe) dib --path build.dib" } | Invoke-Block
 
 $targetDir = "./fable_modules/fable-library-rust/target"
 

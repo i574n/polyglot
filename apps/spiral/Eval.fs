@@ -643,7 +643,7 @@ module Eval =
         let! exitCode, spiralBuilderResult =
             let command =
                 let path =
-                    workspaceRoot </> $@"target/release/spiral_builder{SpiralRuntime.get_executable_suffix ()}"
+                    workspaceRoot </> $@"workspace/target/release/spiral_builder{SpiralRuntime.get_executable_suffix ()}"
                     |> System.IO.Path.GetFullPath
                 $"{path} --trace-level %A{traceLevel} fsharp --path \"{fsprojPath}\" --package-dir \"{projectDir}\" --args \"{args}\""
             SpiralRuntime.execution_options (fun x ->
@@ -755,16 +755,18 @@ module Eval =
                     $"{rsCode}\n\n{mainCode}\n"
                     |> SpiralFileSystem.write_all_text_exists rsPath
 
+                let command = $"cargo +nightly run --manifest-path \"{cargoTomlPath}\""
+                let environmentVariables = [|
+                    struct ("RUSTC_WRAPPER", "sccache")
+                    // "RUSTFLAGS", "-C prefer-dynamic"
+                    "RUSTFLAGS", "-C prefer-dynamic -C strip=symbols -C link-arg=-s -C debuginfo=0"
+                    // "RUSTFLAGS", "-C prefer-dynamic -C link-arg=-s -C debuginfo=0 -C strip=symbols"
+                |]
                 let! exitCode, cargoRunResult =
                     SpiralRuntime.execution_options (fun x ->
                         { x with
-                            l1 = $"cargo +nightly run --manifest-path \"{cargoTomlPath}\""
-                            l2 = [|
-                                "RUSTC_WRAPPER", "sccache"
-                                // "RUSTFLAGS", "-C prefer-dynamic"
-                                "RUSTFLAGS", "-C prefer-dynamic -C strip=symbols -C link-arg=-s -C debuginfo=0"
-                                // "RUSTFLAGS", "-C prefer-dynamic -C link-arg=-s -C debuginfo=0 -C strip=symbols"
-                            |]
+                            l1 = command
+                            l2 = environmentVariables
                             l6 = workspaceRootExternal
                         }
                     )
@@ -775,6 +777,12 @@ module Eval =
                 |> List.filter File.Exists
                 |> List.iter File.Delete
 
+                let externalCommand =
+                    let vars =
+                        environmentVariables
+                        |> Array.map (fun struct (k, v) -> $"$env:{k}=''{v}''")
+                        |> String.concat ";"
+                    $"pwsh -c '{vars}; {command}'"
                 if exitCode = 0 then
                     let output =
                         try
@@ -789,7 +797,7 @@ module Eval =
                             |> SpiralSm.concat "\n"
                             |> Ok
                         with ex ->
-                            $"ex: {ex} / rsPath: {rsPath} / cargoRunResult: {cargoRunResult} / spiralBuilderResult: {spiralBuilderResult}" |> Error
+                            $"ex: {ex} / rsPath: {rsPath} / externalCommand: {externalCommand} / cargoRunResult: {cargoRunResult} / spiralBuilderResult: {spiralBuilderResult}" |> Error
 
                     let result =
                         [
@@ -804,7 +812,7 @@ module Eval =
 
                     return result
                 else
-                    return Some (Error $"exitCode: {exitCode} / rsPath: {rsPath} / cargoRunResult: {cargoRunResult}")
+                    return Some (Error $"exitCode: {exitCode} / rsPath: {rsPath} / externalCommand: {externalCommand} / cargoRunResult: {cargoRunResult}")
     }
 
     /// ## Arguments

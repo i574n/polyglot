@@ -1,11 +1,11 @@
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("async_std::task::JoinHandle<$0>")>]
+#endif
+type async_std_task_JoinHandle<'T> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>]
 #endif
 type std_future_Future<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>]
-#endif
-type futures_future_TryJoinAll<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter<$0>")>]
 #endif
@@ -18,6 +18,18 @@ type rayon_iter_Map<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")>]
 #endif
 type futures_lite_stream_StreamExt = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>]
+#endif
+type futures_future_TryJoinAll<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("futures::future::Fuse<$0>")>]
+#endif
+type futures_future_Fuse<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("futures::future::JoinAll<$0>")>]
+#endif
+type futures_future_JoinAll<'T> = class end
 let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Threading.CancellationToken> =
     let v1 : bool = true
     let mutable _v1 : Async<System.Threading.CancellationToken> option = None 

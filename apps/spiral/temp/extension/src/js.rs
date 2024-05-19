@@ -6,7 +6,6 @@ extern "C" {
     pub fn log(value: &str);
 }
 
-
 pub fn use_interval(
     window: &web_sys::Window,
     mut f: impl FnMut(std::rc::Rc<web_sys::Document>) + 'static,

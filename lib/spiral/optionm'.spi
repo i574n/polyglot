@@ -91,8 +91,7 @@ inl unbox forall t. (x : option' t) : option t =
 inl of_obj forall t. (x : t) : option' t =
     $'let mutable _!x = None'
     $"#if \!FABLE_COMPILER && \!WASM && \!CONTRACT"
-    ((x |> $'Option.ofObj') : option' t)
-    |> fun x => $'!x '
+    ((x |> $'Option.ofObj') : option' t) |> emit_unit
     $"#else"
     $'Some !x '
     $"#endif"
@@ -108,6 +107,24 @@ inl flatten x =
 /// ## unwrap
 inl unwrap forall t. (x : option' t) : t =
     !\\(x, $'"$0.unwrap()"')
+
+/// ## take
+inl take forall t. (x : option' t) : option' t =
+    (!\\(x, $'"true; let mut !x = !x"') : bool) |> ignore
+    !\\(x, $'"Option::take(&mut $0)"')
+
+/// ## ref_take'
+inl ref_take' forall t. (x : rust.ref' (option' t)) : option' t =
+    (!\\(x, $'"true; let mut !x = !x"') : bool) |> ignore
+    !\\(x, $'"Option::take(&mut $0)"')
+
+/// ## ref_take
+inl ref_take forall t. (x : rust.ref' (rust.mut' (option' t))) : option' t =
+    !\\(x, $'"Option::take($0)"')
+
+/// ## as_mut
+inl as_mut forall t. (x : rust.ref' (rust.mut' (option' t))) : option' (rust.ref' (rust.mut' t)) =
+    !\\(x, $'"$0.as_mut()"')
 
 /// ## unwrap_or
 inl unwrap_or forall t. (def : t) (x : option' t) : t =

@@ -2,18 +2,19 @@
 name = "cli"
 version = "0.0.1"
 edition = "2021"
-workspace = "../../"
+
+[workspace]
 
 [dependencies]
 chrono = "~0.4"
 clap = { version = "~4.1", features = ["derive"] }
 colored = "~2.0"
-fable_library_rust = { path = "./fable_modules/fable-library-rust" }
-rand = "~0.9"
+fable_library_rust = { path = "../../../../lib/rust/fable/fable_modules/fable-library-rust" }
+rand = "~0.9.0-alpha.1"
 serde_json = "~1.0"
 zmq = "~0.10"
 linereader = "~0.4"
-regex = "~1.8"
+regex = "~1.10"
 tokio = { version = "~1.26", features = ["full"] }
 
 [[bin]]

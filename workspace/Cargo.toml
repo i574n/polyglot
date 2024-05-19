@@ -1,0 +1,41 @@
+cargo-features = ["profile-rustflags"]
+
+[workspace]
+resolver = "2"
+members = [
+    "../apps/chat/contract",
+    "../apps/chat/contract/tests",
+    "../apps/plot",
+    "../apps/spiral/builder",
+    "../apps/spiral/temp/extension",
+    "../apps/spiral/temp/test",
+    "../examples/rust/exercism",
+    "../lib/math"
+]
+
+[workspace.package]
+version = "0.0.1"
+edition = "2021"
+license-file = "./LICENSE"
+repository = "https://github.com/i574n/polyglot"
+
+[workspace.dependencies]
+fable_library_rust = { path = "../lib/rust/fable/fable_modules/fable-library-rust", default-features = false, features = [] }
+inline_colorization = "~0.1"
+chrono = "~0.4"
+regex = "~1.10"
+serde_json = { version = "~1.0", features = ["arbitrary_precision"] }
+clap = "~4.5"
+futures-lite = "~2.3"
+
+[profile.dev]
+incremental = true
+
+[profile.release]
+codegen-units = 1
+opt-level = "z"
+lto = true
+debug = false
+panic = "abort"
+overflow-checks = true
+rustflags = ["-C", "link-arg=-s"]

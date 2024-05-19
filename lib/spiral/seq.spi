@@ -20,6 +20,10 @@ inl of_array forall dim t. (items : a dim t) : seq' t =
 inl to_array' forall dim t. (items : seq' t) : a dim t =
     items |> $'Seq.toArray'
 
+/// ## of_list'
+inl of_list' forall t. (items : listm'.list' t) : seq' t =
+    $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
+
 /// ## to_list'
 inl to_list' forall t. (items : seq' t) : listm'.list' t =
     items |> $'Seq.toList'

@@ -1,6 +1,6 @@
+use near_workspaces::AccountId;
 use serde_json::json;
 use std::collections::HashMap;
-use near_workspaces::AccountId;
 
 // const GAS_PRICE_IN_NEAR: f64 = 0.0001;
 const NEAR_PRICE_IN_USD: f64 = 6.68;
@@ -69,8 +69,11 @@ async fn main() -> anyhow::Result<()> {
         .args_borsh(vec![] as Vec<u8>)
         .await?;
     println!("\n\ngenerate_cid_borsh(account1): {result:#?}");
-    let result : String = result.borsh()?;
-    assert_eq!(result, "bafkreihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku");
+    let result: String = result.borsh()?;
+    assert_eq!(
+        result,
+        "bafkreihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku"
+    );
 
     // claim_alias(account1, alias1)
     let result = account1

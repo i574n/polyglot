@@ -12,7 +12,7 @@ $ErrorActionPreference = "Stop"
 $projectName = "spiral_builder"
 
 if (!$fast -and !$SkipNotebook) {
-    { . ../dist/Supervisor$(_exe) --execute-command "../../../target/release/spiral_builder$(_exe) dib --path $projectName.dib" } | Invoke-Block -Retries 3
+    { . ../dist/Supervisor$(_exe) --execute-command "../../../workspace/target/release/spiral_builder$(_exe) dib --path $projectName.dib" } | Invoke-Block -Retries 3
 }
 
 { . ../../parser/dist/DibParser$(_exe) "$projectName.dib" spi } | Invoke-Block

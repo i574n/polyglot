@@ -12,12 +12,12 @@ if (!$fast) {
     { . ../../apps/spiral/dist/Supervisor$(_exe) `
         --exit-on-error `
         $(!$sequential ? @("--parallel") : @()) `
-        --execute-command "../../target/release/spiral_builder$(_exe) dib --path Async.dib --retries 3" `
-        --execute-command "../../target/release/spiral_builder$(_exe) dib --path AsyncSeq.dib --retries 3" `
-        --execute-command "../../target/release/spiral_builder$(_exe) dib --path Common.dib --retries 3" `
-        --execute-command "../../target/release/spiral_builder$(_exe) dib --path CommonFSharp.dib --retries 3" `
-        --execute-command "../../target/release/spiral_builder$(_exe) dib --path FileSystem.dib --retries 3" `
-        --execute-command "../../target/release/spiral_builder$(_exe) dib --path Runtime.dib --retries 3" `
+        --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path Async.dib --retries 3" `
+        --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path AsyncSeq.dib --retries 3" `
+        --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path Common.dib --retries 3" `
+        --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path CommonFSharp.dib --retries 3" `
+        --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path FileSystem.dib --retries 3" `
+        --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path Runtime.dib --retries 3" `
     } | Invoke-Block
 }
 
