@@ -28,6 +28,9 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Mutex<$0>\")>]\n#endif\ntype std_sync_Mutex<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::MutexGuard<$0>\")>]\n#endif\ntype std_sync_MutexGuard<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::PoisonError<$0>\")>]\n#endif\ntype std_sync_PoisonError<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::mpsc::Receiver<$0>\")>]\n#endif\ntype std_sync_mpsc_Receiver<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::mpsc::SendError<$0>\")>]\n#endif\ntype std_sync_mpsc_SendError<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::mpsc::Sender<$0>\")>]\n#endif\ntype std_sync_mpsc_Sender<'T> = class end"
 
 #!markdown
 
@@ -44,9 +47,9 @@ nominal join_handle t = $'std_thread_JoinHandle<`t>'
 #!spiral
 
 inl spawn forall t. depth flag (x : () -> t) : join_handle t =
-    if flag = 1
-    then !\($'"let __result = std::thread::spawn(move || { //"')
-    else !\($'"let __result = std::thread::spawn(|| { //"')
+    if flag = 1u8
+    then (!\($'"true; let __result = std::thread::spawn(move || { //"') : bool) |> ignore
+    else (!\($'"true; let __result = std::thread::spawn(|| { //"') : bool) |> ignore
 
     let x' = x ()
     inl x' = join x'
@@ -326,8 +329,7 @@ nominal poison_error t = $"std_sync_PoisonError<`t>"
 #!spiral
 
 inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard t) (poison_error (mutex_guard t)) =
-    inl x = join x
-    !\($'"!x.lock()"')
+    !\\(x, $'"$0.lock()"')
 
 #!markdown
 
@@ -347,6 +349,48 @@ inl mutex_guard_ref forall t. (x : mutex_guard t) : rust.ref' t =
 inl mutex_guard_ref_mut forall t. (x : mutex_guard t) : rust.ref' (rust.mut' t) =
     (!\($'"true; let mut !x = !x"') : bool) |> ignore
     !\\(x, $'"&mut $0"')
+
+#!markdown
+
+## channel_receiver
+
+#!spiral
+
+nominal channel_receiver t = $'std_sync_mpsc_Receiver<`t>'
+
+#!markdown
+
+## channel_sender
+
+#!spiral
+
+nominal channel_sender t = $'std_sync_mpsc_Sender<`t>'
+
+#!markdown
+
+## new_channel
+
+#!spiral
+
+inl new_channel () : channel_sender sm'.std_string * arc (channel_receiver sm'.std_string) =
+    !\($'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"')
+
+#!markdown
+
+## send_error
+
+#!spiral
+
+nominal send_error t = $"std_sync_mpsc_SendError<`t>"
+
+#!markdown
+
+## channel_send
+
+#!spiral
+
+inl channel_send forall t. (line : t) (sender : rust.ref' (channel_sender t)) : resultm.result' () (send_error sm'.std_string) =
+    !\\((sender, line), $'"$0.send($1)"')
 
 #!markdown
 

@@ -211,7 +211,7 @@ inl use_core_database forall core_state_data.
                 |> resultm.unbox
                 |> resultm.get
             | None => leptos.log $'"state_core.use_core_database (13) / set_core_state_heap_action / database=None"'
-        |> async.future_init (1, 0) 1
+        |> async.future_init (2, 1) 1
 
     leptos.create_effect fun () =>
         inl loaded = loaded |> leptos.signal_get

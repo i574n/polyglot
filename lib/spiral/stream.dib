@@ -96,7 +96,7 @@ nominal decode_reader_bytes t u = $'encoding_rs_io_DecodeReaderBytes<`t, `u>'
 inl decode_reader_bytes_build forall t. (x : t) : decode_reader_bytes t (am'.vec u8) =
     // !\($'"encoding_rs_io::DecodeReaderBytesBuilder::new().encoding(Some(encoding_rs::UTF_8)).build(!x)"')
     // !\($'"encoding_rs_io::DecodeReaderBytesBuilder::new().encoding(Some(encoding_rs::UTF_8)).utf8_passthru(true).build(!x)"')
-    !\($'"encoding_rs_io::DecodeReaderBytesBuilder::new().utf8_passthru(true).build(!x)"')
+    !\\(x, $'"encoding_rs_io::DecodeReaderBytesBuilder::new().utf8_passthru(true).build($0)"')
     // !\($'"encoding_rs_io::DecodeReaderBytes::new(!x)"')
 
 #!markdown
@@ -108,6 +108,15 @@ inl decode_reader_bytes_build forall t. (x : t) : decode_reader_bytes t (am'.vec
 inl buf_reader_read forall el dim. (slice : am'.slice' el dim) (buf_reader : buf_reader el) : resultm.result' unativeint io_error =
     (!\($'"true; let mut !slice = !slice"') : bool) |> ignore
     !\($'"std::io::Read::read(&mut !buf_reader, &mut !slice)"')
+
+#!markdown
+
+## io_read_by_ref
+
+#!spiral
+
+inl io_read_by_ref forall t. (lines : lines t) : lines t =
+    !\\(lines, $'"std::io::Read::by_ref($0)"')
 
 #!markdown
 
