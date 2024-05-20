@@ -18,6 +18,18 @@ type std_sync_MutexGuard<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError<$0>")>]
 #endif
 type std_sync_PoisonError<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver<$0>")>]
+#endif
+type std_sync_mpsc_Receiver<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::SendError<$0>")>]
+#endif
+type std_sync_mpsc_SendError<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender<$0>")>]
+#endif
+type std_sync_mpsc_Sender<'T> = class end
 type Disposable (f : unit -> unit) = interface System.IDisposable with member _.Dispose () = f ()
 type [<Struct>] US0 =
     | US0_0 of f0_0 : System.Threading.CancellationToken

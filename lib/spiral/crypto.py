@@ -13,7 +13,7 @@ class ICryptoCreateHash(Protocol):
         ...
 
 
-def _expr2() -> TypeInfo:
+def _expr0() -> TypeInfo:
     return record_type("Crypto.Mut0", [], Mut0, lambda: [("l0", int32_type)])
 
 
@@ -21,7 +21,7 @@ def _expr2() -> TypeInfo:
 class Mut0(Record):
     l0: int
 
-Mut0_reflection = _expr2
+Mut0_reflection = _expr0
 
 def method0(v0_1: str) -> str:
     return v0_1
@@ -41,11 +41,11 @@ def closure0(unit_var: None, v0_1: str) -> str:
     return value_1(_v1)
 
 
-def _arrow11(v: str) -> str:
+def _arrow10(v: str) -> str:
     return closure0(None, v)
 
 
-v0: Callable[[str], str] = _arrow11
+v0: Callable[[str], str] = _arrow10
 
 def hash_text(x: str) -> str:
     return v0(x)

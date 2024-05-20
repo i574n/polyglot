@@ -3,6 +3,10 @@
 #endif
 type core_any_Any = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("_")>]
+#endif
+type core_ops_Try<'T> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>]
 #endif
 type Func0<'T> = class end
@@ -1334,14 +1338,18 @@ and method0 () : unit =
     method1(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method26(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
-    let v7 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v7
-    let v8 : string = "__result"
-    let v9 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v8
-    let v10 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v6 : string = ""
+    let v7 : string = "}"
+    let v8 : string = v6 + v7
+    let v9 : string = v8 + v7
+    let v10 : string = "{"
+    let v11 : string = v6 + v10
+    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    Fable.Core.RustInterop.emitRustExpr () v12
+    let v13 : string = "__result"
+    let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13
+    let v15 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v14 v15
     ()
 and method28 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -1435,14 +1443,18 @@ and method27 () : unit =
     method28(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method26(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
-    let v7 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v7
-    let v8 : string = "__result"
-    let v9 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v8
-    let v10 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v6 : string = ""
+    let v7 : string = "}"
+    let v8 : string = v6 + v7
+    let v9 : string = v8 + v7
+    let v10 : string = "{"
+    let v11 : string = v6 + v10
+    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    Fable.Core.RustInterop.emitRustExpr () v12
+    let v13 : string = "__result"
+    let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13
+    let v15 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v14 v15
     ()
 and method31 () : UH0 =
     let v0 : UH0 = UH0_0
@@ -1550,14 +1562,18 @@ and method29 () : unit =
     method30(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method26(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
-    let v7 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v7
-    let v8 : string = "__result"
-    let v9 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v8
-    let v10 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v6 : string = ""
+    let v7 : string = "}"
+    let v8 : string = v6 + v7
+    let v9 : string = v8 + v7
+    let v10 : string = "{"
+    let v11 : string = v6 + v10
+    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    Fable.Core.RustInterop.emitRustExpr () v12
+    let v13 : string = "__result"
+    let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13
+    let v15 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v14 v15
     ()
 and method34 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -1669,14 +1685,18 @@ and method33 () : unit =
     method34(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method26(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
-    let v7 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v7
-    let v8 : string = "__result"
-    let v9 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v8
-    let v10 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v6 : string = ""
+    let v7 : string = "}"
+    let v8 : string = v6 + v7
+    let v9 : string = v8 + v7
+    let v10 : string = "{"
+    let v11 : string = v6 + v10
+    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    Fable.Core.RustInterop.emitRustExpr () v12
+    let v13 : string = "__result"
+    let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13
+    let v15 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v14 v15
     ()
 and method36 (v0 : pyo3_Python) : unit =
     let v1 : (float []) = [|2.0; 3.0; 4.0; 5.0; 10.0; 20.0; 50.0|]
@@ -1765,14 +1785,18 @@ and method35 () : unit =
     method36(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method26(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
-    let v7 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v7
-    let v8 : string = "__result"
-    let v9 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v8
-    let v10 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v6 : string = ""
+    let v7 : string = "}"
+    let v8 : string = v6 + v7
+    let v9 : string = v8 + v7
+    let v10 : string = "{"
+    let v11 : string = v6 + v10
+    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    Fable.Core.RustInterop.emitRustExpr () v12
+    let v13 : string = "__result"
+    let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13
+    let v15 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v14 v15
     ()
 and method38 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -1850,14 +1874,18 @@ and method37 () : unit =
     method38(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method26(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
-    let v7 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v7
-    let v8 : string = "__result"
-    let v9 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v8
-    let v10 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v6 : string = ""
+    let v7 : string = "}"
+    let v8 : string = v6 + v7
+    let v9 : string = v8 + v7
+    let v10 : string = "{"
+    let v11 : string = v6 + v10
+    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    Fable.Core.RustInterop.emitRustExpr () v12
+    let v13 : string = "__result"
+    let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13
+    let v15 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v14 v15
     ()
 and method40 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -1986,14 +2014,18 @@ and method39 () : unit =
     method40(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method26(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
-    let v7 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v7
-    let v8 : string = "__result"
-    let v9 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v8
-    let v10 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v6 : string = ""
+    let v7 : string = "}"
+    let v8 : string = v6 + v7
+    let v9 : string = v8 + v7
+    let v10 : string = "{"
+    let v11 : string = v6 + v10
+    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    Fable.Core.RustInterop.emitRustExpr () v12
+    let v13 : string = "__result"
+    let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13
+    let v15 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v14 v15
     ()
 and method42 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -2071,14 +2103,18 @@ and method41 () : unit =
     method42(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method26(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
-    let v7 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v7
-    let v8 : string = "__result"
-    let v9 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v8
-    let v10 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v6 : string = ""
+    let v7 : string = "}"
+    let v8 : string = v6 + v7
+    let v9 : string = v8 + v7
+    let v10 : string = "{"
+    let v11 : string = v6 + v10
+    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    Fable.Core.RustInterop.emitRustExpr () v12
+    let v13 : string = "__result"
+    let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13
+    let v15 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v14 v15
     ()
 and method45 () : (float []) =
     let v0 : (float []) = [|10.0; 20.0; 30.0; 40.0; 50.0; 60.0; 70.0; 80.0; 90.0; 100.0|]
@@ -2169,14 +2205,18 @@ and method43 () : unit =
     method44(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method26(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
-    let v7 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v7
-    let v8 : string = "__result"
-    let v9 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v8
-    let v10 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v6 : string = ""
+    let v7 : string = "}"
+    let v8 : string = v6 + v7
+    let v9 : string = v8 + v7
+    let v10 : string = "{"
+    let v11 : string = v6 + v10
+    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    Fable.Core.RustInterop.emitRustExpr () v12
+    let v13 : string = "__result"
+    let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13
+    let v15 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v14 v15
     ()
 and method47 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -2272,14 +2312,18 @@ and method46 () : unit =
     method47(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method26(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
-    let v7 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v7
-    let v8 : string = "__result"
-    let v9 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v8
-    let v10 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v6 : string = ""
+    let v7 : string = "}"
+    let v8 : string = v6 + v7
+    let v9 : string = v8 + v7
+    let v10 : string = "{"
+    let v11 : string = v6 + v10
+    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    Fable.Core.RustInterop.emitRustExpr () v12
+    let v13 : string = "__result"
+    let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13
+    let v15 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v14 v15
     ()
 and method49 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
@@ -2510,14 +2554,18 @@ and method48 () : unit =
     method49(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method26(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
-    let v7 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v7
-    let v8 : string = "__result"
-    let v9 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v8
-    let v10 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v6 : string = ""
+    let v7 : string = "}"
+    let v8 : string = v6 + v7
+    let v9 : string = v8 + v7
+    let v10 : string = "{"
+    let v11 : string = v6 + v10
+    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    Fable.Core.RustInterop.emitRustExpr () v12
+    let v13 : string = "__result"
+    let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13
+    let v15 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v14 v15
     ()
 and method52 (v0 : int32, v1 : Mut3) : bool =
     let v2 : int32 = v1.l0
@@ -2633,14 +2681,18 @@ and method50 () : unit =
     method51(v3)
     let v4 : Result<unit, pyo3_PyErr> = Ok ()
     let v5 : Result<unit, pyo3_PyErr> = method26(v4)
-    let v6 : string = "v5 }})"
-    Fable.Core.RustInterop.emitRustExpr () v6
-    let v7 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v7
-    let v8 : string = "__result"
-    let v9 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v8
-    let v10 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v6 : string = ""
+    let v7 : string = "}"
+    let v8 : string = v6 + v7
+    let v9 : string = v8 + v7
+    let v10 : string = "{"
+    let v11 : string = v6 + v10
+    let v12 : string = "v5 " + v9 + "); " + v11 + " //"
+    Fable.Core.RustInterop.emitRustExpr () v12
+    let v13 : string = "__result"
+    let v14 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v13
+    let v15 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v14 v15
     ()
 and closure0 () () : unit =
     let v0 : string = "true; () //"

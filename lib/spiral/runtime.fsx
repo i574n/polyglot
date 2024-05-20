@@ -59,18 +59,6 @@ type std_process_Output = class end
 #endif
 type std_process_Stdio = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver<$0>")>]
-#endif
-type std_sync_mpsc_Receiver<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::SendError<$0>")>]
-#endif
-type std_sync_mpsc_SendError<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender<$0>")>]
-#endif
-type std_sync_mpsc_Sender<'T> = class end
-#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("[$0]")>]
 #endif
 type Slice<'T> = class end
@@ -122,6 +110,10 @@ type std_env_VarError = class end
 [<Fable.Core.Erase; Fable.Core.Emit("core::any::Any")>]
 #endif
 type core_any_Any = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("_")>]
+#endif
+type core_ops_Try<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>]
 #endif
@@ -326,6 +318,18 @@ type std_sync_MutexGuard<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError<$0>")>]
 #endif
 type std_sync_PoisonError<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver<$0>")>]
+#endif
+type std_sync_mpsc_Receiver<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::SendError<$0>")>]
+#endif
+type std_sync_mpsc_SendError<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender<$0>")>]
+#endif
+type std_sync_mpsc_Sender<'T> = class end
 module State = let mutable trace_state = None
 #if FABLE_COMPILER
 [<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]

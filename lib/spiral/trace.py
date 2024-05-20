@@ -271,11 +271,11 @@ if State_trace_state() is None:
     State_trace_state(v0(v1))
 
 
-def _arrow127(v: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
+def _arrow126(v: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
     return closure2(None, v)
 
 
-v2: Callable[[US0, Callable[[], str], Callable[[], str]], None] = _arrow127
+v2: Callable[[US0, Callable[[], str], Callable[[], str]], None] = _arrow126
 
 def trace(x: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
     return v2(x)

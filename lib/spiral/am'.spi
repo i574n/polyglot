@@ -217,6 +217,12 @@ inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
     (!\\(fn !\($'"x"'), $'"true; $0 }).collect::<Vec<_>>()"') : bool) |> ignore
     !\($'"_result"')
 
+/// ## vec_map'''
+inl vec_map''' forall t u. (fn : t -> u) (ar : vec t) : vec u =
+    (!\($'"true; let _result = !ar.into_iter().map(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 }}).collect::<Vec<_>>(); {{ //"') : bool) |> ignore
+    !\($'"_result"')
+
 /// ## vec_map'
 inl vec_map' forall t u. (fn : t -> u) (ar : vec t) : vec u =
     !\\((ar, fn), $'"$0.into_iter().map(|x| $1(x.clone())).collect::<Vec<_>>()"')
@@ -235,7 +241,7 @@ inl vec_for_each forall t. (fn : t -> ()) (ar : vec t) : () =
 inl vec_for_each' forall t. (fn : t -> ()) (ar : vec t) : () =
     (!\($'"true; !ar.into_iter().for_each(|x| { //"') : bool) |> ignore
     inl x = fn !\($'"x"')
-    (!\($'"true; !x })"') : bool) |> ignore
+    (!\($'"true; !x }}); { //"') : bool) |> ignore
 
 /// ## vec_filter
 inl vec_filter forall t. (fn : t -> bool) (ar : vec t) : vec t =
@@ -325,17 +331,6 @@ instance iter_collect vec = fun (iter : iter_prototypes.into_iterator u) =>
 
 instance iter_collect'' vec = fun (iter : iter_prototypes.into_iterator (t (u v))) =>
     !\($'"!iter.collect::<Vec<_>>()"')
-
-/// ## enumerate
-inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
-    inl (a ar) = ar
-    ar
-    |> to_vec
-    |> iter.into_iter
-    |> iter.iter_enumerate
-    |> iter_prototypes.iter_collect
-    |> vec_map' from_pair
-    |> from_vec
 
 /// ## new_vec
 inl new_vec forall t. (items : list t) : vec t =

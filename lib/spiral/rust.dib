@@ -20,6 +20,7 @@ open testing
 
 inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::any::Any\")>]\n#endif\ntype core_any_Any = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype core_ops_Try<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func0<$0>\")>]\n#endif\ntype Func0<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func1<$0, $1>\")>]\n#endif\ntype Func0<'T, 'U> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>]\n#endif\ntype Box<'T> = class end"
@@ -49,6 +50,7 @@ inl types () =
 
 nominal unit = $'unit'
 nominal any = $"core_any_Any"
+nominal try t = $'core_ops_Try<`t>'
 nominal cow t = $"std_borrow_Cow<`t>"
 nominal ref_cell t = $"std_cell_RefCell<`t>"
 nominal rc t = $"std_rc_Rc<`t>"
@@ -135,7 +137,7 @@ inl emit' forall t. (x : t) : t =
 #!spiral
 
 inl clone forall t. (x : t) : t =
-    !\($'"!x.clone()"')
+    !\\(x, $'"$0.clone()"')
 
 #!markdown
 
@@ -144,8 +146,7 @@ inl clone forall t. (x : t) : t =
 #!spiral
 
 inl new_box forall t. (x : t) : box t =
-    inl x = join x
-    !\($'"Box::new(!x)"')
+    !\\(x, $'"Box::new($0)"')
 
 #!markdown
 
@@ -154,8 +155,7 @@ inl new_box forall t. (x : t) : box t =
 #!spiral
 
 inl new_rc forall t. (x : t) : rc t =
-    inl x = join x
-    !\($'"std::rc::Rc::new(!x)"')
+    !\\(x, $'"std::rc::Rc::new($0)"')
 
 #!markdown
 
@@ -164,8 +164,7 @@ inl new_rc forall t. (x : t) : rc t =
 #!spiral
 
 inl rc_clone forall t. (x : rc t) : rc t =
-    inl x = join x
-    !\($'"std::rc::Rc::clone(&!x)"')
+    !\\(x, $'"std::rc::Rc::clone(&$0)"')
 
 #!markdown
 
@@ -174,8 +173,7 @@ inl rc_clone forall t. (x : rc t) : rc t =
 #!spiral
 
 inl rc_unwrap_or_clone forall t. (x : rc t) : t =
-    inl x = join x
-    !\($'"std::rc::Rc::unwrap_or_clone(!x)"')
+    !\\(x, $'"std::rc::Rc::unwrap_or_clone($0)"')
 
 #!markdown
 
@@ -393,46 +391,42 @@ inl break () : () =
 
 #!markdown
 
+## fix_closure'
+
+#!spiral
+
+inl fix_closure' (depth : u8 * u8) x =
+    inl rec loop text (acc : string) n : string =
+        if n <= 0
+        then acc
+        else loop text (acc +. text) (n - 1)
+    inl a = depth |> fst |> loop "}" ""
+    inl b = depth |> snd |> loop "{" ""
+    $'"!x " + !a + "); " + !b + " //"'
+
+#!spiral
+
+//// test
+
+fix_closure' (3, 2) 0i32
+|> _assert_eq "0 }}}); {{ //"
+
+#!spiral
+
+//// test
+
+fix_closure' (0, 0) ()
+|> _assert_eq "() );  //"
+
+#!markdown
+
 ## fix_closure
 
 #!spiral
 
-inl fix_closure depth' x' =
-    inl depth = depth' |> fst
-    if depth = 1
-    then !\($'"!x' })"')
-    elif depth = 2
-    then !\($'"!x' }})"')
-    elif depth = 3
-    then !\($'"!x' }}})"')
-    elif depth = 4
-    then !\($'"!x' }}}})"')
-    elif depth = 5
-    then !\($'"!x' }}}}})"')
-    elif depth = 6
-    then !\($'"!x' }}}}}})"')
-    elif depth = 7
-    then !\($'"!x' }}}}}}})"')
-    elif depth = 8
-    then !\($'"!x' }}}}}}}})"')
-
-    inl depth = depth' |> snd
-    if depth = 1
-    then !\($'"{ //"')
-    elif depth = 2
-    then !\($'"{{ //"')
-    elif depth = 3
-    then !\($'"{{{ //"')
-    elif depth = 4
-    then !\($'"{{{{ //"')
-    elif depth = 5
-    then !\($'"{{{{{ //"')
-    elif depth = 6
-    then !\($'"{{{{{{ //"')
-    elif depth = 7
-    then !\($'"{{{{{{{ //"')
-    elif depth = 8
-    then !\($'"{{{{{{{{ //"')
+inl fix_closure depth x =
+    inl code = fix_closure' depth x
+    !\code
 
 #!markdown
 

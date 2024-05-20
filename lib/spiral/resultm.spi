@@ -31,6 +31,10 @@ inl flatten forall t u. (x : result (result t u) u) : result t u =
 inl try' forall t u. (x : result' t u) : t =
     !\\(x, $'"$0?"')
 
+/// ## to_try
+inl to_try forall t u. (x : result' t u) : rust.try t =
+    !\\(x, $'"$0"')
+
 /// ## unwrap'
 inl unwrap' forall t u. (x : result' t u) : t =
     !\\(x, $'"$0.unwrap()"')
@@ -53,7 +57,9 @@ inl unbox forall t u. (x : result' t u) : result t u =
 /// ## unbox'
 inl unbox' forall t u. (x : result' t u) : result t u =
     inl ok x : result t u = Ok x
+    inl ok = join ok
     inl error x : result t u = Error x
+    inl error = join error
     real
         typecase t with
         | () =>
@@ -144,4 +150,4 @@ inl transpose forall t u. (x : optionm'.option' (result' t u)) : result' (option
 
 /// ## rc_try_unwrap
 inl rc_try_unwrap forall t. (x : rust.rc t) : result' t (rust.rc t) =
-    !\($'"std::rc::Rc::try_unwrap(!x)"')
+    !\\(x, $'"std::rc::Rc::try_unwrap($0)"')

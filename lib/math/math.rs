@@ -1426,14 +1426,15 @@ mod module_b7a9935b {
                 Math::method1(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method26(Ok::<(), pyo3::PyErr>(()));
+                    let v12: string = string("v5 }}); { //");
                     v5
                 }
             });
             {
                 //;
                 {
-                    let v9: Result<(), pyo3::PyErr> = __result;
-                    v9.unwrap();
+                    let v14: Result<(), pyo3::PyErr> = __result;
+                    v14.unwrap();
                     ()
                 }
             }
@@ -1516,14 +1517,15 @@ mod module_b7a9935b {
                 Math::method28(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method26(Ok::<(), pyo3::PyErr>(()));
+                    let v12: string = string("v5 }}); { //");
                     v5
                 }
             });
             {
                 //;
                 {
-                    let v9: Result<(), pyo3::PyErr> = __result;
-                    v9.unwrap();
+                    let v14: Result<(), pyo3::PyErr> = __result;
+                    v14.unwrap();
                     ()
                 }
             }
@@ -1656,14 +1658,15 @@ mod module_b7a9935b {
                 Math::method30(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method26(Ok::<(), pyo3::PyErr>(()));
+                    let v12: string = string("v5 }}); { //");
                     v5
                 }
             });
             {
                 //;
                 {
-                    let v9: Result<(), pyo3::PyErr> = __result;
-                    v9.unwrap();
+                    let v14: Result<(), pyo3::PyErr> = __result;
+                    v14.unwrap();
                     ()
                 }
             }
@@ -1767,14 +1770,15 @@ mod module_b7a9935b {
                 Math::method34(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method26(Ok::<(), pyo3::PyErr>(()));
+                    let v12: string = string("v5 }}); { //");
                     v5
                 }
             });
             {
                 //;
                 {
-                    let v9: Result<(), pyo3::PyErr> = __result;
-                    v9.unwrap();
+                    let v14: Result<(), pyo3::PyErr> = __result;
+                    v14.unwrap();
                     ()
                 }
             }
@@ -1870,14 +1874,15 @@ mod module_b7a9935b {
                 Math::method36(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method26(Ok::<(), pyo3::PyErr>(()));
+                    let v12: string = string("v5 }}); { //");
                     v5
                 }
             });
             {
                 //;
                 {
-                    let v9: Result<(), pyo3::PyErr> = __result;
-                    v9.unwrap();
+                    let v14: Result<(), pyo3::PyErr> = __result;
+                    v14.unwrap();
                     ()
                 }
             }
@@ -1956,14 +1961,15 @@ mod module_b7a9935b {
                 Math::method38(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method26(Ok::<(), pyo3::PyErr>(()));
+                    let v12: string = string("v5 }}); { //");
                     v5
                 }
             });
             {
                 //;
                 {
-                    let v9: Result<(), pyo3::PyErr> = __result;
-                    v9.unwrap();
+                    let v14: Result<(), pyo3::PyErr> = __result;
+                    v14.unwrap();
                     ()
                 }
             }
@@ -2086,14 +2092,15 @@ mod module_b7a9935b {
                 Math::method40(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method26(Ok::<(), pyo3::PyErr>(()));
+                    let v12: string = string("v5 }}); { //");
                     v5
                 }
             });
             {
                 //;
                 {
-                    let v9: Result<(), pyo3::PyErr> = __result;
-                    v9.unwrap();
+                    let v14: Result<(), pyo3::PyErr> = __result;
+                    v14.unwrap();
                     ()
                 }
             }
@@ -2172,14 +2179,15 @@ mod module_b7a9935b {
                 Math::method42(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method26(Ok::<(), pyo3::PyErr>(()));
+                    let v12: string = string("v5 }}); { //");
                     v5
                 }
             });
             {
                 //;
                 {
-                    let v9: Result<(), pyo3::PyErr> = __result;
-                    v9.unwrap();
+                    let v14: Result<(), pyo3::PyErr> = __result;
+                    v14.unwrap();
                     ()
                 }
             }
@@ -2279,14 +2287,15 @@ mod module_b7a9935b {
                 Math::method44(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method26(Ok::<(), pyo3::PyErr>(()));
+                    let v12: string = string("v5 }}); { //");
                     v5
                 }
             });
             {
                 //;
                 {
-                    let v9: Result<(), pyo3::PyErr> = __result;
-                    v9.unwrap();
+                    let v14: Result<(), pyo3::PyErr> = __result;
+                    v14.unwrap();
                     ()
                 }
             }
@@ -2385,14 +2394,15 @@ mod module_b7a9935b {
                 Math::method47(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method26(Ok::<(), pyo3::PyErr>(()));
+                    let v12: string = string("v5 }}); { //");
                     v5
                 }
             });
             {
                 //;
                 {
-                    let v9: Result<(), pyo3::PyErr> = __result;
-                    v9.unwrap();
+                    let v14: Result<(), pyo3::PyErr> = __result;
+                    v14.unwrap();
                     ()
                 }
             }
@@ -2599,14 +2609,15 @@ mod module_b7a9935b {
                 Math::method49(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method26(Ok::<(), pyo3::PyErr>(()));
+                    let v12: string = string("v5 }}); { //");
                     v5
                 }
             });
             {
                 //;
                 {
-                    let v9: Result<(), pyo3::PyErr> = __result;
-                    v9.unwrap();
+                    let v14: Result<(), pyo3::PyErr> = __result;
+                    v14.unwrap();
                     ()
                 }
             }
@@ -2731,14 +2742,15 @@ mod module_b7a9935b {
                 Math::method51(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method26(Ok::<(), pyo3::PyErr>(()));
+                    let v12: string = string("v5 }}); { //");
                     v5
                 }
             });
             {
                 //;
                 {
-                    let v9: Result<(), pyo3::PyErr> = __result;
-                    v9.unwrap();
+                    let v14: Result<(), pyo3::PyErr> = __result;
+                    v14.unwrap();
                     ()
                 }
             }

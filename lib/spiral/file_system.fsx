@@ -35,6 +35,10 @@ type async_walkdir_WalkDir = class end
 #endif
 type core_any_Any = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("_")>]
+#endif
+type core_ops_Try<'T> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>]
 #endif
 type Func0<'T> = class end

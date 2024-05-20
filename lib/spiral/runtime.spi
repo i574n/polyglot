@@ -19,9 +19,6 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ExitStatus\")>]\n#endif\ntype std_process_ExitStatus = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Output\")>]\n#endif\ntype std_process_Output = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Stdio\")>]\n#endif\ntype std_process_Stdio = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::mpsc::Receiver<$0>\")>]\n#endif\ntype std_sync_mpsc_Receiver<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::mpsc::SendError<$0>\")>]\n#endif\ntype std_sync_mpsc_SendError<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::mpsc::Sender<$0>\")>]\n#endif\ntype std_sync_mpsc_Sender<'T> = class end"
 
 inl types () =
     types ()
@@ -73,12 +70,6 @@ inl process_output_status (output : process_output) : process_exit_status =
 /// ## process_exit_status_code
 inl process_exit_status_code (status : process_exit_status) : optionm'.option' i32 =
     !\\(status, $'"$0.code()"')
-
-/// ## channel_receiver
-nominal channel_receiver t = $'std_sync_mpsc_Receiver<`t>'
-
-/// ## channel_sender
-nominal channel_sender t = $'std_sync_mpsc_Sender<`t>'
 
 /// ## os_platform
 nominal os_platform' = $'System.Runtime.InteropServices.OSPlatform'
@@ -455,66 +446,57 @@ inl child_wait_with_output
     =
     !\\(child, $'"$0.wait_with_output()"')
 
-/// ## send_error
-nominal send_error t = $"std_sync_mpsc_SendError<`t>"
-
-/// ## channel_send
-inl channel_send forall t. (line : t) (sender : rust.ref' (channel_sender t)) : resultm.result' () (send_error sm'.std_string) =
-    !\\((sender, line), $'"$0.send($1)"')
-
 /// ## stdio_line
 inl stdio_line
-    (stdout : bool)
+    (stdio : result () ())
     (trace' : bool)
-    (channel_sender : threading.arc (threading.mutex (channel_sender sm'.std_string)))
+    (channel_sender : threading.arc (threading.mutex (threading.channel_sender sm'.std_string)))
     (line : resultm.result' sm'.std_string stream.io_error)
+    : resultm.result' () sm'.std_string
     =
-    run_target function
-        | Rust (Native) => fun () =>
-            inl highlight text =
-                $'$"\\u001b[4;7m{!text}\\u001b[0m"'
+    inl highlight text =
+        $'$"\\u001b[4;7m{!text}\\u001b[0m"'
+    inl line =
+        match
+            line
+            |> resultm.map_error' sm'.format'
+            |> resultm.unbox'
+        with
+        | Ok line =>
             inl line =
-                match
-                    line
-                    |> resultm.map_error' sm'.format'
-                    |> resultm.unbox
-                with
-                | Ok line =>
-                    inl line =
-                        line
-                        |> sm'.from_std_string
-                        // |> sm'.as_bytes
-                        // |> am'.slice_to_vec
-                        |> sm'.encoding_encode' (sm'.encoding_utf8' ())
-                        |> rust.cow_as_ref
-                        |> sm'.str_from_utf8
-                        // |> sm'.utf8_decode
-                        |> resultm.unwrap'
-                        |> sm'.ref_to_std_string
-                        // String::from_utf8_lossy(line.as_bytes()).into()
-                    inl line_log = line |> sm'.from_std_string
-                    inl text =
-                        if stdout
-                        then $'$"> {!line_log}"'
-                        else $'$"\! {!line_log}"'
-                    if trace'
-                    then trace Verbose (fun () => text) _locals
-                    else text |> console.write_line
-                    if stdout
-                    then line
-                    else line |> highlight |> sm'.to_std_string
-                | Error e =>
-                    trace Critical
-                        fun () => $'$"runtime.stdio_line"'
-                        fun () => $'$"e: {!e} / {!_locals ()}"'
-                    e |> highlight |> sm'.to_std_string
-            channel_sender
-            |> threading.arc_mutex_lock
-            |> resultm.unwrap'
-            |> threading.mutex_guard_ref
-            |> channel_send line
-            |> resultm.unwrap'
-        | _ => fun () => null ()
+                line
+                |> sm'.from_std_string
+                // |> sm'.as_bytes
+                // |> am'.slice_to_vec
+                |> sm'.encoding_encode' (sm'.encoding_utf8' ())
+                |> rust.cow_as_ref
+                |> sm'.str_from_utf8
+                // |> sm'.utf8_decode
+                |> resultm.unwrap'
+                |> sm'.ref_to_std_string
+                // String::from_utf8_lossy(line.as_bytes()).into()
+            inl line_log = line |> sm'.from_std_string
+            inl text =
+                match stdio with
+                | Ok () => $'$"> {!line_log}"'
+                | Error () => $'$"\! {!line_log}"'
+            if trace'
+            then trace Verbose (fun () => text) _locals
+            else text |> console.write_line
+            match stdio with
+            | Ok () => line
+            | Error () => line |> highlight |> sm'.to_std_string
+        | Error e =>
+            trace Critical
+                fun () => $'$"runtime.stdio_line"'
+                fun () => $'$"e: {!e} / {!_locals ()}"'
+            e |> highlight |> sm'.to_std_string
+    channel_sender
+    |> threading.arc_mutex_lock
+    |> resultm.unwrap'
+    |> threading.mutex_guard_ref
+    |> threading.channel_send line
+    |> resultm.map_error' sm'.format'
 
 /// ## execute_with_options
 let execute_with_options (options : execution_options) : i32 * string =
@@ -602,47 +584,45 @@ let execute_with_options (options : execution_options) : i32 * string =
                                 !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stderr.take().unwrap()"')
                             inl stdin : process_child_stdin =
                                 !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdin.take().unwrap()"')
-                            inl stdout = stdout |> optionm'.some' |> threading.new_arc_mutex
-                            inl stderr = stderr |> optionm'.some' |> threading.new_arc_mutex
+                            inl stdout = stdout |> threading.new_arc_mutex
+                            inl stderr = stderr |> threading.new_arc_mutex
                             inl stdin = stdin |> optionm'.some' |> threading.new_arc_mutex
-
-                            inl channel_sender, channel_receiver : channel_sender sm'.std_string * threading.arc (channel_receiver sm'.std_string) =
-                                !\($'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"')
-                            inl channel_receiver = join channel_receiver
-                            (!\\(channel_receiver, $'"true; let !channel_receiver = !channel_receiver"') : bool) |> ignore
-
-                            inl channel_sender = channel_sender |> threading.new_arc_mutex
-                            inl channel_sender' = channel_sender |> rust.clone
-                            inl channel_sender'' = channel_sender |> rust.clone
+                            inl channel_sender, channel_receiver = threading.new_channel ()
+                            inl channel_sender'' = channel_sender |> threading.new_arc_mutex
+                            inl channel_sender' = channel_sender |> threading.new_arc_mutex
                             inl channel_receiver' = channel_receiver |> threading.new_arc_mutex
 
                             inl stdout_handle =
                                 fun () =>
-                                    inl stdout' : process_child_stdout =
-                                        !\($'"!stdout.lock().unwrap().take().unwrap()"')
-                                    inl stdout_lines =
-                                        stdout'
-                                        |> stream.decode_reader_bytes_build
-                                        |> stream.new_buf_reader
-                                        |> threading.new_arc_mutex
-                                    inl stdio_line' = stdio_line true options.trace channel_sender'
-                                    (!\\((stdout_lines, stdio_line'), $'"true; for line in std::io::BufRead::lines(std::io::Read::by_ref(&mut *$0.lock().unwrap())).collect::<Vec<_>>() { $1(line) }"') : bool) |> ignore
-                                    true
-                                |> threading.spawn (2i32, 1i32) 1i32
+                                    stdout
+                                    |> threading.arc_mutex_lock
+                                    |> resultm.unwrap'
+                                    |> threading.mutex_guard_ref_mut
+                                    |> stream.decode_reader_bytes_build
+                                    |> stream.new_buf_reader
+                                    |> stream.buf_read_lines
+                                    |> iter.try_for_each fun lines =>
+                                        inl channel_sender'' = channel_sender'' |> rust.clone
+                                        lines
+                                        |> stdio_line (Ok ()) options.trace channel_sender''
+                                        |> resultm.to_try
+                                |> threading.spawn (1, 0) 1
 
                             inl stderr_handle =
                                 fun () =>
-                                    inl stderr' : process_child_stderr =
-                                        !\($'"!stderr.lock().unwrap().take().unwrap()"')
-                                    inl stderr_lines =
-                                        stderr'
-                                        |> stream.decode_reader_bytes_build
-                                        |> stream.new_buf_reader
-                                        |> threading.new_arc_mutex
-                                    inl stdio_line' = stdio_line false options.trace channel_sender
-                                    (!\\((stderr_lines, stdio_line'), $'"true; for line in std::io::BufRead::lines(std::io::Read::by_ref(&mut *$0.lock().unwrap())).collect::<Vec<_>>() { $1(line) }"') : bool) |> ignore
-                                    true
-                                |> threading.spawn (2i32, 1i32) 1i32
+                                    stderr
+                                    |> threading.arc_mutex_lock
+                                    |> resultm.unwrap'
+                                    |> threading.mutex_guard_ref_mut
+                                    |> stream.decode_reader_bytes_build
+                                    |> stream.new_buf_reader
+                                    |> stream.buf_read_lines
+                                    |> iter.try_for_each fun lines =>
+                                        inl channel_sender' = channel_sender' |> rust.clone
+                                        lines
+                                        |> stdio_line (Error ()) options.trace channel_sender'
+                                        |> resultm.to_try
+                                |> threading.spawn (1, 0) 1
 
                             match options.stdin |> optionm'.unbox with
                             | Some stdin' =>
@@ -673,9 +653,9 @@ let execute_with_options (options : execution_options) : i32 * string =
                                 |> child_wait_with_output
                                 |> resultm.map_error' sm'.format'
 
-                            [ stderr_handle; stdout_handle ]
+                            [ stdout_handle; stderr_handle ]
                             |> am'.new_vec
-                            |> am'.vec_for_each' (threading.join' >> resultm.unwrap' >> ignore)
+                            |> am'.vec_for_each' (threading.join' >> resultm.unwrap' >> resultm.unwrap')
 
                             match output |> resultm.unbox with
                             | Ok output =>

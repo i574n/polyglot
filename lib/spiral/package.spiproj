@@ -13,13 +13,13 @@ modules:
     console
     listm'
     iter_prototypes
-    iter
     am'
     seq
     math
     mapm
     sm'
     sm'_operators
+    iter
     env
     date_time
     trace-
