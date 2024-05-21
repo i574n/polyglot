@@ -243,7 +243,7 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let v14 : int64 = v11 - v13
     let v15 : int64 = v14 / 10L
     let v16 : string = "chrono::DateTime::from_timestamp_micros($0)"
-    let v17 : chrono_DateTime<chrono_Utc> option = Fable.Core.RustInterop.emitRustExpr v15 v16
+    let v17 : chrono_DateTime<chrono_Utc> option = Fable.Core.RustInterop.emitRustExpr v15 v16 
     let v18 : US0 option = None
     let _v18 = ref v18 
     match v17 with
@@ -267,17 +267,17 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
         | US0_0(v24) -> (* Some *)
             let v25 : chrono_DateTime<chrono_Utc> = method1(v24)
             let v26 : string = "v25.naive_utc()"
-            let v27 : chrono_NaiveDateTime = Fable.Core.RustInterop.emitRustExpr () v26
+            let v27 : chrono_NaiveDateTime = Fable.Core.RustInterop.emitRustExpr () v26 
             let v28 : string = "chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &v27)"
-            let v29 : chrono_DateTime<chrono_Local> = Fable.Core.RustInterop.emitRustExpr () v28
+            let v29 : chrono_DateTime<chrono_Local> = Fable.Core.RustInterop.emitRustExpr () v28 
             let v30 : string = "%Y%m%d-%H%M-%S%f"
             let v31 : string = "r#\"" + v30 + "\"#"
-            let v32 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v31
+            let v32 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v31 
             let v33 : chrono_DateTime<chrono_Local> = method2(v29)
             let v34 : string = "v33.format(v32).to_string()"
-            let v35 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v34
+            let v35 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v34 
             let v36 : string = "fable_library_rust::String_::fromString($0)"
-            let v37 : string = Fable.Core.RustInterop.emitRustExpr v35 v36
+            let v37 : string = Fable.Core.RustInterop.emitRustExpr v35 v36 
             let v38 : string = $"{v37.[0..17]}-{v37.[18..21]}-{v37.[22]}"
             US1_0(v38)
     let v46 : string =
@@ -294,7 +294,7 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v48 : string = "0i64.into()"
-    let v49 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v48
+    let v49 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v48 
     v49 
     #endif
 #if FABLE_COMPILER_RUST && WASM
@@ -318,7 +318,7 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     v54 
     #endif
     |> fun x -> _v47 <- Some x
-    let v55 : System.TimeZoneInfo = _v47.Value
+    let v55 : System.TimeZoneInfo = match _v47 with Some x -> x | None -> failwith "base.run_target / _v47=None"
     let v56 : bool = true
     let mutable _v56 : System.TimeSpan option = None 
     
@@ -353,7 +353,7 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v64 : string = "0i64.into()"
-    let v65 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v64
+    let v65 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v64 
     v65 
     #endif
 #if FABLE_COMPILER_RUST && WASM
@@ -377,13 +377,13 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     v70 
     #endif
     |> fun x -> _v63 <- Some x
-    let v71 : System.TimeZoneInfo = _v63.Value
+    let v71 : System.TimeZoneInfo = match _v63 with Some x -> x | None -> failwith "base.run_target / _v63=None"
     let v72 : (System.DateTime -> System.TimeSpan) = v62 v71
     let v73 : System.TimeSpan = v72 v9
     v73 
     #endif
     |> fun x -> _v56 <- Some x
-    let v74 : System.TimeSpan = _v56.Value
+    let v74 : System.TimeSpan = match _v56 with Some x -> x | None -> failwith "base.run_target / _v56=None"
     let v75 : (System.TimeSpan -> int32) = _.Hours
     let v76 : int32 = v75 v74
     let v77 : bool = v76 > 0
@@ -428,7 +428,7 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v94 : string = "0i64.into()"
-    let v95 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v94
+    let v95 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v94 
     v95 
     #endif
 #if FABLE_COMPILER_RUST && WASM
@@ -452,7 +452,7 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     v100 
     #endif
     |> fun x -> _v93 <- Some x
-    let v101 : System.TimeZoneInfo = _v93.Value
+    let v101 : System.TimeZoneInfo = match _v93 with Some x -> x | None -> failwith "base.run_target / _v93=None"
     let v102 : bool = true
     let mutable _v102 : System.TimeSpan option = None 
     
@@ -487,7 +487,7 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v110 : string = "0i64.into()"
-    let v111 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v110
+    let v111 : System.TimeZoneInfo = Fable.Core.RustInterop.emitRustExpr () v110 
     v111 
     #endif
 #if FABLE_COMPILER_RUST && WASM
@@ -511,13 +511,13 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     v116 
     #endif
     |> fun x -> _v109 <- Some x
-    let v117 : System.TimeZoneInfo = _v109.Value
+    let v117 : System.TimeZoneInfo = match _v109 with Some x -> x | None -> failwith "base.run_target / _v109=None"
     let v118 : (System.DateTime -> System.TimeSpan) = v108 v117
     let v119 : System.TimeSpan = v118 v1
     v119 
     #endif
     |> fun x -> _v102 <- Some x
-    let v120 : System.TimeSpan = _v102.Value
+    let v120 : System.TimeSpan = match _v102 with Some x -> x | None -> failwith "base.run_target / _v102=None"
     let v121 : (System.TimeSpan -> int32) = _.Hours
     let v122 : int32 = v121 v120
     let v123 : bool = v122 > 0
@@ -533,7 +533,7 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     v132 
     #endif
     |> fun x -> _v2 <- Some x
-    let v133 : System.Guid = _v2.Value
+    let v133 : System.Guid = match _v2 with Some x -> x | None -> failwith "base.run_target / _v2=None"
     v133
 and closure1 (v0 : System.Guid) (v1 : System.DateTime) : System.Guid =
     method0(v0, v1)
@@ -582,7 +582,7 @@ and closure2 () (v0 : System.Guid) : System.DateTime =
     v10 
     #endif
     |> fun x -> _v4 <- Some x
-    let v11 : System.DateTime = _v4.Value
+    let v11 : System.DateTime = match _v4 with Some x -> x | None -> failwith "base.run_target / _v4=None"
     v11
 and closure7 (v0 : System.Guid) (v1 : int64) : System.Guid =
     let v2 : (System.Guid -> string) = _.ToString()
@@ -600,17 +600,19 @@ and closure8 () (v0 : System.Guid) : int64 =
     let v3 : int64 = int64 $"{v2.[0..7]}{v2.[9..12]}{v2.[14..17]}{v2.[19..20]}"
     v3
 and closure9 () (v0 : System.DateTime) : System.Guid =
-    let v1 : System.Guid = System.Guid.NewGuid ()
-    method0(v1, v0)
+    let v1 : (unit -> System.Guid) = System.Guid.NewGuid
+    let v2 : System.Guid = v1 ()
+    method0(v2, v0)
 and closure10 () (v0 : int64) : System.Guid =
-    let v1 : System.Guid = System.Guid.NewGuid ()
-    let v2 : (System.Guid -> string) = _.ToString()
-    let v3 : string = v2 v1
-    let v4 : (int64 -> string) = _.ToString()
-    let v5 : string = v4 v0
-    let v6 : string = v5.PadLeft (18, '0')
-    let v7 : System.Guid = System.Guid $"{v6.[0..7]}-{v6.[8..11]}-{v6.[12..15]}-{v6.[16..17]}{v3.[21..]}"
-    v7
+    let v1 : (unit -> System.Guid) = System.Guid.NewGuid
+    let v2 : System.Guid = v1 ()
+    let v3 : (System.Guid -> string) = _.ToString()
+    let v4 : string = v3 v2
+    let v5 : (int64 -> string) = _.ToString()
+    let v6 : string = v5 v0
+    let v7 : string = v6.PadLeft (18, '0')
+    let v8 : System.Guid = System.Guid $"{v7.[0..7]}-{v7.[8..11]}-{v7.[12..15]}-{v7.[16..17]}{v4.[21..]}"
+    v8
 and closure12 (v0 : string) (v1 : System.DateTime) : string =
     let v2 : (string -> string) = v1.ToString
     v2 v0

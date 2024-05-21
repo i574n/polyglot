@@ -256,20 +256,20 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v8 : string = "std::env::var(&*$0)"
     let v9 : string = "AUTOMATION"
-    let v10 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v9 v8
+    let v10 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v9 v8 
     let v11 : string = "true; let _result = $0.map(|x| { //"
-    let v12 : bool = Fable.Core.RustInterop.emitRustExpr v10 v11
+    let v12 : bool = Fable.Core.RustInterop.emitRustExpr v10 v11 
     let v13 : string = "x"
-    let v14 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v13
+    let v14 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v13 
     let v15 : string = "fable_library_rust::String_::fromString($0)"
-    let v16 : string = Fable.Core.RustInterop.emitRustExpr v14 v15
+    let v16 : string = Fable.Core.RustInterop.emitRustExpr v14 v15 
     let v17 : string = "true; $0 })"
-    let v18 : bool = Fable.Core.RustInterop.emitRustExpr v16 v17
+    let v18 : bool = Fable.Core.RustInterop.emitRustExpr v16 v17 
     let v19 : string = "_result"
-    let v20 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v19
+    let v20 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v19 
     let v21 : string = method0()
     let v22 : string = "$0.unwrap_or($1)"
-    let v23 : string = Fable.Core.RustInterop.emitRustExpr struct (v20, v21) v22
+    let v23 : string = Fable.Core.RustInterop.emitRustExpr struct (v20, v21) v22 
     v23 
     #endif
 #if FABLE_COMPILER_RUST && WASM
@@ -295,7 +295,7 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     v30 
     #endif
     |> fun x -> _v7 <- Some x
-    let v31 : string = _v7.Value
+    let v31 : string = match _v7 with Some x -> x | None -> failwith "base.run_target / _v7=None"
     let v33 : bool = v31 = "True"
     let v39 : US1 =
         if v33 then
@@ -339,20 +339,20 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v50 : string = "std::env::var(&*$0)"
-    let v51 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v9 v50
+    let v51 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v9 v50 
     let v52 : string = "true; let _result = $0.map(|x| { //"
-    let v53 : bool = Fable.Core.RustInterop.emitRustExpr v51 v52
+    let v53 : bool = Fable.Core.RustInterop.emitRustExpr v51 v52 
     let v54 : string = "x"
-    let v55 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v54
+    let v55 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v54 
     let v56 : string = "fable_library_rust::String_::fromString($0)"
-    let v57 : string = Fable.Core.RustInterop.emitRustExpr v55 v56
+    let v57 : string = Fable.Core.RustInterop.emitRustExpr v55 v56 
     let v58 : string = "true; $0 })"
-    let v59 : bool = Fable.Core.RustInterop.emitRustExpr v57 v58
+    let v59 : bool = Fable.Core.RustInterop.emitRustExpr v57 v58 
     let v60 : string = "_result"
-    let v61 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v60
+    let v61 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v60 
     let v62 : string = method0()
     let v63 : string = "$0.unwrap_or($1)"
-    let v64 : string = Fable.Core.RustInterop.emitRustExpr struct (v61, v62) v63
+    let v64 : string = Fable.Core.RustInterop.emitRustExpr struct (v61, v62) v63 
     v64 
     #endif
 #if FABLE_COMPILER_RUST && WASM
@@ -378,7 +378,7 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     v71 
     #endif
     |> fun x -> _v49 <- Some x
-    let v72 : string = _v49.Value
+    let v72 : string = match _v49 with Some x -> x | None -> failwith "base.run_target / _v49=None"
     let v74 : bool = v72 = "True"
     let v80 : US1 =
         if v74 then
@@ -399,7 +399,7 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     v85 
     #endif
     |> fun x -> _v6 <- Some x
-    let v86 : int64 option = _v6.Value
+    let v86 : int64 option = match _v6 with Some x -> x | None -> failwith "base.run_target / _v6=None"
     struct (v2, v1, v3, v86, v5)
 and closure4 (v0 : int32, v1 : string) () : string =
     let v2 : string = $"networking.test_port_open / port: {v0} / ex: {v1}"
@@ -521,7 +521,7 @@ and closure6 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     v66 
     #endif
     |> fun x -> _v10 <- Some x
-    let v67 : string = _v10.Value
+    let v67 : string = match _v10 with Some x -> x | None -> failwith "base.run_target / _v10=None"
     let v68 : int64 = v5.l0
     let v78 : string =
         match v0 with
@@ -540,132 +540,133 @@ and closure6 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
         | US0_3 -> (* Warning *)
             let v72 : string = "Warning"
             v72
-    let v79 : string = v78.ToLower ()
-    let v80 : string = v79.PadLeft (7, ' ')
-    let v81 : bool = true
-    let mutable _v81 : string option = None 
+    let v79 : (unit -> string) = v78.ToLower
+    let v80 : string = v79 ()
+    let v81 : string = v80.PadLeft (7, ' ')
+    let v82 : bool = true
+    let mutable _v82 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v96 : Ref<Str> =
+    let v97 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v90 : string = "inline_colorization::color_bright_red"
-            let v91 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v90
-            v91
+            let v91 : string = "inline_colorization::color_bright_red"
+            let v92 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v91 
+            v92
         | US0_1 -> (* Debug *)
-            let v84 : string = "inline_colorization::color_bright_blue"
-            let v85 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v84
-            v85
+            let v85 : string = "inline_colorization::color_bright_blue"
+            let v86 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v85 
+            v86
         | US0_2 -> (* Info *)
-            let v86 : string = "inline_colorization::color_bright_green"
-            let v87 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v86
-            v87
+            let v87 : string = "inline_colorization::color_bright_green"
+            let v88 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v87 
+            v88
         | US0_0 -> (* Verbose *)
-            let v82 : string = "inline_colorization::color_bright_black"
-            let v83 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v82
-            v83
+            let v83 : string = "inline_colorization::color_bright_black"
+            let v84 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v83 
+            v84
         | US0_3 -> (* Warning *)
-            let v88 : string = "inline_colorization::color_yellow"
-            let v89 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v88
-            v89
-    let v97 : string = "&*$0"
-    let v98 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v80 v97
-    let v99 : string = "inline_colorization::color_reset"
-    let v100 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v99
-    let v101 : string = "\"{v96}{v98}{v100}\""
-    let v102 : string = @$"format!(" + v101 + ")"
-    let v103 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v102
-    let v104 : string = "fable_library_rust::String_::fromString($0)"
-    let v105 : string = Fable.Core.RustInterop.emitRustExpr v103 v104
-    v105 
+            let v89 : string = "inline_colorization::color_yellow"
+            let v90 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v89 
+            v90
+    let v98 : string = "&*$0"
+    let v99 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v81 v98 
+    let v100 : string = "inline_colorization::color_reset"
+    let v101 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v100 
+    let v102 : string = "\"{v97}{v99}{v101}\""
+    let v103 : string = @$"format!(" + v102 + ")"
+    let v104 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v103 
+    let v105 : string = "fable_library_rust::String_::fromString($0)"
+    let v106 : string = Fable.Core.RustInterop.emitRustExpr v104 v105 
+    v106 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v120 : Ref<Str> =
+    let v121 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v114 : string = "inline_colorization::color_bright_red"
-            let v115 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v114
-            v115
+            let v115 : string = "inline_colorization::color_bright_red"
+            let v116 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v115 
+            v116
         | US0_1 -> (* Debug *)
-            let v108 : string = "inline_colorization::color_bright_blue"
-            let v109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v108
-            v109
+            let v109 : string = "inline_colorization::color_bright_blue"
+            let v110 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v109 
+            v110
         | US0_2 -> (* Info *)
-            let v110 : string = "inline_colorization::color_bright_green"
-            let v111 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v110
-            v111
+            let v111 : string = "inline_colorization::color_bright_green"
+            let v112 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v111 
+            v112
         | US0_0 -> (* Verbose *)
-            let v106 : string = "inline_colorization::color_bright_black"
-            let v107 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v106
-            v107
+            let v107 : string = "inline_colorization::color_bright_black"
+            let v108 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v107 
+            v108
         | US0_3 -> (* Warning *)
-            let v112 : string = "inline_colorization::color_yellow"
-            let v113 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v112
-            v113
-    let v121 : string = "&*$0"
-    let v122 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v80 v121
-    let v123 : string = "inline_colorization::color_reset"
-    let v124 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v123
-    let v125 : string = "\"{v120}{v122}{v124}\""
-    let v126 : string = @$"format!(" + v125 + ")"
-    let v127 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v126
-    let v128 : string = "fable_library_rust::String_::fromString($0)"
-    let v129 : string = Fable.Core.RustInterop.emitRustExpr v127 v128
-    v129 
+            let v113 : string = "inline_colorization::color_yellow"
+            let v114 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v113 
+            v114
+    let v122 : string = "&*$0"
+    let v123 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v81 v122 
+    let v124 : string = "inline_colorization::color_reset"
+    let v125 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v124 
+    let v126 : string = "\"{v121}{v123}{v125}\""
+    let v127 : string = @$"format!(" + v126 + ")"
+    let v128 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v127 
+    let v129 : string = "fable_library_rust::String_::fromString($0)"
+    let v130 : string = Fable.Core.RustInterop.emitRustExpr v128 v129 
+    v130 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v144 : Ref<Str> =
+    let v145 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v138 : string = "inline_colorization::color_bright_red"
-            let v139 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v138
-            v139
+            let v139 : string = "inline_colorization::color_bright_red"
+            let v140 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v139 
+            v140
         | US0_1 -> (* Debug *)
-            let v132 : string = "inline_colorization::color_bright_blue"
-            let v133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v132
-            v133
+            let v133 : string = "inline_colorization::color_bright_blue"
+            let v134 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v133 
+            v134
         | US0_2 -> (* Info *)
-            let v134 : string = "inline_colorization::color_bright_green"
-            let v135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v134
-            v135
+            let v135 : string = "inline_colorization::color_bright_green"
+            let v136 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v135 
+            v136
         | US0_0 -> (* Verbose *)
-            let v130 : string = "inline_colorization::color_bright_black"
-            let v131 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v130
-            v131
+            let v131 : string = "inline_colorization::color_bright_black"
+            let v132 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v131 
+            v132
         | US0_3 -> (* Warning *)
-            let v136 : string = "inline_colorization::color_yellow"
-            let v137 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v136
-            v137
-    let v145 : string = "&*$0"
-    let v146 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v80 v145
-    let v147 : string = "inline_colorization::color_reset"
-    let v148 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v147
-    let v149 : string = "\"{v144}{v146}{v148}\""
-    let v150 : string = @$"format!(" + v149 + ")"
-    let v151 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v150
-    let v152 : string = "fable_library_rust::String_::fromString($0)"
-    let v153 : string = Fable.Core.RustInterop.emitRustExpr v151 v152
-    v153 
+            let v137 : string = "inline_colorization::color_yellow"
+            let v138 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v137 
+            v138
+    let v146 : string = "&*$0"
+    let v147 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v81 v146 
+    let v148 : string = "inline_colorization::color_reset"
+    let v149 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v148 
+    let v150 : string = "\"{v145}{v147}{v149}\""
+    let v151 : string = @$"format!(" + v150 + ")"
+    let v152 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v151 
+    let v153 : string = "fable_library_rust::String_::fromString($0)"
+    let v154 : string = Fable.Core.RustInterop.emitRustExpr v152 v153 
+    v154 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    v80 
+    v81 
     #endif
 #if FABLE_COMPILER_PYTHON
-    v80 
+    v81 
     #endif
 #else
-    v80 
+    v81 
     #endif
-    |> fun x -> _v81 <- Some x
-    let v154 : string = _v81.Value
-    let v155 : string = $"{v67} {v154} #{v68} %s{v1 ()} / %s{v2 ()}"
-    let v156 : (char []) = [||]
-    let v157 : string = v155.TrimStart v156
-    let v158 : (char []) = [|' '; '/'|]
-    let v159 : string = v157.TrimEnd v158
-    v159
+    |> fun x -> _v82 <- Some x
+    let v155 : string = match _v82 with Some x -> x | None -> failwith "base.run_target / _v82=None"
+    let v156 : string = $"{v67} {v155} #{v68} %s{v1 ()} / %s{v2 ()}"
+    let v157 : (char []) = [||]
+    let v158 : string = v156.TrimStart v157 
+    let v159 : (char []) = [|' '; '/'|]
+    let v160 : string = v158.TrimEnd v159 
+    v160
 and method4 (v0 : US0, v1 : (unit -> string)) : unit =
     let v2 : (US0 -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
     let v3 : US0 = US0_0
@@ -697,17 +698,17 @@ and method4 (v0 : US0, v1 : (unit -> string)) : unit =
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
         let v26 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v24 v26
+        Fable.Core.RustInterop.emitRustExpr v24 v26 
         () 
         #endif
 #if FABLE_COMPILER_RUST && WASM
         let v27 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v24 v27
+        Fable.Core.RustInterop.emitRustExpr v24 v27 
         () 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
         let v28 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v24 v28
+        Fable.Core.RustInterop.emitRustExpr v24 v28 
         () 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
@@ -723,7 +724,7 @@ and method4 (v0 : US0, v1 : (unit -> string)) : unit =
         () 
         #endif
         |> fun x -> _v25 <- Some x
-        _v25.Value
+        match _v25 with Some x -> x | None -> failwith "base.run_target / _v25=None"
         let v29 : (string -> unit) = v8.l0
         v29 v24
 and method2 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
@@ -757,7 +758,7 @@ and closure3 (v0 : string) (v1 : int32) : Async<bool> =
     #endif
 #else
     let v8 : Async<bool> option = None
-    let mutable _v8 = v8
+    let mutable _v8 = v8 
     async {
     let v9 : Async<System.Threading.CancellationToken> = Async.CancellationToken
     let! v9 = v9 
@@ -800,7 +801,7 @@ and closure3 (v0 : string) (v1 : int32) : Async<bool> =
     v23 
     #endif
     |> fun x -> _v16 <- Some x
-    let v24 : Async<unit> = _v16.Value
+    let v24 : Async<unit> = match _v16 with Some x -> x | None -> failwith "base.run_target / _v16=None"
     do! v24 
     return true 
     with ex ->
@@ -835,7 +836,7 @@ and closure3 (v0 : string) (v1 : int32) : Async<bool> =
     v32 
     #endif
     |> fun x -> _v26 <- Some x
-    let v33 : string = _v26.Value
+    let v33 : string = match _v26 with Some x -> x | None -> failwith "base.run_target / _v26=None"
     let v34 : US0 = US0_0
     let v35 : (unit -> string) = closure4(v1, v33)
     let v36 : (unit -> string) = closure5()
@@ -845,11 +846,11 @@ and closure3 (v0 : string) (v1 : int32) : Async<bool> =
     let v37 : bool = *)
     }
     |> fun x -> _v8 <- Some x
-    let v38 : Async<bool> = _v8 |> Option.get
+    let v38 : Async<bool> = match _v8 with Some x -> x | None -> failwith "async.new_async_unit / _v8=None"
     v38 
     #endif
     |> fun x -> _v2 <- Some x
-    let v39 : Async<bool> = _v2.Value
+    let v39 : Async<bool> = match _v2 with Some x -> x | None -> failwith "base.run_target / _v2=None"
     v39
 and closure2 () (v0 : string) : (int32 -> Async<bool>) =
     closure3(v0)
@@ -895,7 +896,7 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     #endif
 #else
     let v9 : Async<bool> option = None
-    let mutable _v9 = v9
+    let mutable _v9 = v9 
     async {
     let v10 : bool = true
     let mutable _v10 : Async<bool> option = None 
@@ -924,7 +925,7 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     #endif
 #else
     let v16 : Async<bool> option = None
-    let mutable _v16 = v16
+    let mutable _v16 = v16 
     async {
     let v17 : Async<System.Threading.CancellationToken> = Async.CancellationToken
     let! v17 = v17 
@@ -967,7 +968,7 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     v31 
     #endif
     |> fun x -> _v24 <- Some x
-    let v32 : Async<unit> = _v24.Value
+    let v32 : Async<unit> = match _v24 with Some x -> x | None -> failwith "base.run_target / _v24=None"
     do! v32 
     return true 
     with ex ->
@@ -1002,7 +1003,7 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     v40 
     #endif
     |> fun x -> _v34 <- Some x
-    let v41 : string = _v34.Value
+    let v41 : string = match _v34 with Some x -> x | None -> failwith "base.run_target / _v34=None"
     let v42 : US0 = US0_0
     let v43 : (unit -> string) = closure4(v2, v41)
     let v44 : (unit -> string) = closure5()
@@ -1012,11 +1013,11 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     let v45 : bool = *)
     }
     |> fun x -> _v16 <- Some x
-    let v46 : Async<bool> = _v16 |> Option.get
+    let v46 : Async<bool> = match _v16 with Some x -> x | None -> failwith "async.new_async_unit / _v16=None"
     v46 
     #endif
     |> fun x -> _v10 <- Some x
-    let v47 : Async<bool> = _v10.Value
+    let v47 : Async<bool> = match _v10 with Some x -> x | None -> failwith "base.run_target / _v10=None"
     let v48 : bool = true
     let mutable _v48 : Async<US2> option = None 
     
@@ -1070,7 +1071,7 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     #endif
 #else
     let v60 : Async<US2> option = None
-    let mutable _v60 = v60
+    let mutable _v60 = v60 
     async {
     let v61 : bool = true
     let mutable _v61 : Async<Async<bool>> option = None 
@@ -1102,7 +1103,7 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     v67 
     #endif
     |> fun x -> _v61 <- Some x
-    let v68 : Async<Async<bool>> = _v61.Value
+    let v68 : Async<Async<bool>> = match _v61 with Some x -> x | None -> failwith "base.run_target / _v61=None"
     let! v68 = v68 
     let v69 : Async<bool> = v68 
     let v70 : bool = true
@@ -1136,7 +1137,7 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     v77 
     #endif
     |> fun x -> _v70 <- Some x
-    let v78 : Async<Choice<bool, exn>> = _v70.Value
+    let v78 : Async<Choice<bool, exn>> = match _v70 with Some x -> x | None -> failwith "base.run_target / _v70=None"
     let v79 : bool = true
     let mutable _v79 : Async<US3> option = None 
     
@@ -1164,7 +1165,7 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     #endif
 #else
     let v85 : Async<US3> option = None
-    let mutable _v85 = v85
+    let mutable _v85 = v85 
     async {
     let! v78 = v78 
     let v86 : Choice<bool, exn> = v78 
@@ -1200,15 +1201,15 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     v95 
     #endif
     |> fun x -> _v87 <- Some x
-    let v96 : US3 = _v87.Value
+    let v96 : US3 = match _v87 with Some x -> x | None -> failwith "base.run_target / _v87=None"
     return v96 
     }
     |> fun x -> _v85 <- Some x
-    let v97 : Async<US3> = _v85 |> Option.get
+    let v97 : Async<US3> = match _v85 with Some x -> x | None -> failwith "async.new_async_unit / _v85=None"
     v97 
     #endif
     |> fun x -> _v79 <- Some x
-    let v98 : Async<US3> = _v79.Value
+    let v98 : Async<US3> = match _v79 with Some x -> x | None -> failwith "base.run_target / _v79=None"
     let v99 : bool = true
     let mutable _v99 : Async<US4> option = None 
     
@@ -1236,7 +1237,7 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     #endif
 #else
     let v105 : Async<US4> option = None
-    let mutable _v105 = v105
+    let mutable _v105 = v105 
     async {
     let! v98 = v98 
     let v106 : US3 = v98 
@@ -1249,11 +1250,11 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     return v112 
     }
     |> fun x -> _v105 <- Some x
-    let v113 : Async<US4> = _v105 |> Option.get
+    let v113 : Async<US4> = match _v105 with Some x -> x | None -> failwith "async.new_async_unit / _v105=None"
     v113 
     #endif
     |> fun x -> _v99 <- Some x
-    let v114 : Async<US4> = _v99.Value
+    let v114 : Async<US4> = match _v99 with Some x -> x | None -> failwith "base.run_target / _v99=None"
     let v115 : bool = true
     let mutable _v115 : Async<US2> option = None 
     
@@ -1281,7 +1282,7 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     #endif
 #else
     let v121 : Async<US2> option = None
-    let mutable _v121 = v121
+    let mutable _v121 = v121 
     async {
     let! v114 = v114 
     let v122 : US4 = v114 
@@ -1290,7 +1291,7 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
         | US4_1(v125) -> (* Error *)
             let v126 : string = $"%A{v125}"
             let v127 : string = "System.TimeoutException"
-            let v128 : bool = v126.Contains v127
+            let v128 : bool = v126.Contains v127 
             if v128 then
                 let v129 : US0 = US0_1
                 let v130 : (unit -> string) = closure12()
@@ -1328,7 +1329,7 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
                 v139 
                 #endif
                 |> fun x -> _v133 <- Some x
-                let v140 : string = _v133.Value
+                let v140 : string = match _v133 with Some x -> x | None -> failwith "base.run_target / _v133=None"
                 let v141 : US0 = US0_4
                 let v142 : (unit -> string) = closure14(v140)
                 let v143 : (unit -> string) = closure13(v0)
@@ -1339,23 +1340,23 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     return v147 
     }
     |> fun x -> _v121 <- Some x
-    let v148 : Async<US2> = _v121 |> Option.get
+    let v148 : Async<US2> = match _v121 with Some x -> x | None -> failwith "async.new_async_unit / _v121=None"
     v148 
     #endif
     |> fun x -> _v115 <- Some x
-    let v149 : Async<US2> = _v115.Value
+    let v149 : Async<US2> = match _v115 with Some x -> x | None -> failwith "base.run_target / _v115=None"
     return! v149 
     }
     |> fun x -> _v60 <- Some x
-    let v150 : Async<US2> = _v60 |> Option.get
+    let v150 : Async<US2> = match _v60 with Some x -> x | None -> failwith "async.new_async_unit / _v60=None"
     v150 
     #endif
     |> fun x -> _v54 <- Some x
-    let v151 : Async<US2> = _v54.Value
+    let v151 : Async<US2> = match _v54 with Some x -> x | None -> failwith "base.run_target / _v54=None"
     v151 
     #endif
     |> fun x -> _v48 <- Some x
-    let v152 : Async<US2> = _v48.Value
+    let v152 : Async<US2> = match _v48 with Some x -> x | None -> failwith "base.run_target / _v48=None"
     let! v152 = v152 
     let v153 : US2 = v152 
     let v156 : bool =
@@ -1367,11 +1368,11 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     return v156 
     }
     |> fun x -> _v9 <- Some x
-    let v157 : Async<bool> = _v9 |> Option.get
+    let v157 : Async<bool> = match _v9 with Some x -> x | None -> failwith "async.new_async_unit / _v9=None"
     v157 
     #endif
     |> fun x -> _v3 <- Some x
-    let v158 : Async<bool> = _v3.Value
+    let v158 : Async<bool> = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
     v158
 and closure8 (v0 : int32) (v1 : string) : (int32 -> Async<bool>) =
     closure9(v0, v1)
@@ -1412,7 +1413,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
     #endif
 #else
     let v11 : Async<int64> option = None
-    let mutable _v11 = v11
+    let mutable _v11 = v11 
     async {
     let v12 : US5 option = None
     let _v12 = ref v12 
@@ -1460,7 +1461,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             #endif
 #else
             let v24 : Async<bool> option = None
-            let mutable _v24 = v24
+            let mutable _v24 = v24 
             async {
             let v25 : Async<System.Threading.CancellationToken> = Async.CancellationToken
             let! v25 = v25 
@@ -1503,7 +1504,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             v39 
             #endif
             |> fun x -> _v32 <- Some x
-            let v40 : Async<unit> = _v32.Value
+            let v40 : Async<unit> = match _v32 with Some x -> x | None -> failwith "base.run_target / _v32=None"
             do! v40 
             return true 
             with ex ->
@@ -1538,7 +1539,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             v48 
             #endif
             |> fun x -> _v42 <- Some x
-            let v49 : string = _v42.Value
+            let v49 : string = match _v42 with Some x -> x | None -> failwith "base.run_target / _v42=None"
             let v50 : US0 = US0_0
             let v51 : (unit -> string) = closure4(v3, v49)
             let v52 : (unit -> string) = closure5()
@@ -1548,11 +1549,11 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             let v53 : bool = *)
             }
             |> fun x -> _v24 <- Some x
-            let v54 : Async<bool> = _v24 |> Option.get
+            let v54 : Async<bool> = match _v24 with Some x -> x | None -> failwith "async.new_async_unit / _v24=None"
             v54 
             #endif
             |> fun x -> _v18 <- Some x
-            let v55 : Async<bool> = _v18.Value
+            let v55 : Async<bool> = match _v18 with Some x -> x | None -> failwith "base.run_target / _v18=None"
             v55
         | US5_0(v56) -> (* Some *)
             let v57 : bool = true
@@ -1582,7 +1583,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             #endif
 #else
             let v63 : Async<bool> option = None
-            let mutable _v63 = v63
+            let mutable _v63 = v63 
             async {
             let v64 : bool = true
             let mutable _v64 : Async<bool> option = None 
@@ -1611,7 +1612,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             #endif
 #else
             let v70 : Async<bool> option = None
-            let mutable _v70 = v70
+            let mutable _v70 = v70 
             async {
             let v71 : Async<System.Threading.CancellationToken> = Async.CancellationToken
             let! v71 = v71 
@@ -1654,7 +1655,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             v85 
             #endif
             |> fun x -> _v78 <- Some x
-            let v86 : Async<unit> = _v78.Value
+            let v86 : Async<unit> = match _v78 with Some x -> x | None -> failwith "base.run_target / _v78=None"
             do! v86 
             return true 
             with ex ->
@@ -1689,7 +1690,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             v94 
             #endif
             |> fun x -> _v88 <- Some x
-            let v95 : string = _v88.Value
+            let v95 : string = match _v88 with Some x -> x | None -> failwith "base.run_target / _v88=None"
             let v96 : US0 = US0_0
             let v97 : (unit -> string) = closure4(v3, v95)
             let v98 : (unit -> string) = closure5()
@@ -1699,11 +1700,11 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             let v99 : bool = *)
             }
             |> fun x -> _v70 <- Some x
-            let v100 : Async<bool> = _v70 |> Option.get
+            let v100 : Async<bool> = match _v70 with Some x -> x | None -> failwith "async.new_async_unit / _v70=None"
             v100 
             #endif
             |> fun x -> _v64 <- Some x
-            let v101 : Async<bool> = _v64.Value
+            let v101 : Async<bool> = match _v64 with Some x -> x | None -> failwith "base.run_target / _v64=None"
             let v102 : bool = true
             let mutable _v102 : Async<US2> option = None 
             
@@ -1757,7 +1758,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             #endif
 #else
             let v114 : Async<US2> option = None
-            let mutable _v114 = v114
+            let mutable _v114 = v114 
             async {
             let v115 : bool = true
             let mutable _v115 : Async<Async<bool>> option = None 
@@ -1789,7 +1790,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             v121 
             #endif
             |> fun x -> _v115 <- Some x
-            let v122 : Async<Async<bool>> = _v115.Value
+            let v122 : Async<Async<bool>> = match _v115 with Some x -> x | None -> failwith "base.run_target / _v115=None"
             let! v122 = v122 
             let v123 : Async<bool> = v122 
             let v124 : bool = true
@@ -1823,7 +1824,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             v131 
             #endif
             |> fun x -> _v124 <- Some x
-            let v132 : Async<Choice<bool, exn>> = _v124.Value
+            let v132 : Async<Choice<bool, exn>> = match _v124 with Some x -> x | None -> failwith "base.run_target / _v124=None"
             let v133 : bool = true
             let mutable _v133 : Async<US3> option = None 
             
@@ -1851,7 +1852,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             #endif
 #else
             let v139 : Async<US3> option = None
-            let mutable _v139 = v139
+            let mutable _v139 = v139 
             async {
             let! v132 = v132 
             let v140 : Choice<bool, exn> = v132 
@@ -1887,15 +1888,15 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             v149 
             #endif
             |> fun x -> _v141 <- Some x
-            let v150 : US3 = _v141.Value
+            let v150 : US3 = match _v141 with Some x -> x | None -> failwith "base.run_target / _v141=None"
             return v150 
             }
             |> fun x -> _v139 <- Some x
-            let v151 : Async<US3> = _v139 |> Option.get
+            let v151 : Async<US3> = match _v139 with Some x -> x | None -> failwith "async.new_async_unit / _v139=None"
             v151 
             #endif
             |> fun x -> _v133 <- Some x
-            let v152 : Async<US3> = _v133.Value
+            let v152 : Async<US3> = match _v133 with Some x -> x | None -> failwith "base.run_target / _v133=None"
             let v153 : bool = true
             let mutable _v153 : Async<US4> option = None 
             
@@ -1923,7 +1924,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             #endif
 #else
             let v159 : Async<US4> option = None
-            let mutable _v159 = v159
+            let mutable _v159 = v159 
             async {
             let! v152 = v152 
             let v160 : US3 = v152 
@@ -1936,11 +1937,11 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             return v166 
             }
             |> fun x -> _v159 <- Some x
-            let v167 : Async<US4> = _v159 |> Option.get
+            let v167 : Async<US4> = match _v159 with Some x -> x | None -> failwith "async.new_async_unit / _v159=None"
             v167 
             #endif
             |> fun x -> _v153 <- Some x
-            let v168 : Async<US4> = _v153.Value
+            let v168 : Async<US4> = match _v153 with Some x -> x | None -> failwith "base.run_target / _v153=None"
             let v169 : bool = true
             let mutable _v169 : Async<US2> option = None 
             
@@ -1968,7 +1969,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             #endif
 #else
             let v175 : Async<US2> option = None
-            let mutable _v175 = v175
+            let mutable _v175 = v175 
             async {
             let! v168 = v168 
             let v176 : US4 = v168 
@@ -1977,7 +1978,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
                 | US4_1(v179) -> (* Error *)
                     let v180 : string = $"%A{v179}"
                     let v181 : string = "System.TimeoutException"
-                    let v182 : bool = v180.Contains v181
+                    let v182 : bool = v180.Contains v181 
                     if v182 then
                         let v183 : US0 = US0_1
                         let v184 : (unit -> string) = closure12()
@@ -2015,7 +2016,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
                         v193 
                         #endif
                         |> fun x -> _v187 <- Some x
-                        let v194 : string = _v187.Value
+                        let v194 : string = match _v187 with Some x -> x | None -> failwith "base.run_target / _v187=None"
                         let v195 : US0 = US0_4
                         let v196 : (unit -> string) = closure14(v194)
                         let v197 : (unit -> string) = closure13(v56)
@@ -2026,23 +2027,23 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             return v201 
             }
             |> fun x -> _v175 <- Some x
-            let v202 : Async<US2> = _v175 |> Option.get
+            let v202 : Async<US2> = match _v175 with Some x -> x | None -> failwith "async.new_async_unit / _v175=None"
             v202 
             #endif
             |> fun x -> _v169 <- Some x
-            let v203 : Async<US2> = _v169.Value
+            let v203 : Async<US2> = match _v169 with Some x -> x | None -> failwith "base.run_target / _v169=None"
             return! v203 
             }
             |> fun x -> _v114 <- Some x
-            let v204 : Async<US2> = _v114 |> Option.get
+            let v204 : Async<US2> = match _v114 with Some x -> x | None -> failwith "async.new_async_unit / _v114=None"
             v204 
             #endif
             |> fun x -> _v108 <- Some x
-            let v205 : Async<US2> = _v108.Value
+            let v205 : Async<US2> = match _v108 with Some x -> x | None -> failwith "base.run_target / _v108=None"
             v205 
             #endif
             |> fun x -> _v102 <- Some x
-            let v206 : Async<US2> = _v102.Value
+            let v206 : Async<US2> = match _v102 with Some x -> x | None -> failwith "base.run_target / _v102=None"
             let! v206 = v206 
             let v207 : US2 = v206 
             let v210 : bool =
@@ -2054,11 +2055,11 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             return v210 
             }
             |> fun x -> _v63 <- Some x
-            let v211 : Async<bool> = _v63 |> Option.get
+            let v211 : Async<bool> = match _v63 with Some x -> x | None -> failwith "async.new_async_unit / _v63=None"
             v211 
             #endif
             |> fun x -> _v57 <- Some x
-            let v212 : Async<bool> = _v57.Value
+            let v212 : Async<bool> = match _v57 with Some x -> x | None -> failwith "base.run_target / _v57=None"
             v212
     let! v214 = v214 
     let v215 : bool = v214 
@@ -2107,7 +2108,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
         v229 
         #endif
         |> fun x -> _v222 <- Some x
-        let v230 : Async<unit> = _v222.Value
+        let v230 : Async<unit> = match _v222 with Some x -> x | None -> failwith "base.run_target / _v222=None"
         do! v230 
         let v231 : int64 = v4 + 1L
         let v232 : Async<int64> = method5(v0, v1, v2, v3, v231)
@@ -2117,11 +2118,11 @@ and method5 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
     *)
     }
     |> fun x -> _v11 <- Some x
-    let v233 : Async<int64> = _v11 |> Option.get
+    let v233 : Async<int64> = match _v11 with Some x -> x | None -> failwith "async.new_async_unit / _v11=None"
     v233 
     #endif
     |> fun x -> _v5 <- Some x
-    let v234 : Async<int64> = _v5.Value
+    let v234 : Async<int64> = match _v5 with Some x -> x | None -> failwith "base.run_target / _v5=None"
     v234
 and closure18 (v0 : int32 option, v1 : bool, v2 : string) (v3 : int32) : Async<int64> =
     let v4 : int64 = 0L
@@ -2160,7 +2161,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
     #endif
 #else
     let v9 : Async<int32> option = None
-    let mutable _v9 = v9
+    let mutable _v9 = v9 
     async {
     let v10 : US5 option = None
     let _v10 = ref v10 
@@ -2208,7 +2209,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             #endif
 #else
             let v22 : Async<bool> option = None
-            let mutable _v22 = v22
+            let mutable _v22 = v22 
             async {
             let v23 : Async<System.Threading.CancellationToken> = Async.CancellationToken
             let! v23 = v23 
@@ -2251,7 +2252,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             v37 
             #endif
             |> fun x -> _v30 <- Some x
-            let v38 : Async<unit> = _v30.Value
+            let v38 : Async<unit> = match _v30 with Some x -> x | None -> failwith "base.run_target / _v30=None"
             do! v38 
             return true 
             with ex ->
@@ -2286,7 +2287,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             v46 
             #endif
             |> fun x -> _v40 <- Some x
-            let v47 : string = _v40.Value
+            let v47 : string = match _v40 with Some x -> x | None -> failwith "base.run_target / _v40=None"
             let v48 : US0 = US0_0
             let v49 : (unit -> string) = closure4(v2, v47)
             let v50 : (unit -> string) = closure5()
@@ -2296,11 +2297,11 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             let v51 : bool = *)
             }
             |> fun x -> _v22 <- Some x
-            let v52 : Async<bool> = _v22 |> Option.get
+            let v52 : Async<bool> = match _v22 with Some x -> x | None -> failwith "async.new_async_unit / _v22=None"
             v52 
             #endif
             |> fun x -> _v16 <- Some x
-            let v53 : Async<bool> = _v16.Value
+            let v53 : Async<bool> = match _v16 with Some x -> x | None -> failwith "base.run_target / _v16=None"
             v53
         | US5_0(v54) -> (* Some *)
             let v55 : bool = true
@@ -2330,7 +2331,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             #endif
 #else
             let v61 : Async<bool> option = None
-            let mutable _v61 = v61
+            let mutable _v61 = v61 
             async {
             let v62 : bool = true
             let mutable _v62 : Async<bool> option = None 
@@ -2359,7 +2360,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             #endif
 #else
             let v68 : Async<bool> option = None
-            let mutable _v68 = v68
+            let mutable _v68 = v68 
             async {
             let v69 : Async<System.Threading.CancellationToken> = Async.CancellationToken
             let! v69 = v69 
@@ -2402,7 +2403,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             v83 
             #endif
             |> fun x -> _v76 <- Some x
-            let v84 : Async<unit> = _v76.Value
+            let v84 : Async<unit> = match _v76 with Some x -> x | None -> failwith "base.run_target / _v76=None"
             do! v84 
             return true 
             with ex ->
@@ -2437,7 +2438,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             v92 
             #endif
             |> fun x -> _v86 <- Some x
-            let v93 : string = _v86.Value
+            let v93 : string = match _v86 with Some x -> x | None -> failwith "base.run_target / _v86=None"
             let v94 : US0 = US0_0
             let v95 : (unit -> string) = closure4(v2, v93)
             let v96 : (unit -> string) = closure5()
@@ -2447,11 +2448,11 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             let v97 : bool = *)
             }
             |> fun x -> _v68 <- Some x
-            let v98 : Async<bool> = _v68 |> Option.get
+            let v98 : Async<bool> = match _v68 with Some x -> x | None -> failwith "async.new_async_unit / _v68=None"
             v98 
             #endif
             |> fun x -> _v62 <- Some x
-            let v99 : Async<bool> = _v62.Value
+            let v99 : Async<bool> = match _v62 with Some x -> x | None -> failwith "base.run_target / _v62=None"
             let v100 : bool = true
             let mutable _v100 : Async<US2> option = None 
             
@@ -2505,7 +2506,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             #endif
 #else
             let v112 : Async<US2> option = None
-            let mutable _v112 = v112
+            let mutable _v112 = v112 
             async {
             let v113 : bool = true
             let mutable _v113 : Async<Async<bool>> option = None 
@@ -2537,7 +2538,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             v119 
             #endif
             |> fun x -> _v113 <- Some x
-            let v120 : Async<Async<bool>> = _v113.Value
+            let v120 : Async<Async<bool>> = match _v113 with Some x -> x | None -> failwith "base.run_target / _v113=None"
             let! v120 = v120 
             let v121 : Async<bool> = v120 
             let v122 : bool = true
@@ -2571,7 +2572,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             v129 
             #endif
             |> fun x -> _v122 <- Some x
-            let v130 : Async<Choice<bool, exn>> = _v122.Value
+            let v130 : Async<Choice<bool, exn>> = match _v122 with Some x -> x | None -> failwith "base.run_target / _v122=None"
             let v131 : bool = true
             let mutable _v131 : Async<US3> option = None 
             
@@ -2599,7 +2600,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             #endif
 #else
             let v137 : Async<US3> option = None
-            let mutable _v137 = v137
+            let mutable _v137 = v137 
             async {
             let! v130 = v130 
             let v138 : Choice<bool, exn> = v130 
@@ -2635,15 +2636,15 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             v147 
             #endif
             |> fun x -> _v139 <- Some x
-            let v148 : US3 = _v139.Value
+            let v148 : US3 = match _v139 with Some x -> x | None -> failwith "base.run_target / _v139=None"
             return v148 
             }
             |> fun x -> _v137 <- Some x
-            let v149 : Async<US3> = _v137 |> Option.get
+            let v149 : Async<US3> = match _v137 with Some x -> x | None -> failwith "async.new_async_unit / _v137=None"
             v149 
             #endif
             |> fun x -> _v131 <- Some x
-            let v150 : Async<US3> = _v131.Value
+            let v150 : Async<US3> = match _v131 with Some x -> x | None -> failwith "base.run_target / _v131=None"
             let v151 : bool = true
             let mutable _v151 : Async<US4> option = None 
             
@@ -2671,7 +2672,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             #endif
 #else
             let v157 : Async<US4> option = None
-            let mutable _v157 = v157
+            let mutable _v157 = v157 
             async {
             let! v150 = v150 
             let v158 : US3 = v150 
@@ -2684,11 +2685,11 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             return v164 
             }
             |> fun x -> _v157 <- Some x
-            let v165 : Async<US4> = _v157 |> Option.get
+            let v165 : Async<US4> = match _v157 with Some x -> x | None -> failwith "async.new_async_unit / _v157=None"
             v165 
             #endif
             |> fun x -> _v151 <- Some x
-            let v166 : Async<US4> = _v151.Value
+            let v166 : Async<US4> = match _v151 with Some x -> x | None -> failwith "base.run_target / _v151=None"
             let v167 : bool = true
             let mutable _v167 : Async<US2> option = None 
             
@@ -2716,7 +2717,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             #endif
 #else
             let v173 : Async<US2> option = None
-            let mutable _v173 = v173
+            let mutable _v173 = v173 
             async {
             let! v166 = v166 
             let v174 : US4 = v166 
@@ -2725,7 +2726,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
                 | US4_1(v177) -> (* Error *)
                     let v178 : string = $"%A{v177}"
                     let v179 : string = "System.TimeoutException"
-                    let v180 : bool = v178.Contains v179
+                    let v180 : bool = v178.Contains v179 
                     if v180 then
                         let v181 : US0 = US0_1
                         let v182 : (unit -> string) = closure12()
@@ -2763,7 +2764,7 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
                         v191 
                         #endif
                         |> fun x -> _v185 <- Some x
-                        let v192 : string = _v185.Value
+                        let v192 : string = match _v185 with Some x -> x | None -> failwith "base.run_target / _v185=None"
                         let v193 : US0 = US0_4
                         let v194 : (unit -> string) = closure14(v192)
                         let v195 : (unit -> string) = closure13(v54)
@@ -2774,23 +2775,23 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             return v199 
             }
             |> fun x -> _v173 <- Some x
-            let v200 : Async<US2> = _v173 |> Option.get
+            let v200 : Async<US2> = match _v173 with Some x -> x | None -> failwith "async.new_async_unit / _v173=None"
             v200 
             #endif
             |> fun x -> _v167 <- Some x
-            let v201 : Async<US2> = _v167.Value
+            let v201 : Async<US2> = match _v167 with Some x -> x | None -> failwith "base.run_target / _v167=None"
             return! v201 
             }
             |> fun x -> _v112 <- Some x
-            let v202 : Async<US2> = _v112 |> Option.get
+            let v202 : Async<US2> = match _v112 with Some x -> x | None -> failwith "async.new_async_unit / _v112=None"
             v202 
             #endif
             |> fun x -> _v106 <- Some x
-            let v203 : Async<US2> = _v106.Value
+            let v203 : Async<US2> = match _v106 with Some x -> x | None -> failwith "base.run_target / _v106=None"
             v203 
             #endif
             |> fun x -> _v100 <- Some x
-            let v204 : Async<US2> = _v100.Value
+            let v204 : Async<US2> = match _v100 with Some x -> x | None -> failwith "base.run_target / _v100=None"
             let! v204 = v204 
             let v205 : US2 = v204 
             let v208 : bool =
@@ -2802,11 +2803,11 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             return v208 
             }
             |> fun x -> _v61 <- Some x
-            let v209 : Async<bool> = _v61 |> Option.get
+            let v209 : Async<bool> = match _v61 with Some x -> x | None -> failwith "async.new_async_unit / _v61=None"
             v209 
             #endif
             |> fun x -> _v55 <- Some x
-            let v210 : Async<bool> = _v55.Value
+            let v210 : Async<bool> = match _v55 with Some x -> x | None -> failwith "base.run_target / _v55=None"
             v210
     let! v212 = v212 
     let v213 : bool = v212 
@@ -2825,11 +2826,11 @@ and method6 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
     *)
     }
     |> fun x -> _v9 <- Some x
-    let v217 : Async<int32> = _v9 |> Option.get
+    let v217 : Async<int32> = match _v9 with Some x -> x | None -> failwith "async.new_async_unit / _v9=None"
     v217 
     #endif
     |> fun x -> _v3 <- Some x
-    let v218 : Async<int32> = _v3.Value
+    let v218 : Async<int32> = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
     v218
 and closure23 (v0 : int32 option, v1 : string) (v2 : int32) : Async<int32> =
     method6(v0, v1, v2)

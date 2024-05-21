@@ -437,15 +437,15 @@ and closure0 () (v0 : string) : string =
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
     let v5 : string = "crypto"
-    let v6 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v5
+    let v6 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v5 
     let v7 : string = "v6.createHash($0)"
     let v8 : string = "sha256"
-    let v9 : obj = Fable.Core.JsInterop.emitJsExpr v8 v7
+    let v9 : obj = Fable.Core.JsInterop.emitJsExpr v8 v7 
     let v10 : string = "$0.update($1, 'utf8')"
-    let v11 : obj = Fable.Core.JsInterop.emitJsExpr struct (v9, v0) v10
+    let v11 : obj = Fable.Core.JsInterop.emitJsExpr struct (v9, v0) v10 
     let v12 : string = "$0.digest($1)"
     let v13 : string = "hex"
-    let v14 : string = Fable.Core.JsInterop.emitJsExpr struct (v11, v13) v12
+    let v14 : string = Fable.Core.JsInterop.emitJsExpr struct (v11, v13) v12 
     v14 
     #endif
 #if FABLE_COMPILER_PYTHON
@@ -483,7 +483,7 @@ and closure0 () (v0 : string) : string =
     v38 
     #endif
     |> fun x -> _v1 <- Some x
-    let v39 : string = _v1.Value
+    let v39 : string = match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
     v39
 let v0 : (string -> string) = closure0()
 let hash_text x = v0 x

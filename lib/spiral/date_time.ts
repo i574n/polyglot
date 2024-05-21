@@ -124,7 +124,12 @@ export function method0(v0_1: string, v1_1: Date): string {
     let _v2: Option<string> = undefined;
     const x: string = defaultOf();
     _v2 = x;
-    return value_1(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_1(_v2);
+    }
 }
 
 export function closure1(v0_1: string, v1_1: Date): string {
@@ -155,7 +160,12 @@ export function closure2(unitVar: void, v0_1: string): Date {
     let _v4: Option<Date> = undefined;
     const x: Date = parseExact(method5()("-")("")(v0_1.slice(undefined, 24 + 1)), "yyyyMMddHHmmssfffffff", defaultOf());
     _v4 = x;
-    return value_1(_v4);
+    if (_v4 == null) {
+        throw new Error("base.run_target / _v4=None");
+    }
+    else {
+        return value_1(_v4);
+    }
 }
 
 export function closure7(v0_1: string, v1_1: int64): string {
@@ -178,9 +188,9 @@ export function closure9(unitVar: void, v0_1: Date): string {
 }
 
 export function closure10(unitVar: void, v0_1: int64): string {
-    const v3_1: string = newGuid();
-    const v6_1: string = padLeft(int64ToString(v0_1), 18, "0");
-    return parse(`${v6_1.slice(0, 7 + 1)}-${v6_1.slice(8, 11 + 1)}-${v6_1.slice(12, 15 + 1)}-${v6_1.slice(16, 17 + 1)}${v3_1.slice(21, v3_1.length)}`);
+    const v4_1: string = newGuid();
+    const v7_1: string = padLeft(int64ToString(v0_1), 18, "0");
+    return parse(`${v7_1.slice(0, 7 + 1)}-${v7_1.slice(8, 11 + 1)}-${v7_1.slice(12, 15 + 1)}-${v7_1.slice(16, 17 + 1)}${v4_1.slice(21, v4_1.length)}`);
 }
 
 export function closure12(v0_1: string, v1_1: Date): string {

@@ -66,7 +66,7 @@ let rec closure1 (v0 : System.Threading.CancellationTokenSource) () : unit =
     () 
     #endif
     |> fun x -> _v1 <- Some x
-    _v1.Value
+    match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
     ()
 and method0 (v0 : System.Threading.CancellationTokenSource) : (unit -> unit) =
     closure1(v0)
@@ -155,12 +155,12 @@ and closure0 () (v0 : System.Threading.CancellationToken option) : struct (Syste
     v34 
     #endif
     |> fun x -> _v26 <- Some x
-    let v35 : System.IDisposable = _v26.Value
+    let v35 : System.IDisposable = match _v26 with Some x -> x | None -> failwith "base.run_target / _v26=None"
     let v36 : System.Threading.CancellationToken = v25.Token
     struct (v36, v35) 
     #endif
     |> fun x -> _v1 <- Some x
-    let struct (v37 : System.Threading.CancellationToken, v38 : System.IDisposable) = _v1.Value
+    let struct (v37 : System.Threading.CancellationToken, v38 : System.IDisposable) = match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
     struct (v37, v38)
 let v0 : (System.Threading.CancellationToken option -> struct (System.Threading.CancellationToken * System.IDisposable)) = closure0()
 let new_disposable_token x = v0 x

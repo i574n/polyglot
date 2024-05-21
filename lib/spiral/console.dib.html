@@ -7571,7 +7571,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">write_line</span> <span class="n">obj</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"System.Console.WriteLine !obj"</span>
+    <span class="n">obj</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.Console.WriteLine'</span>
 </pre></div>
 </div>
 </div>
@@ -7586,7 +7586,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">write_line_</span> <span class="o">~</span><span class="n">obj</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"System.Console.WriteLine !obj"</span>
+    <span class="n">obj</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.Console.WriteLine'</span>
 </pre></div>
 </div>
 </div>
@@ -7600,16 +7600,16 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">console_color</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"System.ConsoleColor"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">console_color</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.ConsoleColor'</span>
 
 <span class="n">inl</span> <span class="n">reset_color</span> <span class="p">()</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"System.Console.ResetColor ()"</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.Console.ResetColor'</span> <span class="p">()</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
 
 <span class="n">inl</span> <span class="n">set_foreground_color</span> <span class="p">(</span><span class="n">color</span> <span class="p">:</span> <span class="n">console_color</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"System.Console.ForegroundColor &lt;- !color"</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.Console.ForegroundColor &lt;- !color '</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
 </pre></div>
 </div>

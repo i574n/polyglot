@@ -18,7 +18,7 @@ open testing
 
 #!spiral
 
-nominal guid = $"System.Guid"
+nominal guid = $'System.Guid'
 
 #!markdown
 
@@ -27,7 +27,7 @@ nominal guid = $"System.Guid"
 #!spiral
 
 inl new_guid (x : string) : guid =
-    $'`guid !x '
+    x |> convert
 
 #!markdown
 
@@ -36,7 +36,7 @@ inl new_guid (x : string) : guid =
 #!spiral
 
 inl new_raw_guid () : guid =
-    $"System.Guid.NewGuid ()"
+    $'System.Guid.NewGuid' ()
 
 #!markdown
 
@@ -45,5 +45,5 @@ inl new_raw_guid () : guid =
 #!spiral
 
 inl main () =
-    $"let new_guid x = !new_guid x" : ()
-    $"let new_raw_guid x = !new_raw_guid x" : ()
+    $'let new_guid x = !new_guid x' : ()
+    $'let new_raw_guid x = !new_raw_guid x' : ()

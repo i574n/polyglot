@@ -34,12 +34,12 @@ inl types () =
 
 #!spiral
 
-nominal complex t = $"num_complex_Complex<`t>"
-nominal bound t = $"pyo3_Bound<`t>"
-nominal python = $"pyo3_Python"
-nominal pymodule = $"pyo3_types_PyModule"
-nominal pyany = $"pyo3_PyAny"
-nominal pyerr = $"pyo3_PyErr"
+nominal complex t = $'num_complex_Complex<`t>'
+nominal bound t = $'pyo3_Bound<`t>'
+nominal python = $'pyo3_Python'
+nominal pymodule = $'pyo3_types_PyModule'
+nominal pyany = $'pyo3_PyAny'
+nominal pyerr = $'pyo3_PyErr'
 
 inl complex forall t. ((re : t), (im : t)) : complex t =
     !\\((re, im), $'"num_complex::Complex::new($0, $1)"')
@@ -753,10 +753,10 @@ inl tests () =
 
 inl main (_args : array_base string) =
     inl value = 1i32
-    console.write_line ($"$\"value: {!value}\"" : string)
+    console.write_line ($'$"value: {!value}"' : string)
     0i32
 
 inl main () =
     types ()
-    $"let tests () = !tests ()" : ()
-    $"let main args = !main args" : ()
+    $'let tests () = !tests ()' : ()
+    $'let main args = !main args' : ()

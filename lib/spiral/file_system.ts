@@ -695,7 +695,9 @@ export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Op
     });
     let _v6: Option<Option<int64>> = undefined;
     _v6 = some(undefined);
-    return [v2_1, v1_1, v3_1, value_3(_v6), v5_1] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
+    return [v2_1, v1_1, v3_1, (_v6 == null) ? (() => {
+        throw new Error("base.run_target / _v6=None");
+    })() : value_3(_v6), v5_1] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
 }
 
 export function method3(v0_1: string): string {
@@ -710,7 +712,12 @@ export function closure5(unitVar: void, v0_1: string): string {
     let _v1: Option<string> = undefined;
     const x: string = defaultOf();
     _v1 = x;
-    return value_3(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        return value_3(_v1);
+    }
 }
 
 export function closure6(unitVar: void, unitVar_1: void): string {
@@ -733,13 +740,21 @@ export function closure7(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => st
     let _v10: Option<string> = undefined;
     const x: string = method5();
     _v10 = x;
-    const v67: string = value_3(_v10);
+    let v67: string;
+    if (_v10 == null) {
+        throw new Error("base.run_target / _v10=None");
+    }
+    else {
+        v67 = value_3(_v10);
+    }
     const v68: int64 = patternInput[0].l0;
     const v78: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v81: Option<string> = undefined;
-    const x_1: string = padLeft(v78.toLocaleLowerCase(), 7, " ");
-    _v81 = x_1;
-    return trimEnd(trimStart(`${v67} ${value_3(_v81)} #${v68} ${v1_1()} / ${v2_1()}`), " ", "/");
+    let _v82: Option<string> = undefined;
+    const x_2: string = padLeft(v78.toLocaleLowerCase(), 7, " ");
+    _v82 = x_2;
+    return trimEnd(trimStart(`${v67} ${(_v82 == null) ? (() => {
+        throw new Error("base.run_target / _v82=None");
+    })() : value_3(_v82)} #${v68} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
 export function method6(v0_1: US0_$union, v1_1: (() => string)): void {
@@ -765,7 +780,12 @@ export function method6(v0_1: US0_$union, v1_1: (() => string)): void {
         let _v25: Option<void> = undefined;
         console.log(v24);
         _v25 = some(undefined);
-        value_3(_v25);
+        if (_v25 == null) {
+            throw new Error("base.run_target / _v25=None");
+        }
+        else {
+            value_3(_v25);
+        }
         patternInput[4].l0(v24);
     }
 }
@@ -778,14 +798,24 @@ export function method2(v0_1: string, v1_1: int64): any {
     let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
-    return value_3(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_3(_v2);
+    }
 }
 
 export function closure2(unitVar: void, v0_1: string): any {
     let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
-    return value_3(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        return value_3(_v1);
+    }
 }
 
 export function closure10(unitVar: void, unitVar_1: void): string {
@@ -800,14 +830,24 @@ export function method7(v0_1: string, v1_1: US4_$union, v2_1: US3_$union, v3_1: 
     let _v4: Option<any> = undefined;
     const x: any = defaultOf();
     _v4 = x;
-    return value_3(_v4);
+    if (_v4 == null) {
+        throw new Error("base.run_target / _v4=None");
+    }
+    else {
+        return value_3(_v4);
+    }
 }
 
 export function closure9(v0_1: US2_$union, v1_1: string): any {
     let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
-    return value_3(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_3(_v2);
+    }
 }
 
 export function closure8(unitVar: void, v0_1: US2_$union): ((arg0: string) => any) {
@@ -818,28 +858,48 @@ export function method8(v0_1: string, v1_1: int64): any {
     let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
-    return value_3(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_3(_v2);
+    }
 }
 
 export function closure12(unitVar: void, v0_1: string): any {
     let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
-    return value_3(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        return value_3(_v1);
+    }
 }
 
 export function closure13(unitVar: void, v0_1: string): any {
     let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
-    return value_3(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        return value_3(_v1);
+    }
 }
 
 export function closure15(v0_1: string, v1_1: string): any {
     let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
-    return value_3(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_3(_v2);
+    }
 }
 
 export function closure14(unitVar: void, v0_1: string): ((arg0: string) => any) {
@@ -850,7 +910,12 @@ export function closure17(v0_1: string, v1_1: string): any {
     let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
-    return value_3(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_3(_v2);
+    }
 }
 
 export function closure16(unitVar: void, v0_1: string): ((arg0: string) => any) {
@@ -861,7 +926,12 @@ export function closure19(v0_1: string, v1_1: string): any {
     let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
-    return value_3(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_3(_v2);
+    }
 }
 
 export function closure18(unitVar: void, v0_1: string): ((arg0: string) => any) {
@@ -876,7 +946,13 @@ export function closure22(v0_1: string, v1_1: Error, unitVar: void): string {
     let _v2: Option<string> = undefined;
     const x: string = toText(interpolate("%A%P()", [v1_1]));
     _v2 = x;
-    const v9_1: string = value_3(_v2);
+    let v9_1: string;
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        v9_1 = value_3(_v2);
+    }
     return `path: ${closure5(undefined, v0_1)} / ex: ${v9_1} / ${closure6(undefined, undefined)}`;
 }
 
@@ -884,14 +960,24 @@ export function method9(v0_1: string, v1_1: int64): any {
     let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
-    return value_3(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_3(_v2);
+    }
 }
 
 export function closure20(unitVar: void, v0_1: string): any {
     let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
-    return value_3(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        return value_3(_v1);
+    }
 }
 
 export function closure25(unitVar: void, unitVar_1: void): string {
@@ -902,7 +988,13 @@ export function closure26(v0_1: string, v1_1: string, v2_1: Error, unitVar: void
     let _v3: Option<string> = undefined;
     const x: string = toText(interpolate("%A%P()", [v2_1]));
     _v3 = x;
-    const v10_1: string = value_3(_v3);
+    let v10_1: string;
+    if (_v3 == null) {
+        throw new Error("base.run_target / _v3=None");
+    }
+    else {
+        v10_1 = value_3(_v3);
+    }
     const v11_1 = (v: string): string => closure5(undefined, v);
     return `old_path: ${v11_1(v1_1)} / new_path: ${v11_1(v0_1)} / ex: ${v10_1} / ${closure6(undefined, undefined)}`;
 }
@@ -911,14 +1003,24 @@ export function method10(v0_1: string, v1_1: string, v2_1: int64): any {
     let _v3: Option<any> = undefined;
     const x: any = defaultOf();
     _v3 = x;
-    return value_3(_v3);
+    if (_v3 == null) {
+        throw new Error("base.run_target / _v3=None");
+    }
+    else {
+        return value_3(_v3);
+    }
 }
 
 export function closure24(v0_1: string, v1_1: string): any {
     let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
-    return value_3(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_3(_v2);
+    }
 }
 
 export function closure23(unitVar: void, v0_1: string): ((arg0: string) => any) {
@@ -961,14 +1063,24 @@ export function method11(v0_1: string, v1_1: int64): any {
     let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
-    return value_3(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_3(_v2);
+    }
 }
 
 export function closure27(unitVar: void, v0_1: string): any {
     let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
-    return value_3(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        return value_3(_v1);
+    }
 }
 
 export function method13(): string {
@@ -990,7 +1102,12 @@ export function method14(v0_1: string, v1_1: string): string {
     const v35: string = method16(v1_1);
     const x: string = v33.join(v34, v35);
     _v2 = x;
-    return value_3(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_3(_v2);
+    }
 }
 
 export function method18(v0_1: any): any {
@@ -1013,14 +1130,24 @@ export function method17(v0_1: string, v1_1: Date): string {
     let _v2: Option<string> = undefined;
     const x: string = defaultOf();
     _v2 = x;
-    return value_3(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_3(_v2);
+    }
 }
 
 export function closure35(unitVar: void, unitVar_1: void): string {
     let _v0: Option<string> = undefined;
     const x: string = defaultOf();
     _v0 = x;
-    return value_3(_v0);
+    if (_v0 == null) {
+        throw new Error("base.run_target / _v0=None");
+    }
+    else {
+        return value_3(_v0);
+    }
 }
 
 export function method22(v0_1: string): string {
@@ -1031,7 +1158,12 @@ export function closure37(unitVar: void, v0_1: any): any {
     let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
-    return value_3(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        return value_3(_v1);
+    }
 }
 
 export function method23(): ((arg0: any) => any) {
@@ -1066,7 +1198,12 @@ export function closure44(v0_1: string, unitVar: void): void {
     let _v1: Option<void> = undefined;
     defaultOf();
     _v1 = some(undefined);
-    value_3(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        value_3(_v1);
+    }
 }
 
 export function method24(v0_1: string): (() => void) {
@@ -1087,15 +1224,32 @@ export function closure47(v0_1: string, unitVar: void): void {
     let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
-    const v9_1: any = value_3(_v1);
+    let v9_1: any;
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        v9_1 = value_3(_v1);
+    }
     let _v10: Option<any> = undefined;
-    const x_1: any = defaultOf();
-    _v10 = x_1;
-    const v18_1: any = value_3(_v10);
+    const x_2: any = defaultOf();
+    _v10 = x_2;
+    let v18_1: any;
+    if (_v10 == null) {
+        throw new Error("base.run_target / _v10=None");
+    }
+    else {
+        v18_1 = value_3(_v10);
+    }
     let _v19: Option<void> = undefined;
     defaultOf();
     _v19 = some(undefined);
-    value_3(_v19);
+    if (_v19 == null) {
+        throw new Error("base.run_target / _v19=None");
+    }
+    else {
+        value_3(_v19);
+    }
 }
 
 export function method25(v0_1: string): (() => void) {
@@ -1108,11 +1262,19 @@ export function closure36(unitVar: void, unitVar_1: void): [string, IDisposable]
     let _v0: Option<string> = undefined;
     const x: string = defaultOf();
     _v0 = x;
-    const v134: string = value_3(_v0);
-    let _v135: Option<IDisposable> = undefined;
-    const x_1: IDisposable = defaultOf();
-    _v135 = x_1;
-    return [v134, value_3(_v135)] as [string, IDisposable];
+    let v136: string;
+    if (_v0 == null) {
+        throw new Error("base.run_target / _v0=None");
+    }
+    else {
+        v136 = value_3(_v0);
+    }
+    let _v137: Option<IDisposable> = undefined;
+    const x_2: IDisposable = defaultOf();
+    _v137 = x_2;
+    return [v136, (_v137 == null) ? (() => {
+        throw new Error("base.run_target / _v137=None");
+    })() : value_3(_v137)] as [string, IDisposable];
 }
 
 export function closure48(unitVar: void, unitVar_1: void): string {
@@ -1124,7 +1286,12 @@ export function closure52(unitVar: void, v0_1: string): boolean {
     const v16_1: IFsExistsSync = fs;
     const x: boolean = v16_1.existsSync(v0_1);
     _v1 = x;
-    return value_3(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        return value_3(_v1);
+    }
 }
 
 export function closure53(unitVar: void, v0_1: string): boolean {
@@ -1132,7 +1299,12 @@ export function closure53(unitVar: void, v0_1: string): boolean {
     const v16_1: IFsExistsSync = fs;
     const x: boolean = v16_1.existsSync(v0_1);
     _v1 = x;
-    return value_3(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        return value_3(_v1);
+    }
 }
 
 export function closure54(unitVar: void, v0_1: string): Option<string> {
@@ -1140,7 +1312,13 @@ export function closure54(unitVar: void, v0_1: string): Option<string> {
     const v31: IPathDirname = path;
     const x: US8_$union = US8_US8_0(v31.dirname(v0_1));
     _v1 = x;
-    const v51: US8_$union = value_3(_v1);
+    let v51: US8_$union;
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        v51 = value_3(_v1);
+    }
     if (v51.tag === /* US8_0 */ 0) {
         return v51.fields[0];
     }
@@ -1247,7 +1425,13 @@ export function closure55(unitVar: void, v0_1: string): string {
     let _v1: Option<string> = undefined;
     const x: string = defaultOf();
     _v1 = x;
-    const v29: string = value_3(_v1);
+    let v29: string;
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        v29 = value_3(_v1);
+    }
     return replace(`${(_arg = v29[0], _arg.toLocaleLowerCase())}${v29.slice(1, v29.length)}`, "\\", "/");
 }
 
@@ -1264,21 +1448,23 @@ export function method34(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string): 
         const v19_1: IFsExistsSync = fs;
         const x: boolean = v19_1.existsSync(v3_1);
         _v4 = x;
-        if (value_3(_v4)) {
+        if ((_v4 == null) ? (() => {
+            throw new Error("base.run_target / _v4=None");
+        })() : value_3(_v4)) {
             return v2_1;
         }
         else {
             const v27: Option<string> = method27()(v2_1);
             const _v28: FSharpRef<Option<US8_$union>> = new FSharpRef<Option<US8_$union>>(undefined);
-            let x_3: Option<US8_$union>;
+            let x_4: Option<US8_$union>;
             if (v27 == null) {
-                x_3 = undefined;
+                x_4 = undefined;
             }
             else {
-                const x_1: string = value_3(v27);
-                x_3 = ((): US8_$union => US8_US8_0(x_1))();
+                const x_2: string = value_3(v27);
+                x_4 = ((): US8_$union => US8_US8_0(x_2))();
             }
-            _v28.contents = x_3;
+            _v28.contents = x_4;
             const v33: US8_$union = defaultArg(_v28.contents, US8_US8_1());
             if (v33.tag === /* US8_0 */ 0) {
                 v0_1_mut = v0_1;
@@ -1300,21 +1486,23 @@ export function method33(v0_1: string, v1_1: string): string {
     const v18_1: IFsExistsSync = fs;
     const x: boolean = v18_1.existsSync(v2_1);
     _v3 = x;
-    if (value_3(_v3)) {
+    if ((_v3 == null) ? (() => {
+        throw new Error("base.run_target / _v3=None");
+    })() : value_3(_v3)) {
         return v1_1;
     }
     else {
         const v26: Option<string> = method27()(v1_1);
         const _v27: FSharpRef<Option<US8_$union>> = new FSharpRef<Option<US8_$union>>(undefined);
-        let x_3: Option<US8_$union>;
+        let x_4: Option<US8_$union>;
         if (v26 == null) {
-            x_3 = undefined;
+            x_4 = undefined;
         }
         else {
-            const x_1: string = value_3(v26);
-            x_3 = ((): US8_$union => US8_US8_0(x_1))();
+            const x_2: string = value_3(v26);
+            x_4 = ((): US8_$union => US8_US8_0(x_2))();
         }
-        _v27.contents = x_3;
+        _v27.contents = x_4;
         const v32: US8_$union = defaultArg(_v27.contents, US8_US8_1());
         if (v32.tag === /* US8_0 */ 0) {
             return method34(v0_1, v1_1, v32.fields[0]);
@@ -1332,7 +1520,12 @@ export function closure57(unitVar: void, unitVar_1: void): string {
 export function method35(v0_1: string): void {
     let _v1: Option<void> = undefined;
     _v1 = some(undefined);
-    value_3(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        value_3(_v1);
+    }
 }
 
 export function closure59(unitVar: void, v0_1: string): void {

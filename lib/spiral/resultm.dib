@@ -22,7 +22,7 @@ open testing
 
 #!spiral
 
-nominal result' t u = $"Result<`t, `u>"
+nominal result' t u = $'Result<`t, `u>'
 
 #!markdown
 
@@ -116,8 +116,8 @@ inl unbox forall t u. (x : result' t u) : result t u =
     inl error x : result t u = Error x
     real
         typecase t with
-        | () => $"match !x with Ok () -> !ok () | Error x -> !error x" : result t u
-        | _ => $"match !x with Ok x -> !ok x | Error x -> !error x" : result t u
+        | () => $'match !x with Ok () -> !ok () | Error x -> !error x' : result t u
+        | _ => $'match !x with Ok x -> !ok x | Error x -> !error x' : result t u
 
 #!markdown
 
@@ -151,8 +151,8 @@ inl unbox' forall t u. (x : result' t u) : result t u =
 
 inl box forall t u. (x : result t u) : result' t u =
     match x with
-    | Ok x => $"Ok !x"
-    | Error err => $"Error !err"
+    | Ok x => $'Ok !x '
+    | Error err => $'Error !err '
 
 #!markdown
 

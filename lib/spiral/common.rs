@@ -309,7 +309,11 @@ pub mod Common {
             _v7.set(Some(x))
         }
         {
-            let v39: Common::US1 = if getValue(_v7.get().clone()) == string("True") {
+            let v39: Common::US1 = if match &_v7.get().clone() {
+                None => panic!("{}", string("base.run_target / _v7=None"),),
+                Some(_v7_0_0) => _v7_0_0.clone(),
+            } == string("True")
+            {
                 Common::US1::US1_0({
                     let _arg: DateTime = DateTime::now();
                     _arg.ticks()
@@ -318,16 +322,25 @@ pub mod Common {
                 Common::US1::US1_1
             };
             {
-                let x_1: Option<i64> = match &v39 {
+                let x_2: Option<i64> = match &v39 {
                     Common::US1::US1_0(v39_0_0) => Some(match &v39 {
                         Common::US1::US1_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
                     _ => None::<i64>,
                 };
-                _v6.set(Some(x_1))
+                _v6.set(Some(x_2))
             }
-            (v2_1, v1_1, v3_1, getValue(_v6.get().clone()), v5)
+            (
+                v2_1,
+                v1_1,
+                v3_1,
+                match &_v6.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v6=None"),),
+                    Some(_v6_0_0) => _v6_0_0.clone(),
+                },
+                v5,
+            )
         }
     }
     pub fn method2(v0_1: Func0<()>) -> Func0<()> {
@@ -346,7 +359,10 @@ pub mod Common {
             );
             _v1.set(Some(x))
         }
-        getValue(_v1.get().clone())
+        match &_v1.get().clone() {
+            None => panic!("{}", string("base.run_target / _v1=None"),),
+            Some(_v1_0_0) => _v1_0_0.clone(),
+        }
     }
     pub fn closure5(v0_1: i32, v1_1: Func0<()>, v2_1: i32, unitVar: ()) -> Common::US2 {
         if v2_1 < v0_1 {
@@ -439,9 +455,12 @@ pub mod Common {
                     _v10.set(Some(x_3))
                 }
                 {
-                    let v67: string = getValue(_v10.get().clone());
+                    let v67: string = match &_v10.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v10=None"),),
+                        Some(_v10_0_0) => _v10_0_0.clone(),
+                    };
                     let v68: i64 = (patternInput.0.clone()).l0.get().clone();
-                    let v80: string = padLeft(
+                    let v81: string = padLeft(
                         toLower(match &v0_1 {
                             Common::US0::US0_1 => string("Debug"),
                             Common::US0::US0_2 => string("Info"),
@@ -452,28 +471,31 @@ pub mod Common {
                         7_i32,
                         ' ',
                     );
-                    let _v81: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v96: &str = match &v0_1 {
+                    let _v82: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v97: &str = match &v0_1 {
                         Common::US0::US0_1 => inline_colorization::color_bright_blue,
                         Common::US0::US0_2 => inline_colorization::color_bright_green,
                         Common::US0::US0_0 => inline_colorization::color_bright_black,
                         Common::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v98: &str = &*v80;
-                    let v100: &str = inline_colorization::color_reset;
-                    let v102: string = string("format!(\"{v96}{v98}{v100}\")");
-                    let v103: std::string::String = format!("{v96}{v98}{v100}");
+                    let v99: &str = &*v81;
+                    let v101: &str = inline_colorization::color_reset;
+                    let v103: string = string("format!(\"{v97}{v99}{v101}\")");
+                    let v104: std::string::String = format!("{v97}{v99}{v101}");
                     {
-                        let x_4: string = fable_library_rust::String_::fromString(v103);
-                        _v81.set(Some(x_4))
+                        let x_5: string = fable_library_rust::String_::fromString(v104);
+                        _v82.set(Some(x_5))
                     }
                     trimEndChars(
                         trimStartChars(
                             sprintf!(
                                 "{} {} #{} {} / {}",
                                 v67,
-                                getValue(_v81.get().clone()),
+                                match &_v82.get().clone() {
+                                    None => panic!("{}", string("base.run_target / _v82=None"),),
+                                    Some(_v82_0_0) => _v82_0_0.clone(),
+                                },
                                 v68,
                                 v1_1(),
                                 v2_1()
@@ -552,7 +574,10 @@ pub mod Common {
                         let _v25: MutCell<Option<()>> = MutCell::new(None::<()>);
                         println!("{}", v24.clone());
                         _v25.set(Some(()));
-                        getValue(_v25.get().clone());
+                        match &_v25.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v25=None"),),
+                            Some(_v25_0_0) => _v25_0_0.clone(),
+                        }
                         ((patternInput.4.clone()).l0.get().clone())(v24)
                     }
                 }
@@ -583,7 +608,10 @@ pub mod Common {
         {
             let _v5: MutCell<Option<()>> = MutCell::new(None::<()>);
             _v5.set(Some(()));
-            getValue(_v5.get().clone());
+            match &_v5.get().clone() {
+                None => panic!("{}", string("base.run_target / _v5=None"),),
+                Some(_v5_0_0) => _v5_0_0.clone(),
+            }
             Common::US3::US3_1
         }
     }

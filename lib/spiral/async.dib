@@ -38,7 +38,7 @@ inl types () =
 
 #!spiral
 
-nominal async t = $"Async<`t>"
+nominal async t = $'Async<`t>'
 
 #!markdown
 
@@ -49,8 +49,8 @@ nominal async t = $"Async<`t>"
 nominal task t =
     `(
         typecase t with
-        | () => $'' : $"System.Threading.Tasks.Task"
-        | _ => $'' : $"System.Threading.Tasks.Task<`t>"
+        | () => $'' : $'System.Threading.Tasks.Task'
+        | _ => $'' : $'System.Threading.Tasks.Task<`t>'
     )
 
 #!markdown
@@ -59,7 +59,7 @@ nominal task t =
 
 #!spiral
 
-nominal future t = $"std_future_Future<`t>"
+nominal future t = $'std_future_Future<`t>'
 
 #!markdown
 
@@ -126,7 +126,7 @@ inl spawn forall t. (fn : future_pin_send t) : join_handle t =
 
 #!spiral
 
-nominal try_join_all t = $"futures_future_TryJoinAll<`t>"
+nominal try_join_all t = $'futures_future_TryJoinAll<`t>'
 
 inl try_join_all forall t. (x : am'.vec (future_pin (resultm.result' t sm'.std_string))) : try_join_all (future_pin (resultm.result' t sm'.std_string)) =
     inl x = join x
@@ -138,7 +138,7 @@ inl try_join_all forall t. (x : am'.vec (future_pin (resultm.result' t sm'.std_s
 
 #!spiral
 
-nominal fuse t = $"futures_future_Fuse<`t>"
+nominal fuse t = $'futures_future_Fuse<`t>'
 
 inl future_fuse forall t. (x : future_pin t) : fuse (future_pin t) =
     !\($'"futures::future::FutureExt::fuse(!x)"')
@@ -149,7 +149,7 @@ inl future_fuse forall t. (x : future_pin t) : fuse (future_pin t) =
 
 #!spiral
 
-nominal join_all t = $"futures_future_JoinAll<`t>"
+nominal join_all t = $'futures_future_JoinAll<`t>'
 
 inl join_all forall t. (x : am'.vec (future_pin t)) : join_all (future_pin t) =
     inl x = join x
@@ -393,12 +393,12 @@ inl new_async_unit forall t. (fn : () -> ()) : async t =
     run_target function
         | Fsharp (Native) => fun () =>
             inl result : optionm'.option' (async t) = optionm'.none' ()
-            $"let mutable _!result = !result"
-            $"async {"
+            $'let mutable _!result = !result '
+            $'async {'
             fn ()
-            $"}"
-            $"|> fun x -> _!result <- Some x"
-            $"_!result |> Option.get"
+            $'}'
+            $'|> fun x -> _!result <- Some x'
+            $'match _!result with Some x -> x | None -> failwith "async.new_async_unit / _!result=None"'
         | _ => fun () => null ()
 
 #!markdown
@@ -420,12 +420,12 @@ inl new_task forall t. (fn : () -> t) : task t =
     run_target function
         | Fsharp (Native) => fun () =>
             inl result : optionm'.option' (task t) = optionm'.none' ()
-            $"let mutable _!result = !result"
-            $"task {"
+            $'let mutable _!result = !result '
+            $'task {'
             fn () |> ignore
-            $"}"
-            $"|> fun x -> _!result <- Some x"
-            $"_!result |> Option.get"
+            $'}'
+            $'|> fun x -> _!result <- Some x'
+            $'match _!result with Some x -> x | None -> failwith "async.new_task / _!result=None"'
         | _ => fun () => null ()
 
 #!markdown
@@ -756,4 +756,4 @@ inl await_value_task_unit (task : value_task) : async () =
 
 inl main () =
     types ()
-    $"let merge_cancellation_token_with_default_async x = !merge_cancellation_token_with_default_async x" : ()
+    $'let merge_cancellation_token_with_default_async x = !merge_cancellation_token_with_default_async x' : ()

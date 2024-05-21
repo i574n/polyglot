@@ -407,20 +407,20 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v8 : string = "std::env::var(&*$0)"
     let v9 : string = "AUTOMATION"
-    let v10 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v9 v8
+    let v10 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v9 v8 
     let v11 : string = "true; let _result = $0.map(|x| { //"
-    let v12 : bool = Fable.Core.RustInterop.emitRustExpr v10 v11
+    let v12 : bool = Fable.Core.RustInterop.emitRustExpr v10 v11 
     let v13 : string = "x"
-    let v14 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v13
+    let v14 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v13 
     let v15 : string = "fable_library_rust::String_::fromString($0)"
-    let v16 : string = Fable.Core.RustInterop.emitRustExpr v14 v15
+    let v16 : string = Fable.Core.RustInterop.emitRustExpr v14 v15 
     let v17 : string = "true; $0 })"
-    let v18 : bool = Fable.Core.RustInterop.emitRustExpr v16 v17
+    let v18 : bool = Fable.Core.RustInterop.emitRustExpr v16 v17 
     let v19 : string = "_result"
-    let v20 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v19
+    let v20 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v19 
     let v21 : string = method0()
     let v22 : string = "$0.unwrap_or($1)"
-    let v23 : string = Fable.Core.RustInterop.emitRustExpr struct (v20, v21) v22
+    let v23 : string = Fable.Core.RustInterop.emitRustExpr struct (v20, v21) v22 
     v23 
     #endif
 #if FABLE_COMPILER_RUST && WASM
@@ -446,7 +446,7 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     v30 
     #endif
     |> fun x -> _v7 <- Some x
-    let v31 : string = _v7.Value
+    let v31 : string = match _v7 with Some x -> x | None -> failwith "base.run_target / _v7=None"
     let v33 : bool = v31 = "True"
     let v39 : US1 =
         if v33 then
@@ -490,20 +490,20 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v50 : string = "std::env::var(&*$0)"
-    let v51 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v9 v50
+    let v51 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v9 v50 
     let v52 : string = "true; let _result = $0.map(|x| { //"
-    let v53 : bool = Fable.Core.RustInterop.emitRustExpr v51 v52
+    let v53 : bool = Fable.Core.RustInterop.emitRustExpr v51 v52 
     let v54 : string = "x"
-    let v55 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v54
+    let v55 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v54 
     let v56 : string = "fable_library_rust::String_::fromString($0)"
-    let v57 : string = Fable.Core.RustInterop.emitRustExpr v55 v56
+    let v57 : string = Fable.Core.RustInterop.emitRustExpr v55 v56 
     let v58 : string = "true; $0 })"
-    let v59 : bool = Fable.Core.RustInterop.emitRustExpr v57 v58
+    let v59 : bool = Fable.Core.RustInterop.emitRustExpr v57 v58 
     let v60 : string = "_result"
-    let v61 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v60
+    let v61 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v60 
     let v62 : string = method0()
     let v63 : string = "$0.unwrap_or($1)"
-    let v64 : string = Fable.Core.RustInterop.emitRustExpr struct (v61, v62) v63
+    let v64 : string = Fable.Core.RustInterop.emitRustExpr struct (v61, v62) v63 
     v64 
     #endif
 #if FABLE_COMPILER_RUST && WASM
@@ -529,7 +529,7 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     v71 
     #endif
     |> fun x -> _v49 <- Some x
-    let v72 : string = _v49.Value
+    let v72 : string = match _v49 with Some x -> x | None -> failwith "base.run_target / _v49=None"
     let v74 : bool = v72 = "True"
     let v80 : US1 =
         if v74 then
@@ -550,7 +550,7 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
     v85 
     #endif
     |> fun x -> _v6 <- Some x
-    let v86 : int64 option = _v6.Value
+    let v86 : int64 option = match _v6 with Some x -> x | None -> failwith "base.run_target / _v6=None"
     struct (v2, v1, v3, v86, v5)
 and closure2 () () : bool =
     let v0 : bool = true
@@ -560,7 +560,7 @@ and closure2 () () : bool =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v1 : string = "cfg!(windows)"
-    let v2 : bool = Fable.Core.RustInterop.emitRustExpr () v1
+    let v2 : bool = Fable.Core.RustInterop.emitRustExpr () v1 
     v2 
     #endif
 #if FABLE_COMPILER_RUST && WASM
@@ -586,7 +586,7 @@ and closure2 () () : bool =
     v9 
     #endif
     |> fun x -> _v0 <- Some x
-    let v10 : bool = _v0.Value
+    let v10 : bool = match _v0 with Some x -> x | None -> failwith "base.run_target / _v0=None"
     v10
 and closure3 () () : string =
     let v0 : bool = true
@@ -596,7 +596,7 @@ and closure3 () () : string =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v1 : string = "cfg!(windows)"
-    let v2 : bool = Fable.Core.RustInterop.emitRustExpr () v1
+    let v2 : bool = Fable.Core.RustInterop.emitRustExpr () v1 
     v2 
     #endif
 #if FABLE_COMPILER_RUST && WASM
@@ -622,7 +622,7 @@ and closure3 () () : string =
     v9 
     #endif
     |> fun x -> _v0 <- Some x
-    let v10 : bool = _v0.Value
+    let v10 : bool = match _v0 with Some x -> x | None -> failwith "base.run_target / _v0=None"
     if v10 then
         let v11 : string = ".exe"
         v11
@@ -896,7 +896,7 @@ and closure9 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     v66 
     #endif
     |> fun x -> _v10 <- Some x
-    let v67 : string = _v10.Value
+    let v67 : string = match _v10 with Some x -> x | None -> failwith "base.run_target / _v10=None"
     let v68 : int64 = v5.l0
     let v78 : string =
         match v0 with
@@ -915,132 +915,133 @@ and closure9 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
         | US0_3 -> (* Warning *)
             let v72 : string = "Warning"
             v72
-    let v79 : string = v78.ToLower ()
-    let v80 : string = v79.PadLeft (7, ' ')
-    let v81 : bool = true
-    let mutable _v81 : string option = None 
+    let v79 : (unit -> string) = v78.ToLower
+    let v80 : string = v79 ()
+    let v81 : string = v80.PadLeft (7, ' ')
+    let v82 : bool = true
+    let mutable _v82 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v96 : Ref<Str> =
+    let v97 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v90 : string = "inline_colorization::color_bright_red"
-            let v91 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v90
-            v91
+            let v91 : string = "inline_colorization::color_bright_red"
+            let v92 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v91 
+            v92
         | US0_1 -> (* Debug *)
-            let v84 : string = "inline_colorization::color_bright_blue"
-            let v85 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v84
-            v85
+            let v85 : string = "inline_colorization::color_bright_blue"
+            let v86 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v85 
+            v86
         | US0_2 -> (* Info *)
-            let v86 : string = "inline_colorization::color_bright_green"
-            let v87 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v86
-            v87
+            let v87 : string = "inline_colorization::color_bright_green"
+            let v88 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v87 
+            v88
         | US0_0 -> (* Verbose *)
-            let v82 : string = "inline_colorization::color_bright_black"
-            let v83 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v82
-            v83
+            let v83 : string = "inline_colorization::color_bright_black"
+            let v84 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v83 
+            v84
         | US0_3 -> (* Warning *)
-            let v88 : string = "inline_colorization::color_yellow"
-            let v89 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v88
-            v89
-    let v97 : string = "&*$0"
-    let v98 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v80 v97
-    let v99 : string = "inline_colorization::color_reset"
-    let v100 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v99
-    let v101 : string = "\"{v96}{v98}{v100}\""
-    let v102 : string = @$"format!(" + v101 + ")"
-    let v103 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v102
-    let v104 : string = "fable_library_rust::String_::fromString($0)"
-    let v105 : string = Fable.Core.RustInterop.emitRustExpr v103 v104
-    v105 
+            let v89 : string = "inline_colorization::color_yellow"
+            let v90 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v89 
+            v90
+    let v98 : string = "&*$0"
+    let v99 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v81 v98 
+    let v100 : string = "inline_colorization::color_reset"
+    let v101 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v100 
+    let v102 : string = "\"{v97}{v99}{v101}\""
+    let v103 : string = @$"format!(" + v102 + ")"
+    let v104 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v103 
+    let v105 : string = "fable_library_rust::String_::fromString($0)"
+    let v106 : string = Fable.Core.RustInterop.emitRustExpr v104 v105 
+    v106 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v120 : Ref<Str> =
+    let v121 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v114 : string = "inline_colorization::color_bright_red"
-            let v115 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v114
-            v115
+            let v115 : string = "inline_colorization::color_bright_red"
+            let v116 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v115 
+            v116
         | US0_1 -> (* Debug *)
-            let v108 : string = "inline_colorization::color_bright_blue"
-            let v109 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v108
-            v109
+            let v109 : string = "inline_colorization::color_bright_blue"
+            let v110 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v109 
+            v110
         | US0_2 -> (* Info *)
-            let v110 : string = "inline_colorization::color_bright_green"
-            let v111 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v110
-            v111
+            let v111 : string = "inline_colorization::color_bright_green"
+            let v112 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v111 
+            v112
         | US0_0 -> (* Verbose *)
-            let v106 : string = "inline_colorization::color_bright_black"
-            let v107 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v106
-            v107
+            let v107 : string = "inline_colorization::color_bright_black"
+            let v108 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v107 
+            v108
         | US0_3 -> (* Warning *)
-            let v112 : string = "inline_colorization::color_yellow"
-            let v113 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v112
-            v113
-    let v121 : string = "&*$0"
-    let v122 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v80 v121
-    let v123 : string = "inline_colorization::color_reset"
-    let v124 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v123
-    let v125 : string = "\"{v120}{v122}{v124}\""
-    let v126 : string = @$"format!(" + v125 + ")"
-    let v127 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v126
-    let v128 : string = "fable_library_rust::String_::fromString($0)"
-    let v129 : string = Fable.Core.RustInterop.emitRustExpr v127 v128
-    v129 
+            let v113 : string = "inline_colorization::color_yellow"
+            let v114 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v113 
+            v114
+    let v122 : string = "&*$0"
+    let v123 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v81 v122 
+    let v124 : string = "inline_colorization::color_reset"
+    let v125 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v124 
+    let v126 : string = "\"{v121}{v123}{v125}\""
+    let v127 : string = @$"format!(" + v126 + ")"
+    let v128 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v127 
+    let v129 : string = "fable_library_rust::String_::fromString($0)"
+    let v130 : string = Fable.Core.RustInterop.emitRustExpr v128 v129 
+    v130 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v144 : Ref<Str> =
+    let v145 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v138 : string = "inline_colorization::color_bright_red"
-            let v139 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v138
-            v139
+            let v139 : string = "inline_colorization::color_bright_red"
+            let v140 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v139 
+            v140
         | US0_1 -> (* Debug *)
-            let v132 : string = "inline_colorization::color_bright_blue"
-            let v133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v132
-            v133
+            let v133 : string = "inline_colorization::color_bright_blue"
+            let v134 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v133 
+            v134
         | US0_2 -> (* Info *)
-            let v134 : string = "inline_colorization::color_bright_green"
-            let v135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v134
-            v135
+            let v135 : string = "inline_colorization::color_bright_green"
+            let v136 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v135 
+            v136
         | US0_0 -> (* Verbose *)
-            let v130 : string = "inline_colorization::color_bright_black"
-            let v131 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v130
-            v131
+            let v131 : string = "inline_colorization::color_bright_black"
+            let v132 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v131 
+            v132
         | US0_3 -> (* Warning *)
-            let v136 : string = "inline_colorization::color_yellow"
-            let v137 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v136
-            v137
-    let v145 : string = "&*$0"
-    let v146 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v80 v145
-    let v147 : string = "inline_colorization::color_reset"
-    let v148 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v147
-    let v149 : string = "\"{v144}{v146}{v148}\""
-    let v150 : string = @$"format!(" + v149 + ")"
-    let v151 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v150
-    let v152 : string = "fable_library_rust::String_::fromString($0)"
-    let v153 : string = Fable.Core.RustInterop.emitRustExpr v151 v152
-    v153 
+            let v137 : string = "inline_colorization::color_yellow"
+            let v138 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v137 
+            v138
+    let v146 : string = "&*$0"
+    let v147 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v81 v146 
+    let v148 : string = "inline_colorization::color_reset"
+    let v149 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v148 
+    let v150 : string = "\"{v145}{v147}{v149}\""
+    let v151 : string = @$"format!(" + v150 + ")"
+    let v152 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v151 
+    let v153 : string = "fable_library_rust::String_::fromString($0)"
+    let v154 : string = Fable.Core.RustInterop.emitRustExpr v152 v153 
+    v154 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    v80 
+    v81 
     #endif
 #if FABLE_COMPILER_PYTHON
-    v80 
+    v81 
     #endif
 #else
-    v80 
+    v81 
     #endif
-    |> fun x -> _v81 <- Some x
-    let v154 : string = _v81.Value
-    let v155 : string = $"{v67} {v154} #{v68} %s{v1 ()} / %s{v2 ()}"
-    let v156 : (char []) = [||]
-    let v157 : string = v155.TrimStart v156
-    let v158 : (char []) = [|' '; '/'|]
-    let v159 : string = v157.TrimEnd v158
-    v159
+    |> fun x -> _v82 <- Some x
+    let v155 : string = match _v82 with Some x -> x | None -> failwith "base.run_target / _v82=None"
+    let v156 : string = $"{v67} {v155} #{v68} %s{v1 ()} / %s{v2 ()}"
+    let v157 : (char []) = [||]
+    let v158 : string = v156.TrimStart v157 
+    let v159 : (char []) = [|' '; '/'|]
+    let v160 : string = v158.TrimEnd v159 
+    v160
 and method10 (v0 : US0, v1 : (unit -> string)) : unit =
     let v2 : (US0 -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
     let v3 : US0 = US0_0
@@ -1072,17 +1073,17 @@ and method10 (v0 : US0, v1 : (unit -> string)) : unit =
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
         let v26 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v24 v26
+        Fable.Core.RustInterop.emitRustExpr v24 v26 
         () 
         #endif
 #if FABLE_COMPILER_RUST && WASM
         let v27 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v24 v27
+        Fable.Core.RustInterop.emitRustExpr v24 v27 
         () 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
         let v28 : string = @"println!(""{}"", $0)"
-        Fable.Core.RustInterop.emitRustExpr v24 v28
+        Fable.Core.RustInterop.emitRustExpr v24 v28 
         () 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
@@ -1098,7 +1099,7 @@ and method10 (v0 : US0, v1 : (unit -> string)) : unit =
         () 
         #endif
         |> fun x -> _v25 <- Some x
-        _v25.Value
+        match _v25 with Some x -> x | None -> failwith "base.run_target / _v25=None"
         let v29 : (string -> unit) = v8.l0
         v29 v24
 and method8 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
@@ -1134,7 +1135,7 @@ and closure10 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
     #endif
 #else
     let v16 : Async<unit> option = None
-    let mutable _v16 = v16
+    let mutable _v16 = v16 
     async {
     let v17 : string = v9.Data
     let v18 : string = null |> unbox<string>
@@ -1172,21 +1173,21 @@ and closure10 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
             let v33 : (unit -> string) = closure8()
             method8(v31, v32, v33)
         else
-            System.Console.WriteLine v30
-            ()
-        let v34 : string = ""
-        let v35 : string = $"{v34}{v17}{v34}"
-        let v36 : (string -> unit) = v8.Push
-        v36 v35
+            let v34 : (string -> unit) = System.Console.WriteLine
+            v34 v30
+        let v35 : string = ""
+        let v36 : string = $"{v35}{v17}{v35}"
+        let v37 : (string -> unit) = v8.Push
+        v37 v36
     }
     |> fun x -> _v16 <- Some x
-    let v37 : Async<unit> = _v16 |> Option.get
-    v37 
+    let v38 : Async<unit> = match _v16 with Some x -> x | None -> failwith "async.new_async_unit / _v16=None"
+    v38 
     #endif
     |> fun x -> _v10 <- Some x
-    let v38 : Async<unit> = _v10.Value
-    let v39 : bool = true
-    let mutable _v39 : unit option = None 
+    let v39 : Async<unit> = match _v10 with Some x -> x | None -> failwith "base.run_target / _v10=None"
+    let v40 : bool = true
+    let mutable _v40 : unit option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1211,12 +1212,12 @@ and closure10 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
     () 
     #endif
 #else
-    let v40 : (Async<unit> -> unit) = Async.StartImmediate
-    v40 v38
+    let v41 : (Async<unit> -> unit) = Async.StartImmediate
+    v41 v39
     () 
     #endif
-    |> fun x -> _v39 <- Some x
-    _v39.Value
+    |> fun x -> _v40 <- Some x
+    match _v40 with Some x -> x | None -> failwith "base.run_target / _v40=None"
     ()
 and closure12 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option, v7 : System.Diagnostics.Process, v8 : System.Collections.Concurrent.ConcurrentStack<string>) (v9 : System.Diagnostics.DataReceivedEventArgs) : unit =
     let v10 : bool = true
@@ -1246,7 +1247,7 @@ and closure12 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
     #endif
 #else
     let v16 : Async<unit> option = None
-    let mutable _v16 = v16
+    let mutable _v16 = v16 
     async {
     let v17 : string = v9.Data
     let v18 : string = null |> unbox<string>
@@ -1284,22 +1285,22 @@ and closure12 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
             let v33 : (unit -> string) = closure8()
             method8(v31, v32, v33)
         else
-            System.Console.WriteLine v30
-            ()
-        let v34 : string = "\u001b[7;4m"
-        let v35 : string = "\u001b[0m"
-        let v36 : string = $"{v34}{v17}{v35}"
-        let v37 : (string -> unit) = v8.Push
-        v37 v36
+            let v34 : (string -> unit) = System.Console.WriteLine
+            v34 v30
+        let v35 : string = "\u001b[7;4m"
+        let v36 : string = "\u001b[0m"
+        let v37 : string = $"{v35}{v17}{v36}"
+        let v38 : (string -> unit) = v8.Push
+        v38 v37
     }
     |> fun x -> _v16 <- Some x
-    let v38 : Async<unit> = _v16 |> Option.get
-    v38 
+    let v39 : Async<unit> = match _v16 with Some x -> x | None -> failwith "async.new_async_unit / _v16=None"
+    v39 
     #endif
     |> fun x -> _v10 <- Some x
-    let v39 : Async<unit> = _v10.Value
-    let v40 : bool = true
-    let mutable _v40 : unit option = None 
+    let v40 : Async<unit> = match _v10 with Some x -> x | None -> failwith "base.run_target / _v10=None"
+    let v41 : bool = true
+    let mutable _v41 : unit option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1324,12 +1325,12 @@ and closure12 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
     () 
     #endif
 #else
-    let v41 : (Async<unit> -> unit) = Async.StartImmediate
-    v41 v39
+    let v42 : (Async<unit> -> unit) = Async.StartImmediate
+    v42 v40
     () 
     #endif
-    |> fun x -> _v40 <- Some x
-    _v40.Value
+    |> fun x -> _v41 <- Some x
+    match _v41 with Some x -> x | None -> failwith "base.run_target / _v41=None"
     ()
 and closure13 (v0 : System.Diagnostics.Process) () : unit =
     let v1 : bool = true
@@ -1362,7 +1363,7 @@ and closure13 (v0 : System.Diagnostics.Process) () : unit =
     v7 
     #endif
     |> fun x -> _v1 <- Some x
-    let v8 : bool = _v1.Value
+    let v8 : bool = match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
     let v9 : bool = v8 = false
     if v9 then
         let v10 : bool = true
@@ -1396,7 +1397,7 @@ and closure13 (v0 : System.Diagnostics.Process) () : unit =
         () 
         #endif
         |> fun x -> _v10 <- Some x
-        _v10.Value
+        match _v10 with Some x -> x | None -> failwith "base.run_target / _v10=None"
         ()
 and closure14 (v0 : System.Threading.Tasks.TaskCanceledException) () : string =
     let v1 : string = $"execute_with_options_async / WaitForExitAsync / ex: %A{v0}"
@@ -1461,7 +1462,7 @@ and method2 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     #endif
 #else
     let v19 : Async<struct (int32 * string)> option = None
-    let mutable _v19 = v19
+    let mutable _v19 = v19 
     async {
     let struct (v20 : string, v21 : string) = method3()
     let v22 : int32 = v1.Length
@@ -1617,7 +1618,7 @@ and method2 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     #endif
 #else
     let v96 : Async<System.Threading.CancellationToken> option = None
-    let mutable _v96 = v96
+    let mutable _v96 = v96 
     async {
     let v97 : Async<System.Threading.CancellationToken> = Async.CancellationToken
     let! v97 = v97 
@@ -1630,15 +1631,15 @@ and method2 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     return v103 
     }
     |> fun x -> _v96 <- Some x
-    let v104 : Async<System.Threading.CancellationToken> = _v96 |> Option.get
+    let v104 : Async<System.Threading.CancellationToken> = match _v96 with Some x -> x | None -> failwith "async.new_async_unit / _v96=None"
     v104 
     #endif
     |> fun x -> _v90 <- Some x
-    let v105 : Async<System.Threading.CancellationToken> = _v90.Value
+    let v105 : Async<System.Threading.CancellationToken> = match _v90 with Some x -> x | None -> failwith "base.run_target / _v90=None"
     v105 
     #endif
     |> fun x -> _v84 <- Some x
-    let v106 : Async<System.Threading.CancellationToken> = _v84.Value
+    let v106 : Async<System.Threading.CancellationToken> = match _v84 with Some x -> x | None -> failwith "base.run_target / _v84=None"
     let! v106 = v106 
     let v107 : System.Threading.CancellationToken = v106 
     let v108 : ((unit -> unit) -> System.Threading.CancellationTokenRegistration) = v107.Register
@@ -1673,7 +1674,7 @@ and method2 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     #endif
 #else
     let v118 : Async<int32> option = None
-    let mutable _v118 = v118
+    let mutable _v118 = v118 
     async {
     try
     let v119 : System.Threading.Tasks.Task = v63.WaitForExitAsync v107 
@@ -1708,7 +1709,7 @@ and method2 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     v127 
     #endif
     |> fun x -> _v120 <- Some x
-    let v128 : Async<unit> = _v120.Value
+    let v128 : Async<unit> = match _v120 with Some x -> x | None -> failwith "base.run_target / _v120=None"
     do! v128 
     let v129 : int32 = v63.ExitCode
     return v129 
@@ -1744,7 +1745,7 @@ and method2 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     v137 
     #endif
     |> fun x -> _v131 <- Some x
-    let v138 : string = _v131.Value
+    let v138 : string = match _v131 with Some x -> x | None -> failwith "base.run_target / _v131=None"
     let v139 : (string -> unit) = v65.Push
     v139 v138
     let v140 : System.Threading.Tasks.TaskCanceledException = v130 |> unbox<System.Threading.Tasks.TaskCanceledException>
@@ -1757,11 +1758,11 @@ and method2 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     *)
     }
     |> fun x -> _v118 <- Some x
-    let v144 : Async<int32> = _v118 |> Option.get
+    let v144 : Async<int32> = match _v118 with Some x -> x | None -> failwith "async.new_async_unit / _v118=None"
     v144 
     #endif
     |> fun x -> _v112 <- Some x
-    let v145 : Async<int32> = _v112.Value
+    let v145 : Async<int32> = match _v112 with Some x -> x | None -> failwith "base.run_target / _v112=None"
     let! v145 = v145 
     let v146 : int32 = v145 
     let v147 : (System.Collections.Concurrent.ConcurrentStack<string> -> string seq) = Seq.rev
@@ -1777,15 +1778,15 @@ and method2 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     return struct (v146, v152) 
     }
     |> fun x -> _v19 <- Some x
-    let v156 : Async<struct (int32 * string)> = _v19 |> Option.get
+    let v156 : Async<struct (int32 * string)> = match _v19 with Some x -> x | None -> failwith "async.new_async_unit / _v19=None"
     v156 
     #endif
     |> fun x -> _v13 <- Some x
-    let v157 : Async<struct (int32 * string)> = _v13.Value
+    let v157 : Async<struct (int32 * string)> = match _v13 with Some x -> x | None -> failwith "base.run_target / _v13=None"
     v157 
     #endif
     |> fun x -> _v7 <- Some x
-    let v158 : Async<struct (int32 * string)> = _v7.Value
+    let v158 : Async<struct (int32 * string)> = match _v7 with Some x -> x | None -> failwith "base.run_target / _v7=None"
     v158
 and closure4 () (v0 : string) : Async<struct (int32 * string)> =
     let v1 : System.Threading.CancellationToken option = None
@@ -1853,7 +1854,7 @@ and method14 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7) : struct (UH1 * string)
                                 else
                                     let v74 : bool = 1uy = v51
                                     if v74 then
-                                        let v75 : bool = v3 <> v3
+                                        let v75 : bool = v3 <> v3 
                                         if v75 then
                                             let v76 : string = $"{v0}\{v53}"
                                             method14(v76, v1, v54, v3)
@@ -1879,7 +1880,7 @@ and method14 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7) : struct (UH1 * string)
                                     else
                                         let v103 : bool = 1uy = v51
                                         if v103 then
-                                            let v104 : bool = v3 <> v3
+                                            let v104 : bool = v3 <> v3 
                                             if v104 then
                                                 let v105 : string = $"{v0}\{v53}"
                                                 method14(v105, v1, v54, v3)
@@ -1903,7 +1904,7 @@ and method14 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7) : struct (UH1 * string)
                                     else
                                         let v131 : bool = 1uy = v51
                                         if v131 then
-                                            let v132 : bool = v3 <> v3
+                                            let v132 : bool = v3 <> v3 
                                             if v132 then
                                                 let v133 : string = $"{v0}\{v53}"
                                                 method14(v133, v1, v54, v3)
@@ -1927,7 +1928,7 @@ and method14 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7) : struct (UH1 * string)
                             else
                                 let v163 : bool = 1uy = v51
                                 if v163 then
-                                    let v164 : bool = v3 <> v3
+                                    let v164 : bool = v3 <> v3 
                                     if v164 then
                                         let v165 : string = $"{v0}\{v53}"
                                         method14(v165, v1, v54, v3)
@@ -2146,11 +2147,11 @@ and method14 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7) : struct (UH1 * string)
                     let v373 : bool = '"' = v371
                     if v373 then
                         let v374 : US7 = US7_2(0uy, '\\')
-                        let v375 : bool = v3 <> v374
+                        let v375 : bool = v3 <> v374 
                         let v378 : bool =
                             if v375 then
                                 let v376 : US7 = US7_2(0uy, '`')
-                                let v377 : bool = v3 <> v376
+                                let v377 : bool = v3 <> v376 
                                 v377
                             else
                                 false
@@ -2202,11 +2203,11 @@ and method14 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7) : struct (UH1 * string)
                         let v427 : bool = '"' = v425
                         if v427 then
                             let v428 : US7 = US7_2(0uy, '\\')
-                            let v429 : bool = v3 <> v428
+                            let v429 : bool = v3 <> v428 
                             let v432 : bool =
                                 if v429 then
                                     let v430 : US7 = US7_2(0uy, '`')
-                                    let v431 : bool = v3 <> v430
+                                    let v431 : bool = v3 <> v430 
                                     v431
                                 else
                                     false
@@ -2370,7 +2371,7 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                                     else
                                         let v73 : bool = 1uy = v52
                                         if v73 then
-                                            let v74 : bool = v3 <> v4
+                                            let v74 : bool = v3 <> v4 
                                             if v74 then
                                                 let v75 : string = $"{v0}\{v54}"
                                                 method13(v75, v1, v55, v4, v3)
@@ -2390,7 +2391,7 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                                         else
                                             let v95 : bool = 1uy = v52
                                             if v95 then
-                                                let v96 : bool = v3 <> v4
+                                                let v96 : bool = v3 <> v4 
                                                 if v96 then
                                                     let v97 : string = $"{v0}\{v54}"
                                                     method13(v97, v1, v55, v4, v3)
@@ -2408,7 +2409,7 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                                         else
                                             let v116 : bool = 1uy = v52
                                             if v116 then
-                                                let v117 : bool = v3 <> v4
+                                                let v117 : bool = v3 <> v4 
                                                 if v117 then
                                                     let v118 : string = $"{v0}\{v54}"
                                                     method13(v118, v1, v55, v4, v3)
@@ -2426,7 +2427,7 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                                 else
                                     let v141 : bool = 1uy = v52
                                     if v141 then
-                                        let v142 : bool = v3 <> v4
+                                        let v142 : bool = v3 <> v4 
                                         if v142 then
                                             let v143 : string = $"{v0}\{v54}"
                                             method13(v143, v1, v55, v4, v3)
@@ -2463,7 +2464,7 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                                             else
                                                 let v180 : bool = 1uy = v52
                                                 if v180 then
-                                                    let v181 : bool = v3 <> v4
+                                                    let v181 : bool = v3 <> v4 
                                                     if v181 then
                                                         let v182 : string = $"{v0}\{v54}"
                                                         method13(v182, v1, v55, v4, v3)
@@ -2487,7 +2488,7 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                                         else
                                             let v210 : bool = 1uy = v52
                                             if v210 then
-                                                let v211 : bool = v3 <> v4
+                                                let v211 : bool = v3 <> v4 
                                                 if v211 then
                                                     let v212 : string = $"{v0}\{v54}"
                                                     method13(v212, v1, v55, v4, v3)
@@ -2522,7 +2523,7 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                                                 else
                                                     let v248 : bool = 1uy = v52
                                                     if v248 then
-                                                        let v249 : bool = v3 <> v4
+                                                        let v249 : bool = v3 <> v4 
                                                         if v249 then
                                                             let v250 : string = $"{v0}\{v54}"
                                                             method13(v250, v1, v55, v4, v3)
@@ -2546,7 +2547,7 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                                             else
                                                 let v278 : bool = 1uy = v52
                                                 if v278 then
-                                                    let v279 : bool = v3 <> v4
+                                                    let v279 : bool = v3 <> v4 
                                                     if v279 then
                                                         let v280 : string = $"{v0}\{v54}"
                                                         method13(v280, v1, v55, v4, v3)
@@ -2570,7 +2571,7 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                                         else
                                             let v308 : bool = 1uy = v52
                                             if v308 then
-                                                let v309 : bool = v3 <> v4
+                                                let v309 : bool = v3 <> v4 
                                                 if v309 then
                                                     let v310 : string = $"{v0}\{v54}"
                                                     method13(v310, v1, v55, v4, v3)
@@ -2594,7 +2595,7 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                                 else
                                     let v340 : bool = 1uy = v52
                                     if v340 then
-                                        let v341 : bool = v3 <> v4
+                                        let v341 : bool = v3 <> v4 
                                         if v341 then
                                             let v342 : string = $"{v0}\{v54}"
                                             method13(v342, v1, v55, v4, v3)
@@ -3007,11 +3008,11 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                         let v696 : bool = '"' = v694
                         if v696 then
                             let v697 : US7 = US7_2(0uy, '\\')
-                            let v698 : bool = v3 <> v697
+                            let v698 : bool = v3 <> v697 
                             let v701 : bool =
                                 if v698 then
                                     let v699 : US7 = US7_2(0uy, '`')
-                                    let v700 : bool = v3 <> v699
+                                    let v700 : bool = v3 <> v699 
                                     v700
                                 else
                                     false
@@ -3105,11 +3106,11 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                             let v792 : bool = '"' = v790
                             if v792 then
                                 let v793 : US7 = US7_2(0uy, '\\')
-                                let v794 : bool = v3 <> v793
+                                let v794 : bool = v3 <> v793 
                                 let v797 : bool =
                                     if v794 then
                                         let v795 : US7 = US7_2(0uy, '`')
-                                        let v796 : bool = v3 <> v795
+                                        let v796 : bool = v3 <> v795 
                                         v796
                                     else
                                         false
@@ -3304,11 +3305,11 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                     let v999 : bool = '"' = v997
                     if v999 then
                         let v1000 : US7 = US7_2(0uy, '\\')
-                        let v1001 : bool = v3 <> v1000
+                        let v1001 : bool = v3 <> v1000 
                         let v1004 : bool =
                             if v1001 then
                                 let v1002 : US7 = US7_2(0uy, '`')
-                                let v1003 : bool = v3 <> v1002
+                                let v1003 : bool = v3 <> v1002 
                                 v1003
                             else
                                 false
@@ -3441,11 +3442,11 @@ and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1
                         let v1138 : bool = '"' = v1136
                         if v1138 then
                             let v1139 : US7 = US7_2(0uy, '\\')
-                            let v1140 : bool = v3 <> v1139
+                            let v1140 : bool = v3 <> v1139 
                             let v1143 : bool =
                                 if v1140 then
                                     let v1141 : US7 = US7_2(0uy, '`')
-                                    let v1142 : bool = v3 <> v1141
+                                    let v1142 : bool = v3 <> v1141 
                                     v1142
                                 else
                                     false
@@ -3781,7 +3782,7 @@ and method12 (v0 : string) : (string []) =
     Some v0 
     #endif
     |> fun x -> _v0 <- Some x
-    let v5 : string option = _v0.Value
+    let v5 : string option = match _v0 with Some x -> x | None -> failwith "optionm'.of_obj / _v0=None"
     let v6 : US4 option = None
     let _v6 = ref v6 
     match v5 with

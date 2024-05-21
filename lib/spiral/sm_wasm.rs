@@ -12,7 +12,6 @@ pub mod Sm {
     use fable_library_rust::Native_::LrcPtr;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
-    use fable_library_rust::Option_::getValue;
     use fable_library_rust::Seq_::ofArray;
     use fable_library_rust::Seq_::toArray;
     use fable_library_rust::String_::append;
@@ -139,7 +138,10 @@ pub mod Sm {
             let x: string = unbox::<string>(&defaultOf());
             _v3.set(Some(x))
         }
-        getValue(_v3.get().clone())
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
+        }
     }
     pub fn closure14(v0_1: string, v1_1: string) -> Func1<string, string> {
         Func1::new({
@@ -190,7 +192,10 @@ pub mod Sm {
                 split_1(v1_1, join(Sm::method4(), toArray(v11_1)), -1_i32, 0_i32);
             _v2.set(Some(x))
         }
-        getValue(_v2.get().clone())
+        match &_v2.get().clone() {
+            None => panic!("{}", string("base.run_target / _v2=None"),),
+            Some(_v2_0_0) => _v2_0_0.clone(),
+        }
     }
     pub fn closure21(unitVar: (), v0_1: Array<string>) -> Func1<string, Array<string>> {
         Func1::new({
@@ -271,23 +276,23 @@ pub mod Sm {
         if v2_1 <= v0_1 {
             v1_1.clone()
         } else {
-            let v5_1: f64 = v0_1 as f64 / 2.0_f64;
-            let v8_1: i64 = v5_1.ceil() as i64;
-            let v11_1: i64 = v5_1.floor() as i64;
-            let v20_1: LrcPtr<dyn IEnumerable_1<string>> = ofArray(new_array(&[
+            let v6_1: f64 = v0_1 as f64 / 2.0_f64;
+            let v10_1: i64 = v6_1.ceil() as i64;
+            let v14_1: i64 = v6_1.floor() as i64;
+            let v23: LrcPtr<dyn IEnumerable_1<string>> = ofArray(new_array(&[
                 getSlice(
                     v1_1.clone(),
                     Some(0_i64 as i32),
-                    Some((v8_1 - 1_i64) as i32),
+                    Some((v10_1 - 1_i64) as i32),
                 ),
                 string("..."),
                 getSlice(
                     v1_1,
-                    Some((v2_1 - v11_1) as i32),
+                    Some((v2_1 - v14_1) as i32),
                     Some((v2_1 - 1_i64) as i32),
                 ),
             ]));
-            join(Sm::method4(), toArray(v20_1))
+            join(Sm::method4(), toArray(v23))
         }
     }
     pub fn closure38(v0_1: i64, v1_1: string) -> string {
@@ -305,7 +310,10 @@ pub mod Sm {
             let x: string = sprintf!("{:?}", v0_1);
             _v1.set(Some(x))
         }
-        getValue(_v1.get().clone())
+        match &_v1.get().clone() {
+            None => panic!("{}", string("base.run_target / _v1=None"),),
+            Some(_v1_0_0) => _v1_0_0.clone(),
+        }
     }
     pub fn method6(v0_1: i32, v1_1: LrcPtr<Sm::Mut0>) -> bool {
         v1_1.l0.get().clone() < v0_1

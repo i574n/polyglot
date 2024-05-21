@@ -474,7 +474,16 @@ pub mod Runtime {
         });
         let _v6: MutCell<Option<Option<i64>>> = MutCell::new(None::<Option<i64>>);
         _v6.set(Some(None::<i64>));
-        (v2_1, v1_1, v3_1, getValue(_v6.get().clone()), v5_1)
+        (
+            v2_1,
+            v1_1,
+            v3_1,
+            match &_v6.get().clone() {
+                None => panic!("{}", string("base.run_target / _v6=None"),),
+                Some(_v6_0_0) => _v6_0_0.clone(),
+            },
+            v5_1,
+        )
     }
     pub fn closure2(unitVar: (), unitVar_1: ()) -> bool {
         let _v0: MutCell<Option<bool>> = MutCell::new(None::<bool>);
@@ -482,7 +491,10 @@ pub mod Runtime {
             let x: bool = unbox::<bool>(&defaultOf());
             _v0.set(Some(x))
         }
-        getValue(_v0.get().clone())
+        match &_v0.get().clone() {
+            None => panic!("{}", string("base.run_target / _v0=None"),),
+            Some(_v0_0_0) => _v0_0_0.clone(),
+        }
     }
     pub fn closure3(unitVar: (), unitVar_1: ()) -> string {
         let _v0: MutCell<Option<bool>> = MutCell::new(None::<bool>);
@@ -490,7 +502,10 @@ pub mod Runtime {
             let x: bool = unbox::<bool>(&defaultOf());
             _v0.set(Some(x))
         }
-        if getValue(_v0.get().clone()) {
+        if match &_v0.get().clone() {
+            None => panic!("{}", string("base.run_target / _v0=None"),),
+            Some(_v0_0_0) => _v0_0_0.clone(),
+        } {
             string(".exe")
         } else {
             string("")
@@ -876,9 +891,12 @@ pub mod Runtime {
                 _v10.set(Some(x))
             }
             {
-                let v67: string = getValue(_v10.get().clone());
+                let v67: string = match &_v10.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v10=None"),),
+                    Some(_v10_0_0) => _v10_0_0.clone(),
+                };
                 let v68: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v80: string = padLeft(
+                let v81: string = padLeft(
                     toLower(match &v0_1 {
                         Runtime::US0::US0_1 => string("Debug"),
                         Runtime::US0::US0_2 => string("Info"),
@@ -889,28 +907,31 @@ pub mod Runtime {
                     7_i32,
                     ' ',
                 );
-                let _v81: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v120: &str = match &v0_1 {
+                let _v82: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v121: &str = match &v0_1 {
                     Runtime::US0::US0_1 => inline_colorization::color_bright_blue,
                     Runtime::US0::US0_2 => inline_colorization::color_bright_green,
                     Runtime::US0::US0_0 => inline_colorization::color_bright_black,
                     Runtime::US0::US0_3 => inline_colorization::color_yellow,
                     _ => inline_colorization::color_bright_red,
                 };
-                let v122: &str = &*v80;
-                let v124: &str = inline_colorization::color_reset;
-                let v126: string = string("format!(\"{v120}{v122}{v124}\")");
-                let v127: std::string::String = format!("{v120}{v122}{v124}");
+                let v123: &str = &*v81;
+                let v125: &str = inline_colorization::color_reset;
+                let v127: string = string("format!(\"{v121}{v123}{v125}\")");
+                let v128: std::string::String = format!("{v121}{v123}{v125}");
                 {
-                    let x_1: string = fable_library_rust::String_::fromString(v127);
-                    _v81.set(Some(x_1))
+                    let x_2: string = fable_library_rust::String_::fromString(v128);
+                    _v82.set(Some(x_2))
                 }
                 trimEndChars(
                     trimStartChars(
                         sprintf!(
                             "{} {} #{} {} / {}",
                             v67,
-                            getValue(_v81.get().clone()),
+                            match &_v82.get().clone() {
+                                None => panic!("{}", string("base.run_target / _v82=None"),),
+                                Some(_v82_0_0) => _v82_0_0.clone(),
+                            },
                             v68,
                             v1_1(),
                             v2_1()
@@ -988,7 +1009,10 @@ pub mod Runtime {
                         let _v25: MutCell<Option<()>> = MutCell::new(None::<()>);
                         println!("{}", v24.clone());
                         _v25.set(Some(()));
-                        getValue(_v25.get().clone());
+                        match &_v25.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v25=None"),),
+                            Some(_v25_0_0) => _v25_0_0.clone(),
+                        }
                         ((patternInput.4.clone()).l0.get().clone())(v24)
                     }
                 }
@@ -1027,11 +1051,17 @@ pub mod Runtime {
             _v10.set(Some(x))
         }
         {
-            let v38: Arc<Async<()>> = getValue(_v10.get().clone());
-            let _v39: MutCell<Option<()>> = MutCell::new(None::<()>);
+            let v39: Arc<Async<()>> = match &_v10.get().clone() {
+                None => panic!("{}", string("base.run_target / _v10=None"),),
+                Some(_v10_0_0) => _v10_0_0.clone(),
+            };
+            let _v40: MutCell<Option<()>> = MutCell::new(None::<()>);
             defaultOf::<()>();
-            _v39.set(Some(()));
-            getValue(_v39.get().clone());
+            _v40.set(Some(()));
+            match &_v40.get().clone() {
+                None => panic!("{}", string("base.run_target / _v40=None"),),
+                Some(_v40_0_0) => _v40_0_0.clone(),
+            }
             ()
         }
     }
@@ -1053,11 +1083,17 @@ pub mod Runtime {
             _v10.set(Some(x))
         }
         {
-            let v39: Arc<Async<()>> = getValue(_v10.get().clone());
-            let _v40: MutCell<Option<()>> = MutCell::new(None::<()>);
+            let v40: Arc<Async<()>> = match &_v10.get().clone() {
+                None => panic!("{}", string("base.run_target / _v10=None"),),
+                Some(_v10_0_0) => _v10_0_0.clone(),
+            };
+            let _v41: MutCell<Option<()>> = MutCell::new(None::<()>);
             defaultOf::<()>();
-            _v40.set(Some(()));
-            getValue(_v40.get().clone());
+            _v41.set(Some(()));
+            match &_v41.get().clone() {
+                None => panic!("{}", string("base.run_target / _v41=None"),),
+                Some(_v41_0_0) => _v41_0_0.clone(),
+            }
             ()
         }
     }
@@ -1067,11 +1103,18 @@ pub mod Runtime {
             let x: bool = unbox::<bool>(&defaultOf());
             _v1.set(Some(x))
         }
-        if getValue(_v1.get().clone()) == false {
+        if match &_v1.get().clone() {
+            None => panic!("{}", string("base.run_target / _v1=None"),),
+            Some(_v1_0_0) => _v1_0_0.clone(),
+        } == false
+        {
             let _v10: MutCell<Option<()>> = MutCell::new(None::<()>);
             defaultOf::<()>();
             _v10.set(Some(()));
-            getValue(_v10.get().clone());
+            match &_v10.get().clone() {
+                None => panic!("{}", string("base.run_target / _v10=None"),),
+                Some(_v10_0_0) => _v10_0_0.clone(),
+            }
             ()
         }
     }
@@ -1106,7 +1149,10 @@ pub mod Runtime {
             let x: Arc<Async<(i32, string)>> = defaultOf();
             _v7.set(Some(x))
         }
-        getValue(_v7.get().clone())
+        match &_v7.get().clone() {
+            None => panic!("{}", string("base.run_target / _v7=None"),),
+            Some(_v7_0_0) => _v7_0_0.clone(),
+        }
     }
     pub fn closure4(unitVar: (), v0_1: string) -> Arc<Async<(i32, string)>> {
         Runtime::method2(
@@ -5574,20 +5620,23 @@ pub mod Runtime {
         let _v0: MutCell<Option<Option<string>>> = MutCell::new(None::<Option<string>>);
         _v0.set(Some(Some(v0_1)));
         {
-            let v5_1: Option<string> = getValue(_v0.get().clone());
+            let v5_1: Option<string> = match &_v0.get().clone() {
+                None => panic!("{}", string("optionm\'.of_obj / _v0=None"),),
+                Some(_v0_0_0) => _v0_0_0.clone(),
+            };
             let _v6: LrcPtr<MutCell<Option<Runtime::US4>>> = refCell(None::<Runtime::US4>);
             {
-                let x_3: Option<Runtime::US4> = match &v5_1 {
+                let x_4: Option<Runtime::US4> = match &v5_1 {
                     None => None::<Runtime::US4>,
                     Some(v5_1_0_0) => {
-                        let x_1: string = v5_1_0_0.clone();
+                        let x_2: string = v5_1_0_0.clone();
                         Some((Func0::new({
-                            let x_1 = x_1.clone();
-                            move || Runtime::US4::US4_0(x_1.clone())
+                            let x_2 = x_2.clone();
+                            move || Runtime::US4::US4_0(x_2.clone())
                         }))())
                     }
                 };
-                _v6.set(x_3)
+                _v6.set(x_4)
             }
             {
                 let v11: Runtime::US4 = defaultValue(Runtime::US4::US4_1, _v6.get().clone());

@@ -31,7 +31,7 @@ nominal fuse t = $'core_iter_Fuse<`t>'
 
 #!spiral
 
-nominal seq' t = $"`t seq"
+nominal seq' t = $'`t seq'
 
 #!markdown
 

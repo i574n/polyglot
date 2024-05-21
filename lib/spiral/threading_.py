@@ -7,7 +7,7 @@ from fable_modules.fable_library.reflection import (TypeInfo, class_type, union_
 from fable_modules.fable_library.types import (Array, Union, FSharpRef)
 from fable_modules.fable_library.util import IDisposable
 
-def _expr71() -> TypeInfo:
+def _expr72() -> TypeInfo:
     return class_type("Threading.Disposable", None, Disposable)
 
 
@@ -20,13 +20,13 @@ class Disposable(IDisposable):
         _.f(None)
 
 
-Disposable_reflection = _expr71
+Disposable_reflection = _expr72
 
 def Disposable__ctor_3A5B6456(f: Callable[[], None]) -> Disposable:
     return Disposable(f)
 
 
-def _expr72() -> TypeInfo:
+def _expr73() -> TypeInfo:
     return union_type("Threading.US0", [], US0, lambda: [[("f0_0", class_type("System.Threading.CancellationToken"))], []])
 
 
@@ -42,7 +42,7 @@ class US0(Union):
         return ["US0_0", "US0_1"]
 
 
-US0_reflection = _expr72
+US0_reflection = _expr73
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:
@@ -65,29 +65,40 @@ def US0__get_IsUS0_1(this: FSharpRef[US0], unit_arg: None) -> bool:
 def closure1(v0_1: Any, unit_var: None) -> None:
     _v1: None | None = None
     _v1 = some(None)
-    value_1(_v1)
+    if _v1 is None:
+        raise Exception("base.run_target / _v1=None")
+
+    else: 
+        value_1(_v1)
+
 
 
 def method0(v0_1: Any) -> Callable[[], None]:
-    def _arrow73(__unit: None=None, v0_1: Any=v0_1) -> None:
+    def _arrow75(__unit: None=None, v0_1: Any=v0_1) -> None:
         closure1(v0_1, None)
 
-    return _arrow73
+    return _arrow75
 
 
 def closure0(unit_var: None, v0_1: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
     _v1: tuple[CancellationToken, IDisposable] | None = None
     pattern_input: tuple[CancellationToken, IDisposable] = None
     _v1 = (pattern_input[0], pattern_input[1])
-    pattern_input_1: tuple[CancellationToken, IDisposable] = value_1(_v1)
+    pattern_input_1: tuple[CancellationToken, IDisposable]
+    if _v1 is None:
+        raise Exception("base.run_target / _v1=None")
+
+    else: 
+        pattern_input_1 = _v1
+
     return (pattern_input_1[0], pattern_input_1[1])
 
 
-def _arrow76(v: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
+def _arrow77(v: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
     return closure0(None, v)
 
 
-v0: Callable[[CancellationToken | None], tuple[CancellationToken, IDisposable]] = _arrow76
+v0: Callable[[CancellationToken | None], tuple[CancellationToken, IDisposable]] = _arrow77
 
 def new_disposable_token(x: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
     return v0(x)

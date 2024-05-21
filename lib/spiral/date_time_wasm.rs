@@ -11,7 +11,6 @@ pub mod Date_time {
     use fable_library_rust::Native_::Func1;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
-    use fable_library_rust::Option_::getValue;
     use fable_library_rust::String_::getSlice;
     use fable_library_rust::String_::padLeft;
     use fable_library_rust::String_::replace;
@@ -88,7 +87,10 @@ pub mod Date_time {
             let x: Guid = unbox::<Guid>(&defaultOf());
             _v2.set(Some(x))
         }
-        getValue(_v2.get().clone())
+        match &_v2.get().clone() {
+            None => panic!("{}", string("base.run_target / _v2=None"),),
+            Some(_v2_0_0) => _v2_0_0.clone(),
+        }
     }
     pub fn closure1(v0_1: Guid, v1_1: DateTime) -> Guid {
         Date_time::method0(v0_1, v1_1)
@@ -127,7 +129,10 @@ pub mod Date_time {
             ));
             _v4.set(Some(x))
         }
-        getValue(_v4.get().clone())
+        match &_v4.get().clone() {
+            None => panic!("{}", string("base.run_target / _v4=None"),),
+            Some(_v4_0_0) => _v4_0_0.clone(),
+        }
     }
     pub fn closure7(v0_1: Guid, v1_1: i64) -> Guid {
         let v3_1: string = toString(v0_1);
@@ -161,15 +166,15 @@ pub mod Date_time {
         Date_time::method0(new_guid(), v0_1)
     }
     pub fn closure10(unitVar: (), v0_1: i64) -> Guid {
-        let v3_1: string = toString(new_guid());
-        let v6_1: string = padLeft(toString(v0_1), 18_i32, '0');
+        let v4_1: string = toString(new_guid());
+        let v7_1: string = padLeft(toString(v0_1), 18_i32, '0');
         parse(sprintf!(
             "{}-{}-{}-{}{}",
-            getSlice(v6_1.clone(), Some(0_i32), Some(7_i32)),
-            getSlice(v6_1.clone(), Some(8_i32), Some(11_i32)),
-            getSlice(v6_1.clone(), Some(12_i32), Some(15_i32)),
-            getSlice(v6_1, Some(16_i32), Some(17_i32)),
-            getSlice(v3_1, Some(21_i32), None::<i32>)
+            getSlice(v7_1.clone(), Some(0_i32), Some(7_i32)),
+            getSlice(v7_1.clone(), Some(8_i32), Some(11_i32)),
+            getSlice(v7_1.clone(), Some(12_i32), Some(15_i32)),
+            getSlice(v7_1, Some(16_i32), Some(17_i32)),
+            getSlice(v4_1, Some(21_i32), None::<i32>)
         ))
     }
     pub fn closure12(v0_1: string, v1_1: DateTime) -> string {

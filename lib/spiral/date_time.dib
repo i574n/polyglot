@@ -39,12 +39,12 @@ inl types () =
 #!spiral
 
 nominal timestamp = i64
-nominal duration = $"std_time_Duration"
-nominal date_time = $"System.DateTime"
-nominal date_time' t = $"chrono_DateTime<`t>"
-nominal local = $"chrono_Local"
-nominal naive_date_time = $"chrono_NaiveDateTime"
-nominal utc = $"chrono_Utc"
+nominal duration = $'std_time_Duration'
+nominal date_time = $'System.DateTime'
+nominal date_time' t = $'chrono_DateTime<`t>'
+nominal local = $'chrono_Local'
+nominal naive_date_time = $'chrono_NaiveDateTime'
+nominal utc = $'chrono_Utc'
 
 #!markdown
 
@@ -676,11 +676,11 @@ utc_now ()
 
 inl main () =
     types ()
-    $"let date_time_guid_from_date_time x = !date_time_guid_from_date_time x" : ()
-    $"let date_time_from_guid x = !date_time_from_guid x" : ()
-    $"let timestamp_guid_from_timestamp x = !timestamp_guid_from_timestamp x" : ()
-    $"let timestamp_from_guid x = !timestamp_from_guid x" : ()
-    $"let new_guid_from_date_time x = !new_guid_from_date_time x" : ()
-    $"let new_guid_from_timestamp x = !new_guid_from_timestamp x" : ()
-    $"let format x = !format x" : ()
-    $"let format_iso8601 x = !format_iso8601 x" : ()
+    $'let date_time_guid_from_date_time x = !date_time_guid_from_date_time x' : ()
+    $'let date_time_from_guid x = !date_time_from_guid x' : ()
+    $'let timestamp_guid_from_timestamp x = !timestamp_guid_from_timestamp x' : ()
+    $'let timestamp_from_guid x = !timestamp_from_guid x' : ()
+    $'let new_guid_from_date_time x = !new_guid_from_date_time x' : ()
+    $'let new_guid_from_timestamp x = !new_guid_from_timestamp x' : ()
+    $'let format x = !format x' : ()
+    $'let format_iso8601 x = !format_iso8601 x' : ()

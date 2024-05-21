@@ -30,44 +30,44 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Weak<$0>\")>]\n#endif\ntype std_rc_Weak<'T> = class end"
 
 nominal unit = $'unit'
-nominal any = $"core_any_Any"
+nominal any = $'core_any_Any'
 nominal try t = $'core_ops_Try<`t>'
-nominal cow t = $"std_borrow_Cow<`t>"
-nominal ref_cell t = $"std_cell_RefCell<`t>"
-nominal rc t = $"std_rc_Rc<`t>"
-nominal lifetime_join' (t : * -> *) u = $"LifetimeRef<`(t u)>"
-nominal lifetime_join t u = $"LifetimeJoin<`t, `u>"
-nominal lifetime t u = $"Lifetime<`t, `u>"
-nominal static_lifetime = $"StaticLifetime"
-nominal ref t = $"Ref<`t>"
+nominal cow t = $'std_borrow_Cow<`t>'
+nominal ref_cell t = $'std_cell_RefCell<`t>'
+nominal rc t = $'std_rc_Rc<`t>'
+nominal lifetime_join' (t : * -> *) u = $'LifetimeRef<`(t u)>'
+nominal lifetime_join t u = $'LifetimeJoin<`t, `u>'
+nominal lifetime t u = $'Lifetime<`t, `u>'
+nominal static_lifetime = $'StaticLifetime'
+nominal ref t = $'Ref<`t>'
 nominal static_ref t = ref (lifetime static_lifetime t)
-nominal weak_rc t = $"std_rc_Weak<`t>"
-nominal box t = $"Box<`t>"
-nominal mut_cell t = $"MutCell<`t>"
-nominal pin t = $"std_pin_Pin<`t>"
-nominal dyn' t = $"Dyn<`t>"
-nominal fn' t = $"Fn<`t>"
-nominal action_fn t = $"ActionFn<`t>"
-nominal action_fn2 t u = $"ActionFn2<`t, `u>"
-nominal fn_once t = $"FnOnce<`t>"
-nominal fn_unit = $"FnUnit"
-nominal func0 t = $"Func0<`t>"
+nominal weak_rc t = $'std_rc_Weak<`t>'
+nominal box t = $'Box<`t>'
+nominal mut_cell t = $'MutCell<`t>'
+nominal pin t = $'std_pin_Pin<`t>'
+nominal dyn' t = $'Dyn<`t>'
+nominal fn' t = $'Fn<`t>'
+nominal action_fn t = $'ActionFn<`t>'
+nominal action_fn2 t u = $'ActionFn2<`t, `u>'
+nominal fn_once t = $'FnOnce<`t>'
+nominal fn_unit = $'FnUnit'
+nominal func0 t = $'Func0<`t>'
 nominal func1 t u =
     `(
         typecase t with
         | () => `func0 `u
-        | _ => $'' : $"Func0<`t, `u>"
+        | _ => $'' : $'Func0<`t, `u>'
     )
-nominal impl t = $"Impl<`t>"
-nominal mut' t = $"Mut<`t>"
-nominal ref' t = $"Ref<`t>"
-nominal send t = lifetime_join t $"Send<`t>"
+nominal impl t = $'Impl<`t>'
+nominal mut' t = $'Mut<`t>'
+nominal ref' t = $'Ref<`t>'
+nominal send t = lifetime_join t $'Send<`t>'
 nominal static_ref' t = static_ref t
 
 /// ## emit_expr
 inl emit_expr forall a t. (args : a) (code : string) : t =
     real
-        $"Fable.Core.RustInterop.emitRustExpr !args !code" : t
+        $'Fable.Core.RustInterop.emitRustExpr !args !code ' : t
 
 /// ## (~!\\)
 inl (~!\) forall t. (code : string) : t =
@@ -256,6 +256,12 @@ inl run_tests tests =
 
 /// ## capture
 inl capture forall t. (fn : () -> t) : t =
+    (!\($'"true; let _result = (|| { //"') : bool) |> ignore
+    (!\\(fn (), $'"true; $0 })()"') : bool) |> ignore
+    !\($'"_result"')
+
+/// ## capture_move
+inl capture_move forall t. (fn : () -> t) : t =
     (!\($'"true; let _result = (move || { //"') : bool) |> ignore
     (!\\(fn (), $'"true; $0 })()"') : bool) |> ignore
     !\($'"_result"')

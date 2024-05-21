@@ -13,7 +13,6 @@ pub mod Date_time {
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::Option_::defaultValue;
-    use fable_library_rust::Option_::getValue;
     use fable_library_rust::String_::getCharAt;
     use fable_library_rust::String_::getSlice;
     use fable_library_rust::String_::length;
@@ -159,11 +158,17 @@ pub mod Date_time {
                 _v47.set(Some(x_3))
             }
             {
-                let v55: LrcPtr<TimeZoneInfo> = getValue(_v47.get().clone());
+                let v55: LrcPtr<TimeZoneInfo> = match &_v47.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v47=None"),),
+                    Some(_v47_0_0) => _v47_0_0.clone(),
+                };
                 let _v56: MutCell<Option<TimeSpan>> = MutCell::new(None::<TimeSpan>);
                 _v56.set(Some(zero));
                 {
-                    let v74: TimeSpan = getValue(_v56.get().clone());
+                    let v74: TimeSpan = match &_v56.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v56=None"),),
+                        Some(_v56_0_0) => _v56_0_0.clone(),
+                    };
                     let v78: u8 = if v74.hours() > 0_i32 { 1_u8 } else { 0_u8 };
                     let v81: string = v74.to_string(string("hh:mm"));
                     let v82: string = sprintf!(
@@ -173,15 +178,18 @@ pub mod Date_time {
                         getSlice(v81, Some(3_i32), Some(4_i32))
                     );
                     {
-                        let x_5: Guid = parse(sprintf!(
+                        let x_7: Guid = parse(sprintf!(
                             "{}{}{}",
                             v46.clone(),
                             v82.clone(),
                             getSlice(toString(v0_1), Some(length(v46) + length(v82)), None::<i32>)
                         ));
-                        _v2.set(Some(x_5))
+                        _v2.set(Some(x_7))
                     }
-                    getValue(_v2.get().clone())
+                    match &_v2.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v2=None"),),
+                        Some(_v2_0_0) => _v2_0_0.clone(),
+                    }
                 }
             }
         }
@@ -223,7 +231,10 @@ pub mod Date_time {
             ));
             _v4.set(Some(x))
         }
-        getValue(_v4.get().clone())
+        match &_v4.get().clone() {
+            None => panic!("{}", string("base.run_target / _v4=None"),),
+            Some(_v4_0_0) => _v4_0_0.clone(),
+        }
     }
     pub fn closure7(v0_1: Guid, v1_1: i64) -> Guid {
         let v3_1: string = toString(v0_1);
@@ -257,15 +268,15 @@ pub mod Date_time {
         Date_time::method0(new_guid(), v0_1)
     }
     pub fn closure10(unitVar: (), v0_1: i64) -> Guid {
-        let v3_1: string = toString(new_guid());
-        let v6_1: string = padLeft(toString(v0_1), 18_i32, '0');
+        let v4_1: string = toString(new_guid());
+        let v7_1: string = padLeft(toString(v0_1), 18_i32, '0');
         parse(sprintf!(
             "{}-{}-{}-{}{}",
-            getSlice(v6_1.clone(), Some(0_i32), Some(7_i32)),
-            getSlice(v6_1.clone(), Some(8_i32), Some(11_i32)),
-            getSlice(v6_1.clone(), Some(12_i32), Some(15_i32)),
-            getSlice(v6_1, Some(16_i32), Some(17_i32)),
-            getSlice(v3_1, Some(21_i32), None::<i32>)
+            getSlice(v7_1.clone(), Some(0_i32), Some(7_i32)),
+            getSlice(v7_1.clone(), Some(8_i32), Some(11_i32)),
+            getSlice(v7_1.clone(), Some(12_i32), Some(15_i32)),
+            getSlice(v7_1, Some(16_i32), Some(17_i32)),
+            getSlice(v4_1, Some(21_i32), None::<i32>)
         ))
     }
     pub fn closure12(v0_1: string, v1_1: DateTime) -> string {

@@ -7921,10 +7921,10 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00   debug #1 execute_with_options_async / options: struct (None,
-        "pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!dotnet-repl/20240519-0101-0602-0241-00040032da0f/test.txt' -Algorithm SHA256).Hash"",
+        "pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!dotnet-repl/20240520-1953-4773-7381-7004008275ad/test.txt' -Algorithm SHA256).Hash"",
         [||], None, None, true, None)
-00:00:00 verbose #2 &gt; E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855
-00:00:00   debug #3 execute_with_options_async / exit_code: 0 / output.Length: 64
+00:00:02 verbose #2 &gt; E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855
+00:00:02   debug #3 execute_with_options_async / exit_code: 0 / output.Length: 64
 assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 </pre>
 </div>
@@ -7964,10 +7964,10 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_builder_28e239ae45fa411d5446d41d1a99f210110076943882edefe0706e85dc5a94e5\20240519-0101-4292-1658-000000857575
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!spiral_builder_28e239ae45fa411d5446d41d1a99f210110076943882edefe0706e85dc5a94e5/20240519-0101-4292-1658-000000857575/test.txt' -Algorithm SHA256).Hash"] / options: (None, "pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!spiral_builder_28e239ae45fa411d5446d41d1a99f210110076943882edefe0706e85dc5a94e5/20240519-0101-4292-1658-000000857575/test.txt' -Algorithm SHA256).Hash"", Array(MutCell([])), None, None, true, None)
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 64
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_builder_3304b5133e0369735335adef32845d18619b035b504e4ffc49ee5bc8cd8f12db\20240520-1955-2734-4413-000000a45147
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!spiral_builder_3304b5133e0369735335adef32845d18619b035b504e4ffc49ee5bc8cd8f12db/20240520-1955-2734-4413-000000a45147/test.txt' -Algorithm SHA256).Hash"] / options: (None, "pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!spiral_builder_3304b5133e0369735335adef32845d18619b035b504e4ffc49ee5bc8cd8f12db/20240520-1955-2734-4413-000000a45147/test.txt' -Algorithm SHA256).Hash"", Array(MutCell([])), None, None, true, None)
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 64
 assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 </pre>
 </div>
@@ -8106,7 +8106,7 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
     
     <span class="n">real</span>
         <span class="n">inl</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">1024</span>
-        <span class="n">inl</span> <span class="n">zero</span> <span class="o">=</span> <span class="n">unativeint</span> <span class="err">`</span><span class="n">i32</span> <span class="mi">0</span>
+        <span class="n">inl</span> <span class="n">zero</span> <span class="o">=</span> <span class="n">convert</span> <span class="err">`</span><span class="n">i32</span> <span class="err">`</span><span class="n">unativeint</span> <span class="mi">0</span>
         <span class="n">inl</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.new_slice `u8 `@size 0u8</span>
 
         <span class="n">rust</span><span class="o">.</span><span class="n">loop</span> <span class="mi">2</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
@@ -8172,7 +8172,7 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_builder_f2f837a3fd3f31a551997578d454aa64c2d89813b04e431485cd82153c8f5329\20240519-0101-5751-9589-0000009935ac
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_builder_a02cc45d6418f5805fdad39246c4240ea0caf0e79b2afe6020b16a0d61535451\20240520-1956-3856-5824-000000ad6b20
 assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 </pre>
 </div>
@@ -8213,7 +8213,7 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_builder_10eb4cf90f035e50d5826a64b2742e7c11f22d4d8acd61507eb4adb594e3e141\20240519-0102-0519-7299-0000007fc3cd
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: C:\Users\i574n\AppData\Local\Temp\!spiral_builder_14b1b3ffdd730972abefc463f175c19bff67da562a5994356a168250ee095076\20240520-1957-5362-2195-0000006e4df9
 assert_eq / actual: "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068" / expected: "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
 </pre>
 </div>
@@ -8241,7 +8241,7 @@ assert_eq / actual: "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab61
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">types</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let hash_text x = !hash_text x"</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let hash_text x = !hash_text x'</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>

@@ -58,60 +58,60 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::NavigateOptions\")>]\n#endif\ntype leptos_router_NavigateOptions = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Url\")>]\n#endif\ntype leptos_router_Url = class end"
 
-nominal a' = $"leptos_html_A"
-nominal event = $"leptos_ev_Event"
-nominal mouse_event = $"leptos_ev_MouseEvent"
-nominal button = $"leptos_html_Button"
-nominal details = $"leptos_html_Details"
-nominal dd = $"leptos_html_Dd"
-nominal div = $"leptos_html_Div"
-nominal dl = $"leptos_html_Dl"
-nominal dt = $"leptos_html_Dt"
-nominal footer = $"leptos_html_Footer"
-nominal header = $"leptos_html_Header"
-nominal input = $"leptos_html_Input"
-nominal label = $"leptos_html_Label"
-nominal main = $"leptos_html_Main"
-nominal nav = $"leptos_html_Nav"
-nominal option' = $"leptos_html_Option"
-nominal pre = $"leptos_html_Pre"
-nominal select = $"leptos_html_Select"
-nominal span = $"leptos_html_Span"
-nominal summary = $"leptos_html_Summary"
-nominal table = $"leptos_html_Table"
-nominal thead = $"leptos_html_Thead"
-nominal tbody = $"leptos_html_Tbody"
-nominal tr = $"leptos_html_Tr"
-nominal th = $"leptos_html_Th"
-nominal td = $"leptos_html_Td"
-nominal svg = $"leptos_svg_Svg"
-nominal path = $"leptos_svg_Path"
-nominal circle = $"leptos_svg_Circle"
-nominal rect = $"leptos_svg_Rect"
-nominal animate = $"leptos_svg_Animate"
-nominal action t u = $"leptos_Action<`t, `u>"
-nominal for = $"leptos_For"
-nominal show = $"leptos_Show"
-nominal fragment = $"leptos_Fragment"
-nominal interval_handle = $"leptos_dom_IntervalHandle"
-nominal text = $"leptos_dom_Text"
-nominal transparent = $"leptos_dom_Transparent"
-nominal route = $"leptos_router_Route"
-nominal route_definition = $"leptos_router_RouteDefinition"
-nominal router = $"leptos_router_Router"
-nominal routes = $"leptos_router_Routes"
-nominal html_element t = $"leptos_HtmlElement<`t>"
-nominal into_view = $"leptos_IntoView"
-nominal location = $"leptos_router_Location"
-nominal navigate_options = $"leptos_router_NavigateOptions"
-nominal url = $"leptos_router_Url"
-nominal memo t = $"leptos_Memo<`t>"
-nominal rw_signal t = $"leptos_RwSignal<`t>"
-nominal signal t = $"leptos_Signal<`t>"
-nominal read_signal t = $"leptos_ReadSignal<`t>"
-nominal write_signal t = $"leptos_WriteSignal<`t>"
-nominal resource t u = $"leptos_Resource<`t, `u>"
-nominal view = $"leptos_View"
+nominal a' = $'leptos_html_A'
+nominal event = $'leptos_ev_Event'
+nominal mouse_event = $'leptos_ev_MouseEvent'
+nominal button = $'leptos_html_Button'
+nominal details = $'leptos_html_Details'
+nominal dd = $'leptos_html_Dd'
+nominal div = $'leptos_html_Div'
+nominal dl = $'leptos_html_Dl'
+nominal dt = $'leptos_html_Dt'
+nominal footer = $'leptos_html_Footer'
+nominal header = $'leptos_html_Header'
+nominal input = $'leptos_html_Input'
+nominal label = $'leptos_html_Label'
+nominal main = $'leptos_html_Main'
+nominal nav = $'leptos_html_Nav'
+nominal option' = $'leptos_html_Option'
+nominal pre = $'leptos_html_Pre'
+nominal select = $'leptos_html_Select'
+nominal span = $'leptos_html_Span'
+nominal summary = $'leptos_html_Summary'
+nominal table = $'leptos_html_Table'
+nominal thead = $'leptos_html_Thead'
+nominal tbody = $'leptos_html_Tbody'
+nominal tr = $'leptos_html_Tr'
+nominal th = $'leptos_html_Th'
+nominal td = $'leptos_html_Td'
+nominal svg = $'leptos_svg_Svg'
+nominal path = $'leptos_svg_Path'
+nominal circle = $'leptos_svg_Circle'
+nominal rect = $'leptos_svg_Rect'
+nominal animate = $'leptos_svg_Animate'
+nominal action t u = $'leptos_Action<`t, `u>'
+nominal for = $'leptos_For'
+nominal show = $'leptos_Show'
+nominal fragment = $'leptos_Fragment'
+nominal interval_handle = $'leptos_dom_IntervalHandle'
+nominal text = $'leptos_dom_Text'
+nominal transparent = $'leptos_dom_Transparent'
+nominal route = $'leptos_router_Route'
+nominal route_definition = $'leptos_router_RouteDefinition'
+nominal router = $'leptos_router_Router'
+nominal routes = $'leptos_router_Routes'
+nominal html_element t = $'leptos_HtmlElement<`t>'
+nominal into_view = $'leptos_IntoView'
+nominal location = $'leptos_router_Location'
+nominal navigate_options = $'leptos_router_NavigateOptions'
+nominal url = $'leptos_router_Url'
+nominal memo t = $'leptos_Memo<`t>'
+nominal rw_signal t = $'leptos_RwSignal<`t>'
+nominal signal t = $'leptos_Signal<`t>'
+nominal read_signal t = $'leptos_ReadSignal<`t>'
+nominal write_signal t = $'leptos_WriteSignal<`t>'
+nominal resource t u = $'leptos_Resource<`t, `u>'
+nominal view = $'leptos_View'
 
 prototype signal_get signal t : signal t -> t
 prototype signal_get_untracked signal t : signal t -> t
@@ -132,7 +132,7 @@ inl log_pretty (text : string) =
 
 inl log_format fn obj =
     inl obj_log = obj |> sm'.format_debug
-    inl text = fn obj_log |> sm'.ellipsis 200i32
+    inl text = fn obj_log |> sm'.ellipsis_end 200
     log text
     obj
 
@@ -178,22 +178,22 @@ instance (~:>) view = fun x =>
         | _ => x
 
 inl view_trait_to_element (view : rust.impl into_view) : html_element _ =
-    $"!view |> unbox"
+    $'!view |> unbox'
 
 inl view_trait_to_route_definition (view : rust.impl into_view) : route_definition =
-    $"!view |> unbox"
+    $'!view |> unbox'
 
 inl to_element_view (view : html_element _) : rust.impl into_view =
-    $"!view |> unbox"
+    $'!view |> unbox'
 
 inl to_view_trait (view : view) : rust.impl into_view =
-    $"!view |> unbox"
+    $'!view |> unbox'
 
 inl to_fragment_unbox view : fragment =
-    $"!view |> unbox"
+    $'!view |> unbox'
 
 inl from_fragment_unbox (fragment : fragment) =
-    $"!fragment |> unbox"
+    $'!fragment |> unbox'
 
 inl element_to_view_trait (macro : html_element _) : rust.impl into_view =
     !\($'"leptos::view\! { {!macro} }"')
@@ -221,7 +221,7 @@ inl array_to_view (view : a _ view) : view =
     !\\(view, $'"leptos::CollectView::collect_view($0.to_vec())"')
 
 inl to_fragment x : fragment =
-    $"!x |> unbox"
+    $'!x |> unbox'
 
 inl text_to_view (text : text) : view =
     !\\(text, $'"leptos::IntoView::into_view($0)"')
@@ -525,7 +525,7 @@ inl use_url () =
             if url_search = ""
             then ""
             else $'$"?{!url_search}"'
-        $"!url_pathname + !url_search" : string
+        url_pathname +. url_search
 
 inl route path view children : view =
     inl path = join path

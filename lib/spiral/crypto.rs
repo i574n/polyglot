@@ -8,7 +8,6 @@ pub mod Crypto {
     use fable_library_rust::Native_::LrcPtr;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
-    use fable_library_rust::Option_::getValue;
     use fable_library_rust::String_::string;
     pub trait ICryptoCreateHash {
         fn createHash(&self, x: string) -> LrcPtr<dyn Any>;
@@ -43,7 +42,10 @@ pub mod Crypto {
             let x: string = unbox::<string>(&defaultOf());
             _v1.set(Some(x))
         }
-        getValue(_v1.get().clone())
+        match &_v1.get().clone() {
+            None => panic!("{}", string("base.run_target / _v1=None"),),
+            Some(_v1_0_0) => _v1_0_0.clone(),
+        }
     }
     pub fn v0() -> Func1<string, string> {
         static v0: OnceInit<Func1<string, string>> = OnceInit::new();

@@ -37,7 +37,7 @@ if (!$fast) {
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path benchmark.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path file_system.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path networking.dib --retries 3" `
-    } | Invoke-Block -Retries 2
+    } | Invoke-Block
 }
 
 { . ../../apps/parser/dist/DibParser$(_exe) testing.dib spi async.dib spi runtime.dib spi trace.dib spi threading.dib spi networking.dib spi crypto.dib spi common.dib spi base.dib spi resultm.dib spi iter.dib spi console.dib spi date_time.dib spi file_system.dib spi guid.dib spi math.dib spi "optionm'.dib" spi "am'.dib" spi "sm'.dib" spi "listm'.dib" spi benchmark.dib spi stream.dib spi seq.dib spi util.dib spi rust.dib spi physics.dib spi } | Invoke-Block

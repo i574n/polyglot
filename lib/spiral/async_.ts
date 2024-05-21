@@ -5,7 +5,12 @@ export function closure0(unitVar: void, v0_1: any): any {
     let _v1: Option<any> = undefined;
     const x: any = defaultOf();
     _v1 = x;
-    return value_1(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        return value_1(_v1);
+    }
 }
 
 export const v0 = (v: any): any => closure0(undefined, v);

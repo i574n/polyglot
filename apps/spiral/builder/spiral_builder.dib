@@ -88,7 +88,7 @@ let get_command () =
             runtime.arg_value_names ;[ ##"NAME"; ##"VERSION" ]
             >> runtime.arg_num_args_range (
                 runtime.new_value_range
-                    (am'.Start (1i32 |> unativeint))
+                    (am'.Start (1i32 |> convert : unativeint))
                     (am'.End id)
             )
             >> runtime.arg_action runtime.Append
@@ -479,5 +479,5 @@ inl main (args : array_base string) =
 
 inl main () =
     types ()
-    $"let tests () = !tests ()" : ()
-    $"let main args = !main args" : ()
+    $'let tests () = !tests ()' : ()
+    $'let main args = !main args' : ()

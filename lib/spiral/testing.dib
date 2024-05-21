@@ -62,7 +62,7 @@ inl _assert_string_contains b a = __assert_string_contains true b a
 inl _throws (fn : () -> ()) : option exn =
     inl none = None : option exn
     inl some (s : exn) = Some s
-    $"try !fn (); !none with ex -> ex |> !some"
+    $'try !fn (); !none with ex -> ex |> !some '
 
 inl __assert_between log a b actual =
     inl assert_between actual (a, b) =
@@ -96,5 +96,5 @@ inl _assert_between a b actual = __assert_between true a b actual
 #!spiral
 
 inl print_and_return x =
-    $"printfn $\"print_and_return / x: {!x}\""
+    $'printfn $"print_and_return / x: {!x}"'
     x

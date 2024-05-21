@@ -7630,7 +7630,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">reqwest_response</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"reqwest_Response"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">reqwest_response</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'reqwest_Response'</span>
 </pre></div>
 </div>
 </div>
@@ -7655,7 +7655,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">reqwest_error</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"reqwest_Error"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">reqwest_error</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'reqwest_Error'</span>
 </pre></div>
 </div>
 </div>
@@ -7680,7 +7680,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">request_builder</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"reqwest_RequestBuilder"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">request_builder</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'reqwest_RequestBuilder'</span>
 </pre></div>
 </div>
 </div>
@@ -8426,14 +8426,13 @@ assert_eq / actual: false / expected: false
 00:00:05   debug #9 _3
 00:00:05   debug #10 4
 00:00:05 verbose #11 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: None / status: False
-00:00:06 verbose #12 networking.wait_for_port_access / port: 5555 / retry: 100 / timeout: None / status: False
-00:00:07   debug #13 _4
-00:00:07   debug #14 _5
-00:00:09 verbose #15 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:09   debug #16 5
-00:00:09   debug #17 6
+00:00:07   debug #12 _4
+00:00:07   debug #13 _5
+00:00:09 verbose #14 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
+00:00:09   debug #15 5
+00:00:09   debug #16 6
 assert_between / actual: 2L / expected: struct (2L, 5L)
-assert_between / actual: 111L / expected: struct (80L, 150L)
+assert_between / actual: 99L / expected: struct (80L, 150L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8508,8 +8507,8 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00   debug #1 1
-00:00:00   debug #2 2
-00:00:00   debug #3 _1
+00:00:00   debug #2 _1
+00:00:00   debug #3 2
 00:00:00   debug #4 3
 00:00:00   debug #5 run_with_timeout_async / timeout: 60
 00:00:00 verbose #6 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: True
@@ -8528,7 +8527,7 @@ assert_eq / actual: true / expected: true
 00:00:00   debug #19 5
 00:00:00   debug #20 6
 assert_between / actual: 6L / expected: struct (4L, 15L)
-assert_between / actual: 10L / expected: struct (5L, 20L)
+assert_between / actual: 11L / expected: struct (5L, 20L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8653,7 +8652,7 @@ assert_eq / actual: true / expected: true
 00:00:06   debug #14 5
 00:00:06   debug #15 6
 assert_eq / actual: 5557 / expected: 5557
-assert_between / actual: 105L / expected: struct (100L, 150L)
+assert_between / actual: 104L / expected: struct (100L, 150L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8727,8 +8726,8 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00   debug #1 1
-00:00:00   debug #2 2
-00:00:00   debug #3 _1
+00:00:00   debug #3 2
+00:00:00   debug #2 _1
 00:00:00   debug #4 _2
 00:00:00   debug #5 _3
 00:00:00   debug #6 3
@@ -8741,7 +8740,7 @@ assert_eq / actual: true / expected: true
 00:00:00   debug #13 5
 00:00:00   debug #14 6
 assert_eq / actual: 5557 / expected: 5557
-assert_between / actual: 4L / expected: struct (2L, 10L)
+assert_between / actual: 3L / expected: struct (2L, 10L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8770,10 +8769,10 @@ assert_eq / actual: true / expected: true
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">types</span> <span class="p">()</span>
     <span class="n">init_trace_state</span> <span class="kc">None</span>
-    <span class="err">$</span><span class="s2">"let test_port_open x = !test_port_open x"</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let test_port_open_timeout x = !test_port_open_timeout x"</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let wait_for_port_access x = !wait_for_port_access x"</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let get_available_port x = !get_available_port x"</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let test_port_open x = !test_port_open x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let test_port_open_timeout x = !test_port_open_timeout x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let wait_for_port_access x = !wait_for_port_access x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let get_available_port x = !get_available_port x'</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>

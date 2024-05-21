@@ -333,7 +333,9 @@ export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Op
     });
     let _v6: Option<Option<int64>> = undefined;
     _v6 = some(undefined);
-    return [v2_1, v1_1, v3_1, value_1(_v6), v5] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
+    return [v2_1, v1_1, v3_1, (_v6 == null) ? (() => {
+        throw new Error("base.run_target / _v6=None");
+    })() : value_1(_v6), v5] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
 }
 
 export function method2(v0_1: (() => void)): (() => void) {
@@ -344,7 +346,12 @@ export function closure2(unitVar: void, v0_1: (() => void)): IDisposable {
     let _v1: Option<IDisposable> = undefined;
     const x: IDisposable = defaultOf();
     _v1 = x;
-    return value_1(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        return value_1(_v1);
+    }
 }
 
 export function closure5(v0_1: int32, v1_1: (() => void), v2_1: int32, unitVar: void): US2_$union {
@@ -385,13 +392,21 @@ export function closure11(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => s
     let _v10: Option<string> = undefined;
     const x: string = method5();
     _v10 = x;
-    const v67: string = value_1(_v10);
+    let v67: string;
+    if (_v10 == null) {
+        throw new Error("base.run_target / _v10=None");
+    }
+    else {
+        v67 = value_1(_v10);
+    }
     const v68: int64 = patternInput[0].l0;
     const v78: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v81: Option<string> = undefined;
-    const x_1: string = padLeft(v78.toLocaleLowerCase(), 7, " ");
-    _v81 = x_1;
-    return trimEnd(trimStart(`${v67} ${value_1(_v81)} #${v68} ${v1_1()} / ${v2_1()}`), " ", "/");
+    let _v82: Option<string> = undefined;
+    const x_2: string = padLeft(v78.toLocaleLowerCase(), 7, " ");
+    _v82 = x_2;
+    return trimEnd(trimStart(`${v67} ${(_v82 == null) ? (() => {
+        throw new Error("base.run_target / _v82=None");
+    })() : value_1(_v82)} #${v68} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
 export function method6(v0_1: US0_$union, v1_1: (() => string)): void {
@@ -417,7 +432,12 @@ export function method6(v0_1: US0_$union, v1_1: (() => string)): void {
         let _v25: Option<void> = undefined;
         console.log(v24);
         _v25 = some(undefined);
-        value_1(_v25);
+        if (_v25 == null) {
+            throw new Error("base.run_target / _v25=None");
+        }
+        else {
+            value_1(_v25);
+        }
         patternInput[4].l0(v24);
     }
 }
@@ -430,7 +450,12 @@ export function closure7(v0_1: int32, v1_1: Error): US3_$union {
     method4(US0_US0_3(), (): string => closure8(undefined, undefined), (): string => closure9(v0_1, v1_1, undefined));
     let _v5: Option<void> = undefined;
     _v5 = some(undefined);
-    value_1(_v5);
+    if (_v5 == null) {
+        throw new Error("base.run_target / _v5=None");
+    }
+    else {
+        value_1(_v5);
+    }
     return US3_US3_1();
 }
 

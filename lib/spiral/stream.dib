@@ -35,7 +35,7 @@ inl types () =
 
 #!spiral
 
-nominal io_error = $"std_io_Error"
+nominal io_error = $'std_io_Error'
 
 #!markdown
 

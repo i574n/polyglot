@@ -451,8 +451,9 @@ inl main () =
 |> _assertEqual (
     Some (
         Some """let rec closure0 () () : int32 =
-    let v0 : string = "text"
-    System.Console.WriteLine v0
+    let v0 : (string -> unit) = System.Console.WriteLine
+    let v1 : string = "text"
+    v0 v1
     1
 let v0 : (unit -> int32) = closure0()
 ()

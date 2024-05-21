@@ -9,7 +9,7 @@ pub mod Threading {
     use fable_library_rust::Native_::LrcPtr;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
-    use fable_library_rust::Option_::getValue;
+    use fable_library_rust::String_::string;
     type CancellationToken = ();
     type CancellationTokenSource = ();
     #[derive(Clone, Debug)]
@@ -65,7 +65,10 @@ pub mod Threading {
         let _v1: MutCell<Option<()>> = MutCell::new(None::<()>);
         defaultOf::<()>();
         _v1.set(Some(()));
-        getValue(_v1.get().clone());
+        match &_v1.get().clone() {
+            None => panic!("{}", string("base.run_target / _v1=None"),),
+            Some(_v1_0_0) => _v1_0_0.clone(),
+        }
         ()
     }
     pub fn method0(v0_1: LrcPtr<CancellationTokenSource>) -> Func0<()> {
@@ -85,7 +88,10 @@ pub mod Threading {
         _v1.set(Some((patternInput.0.clone(), patternInput.1.clone())));
         {
             let patternInput_1: (CancellationToken, LrcPtr<dyn IDisposable>) =
-                getValue(_v1.get().clone());
+                match &_v1.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v1=None"),),
+                    Some(_v1_0_0) => _v1_0_0.clone(),
+                };
             (patternInput_1.0.clone(), patternInput_1.1.clone())
         }
     }
