@@ -121,14 +121,14 @@ inl new_disposable_token (merge_token : optionm'.option' cancellation_token) =
         | _ => fun () => null ()
 
 /// ## arc
-nominal arc t = $"std_sync_Arc<`t>"
+nominal arc t = $'std_sync_Arc<`t>'
 
 /// ## new_arc
 inl new_arc forall t. (x : t) : arc t =
     !\\(x, $'"std::sync::Arc::new($0)"')
 
 /// ## mutex
-nominal mutex t = $"std_sync_Mutex<`t>"
+nominal mutex t = $'std_sync_Mutex<`t>'
 
 /// ## new_mutex
 inl new_mutex forall t. (x : t) : mutex t =
@@ -144,14 +144,15 @@ inl arc_clone forall t. (x : arc t) : arc t =
     !\($'"std::sync::Arc::clone(&!x)"')
 
 /// ## mutex_guard
-nominal mutex_guard t = $"std_sync_MutexGuard<`t>"
+nominal mutex_guard t = $'std_sync_MutexGuard<`t>'
 
 /// ## poison_error
-nominal poison_error t = $"std_sync_PoisonError<`t>"
+nominal poison_error t = $'std_sync_PoisonError<`t>'
 
 /// ## arc_mutex_lock
 inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard t) (poison_error (mutex_guard t)) =
-    !\\(x, $'"$0.lock()"')
+    inl x = join x
+    !\($'"!x.lock()"')
 
 /// ## mutex_guard_ref
 inl mutex_guard_ref forall t. (x : mutex_guard t) : rust.ref' t =
@@ -161,6 +162,11 @@ inl mutex_guard_ref forall t. (x : mutex_guard t) : rust.ref' t =
 inl mutex_guard_ref_mut forall t. (x : mutex_guard t) : rust.ref' (rust.mut' t) =
     (!\($'"true; let mut !x = !x"') : bool) |> ignore
     !\\(x, $'"&mut $0"')
+
+/// ## mutex_guard_as_mut
+inl mutex_guard_as_mut forall (t : * -> *) u. (x : mutex_guard (t u)) : t (rust.ref' (rust.mut' u)) =
+    (!\($'"true; let mut !x = !x"') : bool) |> ignore
+    !\\(x, $'"$0.as_mut()"')
 
 /// ## channel_receiver
 nominal channel_receiver t = $'std_sync_mpsc_Receiver<`t>'
@@ -173,7 +179,7 @@ inl new_channel () : channel_sender sm'.std_string * arc (channel_receiver sm'.s
     !\($'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"')
 
 /// ## send_error
-nominal send_error t = $"std_sync_mpsc_SendError<`t>"
+nominal send_error t = $'std_sync_mpsc_SendError<`t>'
 
 /// ## channel_send
 inl channel_send forall t. (line : t) (sender : rust.ref' (channel_sender t)) : resultm.result' () (send_error sm'.std_string) =
@@ -182,4 +188,4 @@ inl channel_send forall t. (line : t) (sender : rust.ref' (channel_sender t)) : 
 /// ## main
 inl main () =
     types ()
-    $"let new_disposable_token x = !new_disposable_token x" : ()
+    $'let new_disposable_token x = !new_disposable_token x' : ()

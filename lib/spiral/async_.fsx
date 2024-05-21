@@ -84,7 +84,7 @@ let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Thr
     #endif
 #else
     let v13 : Async<System.Threading.CancellationToken> option = None
-    let mutable _v13 = v13
+    let mutable _v13 = v13 
     async {
     let v14 : Async<System.Threading.CancellationToken> = Async.CancellationToken
     let! v14 = v14 
@@ -97,15 +97,15 @@ let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Thr
     return v20 
     }
     |> fun x -> _v13 <- Some x
-    let v21 : Async<System.Threading.CancellationToken> = _v13 |> Option.get
+    let v21 : Async<System.Threading.CancellationToken> = match _v13 with Some x -> x | None -> failwith "async.new_async_unit / _v13=None"
     v21 
     #endif
     |> fun x -> _v7 <- Some x
-    let v22 : Async<System.Threading.CancellationToken> = _v7.Value
+    let v22 : Async<System.Threading.CancellationToken> = match _v7 with Some x -> x | None -> failwith "base.run_target / _v7=None"
     v22 
     #endif
     |> fun x -> _v1 <- Some x
-    let v23 : Async<System.Threading.CancellationToken> = _v1.Value
+    let v23 : Async<System.Threading.CancellationToken> = match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
     v23
 let v0 : (System.Threading.CancellationToken -> Async<System.Threading.CancellationToken>) = closure0()
 let merge_cancellation_token_with_default_async x = v0 x

@@ -206,7 +206,16 @@ pub mod Trace {
         });
         let _v6: MutCell<Option<Option<i64>>> = MutCell::new(None::<Option<i64>>);
         _v6.set(Some(None::<i64>));
-        (v2_1, v1_1, v3, getValue(_v6.get().clone()), v5)
+        (
+            v2_1,
+            v1_1,
+            v3,
+            match &_v6.get().clone() {
+                None => panic!("{}", string("base.run_target / _v6=None"),),
+                Some(_v6_0_0) => _v6_0_0.clone(),
+            },
+            v5,
+        )
     }
     pub fn method3() -> string {
         string("")
@@ -234,9 +243,12 @@ pub mod Trace {
                 _v10.set(Some(x))
             }
             {
-                let v67: string = getValue(_v10.get().clone());
+                let v67: string = match &_v10.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v10=None"),),
+                    Some(_v10_0_0) => _v10_0_0.clone(),
+                };
                 let v68: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v80: string = padLeft(
+                let v81: string = padLeft(
                     toLower(match &v0_1 {
                         Trace::US0::US0_1 => string("Debug"),
                         Trace::US0::US0_2 => string("Info"),
@@ -247,28 +259,31 @@ pub mod Trace {
                     7_i32,
                     ' ',
                 );
-                let _v81: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v144: &str = match &v0_1 {
+                let _v82: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v145: &str = match &v0_1 {
                     Trace::US0::US0_1 => inline_colorization::color_bright_blue,
                     Trace::US0::US0_2 => inline_colorization::color_bright_green,
                     Trace::US0::US0_0 => inline_colorization::color_bright_black,
                     Trace::US0::US0_3 => inline_colorization::color_yellow,
                     _ => inline_colorization::color_bright_red,
                 };
-                let v146: &str = &*v80;
-                let v148: &str = inline_colorization::color_reset;
-                let v150: string = string("format!(\"{v144}{v146}{v148}\")");
-                let v151: std::string::String = format!("{v144}{v146}{v148}");
+                let v147: &str = &*v81;
+                let v149: &str = inline_colorization::color_reset;
+                let v151: string = string("format!(\"{v145}{v147}{v149}\")");
+                let v152: std::string::String = format!("{v145}{v147}{v149}");
                 {
-                    let x_1: string = fable_library_rust::String_::fromString(v151);
-                    _v81.set(Some(x_1))
+                    let x_2: string = fable_library_rust::String_::fromString(v152);
+                    _v82.set(Some(x_2))
                 }
                 trimEndChars(
                     trimStartChars(
                         sprintf!(
                             "{} {} #{} {} / {}",
                             v67,
-                            getValue(_v81.get().clone()),
+                            match &_v82.get().clone() {
+                                None => panic!("{}", string("base.run_target / _v82=None"),),
+                                Some(_v82_0_0) => _v82_0_0.clone(),
+                            },
                             v68,
                             v1_1(),
                             v2_1()
@@ -346,7 +361,10 @@ pub mod Trace {
                         let _v25: MutCell<Option<()>> = MutCell::new(None::<()>);
                         println!("{}", v24.clone());
                         _v25.set(Some(()));
-                        getValue(_v25.get().clone());
+                        match &_v25.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v25=None"),),
+                            Some(_v25_0_0) => _v25_0_0.clone(),
+                        }
                         ((patternInput.4.clone()).l0.get().clone())(v24)
                     }
                 }

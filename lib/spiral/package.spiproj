@@ -1,8 +1,8 @@
 packages:
     |core-
 modules:
-    guid
     base-
+    guid
     rust
     rust_operators
     ts

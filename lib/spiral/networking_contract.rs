@@ -314,7 +314,16 @@ pub mod Networking {
         });
         let _v6: MutCell<Option<Option<i64>>> = MutCell::new(None::<Option<i64>>);
         _v6.set(Some(None::<i64>));
-        (v2_1, v1_1, v3_1, getValue(_v6.get().clone()), v5_1)
+        (
+            v2_1,
+            v1_1,
+            v3_1,
+            match &_v6.get().clone() {
+                None => panic!("{}", string("base.run_target / _v6=None"),),
+                Some(_v6_0_0) => _v6_0_0.clone(),
+            },
+            v5_1,
+        )
     }
     pub fn closure4(v0_1: i32, v1_1: string, unitVar: ()) -> string {
         sprintf!("networking.test_port_open / port: {} / ex: {}", v0_1, v1_1)
@@ -349,9 +358,12 @@ pub mod Networking {
                 _v10.set(Some(x))
             }
             {
-                let v67: string = getValue(_v10.get().clone());
+                let v67: string = match &_v10.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v10=None"),),
+                    Some(_v10_0_0) => _v10_0_0.clone(),
+                };
                 let v68: i64 = (patternInput.0.clone()).l0.get().clone();
-                let v80: string = padLeft(
+                let v81: string = padLeft(
                     toLower(match &v0_1 {
                         Networking::US0::US0_1 => string("Debug"),
                         Networking::US0::US0_2 => string("Info"),
@@ -362,28 +374,31 @@ pub mod Networking {
                     7_i32,
                     ' ',
                 );
-                let _v81: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v144: &str = match &v0_1 {
+                let _v82: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v145: &str = match &v0_1 {
                     Networking::US0::US0_1 => inline_colorization::color_bright_blue,
                     Networking::US0::US0_2 => inline_colorization::color_bright_green,
                     Networking::US0::US0_0 => inline_colorization::color_bright_black,
                     Networking::US0::US0_3 => inline_colorization::color_yellow,
                     _ => inline_colorization::color_bright_red,
                 };
-                let v146: &str = &*v80;
-                let v148: &str = inline_colorization::color_reset;
-                let v150: string = string("format!(\"{v144}{v146}{v148}\")");
-                let v151: std::string::String = format!("{v144}{v146}{v148}");
+                let v147: &str = &*v81;
+                let v149: &str = inline_colorization::color_reset;
+                let v151: string = string("format!(\"{v145}{v147}{v149}\")");
+                let v152: std::string::String = format!("{v145}{v147}{v149}");
                 {
-                    let x_1: string = fable_library_rust::String_::fromString(v151);
-                    _v81.set(Some(x_1))
+                    let x_2: string = fable_library_rust::String_::fromString(v152);
+                    _v82.set(Some(x_2))
                 }
                 trimEndChars(
                     trimStartChars(
                         sprintf!(
                             "{} {} #{} {} / {}",
                             v67,
-                            getValue(_v81.get().clone()),
+                            match &_v82.get().clone() {
+                                None => panic!("{}", string("base.run_target / _v82=None"),),
+                                Some(_v82_0_0) => _v82_0_0.clone(),
+                            },
                             v68,
                             v1_1(),
                             v2_1()
@@ -461,7 +476,10 @@ pub mod Networking {
                         let _v25: MutCell<Option<()>> = MutCell::new(None::<()>);
                         println!("{}", v24.clone());
                         _v25.set(Some(()));
-                        getValue(_v25.get().clone());
+                        match &_v25.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v25=None"),),
+                            Some(_v25_0_0) => _v25_0_0.clone(),
+                        }
                         ((patternInput.4.clone()).l0.get().clone())(v24)
                     }
                 }
@@ -485,7 +503,10 @@ pub mod Networking {
             let x: Arc<Async<bool>> = defaultOf();
             _v2.set(Some(x))
         }
-        getValue(_v2.get().clone())
+        match &_v2.get().clone() {
+            None => panic!("{}", string("base.run_target / _v2=None"),),
+            Some(_v2_0_0) => _v2_0_0.clone(),
+        }
     }
     pub fn closure2(unitVar: (), v0_1: string) -> Func1<i32, Arc<Async<bool>>> {
         Func1::new({
@@ -514,7 +535,10 @@ pub mod Networking {
             let x: Arc<Async<bool>> = defaultOf();
             _v3.set(Some(x))
         }
-        getValue(_v3.get().clone())
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
+        }
     }
     pub fn closure8(v0_1: i32, v1_1: string) -> Func1<i32, Arc<Async<bool>>> {
         Func1::new({
@@ -554,7 +578,10 @@ pub mod Networking {
             let x: Arc<Async<i64>> = defaultOf();
             _v5.set(Some(x))
         }
-        getValue(_v5.get().clone())
+        match &_v5.get().clone() {
+            None => panic!("{}", string("base.run_target / _v5=None"),),
+            Some(_v5_0_0) => _v5_0_0.clone(),
+        }
     }
     pub fn closure18(v0_1: Option<i32>, v1_1: bool, v2_1: string, v3_1: i32) -> Arc<Async<i64>> {
         Networking::method5(v0_1, v1_1, v2_1, v3_1, 0_i64)
@@ -589,7 +616,10 @@ pub mod Networking {
             let x: Arc<Async<i32>> = defaultOf();
             _v3.set(Some(x))
         }
-        getValue(_v3.get().clone())
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
+        }
     }
     pub fn closure23(v0_1: Option<i32>, v1_1: string, v2_1: i32) -> Arc<Async<i32>> {
         Networking::method6(v0_1, v1_1, v2_1)

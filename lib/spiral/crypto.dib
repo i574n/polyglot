@@ -229,7 +229,7 @@ inl get_file_hash (path : string) : result string string =
     
     real
         inl size = 1024
-        inl zero = unativeint `i32 0
+        inl zero = convert `i32 `unativeint 0
         inl buffer = am'.new_slice `u8 `@size 0u8
 
         rust.loop 2 fun () =>
@@ -299,4 +299,4 @@ disposable |> use |> ignore
 
 inl main () =
     types ()
-    $"let hash_text x = !hash_text x" : ()
+    $'let hash_text x = !hash_text x' : ()

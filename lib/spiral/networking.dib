@@ -41,7 +41,7 @@ inl types () =
 
 #!spiral
 
-nominal reqwest_response = $"reqwest_Response"
+nominal reqwest_response = $'reqwest_Response'
 
 #!markdown
 
@@ -49,7 +49,7 @@ nominal reqwest_response = $"reqwest_Response"
 
 #!spiral
 
-nominal reqwest_error = $"reqwest_Error"
+nominal reqwest_error = $'reqwest_Error'
 
 #!markdown
 
@@ -57,7 +57,7 @@ nominal reqwest_error = $"reqwest_Error"
 
 #!spiral
 
-nominal request_builder = $"reqwest_RequestBuilder"
+nominal request_builder = $'reqwest_RequestBuilder'
 
 #!markdown
 
@@ -542,7 +542,7 @@ fun () =>
 inl main () =
     types ()
     init_trace_state None
-    $"let test_port_open x = !test_port_open x" : ()
-    $"let test_port_open_timeout x = !test_port_open_timeout x" : ()
-    $"let wait_for_port_access x = !wait_for_port_access x" : ()
-    $"let get_available_port x = !get_available_port x" : ()
+    $'let test_port_open x = !test_port_open x' : ()
+    $'let test_port_open_timeout x = !test_port_open_timeout x' : ()
+    $'let wait_for_port_access x = !wait_for_port_access x' : ()
+    $'let get_available_port x = !get_available_port x' : ()

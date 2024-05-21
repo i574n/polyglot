@@ -10,7 +10,7 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs_io::DecodeReaderBytes<$0, $1>\")>]\n#endif\ntype encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end"
 
 /// ## io_error
-nominal io_error = $"std_io_Error"
+nominal io_error = $'std_io_Error'
 
 /// ## buf_reader
 nominal buf_reader t = $'std_io_BufReader<`t>'

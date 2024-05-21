@@ -32,6 +32,14 @@ prototype to_string t : t -> string
 
 #!markdown
 
+## infer
+
+#!spiral
+
+nominal infer = $'_'
+
+#!markdown
+
 ## not'
 
 #!spiral
@@ -46,7 +54,7 @@ inl not' x =
 #!spiral
 
 inl (+.) forall t. (a : t) (b : t) : t =
-    $"!a + !b"
+    $'!a + !b '
 
 #!markdown
 
@@ -55,7 +63,7 @@ inl (+.) forall t. (a : t) (b : t) : t =
 #!spiral
 
 inl (-.) forall t. (a : t) (b : t) : t =
-    $"!a - !b"
+    $'!a - !b '
 
 #!markdown
 
@@ -64,7 +72,7 @@ inl (-.) forall t. (a : t) (b : t) : t =
 #!spiral
 
 inl (*.) forall t. (a : t) (b : t) : t =
-    $"!a * !b"
+    $'!a * !b '
 
 #!markdown
 
@@ -73,7 +81,7 @@ inl (*.) forall t. (a : t) (b : t) : t =
 #!spiral
 
 inl (/.) forall t. (a : t) (b : t) : t =
-    $"!a / !b"
+    $'!a / !b '
 
 #!markdown
 
@@ -82,7 +90,7 @@ inl (/.) forall t. (a : t) (b : t) : t =
 #!spiral
 
 inl (=.) forall t. (a : t) (b : t) : bool =
-    $"!a = !b"
+    $'!a = !b '
 
 #!markdown
 
@@ -91,7 +99,7 @@ inl (=.) forall t. (a : t) (b : t) : bool =
 #!spiral
 
 inl (<>.) forall t. (a : t) (b : t) : bool =
-    $"!a <> !b"
+    $'!a <> !b '
 
 #!markdown
 
@@ -204,7 +212,7 @@ inl ref_set_value forall t. (value : t) (ref : ref t) : ref t =
 #!spiral
 
 inl unbox forall t u. (x : t) : u =
-    $"!x |> unbox<`u>"
+    $'!x |> unbox<`u>'
 
 #!markdown
 
@@ -220,10 +228,10 @@ inl capture forall t. (fn : () -> t) : t =
     $'(fun () ->'
     fn () |> emit_unit
     $')'
-    $"|> fun x -> x ()"
+    $'|> fun x -> x ()'
     $') () )'
-    $"|> fun x -> _!result <- Some x"
-    $'_!result.Value '
+    $'|> fun x -> _!result <- Some x'
+    $'match _!result with Some x -> x | None -> failwith "base.capture / _!result=None"'
 
 #!markdown
 
@@ -249,15 +257,15 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
     fn (Fsharp Native) () |> emit_unit
     $'#endif'
     $'|> fun x -> _!result <- Some x'
-    $'_!result.Value'
+    $'match _!result with Some x -> x | None -> failwith "base.run_target / _!result=None"'
 
 #!spiral
 
 //// test
 
 run_target function
-    | Fsharp (Native) => fun () => $"1uy"
-    | _ => fun () => $"2uy"
+    | Fsharp (Native) => fun () => $'1uy'
+    | _ => fun () => $'2uy'
 |> _assert_eq 1u8
 
 #!spiral
@@ -266,8 +274,8 @@ run_target function
 ///! rust
 
 run_target function
-    | Rust (Native) => fun () => $"1uy"
-    | _ => fun () => $"2uy"
+    | Rust (Native) => fun () => $'1uy'
+    | _ => fun () => $'2uy'
 |> _assert_eq 1u8
 
 #!markdown
@@ -276,7 +284,7 @@ run_target function
 
 #!spiral
 
-nominal exn = $"exn"
+nominal exn = $'exn'
 
 #!markdown
 
@@ -296,10 +304,10 @@ inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
 #!spiral
 
 inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
-    $"try"
+    $'try'
     fn ()
     |> ignore
-    $"with ex ->"
+    $'with ex ->'
     ex_fn $'ex'
     |> ignore
     $'(*'
@@ -312,10 +320,10 @@ inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
 #!spiral
 
 inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
-    $"try"
+    $'try'
     fn ()
     |> ignore
-    $"finally"
+    $'finally'
     finally ()
     |> ignore
     $'(*'
@@ -341,7 +349,7 @@ inl fix_condition x a b =
 
 #!spiral
 
-nominal any = $"obj"
+nominal any = $'obj'
 
 #!markdown
 
@@ -350,7 +358,7 @@ nominal any = $"obj"
 #!spiral
 
 inl u8 forall t. (x : t) : u8 =
-    $"uint8 !x"
+    x |> $'uint8'
 
 #!markdown
 
@@ -359,7 +367,7 @@ inl u8 forall t. (x : t) : u8 =
 #!spiral
 
 inl u64 forall t. (x : t) : u64 =
-    $"uint64 !x"
+    x |> $'uint64'
 
 #!markdown
 
@@ -368,7 +376,7 @@ inl u64 forall t. (x : t) : u64 =
 #!spiral
 
 inl i32 forall t. (x : t) : i32 =
-    $"int32 !x"
+    x |> $'int32'
 
 #!markdown
 
@@ -377,7 +385,7 @@ inl i32 forall t. (x : t) : i32 =
 #!spiral
 
 inl i64 forall t. (x : t) : i64 =
-    $"int64 !x"
+    x |> $'int64'
 
 #!markdown
 
@@ -386,7 +394,7 @@ inl i64 forall t. (x : t) : i64 =
 #!spiral
 
 inl f32 forall t. (x : t) : f32 =
-    $"float32 !x"
+    x |> $'float32'
 
 #!markdown
 
@@ -395,7 +403,7 @@ inl f32 forall t. (x : t) : f32 =
 #!spiral
 
 inl f64 forall t. (x : t) : f64 =
-    $"float !x"
+    x |> $'float'
 
 #!markdown
 
@@ -403,10 +411,7 @@ inl f64 forall t. (x : t) : f64 =
 
 #!spiral
 
-nominal unativeint = $"unativeint"
-
-inl unativeint forall t. (n : t) : unativeint =
-    $"unativeint !n"
+nominal unativeint = $'unativeint'
 
 #!markdown
 
@@ -424,7 +429,7 @@ inl convert_i32 forall t. (x : t) : i32 =
 #!spiral
 
 inl convert forall t u. (x : t) : u =
-    $'`u !x '
+    $'!x |> `u '
 
 #!markdown
 
@@ -432,7 +437,7 @@ inl convert forall t u. (x : t) : u =
 
 #!spiral
 
-type pair a b = $"(`a * `b)"
+nominal pair a b = $'(`a * `b)'
 
 inl pair x y =
     x, y
@@ -444,7 +449,7 @@ inl pair x y =
 #!spiral
 
 inl null forall t. () : t =
-    $"null |> unbox<`t>"
+    $'null |> unbox<`t>'
 
 #!markdown
 
@@ -453,7 +458,7 @@ inl null forall t. () : t =
 #!spiral
 
 inl use forall t. (x : t) : t =
-    $"use !x = !x " : ()
+    $'use !x = !x ' : ()
     $'!x '
 
 #!markdown
@@ -474,7 +479,7 @@ pair 1i32 2i32
 #!spiral
 
 inl new_pair forall a b. (a : a) (b : b) : pair a b =
-    $"!a, !b"
+    $'!a, !b '
 
 #!markdown
 
@@ -483,8 +488,8 @@ inl new_pair forall a b. (a : a) (b : b) : pair a b =
 #!spiral
 
 inl from_pair forall a b. (pair : pair a b) : a * b =
-    $"let (a, b) = !pair"
-    $"a", $"b"
+    $'let (a, b) = !pair '
+    $'a', $'b'
 
 #!spiral
 

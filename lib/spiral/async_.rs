@@ -7,7 +7,7 @@ pub mod Async_ {
     use fable_library_rust::Native_::Func1;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
-    use fable_library_rust::Option_::getValue;
+    use fable_library_rust::String_::string;
     type CancellationToken = ();
     pub fn closure0(unitVar: (), v0_1: CancellationToken) -> Arc<Async<CancellationToken>> {
         let _v1: MutCell<Option<Arc<Async<CancellationToken>>>> =
@@ -16,7 +16,10 @@ pub mod Async_ {
             let x: Arc<Async<CancellationToken>> = defaultOf();
             _v1.set(Some(x))
         }
-        getValue(_v1.get().clone())
+        match &_v1.get().clone() {
+            None => panic!("{}", string("base.run_target / _v1=None"),),
+            Some(_v1_0_0) => _v1_0_0.clone(),
+        }
     }
     pub fn v0() -> Func1<CancellationToken, Arc<Async<CancellationToken>>> {
         static v0: OnceInit<Func1<CancellationToken, Arc<Async<CancellationToken>>>> =

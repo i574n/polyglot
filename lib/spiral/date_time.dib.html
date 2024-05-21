@@ -7621,12 +7621,12 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">timestamp</span> <span class="o">=</span> <span class="n">i64</span>
-<span class="n">nominal</span> <span class="n">duration</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_time_Duration"</span>
-<span class="n">nominal</span> <span class="n">date_time</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"System.DateTime"</span>
-<span class="n">nominal</span> <span class="n">date_time</span><span class="s1">' t = $"chrono_DateTime&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">local</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"chrono_Local"</span>
-<span class="n">nominal</span> <span class="n">naive_date_time</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"chrono_NaiveDateTime"</span>
-<span class="n">nominal</span> <span class="n">utc</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"chrono_Utc"</span>
+<span class="n">nominal</span> <span class="n">duration</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_time_Duration'</span>
+<span class="n">nominal</span> <span class="n">date_time</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.DateTime'</span>
+<span class="n">nominal</span> <span class="n">date_time</span><span class="s1">' t = $'</span><span class="n">chrono_DateTime</span><span class="o">&lt;</span><span class="err">`</span><span class="n">t</span><span class="o">&gt;</span><span class="s1">'</span>
+<span class="n">nominal</span> <span class="n">local</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'chrono_Local'</span>
+<span class="n">nominal</span> <span class="n">naive_date_time</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'chrono_NaiveDateTime'</span>
+<span class="n">nominal</span> <span class="n">utc</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'chrono_Utc'</span>
 </pre></div>
 </div>
 </div>
@@ -8660,7 +8660,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>20240520-1346-3437-3717-300000543210
+<pre>20240521-0310-5728-2804-200000543210
 </pre>
 </div>
 </div>
@@ -8696,7 +8696,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: "20240520-1346-4533-9911-000000543210" / expected: "20240520-1346-4533-9911-000000543210"
+<pre>assert_eq' / actual: "20240521-0311-0864-7409-000000543210" / expected: "20240521-0311-0864-7409-000000543210"
 </pre>
 </div>
 </div>
@@ -9356,14 +9356,14 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">types</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let date_time_guid_from_date_time x = !date_time_guid_from_date_time x"</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let date_time_from_guid x = !date_time_from_guid x"</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let timestamp_guid_from_timestamp x = !timestamp_guid_from_timestamp x"</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let timestamp_from_guid x = !timestamp_from_guid x"</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let new_guid_from_date_time x = !new_guid_from_date_time x"</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let new_guid_from_timestamp x = !new_guid_from_timestamp x"</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let format x = !format x"</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let format_iso8601 x = !format_iso8601 x"</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let date_time_guid_from_date_time x = !date_time_guid_from_date_time x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let date_time_from_guid x = !date_time_from_guid x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let timestamp_guid_from_timestamp x = !timestamp_guid_from_timestamp x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let timestamp_from_guid x = !timestamp_from_guid x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let new_guid_from_date_time x = !new_guid_from_date_time x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let new_guid_from_timestamp x = !new_guid_from_timestamp x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let format x = !format x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let format_iso8601 x = !format_iso8601 x'</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>

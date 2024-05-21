@@ -3,7 +3,7 @@ import { float64, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { defaultOf, IComparable, IEquatable } from "../../deps/Fable/src/fable-library-ts/Util.js";
 import { record_type, string_type, int32_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import { interpolate, toText, trimStart, trimEnd, substring as substring_1, join, split as split_1, replace as replace_1, padRight, padLeft, endsWith } from "../../deps/Fable/src/fable-library-ts/String.js";
-import { value as value_2, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { value as value_5, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 import { ofArray } from "../../deps/Fable/src/fable-library-ts/Seq.js";
 import { toInt32, op_Subtraction, fromFloat64, toFloat64, compare, int64, fromInt32, toInt64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { setItem, fill, item } from "../../deps/Fable/src/fable-library-ts/Array.js";
@@ -106,7 +106,12 @@ export function closure15(v0_1: string, v1_1: string, v2_1: string): string {
     let _v3: Option<string> = undefined;
     const x: string = defaultOf();
     _v3 = x;
-    return value_2(_v3);
+    if (_v3 == null) {
+        throw new Error("base.run_target / _v3=None");
+    }
+    else {
+        return value_5(_v3);
+    }
 }
 
 export function closure14(v0_1: string, v1_1: string): ((arg0: string) => string) {
@@ -146,7 +151,12 @@ export function closure22(v0_1: string[], v1_1: string): string[] {
     const v25: Iterable<string> = ofArray<string>(v0_1);
     const x: string[] = split_1(v1_1, [join(method4(), v25)], undefined, 0);
     _v2 = x;
-    return value_2(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_5(_v2);
+    }
 }
 
 export function closure21(unitVar: void, v0_1: string[]): ((arg0: string) => string[]) {
@@ -221,15 +231,15 @@ export function method5(v0_1: int64, v1_1: string): string {
         return v1_1;
     }
     else {
-        const v5_1: float64 = toFloat64(v0_1) / 2;
-        const v8_1: int64 = toInt64(fromFloat64(Math.ceil(v5_1)));
-        const v11_1: int64 = toInt64(fromFloat64(Math.floor(v5_1)));
-        const v12_1: int64 = toInt64(op_Subtraction(v8_1, 1n));
-        const v13_1: string = v1_1.slice(~~toInt32(0n), ~~toInt32(v12_1) + 1);
-        const v14_1: int64 = toInt64(op_Subtraction(v2_1, v11_1));
-        const v15_1: int64 = toInt64(op_Subtraction(v2_1, 1n));
-        const v20_1: Iterable<string> = ofArray<string>([v13_1, "...", v1_1.slice(~~toInt32(v14_1), ~~toInt32(v15_1) + 1)]);
-        return join(method4(), v20_1);
+        const v6_1: float64 = toFloat64(v0_1) / 2;
+        const v10_1: int64 = toInt64(fromFloat64(Math.ceil(v6_1)));
+        const v14_1: int64 = toInt64(fromFloat64(Math.floor(v6_1)));
+        const v15_1: int64 = toInt64(op_Subtraction(v10_1, 1n));
+        const v16_1: string = v1_1.slice(~~toInt32(0n), ~~toInt32(v15_1) + 1);
+        const v17_1: int64 = toInt64(op_Subtraction(v2_1, v14_1));
+        const v18_1: int64 = toInt64(op_Subtraction(v2_1, 1n));
+        const v23: Iterable<string> = ofArray<string>([v16_1, "...", v1_1.slice(~~toInt32(v17_1), ~~toInt32(v18_1) + 1)]);
+        return join(method4(), v23);
     }
 }
 
@@ -245,7 +255,12 @@ export function closure39(unitVar: void, v0_1: Error): string {
     let _v1: Option<string> = undefined;
     const x: string = toText(interpolate("%A%P()", [v0_1]));
     _v1 = x;
-    return value_2(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        return value_5(_v1);
+    }
 }
 
 export function method6(v0_1: int32, v1_1: Mut0): boolean {

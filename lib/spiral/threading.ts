@@ -74,7 +74,12 @@ export function closure1(v0_1: any, unitVar: void): void {
     let _v1: Option<void> = undefined;
     defaultOf();
     _v1 = some(undefined);
-    value_1(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        value_1(_v1);
+    }
 }
 
 export function method0(v0_1: any): (() => void) {
@@ -87,7 +92,13 @@ export function closure0(unitVar: void, v0_1: Option<any>): [any, IDisposable] {
     let _v1: Option<[any, IDisposable]> = undefined;
     const patternInput: [any, IDisposable] = defaultOf();
     _v1 = ([patternInput[0], patternInput[1]] as [any, IDisposable]);
-    const patternInput_1: [any, IDisposable] = value_1(_v1);
+    let patternInput_1: [any, IDisposable];
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        patternInput_1 = value_1(_v1);
+    }
     return [patternInput_1[0], patternInput_1[1]] as [any, IDisposable];
 }
 

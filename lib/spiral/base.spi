@@ -8,33 +8,36 @@ prototype append t : t -> t -> t
 prototype of_string t : string -> t
 prototype to_string t : t -> string
 
+/// ## infer
+nominal infer = $'_'
+
 /// ## not'
 inl not' x =
     join not x
 
 /// ## (+.)
 inl (+.) forall t. (a : t) (b : t) : t =
-    $"!a + !b"
+    $'!a + !b '
 
 /// ## (-.)
 inl (-.) forall t. (a : t) (b : t) : t =
-    $"!a - !b"
+    $'!a - !b '
 
 /// ## (*.)
 inl (*.) forall t. (a : t) (b : t) : t =
-    $"!a * !b"
+    $'!a * !b '
 
 /// ## (/.)
 inl (/.) forall t. (a : t) (b : t) : t =
-    $"!a / !b"
+    $'!a / !b '
 
 /// ## (=.)
 inl (=.) forall t. (a : t) (b : t) : bool =
-    $"!a = !b"
+    $'!a = !b '
 
 /// ## (<>.)
 inl (<>.) forall t. (a : t) (b : t) : bool =
-    $"!a <> !b"
+    $'!a <> !b '
 
 /// ## (||>)
 inl (||>) (arg1, arg2) fn =
@@ -87,7 +90,7 @@ inl ref_set_value forall t. (value : t) (ref : ref t) : ref t =
 
 /// ## unbox
 inl unbox forall t u. (x : t) : u =
-    $"!x |> unbox<`u>"
+    $'!x |> unbox<`u>'
 
 /// ## capture
 inl capture forall t. (fn : () -> t) : t =
@@ -98,10 +101,10 @@ inl capture forall t. (fn : () -> t) : t =
     $'(fun () ->'
     fn () |> emit_unit
     $')'
-    $"|> fun x -> x ()"
+    $'|> fun x -> x ()'
     $') () )'
-    $"|> fun x -> _!result <- Some x"
-    $'_!result.Value '
+    $'|> fun x -> _!result <- Some x'
+    $'match _!result with Some x -> x | None -> failwith "base.capture / _!result=None"'
 
 /// ## run_target
 inl run_target forall t. (fn : target -> (() -> t)) : t =
@@ -122,10 +125,10 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
     fn (Fsharp Native) () |> emit_unit
     $'#endif'
     $'|> fun x -> _!result <- Some x'
-    $'_!result.Value'
+    $'match _!result with Some x -> x | None -> failwith "base.run_target / _!result=None"'
 
 /// ## exn
-nominal exn = $"exn"
+nominal exn = $'exn'
 
 /// ## try
 inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
@@ -135,10 +138,10 @@ inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
 
 /// ## try_unit
 inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
-    $"try"
+    $'try'
     fn ()
     |> ignore
-    $"with ex ->"
+    $'with ex ->'
     ex_fn $'ex'
     |> ignore
     $'(*'
@@ -146,10 +149,10 @@ inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
 
 /// ## try_finally
 inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
-    $"try"
+    $'try'
     fn ()
     |> ignore
-    $"finally"
+    $'finally'
     finally ()
     |> ignore
     $'(*'
@@ -165,37 +168,34 @@ inl fix_condition x a b =
     |> fun x => $'*)' : ()
 
 /// ## any
-nominal any = $"obj"
+nominal any = $'obj'
 
 /// ## u8
 inl u8 forall t. (x : t) : u8 =
-    $"uint8 !x"
+    x |> $'uint8'
 
 /// ## u64
 inl u64 forall t. (x : t) : u64 =
-    $"uint64 !x"
+    x |> $'uint64'
 
 /// ## i32
 inl i32 forall t. (x : t) : i32 =
-    $"int32 !x"
+    x |> $'int32'
 
 /// ## i64
 inl i64 forall t. (x : t) : i64 =
-    $"int64 !x"
+    x |> $'int64'
 
 /// ## f32
 inl f32 forall t. (x : t) : f32 =
-    $"float32 !x"
+    x |> $'float32'
 
 /// ## f64
 inl f64 forall t. (x : t) : f64 =
-    $"float !x"
+    x |> $'float'
 
 /// ## unativeint
-nominal unativeint = $"unativeint"
-
-inl unativeint forall t. (n : t) : unativeint =
-    $"unativeint !n"
+nominal unativeint = $'unativeint'
 
 /// ## convert_i32
 inl convert_i32 forall t. (x : t) : i32 =
@@ -203,33 +203,33 @@ inl convert_i32 forall t. (x : t) : i32 =
 
 /// ## convert
 inl convert forall t u. (x : t) : u =
-    $'`u !x '
+    $'!x |> `u '
 
 /// ## pair
-type pair a b = $"(`a * `b)"
+nominal pair a b = $'(`a * `b)'
 
 inl pair x y =
     x, y
 
 /// ## null
 inl null forall t. () : t =
-    $"null |> unbox<`t>"
+    $'null |> unbox<`t>'
 
 /// ## use
 inl use forall t. (x : t) : t =
-    $"use !x = !x " : ()
+    $'use !x = !x ' : ()
     $'!x '
 
 /// ## pair
 
 /// ## new_pair
 inl new_pair forall a b. (a : a) (b : b) : pair a b =
-    $"!a, !b"
+    $'!a, !b '
 
 /// ## from_pair
 inl from_pair forall a b. (pair : pair a b) : a * b =
-    $"let (a, b) = !pair"
-    $"a", $"b"
+    $'let (a, b) = !pair '
+    $'a', $'b'
 
 /// ## get_union_fields
 inl get_union_fields forall union_type. () : list union_type =

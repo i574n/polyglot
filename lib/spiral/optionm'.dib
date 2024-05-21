@@ -115,7 +115,7 @@ None |> iter fn
 
 #!spiral
 
-nominal option' t = $"`t option"
+nominal option' t = $'`t option'
 
 #!markdown
 
@@ -169,9 +169,9 @@ inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
     inl x = dyn $'x'
     x |> fn |> emit_unit
     $')'
-    $"|> fun x -> x () |> Some"
+    $'|> fun x -> x () |> Some'
     $') () ) | None -> None'
-    $"|> fun x -> _!result.Value <- x"
+    $'|> fun x -> _!result.Value <- x'
     $'_!result.Value '
 
 #!markdown
@@ -250,13 +250,13 @@ inl y' = y |> box |> map id |> unbox
 
 inl of_obj forall t. (x : t) : option' t =
     $'let mutable _!x = None'
-    $"#if \!FABLE_COMPILER && \!WASM && \!CONTRACT"
+    $'#if \!FABLE_COMPILER && \!WASM && \!CONTRACT'
     ((x |> $'Option.ofObj') : option' t) |> emit_unit
-    $"#else"
+    $'#else'
     $'Some !x '
-    $"#endif"
-    $"|> fun x -> _!x <- Some x"
-    $'_!x.Value'
+    $'#endif'
+    $'|> fun x -> _!x <- Some x'
+    $'match _!x with Some x -> x | None -> failwith "optionm\'.of_obj / _!x=None"'
 
 #!spiral
 
@@ -309,22 +309,31 @@ inl take forall t. (x : option' t) : option' t =
 
 #!markdown
 
-## ref_take'
+## take_ref
 
 #!spiral
 
-inl ref_take' forall t. (x : rust.ref' (option' t)) : option' t =
+inl take_ref forall t. (x : rust.ref' (option' t)) : option' t =
     (!\\(x, $'"true; let mut !x = !x"') : bool) |> ignore
     !\\(x, $'"Option::take(&mut $0)"')
 
 #!markdown
 
-## ref_take
+## take_ref_mut
 
 #!spiral
 
-inl ref_take forall t. (x : rust.ref' (rust.mut' (option' t))) : option' t =
+inl take_ref_mut forall t. (x : rust.ref' (rust.mut' (option' t))) : option' t =
     !\\(x, $'"Option::take($0)"')
+
+#!markdown
+
+## as_ref
+
+#!spiral
+
+inl as_ref forall t. (x : rust.ref' (option' t)) : option' (rust.ref' t) =
+    !\\(x, $'"$0.as_ref()"')
 
 #!markdown
 

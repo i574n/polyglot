@@ -4,7 +4,7 @@
 
 #!markdown
 
-## Perf (Polyglot)
+# Perf (Polyglot)
 
 #!fsharp
 
@@ -925,7 +925,7 @@ inl get_solutions () =
             |> am.map (fun i =>
                 inl a = input |> sm'.slice i (input_length - 1)
                 inl b = input |> sm'.slice 0 (i - 1)
-                $"!a + !b" : string
+                a +. b
             )
             |> seq.of_array
             |> sm'.concat " "
@@ -942,7 +942,7 @@ inl get_solutions () =
             |> listm.map (fun i =>
                 inl a = input |> sm'.slice i (input_length - 1)
                 inl b = if i = 0 then "" else input |> sm'.slice 0 (i - 1)
-                $"!a + !b" : string
+                a +. b
             )
             |> listm.toArray
             |> fun x => x : a i32 _

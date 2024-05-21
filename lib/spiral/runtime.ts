@@ -670,21 +670,30 @@ export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Op
     });
     let _v6: Option<Option<int64>> = undefined;
     _v6 = some(undefined);
-    return [v2_1, v1_1, v3_1, value_2(_v6), v5_1] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
+    return [v2_1, v1_1, v3_1, (_v6 == null) ? (() => {
+        throw new Error("base.run_target / _v6=None");
+    })() : value_2(_v6), v5_1] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
 }
 
 export function closure2(unitVar: void, unitVar_1: void): boolean {
     let _v0: Option<boolean> = undefined;
     const x: boolean = defaultOf();
     _v0 = x;
-    return value_2(_v0);
+    if (_v0 == null) {
+        throw new Error("base.run_target / _v0=None");
+    }
+    else {
+        return value_2(_v0);
+    }
 }
 
 export function closure3(unitVar: void, unitVar_1: void): string {
     let _v0: Option<boolean> = undefined;
     const x: boolean = defaultOf();
     _v0 = x;
-    if (value_2(_v0)) {
+    if ((_v0 == null) ? (() => {
+        throw new Error("base.run_target / _v0=None");
+    })() : value_2(_v0)) {
         return ".exe";
     }
     else {
@@ -933,13 +942,21 @@ export function closure9(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => st
     let _v10: Option<string> = undefined;
     const x: string = method9();
     _v10 = x;
-    const v67: string = value_2(_v10);
+    let v67: string;
+    if (_v10 == null) {
+        throw new Error("base.run_target / _v10=None");
+    }
+    else {
+        v67 = value_2(_v10);
+    }
     const v68: int64 = patternInput[0].l0;
     const v78: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v81: Option<string> = undefined;
-    const x_1: string = padLeft(v78.toLocaleLowerCase(), 7, " ");
-    _v81 = x_1;
-    return trimEnd(trimStart(`${v67} ${value_2(_v81)} #${v68} ${v1_1()} / ${v2_1()}`), " ", "/");
+    let _v82: Option<string> = undefined;
+    const x_2: string = padLeft(v78.toLocaleLowerCase(), 7, " ");
+    _v82 = x_2;
+    return trimEnd(trimStart(`${v67} ${(_v82 == null) ? (() => {
+        throw new Error("base.run_target / _v82=None");
+    })() : value_2(_v82)} #${v68} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
 export function method10(v0_1: US0_$union, v1_1: (() => string)): void {
@@ -965,7 +982,12 @@ export function method10(v0_1: US0_$union, v1_1: (() => string)): void {
         let _v25: Option<void> = undefined;
         console.log(v24);
         _v25 = some(undefined);
-        value_2(_v25);
+        if (_v25 == null) {
+            throw new Error("base.run_target / _v25=None");
+        }
+        else {
+            value_2(_v25);
+        }
         patternInput[4].l0(v24);
     }
 }
@@ -982,33 +1004,62 @@ export function closure10(v0_1: Option<any>, v1_1: string, v2_1: [string, string
     let _v10: Option<any> = undefined;
     const x: any = defaultOf();
     _v10 = x;
-    const v38: any = value_2(_v10);
-    let _v39: Option<void> = undefined;
+    let v39: any;
+    if (_v10 == null) {
+        throw new Error("base.run_target / _v10=None");
+    }
+    else {
+        v39 = value_2(_v10);
+    }
+    let _v40: Option<void> = undefined;
     defaultOf();
-    _v39 = some(undefined);
-    value_2(_v39);
+    _v40 = some(undefined);
+    if (_v40 == null) {
+        throw new Error("base.run_target / _v40=None");
+    }
+    else {
+        value_2(_v40);
+    }
 }
 
 export function closure12(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, v7_1: void, v8: any, v9: void): void {
     let _v10: Option<any> = undefined;
     const x: any = defaultOf();
     _v10 = x;
-    const v39: any = value_2(_v10);
-    let _v40: Option<void> = undefined;
+    let v40: any;
+    if (_v10 == null) {
+        throw new Error("base.run_target / _v10=None");
+    }
+    else {
+        v40 = value_2(_v10);
+    }
+    let _v41: Option<void> = undefined;
     defaultOf();
-    _v40 = some(undefined);
-    value_2(_v40);
+    _v41 = some(undefined);
+    if (_v41 == null) {
+        throw new Error("base.run_target / _v41=None");
+    }
+    else {
+        value_2(_v41);
+    }
 }
 
 export function closure13(v0_1: void, unitVar: void): void {
     let _v1: Option<boolean> = undefined;
     const x: boolean = defaultOf();
     _v1 = x;
-    if (value_2(_v1) === false) {
+    if (((_v1 == null) ? (() => {
+        throw new Error("base.run_target / _v1=None");
+    })() : value_2(_v1)) === false) {
         let _v10: Option<void> = undefined;
         defaultOf();
         _v10 = some(undefined);
-        value_2(_v10);
+        if (_v10 == null) {
+            throw new Error("base.run_target / _v10=None");
+        }
+        else {
+            value_2(_v10);
+        }
     }
 }
 
@@ -1028,7 +1079,12 @@ export function method2(v0_1: Option<any>, v1_1: string, v2_1: [string, string][
     let _v7: Option<any> = undefined;
     const x: any = defaultOf();
     _v7 = x;
-    return value_2(_v7);
+    if (_v7 == null) {
+        throw new Error("base.run_target / _v7=None");
+    }
+    else {
+        return value_2(_v7);
+    }
 }
 
 export function closure4(unitVar: void, v0_1: string): any {
@@ -2675,17 +2731,23 @@ export function method16(v0_1: UH1_$union, v1_1: FSharpList<string>): FSharpList
 export function method12(v0_1: string): string[] {
     let _v0: Option<Option<string>> = undefined;
     _v0 = some(v0_1);
-    const v5_1: Option<string> = value_2(_v0);
-    const _v6: FSharpRef<Option<US4_$union>> = new FSharpRef<Option<US4_$union>>(undefined);
-    let x_3: Option<US4_$union>;
-    if (v5_1 == null) {
-        x_3 = undefined;
+    let v5_1: Option<string>;
+    if (_v0 == null) {
+        throw new Error("optionm\'.of_obj / _v0=None");
     }
     else {
-        const x_1: string = value_2(v5_1);
-        x_3 = ((): US4_$union => US4_US4_0(x_1))();
+        v5_1 = value_2(_v0);
     }
-    _v6.contents = x_3;
+    const _v6: FSharpRef<Option<US4_$union>> = new FSharpRef<Option<US4_$union>>(undefined);
+    let x_4: Option<US4_$union>;
+    if (v5_1 == null) {
+        x_4 = undefined;
+    }
+    else {
+        const x_2: string = value_2(v5_1);
+        x_4 = ((): US4_$union => US4_US4_0(x_2))();
+    }
+    _v6.contents = x_4;
     const v11: US4_$union = defaultArg(_v6.contents, US4_US4_1());
     const v14: string = (v11.tag === /* US4_0 */ 0) ? v11.fields[0] : "";
     const v15: int32 = v14.length | 0;

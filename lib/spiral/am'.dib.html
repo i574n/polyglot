@@ -8515,7 +8515,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">vec</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"Vec&lt;`t&gt;"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">vec</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'Vec&lt;`t&gt;'</span>
 </pre></div>
 </div>
 </div>
@@ -9108,7 +9108,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="nb">slice</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"Slice&lt;`t&gt;"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="nb">slice</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'Slice&lt;`t&gt;'</span>
 </pre></div>
 </div>
 </div>
@@ -9236,7 +9236,7 @@ assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="nb">slice</span><span class="s1">' el dim = $"Slice'</span><span class="o">&lt;</span><span class="err">`</span><span class="n">el</span><span class="o">&gt;</span><span class="s2">"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="nb">slice</span><span class="s1">' el dim = $'</span><span class="n">Slice</span>\<span class="s1">'&lt;`el&gt;'</span>
 </pre></div>
 </div>
 </div>
@@ -9320,10 +9320,10 @@ assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">slice_range</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">dim</span><span class="o">.</span> <span class="p">(</span><span class="n">start</span> <span class="p">:</span> <span class="nb">range</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">end</span> <span class="p">:</span> <span class="nb">range</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="nb">slice</span><span class="s1">' t dim) : rust.ref'</span> <span class="p">(</span><span class="nb">slice</span><span class="s1">' t dim) =</span>
     <span class="n">inl</span> <span class="nb">len</span> <span class="o">=</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">slice_length</span>
-    <span class="n">inl</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">start</span><span class="p">,</span> <span class="p">(</span><span class="n">end</span> <span class="p">:</span> <span class="n">unativeint</span><span class="p">)</span> <span class="o">=</span>
         <span class="k">match</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">Start</span> <span class="n">start</span><span class="p">,</span> <span class="n">End</span> <span class="n">fn</span> <span class="o">=&gt;</span> <span class="n">start</span><span class="p">,</span> <span class="nb">len</span> <span class="o">|&gt;</span> <span class="n">convert</span> <span class="o">|&gt;</span> <span class="n">fn</span> <span class="o">|&gt;</span> <span class="n">unativeint</span>
-        <span class="o">|</span> <span class="n">End</span> <span class="n">start_fn</span><span class="p">,</span> <span class="n">End</span> <span class="n">end_fn</span> <span class="o">=&gt;</span> <span class="nb">len</span> <span class="o">|&gt;</span> <span class="n">convert</span> <span class="o">|&gt;</span> <span class="n">start_fn</span><span class="p">,</span> <span class="nb">len</span> <span class="o">|&gt;</span> <span class="n">convert</span> <span class="o">|&gt;</span> <span class="n">end_fn</span> <span class="o">|&gt;</span> <span class="n">unativeint</span>
+        <span class="o">|</span> <span class="n">Start</span> <span class="n">start</span><span class="p">,</span> <span class="n">End</span> <span class="n">fn</span> <span class="o">=&gt;</span> <span class="n">start</span><span class="p">,</span> <span class="nb">len</span> <span class="o">|&gt;</span> <span class="n">convert</span> <span class="o">|&gt;</span> <span class="n">fn</span> <span class="o">|&gt;</span> <span class="n">convert</span>
+        <span class="o">|</span> <span class="n">End</span> <span class="n">start_fn</span><span class="p">,</span> <span class="n">End</span> <span class="n">end_fn</span> <span class="o">=&gt;</span> <span class="nb">len</span> <span class="o">|&gt;</span> <span class="n">convert</span> <span class="o">|&gt;</span> <span class="n">start_fn</span><span class="p">,</span> <span class="nb">len</span> <span class="o">|&gt;</span> <span class="n">convert</span> <span class="o">|&gt;</span> <span class="n">end_fn</span> <span class="o">|&gt;</span> <span class="n">convert</span>
     <span class="k">match</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="k">with</span>
     <span class="o">|</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="n">when</span> <span class="n">unbox</span> <span class="n">end</span> <span class="o">=.</span> <span class="nb">len</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"&amp;!s[!start..]"'</span><span class="p">)</span>
     <span class="o">|</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"&amp;!s[$0..$1]"'</span><span class="p">)</span>

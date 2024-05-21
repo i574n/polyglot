@@ -1,5 +1,5 @@
 /// ## into_iterator
-nominal into_iterator t = $'_'
+nominal into_iterator t = infer
 
 /// ## iter_collect
 prototype iter_collect t u : into_iterator u -> t u

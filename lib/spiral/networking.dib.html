@@ -7630,7 +7630,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">reqwest_response</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"reqwest_Response"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">reqwest_response</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'reqwest_Response'</span>
 </pre></div>
 </div>
 </div>
@@ -7655,7 +7655,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">reqwest_error</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"reqwest_Error"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">reqwest_error</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'reqwest_Error'</span>
 </pre></div>
 </div>
 </div>
@@ -7680,7 +7680,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">request_builder</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"reqwest_RequestBuilder"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">request_builder</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'reqwest_RequestBuilder'</span>
 </pre></div>
 </div>
 </div>
@@ -8586,7 +8586,7 @@ assert_eq / actual: false / expected: false
 00:00:01 verbose #169 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:01 verbose #170 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:01 verbose #171 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:02 verbose #172 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:01 verbose #172 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:02 verbose #173 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:02 verbose #174 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:02 verbose #175 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
@@ -8839,7 +8839,7 @@ assert_eq / actual: false / expected: false
 00:00:04 verbose #422 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:04 verbose #423 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:04 verbose #424 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:05 verbose #425 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:04 verbose #425 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:05   debug #426 _2
 00:00:05   debug #427 _3
 00:00:05   debug #428 4
@@ -8927,10 +8927,11 @@ assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00   debug #1 1
 00:00:00   debug #2 _1
-00:00:00   debug #3 2
-00:00:00   debug #4 3
-00:00:00 verbose #5 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:00 verbose #6 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: True
+00:00:00   debug #2 2
+00:00:00   debug #3 3
+00:00:00 verbose #4 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 verbose #5 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: True
+00:00:00 verbose #6 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 verbose #7 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 verbose #8 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 verbose #9 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
@@ -8968,16 +8969,18 @@ assert_eq / actual: true / expected: true
 00:00:00 verbose #41 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 verbose #42 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 verbose #43 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:00   debug #44 _2
-00:00:00   debug #45 _3
-00:00:00   debug #46 4
-00:00:00 verbose #47 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: False
-00:00:00   debug #48 _4
-00:00:00   debug #49 _5
-00:00:00 verbose #50 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:00   debug #51 5
-00:00:00   debug #52 6
-assert_between / actual: 38L / expected: struct (2L, 150L)
+00:00:00 verbose #44 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 verbose #45 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00   debug #46 _2
+00:00:00   debug #47 _3
+00:00:00   debug #48 4
+00:00:00 verbose #49 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: False
+00:00:00   debug #50 _4
+00:00:00   debug #51 _5
+00:00:00 verbose #52 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00   debug #53 5
+00:00:00   debug #54 6
+assert_between / actual: 41L / expected: struct (2L, 150L)
 assert_between / actual: 16L / expected: struct (0L, 60L)
 assert_eq / actual: true / expected: true
 </pre>
@@ -9179,8 +9182,8 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00   debug #1 1
-00:00:00   debug #2 2
-00:00:00   debug #3 _1
+00:00:00   debug #2 _1
+00:00:00   debug #3 2
 00:00:00   debug #4 _2
 00:00:00   debug #5 _3
 00:00:00   debug #6 3
@@ -9222,10 +9225,10 @@ assert_eq / actual: true / expected: true
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">types</span> <span class="p">()</span>
     <span class="n">init_trace_state</span> <span class="kc">None</span>
-    <span class="err">$</span><span class="s2">"let test_port_open x = !test_port_open x"</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let test_port_open_timeout x = !test_port_open_timeout x"</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let wait_for_port_access x = !wait_for_port_access x"</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let get_available_port x = !get_available_port x"</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let test_port_open x = !test_port_open x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let test_port_open_timeout x = !test_port_open_timeout x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let wait_for_port_access x = !wait_for_port_access x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let get_available_port x = !get_available_port x'</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>

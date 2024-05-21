@@ -2,7 +2,7 @@
 open rust_operators
 
 /// ## result'
-nominal result' t u = $"Result<`t, `u>"
+nominal result' t u = $'Result<`t, `u>'
 
 /// ## from_option_error
 inl from_option_error error opt =
@@ -51,8 +51,8 @@ inl unbox forall t u. (x : result' t u) : result t u =
     inl error x : result t u = Error x
     real
         typecase t with
-        | () => $"match !x with Ok () -> !ok () | Error x -> !error x" : result t u
-        | _ => $"match !x with Ok x -> !ok x | Error x -> !error x" : result t u
+        | () => $'match !x with Ok () -> !ok () | Error x -> !error x' : result t u
+        | _ => $'match !x with Ok x -> !ok x | Error x -> !error x' : result t u
 
 /// ## unbox'
 inl unbox' forall t u. (x : result' t u) : result t u =
@@ -76,8 +76,8 @@ inl unbox' forall t u. (x : result' t u) : result t u =
 /// ## box
 inl box forall t u. (x : result t u) : result' t u =
     match x with
-    | Ok x => $"Ok !x"
-    | Error err => $"Error !err"
+    | Ok x => $'Ok !x '
+    | Error err => $'Error !err '
 
 /// ## map
 inl map forall t e u. (fn : t -> u) (source : result t e) : result u e =

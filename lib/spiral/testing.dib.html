@@ -7597,7 +7597,7 @@ a.anchor-link {
 <span class="n">inl</span> <span class="n">_throws</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">:</span> <span class="n">option</span> <span class="n">exn</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">none</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">:</span> <span class="n">option</span> <span class="n">exn</span>
     <span class="n">inl</span> <span class="n">some</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">exn</span><span class="p">)</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">s</span>
-    <span class="err">$</span><span class="s2">"try !fn (); !none with ex -&gt; ex |&gt; !some"</span>
+    <span class="err">$</span><span class="s1">'try !fn (); !none with ex -&gt; ex |&gt; !some '</span>
 
 <span class="n">inl</span> <span class="n">__assert_between</span> <span class="n">log</span> <span class="n">a</span> <span class="n">b</span> <span class="n">actual</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">assert_between</span> <span class="n">actual</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span>
@@ -7710,7 +7710,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">print_and_return</span> <span class="n">x</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"printfn $</span><span class="se">\"</span><span class="s2">print_and_return / x: {!x}</span><span class="se">\"</span><span class="s2">"</span>
+    <span class="err">$</span><span class="s1">'printfn $"print_and_return / x: {!x}"'</span>
     <span class="n">x</span>
 </pre></div>
 </div>

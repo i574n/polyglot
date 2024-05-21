@@ -74,7 +74,7 @@ inl main () =
     |> console.write_line
 
 inl main () =
-    $"!main ()" : ()
+    $'!main ()' : ()
 
 #!fsharp
 
@@ -279,7 +279,7 @@ inl main (_args : array_base string) =
     0i32
 
 inl main () =
-    $"let main args = !main args" : ()
+    $'let main args = !main args' : ()
 
 #!spiral
 

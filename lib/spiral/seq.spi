@@ -7,7 +7,7 @@ inl types () =
 nominal fuse t = $'core_iter_Fuse<`t>'
 
 /// ## seq'
-nominal seq' t = $"`t seq"
+nominal seq' t = $'`t seq'
 
 /// ## of_array'
 inl of_array' forall dim t. (items : a dim t) : seq' t =

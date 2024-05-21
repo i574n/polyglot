@@ -69,8 +69,8 @@ pi / 2 |> cos
 
 #!spiral
 
-inl atan2 (y : f64) (x : f64) =
-    $"System.Math.Atan2 (!y, !x)" : f64
+inl atan2 (y : f64) (x : f64) : f64 =
+    $'System.Math.Atan2 (!y, !x)'
 
 #!spiral
 
@@ -151,8 +151,8 @@ inl round forall t {float}. (n : t) : t =
 
 #!spiral
 
-inl log_base (new_base : f64) (a : f64) =
-    $"System.Math.Log (!a, !new_base)" : f64
+inl log_base (new_base : f64) (a : f64) : f64 =
+    $'System.Math.Log (!a, !new_base)'
 
 #!spiral
 
@@ -168,7 +168,7 @@ inl log_base (new_base : f64) (a : f64) =
 #!spiral
 
 inl round forall t {float}. (x : t) : t =
-    $"round !x"
+    x |> $'round'
 
 #!spiral
 

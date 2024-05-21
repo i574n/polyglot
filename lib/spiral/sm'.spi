@@ -28,67 +28,67 @@ inl types () =
     mapm.types ()
     types ()
 
-nominal display t = $"std_fmt_Display<`t>"
-nominal str = $"Str"
-nominal base64_decode_error = $"base64_DecodeError"
-nominal borsh_io_error = $"borsh_io_Error"
-nominal utf8_error = $"std_str_Utf8Error"
-nominal from_utf8_error = $"std_string_FromUtf8Error"
-nominal json_value = $"serde_json_Value"
-nominal json_error = $"serde_json_Error"
-nominal serde_wasm_bindgen_error = $"serde_wasm_bindgen_Error"
-nominal js_string = $"js_sys_JsString"
-nominal os_str = $"std_ffi_OsStr"
-nominal os_string = $"std_ffi_OsString"
-nominal std_string = $"std_string_String"
+nominal display t = $'std_fmt_Display<`t>'
+nominal str = $'Str'
+nominal base64_decode_error = $'base64_DecodeError'
+nominal borsh_io_error = $'borsh_io_Error'
+nominal utf8_error = $'std_str_Utf8Error'
+nominal from_utf8_error = $'std_string_FromUtf8Error'
+nominal json_value = $'serde_json_Value'
+nominal json_error = $'serde_json_Error'
+nominal serde_wasm_bindgen_error = $'serde_wasm_bindgen_Error'
+nominal js_string = $'js_sys_JsString'
+nominal os_str = $'std_ffi_OsStr'
+nominal os_string = $'std_ffi_OsString'
+nominal std_string = $'std_string_String'
 
 /// ## contains
 inl contains (value : string) (s : string) : bool =
-    $"!s.Contains !value"
+    $'!s.Contains !value '
 
 /// ## ends_with
 inl ends_with (value : string) (s : string) : bool =
-    $"!s.EndsWith !value"
+    $'!s.EndsWith !value '
 
 /// ## last_index_of
 inl last_index_of (search : string) (s : string) : i32 =
-    $"!s.LastIndexOf !search"
+    $'!s.LastIndexOf !search '
 
 /// ## pad_left
 inl pad_left (total_width : i32) (padding_char : char) (s : string) : string =
-    $"!s.PadLeft (!total_width, !padding_char)"
+    $'!s.PadLeft (!total_width, !padding_char)'
 
 /// ## pad_right
 inl pad_right (total_width : i32) (padding_char : char) (s : string) : string =
-    $"!s.PadRight (!total_width, !padding_char)"
+    $'!s.PadRight (!total_width, !padding_char)'
 
 /// ## starts_with
 inl starts_with (value : string) (s : string) : bool =
-    $"!s.StartsWith !value"
+    $'!s.StartsWith !value '
 
 /// ## substring
 inl substring (start : i32) (len : i32) (str : string) : string =
-    $"!str.Substring (!start, !len)"
+    $'!str.Substring (!start, !len)'
 
 /// ## to_lower
 inl to_lower (input : string) : string =
-    $"!input.ToLower ()"
+    $'!input.ToLower' ()
 
 /// ## to_upper
 inl to_upper (input : string) : string =
-    $"!input.ToUpper ()"
+    $'!input.ToUpper' ()
 
 /// ## trim
 inl trim (input : string) : string =
-    $"!input.Trim ()"
+    $'!input.Trim' ()
 
 /// ## trim_end
 inl trim_end (trim_chars : array_base char) (input : string) : string =
-    $"!input.TrimEnd !trim_chars"
+    $'!input.TrimEnd !trim_chars '
 
 /// ## trim_start
 inl trim_start (trim_chars : array_base char) (input : string) : string =
-    $"!input.TrimStart !trim_chars"
+    $'!input.TrimStart !trim_chars '
 
 /// ## length
 inl length forall dim {int}. (input : string) : dim =
@@ -119,11 +119,11 @@ inl range forall t. (start : am'.range t) (end : am'.range t) s =
 
 /// ## raw_string_literal
 inl raw_string_literal (s : string) : rust.ref' str =
-    !\($"\"r#\\\"\" + !s + \"\\\"#\"")
+    !\($'"r#\\"" + !s + "\\"#"')
 
 /// ## raw_string_literal_static
 inl raw_string_literal_static (s : string) : rust.static_ref' str =
-    !\($"\"r#\\\"\" + !s + \"\\\"#\"")
+    !\($'"r#\\"" + !s + "\\"#"')
 
 /// ## (~#)
 inl (~#) s =
@@ -258,7 +258,7 @@ inl format_exception (ex : exn) : string =
 
 /// ## replace
 inl replace (old_value : string) (new_value : string) (s : string) : string =
-    $"!s.Replace (!old_value, !new_value)"
+    $'!s.Replace (!old_value, !new_value)'
 
 /// ## regex
 nominal regex = $'regex_Regex'
@@ -290,7 +290,7 @@ inl replace_regex (pattern : string) (replacement : string) (s : string) : strin
     run_target function
         | Fsharp (Native) => fun () =>
             inl replacement = join replacement
-            $"System.Text.RegularExpressions.Regex.Replace (!s, !pattern, !replacement)"
+            $'System.Text.RegularExpressions.Regex.Replace (!s, !pattern, !replacement)'
         | Rust (Native) => fun () =>
             inl s = join s
             inl replacement = join replacement
@@ -412,7 +412,7 @@ inl concat_list_heap_trailing separator input =
 /// ## concat
 inl concat (a : string) (b : seq.seq' _) : string =
     inl a = join a
-    b |> $"String.concat" a
+    b |> $'String.concat' a
 
 /// ## ellipsis
 inl ellipsis (max : i32) (s : string) =
@@ -443,17 +443,17 @@ inl format_ellipsis s =
 
 /// ## split
 inl split (separator : string) (str : string) : array_base string =
-    $"!str.Split !separator"
+    $'!str.Split !separator '
 
 /// ## split_string
 inl split_string (separator : array_base string) (str : string) : array_base string =
     run_target function
-        | Fsharp (Native) => fun () => $"!str.Split (!separator, System.StringSplitOptions.None)"
+        | Fsharp (Native) => fun () => $'!str.Split (!separator, System.StringSplitOptions.None)'
         | _ => fun () => str |> split ((a separator : _ i32 _) |> seq.of_array |> concat "")
 
 /// ## join'
 inl join' (concat : string) (s : a i32 string) : string =
-    $"System.String.Join (!concat, !s)"
+    $'System.String.Join (!concat, !s)'
 
 /// ## to_char_array
 inl to_char_array (str : string) : a i32 char =
@@ -503,7 +503,7 @@ inl slice_contains (text : string) (source : am'.vec u8) : bool =
     fun () =>
         inl source = join source
         source
-        |> windows (text |> length |> (fun x => x : i32) |> unativeint)
+        |> windows (text |> length |> (fun x => x : i32) |> convert)
         |> any ((=.) text)
     |> fun x => join x ()
 
@@ -515,31 +515,31 @@ inl as_bytes (text : string) : rust.ref' (am'.slice u8) =
 /// ## main
 inl main () =
     types ()
-    $"let contains x = !contains x" : ()
-    $"let ends_with x = !ends_with x" : ()
-    $"let pad_left x = !pad_left x" : ()
-    $"let pad_right x = !pad_right x" : ()
-    $"let replace x = !replace x" : ()
-    $"let replace_regex x = !replace_regex x" : ()
+    $'let contains x = !contains x' : ()
+    $'let ends_with x = !ends_with x' : ()
+    $'let pad_left x = !pad_left x' : ()
+    $'let pad_right x = !pad_right x' : ()
+    $'let replace x = !replace x' : ()
+    $'let replace_regex x = !replace_regex x' : ()
     inl slice (a : i32) (b : i32) c = slice a b c
-    $"let slice x = !slice x" : ()
-    $"let split x = !split x" : ()
-    $"let split_string x = !split_string x" : ()
-    $"let starts_with x = !starts_with x" : ()
-    $"let substring x = !substring x" : ()
-    $"let to_lower x = !to_lower x" : ()
-    $"let to_upper x = !to_upper x" : ()
-    $"let trim x = !trim x" : ()
-    $"let trim_end x = !trim_end x" : ()
-    $"let trim_start x = !trim_start x" : ()
-    $"let ellipsis x = !ellipsis x" : ()
-    $"let ellipsis_end x = !ellipsis_end x" : ()
-    $"let format_exception x = !format_exception x" : ()
-    $"let concat_array_trailing x = !concat_array_trailing x" : ()
+    $'let slice x = !slice x' : ()
+    $'let split x = !split x' : ()
+    $'let split_string x = !split_string x' : ()
+    $'let starts_with x = !starts_with x' : ()
+    $'let substring x = !substring x' : ()
+    $'let to_lower x = !to_lower x' : ()
+    $'let to_upper x = !to_upper x' : ()
+    $'let trim x = !trim x' : ()
+    $'let trim_end x = !trim_end x' : ()
+    $'let trim_start x = !trim_start x' : ()
+    $'let ellipsis x = !ellipsis x' : ()
+    $'let ellipsis_end x = !ellipsis_end x' : ()
+    $'let format_exception x = !format_exception x' : ()
+    $'let concat_array_trailing x = !concat_array_trailing x' : ()
     inl concat a (b : seq.seq' string) = concat a b
-    $"let concat x = !concat x" : ()
-    $"let join' x = !join' x" : ()
-    $"let to_char_array x = !to_char_array x" : ()
+    $'let concat x = !concat x' : ()
+    $'let join\' x = !join' x' : ()
+    $'let to_char_array x = !to_char_array x' : ()
 
 /// ## to_string std_string
 open rust

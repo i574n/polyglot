@@ -410,7 +410,9 @@ export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Op
     });
     let _v6: Option<Option<int64>> = undefined;
     _v6 = some(undefined);
-    return [v2_1, v1_1, v3_1, value_1(_v6), v5_1] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
+    return [v2_1, v1_1, v3_1, (_v6 == null) ? (() => {
+        throw new Error("base.run_target / _v6=None");
+    })() : value_1(_v6), v5_1] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
 }
 
 export function closure4(v0_1: int32, v1_1: string, unitVar: void): string {
@@ -433,13 +435,21 @@ export function closure6(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => st
     let _v10: Option<string> = undefined;
     const x: string = method3();
     _v10 = x;
-    const v67: string = value_1(_v10);
+    let v67: string;
+    if (_v10 == null) {
+        throw new Error("base.run_target / _v10=None");
+    }
+    else {
+        v67 = value_1(_v10);
+    }
     const v68: int64 = patternInput[0].l0;
     const v78: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v81: Option<string> = undefined;
-    const x_1: string = padLeft(v78.toLocaleLowerCase(), 7, " ");
-    _v81 = x_1;
-    return trimEnd(trimStart(`${v67} ${value_1(_v81)} #${v68} ${v1_1()} / ${v2_1()}`), " ", "/");
+    let _v82: Option<string> = undefined;
+    const x_2: string = padLeft(v78.toLocaleLowerCase(), 7, " ");
+    _v82 = x_2;
+    return trimEnd(trimStart(`${v67} ${(_v82 == null) ? (() => {
+        throw new Error("base.run_target / _v82=None");
+    })() : value_1(_v82)} #${v68} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
 export function method4(v0_1: US0_$union, v1_1: (() => string)): void {
@@ -465,7 +475,12 @@ export function method4(v0_1: US0_$union, v1_1: (() => string)): void {
         let _v25: Option<void> = undefined;
         console.log(v24);
         _v25 = some(undefined);
-        value_1(_v25);
+        if (_v25 == null) {
+            throw new Error("base.run_target / _v25=None");
+        }
+        else {
+            value_1(_v25);
+        }
         patternInput[4].l0(v24);
     }
 }
@@ -478,7 +493,12 @@ export function closure3(v0_1: string, v1_1: int32): any {
     let _v2: Option<any> = undefined;
     const x: any = defaultOf();
     _v2 = x;
-    return value_1(_v2);
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
+    }
+    else {
+        return value_1(_v2);
+    }
 }
 
 export function closure2(unitVar: void, v0_1: string): ((arg0: int32) => any) {
@@ -509,7 +529,12 @@ export function closure9(v0_1: int32, v1_1: string, v2_1: int32): any {
     let _v3: Option<any> = undefined;
     const x: any = defaultOf();
     _v3 = x;
-    return value_1(_v3);
+    if (_v3 == null) {
+        throw new Error("base.run_target / _v3=None");
+    }
+    else {
+        return value_1(_v3);
+    }
 }
 
 export function closure8(v0_1: int32, v1_1: string): ((arg0: int32) => any) {
@@ -532,7 +557,12 @@ export function method5(v0_1: Option<int32>, v1_1: boolean, v2_1: string, v3_1: 
     let _v5: Option<any> = undefined;
     const x: any = defaultOf();
     _v5 = x;
-    return value_1(_v5);
+    if (_v5 == null) {
+        throw new Error("base.run_target / _v5=None");
+    }
+    else {
+        return value_1(_v5);
+    }
 }
 
 export function closure18(v0_1: Option<int32>, v1_1: boolean, v2_1: string, v3_1: int32): any {
@@ -555,7 +585,12 @@ export function method6(v0_1: Option<int32>, v1_1: string, v2_1: int32): any {
     let _v3: Option<any> = undefined;
     const x: any = defaultOf();
     _v3 = x;
-    return value_1(_v3);
+    if (_v3 == null) {
+        throw new Error("base.run_target / _v3=None");
+    }
+    else {
+        return value_1(_v3);
+    }
 }
 
 export function closure23(v0_1: Option<int32>, v1_1: string, v2_1: int32): any {

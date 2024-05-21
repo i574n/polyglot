@@ -127,7 +127,7 @@ inl indexed (array : a _ _) =
     |> listm.toArray
 
 /// ## vec
-nominal vec t = $"Vec<`t>"
+nominal vec t = $'Vec<`t>'
 
 /// ## from_vec
 inl from_vec forall dim el. (vec : vec el) : a dim el =
@@ -258,7 +258,7 @@ inl vec_chunks forall t. (n : i32) (vec : vec t) : vec (vec t) =
     !\\(vec, $'"$0.chunks(!n).map(|x| x.into_iter().map(|x| x.clone()).collect::<Vec<_>>()).collect::<Vec<_>>()"')
 
 /// ## slice
-nominal slice t = $"Slice<`t>"
+nominal slice t = $'Slice<`t>'
 
 /// ## slice
 inl slice forall dim {int; number} el. from nearTo s : a dim el =
@@ -280,7 +280,7 @@ inl range start end s =
     s |> slice (start |> unbox) (end |> unbox)
 
 /// ## slice'
-nominal slice' el dim = $"Slice'<`el>"
+nominal slice' el dim = $'Slice\'<`el>'
 
 /// ## slice_singleton
 inl slice_singleton forall dim el. (x : option el) : slice' el dim =
@@ -298,10 +298,10 @@ inl slice_length forall t dim. (x : slice' t dim) : unativeint =
 /// ## slice_range
 inl slice_range forall t dim. (start : range t) (end : range t) (s : slice' t dim) : rust.ref' (slice' t dim) =
     inl len = s |> slice_length
-    inl start, end =
+    inl start, (end : unativeint) =
         match start, end with
-        | Start start, End fn => start, len |> convert |> fn |> unativeint
-        | End start_fn, End end_fn => len |> convert |> start_fn, len |> convert |> end_fn |> unativeint
+        | Start start, End fn => start, len |> convert |> fn |> convert
+        | End start_fn, End end_fn => len |> convert |> start_fn, len |> convert |> end_fn |> convert
     match start, end with
     | start, end when unbox end =. len => !\($'"&!s[!start..]"')
     | start, end => !\\((start, end), $'"&!s[$0..$1]"')

@@ -40,7 +40,12 @@ export function closure0(unitVar: void, v0_1: string): string {
     const v11: any = v9.update(v0_1, 'utf8');
     const x: string = v11.digest("hex");
     _v1 = x;
-    return value(_v1);
+    if (_v1 == null) {
+        throw new Error("base.run_target / _v1=None");
+    }
+    else {
+        return value(_v1);
+    }
 }
 
 export const v0 = (v: string): string => closure0(undefined, v);

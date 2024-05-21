@@ -75,10 +75,13 @@ nominal process_child = $'std_process_Child'
 
 #!spiral
 
-nominal process_child_stderr = $"std_process_ChildStderr"
+nominal process_child_stderr = $'std_process_ChildStderr'
 
-inl process_child_stderr (child : rust.ref' (rust.mut' process_child)) : rust.ref' (rust.mut' (optionm'.option' process_child_stderr)) =
-    !\\(child, $'"&mut $0.stderr"')
+inl process_child_stderr
+    (child : rust.ref' (rust.mut' process_child))
+    : rust.ref' (rust.mut' (optionm'.option' process_child_stderr))
+    =
+    !\($'"&mut !child.stderr"')
 
 #!markdown
 
@@ -86,10 +89,13 @@ inl process_child_stderr (child : rust.ref' (rust.mut' process_child)) : rust.re
 
 #!spiral
 
-nominal process_child_stdout = $"std_process_ChildStdout"
+nominal process_child_stdout = $'std_process_ChildStdout'
 
-inl process_child_stdout (child : rust.ref' (rust.mut' process_child)) : rust.ref' (rust.mut' (optionm'.option' process_child_stdout)) =
-    !\\(child, $'"&mut $0.stdout"')
+inl process_child_stdout
+    (child : rust.ref' (rust.mut' process_child))
+    : rust.ref' (rust.mut' (optionm'.option' process_child_stdout))
+    =
+    !\($'"&mut !child.stdout"')
 
 #!markdown
 
@@ -97,9 +103,12 @@ inl process_child_stdout (child : rust.ref' (rust.mut' process_child)) : rust.re
 
 #!spiral
 
-nominal process_child_stdin = $"std_process_ChildStdin"
+nominal process_child_stdin = $'std_process_ChildStdin'
 
-inl process_child_stdin (child : rust.ref' (rust.mut' process_child)) : rust.ref' (rust.mut' (optionm'.option' process_child_stdin)) =
+inl process_child_stdin
+    (child : rust.ref' (rust.mut' process_child))
+    : rust.ref' (rust.mut' (optionm'.option' process_child_stdin))
+    =
     !\\(child, $'"&mut $0.stdin"')
 
 #!markdown
@@ -274,20 +283,64 @@ split_command $'\@"..\\..\\file 1.exe -c \\\\""echo 1\\\\"""'
 #!spiral
 
 nominal process = $'System.Diagnostics.Process'
+
+#!markdown
+
+## process_start_info
+
+#!spiral
+
 nominal process_start_info = $'System.Diagnostics.ProcessStartInfo'
+
+#!markdown
+
+## data_received_event_args
+
+#!spiral
+
 nominal data_received_event_args = $'System.Diagnostics.DataReceivedEventArgs'
+
+#!markdown
+
+## new_process
+
+#!spiral
 
 inl new_process (process_start_info : process_start_info) : process =
     $'new `process (StartInfo = !process_start_info)'
 
+#!markdown
+
+## process_start
+
+#!spiral
+
 inl process_start (process : process) : bool =
     $'!process.Start' ()
+
+#!markdown
+
+## process_exit_code
+
+#!spiral
 
 inl process_exit_code (process : process) : i32 =
     $'!process.ExitCode'
 
+#!markdown
+
+## process_id
+
+#!spiral
+
 inl process_id (process : process) : i32 =
     $'!process.Id'
+
+#!markdown
+
+## process_has_exited
+
+#!spiral
 
 inl process_has_exited (process : process) : bool =
     run_target function
@@ -295,26 +348,68 @@ inl process_has_exited (process : process) : bool =
             $'!process.HasExited'
         | _ => fun () => null ()
 
+#!markdown
+
+## process_kill
+
+#!spiral
+
 inl process_kill (process : process) : () =
     run_target function
         | Fsharp (Native) => fun () =>
             $'!process.Kill' ()
         | _ => fun () => null ()
 
+#!markdown
+
+## process_begin_error_read_line
+
+#!spiral
+
 inl process_begin_error_read_line (process : process) : () =
     $'!process.BeginErrorReadLine' ()
+
+#!markdown
+
+## process_begin_output_read_line
+
+#!spiral
 
 inl process_begin_output_read_line (process : process) : () =
     $'!process.BeginOutputReadLine' ()
 
+#!markdown
+
+## process_add_output_data_received
+
+#!spiral
+
 inl process_add_output_data_received fn (process : process) : () =
     $'!process.OutputDataReceived.Add !fn '
+
+#!markdown
+
+## process_add_error_data_received
+
+#!spiral
 
 inl process_add_error_data_received fn (process : process) : () =
     $'!process.ErrorDataReceived.Add !fn '
 
+#!markdown
+
+## process_wait_for_exit_async
+
+#!spiral
+
 inl process_wait_for_exit_async (ct : threading.cancellation_token) (process : process) : async.task () =
     $'!process.WaitForExitAsync !ct '
+
+#!markdown
+
+## event_data
+
+#!spiral
 
 inl event_data (e : data_received_event_args) : string =
     $'!e.Data'
@@ -928,7 +1023,9 @@ let execute_with_options (options : execution_options) : i32 * string =
 
             trace Debug
                 fun () => $'$"runtime.execute_with_options"'
-                fun () => $'$"file_name: {!file_name} / arguments: %A{!arguments} / options: %A{!options} / {!_locals ()}"'
+                fun () =>
+                    $'$"file_name: {!file_name} / arguments: %A{!arguments}"'
+                    +. $'$" / options: %A{!options} / {!_locals ()}"'
 
             fun () =>
                 fun () =>
@@ -940,7 +1037,9 @@ let execute_with_options (options : execution_options) : i32 * string =
                     |> process_command_stdin (process_stdio_piped ())
                     |> fun command =>
                         match options.working_directory |> optionm'.unbox with
-                        | Some working_directory => command |> process_command_current_dir working_directory
+                        | Some working_directory =>
+                            command
+                            |> process_command_current_dir working_directory
                         | None => command
                     |> fun command =>
                         match options.environment_variables with
@@ -955,52 +1054,47 @@ let execute_with_options (options : execution_options) : i32 * string =
                     |> resultm.unbox'
                     |> function
                         | Ok child =>
-                            // inl stdout =
-                            //     child
-                            //     |> threading.arc_mutex_lock
-                            //     |> resultm.unwrap'
-                            //     |> threading.mutex_guard_ref_mut
-                            //     |> optionm'.as_mut
-                            //     |> optionm'.unwrap
-                            //     |> process_child_stdout
-                            //     |> optionm'.ref_take
-                            //     |> optionm'.unwrap
-                            //     |> optionm'.some'
-                            //     |> threading.new_arc_mutex
-                            // inl stderr =
-                            //     child
-                            //     |> threading.arc_mutex_lock
-                            //     |> resultm.unwrap'
-                            //     |> threading.mutex_guard_ref_mut
-                            //     |> optionm'.as_mut
-                            //     |> optionm'.unwrap
-                            //     |> process_child_stderr
-                            //     |> optionm'.ref_take
-                            //     |> optionm'.unwrap
-                            //     |> optionm'.some'
-                            //     |> threading.new_arc_mutex
-                            // inl stdin =
-                            //     child
-                            //     |> threading.arc_mutex_lock
-                            //     |> resultm.unwrap'
-                            //     |> threading.mutex_guard_ref_mut
-                            //     |> optionm'.as_mut
-                            //     |> optionm'.unwrap
-                            //     |> process_child_stdin
-                            //     |> optionm'.ref_take
-                            //     |> optionm'.unwrap
-                            //     |> optionm'.some'
-                            //     |> threading.new_arc_mutex
+                            inl stdout =
+                                fun () =>
+                                    child
+                                    |> threading.arc_mutex_lock
+                                    |> resultm.unwrap'
+                                    |> threading.mutex_guard_ref_mut
+                                    |> optionm'.as_mut
+                                    |> optionm'.unwrap
+                                    |> process_child_stdout
+                                    |> optionm'.take_ref_mut
+                                    |> optionm'.unwrap
+                                |> rust.capture
 
-                            inl stdout : process_child_stdout =
-                                !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdout.take().unwrap()"')
-                            inl stderr : process_child_stderr =
-                                !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stderr.take().unwrap()"')
-                            inl stdin : process_child_stdin =
-                                !\\(child, $'"$0.lock().unwrap().as_mut().unwrap().stdin.take().unwrap()"')
-                            inl stdout = stdout |> threading.new_arc_mutex
-                            inl stderr = stderr |> threading.new_arc_mutex
-                            inl stdin = stdin |> optionm'.some' |> threading.new_arc_mutex
+                            inl stderr =
+                                fun () =>
+                                    child
+                                    |> threading.arc_mutex_lock
+                                    |> resultm.unwrap'
+                                    |> threading.mutex_guard_ref_mut
+                                    |> optionm'.as_mut
+                                    |> optionm'.unwrap
+                                    |> process_child_stderr
+                                    |> optionm'.take_ref_mut
+                                    |> optionm'.unwrap
+                                |> rust.capture
+
+                            inl stdin =
+                                fun () =>
+                                    child
+                                    |> threading.arc_mutex_lock
+                                    |> resultm.unwrap'
+                                    |> threading.mutex_guard_ref_mut
+                                    |> optionm'.as_mut
+                                    |> optionm'.unwrap
+                                    |> process_child_stdin
+                                    |> optionm'.take_ref_mut
+                                    |> optionm'.unwrap
+                                    |> optionm'.some'
+                                    |> threading.new_arc_mutex
+                                |> rust.capture
+
                             inl channel_sender, channel_receiver = threading.new_channel ()
                             inl channel_sender'' = channel_sender |> threading.new_arc_mutex
                             inl channel_sender' = channel_sender |> threading.new_arc_mutex
@@ -1009,9 +1103,6 @@ let execute_with_options (options : execution_options) : i32 * string =
                             inl stdout_handle =
                                 fun () =>
                                     stdout
-                                    |> threading.arc_mutex_lock
-                                    |> resultm.unwrap'
-                                    |> threading.mutex_guard_ref_mut
                                     |> stream.decode_reader_bytes_build
                                     |> stream.new_buf_reader
                                     |> stream.buf_read_lines
@@ -1025,9 +1116,6 @@ let execute_with_options (options : execution_options) : i32 * string =
                             inl stderr_handle =
                                 fun () =>
                                     stderr
-                                    |> threading.arc_mutex_lock
-                                    |> resultm.unwrap'
-                                    |> threading.mutex_guard_ref_mut
                                     |> stream.decode_reader_bytes_build
                                     |> stream.new_buf_reader
                                     |> stream.buf_read_lines
@@ -1044,7 +1132,7 @@ let execute_with_options (options : execution_options) : i32 * string =
                                 |> threading.arc_mutex_lock
                                 |> resultm.unwrap'
                                 |> threading.mutex_guard_ref_mut
-                                |> optionm'.ref_take
+                                |> optionm'.take_ref_mut
                                 |> optionm'.map' threading.new_arc_mutex
                                 |> optionm'.unbox
                                 |> function
@@ -1062,7 +1150,7 @@ let execute_with_options (options : execution_options) : i32 * string =
                                 |> threading.arc_mutex_lock
                                 |> resultm.unwrap'
                                 |> threading.mutex_guard_ref_mut
-                                |> optionm'.ref_take
+                                |> optionm'.take_ref_mut
                                 |> optionm'.unwrap
                                 |> child_wait_with_output
                                 |> resultm.map_error' sm'.format'
@@ -1112,7 +1200,9 @@ let execute_with_options (options : execution_options) : i32 * string =
                                 )
                             trace Verbose
                                 fun () => $'$"runtime.execute_with_options / result"'
-                                fun () => $'$"exit_code: {!exit_code} / std_trace.Length: {!std_trace.Length} / {!_locals ()}"'
+                                fun () =>
+                                    $'$"exit_code: {!exit_code}"'
+                                    +. $'$" / std_trace.Length: {!std_trace.Length} / {!_locals ()}"'
                             new_pair exit_code std_trace
                 |> capture
             |> async.future_init (3, 2) 1
@@ -1305,7 +1395,7 @@ nominal value_range = $'clap_builder_ValueRange'
 #!spiral
 
 inl new_value_range start end : value_range =
-    inl len = 0i32 |> unativeint
+    inl len = 0i32 |> convert
     inl start, end =
         open am'
         match start, end with
@@ -1602,15 +1692,15 @@ inl command_subcommand (subcommand : command) (command : command) : command =
 inl main () =
     types ()
     init_trace_state None
-    $"let is_windows () = !is_windows ()" : ()
-    $"let get_executable_suffix () = !get_executable_suffix ()" : ()
-    $"let execute_async x = !execute_async x" : ()
-    $"let execute_with_options_async x = !execute_with_options_async x" : ()
+    $'let is_windows () = !is_windows ()' : ()
+    $'let get_executable_suffix () = !get_executable_suffix ()' : ()
+    $'let execute_async x = !execute_async x' : ()
+    $'let execute_with_options_async x = !execute_with_options_async x' : ()
     inl execution_options fn =
         execution_options fun x =>
             x
             |> heap
             |> fn
             |> fun x => !x
-    $"let execution_options x = !execution_options x" : ()
-    $"let split_args x = !split_args x" : ()
+    $'let execution_options x = !execution_options x' : ()
+    $'let split_args x = !split_args x' : ()

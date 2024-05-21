@@ -3,7 +3,6 @@ from abc import abstractmethod
 from collections.abc import Callable
 from dataclasses import dataclass
 from typing import (Any, Protocol)
-from fable_modules.fable_library.option import value as value_1
 from fable_modules.fable_library.reflection import (TypeInfo, int32_type, record_type)
 from fable_modules.fable_library.types import Record
 
@@ -13,7 +12,7 @@ class ICryptoCreateHash(Protocol):
         ...
 
 
-def _expr0() -> TypeInfo:
+def _expr1() -> TypeInfo:
     return record_type("Crypto.Mut0", [], Mut0, lambda: [("l0", int32_type)])
 
 
@@ -21,7 +20,7 @@ def _expr0() -> TypeInfo:
 class Mut0(Record):
     l0: int
 
-Mut0_reflection = _expr0
+Mut0_reflection = _expr1
 
 def method0(v0_1: str) -> str:
     return v0_1
@@ -38,14 +37,19 @@ def method2(__unit: None=None) -> str:
 def closure0(unit_var: None, v0_1: str) -> str:
     _v1: str | None = None
     _v1 = None
-    return value_1(_v1)
+    if _v1 is None:
+        raise Exception("base.run_target / _v1=None")
+
+    else: 
+        return _v1
 
 
-def _arrow10(v: str) -> str:
+
+def _arrow19(v: str) -> str:
     return closure0(None, v)
 
 
-v0: Callable[[str], str] = _arrow10
+v0: Callable[[str], str] = _arrow19
 
 def hash_text(x: str) -> str:
     return v0(x)

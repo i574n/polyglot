@@ -79,7 +79,7 @@ inl downcast forall t u. (x : t) : u =
 #!spiral
 
 inl to_any forall t. (obj : t) : any =
-    $"!obj"
+    $'!obj '
 
 instance (~:>) any = to_any
 
@@ -177,7 +177,7 @@ inl join_body_unit body d x =
 #!spiral
 
 inl nameof x : string =
-    $"nameof !x"
+    $'nameof !x '
 
 #!spiral
 
@@ -194,7 +194,7 @@ fun () => failwith "test"
 
 #!spiral
 
-nominal disposable t = $"System.IDisposable"
+nominal disposable t = $'System.IDisposable'
 
 #!markdown
 
@@ -398,9 +398,9 @@ inl main () =
     types ()
     init_trace_state None
     inl new_disposable x : _ () = new_disposable x
-    $"let new_disposable x = !new_disposable x" : ()
+    $'let new_disposable x = !new_disposable x' : ()
 
     inl retry_fn (r : i32) (x : () -> _) : optionm'.option' () = retry_fn r x |> optionm'.box
-    $"let retry_fn x = !retry_fn x" : ()
+    $'let retry_fn x = !retry_fn x' : ()
     inl memoize (fn : () -> ()) : () -> () = memoize fn
-    $"let memoize x = !memoize x" : ()
+    $'let memoize x = !memoize x' : ()

@@ -338,7 +338,7 @@ am.init 3i32 ((*) 2)
 
 #!spiral
 
-nominal vec t = $"Vec<`t>"
+nominal vec t = $'Vec<`t>'
 
 #!markdown
 
@@ -574,7 +574,7 @@ inl vec_chunks forall t. (n : i32) (vec : vec t) : vec (vec t) =
 
 #!spiral
 
-nominal slice t = $"Slice<`t>"
+nominal slice t = $'Slice<`t>'
 
 #!markdown
 
@@ -623,7 +623,7 @@ inl range start end s =
 
 #!spiral
 
-nominal slice' el dim = $"Slice'<`el>"
+nominal slice' el dim = $'Slice\'<`el>'
 
 #!markdown
 
@@ -656,10 +656,10 @@ inl slice_length forall t dim. (x : slice' t dim) : unativeint =
 
 inl slice_range forall t dim. (start : range t) (end : range t) (s : slice' t dim) : rust.ref' (slice' t dim) =
     inl len = s |> slice_length
-    inl start, end =
+    inl start, (end : unativeint) =
         match start, end with
-        | Start start, End fn => start, len |> convert |> fn |> unativeint
-        | End start_fn, End end_fn => len |> convert |> start_fn, len |> convert |> end_fn |> unativeint
+        | Start start, End fn => start, len |> convert |> fn |> convert
+        | End start_fn, End end_fn => len |> convert |> start_fn, len |> convert |> end_fn |> convert
     match start, end with
     | start, end when unbox end =. len => !\($'"&!s[!start..]"')
     | start, end => !\\((start, end), $'"&!s[$0..$1]"')

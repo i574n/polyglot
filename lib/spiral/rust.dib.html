@@ -7611,38 +7611,38 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">unit</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'unit'</span>
-<span class="n">nominal</span> <span class="nb">any</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"core_any_Any"</span>
+<span class="n">nominal</span> <span class="nb">any</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'core_any_Any'</span>
 <span class="n">nominal</span> <span class="k">try</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'core_ops_Try&lt;`t&gt;'</span>
-<span class="n">nominal</span> <span class="n">cow</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_borrow_Cow&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">ref_cell</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_cell_RefCell&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">rc</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_rc_Rc&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">lifetime_join</span><span class="s1">' (t : * -&gt; *) u = $"LifetimeRef&lt;`(t u)&gt;"</span>
-<span class="n">nominal</span> <span class="n">lifetime_join</span> <span class="n">t</span> <span class="n">u</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"LifetimeJoin&lt;`t, `u&gt;"</span>
-<span class="n">nominal</span> <span class="n">lifetime</span> <span class="n">t</span> <span class="n">u</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"Lifetime&lt;`t, `u&gt;"</span>
-<span class="n">nominal</span> <span class="n">static_lifetime</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"StaticLifetime"</span>
-<span class="n">nominal</span> <span class="n">ref</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"Ref&lt;`t&gt;"</span>
+<span class="n">nominal</span> <span class="n">cow</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_borrow_Cow&lt;`t&gt;'</span>
+<span class="n">nominal</span> <span class="n">ref_cell</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_cell_RefCell&lt;`t&gt;'</span>
+<span class="n">nominal</span> <span class="n">rc</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_rc_Rc&lt;`t&gt;'</span>
+<span class="n">nominal</span> <span class="n">lifetime_join</span><span class="s1">' (t : * -&gt; *) u = $'</span><span class="n">LifetimeRef</span><span class="o">&lt;</span><span class="err">`</span><span class="p">(</span><span class="n">t</span> <span class="n">u</span><span class="p">)</span><span class="o">&gt;</span><span class="s1">'</span>
+<span class="n">nominal</span> <span class="n">lifetime_join</span> <span class="n">t</span> <span class="n">u</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'LifetimeJoin&lt;`t, `u&gt;'</span>
+<span class="n">nominal</span> <span class="n">lifetime</span> <span class="n">t</span> <span class="n">u</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'Lifetime&lt;`t, `u&gt;'</span>
+<span class="n">nominal</span> <span class="n">static_lifetime</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'StaticLifetime'</span>
+<span class="n">nominal</span> <span class="n">ref</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'Ref&lt;`t&gt;'</span>
 <span class="n">nominal</span> <span class="n">static_ref</span> <span class="n">t</span> <span class="o">=</span> <span class="n">ref</span> <span class="p">(</span><span class="n">lifetime</span> <span class="n">static_lifetime</span> <span class="n">t</span><span class="p">)</span>
-<span class="n">nominal</span> <span class="n">weak_rc</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_rc_Weak&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">box</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"Box&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">mut_cell</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"MutCell&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">pin</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_pin_Pin&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">dyn</span><span class="s1">' t = $"Dyn&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">fn</span><span class="s1">' t = $"Fn&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">action_fn</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ActionFn&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">action_fn2</span> <span class="n">t</span> <span class="n">u</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ActionFn2&lt;`t, `u&gt;"</span>
-<span class="n">nominal</span> <span class="n">fn_once</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"FnOnce&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">fn_unit</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"FnUnit"</span>
-<span class="n">nominal</span> <span class="n">func0</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"Func0&lt;`t&gt;"</span>
+<span class="n">nominal</span> <span class="n">weak_rc</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_rc_Weak&lt;`t&gt;'</span>
+<span class="n">nominal</span> <span class="n">box</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'Box&lt;`t&gt;'</span>
+<span class="n">nominal</span> <span class="n">mut_cell</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'MutCell&lt;`t&gt;'</span>
+<span class="n">nominal</span> <span class="n">pin</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_pin_Pin&lt;`t&gt;'</span>
+<span class="n">nominal</span> <span class="n">dyn</span><span class="s1">' t = $'</span><span class="n">Dyn</span><span class="o">&lt;</span><span class="err">`</span><span class="n">t</span><span class="o">&gt;</span><span class="s1">'</span>
+<span class="n">nominal</span> <span class="n">fn</span><span class="s1">' t = $'</span><span class="n">Fn</span><span class="o">&lt;</span><span class="err">`</span><span class="n">t</span><span class="o">&gt;</span><span class="s1">'</span>
+<span class="n">nominal</span> <span class="n">action_fn</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'ActionFn&lt;`t&gt;'</span>
+<span class="n">nominal</span> <span class="n">action_fn2</span> <span class="n">t</span> <span class="n">u</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'ActionFn2&lt;`t, `u&gt;'</span>
+<span class="n">nominal</span> <span class="n">fn_once</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'FnOnce&lt;`t&gt;'</span>
+<span class="n">nominal</span> <span class="n">fn_unit</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'FnUnit'</span>
+<span class="n">nominal</span> <span class="n">func0</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'Func0&lt;`t&gt;'</span>
 <span class="n">nominal</span> <span class="n">func1</span> <span class="n">t</span> <span class="n">u</span> <span class="o">=</span>
     <span class="err">`</span><span class="p">(</span>
         <span class="n">typecase</span> <span class="n">t</span> <span class="k">with</span>
         <span class="o">|</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">`</span><span class="n">func0</span> <span class="err">`</span><span class="n">u</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s2">"Func0&lt;`t, `u&gt;"</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'Func0&lt;`t, `u&gt;'</span>
     <span class="p">)</span>
-<span class="n">nominal</span> <span class="n">impl</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"Impl&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">mut</span><span class="s1">' t = $"Mut&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">ref</span><span class="s1">' t = $"Ref&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="n">send</span> <span class="n">t</span> <span class="o">=</span> <span class="n">lifetime_join</span> <span class="n">t</span> <span class="err">$</span><span class="s2">"Send&lt;`t&gt;"</span>
+<span class="n">nominal</span> <span class="n">impl</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'Impl&lt;`t&gt;'</span>
+<span class="n">nominal</span> <span class="n">mut</span><span class="s1">' t = $'</span><span class="n">Mut</span><span class="o">&lt;</span><span class="err">`</span><span class="n">t</span><span class="o">&gt;</span><span class="s1">'</span>
+<span class="n">nominal</span> <span class="n">ref</span><span class="s1">' t = $'</span><span class="n">Ref</span><span class="o">&lt;</span><span class="err">`</span><span class="n">t</span><span class="o">&gt;</span><span class="s1">'</span>
+<span class="n">nominal</span> <span class="n">send</span> <span class="n">t</span> <span class="o">=</span> <span class="n">lifetime_join</span> <span class="n">t</span> <span class="err">$</span><span class="s1">'Send&lt;`t&gt;'</span>
 <span class="n">nominal</span> <span class="n">static_ref</span><span class="s1">' t = static_ref t</span>
 </pre></div>
 </div>
@@ -7670,7 +7670,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">emit_expr</span> <span class="n">forall</span> <span class="n">a</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="n">a</span><span class="p">)</span> <span class="p">(</span><span class="n">code</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">real</span>
-        <span class="err">$</span><span class="s2">"Fable.Core.RustInterop.emitRustExpr !args !code"</span> <span class="p">:</span> <span class="n">t</span>
+        <span class="err">$</span><span class="s1">'Fable.Core.RustInterop.emitRustExpr !args !code '</span> <span class="p">:</span> <span class="n">t</span>
 </pre></div>
 </div>
 </div>
@@ -8711,6 +8711,34 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">capture</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let _result = (|| { //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">fn</span> <span class="p">(),</span> <span class="err">$</span><span class="s1">'"true; $0 })()"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"_result"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=82">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="capture_move">capture_move<a class="anchor-link" href="#capture_move">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=83">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">capture_move</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
     <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; let _result = (move || { //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
     <span class="p">(</span><span class="err">!</span>\\<span class="p">(</span><span class="n">fn</span> <span class="p">(),</span> <span class="err">$</span><span class="s1">'"true; $0 })()"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"_result"'</span><span class="p">)</span>

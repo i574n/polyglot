@@ -7617,7 +7617,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="k">async</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"Async&lt;`t&gt;"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="k">async</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'Async&lt;`t&gt;'</span>
 </pre></div>
 </div>
 </div>
@@ -7645,8 +7645,8 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">task</span> <span class="n">t</span> <span class="o">=</span>
     <span class="err">`</span><span class="p">(</span>
         <span class="n">typecase</span> <span class="n">t</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s2">"System.Threading.Tasks.Task"</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s2">"System.Threading.Tasks.Task&lt;`t&gt;"</span>
+        <span class="o">|</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'System.Threading.Tasks.Task'</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'System.Threading.Tasks.Task&lt;`t&gt;'</span>
     <span class="p">)</span>
 </pre></div>
 </div>
@@ -7672,7 +7672,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">future</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_future_Future&lt;`t&gt;"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">future</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_future_Future&lt;`t&gt;'</span>
 </pre></div>
 </div>
 </div>
@@ -7875,7 +7875,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">try_join_all</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"futures_future_TryJoinAll&lt;`t&gt;"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">try_join_all</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'futures_future_TryJoinAll&lt;`t&gt;'</span>
 
 <span class="n">inl</span> <span class="n">try_join_all</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec (future_pin (resultm.result'</span> <span class="n">t</span> <span class="n">sm</span><span class="s1">'.std_string))) : try_join_all (future_pin (resultm.result'</span> <span class="n">t</span> <span class="n">sm</span><span class="s1">'.std_string)) =</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
@@ -7904,7 +7904,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">fuse</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"futures_future_Fuse&lt;`t&gt;"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">fuse</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'futures_future_Fuse&lt;`t&gt;'</span>
 
 <span class="n">inl</span> <span class="n">future_fuse</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">future_pin</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">fuse</span> <span class="p">(</span><span class="n">future_pin</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"futures::future::FutureExt::fuse(!x)"'</span><span class="p">)</span>
@@ -7932,7 +7932,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">join_all</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"futures_future_JoinAll&lt;`t&gt;"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">join_all</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'futures_future_JoinAll&lt;`t&gt;'</span>
 
 <span class="n">inl</span> <span class="n">join_all</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec (future_pin t)) : join_all (future_pin t) =</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
@@ -8533,12 +8533,12 @@ a.anchor-link {
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="k">async</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="n">optionm</span><span class="s1">'.none'</span> <span class="p">()</span>
-            <span class="err">$</span><span class="s2">"let mutable _!result = !result"</span>
-            <span class="err">$</span><span class="s2">"async {"</span>
+            <span class="err">$</span><span class="s1">'let mutable _!result = !result '</span>
+            <span class="err">$</span><span class="s1">'async {'</span>
             <span class="n">fn</span> <span class="p">()</span>
-            <span class="err">$</span><span class="s2">"}"</span>
-            <span class="err">$</span><span class="s2">"|&gt; fun x -&gt; _!result &lt;- Some x"</span>
-            <span class="err">$</span><span class="s2">"_!result |&gt; Option.get"</span>
+            <span class="err">$</span><span class="s1">'}'</span>
+            <span class="err">$</span><span class="s1">'|&gt; fun x -&gt; _!result &lt;- Some x'</span>
+            <span class="err">$</span><span class="s1">'match _!result with Some x -&gt; x | None -&gt; failwith "async.new_async_unit / _!result=None"'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -8594,12 +8594,12 @@ a.anchor-link {
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">task</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="n">optionm</span><span class="s1">'.none'</span> <span class="p">()</span>
-            <span class="err">$</span><span class="s2">"let mutable _!result = !result"</span>
-            <span class="err">$</span><span class="s2">"task {"</span>
+            <span class="err">$</span><span class="s1">'let mutable _!result = !result '</span>
+            <span class="err">$</span><span class="s1">'task {'</span>
             <span class="n">fn</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-            <span class="err">$</span><span class="s2">"}"</span>
-            <span class="err">$</span><span class="s2">"|&gt; fun x -&gt; _!result &lt;- Some x"</span>
-            <span class="err">$</span><span class="s2">"_!result |&gt; Option.get"</span>
+            <span class="err">$</span><span class="s1">'}'</span>
+            <span class="err">$</span><span class="s1">'|&gt; fun x -&gt; _!result &lt;- Some x'</span>
+            <span class="err">$</span><span class="s1">'match _!result with Some x -&gt; x | None -&gt; failwith "async.new_task / _!result=None"'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -9399,7 +9399,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">types</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s2">"let merge_cancellation_token_with_default_async x = !merge_cancellation_token_with_default_async x"</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let merge_cancellation_token_with_default_async x = !merge_cancellation_token_with_default_async x'</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
