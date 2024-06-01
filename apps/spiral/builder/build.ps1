@@ -1,6 +1,7 @@
 param(
     $fast,
     $SkipNotebook,
+    $SkipFsx,
     $SkipPreBuild,
     $ScriptDir = $PSScriptRoot
 )
@@ -12,7 +13,7 @@ $ErrorActionPreference = "Stop"
 
 $projectName = "spiral_builder"
 
-if (!$SkipPreBuild) {
+if (!$SkipPreBuild -and !$SkipFsx) {
     if (!$fast -and !$SkipNotebook) {
         { . ../dist/Supervisor$(_exe) --execute-command "../../../workspace/target/release/spiral_builder$(_exe) dib --path $projectName.dib" } | Invoke-Block -Retries 3
     }
@@ -20,7 +21,9 @@ if (!$SkipPreBuild) {
     { . ../../parser/dist/DibParser$(_exe) "$projectName.dib" spi } | Invoke-Block
 
     { . ../dist/Supervisor$(_exe) --build-file "$projectName.spi" "$projectName.fsx" } | Invoke-Block
+}
 
+if (!$SkipPreBuild) {
     $runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
     $builderArgs = @("$projectName.fsx", "--persist-only", $runtime, "--packages", "Fable.Core", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs")
     { . ../../builder/dist/Builder$(_exe) @builderArgs } | Invoke-Block
