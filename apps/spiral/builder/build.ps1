@@ -33,6 +33,10 @@ if (!$SkipPreBuild) {
         -replace ".fsx`"]", ".rs`"]" `
         | FixRust `
         | Set-Content "$projectName.rs"
+
+    if ($env:CI) {
+        Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
+    }
 }
 
 (Get-Content "$projectName.rs") `
@@ -47,7 +51,3 @@ if (!$fast) {
     { cargo +nightly test --release -- --show-output } | Invoke-Block
 }
 { cargo +nightly build --release } | Invoke-Block -OnError Continue
-
-if ($env:CI) {
-    Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
-}
