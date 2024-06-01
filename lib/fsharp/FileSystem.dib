@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -192,7 +192,10 @@ let inline testEventsRaw
     (watchFn : (_ -> bool) -> string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable)
     write
     =
-    let struct (tempDir, tempDisposable) = SpiralFileSystem.create_temp_directory ()
+    let struct (tempDir, tempDisposable) =
+        "FileSystem.testEventsRaw"
+        |> SpiralCrypto.hash_text
+        |> SpiralFileSystem.create_temp_dir'
     let stream, disposable = watchFn (fun _ -> true) tempDir
 
     let events = System.Collections.Concurrent.ConcurrentBag ()
@@ -229,7 +232,7 @@ let inline testEventsRaw
         |> List.map (fun (diff, n, event) -> $"{n} / {diff} / {event}" |> SpiralSm.ellipsis_end 100L)
         |> SpiralSm.concat "\n"
     let _locals () = $"eventsLog: \n{eventsLog} / {_locals ()}"
-    trace Debug (fun () -> "testEventsRaw") _locals
+    trace Debug (fun () -> "FileSystem.testEventsRaw") _locals
 
     events
     |> Seq.toList
@@ -433,7 +436,10 @@ let inline testEventsSorted
     (watchFn : string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable)
     write
     =
-    let struct (tempDir, tempDisposable) = SpiralFileSystem.create_temp_directory ()
+    let struct (tempDir, tempDisposable) =
+        "FileSystem.testEventsSorted"
+        |> SpiralCrypto.hash_text
+        |> SpiralFileSystem.create_temp_dir'
     let stream, disposable = watchFn tempDir
 
     let events = System.Collections.Concurrent.ConcurrentBag ()

@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 . ../../../scripts/core.ps1
 
 
-{ dotnet fable --optimize --lang rs --extension .rs } | Invoke-Block
+{ dotnet fable --optimize --lang rs --extension .rs --noCache } | Invoke-Block
 
 $libPath = "./fable_modules/fable-library-rust"
 

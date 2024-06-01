@@ -5,22 +5,15 @@ function FixRust {
     )
     process {
         $text `
+            -replace [regex]::Escape("),);"), "));" `
+            -replace [regex]::Escape("},);"), "});" `
             -replace "get_or_insert_with", "get_or_init" `
-            -replace "_self_.", "self."
-    }
-}
-
-function FixRust2 {
-    param (
-        [Parameter(Mandatory, ValueFromPipeline)]
-        $text
-    )
-    process {
-        $text `
+            -replace "_self_.", "self." `
             -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();" `
             -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;" `
             -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();" `
-            -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();"
+            -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();" `
+            -replace "use fable_library_rust::System::TimeZoneInfo;", "type TimeZoneInfo = i64;"
     }
 }
 
@@ -71,34 +64,15 @@ function CopyTarget {
         }
         if ($Language -eq "rs") {
             $text = $text `
-                -replace [regex]::Escape("),);"), "));" `
-                -replace [regex]::Escape("},);"), "});" `
                 | FixRust
 
-            if ($name -in @("date_time", "file_system")) {
-                $text = $text `
-                    -replace "use fable_library_rust::System::TimeZoneInfo;", "type TimeZoneInfo = i64;"
-            }
             if ($name -in @("async_", "runtime", "threading", "networking", "file_system")) {
                 $text = $text `
                     -replace "use fable_library_rust::Async_::Async;", "type Async<T> = T;"
             }
-            if ($name -in @("async_", "runtime", "threading")) {
-                $text = $text `
-                    -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();"
-            }
             if ($name -in @("threading")) {
                 $text = $text `
                     -replace "use fable_library_rust::System::Threading::CancellationTokenSource;", "type CancellationTokenSource = ();"
-            }
-            if ($name -eq "runtime") {
-                $text = $text `
-                    -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();" `
-                    -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;"
-            }
-            if ($name -in @("runtime", "threading", "file_system")) {
-                $text = $text `
-                    -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();"
             }
             if ($name -in @("common") -and !$Runtime) {
                 $text = $text `
@@ -116,13 +90,13 @@ function CopyTarget {
                 $text = $text `
                     -replace "defaultOf\(\),", "defaultOf::<std::rc::Rc<dyn IDisposable>>(),"
             }
-            if ($name -eq "file_system" -and $Runtime -in @("wasm", "contract")) {
+            if ($name -eq "file_system" -and $Runtime -in @("contract")) {
                 $text = $text `
                     -replace "chrono::Utc", "()" `
                     -replace "chrono::Local", "()" `
                     -replace "chrono::DateTime", "Option" `
                     -replace "use fable_library_rust::DateTime_::DateTime;", "type DateTime = ();" `
-                    -replace "use fable_library_rust::Guid_::Guid;", "type Guid = ();" `
+                    -replace "use fable_library_rust::Guid_::Guid;", "type Guid = ();"
             }
         }
 
@@ -170,7 +144,7 @@ function BuildFable {
     )
     $root = "$PSScriptRoot/../.."
 
-    { dotnet fable "$TargetDir/$ProjectName.fsproj" --optimize --lang $Language --extension ".$Language" --outDir $TargetDir/target/$Language $($Runtime ? @("--define", $Runtime) : @()) } | Invoke-Block -Location $root
+    { dotnet fable "$TargetDir/$ProjectName.fsproj" --optimize --lang $Language --extension ".$Language" --outDir $TargetDir/target/$Language --define $($IsWindows ? "_WINDOWS" : "_LINUX") $($Runtime ? @("--define", $Runtime) : @()) } | Invoke-Block -Location $root
 
     CopyTarget $TargetDir $root $Language $Runtime.ToLower()
 }

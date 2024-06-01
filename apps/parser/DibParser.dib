@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -823,7 +823,8 @@ let main args =
 let args =
     System.Environment.GetEnvironmentVariable "ARGS"
     |> SpiralRuntime.split_args
-    |> Seq.toArray
+    |> Result.toArray
+    |> Array.collect id
 
 match args with
 | [||] -> 0

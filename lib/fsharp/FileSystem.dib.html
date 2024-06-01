@@ -7801,7 +7801,10 @@ a.anchor-link {
     <span class="p">(</span><span class="n">watchFn</span> <span class="p">:</span> <span class="p">(</span><span class="n">_</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">&lt;</span><span class="n">int64</span> <span class="o">*</span> <span class="n">FileSystemChange</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">IDisposable</span><span class="p">)</span>
     <span class="n">write</span>
     <span class="o">=</span>
-    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">tempDir</span><span class="p">,</span> <span class="n">tempDisposable</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
+    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">tempDir</span><span class="p">,</span> <span class="n">tempDisposable</span><span class="p">)</span> <span class="o">=</span>
+        <span class="s2">"FileSystem.testEventsRaw"</span>
+        <span class="o">|&gt;</span> <span class="n">SpiralCrypto</span><span class="o">.</span><span class="n">hash_text</span>
+        <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_dir</span><span class="s1">'</span>
     <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">watchFn</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">true</span><span class="p">)</span> <span class="n">tempDir</span>
 
     <span class="n">let</span> <span class="n">events</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Concurrent</span><span class="o">.</span><span class="n">ConcurrentBag</span> <span class="p">()</span>
@@ -7838,7 +7841,7 @@ a.anchor-link {
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{n}</span><span class="s2"> / </span><span class="si">{diff}</span><span class="s2"> / </span><span class="si">{event}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">ellipsis_end</span> <span class="mi">100</span><span class="n">L</span><span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
     <span class="n">let</span> <span class="n">_locals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"eventsLog: </span><span class="se">\n</span><span class="si">{eventsLog}</span><span class="s2"> / {_locals ()}"</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"testEventsRaw"</span><span class="p">)</span> <span class="n">_locals</span>
+    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"FileSystem.testEventsRaw"</span><span class="p">)</span> <span class="n">_locals</span>
 
     <span class="n">events</span>
     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
@@ -7951,26 +7954,26 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:05   debug #1 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:05   debug #2 testEventsRaw / eventsLog: 
-0 / 638512412752263062 / Created ("file1.txt", Some "a1")
-1 / 638512412752263063 / Changed ("file1.txt", Some "a1")
-25492 / 638512412752288555 / Changed ("file1.txt", Some "a1")
-846 / 638512412752289401 / Created ("file2.txt", Some "a2")
-1 / 638512412752289402 / Changed ("file2.txt", Some "a2")
-51 / 638512412752289453 / Changed ("file2.txt", Some "a2")
-2580167 / 638512412754869620 / Changed ("file1.txt", Some "b1")
-1649 / 638512412754871269 / Changed ("file1.txt", Some "b1")
-7575 / 638512412754878844 / Changed ("file2.txt", Some "b2")
-1813 / 638512412754880657 / Changed ("file2.txt", Some "b2")
-2555829 / 638512412757436486 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-12160 / 638512412757448646 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2482020 / 638512412759930666 / Changed ("file_1.txt", Some "c1")
-2715 / 638512412759933381 / Changed ("file_1.txt", Some "c1")
-9594 / 638512412759942975 / Changed ("file_2.txt", Some "c2")
-2387 / 638512412759945362 / Changed ("file_2.txt", Some "c2")
-2562293 / 638512412762507655 / Deleted "file_1.txt"
-2331 / 638512412762509986 / Deleted "file_2.txt"
+00:00:10   debug #1 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:10   debug #2 FileSystem.testEventsRaw / eventsLog: 
+0 / 638527807736053113 / Created ("file1.txt", Some "a1")
+1 / 638527807736053114 / Changed ("file1.txt", Some "a1")
+61251 / 638527807736114365 / Changed ("file1.txt", Some "a1")
+3096 / 638527807736117461 / Created ("file2.txt", Some "a2")
+1 / 638527807736117462 / Changed ("file2.txt", Some "a2")
+283 / 638527807736117745 / Changed ("file2.txt", Some "a2")
+2764146 / 638527807738881891 / Changed ("file1.txt", Some "b1")
+44658 / 638527807738926549 / Changed ("file1.txt", Some "b1")
+14489 / 638527807738941038 / Changed ("file2.txt", Some "b2")
+3911 / 638527807738944949 / Changed ("file2.txt", Some "b2")
+2757090 / 638527807741702039 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+56744 / 638527807741758783 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2680280 / 638527807744439063 / Changed ("file_1.txt", Some "c1")
+4140 / 638527807744443203 / Changed ("file_1.txt", Some "c1")
+14339 / 638527807744457542 / Changed ("file_2.txt", Some "c2")
+2480 / 638527807744460022 / Changed ("file_2.txt", Some "c2")
+2478083 / 638527807746938105 / Deleted "file_1.txt"
+9381 / 638527807746947486 / Deleted "file_2.txt"
 [Created ("file1.txt", Some "a1"); Changed ("file1.txt", Some "a1"); Created ("file2.txt", Some "a2");
  Changed ("file2.txt", Some "a2"); Changed ("file1.txt", Some "b1"); Changed ("file2.txt", Some "b2");
  Renamed ("file1.txt", ("file_1.txt", Some "b1")); Renamed ("file2.txt", ("file_2.txt", Some "b2"));
@@ -8090,45 +8093,45 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:15   debug #3 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:15   debug #4 testEventsRaw / eventsLog: 
-0 / 638512412786065596 / Created
+00:00:22   debug #3 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:22   debug #4 FileSystem.testEventsRaw / eventsLog: 
+0 / 638527807791974551 / Created
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-1 / 638512412786065597 / Changed
+1 / 638527807791974552 / Changed
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-62083 / 638512412786127680 / Changed
-  ("file1.txt...11111111111111111111111111111111111111111111111a")
-17303 / 638512412786144983 / Created
+111344 / 638527807792085896 / Changed
+  ("file1.tx...11111111111111111111111111111111111111111111111a")
+29652 / 638527807792115548 / Created
   ("file2.txt...22222222222222222222222222222222222222222222222a")
-1 / 638512412786144984 / Changed
+1 / 638527807792115549 / Changed
   ("file2.txt",
  ...22222222222222222222222222222222222222222222222a")
-82087 / 638512412786227071 / Changed
-  ("file2.txt...22222222222222222222222222222222222222222222222a")
-15042572 / 638512412801269643 / Changed
+106740 / 638527807792222289 / Changed
+  ("file2.tx...22222222222222222222222222222222222222222222222a")
+15161639 / 638527807807383928 / Changed
   ("file1....11111111111111111111111111111111111111111111111b")
-53987 / 638512412801323630 / Changed
+68775 / 638527807807452703 / Changed
   ("file1.txt...11111111111111111111111111111111111111111111111b")
-26037 / 638512412801349667 / Changed
+34993 / 638527807807487696 / Changed
   ("file2.txt...22222222222222222222222222222222222222222222222b")
-53792 / 638512412801403459 / Changed
+98296 / 638527807807585992 / Changed
   ("file2.txt...22222222222222222222222222222222222222222222222b")
-15156739 / 638512412816560198 / Renamed
+15087027 / 638527807822673019 / Renamed
   ("file1....1111111111111111111111111111111111111111111111b"))
-7541 / 638512412816567739 / Renamed
+3723 / 638527807822676742 / Renamed
   ("file2.txt"...2222222222222222222222222222222222222222222222b"))
-15174396 / 638512412831742135 / Changed
+15004971 / 638527807837681713 / Changed
   ("file_1...11111111111111111111111111111111111111111111111c")
-224376 / 638512412831966511 / Changed
-  ("file_1.t...11111111111111111111111111111111111111111111111c")
-29278 / 638512412831995789 / Changed
+66015 / 638527807837747728 / Changed
+  ("file_1.tx...11111111111111111111111111111111111111111111111c")
+25789 / 638527807837773517 / Changed
   ("file_2.tx...22222222222222222222222222222222222222222222222c")
-97849 / 638512412832093638 / Changed
+61662 / 638527807837835179 / Changed
   ("file_2.tx...22222222222222222222222222222222222222222222222c")
-15009336 / 638512412847102974 / Deleted "file_1.txt"
-4646 / 638512412847107620 / Deleted "file_2.txt"
+15006167 / 638527807852841346 / Deleted "file_1.txt"
+5945 / 638527807852847291 / Deleted "file_2.txt"
 [Created ("file1.txt", Some "1a"); Changed ("file1.txt", Some "1a"); Created ("file2.txt", Some "2a");
  Changed ("file2.txt", Some "2a"); Changed ("file1.txt", Some "1b"); Changed ("file2.txt", Some "2b");
  Renamed ("file1.txt", ("file_1.txt", Some "1b")); Renamed ("file2.txt", ("file_2.txt", Some "2b"));
@@ -8194,7 +8197,10 @@ Some ()
     <span class="p">(</span><span class="n">watchFn</span> <span class="p">:</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">&lt;</span><span class="n">int64</span> <span class="o">*</span> <span class="n">FileSystemChange</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">IDisposable</span><span class="p">)</span>
     <span class="n">write</span>
     <span class="o">=</span>
-    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">tempDir</span><span class="p">,</span> <span class="n">tempDisposable</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
+    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">tempDir</span><span class="p">,</span> <span class="n">tempDisposable</span><span class="p">)</span> <span class="o">=</span>
+        <span class="s2">"FileSystem.testEventsSorted"</span>
+        <span class="o">|&gt;</span> <span class="n">SpiralCrypto</span><span class="o">.</span><span class="n">hash_text</span>
+        <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_dir</span><span class="s1">'</span>
     <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">watchFn</span> <span class="n">tempDir</span>
 
     <span class="n">let</span> <span class="n">events</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Concurrent</span><span class="o">.</span><span class="n">ConcurrentBag</span> <span class="p">()</span>
@@ -8320,7 +8326,7 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:17   debug #5 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:24   debug #5 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 [("file1.txt", "Created"); ("file1.txt", "Changed"); ("file1.txt", "Deleted"); ("file2.txt", "Created");
  ("file2.txt", "Changed"); ("file2.txt", "Deleted"); ("file3.txt", "Created"); ("file3.txt", "Changed");
  ("file3.txt", "Deleted")]
@@ -8408,7 +8414,7 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:19   debug #6 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:26   debug #6 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 [("file1.txt", "Created"); ("file1.txt", "Changed"); ("file1.txt", "Deleted"); ("file2.txt", "Created");
  ("file2.txt", "Changed"); ("file2.txt", "Deleted")]
 
@@ -8500,7 +8506,7 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:21   debug #7 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:29   debug #7 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 [("file1.txt", "Created"); ("file1.txt", "Changed"); ("file2.txt", "Created"); ("file2.txt", "Changed");
  ("file_1.txt", "Renamed"); ("file_1.txt", "Deleted"); ("file_2.txt", "Renamed"); ("file_2.txt", "Deleted")]
 
@@ -8600,7 +8606,7 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:23   debug #8 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:32   debug #8 watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 [("file1.txt", "Created"); ("file1.txt", "Changed"); ("file2.txt", "Created"); ("file2.txt", "Changed");
  ("file_1.txt", "Changed"); ("file_1.txt", "Renamed"); ("file_1.txt", "Deleted"); ("file_2.txt", "Changed");
  ("file_2.txt", "Renamed"); ("file_2.txt", "Deleted")]

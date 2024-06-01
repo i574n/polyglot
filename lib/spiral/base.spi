@@ -5,14 +5,18 @@ inl array x = x
 
 /// ## prototype
 prototype append t : t -> t -> t
-prototype of_string t : string -> t
+prototype of_string t : string -> option t
 prototype to_string t : t -> string
 
 /// ## infer
 nominal infer = $'_'
 
-/// ## not'
-inl not' x =
+/// ## invoke
+inl invoke fn =
+    fn ()
+
+/// ## not_join
+inl not_join x =
     join not x
 
 /// ## (+.)
@@ -174,6 +178,10 @@ nominal any = $'obj'
 inl u8 forall t. (x : t) : u8 =
     x |> $'uint8'
 
+/// ## u16
+inl u16 forall t. (x : t) : u16 =
+    x |> $'uint16'
+
 /// ## u64
 inl u64 forall t. (x : t) : u64 =
     x |> $'uint64'
@@ -200,6 +208,10 @@ nominal unativeint = $'unativeint'
 /// ## convert_i32
 inl convert_i32 forall t. (x : t) : i32 =
     x |> $'System.Convert.ToInt32'
+
+/// ## convert_i32_base
+inl convert_i32_base forall t. (base : i32) (x : t) : i32 =
+    $'System.Convert.ToInt32 (!x, !base)'
 
 /// ## convert
 inl convert forall t u. (x : t) : u =

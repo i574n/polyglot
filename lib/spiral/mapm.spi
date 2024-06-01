@@ -22,7 +22,7 @@ inl new_b_tree_map () : b_tree_map _ _ =
 
 inl get forall k v. (key : k) (map : hash_map k v) : optionm'.option' v =
     inl key = join key
-    !\($'"std::collections::HashMap::get(&!map, &!key).map(|x| x).cloned()"')
+    !\\(map, $'"std::collections::HashMap::get(&$0, &!key).map(|x| x).cloned()"')
 
 inl insert forall k v. (key : k) (value : v) (map : hash_map k v) : optionm'.option' v =
     inl key = join key
@@ -50,3 +50,6 @@ inl from_array forall k v. (array : array_base (k * v)) : hash_map k v =
 inl from_list forall k v. (list : list (k * v)) : hash_map k v =
     inl (a list) : _ i32 _ = list |> listm.toArray
     list |> am'.to_vec |> from_vec
+
+inl to_vec forall k v. (map : hash_map k v) : am'.vec (k * v) =
+    !\\(map, $'"$0.into_iter().map(|(k, v)| (k, v)).collect::<Vec<_>>()"')

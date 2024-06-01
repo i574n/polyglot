@@ -62,7 +62,6 @@ nominal impl t = $'Impl<`t>'
 nominal mut' t = $'Mut<`t>'
 nominal ref' t = $'Ref<`t>'
 nominal send t = lifetime_join t $'Send<`t>'
-nominal static_ref' t = static_ref t
 
 /// ## emit_expr
 inl emit_expr forall a t. (args : a) (code : string) : t =
@@ -89,6 +88,10 @@ inl emit' forall t. (x : t) : t =
 /// ## clone
 inl clone forall t. (x : t) : t =
     !\\(x, $'"$0.clone()"')
+
+/// ## dbg
+inl dbg forall t. (x : t) : t =
+    !\\(x, $'"dbg\!($0)"')
 
 /// ## new_box
 inl new_box forall t. (x : t) : box t =
@@ -191,15 +194,15 @@ inl move forall t. (fn : () -> t) : func0 t =
     !\\(fn, $'"Func0::new(move || $0())"')
 
 /// ## to_static_ref_unbox
-inl to_static_ref_unbox forall t. (x : ref' t) : static_ref' t =
+inl to_static_ref_unbox forall t. (x : ref' t) : static_ref t =
     x |> unbox
 
 /// ## from_static_ref_unbox
-inl from_static_ref_unbox forall t. (x : static_ref' t) : ref' t =
+inl from_static_ref_unbox forall t. (x : static_ref t) : ref' t =
     x |> unbox
 
 /// ## box_leak
-inl box_leak forall t. (x : box t) : static_ref' (mut' t) =
+inl box_leak forall t. (x : box t) : static_ref (mut' t) =
     !\\(x, $'"Box::leak($0)"')
 
 /// ## drop

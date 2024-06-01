@@ -84,10 +84,32 @@ inl process_exit_status_code (status : process_exit_status) : optionm'.option' i
 nominal os_platform' = $'System.Runtime.InteropServices.OSPlatform'
 
 union os_platform =
+    | FreeBSD
+    | Linux
+    | OSX
     | Windows
 
 inl os_platform = function
+    | FreeBSD => $'`os_platform'.FreeBSD' : os_platform'
+    | Linux => $'`os_platform'.Linux' : os_platform'
+    | OSX => $'`os_platform'.OSX' : os_platform'
     | Windows => $'`os_platform'.Windows' : os_platform'
+
+/// ## run_platform
+inl run_platform forall t. (fn : os_platform -> (() -> t)) : t =
+    inl result = dyn true
+    $'let mutable _!result : `t option = None '
+    $'\n#if _FREEBSD'
+    fn FreeBSD () |> emit_unit
+    $'#endif\n#if _LINUX'
+    fn Linux () |> emit_unit
+    $'#endif\n#if _OSX'
+    fn OSX () |> emit_unit
+    $'#endif\n#if _WINDOWS'
+    fn Windows () |> emit_unit
+    $'#endif'
+    $'|> fun x -> _!result <- Some x'
+    $'match _!result with Some x -> x | None -> failwith "runtime.run_platform / _!result=None"'
 
 /// ## is_os_platform
 inl is_os_platform (x : os_platform') : bool =
@@ -96,11 +118,17 @@ inl is_os_platform (x : os_platform') : bool =
 /// ## is_windows
 inl is_windows () : bool =
     run_target function
-        | Fsharp (Native) => fun () =>
-            Windows |> os_platform |> is_os_platform
-        | Rust (Native) => fun () =>
+        | Rust _ => fun () =>
             !\($'"cfg\!(windows)"')
-        | _ => fun () => null ()
+        | Fsharp _ => fun () =>
+            Windows |> os_platform |> is_os_platform
+        | target => fun () => failwith $'$"runtime.is_windows / target: {!target}"'
+
+/// ## is_windows'
+inl is_windows' () : bool =
+    run_platform function
+        | Windows => fun () => true
+        | _ => fun () => false
 
 /// ## get_executable_suffix
 inl get_executable_suffix () =
@@ -119,7 +147,7 @@ union command_parse_step =
     | Path : quoted
     | Arguments
 
-inl split_command (command : string) =
+let split_command (command : string) =
     let rec loop (path, args) (chars : list char) step =
         match step, chars with
         | _, (('"' | '\'') :: tail) when path = "" => loop (path, args) tail (Path Quoted)
@@ -337,70 +365,28 @@ inl execute_async command =
     |> execute_with_options_async
 
 /// ## split_args
-union args_parse_step =
-    | Start
-    | Quoted : char
-    | Escaped : u8 * char
-
-let split_args (args : string) : array_base string =
-    let rec loop (acc, current) (chars : list char) (step, last) =
-        // trace Verbose (fun () => $'$"split_args / current: %A{!current} / acc: %A{!acc} / step: %A{!step} / last: %A{!last}"') _locals
-        match step, last, chars with
-        | Start, _, ('"' :: tail) =>
-            loop (acc, "") tail (Quoted '"', step)
-        | Escaped _, _, (('\\' | '\`') & c :: tail) =>
-            loop (acc, current) tail (Quoted c, step)
-        | Escaped _, Start, ('"' :: tail) =>
-            loop (acc, current) tail (step, step)
-        | Quoted ('"'), Quoted _, ('"' :: tail) =>
-            loop (acc, current) tail (Start, step)
-        | Escaped (0, ('\\' | '\`') & c), Quoted ('"'), (c' :: tail) =>
-            loop (acc, $'$"{!current}{!c}{!c'}"') tail (Quoted '"', step)
-        | Quoted (('\\' | '\`') as c), _, ('"' :: tail)
-                when last <>. Escaped (0, '\\') && last <>. Escaped (0, '\`') =>
-            loop (acc, $'$"{!current}{!c}\\\""') tail (Quoted '"', step)
-        | Quoted (('\\' | '\`') as c), Quoted _, ('"' :: tail) =>
-            loop (acc, $'$"{!current}{!c}\\\""') tail (Quoted '"', step)
-        | Quoted ('\\' | '\`'), _, ('"' :: tail) =>
-            loop (acc, current) tail (Start, step)
-        | Escaped (n, c), _, ('"' :: tail) =>
-            loop (acc, $'$"{!current}{!c}\\\""') tail (Escaped (n, c), step)
-        | Quoted _, Quoted _, (('\\' | '\`') & c :: tail) =>
-            loop (acc, current) tail (Escaped (0, c), step)
-        | Quoted _, _, (('\\' | '\`') & c :: tail) =>
-            loop (acc, current) tail (Escaped (1, c), step)
-        | Quoted _, Escaped (0, _), ('"' :: tail) =>
-            loop (acc, $'$"{!current}"') tail (Quoted '"', step)
-        | Quoted _, _, ('"' :: tail) =>
-            loop (acc ++ [ current ], "") tail (Start, step)
-        | (Escaped _ | Quoted _), _, (' ' :: tail) =>
-            loop (acc, $'$"{!current} "') tail (step, step)
-        | _, _, (('\\' | '\`') & c :: tail) =>
-            loop (acc, current) tail (Escaped (0, c), step)
-        | _, _, (' ' :: tail) =>
-            loop ((if current = "" then acc else acc ++ [ current ]), "") tail (step, step)
-        | Escaped (1, _), _, (char :: tail) when last <>. step =>
-            loop (acc, $'$"{!current}\\{!char}"') tail (last, step)
-        | _, _, (char :: tail) =>
-            loop (acc, $'$"{!current}{!char}"') tail (step, step)
-        | _ =>
-            (if current = "" then acc else acc ++ [ current ]), current
-    loop
-        ([], "")
-        (
-            args
-            |> optionm'.of_obj
-            |> optionm'.unbox
-            |> optionm'.default_value ""
-            |> sm'.to_char_array
-            |> am'.to_list'
-            |> listm'.unbox
-        )
-        (Start, Start)
-    |> fst
-    |> listm'.box
-    |> listm'.to_array'
-    |> fun (a x : _ i32 _) => x
+let split_args (args : string) : result (array_base string) string =
+    open parsing
+    inl esc = [ '\\'; '`' ]
+    inl quotes = [ '"' ]
+    inl special = esc ++ quotes
+    inl p_esc_char c =
+        p_char c >>. any_char () |>> fun c' => $'$"{!c}{!c'}"'
+    inl p_word = special |> none_of |>> sm'.obj_to_string
+    inl p_plain = special ++ [ ' ' ] |> none_of |> many1_chars
+    inl p_text = p_word |> many1_strings
+    inl p_esc = esc |> listm.map p_esc_char |> choice
+    inl p_quoted = (p_word <|> p_esc) |> many |>> (listm'.box >> seq.of_list' >> sm'.concat "")
+    inl p_quoted_all = p_quoted |> between (p_char '"') (p_char '"')
+    inl p_esc_root = p_esc |>> (fun _ => "") >>. (p_word |> many) |>> (listm'.box >> seq.of_list' >> sm'.concat "")
+    inl p_content = p_plain <|> p_quoted_all <|> p_esc_root
+    inl p_args = spaces1 () |> sep_by p_content
+    args
+    |> optionm'.of_obj
+    |> optionm'.default_value' ""
+    |> parse p_args
+    |> resultm.map fun x => (x |> fst |> listm'.box |> listm'.to_array' : _ i32 _)
+    |> resultm.map (fun (a x : _ i32 _) => x)
 
 /// ## stdin_write_all
 inl stdin_write_all (stdin : threading.mutex_guard process_child_stdin) (text : string) : () =
@@ -471,6 +457,22 @@ inl child_wait_with_output
     =
     !\\(child, $'"$0.wait_with_output()"')
 
+/// ## current_process_kill
+inl current_process_kill () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl fn () =
+                run_target function
+                    | Fsharp (Native) => fun () =>
+                        trace Warning (fun () => "runtime.current_process_kill") _locals
+                        $'System.Threading.Thread.Sleep 2000'
+                        $'System.Environment.Exit 1'
+                        $'System.Diagnostics.Process.GetCurrentProcess().Kill ()' : ()
+                    | _ => fun () => null ()
+            inl thread : threading.thread = $'new System.Threading.Thread (!fn)'
+            thread |> $'_.Start()' : ()
+        | _ => fun () => null ()
+
 /// ## stdio_line
 inl stdio_line
     (stdio : result () ())
@@ -534,6 +536,7 @@ let execute_with_options (options : execution_options) : i32 * string =
             inl arguments =
                 arguments
                 |> split_args
+                |> resultm.get
                 |> am'.to_vec
                 |> am'.vec_map sm'.to_std_string
 
@@ -721,8 +724,9 @@ let execute_with_options (options : execution_options) : i32 * string =
                                     +. $'$" / std_trace.Length: {!std_trace.Length} / {!_locals ()}"'
                             new_pair exit_code std_trace
                 |> capture
-            |> async.future_init (3, 2) 1
-            |> async.block_on
+            // |> async.future_init (3, 2) 1
+            // |> async.block_on
+            |> fun x => x ()
             |> from_pair
         | _ => fun () => null ()
 
@@ -733,20 +737,20 @@ inl execute command =
     }
     |> execute_with_options
 
-/// ### test 1
+/// ### tests
 
 /// ## command
 nominal command = $'clap_Command'
 
 /// ## new_command
-inl new_command (s : rust.static_ref' sm'.str) : command =
+inl new_command (s : rust.static_ref sm'.str) : command =
     !\\(s, $'"clap::Command::new($0)"')
 
 /// ## arg
 nominal arg = $'clap_Arg'
 
 /// ## new_arg
-inl new_arg (s : rust.static_ref' sm'.str) : arg =
+inl new_arg (s : rust.static_ref sm'.str) : arg =
     !\\(s, $'"clap::Arg::new($0)"')
 
 /// ## command_arg
@@ -762,11 +766,11 @@ inl arg_short (value : char) (arg : arg) : arg =
     !\\((arg, value), $'"$0.short($1)"')
 
 /// ## arg_long
-inl arg_long (value : rust.static_ref' sm'.str) (arg : arg) : arg =
+inl arg_long (value : rust.static_ref sm'.str) (arg : arg) : arg =
     !\\((arg, value), $'"$0.long($1)"')
 
 /// ## arg_value_names
-inl arg_value_names (values : array_base (rust.static_ref' sm'.str)) (arg : arg) : arg =
+inl arg_value_names (values : array_base (rust.static_ref sm'.str)) (arg : arg) : arg =
     inl values = values |> am'.to_vec
     !\\((arg, values), $'"$0.value_names($1)"')
 
@@ -816,7 +820,7 @@ inl value_parser_possible_values (values : array_base string) : value_parser =
         values
         |> am'.to_vec
         |> am'.vec_map (sm'.to_std_string >> rust.new_box >> rust.box_leak >> new_possible_value)
-    !\\(values, $'"clap::builder::PossibleValuesParser::new($0).into()"')
+    !\\(values, $'"clap::builder::PossibleValuesParser::new($0)"')
 
 /// ## value_parser_path_buf
 inl value_parser_path_buf () : value_parser =
@@ -829,19 +833,6 @@ inl value_parser_expr (expr : string) : value_parser =
 /// ## arg_value_parser
 inl arg_value_parser (values : value_parser) (arg : arg) : arg =
     !\\((arg, values), $'"$0.value_parser($1)"')
-
-/// ## arg_union
-inl arg_union forall union_type {to_string}. (fn : union_type -> ()) (arg : arg) : arg =
-    arg
-    |> arg_value_parser (
-        real get_union_fields_untag `union_type ()
-        |> fun x => x : list union_type
-        |> listm.map to_string
-        |> listm'.box
-        |> listm'.to_array'
-        |> fun (a x : _ i32 _) => x
-        |> value_parser_possible_values
-    )
 
 /// ## arg_action
 nominal arg_action' = $'clap_ArgAction'
@@ -930,10 +921,6 @@ inl matches_subcommand (matches : arg_matches) : optionm'.option' (sm'.std_strin
 inl matches_values_of (x : string) (matches : arg_matches) : array_base sm'.std_string =
     !\\((matches, x), $'"clap::ArgMatches::values_of($0, &*$1)"')
 
-/// ## command_debug_assert
-inl command_debug_assert (command : command) : () =
-    !\\(command, $'"clap::Command::debug_assert($0)"')
-
 /// ## command_subcommand_required
 inl command_subcommand_required (value : bool) (command : command) : command =
     !\\(command, $'"clap::Command::subcommand_required($0, !value)"')
@@ -942,11 +929,29 @@ inl command_subcommand_required (value : bool) (command : command) : command =
 inl command_subcommand (subcommand : command) (command : command) : command =
     !\\(command, $'"clap::Command::subcommand($0, !subcommand)"')
 
+/// ## arg_union
+inl arg_union forall union_type {to_string}. (fn : union_type -> ()) (arg : arg) : arg =
+    arg
+    |> arg_value_parser (
+        real get_union_fields_untag `union_type ()
+        |> fun x => x : list union_type
+        |> listm.map to_string
+        |> listm'.box
+        |> listm'.to_array'
+        |> fun (a x : _ i32 _) => x
+        |> value_parser_possible_values
+    )
+
+/// ## command_debug_assert
+inl command_debug_assert (command : command) : () =
+    !\\(command, $'"clap::Command::debug_assert($0)"')
+
 /// ## main
 inl main () =
     types ()
     init_trace_state None
     $'let is_windows () = !is_windows ()' : ()
+    $'let current_process_kill () = !current_process_kill ()' : ()
     $'let get_executable_suffix () = !get_executable_suffix ()' : ()
     $'let execute_async x = !execute_async x' : ()
     $'let execute_with_options_async x = !execute_with_options_async x' : ()
@@ -957,4 +962,5 @@ inl main () =
             |> fn
             |> fun x => !x
     $'let execution_options x = !execution_options x' : ()
+    inl split_args x = x |> split_args |> resultm.box
     $'let split_args x = !split_args x' : ()

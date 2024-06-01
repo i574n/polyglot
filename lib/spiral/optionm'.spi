@@ -134,6 +134,10 @@ inl as_mut forall t. (x : rust.ref' (rust.mut' (option' t))) : option' (rust.ref
 inl unwrap_or forall t. (def : t) (x : option' t) : t =
     !\($'"!x.unwrap_or(!def)"')
 
+/// ## and_then
+inl and_then forall t u. (fn : t -> option' u) (x : option' t) : option' u =
+    !\\((x, fn), $'"$0.and_then(|x| $1(x))"')
+
 /// ## rc_upgrade
 inl rc_upgrade forall t. (x : rust.weak_rc t) : option' (rust.rc t) =
     !\\(x, $'"std::rc::Weak::upgrade(&$0)"')

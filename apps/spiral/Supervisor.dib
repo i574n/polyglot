@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -248,6 +248,7 @@ let inline buildFile timeout port cancellationToken path = async {
     let struct (token, disposable) = SpiralThreading.new_disposable_token cancellationToken
     use _ = disposable
 
+    let port = port |> Option.defaultWith getCompilerPort
     let! serverPort, errors, ct, disposable = awaitCompiler port (Some token)
     use _ = disposable
 
@@ -416,13 +417,12 @@ modules:
 
 #!fsharp
 
-let inline buildCode timeout cancellationToken code = async {
+let inline buildCode cache timeout cancellationToken code = async {
     let! mainPath, fsx = code |> persistCode
     match fsx with
-    | Some (fsxPath, fsxCode) -> return mainPath, (fsxPath, Some fsxCode), []
-    | None ->
-        let port = getCompilerPort ()
-        let! fsxPath, (fsxCode, errors) = mainPath |> buildFile timeout port cancellationToken
+    | Some (fsxPath, fsxCode) when cache -> return mainPath, (fsxPath, Some fsxCode), []
+    | _ ->
+        let! fsxPath, (fsxCode, errors) = mainPath |> buildFile timeout None cancellationToken
         return mainPath, (fsxPath, fsxCode), errors
 }
 
@@ -430,7 +430,7 @@ let inline buildCode timeout cancellationToken code = async {
 
 //// test
 
-let buildCode timeout cancellationToken code = buildCode timeout cancellationToken code
+let buildCode cache timeout cancellationToken code = buildCode cache timeout cancellationToken code
 
 #!fsharp
 
@@ -445,7 +445,7 @@ inl main () =
     |> dyn
     |> ignore
 """
-|> buildCode 15000 None
+|> buildCode false 15000 None
 |> Async.runWithTimeout 15000
 |> Option.map (fun (_, (_, fsxContent), errors) -> fsxContent, errors |> List.map fst)
 |> _assertEqual (
@@ -467,7 +467,7 @@ let v0 : (unit -> int32) = closure0()
 //// test
 
 ""
-|> buildCode 10000 None
+|> buildCode false 10000 None
 |> Async.runWithTimeout 10000
 |> _assertEqual None
 
@@ -478,7 +478,7 @@ let v0 : (unit -> int32) = closure0()
 """inl main () =
     1i32 / 0i32
 """
-|> buildCode 10000 None
+|> buildCode false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, fsxContent), errors) -> fsxContent, errors |> List.map fst)
 |> _assertEqual (
@@ -495,7 +495,7 @@ let v0 : (unit -> int32) = closure0()
 """inl main () =
     1 + ""
 """
-|> buildCode 10000 None
+|> buildCode false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, fsxContent), errors) -> fsxContent, errors |> List.map fst)
 |> _assertEqual (
@@ -517,7 +517,7 @@ Fails to satisfy: number"
 """inl main () =
     x + y
 """
-|> buildCode 10000 None
+|> buildCode false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, fsxContent), errors) -> fsxContent, errors |> List.map fst)
 |> _assertEqual (
@@ -544,7 +544,7 @@ inl main () =
         real_unbox ()
     ()
 """
-|> buildCode 10000 None
+|> buildCode false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, fsxContent), errors) -> fsxContent, errors |> List.map fst)
 |> _assertEqual (
@@ -566,7 +566,7 @@ inl main () =
             | _ => obj
         real_unbox `i32 1
 """
-|> buildCode 10000 None
+|> buildCode false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, fsxContent), errors) -> fsxContent, errors |> List.map fst)
 |> _assertEqual (
@@ -596,7 +596,7 @@ inl integral dt : integration =
 inl main () =
     integral 0.1 (fun x => x ** 2) 0 1
 """
-|> buildCode 10000 None
+|> buildCode false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, fsxContent), errors) -> fsxContent, errors |> List.map fst)
 |> _assertEqual (
@@ -626,7 +626,7 @@ inl integral dt : integration =
 inl main () =
     integral 0.01 (fun x => x ** 2) 0 1
 """
-|> buildCode 10000 None
+|> buildCode false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, fsxContent), errors) -> fsxContent, errors |> List.map fst)
 |> _assertEqual (
@@ -652,10 +652,8 @@ let inline getFileTokenRange port cancellationToken path = async {
     let struct (token, disposable) = SpiralThreading.new_disposable_token cancellationToken
     use _ = disposable
 
-    let! serverPort, _errors, ct, disposable =
-        match port with
-        | Some port -> awaitCompiler port (Some token)
-        | None -> (getCompilerPort (), FSharp.Control.AsyncSeq.empty, token, new_disposable id) |> Async.init
+    let port = port |> Option.defaultWith getCompilerPort
+    let! serverPort, _errors, ct, disposable = awaitCompiler port (Some token)
     use _ = disposable
 
     let fullPathUri = fullPath |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
@@ -715,10 +713,9 @@ let inline getCodeTokenRange cancellationToken code = async {
                 else None
     }
     match tokens with
-    | Some tokens -> return tokens |> Some
-    | None ->
-        let port = getCompilerPort ()
-        return! mainPath |> getFileTokenRange (Some port) cancellationToken
+    | Some tokens ->
+        return tokens |> Some
+    | None -> return! mainPath |> getFileTokenRange None cancellationToken
 }
 
 #!fsharp
@@ -827,7 +824,9 @@ let main args =
     let isExitOnError = argsMap |> Map.containsKey (nameof Arguments.Exit_On_Error)
 
     async {
-        let port = port |> Option.defaultWith getCompilerPort
+        let port =
+            port
+            |> Option.defaultWith getCompilerPort
         let struct (localToken, disposable) = SpiralThreading.new_disposable_token None
         let! serverPort, _errors, compilerToken, disposable = awaitCompiler port (Some localToken)
         use _ = disposable
@@ -835,7 +834,7 @@ let main args =
         let buildFileAsync =
             buildFileActions
             |> List.map (fun (inputPath, outputPath) -> async {
-                let! _fsxPath, (outputCode, errors) = inputPath |> buildFile timeout serverPort None
+                let! _fsxPath, (outputCode, errors) = inputPath |> buildFile timeout (Some serverPort) None
 
                 errors
                 |> List.map snd
@@ -845,11 +844,11 @@ let main args =
 
                 match outputCode with
                 | Some outputCode ->
-                    do! outputCode |> SpiralFileSystem.write_all_text_async outputPath
+                    do! outputCode |> SpiralFileSystem.write_all_text_exists outputPath
                     return 0
                 | None ->
                     if isExitOnError
-                    then System.Environment.Exit 1
+                    then SpiralRuntime.current_process_kill ()
 
                     return 1
             })
@@ -860,11 +859,11 @@ let main args =
                 let! tokenRange = inputPath |> getFileTokenRange (Some serverPort) None
                 match tokenRange with
                 | Some tokenRange ->
-                    do! tokenRange |> FSharp.Json.Json.serialize |> SpiralFileSystem.write_all_text_async outputPath
+                    do! tokenRange |> FSharp.Json.Json.serialize |> SpiralFileSystem.write_all_text_exists outputPath
                     return 0
                 | None ->
                     if isExitOnError
-                    then System.Environment.Exit 1
+                    then SpiralRuntime.current_process_kill ()
 
                     return 1
             })
@@ -884,7 +883,7 @@ let main args =
                 trace Debug (fun () -> $"main / executeCommand / exitCode: {exitCode} / command: {command}") _locals
 
                 if isExitOnError && exitCode > 0
-                then System.Environment.Exit exitCode
+                then SpiralRuntime.current_process_kill ()
 
                 return exitCode
             })
@@ -908,7 +907,8 @@ let main args =
 let args =
     System.Environment.GetEnvironmentVariable "ARGS"
     |> SpiralRuntime.split_args
-    |> Seq.toArray
+    |> Result.toArray
+    |> Array.collect id
 
 match args with
 | [||] -> 0

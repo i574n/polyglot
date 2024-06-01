@@ -213,7 +213,7 @@ function Invoke-Dib {
     }
     Write-Output "core.Invoke-Dib / Get-Location: $(Get-Location) / path: $path / _args: $($_args | ConvertTo-Json)"
 
-    $mergedArgs["EnvironmentVariables"] = @{ AUTOMATION = $True }
+    $mergedArgs["EnvironmentVariables"] = @{ LOG_LEVEL = "Verbose" }
 
     { Invoke-Block @mergedArgs } | Invoke-Block
 

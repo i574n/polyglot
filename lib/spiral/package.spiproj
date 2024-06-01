@@ -2,11 +2,12 @@ packages:
     |core-
 modules:
     base-
-    guid
     rust
     rust_operators
     ts
     ts_operators
+    py
+    py_operators
     optionm'
     optionm'_operators
     resultm
@@ -17,9 +18,11 @@ modules:
     seq
     math
     mapm
+    iter
     sm'
     sm'_operators
-    iter
+    guid
+    parsing
     env
     date_time
     trace-

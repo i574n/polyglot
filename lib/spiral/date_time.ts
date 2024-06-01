@@ -1,12 +1,14 @@
 import { FSharpRef, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { union_type, string_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { value as value_1, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { value as value_2, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { parse as parse_1, toString } from "../../deps/Fable/src/fable-library-ts/Date.js";
 import { int64ToString, defaultOf } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { padLeft, replace } from "../../deps/Fable/src/fable-library-ts/String.js";
-import { toString, parseExact } from "../../deps/Fable/src/fable-library-ts/Date.js";
+import { toString as toString_1, hours } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
+import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { newGuid, parse } from "../../deps/Fable/src/fable-library-ts/Guid.js";
+import { padLeft, replace } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
-import { parse as parse_1 } from "../../deps/Fable/src/fable-library-ts/Long.js";
+import { parse as parse_2 } from "../../deps/Fable/src/fable-library-ts/Long.js";
 
 export type US0_$union = 
     | US0<0>
@@ -68,6 +70,84 @@ export function US1_$reflection(): TypeInfo {
     return union_type("Date_time.US1", [], US1, () => [[["f0_0", string_type]], []]);
 }
 
+export type US2_$union = 
+    | US2<0>
+    | US2<1>
+    | US2<2>
+
+export type US2_$cases = {
+    0: ["US2_0", []],
+    1: ["US2_1", []],
+    2: ["US2_2", []]
+}
+
+export function US2_US2_0() {
+    return new US2<0>(0, []);
+}
+
+export function US2_US2_1() {
+    return new US2<1>(1, []);
+}
+
+export function US2_US2_2() {
+    return new US2<2>(2, []);
+}
+
+export class US2<Tag extends keyof US2_$cases> extends Union<Tag, US2_$cases[Tag][0]> {
+    constructor(readonly tag: Tag, readonly fields: US2_$cases[Tag][1]) {
+        super();
+    }
+    cases() {
+        return ["US2_0", "US2_1", "US2_2"];
+    }
+}
+
+export function US2_$reflection(): TypeInfo {
+    return union_type("Date_time.US2", [], US2, () => [[], [], []]);
+}
+
+export type US3_$union = 
+    | US3<0>
+    | US3<1>
+    | US3<2>
+    | US3<3>
+
+export type US3_$cases = {
+    0: ["US3_0", [US2_$union]],
+    1: ["US3_1", [US2_$union]],
+    2: ["US3_2", [US2_$union]],
+    3: ["US3_3", [US2_$union]]
+}
+
+export function US3_US3_0(f0_0: US2_$union) {
+    return new US3<0>(0, [f0_0]);
+}
+
+export function US3_US3_1(f1_0: US2_$union) {
+    return new US3<1>(1, [f1_0]);
+}
+
+export function US3_US3_2(f2_0: US2_$union) {
+    return new US3<2>(2, [f2_0]);
+}
+
+export function US3_US3_3(f3_0: US2_$union) {
+    return new US3<3>(3, [f3_0]);
+}
+
+export class US3<Tag extends keyof US3_$cases> extends Union<Tag, US3_$cases[Tag][0]> {
+    constructor(readonly tag: Tag, readonly fields: US3_$cases[Tag][1]) {
+        super();
+    }
+    cases() {
+        return ["US3_0", "US3_1", "US3_2", "US3_3"];
+    }
+}
+
+export function US3_$reflection(): TypeInfo {
+    return union_type("Date_time.US3", [], US3, () => [[["f0_0", US2_$reflection()]], [["f1_0", US2_$reflection()]], [["f2_0", US2_$reflection()]], [["f3_0", US2_$reflection()]]]);
+}
+
 export function US0__get_IsUS0_0(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
     if ((this$ as any)['tag'] === 0) {
         return true;
@@ -104,6 +184,69 @@ export function US1__get_IsUS1_1(this$: FSharpRef<US1_$union>, unitArg: void): b
     }
 }
 
+export function US2__get_IsUS2_0(this$: FSharpRef<US2_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function US2__get_IsUS2_1(this$: FSharpRef<US2_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 1) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function US2__get_IsUS2_2(this$: FSharpRef<US2_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 2) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function US3__get_IsUS3_0(this$: FSharpRef<US3_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function US3__get_IsUS3_1(this$: FSharpRef<US3_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 1) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function US3__get_IsUS3_2(this$: FSharpRef<US3_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 2) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function US3__get_IsUS3_3(this$: FSharpRef<US3_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 3) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 export function method1(v0_1: any): any {
     return v0_1;
 }
@@ -113,22 +256,57 @@ export function method2(v0_1: any): any {
 }
 
 export function method3(): string {
-    return "yyyyMMdd-HHmm-ssff-ffff-f";
+    return "hh:mm";
 }
 
 export function method4(): string {
+    return "yyyyMMdd-HHmm-ssff-ffff-f";
+}
+
+export function method5(): string {
     return "hhmm";
 }
 
 export function method0(v0_1: string, v1_1: Date): string {
     let _v2: Option<string> = undefined;
-    const x: string = defaultOf();
-    _v2 = x;
+    const v202: string = toString(v1_1, method4());
+    let _v203: Option<any> = undefined;
+    const x: any = defaultOf();
+    _v203 = x;
+    let v211: any;
+    if (_v203 == null) {
+        throw new Error("base.run_target / _v203=None");
+    }
+    else {
+        v211 = value_2(_v203);
+    }
+    let _v212: Option<number> = undefined;
+    let x_2: number;
+    throw new Error(`date_time.get_utc_offset / target: ${US3_US3_2(US2_US2_0())}`);
+    _v212 = x_2;
+    let v239: number;
+    if (_v212 == null) {
+        throw new Error("base.run_target / _v212=None");
+    }
+    else {
+        v239 = value_2(_v212);
+    }
+    const v244: int32 = (hours(v239) > 0) | 0;
+    const v245: string = method5();
+    let _v246: Option<string> = undefined;
+    const x_4: string = toString_1(v239, "c", {});
+    _v246 = x_4;
+    const v254 = `${v244}${(_v246 == null) ? (() => {
+        throw new Error("base.run_target / _v246=None");
+    })() : value_2(_v246)}`;
+    const v256: string = v0_1;
+    const x_6: string = parse(`${v202}${v254}${v256.slice(v202.length + v254.length, v256.length)}`);
+    _v2 = x_6;
     if (_v2 == null) {
         throw new Error("base.run_target / _v2=None");
     }
     else {
-        return value_1(_v2);
+        return value_2(_v2);
     }
 }
 
@@ -152,19 +330,19 @@ export function closure3(unitVar: void, v0_1: string): ((arg0: string) => ((arg0
     return (v: string): ((arg0: string) => string) => closure4(v0_1, v);
 }
 
-export function method5(): ((arg0: string) => ((arg0: string) => ((arg0: string) => string))) {
+export function method6(): ((arg0: string) => ((arg0: string) => ((arg0: string) => string))) {
     return (v: string): ((arg0: string) => ((arg0: string) => string)) => closure3(undefined, v);
 }
 
 export function closure2(unitVar: void, v0_1: string): Date {
     let _v4: Option<Date> = undefined;
-    const x: Date = parseExact(method5()("-")("")(v0_1.slice(undefined, 24 + 1)), "yyyyMMddHHmmssfffffff", defaultOf());
+    const x: Date = parse_1(method6()("-")("")(v0_1.slice(undefined, 24 + 1)));
     _v4 = x;
     if (_v4 == null) {
         throw new Error("base.run_target / _v4=None");
     }
     else {
-        return value_1(_v4);
+        return value_2(_v4);
     }
 }
 
@@ -180,7 +358,7 @@ export function closure6(unitVar: void, v0_1: string): ((arg0: int64) => string)
 
 export function closure8(unitVar: void, v0_1: string): int64 {
     const v2_1: string = v0_1;
-    return toInt64(parse_1(`${v2_1.slice(0, 7 + 1)}${v2_1.slice(9, 12 + 1)}${v2_1.slice(14, 17 + 1)}${v2_1.slice(19, 20 + 1)}`, 511, false, 64));
+    return toInt64(parse_2(`${v2_1.slice(0, 7 + 1)}${v2_1.slice(9, 12 + 1)}${v2_1.slice(14, 17 + 1)}${v2_1.slice(19, 20 + 1)}`, 511, false, 64));
 }
 
 export function closure9(unitVar: void, v0_1: Date): string {

@@ -269,604 +269,354 @@ module Eval =
         if lines |> Array.exists (fun line -> line |> SpiralSm.starts_with "#r " && line |> SpiralSm.ends_with "\"") then
             let cancellationToken = defaultArg cancellationToken System.Threading.CancellationToken.None
             let ch, errors = fsi_eval code cancellationToken
+            trace Verbose (fun () -> $"Eval.eval / fsi_eval / ch: %A{ch} / errors: {errors}") _locals
             match ch with
             | Choice1Of2 v -> Ok(v), errors
             | Choice2Of2 ex -> Error(ex), errors
         else
-            try
-                let builderArgs =
-                    lines
-                    |> Array.choose (fun line ->
-                        if line |> SpiralSm.starts_with "///! "
-                        then line |> SpiralSm.split "///! " |> Array.tryItem 1
-                        else None
-                    )
+            let builderCommand =
+                lines
+                |> Array.choose (fun line ->
+                    if line |> SpiralSm.starts_with "///! "
+                    then line |> SpiralSm.split "///! " |> Array.tryItem 1
+                    else None
+                )
 
-                let timeout =
-                    lines
-                    |> Array.tryPick (fun line ->
-                        if line |> SpiralSm.starts_with "//// timeout="
-                        then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map int
-                        else None
-                    )
-                    |> Option.defaultValue (60000 * 60)
+            let timeout =
+                lines
+                |> Array.tryPick (fun line ->
+                    if line |> SpiralSm.starts_with "//// timeout="
+                    then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map int
+                    else None
+                )
+                |> Option.defaultValue (60000 * 60)
 
-                let printCode =
-                    lines
-                    |> Array.tryPick (fun line ->
-                        if line |> SpiralSm.starts_with "//// print_code="
-                        then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
-                        else None
-                    )
-                    |> Option.defaultValue false
+            let printCode =
+                lines
+                |> Array.tryPick (fun line ->
+                    if line |> SpiralSm.starts_with "//// print_code="
+                    then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
+                    else None
+                )
+                |> Option.defaultValue false
 
-                let isTrace =
-                    lines
-                    |> Array.tryPick (fun line ->
-                        if line |> SpiralSm.starts_with "//// trace="
-                        then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
-                        else None
-                    )
-                    |> Option.defaultValue false
+            let isTrace =
+                lines
+                |> Array.tryPick (fun line ->
+                    if line |> SpiralSm.starts_with "//// trace="
+                    then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
+                    else None
+                )
+                |> Option.defaultValue false
 
-                let oldLevel = get_trace_level ()
-                let traceLevel =
-                    if isTrace
-                    then Verbose
-                    else Info
-                traceLevel
-                |> to_trace_level
-                |> set_trace_level
-                use _ = (new_disposable (fun () ->
-                    oldLevel |> set_trace_level
-                ))
+            let isCache =
+                lines
+                |> Array.tryPick (fun line ->
+                    if line |> SpiralSm.starts_with "//// cache="
+                    then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
+                    else None
+                )
+                |> Option.defaultValue true
 
-                let lastBlock =
-                    lines
-                    |> Array.tryFindBack (fun line ->
-                        line |> String.length > 0
-                        && line.[0] <> ' '
-                    )
+            let oldLevel = get_trace_level ()
+            let traceLevel =
+                if isTrace
+                then Verbose
+                else Info
+            traceLevel
+            |> to_trace_level
+            |> set_trace_level
+            use _ = (new_disposable (fun () ->
+                oldLevel |> set_trace_level
+            ))
 
-                let hasMain =
-                    lastBlock
-                    |> Option.exists (fun line ->
-                        line |> SpiralSm.starts_with "inl main "
-                        || line |> SpiralSm.starts_with "let main "
-                    )
+            async {
+                try
+                    let lastBlock =
+                        lines
+                        |> Array.tryFindBack (fun line ->
+                            line |> String.length > 0
+                            && line.[0] <> ' '
+                        )
 
-                let cellCode, lastTopLevelIndex =
-                    if hasMain
-                    then rawCellCode, None
-                    else
-                        let lastTopLevelIndex, _ =
-                            (lines |> Array.indexed, (None, false))
-                            ||> Array.foldBack (fun (i, line) (lastTopLevelIndex, finished) ->
-                                trace Debug (fun () -> $"i: {i} / line: '{line}' / lastTopLevelIndex: {lastTopLevelIndex} / finished: {finished}") _locals
-                                match line with
-                                | _ when finished -> lastTopLevelIndex, true
-                                | "" -> lastTopLevelIndex, false
-                                | line when
-                                    line |> SpiralSm.starts_with " "
-                                    || line |> SpiralSm.starts_with "// " -> lastTopLevelIndex, false
-                                | line when
-                                    line |> SpiralSm.starts_with "open "
-                                    || line |> SpiralSm.starts_with "prototype "
-                                    || line |> SpiralSm.starts_with "instance "
-                                    || line |> SpiralSm.starts_with "type "
-                                    || line |> SpiralSm.starts_with "union "
-                                    || line |> SpiralSm.starts_with "nominal " -> lastTopLevelIndex, true
-                                | line when
-                                    line |> SpiralSm.starts_with "inl "
-                                    || line |> SpiralSm.starts_with "let " ->
-                                    let m =
-                                        System.Text.RegularExpressions.Regex.Match (
-                                            line,
-                                            @"^(inl|let) +([~\(\w][\w\d']*(?:| *[~\w][\w\d']*\)|, *[~\w][\w\d']*)) +[:=](?! +function)"
+                    let hasMain =
+                        lastBlock
+                        |> Option.exists (fun line ->
+                            line |> SpiralSm.starts_with "inl main "
+                            || line |> SpiralSm.starts_with "let main "
+                        )
+
+                    let cellCode, lastTopLevelIndex =
+                        if hasMain
+                        then rawCellCode, None
+                        else
+                            let lastTopLevelIndex, _ =
+                                (lines |> Array.indexed, (None, false))
+                                ||> Array.foldBack (fun (i, line) (lastTopLevelIndex, finished) ->
+                                    trace Debug (fun () -> $"i: {i} / line: '{line}' / lastTopLevelIndex: {lastTopLevelIndex} / finished: {finished}") _locals
+                                    match line with
+                                    | _ when finished -> lastTopLevelIndex, true
+                                    | "" -> lastTopLevelIndex, false
+                                    | line when
+                                        line |> SpiralSm.starts_with " "
+                                        || line |> SpiralSm.starts_with "// " -> lastTopLevelIndex, false
+                                    | line when
+                                        line |> SpiralSm.starts_with "open "
+                                        || line |> SpiralSm.starts_with "prototype "
+                                        || line |> SpiralSm.starts_with "instance "
+                                        || line |> SpiralSm.starts_with "type "
+                                        || line |> SpiralSm.starts_with "union "
+                                        || line |> SpiralSm.starts_with "nominal " -> lastTopLevelIndex, true
+                                    | line when
+                                        line |> SpiralSm.starts_with "inl "
+                                        || line |> SpiralSm.starts_with "let " ->
+                                        let m =
+                                            System.Text.RegularExpressions.Regex.Match (
+                                                line,
+                                                @"^(inl|let) +([~\(\w][\w\d']*(?:| *[~\w][\w\d']*\)|, *[~\w][\w\d']*)) +[:=](?! +function)"
+                                            )
+                                        trace Debug (fun () -> $"m: '{m}' / m.Groups.Count: {m.Groups.Count}") _locals
+                                        if m.Groups.Count = 3
+                                        then Some i, false
+                                        else lastTopLevelIndex, true
+                                    | _ -> Some i, false
+                                )
+                            let code =
+                                match lastTopLevelIndex with
+                                | Some lastTopLevelIndex ->
+                                    lines
+                                    |> Array.mapi (fun i line ->
+                                        match i with
+                                        | i when i < lastTopLevelIndex -> line
+                                        | i when i = lastTopLevelIndex -> $"\nlet main () =\n    {line}"
+                                        | _ when line |> SpiralSm.trim = "" -> ""
+                                        | _ -> $"    {line}"
+                                    )
+                                    |> SpiralSm.concat "\n"
+                                | None -> $"{rawCellCode}\n\ninl main () = ()\n"
+                            code, lastTopLevelIndex
+
+                    let newAllCode = $"{allCode}\n\n{cellCode}"
+
+                    let! buildCodeResult =
+                        newAllCode
+                        |> Supervisor.buildCode isCache timeout cancellationToken
+                        |> Async.catch
+                        |> Async.runWithTimeoutAsync timeout
+
+                    match buildCodeResult with
+                    | Some (Ok (_mainPath, (fsxPath, Some code), spiralErrors)) ->
+                        let spiralErrors =
+                            mapErrors (Warning, spiralErrors, lastTopLevelIndex) allCode
+                        let inline _trace (fn : unit -> string) =
+                            if isTrace
+                            then trace Info (fun () -> $"Eval.eval / {fn ()}") _locals
+                            else fn () |> System.Console.WriteLine
+
+                        if printCode
+                        then _trace (fun () -> if builderCommand.Length > 0 then $".fsx:\n{code}\n" else code)
+
+                        let! spiralBuilderResult =
+                            match builderCommand, lastTopLevelIndex with
+                            | [||], _ | _, None -> [||] |> Async.init
+                            | builderCommand, _ -> async {
+                                let workspaceRootExternal =
+                                    let currentDir =
+                                        System.IO.Directory.GetCurrentDirectory ()
+                                        |> SpiralSm.to_lower
+                                    let workspaceRoot = workspaceRoot |> SpiralSm.to_lower
+                                    if currentDir |> SpiralSm.starts_with workspaceRoot
+                                    then None
+                                    else Some workspaceRoot
+                                return!
+                                    builderCommand
+                                    |> Array.map (fun builderCommand -> async {
+                                        let! exitCode, result =
+                                            SpiralRuntime.execution_options (fun x ->
+                                                { x with
+                                                    l0 = cancellationToken
+                                                    l1 =
+                                                        let path =
+                                                            workspaceRoot </> $@"workspace/target/release/spiral_builder{SpiralRuntime.get_executable_suffix ()}"
+                                                            |> System.IO.Path.GetFullPath
+                                                        $"{path} fsharp --fs-path \"{fsxPath}\" --command \"{builderCommand}\""
+                                                    l2 = [|
+                                                        "AUTOMATION", assemblyName = "dotnet-repl" |> string
+                                                        "TRACE_LEVEL", $"%A{traceLevel}"
+                                                    |]
+                                                    l6 = workspaceRootExternal
+                                                }
+                                            )
+                                            |> SpiralRuntime.execute_with_options_async
+                                        trace Debug (fun () -> $"Eval.eval / spiral_builder / exitCode: {exitCode} / result: {result |> SpiralSm.ellipsis_end 400}") _locals
+                                        return
+                                            if exitCode = 0
+                                            then result |> Ok
+                                            else result |> Error
+                                    })
+                                    |> Async.Parallel
+                            }
+
+                        let cancellationToken = defaultArg cancellationToken System.Threading.CancellationToken.None
+
+                        let fsxResult =
+                            if builderCommand.Length > 0
+                            then None
+                            else
+                                try
+                                    let ch, errors = fsi_eval code cancellationToken
+                                    let errors =
+                                        errors
+                                        |> Array.map (fun (e1, e2, e3, _) ->
+                                            (e1, e2, e3, ("", (0, 0), (0, 0)))
                                         )
-                                    trace Debug (fun () -> $"m: '{m}' / m.Groups.Count: {m.Groups.Count}") _locals
-                                    if m.Groups.Count = 3
-                                    then Some i, false
-                                    else lastTopLevelIndex, true
-                                | _ -> Some i, false
-                            )
-                        let code =
-                            match lastTopLevelIndex with
-                            | Some lastTopLevelIndex ->
-                                lines
-                                |> Array.mapi (fun i line ->
-                                    match i with
-                                    | i when i < lastTopLevelIndex -> line
-                                    | i when i = lastTopLevelIndex -> $"\nlet main () =\n    {line}"
-                                    | _ when line |> SpiralSm.trim = "" -> ""
-                                    | _ -> $"    {line}"
-                                )
-                                |> SpiralSm.concat "\n"
-                            | None -> $"{rawCellCode}\n\ninl main () = ()\n"
-                        code, lastTopLevelIndex
-
-                let newAllCode = $"{allCode}\n\n{cellCode}"
-
-                async {
-                    try
-                        let! codeChoice =
-                            newAllCode
-                            |> Supervisor.buildCode timeout cancellationToken
-                            |> Async.catch
-                            |> Async.runWithTimeoutAsync timeout
-
-                        match codeChoice with
-                        | Some (Ok (_mainPath, (fsxPath, Some code), spiralErrors)) ->
-                            let spiralErrors =
-                                mapErrors (Warning, spiralErrors, lastTopLevelIndex) allCode
-                            let inline _trace (fn : unit -> string) =
-                                if isTrace
-                                then trace Info (fun () -> $"Eval.eval / {fn ()}") _locals
-                                else fn () |> System.Console.WriteLine
-
-                            if printCode
-                            then _trace (fun () -> if builderArgs.Length > 0 then $".fsx:\n{code}\n" else code)
-
-                            let! evalResult =
-                                match builderArgs, lastTopLevelIndex with
-                                | [||], _ | _, None -> None |> Async.init
-                                | builderArgs, _ -> async {
-                                    let! result =
-                                        builderArgs
-                                        |> Array.map (fun builderArgs -> async {
-                                            let! exitCode, result =
-                                                SpiralRuntime.execution_options (fun x ->
-                                                    { x with
-                                                        l0 = cancellationToken
-                                                        l1 = $"""{workspaceRoot}/apps/spiral/dist/Eval{SpiralRuntime.get_executable_suffix ()} --file "{fsxPath}" --args "{builderArgs}" --trace-level %A{traceLevel}"""
-                                                        l2 = [|
-                                                            "AUTOMATION", assemblyName = "dotnet-repl" |> string
-                                                        |]
-                                                    }
-                                                )
-                                                |> SpiralRuntime.execute_with_options_async
-                                            trace Debug (fun () -> $"Eval.eval / builder / exitCode: {exitCode} / result: {result}") _locals
-                                            return
-                                                if exitCode = 0
-                                                then result |> Ok
-                                                else result |> Error
-                                                |> Some
-                                        })
-                                        |> Async.Parallel
-                                    return
-                                        (None, result)
-                                        ||> Array.fold (fun acc x -> x)
-                                }
-
-                            let cancellationToken = defaultArg cancellationToken System.Threading.CancellationToken.None
-
-                            let fsxResult =
-                                if builderArgs.Length > 0
-                                then None
-                                else
-                                    try
-                                        let ch, errors = fsi_eval code cancellationToken
-                                        let errors =
+                                    let errors =
+                                        if errors |> Array.isEmpty
+                                        then errors
+                                        else
                                             errors
-                                            |> Array.map (fun (e1, e2, e3, _) ->
-                                                (e1, e2, e3, ("", (0, 0), (0, 0)))
-                                            )
-                                        let errors =
-                                            if errors |> Array.isEmpty
-                                            then errors
-                                            else
-                                                errors
-                                                |> Array.append [|
-                                                    TraceLevel.Critical, $"Eval.eval / fsi_eval error / fsxPath: {fsxPath} / builderArgs: %A{builderArgs} / code: {code}", 0, ("", (0, 0), (0, 0))
+                                            |> Array.append [|
+                                                TraceLevel.Critical, $"Eval.eval / fsi_eval errors / errors[-1] / fsxPath: {fsxPath} / builderCommand: %A{builderCommand} / code: {code |> SpiralSm.ellipsis_end 400}", 0, ("", (0, 0), (0, 0))
+                                            |]
+                                    Some (ch, errors)
+                                with ex ->
+                                    trace Critical (fun () -> $"Eval.eval / fsi_eval try ex / code : {code |> SpiralSm.ellipsis_end 400} / ex: {ex |> SpiralSm.format_exception}") _locals
+                                    None
+
+                        match fsxResult, spiralBuilderResult with
+                        | Some (ch, errors), [||] ->
+                            let errors = errors |> Array.append spiralErrors
+                            match ch with
+                            | Choice1Of2 v ->
+                                allCode <- newAllCode
+                                return Ok(v), errors
+                            | Choice2Of2 ex -> return Error ex, errors
+                        | _, [||] ->
+                            let ch, errors = fsi_eval "()" cancellationToken
+                            match ch with
+                            | Choice1Of2 v ->
+                                allCode <- newAllCode
+                                return Ok(v), errors
+                            | Choice2Of2 ex ->
+                                return Error ex, errors
+                        | _, spiralBuilderResult ->
+                            try
+                                let codes =
+                                    spiralBuilderResult
+                                    |> Array.map (fun spiralBuilderResult' ->
+                                        let spiralBuilderResult'', errors =
+                                            match spiralBuilderResult' with
+                                            | Ok x ->
+                                                let x = x |> FSharp.Json.Json.deserialize<Map<string,string>>
+                                                x, [||]
+                                            | Error error ->
+                                                ([] |> Map),
+                                                [|
+                                                    (
+                                                        TraceLevel.Critical, $"Eval.eval / evalResult error / errors[0] / fsxPath: {fsxPath} / builderCommand: %A{builderCommand} / spiralBuilderResult': %A{spiralBuilderResult'} / error: %A{error}", 0, ("", (0, 0), (0, 0))
+                                                    )
                                                 |]
-                                        Some (ch, errors)
-                                    with ex ->
-                                        trace Critical (fun () -> $"Eval.eval / ex: {ex |> SpiralSm.format_exception}") _locals
-                                        None
 
-                            match fsxResult, evalResult with
-                            | Some (ch, errors), None ->
-                                let errors = errors |> Array.append spiralErrors
-                                match ch with
-                                | Choice1Of2 v ->
-                                    allCode <- newAllCode
-                                    return Ok(v), errors
-                                | Choice2Of2 ex -> return Error ex, errors
-                            | _, Some result ->
-                                let result, errors =
-                                    match result with
-                                    | Ok result ->
-                                        let result = result |> FSharp.Json.Json.deserialize<Map<string,string>>
-                                        result, [||]
-                                    | Error error ->
-                                        ([] |> Map),
-                                        [|
-                                            (
-                                                TraceLevel.Critical, error, 0, ("", (0, 0), (0, 0))
-                                            )
-                                        |]
+                                        if errors |> Array.isEmpty |> not || spiralBuilderResult'' |> Map.containsKey "command_result" |> not
+                                        then Error (Exception $"Eval.eval / evalResult errors / Exception / spiralBuilderResult'': %A{spiralBuilderResult''}"), errors
+                                        else
+                                            let commandResult = spiralBuilderResult''.["command_result"] |> FSharp.Json.Json.deserialize<Map<string,string>>
 
-                                if errors |> Array.isEmpty |> not
-                                then return Error (Exception "Eval.eval / fsx error"), errors
-                                else
-                                    let extension = result.["extension"]
-                                    if printCode
-                                    then _trace (fun () -> $""".{extension}:{'\n'}{result.["code"]}""")
-
-                                    let output =
-                                        result.["output"] |> FSharp.Json.Json.deserialize<Result<string, string>>
-                                    match output with
-                                    | Error error -> return Error (Exception error), errors
-                                    | Ok output ->
-                                        let header = if printCode then $".{extension} output:\n" else ""
-                                        let code =
+                                            let extension = commandResult.["extension"]
                                             if printCode
-                                            then $"\"\"\"{header}{output}\n\n\n\"\"\""
-                                            else $"\"\"\"{header}{output}\n\"\"\""
-
-                                        let ch, errors2 = fsi_eval code cancellationToken
-                                        let errors =
-                                            errors
-                                            |> Array.append spiralErrors
-                                            |> Array.append errors2
-                                        let errors =
-                                            if errors |> Array.isEmpty
-                                            then errors
-                                            else
-                                                errors
-                                                |> Array.append [|
-                                                    TraceLevel.Critical, $"Eval.eval / fsi_eval error / fsxPath: {fsxPath} / builderArgs: %A{builderArgs} / code: {code}", 0, ("", (0, 0), (0, 0))
-                                                |]
-                                        match ch with
-                                        | Choice1Of2 v ->
-                                            allCode <- newAllCode
-                                            return Ok(v), errors
-                                        | Choice2Of2 ex ->
-                                            return Error ex, errors
-                            | _ ->
-                                let ch, errors = fsi_eval "()" cancellationToken
-                                match ch with
-                                | Choice1Of2 v ->
-                                    allCode <- newAllCode
-                                    return Ok(v), errors
-                                | Choice2Of2 ex ->
-                                    return Error ex, errors
-                        | Some (Ok (_, _, errors)) when errors |> List.isEmpty |> not ->
-                            return errors.[0] |> fst |> Exception |> Error,
-                            mapErrors (TraceLevel.Critical, errors, lastTopLevelIndex) allCode
-                        | Some (Error ex) ->
-                            trace Critical (fun () -> $"Eval.eval / ex: {ex |> SpiralSm.format_exception}") _locals
-                            return Error (Exception $"Spiral error or timeout / ex: {ex |> SpiralSm.format_exception}"),
-                            [|
-                                (
-                                    TraceLevel.Critical, $"Diag: Spiral error or timeout / ex: %A{ex}", 0, ("", (0, 0), (0, 0))
-                                )
-                            |]
-                        | _ ->
-                            return Error (Exception "Spiral error or timeout"),
-                            [|
-                                (
-                                    TraceLevel.Critical, "Diag: Spiral error or timeout", 0, ("", (0, 0), (0, 0))
-                                )
-                            |]
-                    with ex ->
-                        trace Critical (fun () -> $"Eval.eval / ex: {ex |> SpiralSm.format_exception}") _locals
-                        return Error (Exception $"Spiral error or timeout (4_) / ex: {ex |> SpiralSm.format_exception}"),
+                                            then _trace (fun () -> $""".{extension}:{'\n'}{commandResult.["code"]}""")
+                                            let code =
+                                                let header =
+                                                    if printCode || spiralBuilderResult.Length > 1
+                                                    then $".{extension} output:\n" else
+                                                    ""
+                                                let output = commandResult.["output"]
+                                                $"{header}{output}"
+                                            Ok code, [||]
+                                    )
+                                let result, errors =
+                                    (((Ok []), [||]), codes)
+                                    ||> Array.fold (fun (acc_code, acc_errors) (code, errors) ->
+                                        match code, acc_code with
+                                        | Ok code, Ok acc_code ->
+                                            let errors =
+                                                acc_errors
+                                                |> Array.append errors
+                                                |> Array.append spiralErrors
+                                            let errors =
+                                                if errors |> Array.isEmpty
+                                                then errors
+                                                else
+                                                    errors
+                                                    |> Array.append [|
+                                                        TraceLevel.Critical, $"Eval.eval / fsi_eval2 errors / errors[-1] / fsxPath: {fsxPath} / builderCommand: %A{builderCommand} / code: {code |> SpiralSm.ellipsis_end 400}", 0, ("", (0, 0), (0, 0))
+                                                    |]
+                                            Ok (code :: acc_code), errors
+                                        | Error error, _
+                                        | _, Error error ->
+                                            Error error,
+                                            acc_errors |> Array.append errors
+                                    )
+                                match result with
+                                | Ok code ->
+                                    let code = code |> List.rev |> String.concat "\n\n"
+                                    let code =
+                                        if printCode
+                                        then $"\"\"\"{code}\n\n\n\"\"\""
+                                        else $"\"\"\"{code}\n\"\"\""
+                                    let ch, errors2 = fsi_eval code cancellationToken
+                                    let errors =
+                                        errors
+                                        |> Array.append errors2
+                                    match ch with
+                                    | Choice1Of2 v ->
+                                        allCode <- newAllCode
+                                        return Ok(v), errors
+                                    | Choice2Of2 ex ->
+                                        return Error ex, errors
+                                | Error error ->
+                                    return Error error, errors
+                            with ex ->
+                                trace Critical (fun () -> $"Eval.eval / try 2 ex / spiralBuilderResult: %A{spiralBuilderResult} / ex: {ex |> SpiralSm.format_exception}") _locals
+                                return Error (Exception $"Eval.eval / try 2 ex / Exception / spiralBuilderResult: %A{spiralBuilderResult} / ex: {ex |> SpiralSm.format_exception}"),
+                                [|
+                                    (
+                                        TraceLevel.Critical, $"Eval.eval / try 2 ex / errors[0] / spiralBuilderResult: %A{spiralBuilderResult} / ex: {ex |> SpiralSm.format_exception}", 0, ("", (0, 0), (0, 0))
+                                    )
+                                |]
+                    | Some (Ok (_, _, errors)) when errors |> List.isEmpty |> not ->
+                        return errors.[0] |> fst |> Exception |> Error,
+                        mapErrors (TraceLevel.Critical, errors, lastTopLevelIndex) allCode
+                    | Some (Error ex) ->
+                        trace Critical (fun () -> $"Eval.eval / buildCodeResult Error / buildCodeResult: %A{buildCodeResult} / ex: {ex |> SpiralSm.format_exception}") _locals
+                        return Error (Exception $"Eval.eval / buildCodeResult Error / Exception / buildCodeResult: %A{buildCodeResult} / ex: {ex |> SpiralSm.format_exception}"),
                         [|
                             (
-                                TraceLevel.Critical, $"Diag: Spiral error or timeout (4) / ex: {ex |> SpiralSm.format_exception}", 0, ("", (0, 0), (0, 0))
+                                TraceLevel.Critical, $"Eval.eval / buildCodeResult Error / errors[0] / buildCodeResult: %A{buildCodeResult} / ex: {ex |> SpiralSm.format_exception}", 0, ("", (0, 0), (0, 0))
                             )
                         |]
-                }
-                |> Async.runWithTimeout timeout
-                |> Option.defaultValue (
-                    Error (Exception "Spiral error or timeout (2)"),
+                    | _ ->
+                        return Error (Exception $"Eval.eval / buildCodeResult / Exception / buildCodeResult: %A{buildCodeResult}"),
+                        [|
+                            (
+                                TraceLevel.Critical, $"Eval.eval / buildCodeResult / errors[0] / buildCodeResult: %A{buildCodeResult}", 0, ("", (0, 0), (0, 0))
+                            )
+                        |]
+                with ex ->
+                    trace Critical (fun () -> $"Eval.eval / try 1 ex / lines : %A{lines} / ex: {ex |> SpiralSm.format_exception}") _locals
+                    return Error (Exception $"Eval.eval / try 1 ex / Exception / %A{lines} / ex: {ex |> SpiralSm.format_exception}"),
                     [|
                         (
-                            TraceLevel.Critical, "Diag: Spiral error or timeout (2)", 0, ("", (0, 0), (0, 0))
+                            TraceLevel.Critical, $"Eval.eval / try 1 ex / errors[0] / %A{lines} / ex: {ex |> SpiralSm.format_exception}", 0, ("", (0, 0), (0, 0))
                         )
                     |]
-                )
-            with ex ->
-                trace Critical (fun () -> $"Eval.eval / ex: {ex |> SpiralSm.format_exception}") _locals
-                Error (Exception $"Spiral error or timeout (3) / ex: {ex |> SpiralSm.format_exception}"),
+            }
+            |> Async.runWithTimeout timeout
+            |> Option.defaultValue (
+                Error (Exception $"Eval.eval / Async.runWithTimeout / Exception / timeout: {timeout} / %A{lines}"),
                 [|
                     (
-                        TraceLevel.Critical, $"Diag: Spiral error or timeout (3) / ex: {ex |> SpiralSm.format_exception}", 0, ("", (0, 0), (0, 0))
+                        TraceLevel.Critical, $"Eval.eval / Async.runWithTimeout / errors[0] / timeout: {timeout} / %A{lines}", 0, ("", (0, 0), (0, 0))
                     )
                 |]
-
-    /// ## run
-    let run file args traceLevel = async {
-        let isTrace = traceLevel = Verbose
-        let inline _trace (fn : unit -> string) =
-            if isTrace
-            then trace Info (fun () -> $"Eval.run / {fn ()}") _locals
-            else fn () |> System.Console.WriteLine
-
-        let! code = file |> SpiralFileSystem.read_all_text_async
-
-        let hashHex = code |> SpiralCrypto.hash_text
-
-        let workspaceName = "spiral_eval"
-
-        let! fsprojPath =
-            code
-            |> Builder.persistCodeProject
-                ["Fable.Core"]
-                []
-                workspaceName
-                (hashHex |> Some)
-
-        let projectDir = fsprojPath |> Path.GetDirectoryName
-
-        let workspaceDir = projectDir </> $"../.."
-
-        let cargoTomlPath = projectDir </> $"Cargo.toml"
-        let workspaceCargoTomlPath = workspaceDir </> $"Cargo.toml"
-
-        let emptyCargoTomlContent () =
-            let id = System.Random().Next (1000000000, 2000000000)
-            $"[package]\nname = \"spiral_eval_{id}\"\nversion = \"0.0.1\"\nedition = \"2021\"\n\n[[bin]]\nname = \"spiral_eval_{id}\"\npath = \"spiral_eval.rs\""
-
-        if cargoTomlPath |> File.Exists |> not then
-            do! emptyCargoTomlContent () |> SpiralFileSystem.write_all_text_exists cargoTomlPath
-
-        if workspaceCargoTomlPath |> File.Exists |> not then
-            do! emptyCargoTomlContent () |> SpiralFileSystem.write_all_text_exists workspaceCargoTomlPath
-
-        let libLinkTargetPath = workspaceRoot </> "lib/rust/fable/fable_modules/fable-library-rust"
-        let libLinkPath = projectDir </> $"fable_modules/fable-library-rust"
-
-        if Directory.Exists libLinkTargetPath |> not
-        then libLinkTargetPath |> Directory.CreateDirectory |> ignore
-
-        libLinkPath |> Path.GetDirectoryName |> Directory.CreateDirectory |> ignore
-
-        let libLinkPathInfo = DirectoryInfo libLinkPath
-        if libLinkPathInfo.Exists && libLinkPathInfo.LinkTarget = null then
-            Directory.Delete (libLinkPath, true)
-
-        if libLinkPath |> Directory.Exists |> not then
-            Directory.CreateSymbolicLink (libLinkPath, libLinkTargetPath)
-            |> ignore
-
-        let workspaceRootExternal =
-            let currentDir =
-                System.IO.Directory.GetCurrentDirectory ()
-                |> SpiralSm.to_lower
-            let workspaceRoot = workspaceRoot |> SpiralSm.to_lower
-            if currentDir |> SpiralSm.starts_with workspaceRoot
-            then None
-            else Some workspaceRoot
-
-        let! exitCode, spiralBuilderResult =
-            let command =
-                let path =
-                    workspaceRoot </> $@"workspace/target/release/spiral_builder{SpiralRuntime.get_executable_suffix ()}"
-                    |> System.IO.Path.GetFullPath
-                $"{path} --trace-level %A{traceLevel} fsharp --path \"{fsprojPath}\" --package-dir \"{projectDir}\" --args \"{args}\""
-            SpiralRuntime.execution_options (fun x ->
-                { x with
-                    l1 = command
-                    l6 = workspaceRootExternal
-                }
             )
-            |> SpiralRuntime.execute_with_options_async
-
-        if exitCode <> 0 then
-            trace Critical (fun () -> $"Eval.run / spiral_builder / exitCode: {exitCode} / spiralBuilderResult: {spiralBuilderResult}") _locals
-            return Some (Error spiralBuilderResult)
-        else
-            trace Debug (fun () -> $"Eval.run / spiral_builder / exitCode: {exitCode} / spiralBuilderResult: {spiralBuilderResult}") _locals
-
-            let! exitCode, dotnetFableResult =
-                SpiralRuntime.execution_options (fun x ->
-                    { x with
-                        l1 = $"dotnet fable \"{fsprojPath}\" --optimize --lang rs --extension .rs --outDir \"{projectDir}\""
-                        l6 = workspaceRootExternal
-                    }
-                )
-                |> SpiralRuntime.execute_with_options_async
-                |> Async.retryAsync 3
-                |> Async.map (Result.defaultWith (fun e -> 1, e))
-
-            if exitCode <> 0 then
-                trace Critical (fun () -> $"Eval.run / dotnet fable / exitCode: {exitCode} / dotnetFableResult: {dotnetFableResult}") _locals
-                return Some (Error dotnetFableResult)
-            else
-                let spiralBuilderResult =
-                    spiralBuilderResult
-                    |> FSharp.Json.Json.deserialize<Map<string, string>>
-
-                let cargoTomlContent = spiralBuilderResult.["cargo_toml_content"]
-                let workspaceCargoTomlContent = spiralBuilderResult.["workspace_cargo_toml_content"]
-
-                do! cargoTomlContent |> SpiralFileSystem.write_all_text_exists cargoTomlPath
-                do! workspaceCargoTomlContent |> SpiralFileSystem.write_all_text_exists workspaceCargoTomlPath
-
-                try
-                    let rangeRsPath = libLinkPath </> "src/Range.rs"
-                    let! text = rangeRsPath |> SpiralFileSystem.read_all_text_async
-                    do!
-                        text
-                        |> SpiralSm.replace "use crate::String_::fromCharCode;" "use crate::String_::fromChar;"
-                        |> SpiralSm.replace "fromCharCode(c)" "std::char::from_u32(c).unwrap()"
-                        |> SpiralFileSystem.write_all_text_exists rangeRsPath
-                with ex ->
-                    trace Debug (fun () -> $"Eval.run / Range.rs error / cargoFmtResult: {ex |> SpiralSm.format_exception} / spiralBuilderResult: {spiralBuilderResult}") _locals
-
-                let! exitCode, cargoFmtResult =
-                    async {
-
-                        let! exitCode, cargoFmtResult =
-                            SpiralRuntime.execution_options (fun x ->
-                                { x with
-                                    l1 = $"cargo fmt --manifest-path \"{cargoTomlPath}\" --"
-                                    l6 = workspaceRootExternal
-                                }
-                            )
-                            |> SpiralRuntime.execute_with_options_async
-
-                        if cargoFmtResult |> SpiralSm.contains "failed to load manifest for workspace member" |> not
-                        then return exitCode, cargoFmtResult
-                        else
-                            let missingTomlPath =
-                                System.Text.RegularExpressions.Regex.Match
-                                    (cargoFmtResult, @"failed to read `(.*?Cargo.toml)`")
-                                |> fun m -> m.Groups.[1].Value
-
-                            if missingTomlPath |> File.Exists |> not then
-                                do! emptyCargoTomlContent () |> SpiralFileSystem.write_all_text_exists missingTomlPath
-
-                            return exitCode, cargoFmtResult
-                    }
-                    |> Async.retryAsync 3
-                    |> Async.map (Result.defaultWith (fun e -> 1, e))
-
-                if exitCode <> 0 then
-                    trace Critical (fun () -> $"Eval.run / cargo fmt error / exitCode: {exitCode} / cargoFmtResult: {cargoFmtResult} / spiralBuilderResult: {spiralBuilderResult}") _locals
-
-                let rsPath = projectDir </> $"{workspaceName}.rs"
-                let! rsCode = rsPath |> SpiralFileSystem.read_all_text_async
-
-                let mainCodeHeader = "pub fn main() -> Result<(), String> {"
-                let mainCode = $"{mainCodeHeader} Ok(()) }}"
-
-                let cached = rsCode |> SpiralSm.contains mainCodeHeader
-
-                let rsCode =
-                    if cached
-                    then rsCode
-                    else
-                        rsCode
-                        |> SpiralSm.replace "),);" "));"
-                        |> SpiralSm.replace_regex "\s\sdefaultOf\(\);" " defaultOf::<()>();"
-                        |> SpiralSm.replace "defaultOf()," "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
-                        |> SpiralSm.replace "_self_." "self."
-                        |> SpiralSm.replace "get_or_insert_with" "get_or_init"
-                        |> SpiralSm.replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;" "type ConcurrentStack_1<T> = T;"
-                        |> SpiralSm.replace "use fable_library_rust::System::Threading::CancellationToken;" "type CancellationToken = ();"
-                        |> SpiralSm.replace "use fable_library_rust::System::TimeZoneInfo;" "type TimeZoneInfo = i64;"
-                        |> SpiralSm.replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;" "type TaskCanceledException = ();"
-
-                if not cached
-                then do!
-                    $"{rsCode}\n\n{mainCode}\n"
-                    |> SpiralFileSystem.write_all_text_exists rsPath
-
-                let command = $"cargo +nightly run --manifest-path \"{cargoTomlPath}\""
-                let environmentVariables = [|
-                    struct ("RUSTC_WRAPPER", "sccache")
-                    // "RUSTFLAGS", "-C prefer-dynamic"
-                    "RUSTFLAGS", "-C prefer-dynamic -C strip=symbols -C link-arg=-s -C debuginfo=0"
-                    // "RUSTFLAGS", "-C prefer-dynamic -C link-arg=-s -C debuginfo=0 -C strip=symbols"
-                |]
-                let! exitCode, cargoRunResult =
-                    SpiralRuntime.execution_options (fun x ->
-                        { x with
-                            l1 = command
-                            l2 = environmentVariables
-                            l6 = workspaceRootExternal
-                        }
-                    )
-                    |> SpiralRuntime.execute_with_options_async
-
-                [ ".d"; ".exe"; ".pdb"; "" ]
-                |> List.map (fun ext -> workspaceDir </> $"target/debug/spiral_builder_{hashHex}{ext}")
-                |> List.filter File.Exists
-                |> List.iter File.Delete
-
-                let externalCommand =
-                    let vars =
-                        environmentVariables
-                        |> Array.map (fun struct (k, v) -> $"$env:{k}=''{v}''")
-                        |> String.concat ";"
-                    $"pwsh -c '{vars}; {command}'"
-                if exitCode = 0 then
-                    let output =
-                        try
-                            cargoRunResult
-                            |> SpiralSm.split "\n"
-                            |> Array.skipWhile (fun line ->
-                                (line |> SpiralSm.contains @"profile [optimized] target" |> not)
-                                    && (line |> SpiralSm.contains @"profile [unoptimized] target" |> not)
-                                    && (line |> SpiralSm.contains @"profile [unoptimized + debuginfo] target" |> not)
-                            )
-                            |> Array.skip 2
-                            |> SpiralSm.concat "\n"
-                            |> Ok
-                        with ex ->
-                            $"ex: {ex} / rsPath: {rsPath} / externalCommand: {externalCommand} / cargoRunResult: {cargoRunResult} / spiralBuilderResult: {spiralBuilderResult}" |> Error
-
-                    let result =
-                        [
-                            "extension", "rs"
-                            "code", rsCode
-                            "output", (output |> FSharp.Json.Json.serialize)
-                        ]
-                        |> Map
-                        |> FSharp.Json.Json.serialize
-                        |> Ok
-                        |> Some
-
-                    return result
-                else
-                    return Some (Error $"exitCode: {exitCode} / rsPath: {rsPath} / externalCommand: {externalCommand} / cargoRunResult: {cargoRunResult}")
-    }
-
-    /// ## Arguments
-    [<RequireQualifiedAccess>]
-    type Arguments =
-        | [<Argu.ArguAttributes.ExactlyOnce>] File of string
-        | [<Argu.ArguAttributes.ExactlyOnce>] Args of string
-        | [<Argu.ArguAttributes.Unique>] Trace_Level of TraceLevel
-
-        interface Argu.IArgParserTemplate with
-            member s.Usage =
-                match s with
-                | File _ -> nameof File
-                | Args _ -> nameof Args
-                | Trace_Level _ -> nameof Trace_Level
-
-    /// ## main
-    let main args =
-        let argsMap = args |> Runtime.parseArgsMap<Arguments>
-
-        let file =
-            match argsMap.[nameof Arguments.File] with
-            | [ Arguments.File file ] -> file |> Some
-            | _ -> None
-            |> Option.get
-
-        let args =
-            match argsMap.[nameof Arguments.Args] with
-            | [ Arguments.Args args ] -> args |> Some
-            | _ -> None
-            |> Option.get
-
-        let traceLevel =
-            match argsMap |> Map.tryFind (nameof Arguments.Trace_Level) with
-            | Some [ Arguments.Trace_Level traceLevel ] -> traceLevel
-            | _ -> Verbose
-
-        traceLevel |> to_trace_level |> set_trace_level
-
-        async {
-            let! result = run file args traceLevel
-
-            return
-                match result with
-                | Some (Ok result) ->
-                    trace Debug (fun () -> $"Eval.main / result: %A{result}") _locals
-
-                    if traceLevel = Info
-                    then result |> System.Console.WriteLine
-                    0
-                | Some (Error error) ->
-                    trace Critical (fun () -> $"Eval.main / error: %A{error}") _locals
-                    1
-                | None -> 1
-        }
-        |> Async.runWithTimeout (60000 * 60)
-        |> Option.defaultValue 1

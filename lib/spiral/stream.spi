@@ -3,11 +3,12 @@ open rust_operators
 
 /// ## types
 inl types () =
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_std::io::BufReader<$0>\")>]\n#endif\ntype async_std_io_BufReader<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs_io::DecodeReaderBytes<$0, $1>\")>]\n#endif\ntype encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::BufReader<$0>\")>]\n#endif\ntype std_io_BufReader<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Cursor<$0>\")>]\n#endif\ntype std_io_Cursor<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>]\n#endif\ntype std_io_Error = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Lines<$0>\")>]\n#endif\ntype std_io_Lines<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs_io::DecodeReaderBytes<$0, $1>\")>]\n#endif\ntype encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::io::BufReader<$0>\")>]\n#endif\ntype tokio_io_BufReader<'T> = class end"
 
 /// ## io_error
 nominal io_error = $'std_io_Error'
@@ -15,12 +16,19 @@ nominal io_error = $'std_io_Error'
 /// ## buf_reader
 nominal buf_reader t = $'std_io_BufReader<`t>'
 
+/// ## cursor
+nominal cursor t = $'std_io_Cursor<`t>'
+
 /// ## async_buf_reader
-nominal async_buf_reader t = $'async_std_io_BufReader<`t>'
+nominal async_buf_reader t = $'tokio_io_BufReader<`t>'
 
 /// ## new_buf_reader
 inl new_buf_reader forall t. (x : t) : buf_reader t =
     !\($'"std::io::BufReader::new(!x)"')
+
+/// ## new_cursor
+inl new_cursor forall t. (x : t) : cursor t =
+    !\($'"std::io::Cursor::new(!x)"')
 
 /// ## lines
 nominal lines t = $'std_io_Lines<`t>'

@@ -176,6 +176,7 @@ module Supervisor =
         let struct (token, disposable) = SpiralThreading.new_disposable_token cancellationToken
         use _ = disposable
 
+        let port = port |> Option.defaultWith getCompilerPort
         let! serverPort, errors, ct, disposable = awaitCompiler port (Some token)
         use _ = disposable
 
@@ -334,13 +335,12 @@ modules:
     }
 
     /// ## buildCode
-    let inline buildCode timeout cancellationToken code = async {
+    let inline buildCode cache timeout cancellationToken code = async {
         let! mainPath, fsx = code |> persistCode
         match fsx with
-        | Some (fsxPath, fsxCode) -> return mainPath, (fsxPath, Some fsxCode), []
-        | None ->
-            let port = getCompilerPort ()
-            let! fsxPath, (fsxCode, errors) = mainPath |> buildFile timeout port cancellationToken
+        | Some (fsxPath, fsxCode) when cache -> return mainPath, (fsxPath, Some fsxCode), []
+        | _ ->
+            let! fsxPath, (fsxCode, errors) = mainPath |> buildFile timeout None cancellationToken
             return mainPath, (fsxPath, fsxCode), errors
     }
 
@@ -353,10 +353,8 @@ modules:
         let struct (token, disposable) = SpiralThreading.new_disposable_token cancellationToken
         use _ = disposable
 
-        let! serverPort, _errors, ct, disposable =
-            match port with
-            | Some port -> awaitCompiler port (Some token)
-            | None -> (getCompilerPort (), FSharp.Control.AsyncSeq.empty, token, new_disposable id) |> Async.init
+        let port = port |> Option.defaultWith getCompilerPort
+        let! serverPort, _errors, ct, disposable = awaitCompiler port (Some token)
         use _ = disposable
 
         let fullPathUri = fullPath |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
@@ -411,10 +409,9 @@ modules:
                     else None
         }
         match tokens with
-        | Some tokens -> return tokens |> Some
-        | None ->
-            let port = getCompilerPort ()
-            return! mainPath |> getFileTokenRange (Some port) cancellationToken
+        | Some tokens ->
+            return tokens |> Some
+        | None -> return! mainPath |> getFileTokenRange None cancellationToken
     }
 
     /// ## Arguments
@@ -485,7 +482,9 @@ modules:
         let isExitOnError = argsMap |> Map.containsKey (nameof Arguments.Exit_On_Error)
 
         async {
-            let port = port |> Option.defaultWith getCompilerPort
+            let port =
+                port
+                |> Option.defaultWith getCompilerPort
             let struct (localToken, disposable) = SpiralThreading.new_disposable_token None
             let! serverPort, _errors, compilerToken, disposable = awaitCompiler port (Some localToken)
             use _ = disposable
@@ -493,7 +492,7 @@ modules:
             let buildFileAsync =
                 buildFileActions
                 |> List.map (fun (inputPath, outputPath) -> async {
-                    let! _fsxPath, (outputCode, errors) = inputPath |> buildFile timeout serverPort None
+                    let! _fsxPath, (outputCode, errors) = inputPath |> buildFile timeout (Some serverPort) None
 
                     errors
                     |> List.map snd
@@ -503,11 +502,11 @@ modules:
 
                     match outputCode with
                     | Some outputCode ->
-                        do! outputCode |> SpiralFileSystem.write_all_text_async outputPath
+                        do! outputCode |> SpiralFileSystem.write_all_text_exists outputPath
                         return 0
                     | None ->
                         if isExitOnError
-                        then System.Environment.Exit 1
+                        then SpiralRuntime.current_process_kill ()
 
                         return 1
                 })
@@ -518,11 +517,11 @@ modules:
                     let! tokenRange = inputPath |> getFileTokenRange (Some serverPort) None
                     match tokenRange with
                     | Some tokenRange ->
-                        do! tokenRange |> FSharp.Json.Json.serialize |> SpiralFileSystem.write_all_text_async outputPath
+                        do! tokenRange |> FSharp.Json.Json.serialize |> SpiralFileSystem.write_all_text_exists outputPath
                         return 0
                     | None ->
                         if isExitOnError
-                        then System.Environment.Exit 1
+                        then SpiralRuntime.current_process_kill ()
 
                         return 1
                 })
@@ -542,7 +541,7 @@ modules:
                     trace Debug (fun () -> $"main / executeCommand / exitCode: {exitCode} / command: {command}") _locals
 
                     if isExitOnError && exitCode > 0
-                    then System.Environment.Exit exitCode
+                    then SpiralRuntime.current_process_kill ()
 
                     return exitCode
                 })

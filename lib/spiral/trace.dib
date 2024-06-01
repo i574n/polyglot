@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -44,35 +44,38 @@ instance to_string trace_level = function
     | Critical => "Critical"
 
 instance of_string trace_level = function
-    | "Verbose" => Verbose
-    | "Debug" => Debug
-    | "Info" => Info
-    | "Warning" => Warning
-    | "Critical" => Critical
-    | x => failwith $'$"of_string trace_level / x: {!x}"'
+    | "Verbose" => Some Verbose
+    | "Debug" => Some Debug
+    | "Info" => Some Info
+    | "Warning" => Some Warning
+    | "Critical" => Some Critical
+    | _ => None
 
 #!markdown
 
-## repl_start
+## read_state
 
 #!spiral
 
-inl repl_start () : optionm'.option' i64 =
+inl read_state () =
     run_target function
-        | Fsharp (Native) & x
-        | Rust (Native) & x => fun () =>
-            inl automation = env.get_environment_variable "AUTOMATION"
-            // inl target =
-            //     match x with
-            //     | Fsharp (Native) => "Fsharp (Native)"
-            //     | Rust (Native) => "Rust (Native)"
-            // inl assembly_name = env.get_entry_assembly_name ()
-            // console.write_line ($'$"repl_start / automation: \'{!automation}\' / target: {!target} / assembly_name: {!assembly_name}"' : string)
-            if automation = "True"
-            then date_time.now () |> date_time.ticks |> fun (date_time.timestamp x) => x |> Some
-            else None
-            |> optionm'.box
-        | _ => fun () => optionm'.none' ()
+        | Rust (Contract | Wasm) => fun () =>
+            {
+                trace_level = None
+                repl_start = None
+            }
+        | _ => fun () =>
+            {
+                trace_level =
+                    (join "TRACE_LEVEL")
+                    |> env.get_environment_variable
+                    |> of_string
+                repl_start =
+                    inl automation = env.get_environment_variable (join "AUTOMATION")
+                    if automation = "True"
+                    then date_time.now () |> date_time.ticks |> fun (date_time.timestamp x) => x |> Some
+                    else None
+            }
 
 #!markdown
 
@@ -89,13 +92,14 @@ type trace_state =
         repl_start : optionm'.option' i64
     }
 
-inl new_trace_state trace_level =
+inl new_trace_state trace_level' =
+    inl { repl_start trace_level } = read_state ()
     {
         enabled = mut true
         count = mut 0i64
-        level = mut trace_level
+        level = trace_level |> optionm'.default_value trace_level' |> mut
         trace_file = mut ignore
-        repl_start = repl_start ()
+        repl_start = repl_start |> optionm'.box
     } : trace_state
 
 #!markdown
@@ -169,15 +173,15 @@ let rec trace_raw level fn =
     inl trace_state = get_trace_state_or_init None
     if level |> test_trace_level then
         inl count = trace_state.count
-        count <- *trace_state.count + 1
+        count <- *count + 1
 
         inl text = $'$"%s{!fn ()}"' : string
         run_target function
-        | Rust _ => fun () =>
-            open rust_operators
-            !\\(text, $'\@"println\!(""{}"", $0)"')
-        | _ => fun () =>
-            $'System.Console.WriteLine !text '
+            | Rust _ => fun () =>
+                open rust_operators
+                !\\(text, $'\@"println\!(""{}"", $0)"')
+            | _ => fun () =>
+                $'System.Console.WriteLine !text '
 
         *trace_state.trace_file text
 
@@ -193,8 +197,8 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string)
         inl time =
             run_target fun target =>
                 match target with
-                | Fsharp (Native)
-                | Rust (Native) => fun () =>
+                | Rust (Contract) => fun () => join ""
+                | _ => fun () =>
                     match trace_state.repl_start |> optionm'.unbox with
                     | Some repl_start =>
                         inl t =
@@ -210,11 +214,9 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string)
                     |> fun date_time =>
                         inl format =
                             match target with
-                            | Rust _ => "hh:mm:ss"
-                            | _ => "HH:mm:ss"
+                            | Rust _ => join "hh:mm:ss"
+                            | _ => join "HH:mm:ss"
                         $'!date_time.ToString !format '
-                | _ => fun () => join ""
-        inl count = *trace_state.count
         inl level_str = level |> to_string |> sm'.to_lower |> sm'.pad_left 7 ' '
         inl level_str =
             run_target function
@@ -233,6 +235,7 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string)
                 |> sm'.format''
                 |> sm'.from_std_string
             | _ => fun () => level_str
+        inl count = *trace_state.count
         $'$"{!time} {!level_str} #{!count} %s{!text_fn ()} / %s{!locals ()}"'
         |> sm'.trim_start ;[]
         |> sm'.trim_end ;[ ' '; '/' ]
@@ -252,6 +255,8 @@ get_trace_state_or_init None .count
 
 //// test
 ///! rust
+///! typescript
+///! python
 
 types ()
 trace Debug (fun () => "test1") _locals

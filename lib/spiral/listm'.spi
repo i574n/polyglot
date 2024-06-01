@@ -29,6 +29,10 @@ inl fold_back' forall t u. (fn : t -> u) (list : list' t) (init : list u) : list
 inl filter' forall t. (fn : t -> bool) (list : list' t) : list' t =
     list |> $'"List.filter !fn"'
 
+/// ## map
+inl map forall t u. (fn : t -> u) (list : list' t) : list' u =
+    list |> $'List.map' fn
+
 /// ## filter
 inl filter forall t. (fn : t -> bool) (list : list t) : list t =
     (list, Nil)
@@ -69,7 +73,7 @@ inl rec try_item i = function
     | Cons (_, xs) => try_item (i - 1) xs
     | Nil => None
 
-/// ## list_item
+/// ## item
 inl item i =
     try_item i >> optionm.value
 
@@ -248,3 +252,14 @@ inl try_pick fn list =
             inl list = dyn list
             join body fn list
     loop list
+
+/// ## exists'
+inl exists' f x =
+    inl length_x : i64 = x |> listm.length
+    let rec loop i =
+        if i >= length_x
+        then false
+        elif x |> item i |> f
+        then true
+        else loop (i + 1)
+    loop 0

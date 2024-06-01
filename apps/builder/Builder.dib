@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -123,6 +123,22 @@ let inline persistCodeProject packages modules name hash code = async {
         <SelfContained>true</SelfContained>
         <Version>0.0.1-alpha.1</Version>
         <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('FreeBSD'))">
+        <DefineConstants>_FREEBSD</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+        <DefineConstants>_LINUX</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+        <DefineConstants>_OSX</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+        <DefineConstants>_WINDOWS</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>
@@ -304,7 +320,8 @@ let main args =
 let args =
     System.Environment.GetEnvironmentVariable "ARGS"
     |> SpiralRuntime.split_args
-    |> Seq.toArray
+    |> Result.toArray
+    |> Array.collect id
 
 match args with
 | [||] -> 0

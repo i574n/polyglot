@@ -88,6 +88,22 @@ module Builder =
         <OutputType>Exe</OutputType>
     </PropertyGroup>
 
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('FreeBSD'))">
+        <DefineConstants>_FREEBSD</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+        <DefineConstants>_LINUX</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+        <DefineConstants>_OSX</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+        <DefineConstants>_WINDOWS</DefineConstants>
+    </PropertyGroup>
+
     <ItemGroup>
         {modulesCode}
         <Compile Include="{filePath}" />

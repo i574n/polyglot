@@ -21,6 +21,13 @@ module SpiralCrypto =
         hash_text x
 #endif
 
+    let hash_to_port x =
+#if !INTERACTIVE
+        Crypto.hash_to_port x
+#else
+        hash_to_port x
+#endif
+
 #if !FABLE_COMPILER && !WASM && !CONTRACT
 
 module SpiralAsync =
@@ -74,6 +81,13 @@ module SpiralRuntime =
         Runtime.get_executable_suffix ()
 #else
         get_executable_suffix ()
+#endif
+
+    let current_process_kill () =
+#if !INTERACTIVE
+        Runtime.current_process_kill ()
+#else
+        current_process_kill ()
 #endif
 
     let is_windows () =
@@ -290,18 +304,25 @@ module SpiralFileSystem =
         new_file_uri x
 #endif
 
-    let create_temp_directory () =
+    let create_temp_dir () =
 #if !INTERACTIVE
-        File_system.create_temp_directory ()
+        File_system.create_temp_dir ()
 #else
-        create_temp_directory ()
+        create_temp_dir ()
 #endif
 
-    let create_temp_directory_name () =
+    let create_temp_dir' x =
 #if !INTERACTIVE
-        File_system.create_temp_directory_name ()
+        File_system.create_temp_dir' x
 #else
-        create_temp_directory_name ()
+        create_temp_dir' x
+#endif
+
+    let create_temp_path () =
+#if !INTERACTIVE
+        File_system.create_temp_path ()
+#else
+        create_temp_path ()
 #endif
 
 #if !FABLE_COMPILER && !WASM && !CONTRACT

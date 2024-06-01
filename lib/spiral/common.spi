@@ -9,8 +9,6 @@ inl types () =
 /// ## prototype
 prototype (~:>) r : forall t. t -> r
 
-/// ## run_target
-
 /// ## upcast
 inl upcast forall t u. (x : t) : u =
     $'!x :> `u '
@@ -63,6 +61,7 @@ inl new_disposable (fn : () -> ()) : disposable _ =
     run_target function
         | Rust _ => fun () =>
             global "type Disposable (f : unit -> unit) = interface System.IDisposable with member _.Dispose () = f ()"
+            inl fn = join fn
             $'new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr !fn "$0()" )'
         | Fsharp _ => fun () =>
             inl fn = join fn
@@ -92,7 +91,7 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
                 else None
             fun ex =>
                 trace Warning
-                    fun () => "retry_fn"
+                    fun () => "common.retry_fn"
                     fun () => $'$"retry: {!retry} / ex: %A{!ex} / {!_locals ()}"'
                 sleep 1
                 None
@@ -100,6 +99,43 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
             | Some x => x
             | None => loop (retry + 1)
     loop 0
+
+/// ## retry_fn'
+inl retry_fn' retries fn =
+    let rec loop retry =
+        inl is_error, result =
+            match fn () with
+            | Ok x => false, x
+            | Error x => true, x
+        if not is_error || retry >= retries
+        then result
+        else
+            trace Debug
+                fun () => $'"common.retry_fn\' / loop"'
+                fun () => $'$"is_error: {!is_error} / retry: {!retry}/{!retries} / result: %A{!result} / {!_locals ()}"'
+            loop (retry + 1)
+    loop 1
+
+/// ## random
+nominal random = $'System.Random'
+
+inl random () : random =
+    $'`random ' ()
+
+/// ## random_next
+inl random_next (min : i32) (max : i32) (random : random) : i32 =
+    $'!random.Next (!min, !max)'
+
+/// ## random'
+inl random' forall t. (min : t) (max : t) : t =
+    run_target function
+        | Rust (Contract) => fun () =>
+            failwith "common.random' / target=Rust(Contract)"
+        | Rust _ => fun () =>
+            open rust_operators
+            !\\((min, max), $'"rand::Rng::gen_range(&mut rand::thread_rng(), $0..$1)"')
+        | _ => fun () =>
+            random () |> random_next (i32 min) (i32 max) |> convert
 
 /// ## main
 inl main () =

@@ -8236,7 +8236,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 verbose #1 networking.test_port_open / port: 65536 / ex: System.ArgumentOutOfRangeException: Specified argument was out of the range of valid values. (Parameter 'port')
-assert_eq / actual: US2_0 false / expected: US2_0 false
+assert_eq / actual: US4_0 false / expected: US4_0 false
 </pre>
 </div>
 </div>
@@ -8299,7 +8299,7 @@ assert_eq / actual: US2_0 false / expected: US2_0 false
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00   debug #1 run_with_timeout_async / timeout: 120
+<pre>00:00:00   debug #1 async.run_with_timeout_async / timeout: 120
 assert_eq / actual: false / expected: false
 </pre>
 </div>
@@ -8426,13 +8426,14 @@ assert_eq / actual: false / expected: false
 00:00:05   debug #9 _3
 00:00:05   debug #10 4
 00:00:05 verbose #11 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: None / status: False
-00:00:07   debug #12 _4
-00:00:07   debug #13 _5
-00:00:09 verbose #14 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:09   debug #15 5
-00:00:09   debug #16 6
+00:00:06 verbose #12 networking.wait_for_port_access / port: 5555 / retry: 100 / timeout: None / status: False
+00:00:07   debug #13 _4
+00:00:07   debug #14 _5
+00:00:09 verbose #15 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
+00:00:09   debug #16 5
+00:00:09   debug #17 6
 assert_between / actual: 2L / expected: struct (2L, 5L)
-assert_between / actual: 99L / expected: struct (80L, 150L)
+assert_between / actual: 120L / expected: struct (80L, 150L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8510,20 +8511,20 @@ assert_eq / actual: true / expected: true
 00:00:00   debug #2 _1
 00:00:00   debug #3 2
 00:00:00   debug #4 3
-00:00:00   debug #5 run_with_timeout_async / timeout: 60
+00:00:00   debug #5 async.run_with_timeout_async / timeout: 60
 00:00:00 verbose #6 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: True
-00:00:00   debug #7 run_with_timeout_async / timeout: 60
-00:00:00   debug #8 run_with_timeout_async / timeout: 60
-00:00:00   debug #9 run_with_timeout_async / timeout: 60
-00:00:00   debug #10 run_with_timeout_async / timeout: 60
-00:00:00   debug #11 run_with_timeout_async / timeout: 60
-00:00:00   debug #12 _2
-00:00:00   debug #13 _3
+00:00:00   debug #7 async.run_with_timeout_async / timeout: 60
+00:00:00   debug #8 async.run_with_timeout_async / timeout: 60
+00:00:00   debug #9 async.run_with_timeout_async / timeout: 60
+00:00:00   debug #10 async.run_with_timeout_async / timeout: 60
+00:00:00   debug #11 _2
+00:00:00   debug #12 _3
+00:00:00   debug #13 async.run_with_timeout_async / timeout: 60
 00:00:00   debug #14 4
 00:00:00 verbose #15 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: False
 00:00:00   debug #16 _4
 00:00:00   debug #17 _5
-00:00:00   debug #18 run_with_timeout_async / timeout: 60
+00:00:00   debug #18 async.run_with_timeout_async / timeout: 60
 00:00:00   debug #19 5
 00:00:00   debug #20 6
 assert_between / actual: 6L / expected: struct (4L, 15L)
@@ -8652,7 +8653,7 @@ assert_eq / actual: true / expected: true
 00:00:06   debug #14 5
 00:00:06   debug #15 6
 assert_eq / actual: 5557 / expected: 5557
-assert_between / actual: 104L / expected: struct (100L, 150L)
+assert_between / actual: 110L / expected: struct (100L, 150L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8726,21 +8727,21 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00   debug #1 1
+00:00:00   debug #3 _1
 00:00:00   debug #3 2
-00:00:00   debug #2 _1
 00:00:00   debug #4 _2
 00:00:00   debug #5 _3
 00:00:00   debug #6 3
-00:00:00   debug #7 run_with_timeout_async / timeout: 60
+00:00:00   debug #7 async.run_with_timeout_async / timeout: 60
 00:00:00   debug #8 4
 00:00:00 verbose #9 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: False
 00:00:00   debug #10 _4
 00:00:00   debug #11 _5
-00:00:00   debug #12 run_with_timeout_async / timeout: 60
+00:00:00   debug #12 async.run_with_timeout_async / timeout: 60
 00:00:00   debug #13 5
 00:00:00   debug #14 6
 assert_eq / actual: 5557 / expected: 5557
-assert_between / actual: 3L / expected: struct (2L, 10L)
+assert_between / actual: 5L / expected: struct (2L, 10L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>

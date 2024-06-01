@@ -9148,7 +9148,8 @@ OPTIONS:
 <span class="n">let</span> <span class="n">args</span> <span class="o">=</span>
     <span class="n">System</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">GetEnvironmentVariable</span> <span class="s2">"ARGS"</span>
     <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">split_args</span>
-    <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toArray</span>
+    <span class="o">|&gt;</span> <span class="n">Result</span><span class="o">.</span><span class="n">toArray</span>
+    <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">collect</span> <span class="nb">id</span>
 
 <span class="k">match</span> <span class="n">args</span> <span class="k">with</span>
 <span class="o">|</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="mi">0</span>

@@ -28,7 +28,6 @@ module JsonParser =
       * An array begins with [ (left bracket) and ends with ] (right bracket).
       * Values are separated by , (comma).
     * Whitespace can be inserted between any pair of tokens.
-
     *)
 
     /// ### JValue

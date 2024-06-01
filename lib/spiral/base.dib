@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -27,7 +27,7 @@ inl array x = x
 #!spiral
 
 prototype append t : t -> t -> t
-prototype of_string t : string -> t
+prototype of_string t : string -> option t
 prototype to_string t : t -> string
 
 #!markdown
@@ -40,11 +40,20 @@ nominal infer = $'_'
 
 #!markdown
 
-## not'
+## invoke
 
 #!spiral
 
-inl not' x =
+inl invoke fn =
+    fn ()
+
+#!markdown
+
+## not_join
+
+#!spiral
+
+inl not_join x =
     join not x
 
 #!markdown
@@ -272,9 +281,13 @@ run_target function
 
 //// test
 ///! rust
+///! typescript
+///! python
 
 run_target function
     | Rust (Native) => fun () => $'1uy'
+    | TypeScript (Native) => fun () => $'1uy'
+    | Python (Native) => fun () => $'1uy'
     | _ => fun () => $'2uy'
 |> _assert_eq 1u8
 
@@ -362,6 +375,15 @@ inl u8 forall t. (x : t) : u8 =
 
 #!markdown
 
+## u16
+
+#!spiral
+
+inl u16 forall t. (x : t) : u16 =
+    x |> $'uint16'
+
+#!markdown
+
 ## u64
 
 #!spiral
@@ -421,6 +443,15 @@ nominal unativeint = $'unativeint'
 
 inl convert_i32 forall t. (x : t) : i32 =
     x |> $'System.Convert.ToInt32'
+
+#!markdown
+
+## convert_i32_base
+
+#!spiral
+
+inl convert_i32_base forall t. (base : i32) (x : t) : i32 =
+    $'System.Convert.ToInt32 (!x, !base)'
 
 #!markdown
 

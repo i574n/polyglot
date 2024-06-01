@@ -85,6 +85,14 @@ inl average forall el {number}. (a : a _ el) : el =
 inl distinct forall dim el. (a : a dim el) : a dim el =
     a |> $'Array.distinct'
 
+/// ## skip
+inl skip forall dim el. (n : dim) (a : a dim el) : a dim el =
+    a |> $'Array.skip' n
+
+/// ## skip_while
+inl skip_while forall dim el. (fn : el -> bool) (a : a dim el) : a dim el =
+    a |> $'Array.skipWhile' fn
+
 /// ## to_list'
 inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
     items |> $'Array.toList'
@@ -213,13 +221,13 @@ inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : vec t) : vec u =
 
 /// ## vec_map
 inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
-    (!\($'"true; let _result = !ar.into_iter().map(|x| { //"') : bool) |> ignore
+    (!\($'"true; let _result : Vec<_> = !ar.into_iter().map(|x| { //"') : bool) |> ignore
     (!\\(fn !\($'"x"'), $'"true; $0 }).collect::<Vec<_>>()"') : bool) |> ignore
     !\($'"_result"')
 
 /// ## vec_map'''
 inl vec_map''' forall t u. (fn : t -> u) (ar : vec t) : vec u =
-    (!\($'"true; let _result = !ar.into_iter().map(|x| { //"') : bool) |> ignore
+    (!\($'"true; let _result : Vec<_> = !ar.into_iter().map(|x| { //"') : bool) |> ignore
     (!\\(fn !\($'"x"'), $'"true; $0 }}).collect::<Vec<_>>(); {{ //"') : bool) |> ignore
     !\($'"_result"')
 
@@ -338,6 +346,6 @@ inl new_vec forall t. (items : list t) : vec t =
         (items, ("", 0i32))
         ||> listm.foldBack fun (x : t) (acc, i) =>
             inl x = join x
-            $'"!x"' +. (if i = 0 then "" else ",") +. acc, i + 1
+            $'"!x"' +. (if i = 0 then "" else ", ") +. acc, i + 1
         |> fst
     !\($'"vec\![" + !items + "]"')

@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -23,11 +23,12 @@ open testing
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_std::io::BufReader<$0>\")>]\n#endif\ntype async_std_io_BufReader<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs_io::DecodeReaderBytes<$0, $1>\")>]\n#endif\ntype encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::BufReader<$0>\")>]\n#endif\ntype std_io_BufReader<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Cursor<$0>\")>]\n#endif\ntype std_io_Cursor<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>]\n#endif\ntype std_io_Error = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Lines<$0>\")>]\n#endif\ntype std_io_Lines<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs_io::DecodeReaderBytes<$0, $1>\")>]\n#endif\ntype encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::io::BufReader<$0>\")>]\n#endif\ntype tokio_io_BufReader<'T> = class end"
 
 #!markdown
 
@@ -47,11 +48,19 @@ nominal buf_reader t = $'std_io_BufReader<`t>'
 
 #!markdown
 
+## cursor
+
+#!spiral
+
+nominal cursor t = $'std_io_Cursor<`t>'
+
+#!markdown
+
 ## async_buf_reader
 
 #!spiral
 
-nominal async_buf_reader t = $'async_std_io_BufReader<`t>'
+nominal async_buf_reader t = $'tokio_io_BufReader<`t>'
 
 #!markdown
 
@@ -61,6 +70,15 @@ nominal async_buf_reader t = $'async_std_io_BufReader<`t>'
 
 inl new_buf_reader forall t. (x : t) : buf_reader t =
     !\($'"std::io::BufReader::new(!x)"')
+
+#!markdown
+
+## new_cursor
+
+#!spiral
+
+inl new_cursor forall t. (x : t) : cursor t =
+    !\($'"std::io::Cursor::new(!x)"')
 
 #!markdown
 

@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -41,7 +41,11 @@ inl types () =
 
 #!markdown
 
-## sha256
+## fsharp
+
+#!markdown
+
+### sha256
 
 #!spiral
 
@@ -52,7 +56,7 @@ inl sha256 () : sha256 =
 
 #!markdown
 
-## sha256_compute_hash
+### sha256_compute_hash
 
 #!spiral
 
@@ -61,78 +65,11 @@ inl sha256_compute_hash (x : sha256) (data : a i32 u8) : a i32 u8 =
 
 #!markdown
 
-## create_hash
-
-#!spiral
-
-inl create_hash (x : string) : any =
-    open ts_operators
-    global "type ICryptoCreateHash = abstract createHash: x: string -> obj"
-    inl crypto : $'ICryptoCreateHash' = ts.import_all "crypto"
-    !\\(x, $'"!crypto.createHash($0)"')
+## rust
 
 #!markdown
 
-## hash_update
-
-#!spiral
-
-inl hash_update (s : string) (x : any) : any =
-    open ts_operators
-    !\\((x, s), $'"$0.update($1, \'utf8\')"')
-
-#!markdown
-
-## hash_digest
-
-#!spiral
-
-inl hash_digest (s : string) (x : any) : string =
-    open ts_operators
-    !\\((x, s), $'"$0.digest($1)"')
-
-#!markdown
-
-## hash_text
-
-#!spiral
-
-inl hash_text (input : string) =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            inl input = join input
-            inl sha256 = sha256 () |> use
-            input
-            |> sm'.utf8_get_bytes
-            |> sha256_compute_hash sha256
-            |> am.map (sm'.byte_to_string "x2")
-            |> seq.of_array'
-            |> sm'.concat ""
-        | TypeScript _ => fun () =>
-            create_hash "sha256"
-            |> hash_update input
-            |> hash_digest "hex"
-        | _ => fun () => null ()
-
-#!spiral
-
-//// test
-
-""
-|> hash_text
-|> _assert_eq "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-
-#!spiral
-
-//// test
-
-" "
-|> hash_text
-|> _assert_eq "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
-
-#!markdown
-
-## get_file_hash'
+### get_file_hash'
 
 #!spiral
 
@@ -152,35 +89,49 @@ inl get_file_hash' (path : string) : result string string =
 //// test
 
 types ()
-inl temp_folder, disposable = file_system.create_temp_directory ()
-disposable |> use |> ignore
+
 inl file_name = "test.txt"
-inl path = temp_folder </> file_name
-"" |> file_system.write_all_text_async path |> async.run_synchronously
+inl text = "\n"
+
+inl temp_dir, disposable =
+    (file_name, text)
+    |> sm'.format_debug
+    |> crypto.hash_text
+    |> file_system.create_temp_dir'
+disposable |> use |> ignore
+inl path = temp_dir </> file_name
+text |> file_system.write_all_text_async path |> async.run_synchronously
 path
 |> get_file_hash'
 |> resultm.get
-|> _assert_eq "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+|> _assert_eq "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 
 #!spiral
 
 //// test
-///! rust -d chrono encoding_rs encoding_rs_io futures futures-lite regex
+///! rust -d chrono encoding_rs encoding_rs_io regex sha2
 
 types ()
-inl temp_folder, disposable = file_system.create_temp_directory ()
+
 inl file_name = "test.txt"
-inl path = temp_folder </> file_name
-"" |> file_system.write_all_text path
+inl text = "\n"
+
+inl temp_dir, disposable =
+    (file_name, text)
+    |> sm'.format_debug
+    |> crypto.hash_text
+    |> file_system.create_temp_dir'
+inl path = temp_dir </> file_name
+text |> file_system.write_all_text path
 path
 |> get_file_hash'
 |> resultm.get
-|> _assert_eq "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+|> _assert_eq "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 disposable |> use |> ignore
 
 #!markdown
 
-## sha256'
+### sha256'
 
 #!spiral
 
@@ -188,16 +139,17 @@ nominal sha256' = $'sha2_Sha256'
 
 #!markdown
 
-## new_sha256
+### new_sha256
 
 #!spiral
 
 inl new_sha256 () : sha256' =
-    !\($'"sha2::Digest::new()"')
+    !\($'"let result : sha2::Sha256 = sha2::Digest::new()"')
+    !\($'"result"')
 
 #!markdown
 
-## hasher_update
+### hasher_update
 
 #!spiral
 
@@ -206,7 +158,7 @@ inl hasher_update forall el dim. (slice : rust.ref' (am'.slice' el dim)) (hasher
 
 #!markdown
 
-## hasher_finalize
+### hasher_finalize
 
 #!spiral
 
@@ -215,14 +167,12 @@ inl hasher_finalize (hasher : sha256') : rust.ref' (am'.slice u8) =
 
 #!markdown
 
-## get_file_hash
+### hash_read
 
 #!spiral
 
-inl get_file_hash (path : string) : result string string =
-    inl path = path |> file_system.normalize_path
-    inl file = path |> file_system.file_open |> resultm.unwrap'
-    inl reader = file |> stream.new_buf_reader
+inl hash_read data : resultm.result' string stream.io_error =
+    inl reader = data |> stream.new_buf_reader
     (!\($'"true; let mut !reader = !reader"') : bool) |> ignore
     inl hasher = new_sha256 ()
     (!\($'"true; let mut !hasher = !hasher"') : bool) |> ignore
@@ -250,12 +200,26 @@ inl get_file_hash (path : string) : result string string =
     hasher
     |> hasher_finalize
     |> am'.slice_to_vec
-    |> am'.vec_map' (sm'.format_custom' "{:02x}" >> sm'.from_std_string)
+    |> am'.vec_map (sm'.format_hex' >> sm'.from_std_string)
     |> am'.from_vec
     |> fun x => x : _ i32 _
     |> seq.of_array'
     |> sm'.concat ""
     |> Ok
+    |> resultm.box
+
+#!markdown
+
+### get_file_hash
+
+#!spiral
+
+inl get_file_hash (path : string) =
+    inl path = path |> file_system.normalize_path
+    inl file = path |> file_system.file_open |> resultm.unwrap'
+    inl reader = file |> stream.new_buf_reader
+    reader
+    |> hash_read
 
 #!spiral
 
@@ -263,33 +227,233 @@ inl get_file_hash (path : string) : result string string =
 ///! rust -d chrono regex sha2
 
 types ()
-inl temp_folder, disposable = file_system.create_temp_directory ()
 
 inl file_name = join "test.txt"
-inl path = temp_folder </> file_name
-"" |> file_system.write_all_text path
+inl text = "\n"
+
+inl temp_dir, disposable =
+    (file_name, text)
+    |> sm'.format_debug
+    |> crypto.hash_text
+    |> file_system.create_temp_dir'
+
+inl path = temp_dir </> file_name
+text |> file_system.write_all_text path
+
 path
 |> get_file_hash
-|> resultm.get
+|> resultm.unwrap'
+|> _assert_eq "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+disposable |> use |> ignore
+
+#!spiral
+
+//// test
+///! rust -d chrono regex sha2
+
+types ()
+
+inl file_name = join "test.txt"
+inl text = ""
+
+inl temp_dir, disposable =
+    (file_name, text)
+    |> sm'.format_debug
+    |> crypto.hash_text
+    |> file_system.create_temp_dir'
+
+inl path = temp_dir </> file_name
+text |> file_system.write_all_text path
+path
+|> get_file_hash
+|> resultm.unwrap'
 |> _assert_eq "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 disposable |> use |> ignore
 
+#!markdown
+
+## typescript
+
+#!markdown
+
+### create_hash
+
+#!spiral
+
+inl create_hash (x : string) : any =
+    open ts_operators
+    global "type ICryptoCreateHash = abstract createHash: x: string -> obj"
+    inl crypto : $'ICryptoCreateHash' = ts.import_all "crypto"
+    !\\(x, $'"!crypto.createHash($0)"')
+
+#!markdown
+
+### hash_update
+
+#!spiral
+
+inl hash_update (s : string) (x : any) : any =
+    open ts_operators
+    !\\((x, s), $'"$0.update($1, \'utf8\')"')
+
+#!markdown
+
+### hash_digest
+
+#!spiral
+
+inl hash_digest (s : string) (x : any) : string =
+    open ts_operators
+    !\\((x, s), $'"$0.digest($1)"')
+
+#!markdown
+
+## python
+
+#!markdown
+
+### py_sha256
+
+#!spiral
+
+nominal py_sha256 = any
+
+#!markdown
+
+### hashlib_sha256
+
+#!spiral
+
+inl hashlib_sha256 () : py_sha256 =
+    open py_operators
+    global "type IHashlibSha256 = abstract sha256: x: unit -> obj"
+    inl hashlib : $'IHashlibSha256' = py.import_all "hashlib"
+    !\($'"!hashlib.sha256()"')
+
+#!markdown
+
+### sha256_update
+
+#!spiral
+
+inl sha256_update (x : string) (sha256 : py_sha256) : py_sha256 =
+    open py_operators
+    !\\(x, $'"!sha256.update($0)"')
+    sha256
+
+#!markdown
+
+### sha256_hexdigest
+
+#!spiral
+
+inl sha256_hexdigest (sha256 : py_sha256) : string =
+    open py_operators
+    !\($'"!sha256.hexdigest()"')
+
+#!markdown
+
+## hash_text
+
+#!spiral
+
+let hash_text (~input : string) =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl sha256 = sha256 () |> use
+            input
+            |> sm'.utf8_get_bytes
+            |> sha256_compute_hash sha256
+            |> am.map (sm'.byte_to_string "x2")
+            |> seq.of_array'
+            |> sm'.concat (join "")
+        | TypeScript (Native) => fun () =>
+            create_hash "sha256"
+            |> hash_update input
+            |> hash_digest "hex"
+        | Rust (Native) => fun () =>
+            input
+            |> sm'.utf8_get_bytes
+            |> fun (a x) => x
+            |> am'.to_vec
+            |> stream.new_cursor
+            |> hash_read
+            |> resultm.unwrap'
+        | Python (Native) => fun () =>
+            hashlib_sha256 ()
+            |> sha256_update (input |> sm'.encode_utf8)
+            |> sha256_hexdigest
+        | _ => fun () => null ()
+
 #!spiral
 
 //// test
-///! rust -d chrono regex sha2
+
+"\n"
+|> hash_text
+|> _assert_eq "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+
+#!spiral
+
+//// test
+
+""
+|> hash_text
+|> _assert_eq "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+
+#!spiral
+
+//// test
+///! rust -d sha2
+///! typescript
+///! python
 
 types ()
-inl temp_folder, disposable = file_system.create_temp_directory ()
 
-inl file_name = join "test.txt"
-inl path = temp_folder </> file_name
-" " |> file_system.write_all_text path
-path
-|> get_file_hash
-|> resultm.get
-|> _assert_eq "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
-disposable |> use |> ignore
+"\n"
+|> hash_text
+|> _assert_eq "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+
+""
+|> hash_text
+|> _assert_eq "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+
+#!markdown
+
+## hash_to_port
+
+#!spiral
+
+inl hash_to_port (text : string) : u16 =
+    inl first_letter_code = text |> sm'.index 0i32 |> i32
+    inl hash_part = text |> sm'.slice 0i32 7
+    inl combined_value = convert_i32_base 16 hash_part + first_letter_code |> u16
+    trace Verbose
+        fun () => "crypto.hash_to_port"
+        fun () => $'$"first_letter_code: {!first_letter_code} / hash_part: {!hash_part} / combined_value: {!combined_value} / {!_locals ()}"'
+    combined_value % 48128 + 1024
+
+#!spiral
+
+//// test
+
+"\n"
+|> hash_text
+|> hash_to_port
+|> _assert_eq 19273
+
+#!spiral
+
+//// test
+///! rust -d sha2
+///! typescript
+///! python
+
+types ()
+"\n"
+|> hash_text
+|> hash_to_port
+|> _assert_eq 19273
 
 #!markdown
 
@@ -300,3 +464,4 @@ disposable |> use |> ignore
 inl main () =
     types ()
     $'let hash_text x = !hash_text x' : ()
+    $'let hash_to_port x = !hash_to_port x' : ()

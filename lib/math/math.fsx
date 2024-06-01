@@ -111,6 +111,18 @@ type std_collections_HashMap<'K, 'V> = class end
 #endif
 type std_collections_BTreeMap<'K, 'V> = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("[$0]")>]
+#endif
+type Slice<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("_")>]
+#endif
+type Slice'<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("Vec<$0>")>]
+#endif
+type Vec<'T> = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("str")>]
 #endif
 type Str = class end
@@ -175,13 +187,21 @@ type std_slice_Windows<'T> = class end
 #endif
 type regex_Regex = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Captures")>]
+[<Fable.Core.Erase; Fable.Core.Emit("regex::Captures<$0>")>]
 #endif
-type regex_Captures = class end
+type regex_Captures<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("regex::CaptureMatches")>]
 #endif
 type regex_CaptureMatches = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("regex::CaptureNames")>]
+#endif
+type regex_CaptureNames = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("regex::Match")>]
+#endif
+type regex_Match = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("regex::Error")>]
 #endif

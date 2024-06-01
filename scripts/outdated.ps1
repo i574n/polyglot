@@ -17,7 +17,7 @@ function CheckToml {
     )
     $toml = [IO.Path]::GetFullPath("$ScriptDir/$toml")
     Write-Output "`nCheckToml / toml: $toml"
-    { cargo outdated -m $toml --exclude tokio @_args } | Invoke-Block -OnError Continue
+    { cargo outdated -m $toml @_args } | Invoke-Block -OnError Continue
 }
 
 function CheckJson {

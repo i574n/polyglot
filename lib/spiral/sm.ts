@@ -98,19 +98,16 @@ export function method2(v0_1: string): string {
     return v0_1;
 }
 
-export function method3(v0_1: string): string {
-    return v0_1;
-}
-
 export function closure15(v0_1: string, v1_1: string, v2_1: string): string {
-    let _v3: Option<string> = undefined;
+    const v3_1: string = method0(v1_1);
+    let _v4: Option<string> = undefined;
     const x: string = defaultOf();
-    _v3 = x;
-    if (_v3 == null) {
-        throw new Error("base.run_target / _v3=None");
+    _v4 = x;
+    if (_v4 == null) {
+        throw new Error("base.run_target / _v4=None");
     }
     else {
-        return value_5(_v3);
+        return value_5(_v4);
     }
 }
 
@@ -142,14 +139,14 @@ export function closure19(unitVar: void, v0_1: string): ((arg0: string) => strin
     return (v: string): string[] => closure20(v0_1, v);
 }
 
-export function method4(): string {
+export function method3(): string {
     return "";
 }
 
 export function closure22(v0_1: string[], v1_1: string): string[] {
     let _v2: Option<string[]> = undefined;
     const v25: Iterable<string> = ofArray<string>(v0_1);
-    const x: string[] = split_1(v1_1, [join(method4(), v25)], undefined, 0);
+    const x: string[] = split_1(v1_1, [join(method3(), v25)], undefined, 0);
     _v2 = x;
     if (_v2 == null) {
         throw new Error("base.run_target / _v2=None");
@@ -225,7 +222,7 @@ export function closure35(unitVar: void, v0_1: int32): ((arg0: string) => string
     return (v: string): string => closure36(v0_1, v);
 }
 
-export function method5(v0_1: int64, v1_1: string): string {
+export function method4(v0_1: int64, v1_1: string): string {
     const v2_1: int64 = toInt64(fromInt32(v1_1.length));
     if (compare(v2_1, v0_1) <= 0) {
         return v1_1;
@@ -238,13 +235,12 @@ export function method5(v0_1: int64, v1_1: string): string {
         const v16_1: string = v1_1.slice(~~toInt32(0n), ~~toInt32(v15_1) + 1);
         const v17_1: int64 = toInt64(op_Subtraction(v2_1, v14_1));
         const v18_1: int64 = toInt64(op_Subtraction(v2_1, 1n));
-        const v23: Iterable<string> = ofArray<string>([v16_1, "...", v1_1.slice(~~toInt32(v17_1), ~~toInt32(v18_1) + 1)]);
-        return join(method4(), v23);
+        return join("", ofArray<string>([v16_1, "...", v1_1.slice(~~toInt32(v17_1), ~~toInt32(v18_1) + 1)]));
     }
 }
 
 export function closure38(v0_1: int64, v1_1: string): string {
-    return method5(v0_1, v1_1);
+    return method4(v0_1, v1_1);
 }
 
 export function closure37(unitVar: void, v0_1: int64): ((arg0: string) => string) {
@@ -263,14 +259,14 @@ export function closure39(unitVar: void, v0_1: Error): string {
     }
 }
 
-export function method6(v0_1: int32, v1_1: Mut0): boolean {
+export function method5(v0_1: int32, v1_1: Mut0): boolean {
     return v1_1.l0 < v0_1;
 }
 
 export function closure41(v0_1: string, v1_1: string[]): string {
     const v2_1: int32 = v1_1.length | 0;
     const v4_1: Mut0 = new Mut0(0, "");
-    while (method6(v2_1, v4_1)) {
+    while (method5(v2_1, v4_1)) {
         const v6_1: int32 = v4_1.l0 | 0;
         const v9_1: string = ((v4_1.l1 + item(v6_1, v1_1)) + v0_1) + "";
         const v10_1: int32 = (v6_1 + 1) | 0;
@@ -284,12 +280,8 @@ export function closure40(unitVar: void, v0_1: string): ((arg0: string[]) => str
     return (v: string[]): string => closure41(v0_1, v);
 }
 
-export function method7(v0_1: string): string {
-    return v0_1;
-}
-
 export function closure43(v0_1: string, v1_1: Iterable<string>): string {
-    return join(method7(v0_1), v1_1);
+    return join(v0_1, v1_1);
 }
 
 export function closure42(unitVar: void, v0_1: string): ((arg0: Iterable<string>) => string) {
@@ -304,7 +296,7 @@ export function closure44(unitVar: void, v0_1: string): ((arg0: string[]) => str
     return (v: string[]): string => closure45(v0_1, v);
 }
 
-export function method8(v0_1: int32, v1_1: Mut1): boolean {
+export function method6(v0_1: int32, v1_1: Mut1): boolean {
     return v1_1.l0 < v0_1;
 }
 
@@ -312,7 +304,7 @@ export function closure46(unitVar: void, v0_1: string): string[] {
     const v1_1: int32 = v0_1.length | 0;
     const v2_1: string[] = fill(new Array(v1_1), 0, v1_1, "");
     const v3_1: Mut1 = new Mut1(0);
-    while (method8(v1_1, v3_1)) {
+    while (method6(v1_1, v3_1)) {
         const v5_1: int32 = v3_1.l0 | 0;
         const v6_1: string = v0_1[v5_1];
         setItem(v2_1, v5_1, v6_1);
