@@ -64,6 +64,6 @@ Set-Location $ScriptDir
 
 Invoke-Dib init.dib
 { pwsh ../lib/rust/fable/build.ps1 } | Invoke-Block
-{ cargo +nightly build --release } | Invoke-Block -Location ../apps/spiral/builder
+{ pwsh ../apps/spiral/builder/build.ps1 -SkipFsx 1 } | Invoke-Block
 
 { pwsh ../lib/typescript/fable/build.ps1 } | Invoke-Block
