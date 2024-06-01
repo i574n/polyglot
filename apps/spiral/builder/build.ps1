@@ -1,7 +1,7 @@
 param(
     $fast,
     $SkipNotebook,
-    $SkipFsx,
+    $SkipPreBuild,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -12,7 +12,7 @@ $ErrorActionPreference = "Stop"
 
 $projectName = "spiral_builder"
 
-if (!$SkipFsx) {
+if (!$SkipPreBuild) {
     if (!$fast -and !$SkipNotebook) {
         { . ../dist/Supervisor$(_exe) --execute-command "../../../workspace/target/release/spiral_builder$(_exe) dib --path $projectName.dib" } | Invoke-Block -Retries 3
     }
@@ -24,18 +24,21 @@ if (!$SkipFsx) {
     $runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
     $builderArgs = @("$projectName.fsx", "--persist-only", $runtime, "--packages", "Fable.Core", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs")
     { . ../../builder/dist/Builder$(_exe) @builderArgs } | Invoke-Block
+
+    $targetDir = GetTargetDir $projectName
+
+    { BuildFable $targetDir $projectName "rs" } | Invoke-Block
+    (Get-Content "$targetDir/target/rs/$projectName.rs") `
+        -replace "../../../../lib", "../../../lib" `
+        -replace ".fsx`"]", ".rs`"]" `
+        | FixRust `
+        | Set-Content "$projectName.rs"
 }
 
-$targetDir = GetTargetDir $projectName
-
-{ BuildFable $targetDir $projectName "rs" } | Invoke-Block
-(Get-Content "$targetDir/target/rs/$projectName.rs") `
-    -replace "../../../../lib", "../../../lib" `
+(Get-Content "$projectName.rs") `
     -replace `
         ($IsWindows ? "std::os::unix::fs::symlink" :"std::os::windows::fs::symlink_dir"), `
         ($IsWindows ? "std::os::windows::fs::symlink_dir" :"std::os::unix::fs::symlink") `
-    -replace ".fsx`"]", ".rs`"]" `
-    | FixRust `
     | Set-Content "$projectName.rs"
 
 cargo fmt --
