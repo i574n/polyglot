@@ -99,7 +99,7 @@ class Mut3(Record):
 
 Mut3_reflection = _expr15
 
-def _expr17() -> TypeInfo:
+def _expr18() -> TypeInfo:
     return union_type("Common.US1", [], US1, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -115,7 +115,7 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr17
+US1_reflection = _expr18
 
 def _expr19() -> TypeInfo:
     return union_type("Common.US2", [], US2, lambda: [[("f0_0", US0_reflection())], []])
@@ -171,7 +171,7 @@ class US4(Union):
 
 US4_reflection = _expr21
 
-def _expr22() -> TypeInfo:
+def _expr24() -> TypeInfo:
     return union_type("Common.US5", [], US5, lambda: [[("f0_0", US4_reflection())], []])
 
 
@@ -187,7 +187,7 @@ class US5(Union):
         return ["US5_0", "US5_1"]
 
 
-US5_reflection = _expr22
+US5_reflection = _expr24
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:
@@ -454,11 +454,11 @@ def closure11(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_
 
     _v93.contents = x_2
     v98: US1 = default_arg(_v93.contents, US1(1))
-    def _arrow40(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
+    def _arrow44(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
         v105: Any = create(op_subtraction(ticks_1(now()), v98.fields[0]))
         return create_1(1, 1, 1, hours(v105), minutes(v105), seconds(v105), milliseconds(v105))
 
-    x_3: str = to_string(_arrow40() if (v98.tag == 0) else now(), method10())
+    x_3: str = to_string(_arrow44() if (v98.tag == 0) else now(), method10())
     _v10 = x_3
     v147: str
     if _v10 is None:
@@ -471,10 +471,10 @@ def closure11(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_
     _v161: str | None = None
     x_5: str = pad_left(v157.lower(), 7, " ")
     _v161 = x_5
-    def _arrow47(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> str:
+    def _arrow51(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> str:
         raise Exception("base.run_target / _v161=None")
 
-    return trim_end(trim_start(((((((((("" + v147) + " ") + (_arrow47() if (_v161 is None) else _v161)) + " #") + str(pattern_input[0].l0)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
+    return trim_end(trim_start(((((((((("" + v147) + " ") + (_arrow51() if (_v161 is None) else _v161)) + " #") + str(pattern_input[0].l0)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
 
 
 def method11(v0_1: US0, v1_1: Callable[[], str]) -> None:

@@ -130,7 +130,7 @@ let inline mapErrors (severity, errors, lastTopLevelIndex) allCode =
 #!fsharp
 
 let workspaceRoot = SpiralFileSystem.get_workspace_root ()
-let targetDir = workspaceRoot </> "target/polyglot/spiral_eval"
+let targetDir = workspaceRoot </> "target/spiral_Eval"
 [ targetDir ]
 |> List.iter (fun dir -> if Directory.Exists dir |> not then Directory.CreateDirectory dir |> ignore)
 

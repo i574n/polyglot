@@ -184,7 +184,7 @@ inl persist_code_project packages modules name hash code =
 
     inl workspace_root = file_system.get_workspace_root ()
     inl target_dir =
-        inl target_dir = workspace_root </> "target/polyglot/spiral_builder" </> name
+        inl target_dir = workspace_root </> "target/spiral_builder" </> name
         match hash with
         | Some hash => target_dir </> "packages" </> hash
         | None => target_dir

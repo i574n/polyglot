@@ -1,7 +1,7 @@
 /// # am'
 open rust_operators
 
-/// ## types ()
+/// ## types
 inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>]\n#endif\ntype Slice<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype Slice'<'T> = class end"
@@ -332,12 +332,10 @@ inl any forall t. (fn : t -> bool) (source : array_base t) : bool =
     !\($'"!source.any(|x| !fn(x))"')
 
 /// ## iter_collect vec
-open iter_prototypes
-
-instance iter_collect vec = fun (iter : iter_prototypes.into_iterator u) =>
+instance iter_collect vec = fun (iter : into_iterator u) =>
     !\($'"!iter.collect::<Vec<_>>()"')
 
-instance iter_collect'' vec = fun (iter : iter_prototypes.into_iterator (t (u v))) =>
+instance iter_collect'' vec = fun (iter : into_iterator (t (u v))) =>
     !\($'"!iter.collect::<Vec<_>>()"')
 
 /// ## new_vec

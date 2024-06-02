@@ -96,7 +96,7 @@ let inline persistCodeProject packages modules name hash code = async {
     let workspaceRoot = SpiralFileSystem.get_workspace_root ()
 
     let targetDir =
-        let targetDir = workspaceRoot </> "target/polyglot/builder" </> name
+        let targetDir = workspaceRoot </> "target/Builder" </> name
         match hash with
         | Some hash -> targetDir </> "packages" </> hash
         | None -> targetDir

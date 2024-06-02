@@ -14,51 +14,11 @@ open testing
 
 #!markdown
 
-## array
-
-#!spiral
-
-inl array x = x
+## arithmetic
 
 #!markdown
 
-## prototype
-
-#!spiral
-
-prototype append t : t -> t -> t
-prototype of_string t : string -> option t
-prototype to_string t : t -> string
-
-#!markdown
-
-## infer
-
-#!spiral
-
-nominal infer = $'_'
-
-#!markdown
-
-## invoke
-
-#!spiral
-
-inl invoke fn =
-    fn ()
-
-#!markdown
-
-## not_join
-
-#!spiral
-
-inl not_join x =
-    join not x
-
-#!markdown
-
-## (+.)
+### (+.)
 
 #!spiral
 
@@ -67,7 +27,7 @@ inl (+.) forall t. (a : t) (b : t) : t =
 
 #!markdown
 
-## (-.)
+### (-.)
 
 #!spiral
 
@@ -76,7 +36,7 @@ inl (-.) forall t. (a : t) (b : t) : t =
 
 #!markdown
 
-## (*.)
+### (*.)
 
 #!spiral
 
@@ -85,7 +45,7 @@ inl (*.) forall t. (a : t) (b : t) : t =
 
 #!markdown
 
-## (/.)
+### (/.)
 
 #!spiral
 
@@ -94,7 +54,11 @@ inl (/.) forall t. (a : t) (b : t) : t =
 
 #!markdown
 
-## (=.)
+## comparison
+
+#!markdown
+
+### (=.)
 
 #!spiral
 
@@ -103,7 +67,7 @@ inl (=.) forall t. (a : t) (b : t) : bool =
 
 #!markdown
 
-## (<>.)
+### (<>.)
 
 #!spiral
 
@@ -112,16 +76,19 @@ inl (<>.) forall t. (a : t) (b : t) : bool =
 
 #!markdown
 
-## (||>)
-
-#!spiral
-
-inl (||>) (arg1, arg2) fn =
-    arg2 |> fn arg1
+## composition
 
 #!markdown
 
-## (++)
+### append
+
+#!spiral
+
+prototype append t : t -> t -> t
+
+#!markdown
+
+### (++)
 
 #!spiral
 
@@ -130,30 +97,76 @@ inl (++) a b =
 
 #!markdown
 
-## target_runtime
-
-#!spiral
-
-union target_runtime =
-    | Native
-    | Wasm
-    | Contract
+## application
 
 #!markdown
 
-## target
+### (||>)
 
 #!spiral
 
-union target =
-    | Rust : target_runtime
-    | Fsharp : target_runtime
-    | TypeScript : target_runtime
-    | Python : target_runtime
+inl (||>) (arg1, arg2) fn =
+    arg2 |> fn arg1
 
 #!markdown
 
-## defaultof
+## logic
+
+#!markdown
+
+### not_join
+
+#!spiral
+
+inl not_join x =
+    join not x
+
+#!markdown
+
+### fix_condition
+
+#!spiral
+
+inl fix_condition x a b =
+    if x ()
+    then a () |> fun x => $'(*' : ()
+    else
+        $'*) else' : ()
+        b () |> fun x => $'(*' : ()
+    |> fun x => $'*)' : ()
+
+#!markdown
+
+## type
+
+#!markdown
+
+### infer
+
+#!spiral
+
+nominal infer = $'_'
+
+#!markdown
+
+### any
+
+#!spiral
+
+nominal any = $'obj'
+
+#!markdown
+
+### null
+
+#!spiral
+
+inl null forall t. () : t =
+    $'null |> unbox<`t>'
+
+#!markdown
+
+### defaultof
 
 #!spiral
 
@@ -162,7 +175,11 @@ inl defaultof forall t. () : t =
 
 #!markdown
 
-## emit
+## execution
+
+#!markdown
+
+### emit
 
 #!spiral
 
@@ -171,7 +188,7 @@ inl emit forall t. (x : t) : t =
 
 #!markdown
 
-## emit_unit
+### emit_unit
 
 #!spiral
 
@@ -180,52 +197,30 @@ inl emit_unit forall t. (x : t) : () =
 
 #!markdown
 
-## ref
+### use
 
 #!spiral
 
-nominal ref t = $'`t ref'
+inl use forall t. (x : t) : t =
+    $'use !x = !x ' : ()
+    $'!x '
 
 #!markdown
 
-## new_ref
+## function
+
+#!markdown
+
+### invoke
 
 #!spiral
 
-inl new_ref forall t. (x : t) : ref t =
-    $'ref !x '
+inl invoke fn =
+    fn ()
 
 #!markdown
 
-## ref_value
-
-#!spiral
-
-inl ref_value forall t. (x : ref t) : t =
-    $'!x.Value'
-
-#!markdown
-
-## ref_set_value
-
-#!spiral
-
-inl ref_set_value forall t. (value : t) (ref : ref t) : ref t =
-    $'!ref.Value <- !value '
-    ref
-
-#!markdown
-
-## unbox
-
-#!spiral
-
-inl unbox forall t u. (x : t) : u =
-    $'!x |> unbox<`u>'
-
-#!markdown
-
-## capture
+### capture
 
 #!spiral
 
@@ -244,7 +239,159 @@ inl capture forall t. (fn : () -> t) : t =
 
 #!markdown
 
-## run_target
+### memoize
+
+#!spiral
+
+nominal lazy t = $'Lazy<`t>'
+
+inl memoize forall t. (fn : () -> t) : () -> t =
+    inl fn = join fn
+    inl result : lazy t = $'lazy !fn ()'
+    fun () => $'!result.Value'
+
+#!spiral
+
+//// test
+
+inl count = mut 0i32
+inl add =
+    fun () => count <- *count + 1
+    |> memoize
+
+add ()
+add ()
+add ()
+
+*count
+|> _assert_eq 1
+
+#!markdown
+
+## pair
+
+#!markdown
+
+### pair
+
+#!spiral
+
+nominal pair a b = $'(`a * `b)'
+
+inl pair x y =
+    x, y
+
+#!spiral
+
+//// test
+
+pair 1i32 2i32
+|> _assert_eq (1, 2)
+
+#!markdown
+
+### new_pair
+
+#!spiral
+
+inl new_pair forall a b. (a : a) (b : b) : pair a b =
+    $'!a, !b '
+
+#!markdown
+
+### from_pair
+
+#!spiral
+
+inl from_pair forall a b. (pair : pair a b) : a * b =
+    $'let (a, b) = !pair '
+    $'a', $'b'
+
+#!spiral
+
+//// test
+
+new_pair "a" 1i32
+|> from_pair
+|> _assert_eq ("a", 1i32)
+
+#!spiral
+
+//// test
+
+new_pair "a" (new_pair 1i32 "b")
+|> from_pair
+
+#!markdown
+
+## ref
+
+#!markdown
+
+### ref
+
+#!spiral
+
+nominal ref t = $'`t ref'
+
+#!markdown
+
+### new_ref
+
+#!spiral
+
+inl new_ref forall t. (x : t) : ref t =
+    $'ref !x '
+
+#!markdown
+
+### ref_value
+
+#!spiral
+
+inl ref_value forall t. (x : ref t) : t =
+    $'!x.Value'
+
+#!markdown
+
+### ref_set_value
+
+#!spiral
+
+inl ref_set_value forall t. (value : t) (ref : ref t) : ref t =
+    $'!ref.Value <- !value '
+    ref
+
+#!markdown
+
+## target
+
+#!markdown
+
+### target_runtime
+
+#!spiral
+
+union target_runtime =
+    | Native
+    | Wasm
+    | Contract
+
+#!markdown
+
+### target
+
+#!spiral
+
+union target =
+    | Rust : target_runtime
+    | Fsharp : target_runtime
+    | TypeScript : target_runtime
+    | Python : target_runtime
+
+#!markdown
+
+### run_target
 
 #!spiral
 
@@ -293,7 +440,122 @@ run_target function
 
 #!markdown
 
-## exn
+## convert
+
+#!markdown
+
+### convert
+
+#!spiral
+
+inl convert forall t u. (x : t) : u =
+    $'!x |> `u '
+
+#!markdown
+
+### unbox
+
+#!spiral
+
+inl unbox forall t u. (x : t) : u =
+    $'!x |> unbox<`u>'
+
+#!markdown
+
+### u8
+
+#!spiral
+
+inl u8 forall t. (x : t) : u8 =
+    x |> $'uint8'
+
+#!markdown
+
+### u16
+
+#!spiral
+
+inl u16 forall t. (x : t) : u16 =
+    x |> $'uint16'
+
+#!markdown
+
+### u64
+
+#!spiral
+
+inl u64 forall t. (x : t) : u64 =
+    x |> $'uint64'
+
+#!markdown
+
+### i32
+
+#!spiral
+
+inl i32 forall t. (x : t) : i32 =
+    x |> $'int32'
+
+#!markdown
+
+### i64
+
+#!spiral
+
+inl i64 forall t. (x : t) : i64 =
+    x |> $'int64'
+
+#!markdown
+
+### f32
+
+#!spiral
+
+inl f32 forall t. (x : t) : f32 =
+    x |> $'float32'
+
+#!markdown
+
+### f64
+
+#!spiral
+
+inl f64 forall t. (x : t) : f64 =
+    x |> $'float'
+
+#!markdown
+
+### unativeint
+
+#!spiral
+
+nominal unativeint = $'unativeint'
+
+#!markdown
+
+### convert_i32
+
+#!spiral
+
+inl convert_i32 forall t. (x : t) : i32 =
+    x |> $'System.Convert.ToInt32'
+
+#!markdown
+
+### convert_i32_base
+
+#!spiral
+
+inl convert_i32_base forall t. (base : i32) (x : t) : i32 =
+    $'System.Convert.ToInt32 (!x, !base)'
+
+#!markdown
+
+## error
+
+#!markdown
+
+### exn
 
 #!spiral
 
@@ -301,7 +563,7 @@ nominal exn = $'exn'
 
 #!markdown
 
-## try
+### try
 
 #!spiral
 
@@ -312,7 +574,7 @@ inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
 
 #!markdown
 
-## try_unit
+### try_unit
 
 #!spiral
 
@@ -328,7 +590,7 @@ inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
 
 #!markdown
 
-## try_finally
+### try_finally
 
 #!spiral
 
@@ -344,202 +606,11 @@ inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
 
 #!markdown
 
-## fix_condition
-
-#!spiral
-
-inl fix_condition x a b =
-    if x ()
-    then a () |> fun x => $'(*' : ()
-    else
-        $'*) else' : ()
-        b () |> fun x => $'(*' : ()
-    |> fun x => $'*)' : ()
+## reflection
 
 #!markdown
 
-## any
-
-#!spiral
-
-nominal any = $'obj'
-
-#!markdown
-
-## u8
-
-#!spiral
-
-inl u8 forall t. (x : t) : u8 =
-    x |> $'uint8'
-
-#!markdown
-
-## u16
-
-#!spiral
-
-inl u16 forall t. (x : t) : u16 =
-    x |> $'uint16'
-
-#!markdown
-
-## u64
-
-#!spiral
-
-inl u64 forall t. (x : t) : u64 =
-    x |> $'uint64'
-
-#!markdown
-
-## i32
-
-#!spiral
-
-inl i32 forall t. (x : t) : i32 =
-    x |> $'int32'
-
-#!markdown
-
-## i64
-
-#!spiral
-
-inl i64 forall t. (x : t) : i64 =
-    x |> $'int64'
-
-#!markdown
-
-## f32
-
-#!spiral
-
-inl f32 forall t. (x : t) : f32 =
-    x |> $'float32'
-
-#!markdown
-
-## f64
-
-#!spiral
-
-inl f64 forall t. (x : t) : f64 =
-    x |> $'float'
-
-#!markdown
-
-## unativeint
-
-#!spiral
-
-nominal unativeint = $'unativeint'
-
-#!markdown
-
-## convert_i32
-
-#!spiral
-
-inl convert_i32 forall t. (x : t) : i32 =
-    x |> $'System.Convert.ToInt32'
-
-#!markdown
-
-## convert_i32_base
-
-#!spiral
-
-inl convert_i32_base forall t. (base : i32) (x : t) : i32 =
-    $'System.Convert.ToInt32 (!x, !base)'
-
-#!markdown
-
-## convert
-
-#!spiral
-
-inl convert forall t u. (x : t) : u =
-    $'!x |> `u '
-
-#!markdown
-
-## pair
-
-#!spiral
-
-nominal pair a b = $'(`a * `b)'
-
-inl pair x y =
-    x, y
-
-#!markdown
-
-## null
-
-#!spiral
-
-inl null forall t. () : t =
-    $'null |> unbox<`t>'
-
-#!markdown
-
-## use
-
-#!spiral
-
-inl use forall t. (x : t) : t =
-    $'use !x = !x ' : ()
-    $'!x '
-
-#!markdown
-
-## pair
-
-#!spiral
-
-//// test
-
-pair 1i32 2i32
-|> _assert_eq (1, 2)
-
-#!markdown
-
-## new_pair
-
-#!spiral
-
-inl new_pair forall a b. (a : a) (b : b) : pair a b =
-    $'!a, !b '
-
-#!markdown
-
-## from_pair
-
-#!spiral
-
-inl from_pair forall a b. (pair : pair a b) : a * b =
-    $'let (a, b) = !pair '
-    $'a', $'b'
-
-#!spiral
-
-//// test
-
-new_pair "a" 1i32
-|> from_pair
-|> _assert_eq ("a", 1i32)
-
-#!spiral
-
-//// test
-
-new_pair "a" (new_pair 1i32 "b")
-|> from_pair
-
-#!markdown
-
-## get_union_fields
+### get_union_fields
 
 #!spiral
 
@@ -570,7 +641,7 @@ fields
 
 #!markdown
 
-## get_union_fields_untag
+### get_union_fields_untag
 
 #!spiral
 
@@ -603,32 +674,3 @@ fields
 |> listm'.to_array'
 |> fun x => x : a i32 _
 |> _assert_eq (a ;[ Native; Wasm; Contract ])
-
-#!markdown
-
-## memoize
-
-#!spiral
-
-nominal lazy t = $'Lazy<`t>'
-
-inl memoize forall t. (fn : () -> t) : () -> t =
-    inl fn = join fn
-    inl result : lazy t = $'lazy !fn ()'
-    fun () => $'!result.Value'
-
-#!spiral
-
-//// test
-
-inl count = mut 0i32
-inl add =
-    fun () => count <- *count + 1
-    |> memoize
-
-add ()
-add ()
-add ()
-
-*count
-|> _assert_eq 1

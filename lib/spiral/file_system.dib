@@ -1565,7 +1565,7 @@ let rec trace_file text =
                 inl file_name = $'$"{!assembly_name}_{!guid}.txt"'
 
                 inl workspace_root = get_workspace_root ()
-                inl trace_dir = workspace_root </> "target/polyglot/trace"
+                inl trace_dir = workspace_root </> "target/trace"
                 trace_dir |> create_directory |> ignore
                 inl path = trace_dir </> file_name
                 text |> write_all_text_async path |> async.run_synchronously
@@ -1582,7 +1582,7 @@ inl get_count dir : i64 =
     a files |> am'.length
 
 types ()
-inl trace_dir = file_system.get_workspace_root () </> "target/polyglot/trace"
+inl trace_dir = file_system.get_workspace_root () </> "target/trace"
 trace_dir |> file_system.create_directory |> ignore
 
 inl count = get_count trace_dir

@@ -127,7 +127,7 @@ function GetTargetDir {
         [string] $ProjectName
     )
     $root = "$PSScriptRoot/../.."
-    $result = (Resolve-Path "$root/target/polyglot/builder/$ProjectName").Path
+    $result = (Resolve-Path "$root/target/Builder/$ProjectName").Path
     Write-Host "targetDir: $result"
     $result
 }

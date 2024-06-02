@@ -373,7 +373,7 @@ let inline buildFile timeout port cancellationToken path = async {
 #!fsharp
 
 let inline persistCode code = async {
-    let targetDir = workspaceRoot </> "target/polyglot/spiral_eval"
+    let targetDir = workspaceRoot </> "target/spiral_Eval"
 
     let packagesDir = targetDir </> "packages"
 

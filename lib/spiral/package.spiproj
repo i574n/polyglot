@@ -1,6 +1,7 @@
 packages:
     |core-
 modules:
+    am'_prototypes-
     base-
     rust
     rust_operators
@@ -13,12 +14,13 @@ modules:
     resultm
     console
     listm'
-    iter_prototypes
+    iter_prototypes-
     am'
     seq
     math
     mapm
     iter
+    sm'_prototypes-
     sm'
     sm'_operators
     guid

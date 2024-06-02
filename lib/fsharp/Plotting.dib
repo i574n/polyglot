@@ -37,7 +37,7 @@ open SpiralFileSystem.Operators
 #!fsharp
 
 let workspaceRoot = SpiralFileSystem.get_workspace_root ()
-let tmpSpiralPath = workspaceRoot </> "target/polyglot/plotting"
+let tmpSpiralPath = workspaceRoot </> "target/plot"
 let linePlotsDataPath = tmpSpiralPath </> "line_data"
 let linePlotsSvgPath = tmpSpiralPath </> "line_svg"
 

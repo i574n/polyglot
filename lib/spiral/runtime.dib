@@ -1169,8 +1169,13 @@ let execute_with_options (options : execution_options) : i32 * string =
                                     output
                                     |> process_output_status
                                     |> process_exit_status_code
-                                    |> optionm'.unwrap
-                                exit_code, None, Some channel_receiver'
+                                    |> optionm'.unbox
+                                match exit_code with
+                                | Some exit_code => exit_code, None, Some channel_receiver'
+                                | None =>
+                                    -1,
+                                    ("runtime.execute_with_options / exit_code=None" |> sm'.to_std_string |> Some),
+                                    Some channel_receiver'
                             | Error error =>
                                 trace Critical
                                     fun () => $'$"runtime.execute_with_options / output error"'
@@ -1191,7 +1196,7 @@ let execute_with_options (options : execution_options) : i32 * string =
                                     |> threading.arc_mutex_lock
                                     |> resultm.unwrap'
                                     |> iter.iter
-                                    |> iter_prototypes.iter_collect''
+                                    |> iter_collect''
                                     |> am'.vec_map sm'.from_std_string
                                     |> am'.from_vec
                                     |> fun x => x : _ i32 _
