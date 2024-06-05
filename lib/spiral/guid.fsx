@@ -1,7 +1,7 @@
 let rec closure0 () (v0 : string) : System.Guid =
     let v1 : System.Guid = v0 |> System.Guid 
     v1
-and closure1 () (v0 : string) : System.Guid =
+and method0 (v0 : string) : System.Guid =
     let v1 : bool = true
     let mutable _v1 : System.Guid option = None 
     
@@ -39,6 +39,8 @@ and closure1 () (v0 : string) : System.Guid =
     |> fun x -> _v1 <- Some x
     let v13 : System.Guid = match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
     v13
+and closure1 () (v0 : string) : System.Guid =
+    method0(v0)
 and closure2 () () : System.Guid =
     let v0 : (unit -> System.Guid) = System.Guid.NewGuid
     v0 ()

@@ -160,7 +160,7 @@ class US4(Union):
 US4_reflection = _expr148
 
 def _expr149() -> TypeInfo:
-    return union_type("Runtime.US5", [], US5, lambda: [[("f0_0", US4_reflection())], [("f1_0", US4_reflection())], [("f2_0", US4_reflection())], [("f3_0", US4_reflection())]])
+    return union_type("Runtime.US5", [], US5, lambda: [[("f0_0", US4_reflection())], [("f1_0", US4_reflection())], [("f2_0", US4_reflection())], [("f3_0", US4_reflection())], [("f4_0", US4_reflection())]])
 
 
 class US5(Union):
@@ -172,7 +172,7 @@ class US5(Union):
 
     @staticmethod
     def cases() -> list[str]:
-        return ["US5_0", "US5_1", "US5_2", "US5_3"]
+        return ["US5_0", "US5_1", "US5_2", "US5_3", "US5_4"]
 
 
 US5_reflection = _expr149
@@ -614,6 +614,15 @@ def US5__get_IsUS5_3(this: FSharpRef[US5], unit_arg: None) -> bool:
 
 
 
+def US5__get_IsUS5_4(this: FSharpRef[US5], unit_arg: None) -> bool:
+    if this.tag == 4:
+        return True
+
+    else: 
+        return False
+
+
+
 def UH0__get_IsUH0_0(this: UH0, unit_arg: None) -> bool:
     if this.tag == 0:
         return True
@@ -907,9 +916,35 @@ def closure1(unit_var: None, v0_1: str) -> None:
 
 def closure0(unit_var: None, v0_1: US0) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
     _v1: tuple[US1, US2] | None = None
-    v73: str = method1(method0())
-    v94: US2 = US2(0, US0(0)) if ("Verbose" == v73) else (US2(0, US0(1)) if ("Debug" == v73) else (US2(0, US0(2)) if ("Info" == v73) else (US2(0, US0(3)) if ("Warning" == v73) else (US2(0, US0(4)) if ("Critical" == v73) else US2(1)))))
-    x: tuple[US1, US2] = (US1(0, ticks_1(now())) if (method1(method3()) == "True") else US1(1), v94)
+    v133: str = method1(method0())
+    v139: US2 = US2(0, US0(0)) if ("Verbose" == v133) else US2(1)
+    v184: US2
+    if v139.tag == 0:
+        v184 = US2(0, v139.fields[0])
+
+    else: 
+        v147: US2 = US2(0, US0(1)) if ("Debug" == v133) else US2(1)
+        if v147.tag == 0:
+            v184 = US2(0, v147.fields[0])
+
+        else: 
+            v155: US2 = US2(0, US0(2)) if ("Info" == v133) else US2(1)
+            if v155.tag == 0:
+                v184 = US2(0, v155.fields[0])
+
+            else: 
+                v163: US2 = US2(0, US0(3)) if ("Warning" == v133) else US2(1)
+                if v163.tag == 0:
+                    v184 = US2(0, v163.fields[0])
+
+                else: 
+                    v171: US2 = US2(0, US0(4)) if ("Critical" == v133) else US2(1)
+                    v184 = US2(0, v171.fields[0]) if (v171.tag == 0) else US2(1)
+
+
+
+
+    x: tuple[US1, US2] = (US1(0, ticks_1(now())) if (method1(method3()) == "True") else US1(1), v184)
     _v1 = x
     pattern_input: tuple[US1, US2]
     if _v1 is None:
@@ -918,19 +953,19 @@ def closure0(unit_var: None, v0_1: US0) -> tuple[Mut0, Mut1, Mut2, int64 | None,
     else: 
         pattern_input = _v1
 
-    v139: US2 = pattern_input[1]
-    v138: US1 = pattern_input[0]
-    def v146(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
+    v259: US2 = pattern_input[1]
+    v258: US1 = pattern_input[0]
+    def v266(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
         closure1(None, v)
 
-    v147: Mut3 = Mut3(v146)
-    return (Mut0(int64(0)), Mut1(True), Mut2(v139.fields[0] if (v139.tag == 0) else v0_1), v138.fields[0] if (v138.tag == 0) else None, v147)
+    v267: Mut3 = Mut3(v266)
+    return (Mut0(int64(0)), Mut1(True), Mut2(v259.fields[0] if (v259.tag == 0) else v0_1), v258.fields[0] if (v258.tag == 0) else None, v267)
 
 
 def closure2(unit_var: None, unit_var_1: None) -> bool:
     _v0: bool | None = None
     x: bool
-    raise Exception(("runtime.is_windows / target: " + str(US5(3, US4(0)))) + "")
+    raise Exception(("runtime.is_windows / target: " + str(US5(4, US4(0)))) + "")
     _v0 = x
     if _v0 is None:
         raise Exception("base.run_target / _v0=None")
@@ -994,14 +1029,47 @@ def closure7(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_v
     else: 
         v147 = _v10
 
-    v157: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
-    _v161: str | None = None
-    x_5: str = pad_left(v157.lower(), 7, " ")
-    _v161 = x_5
-    def _arrow167(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> str:
-        raise Exception("base.run_target / _v161=None")
+    v154: US3 = US3(0, "Verbose") if (True if (v0_1.tag == 0) else False) else US3(1)
+    v203: US3
+    if v154.tag == 0:
+        v203 = US3(0, v154.fields[0])
 
-    return trim_end(trim_start(((((((((("" + v147) + " ") + (_arrow167() if (_v161 is None) else _v161)) + " #") + str(pattern_input[0].l0)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
+    else: 
+        v163: US3 = US3(0, "Debug") if (True if (v0_1.tag == 1) else False) else US3(1)
+        if v163.tag == 0:
+            v203 = US3(0, v163.fields[0])
+
+        else: 
+            v172: US3 = US3(0, "Info") if (True if (v0_1.tag == 2) else False) else US3(1)
+            if v172.tag == 0:
+                v203 = US3(0, v172.fields[0])
+
+            else: 
+                v181: US3 = US3(0, "Warning") if (True if (v0_1.tag == 3) else False) else US3(1)
+                if v181.tag == 0:
+                    v203 = US3(0, v181.fields[0])
+
+                else: 
+                    v190: US3 = US3(0, "Critical") if (True if (v0_1.tag == 4) else False) else US3(1)
+                    v203 = US3(0, v190.fields[0]) if (v190.tag == 0) else US3(1)
+
+
+
+
+    v207: str
+    if v203.tag == 0:
+        v207 = v203.fields[0]
+
+    else: 
+        raise Exception("Option does not have a value.")
+
+    _v211: str | None = None
+    x_5: str = pad_left(v207.lower(), 7, " ")
+    _v211 = x_5
+    def _arrow167(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> str:
+        raise Exception("base.run_target / _v211=None")
+
+    return trim_end(trim_start(((((((((("" + v147) + " ") + (_arrow167() if (_v211 is None) else _v211)) + " #") + str(pattern_input[0].l0)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
 
 
 def method8(v0_1: US0, v1_1: Callable[[], str]) -> None:
@@ -1077,7 +1145,7 @@ def closure3(unit_var: None, unit_var_1: None) -> None:
 def closure8(unit_var: None, unit_var_1: None) -> str:
     _v0: bool | None = None
     x: bool
-    raise Exception(("runtime.is_windows / target: " + str(US5(3, US4(0)))) + "")
+    raise Exception(("runtime.is_windows / target: " + str(US5(4, US4(0)))) + "")
     _v0 = x
     def _arrow170(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> bool:
         raise Exception("base.run_target / _v0=None")
@@ -1321,7 +1389,7 @@ def method10(v0_1: str) -> tuple[str, str]:
 
 
 def closure12(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: bool, v6_1: str | None, unit_var: None) -> str:
-    return to_text(interpolate("execute_with_options_async / options: %A%P()", [(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1)]))
+    return to_text(interpolate("runtime.execute_with_options_async / options: %A%P()", [(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1)]))
 
 
 def method15(__unit: None=None) -> Callable[[], str]:
@@ -1338,6 +1406,26 @@ def closure14(v0_1: str, unit_var: None) -> str:
 def closure13(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: bool, v6_1: str | None, v7_1: None, v8_1: Any, v9: None) -> None:
     _v10: Async[None] | None = None
     _v10 = None
+    v38: Async[None]
+    if _v10 is None:
+        raise Exception("base.run_target / _v10=None")
+
+    else: 
+        v38 = _v10
+
+    _v39: None | None = None
+    _v39 = some(None)
+    if _v39 is None:
+        raise Exception("base.run_target / _v39=None")
+
+    else: 
+        value_12(_v39)
+
+
+
+def closure15(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: bool, v6_1: str | None, v7_1: None, v8_1: Any, v9: None) -> None:
+    _v10: Async[None] | None = None
+    _v10 = None
     v39: Async[None]
     if _v10 is None:
         raise Exception("base.run_target / _v10=None")
@@ -1352,26 +1440,6 @@ def closure13(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, 
 
     else: 
         value_12(_v40)
-
-
-
-def closure15(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: bool, v6_1: str | None, v7_1: None, v8_1: Any, v9: None) -> None:
-    _v10: Async[None] | None = None
-    _v10 = None
-    v40: Async[None]
-    if _v10 is None:
-        raise Exception("base.run_target / _v10=None")
-
-    else: 
-        v40 = _v10
-
-    _v41: None | None = None
-    _v41 = some(None)
-    if _v41 is None:
-        raise Exception("base.run_target / _v41=None")
-
-    else: 
-        value_12(_v41)
 
 
 
@@ -1394,11 +1462,11 @@ def closure16(v0_1: None, unit_var: None) -> None:
 
 
 def closure17(v0_1: Any, unit_var: None) -> str:
-    return to_text(interpolate("execute_with_options_async / WaitForExitAsync / ex: %A%P()", [v0_1]))
+    return to_text(interpolate("runtime.execute_with_options_async / WaitForExitAsync / ex: %A%P()", [v0_1]))
 
 
 def closure18(v0_1: int, v1_1: str, unit_var: None) -> str:
-    return ((("execute_with_options_async / exit_code: " + str(v0_1)) + " / output.Length: ") + str(len(v1_1))) + ""
+    return ((("runtime.execute_with_options_async / exit_code: " + str(v0_1)) + " / output.Length: ") + str(len(v1_1))) + ""
 
 
 def method9(v0_1: CancellationToken | None, v1_1: str, v2_1: Array[tuple[str, str]], v3_1: Callable[[tuple[bool, str, int]], Async[None]] | None, v4_1: Callable[[std_sync_Arc_1[std_sync_Mutex_1[std_process_ChildStdin]]], None] | None, v5_1: bool, v6_1: str | None=None) -> Async[tuple[int, str]]:

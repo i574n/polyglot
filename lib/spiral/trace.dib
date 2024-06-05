@@ -36,21 +36,6 @@ union trace_level =
     | Warning
     | Critical
 
-instance to_string trace_level = function
-    | Verbose => "Verbose"
-    | Debug => "Debug"
-    | Info => "Info"
-    | Warning => "Warning"
-    | Critical => "Critical"
-
-instance of_string trace_level = function
-    | "Verbose" => Some Verbose
-    | "Debug" => Some Debug
-    | "Info" => Some Info
-    | "Warning" => Some Warning
-    | "Critical" => Some Critical
-    | _ => None
-
 #!markdown
 
 ## read_state
@@ -69,7 +54,7 @@ inl read_state () =
                 trace_level =
                     (join "TRACE_LEVEL")
                     |> env.get_environment_variable
-                    |> of_string
+                    |> reflection.union_try_pick
                 repl_start =
                     inl automation = env.get_environment_variable (join "AUTOMATION")
                     if automation = "True"
@@ -217,7 +202,7 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string)
                             | Rust _ => join "hh:mm:ss"
                             | _ => join "HH:mm:ss"
                         $'!date_time.ToString !format '
-        inl level_str = level |> to_string |> sm'.to_lower |> sm'.pad_left 7 ' '
+        inl level_str = level |> reflection.union_to_string |> sm'.to_lower |> sm'.pad_left 7 ' '
         inl level_str =
             run_target function
             | Rust _ => fun () =>
@@ -244,16 +229,7 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string)
 #!spiral
 
 //// test
-
-trace Debug (fun () => "test") _locals
-trace Debug (fun () => "test") _locals
-get_trace_state_or_init None .count
-|> fun x => *x
-|> _assert_eq 2
-
-#!spiral
-
-//// test
+///! fsharp
 ///! rust
 ///! typescript
 ///! python

@@ -502,7 +502,7 @@ export function method2(): string {
 
 export function method1(v0_1: string): string {
     let _v1: Option<string> = undefined;
-    const x: string = process.env[v0_1];
+    const x: string = process.env[v0_1] ?? "";
     _v1 = x;
     if (_v1 == null) {
         throw new Error("base.run_target / _v1=None");
@@ -521,9 +521,35 @@ export function closure1(unitVar: void, v0_1: string): void {
 
 export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Option<int64>, Mut3] {
     let _v1: Option<[US1_$union, US2_$union]> = undefined;
-    const v40: string = method1(method0());
-    const v61: US2_$union = ("Verbose" === v40) ? US2_US2_0(US0_US0_0()) : (("Debug" === v40) ? US2_US2_0(US0_US0_1()) : (("Info" === v40) ? US2_US2_0(US0_US0_2()) : (("Warning" === v40) ? US2_US2_0(US0_US0_3()) : (("Critical" === v40) ? US2_US2_0(US0_US0_4()) : US2_US2_1()))));
-    const x = [(method1(method3()) === "True") ? US1_US1_0(getTicks(now())) : US1_US1_1(), v61] as [US1_$union, US2_$union];
+    const v70: string = method1(method0());
+    const v76: US2_$union = ("Verbose" === v70) ? US2_US2_0(US0_US0_0()) : US2_US2_1();
+    let v121: US2_$union;
+    if (v76.tag === /* US2_0 */ 0) {
+        v121 = US2_US2_0(v76.fields[0]);
+    }
+    else {
+        const v84: US2_$union = ("Debug" === v70) ? US2_US2_0(US0_US0_1()) : US2_US2_1();
+        if (v84.tag === /* US2_0 */ 0) {
+            v121 = US2_US2_0(v84.fields[0]);
+        }
+        else {
+            const v92: US2_$union = ("Info" === v70) ? US2_US2_0(US0_US0_2()) : US2_US2_1();
+            if (v92.tag === /* US2_0 */ 0) {
+                v121 = US2_US2_0(v92.fields[0]);
+            }
+            else {
+                const v100: US2_$union = ("Warning" === v70) ? US2_US2_0(US0_US0_3()) : US2_US2_1();
+                if (v100.tag === /* US2_0 */ 0) {
+                    v121 = US2_US2_0(v100.fields[0]);
+                }
+                else {
+                    const v108: US2_$union = ("Critical" === v70) ? US2_US2_0(US0_US0_4()) : US2_US2_1();
+                    v121 = ((v108.tag === /* US2_0 */ 0) ? US2_US2_0(v108.fields[0]) : US2_US2_1());
+                }
+            }
+        }
+    }
+    const x = [(method1(method3()) === "True") ? US1_US1_0(getTicks(now())) : US1_US1_1(), v121] as [US1_$union, US2_$union];
     _v1 = x;
     let patternInput: [US1_$union, US2_$union];
     if (_v1 == null) {
@@ -532,12 +558,12 @@ export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Op
     else {
         patternInput = value_1(_v1);
     }
-    const v139: US2_$union = patternInput[1];
-    const v138: US1_$union = patternInput[0];
-    const v147: Mut3 = new Mut3((v: string): void => {
+    const v259: US2_$union = patternInput[1];
+    const v258: US1_$union = patternInput[0];
+    const v267: Mut3 = new Mut3((v: string): void => {
         closure1(undefined, v);
     });
-    return [new Mut0(0n), new Mut1(true), new Mut2((v139.tag === /* US2_0 */ 0) ? v139.fields[0] : v0_1), (v138.tag === /* US1_0 */ 0) ? v138.fields[0] : undefined, v147] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
+    return [new Mut0(0n), new Mut1(true), new Mut2((v259.tag === /* US2_0 */ 0) ? v259.fields[0] : v0_1), (v258.tag === /* US1_0 */ 0) ? v258.fields[0] : undefined, v267] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
 }
 
 export function closure4(v0_1: int32, v1_1: string, unitVar: void): string {
@@ -588,13 +614,46 @@ export function closure6(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => st
     else {
         v147 = value_1(_v10);
     }
-    const v157: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v161: Option<string> = undefined;
-    const x_5: string = padLeft(v157.toLocaleLowerCase(), 7, " ");
-    _v161 = x_5;
-    return trimEnd(trimStart(`${v147} ${(_v161 == null) ? (() => {
-        throw new Error("base.run_target / _v161=None");
-    })() : value_1(_v161)} #${patternInput[0].l0} ${v1_1()} / ${v2_1()}`), " ", "/");
+    const v154: US3_$union = (v0_1.tag === /* US0_0 */ 0) ? US3_US3_0("Verbose") : US3_US3_1();
+    let v203: US3_$union;
+    if (v154.tag === /* US3_0 */ 0) {
+        v203 = US3_US3_0(v154.fields[0]);
+    }
+    else {
+        const v163: US3_$union = (v0_1.tag === /* US0_1 */ 1) ? US3_US3_0("Debug") : US3_US3_1();
+        if (v163.tag === /* US3_0 */ 0) {
+            v203 = US3_US3_0(v163.fields[0]);
+        }
+        else {
+            const v172: US3_$union = (v0_1.tag === /* US0_2 */ 2) ? US3_US3_0("Info") : US3_US3_1();
+            if (v172.tag === /* US3_0 */ 0) {
+                v203 = US3_US3_0(v172.fields[0]);
+            }
+            else {
+                const v181: US3_$union = (v0_1.tag === /* US0_3 */ 3) ? US3_US3_0("Warning") : US3_US3_1();
+                if (v181.tag === /* US3_0 */ 0) {
+                    v203 = US3_US3_0(v181.fields[0]);
+                }
+                else {
+                    const v190: US3_$union = (v0_1.tag === /* US0_4 */ 4) ? US3_US3_0("Critical") : US3_US3_1();
+                    v203 = ((v190.tag === /* US3_0 */ 0) ? US3_US3_0(v190.fields[0]) : US3_US3_1());
+                }
+            }
+        }
+    }
+    let v207: string;
+    if (v203.tag === /* US3_0 */ 0) {
+        v207 = v203.fields[0];
+    }
+    else {
+        throw new Error("Option does not have a value.");
+    }
+    let _v211: Option<string> = undefined;
+    const x_5: string = padLeft(v207.toLocaleLowerCase(), 7, " ");
+    _v211 = x_5;
+    return trimEnd(trimStart(`${v147} ${(_v211 == null) ? (() => {
+        throw new Error("base.run_target / _v211=None");
+    })() : value_1(_v211)} #${patternInput[0].l0} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
 export function method8(v0_1: US0_$union, v1_1: (() => string)): void {

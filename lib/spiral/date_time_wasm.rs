@@ -117,6 +117,7 @@ pub mod Date_time {
         US3_1(Date_time::US2),
         US3_2(Date_time::US2),
         US3_3(Date_time::US2),
+        US3_4(Date_time::US2),
     }
     impl Date_time::US3 {
         pub fn get_IsUS3_0(this_: &MutCell<Date_time::US3>, unitArg: ()) -> bool {
@@ -141,6 +142,13 @@ pub mod Date_time {
             }
         }
         pub fn get_IsUS3_3(this_: &MutCell<Date_time::US3>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS3_4(this_: &MutCell<Date_time::US3>, unitArg: ()) -> bool {
             if unreachable!() {
                 true
             } else {

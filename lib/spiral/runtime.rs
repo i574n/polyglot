@@ -310,6 +310,7 @@ pub mod Runtime {
         US5_1(Runtime::US4),
         US5_2(Runtime::US4),
         US5_3(Runtime::US4),
+        US5_4(Runtime::US4),
     }
     impl Runtime::US5 {
         pub fn get_IsUS5_0(this_: &MutCell<Runtime::US5>, unitArg: ()) -> bool {
@@ -334,6 +335,13 @@ pub mod Runtime {
             }
         }
         pub fn get_IsUS5_3(this_: &MutCell<Runtime::US5>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS5_4(this_: &MutCell<Runtime::US5>, unitArg: ()) -> bool {
             if unreachable!() {
                 true
             } else {
@@ -798,22 +806,70 @@ pub mod Runtime {
         let _v1: MutCell<Option<(Runtime::US1, Runtime::US2)>> =
             MutCell::new(None::<(Runtime::US1, Runtime::US2)>);
         let v3_1: string = Runtime::method1(Runtime::method0());
-        let v24: Runtime::US2 = if string("Verbose") == v3_1.clone() {
+        let v9: Runtime::US2 = if string("Verbose") == v3_1.clone() {
             Runtime::US2::US2_0(Runtime::US0::US0_0)
         } else {
-            if string("Debug") == v3_1.clone() {
-                Runtime::US2::US2_0(Runtime::US0::US0_1)
-            } else {
-                if string("Info") == v3_1.clone() {
-                    Runtime::US2::US2_0(Runtime::US0::US0_2)
+            Runtime::US2::US2_1
+        };
+        let v54: Runtime::US2 = match &v9 {
+            Runtime::US2::US2_0(v9_0_0) => Runtime::US2::US2_0(match &v9 {
+                Runtime::US2::US2_0(x) => x.clone(),
+                _ => unreachable!(),
+            }),
+            _ => {
+                let v17: Runtime::US2 = if string("Debug") == v3_1.clone() {
+                    Runtime::US2::US2_0(Runtime::US0::US0_1)
                 } else {
-                    if string("Warning") == v3_1.clone() {
-                        Runtime::US2::US2_0(Runtime::US0::US0_3)
-                    } else {
-                        if string("Critical") == v3_1 {
-                            Runtime::US2::US2_0(Runtime::US0::US0_4)
+                    Runtime::US2::US2_1
+                };
+                match &v17 {
+                    Runtime::US2::US2_0(v17_0_0) => Runtime::US2::US2_0(match &v17 {
+                        Runtime::US2::US2_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    }),
+                    _ => {
+                        let v25: Runtime::US2 = if string("Info") == v3_1.clone() {
+                            Runtime::US2::US2_0(Runtime::US0::US0_2)
                         } else {
                             Runtime::US2::US2_1
+                        };
+                        match &v25 {
+                            Runtime::US2::US2_0(v25_0_0) => Runtime::US2::US2_0(match &v25 {
+                                Runtime::US2::US2_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            }),
+                            _ => {
+                                let v33: Runtime::US2 = if string("Warning") == v3_1.clone() {
+                                    Runtime::US2::US2_0(Runtime::US0::US0_3)
+                                } else {
+                                    Runtime::US2::US2_1
+                                };
+                                match &v33 {
+                                    Runtime::US2::US2_0(v33_0_0) => {
+                                        Runtime::US2::US2_0(match &v33 {
+                                            Runtime::US2::US2_0(x) => x.clone(),
+                                            _ => unreachable!(),
+                                        })
+                                    }
+                                    _ => {
+                                        let v41: Runtime::US2 =
+                                            if string("Critical") == v3_1.clone() {
+                                                Runtime::US2::US2_0(Runtime::US0::US0_4)
+                                            } else {
+                                                Runtime::US2::US2_1
+                                            };
+                                        match &v41 {
+                                            Runtime::US2::US2_0(v41_0_0) => {
+                                                Runtime::US2::US2_0(match &v41 {
+                                                    Runtime::US2::US2_0(x) => x.clone(),
+                                                    _ => unreachable!(),
+                                                })
+                                            }
+                                            _ => Runtime::US2::US2_1,
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -829,7 +885,7 @@ pub mod Runtime {
                 } else {
                     Runtime::US1::US1_1
                 },
-                v24,
+                v54,
             );
             _v1.set(Some(x))
         }
@@ -838,9 +894,9 @@ pub mod Runtime {
                 None => panic!("{}", string("base.run_target / _v1=None"),),
                 Some(_v1_0_0) => _v1_0_0.clone(),
             };
-            let v139: Runtime::US2 = patternInput.1.clone();
-            let v138: Runtime::US1 = patternInput.0.clone();
-            let v147: LrcPtr<Runtime::Mut3> = LrcPtr::new(Runtime::Mut3 {
+            let v259: Runtime::US2 = patternInput.1.clone();
+            let v258: Runtime::US1 = patternInput.0.clone();
+            let v267: LrcPtr<Runtime::Mut3> = LrcPtr::new(Runtime::Mut3 {
                 l0: MutCell::new(Func1::new(move |v: string| Runtime::closure1((), v))),
             });
             (
@@ -851,22 +907,22 @@ pub mod Runtime {
                     l0: MutCell::new(true),
                 }),
                 LrcPtr::new(Runtime::Mut2 {
-                    l0: MutCell::new(match &v139 {
-                        Runtime::US2::US2_0(v139_0_0) => match &v139 {
+                    l0: MutCell::new(match &v259 {
+                        Runtime::US2::US2_0(v259_0_0) => match &v259 {
                             Runtime::US2::US2_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
                         _ => v0_1,
                     }),
                 }),
-                match &v138 {
-                    Runtime::US1::US1_0(v138_0_0) => Some(match &v138 {
+                match &v258 {
+                    Runtime::US1::US1_0(v258_0_0) => Some(match &v258 {
                         Runtime::US1::US1_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
                     _ => None::<i64>,
                 },
-                v147,
+                v267,
             )
         }
     }
@@ -964,41 +1020,133 @@ pub mod Runtime {
                         None => panic!("{}", string("base.run_target / _v10=None"),),
                         Some(_v10_0_0) => _v10_0_0.clone(),
                     };
-                    let v160: string = padLeft(
-                        toLower(match &v0_1 {
-                            Runtime::US0::US0_1 => string("Debug"),
-                            Runtime::US0::US0_2 => string("Info"),
-                            Runtime::US0::US0_0 => string("Verbose"),
-                            Runtime::US0::US0_3 => string("Warning"),
-                            _ => string("Critical"),
+                    let v154: Runtime::US3 = if if let Runtime::US0::US0_0 = &v0_1 {
+                        true
+                    } else {
+                        false
+                    } {
+                        Runtime::US3::US3_0(string("Verbose"))
+                    } else {
+                        Runtime::US3::US3_1
+                    };
+                    let v203: Runtime::US3 = match &v154 {
+                        Runtime::US3::US3_0(v154_0_0) => Runtime::US3::US3_0(match &v154 {
+                            Runtime::US3::US3_0(x) => x.clone(),
+                            _ => unreachable!(),
+                        }),
+                        _ => {
+                            let v163: Runtime::US3 = if if let Runtime::US0::US0_1 = &v0_1 {
+                                true
+                            } else {
+                                false
+                            } {
+                                Runtime::US3::US3_0(string("Debug"))
+                            } else {
+                                Runtime::US3::US3_1
+                            };
+                            match &v163 {
+                                Runtime::US3::US3_0(v163_0_0) => Runtime::US3::US3_0(match &v163 {
+                                    Runtime::US3::US3_0(x) => x.clone(),
+                                    _ => unreachable!(),
+                                }),
+                                _ => {
+                                    let v172: Runtime::US3 = if if let Runtime::US0::US0_2 = &v0_1 {
+                                        true
+                                    } else {
+                                        false
+                                    } {
+                                        Runtime::US3::US3_0(string("Info"))
+                                    } else {
+                                        Runtime::US3::US3_1
+                                    };
+                                    match &v172 {
+                                        Runtime::US3::US3_0(v172_0_0) => {
+                                            Runtime::US3::US3_0(match &v172 {
+                                                Runtime::US3::US3_0(x) => x.clone(),
+                                                _ => unreachable!(),
+                                            })
+                                        }
+                                        _ => {
+                                            let v181: Runtime::US3 =
+                                                if if let Runtime::US0::US0_3 = &v0_1 {
+                                                    true
+                                                } else {
+                                                    false
+                                                } {
+                                                    Runtime::US3::US3_0(string("Warning"))
+                                                } else {
+                                                    Runtime::US3::US3_1
+                                                };
+                                            match &v181 {
+                                                Runtime::US3::US3_0(v181_0_0) => {
+                                                    Runtime::US3::US3_0(match &v181 {
+                                                        Runtime::US3::US3_0(x) => x.clone(),
+                                                        _ => unreachable!(),
+                                                    })
+                                                }
+                                                _ => {
+                                                    let v190: Runtime::US3 =
+                                                        if if let Runtime::US0::US0_4 = &v0_1 {
+                                                            true
+                                                        } else {
+                                                            false
+                                                        } {
+                                                            Runtime::US3::US3_0(string("Critical"))
+                                                        } else {
+                                                            Runtime::US3::US3_1
+                                                        };
+                                                    match &v190 {
+                                                        Runtime::US3::US3_0(v190_0_0) => {
+                                                            Runtime::US3::US3_0(match &v190 {
+                                                                Runtime::US3::US3_0(x) => x.clone(),
+                                                                _ => unreachable!(),
+                                                            })
+                                                        }
+                                                        _ => Runtime::US3::US3_1,
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+                    let v210: string = padLeft(
+                        toLower(match &v203 {
+                            Runtime::US3::US3_0(v203_0_0) => match &v203 {
+                                Runtime::US3::US3_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            },
+                            _ => panic!("{}", string("Option does not have a value."),),
                         }),
                         7_i32,
                         ' ',
                     );
-                    let _v161: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v176: &str = match &v0_1 {
+                    let _v211: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v226: &str = match &v0_1 {
                         Runtime::US0::US0_1 => inline_colorization::color_bright_blue,
                         Runtime::US0::US0_2 => inline_colorization::color_bright_green,
                         Runtime::US0::US0_0 => inline_colorization::color_bright_black,
                         Runtime::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v178: &str = &*v160;
-                    let v180: &str = inline_colorization::color_reset;
-                    let v182: string = string("format!(\"{v176}{v178}{v180}\")");
-                    let v183: std::string::String = format!("{v176}{v178}{v180}");
+                    let v228: &str = &*v210;
+                    let v230: &str = inline_colorization::color_reset;
+                    let v232: string = string("format!(\"{v226}{v228}{v230}\")");
+                    let v233: std::string::String = format!("{v226}{v228}{v230}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v183);
-                        _v161.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v233);
+                        _v211.set(Some(x_5))
                     }
                     trimEndChars(
                         trimStartChars(
                             sprintf!(
                                 "{} {} #{} {} / {}",
                                 v147,
-                                match &_v161.get().clone() {
-                                    None => panic!("{}", string("base.run_target / _v161=None"),),
-                                    Some(_v161_0_0) => _v161_0_0.clone(),
+                                match &_v211.get().clone() {
+                                    None => panic!("{}", string("base.run_target / _v211=None"),),
+                                    Some(_v211_0_0) => _v211_0_0.clone(),
                                 },
                                 (patternInput.0.clone()).l0.get().clone(),
                                 v1_1(),
@@ -1511,7 +1659,7 @@ pub mod Runtime {
         unitVar: (),
     ) -> string {
         sprintf!(
-            "execute_with_options_async / options: {:?}",
+            "runtime.execute_with_options_async / options: {:?}",
             (v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1)
         )
     }
@@ -1608,13 +1756,13 @@ pub mod Runtime {
     }
     pub fn closure17(v0_1: LrcPtr<TaskCanceledException>, unitVar: ()) -> string {
         sprintf!(
-            "execute_with_options_async / WaitForExitAsync / ex: {:?}",
+            "runtime.execute_with_options_async / WaitForExitAsync / ex: {:?}",
             v0_1
         )
     }
     pub fn closure18(v0_1: i32, v1_1: string, unitVar: ()) -> string {
         sprintf!(
-            "execute_with_options_async / exit_code: {} / output.Length: {}",
+            "runtime.execute_with_options_async / exit_code: {} / output.Length: {}",
             v0_1,
             length(v1_1)
         )

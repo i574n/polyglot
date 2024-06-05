@@ -29,6 +29,13 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>]\n#endif\ntype std_rc_Rc<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Weak<$0>\")>]\n#endif\ntype std_rc_Weak<'T> = class end"
 
+inl types () =
+    backend_switch {
+        Fsharp = fun () =>
+            types ()
+        Python = fun () => ()
+    }
+
 nominal unit = $'unit'
 nominal any = $'core_any_Any'
 nominal try t = $'core_ops_Try<`t>'

@@ -48,10 +48,23 @@ inl types () =
 #!spiral
 
 inl types () =
-    rust.types ()
-    mapm.types ()
-    am'.types ()
-    types ()
+    backend_switch {
+        Fsharp = fun () =>
+            rust.types ()
+            mapm.types ()
+            am'.types ()
+            types ()
+        Python = fun () => ()
+    }
+
+#!markdown
+
+## symbol_to_string
+
+#!spiral
+
+inl symbol_to_string forall t {symbol}. (x : t) : string =
+    !!!!SymbolToString(x)
 
 #!markdown
 
@@ -64,7 +77,10 @@ inl types () =
 #!spiral
 
 inl format_debug x : string =
-    $'$"%A{!x}"'
+    backend_switch {
+        Fsharp = fun () => $'$"%A{!x}"' : string
+        Python = fun () => $'f"{!x}"' : string
+    }
 
 #!markdown
 
@@ -73,7 +89,10 @@ inl format_debug x : string =
 #!spiral
 
 inl contains (value : string) (s : string) : bool =
-    $'!s.Contains !value '
+    backend_switch {
+        Fsharp = fun () => $'!s.Contains !value ' : bool
+        Python = fun () => $'!value in !s ' : bool
+    }
 
 #!markdown
 

@@ -8629,7 +8629,7 @@ a.anchor-link {
         <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">prefix</span> <span class="o">=</span> <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="nb">format</span> <span class="p">(</span><span class="n">join</span> <span class="s2">"yyyyMMdd-HHmm-ssff-ffff-f"</span><span class="p">)</span>
             <span class="n">inl</span> <span class="n">time_zone</span> <span class="o">=</span> <span class="n">date_time</span> <span class="o">|&gt;</span> <span class="n">get_utc_offset</span> <span class="p">(</span><span class="n">time_zone_local</span> <span class="p">())</span>
-            <span class="n">inl</span> <span class="n">time_zone_signal</span> <span class="o">=</span> <span class="p">(</span><span class="n">hours</span> <span class="n">time_zone</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">convert_i32</span>
+            <span class="n">inl</span> <span class="n">time_zone_signal</span> <span class="o">=</span> <span class="k">if</span> <span class="n">hours</span> <span class="n">time_zone</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">then</span> <span class="mi">1</span><span class="n">u8</span> <span class="k">else</span> <span class="mi">0</span>
             <span class="n">inl</span> <span class="n">time_zone_value</span> <span class="o">=</span> <span class="n">time_zone</span> <span class="o">|&gt;</span> <span class="n">time_span_format</span> <span class="p">(</span><span class="n">join</span> <span class="s2">"hhmm"</span><span class="p">)</span>
             <span class="n">inl</span> <span class="n">time_zone</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'$"{!time_zone_signal}{!time_zone_value}"'</span> <span class="p">:</span> <span class="n">string</span>
             <span class="n">parse</span> <span class="n">prefix</span> <span class="n">time_zone</span>
@@ -8663,7 +8663,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>20240531-2240-0691-9134-900400543210
+<pre>20240605-0352-0637-3751-300400543210
 </pre>
 </div>
 </div>
@@ -8699,7 +8699,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: "20240531-2240-3303-4186-000000543210" / expected: "20240531-2240-3303-4186-000000543210"
+<pre>assert_eq' / actual: "20240605-0352-5618-4844-000000543210" / expected: "20240605-0352-5618-4844-000000543210"
 </pre>
 </div>
 </div>

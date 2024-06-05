@@ -286,22 +286,67 @@ pub mod Trace {
         let _v1: MutCell<Option<(Trace::US1, Trace::US2)>> =
             MutCell::new(None::<(Trace::US1, Trace::US2)>);
         let v3: string = Trace::method1(Trace::method0());
-        let v24: Trace::US2 = if string("Verbose") == v3.clone() {
+        let v9: Trace::US2 = if string("Verbose") == v3.clone() {
             Trace::US2::US2_0(Trace::US0::US0_0)
         } else {
-            if string("Debug") == v3.clone() {
-                Trace::US2::US2_0(Trace::US0::US0_1)
-            } else {
-                if string("Info") == v3.clone() {
-                    Trace::US2::US2_0(Trace::US0::US0_2)
+            Trace::US2::US2_1
+        };
+        let v54: Trace::US2 = match &v9 {
+            Trace::US2::US2_0(v9_0_0) => Trace::US2::US2_0(match &v9 {
+                Trace::US2::US2_0(x) => x.clone(),
+                _ => unreachable!(),
+            }),
+            _ => {
+                let v17: Trace::US2 = if string("Debug") == v3.clone() {
+                    Trace::US2::US2_0(Trace::US0::US0_1)
                 } else {
-                    if string("Warning") == v3.clone() {
-                        Trace::US2::US2_0(Trace::US0::US0_3)
-                    } else {
-                        if string("Critical") == v3 {
-                            Trace::US2::US2_0(Trace::US0::US0_4)
+                    Trace::US2::US2_1
+                };
+                match &v17 {
+                    Trace::US2::US2_0(v17_0_0) => Trace::US2::US2_0(match &v17 {
+                        Trace::US2::US2_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    }),
+                    _ => {
+                        let v25: Trace::US2 = if string("Info") == v3.clone() {
+                            Trace::US2::US2_0(Trace::US0::US0_2)
                         } else {
                             Trace::US2::US2_1
+                        };
+                        match &v25 {
+                            Trace::US2::US2_0(v25_0_0) => Trace::US2::US2_0(match &v25 {
+                                Trace::US2::US2_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            }),
+                            _ => {
+                                let v33: Trace::US2 = if string("Warning") == v3.clone() {
+                                    Trace::US2::US2_0(Trace::US0::US0_3)
+                                } else {
+                                    Trace::US2::US2_1
+                                };
+                                match &v33 {
+                                    Trace::US2::US2_0(v33_0_0) => Trace::US2::US2_0(match &v33 {
+                                        Trace::US2::US2_0(x) => x.clone(),
+                                        _ => unreachable!(),
+                                    }),
+                                    _ => {
+                                        let v41: Trace::US2 = if string("Critical") == v3.clone() {
+                                            Trace::US2::US2_0(Trace::US0::US0_4)
+                                        } else {
+                                            Trace::US2::US2_1
+                                        };
+                                        match &v41 {
+                                            Trace::US2::US2_0(v41_0_0) => {
+                                                Trace::US2::US2_0(match &v41 {
+                                                    Trace::US2::US2_0(x) => x.clone(),
+                                                    _ => unreachable!(),
+                                                })
+                                            }
+                                            _ => Trace::US2::US2_1,
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -317,7 +362,7 @@ pub mod Trace {
                 } else {
                     Trace::US1::US1_1
                 },
-                v24,
+                v54,
             );
             _v1.set(Some(x))
         }
@@ -326,9 +371,9 @@ pub mod Trace {
                 None => panic!("{}", string("base.run_target / _v1=None"),),
                 Some(_v1_0_0) => _v1_0_0.clone(),
             };
-            let v139: Trace::US2 = patternInput.1.clone();
-            let v138: Trace::US1 = patternInput.0.clone();
-            let v147: LrcPtr<Trace::Mut3> = LrcPtr::new(Trace::Mut3 {
+            let v259: Trace::US2 = patternInput.1.clone();
+            let v258: Trace::US1 = patternInput.0.clone();
+            let v267: LrcPtr<Trace::Mut3> = LrcPtr::new(Trace::Mut3 {
                 l0: MutCell::new(Func1::new(move |v: string| Trace::closure1((), v))),
             });
             (
@@ -339,22 +384,22 @@ pub mod Trace {
                     l0: MutCell::new(true),
                 }),
                 LrcPtr::new(Trace::Mut2 {
-                    l0: MutCell::new(match &v139 {
-                        Trace::US2::US2_0(v139_0_0) => match &v139 {
+                    l0: MutCell::new(match &v259 {
+                        Trace::US2::US2_0(v259_0_0) => match &v259 {
                             Trace::US2::US2_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
                         _ => v0_1,
                     }),
                 }),
-                match &v138 {
-                    Trace::US1::US1_0(v138_0_0) => Some(match &v138 {
+                match &v258 {
+                    Trace::US1::US1_0(v258_0_0) => Some(match &v258 {
                         Trace::US1::US1_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
                     _ => None::<i64>,
                 },
-                v147,
+                v267,
             )
         }
     }
@@ -435,41 +480,133 @@ pub mod Trace {
                         None => panic!("{}", string("base.run_target / _v10=None"),),
                         Some(_v10_0_0) => _v10_0_0.clone(),
                     };
-                    let v160: string = padLeft(
-                        toLower(match &v0_1 {
-                            Trace::US0::US0_1 => string("Debug"),
-                            Trace::US0::US0_2 => string("Info"),
-                            Trace::US0::US0_0 => string("Verbose"),
-                            Trace::US0::US0_3 => string("Warning"),
-                            _ => string("Critical"),
+                    let v154: Trace::US3 = if if let Trace::US0::US0_0 = &v0_1 {
+                        true
+                    } else {
+                        false
+                    } {
+                        Trace::US3::US3_0(string("Verbose"))
+                    } else {
+                        Trace::US3::US3_1
+                    };
+                    let v203: Trace::US3 = match &v154 {
+                        Trace::US3::US3_0(v154_0_0) => Trace::US3::US3_0(match &v154 {
+                            Trace::US3::US3_0(x) => x.clone(),
+                            _ => unreachable!(),
+                        }),
+                        _ => {
+                            let v163: Trace::US3 = if if let Trace::US0::US0_1 = &v0_1 {
+                                true
+                            } else {
+                                false
+                            } {
+                                Trace::US3::US3_0(string("Debug"))
+                            } else {
+                                Trace::US3::US3_1
+                            };
+                            match &v163 {
+                                Trace::US3::US3_0(v163_0_0) => Trace::US3::US3_0(match &v163 {
+                                    Trace::US3::US3_0(x) => x.clone(),
+                                    _ => unreachable!(),
+                                }),
+                                _ => {
+                                    let v172: Trace::US3 = if if let Trace::US0::US0_2 = &v0_1 {
+                                        true
+                                    } else {
+                                        false
+                                    } {
+                                        Trace::US3::US3_0(string("Info"))
+                                    } else {
+                                        Trace::US3::US3_1
+                                    };
+                                    match &v172 {
+                                        Trace::US3::US3_0(v172_0_0) => {
+                                            Trace::US3::US3_0(match &v172 {
+                                                Trace::US3::US3_0(x) => x.clone(),
+                                                _ => unreachable!(),
+                                            })
+                                        }
+                                        _ => {
+                                            let v181: Trace::US3 =
+                                                if if let Trace::US0::US0_3 = &v0_1 {
+                                                    true
+                                                } else {
+                                                    false
+                                                } {
+                                                    Trace::US3::US3_0(string("Warning"))
+                                                } else {
+                                                    Trace::US3::US3_1
+                                                };
+                                            match &v181 {
+                                                Trace::US3::US3_0(v181_0_0) => {
+                                                    Trace::US3::US3_0(match &v181 {
+                                                        Trace::US3::US3_0(x) => x.clone(),
+                                                        _ => unreachable!(),
+                                                    })
+                                                }
+                                                _ => {
+                                                    let v190: Trace::US3 =
+                                                        if if let Trace::US0::US0_4 = &v0_1 {
+                                                            true
+                                                        } else {
+                                                            false
+                                                        } {
+                                                            Trace::US3::US3_0(string("Critical"))
+                                                        } else {
+                                                            Trace::US3::US3_1
+                                                        };
+                                                    match &v190 {
+                                                        Trace::US3::US3_0(v190_0_0) => {
+                                                            Trace::US3::US3_0(match &v190 {
+                                                                Trace::US3::US3_0(x) => x.clone(),
+                                                                _ => unreachable!(),
+                                                            })
+                                                        }
+                                                        _ => Trace::US3::US3_1,
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+                    let v210: string = padLeft(
+                        toLower(match &v203 {
+                            Trace::US3::US3_0(v203_0_0) => match &v203 {
+                                Trace::US3::US3_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            },
+                            _ => panic!("{}", string("Option does not have a value."),),
                         }),
                         7_i32,
                         ' ',
                     );
-                    let _v161: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v176: &str = match &v0_1 {
+                    let _v211: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v226: &str = match &v0_1 {
                         Trace::US0::US0_1 => inline_colorization::color_bright_blue,
                         Trace::US0::US0_2 => inline_colorization::color_bright_green,
                         Trace::US0::US0_0 => inline_colorization::color_bright_black,
                         Trace::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v178: &str = &*v160;
-                    let v180: &str = inline_colorization::color_reset;
-                    let v182: string = string("format!(\"{v176}{v178}{v180}\")");
-                    let v183: std::string::String = format!("{v176}{v178}{v180}");
+                    let v228: &str = &*v210;
+                    let v230: &str = inline_colorization::color_reset;
+                    let v232: string = string("format!(\"{v226}{v228}{v230}\")");
+                    let v233: std::string::String = format!("{v226}{v228}{v230}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v183);
-                        _v161.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v233);
+                        _v211.set(Some(x_5))
                     }
                     trimEndChars(
                         trimStartChars(
                             sprintf!(
                                 "{} {} #{} {} / {}",
                                 v147,
-                                match &_v161.get().clone() {
-                                    None => panic!("{}", string("base.run_target / _v161=None"),),
-                                    Some(_v161_0_0) => _v161_0_0.clone(),
+                                match &_v211.get().clone() {
+                                    None => panic!("{}", string("base.run_target / _v211=None"),),
+                                    Some(_v211_0_0) => _v211_0_0.clone(),
                                 },
                                 (patternInput.0.clone()).l0.get().clone(),
                                 v1_1(),

@@ -14,7 +14,7 @@ inl new_raw_guid () : guid =
 /// ## hash_guid
 type hash_guid = guid
 
-inl hash_guid (~hash : string) : hash_guid =
+let hash_guid (~hash : string) : hash_guid =
     run_target function
         | Rust (Contract) => fun () => null ()
         | _ => fun () =>

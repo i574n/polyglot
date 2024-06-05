@@ -290,6 +290,18 @@ inl flatten x =
 
 #!markdown
 
+## flatten'
+
+#!spiral
+
+inl flatten' x =
+    x
+    |> unbox
+    |> optionm.map unbox
+    |> flatten
+
+#!markdown
+
 ## unwrap
 
 #!spiral

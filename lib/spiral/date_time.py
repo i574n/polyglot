@@ -7,7 +7,7 @@ from fable_modules.fable_library.long import parse as parse_1
 from fable_modules.fable_library.reflection import (TypeInfo, class_type, union_type, string_type)
 from fable_modules.fable_library.string_ import (replace, pad_left)
 from fable_modules.fable_library.time_span import (hours, to_string as to_string_1)
-from fable_modules.fable_library.types import (Array, Union, FSharpRef, int64)
+from fable_modules.fable_library.types import (Array, Union, FSharpRef, uint8, int64)
 from fable_modules.fable_library.util import int64_to_string
 
 def _expr92() -> TypeInfo:
@@ -65,7 +65,7 @@ class US2(Union):
 US2_reflection = _expr94
 
 def _expr95() -> TypeInfo:
-    return union_type("Date_time.US3", [], US3, lambda: [[("f0_0", US2_reflection())], [("f1_0", US2_reflection())], [("f2_0", US2_reflection())], [("f3_0", US2_reflection())]])
+    return union_type("Date_time.US3", [], US3, lambda: [[("f0_0", US2_reflection())], [("f1_0", US2_reflection())], [("f2_0", US2_reflection())], [("f3_0", US2_reflection())], [("f4_0", US2_reflection())]])
 
 
 class US3(Union):
@@ -77,7 +77,7 @@ class US3(Union):
 
     @staticmethod
     def cases() -> list[str]:
-        return ["US3_0", "US3_1", "US3_2", "US3_3"]
+        return ["US3_0", "US3_1", "US3_2", "US3_3", "US3_4"]
 
 
 US3_reflection = _expr95
@@ -181,6 +181,15 @@ def US3__get_IsUS3_3(this: FSharpRef[US3], unit_arg: None) -> bool:
 
 
 
+def US3__get_IsUS3_4(this: FSharpRef[US3], unit_arg: None) -> bool:
+    if this.tag == 4:
+        return True
+
+    else: 
+        return False
+
+
+
 def method1(v0_1: chrono_DateTime_1[chrono_Utc]) -> chrono_DateTime_1[chrono_Utc]:
     return v0_1
 
@@ -203,38 +212,38 @@ def method5(__unit: None=None) -> str:
 
 def method0(v0_1: str, v1_1: Any) -> str:
     _v2: str | None = None
-    v260: str = to_string(v1_1, method4())
-    _v261: Any | None = None
-    _v261 = None
-    v269: Any
-    if _v261 is None:
-        raise Exception("base.run_target / _v261=None")
+    v259: str = to_string(v1_1, method4())
+    _v260: Any | None = None
+    _v260 = None
+    v268: Any
+    if _v260 is None:
+        raise Exception("base.run_target / _v260=None")
 
     else: 
-        v269 = _v261
+        v268 = _v260
 
-    _v270: Any | None = None
+    _v269: Any | None = None
     x_2: Any
-    raise Exception(("date_time.get_utc_offset / target: " + str(US3(3, US2(0)))) + "")
-    _v270 = x_2
-    v297: Any
-    if _v270 is None:
-        raise Exception("base.run_target / _v270=None")
+    raise Exception(("date_time.get_utc_offset / target: " + str(US3(4, US2(0)))) + "")
+    _v269 = x_2
+    v296: Any
+    if _v269 is None:
+        raise Exception("base.run_target / _v269=None")
 
     else: 
-        v297 = _v270
+        v296 = _v269
 
-    v302: int = (hours(v297) > 0) or 0
-    v303: str = method5()
-    _v304: str | None = None
-    x_4: str = to_string_1(v297, "c", {})
-    _v304 = x_4
+    v300: uint8 = uint8(1) if (hours(v296) > 0) else uint8(0)
+    v301: str = method5()
+    _v302: str | None = None
+    x_4: str = to_string_1(v296, "c", {})
+    _v302 = x_4
     def _arrow96(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> str:
-        raise Exception("base.run_target / _v304=None")
+        raise Exception("base.run_target / _v302=None")
 
-    v312: str = ((("" + str(v302)) + "") + (_arrow96() if (_v304 is None) else _v304)) + ""
-    v314: str = str(v0_1)
-    x_6: str = parse(((((("" + v260) + "") + v312) + "") + v314[len(v260) + len(v312):len(v314)]) + "")
+    v310: str = ((("" + str(v300)) + "") + (_arrow96() if (_v302 is None) else _v302)) + ""
+    v312: str = str(v0_1)
+    x_6: str = parse(((((("" + v259) + "") + v310) + "") + v312[len(v259) + len(v310):len(v312)]) + "")
     _v2 = x_6
     if _v2 is None:
         raise Exception("base.run_target / _v2=None")

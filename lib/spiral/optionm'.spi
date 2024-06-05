@@ -104,6 +104,13 @@ inl flatten x =
     | Some (Some x) => Some x
     | _ => None
 
+/// ## flatten'
+inl flatten' x =
+    x
+    |> unbox
+    |> optionm.map unbox
+    |> flatten
+
 /// ## unwrap
 inl unwrap forall t. (x : option' t) : t =
     !\\(x, $'"$0.unwrap()"')

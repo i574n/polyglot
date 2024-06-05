@@ -59,7 +59,7 @@ module Builder =
         let workspaceRoot = SpiralFileSystem.get_workspace_root ()
 
         let targetDir =
-            let targetDir = workspaceRoot </> "target/polyglot/builder" </> name
+            let targetDir = workspaceRoot </> "target/Builder" </> name
             match hash with
             | Some hash -> targetDir </> "packages" </> hash
             | None -> targetDir
@@ -127,7 +127,7 @@ module Builder =
     let inline buildCode runtime packages modules outputDir name code = async {
         let! fsprojPath = code |> persistCodeProject packages modules name None
         let! exitCode = fsprojPath |> buildProject runtime outputDir
-        if exitCode > 0 then
+        if exitCode <> 0 then
             let! fsprojText = fsprojPath |> SpiralFileSystem.read_all_text_async
             trace Critical
                 (fun () -> "buildCode")

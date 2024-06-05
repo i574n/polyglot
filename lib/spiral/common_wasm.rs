@@ -373,9 +373,9 @@ pub mod Common {
                 None => panic!("{}", string("base.run_target / _v1=None"),),
                 Some(_v1_0_0) => _v1_0_0.clone(),
             };
-            let v139: Common::US2 = patternInput.1.clone();
-            let v138: Common::US1 = patternInput.0.clone();
-            let v147: LrcPtr<Common::Mut3> = LrcPtr::new(Common::Mut3 {
+            let v259: Common::US2 = patternInput.1.clone();
+            let v258: Common::US1 = patternInput.0.clone();
+            let v267: LrcPtr<Common::Mut3> = LrcPtr::new(Common::Mut3 {
                 l0: MutCell::new(Func1::new(move |v: string| Common::closure1((), v))),
             });
             (
@@ -386,22 +386,22 @@ pub mod Common {
                     l0: MutCell::new(true),
                 }),
                 LrcPtr::new(Common::Mut2 {
-                    l0: MutCell::new(match &v139 {
-                        Common::US2::US2_0(v139_0_0) => match &v139 {
+                    l0: MutCell::new(match &v259 {
+                        Common::US2::US2_0(v259_0_0) => match &v259 {
                             Common::US2::US2_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
                         _ => v0_1,
                     }),
                 }),
-                match &v138 {
-                    Common::US1::US1_0(v138_0_0) => Some(match &v138 {
+                match &v258 {
+                    Common::US1::US1_0(v258_0_0) => Some(match &v258 {
                         Common::US1::US1_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
                     _ => None::<i64>,
                 },
-                v147,
+                v267,
             )
         }
     }
@@ -532,41 +532,133 @@ pub mod Common {
                         None => panic!("{}", string("base.run_target / _v10=None"),),
                         Some(_v10_0_0) => _v10_0_0.clone(),
                     };
-                    let v160: string = padLeft(
-                        toLower(match &v0_1 {
-                            Common::US0::US0_1 => string("Debug"),
-                            Common::US0::US0_2 => string("Info"),
-                            Common::US0::US0_0 => string("Verbose"),
-                            Common::US0::US0_3 => string("Warning"),
-                            _ => string("Critical"),
+                    let v154: Common::US3 = if if let Common::US0::US0_0 = &v0_1 {
+                        true
+                    } else {
+                        false
+                    } {
+                        Common::US3::US3_0(string("Verbose"))
+                    } else {
+                        Common::US3::US3_1
+                    };
+                    let v203: Common::US3 = match &v154 {
+                        Common::US3::US3_0(v154_0_0) => Common::US3::US3_0(match &v154 {
+                            Common::US3::US3_0(x) => x.clone(),
+                            _ => unreachable!(),
+                        }),
+                        _ => {
+                            let v163: Common::US3 = if if let Common::US0::US0_1 = &v0_1 {
+                                true
+                            } else {
+                                false
+                            } {
+                                Common::US3::US3_0(string("Debug"))
+                            } else {
+                                Common::US3::US3_1
+                            };
+                            match &v163 {
+                                Common::US3::US3_0(v163_0_0) => Common::US3::US3_0(match &v163 {
+                                    Common::US3::US3_0(x) => x.clone(),
+                                    _ => unreachable!(),
+                                }),
+                                _ => {
+                                    let v172: Common::US3 = if if let Common::US0::US0_2 = &v0_1 {
+                                        true
+                                    } else {
+                                        false
+                                    } {
+                                        Common::US3::US3_0(string("Info"))
+                                    } else {
+                                        Common::US3::US3_1
+                                    };
+                                    match &v172 {
+                                        Common::US3::US3_0(v172_0_0) => {
+                                            Common::US3::US3_0(match &v172 {
+                                                Common::US3::US3_0(x) => x.clone(),
+                                                _ => unreachable!(),
+                                            })
+                                        }
+                                        _ => {
+                                            let v181: Common::US3 =
+                                                if if let Common::US0::US0_3 = &v0_1 {
+                                                    true
+                                                } else {
+                                                    false
+                                                } {
+                                                    Common::US3::US3_0(string("Warning"))
+                                                } else {
+                                                    Common::US3::US3_1
+                                                };
+                                            match &v181 {
+                                                Common::US3::US3_0(v181_0_0) => {
+                                                    Common::US3::US3_0(match &v181 {
+                                                        Common::US3::US3_0(x) => x.clone(),
+                                                        _ => unreachable!(),
+                                                    })
+                                                }
+                                                _ => {
+                                                    let v190: Common::US3 =
+                                                        if if let Common::US0::US0_4 = &v0_1 {
+                                                            true
+                                                        } else {
+                                                            false
+                                                        } {
+                                                            Common::US3::US3_0(string("Critical"))
+                                                        } else {
+                                                            Common::US3::US3_1
+                                                        };
+                                                    match &v190 {
+                                                        Common::US3::US3_0(v190_0_0) => {
+                                                            Common::US3::US3_0(match &v190 {
+                                                                Common::US3::US3_0(x) => x.clone(),
+                                                                _ => unreachable!(),
+                                                            })
+                                                        }
+                                                        _ => Common::US3::US3_1,
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+                    let v210: string = padLeft(
+                        toLower(match &v203 {
+                            Common::US3::US3_0(v203_0_0) => match &v203 {
+                                Common::US3::US3_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            },
+                            _ => panic!("{}", string("Option does not have a value."),),
                         }),
                         7_i32,
                         ' ',
                     );
-                    let _v161: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v200: &str = match &v0_1 {
+                    let _v211: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v250: &str = match &v0_1 {
                         Common::US0::US0_1 => inline_colorization::color_bright_blue,
                         Common::US0::US0_2 => inline_colorization::color_bright_green,
                         Common::US0::US0_0 => inline_colorization::color_bright_black,
                         Common::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v202: &str = &*v160;
-                    let v204: &str = inline_colorization::color_reset;
-                    let v206: string = string("format!(\"{v200}{v202}{v204}\")");
-                    let v207: std::string::String = format!("{v200}{v202}{v204}");
+                    let v252: &str = &*v210;
+                    let v254: &str = inline_colorization::color_reset;
+                    let v256: string = string("format!(\"{v250}{v252}{v254}\")");
+                    let v257: std::string::String = format!("{v250}{v252}{v254}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v207);
-                        _v161.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v257);
+                        _v211.set(Some(x_5))
                     }
                     trimEndChars(
                         trimStartChars(
                             sprintf!(
                                 "{} {} #{} {} / {}",
                                 v147,
-                                match &_v161.get().clone() {
-                                    None => panic!("{}", string("base.run_target / _v161=None"),),
-                                    Some(_v161_0_0) => _v161_0_0.clone(),
+                                match &_v211.get().clone() {
+                                    None => panic!("{}", string("base.run_target / _v211=None"),),
+                                    Some(_v211_0_0) => _v211_0_0.clone(),
                                 },
                                 (patternInput.0.clone()).l0.get().clone(),
                                 v1_1(),

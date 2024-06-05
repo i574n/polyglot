@@ -595,7 +595,7 @@ let (</>) (a : string) (b : string) : string =
 
 #!spiral
 
-inl get_temp_path () : string =
+let get_temp_path () : string =
     run_target function
         | Rust (Contract) => fun () => null ()
         | Rust (Native) => fun () =>
@@ -689,7 +689,7 @@ let get_extension (path : string) : string =
 
 #!spiral
 
-inl directory_separator_char () : char =
+let directory_separator_char () : char =
     run_target function
         | Rust (Native) => fun () =>
             open rust_operators
@@ -731,7 +731,7 @@ get_current_directory ()
 
 #!spiral
 
-inl normalize_path (path : string) : string =
+let normalize_path (path : string) : string =
     inl path = path |> sm'.replace_regex @"^\\\\\?\\" ""
     $'$"{!path.[0] |> string |> _.ToLower()}{!path.[1..]}"' |> sm'.replace "\\" "/"
 
@@ -825,7 +825,7 @@ types ()
 
 #!spiral
 
-inl create_temp_path' (guid : guid.guid) =
+let create_temp_path' (guid : guid.guid) =
     run_target function
         | Rust (Contract) => fun () => null ()
         | _ => fun () =>
@@ -840,7 +840,7 @@ inl create_temp_path' (guid : guid.guid) =
 
 #!spiral
 
-inl create_temp_path () =
+let create_temp_path () =
     run_target function
         | Rust (Contract) => fun () => null ()
         | _ => fun () =>
@@ -1377,7 +1377,7 @@ inl create_temp_dir' (hash : string) =
 
 #!spiral
 
-inl link_directory target_path path =
+let link_directory target_path path =
     if target_path |> directory_exists |> not
     then target_path |> create_dir |> ignore
 
@@ -1544,7 +1544,7 @@ let file_exists_content' path content : bool =
 
 #!spiral
 
-inl write_all_text_exists' path contents =
+let write_all_text_exists' path contents =
     inl exists' = contents |> file_exists_content' path
     if not exists'
     then contents |> write_all_text path

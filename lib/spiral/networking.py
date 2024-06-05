@@ -410,9 +410,35 @@ def closure1(unit_var: None, v0_1: str) -> None:
 
 def closure0(unit_var: None, v0_1: US0) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
     _v1: tuple[US1, US2] | None = None
-    v73: str = method1(method0())
-    v94: US2 = US2(0, US0(0)) if ("Verbose" == v73) else (US2(0, US0(1)) if ("Debug" == v73) else (US2(0, US0(2)) if ("Info" == v73) else (US2(0, US0(3)) if ("Warning" == v73) else (US2(0, US0(4)) if ("Critical" == v73) else US2(1)))))
-    x: tuple[US1, US2] = (US1(0, ticks_1(now())) if (method1(method3()) == "True") else US1(1), v94)
+    v133: str = method1(method0())
+    v139: US2 = US2(0, US0(0)) if ("Verbose" == v133) else US2(1)
+    v184: US2
+    if v139.tag == 0:
+        v184 = US2(0, v139.fields[0])
+
+    else: 
+        v147: US2 = US2(0, US0(1)) if ("Debug" == v133) else US2(1)
+        if v147.tag == 0:
+            v184 = US2(0, v147.fields[0])
+
+        else: 
+            v155: US2 = US2(0, US0(2)) if ("Info" == v133) else US2(1)
+            if v155.tag == 0:
+                v184 = US2(0, v155.fields[0])
+
+            else: 
+                v163: US2 = US2(0, US0(3)) if ("Warning" == v133) else US2(1)
+                if v163.tag == 0:
+                    v184 = US2(0, v163.fields[0])
+
+                else: 
+                    v171: US2 = US2(0, US0(4)) if ("Critical" == v133) else US2(1)
+                    v184 = US2(0, v171.fields[0]) if (v171.tag == 0) else US2(1)
+
+
+
+
+    x: tuple[US1, US2] = (US1(0, ticks_1(now())) if (method1(method3()) == "True") else US1(1), v184)
     _v1 = x
     pattern_input: tuple[US1, US2]
     if _v1 is None:
@@ -421,13 +447,13 @@ def closure0(unit_var: None, v0_1: US0) -> tuple[Mut0, Mut1, Mut2, int64 | None,
     else: 
         pattern_input = _v1
 
-    v139: US2 = pattern_input[1]
-    v138: US1 = pattern_input[0]
-    def v146(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
+    v259: US2 = pattern_input[1]
+    v258: US1 = pattern_input[0]
+    def v266(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
         closure1(None, v)
 
-    v147: Mut3 = Mut3(v146)
-    return (Mut0(int64(0)), Mut1(True), Mut2(v139.fields[0] if (v139.tag == 0) else v0_1), v138.fields[0] if (v138.tag == 0) else None, v147)
+    v267: Mut3 = Mut3(v266)
+    return (Mut0(int64(0)), Mut1(True), Mut2(v259.fields[0] if (v259.tag == 0) else v0_1), v258.fields[0] if (v258.tag == 0) else None, v267)
 
 
 def closure4(v0_1: int, v1_1: str, unit_var: None) -> str:
@@ -484,14 +510,47 @@ def closure6(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_v
     else: 
         v147 = _v10
 
-    v157: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
-    _v161: str | None = None
-    x_5: str = pad_left(v157.lower(), 7, " ")
-    _v161 = x_5
-    def _arrow124(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> str:
-        raise Exception("base.run_target / _v161=None")
+    v154: US3 = US3(0, "Verbose") if (True if (v0_1.tag == 0) else False) else US3(1)
+    v203: US3
+    if v154.tag == 0:
+        v203 = US3(0, v154.fields[0])
 
-    return trim_end(trim_start(((((((((("" + v147) + " ") + (_arrow124() if (_v161 is None) else _v161)) + " #") + str(pattern_input[0].l0)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
+    else: 
+        v163: US3 = US3(0, "Debug") if (True if (v0_1.tag == 1) else False) else US3(1)
+        if v163.tag == 0:
+            v203 = US3(0, v163.fields[0])
+
+        else: 
+            v172: US3 = US3(0, "Info") if (True if (v0_1.tag == 2) else False) else US3(1)
+            if v172.tag == 0:
+                v203 = US3(0, v172.fields[0])
+
+            else: 
+                v181: US3 = US3(0, "Warning") if (True if (v0_1.tag == 3) else False) else US3(1)
+                if v181.tag == 0:
+                    v203 = US3(0, v181.fields[0])
+
+                else: 
+                    v190: US3 = US3(0, "Critical") if (True if (v0_1.tag == 4) else False) else US3(1)
+                    v203 = US3(0, v190.fields[0]) if (v190.tag == 0) else US3(1)
+
+
+
+
+    v207: str
+    if v203.tag == 0:
+        v207 = v203.fields[0]
+
+    else: 
+        raise Exception("Option does not have a value.")
+
+    _v211: str | None = None
+    x_5: str = pad_left(v207.lower(), 7, " ")
+    _v211 = x_5
+    def _arrow124(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> str:
+        raise Exception("base.run_target / _v211=None")
+
+    return trim_end(trim_start(((((((((("" + v147) + " ") + (_arrow124() if (_v211 is None) else _v211)) + " #") + str(pattern_input[0].l0)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
 
 
 def method8(v0_1: US0, v1_1: Callable[[], str]) -> None:

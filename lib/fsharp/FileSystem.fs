@@ -129,7 +129,7 @@ module FileSystem =
 
         let disposable =
             new_disposable (fun () ->
-                trace Debug (fun () -> "watchWithFilter / Disposing watch stream") _locals
+                trace Debug (fun () -> "FileSystem.watchWithFilter / Disposing watch stream") _locals
                 watcher.EnableRaisingEvents <- false
                 watcher.Dispose ()
             )

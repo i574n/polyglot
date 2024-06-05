@@ -388,22 +388,7 @@ let hash_text (~input : string) =
 #!spiral
 
 //// test
-
-"\n"
-|> hash_text
-|> _assert_eq "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
-
-#!spiral
-
-//// test
-
-""
-|> hash_text
-|> _assert_eq "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-
-#!spiral
-
-//// test
+///! fsharp
 ///! rust -d sha2
 ///! typescript
 ///! python
@@ -436,15 +421,7 @@ inl hash_to_port (text : string) : u16 =
 #!spiral
 
 //// test
-
-"\n"
-|> hash_text
-|> hash_to_port
-|> _assert_eq 19273
-
-#!spiral
-
-//// test
+///! fsharp
 ///! rust -d sha2
 ///! typescript
 ///! python

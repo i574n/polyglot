@@ -183,3 +183,15 @@ module Async =
                 return! loop (retry + 1) (ex |> SpiralSm.format_exception)
         }
         loop 1 "Async.retryAsync / invalid retries / retries: {retries}"
+
+    /// ## fold
+    let fold folder state array =
+        let rec loop acc i =
+            async {
+                if i < Array.length array then
+                    let! newAcc = folder acc array.[i]
+                    return! loop newAcc (i + 1)
+                else
+                    return acc
+            }
+        loop state 0

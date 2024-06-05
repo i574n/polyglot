@@ -48,6 +48,15 @@ inl types () =
 
 #!spiral
 
+inl types () =
+    backend_switch {
+        Fsharp = fun () =>
+            types ()
+        Python = fun () => ()
+    }
+
+#!spiral
+
 nominal unit = $'unit'
 nominal any = $'core_any_Any'
 nominal try t = $'core_ops_Try<`t>'

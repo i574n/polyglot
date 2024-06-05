@@ -26,20 +26,34 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Error\")>]\n#endif\ntype regex_Error = class end"
 
 inl types () =
-    rust.types ()
-    mapm.types ()
-    am'.types ()
-    types ()
+    backend_switch {
+        Fsharp = fun () =>
+            rust.types ()
+            mapm.types ()
+            am'.types ()
+            types ()
+        Python = fun () => ()
+    }
+
+/// ## symbol_to_string
+inl symbol_to_string forall t {symbol}. (x : t) : string =
+    !!!!SymbolToString(x)
 
 /// ## fsharp
 
 /// ### format_debug
 inl format_debug x : string =
-    $'$"%A{!x}"'
+    backend_switch {
+        Fsharp = fun () => $'$"%A{!x}"' : string
+        Python = fun () => $'f"{!x}"' : string
+    }
 
 /// ### contains
 inl contains (value : string) (s : string) : bool =
-    $'!s.Contains !value '
+    backend_switch {
+        Fsharp = fun () => $'!s.Contains !value ' : bool
+        Python = fun () => $'!value in !s ' : bool
+    }
 
 /// ### ends_with
 inl ends_with (value : string) (s : string) : bool =

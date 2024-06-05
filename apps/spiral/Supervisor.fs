@@ -163,8 +163,13 @@ module Supervisor =
             |> SpiralSm.replace "\\r\\n" "\n"
             |> SpiralSm.replace "\\n" "\n"
 
+    /// ## Backend
+    type Backend =
+        | Fsharp
+        | Cuda
+
     /// ## buildFile
-    let inline buildFile timeout port cancellationToken path = async {
+    let inline buildFile backend timeout port cancellationToken path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let fileDir = fullPath |> System.IO.Path.GetDirectoryName
         let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
@@ -180,11 +185,16 @@ module Supervisor =
         let! serverPort, errors, ct, disposable = awaitCompiler port (Some token)
         use _ = disposable
 
-        let fsxContentSeq =
+        let outputFileName =
+            match backend with
+            | Fsharp -> $"{fileName}.fsx"
+            | Cuda -> $"{fileName}.py"
+
+        let outputContentSeq =
             stream
             |> FSharp.Control.AsyncSeq.chooseAsync (function
                 | _, (FileSystem.FileSystemChange.Changed (path, _))
-                    when (path |> System.IO.Path.GetFileName) = $"{fileName}.fsx"
+                    when (path |> System.IO.Path.GetFileName) = outputFileName
                     ->
                         fileDir </> path |> SpiralFileSystem.read_all_text_retry_async
                 | _ -> None |> Async.init
@@ -229,30 +239,30 @@ module Supervisor =
             |> FSharp.Control.AsyncSeq.map (fun _ -> None, None)
 
         let outputSeq =
-            [ fsxContentSeq; errorsSeq; timerSeq ]
+            [ outputContentSeq; errorsSeq; timerSeq ]
             |> FSharp.Control.AsyncSeq.mergeAll
 
         let! outputChild =
             ((None, [], 0), outputSeq)
             ||> FSharp.Control.AsyncSeq.scan (
-                fun (fsxContentResult, errors, typeErrorCount) (fsxContent, error) ->
-                    match fsxContent, error with
-                    | Some fsxContent, None -> Some fsxContent, errors, typeErrorCount
+                fun (outputContentResult, errors, typeErrorCount) (outputContent, error) ->
+                    match outputContent, error with
+                    | Some outputContent, None -> Some outputContent, errors, typeErrorCount
                     | None, Some (_, FatalError "File main has a type error somewhere in its path.") ->
-                        fsxContentResult, errors, typeErrorCount + 1
-                    | None, Some error -> fsxContentResult, error :: errors, typeErrorCount
+                        outputContentResult, errors, typeErrorCount + 1
+                    | None, Some error -> outputContentResult, error :: errors, typeErrorCount
                     | None, None when typeErrorCount >= 1 ->
-                        fsxContentResult, errors, typeErrorCount + 1
-                    | _ -> fsxContentResult, errors, typeErrorCount
+                        outputContentResult, errors, typeErrorCount + 1
+                    | _ -> outputContentResult, errors, typeErrorCount
             )
-            |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors, typeErrorCount) ->
-                trace Debug (fun () -> $"buildFile / takeWhileInclusive / path: {path} / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 400} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") _locals
+            |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (outputContent, errors, typeErrorCount) ->
+                trace Debug (fun () -> $"Supervisor.buildFile / takeWhileInclusive / path: {path} / outputContent: {outputContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 400} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") _locals
 #if INTERACTIVE
                 let errorWait = 2
 #else
                 let errorWait = 4
 #endif
-                match fsxContent, errors with
+                match outputContent, errors with
                 | None, [] when typeErrorCount > errorWait -> false
                 | None, [] -> true
                 | _ -> false
@@ -270,16 +280,20 @@ module Supervisor =
 
         // do! Async.Sleep 60
 
-        let buildFileObj = {| BuildFile = {| uri = fullPathUri; backend = "Fsharp" |} |}
+        let backendId =
+            match backend with
+            | Fsharp -> "Fsharp"
+            | Cuda -> "Python + Cuda"
+        let buildFileObj = {| BuildFile = {| uri = fullPathUri; backend = backendId |} |}
         let! _buildFileResult = buildFileObj |> sendObj serverPort
 
         let! result =
             outputChild
             |> Async.map (function
-                | Some (Ok (Some (fsxCode, errors, _))) ->
-                    fsxCode, errors |> List.distinct |> List.rev
+                | Some (Ok (Some (outputCode, errors, _))) ->
+                    outputCode, errors |> List.distinct |> List.rev
                 | Some (Error ex) ->
-                    trace Critical (fun () -> $"buildFile / error: {ex |> serializeObj}") _locals
+                    trace Critical (fun () -> $"Supervisor.buildFile / error: {ex |> serializeObj}") _locals
                     None, []
                 | _ -> None, []
             )
@@ -290,25 +304,25 @@ module Supervisor =
             let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
             ()
 
-        let fsxPath = fileDir </> $"{fileName}.fsx"
-        return fsxPath, result
+        let outputPath = fileDir </> outputFileName
+        return outputPath, result
     }
 
     /// ## persistCode
-    let inline persistCode code = async {
-        let targetDir = workspaceRoot </> "target/polyglot/spiral_eval"
+    let inline persistCode backend code = async {
+        let targetDir = workspaceRoot </> "target/spiral_Eval"
 
         let packagesDir = targetDir </> "packages"
 
-        let hashHex = code |> SpiralCrypto.hash_text
+        let hashHex = $"{backend}{code}" |> SpiralCrypto.hash_text
 
         let codeDir = packagesDir </> hashHex
 
-        let mainPath = codeDir </> "main.spi"
+        let spiPath = codeDir </> "main.spi"
 
         codeDir |> System.IO.Directory.CreateDirectory |> ignore
 
-        do! code |> SpiralFileSystem.write_all_text_exists mainPath
+        do! code |> SpiralFileSystem.write_all_text_exists spiPath
 
         let spiprojPath = codeDir </> "package.spiproj"
         let spiprojCode =
@@ -321,27 +335,34 @@ modules:
 """
         do! spiprojCode |> SpiralFileSystem.write_all_text_exists spiprojPath
 
-        let fsxPath = codeDir </> "main.fsx"
+        match backend with
+        | None -> return spiPath, None
+        | Some backend ->
+            let outputFileName =
+                match backend with
+                | Fsharp -> $"main.fsx"
+                | Cuda -> $"main.py"
+            let outputPath = codeDir </> outputFileName
 
-        if fsxPath |> System.IO.File.Exists |> not
-        then return mainPath, None
-        else
-            let! oldCode = mainPath |> SpiralFileSystem.read_all_text_async
-            if oldCode <> code
-            then return mainPath, None
+            if outputPath |> System.IO.File.Exists |> not
+            then return spiPath, None
             else
-                let! fsxCode = fsxPath |> SpiralFileSystem.read_all_text_async
-                return mainPath, Some (fsxPath, fsxCode |> SpiralSm.replace "\r\n" "\n")
-    }
+                let! oldCode = spiPath |> SpiralFileSystem.read_all_text_async
+                if oldCode <> code
+                then return spiPath, None
+                else
+                    let! outputCode = outputPath |> SpiralFileSystem.read_all_text_async
+                    return spiPath, Some (outputPath, outputCode |> SpiralSm.replace "\r\n" "\n")
+        }
 
     /// ## buildCode
-    let inline buildCode cache timeout cancellationToken code = async {
-        let! mainPath, fsx = code |> persistCode
-        match fsx with
-        | Some (fsxPath, fsxCode) when cache -> return mainPath, (fsxPath, Some fsxCode), []
+    let inline buildCode backend cache timeout cancellationToken code = async {
+        let! mainPath, outputCache = code |> persistCode (Some backend)
+        match outputCache with
+        | Some (outputPath, outputCode) when cache -> return mainPath, (outputPath, Some outputCode), []
         | _ ->
-            let! fsxPath, (fsxCode, errors) = mainPath |> buildFile timeout None cancellationToken
-            return mainPath, (fsxPath, fsxCode), errors
+            let! outputPath, (outputCode, errors) = mainPath |> buildFile backend timeout None cancellationToken
+            return mainPath, (outputPath, outputCode), errors
     }
 
     /// ## getFileTokenRange
@@ -393,7 +414,7 @@ modules:
 
     /// ## getCodeTokenRange
     let inline getCodeTokenRange cancellationToken code = async {
-        let! mainPath, _ = persistCode code
+        let! mainPath, _ = persistCode None code
 
         let codeDir = mainPath |> System.IO.Path.GetDirectoryName
         let tokensPath = codeDir </> "tokens.json"
@@ -492,7 +513,14 @@ modules:
             let buildFileAsync =
                 buildFileActions
                 |> List.map (fun (inputPath, outputPath) -> async {
-                    let! _fsxPath, (outputCode, errors) = inputPath |> buildFile timeout (Some serverPort) None
+                    let! _outputPath, (outputCode, errors) =
+                        let backend =
+                            if outputPath |> SpiralSm.ends_with ".fsx"
+                            then Fsharp
+                            elif outputPath |> SpiralSm.ends_with ".py"
+                            then Cuda
+                            else failwith $"Supervisor.main / invalid backend / outputPath: {outputPath}"
+                        inputPath |> buildFile backend timeout (Some serverPort) None
 
                     errors
                     |> List.map snd
@@ -540,7 +568,7 @@ modules:
 
                     trace Debug (fun () -> $"main / executeCommand / exitCode: {exitCode} / command: {command}") _locals
 
-                    if isExitOnError && exitCode > 0
+                    if isExitOnError && exitCode <> 0
                     then SpiralRuntime.current_process_kill ()
 
                     return exitCode

@@ -1,2 +1,3 @@
 nbconvert
 mpmath
+cupy-cuda12x

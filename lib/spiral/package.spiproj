@@ -23,6 +23,7 @@ modules:
     sm'_prototypes-
     sm'
     sm'_operators
+    reflection
     guid
     parsing
     env

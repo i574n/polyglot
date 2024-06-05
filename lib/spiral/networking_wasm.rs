@@ -399,9 +399,9 @@ pub mod Networking {
                 None => panic!("{}", string("base.run_target / _v1=None"),),
                 Some(_v1_0_0) => _v1_0_0.clone(),
             };
-            let v139: Networking::US2 = patternInput.1.clone();
-            let v138: Networking::US1 = patternInput.0.clone();
-            let v147: LrcPtr<Networking::Mut3> = LrcPtr::new(Networking::Mut3 {
+            let v259: Networking::US2 = patternInput.1.clone();
+            let v258: Networking::US1 = patternInput.0.clone();
+            let v267: LrcPtr<Networking::Mut3> = LrcPtr::new(Networking::Mut3 {
                 l0: MutCell::new(Func1::new(move |v: string| Networking::closure1((), v))),
             });
             (
@@ -412,22 +412,22 @@ pub mod Networking {
                     l0: MutCell::new(true),
                 }),
                 LrcPtr::new(Networking::Mut2 {
-                    l0: MutCell::new(match &v139 {
-                        Networking::US2::US2_0(v139_0_0) => match &v139 {
+                    l0: MutCell::new(match &v259 {
+                        Networking::US2::US2_0(v259_0_0) => match &v259 {
                             Networking::US2::US2_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
                         _ => v0_1,
                     }),
                 }),
-                match &v138 {
-                    Networking::US1::US1_0(v138_0_0) => Some(match &v138 {
+                match &v258 {
+                    Networking::US1::US1_0(v258_0_0) => Some(match &v258 {
                         Networking::US1::US1_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
                     _ => None::<i64>,
                 },
-                v147,
+                v267,
             )
         }
     }
@@ -515,41 +515,140 @@ pub mod Networking {
                         None => panic!("{}", string("base.run_target / _v10=None"),),
                         Some(_v10_0_0) => _v10_0_0.clone(),
                     };
-                    let v160: string = padLeft(
-                        toLower(match &v0_1 {
-                            Networking::US0::US0_1 => string("Debug"),
-                            Networking::US0::US0_2 => string("Info"),
-                            Networking::US0::US0_0 => string("Verbose"),
-                            Networking::US0::US0_3 => string("Warning"),
-                            _ => string("Critical"),
+                    let v154: Networking::US3 = if if let Networking::US0::US0_0 = &v0_1 {
+                        true
+                    } else {
+                        false
+                    } {
+                        Networking::US3::US3_0(string("Verbose"))
+                    } else {
+                        Networking::US3::US3_1
+                    };
+                    let v203: Networking::US3 = match &v154 {
+                        Networking::US3::US3_0(v154_0_0) => Networking::US3::US3_0(match &v154 {
+                            Networking::US3::US3_0(x) => x.clone(),
+                            _ => unreachable!(),
+                        }),
+                        _ => {
+                            let v163: Networking::US3 = if if let Networking::US0::US0_1 = &v0_1 {
+                                true
+                            } else {
+                                false
+                            } {
+                                Networking::US3::US3_0(string("Debug"))
+                            } else {
+                                Networking::US3::US3_1
+                            };
+                            match &v163 {
+                                Networking::US3::US3_0(v163_0_0) => {
+                                    Networking::US3::US3_0(match &v163 {
+                                        Networking::US3::US3_0(x) => x.clone(),
+                                        _ => unreachable!(),
+                                    })
+                                }
+                                _ => {
+                                    let v172: Networking::US3 =
+                                        if if let Networking::US0::US0_2 = &v0_1 {
+                                            true
+                                        } else {
+                                            false
+                                        } {
+                                            Networking::US3::US3_0(string("Info"))
+                                        } else {
+                                            Networking::US3::US3_1
+                                        };
+                                    match &v172 {
+                                        Networking::US3::US3_0(v172_0_0) => {
+                                            Networking::US3::US3_0(match &v172 {
+                                                Networking::US3::US3_0(x) => x.clone(),
+                                                _ => unreachable!(),
+                                            })
+                                        }
+                                        _ => {
+                                            let v181: Networking::US3 =
+                                                if if let Networking::US0::US0_3 = &v0_1 {
+                                                    true
+                                                } else {
+                                                    false
+                                                } {
+                                                    Networking::US3::US3_0(string("Warning"))
+                                                } else {
+                                                    Networking::US3::US3_1
+                                                };
+                                            match &v181 {
+                                                Networking::US3::US3_0(v181_0_0) => {
+                                                    Networking::US3::US3_0(match &v181 {
+                                                        Networking::US3::US3_0(x) => x.clone(),
+                                                        _ => unreachable!(),
+                                                    })
+                                                }
+                                                _ => {
+                                                    let v190: Networking::US3 =
+                                                        if if let Networking::US0::US0_4 = &v0_1 {
+                                                            true
+                                                        } else {
+                                                            false
+                                                        } {
+                                                            Networking::US3::US3_0(string(
+                                                                "Critical",
+                                                            ))
+                                                        } else {
+                                                            Networking::US3::US3_1
+                                                        };
+                                                    match &v190 {
+                                                        Networking::US3::US3_0(v190_0_0) => {
+                                                            Networking::US3::US3_0(match &v190 {
+                                                                Networking::US3::US3_0(x) => {
+                                                                    x.clone()
+                                                                }
+                                                                _ => unreachable!(),
+                                                            })
+                                                        }
+                                                        _ => Networking::US3::US3_1,
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+                    let v210: string = padLeft(
+                        toLower(match &v203 {
+                            Networking::US3::US3_0(v203_0_0) => match &v203 {
+                                Networking::US3::US3_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            },
+                            _ => panic!("{}", string("Option does not have a value."),),
                         }),
                         7_i32,
                         ' ',
                     );
-                    let _v161: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v200: &str = match &v0_1 {
+                    let _v211: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v250: &str = match &v0_1 {
                         Networking::US0::US0_1 => inline_colorization::color_bright_blue,
                         Networking::US0::US0_2 => inline_colorization::color_bright_green,
                         Networking::US0::US0_0 => inline_colorization::color_bright_black,
                         Networking::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v202: &str = &*v160;
-                    let v204: &str = inline_colorization::color_reset;
-                    let v206: string = string("format!(\"{v200}{v202}{v204}\")");
-                    let v207: std::string::String = format!("{v200}{v202}{v204}");
+                    let v252: &str = &*v210;
+                    let v254: &str = inline_colorization::color_reset;
+                    let v256: string = string("format!(\"{v250}{v252}{v254}\")");
+                    let v257: std::string::String = format!("{v250}{v252}{v254}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v207);
-                        _v161.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v257);
+                        _v211.set(Some(x_5))
                     }
                     trimEndChars(
                         trimStartChars(
                             sprintf!(
                                 "{} {} #{} {} / {}",
                                 v147,
-                                match &_v161.get().clone() {
-                                    None => panic!("{}", string("base.run_target / _v161=None"),),
-                                    Some(_v161_0_0) => _v161_0_0.clone(),
+                                match &_v211.get().clone() {
+                                    None => panic!("{}", string("base.run_target / _v211=None"),),
+                                    Some(_v211_0_0) => _v211_0_0.clone(),
                                 },
                                 (patternInput.0.clone()).l0.get().clone(),
                                 v1_1(),

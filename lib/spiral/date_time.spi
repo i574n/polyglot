@@ -236,7 +236,7 @@ let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
         | target => fun () =>
             inl prefix = date_time |> format (join "yyyyMMdd-HHmm-ssff-ffff-f")
             inl time_zone = date_time |> get_utc_offset (time_zone_local ())
-            inl time_zone_signal = (hours time_zone > 0) |> convert_i32
+            inl time_zone_signal = if hours time_zone > 0 then 1u8 else 0
             inl time_zone_value = time_zone |> time_span_format (join "hhmm")
             inl time_zone = $'$"{!time_zone_signal}{!time_zone_value}"' : string
             parse prefix time_zone

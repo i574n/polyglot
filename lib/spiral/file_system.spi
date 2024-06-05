@@ -332,7 +332,7 @@ let (</>) (a : string) (b : string) : string =
         | target => fun () => failwith $'$"file_system.(</>) / target: {!target} / a: {!a} / b: {!b}"'
 
 /// ## get_temp_path
-inl get_temp_path () : string =
+let get_temp_path () : string =
     run_target function
         | Rust (Contract) => fun () => null ()
         | Rust (Native) => fun () =>
@@ -401,7 +401,7 @@ let get_extension (path : string) : string =
             path |> $'System.IO.Path.GetExtension'
 
 /// ## directory_separator_char
-inl directory_separator_char () : char =
+let directory_separator_char () : char =
     run_target function
         | Rust (Native) => fun () =>
             open rust_operators
@@ -426,7 +426,7 @@ let get_current_directory () : string =
             $'System.IO.Directory.GetCurrentDirectory' ()
 
 /// ## normalize_path
-inl normalize_path (path : string) : string =
+let normalize_path (path : string) : string =
     inl path = path |> sm'.replace_regex @"^\\\\\?\\" ""
     $'$"{!path.[0] |> string |> _.ToLower()}{!path.[1..]}"' |> sm'.replace "\\" "/"
 
@@ -467,7 +467,7 @@ let get_full_path (path : string) : string =
         | _ => fun () => null ()
 
 /// ## create_temp_path'
-inl create_temp_path' (guid : guid.guid) =
+let create_temp_path' (guid : guid.guid) =
     run_target function
         | Rust (Contract) => fun () => null ()
         | _ => fun () =>
@@ -477,7 +477,7 @@ inl create_temp_path' (guid : guid.guid) =
             </> (guid |> sm'.obj_to_string)
 
 /// ## create_temp_path
-inl create_temp_path () =
+let create_temp_path () =
     run_target function
         | Rust (Contract) => fun () => null ()
         | _ => fun () =>
@@ -756,7 +756,7 @@ inl create_temp_dir' (hash : string) =
     dir, dir |> create_dir
 
 /// ## link_directory
-inl link_directory target_path path =
+let link_directory target_path path =
     if target_path |> directory_exists |> not
     then target_path |> create_dir |> ignore
 
@@ -824,7 +824,7 @@ let file_exists_content' path content : bool =
         | _ => fun () => null ()
 
 /// ## write_all_text_exists'
-inl write_all_text_exists' path contents =
+let write_all_text_exists' path contents =
     inl exists' = contents |> file_exists_content' path
     if not exists'
     then contents |> write_all_text path

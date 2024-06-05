@@ -230,18 +230,25 @@ inl get_tasks () : list task_template =
 #!spiral
 
 //// test
+///! fsharp
+///! cuda
 ///! rust
+///! typescript
+///! python
 
 types ()
 get_tasks ()
-|> sm'.format_pretty'
-|> sm'.from_std_string
+|> sm'.format_debug
 |> _assert_string_contains "01"
 
 #!spiral
 
 //// test
+///! fsharp
+///! cuda
 ///! rust
+///! typescript
+///! python
 
 get_tasks ()
 |> listm'.try_item 0i32

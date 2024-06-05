@@ -11,7 +11,7 @@ $ErrorActionPreference = "Stop"
 
 $projectName = "math"
 
-if (!$fast && !$SkipNotebook) {
+if (!$fast -and !$SkipNotebook) {
     { . ../../apps/spiral/dist/Supervisor$(_exe) --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path $projectName.dib --retries $($fast -or !$env:CI ? 1 : 5)" } | Invoke-Block
 }
 
@@ -28,7 +28,7 @@ $targetDir = GetTargetDir $projectName
 { BuildFable $targetDir $projectName "rs" } | Invoke-Block
 
 (Get-Content "$targetDir/target/rs/$projectName.rs") `
-    -replace "../../../lib", "../lib" `
+    -replace "../../../lib", "../../lib" `
     -replace ".fsx`"]", ".rs`"]" `
     | FixRust `
     | Set-Content "$projectName.rs"

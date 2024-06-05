@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Builder.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>reflection.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7531,7 +7531,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Builder-(Polyglot)">Builder (Polyglot)<a class="anchor-link" href="#Builder-(Polyglot)">¶</a></h1>
+<h1 id="reflection">reflection<a class="anchor-link" href="#reflection">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7543,27 +7543,22 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="nb">open</span> <span class="n">testing</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Notebooks.dib</span>
-<span class="c1">#!import ../../lib/fsharp/Testing.dib</span>
-</pre></div>
-</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="get_union_fields">get_union_fields<a class="anchor-link" href="#get_union_fields">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7575,18 +7570,25 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Common.fs</span>
-<span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
-<span class="c1">#!import ../../lib/fsharp/Async.fs</span>
-<span class="c1">#!import ../../lib/fsharp/AsyncSeq.fs</span>
-<span class="c1">#!import ../../lib/fsharp/Runtime.fs</span>
-<span class="c1">#!import ../../lib/fsharp/FileSystem.fs</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get_union_fields</span> <span class="n">forall</span> <span class="n">union_type</span><span class="o">.</span> <span class="p">()</span> <span class="p">:</span> <span class="nb">list</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">real</span>
+        <span class="n">real_core</span><span class="o">.</span><span class="n">union_to_record</span>
+            <span class="err">`</span><span class="n">union_type</span>
+            <span class="n">forall</span> <span class="n">union_record_type</span><span class="o">.</span> <span class="o">=&gt;</span>
+                <span class="n">real_core</span><span class="o">.</span><span class="n">record_type_fold</span>
+                    <span class="n">fun</span> <span class="n">acc</span> <span class="n">key</span> <span class="o">=&gt;</span>
+                        <span class="n">forall</span> <span class="n">value</span><span class="o">.</span> <span class="o">=&gt;</span>
+                            <span class="n">inl</span> <span class="n">item</span> <span class="o">=</span> <span class="n">real_core</span><span class="o">.</span><span class="n">nominal_create</span> <span class="err">`</span><span class="n">union_type</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">())</span>
+                            <span class="n">inl</span> <span class="n">key</span> <span class="o">=</span> <span class="n">sm</span><span class="s1">'.symbol_to_string `value key</span>
+                            <span class="p">(::)</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span> <span class="n">acc</span>
+                    <span class="p">(</span><span class="n">Nil</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">))</span>
+                    <span class="err">`</span><span class="n">union_record_type</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7594,41 +7596,63 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#if !INTERACTIVE</span>
-<span class="nb">open</span> <span class="n">Lib</span>
-<span class="c1">#endif</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
+
+<span class="n">get_union_fields</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
+<span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.sort_by snd</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (a ;[ "Native", Native; "Wasm", Wasm; "Contract", Contract ])</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Common</span>
-<span class="nb">open</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">Operators</span>
-</pre></div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.rs output:
+assert_eq' / actual: Array(MutCell([("Native", US0_0), ("Wasm", US0_1), ("Contract", US0_2)])) / expected: Array(MutCell([("Native", US0_0), ("Wasm", US0_1), ("Contract", US0_2)]))
+
+.ts output:
+assert_eq' / actual: Native,US0_0,Wasm,US0_1,Contract,US0_2 / expected: Native,US0_0,Wasm,US0_1,Contract,US0_2
+
+.py output:
+assert_eq' / actual: [('Native', US0_0), ('Wasm', US0_1), ('Contract', US0_2)] / expected: [('Native', US0_0), ('Wasm', US0_1), ('Contract', US0_2)]
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struct ("Contract", US0_2)|] / expected: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struct ("Contract", US0_2)|]
+</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="buildProject">buildProject<a class="anchor-link" href="#buildProject">¶</a></h2>
+<h3 id="get_union_fields_untag">get_union_fields_untag<a class="anchor-link" href="#get_union_fields_untag">¶</a></h3>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7636,44 +7660,80 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">buildProject</span> <span class="n">runtime</span> <span class="n">outputDir</span> <span class="n">path</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">fullPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
-    <span class="n">let</span> <span class="n">fileDir</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetDirectoryName</span>
-    <span class="n">let</span> <span class="n">extension</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetExtension</span>
-
-    <span class="n">trace</span> <span class="n">Debug</span>
-        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"buildProject"</span><span class="p">)</span>
-        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"fullPath: </span><span class="si">{fullPath}</span><span class="s2"> / {_locals ()}"</span><span class="p">)</span>
-
-    <span class="k">match</span> <span class="n">extension</span> <span class="k">with</span>
-    <span class="o">|</span> <span class="s2">".fsproj"</span> <span class="o">-&gt;</span> <span class="p">()</span>
-    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">"Invalid project file"</span>
-
-    <span class="n">let</span> <span class="n">runtimes</span> <span class="o">=</span>
-        <span class="n">runtime</span>
-        <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="n">List</span><span class="o">.</span><span class="n">singleton</span>
-        <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="p">[</span> <span class="s2">"linux-x64"</span><span class="p">;</span> <span class="s2">"win-x64"</span> <span class="p">]</span>
-
-    <span class="n">let</span> <span class="n">outputDir</span> <span class="o">=</span> <span class="n">outputDir</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="s2">"dist"</span>
-
-    <span class="k">return</span><span class="err">!</span>
-        <span class="n">runtimes</span>
-        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">runtime</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-            <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"dotnet publish ""</span><span class="si">{path}</span><span class="s2">"" --configuration Release --output ""</span><span class="si">{outputDir}</span><span class="s2">"" --runtime </span><span class="si">{runtime}</span><span class="s2">"</span>
-            <span class="n">let</span><span class="o">!</span><span class="w"> </span>exitCode,<span class="w"> </span><span class="nv">_result</span><span class="w"> </span><span class="o">=</span>
-                <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execution_options</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
-                    <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
-                        <span class="n">l1</span> <span class="o">=</span> <span class="n">command</span>
-                        <span class="n">l6</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">fileDir</span>
-                    <span class="p">}</span>
-                <span class="p">)</span>
-                <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span>
-            <span class="k">return</span> <span class="n">exitCode</span>
-        <span class="p">})</span>
-        <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sequential</span>
-        <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Array</span><span class="o">.</span><span class="n">sum</span>
-<span class="p">}</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get_union_fields_untag</span> <span class="n">forall</span> <span class="n">union_type</span><span class="o">.</span> <span class="p">()</span> <span class="p">:</span> <span class="nb">list</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">real</span>
+        <span class="n">real_core</span><span class="o">.</span><span class="n">union_to_record</span>
+            <span class="err">`</span><span class="n">union_type</span>
+            <span class="n">forall</span> <span class="n">union_record_type</span><span class="o">.</span> <span class="o">=&gt;</span>
+                <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span>
+                    <span class="n">real_core</span><span class="o">.</span><span class="n">record_type_fold_back</span>
+                        <span class="n">fun</span> <span class="n">_key</span> <span class="o">=&gt;</span>
+                            <span class="n">forall</span> <span class="n">value</span><span class="o">.</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="p">:</span> <span class="n">i32</span><span class="p">))</span> <span class="o">=&gt;</span>
+                                <span class="n">inl</span> <span class="n">key</span><span class="p">,</span> <span class="n">item</span> <span class="p">:</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span> <span class="o">=</span>
+                                    <span class="n">real_core</span><span class="o">.</span><span class="n">union_untag</span> <span class="err">`</span><span class="n">union_type</span> <span class="n">i</span>
+                                        <span class="p">(</span><span class="n">fun</span> <span class="n">key</span> <span class="o">=&gt;</span> <span class="n">forall</span> <span class="n">v</span><span class="o">.</span> <span class="o">=&gt;</span>
+                                            <span class="p">(</span><span class="n">sm</span><span class="s1">'.symbol_to_string `v key),</span>
+                                            <span class="n">real_core</span><span class="o">.</span><span class="n">nominal_create</span> <span class="err">`</span><span class="n">union_type</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">())</span>
+                                        <span class="p">)</span>
+                                        <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span> <span class="s2">"reflection.get_union_fields_untag / invalid tag"</span><span class="p">)</span>
+                                <span class="p">(::)</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span> <span class="n">acc</span><span class="p">,</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span> <span class="err">`</span><span class="n">i32</span> <span class="n">i</span> <span class="mi">1</span>
+                        <span class="err">`</span><span class="n">union_record_type</span>
+                        <span class="p">(</span><span class="n">Nil</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">),</span> <span class="mi">0</span><span class="n">i32</span><span class="p">)</span>
+                <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">fst</span> <span class="err">`</span><span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">))</span> <span class="err">`</span><span class="n">i32</span> <span class="n">result</span>
+                <span class="n">listm</span><span class="o">.</span><span class="n">rev</span> <span class="err">`</span><span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span> <span class="n">result</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
+
+<span class="n">get_union_fields_untag</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (a ;[ "Native", Native; "Wasm", Wasm; "Contract", Contract ])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.rs output:
+assert_eq' / actual: Array(MutCell([("Native", US0_0), ("Wasm", US0_1), ("Contract", US0_2)])) / expected: Array(MutCell([("Native", US0_0), ("Wasm", US0_1), ("Contract", US0_2)]))
+
+.ts output:
+assert_eq' / actual: Native,US0_0,Wasm,US0_1,Contract,US0_2 / expected: Native,US0_0,Wasm,US0_1,Contract,US0_2
+
+.py output:
+assert_eq' / actual: [('Native', US0_0), ('Wasm', US0_1), ('Contract', US0_2)] / expected: [('Native', US0_0), ('Wasm', US0_1), ('Contract', US0_2)]
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struct ("Contract", US0_2)|] / expected: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struct ("Contract", US0_2)|]
+</pre>
 </div>
 </div>
 </div>
@@ -7685,7 +7745,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="persistCodeProject">persistCodeProject<a class="anchor-link" href="#persistCodeProject">¶</a></h2>
+<h2 id="union_try_pick">union_try_pick<a class="anchor-link" href="#union_try_pick">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7697,77 +7757,12 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">name</span> <span class="nb">hash</span> <span class="n">code</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span>
-        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"persistCodeProject"</span><span class="p">)</span>
-        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"packages: </span><span class="si">{packages}</span><span class="s2"> / modules: </span><span class="si">{modules}</span><span class="s2"> / name: </span><span class="si">{name}</span><span class="s2"> / hash: </span><span class="si">{hash}</span><span class="s2"> / code.Length: {code |&gt; String.length} / {_locals ()}"</span><span class="p">)</span>
-
-    <span class="n">let</span> <span class="n">workspaceRoot</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">get_workspace_root</span> <span class="p">()</span>
-
-    <span class="n">let</span> <span class="n">targetDir</span> <span class="o">=</span>
-        <span class="n">let</span> <span class="n">targetDir</span> <span class="o">=</span> <span class="n">workspaceRoot</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target/Builder"</span> <span class="o">&lt;/&gt;</span> <span class="n">name</span>
-        <span class="k">match</span> <span class="nb">hash</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">Some</span> <span class="nb">hash</span> <span class="o">-&gt;</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"packages"</span> <span class="o">&lt;/&gt;</span> <span class="nb">hash</span>
-        <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span> <span class="n">targetDir</span>
-    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="n">targetDir</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-
-    <span class="n">let</span> <span class="n">filePath</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{name}</span><span class="s2">.fs"</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
-    <span class="n">do</span><span class="o">!</span><span class="w"> </span>code<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_exists<span class="w"> </span>filePath
-
-    <span class="n">let</span> <span class="n">modulesCode</span> <span class="o">=</span>
-        <span class="n">modules</span>
-        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">path</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"""&lt;Compile Include="{workspaceRoot &lt;/&gt; path}" /&gt;"""</span><span class="p">)</span>
-        <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">        "</span>
-
-    <span class="n">let</span> <span class="n">fsprojPath</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{name}</span><span class="s2">.fsproj"</span>
-    <span class="n">let</span> <span class="n">fsprojCode</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"""&lt;Project Sdk="Microsoft.NET.Sdk"&gt;</span>
-<span class="s2">    &lt;PropertyGroup&gt;</span>
-<span class="s2">        &lt;TargetFramework&gt;net9.0&lt;/TargetFramework&gt;</span>
-<span class="s2">        &lt;LangVersion&gt;preview&lt;/LangVersion&gt;</span>
-<span class="s2">        &lt;RollForward&gt;Major&lt;/RollForward&gt;</span>
-<span class="s2">        &lt;TargetLatestRuntimePatch&gt;true&lt;/TargetLatestRuntimePatch&gt;</span>
-<span class="s2">        &lt;PublishAot&gt;false&lt;/PublishAot&gt;</span>
-<span class="s2">        &lt;PublishTrimmed&gt;false&lt;/PublishTrimmed&gt;</span>
-<span class="s2">        &lt;PublishSingleFile&gt;true&lt;/PublishSingleFile&gt;</span>
-<span class="s2">        &lt;SelfContained&gt;true&lt;/SelfContained&gt;</span>
-<span class="s2">        &lt;Version&gt;0.0.1-alpha.1&lt;/Version&gt;</span>
-<span class="s2">        &lt;OutputType&gt;Exe&lt;/OutputType&gt;</span>
-<span class="s2">    &lt;/PropertyGroup&gt;</span>
-
-<span class="s2">    &lt;PropertyGroup Condition="$([MSBuild]::IsOSPlatform('FreeBSD'))"&gt;</span>
-<span class="s2">        &lt;DefineConstants&gt;_FREEBSD&lt;/DefineConstants&gt;</span>
-<span class="s2">    &lt;/PropertyGroup&gt;</span>
-
-<span class="s2">    &lt;PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))"&gt;</span>
-<span class="s2">        &lt;DefineConstants&gt;_LINUX&lt;/DefineConstants&gt;</span>
-<span class="s2">    &lt;/PropertyGroup&gt;</span>
-
-<span class="s2">    &lt;PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))"&gt;</span>
-<span class="s2">        &lt;DefineConstants&gt;_OSX&lt;/DefineConstants&gt;</span>
-<span class="s2">    &lt;/PropertyGroup&gt;</span>
-
-<span class="s2">    &lt;PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))"&gt;</span>
-<span class="s2">        &lt;DefineConstants&gt;_WINDOWS&lt;/DefineConstants&gt;</span>
-<span class="s2">    &lt;/PropertyGroup&gt;</span>
-
-<span class="s2">    &lt;ItemGroup&gt;</span>
-<span class="s2">        </span><span class="si">{modulesCode}</span>
-<span class="s2">        &lt;Compile Include="</span><span class="si">{filePath}</span><span class="s2">" /&gt;</span>
-<span class="s2">    &lt;/ItemGroup&gt;</span>
-
-<span class="s2">    &lt;Import Project="</span><span class="si">{workspaceRoot}</span><span class="s2">/.paket/Paket.Restore.targets" /&gt;</span>
-<span class="s2">&lt;/Project&gt;</span>
-<span class="s2">"""</span>
-    <span class="n">do</span><span class="o">!</span><span class="w"> </span>fsprojCode<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_exists<span class="w"> </span>fsprojPath
-
-    <span class="n">let</span> <span class="n">paketReferencesPath</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"paket.references"</span>
-    <span class="n">let</span> <span class="n">paketReferencesCode</span> <span class="o">=</span>
-        <span class="s2">"FSharp.Core"</span> <span class="p">::</span> <span class="n">packages</span>
-        <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
-    <span class="n">do</span><span class="o">!</span><span class="w"> </span>paketReferencesCode<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.write_all_text_exists<span class="w"> </span>paketReferencesPath
-
-    <span class="k">return</span> <span class="n">fsprojPath</span>
-<span class="p">}</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">union_try_pick</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">key</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">real</span> <span class="n">get_union_fields_untag</span> <span class="err">`</span><span class="n">t</span> <span class="p">()</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.try_pick fun key'</span><span class="p">,</span> <span class="n">x</span> <span class="o">=&gt;</span>
+        <span class="k">if</span> <span class="n">key</span><span class="s1">' = key</span>
+        <span class="n">then</span> <span class="n">Some</span> <span class="n">x</span>
+        <span class="k">else</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
@@ -7780,7 +7775,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="buildCode">buildCode<a class="anchor-link" href="#buildCode">¶</a></h2>
+<h2 id="union_to_string">union_to_string<a class="anchor-link" href="#union_to_string">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7792,504 +7787,14 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">buildCode</span> <span class="n">runtime</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">outputDir</span> <span class="n">name</span> <span class="n">code</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">fsprojPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>code<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>persistCodeProject<span class="w"> </span>packages<span class="w"> </span>modules<span class="w"> </span>name<span class="w"> </span>None
-    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">exitCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>fsprojPath<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>buildProject<span class="w"> </span>runtime<span class="w"> </span>outputDir
-    <span class="k">if</span> <span class="n">exitCode</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span> <span class="n">then</span>
-        <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">fsprojText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>fsprojPath<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.read_all_text_async
-        <span class="n">trace</span> <span class="n">Critical</span>
-            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"buildCode"</span><span class="p">)</span>
-            <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"code: {code |&gt; SpiralSm.ellipsis_end 400} / fsprojText: </span><span class="si">{fsprojText}</span><span class="s2"> / {_locals ()}"</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">exitCode</span>
-<span class="p">}</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">union_to_string</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="n">real</span> <span class="n">get_union_fields_untag</span> <span class="err">`</span><span class="n">t</span> <span class="p">()</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.try_pick fun key, x'</span> <span class="o">=&gt;</span>
+        <span class="k">if</span> <span class="n">x</span><span class="s1">' = x</span>
+        <span class="n">then</span> <span class="n">Some</span> <span class="n">key</span>
+        <span class="k">else</span> <span class="kc">None</span>
+    <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="s2">"1 + 1 |&gt; ignore"</span>
-<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="kc">None</span> <span class="p">[]</span> <span class="p">[]</span> <span class="kc">None</span> <span class="s2">"test1"</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">180000</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:03   debug #1 persistCodeProject / packages: [] / modules: [] / name: test1 / hash:  / code.Length: 15
-00:00:03   debug #2 buildProject / fullPath: C:\home\git\polyglot\target\Builder\test1\test1.fsproj
-00:00:06   debug #1 runtime.execute_with_options_async / options: struct (None,
-        "dotnet publish "C:\home\git\polyglot\target/Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime linux-x64",
-        [||], None, None, true, Some "C:\home\git\polyglot\target\Builder\test1")
-00:00:07 verbose #2 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:07 verbose #3 &gt;   Determining projects to restore...
-00:00:08 verbose #4 &gt;   Restored C:\home\git\polyglot\target\Builder\test1\test1.fsproj (in 488 ms).
-00:00:08 verbose #5 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\test1\test1.fsproj]
-00:00:10 verbose #6 &gt;   test1 -&gt; C:\home\git\polyglot\target\Builder\test1\bin\Release\net9.0\linux-x64\test1.dll
-00:00:12 verbose #7 &gt;   test1 -&gt; C:\home\git\polyglot\target\Builder\test1\dist\
-00:00:12   debug #8 runtime.execute_with_options_async / exit_code: 0 / output.Length: 657
-00:00:12   debug #9 runtime.execute_with_options_async / options: struct (None,
-        "dotnet publish "C:\home\git\polyglot\target/Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime win-x64",
-        [||], None, None, true, Some "C:\home\git\polyglot\target\Builder\test1")
-00:00:12 verbose #10 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:12 verbose #11 &gt;   Determining projects to restore...
-00:00:13 verbose #12 &gt;   Restored C:\home\git\polyglot\target\Builder\test1\test1.fsproj (in 386 ms).
-00:00:13 verbose #13 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\test1\test1.fsproj]
-00:00:14 verbose #14 &gt;   test1 -&gt; C:\home\git\polyglot\target\Builder\test1\bin\Release\net9.0\win-x64\test1.dll
-00:00:18 verbose #15 &gt;   test1 -&gt; C:\home\git\polyglot\target\Builder\test1\dist\
-00:00:18   debug #16 runtime.execute_with_options_async / exit_code: 0 / output.Length: 655
-Some 0
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="s2">"1 + a |&gt; ignore"</span>
-<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="kc">None</span> <span class="p">[]</span> <span class="p">[]</span> <span class="kc">None</span> <span class="s2">"test2"</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">180000</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:15   debug #3 persistCodeProject / packages: [] / modules: [] / name: test2 / hash:  / code.Length: 15
-00:00:15   debug #4 buildProject / fullPath: C:\home\git\polyglot\target\Builder\test2\test2.fsproj
-00:00:18   debug #17 runtime.execute_with_options_async / options: struct (None,
-        "dotnet publish "C:\home\git\polyglot\target/Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime linux-x64",
-        [||], None, None, true, Some "C:\home\git\polyglot\target\Builder\test2")
-00:00:18 verbose #18 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:19 verbose #19 &gt;   Determining projects to restore...
-00:00:20 verbose #20 &gt;   Restored C:\home\git\polyglot\target\Builder\test2\test2.fsproj (in 399 ms).
-00:00:20 verbose #21 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\test2\test2.fsproj]
-00:00:22 verbose #22 &gt; C:\home\git\polyglot\target\Builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\target\Builder\test2\test2.fsproj]
-00:00:22   debug #23 runtime.execute_with_options_async / exit_code: 1 / output.Length: 679
-00:00:22   debug #24 runtime.execute_with_options_async / options: struct (None,
-        "dotnet publish "C:\home\git\polyglot\target/Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime win-x64",
-        [||], None, None, true, Some "C:\home\git\polyglot\target\Builder\test2")
-00:00:22 verbose #25 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:23 verbose #26 &gt;   Determining projects to restore...
-00:00:24 verbose #27 &gt;   Restored C:\home\git\polyglot\target\Builder\test2\test2.fsproj (in 384 ms).
-00:00:24 verbose #28 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\test2\test2.fsproj]
-00:00:26 verbose #29 &gt; C:\home\git\polyglot\target\Builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\target\Builder\test2\test2.fsproj]
-00:00:26   debug #30 runtime.execute_with_options_async / exit_code: 1 / output.Length: 679
-00:00:22 critical #5 buildCode / code: 1 + a |&gt; ignore / fsprojText: &lt;Project Sdk="Microsoft.NET.Sdk"&gt;
-    &lt;PropertyGroup&gt;
-        &lt;TargetFramework&gt;net9.0&lt;/TargetFramework&gt;
-        &lt;LangVersion&gt;preview&lt;/LangVersion&gt;
-        &lt;RollForward&gt;Major&lt;/RollForward&gt;
-        &lt;TargetLatestRuntimePatch&gt;true&lt;/TargetLatestRuntimePatch&gt;
-        &lt;PublishAot&gt;false&lt;/PublishAot&gt;
-        &lt;PublishTrimmed&gt;false&lt;/PublishTrimmed&gt;
-        &lt;PublishSingleFile&gt;true&lt;/PublishSingleFile&gt;
-        &lt;SelfContained&gt;true&lt;/SelfContained&gt;
-        &lt;Version&gt;0.0.1-alpha.1&lt;/Version&gt;
-        &lt;OutputType&gt;Exe&lt;/OutputType&gt;
-    &lt;/PropertyGroup&gt;
-
-    &lt;PropertyGroup Condition="$([MSBuild]::IsOSPlatform('FreeBSD'))"&gt;
-        &lt;DefineConstants&gt;_FREEBSD&lt;/DefineConstants&gt;
-    &lt;/PropertyGroup&gt;
-
-    &lt;PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))"&gt;
-        &lt;DefineConstants&gt;_LINUX&lt;/DefineConstants&gt;
-    &lt;/PropertyGroup&gt;
-
-    &lt;PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))"&gt;
-        &lt;DefineConstants&gt;_OSX&lt;/DefineConstants&gt;
-    &lt;/PropertyGroup&gt;
-
-    &lt;PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))"&gt;
-        &lt;DefineConstants&gt;_WINDOWS&lt;/DefineConstants&gt;
-    &lt;/PropertyGroup&gt;
-
-    &lt;ItemGroup&gt;
-        
-        &lt;Compile Include="C:\home\git\polyglot\target\Builder\test2\test2.fs" /&gt;
-    &lt;/ItemGroup&gt;
-
-    &lt;Import Project="C:\home\git\polyglot/.paket/Paket.Restore.targets" /&gt;
-&lt;/Project&gt;
-
-Some 2
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="readFile">readFile<a class="anchor-link" href="#readFile">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">readFile</span> <span class="n">path</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>path<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>SpiralFileSystem.read_all_text_async
-
-    <span class="n">let</span> <span class="n">code</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">RegularExpressions</span><span class="o">.</span><span class="n">Regex</span><span class="o">.</span><span class="n">Replace</span> <span class="p">(</span>
-        <span class="n">code</span><span class="p">,</span>
-        <span class="o">@</span><span class="s2">"( *)(let\s+main\s+.*?\s*=)"</span><span class="p">,</span>
-        <span class="n">fun</span> <span class="n">m</span> <span class="o">-&gt;</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span> <span class="o">+</span> <span class="s2">"[&lt;EntryPoint&gt;]</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span>
-    <span class="p">)</span>
-
-    <span class="n">let</span> <span class="n">codeTrim</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim_end</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
-    <span class="k">return</span>
-        <span class="k">if</span> <span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">ends_with</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">()"</span>
-        <span class="n">then</span> <span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">slice</span> <span class="mi">0</span> <span class="p">((</span><span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">length</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
-        <span class="k">else</span> <span class="n">code</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="buildFile">buildFile<a class="anchor-link" href="#buildFile">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">buildFile</span> <span class="n">runtime</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">path</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">fullPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
-    <span class="n">let</span> <span class="nb">dir</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetDirectoryName</span>
-    <span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFileNameWithoutExtension</span>
-    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>fullPath<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>readFile
-    <span class="k">return</span><span class="o">!</span><span class="w"> </span>code<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>buildCode<span class="w"> </span>runtime<span class="w"> </span>packages<span class="w"> </span>modules<span class="w"> </span><span class="o">(</span>dir<span class="w"> </span>&lt;/&gt;<span class="w"> </span><span class="s2">"dist"</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>Some<span class="o">)</span><span class="w"> </span>name
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="persistFile">persistFile<a class="anchor-link" href="#persistFile">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">persistFile</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">path</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">fullPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
-    <span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFileNameWithoutExtension</span>
-    <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>fullPath<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>readFile
-    <span class="k">return</span><span class="o">!</span><span class="w"> </span>code<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>persistCodeProject<span class="w"> </span>packages<span class="w"> </span>modules<span class="w"> </span>name<span class="w"> </span>None
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Arguments">Arguments<a class="anchor-link" href="#Arguments">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=22">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">RequireQualifiedAccess</span><span class="o">&gt;</span><span class="p">]</span>
-<span class="nb">type</span> <span class="n">Arguments</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">MainCommand</span><span class="p">;</span> <span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">ExactlyOnce</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Path</span> <span class="n">of</span> <span class="n">path</span> <span class="p">:</span> <span class="n">string</span>
-    <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">Unique</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Packages</span> <span class="n">of</span> <span class="n">packages</span> <span class="p">:</span> <span class="n">string</span> <span class="nb">list</span>
-    <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">Unique</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Modules</span> <span class="n">of</span> <span class="n">modules</span> <span class="p">:</span> <span class="n">string</span> <span class="nb">list</span>
-    <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">Unique</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Runtime</span> <span class="n">of</span> <span class="n">runtime</span> <span class="p">:</span> <span class="n">string</span>
-    <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">Unique</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Persist_Only</span>
-
-    <span class="n">interface</span> <span class="n">Argu</span><span class="o">.</span><span class="n">IArgParserTemplate</span> <span class="k">with</span>
-        <span class="n">member</span> <span class="n">s</span><span class="o">.</span><span class="n">Usage</span> <span class="o">=</span>
-            <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="n">Path</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">Path</span>
-            <span class="o">|</span> <span class="n">Packages</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">Packages</span>
-            <span class="o">|</span> <span class="n">Modules</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">Modules</span>
-            <span class="o">|</span> <span class="n">Runtime</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">Runtime</span>
-            <span class="o">|</span> <span class="n">Persist_Only</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">Persist_Only</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">Argu</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="o">.</span><span class="n">Create</span><span class="o">&lt;</span><span class="n">Arguments</span><span class="o">&gt;</span><span class="p">()</span><span class="o">.</span><span class="n">PrintUsage</span> <span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>"USAGE: dotnet-repl [--help] [--packages [&lt;packages&gt;...]]
-                   [--modules [&lt;modules&gt;...]] [--runtime &lt;runtime&gt;]
-                   [--persist-only] &lt;path&gt;
-
-PATH:
-
-    &lt;path&gt;                Path
-
-OPTIONS:
-
-    --packages [&lt;packages&gt;...]
-                          Packages
-    --modules [&lt;modules&gt;...]
-                          Modules
-    --runtime &lt;runtime&gt;   Runtime
-    --persist-only        Persist_Only
-    --help                display this list of options.
-"
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="main">main<a class="anchor-link" href="#main">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">main</span> <span class="n">args</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">argsMap</span> <span class="o">=</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">parseArgsMap</span><span class="o">&lt;</span><span class="n">Arguments</span><span class="o">&gt;</span>
-
-    <span class="n">let</span> <span class="n">path</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">argsMap</span><span class="o">.</span><span class="p">[</span><span class="n">nameof</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Path</span><span class="p">]</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="p">[</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Path</span> <span class="n">path</span> <span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Some</span> <span class="n">path</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-        <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">get</span>
-
-    <span class="n">let</span> <span class="n">packages</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">argsMap</span> <span class="o">|&gt;</span> <span class="n">Map</span><span class="o">.</span><span class="n">tryFind</span> <span class="p">(</span><span class="n">nameof</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Packages</span><span class="p">)</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">Some</span> <span class="p">[</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Packages</span> <span class="n">packages</span> <span class="p">]</span> <span class="o">-&gt;</span> <span class="n">packages</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">[]</span>
-
-    <span class="n">let</span> <span class="n">modules</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">argsMap</span> <span class="o">|&gt;</span> <span class="n">Map</span><span class="o">.</span><span class="n">tryFind</span> <span class="p">(</span><span class="n">nameof</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Modules</span><span class="p">)</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">Some</span> <span class="p">[</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Modules</span> <span class="n">modules</span> <span class="p">]</span> <span class="o">-&gt;</span> <span class="n">modules</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">[]</span>
-
-    <span class="n">let</span> <span class="n">runtime</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">argsMap</span> <span class="o">|&gt;</span> <span class="n">Map</span><span class="o">.</span><span class="n">tryFind</span> <span class="p">(</span><span class="n">nameof</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Runtime</span><span class="p">)</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">Some</span> <span class="p">[</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Runtime</span> <span class="n">runtime</span> <span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Some</span> <span class="n">runtime</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-
-    <span class="n">let</span> <span class="n">persistOnly</span> <span class="o">=</span> <span class="n">argsMap</span> <span class="o">|&gt;</span> <span class="n">Map</span><span class="o">.</span><span class="n">containsKey</span> <span class="p">(</span><span class="n">nameof</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Persist_Only</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">persistOnly</span>
-    <span class="n">then</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">persistFile</span> <span class="n">packages</span> <span class="n">modules</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="k">else</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">buildFile</span> <span class="n">runtime</span> <span class="n">packages</span> <span class="n">modules</span>
-    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="p">(</span><span class="mi">60000</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Some</span> <span class="n">exitCode</span> <span class="o">-&gt;</span> <span class="n">exitCode</span>
-        <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">let</span> <span class="n">args</span> <span class="o">=</span>
-    <span class="n">System</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">GetEnvironmentVariable</span> <span class="s2">"ARGS"</span>
-    <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">split_args</span>
-    <span class="o">|&gt;</span> <span class="n">Result</span><span class="o">.</span><span class="n">toArray</span>
-    <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">collect</span> <span class="nb">id</span>
-
-<span class="k">match</span> <span class="n">args</span> <span class="k">with</span>
-<span class="o">|</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="mi">0</span>
-<span class="o">|</span> <span class="n">args</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">main</span> <span class="n">args</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">failwith</span> <span class="s2">"main failed"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<div class="dni-plaintext"><pre>0
-</pre></div><style>
-.dni-code-hint {
-    font-style: italic;
-    overflow: hidden;
-    white-space: nowrap;
-}
-.dni-treeview {
-    white-space: nowrap;
-}
-.dni-treeview td {
-    vertical-align: top;
-    text-align: start;
-}
-details.dni-treeview {
-    padding-left: 1em;
-}
-table td {
-    text-align: start;
-}
-table tr { 
-    vertical-align: top; 
-    margin: 0em 0px;
-}
-table tr td pre 
-{ 
-    vertical-align: top !important; 
-    margin: 0em 0px !important;
-} 
-table th {
-    text-align: start;
-}
-</style>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:23   debug #6 persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.Reactive.Linq] / modules: [lib/spiral/common.fsx; lib/spiral/sm.fsx; lib/spiral/crypto.fsx; ... ] / name: Builder / hash:  / code.Length: 8207
-00:00:24   debug #7 buildProject / fullPath: C:\home\git\polyglot\target\Builder\Builder\Builder.fsproj
-00:00:27   debug #31 runtime.execute_with_options_async / options: struct (None,
-        "dotnet publish "C:\home\git\polyglot\target/Builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime linux-x64",
-        [||], None, None, true,
-        Some "C:\home\git\polyglot\target\Builder\Builder")
-00:00:27 verbose #32 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:28 verbose #33 &gt;   Determining projects to restore...
-00:00:29 verbose #34 &gt;   Restored C:\home\git\polyglot\target\Builder\Builder\Builder.fsproj (in 469 ms).
-00:00:29 verbose #35 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\Builder\Builder.fsproj]
-00:00:41 verbose #36 &gt;   Builder -&gt; C:\home\git\polyglot\target\Builder\Builder\bin\Release\net9.0\linux-x64\Builder.dll
-00:00:43 verbose #37 &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
-00:00:43   debug #38 runtime.execute_with_options_async / exit_code: 0 / output.Length: 665
-00:00:43   debug #39 runtime.execute_with_options_async / options: struct (None,
-        "dotnet publish "C:\home\git\polyglot\target/Builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime win-x64",
-        [||], None, None, true,
-        Some "C:\home\git\polyglot\target\Builder\Builder")
-00:00:43 verbose #40 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:44 verbose #41 &gt;   Determining projects to restore...
-00:00:44 verbose #42 &gt;   Restored C:\home\git\polyglot\target\Builder\Builder\Builder.fsproj (in 385 ms).
-00:00:45 verbose #43 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\Builder\Builder.fsproj]
-00:00:56 verbose #44 &gt;   Builder -&gt; C:\home\git\polyglot\target\Builder\Builder\bin\Release\net9.0\win-x64\Builder.dll
-00:01:00 verbose #45 &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
-00:01:00   debug #46 runtime.execute_with_options_async / exit_code: 0 / output.Length: 663
-</pre>
 </div>
 </div>
 </div>

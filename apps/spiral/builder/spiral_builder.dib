@@ -41,17 +41,20 @@ inl types () =
 inl get_args () =
     {
         fsharp = "fsharp", {
+            spi_path = "spi-path", 's'
+        }
+        cuda = "cuda", {
+            py_path = "py-path", 'p'
+            env = "env", 'e'
+            deps = "deps", 'd'
+        }
+        fable = "fable", {
             fs_path = "fs-path", 'f'
             command = "command", 'c'
         }
         rust = "rust", {
             fs_path = "fs-path", 'f'
             deps = "deps", 'd'
-        }
-        dib = "dib", {
-            path = "path", 'p'
-            retries = "retries", 'r'
-            working_directory = "working-directory", 'w'
         }
         typescript = "typescript", {
             fs_path = "fs-path", 'f'
@@ -61,7 +64,22 @@ inl get_args () =
             fs_path = "fs-path", 'f'
             deps = "deps", 'd'
         }
+        dib = "dib", {
+            path = "path", 'p'
+            retries = "retries", 'r'
+            working_directory = "working-directory", 'w'
+        }
     }
+
+#!markdown
+
+## cuda_env
+
+#!spiral
+
+union cuda_env =
+    | Pip
+    | Poetry
 
 #!markdown
 
@@ -76,10 +94,36 @@ let get_command () =
     |> runtime.command_subcommand (
         ##(get_args () .fsharp |> fst)
         |> runtime.new_command
-        |> runtime.command_init_arg ((get_args () .fsharp |> snd).fs_path) (
+        |> runtime.command_init_arg ((get_args () .fsharp |> snd).spi_path) (
             runtime.arg_required true
         )
-        |> runtime.command_init_arg ((get_args () .fsharp |> snd).command) (
+    )
+    |> runtime.command_subcommand (
+        ##(get_args () .cuda |> fst)
+        |> runtime.new_command
+        |> runtime.command_init_arg ((get_args () .cuda |> snd).py_path) (
+            runtime.arg_required true
+        )
+        |> runtime.command_init_arg ((get_args () .cuda |> snd).env) (
+            real runtime.arg_union `cuda_env ignore
+        )
+        |> runtime.command_init_arg ((get_args () .cuda |> snd).deps) (
+            runtime.arg_value_names ;[ ##"NAME"; ##"VERSION" ]
+            >> runtime.arg_num_args_range (
+                runtime.new_value_range
+                    (am'.Start (1i32 |> convert : unativeint))
+                    (am'.End id)
+            )
+            >> runtime.arg_action runtime.Append
+        )
+    )
+    |> runtime.command_subcommand (
+        ##(get_args () .fable |> fst)
+        |> runtime.new_command
+        |> runtime.command_init_arg ((get_args () .fable |> snd).fs_path) (
+            runtime.arg_required true
+        )
+        |> runtime.command_init_arg ((get_args () .fable |> snd).command) (
             id
         )
     )
@@ -97,20 +141,6 @@ let get_command () =
                     (am'.End id)
             )
             >> runtime.arg_action runtime.Append
-        )
-    )
-    |> runtime.command_subcommand (
-        ##(get_args () .dib |> fst)
-        |> runtime.new_command
-        |> runtime.command_init_arg ((get_args () .dib |> snd).path) (
-            runtime.arg_required true
-            // >> runtime.arg_value_parser (runtime.value_parser_path_buf ())
-        )
-        |> runtime.command_init_arg ((get_args () .dib |> snd).retries) (
-            runtime.arg_value_parser (runtime.value_parser_expr "u8")
-        )
-        |> runtime.command_init_arg ((get_args () .dib |> snd).working_directory) (
-            id
         )
     )
     |> runtime.command_subcommand (
@@ -145,10 +175,28 @@ let get_command () =
             >> runtime.arg_action runtime.Append
         )
     )
+    |> runtime.command_subcommand (
+        ##(get_args () .dib |> fst)
+        |> runtime.new_command
+        |> runtime.command_init_arg ((get_args () .dib |> snd).path) (
+            runtime.arg_required true
+            // >> runtime.arg_value_parser (runtime.value_parser_path_buf ())
+        )
+        |> runtime.command_init_arg ((get_args () .dib |> snd).retries) (
+            runtime.arg_value_parser (runtime.value_parser_expr "u8")
+        )
+        |> runtime.command_init_arg ((get_args () .dib |> snd).working_directory) (
+            id
+        )
+    )
 
 #!markdown
 
-## execute_dotnet_fable
+## fable
+
+#!markdown
+
+### execute_dotnet_fable
 
 #!spiral
 
@@ -168,10 +216,6 @@ let execute_dotnet_fable { workspace_root_external fsproj_path extension package
         then Ok (exit_code, result)
         else Error (exit_code, result)
     |> retry_fn' 3u8
-
-#!markdown
-
-## fsharp
 
 #!markdown
 
@@ -302,7 +346,7 @@ inl build_project runtime' output_dir path =
 inl build_code runtime packages modules output_dir name code =
     inl fsproj_path = code |> persist_code_project packages modules name None
     inl exit_code = fsproj_path |> build_project runtime output_dir
-    if exit_code > 0 then
+    if exit_code <>. 0 then
         inl fsproj_text = fsproj_path |> file_system.read_all_text
         trace Critical
             fun () => "build_code"
@@ -333,7 +377,7 @@ types ()
 
 #!markdown
 
-## read_file
+### read_file
 
 #!spiral
 
@@ -350,7 +394,7 @@ inl read_file path =
 
 #!markdown
 
-## persist_file
+### persist_file
 
 #!spiral
 
@@ -362,7 +406,7 @@ inl persist_file packages modules path =
 
 #!markdown
 
-## build_file
+### build_file
 
 #!spiral
 
@@ -465,11 +509,11 @@ inl process_rust { fs_path deps trace_level } =
         +#. $'$"path = \\\"spiral_builder.{!extension}\\\""'
 
     if cargo_toml_path |> file_system.file_exists |> not
-    then empty_cargo_toml_content () |> file_system.write_all_text_exists' cargo_toml_path
+    then empty_cargo_toml_content () |> file_system.write_all_text cargo_toml_path
 
     if workspace_cargo_toml_path |> file_system.file_exists |> not
-    then empty_cargo_toml_content () |> file_system.write_all_text_exists' workspace_cargo_toml_path
-    
+    then empty_cargo_toml_content () |> file_system.write_all_text workspace_cargo_toml_path
+
     inl workspace_root_external = file_system.get_workspace_root_external ()
     inl workspace_root = workspace_root_external |> resultm.box |> resultm.unwrap_or_else id
 
@@ -1148,6 +1192,202 @@ inl process_python { fs_path deps trace_level } =
 
 #!markdown
 
+## cuda
+
+#!markdown
+
+### process_cuda
+
+#!spiral
+
+inl process_cuda { py_path env deps } =
+    inl extension = "py"
+    
+    inl new_code_path = py_path
+    inl new_code = new_code_path |> file_system.read_all_text
+
+    inl workspace_root_external = file_system.get_workspace_root_external ()
+    inl workspace_root = workspace_root_external |> resultm.box |> resultm.unwrap_or_else id
+
+    inl package_dir = new_code_path |> file_system.get_directory_name
+
+    inl manifest_path =
+        match env with
+        | Pip => package_dir </> "requirements.txt"
+        | Poetry => package_dir </> "pyproject.toml"
+
+    inl deps =
+        deps
+        |> am'.vec_map fun dep =>
+            inl dep = dep |> sm'.from_std_string
+            if dep |> sm'.contains "="
+            then dep
+            elif dep |> sm'.ends_with "]"
+            then dep |> sm'.replace "[" $'$"={{version=\'*\',features=["' |> fun x => $'$"{!x}}}"'
+            else $'$"{!dep}=\'*\'"'
+        |> am'.from_vec
+        |> fun x => x : _ i32 _
+        |> seq.of_array'
+        |> sm'.concat "\n"
+    
+    inl exit_code, run_result =
+        if deps = ""
+        then 0, ""
+        else
+            inl manifest =
+                match env with
+                | Pip =>
+                    deps
+                | Poetry =>
+                    $'$"[tool.poetry]"'
+                    +#. $'$"name = \\\"test\\\""'
+                    +#. $'$"version = \\\"0.0.1\\\""'
+                    +#. $'$"description = \\\"\\\""'
+                    +#. $'$"authors = []"'
+                    +#. $'$""'
+                    +#. $'$"[tool.poetry.dependencies]"'
+                    +#. $'$"python=\\\"~3.12\\\""'
+                    +#. $'$"{!deps}"'
+                    +#. $'$""'
+                    +#. $'$"[build-system]"'
+                    +#. $'$"requires = [\\\"poetry-core\\\"]"'
+                    +#. $'$"build-backend = \\\"poetry.core.masonry.api\\\""'
+
+            manifest |> file_system.write_all_text_exists' manifest_path
+
+            runtime.execution_options fun x => { x with
+                command =
+                    match env with
+                    | Pip => $'$"pip install -r requirements.txt"'
+                    | Poetry => $'$"poetry install"'
+                working_directory = package_dir |> optionm'.some'
+            }
+            |> runtime.execute_with_options
+
+    if exit_code <>. 0 then
+        trace Critical
+            fun () => "spiral_builder.process_cuda / env install error"
+            fun () => $'$"env: {!env} / exit_code: {!exit_code} / new_code_path: {!new_code_path} / run_result: {!run_result}"'
+        { extension = Some extension; code = None; output = None }
+    else
+        inl command = 
+            match env with
+            | Pip => $'$"python \\\"{!new_code_path}\\\""'
+            | Poetry => $'$"poetry run python \\\"{!new_code_path}\\\""'
+        inl environment_variables =
+            ;[
+                "TRACE_LEVEL", "Verbose"
+            ]
+        inl exit_code, run_result =
+            runtime.execution_options fun x => { x with
+                command
+                environment_variables
+                working_directory = package_dir |> optionm'.some'
+            }
+            |> runtime.execute_with_options
+
+        inl external_command =
+            inl vars =
+                a environment_variables
+                |> am.map fun k, v => $'$"$env:{!k}=\'\'{!v}\'\'"' : string
+                |> fun x => x : _ i32 _
+                |> seq.of_array
+                |> sm'.concat ";"
+            $'$"pwsh -c \'{!vars}; {!command}\'"' : string
+        if exit_code = 0 then
+            inl output =
+                try
+                    fun () =>
+                        run_result
+                        |> sm'.split "\n"
+                        |> fun x => a x : _ i32 _
+                        |> seq.of_array
+                        |> sm'.concat "\n"
+                    fun ex =>
+                        trace Critical
+                            fun () => "spiral_builder.process_cuda / Exception"
+                            fun () => $'$"ex: {!ex} / new_code_path: {!new_code_path} / external_command: {!external_command} / run_result: {!run_result} / {!_locals ()}"'
+                        None
+                |> optionm'.box
+                |> optionm'.unwrap
+
+            { extension = Some extension; code = Some new_code; output = Some output }
+        else
+            trace Critical
+                fun () => "spiral_builder.process_cuda / error"
+                fun () => $'$"exit_code: {!exit_code} / new_code_path: {!new_code_path} / external_command: {!external_command} / run_result: {!run_result}"'
+            { extension = Some extension; code = None; output = None }
+
+#!markdown
+
+## fsharp
+
+#!markdown
+
+### process_fsharp
+
+#!spiral
+
+inl process_fsharp { spi_path } =
+    inl extension = "fsx"
+    
+    inl new_code_path = spi_path
+    inl new_code = new_code_path |> file_system.read_all_text
+
+    inl workspace_root_external = file_system.get_workspace_root_external ()
+    inl workspace_root = workspace_root_external |> resultm.box |> resultm.unwrap_or_else id
+    
+    inl supervisor_path = workspace_root </> $"apps/spiral/dist/Supervisor!(runtime.get_executable_suffix ())"
+    inl code_dir = new_code_path |> file_system.get_directory_name
+    inl file_name = new_code_path |> file_system.get_file_name_without_extension
+    inl output_path = code_dir </> $'$"{!file_name}.{!extension}"'
+    inl command = $'$"{!supervisor_path} --build-file \\\"{!new_code_path}\\\" \\\"{!output_path}\\\""'
+    inl environment_variables =
+        ;[
+            "TRACE_LEVEL", "Verbose"
+        ]
+    inl exit_code, run_result =
+        runtime.execution_options fun x => { x with
+            command
+            environment_variables
+            working_directory = workspace_root_external |> resultm.box |> resultm.ok'
+        }
+        |> runtime.execute_with_options
+
+    inl external_command =
+        inl vars =
+            a environment_variables
+            |> am.map fun k, v => $'$"$env:{!k}=\'\'{!v}\'\'"' : string
+            |> fun x => x : _ i32 _
+            |> seq.of_array
+            |> sm'.concat ";"
+        $'$"pwsh -c \'{!vars}; {!command}\'"' : string
+    if exit_code = 0 then
+        inl output =
+            try
+                fun () =>
+                    run_result
+                    |> sm'.split "\n"
+                    |> fun x => a x : _ i32 _
+                    |> seq.of_array
+                    |> sm'.concat "\n"
+                fun ex =>
+                    trace Critical
+                        fun () => "spiral_builder.process_fsharp / Exception"
+                        fun () => $'$"ex: {!ex} / new_code_path: {!new_code_path} / external_command: {!external_command} / run_result: {!run_result} / {!_locals ()}"'
+                    None
+            |> optionm'.box
+            |> optionm'.unwrap
+
+        { extension = Some extension; code = Some new_code; output = Some output }
+    else
+        trace Critical
+            fun () => "spiral_builder.process_fsharp / error"
+            fun () => $'$"exit_code: {!exit_code} / new_code_path: {!new_code_path} / external_command: {!external_command} / run_result: {!run_result}"'
+        { extension = Some extension; code = None; output = None }
+
+#!markdown
+
 ## run
 
 #!spiral
@@ -1156,18 +1396,66 @@ let rec run trace_level (matches : runtime.arg_matches) : async.future_pin (resu
     fun () =>
         match matches |> runtime.matches_subcommand |> optionm'.unbox with
         | Some (subcommand, arg_matches)
-                when (subcommand |> sm'.from_std_string) = (get_args () .fsharp |> fst) =>
+                when (subcommand |> sm'.from_std_string) = (get_args () .cuda |> fst) =>
+
+            inl py_path =
+                arg_matches
+                |> runtime.matches_get_one ((get_args () .cuda |> snd).py_path |> fst)
+                |> optionm'.unbox
+                |> optionm.value
+                |> sm'.from_std_string
+
+            inl env =
+                arg_matches
+                |> runtime.matches_get_one ((get_args () .cuda |> snd).env |> fst)
+                |> optionm'.unbox
+                |> optionm.map (
+                    sm'.from_std_string
+                    >> reflection.union_try_pick
+                )
+                |> optionm'.flatten
+                |> optionm'.default_value Pip
+
+            inl deps : am'.vec sm'.std_string =
+                arg_matches
+                |> runtime.matches_get_many ((get_args () .cuda |> snd).deps |> fst)
+                |> optionm'.unbox
+                |> optionm'.default_value (;[] |> am'.to_vec)
+
+            inl command_result =
+                process_cuda { py_path env deps }
+                |> fun { extension code output } =>
+                    ;[
+                        "extension", extension |> optionm'.default_value ""
+                        "code", code |> optionm'.default_value ""
+                        "output", output |> optionm'.default_value ""
+                    ]
+
+            ;[
+                "command_result",
+                command_result
+                |> am'.to_vec
+                |> am'.vec_map' fun k, v =>
+                    new_pair (sm'.to_std_string k) (sm'.to_std_string v)
+                |> mapm.b_tree_map_from_vec_pairs
+                |> sm'.serialize
+                |> resultm.unwrap'
+                |> sm'.from_std_string
+            ]
+
+        | Some (subcommand, arg_matches)
+                when (subcommand |> sm'.from_std_string) = (get_args () .fable |> fst) =>
 
             inl fs_path =
                 arg_matches
-                |> runtime.matches_get_one ((get_args () .fsharp |> snd).fs_path |> fst)
+                |> runtime.matches_get_one ((get_args () .fable |> snd).fs_path |> fst)
                 |> optionm'.unbox
                 |> optionm.value
                 |> sm'.from_std_string
 
             inl command =
                 arg_matches
-                |> runtime.matches_get_one ((get_args () .fsharp |> snd).command |> fst)
+                |> runtime.matches_get_one ((get_args () .fable |> snd).command |> fst)
                 |> optionm'.unbox
                 |> optionm.map sm'.from_std_string
 
@@ -1309,7 +1597,7 @@ inl fs_path = temp_dir </> file_name
 code |> file_system.write_all_text fs_path
 
 get_command ()
-|> runtime.command_get_matches_from ($'$"_ fsharp -f \\\"{!fs_path}\\\" -c \\\"rust -d regex=\'*\'\\\""' |> runtime.split_args |> resultm.get)
+|> runtime.command_get_matches_from ($'$"_ fable -f \\\"{!fs_path}\\\" -c \\\"rust -d regex=\'*\'\\\""' |> runtime.split_args |> resultm.get)
 |> run Verbose
 |> async.block_on
 |> resultm.unwrap'
@@ -1337,40 +1625,6 @@ disposable |> use |> ignore
 #!spiral
 
 //// test
-///! rust -d async-walkdir chrono clap encoding_rs encoding_rs_io rand rayon regex serde_json sha2 tokio['rt-multi-thread'] tokio-stream
-
-types ()
-
-inl file_name = "test.dib"
-inl code =
-    "#!meta\n\n{\"kernelInfo\":{\"defaultKernelName\":\"fsharp\",\"items\":[]}}\n\n#!fsharp\n\n3 - 6\n"
-
-inl temp_dir, disposable =
-    (file_name, code)
-    |> sm'.format_debug
-    |> crypto.hash_text
-    |> file_system.create_temp_dir'
-inl path = temp_dir </> file_name |> file_system.normalize_path
-
-code
-|> file_system.write_all_text path
-
-get_command ()
-|> runtime.command_get_matches_from ($'$"_ dib -p {!path}"' |> runtime.split_args |> resultm.get)
-|> run Verbose
-|> async.block_on
-|> resultm.unwrap'
-|> __assert_string_contains false "<pre>-3 "
-
-$'$"{!path}.html"'
-|> file_system.read_all_text
-|> __assert_string_contains false "\"cell-id=1\""
-
-disposable |> use |> ignore
-
-#!spiral
-
-//// test
 ///! rust -d async-walkdir chrono clap encoding_rs encoding_rs_io futures rand rayon regex serde_json sha2 tokio['rt-multi-thread'] tokio-stream
 
 types ()
@@ -1388,7 +1642,7 @@ inl fs_path = temp_dir </> file_name
 code |> file_system.write_all_text fs_path
 
 get_command ()
-|> runtime.command_get_matches_from ($'$"_ fsharp -f \\\"{!fs_path}\\\" -c \\\"typescript\\\""' |> runtime.split_args |> resultm.get)
+|> runtime.command_get_matches_from ($'$"_ fable -f \\\"{!fs_path}\\\" -c \\\"typescript\\\""' |> runtime.split_args |> resultm.get)
 |> run Verbose
 |> async.block_on
 |> resultm.unwrap'
@@ -1433,7 +1687,7 @@ inl fs_path = temp_dir </> file_name
 code |> file_system.write_all_text fs_path
 
 get_command ()
-|> runtime.command_get_matches_from ($'$"_ fsharp -f \\\"{!fs_path}\\\" -c \\\"python\\\""' |> runtime.split_args |> resultm.get)
+|> runtime.command_get_matches_from ($'$"_ fable -f \\\"{!fs_path}\\\" -c \\\"python\\\""' |> runtime.split_args |> resultm.get)
 |> run Verbose
 |> async.block_on
 |> resultm.unwrap'
@@ -1455,6 +1709,40 @@ get_command ()
     |> optionm'.unwrap
     |> sm'.from_std_string
     |> _assert_eq "-3"
+
+disposable |> use |> ignore
+
+#!spiral
+
+//// test
+///! rust -d async-walkdir chrono clap encoding_rs encoding_rs_io rand rayon regex serde_json sha2 tokio['rt-multi-thread'] tokio-stream
+
+types ()
+
+inl file_name = "test.dib"
+inl code =
+    "#!meta\n\n{\"kernelInfo\":{\"defaultKernelName\":\"fsharp\",\"items\":[]}}\n\n#!fsharp\n\n3 - 6\n"
+
+inl temp_dir, disposable =
+    (file_name, code)
+    |> sm'.format_debug
+    |> crypto.hash_text
+    |> file_system.create_temp_dir'
+inl path = temp_dir </> file_name |> file_system.normalize_path
+
+code
+|> file_system.write_all_text path
+
+get_command ()
+|> runtime.command_get_matches_from ($'$"_ dib -p {!path}"' |> runtime.split_args |> resultm.get)
+|> run Verbose
+|> async.block_on
+|> resultm.unwrap'
+|> __assert_string_contains false "<pre>-3 "
+
+$'$"{!path}.html"'
+|> file_system.read_all_text
+|> __assert_string_contains false "\"cell-id=1\""
 
 disposable |> use |> ignore
 

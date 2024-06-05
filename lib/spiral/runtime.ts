@@ -248,12 +248,14 @@ export type US5_$union =
     | US5<1>
     | US5<2>
     | US5<3>
+    | US5<4>
 
 export type US5_$cases = {
     0: ["US5_0", [US4_$union]],
     1: ["US5_1", [US4_$union]],
     2: ["US5_2", [US4_$union]],
-    3: ["US5_3", [US4_$union]]
+    3: ["US5_3", [US4_$union]],
+    4: ["US5_4", [US4_$union]]
 }
 
 export function US5_US5_0(f0_0: US4_$union) {
@@ -272,17 +274,21 @@ export function US5_US5_3(f3_0: US4_$union) {
     return new US5<3>(3, [f3_0]);
 }
 
+export function US5_US5_4(f4_0: US4_$union) {
+    return new US5<4>(4, [f4_0]);
+}
+
 export class US5<Tag extends keyof US5_$cases> extends Union<Tag, US5_$cases[Tag][0]> {
     constructor(readonly tag: Tag, readonly fields: US5_$cases[Tag][1]) {
         super();
     }
     cases() {
-        return ["US5_0", "US5_1", "US5_2", "US5_3"];
+        return ["US5_0", "US5_1", "US5_2", "US5_3", "US5_4"];
     }
 }
 
 export function US5_$reflection(): TypeInfo {
-    return union_type("Runtime.US5", [], US5, () => [[["f0_0", US4_$reflection()]], [["f1_0", US4_$reflection()]], [["f2_0", US4_$reflection()]], [["f3_0", US4_$reflection()]]]);
+    return union_type("Runtime.US5", [], US5, () => [[["f0_0", US4_$reflection()]], [["f1_0", US4_$reflection()]], [["f2_0", US4_$reflection()]], [["f3_0", US4_$reflection()]], [["f4_0", US4_$reflection()]]]);
 }
 
 export class Mut4 extends Record implements IEquatable<Mut4>, IComparable<Mut4> {
@@ -909,6 +915,15 @@ export function US5__get_IsUS5_3(this$: FSharpRef<US5_$union>, unitArg: void): b
     }
 }
 
+export function US5__get_IsUS5_4(this$: FSharpRef<US5_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 4) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 export function UH0__get_IsUH0_0(this$: UH0_$union, unitArg: void): boolean {
     if ((this$ as any)['tag'] === /* UH0_0 */ 0) {
         return true;
@@ -1180,7 +1195,7 @@ export function method2(): string {
 
 export function method1(v0_1: string): string {
     let _v1: Option<string> = undefined;
-    const x: string = process.env[v0_1];
+    const x: string = process.env[v0_1] ?? "";
     _v1 = x;
     if (_v1 == null) {
         throw new Error("base.run_target / _v1=None");
@@ -1199,9 +1214,35 @@ export function closure1(unitVar: void, v0_1: string): void {
 
 export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Option<int64>, Mut3] {
     let _v1: Option<[US1_$union, US2_$union]> = undefined;
-    const v40: string = method1(method0());
-    const v61: US2_$union = ("Verbose" === v40) ? US2_US2_0(US0_US0_0()) : (("Debug" === v40) ? US2_US2_0(US0_US0_1()) : (("Info" === v40) ? US2_US2_0(US0_US0_2()) : (("Warning" === v40) ? US2_US2_0(US0_US0_3()) : (("Critical" === v40) ? US2_US2_0(US0_US0_4()) : US2_US2_1()))));
-    const x = [(method1(method3()) === "True") ? US1_US1_0(getTicks(now())) : US1_US1_1(), v61] as [US1_$union, US2_$union];
+    const v70: string = method1(method0());
+    const v76: US2_$union = ("Verbose" === v70) ? US2_US2_0(US0_US0_0()) : US2_US2_1();
+    let v121: US2_$union;
+    if (v76.tag === /* US2_0 */ 0) {
+        v121 = US2_US2_0(v76.fields[0]);
+    }
+    else {
+        const v84: US2_$union = ("Debug" === v70) ? US2_US2_0(US0_US0_1()) : US2_US2_1();
+        if (v84.tag === /* US2_0 */ 0) {
+            v121 = US2_US2_0(v84.fields[0]);
+        }
+        else {
+            const v92: US2_$union = ("Info" === v70) ? US2_US2_0(US0_US0_2()) : US2_US2_1();
+            if (v92.tag === /* US2_0 */ 0) {
+                v121 = US2_US2_0(v92.fields[0]);
+            }
+            else {
+                const v100: US2_$union = ("Warning" === v70) ? US2_US2_0(US0_US0_3()) : US2_US2_1();
+                if (v100.tag === /* US2_0 */ 0) {
+                    v121 = US2_US2_0(v100.fields[0]);
+                }
+                else {
+                    const v108: US2_$union = ("Critical" === v70) ? US2_US2_0(US0_US0_4()) : US2_US2_1();
+                    v121 = ((v108.tag === /* US2_0 */ 0) ? US2_US2_0(v108.fields[0]) : US2_US2_1());
+                }
+            }
+        }
+    }
+    const x = [(method1(method3()) === "True") ? US1_US1_0(getTicks(now())) : US1_US1_1(), v121] as [US1_$union, US2_$union];
     _v1 = x;
     let patternInput: [US1_$union, US2_$union];
     if (_v1 == null) {
@@ -1210,18 +1251,18 @@ export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Op
     else {
         patternInput = value_12(_v1);
     }
-    const v139: US2_$union = patternInput[1];
-    const v138: US1_$union = patternInput[0];
-    const v147: Mut3 = new Mut3((v: string): void => {
+    const v259: US2_$union = patternInput[1];
+    const v258: US1_$union = patternInput[0];
+    const v267: Mut3 = new Mut3((v: string): void => {
         closure1(undefined, v);
     });
-    return [new Mut0(0n), new Mut1(true), new Mut2((v139.tag === /* US2_0 */ 0) ? v139.fields[0] : v0_1), (v138.tag === /* US1_0 */ 0) ? v138.fields[0] : undefined, v147] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
+    return [new Mut0(0n), new Mut1(true), new Mut2((v259.tag === /* US2_0 */ 0) ? v259.fields[0] : v0_1), (v258.tag === /* US1_0 */ 0) ? v258.fields[0] : undefined, v267] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
 }
 
 export function closure2(unitVar: void, unitVar_1: void): boolean {
     let _v0: Option<boolean> = undefined;
     let x: boolean;
-    throw new Error(`runtime.is_windows / target: ${US5_US5_2(US4_US4_0())}`);
+    throw new Error(`runtime.is_windows / target: ${US5_US5_3(US4_US4_0())}`);
     _v0 = x;
     if (_v0 == null) {
         throw new Error("base.run_target / _v0=None");
@@ -1279,13 +1320,46 @@ export function closure7(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => st
     else {
         v147 = value_12(_v10);
     }
-    const v157: string = (v0_1.tag === /* US0_1 */ 1) ? "Debug" : ((v0_1.tag === /* US0_2 */ 2) ? "Info" : ((v0_1.tag === /* US0_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US0_3 */ 3) ? "Warning" : "Critical")));
-    let _v161: Option<string> = undefined;
-    const x_5: string = padLeft(v157.toLocaleLowerCase(), 7, " ");
-    _v161 = x_5;
-    return trimEnd(trimStart(`${v147} ${(_v161 == null) ? (() => {
-        throw new Error("base.run_target / _v161=None");
-    })() : value_12(_v161)} #${patternInput[0].l0} ${v1_1()} / ${v2_1()}`), " ", "/");
+    const v154: US3_$union = (v0_1.tag === /* US0_0 */ 0) ? US3_US3_0("Verbose") : US3_US3_1();
+    let v203: US3_$union;
+    if (v154.tag === /* US3_0 */ 0) {
+        v203 = US3_US3_0(v154.fields[0]);
+    }
+    else {
+        const v163: US3_$union = (v0_1.tag === /* US0_1 */ 1) ? US3_US3_0("Debug") : US3_US3_1();
+        if (v163.tag === /* US3_0 */ 0) {
+            v203 = US3_US3_0(v163.fields[0]);
+        }
+        else {
+            const v172: US3_$union = (v0_1.tag === /* US0_2 */ 2) ? US3_US3_0("Info") : US3_US3_1();
+            if (v172.tag === /* US3_0 */ 0) {
+                v203 = US3_US3_0(v172.fields[0]);
+            }
+            else {
+                const v181: US3_$union = (v0_1.tag === /* US0_3 */ 3) ? US3_US3_0("Warning") : US3_US3_1();
+                if (v181.tag === /* US3_0 */ 0) {
+                    v203 = US3_US3_0(v181.fields[0]);
+                }
+                else {
+                    const v190: US3_$union = (v0_1.tag === /* US0_4 */ 4) ? US3_US3_0("Critical") : US3_US3_1();
+                    v203 = ((v190.tag === /* US3_0 */ 0) ? US3_US3_0(v190.fields[0]) : US3_US3_1());
+                }
+            }
+        }
+    }
+    let v207: string;
+    if (v203.tag === /* US3_0 */ 0) {
+        v207 = v203.fields[0];
+    }
+    else {
+        throw new Error("Option does not have a value.");
+    }
+    let _v211: Option<string> = undefined;
+    const x_5: string = padLeft(v207.toLocaleLowerCase(), 7, " ");
+    _v211 = x_5;
+    return trimEnd(trimStart(`${v147} ${(_v211 == null) ? (() => {
+        throw new Error("base.run_target / _v211=None");
+    })() : value_12(_v211)} #${patternInput[0].l0} ${v1_1()} / ${v2_1()}`), " ", "/");
 }
 
 export function method8(v0_1: US0_$union, v1_1: (() => string)): void {
@@ -1352,7 +1426,7 @@ export function closure3(unitVar: void, unitVar_1: void): void {
 export function closure8(unitVar: void, unitVar_1: void): string {
     let _v0: Option<boolean> = undefined;
     let x: boolean;
-    throw new Error(`runtime.is_windows / target: ${US5_US5_2(US4_US4_0())}`);
+    throw new Error(`runtime.is_windows / target: ${US5_US5_3(US4_US4_0())}`);
     _v0 = x;
     if ((_v0 == null) ? (() => {
         throw new Error("base.run_target / _v0=None");
@@ -1598,7 +1672,7 @@ export function method10(v0_1: string): [string, string] {
 }
 
 export function closure12(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, unitVar: void): string {
-    return toText(interpolate("execute_with_options_async / options: %A%P()", [[v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1] as [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]]));
+    return toText(interpolate("runtime.execute_with_options_async / options: %A%P()", [[v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1] as [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]]));
 }
 
 export function method15(): (() => string) {
@@ -1610,6 +1684,28 @@ export function closure14(v0_1: string, unitVar: void): string {
 }
 
 export function closure13(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, v7_1: void, v8_1: any, v9: void): void {
+    let _v10: Option<any> = undefined;
+    const x: any = defaultOf();
+    _v10 = x;
+    let v38: any;
+    if (_v10 == null) {
+        throw new Error("base.run_target / _v10=None");
+    }
+    else {
+        v38 = value_12(_v10);
+    }
+    let _v39: Option<void> = undefined;
+    defaultOf();
+    _v39 = some(undefined);
+    if (_v39 == null) {
+        throw new Error("base.run_target / _v39=None");
+    }
+    else {
+        value_12(_v39);
+    }
+}
+
+export function closure15(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, v7_1: void, v8_1: any, v9: void): void {
     let _v10: Option<any> = undefined;
     const x: any = defaultOf();
     _v10 = x;
@@ -1628,28 +1724,6 @@ export function closure13(v0_1: Option<any>, v1_1: string, v2_1: [string, string
     }
     else {
         value_12(_v40);
-    }
-}
-
-export function closure15(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, v7_1: void, v8_1: any, v9: void): void {
-    let _v10: Option<any> = undefined;
-    const x: any = defaultOf();
-    _v10 = x;
-    let v40: any;
-    if (_v10 == null) {
-        throw new Error("base.run_target / _v10=None");
-    }
-    else {
-        v40 = value_12(_v10);
-    }
-    let _v41: Option<void> = undefined;
-    defaultOf();
-    _v41 = some(undefined);
-    if (_v41 == null) {
-        throw new Error("base.run_target / _v41=None");
-    }
-    else {
-        value_12(_v41);
     }
 }
 
@@ -1673,11 +1747,11 @@ export function closure16(v0_1: void, unitVar: void): void {
 }
 
 export function closure17(v0_1: any, unitVar: void): string {
-    return toText(interpolate("execute_with_options_async / WaitForExitAsync / ex: %A%P()", [v0_1]));
+    return toText(interpolate("runtime.execute_with_options_async / WaitForExitAsync / ex: %A%P()", [v0_1]));
 }
 
 export function closure18(v0_1: int32, v1_1: string, unitVar: void): string {
-    return `execute_with_options_async / exit_code: ${v0_1} / output.Length: ${v1_1.length}`;
+    return `runtime.execute_with_options_async / exit_code: ${v0_1} / output.Length: ${v1_1.length}`;
 }
 
 export function method9(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>): any {

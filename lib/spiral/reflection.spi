@@ -1,0 +1,56 @@
+/// # reflection
+
+/// ### get_union_fields
+inl get_union_fields forall union_type. () : list (string * union_type) =
+    real
+        real_core.union_to_record
+            `union_type
+            forall union_record_type. =>
+                real_core.record_type_fold
+                    fun acc key =>
+                        forall value. =>
+                            inl item = real_core.nominal_create `union_type (key, ())
+                            inl key = sm'.symbol_to_string `value key
+                            (::) `(string * union_type) (key, item) acc
+                    (Nil `(string * union_type))
+                    `union_record_type
+
+/// ### get_union_fields_untag
+inl get_union_fields_untag forall union_type. () : list (string * union_type) =
+    real
+        real_core.union_to_record
+            `union_type
+            forall union_record_type. =>
+                inl result =
+                    real_core.record_type_fold_back
+                        fun _key =>
+                            forall value. (acc, (i : i32)) =>
+                                inl key, item : (string * union_type) =
+                                    real_core.union_untag `union_type i
+                                        (fun key => forall v. =>
+                                            (sm'.symbol_to_string `v key),
+                                            real_core.nominal_create `union_type (key, ())
+                                        )
+                                        (fun _ => failwith `(string * union_type) "reflection.get_union_fields_untag / invalid tag")
+                                (::) `(string * union_type) (key, item) acc, (+) `i32 i 1
+                        `union_record_type
+                        (Nil `(string * union_type), 0i32)
+                inl result = fst `(list (string * union_type)) `i32 result
+                listm.rev `(string * union_type) result
+
+/// ## union_try_pick
+inl union_try_pick forall t. (key : string) : option t =
+    real get_union_fields_untag `t ()
+    |> listm'.try_pick fun key', x =>
+        if key' = key
+        then Some x
+        else None
+
+/// ## union_to_string
+inl union_to_string forall t. (x : t) : string =
+    real get_union_fields_untag `t ()
+    |> listm'.try_pick fun key, x' =>
+        if x' = x
+        then Some key
+        else None
+    |> optionm.value
