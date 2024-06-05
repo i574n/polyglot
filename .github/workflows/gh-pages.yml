@@ -35,8 +35,6 @@ jobs:
         with:
           python-version: '3.12'
 
-      - uses: Jimver/cuda-toolkit@v0.2.15
-
       - uses: snok/install-poetry@v1
         with:
           virtualenvs-create: true
