@@ -70,7 +70,7 @@ module FileSystem =
                     let path = getEventPath event.FullPath
                     ticks (), [
                         FileSystemChange.Created (path, None)
-                        if SpiralRuntime.is_windows () then
+                        if SpiralPlatform.is_windows () then
                             FileSystemChange.Changed (path, None)
                     ])
 

@@ -7693,7 +7693,7 @@ a.anchor-link {
                 <span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">getEventPath</span> <span class="n">event</span><span class="o">.</span><span class="n">FullPath</span>
                 <span class="n">ticks</span> <span class="p">(),</span> <span class="p">[</span>
                     <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span>
+                    <span class="k">if</span> <span class="n">SpiralPlatform</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span>
                         <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
                 <span class="p">])</span>
 
@@ -7954,26 +7954,26 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:05   debug #1 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:05   debug #2 FileSystem.testEventsRaw / eventsLog: 
-0 / 638531605190902687 / Created ("file1.txt", Some "a1")
-1 / 638531605190902688 / Changed ("file1.txt", Some "a1")
-17032 / 638531605190919720 / Changed ("file1.txt", Some "a1")
-818 / 638531605190920538 / Created ("file2.txt", Some "a2")
-1 / 638531605190920539 / Changed ("file2.txt", Some "a2")
-47 / 638531605190920586 / Changed ("file2.txt", Some "a2")
-2462018 / 638531605193382604 / Changed ("file1.txt", Some "b1")
-2152 / 638531605193384756 / Changed ("file1.txt", Some "b1")
-10264 / 638531605193395020 / Changed ("file2.txt", Some "b2")
-2166 / 638531605193397186 / Changed ("file2.txt", Some "b2")
-2676975 / 638531605196074161 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-36791 / 638531605196110952 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2453901 / 638531605198564853 / Changed ("file_1.txt", Some "c1")
-1948 / 638531605198566801 / Changed ("file_1.txt", Some "c1")
-9043 / 638531605198575844 / Changed ("file_2.txt", Some "c2")
-2113 / 638531605198577957 / Changed ("file_2.txt", Some "c2")
-2507049 / 638531605201085006 / Deleted "file_1.txt"
-4728 / 638531605201089734 / Deleted "file_2.txt"
+00:00:06   debug #1 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:06   debug #2 FileSystem.testEventsRaw / eventsLog: 
+0 / 638532206389057763 / Created ("file1.txt", Some "a1")
+1 / 638532206389057764 / Changed ("file1.txt", Some "a1")
+17152 / 638532206389074916 / Changed ("file1.txt", Some "a1")
+594 / 638532206389075510 / Created ("file2.txt", Some "a2")
+1 / 638532206389075511 / Changed ("file2.txt", Some "a2")
+48 / 638532206389075559 / Changed ("file2.txt", Some "a2")
+2468910 / 638532206391544469 / Changed ("file1.txt", Some "b1")
+2961 / 638532206391547430 / Changed ("file1.txt", Some "b1")
+11055 / 638532206391558485 / Changed ("file2.txt", Some "b2")
+2877 / 638532206391561362 / Changed ("file2.txt", Some "b2")
+2535674 / 638532206394097036 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+33195 / 638532206394130231 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2451762 / 638532206396581993 / Changed ("file_1.txt", Some "c1")
+2553 / 638532206396584546 / Changed ("file_1.txt", Some "c1")
+14709 / 638532206396599255 / Changed ("file_2.txt", Some "c2")
+2200 / 638532206396601455 / Changed ("file_2.txt", Some "c2")
+2606674 / 638532206399208129 / Deleted "file_1.txt"
+19135 / 638532206399227264 / Deleted "file_2.txt"
 [Created ("file1.txt", Some "a1"); Changed ("file1.txt", Some "a1"); Created ("file2.txt", Some "a2");
  Changed ("file2.txt", Some "a2"); Changed ("file1.txt", Some "b1"); Changed ("file2.txt", Some "b2");
  Renamed ("file1.txt", ("file_1.txt", Some "b1")); Renamed ("file2.txt", ("file_2.txt", Some "b2"));
@@ -8093,45 +8093,45 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:15   debug #3 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:16   debug #4 FileSystem.testEventsRaw / eventsLog: 
-0 / 638531605226578315 / Created
+00:00:17   debug #3 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:17   debug #4 FileSystem.testEventsRaw / eventsLog: 
+0 / 638532206432892824 / Created
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-1 / 638531605226578316 / Changed
+1 / 638532206432892825 / Changed
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-85349 / 638531605226663665 / Changed
+87451 / 638532206432980276 / Changed
   ("file1.txt...11111111111111111111111111111111111111111111111a")
-26956 / 638531605226690621 / Created
+20196 / 638532206433000472 / Created
   ("file2.txt...22222222222222222222222222222222222222222222222a")
-1 / 638531605226690622 / Changed
+1 / 638532206433000473 / Changed
   ("file2.txt",
  ...22222222222222222222222222222222222222222222222a")
-61062 / 638531605226751684 / Changed
+85160 / 638532206433085633 / Changed
   ("file2.txt...22222222222222222222222222222222222222222222222a")
-15053281 / 638531605241804965 / Changed
+15064595 / 638532206448150228 / Changed
   ("file1....11111111111111111111111111111111111111111111111b")
-249608 / 638531605242054573 / Changed
-  ("file1.tx...11111111111111111111111111111111111111111111111b")
-60891 / 638531605242115464 / Changed
+77419 / 638532206448227647 / Changed
+  ("file1.txt...11111111111111111111111111111111111111111111111b")
+48177 / 638532206448275824 / Changed
   ("file2.txt...22222222222222222222222222222222222222222222222b")
-129744 / 638531605242245208 / Changed
-  ("file2.tx...22222222222222222222222222222222222222222222222b")
-15069900 / 638531605257315108 / Renamed
+99574 / 638532206448375398 / Changed
+  ("file2.txt...22222222222222222222222222222222222222222222222b")
+15107650 / 638532206463483048 / Renamed
   ("file1....1111111111111111111111111111111111111111111111b"))
-9988 / 638531605257325096 / Renamed
+1837 / 638532206463484885 / Renamed
   ("file2.txt"...2222222222222222222222222222222222222222222222b"))
-15142452 / 638531605272467548 / Changed
+15092921 / 638532206478577806 / Changed
   ("file_1...11111111111111111111111111111111111111111111111c")
-236889 / 638531605272704437 / Changed
-  ("file_1.t...11111111111111111111111111111111111111111111111c")
-89129 / 638531605272793566 / Changed
+77224 / 638532206478655030 / Changed
+  ("file_1.tx...11111111111111111111111111111111111111111111111c")
+39795 / 638532206478694825 / Changed
   ("file_2.tx...22222222222222222222222222222222222222222222222c")
-129968 / 638531605272923534 / Changed
-  ("file_2.t...22222222222222222222222222222222222222222222222c")
-15170617 / 638531605288094151 / Deleted "file_1.txt"
-11229 / 638531605288105380 / Deleted "file_2.txt"
+72296 / 638532206478767121 / Changed
+  ("file_2.tx...22222222222222222222222222222222222222222222222c")
+15024482 / 638532206493791603 / Deleted "file_1.txt"
+3575 / 638532206493795178 / Deleted "file_2.txt"
 [Created ("file1.txt", Some "1a"); Changed ("file1.txt", Some "1a"); Created ("file2.txt", Some "2a");
  Changed ("file2.txt", Some "2a"); Changed ("file1.txt", Some "1b"); Changed ("file2.txt", Some "2b");
  Renamed ("file1.txt", ("file_1.txt", Some "1b")); Renamed ("file2.txt", ("file_2.txt", Some "2b"));
@@ -8326,7 +8326,7 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:18   debug #5 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:19   debug #5 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 [("file1.txt", "Created"); ("file1.txt", "Changed"); ("file1.txt", "Deleted"); ("file2.txt", "Created");
  ("file2.txt", "Changed"); ("file2.txt", "Deleted"); ("file3.txt", "Created"); ("file3.txt", "Changed");
  ("file3.txt", "Deleted")]
@@ -8414,7 +8414,7 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:19   debug #6 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:21   debug #6 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 [("file1.txt", "Created"); ("file1.txt", "Changed"); ("file1.txt", "Deleted"); ("file2.txt", "Created");
  ("file2.txt", "Changed"); ("file2.txt", "Deleted")]
 
@@ -8506,7 +8506,7 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:21   debug #7 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:24   debug #7 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 [("file1.txt", "Created"); ("file1.txt", "Changed"); ("file2.txt", "Created"); ("file2.txt", "Changed");
  ("file_1.txt", "Renamed"); ("file_1.txt", "Deleted"); ("file_2.txt", "Renamed"); ("file_2.txt", "Deleted")]
 
@@ -8606,7 +8606,7 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:24   debug #8 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:26   debug #8 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 [("file1.txt", "Created"); ("file1.txt", "Changed"); ("file2.txt", "Created"); ("file2.txt", "Changed");
  ("file_1.txt", "Changed"); ("file_1.txt", "Renamed"); ("file_1.txt", "Deleted"); ("file_2.txt", "Changed");
  ("file_2.txt", "Renamed"); ("file_2.txt", "Deleted")]

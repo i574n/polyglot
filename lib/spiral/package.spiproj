@@ -26,6 +26,7 @@ modules:
     reflection
     guid
     parsing
+    platform
     env
     date_time
     trace-

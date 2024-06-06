@@ -47,19 +47,64 @@ inl index forall dim {int} el. (i : dim) (a : a dim el) : el =
 
 #!markdown
 
+## base
+
+#!spiral
+
+inl base forall dim {int} el. ((a a) : a dim el) : array_base el =
+    a
+
+#!markdown
+
+## base'
+
+#!spiral
+
+inl base' forall el. ((a a) : a int el) : array_base el =
+    a
+
+#!markdown
+
+## generic_equable
+
+#!spiral
+
+inl generic_equable x1 x2 =
+    if length x1 <>.. length x2
+    then false
+    else
+        let rec loop i =
+            if i < length x1
+            then index i x1 = index i x2 && loop (i + 1)
+            else true
+        loop 0
+
+#!markdown
+
+## equable
+
+#!spiral
+
+instance equable a dim {number; int} t = generic_equable
+
+#!markdown
+
 ## append
 
 #!spiral
 
-instance append a dim {int; number} t =
-    am.append
+instance append a dim {int; number} t = am.append
 
 #!spiral
 
 //// test
+///! fsharp
+///! rust
+///! typescript
+///! python
 
-a ;[ "a"; "b" ] ++ a ;[ "c"; "d" ]
-|> _assert_eq (a ;[ "a"; "b"; "c"; "d" ] : _ i32 _)
+a' ;[ -1i64; 0 ] ++ a' ;[ 1; 2 ]
+|> _assert_eq (a' ;[ -1; 0; 1; 2 ])
 
 #!markdown
 
@@ -67,10 +112,19 @@ a ;[ "a"; "b" ] ++ a ;[ "c"; "d" ]
 
 #!spiral
 
-inl collect forall t r. (fn : t -> a i32 r) (items : a i32 t) : a i32 r =
+inl collect forall t r. (fn : t -> a int r) (items : a int t) : a int r =
     items
     |> am.map fn
     |> am.fold (++) (a ;[])
+
+#!markdown
+
+## init
+
+#!spiral
+
+inl init n : a int _ =
+    am.init n id
 
 #!markdown
 
@@ -89,10 +143,14 @@ inl choose f l =
 #!spiral
 
 //// test
+///! fsharp
+///! typescript
+///! python
 
-(am.init 10i32 id : a _ _)
+10
+|> init
 |> choose (fun x => if x % 2 = 0 then Some x else None)
-|> _assert_eq (a ;[ 0; 2; 4; 6; 8 ] : _ i32 _)
+|> _assert_eq (a' ;[ 0; 2; 4; 6; 8 ])
 
 #!markdown
 
@@ -100,14 +158,19 @@ inl choose f l =
 
 #!spiral
 
-inl sum (a' : a _ _) =
-    a' |> am.fold (+) 0
+inl sum a =
+    a |> am.fold (+) 0
 
 #!spiral
 
 //// test
+///! fsharp
+///! rust
+///! typescript
+///! python
 
-am.init 10i32 id
+10
+|> init
 |> sum
 |> _assert_eq 45
 
@@ -117,13 +180,17 @@ am.init 10i32 id
 
 #!spiral
 
-inl init_series start end inc =
+inl init_series start end inc : a int _ =
     inl total = conv ((end - start) / inc) + 1
-    am.init total (conv >> (*) inc >> (+) start) : a i32 _
+    am.init total (conv >> (*) inc >> (+) start)
 
 #!spiral
 
 //// test
+///! fsharp
+///! rust
+///! typescript
+///! python
 
 init_series 0 1 0.5
 |> _assert_eq (a ;[ 0f64; 0.5; 1 ])
@@ -154,8 +221,13 @@ inl last (ar : a _ _) =
 #!spiral
 
 //// test
+///! fsharp
+///! rust
+///! typescript
+///! python
 
-am.init 10i32 id
+10
+|> init
 |> last
 |> _assert_eq 9
 
@@ -175,8 +247,12 @@ inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
 #!spiral
 
 //// test
+///! fsharp
+///! typescript
+///! python
 
-am.init 10i32 id
+10
+|> init
 |> try_pick (fun x => if x = 5i32 then Some x else None)
 |> _assert_eq (Some 5i32)
 
@@ -209,7 +285,7 @@ am.init 3i32 ((*) 2)
 inl map_base forall t u. (fn : t -> u) (x : array_base t) : array_base u =
     a x
     |> am.map fn
-    |> fun (a x : _ i64 _) => x
+    |> fun (a x : _ int _) => x
 
 #!markdown
 
@@ -260,10 +336,10 @@ inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
 
 //// test
 
-(a ;[ "a"; "b" ] : _ i32 _)
+a' ;[ "a"; "b" ]
 |> to_list'
 |> listm'.unbox
-|> _assert_eq ([ "a"; "b" ])
+|> _assert_eq [ "a"; "b" ]
 
 #!markdown
 

@@ -75,26 +75,27 @@ module SpiralNetworking =
         get_available_port x
 #endif
 
-module SpiralRuntime =
+module SpiralPlatform =
     let get_executable_suffix () =
 #if !INTERACTIVE
-        Runtime.get_executable_suffix ()
+        Platform.get_executable_suffix ()
 #else
         get_executable_suffix ()
 #endif
 
+    let is_windows () =
+#if !INTERACTIVE
+        Platform.is_windows ()
+#else
+        is_windows ()
+#endif
+
+module SpiralRuntime =
     let current_process_kill () =
 #if !INTERACTIVE
         Runtime.current_process_kill ()
 #else
         current_process_kill ()
-#endif
-
-    let is_windows () =
-#if !INTERACTIVE
-        Runtime.is_windows ()
-#else
-        is_windows ()
 #endif
     let execute_async x =
 #if !INTERACTIVE

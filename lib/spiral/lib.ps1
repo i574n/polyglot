@@ -48,7 +48,7 @@ function CopyTarget {
             $lib,
             $name
         )
-        $name = $Language -eq "py" -and $name -eq "threading" ? "$($name)_" : $name
+        $name = $Language -eq "py" -and @("threading", "platform") -contains $name ? "$($name)_" : $name
         $name = $Language -eq "py" ? $name.ToLower() : $name
         $from = "$TargetDir/target/$Language/lib/$lib/$name.$Language"
         $to = "$root/lib/$lib/$name$_runtime.$Language"
@@ -107,6 +107,7 @@ function CopyTarget {
     CopyItem "spiral" "common"
     CopyItem "spiral" "date_time"
     CopyItem "spiral" "async_"
+    CopyItem "spiral" "platform"
     CopyItem "spiral" "runtime"
     CopyItem "spiral" "threading"
     CopyItem "spiral" "networking"
@@ -151,5 +152,5 @@ function BuildFable {
 
 
 function GetFsxModules {
-    @("lib/spiral/common.fsx", "lib/spiral/sm.fsx", "lib/spiral/crypto.fsx", "lib/spiral/date_time.fsx", "lib/spiral/async_.fsx", "lib/spiral/threading.fsx", "lib/spiral/networking.fsx", "lib/spiral/runtime.fsx", "lib/spiral/file_system.fsx", "lib/spiral/trace.fsx", "lib/spiral/lib.fsx")
+    @("lib/spiral/common.fsx", "lib/spiral/sm.fsx", "lib/spiral/crypto.fsx", "lib/spiral/date_time.fsx", "lib/spiral/async_.fsx", "lib/spiral/threading.fsx", "lib/spiral/networking.fsx", "lib/spiral/platform.fsx", "lib/spiral/runtime.fsx", "lib/spiral/file_system.fsx", "lib/spiral/trace.fsx", "lib/spiral/lib.fsx")
 }

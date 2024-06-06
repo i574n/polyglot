@@ -9554,7 +9554,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20240604-2359-2228-2862-200400748058" / expected: '\\'
+<pre>assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20240605-2226-2102-0232-0004003f45f9" / expected: '\\'
 </pre>
 </div>
 </div>
@@ -9586,7 +9586,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_8b03685856cd241f8a4a2f82406202c110a92d86287272e804968ea2f29251cc\20240604-2359-4752-9591-000000802c27" / expected: '\\'
+<pre>assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_40b97197de9408f1f6aa71c856c642373eda8d0dd6ca3ca61d4c0ad2a3bbb416\20240605-2226-2775-7210-000000ef4db8" / expected: '\\'
 </pre>
 </div>
 </div>
@@ -9970,7 +9970,7 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">ignore</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="nb">open</span> <span class="n">rust_operators</span>
-            <span class="n">runtime</span><span class="o">.</span><span class="n">run_platform</span> <span class="n">function</span>
+            <span class="n">platform</span><span class="o">.</span><span class="n">run_platform</span> <span class="n">function</span>
                 <span class="o">|</span> <span class="n">Windows</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">((</span>target,<span class="w"> </span>path<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"std::os::windows::fs::symlink_dir(&amp;*$0, &amp;*$1).unwrap()"'</span><span class="o">)</span>
                 <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="se">\\</span><span class="o">((</span>target,<span class="w"> </span>path<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"std::os::unix::fs::symlink(&amp;*$0, &amp;*$1).unwrap()"'</span><span class="o">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
@@ -10104,8 +10104,8 @@ a.anchor-link {
     <span class="o">|</span> <span class="n">Some</span> <span class="p">((</span><span class="n">retries</span> <span class="p">:</span> <span class="n">i64</span><span class="p">),</span> <span class="n">text</span><span class="p">)</span> <span class="o">=&gt;</span>
         <span class="n">retries</span>
         <span class="o">|&gt;</span> <span class="n">_assert_between</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">runtime</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">runtime</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">200</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">200</span><span class="p">)</span>
 
         <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">join</span> <span class="s2">"1"</span><span class="p">)</span>
 
@@ -10138,7 +10138,7 @@ a.anchor-link {
 00:00:02   debug #12 5
 00:00:02   debug #13 6
 00:00:02   debug #14 7
-assert_between / actual: 128L / expected: struct (50L, 150L)
+assert_between / actual: 127L / expected: struct (50L, 150L)
 assert_eq / actual: "1" / expected: "1"
 assert_eq / actual: true / expected: true
 </pre>
@@ -10392,7 +10392,7 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / dir: C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_366d0e176134d5bf09e6bc01a4cb3a860ebdb7534a1b7a265bcee30d70f291eb\20240605-0000-2990-9259-0000005d5e96
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / dir: C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_0268effe1ca4cc09bfe89eb750333423e2707072971d95d82bde56e87a135eb5\20240605-2226-4986-2284-000000c5b5e9
 assert_eq / actual: true / expected: true
 assert_eq / actual: false / expected: false
 </pre>
@@ -10452,8 +10452,8 @@ assert_eq / actual: false / expected: false
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">retries</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=&gt;</span>
         <span class="n">retries</span>
         <span class="o">|&gt;</span> <span class="n">_assert_between</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">runtime</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">runtime</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">false</span>
@@ -10481,7 +10481,7 @@ assert_eq / actual: false / expected: false
 00:00:02   debug #9 _3
 00:00:02   debug #10 5
 00:00:02   debug #11 6
-assert_between / actual: 125L / expected: struct (50L, 150L)
+assert_between / actual: 122L / expected: struct (50L, 150L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -11016,7 +11016,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 1L / expected: 1L
+<pre>assert_eq / actual: 9L / expected: 9L
 </pre>
 </div>
 </div>
@@ -11155,8 +11155,8 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">retries</span> <span class="p">:</span> <span class="n">i64</span><span class="p">)</span> <span class="o">=&gt;</span>
         <span class="n">retries</span>
         <span class="o">|&gt;</span> <span class="n">_assert_between</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">runtime</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">runtime</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">false</span>
@@ -11184,7 +11184,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 00:00:02   debug #9 _3
 00:00:02   debug #10 5
 00:00:02   debug #11 6
-assert_between / actual: 128L / expected: struct (50L, 150L)
+assert_between / actual: 127L / expected: struct (50L, 150L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -11296,13 +11296,13 @@ assert_eq / actual: true / expected: true
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">retries1</span><span class="p">,</span> <span class="n">retries2</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">=&gt;</span>
         <span class="n">retries1</span>
         <span class="o">|&gt;</span> <span class="n">_assert_between</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">runtime</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span><span class="n">i64</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">runtime</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span><span class="n">i64</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="n">retries2</span>
         <span class="o">|&gt;</span> <span class="n">_assert_between</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">runtime</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">0</span><span class="n">i64</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">runtime</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">200</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">0</span><span class="n">i64</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">200</span><span class="p">)</span>
 
         <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">join</span> <span class="s2">"0"</span><span class="p">)</span>
 
@@ -11334,7 +11334,7 @@ assert_eq / actual: true / expected: true
 00:00:02   debug #11 6
 00:00:02   debug #12 7
 00:00:02   debug #13 8
-assert_between / actual: 129L / expected: struct (50L, 150L)
+assert_between / actual: 128L / expected: struct (50L, 150L)
 assert_between / actual: 0L / expected: struct (0L, 0L)
 assert_eq / actual: "0" / expected: "0"
 assert_eq / actual: true / expected: true

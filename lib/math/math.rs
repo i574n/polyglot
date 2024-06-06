@@ -2976,6 +2976,9 @@ pub use module_98e448fc::*;
 #[path = "../../lib/spiral/networking.rs"]
 mod module_268024e5;
 pub use module_268024e5::*;
+#[path = "../../lib/spiral/platform.rs"]
+mod module_7d8ad484;
+pub use module_7d8ad484::*;
 #[path = "../../lib/spiral/runtime.rs"]
 mod module_485aae07;
 pub use module_485aae07::*;

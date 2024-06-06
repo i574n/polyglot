@@ -51,6 +51,16 @@ pub use _Runtime::Runtime;
 #[allow(unreachable_code)]
 #[allow(unused_imports)]
 #[allow(unused_variables)]
+#[path = "./platform_wasm.rs"]
+pub mod _Platform;
+pub use _Platform::Platform;
+
+#[allow(non_camel_case_types)]
+#[allow(non_snake_case)]
+#[allow(non_upper_case_globals)]
+#[allow(unreachable_code)]
+#[allow(unused_imports)]
+#[allow(unused_variables)]
 #[path = "./trace_wasm.rs"]
 pub mod _Trace;
 pub use _Trace::Trace;

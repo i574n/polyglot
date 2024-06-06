@@ -20,7 +20,11 @@ inl use forall t. (x : t) : t =
 /// ### backend_switch
 inl backend_switch forall t. x : t =
     real
-        !!!!BackendSwitch(("Fsharp", x.Fsharp()), ("Python", x.Python()), ("Cuda", x.Cuda())) : t
+        !!!!BackendSwitch (
+            ("Fsharp", x.Fsharp ()),
+            ("Python", x.Python ()),
+            ("Cuda", x.Cuda ())
+        ) : t
 
 /// ### target_runtime
 union target_runtime =
@@ -62,6 +66,51 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
             fn (Cuda Native) ()
     }
 
+/// ## function
+
+/// ### invoke
+inl invoke fn =
+    fn ()
+
+/// ### lazy
+nominal lazy t = $'Lazy<`t>'
+
+/// ### memoize
+nominal lazy t = $'Lazy<`t>'
+
+inl memoize forall t. (fn : () -> t) : () -> t =
+    inl fn = join fn
+    backend_switch {
+        Fsharp = fun () =>
+            inl result : lazy t = $'lazy !fn ()'
+            fun () => $'!result.Value' : t
+        Python = fun () =>
+            inl result = mut None
+            inl computed = mut false
+            fun () =>
+                if *computed
+                then *result
+                else
+                    result <- fn () |> Some
+                    computed <- true
+                    *result
+                |> optionm.value
+    }
+
+/// ### capture
+inl capture forall t. (fn : () -> t) : t =
+    inl result = dyn true
+    $'let mutable _!result : `t option = None '
+    $'('
+    $'(fun () ->'
+    $'(fun () ->'
+    fn () |> emit_unit
+    $')'
+    $'|> fun x -> x ()'
+    $') () )'
+    $'|> fun x -> _!result <- Some x'
+    $'match _!result with Some x -> x | None -> failwith "base.capture / _!result=None"'
+
 /// ## arithmetic
 
 /// ### (+.)
@@ -96,6 +145,13 @@ inl (<>.) forall t. (a : t) (b : t) : bool =
         Python = fun () => $'!a \!= !b ' : bool
     }
 
+/// ## (<>..)
+inl (<>..) a b =
+    fun () => a = b
+    |> dyn
+    |> invoke
+    |> not
+
 /// ## composition
 
 /// ### append
@@ -110,12 +166,6 @@ inl (++) a b =
 /// ### (||>)
 inl (||>) (arg1, arg2) fn =
     arg2 |> fn arg1
-
-/// ## logic
-
-/// ### not_join
-inl not_join x =
-    join not x
 
 /// ### fix_condition
 inl fix_condition x a b =
@@ -144,48 +194,6 @@ inl null forall t. () : t =
 /// ### defaultof
 inl defaultof forall t. () : t =
     $'Unchecked.defaultof<`t>'
-
-/// ## function
-
-/// ### invoke
-inl invoke fn =
-    fn ()
-
-/// ### capture
-inl capture forall t. (fn : () -> t) : t =
-    inl result = dyn true
-    $'let mutable _!result : `t option = None '
-    $'('
-    $'(fun () ->'
-    $'(fun () ->'
-    fn () |> emit_unit
-    $')'
-    $'|> fun x -> x ()'
-    $') () )'
-    $'|> fun x -> _!result <- Some x'
-    $'match _!result with Some x -> x | None -> failwith "base.capture / _!result=None"'
-
-/// ### memoize
-nominal lazy t = $'Lazy<`t>'
-
-inl memoize forall t. (fn : () -> t) : () -> t =
-    inl fn = join fn
-    backend_switch {
-        Fsharp = fun () =>
-            inl result : lazy t = $'lazy !fn ()'
-            fun () => $'!result.Value' : t
-        Python = fun () =>
-            inl result = mut None
-            inl computed = mut false
-            fun () =>
-                if *computed
-                then *result
-                else
-                    result <- fn () |> Some
-                    computed <- true
-                    *result
-                |> optionm.value
-    }
 
 /// ## pair
 

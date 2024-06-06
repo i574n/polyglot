@@ -15,15 +15,40 @@ inl length forall dim {int} el. (a : a dim el) : dim =
 inl index forall dim {int} el. (i : dim) (a : a dim el) : el =
     index a i
 
+/// ## base
+inl base forall dim {int} el. ((a a) : a dim el) : array_base el =
+    a
+
+/// ## base'
+inl base' forall el. ((a a) : a int el) : array_base el =
+    a
+
+/// ## generic_equable
+inl generic_equable x1 x2 =
+    if length x1 <>.. length x2
+    then false
+    else
+        let rec loop i =
+            if i < length x1
+            then index i x1 = index i x2 && loop (i + 1)
+            else true
+        loop 0
+
+/// ## equable
+instance equable a dim {number; int} t = generic_equable
+
 /// ## append
-instance append a dim {int; number} t =
-    am.append
+instance append a dim {int; number} t = am.append
 
 /// ## collect
-inl collect forall t r. (fn : t -> a i32 r) (items : a i32 t) : a i32 r =
+inl collect forall t r. (fn : t -> a int r) (items : a int t) : a int r =
     items
     |> am.map fn
     |> am.fold (++) (a ;[])
+
+/// ## init
+inl init n : a int _ =
+    am.init n id
 
 /// ## choose
 inl choose f l =
@@ -35,13 +60,13 @@ inl choose f l =
     |> listm.toArray
 
 /// ## sum
-inl sum (a' : a _ _) =
-    a' |> am.fold (+) 0
+inl sum a =
+    a |> am.fold (+) 0
 
 /// ## init_series
-inl init_series start end inc =
+inl init_series start end inc : a int _ =
     inl total = conv ((end - start) / inc) + 1
-    am.init total (conv >> (*) inc >> (+) start) : a i32 _
+    am.init total (conv >> (*) inc >> (+) start)
 
 /// ## head
 inl head (ar : a _ _) =
@@ -75,7 +100,7 @@ inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a d
 inl map_base forall t u. (fn : t -> u) (x : array_base t) : array_base u =
     a x
     |> am.map fn
-    |> fun (a x : _ i64 _) => x
+    |> fun (a x : _ int _) => x
 
 /// ## average
 inl average forall el {number}. (a : a _ el) : el =

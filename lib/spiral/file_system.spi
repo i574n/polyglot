@@ -615,7 +615,7 @@ inl directory_create_symbolic_link (target : string) (path : string) : () =
             |> ignore
         | Rust (Native) => fun () =>
             open rust_operators
-            runtime.run_platform function
+            platform.run_platform function
                 | Windows => fun () => !\\((target, path), $'"std::os::windows::fs::symlink_dir(&*$0, &*$1).unwrap()"')
                 | _ => fun () => !\\((target, path), $'"std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"')
         | _ => fun () => null ()

@@ -94,7 +94,7 @@ module Eval =
 
     /// ## getParentProcessId
     let getParentProcessId () =
-        if SpiralRuntime.is_windows () |> not
+        if SpiralPlatform.is_windows () |> not
         then 0u
         else
             let pid = System.Diagnostics.Process.GetCurrentProcess().Id
@@ -354,7 +354,7 @@ module Eval =
                 builderCommands
                 |> Array.map (fun builderCommand ->
                     let path =
-                        workspaceRoot </> $@"workspace/target/release/spiral_builder{SpiralRuntime.get_executable_suffix ()}"
+                        workspaceRoot </> $@"workspace/target/release/spiral_builder{SpiralPlatform.get_executable_suffix ()}"
                         |> System.IO.Path.GetFullPath
                     let commands =
                         if props.backend = Supervisor.Fsharp
@@ -381,7 +381,7 @@ module Eval =
                                     l1 = command
                                     l2 = [|
                                         "AUTOMATION", assemblyName = "dotnet-repl" |> string
-                                        "TRACE_LEVEL", $"%A{Info}"
+                                        "TRACE_LEVEL", $"%A{if props.printCode then props.traceLevel else Info}"
                                     |]
                                     l6 = workspaceRootExternal
                                 }
@@ -408,7 +408,7 @@ module Eval =
             then None
             else
                 let code =
-                    if props.printCode || props.builderCommands.Length > 1
+                    if props.builderCommands.Length > 1
                     then
                         let header = "System.Console.WriteLine \".fsx output:\"\n"
                         $"{header}{props.code}"
@@ -610,7 +610,7 @@ module Eval =
                     then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
                     else None
                 )
-                |> Option.defaultValue true
+                |> Option.defaultValue false
 
             let oldLevel = get_trace_level ()
             let traceLevel =
@@ -713,9 +713,9 @@ module Eval =
                                     let ch, errors2 = fsi_eval eval cancellationToken
                                     let errors =
                                         errors2
-                                        |> Array.map (fun (e1, e2, e3, _) ->
-                                            (e1, e2, e3, ("", (0, 0), (0, 0)))
-                                        )
+                                        // |> Array.map (fun (e1, e2, e3, _) ->
+                                        //     (e1, e2, e3, ("", (0, 0), (0, 0)))
+                                        // )
                                         |> Array.append errors
                                     ch, errors
                                 | [], _ ->
@@ -727,9 +727,9 @@ module Eval =
                                     let ch, errors2 = fsi_eval code cancellationToken
                                     let errors =
                                         errors2
-                                        |> Array.map (fun (e1, e2, e3, _) ->
-                                            (e1, e2, e3, ("", (0, 0), (0, 0)))
-                                        )
+                                        // |> Array.map (fun (e1, e2, e3, _) ->
+                                        //     (e1, e2, e3, ("", (0, 0), (0, 0)))
+                                        // )
                                         |> Array.append errors
                                     ch, errors
                                 | _ ->
@@ -772,9 +772,9 @@ module Eval =
                                         let ch, errors2 = fsi_eval code cancellationToken
                                         let errors =
                                             errors2
-                                            |> Array.map (fun (e1, e2, e3, _) ->
-                                                (e1, e2, e3, ("", (0, 0), (0, 0)))
-                                            )
+                                            // |> Array.map (fun (e1, e2, e3, _) ->
+                                            //     (e1, e2, e3, ("", (0, 0), (0, 0)))
+                                            // )
                                             |> Array.append errors
                                         ch, errors
                             match ch with

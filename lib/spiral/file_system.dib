@@ -1054,7 +1054,7 @@ inl directory_create_symbolic_link (target : string) (path : string) : () =
             |> ignore
         | Rust (Native) => fun () =>
             open rust_operators
-            runtime.run_platform function
+            platform.run_platform function
                 | Windows => fun () => !\\((target, path), $'"std::os::windows::fs::symlink_dir(&*$0, &*$1).unwrap()"')
                 | _ => fun () => !\\((target, path), $'"std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"')
         | _ => fun () => null ()
@@ -1161,8 +1161,8 @@ fun () =>
     | Some ((retries : i64), text) =>
         retries
         |> _assert_between
-            (if runtime.is_windows () then 50 else 100)
-            (if runtime.is_windows () then 150 else 200)
+            (if platform.is_windows () then 50 else 100)
+            (if platform.is_windows () then 150 else 200)
 
         text |> _assert_eq (join "1")
 
@@ -1354,8 +1354,8 @@ fun () =>
     | Some (retries : i64) =>
         retries
         |> _assert_between
-            (if runtime.is_windows () then 50 else 0)
-            (if runtime.is_windows () then 150 else 0)
+            (if platform.is_windows () then 50 else 0)
+            (if platform.is_windows () then 150 else 0)
 
         true
     | _ => false
@@ -1685,8 +1685,8 @@ fun () =>
     | Some (retries : i64) =>
         retries
         |> _assert_between
-            (if runtime.is_windows () then 50 else 0)
-            (if runtime.is_windows () then 150 else 0)
+            (if platform.is_windows () then 50 else 0)
+            (if platform.is_windows () then 150 else 0)
 
         true
     | _ => false
@@ -1774,13 +1774,13 @@ fun () =>
     | Some (retries1, retries2, text) =>
         retries1
         |> _assert_between
-            (if runtime.is_windows () then 50i64 else 0)
-            (if runtime.is_windows () then 150 else 0)
+            (if platform.is_windows () then 50i64 else 0)
+            (if platform.is_windows () then 150 else 0)
 
         retries2
         |> _assert_between
-            (if runtime.is_windows () then 0i64 else 100)
-            (if runtime.is_windows () then 0 else 200)
+            (if platform.is_windows () then 0i64 else 100)
+            (if platform.is_windows () then 0 else 200)
 
         text |> _assert_eq (join "0")
 

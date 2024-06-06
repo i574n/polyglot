@@ -354,13 +354,13 @@ fun () =>
     | Some (retries1, retries2) =>
         retries1
         |> _assert_between
-            if runtime.is_windows () then 2i64 else 2
-            if runtime.is_windows () then 5 else 1500
+            if platform.is_windows () then 2i64 else 2
+            if platform.is_windows () then 5 else 1500
 
         retries2
         |> _assert_between
-            if runtime.is_windows () then 80i64 else 80
-            if runtime.is_windows () then 150 else 600
+            if platform.is_windows () then 80i64 else 80
+            if platform.is_windows () then 150 else 600
 
         true
     | _ => false
@@ -404,13 +404,13 @@ fun () =>
     | Some (retries1, retries2) =>
         retries1
         |> _assert_between
-            if runtime.is_windows () then 4i64 else 2
-            if runtime.is_windows () then 15 else 150
+            if platform.is_windows () then 4i64 else 2
+            if platform.is_windows () then 15 else 150
 
         retries2
         |> _assert_between
-            if runtime.is_windows () then 5i64 else 0
-            if runtime.is_windows () then 20 else 60
+            if platform.is_windows () then 5i64 else 0
+            if platform.is_windows () then 20 else 60
 
         true
     | _ => false
@@ -477,8 +477,8 @@ fun () =>
 
         retries
         |> _assert_between
-            if runtime.is_windows () then 100i64 else 100
-            if runtime.is_windows () then 150 else 1200
+            if platform.is_windows () then 100i64 else 100
+            if platform.is_windows () then 150 else 1200
 
         true
     | _ => false
@@ -526,8 +526,8 @@ fun () =>
 
         retries
         |> _assert_between
-            (if runtime.is_windows () then 2i64 else 1)
-            (if runtime.is_windows () then 10 else 120)
+            (if platform.is_windows () then 2i64 else 1)
+            (if platform.is_windows () then 10 else 120)
 
         true
     | _ => false

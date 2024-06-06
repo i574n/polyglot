@@ -63,7 +63,7 @@ Formatter.Register<struct (string * string * string * struct (string * float arr
                     oldLevel |> set_trace_level
                 ))
 
-                let plotExePath = workspaceRoot </> $"workspace/target/release/plot{SpiralRuntime.get_executable_suffix ()}"
+                let plotExePath = workspaceRoot </> $"workspace/target/release/plot{SpiralPlatform.get_executable_suffix ()}"
                 let! exitCode, result =
                     SpiralRuntime.execution_options (fun x ->
                         { x with

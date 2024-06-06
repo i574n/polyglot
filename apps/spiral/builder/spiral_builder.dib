@@ -204,7 +204,7 @@ let execute_dotnet_fable { workspace_root_external fsproj_path extension package
     fun () =>
         inl exit_code, result =
             inl platform =
-                if runtime.is_windows ()
+                if platform.is_windows ()
                 then "_WINDOWS"
                 else "_LINUX"
             runtime.execution_options fun x => { x with
@@ -683,7 +683,7 @@ inl process_rust { fs_path deps trace_level } =
 
         trace Verbose
             fun () => "spiral_builder.process_rust"
-            fun () => $'$"cleanup: %A{!cleanup} / {!_locals ()}"'
+            fun () => $'$"new_code_path: {!new_code_path} / cleanup: %A{!cleanup} / {!_locals ()}"'
 
         cleanup
         |> listm'.filter snd
@@ -987,10 +987,17 @@ inl process_typescript { fs_path deps trace_level } =
             |> file_system.write_all_text_exists' new_code_path
         
         inl command = $'$"bun run \\\"{!new_code_path}\\\""'
+        inl env_path = "PATH" |> env.get_environment_variable
         inl environment_variables =
-            ;[
+            match "~/.bun/bin" |> env.append_path with
+            | Some path => [ "PATH", path ]
+            | None => []
+            ++ [
                 "TRACE_LEVEL", "Verbose"
             ]
+            |> listm'.box
+            |> listm'.to_array'
+            |> am'.base'
         inl exit_code, run_result =
             runtime.execution_options fun x => { x with
                 command
@@ -1337,7 +1344,7 @@ inl process_fsharp { spi_path } =
     inl workspace_root_external = file_system.get_workspace_root_external ()
     inl workspace_root = workspace_root_external |> resultm.box |> resultm.unwrap_or_else id
     
-    inl supervisor_path = workspace_root </> $"apps/spiral/dist/Supervisor!(runtime.get_executable_suffix ())"
+    inl supervisor_path = workspace_root </> $"apps/spiral/dist/Supervisor!(platform.get_executable_suffix ())"
     inl code_dir = new_code_path |> file_system.get_directory_name
     inl file_name = new_code_path |> file_system.get_file_name_without_extension
     inl output_path = code_dir </> $'$"{!file_name}.{!extension}"'

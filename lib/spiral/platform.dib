@@ -1,0 +1,125 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
+
+#!markdown
+
+# platform
+
+#!spiral
+
+open rust_operators
+
+#!spiral
+
+//// test
+
+open testing
+
+#!spiral
+
+inl types () =
+    ()
+
+#!markdown
+
+## os_platform
+
+#!spiral
+
+nominal os_platform' = $'System.Runtime.InteropServices.OSPlatform'
+
+union os_platform =
+    | FreeBSD
+    | Linux
+    | OSX
+    | Windows
+
+inl os_platform = function
+    | FreeBSD => $'`os_platform'.FreeBSD' : os_platform'
+    | Linux => $'`os_platform'.Linux' : os_platform'
+    | OSX => $'`os_platform'.OSX' : os_platform'
+    | Windows => $'`os_platform'.Windows' : os_platform'
+
+#!markdown
+
+## run_platform
+
+#!spiral
+
+inl run_platform forall t. (fn : os_platform -> (() -> t)) : t =
+    inl result = dyn true
+    $'let mutable _!result : `t option = None '
+    $'\n#if _FREEBSD'
+    fn FreeBSD () |> emit_unit
+    $'#endif\n#if _LINUX'
+    fn Linux () |> emit_unit
+    $'#endif\n#if _OSX'
+    fn OSX () |> emit_unit
+    $'#endif\n#if _WINDOWS'
+    fn Windows () |> emit_unit
+    $'#endif'
+    $'|> fun x -> _!result <- Some x'
+    $'match _!result with Some x -> x | None -> failwith "runtime.run_platform / _!result=None"'
+
+#!markdown
+
+## is_os_platform
+
+#!spiral
+
+inl is_os_platform (x : os_platform') : bool =
+    x |> $'System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform'
+
+#!markdown
+
+## is_windows
+
+#!spiral
+
+inl is_windows () : bool =
+    run_target function
+        | Rust _ => fun () =>
+            !\($'"cfg\!(windows)"')
+        | Fsharp _ => fun () =>
+            Windows |> os_platform |> is_os_platform
+        | target => fun () => failwith $'$"platform.is_windows / target: {!target}"'
+
+#!markdown
+
+## is_windows'
+
+#!spiral
+
+inl is_windows' () : bool =
+    run_platform function
+        | Windows => fun () => true
+        | _ => fun () => false
+
+#!markdown
+
+## get_executable_suffix
+
+#!spiral
+
+inl get_executable_suffix () =
+    if is_windows ()
+    then ".exe"
+    else ""
+
+#!spiral
+
+//// test
+
+get_executable_suffix ()
+
+#!markdown
+
+## main
+
+#!spiral
+
+inl main () =
+    types ()
+    $'let is_windows () = !is_windows ()' : ()
+    $'let get_executable_suffix () = !get_executable_suffix ()' : ()
