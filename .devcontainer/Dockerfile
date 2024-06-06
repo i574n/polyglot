@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/universal
 
 USER root
 
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get -y install --no-install-recommends \
-    powershell
-
+COPY scripts/init.sh /usr/local/bin/init.sh
+RUN chmod +x /usr/local/bin/init.sh
+RUN /usr/local/bin/init.sh
 USER codespace
