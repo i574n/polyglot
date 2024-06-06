@@ -19,6 +19,7 @@ if (!(Search-Command "rustup")) {
         $env:PATH = "~/.cargo/bin:$env:PATH"
     }
     rustup install nightly
+    rustup default nightly
 }
 
 function Search-DotnetSdk($version) {
