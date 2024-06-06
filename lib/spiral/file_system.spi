@@ -775,18 +775,31 @@ let link_directory target_path path =
 inl find_parent name is_file root_dir =
     let rec loop dir =
         if dir </> name |> (if is_file then file_exists else directory_exists)
-        then dir
+        then dir |> Ok
         else
             inl result = dir |> (join directory_get_parent)
             match result |> optionm'.unbox with
             | Some parent => parent |> loop
-            | None => failwith $'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\' (until \'{!dir}\')"""'
+            | None => ($'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\' (until \'{!dir}\')"""' : string) |> Error
     loop root_dir
 
 /// ## get_workspace_root
 inl get_workspace_root () =
-    get_source_directory ()
-    |> find_parent ("polyglot" </> ".paket") false
+    (None, [ get_source_directory (); get_current_directory () ])
+    ||> listm.fold fun acc path =>
+        match acc with
+        | Some path => Some path
+        | None =>
+            path
+            |> find_parent ("polyglot" </> ".paket") false
+            |> function
+            | Ok path => Some path
+            | Error error =>
+                trace Warning
+                    fun () => "file_system.get_workspace_root"
+                    fun () => $'$"error: {!error} / {!_locals ()}"'
+                None
+    |> optionm.value
     |> fun root => root </> "polyglot"
 
 /// ## get_workspace_root_external
@@ -948,7 +961,6 @@ inl main () =
     $'let create_temp_dir () = !create_temp_dir ()' : ()
     $'let create_temp_dir\' x = !create_temp_dir' x' : ()
     $'let get_source_directory () = !get_source_directory ()' : ()
-    $'let find_parent x = !find_parent x' : ()
     $'let normalize_path x = !normalize_path x' : ()
     $'let new_file_uri x = !new_file_uri x' : ()
     $'let get_workspace_root () = !get_workspace_root ()' : ()

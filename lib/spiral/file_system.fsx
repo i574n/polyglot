@@ -378,6 +378,9 @@ and [<Struct>] US11 =
 and [<Struct>] US12 =
     | US12_0
     | US12_1 of f1_0 : std_string_String
+and [<Struct>] US13 =
+    | US13_0 of f0_0 : string
+    | US13_1 of f1_0 : string
 let rec method0 () : string =
     let v0 : string = "TRACE_LEVEL"
     v0
@@ -5735,11 +5738,150 @@ and closure48 () (v0 : string) : struct (string * System.IDisposable) =
 and closure49 () () : string =
     let v0 : string = __SOURCE_DIRECTORY__
     v0
-and closure53 () (v0 : string) : bool =
-    method16(v0)
-and closure54 () (v0 : string) : bool =
-    method7(v0)
-and method46 (v0 : string) : string option =
+and method45 () : string =
+    let v0 : string = ""
+    v0
+and method46 (v0 : string) : string =
+    v0
+and method47 () : string =
+    let v0 : string = "^\\\\\\\\\\?\\\\"
+    v0
+and method44 (v0 : string) : string =
+    let v1 : string = method45()
+    let v2 : bool = true
+    let mutable _v2 : string option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v3 : string = method46(v0)
+    let v4 : string = $"regex::Regex::new(&$0)"
+    let v5 : string = "^\\\\\\\\\\?\\\\"
+    let v6 : Result<regex_Regex, regex_Error> = Fable.Core.RustInterop.emitRustExpr v5 v4 
+    let v7 : string = "$0.unwrap()"
+    let v8 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v6 v7 
+    let v9 : string = $"$0.replace_all(&$1, &*$2)"
+    let v10 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v8, v3, v1) v9 
+    let v11 : string = "String::from($0)"
+    let v12 : std_string_String = Fable.Core.RustInterop.emitRustExpr v10 v11 
+    let v13 : string = "fable_library_rust::String_::fromString($0)"
+    let v14 : string = Fable.Core.RustInterop.emitRustExpr v12 v13 
+    v14 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v15 : string = null |> unbox<string>
+    v15 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v16 : string = null |> unbox<string>
+    v16 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v17 : string = null |> unbox<string>
+    v17 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v18 : string = null |> unbox<string>
+    v18 
+    #endif
+#else
+    let v19 : string = method47()
+    let v20 : string = System.Text.RegularExpressions.Regex.Replace (v0, v19, v1)
+    v20 
+    #endif
+    |> fun x -> _v2 <- Some x
+    let v21 : string = match _v2 with Some x -> x | None -> failwith "base.run_target / _v2=None"
+    let v22 : string = $"{v21.[0] |> string |> _.ToLower()}{v21.[1..]}"
+    let v23 : string = "\\"
+    let v24 : string = "/"
+    let v25 : string = v22.Replace (v23, v24)
+    v25
+and closure50 () (v0 : string) : string =
+    method44(v0)
+and closure51 () (v0 : string) : string =
+    let v1 : (char []) = [|'/'|]
+    let v2 : string = v0.TrimStart v1 
+    let v3 : string = $"file:///{v2}"
+    v3
+and method48 () : string =
+    let v0 : bool = true
+    let mutable _v0 : string option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1 : string = "std::env::current_dir()"
+    let v2 : Result<std_path_PathBuf, std_io_Error> = Fable.Core.RustInterop.emitRustExpr () v1 
+    let v3 : string = "$0.unwrap()"
+    let v4 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v2 v3 
+    let v5 : string = "$0.display()"
+    let v6 : std_path_Display = Fable.Core.RustInterop.emitRustExpr v4 v5 
+    let v7 : bool = true
+    let mutable _v7 : std_string_String option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v8 : string = "format!(\"{}\", $0)"
+    let v9 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v8 
+    v9 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v10 : string = "format!(\"{}\", $0)"
+    let v11 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v10 
+    v11 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v12 : string = "format!(\"{}\", $0)"
+    let v13 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v12 
+    v13 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v14 : std_string_String = null |> unbox<std_string_String>
+    v14 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v15 : std_string_String = null |> unbox<std_string_String>
+    v15 
+    #endif
+#else
+    let v16 : std_string_String = null |> unbox<std_string_String>
+    v16 
+    #endif
+    |> fun x -> _v7 <- Some x
+    let v17 : std_string_String = match _v7 with Some x -> x | None -> failwith "base.run_target / _v7=None"
+    let v18 : string = "fable_library_rust::String_::fromString($0)"
+    let v19 : string = Fable.Core.RustInterop.emitRustExpr v17 v18 
+    v19 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v20 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
+    let v21 : string = v20 ()
+    v21 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v22 : string = null |> unbox<string>
+    v22 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v23 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
+    let v24 : string = v23 ()
+    v24 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v25 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
+    let v26 : string = v25 ()
+    v26 
+    #endif
+#else
+    let v27 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
+    let v28 : string = v27 ()
+    v28 
+    #endif
+    |> fun x -> _v0 <- Some x
+    let v29 : string = match _v0 with Some x -> x | None -> failwith "base.run_target / _v0=None"
+    v29
+and method51 (v0 : string) : string option =
     let v1 : bool = true
     let mutable _v1 : US3 option = None 
     
@@ -5869,159 +6011,48 @@ and method46 (v0 : string) : string option =
     | US3_0(v52) -> (* Some *)
         let v53 : string option = Some v52 
         v53
-and closure55 () (v0 : string) : string option =
-    method46(v0)
-and method45 () : (string -> string option) =
-    closure55()
-and method47 (v0 : string, v1 : bool, v2 : string, v3 : string) : string =
-    let v4 : string = method31(v3, v0)
-    let v7 : (string -> bool) =
-        if v1 then
-            closure53()
-        else
-            closure54()
-    let v8 : bool = v7 v4
-    if v8 then
-        v3
-    else
-        let v9 : (string -> string option) = method45()
-        let v10 : string option = v9 v3
-        let v11 : US3 option = None
-        let _v11 = ref v11 
-        match v10 with
-        | Some x -> (
-        (fun () ->
-        (fun () ->
-        let v12 : string = x
-        let v13 : US3 = US3_0(v12)
-        v13 
-        )
-        |> fun x -> x () |> Some
-        ) () ) | None -> None
-        |> fun x -> _v11.Value <- x
-        let v14 : US3 option = _v11.Value 
-        let v15 : US3 = US3_1
-        let v16 : US3 = v14 |> Option.defaultValue v15 
-        match v16 with
-        | US3_1 -> (* None *)
-            let v19 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}' (until '{v3}')"""
-            failwith<string> v19
-        | US3_0(v17) -> (* Some *)
-            method47(v0, v1, v2, v17)
-and method44 (v0 : string, v1 : bool, v2 : string) : string =
-    let v3 : string = method31(v2, v0)
-    let v6 : (string -> bool) =
-        if v1 then
-            closure53()
-        else
-            closure54()
-    let v7 : bool = v6 v3
-    if v7 then
-        v2
-    else
-        let v8 : (string -> string option) = method45()
-        let v9 : string option = v8 v2
-        let v10 : US3 option = None
-        let _v10 = ref v10 
-        match v9 with
-        | Some x -> (
-        (fun () ->
-        (fun () ->
-        let v11 : string = x
-        let v12 : US3 = US3_0(v11)
-        v12 
-        )
-        |> fun x -> x () |> Some
-        ) () ) | None -> None
-        |> fun x -> _v10.Value <- x
-        let v13 : US3 option = _v10.Value 
-        let v14 : US3 = US3_1
-        let v15 : US3 = v13 |> Option.defaultValue v14 
-        match v15 with
-        | US3_1 -> (* None *)
-            let v18 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}' (until '{v2}')"""
-            failwith<string> v18
-        | US3_0(v16) -> (* Some *)
-            method47(v0, v1, v2, v16)
-and closure52 (v0 : string, v1 : bool) (v2 : string) : string =
-    method44(v0, v1, v2)
-and closure51 (v0 : string) (v1 : bool) : (string -> string) =
-    closure52(v0, v1)
-and closure50 () (v0 : string) : (bool -> (string -> string)) =
-    closure51(v0)
-and method49 () : string =
-    let v0 : string = ""
-    v0
-and method50 (v0 : string) : string =
-    v0
-and method51 () : string =
-    let v0 : string = "^\\\\\\\\\\?\\\\"
-    v0
-and method48 (v0 : string) : string =
-    let v1 : string = method49()
-    let v2 : bool = true
-    let mutable _v2 : string option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v3 : string = method50(v0)
-    let v4 : string = $"regex::Regex::new(&$0)"
-    let v5 : string = "^\\\\\\\\\\?\\\\"
-    let v6 : Result<regex_Regex, regex_Error> = Fable.Core.RustInterop.emitRustExpr v5 v4 
-    let v7 : string = "$0.unwrap()"
-    let v8 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v6 v7 
-    let v9 : string = $"$0.replace_all(&$1, &*$2)"
-    let v10 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v8, v3, v1) v9 
-    let v11 : string = "String::from($0)"
-    let v12 : std_string_String = Fable.Core.RustInterop.emitRustExpr v10 v11 
-    let v13 : string = "fable_library_rust::String_::fromString($0)"
-    let v14 : string = Fable.Core.RustInterop.emitRustExpr v12 v13 
-    v14 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v15 : string = null |> unbox<string>
-    v15 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v16 : string = null |> unbox<string>
-    v16 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v17 : string = null |> unbox<string>
-    v17 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v18 : string = null |> unbox<string>
-    v18 
-    #endif
-#else
-    let v19 : string = method51()
-    let v20 : string = System.Text.RegularExpressions.Regex.Replace (v0, v19, v1)
-    v20 
-    #endif
-    |> fun x -> _v2 <- Some x
-    let v21 : string = match _v2 with Some x -> x | None -> failwith "base.run_target / _v2=None"
-    let v22 : string = $"{v21.[0] |> string |> _.ToLower()}{v21.[1..]}"
-    let v23 : string = "\\"
-    let v24 : string = "/"
-    let v25 : string = v22.Replace (v23, v24)
-    v25
-and closure56 () (v0 : string) : string =
-    method48(v0)
-and closure57 () (v0 : string) : string =
-    let v1 : (char []) = [|'/'|]
-    let v2 : string = v0.TrimStart v1 
-    let v3 : string = $"file:///{v2}"
-    v3
-and method53 (v0 : string, v1 : string, v2 : string) : string =
+and closure53 () (v0 : string) : string option =
+    method51(v0)
+and method50 () : (string -> string option) =
+    closure53()
+and method52 (v0 : string, v1 : string, v2 : string) : US13 =
     let v3 : string = method31(v2, v0)
     let v4 : bool = method7(v3)
     if v4 then
-        v2
+        US13_0(v2)
     else
-        let v5 : (string -> string option) = method45()
-        let v6 : string option = v5 v2
+        let v6 : (string -> string option) = method50()
+        let v7 : string option = v6 v2
+        let v8 : US3 option = None
+        let _v8 = ref v8 
+        match v7 with
+        | Some x -> (
+        (fun () ->
+        (fun () ->
+        let v9 : string = x
+        let v10 : US3 = US3_0(v9)
+        v10 
+        )
+        |> fun x -> x () |> Some
+        ) () ) | None -> None
+        |> fun x -> _v8.Value <- x
+        let v11 : US3 option = _v8.Value 
+        let v12 : US3 = US3_1
+        let v13 : US3 = v11 |> Option.defaultValue v12 
+        match v13 with
+        | US3_1 -> (* None *)
+            let v16 : string = $"""No parent for {if false then "file" else "dir"} '{v0}' at '{v1}' (until '{v2}')"""
+            US13_1(v16)
+        | US3_0(v14) -> (* Some *)
+            method52(v0, v1, v14)
+and method49 (v0 : string, v1 : string) : US13 =
+    let v2 : string = method31(v1, v0)
+    let v3 : bool = method7(v2)
+    if v3 then
+        US13_0(v1)
+    else
+        let v5 : (string -> string option) = method50()
+        let v6 : string option = v5 v1
         let v7 : US3 option = None
         let _v7 = ref v7 
         match v6 with
@@ -6040,48 +6071,58 @@ and method53 (v0 : string, v1 : string, v2 : string) : string =
         let v12 : US3 = v10 |> Option.defaultValue v11 
         match v12 with
         | US3_1 -> (* None *)
-            let v15 : string = $"""No parent for {if false then "file" else "dir"} '{v0}' at '{v1}' (until '{v2}')"""
-            failwith<string> v15
+            let v15 : string = $"""No parent for {if false then "file" else "dir"} '{v0}' at '{v1}' (until '{v1}')"""
+            US13_1(v15)
         | US3_0(v13) -> (* Some *)
-            method53(v0, v1, v13)
-and method52 (v0 : string, v1 : string) : string =
-    let v2 : string = method31(v1, v0)
-    let v3 : bool = method7(v2)
-    if v3 then
-        v1
-    else
-        let v4 : (string -> string option) = method45()
-        let v5 : string option = v4 v1
-        let v6 : US3 option = None
-        let _v6 = ref v6 
-        match v5 with
-        | Some x -> (
-        (fun () ->
-        (fun () ->
-        let v7 : string = x
-        let v8 : US3 = US3_0(v7)
-        v8 
-        )
-        |> fun x -> x () |> Some
-        ) () ) | None -> None
-        |> fun x -> _v6.Value <- x
-        let v9 : US3 option = _v6.Value 
-        let v10 : US3 = US3_1
-        let v11 : US3 = v9 |> Option.defaultValue v10 
-        match v11 with
-        | US3_1 -> (* None *)
-            let v14 : string = $"""No parent for {if false then "file" else "dir"} '{v0}' at '{v1}' (until '{v1}')"""
-            failwith<string> v14
-        | US3_0(v12) -> (* Some *)
-            method53(v0, v1, v12)
-and closure58 () () : string =
+            method52(v0, v1, v13)
+and closure54 () () : string =
+    let v0 : string = "file_system.get_workspace_root"
+    v0
+and closure55 (v0 : string) () : string =
+    let v1 : (unit -> string) = closure6()
+    let v2 : string = $"error: {v0} / {v1 ()}"
+    v2
+and closure52 () () : string =
     let v0 : string = __SOURCE_DIRECTORY__
-    let v1 : string = "polyglot"
-    let v2 : string = ".paket"
-    let v3 : string = method31(v1, v2)
-    let v4 : string = method52(v3, v0)
-    method31(v4, v1)
-and method54 (v0 : string) : unit =
+    let v1 : string = method48()
+    let v2 : string = "polyglot"
+    let v3 : string = ".paket"
+    let v4 : string = method31(v2, v3)
+    let v5 : US13 = method49(v4, v0)
+    let v14 : US3 =
+        match v5 with
+        | US13_1(v8) -> (* Error *)
+            let v9 : US0 = US0_3
+            let v10 : (unit -> string) = closure54()
+            let v11 : (unit -> string) = closure55(v8)
+            method9(v9, v10, v11)
+            US3_1
+        | US13_0(v6) -> (* Ok *)
+            US3_0(v6)
+    let v29 : US3 =
+        match v14 with
+        | US3_1 -> (* None *)
+            let v17 : string = method31(v2, v3)
+            let v18 : US13 = method49(v17, v1)
+            match v18 with
+            | US13_1(v21) -> (* Error *)
+                let v22 : US0 = US0_3
+                let v23 : (unit -> string) = closure54()
+                let v24 : (unit -> string) = closure55(v21)
+                method9(v22, v23, v24)
+                US3_1
+            | US13_0(v19) -> (* Ok *)
+                US3_0(v19)
+        | US3_0(v15) -> (* Some *)
+            US3_0(v15)
+    let v33 : string =
+        match v29 with
+        | US3_1 -> (* None *)
+            failwith<string> "Option does not have a value."
+        | US3_0(v30) -> (* Some *)
+            v30
+    method31(v33, v2)
+and method53 (v0 : string) : unit =
     let v1 : bool = true
     let mutable _v1 : unit option = None 
     
@@ -6111,111 +6152,144 @@ and method54 (v0 : string) : unit =
     let v6 : System.Guid = method22(v5, v3)
     let v7 : string = $"{v2}_{v6}.txt"
     let v8 : string = __SOURCE_DIRECTORY__
-    let v9 : string = "polyglot"
-    let v10 : string = ".paket"
-    let v11 : string = method31(v9, v10)
-    let v12 : string = method52(v11, v8)
-    let v13 : string = method31(v12, v9)
-    let v14 : string = "target/trace"
-    let v15 : string = method31(v13, v14)
-    let v16 : bool = true
-    let mutable _v16 : System.IO.DirectoryInfo option = None 
+    let v9 : string = method48()
+    let v10 : string = "polyglot"
+    let v11 : string = ".paket"
+    let v12 : string = method31(v10, v11)
+    let v13 : US13 = method49(v12, v8)
+    let v22 : US3 =
+        match v13 with
+        | US13_1(v16) -> (* Error *)
+            let v17 : US0 = US0_3
+            let v18 : (unit -> string) = closure54()
+            let v19 : (unit -> string) = closure55(v16)
+            method9(v17, v18, v19)
+            US3_1
+        | US13_0(v14) -> (* Ok *)
+            US3_0(v14)
+    let v37 : US3 =
+        match v22 with
+        | US3_1 -> (* None *)
+            let v25 : string = method31(v10, v11)
+            let v26 : US13 = method49(v25, v9)
+            match v26 with
+            | US13_1(v29) -> (* Error *)
+                let v30 : US0 = US0_3
+                let v31 : (unit -> string) = closure54()
+                let v32 : (unit -> string) = closure55(v29)
+                method9(v30, v31, v32)
+                US3_1
+            | US13_0(v27) -> (* Ok *)
+                US3_0(v27)
+        | US3_0(v23) -> (* Some *)
+            US3_0(v23)
+    let v41 : string =
+        match v37 with
+        | US3_1 -> (* None *)
+            failwith<string> "Option does not have a value."
+        | US3_0(v38) -> (* Some *)
+            v38
+    let v42 : string = method31(v41, v10)
+    let v43 : string = "target/trace"
+    let v44 : string = method31(v42, v43)
+    let v45 : bool = true
+    let mutable _v45 : System.IO.DirectoryInfo option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
-    v17 
+    let v46 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
+    v46 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v18 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
-    v18 
+    let v47 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
+    v47 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
-    v19 
+    let v48 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
+    v48 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v20 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
-    v20 
+    let v49 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
+    v49 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v21 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
-    v21 
+    let v50 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
+    v50 
     #endif
 #else
-    let v22 : (string -> System.IO.DirectoryInfo) = System.IO.Directory.CreateDirectory
-    let v23 : System.IO.DirectoryInfo = v22 v15
-    v23 
+    let v51 : (string -> System.IO.DirectoryInfo) = System.IO.Directory.CreateDirectory
+    let v52 : System.IO.DirectoryInfo = v51 v44
+    v52 
     #endif
-    |> fun x -> _v16 <- Some x
-    let v24 : System.IO.DirectoryInfo = match _v16 with Some x -> x | None -> failwith "base.run_target / _v16=None"
-    let v25 : string = method31(v15, v7)
-    let v26 : bool = true
-    let mutable _v26 : Async<unit> option = None 
+    |> fun x -> _v45 <- Some x
+    let v53 : System.IO.DirectoryInfo = match _v45 with Some x -> x | None -> failwith "base.run_target / _v45=None"
+    let v54 : string = method31(v44, v7)
+    let v55 : bool = true
+    let mutable _v55 : Async<unit> option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v27 : Async<unit> = null |> unbox<Async<unit>>
-    v27 
+    let v56 : Async<unit> = null |> unbox<Async<unit>>
+    v56 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v28 : Async<unit> = null |> unbox<Async<unit>>
-    v28 
+    let v57 : Async<unit> = null |> unbox<Async<unit>>
+    v57 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v29 : Async<unit> = null |> unbox<Async<unit>>
-    v29 
+    let v58 : Async<unit> = null |> unbox<Async<unit>>
+    v58 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v30 : Async<unit> = null |> unbox<Async<unit>>
-    v30 
+    let v59 : Async<unit> = null |> unbox<Async<unit>>
+    v59 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v31 : Async<unit> = null |> unbox<Async<unit>>
-    v31 
+    let v60 : Async<unit> = null |> unbox<Async<unit>>
+    v60 
     #endif
 #else
-    let v32 : System.Threading.Tasks.Task = System.IO.File.WriteAllTextAsync (v25, v0)
-    let v33 : bool = true
-    let mutable _v33 : Async<unit> option = None 
+    let v61 : System.Threading.Tasks.Task = System.IO.File.WriteAllTextAsync (v54, v0)
+    let v62 : bool = true
+    let mutable _v62 : Async<unit> option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v34 : Async<unit> = null |> unbox<Async<unit>>
-    v34 
+    let v63 : Async<unit> = null |> unbox<Async<unit>>
+    v63 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v35 : Async<unit> = null |> unbox<Async<unit>>
-    v35 
+    let v64 : Async<unit> = null |> unbox<Async<unit>>
+    v64 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v36 : Async<unit> = null |> unbox<Async<unit>>
-    v36 
+    let v65 : Async<unit> = null |> unbox<Async<unit>>
+    v65 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v37 : Async<unit> = null |> unbox<Async<unit>>
-    v37 
+    let v66 : Async<unit> = null |> unbox<Async<unit>>
+    v66 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v38 : Async<unit> = null |> unbox<Async<unit>>
-    v38 
+    let v67 : Async<unit> = null |> unbox<Async<unit>>
+    v67 
     #endif
 #else
-    let v39 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
-    let v40 : Async<unit> = v39 v32
-    v40 
+    let v68 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
+    let v69 : Async<unit> = v68 v61
+    v69 
     #endif
-    |> fun x -> _v33 <- Some x
-    let v41 : Async<unit> = match _v33 with Some x -> x | None -> failwith "base.run_target / _v33=None"
-    v41 
+    |> fun x -> _v62 <- Some x
+    let v70 : Async<unit> = match _v62 with Some x -> x | None -> failwith "base.run_target / _v62=None"
+    v70 
     #endif
-    |> fun x -> _v26 <- Some x
-    let v42 : Async<unit> = match _v26 with Some x -> x | None -> failwith "base.run_target / _v26=None"
-    let v43 : bool = true
-    let mutable _v43 : unit option = None 
+    |> fun x -> _v55 <- Some x
+    let v71 : Async<unit> = match _v55 with Some x -> x | None -> failwith "base.run_target / _v55=None"
+    let v72 : bool = true
+    let mutable _v72 : unit option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -6240,16 +6314,16 @@ and method54 (v0 : string) : unit =
     () 
     #endif
 #else
-    let v44 : (Async<unit> -> unit) = Async.RunSynchronously
-    v44 v42
+    let v73 : (Async<unit> -> unit) = Async.RunSynchronously
+    v73 v71
     () 
     #endif
-    |> fun x -> _v43 <- Some x
-    match _v43 with Some x -> x | None -> failwith "base.run_target / _v43=None"
+    |> fun x -> _v72 <- Some x
+    match _v72 with Some x -> x | None -> failwith "base.run_target / _v72=None"
     with ex ->
-    let v45 : exn = ex
-    let v46 : string = $"file_system.trace_file / ex: %A{v45}"
-    method54(v46)
+    let v74 : exn = ex
+    let v75 : string = $"file_system.trace_file / ex: %A{v74}"
+    method53(v75)
     (*
     *)
     () 
@@ -6257,24 +6331,24 @@ and method54 (v0 : string) : unit =
     |> fun x -> _v1 <- Some x
     match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
     ()
-and closure60 () (v0 : string) : unit =
-    method54(v0)
-and closure59 () (v0 : bool) : unit =
+and closure57 () (v0 : string) : unit =
+    method53(v0)
+and closure56 () (v0 : bool) : unit =
     let v1 : (US0 -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
     let v2 : US0 = US0_0
     if State.trace_state.IsNone then State.trace_state <- v1 v2 |> Some
     let struct (v3 : Mut0, v4 : Mut1, v5 : Mut2, v6 : int64 option, v7 : Mut3) = State.trace_state.Value
     let v10 : (string -> unit) =
         if v0 then
-            closure60()
+            closure57()
         else
             closure1()
     v7.l0 <- v10
     ()
-and closure62 (v0 : string) (v1 : string) : string =
+and closure59 (v0 : string) (v1 : string) : string =
     method31(v0, v1)
-and closure61 () (v0 : string) : (string -> string) =
-    closure62(v0)
+and closure58 () (v0 : string) : (string -> string) =
+    closure59(v0)
 let v0 : (US0 -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
 let v1 : US0 = US0_0
 if State.trace_state.IsNone then State.trace_state <- v0 v1 |> Some
@@ -6306,16 +6380,14 @@ let v14 : (string -> struct (string * System.IDisposable)) = closure48()
 let create_temp_dir' x = v14 x
 let v15 : (unit -> string) = closure49()
 let get_source_directory () = v15 ()
-let v16 : (string -> (bool -> (string -> string))) = closure50()
-let find_parent x = v16 x
-let v17 : (string -> string) = closure56()
-let normalize_path x = v17 x
-let v18 : (string -> string) = closure57()
-let new_file_uri x = v18 x
-let v19 : (unit -> string) = closure58()
-let get_workspace_root () = v19 ()
-let v20 : (bool -> unit) = closure59()
-let init_trace_file x = v20 x
-let v21 : (string -> (string -> string)) = closure61()
-let (</>) x = v21 x
+let v16 : (string -> string) = closure50()
+let normalize_path x = v16 x
+let v17 : (string -> string) = closure51()
+let new_file_uri x = v17 x
+let v18 : (unit -> string) = closure52()
+let get_workspace_root () = v18 ()
+let v19 : (bool -> unit) = closure56()
+let init_trace_file x = v19 x
+let v20 : (string -> (string -> string)) = closure58()
+let (</>) x = v20 x
 ()

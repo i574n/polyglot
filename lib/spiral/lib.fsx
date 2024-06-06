@@ -284,13 +284,6 @@ module SpiralFileSystem =
         get_source_directory ()
 #endif
 
-    let find_parent x =
-#if !INTERACTIVE
-        File_system.find_parent x
-#else
-        find_parent x
-#endif
-
     let normalize_path x =
 #if !INTERACTIVE
         File_system.normalize_path x

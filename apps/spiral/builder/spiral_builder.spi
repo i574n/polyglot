@@ -858,13 +858,11 @@ inl process_typescript { fs_path deps trace_level } =
                     "\\s\\sdefaultOf\\(\\);"
                     " defaultOf::<()>();"
 
-        if not cached
-        then
+        if not cached then
             $'$"{!new_code}\\n\\n{!main_code}\\n"'
             |> file_system.write_all_text_exists' new_code_path
         
         inl command = $'$"bun run \\\"{!new_code_path}\\\""'
-        inl env_path = "PATH" |> env.get_environment_variable
         inl environment_variables =
             match "~/.bun/bin" |> env.append_path with
             | Some path => [ "PATH", path ]

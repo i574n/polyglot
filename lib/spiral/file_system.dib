@@ -1401,12 +1401,12 @@ let link_directory target_path path =
 inl find_parent name is_file root_dir =
     let rec loop dir =
         if dir </> name |> (if is_file then file_exists else directory_exists)
-        then dir
+        then dir |> Ok
         else
             inl result = dir |> (join directory_get_parent)
             match result |> optionm'.unbox with
             | Some parent => parent |> loop
-            | None => failwith $'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\' (until \'{!dir}\')"""'
+            | None => ($'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\' (until \'{!dir}\')"""' : string) |> Error
     loop root_dir
 
 #!spiral
@@ -1417,6 +1417,7 @@ a ;[ ".paket", false; "paket.dependencies", true ]
 |> am.map fun (file, is_file) =>
     get_source_directory ()
     |> find_parent file is_file
+    |> resultm.get
     |> directory_info
     |> directory_info_name
 |> am'.distinct
@@ -1434,6 +1435,7 @@ a ;[ ".paket", false; "paket.dependencies", true ]
         join
             get_source_directory ()
             |> find_parent file is_file
+            |> resultm.get
             |> sm'.to_std_string
             |> new_path_buf
             |> path_buf_file_name
@@ -1455,8 +1457,21 @@ a ;[ ".paket", false; "paket.dependencies", true ]
 #!spiral
 
 inl get_workspace_root () =
-    get_source_directory ()
-    |> find_parent ("polyglot" </> ".paket") false
+    (None, [ get_source_directory (); get_current_directory () ])
+    ||> listm.fold fun acc path =>
+        match acc with
+        | Some path => Some path
+        | None =>
+            path
+            |> find_parent ("polyglot" </> ".paket") false
+            |> function
+            | Ok path => Some path
+            | Error error =>
+                trace Warning
+                    fun () => "file_system.get_workspace_root"
+                    fun () => $'$"error: {!error} / {!_locals ()}"'
+                None
+    |> optionm.value
     |> fun root => root </> "polyglot"
 
 #!markdown
@@ -1472,6 +1487,15 @@ inl get_workspace_root_external () =
     if current_dir |> sm'.starts_with workspace_root
     then Error workspace_root
     else Ok workspace_root
+
+#!spiral
+
+//// test
+
+get_workspace_root_external ()
+|> resultm.unwrap_err
+|> get_file_name
+|> _assert_eq "polyglot"
 
 #!markdown
 
@@ -1853,7 +1877,6 @@ inl main () =
     $'let create_temp_dir () = !create_temp_dir ()' : ()
     $'let create_temp_dir\' x = !create_temp_dir' x' : ()
     $'let get_source_directory () = !get_source_directory ()' : ()
-    $'let find_parent x = !find_parent x' : ()
     $'let normalize_path x = !normalize_path x' : ()
     $'let new_file_uri x = !new_file_uri x' : ()
     $'let get_workspace_root () = !get_workspace_root ()' : ()
