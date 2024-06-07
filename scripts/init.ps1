@@ -32,13 +32,12 @@ function Search-DotnetSdk($version) {
     return $false
 }
 
-if (!(Search-DotnetSdk "9")) {
-    if (!$IsWindows) {
+
+if (!$IsWindows) {
+    if (!(Search-DotnetSdk "9")) {
         curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version "9.0.100-preview.1.24101.2"
     }
-}
 
-if ($IsLinux) {
     curl -fsSL https://bun.sh/install | bash
     $env:PATH = "~/.bun/bin:$env:PATH"
 
@@ -46,13 +45,15 @@ if ($IsLinux) {
     #     sudo apt-add-repository 'deb https://download.mono-project.com/repo/ubuntu stable-focal main'
     #     sudo apt install -y mono-complete
     # }
+
+    if (!(Search-Command "pip")) {
+        sudo apt install -y python3-pip
+    }
 }
 
 pip install -r ../requirements.txt
 
 dotnet tool restore
-
-# { . $ScriptDir/dep_paket.ps1 } | Invoke-Block
 
 { dotnet paket restore } | Invoke-Block
 

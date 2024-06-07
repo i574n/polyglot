@@ -2,8 +2,8 @@ STORAGE: NONE
 RESTRICTION: == net9.0
 NUGET
   remote: https://api.nuget.org/v3/index.json
-    Argu (6.2.2)
-      FSharp.Core (>= 4.3.2)
+    Argu (6.2.4)
+      FSharp.Core (>= 6.0.7)
       System.Configuration.ConfigurationManager (>= 4.4)
     Expecto (10.2.1)
       FSharp.Core (>= 7.0.200)
@@ -71,9 +71,9 @@ NUGET
     System.IO.Pipelines (8.0)
     System.Management (7.0)
       System.CodeDom (>= 7.0)
-    System.Reactive (6.0.1-preview.1)
-    System.Reactive.Linq (6.0.1-preview.1)
-      System.Reactive (>= 6.0.1-preview.1)
+    System.Reactive (6.0.1)
+    System.Reactive.Linq (6.0.1)
+      System.Reactive (>= 6.0.1)
       System.Threading.Tasks.Extensions (>= 4.5.4)
     System.Security.Cryptography.ProtectedData (8.0)
     System.Threading.Channels (8.0)
