@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -216,4 +216,5 @@ async {
 }
 |> Async.RunSynchronously
 |> Option.get
-|> _isGreaterThan 900000
+|> fun x -> x > 900000
+|> _assertEqual true

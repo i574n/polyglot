@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!fsharp
 
@@ -17,6 +17,7 @@ Formatter.ListExpansionLimit <- 100
 #!import ../../../polyglot/lib/spiral/async_.fsx
 #!import ../../../polyglot/lib/spiral/threading.fsx
 #!import ../../../polyglot/lib/spiral/networking.fsx
+#!import ../../../polyglot/lib/spiral/platform.fsx
 #!import ../../../polyglot/lib/spiral/runtime.fsx
 #!import ../../../polyglot/lib/spiral/file_system.fsx
 #!import ../../../polyglot/lib/spiral/trace.fsx

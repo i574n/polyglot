@@ -54,7 +54,14 @@ if ($extensionsPath.Count -gt 0) {
 }
 
 foreach ($extensionsPath in $extensionsPath) {
-    $extensionDestDir = $json.publisher + "." + $json.name + "-" + $json.version
+    $version = Get-ChildItem -Path $extensionsPath -Filter "mrakgr.spiral-lang-vscode-*" | Sort-Object -Property Name -Descending | Select-Object -First 1 | ForEach-Object { $_.Name.Substring("$($json.publisher).$($json.name)-".Length) }
+
+    if ($null -eq $version) {
+        Write-Output "Skipping copying extension to $extensionsPath"
+        continue
+    }
+
+    $extensionDestDir = $json.publisher + "." + $json.name + "-" + $version
     $extensionPath = Join-Path -Path $extensionsPath -ChildPath $extensionDestDir
 
     if (Test-Path $extensionPath) {

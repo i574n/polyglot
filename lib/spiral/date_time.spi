@@ -128,7 +128,7 @@ inl specify_date_kind (kind : date_time_kind) (date_time : date_time) : date_tim
 nominal time_span = $'System.TimeSpan'
 
 inl time_span x : time_span =
-    $'`time_span !x '
+    x |> $'`time_span '
 
 /// ## new_time_span
 inl new_time_span (a : date_time) (b : date_time) : time_span =
@@ -136,7 +136,11 @@ inl new_time_span (a : date_time) (b : date_time) : time_span =
 
 /// ## time_span_format
 inl time_span_format (format : string) (time_span : time_span) : string =
-    $'!time_span.ToString' format
+    run_target function
+        | (TypeScript _ | Python _) => fun () =>
+            $'!time_span.ToString ("c", System.Globalization.CultureInfo.InvariantCulture)'
+        | _ => fun () =>
+            $'!time_span.ToString !format '
 
 /// ## hours
 inl hours (time_span : time_span) : i32 =
@@ -164,20 +168,19 @@ nominal time_zone_info = $'System.TimeZoneInfo'
 /// ## time_zone_local
 inl time_zone_local () : time_zone_info =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'System.TimeZoneInfo.Local'
         | Rust (Native) => fun () =>
             open rust_operators
             !\($'"0i64.into()"')
+        | Fsharp _ => fun () =>
+            $'System.TimeZoneInfo.Local'
         | _ => fun () => null ()
 
 /// ## get_utc_offset
 inl get_utc_offset (time_zone_info : time_zone_info) (date_time : date_time) : time_span =
     run_target function
-        | Fsharp (Native) => fun () =>
-            date_time |> $'_.GetUtcOffset' (time_zone_local ())
-        | _ => fun () =>
-            time_span ()
+        | Rust _ => fun () => time_span ()
+        | Fsharp _ => fun () => date_time |> $'_.GetUtcOffset' (time_zone_local ())
+        | target => fun () => failwith $'$"date_time.get_utc_offset / target: {!target}"'
 
 /// ## add_days
 inl add_days (days : i32) (date_time : date_time) : date_time =
@@ -203,14 +206,8 @@ let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
         inl guid = guid |> sm'.obj_to_string
         $'`date_time_guid $"{!prefix}{!time_zone}{!guid.[!prefix.Length + !time_zone.Length..]}"'
     run_target function
-        | Fsharp (Native) => fun () =>
-            inl prefix = date_time |> format (join "yyyyMMdd-HHmm-ssff-ffff-f")
-            inl time_zone = date_time |> get_utc_offset (time_zone_local ())
-            inl time_zone_signal = (hours time_zone > 0) |> convert_i32
-            inl time_zone_value = time_zone |> time_span_format (join "hhmm")
-            inl time_zone = $'$"{!time_zone_signal}{!time_zone_value}"' : string
-            parse prefix time_zone
-        | Rust (Native) => fun () =>
+        | Rust (Contract) => fun () => null ()
+        | Rust (Native | Wasm) => fun () =>
             inl epoch =
                 date_time_utc 1970 1 1 0 0 0
                 |> to_universal_time
@@ -233,17 +230,23 @@ let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
                 |> optionm'.default_value ""
             inl time_zone = date_time |> get_utc_offset (time_zone_local ())
             inl time_zone_signal = if hours time_zone > 0 then 1u8 else 0
-            inl time_zone_value = time_zone |> time_span_format "hh:mm"
+            inl time_zone_value = time_zone |> time_span_format (join "hh:mm")
             inl time_zone = $'$"{!time_zone_signal}{!time_zone_value.[0..1]}{!time_zone_value.[3..4]}"' : string
             parse prefix time_zone
-        | _ => fun () => null ()
+        | target => fun () =>
+            inl prefix = date_time |> format (join "yyyyMMdd-HHmm-ssff-ffff-f")
+            inl time_zone = date_time |> get_utc_offset (time_zone_local ())
+            inl time_zone_signal = if hours time_zone > 0 then 1u8 else 0
+            inl time_zone_value = time_zone |> time_span_format (join "hhmm")
+            inl time_zone = $'$"{!time_zone_signal}{!time_zone_value}"' : string
+            parse prefix time_zone
 
 /// ## date_time_from_guid
 inl date_time_from_guid (date_time_guid : date_time_guid) =
     inl date_time_guid = date_time_guid |> sm'.obj_to_string
     inl sm'_replace = join sm'.replace
     run_target function
-        | Rust _ => fun () =>
+        | (Rust _ | TypeScript _) => fun () =>
             $'System.DateTime.Parse (!date_time_guid.[..24] |> !sm'_replace "-" "")' : date_time
         | _ => fun () => $'System.DateTime.ParseExact (!date_time_guid.[..24] |> !sm'_replace "-" "", "yyyyMMddHHmmssfffffff", null)' : date_time
 

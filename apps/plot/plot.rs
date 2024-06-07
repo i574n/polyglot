@@ -82,7 +82,7 @@ fn draw_line_plot(
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let workspace_root = plot::SpiralFileSystem::get_workspace_root();
     let workspace_root = std::path::PathBuf::from(workspace_root.to_string());
-    let tmp_spiral_dir = workspace_root.join("target/polyglot/plotting");
+    let tmp_spiral_dir = workspace_root.join("target/plot");
     let line_plots_data_dir = tmp_spiral_dir.join("line_data");
     let line_plots_svg_dir = tmp_spiral_dir.join("line_svg");
 

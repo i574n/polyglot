@@ -1,0 +1,10 @@
+/// ### array
+
+inl array' forall t. (x : array_base t) : a int t =
+    a x
+
+inl a' x =
+    array' x
+
+inl array forall t. (x : array_base t) : array_base t =
+    x

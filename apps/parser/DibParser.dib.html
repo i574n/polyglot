@@ -7546,7 +7546,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.2.4/lib/netstandard2.0/Argu.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsec.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsecCS.dll"</span>
 </pre></div>
@@ -7590,7 +7590,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>6.2.2
+<pre>6.2.4
 </pre>
 </div>
 </div>
@@ -9136,7 +9136,8 @@ OPTIONS:
 <span class="n">let</span> <span class="n">args</span> <span class="o">=</span>
     <span class="n">System</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">GetEnvironmentVariable</span> <span class="s2">"ARGS"</span>
     <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">split_args</span>
-    <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toArray</span>
+    <span class="o">|&gt;</span> <span class="n">Result</span><span class="o">.</span><span class="n">toArray</span>
+    <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">collect</span> <span class="nb">id</span>
 
 <span class="k">match</span> <span class="n">args</span> <span class="k">with</span>
 <span class="o">|</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="mi">0</span>

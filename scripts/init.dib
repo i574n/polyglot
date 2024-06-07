@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+{"kernelInfo":{"defaultKernelName":"pwsh","items":[{"aliases":[],"name":"pwsh"}]}}
 
 #!pwsh
 

@@ -71,37 +71,37 @@ type Slice'<'T> = class end
 #endif
 type Vec<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("async_std::task::JoinHandle<$0>")>]
+[<Fable.Core.Erase; Fable.Core.Emit("futures::future::JoinAll<$0>")>]
 #endif
-type async_std_task_JoinHandle<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>]
-#endif
-type std_future_Future<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter<$0>")>]
-#endif
-type rayon_vec_IntoIter<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map<$0, _>")>]
-#endif
-type rayon_iter_Map<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("futures_lite::stream::StreamExt")>]
-#endif
-type futures_lite_stream_StreamExt = class end
+type futures_future_JoinAll<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>]
 #endif
 type futures_future_TryJoinAll<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("futures::future::Fuse<$0>")>]
+[<Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map<$0, _>")>]
+#endif
+type rayon_iter_Map<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter<$0>")>]
+#endif
+type rayon_vec_IntoIter<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>]
+#endif
+type std_future_Future<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("tokio::prelude::stream::Fuse<$0>")>]
 #endif
 type futures_future_Fuse<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("futures::future::JoinAll<$0>")>]
+[<Fable.Core.Erase; Fable.Core.Emit("tokio::task::JoinHandle<$0>")>]
 #endif
-type futures_future_JoinAll<'T> = class end
+type tokio_task_JoinHandle<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("tokio_stream::StreamExt")>]
+#endif
+type tokio_stream_StreamExt = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::env::VarError")>]
 #endif
@@ -287,13 +287,21 @@ type std_slice_Windows<'T> = class end
 #endif
 type regex_Regex = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Captures")>]
+[<Fable.Core.Erase; Fable.Core.Emit("regex::Captures<$0>")>]
 #endif
-type regex_Captures = class end
+type regex_Captures<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("regex::CaptureMatches")>]
 #endif
 type regex_CaptureMatches = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("regex::CaptureNames")>]
+#endif
+type regex_CaptureNames = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("regex::Match")>]
+#endif
+type regex_Match = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("regex::Error")>]
 #endif
@@ -331,6 +339,7 @@ type std_sync_mpsc_SendError<'T> = class end
 #endif
 type std_sync_mpsc_Sender<'T> = class end
 module State = let mutable trace_state = None
+type IOsEnviron = abstract environ: x: unit -> obj
 #if FABLE_COMPILER
 [<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]
 module System =
@@ -351,441 +360,529 @@ and Mut3 = {mutable l0 : (string -> unit)}
 and [<Struct>] US1 =
     | US1_0 of f0_0 : int64
     | US1_1
+and [<Struct>] US2 =
+    | US2_0 of f0_0 : US0
+    | US2_1
+and [<Struct>] US3 =
+    | US3_0 of f0_0 : string
+    | US3_1
 and Mut4 = {mutable l0 : int32}
 and UH0 =
     | UH0_0
     | UH0_1 of char * UH0
-and [<Struct>] US3 =
-    | US3_0
-    | US3_1
-and [<Struct>] US2 =
-    | US2_0
-    | US2_1 of f1_0 : US3
-    | US2_2
-and [<Struct>] US4 =
-    | US4_0 of f0_0 : string
-    | US4_1
 and [<Struct>] US5 =
-    | US5_0 of f0_0 : (struct (bool * string * int32) -> Async<unit>)
+    | US5_0
     | US5_1
+and [<Struct>] US4 =
+    | US4_0
+    | US4_1 of f1_0 : US5
+    | US4_2
 and [<Struct>] US6 =
-    | US6_0 of f0_0 : System.Threading.CancellationToken
+    | US6_0 of f0_0 : (struct (bool * string * int32) -> Async<unit>)
     | US6_1
+and [<Struct>] US7 =
+    | US7_0 of f0_0 : System.Threading.CancellationToken
+    | US7_1
 and Heap0 = {l0 : System.Threading.CancellationToken option; l1 : string; l2 : (struct (string * string) []); l3 : (struct (bool * string * int32) -> Async<unit>) option; l4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option; l5 : bool; l6 : string option}
+and [<Struct>] US8 =
+    | US8_0 of f0_0 : (string [])
+    | US8_1 of f1_0 : string
 and UH1 =
     | UH1_0
     | UH1_1 of string * UH1
-and [<Struct>] US7 =
-    | US7_0
-    | US7_1 of f1_0 : char
-    | US7_2 of f2_0 : uint8 * f2_1 : char
-let rec closure1 () (v0 : string) : unit =
-    ()
-and method0 () : string =
+and [<Struct>] US9 =
+    | US9_0 of f0_0 : UH1 * f0_1 : string * f0_2 : System.Text.StringBuilder * f0_3 : int32 * f0_4 : int32
+    | US9_1 of f1_0 : string
+and [<Struct>] US10 =
+    | US10_0 of f0_0 : char * f0_1 : string * f0_2 : System.Text.StringBuilder * f0_3 : int32 * f0_4 : int32
+    | US10_1 of f1_0 : string
+and [<Struct>] US11 =
+    | US11_0 of f0_0 : char
+    | US11_1
+and [<Struct>] US12 =
+    | US12_0 of f0_0 : string * f0_1 : string * f0_2 : System.Text.StringBuilder * f0_3 : int32 * f0_4 : int32
+    | US12_1 of f1_0 : string
+and UH2 =
+    | UH2_0
+    | UH2_1 of (struct (string * System.Text.StringBuilder * int32 * int32) -> US12) * UH2
+and [<Struct>] US13 =
+    | US13_0 of f0_0 : string * f0_1 : System.Text.StringBuilder * f0_2 : int32 * f0_3 : int32
+    | US13_1 of f1_0 : string
+and [<Struct>] US14 =
+    | US14_0 of f0_0 : (string [])
+    | US14_1 of f1_0 : string
+let rec method0 () : string =
+    let v0 : string = "TRACE_LEVEL"
+    v0
+and method2 () : string =
     let v0 : string = ""
     v0
-and method1 () : string =
-    let v0 : string = "AUTOMATION"
-    v0
-and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
-    let v1 : Mut1 = {l0 = true} : Mut1
-    let v2 : Mut0 = {l0 = 0L} : Mut0
-    let v3 : Mut2 = {l0 = v0} : Mut2
-    let v4 : (string -> unit) = closure1()
-    let v5 : Mut3 = {l0 = v4} : Mut3
-    let v6 : bool = true
-    let mutable _v6 : int64 option option = None 
+and method1 (v0 : string) : string =
+    let v1 : bool = true
+    let mutable _v1 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v7 : bool = true
-    let mutable _v7 : string option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v8 : string = "std::env::var(&*$0)"
-    let v9 : string = "AUTOMATION"
-    let v10 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v9 v8 
-    let v11 : string = "true; let _result = $0.map(|x| { //"
-    let v12 : bool = Fable.Core.RustInterop.emitRustExpr v10 v11 
-    let v13 : string = "x"
-    let v14 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v13 
-    let v15 : string = "fable_library_rust::String_::fromString($0)"
-    let v16 : string = Fable.Core.RustInterop.emitRustExpr v14 v15 
-    let v17 : string = "true; $0 })"
-    let v18 : bool = Fable.Core.RustInterop.emitRustExpr v16 v17 
-    let v19 : string = "_result"
-    let v20 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v19 
-    let v21 : string = method0()
-    let v22 : string = "$0.unwrap_or($1)"
-    let v23 : string = Fable.Core.RustInterop.emitRustExpr struct (v20, v21) v22 
-    v23 
+    let v2 : string = "std::env::var(&*$0)"
+    let v3 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v0 v2 
+    let v4 : string = "true; let _result = $0.map(|x| { //"
+    let v5 : bool = Fable.Core.RustInterop.emitRustExpr v3 v4 
+    let v6 : string = "x"
+    let v7 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v6 
+    let v8 : string = "fable_library_rust::String_::fromString($0)"
+    let v9 : string = Fable.Core.RustInterop.emitRustExpr v7 v8 
+    let v10 : string = "true; $0 })"
+    let v11 : bool = Fable.Core.RustInterop.emitRustExpr v9 v10 
+    let v12 : string = "_result"
+    let v13 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v12 
+    let v14 : string = method2()
+    let v15 : string = "$0.unwrap_or($1)"
+    let v16 : string = Fable.Core.RustInterop.emitRustExpr struct (v13, v14) v15 
+    v16 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v24 : string = null |> unbox<string>
-    v24 
+    let v17 : string = "std::env::var(&*$0)"
+    let v18 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v0 v17 
+    let v19 : string = "true; let _result = $0.map(|x| { //"
+    let v20 : bool = Fable.Core.RustInterop.emitRustExpr v18 v19 
+    let v21 : string = "x"
+    let v22 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v21 
+    let v23 : string = "fable_library_rust::String_::fromString($0)"
+    let v24 : string = Fable.Core.RustInterop.emitRustExpr v22 v23 
+    let v25 : string = "true; $0 })"
+    let v26 : bool = Fable.Core.RustInterop.emitRustExpr v24 v25 
+    let v27 : string = "_result"
+    let v28 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v27 
+    let v29 : string = method2()
+    let v30 : string = "$0.unwrap_or($1)"
+    let v31 : string = Fable.Core.RustInterop.emitRustExpr struct (v28, v29) v30 
+    v31 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v25 : string = null |> unbox<string>
-    v25 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v26 : string = null |> unbox<string>
-    v26 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v27 : string = null |> unbox<string>
-    v27 
-    #endif
-#else
-    let v28 : string = method1()
-    let v29 : (string -> string) = System.Environment.GetEnvironmentVariable
-    let v30 : string = v29 v28
-    v30 
-    #endif
-    |> fun x -> _v7 <- Some x
-    let v31 : string = match _v7 with Some x -> x | None -> failwith "base.run_target / _v7=None"
-    let v33 : bool = v31 = "True"
-    let v39 : US1 =
-        if v33 then
-            let v34 : System.DateTime = System.DateTime.Now
-            let v35 : (System.DateTime -> int64) = _.Ticks
-            let v36 : int64 = v35 v34
-            US1_0(v36)
-        else
-            US1_1
-    let v44 : int64 option =
-        match v39 with
-        | US1_1 -> (* None *)
-            let v42 : int64 option = None
-            v42
-        | US1_0(v40) -> (* Some *)
-            let v41 : int64 option = Some v40 
-            v41
-    v44 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v45 : int64 option = None
-    v45 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v46 : int64 option = None
+    let v32 : string = "std::env::var(&*$0)"
+    let v33 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v0 v32 
+    let v34 : string = "true; let _result = $0.map(|x| { //"
+    let v35 : bool = Fable.Core.RustInterop.emitRustExpr v33 v34 
+    let v36 : string = "x"
+    let v37 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v36 
+    let v38 : string = "fable_library_rust::String_::fromString($0)"
+    let v39 : string = Fable.Core.RustInterop.emitRustExpr v37 v38 
+    let v40 : string = "true; $0 })"
+    let v41 : bool = Fable.Core.RustInterop.emitRustExpr v39 v40 
+    let v42 : string = "_result"
+    let v43 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v42 
+    let v44 : string = method2()
+    let v45 : string = "$0.unwrap_or($1)"
+    let v46 : string = Fable.Core.RustInterop.emitRustExpr struct (v43, v44) v45 
     v46 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v47 : int64 option = None
-    v47 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v48 : int64 option = None
+    let v47 : string = "process.env[$0] ?? \"\""
+    let v48 : string = Fable.Core.JsInterop.emitJsExpr v0 v47 
     v48 
     #endif
+#if FABLE_COMPILER_PYTHON
+    let v49 : string = "os"
+    let v50 : IOsEnviron = Fable.Core.PyInterop.importAll v49 
+    let v51 : string = "v50.environ"
+    let v52 : obj = Fable.Core.PyInterop.emitPyExpr () v51 
+    let v53 : string = "v52.get($0)"
+    let v54 : string = Fable.Core.PyInterop.emitPyExpr v0 v53 
+    v54 
+    #endif
 #else
-    let v49 : bool = true
-    let mutable _v49 : string option = None 
+    let v55 : (string -> string) = System.Environment.GetEnvironmentVariable
+    let v56 : string = v55 v0
+    let mutable _v56 = None
+    #if !FABLE_COMPILER && !WASM && !CONTRACT
+    let v57 : (string -> string option) = Option.ofObj
+    let v58 : string option = v57 v56
+    v58 
+    #else
+    Some v56 
+    #endif
+    |> fun x -> _v56 <- Some x
+    let v59 : string option = match _v56 with Some x -> x | None -> failwith "optionm'.of_obj / _v56=None"
+    let v60 : US3 option = None
+    let _v60 = ref v60 
+    match v59 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v61 : string = x
+    let v62 : US3 = US3_0(v61)
+    v62 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v60.Value <- x
+    let v63 : US3 option = _v60.Value 
+    let v64 : US3 = US3_1
+    let v65 : US3 = v63 |> Option.defaultValue v64 
+    let v69 : string =
+        match v65 with
+        | US3_1 -> (* None *)
+            let v67 : string = ""
+            v67
+        | US3_0(v66) -> (* Some *)
+            v66
+    v69 
+    #endif
+    |> fun x -> _v1 <- Some x
+    let v70 : string = match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
+    v70
+and method3 () : string =
+    let v0 : string = "AUTOMATION"
+    v0
+and closure1 () (v0 : string) : unit =
+    ()
+and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
+    let v1 : bool = true
+    let mutable _v1 : struct (US1 * US2) option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v50 : string = "std::env::var(&*$0)"
-    let v51 : Result<std_string_String, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr v9 v50 
-    let v52 : string = "true; let _result = $0.map(|x| { //"
-    let v53 : bool = Fable.Core.RustInterop.emitRustExpr v51 v52 
-    let v54 : string = "x"
-    let v55 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v54 
-    let v56 : string = "fable_library_rust::String_::fromString($0)"
-    let v57 : string = Fable.Core.RustInterop.emitRustExpr v55 v56 
-    let v58 : string = "true; $0 })"
-    let v59 : bool = Fable.Core.RustInterop.emitRustExpr v57 v58 
-    let v60 : string = "_result"
-    let v61 : Result<string, std_env_VarError> = Fable.Core.RustInterop.emitRustExpr () v60 
-    let v62 : string = method0()
-    let v63 : string = "$0.unwrap_or($1)"
-    let v64 : string = Fable.Core.RustInterop.emitRustExpr struct (v61, v62) v63 
-    v64 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v65 : string = null |> unbox<string>
-    v65 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v66 : string = null |> unbox<string>
-    v66 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v67 : string = null |> unbox<string>
-    v67 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v68 : string = null |> unbox<string>
-    v68 
-    #endif
-#else
-    let v69 : string = method1()
-    let v70 : (string -> string) = System.Environment.GetEnvironmentVariable
-    let v71 : string = v70 v69
-    v71 
-    #endif
-    |> fun x -> _v49 <- Some x
-    let v72 : string = match _v49 with Some x -> x | None -> failwith "base.run_target / _v49=None"
-    let v74 : bool = v72 = "True"
-    let v80 : US1 =
-        if v74 then
-            let v75 : System.DateTime = System.DateTime.Now
-            let v76 : (System.DateTime -> int64) = _.Ticks
-            let v77 : int64 = v76 v75
-            US1_0(v77)
+    let v2 : string = method0()
+    let v3 : string = method1(v2)
+    let v5 : bool = "Verbose" = v3
+    let v9 : US2 =
+        if v5 then
+            let v6 : US0 = US0_0
+            US2_0(v6)
+        else
+            US2_1
+    let v54 : US2 =
+        match v9 with
+        | US2_1 -> (* None *)
+            let v13 : bool = "Debug" = v3
+            let v17 : US2 =
+                if v13 then
+                    let v14 : US0 = US0_1
+                    US2_0(v14)
+                else
+                    US2_1
+            match v17 with
+            | US2_1 -> (* None *)
+                let v21 : bool = "Info" = v3
+                let v25 : US2 =
+                    if v21 then
+                        let v22 : US0 = US0_2
+                        US2_0(v22)
+                    else
+                        US2_1
+                match v25 with
+                | US2_1 -> (* None *)
+                    let v29 : bool = "Warning" = v3
+                    let v33 : US2 =
+                        if v29 then
+                            let v30 : US0 = US0_3
+                            US2_0(v30)
+                        else
+                            US2_1
+                    match v33 with
+                    | US2_1 -> (* None *)
+                        let v37 : bool = "Critical" = v3
+                        let v41 : US2 =
+                            if v37 then
+                                let v38 : US0 = US0_4
+                                US2_0(v38)
+                            else
+                                US2_1
+                        match v41 with
+                        | US2_1 -> (* None *)
+                            US2_1
+                        | US2_0(v42) -> (* Some *)
+                            US2_0(v42)
+                    | US2_0(v34) -> (* Some *)
+                        US2_0(v34)
+                | US2_0(v26) -> (* Some *)
+                    US2_0(v26)
+            | US2_0(v18) -> (* Some *)
+                US2_0(v18)
+        | US2_0(v10) -> (* Some *)
+            US2_0(v10)
+    let v55 : string = method3()
+    let v56 : string = method1(v55)
+    let v58 : bool = v56 = "True"
+    let v64 : US1 =
+        if v58 then
+            let v59 : System.DateTime = System.DateTime.Now
+            let v60 : (System.DateTime -> int64) = _.Ticks
+            let v61 : int64 = v60 v59
+            US1_0(v61)
         else
             US1_1
-    let v85 : int64 option =
-        match v80 with
-        | US1_1 -> (* None *)
-            let v83 : int64 option = None
-            v83
-        | US1_0(v81) -> (* Some *)
-            let v82 : int64 option = Some v81 
-            v82
-    v85 
-    #endif
-    |> fun x -> _v6 <- Some x
-    let v86 : int64 option = match _v6 with Some x -> x | None -> failwith "base.run_target / _v6=None"
-    struct (v2, v1, v3, v86, v5)
-and closure2 () () : bool =
-    let v0 : bool = true
-    let mutable _v0 : bool option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1 : string = "cfg!(windows)"
-    let v2 : bool = Fable.Core.RustInterop.emitRustExpr () v1 
-    v2 
+    struct (v64, v54) 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v3 : bool = null |> unbox<bool>
-    v3 
+    let v65 : US1 = US1_1
+    let v66 : US2 = US2_1
+    struct (v65, v66) 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v4 : bool = null |> unbox<bool>
-    v4 
+    let v67 : US1 = US1_1
+    let v68 : US2 = US2_1
+    struct (v67, v68) 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v5 : bool = null |> unbox<bool>
-    v5 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v6 : bool = null |> unbox<bool>
-    v6 
-    #endif
-#else
-    let v7 : System.Runtime.InteropServices.OSPlatform = System.Runtime.InteropServices.OSPlatform.Windows
-    let v8 : (System.Runtime.InteropServices.OSPlatform -> bool) = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
-    let v9 : bool = v8 v7
-    v9 
-    #endif
-    |> fun x -> _v0 <- Some x
-    let v10 : bool = match _v0 with Some x -> x | None -> failwith "base.run_target / _v0=None"
-    v10
-and closure3 () () : string =
-    let v0 : bool = true
-    let mutable _v0 : bool option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1 : string = "cfg!(windows)"
-    let v2 : bool = Fable.Core.RustInterop.emitRustExpr () v1 
-    v2 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v3 : bool = null |> unbox<bool>
-    v3 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v4 : bool = null |> unbox<bool>
-    v4 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v5 : bool = null |> unbox<bool>
-    v5 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v6 : bool = null |> unbox<bool>
-    v6 
-    #endif
-#else
-    let v7 : System.Runtime.InteropServices.OSPlatform = System.Runtime.InteropServices.OSPlatform.Windows
-    let v8 : (System.Runtime.InteropServices.OSPlatform -> bool) = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
-    let v9 : bool = v8 v7
-    v9 
-    #endif
-    |> fun x -> _v0 <- Some x
-    let v10 : bool = match _v0 with Some x -> x | None -> failwith "base.run_target / _v0=None"
-    if v10 then
-        let v11 : string = ".exe"
-        v11
-    else
-        let v12 : string = ""
-        v12
-and method3 () : struct (string * string) =
-    let v0 : string = ""
-    struct (v0, v0)
-and method4 (v0 : int32, v1 : Mut4) : bool =
-    let v2 : int32 = v1.l0
-    let v3 : bool = v2 < v0
-    v3
-and closure6 (v0 : char) (v1 : UH0) : UH0 =
-    UH0_1(v0, v1)
-and closure5 () (v0 : char) : (UH0 -> UH0) =
-    closure6(v0)
-and method5 () : (char -> (UH0 -> UH0)) =
-    closure5()
-and method6 (v0 : string, v1 : string, v2 : UH0, v3 : US2) : struct (string * string) =
-    match v2 with
-    | UH0_1(v4, v5) -> (* Cons *)
-        let v6 : bool = '"' = v4
-        if v6 then
-            let v8 : bool = v1 = ""
-            if v8 then
-                let v9 : US3 = US3_0
-                let v10 : US2 = US2_1(v9)
-                method6(v0, v1, v5, v10)
-            else
-                match v3 with
-                | US2_2 -> (* Arguments *)
-                    let v38 : string = $"{v0}{v4}"
-                    let v39 : US2 = US2_2
-                    method6(v38, v1, v5, v39)
-                | US2_1(v13) -> (* Path *)
-                    match v13 with
-                    | US3_0 -> (* Quoted *)
-                        let v14 : US3 = US3_1
-                        let v15 : US2 = US2_1(v14)
-                        method6(v0, v1, v5, v15)
-                    | _ ->
-                        let v18 : bool = ' ' = v4
-                        if v18 then
-                            let v19 : US2 = US2_2
-                            method6(v0, v1, v5, v19)
-                        else
-                            let v22 : string = $"{v1}{v4}"
-                            method6(v0, v22, v5, v3)
-                | US2_0 -> (* Start *)
-                    let v29 : bool = ' ' = v4
-                    if v29 then
-                        let v30 : US2 = US2_2
-                        method6(v0, v1, v5, v30)
-                    else
-                        let v33 : string = $"{v1}{v4}"
-                        method6(v0, v33, v5, v3)
+    let v69 : string = method0()
+    let v70 : string = method1(v69)
+    let v72 : bool = "Verbose" = v70
+    let v76 : US2 =
+        if v72 then
+            let v73 : US0 = US0_0
+            US2_0(v73)
         else
-            let v50 : bool = ''' = v4
-            if v50 then
-                let v52 : bool = v1 = ""
-                if v52 then
-                    let v53 : US3 = US3_0
-                    let v54 : US2 = US2_1(v53)
-                    method6(v0, v1, v5, v54)
+            US2_1
+    let v121 : US2 =
+        match v76 with
+        | US2_1 -> (* None *)
+            let v80 : bool = "Debug" = v70
+            let v84 : US2 =
+                if v80 then
+                    let v81 : US0 = US0_1
+                    US2_0(v81)
                 else
-                    match v3 with
-                    | US2_2 -> (* Arguments *)
-                        let v82 : string = $"{v0}{v4}"
-                        let v83 : US2 = US2_2
-                        method6(v82, v1, v5, v83)
-                    | US2_1(v57) -> (* Path *)
-                        match v57 with
-                        | US3_0 -> (* Quoted *)
-                            let v58 : US3 = US3_1
-                            let v59 : US2 = US2_1(v58)
-                            method6(v0, v1, v5, v59)
-                        | _ ->
-                            let v62 : bool = ' ' = v4
-                            if v62 then
-                                let v63 : US2 = US2_2
-                                method6(v0, v1, v5, v63)
-                            else
-                                let v66 : string = $"{v1}{v4}"
-                                method6(v0, v66, v5, v3)
-                    | US2_0 -> (* Start *)
-                        let v73 : bool = ' ' = v4
-                        if v73 then
-                            let v74 : US2 = US2_2
-                            method6(v0, v1, v5, v74)
-                        else
-                            let v77 : string = $"{v1}{v4}"
-                            method6(v0, v77, v5, v3)
-            else
-                match v3 with
-                | US2_2 -> (* Arguments *)
-                    let v126 : string = $"{v0}{v4}"
-                    let v127 : US2 = US2_2
-                    method6(v126, v1, v5, v127)
-                | US2_1(v94) -> (* Path *)
-                    match v94 with
-                    | US3_0 -> (* Quoted *)
-                        let v95 : bool = ' ' = v4
-                        if v95 then
-                            let v96 : string = $"{v1} "
-                            let v97 : US3 = US3_0
-                            let v98 : US2 = US2_1(v97)
-                            method6(v0, v96, v5, v98)
-                        else
-                            let v101 : string = $"{v1}{v4}"
-                            method6(v0, v101, v5, v3)
-                    | _ ->
-                        let v106 : bool = ' ' = v4
-                        if v106 then
-                            let v107 : US2 = US2_2
-                            method6(v0, v1, v5, v107)
-                        else
-                            let v110 : string = $"{v1}{v4}"
-                            method6(v0, v110, v5, v3)
-                | US2_0 -> (* Start *)
-                    let v117 : bool = ' ' = v4
-                    if v117 then
-                        let v118 : US2 = US2_2
-                        method6(v0, v1, v5, v118)
+                    US2_1
+            match v84 with
+            | US2_1 -> (* None *)
+                let v88 : bool = "Info" = v70
+                let v92 : US2 =
+                    if v88 then
+                        let v89 : US0 = US0_2
+                        US2_0(v89)
                     else
-                        let v121 : string = $"{v1}{v4}"
-                        method6(v0, v121, v5, v3)
-    | _ ->
-        match v3 with
-        | US2_2 -> (* Arguments *)
-            let v152 : string = "\\"
-            let v153 : string = "/"
-            let v154 : string = v1.Replace (v152, v153)
-            struct (v154, v0)
-        | US2_1(v140) -> (* Path *)
-            match v140 with
-            | US3_0 -> (* Quoted *)
-                let v141 : string = "\\"
-                let v142 : string = "/"
-                let v143 : string = v1.Replace (v141, v142)
-                struct (v143, v0)
-            | _ ->
-                let v144 : string = "\\"
-                let v145 : string = "/"
-                let v146 : string = v1.Replace (v144, v145)
-                struct (v146, v0)
-        | US2_0 -> (* Start *)
-            let v149 : string = "\\"
-            let v150 : string = "/"
-            let v151 : string = v1.Replace (v149, v150)
-            struct (v151, v0)
-and closure7 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) () : string =
-    let v7 : string = $"execute_with_options_async / options: %A{struct (v0, v1, v2, v3, v4, v5, v6)}"
-    v7
-and closure8 () () : string =
+                        US2_1
+                match v92 with
+                | US2_1 -> (* None *)
+                    let v96 : bool = "Warning" = v70
+                    let v100 : US2 =
+                        if v96 then
+                            let v97 : US0 = US0_3
+                            US2_0(v97)
+                        else
+                            US2_1
+                    match v100 with
+                    | US2_1 -> (* None *)
+                        let v104 : bool = "Critical" = v70
+                        let v108 : US2 =
+                            if v104 then
+                                let v105 : US0 = US0_4
+                                US2_0(v105)
+                            else
+                                US2_1
+                        match v108 with
+                        | US2_1 -> (* None *)
+                            US2_1
+                        | US2_0(v109) -> (* Some *)
+                            US2_0(v109)
+                    | US2_0(v101) -> (* Some *)
+                        US2_0(v101)
+                | US2_0(v93) -> (* Some *)
+                    US2_0(v93)
+            | US2_0(v85) -> (* Some *)
+                US2_0(v85)
+        | US2_0(v77) -> (* Some *)
+            US2_0(v77)
+    let v122 : string = method3()
+    let v123 : string = method1(v122)
+    let v125 : bool = v123 = "True"
+    let v131 : US1 =
+        if v125 then
+            let v126 : System.DateTime = System.DateTime.Now
+            let v127 : (System.DateTime -> int64) = _.Ticks
+            let v128 : int64 = v127 v126
+            US1_0(v128)
+        else
+            US1_1
+    struct (v131, v121) 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v132 : string = method0()
+    let v133 : string = method1(v132)
+    let v135 : bool = "Verbose" = v133
+    let v139 : US2 =
+        if v135 then
+            let v136 : US0 = US0_0
+            US2_0(v136)
+        else
+            US2_1
+    let v184 : US2 =
+        match v139 with
+        | US2_1 -> (* None *)
+            let v143 : bool = "Debug" = v133
+            let v147 : US2 =
+                if v143 then
+                    let v144 : US0 = US0_1
+                    US2_0(v144)
+                else
+                    US2_1
+            match v147 with
+            | US2_1 -> (* None *)
+                let v151 : bool = "Info" = v133
+                let v155 : US2 =
+                    if v151 then
+                        let v152 : US0 = US0_2
+                        US2_0(v152)
+                    else
+                        US2_1
+                match v155 with
+                | US2_1 -> (* None *)
+                    let v159 : bool = "Warning" = v133
+                    let v163 : US2 =
+                        if v159 then
+                            let v160 : US0 = US0_3
+                            US2_0(v160)
+                        else
+                            US2_1
+                    match v163 with
+                    | US2_1 -> (* None *)
+                        let v167 : bool = "Critical" = v133
+                        let v171 : US2 =
+                            if v167 then
+                                let v168 : US0 = US0_4
+                                US2_0(v168)
+                            else
+                                US2_1
+                        match v171 with
+                        | US2_1 -> (* None *)
+                            US2_1
+                        | US2_0(v172) -> (* Some *)
+                            US2_0(v172)
+                    | US2_0(v164) -> (* Some *)
+                        US2_0(v164)
+                | US2_0(v156) -> (* Some *)
+                    US2_0(v156)
+            | US2_0(v148) -> (* Some *)
+                US2_0(v148)
+        | US2_0(v140) -> (* Some *)
+            US2_0(v140)
+    let v185 : string = method3()
+    let v186 : string = method1(v185)
+    let v188 : bool = v186 = "True"
+    let v194 : US1 =
+        if v188 then
+            let v189 : System.DateTime = System.DateTime.Now
+            let v190 : (System.DateTime -> int64) = _.Ticks
+            let v191 : int64 = v190 v189
+            US1_0(v191)
+        else
+            US1_1
+    struct (v194, v184) 
+    #endif
+#else
+    let v195 : string = method0()
+    let v196 : string = method1(v195)
+    let v198 : bool = "Verbose" = v196
+    let v202 : US2 =
+        if v198 then
+            let v199 : US0 = US0_0
+            US2_0(v199)
+        else
+            US2_1
+    let v247 : US2 =
+        match v202 with
+        | US2_1 -> (* None *)
+            let v206 : bool = "Debug" = v196
+            let v210 : US2 =
+                if v206 then
+                    let v207 : US0 = US0_1
+                    US2_0(v207)
+                else
+                    US2_1
+            match v210 with
+            | US2_1 -> (* None *)
+                let v214 : bool = "Info" = v196
+                let v218 : US2 =
+                    if v214 then
+                        let v215 : US0 = US0_2
+                        US2_0(v215)
+                    else
+                        US2_1
+                match v218 with
+                | US2_1 -> (* None *)
+                    let v222 : bool = "Warning" = v196
+                    let v226 : US2 =
+                        if v222 then
+                            let v223 : US0 = US0_3
+                            US2_0(v223)
+                        else
+                            US2_1
+                    match v226 with
+                    | US2_1 -> (* None *)
+                        let v230 : bool = "Critical" = v196
+                        let v234 : US2 =
+                            if v230 then
+                                let v231 : US0 = US0_4
+                                US2_0(v231)
+                            else
+                                US2_1
+                        match v234 with
+                        | US2_1 -> (* None *)
+                            US2_1
+                        | US2_0(v235) -> (* Some *)
+                            US2_0(v235)
+                    | US2_0(v227) -> (* Some *)
+                        US2_0(v227)
+                | US2_0(v219) -> (* Some *)
+                    US2_0(v219)
+            | US2_0(v211) -> (* Some *)
+                US2_0(v211)
+        | US2_0(v203) -> (* Some *)
+            US2_0(v203)
+    let v248 : string = method3()
+    let v249 : string = method1(v248)
+    let v251 : bool = v249 = "True"
+    let v257 : US1 =
+        if v251 then
+            let v252 : System.DateTime = System.DateTime.Now
+            let v253 : (System.DateTime -> int64) = _.Ticks
+            let v254 : int64 = v253 v252
+            US1_0(v254)
+        else
+            US1_1
+    struct (v257, v247) 
+    #endif
+    |> fun x -> _v1 <- Some x
+    let struct (v258 : US1, v259 : US2) = match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
+    let v260 : Mut1 = {l0 = true} : Mut1
+    let v261 : Mut0 = {l0 = 0L} : Mut0
+    let v264 : US0 =
+        match v259 with
+        | US2_1 -> (* None *)
+            v0
+        | US2_0(v262) -> (* Some *)
+            v262
+    let v265 : Mut2 = {l0 = v264} : Mut2
+    let v266 : (string -> unit) = closure1()
+    let v267 : Mut3 = {l0 = v266} : Mut3
+    let v272 : int64 option =
+        match v258 with
+        | US1_1 -> (* None *)
+            let v270 : int64 option = None
+            v270
+        | US1_0(v268) -> (* Some *)
+            let v269 : int64 option = Some v268 
+            v269
+    struct (v261, v260, v265, v272, v267)
+and closure4 () () : string =
+    let v0 : string = "runtime.current_process_kill"
+    v0
+and closure5 () () : string =
     let v0 : string = ""
     v0
-and method7 () : (unit -> string) =
-    closure8()
-and method9 () : string =
+and method5 () : string =
+    let v0 : string = "hh:mm:ss"
+    v0
+and method6 () : string =
     let v0 : string = ""
     v0
-and closure9 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : string =
+and method7 () : string =
+    let v0 : string = "HH:mm:ss"
+    v0
+and closure6 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : string =
     let v3 : (US0 -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
     let v4 : US0 = US0_0
     if State.trace_state.IsNone then State.trace_state <- v3 v4 |> Some
@@ -812,237 +909,427 @@ and closure9 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     let v14 : US1 option = _v11.Value 
     let v15 : US1 = US1_1
     let v16 : US1 = v14 |> Option.defaultValue v15 
-    let v34 : System.DateTime =
+    let v35 : System.DateTime =
         match v16 with
         | US1_1 -> (* None *)
-            let v32 : System.DateTime = System.DateTime.Now
-            v32
+            let v33 : System.DateTime = System.DateTime.Now
+            v33
         | US1_0(v17) -> (* Some *)
             let v18 : System.DateTime = System.DateTime.Now
             let v19 : (System.DateTime -> int64) = _.Ticks
             let v20 : int64 = v19 v18
             let v21 : int64 = v20 - v17
-            let v22 : System.TimeSpan = System.TimeSpan v21 
-            let v23 : (System.TimeSpan -> int32) = _.Hours
-            let v24 : int32 = v23 v22
-            let v25 : (System.TimeSpan -> int32) = _.Minutes
-            let v26 : int32 = v25 v22
-            let v27 : (System.TimeSpan -> int32) = _.Seconds
-            let v28 : int32 = v27 v22
-            let v29 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v30 : int32 = v29 v22
-            let v31 : System.DateTime = System.DateTime (1, 1, 1, v24, v26, v28, v30)
-            v31
-    let v35 : string = "hh:mm:ss"
-    let v36 : string = v34.ToString v35 
-    v36 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v37 : string = method9()
+            let v22 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v23 : System.TimeSpan = v22 v21
+            let v24 : (System.TimeSpan -> int32) = _.Hours
+            let v25 : int32 = v24 v23
+            let v26 : (System.TimeSpan -> int32) = _.Minutes
+            let v27 : int32 = v26 v23
+            let v28 : (System.TimeSpan -> int32) = _.Seconds
+            let v29 : int32 = v28 v23
+            let v30 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v31 : int32 = v30 v23
+            let v32 : System.DateTime = System.DateTime (1, 1, 1, v25, v27, v29, v31)
+            v32
+    let v36 : string = method5()
+    let v37 : string = v35.ToString v36 
     v37 
     #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v38 : string = method9()
-    v38 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v39 : string = method9()
-    v39 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v40 : string = method9()
-    v40 
-    #endif
-#else
-    let v41 : US1 option = None
-    let _v41 = ref v41 
+#if FABLE_COMPILER_RUST && WASM
+    let v38 : US1 option = None
+    let _v38 = ref v38 
     match v8 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v42 : int64 = x
-    let v43 : US1 = US1_0(v42)
-    v43 
+    let v39 : int64 = x
+    let v40 : US1 = US1_0(v39)
+    v40 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v41.Value <- x
-    let v44 : US1 option = _v41.Value 
-    let v45 : US1 = US1_1
-    let v46 : US1 = v44 |> Option.defaultValue v45 
-    let v64 : System.DateTime =
-        match v46 with
+    |> fun x -> _v38.Value <- x
+    let v41 : US1 option = _v38.Value 
+    let v42 : US1 = US1_1
+    let v43 : US1 = v41 |> Option.defaultValue v42 
+    let v62 : System.DateTime =
+        match v43 with
         | US1_1 -> (* None *)
-            let v62 : System.DateTime = System.DateTime.Now
-            v62
-        | US1_0(v47) -> (* Some *)
-            let v48 : System.DateTime = System.DateTime.Now
-            let v49 : (System.DateTime -> int64) = _.Ticks
-            let v50 : int64 = v49 v48
-            let v51 : int64 = v50 - v47
-            let v52 : System.TimeSpan = System.TimeSpan v51 
-            let v53 : (System.TimeSpan -> int32) = _.Hours
-            let v54 : int32 = v53 v52
-            let v55 : (System.TimeSpan -> int32) = _.Minutes
-            let v56 : int32 = v55 v52
-            let v57 : (System.TimeSpan -> int32) = _.Seconds
-            let v58 : int32 = v57 v52
-            let v59 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v60 : int32 = v59 v52
-            let v61 : System.DateTime = System.DateTime (1, 1, 1, v54, v56, v58, v60)
-            v61
-    let v65 : string = "HH:mm:ss"
-    let v66 : string = v64.ToString v65 
-    v66 
+            let v60 : System.DateTime = System.DateTime.Now
+            v60
+        | US1_0(v44) -> (* Some *)
+            let v45 : System.DateTime = System.DateTime.Now
+            let v46 : (System.DateTime -> int64) = _.Ticks
+            let v47 : int64 = v46 v45
+            let v48 : int64 = v47 - v44
+            let v49 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v50 : System.TimeSpan = v49 v48
+            let v51 : (System.TimeSpan -> int32) = _.Hours
+            let v52 : int32 = v51 v50
+            let v53 : (System.TimeSpan -> int32) = _.Minutes
+            let v54 : int32 = v53 v50
+            let v55 : (System.TimeSpan -> int32) = _.Seconds
+            let v56 : int32 = v55 v50
+            let v57 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v58 : int32 = v57 v50
+            let v59 : System.DateTime = System.DateTime (1, 1, 1, v52, v54, v56, v58)
+            v59
+    let v63 : string = method5()
+    let v64 : string = v62.ToString v63 
+    v64 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v65 : string = method6()
+    v65 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v66 : US1 option = None
+    let _v66 = ref v66 
+    match v8 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v67 : int64 = x
+    let v68 : US1 = US1_0(v67)
+    v68 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v66.Value <- x
+    let v69 : US1 option = _v66.Value 
+    let v70 : US1 = US1_1
+    let v71 : US1 = v69 |> Option.defaultValue v70 
+    let v90 : System.DateTime =
+        match v71 with
+        | US1_1 -> (* None *)
+            let v88 : System.DateTime = System.DateTime.Now
+            v88
+        | US1_0(v72) -> (* Some *)
+            let v73 : System.DateTime = System.DateTime.Now
+            let v74 : (System.DateTime -> int64) = _.Ticks
+            let v75 : int64 = v74 v73
+            let v76 : int64 = v75 - v72
+            let v77 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v78 : System.TimeSpan = v77 v76
+            let v79 : (System.TimeSpan -> int32) = _.Hours
+            let v80 : int32 = v79 v78
+            let v81 : (System.TimeSpan -> int32) = _.Minutes
+            let v82 : int32 = v81 v78
+            let v83 : (System.TimeSpan -> int32) = _.Seconds
+            let v84 : int32 = v83 v78
+            let v85 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v86 : int32 = v85 v78
+            let v87 : System.DateTime = System.DateTime (1, 1, 1, v80, v82, v84, v86)
+            v87
+    let v91 : string = method7()
+    let v92 : string = v90.ToString v91 
+    v92 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v93 : US1 option = None
+    let _v93 = ref v93 
+    match v8 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v94 : int64 = x
+    let v95 : US1 = US1_0(v94)
+    v95 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v93.Value <- x
+    let v96 : US1 option = _v93.Value 
+    let v97 : US1 = US1_1
+    let v98 : US1 = v96 |> Option.defaultValue v97 
+    let v117 : System.DateTime =
+        match v98 with
+        | US1_1 -> (* None *)
+            let v115 : System.DateTime = System.DateTime.Now
+            v115
+        | US1_0(v99) -> (* Some *)
+            let v100 : System.DateTime = System.DateTime.Now
+            let v101 : (System.DateTime -> int64) = _.Ticks
+            let v102 : int64 = v101 v100
+            let v103 : int64 = v102 - v99
+            let v104 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v105 : System.TimeSpan = v104 v103
+            let v106 : (System.TimeSpan -> int32) = _.Hours
+            let v107 : int32 = v106 v105
+            let v108 : (System.TimeSpan -> int32) = _.Minutes
+            let v109 : int32 = v108 v105
+            let v110 : (System.TimeSpan -> int32) = _.Seconds
+            let v111 : int32 = v110 v105
+            let v112 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v113 : int32 = v112 v105
+            let v114 : System.DateTime = System.DateTime (1, 1, 1, v107, v109, v111, v113)
+            v114
+    let v118 : string = method7()
+    let v119 : string = v117.ToString v118 
+    v119 
+    #endif
+#else
+    let v120 : US1 option = None
+    let _v120 = ref v120 
+    match v8 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v121 : int64 = x
+    let v122 : US1 = US1_0(v121)
+    v122 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v120.Value <- x
+    let v123 : US1 option = _v120.Value 
+    let v124 : US1 = US1_1
+    let v125 : US1 = v123 |> Option.defaultValue v124 
+    let v144 : System.DateTime =
+        match v125 with
+        | US1_1 -> (* None *)
+            let v142 : System.DateTime = System.DateTime.Now
+            v142
+        | US1_0(v126) -> (* Some *)
+            let v127 : System.DateTime = System.DateTime.Now
+            let v128 : (System.DateTime -> int64) = _.Ticks
+            let v129 : int64 = v128 v127
+            let v130 : int64 = v129 - v126
+            let v131 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v132 : System.TimeSpan = v131 v130
+            let v133 : (System.TimeSpan -> int32) = _.Hours
+            let v134 : int32 = v133 v132
+            let v135 : (System.TimeSpan -> int32) = _.Minutes
+            let v136 : int32 = v135 v132
+            let v137 : (System.TimeSpan -> int32) = _.Seconds
+            let v138 : int32 = v137 v132
+            let v139 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v140 : int32 = v139 v132
+            let v141 : System.DateTime = System.DateTime (1, 1, 1, v134, v136, v138, v140)
+            v141
+    let v145 : string = method7()
+    let v146 : string = v144.ToString v145 
+    v146 
     #endif
     |> fun x -> _v10 <- Some x
-    let v67 : string = match _v10 with Some x -> x | None -> failwith "base.run_target / _v10=None"
-    let v68 : int64 = v5.l0
-    let v78 : string =
+    let v147 : string = match _v10 with Some x -> x | None -> failwith "base.run_target / _v10=None"
+    let v150 : bool =
         match v0 with
-        | US0_4 -> (* Critical *)
-            let v73 : string = "Critical"
-            v73
-        | US0_1 -> (* Debug *)
-            let v70 : string = "Debug"
-            v70
-        | US0_2 -> (* Info *)
-            let v71 : string = "Info"
-            v71
         | US0_0 -> (* Verbose *)
-            let v69 : string = "Verbose"
-            v69
-        | US0_3 -> (* Warning *)
-            let v72 : string = "Warning"
-            v72
-    let v79 : (unit -> string) = v78.ToLower
-    let v80 : string = v79 ()
-    let v81 : string = v80.PadLeft (7, ' ')
-    let v82 : bool = true
-    let mutable _v82 : string option = None 
+            true
+        | _ ->
+            false
+    let v154 : US3 =
+        if v150 then
+            let v151 : string = "Verbose"
+            US3_0(v151)
+        else
+            US3_1
+    let v203 : US3 =
+        match v154 with
+        | US3_1 -> (* None *)
+            let v159 : bool =
+                match v0 with
+                | US0_1 -> (* Debug *)
+                    true
+                | _ ->
+                    false
+            let v163 : US3 =
+                if v159 then
+                    let v160 : string = "Debug"
+                    US3_0(v160)
+                else
+                    US3_1
+            match v163 with
+            | US3_1 -> (* None *)
+                let v168 : bool =
+                    match v0 with
+                    | US0_2 -> (* Info *)
+                        true
+                    | _ ->
+                        false
+                let v172 : US3 =
+                    if v168 then
+                        let v169 : string = "Info"
+                        US3_0(v169)
+                    else
+                        US3_1
+                match v172 with
+                | US3_1 -> (* None *)
+                    let v177 : bool =
+                        match v0 with
+                        | US0_3 -> (* Warning *)
+                            true
+                        | _ ->
+                            false
+                    let v181 : US3 =
+                        if v177 then
+                            let v178 : string = "Warning"
+                            US3_0(v178)
+                        else
+                            US3_1
+                    match v181 with
+                    | US3_1 -> (* None *)
+                        let v186 : bool =
+                            match v0 with
+                            | US0_4 -> (* Critical *)
+                                true
+                            | _ ->
+                                false
+                        let v190 : US3 =
+                            if v186 then
+                                let v187 : string = "Critical"
+                                US3_0(v187)
+                            else
+                                US3_1
+                        match v190 with
+                        | US3_1 -> (* None *)
+                            US3_1
+                        | US3_0(v191) -> (* Some *)
+                            US3_0(v191)
+                    | US3_0(v182) -> (* Some *)
+                        US3_0(v182)
+                | US3_0(v173) -> (* Some *)
+                    US3_0(v173)
+            | US3_0(v164) -> (* Some *)
+                US3_0(v164)
+        | US3_0(v155) -> (* Some *)
+            US3_0(v155)
+    let v207 : string =
+        match v203 with
+        | US3_1 -> (* None *)
+            failwith<string> "Option does not have a value."
+        | US3_0(v204) -> (* Some *)
+            v204
+    let v208 : (unit -> string) = v207.ToLower
+    let v209 : string = v208 ()
+    let v210 : string = v209.PadLeft (7, ' ')
+    let v211 : bool = true
+    let mutable _v211 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v97 : Ref<Str> =
+    let v226 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v91 : string = "inline_colorization::color_bright_red"
-            let v92 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v91 
-            v92
+            let v220 : string = "inline_colorization::color_bright_red"
+            let v221 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v220 
+            v221
         | US0_1 -> (* Debug *)
-            let v85 : string = "inline_colorization::color_bright_blue"
-            let v86 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v85 
-            v86
+            let v214 : string = "inline_colorization::color_bright_blue"
+            let v215 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v214 
+            v215
         | US0_2 -> (* Info *)
-            let v87 : string = "inline_colorization::color_bright_green"
-            let v88 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v87 
-            v88
+            let v216 : string = "inline_colorization::color_bright_green"
+            let v217 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v216 
+            v217
         | US0_0 -> (* Verbose *)
-            let v83 : string = "inline_colorization::color_bright_black"
-            let v84 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v83 
-            v84
+            let v212 : string = "inline_colorization::color_bright_black"
+            let v213 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v212 
+            v213
         | US0_3 -> (* Warning *)
-            let v89 : string = "inline_colorization::color_yellow"
-            let v90 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v89 
-            v90
-    let v98 : string = "&*$0"
-    let v99 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v81 v98 
-    let v100 : string = "inline_colorization::color_reset"
-    let v101 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v100 
-    let v102 : string = "\"{v97}{v99}{v101}\""
-    let v103 : string = @$"format!(" + v102 + ")"
-    let v104 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v103 
-    let v105 : string = "fable_library_rust::String_::fromString($0)"
-    let v106 : string = Fable.Core.RustInterop.emitRustExpr v104 v105 
-    v106 
+            let v218 : string = "inline_colorization::color_yellow"
+            let v219 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v218 
+            v219
+    let v227 : string = "&*$0"
+    let v228 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v210 v227 
+    let v229 : string = "inline_colorization::color_reset"
+    let v230 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v229 
+    let v231 : string = "\"{v226}{v228}{v230}\""
+    let v232 : string = @$"format!(" + v231 + ")"
+    let v233 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v232 
+    let v234 : string = "fable_library_rust::String_::fromString($0)"
+    let v235 : string = Fable.Core.RustInterop.emitRustExpr v233 v234 
+    v235 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v121 : Ref<Str> =
+    let v250 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v115 : string = "inline_colorization::color_bright_red"
-            let v116 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v115 
-            v116
+            let v244 : string = "inline_colorization::color_bright_red"
+            let v245 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v244 
+            v245
         | US0_1 -> (* Debug *)
-            let v109 : string = "inline_colorization::color_bright_blue"
-            let v110 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v109 
-            v110
+            let v238 : string = "inline_colorization::color_bright_blue"
+            let v239 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v238 
+            v239
         | US0_2 -> (* Info *)
-            let v111 : string = "inline_colorization::color_bright_green"
-            let v112 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v111 
-            v112
+            let v240 : string = "inline_colorization::color_bright_green"
+            let v241 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v240 
+            v241
         | US0_0 -> (* Verbose *)
-            let v107 : string = "inline_colorization::color_bright_black"
-            let v108 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v107 
-            v108
+            let v236 : string = "inline_colorization::color_bright_black"
+            let v237 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v236 
+            v237
         | US0_3 -> (* Warning *)
-            let v113 : string = "inline_colorization::color_yellow"
-            let v114 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v113 
-            v114
-    let v122 : string = "&*$0"
-    let v123 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v81 v122 
-    let v124 : string = "inline_colorization::color_reset"
-    let v125 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v124 
-    let v126 : string = "\"{v121}{v123}{v125}\""
-    let v127 : string = @$"format!(" + v126 + ")"
-    let v128 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v127 
-    let v129 : string = "fable_library_rust::String_::fromString($0)"
-    let v130 : string = Fable.Core.RustInterop.emitRustExpr v128 v129 
-    v130 
+            let v242 : string = "inline_colorization::color_yellow"
+            let v243 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v242 
+            v243
+    let v251 : string = "&*$0"
+    let v252 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v210 v251 
+    let v253 : string = "inline_colorization::color_reset"
+    let v254 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v253 
+    let v255 : string = "\"{v250}{v252}{v254}\""
+    let v256 : string = @$"format!(" + v255 + ")"
+    let v257 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v256 
+    let v258 : string = "fable_library_rust::String_::fromString($0)"
+    let v259 : string = Fable.Core.RustInterop.emitRustExpr v257 v258 
+    v259 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v145 : Ref<Str> =
+    let v274 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v139 : string = "inline_colorization::color_bright_red"
-            let v140 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v139 
-            v140
+            let v268 : string = "inline_colorization::color_bright_red"
+            let v269 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v268 
+            v269
         | US0_1 -> (* Debug *)
-            let v133 : string = "inline_colorization::color_bright_blue"
-            let v134 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v133 
-            v134
+            let v262 : string = "inline_colorization::color_bright_blue"
+            let v263 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v262 
+            v263
         | US0_2 -> (* Info *)
-            let v135 : string = "inline_colorization::color_bright_green"
-            let v136 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v135 
-            v136
+            let v264 : string = "inline_colorization::color_bright_green"
+            let v265 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v264 
+            v265
         | US0_0 -> (* Verbose *)
-            let v131 : string = "inline_colorization::color_bright_black"
-            let v132 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v131 
-            v132
+            let v260 : string = "inline_colorization::color_bright_black"
+            let v261 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v260 
+            v261
         | US0_3 -> (* Warning *)
-            let v137 : string = "inline_colorization::color_yellow"
-            let v138 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v137 
-            v138
-    let v146 : string = "&*$0"
-    let v147 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v81 v146 
-    let v148 : string = "inline_colorization::color_reset"
-    let v149 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v148 
-    let v150 : string = "\"{v145}{v147}{v149}\""
-    let v151 : string = @$"format!(" + v150 + ")"
-    let v152 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v151 
-    let v153 : string = "fable_library_rust::String_::fromString($0)"
-    let v154 : string = Fable.Core.RustInterop.emitRustExpr v152 v153 
-    v154 
+            let v266 : string = "inline_colorization::color_yellow"
+            let v267 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v266 
+            v267
+    let v275 : string = "&*$0"
+    let v276 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v210 v275 
+    let v277 : string = "inline_colorization::color_reset"
+    let v278 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v277 
+    let v279 : string = "\"{v274}{v276}{v278}\""
+    let v280 : string = @$"format!(" + v279 + ")"
+    let v281 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v280 
+    let v282 : string = "fable_library_rust::String_::fromString($0)"
+    let v283 : string = Fable.Core.RustInterop.emitRustExpr v281 v282 
+    v283 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    v81 
+    v210 
     #endif
 #if FABLE_COMPILER_PYTHON
-    v81 
+    v210 
     #endif
 #else
-    v81 
+    v210 
     #endif
-    |> fun x -> _v82 <- Some x
-    let v155 : string = match _v82 with Some x -> x | None -> failwith "base.run_target / _v82=None"
-    let v156 : string = $"{v67} {v155} #{v68} %s{v1 ()} / %s{v2 ()}"
-    let v157 : (char []) = [||]
-    let v158 : string = v156.TrimStart v157 
-    let v159 : (char []) = [|' '; '/'|]
-    let v160 : string = v158.TrimEnd v159 
-    v160
-and method10 (v0 : US0, v1 : (unit -> string)) : unit =
+    |> fun x -> _v211 <- Some x
+    let v284 : string = match _v211 with Some x -> x | None -> failwith "base.run_target / _v211=None"
+    let v285 : int64 = v5.l0
+    let v286 : string = $"{v147} {v284} #{v285} %s{v1 ()} / %s{v2 ()}"
+    let v287 : (char []) = [||]
+    let v288 : string = v286.TrimStart v287 
+    let v289 : (char []) = [|' '; '/'|]
+    let v290 : string = v288.TrimEnd v289 
+    v290
+and method8 (v0 : US0, v1 : (unit -> string)) : unit =
     let v2 : (US0 -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
     let v3 : US0 = US0_0
     if State.trace_state.IsNone then State.trace_state <- v2 v3 |> Some
@@ -1102,12 +1389,259 @@ and method10 (v0 : US0, v1 : (unit -> string)) : unit =
         match _v25 with Some x -> x | None -> failwith "base.run_target / _v25=None"
         let v29 : (string -> unit) = v8.l0
         v29 v24
-and method8 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
-    let v3 : (unit -> string) = closure9(v0, v1, v2)
-    method10(v0, v3)
-and closure11 (v0 : string) () : string =
+and method4 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
+    let v3 : (unit -> string) = closure6(v0, v1, v2)
+    method8(v0, v3)
+and closure3 () () : unit =
+    let v0 : bool = true
+    let mutable _v0 : unit option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    null |> unbox<unit>
+    () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    null |> unbox<unit>
+    () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    null |> unbox<unit>
+    () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    null |> unbox<unit>
+    () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    null |> unbox<unit>
+    () 
+    #endif
+#else
+    let v1 : US0 = US0_3
+    let v2 : (unit -> string) = closure4()
+    let v3 : (unit -> string) = closure5()
+    method4(v1, v2, v3)
+    System.Threading.Thread.Sleep 2000
+    System.Environment.Exit 1
+    System.Diagnostics.Process.GetCurrentProcess().Kill ()
+    () 
+    #endif
+    |> fun x -> _v0 <- Some x
+    match _v0 with Some x -> x | None -> failwith "base.run_target / _v0=None"
+    ()
+and closure2 () () : unit =
+    let v0 : bool = true
+    let mutable _v0 : unit option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    null |> unbox<unit>
+    () 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    null |> unbox<unit>
+    () 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    null |> unbox<unit>
+    () 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    null |> unbox<unit>
+    () 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    null |> unbox<unit>
+    () 
+    #endif
+#else
+    let v1 : (unit -> unit) = closure3()
+    let v2 : System.Threading.Thread = new System.Threading.Thread (v1)
+    let v3 : (System.Threading.Thread -> unit) = _.Start()
+    v3 v2
+    () 
+    #endif
+    |> fun x -> _v0 <- Some x
+    match _v0 with Some x -> x | None -> failwith "base.run_target / _v0=None"
+    ()
+and method11 () : struct (string * string) =
+    let v0 : string = ""
+    struct (v0, v0)
+and method12 (v0 : int32, v1 : Mut4) : bool =
+    let v2 : int32 = v1.l0
+    let v3 : bool = v2 < v0
+    v3
+and closure9 (v0 : char) (v1 : UH0) : UH0 =
+    UH0_1(v0, v1)
+and closure8 () (v0 : char) : (UH0 -> UH0) =
+    closure9(v0)
+and method13 () : (char -> (UH0 -> UH0)) =
+    closure8()
+and method14 (v0 : string, v1 : string, v2 : UH0, v3 : US4) : struct (string * string) =
+    match v2 with
+    | UH0_1(v4, v5) -> (* Cons *)
+        let v6 : bool = '"' = v4
+        if v6 then
+            let v8 : bool = v1 = ""
+            if v8 then
+                let v9 : US5 = US5_0
+                let v10 : US4 = US4_1(v9)
+                method14(v0, v1, v5, v10)
+            else
+                match v3 with
+                | US4_2 -> (* Arguments *)
+                    let v38 : string = $"{v0}{v4}"
+                    let v39 : US4 = US4_2
+                    method14(v38, v1, v5, v39)
+                | US4_1(v13) -> (* Path *)
+                    match v13 with
+                    | US5_0 -> (* Quoted *)
+                        let v14 : US5 = US5_1
+                        let v15 : US4 = US4_1(v14)
+                        method14(v0, v1, v5, v15)
+                    | _ ->
+                        let v18 : bool = ' ' = v4
+                        if v18 then
+                            let v19 : US4 = US4_2
+                            method14(v0, v1, v5, v19)
+                        else
+                            let v22 : string = $"{v1}{v4}"
+                            method14(v0, v22, v5, v3)
+                | US4_0 -> (* Start *)
+                    let v29 : bool = ' ' = v4
+                    if v29 then
+                        let v30 : US4 = US4_2
+                        method14(v0, v1, v5, v30)
+                    else
+                        let v33 : string = $"{v1}{v4}"
+                        method14(v0, v33, v5, v3)
+        else
+            let v50 : bool = ''' = v4
+            if v50 then
+                let v52 : bool = v1 = ""
+                if v52 then
+                    let v53 : US5 = US5_0
+                    let v54 : US4 = US4_1(v53)
+                    method14(v0, v1, v5, v54)
+                else
+                    match v3 with
+                    | US4_2 -> (* Arguments *)
+                        let v82 : string = $"{v0}{v4}"
+                        let v83 : US4 = US4_2
+                        method14(v82, v1, v5, v83)
+                    | US4_1(v57) -> (* Path *)
+                        match v57 with
+                        | US5_0 -> (* Quoted *)
+                            let v58 : US5 = US5_1
+                            let v59 : US4 = US4_1(v58)
+                            method14(v0, v1, v5, v59)
+                        | _ ->
+                            let v62 : bool = ' ' = v4
+                            if v62 then
+                                let v63 : US4 = US4_2
+                                method14(v0, v1, v5, v63)
+                            else
+                                let v66 : string = $"{v1}{v4}"
+                                method14(v0, v66, v5, v3)
+                    | US4_0 -> (* Start *)
+                        let v73 : bool = ' ' = v4
+                        if v73 then
+                            let v74 : US4 = US4_2
+                            method14(v0, v1, v5, v74)
+                        else
+                            let v77 : string = $"{v1}{v4}"
+                            method14(v0, v77, v5, v3)
+            else
+                match v3 with
+                | US4_2 -> (* Arguments *)
+                    let v126 : string = $"{v0}{v4}"
+                    let v127 : US4 = US4_2
+                    method14(v126, v1, v5, v127)
+                | US4_1(v94) -> (* Path *)
+                    match v94 with
+                    | US5_0 -> (* Quoted *)
+                        let v95 : bool = ' ' = v4
+                        if v95 then
+                            let v96 : string = $"{v1} "
+                            let v97 : US5 = US5_0
+                            let v98 : US4 = US4_1(v97)
+                            method14(v0, v96, v5, v98)
+                        else
+                            let v101 : string = $"{v1}{v4}"
+                            method14(v0, v101, v5, v3)
+                    | _ ->
+                        let v106 : bool = ' ' = v4
+                        if v106 then
+                            let v107 : US4 = US4_2
+                            method14(v0, v1, v5, v107)
+                        else
+                            let v110 : string = $"{v1}{v4}"
+                            method14(v0, v110, v5, v3)
+                | US4_0 -> (* Start *)
+                    let v117 : bool = ' ' = v4
+                    if v117 then
+                        let v118 : US4 = US4_2
+                        method14(v0, v1, v5, v118)
+                    else
+                        let v121 : string = $"{v1}{v4}"
+                        method14(v0, v121, v5, v3)
+    | _ ->
+        match v3 with
+        | US4_2 -> (* Arguments *)
+            let v152 : string = "\\"
+            let v153 : string = "/"
+            let v154 : string = v1.Replace (v152, v153)
+            struct (v154, v0)
+        | US4_1(v140) -> (* Path *)
+            match v140 with
+            | US5_0 -> (* Quoted *)
+                let v141 : string = "\\"
+                let v142 : string = "/"
+                let v143 : string = v1.Replace (v141, v142)
+                struct (v143, v0)
+            | _ ->
+                let v144 : string = "\\"
+                let v145 : string = "/"
+                let v146 : string = v1.Replace (v144, v145)
+                struct (v146, v0)
+        | US4_0 -> (* Start *)
+            let v149 : string = "\\"
+            let v150 : string = "/"
+            let v151 : string = v1.Replace (v149, v150)
+            struct (v151, v0)
+and method10 (v0 : string) : struct (string * string) =
+    let struct (v1 : string, v2 : string) = method11()
+    let v3 : int32 = v0.Length
+    let v4 : (char []) = Array.zeroCreate<char> (v3)
+    let v5 : Mut4 = {l0 = 0} : Mut4
+    while method12(v3, v5) do
+        let v7 : int32 = v5.l0
+        let v8 : char = v0.[int v7]
+        v4.[int v7] <- v8
+        let v9 : int32 = v7 + 1
+        v5.l0 <- v9
+        ()
+    let v10 : ((char []) -> char list) = Array.toList
+    let v11 : char list = v10 v4
+    let v12 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+    let v13 : (char -> (UH0 -> UH0)) = method13()
+    let v14 : (char list -> (UH0 -> UH0)) = v12 v13
+    let v15 : (UH0 -> UH0) = v14 v11
+    let v16 : UH0 = UH0_0
+    let v17 : UH0 = v15 v16
+    let v18 : US4 = US4_0
+    method14(v2, v1, v17, v18)
+and closure10 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) () : string =
+    let v7 : string = $"runtime.execute_with_options_async / options: %A{struct (v0, v1, v2, v3, v4, v5, v6)}"
+    v7
+and method15 () : (unit -> string) =
+    closure5()
+and closure12 (v0 : string) () : string =
     v0
-and closure10 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option, v7 : System.Diagnostics.Process, v8 : System.Collections.Concurrent.ConcurrentStack<string>) (v9 : System.Diagnostics.DataReceivedEventArgs) : unit =
+and closure11 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option, v7 : System.Diagnostics.Process, v8 : System.Collections.Concurrent.ConcurrentStack<string>) (v9 : System.Diagnostics.DataReceivedEventArgs) : unit =
     let v10 : bool = true
     let mutable _v10 : Async<unit> option = None 
     
@@ -1142,26 +1676,26 @@ and closure10 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
     let v19 : bool = v17 = v18
     let v20 : bool = v19 <> true
     if v20 then
-        let v21 : US5 option = None
+        let v21 : US6 option = None
         let _v21 = ref v21 
         match v3 with
         | Some x -> (
         (fun () ->
         (fun () ->
         let v22 : (struct (bool * string * int32) -> Async<unit>) = x
-        let v23 : US5 = US5_0(v22)
+        let v23 : US6 = US6_0(v22)
         v23 
         )
         |> fun x -> x () |> Some
         ) () ) | None -> None
         |> fun x -> _v21.Value <- x
-        let v24 : US5 option = _v21.Value 
-        let v25 : US5 = US5_1
-        let v26 : US5 = v24 |> Option.defaultValue v25 
+        let v24 : US6 option = _v21.Value 
+        let v25 : US6 = US6_1
+        let v26 : US6 = v24 |> Option.defaultValue v25 
         match v26 with
-        | US5_1 -> (* None *)
+        | US6_1 -> (* None *)
             ()
-        | US5_0(v27) -> (* Some *)
+        | US6_0(v27) -> (* Some *)
             let v28 : int32 = v7.Id
             let v29 : Async<unit> = v27 struct (false, v17, v28)
             do! v29 
@@ -1169,9 +1703,9 @@ and closure10 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
         let v30 : string = $"> {v17}"
         if v5 then
             let v31 : US0 = US0_0
-            let v32 : (unit -> string) = closure11(v30)
-            let v33 : (unit -> string) = closure8()
-            method8(v31, v32, v33)
+            let v32 : (unit -> string) = closure12(v30)
+            let v33 : (unit -> string) = closure5()
+            method4(v31, v32, v33)
         else
             let v34 : (string -> unit) = System.Console.WriteLine
             v34 v30
@@ -1219,7 +1753,7 @@ and closure10 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
     |> fun x -> _v40 <- Some x
     match _v40 with Some x -> x | None -> failwith "base.run_target / _v40=None"
     ()
-and closure12 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option, v7 : System.Diagnostics.Process, v8 : System.Collections.Concurrent.ConcurrentStack<string>) (v9 : System.Diagnostics.DataReceivedEventArgs) : unit =
+and closure13 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option, v7 : System.Diagnostics.Process, v8 : System.Collections.Concurrent.ConcurrentStack<string>) (v9 : System.Diagnostics.DataReceivedEventArgs) : unit =
     let v10 : bool = true
     let mutable _v10 : Async<unit> option = None 
     
@@ -1254,26 +1788,26 @@ and closure12 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
     let v19 : bool = v17 = v18
     let v20 : bool = v19 <> true
     if v20 then
-        let v21 : US5 option = None
+        let v21 : US6 option = None
         let _v21 = ref v21 
         match v3 with
         | Some x -> (
         (fun () ->
         (fun () ->
         let v22 : (struct (bool * string * int32) -> Async<unit>) = x
-        let v23 : US5 = US5_0(v22)
+        let v23 : US6 = US6_0(v22)
         v23 
         )
         |> fun x -> x () |> Some
         ) () ) | None -> None
         |> fun x -> _v21.Value <- x
-        let v24 : US5 option = _v21.Value 
-        let v25 : US5 = US5_1
-        let v26 : US5 = v24 |> Option.defaultValue v25 
+        let v24 : US6 option = _v21.Value 
+        let v25 : US6 = US6_1
+        let v26 : US6 = v24 |> Option.defaultValue v25 
         match v26 with
-        | US5_1 -> (* None *)
+        | US6_1 -> (* None *)
             ()
-        | US5_0(v27) -> (* Some *)
+        | US6_0(v27) -> (* Some *)
             let v28 : int32 = v7.Id
             let v29 : Async<unit> = v27 struct (true, v17, v28)
             do! v29 
@@ -1281,9 +1815,9 @@ and closure12 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
         let v30 : string = $"! {v17}"
         if v5 then
             let v31 : US0 = US0_0
-            let v32 : (unit -> string) = closure11(v30)
-            let v33 : (unit -> string) = closure8()
-            method8(v31, v32, v33)
+            let v32 : (unit -> string) = closure12(v30)
+            let v33 : (unit -> string) = closure5()
+            method4(v31, v32, v33)
         else
             let v34 : (string -> unit) = System.Console.WriteLine
             v34 v30
@@ -1332,7 +1866,7 @@ and closure12 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
     |> fun x -> _v41 <- Some x
     match _v41 with Some x -> x | None -> failwith "base.run_target / _v41=None"
     ()
-and closure13 (v0 : System.Diagnostics.Process) () : unit =
+and closure14 (v0 : System.Diagnostics.Process) () : unit =
     let v1 : bool = true
     let mutable _v1 : bool option = None 
     
@@ -1399,16 +1933,13 @@ and closure13 (v0 : System.Diagnostics.Process) () : unit =
         |> fun x -> _v10 <- Some x
         match _v10 with Some x -> x | None -> failwith "base.run_target / _v10=None"
         ()
-and closure14 (v0 : System.Threading.Tasks.TaskCanceledException) () : string =
-    let v1 : string = $"execute_with_options_async / WaitForExitAsync / ex: %A{v0}"
+and closure15 (v0 : System.Threading.Tasks.TaskCanceledException) () : string =
+    let v1 : string = $"runtime.execute_with_options_async / WaitForExitAsync / ex: %A{v0}"
     v1
-and method11 () : string =
-    let v0 : string = "\n"
-    v0
-and closure15 (v0 : int32, v1 : string) () : string =
-    let v2 : string = $"execute_with_options_async / exit_code: {v0} / output.Length: {v1.Length}"
+and closure16 (v0 : int32, v1 : string) () : string =
+    let v2 : string = $"runtime.execute_with_options_async / exit_code: {v0} / output.Length: {v1.Length}"
     v2
-and method2 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) : Async<struct (int32 * string)> =
+and method9 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) : Async<struct (int32 * string)> =
     let v7 : bool = true
     let mutable _v7 : Async<struct (int32 * string)> option = None 
     
@@ -1464,341 +1995,321 @@ and method2 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     let v19 : Async<struct (int32 * string)> option = None
     let mutable _v19 = v19 
     async {
-    let struct (v20 : string, v21 : string) = method3()
-    let v22 : int32 = v1.Length
-    let v23 : (char []) = Array.zeroCreate<char> (v22)
-    let v24 : Mut4 = {l0 = 0} : Mut4
-    while method4(v22, v24) do
-        let v26 : int32 = v24.l0
-        let v27 : char = v1.[int v26]
-        v23.[int v26] <- v27
-        let v28 : int32 = v26 + 1
-        v24.l0 <- v28
-        ()
-    let v29 : ((char []) -> char list) = Array.toList
-    let v30 : char list = v29 v23
-    let v31 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-    let v32 : (char -> (UH0 -> UH0)) = method5()
-    let v33 : (char list -> (UH0 -> UH0)) = v31 v32
-    let v34 : (UH0 -> UH0) = v33 v30
-    let v35 : UH0 = UH0_0
-    let v36 : UH0 = v34 v35
-    let v37 : US2 = US2_0
-    let struct (v38 : string, v39 : string) = method6(v21, v20, v36, v37)
-    let v40 : US4 option = None
-    let _v40 = ref v40 
+    let struct (v20 : string, v21 : string) = method10(v1)
+    let v22 : US3 option = None
+    let _v22 = ref v22 
     match v6 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v41 : string = x
-    let v42 : US4 = US4_0(v41)
-    v42 
+    let v23 : string = x
+    let v24 : US3 = US3_0(v23)
+    v24 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v40.Value <- x
-    let v43 : US4 option = _v40.Value 
-    let v44 : US4 = US4_1
-    let v45 : US4 = v43 |> Option.defaultValue v44 
-    let v49 : string =
-        match v45 with
-        | US4_1 -> (* None *)
-            let v47 : string = ""
-            v47
-        | US4_0(v46) -> (* Some *)
-            v46
-    let v50 : US0 = US0_1
-    let v51 : (unit -> string) = closure7(v0, v1, v2, v3, v4, v5, v6)
-    let v52 : (unit -> string) = method7()
-    method8(v50, v51, v52)
-    let v53 : System.Text.Encoding = System.Text.Encoding.UTF8
-    let v54 : System.Diagnostics.ProcessStartInfo = System.Diagnostics.ProcessStartInfo (Arguments = v39, StandardOutputEncoding = v53, WorkingDirectory = v49, FileName = v38, CreateNoWindow = true, RedirectStandardError = true, RedirectStandardOutput = true, UseShellExecute = false)
-    let v55 : int32 = v2.Length
-    let v56 : Mut4 = {l0 = 0} : Mut4
-    while method4(v55, v56) do
-        let v58 : int32 = v56.l0
-        let struct (v59 : string, v60 : string) = v2.[int v58]
-        v54.EnvironmentVariables.[v59] <- v60 
-        let v61 : int32 = v58 + 1
-        v56.l0 <- v61
+    |> fun x -> _v22.Value <- x
+    let v25 : US3 option = _v22.Value 
+    let v26 : US3 = US3_1
+    let v27 : US3 = v25 |> Option.defaultValue v26 
+    let v31 : string =
+        match v27 with
+        | US3_1 -> (* None *)
+            let v29 : string = ""
+            v29
+        | US3_0(v28) -> (* Some *)
+            v28
+    let v32 : US0 = US0_1
+    let v33 : (unit -> string) = closure10(v0, v1, v2, v3, v4, v5, v6)
+    let v34 : (unit -> string) = method15()
+    method4(v32, v33, v34)
+    let v35 : System.Text.Encoding = System.Text.Encoding.UTF8
+    let v36 : System.Diagnostics.ProcessStartInfo = System.Diagnostics.ProcessStartInfo (Arguments = v21, StandardOutputEncoding = v35, WorkingDirectory = v31, FileName = v20, CreateNoWindow = true, RedirectStandardError = true, RedirectStandardOutput = true, UseShellExecute = false)
+    let v37 : int32 = v2.Length
+    let v38 : Mut4 = {l0 = 0} : Mut4
+    while method12(v37, v38) do
+        let v40 : int32 = v38.l0
+        let struct (v41 : string, v42 : string) = v2.[int v40]
+        v36.EnvironmentVariables.[v41] <- v42 
+        let v43 : int32 = v40 + 1
+        v38.l0 <- v43
         ()
-    let v62 : System.Diagnostics.Process = new System.Diagnostics.Process (StartInfo = v54)
-    use v62 = v62 
-    let v63 : System.Diagnostics.Process = v62 
-    let v64 : (unit -> System.Collections.Concurrent.ConcurrentStack<string>) = System.Collections.Concurrent.ConcurrentStack<string>
-    let v65 : System.Collections.Concurrent.ConcurrentStack<string> = v64 ()
-    let v66 : (System.Diagnostics.DataReceivedEventArgs -> unit) = closure10(v0, v1, v2, v3, v4, v5, v6, v63, v65)
-    v63.OutputDataReceived.Add v66 
-    let v67 : (System.Diagnostics.DataReceivedEventArgs -> unit) = closure12(v0, v1, v2, v3, v4, v5, v6, v63, v65)
-    v63.ErrorDataReceived.Add v67 
-    let v68 : (unit -> bool) = v63.Start
-    let v69 : bool = v68 ()
-    let v70 : bool = v69 = false
-    if v70 then
-        let v71 : string = $"execute_with_options_async / process_start error"
-        failwith<unit> v71
-    let v72 : (unit -> unit) = v63.BeginErrorReadLine
-    v72 ()
-    let v73 : (unit -> unit) = v63.BeginOutputReadLine
-    v73 ()
-    let v74 : US6 option = None
-    let _v74 = ref v74 
+    let v44 : System.Diagnostics.Process = new System.Diagnostics.Process (StartInfo = v36)
+    use v44 = v44 
+    let v45 : System.Diagnostics.Process = v44 
+    let v46 : (unit -> System.Collections.Concurrent.ConcurrentStack<string>) = System.Collections.Concurrent.ConcurrentStack<string>
+    let v47 : System.Collections.Concurrent.ConcurrentStack<string> = v46 ()
+    let v48 : (System.Diagnostics.DataReceivedEventArgs -> unit) = closure11(v0, v1, v2, v3, v4, v5, v6, v45, v47)
+    v45.OutputDataReceived.Add v48 
+    let v49 : (System.Diagnostics.DataReceivedEventArgs -> unit) = closure13(v0, v1, v2, v3, v4, v5, v6, v45, v47)
+    v45.ErrorDataReceived.Add v49 
+    let v50 : (unit -> bool) = v45.Start
+    let v51 : bool = v50 ()
+    let v52 : bool = v51 = false
+    if v52 then
+        let v53 : string = $"runtime.execute_with_options_async / process_start error"
+        failwith<unit> v53
+    let v54 : (unit -> unit) = v45.BeginErrorReadLine
+    v54 ()
+    let v55 : (unit -> unit) = v45.BeginOutputReadLine
+    v55 ()
+    let v56 : US7 option = None
+    let _v56 = ref v56 
     match v0 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v75 : System.Threading.CancellationToken = x
-    let v76 : US6 = US6_0(v75)
-    v76 
+    let v57 : System.Threading.CancellationToken = x
+    let v58 : US7 = US7_0(v57)
+    v58 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v74.Value <- x
-    let v77 : US6 option = _v74.Value 
-    let v78 : US6 = US6_1
-    let v79 : US6 = v77 |> Option.defaultValue v78 
-    let v83 : System.Threading.CancellationToken =
-        match v79 with
-        | US6_1 -> (* None *)
-            let v81 : System.Threading.CancellationToken = System.Threading.CancellationToken.None
-            v81
-        | US6_0(v80) -> (* Some *)
-            v80
-    let v84 : bool = true
-    let mutable _v84 : Async<System.Threading.CancellationToken> option = None 
+    |> fun x -> _v56.Value <- x
+    let v59 : US7 option = _v56.Value 
+    let v60 : US7 = US7_1
+    let v61 : US7 = v59 |> Option.defaultValue v60 
+    let v65 : System.Threading.CancellationToken =
+        match v61 with
+        | US7_1 -> (* None *)
+            let v63 : System.Threading.CancellationToken = System.Threading.CancellationToken.None
+            v63
+        | US7_0(v62) -> (* Some *)
+            v62
+    let v66 : bool = true
+    let mutable _v66 : Async<System.Threading.CancellationToken> option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v85 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
-    v85 
+    let v67 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
+    v67 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v86 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
+    let v68 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
+    v68 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v69 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
+    v69 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v70 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
+    v70 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v71 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
+    v71 
+    #endif
+#else
+    let v72 : bool = true
+    let mutable _v72 : Async<System.Threading.CancellationToken> option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v73 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
+    v73 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v74 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
+    v74 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v75 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
+    v75 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v76 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
+    v76 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v77 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
+    v77 
+    #endif
+#else
+    let v78 : Async<System.Threading.CancellationToken> option = None
+    let mutable _v78 = v78 
+    async {
+    let v79 : Async<System.Threading.CancellationToken> = Async.CancellationToken
+    let! v79 = v79 
+    let v80 : System.Threading.CancellationToken = v79 
+    let v81 : System.Threading.CancellationToken = Async.DefaultCancellationToken
+    let v82 : (System.Threading.CancellationToken []) = [|v80; v81; v65|]
+    let v83 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+    let v84 : System.Threading.CancellationTokenSource = v83 v82
+    let v85 : System.Threading.CancellationToken = v84.Token
+    return v85 
+    }
+    |> fun x -> _v78 <- Some x
+    let v86 : Async<System.Threading.CancellationToken> = match _v78 with Some x -> x | None -> failwith "async.new_async_unit / _v78=None"
     v86 
     #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v87 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
+    |> fun x -> _v72 <- Some x
+    let v87 : Async<System.Threading.CancellationToken> = match _v72 with Some x -> x | None -> failwith "base.run_target / _v72=None"
     v87 
     #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v88 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
-    v88 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v89 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
-    v89 
-    #endif
-#else
-    let v90 : bool = true
-    let mutable _v90 : Async<System.Threading.CancellationToken> option = None 
+    |> fun x -> _v66 <- Some x
+    let v88 : Async<System.Threading.CancellationToken> = match _v66 with Some x -> x | None -> failwith "base.run_target / _v66=None"
+    let! v88 = v88 
+    let v89 : System.Threading.CancellationToken = v88 
+    let v90 : ((unit -> unit) -> System.Threading.CancellationTokenRegistration) = v89.Register
+    let v91 : (unit -> unit) = closure14(v45)
+    let v92 : System.Threading.CancellationTokenRegistration = v90 v91
+    use v92 = v92 
+    let v93 : System.Threading.CancellationTokenRegistration = v92 
+    let v94 : bool = true
+    let mutable _v94 : Async<int32> option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v91 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
-    v91 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v92 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
-    v92 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v93 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
-    v93 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v94 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
-    v94 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v95 : Async<System.Threading.CancellationToken> = null |> unbox<Async<System.Threading.CancellationToken>>
+    let v95 : Async<int32> = null |> unbox<Async<int32>>
     v95 
     #endif
-#else
-    let v96 : Async<System.Threading.CancellationToken> option = None
-    let mutable _v96 = v96 
-    async {
-    let v97 : Async<System.Threading.CancellationToken> = Async.CancellationToken
-    let! v97 = v97 
-    let v98 : System.Threading.CancellationToken = v97 
-    let v99 : System.Threading.CancellationToken = Async.DefaultCancellationToken
-    let v100 : (System.Threading.CancellationToken []) = [|v98; v99; v83|]
-    let v101 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-    let v102 : System.Threading.CancellationTokenSource = v101 v100
-    let v103 : System.Threading.CancellationToken = v102.Token
-    return v103 
-    }
-    |> fun x -> _v96 <- Some x
-    let v104 : Async<System.Threading.CancellationToken> = match _v96 with Some x -> x | None -> failwith "async.new_async_unit / _v96=None"
-    v104 
-    #endif
-    |> fun x -> _v90 <- Some x
-    let v105 : Async<System.Threading.CancellationToken> = match _v90 with Some x -> x | None -> failwith "base.run_target / _v90=None"
-    v105 
-    #endif
-    |> fun x -> _v84 <- Some x
-    let v106 : Async<System.Threading.CancellationToken> = match _v84 with Some x -> x | None -> failwith "base.run_target / _v84=None"
-    let! v106 = v106 
-    let v107 : System.Threading.CancellationToken = v106 
-    let v108 : ((unit -> unit) -> System.Threading.CancellationTokenRegistration) = v107.Register
-    let v109 : (unit -> unit) = closure13(v63)
-    let v110 : System.Threading.CancellationTokenRegistration = v108 v109
-    use v110 = v110 
-    let v111 : System.Threading.CancellationTokenRegistration = v110 
-    let v112 : bool = true
-    let mutable _v112 : Async<int32> option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v113 : Async<int32> = null |> unbox<Async<int32>>
-    v113 
-    #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v114 : Async<int32> = null |> unbox<Async<int32>>
-    v114 
+    let v96 : Async<int32> = null |> unbox<Async<int32>>
+    v96 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v115 : Async<int32> = null |> unbox<Async<int32>>
-    v115 
+    let v97 : Async<int32> = null |> unbox<Async<int32>>
+    v97 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v116 : Async<int32> = null |> unbox<Async<int32>>
-    v116 
+    let v98 : Async<int32> = null |> unbox<Async<int32>>
+    v98 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v117 : Async<int32> = null |> unbox<Async<int32>>
-    v117 
+    let v99 : Async<int32> = null |> unbox<Async<int32>>
+    v99 
     #endif
 #else
-    let v118 : Async<int32> option = None
-    let mutable _v118 = v118 
+    let v100 : Async<int32> option = None
+    let mutable _v100 = v100 
     async {
     try
-    let v119 : System.Threading.Tasks.Task = v63.WaitForExitAsync v107 
-    let v120 : bool = true
-    let mutable _v120 : Async<unit> option = None 
+    let v101 : System.Threading.Tasks.Task = v45.WaitForExitAsync v89 
+    let v102 : bool = true
+    let mutable _v102 : Async<unit> option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v121 : Async<unit> = null |> unbox<Async<unit>>
-    v121 
+    let v103 : Async<unit> = null |> unbox<Async<unit>>
+    v103 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v122 : Async<unit> = null |> unbox<Async<unit>>
-    v122 
+    let v104 : Async<unit> = null |> unbox<Async<unit>>
+    v104 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v123 : Async<unit> = null |> unbox<Async<unit>>
-    v123 
+    let v105 : Async<unit> = null |> unbox<Async<unit>>
+    v105 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v124 : Async<unit> = null |> unbox<Async<unit>>
-    v124 
+    let v106 : Async<unit> = null |> unbox<Async<unit>>
+    v106 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v125 : Async<unit> = null |> unbox<Async<unit>>
-    v125 
+    let v107 : Async<unit> = null |> unbox<Async<unit>>
+    v107 
     #endif
 #else
-    let v126 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
-    let v127 : Async<unit> = v126 v119
-    v127 
+    let v108 : (System.Threading.Tasks.Task -> Async<unit>) = Async.AwaitTask
+    let v109 : Async<unit> = v108 v101
+    v109 
     #endif
-    |> fun x -> _v120 <- Some x
-    let v128 : Async<unit> = match _v120 with Some x -> x | None -> failwith "base.run_target / _v120=None"
-    do! v128 
-    let v129 : int32 = v63.ExitCode
-    return v129 
+    |> fun x -> _v102 <- Some x
+    let v110 : Async<unit> = match _v102 with Some x -> x | None -> failwith "base.run_target / _v102=None"
+    do! v110 
+    let v111 : int32 = v45.ExitCode
+    return v111 
     with ex ->
-    let v130 : exn = ex
-    let v131 : bool = true
-    let mutable _v131 : string option = None 
+    let v112 : exn = ex
+    let v113 : bool = true
+    let mutable _v113 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v132 : string = $"%A{v130}"
-    v132 
+    let v114 : string = $"%A{v112}"
+    v114 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v133 : string = $"%A{v130}"
-    v133 
+    let v115 : string = $"%A{v112}"
+    v115 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v134 : string = $"%A{v130}"
-    v134 
+    let v116 : string = $"%A{v112}"
+    v116 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v135 : string = $"%A{v130}"
-    v135 
+    let v117 : string = $"%A{v112}"
+    v117 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v136 : string = $"%A{v130}"
-    v136 
+    let v118 : string = $"%A{v112}"
+    v118 
     #endif
 #else
-    let v137 : string = $"{v130.GetType ()}: {v130.Message}"
-    v137 
+    let v119 : string = $"{v112.GetType ()}: {v112.Message}"
+    v119 
     #endif
-    |> fun x -> _v131 <- Some x
-    let v138 : string = match _v131 with Some x -> x | None -> failwith "base.run_target / _v131=None"
-    let v139 : (string -> unit) = v65.Push
-    v139 v138
-    let v140 : System.Threading.Tasks.TaskCanceledException = v130 |> unbox<System.Threading.Tasks.TaskCanceledException>
-    let v141 : US0 = US0_3
-    let v142 : (unit -> string) = closure14(v140)
-    let v143 : (unit -> string) = method7()
-    method8(v141, v142, v143)
+    |> fun x -> _v113 <- Some x
+    let v120 : string = match _v113 with Some x -> x | None -> failwith "base.run_target / _v113=None"
+    let v121 : (string -> unit) = v47.Push
+    v121 v120
+    let v122 : System.Threading.Tasks.TaskCanceledException = v112 |> unbox<System.Threading.Tasks.TaskCanceledException>
+    let v123 : US0 = US0_3
+    let v124 : (unit -> string) = closure15(v122)
+    let v125 : (unit -> string) = method15()
+    method4(v123, v124, v125)
     return -2147483648 
     (*
     *)
     }
-    |> fun x -> _v118 <- Some x
-    let v144 : Async<int32> = match _v118 with Some x -> x | None -> failwith "async.new_async_unit / _v118=None"
-    v144 
+    |> fun x -> _v100 <- Some x
+    let v126 : Async<int32> = match _v100 with Some x -> x | None -> failwith "async.new_async_unit / _v100=None"
+    v126 
     #endif
-    |> fun x -> _v112 <- Some x
-    let v145 : Async<int32> = match _v112 with Some x -> x | None -> failwith "base.run_target / _v112=None"
-    let! v145 = v145 
-    let v146 : int32 = v145 
-    let v147 : (System.Collections.Concurrent.ConcurrentStack<string> -> string seq) = Seq.rev
-    let v148 : string seq = v147 v65
-    let v149 : string = method11()
-    let v150 : (string -> (string seq -> string)) = String.concat
-    let v151 : (string seq -> string) = v150 v149
-    let v152 : string = v151 v148
-    let v153 : US0 = US0_1
-    let v154 : (unit -> string) = closure15(v146, v152)
-    let v155 : (unit -> string) = method7()
-    method8(v153, v154, v155)
-    return struct (v146, v152) 
+    |> fun x -> _v94 <- Some x
+    let v127 : Async<int32> = match _v94 with Some x -> x | None -> failwith "base.run_target / _v94=None"
+    let! v127 = v127 
+    let v128 : int32 = v127 
+    let v129 : (System.Collections.Concurrent.ConcurrentStack<string> -> string seq) = Seq.rev
+    let v130 : string seq = v129 v47
+    let v131 : (string -> (string seq -> string)) = String.concat
+    let v132 : string = "\n"
+    let v133 : (string seq -> string) = v131 v132
+    let v134 : string = v133 v130
+    let v135 : US0 = US0_1
+    let v136 : (unit -> string) = closure16(v128, v134)
+    let v137 : (unit -> string) = method15()
+    method4(v135, v136, v137)
+    return struct (v128, v134) 
     }
     |> fun x -> _v19 <- Some x
-    let v156 : Async<struct (int32 * string)> = match _v19 with Some x -> x | None -> failwith "async.new_async_unit / _v19=None"
-    v156 
+    let v138 : Async<struct (int32 * string)> = match _v19 with Some x -> x | None -> failwith "async.new_async_unit / _v19=None"
+    v138 
     #endif
     |> fun x -> _v13 <- Some x
-    let v157 : Async<struct (int32 * string)> = match _v13 with Some x -> x | None -> failwith "base.run_target / _v13=None"
-    v157 
+    let v139 : Async<struct (int32 * string)> = match _v13 with Some x -> x | None -> failwith "base.run_target / _v13=None"
+    v139 
     #endif
     |> fun x -> _v7 <- Some x
-    let v158 : Async<struct (int32 * string)> = match _v7 with Some x -> x | None -> failwith "base.run_target / _v7=None"
-    v158
-and closure4 () (v0 : string) : Async<struct (int32 * string)> =
+    let v140 : Async<struct (int32 * string)> = match _v7 with Some x -> x | None -> failwith "base.run_target / _v7=None"
+    v140
+and closure7 () (v0 : string) : Async<struct (int32 * string)> =
     let v1 : System.Threading.CancellationToken option = None
     let v2 : (struct (string * string) []) = [||]
     let v3 : (struct (bool * string * int32) -> Async<unit>) option = None
     let v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option = None
     let v5 : string option = None
     let v6 : bool = true
-    method2(v1, v0, v2, v3, v4, v6, v5)
-and closure16 () struct (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) : Async<struct (int32 * string)> =
-    method2(v0, v1, v2, v3, v4, v5, v6)
-and closure17 () (v0 : (Heap0 -> Heap0)) : struct (System.Threading.CancellationToken option * string * (struct (string * string) []) * (struct (bool * string * int32) -> Async<unit>) option * (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option * bool * string option) =
+    method9(v1, v0, v2, v3, v4, v6, v5)
+and closure17 () struct (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) : Async<struct (int32 * string)> =
+    method9(v0, v1, v2, v3, v4, v5, v6)
+and closure18 () (v0 : (Heap0 -> Heap0)) : struct (System.Threading.CancellationToken option * string * (struct (string * string) []) * (struct (bool * string * int32) -> Async<unit>) option * (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option * bool * string option) =
     let v1 : System.Threading.CancellationToken option = None
     let v2 : (struct (string * string) []) = [||]
     let v3 : (struct (bool * string * int32) -> Async<unit>) option = None
@@ -1815,2037 +2326,953 @@ and closure17 () (v0 : (Heap0 -> Heap0)) : struct (System.Threading.Cancellation
     let v14 : bool = v8.l5
     let v15 : string option = v8.l6
     struct (v9, v10, v11, v12, v13, v14, v15)
-and method15 (v0 : UH1, v1 : UH1) : UH1 =
+and method18 (v0 : char, v1 : int64) : bool =
+    let v2 : bool = v1 >= 4L
+    if v2 then
+        false
+    else
+        let v3 : bool = v1 = 0L
+        let v19 : US11 =
+            if v3 then
+                US11_0('\\')
+            else
+                let v5 : int64 = v1 - 1L
+                let v6 : bool = v5 = 0L
+                if v6 then
+                    US11_0('`')
+                else
+                    let v8 : int64 = v5 - 1L
+                    let v9 : bool = v8 = 0L
+                    if v9 then
+                        US11_0('"')
+                    else
+                        let v11 : int64 = v8 - 1L
+                        let v12 : bool = v11 = 0L
+                        if v12 then
+                            US11_0(' ')
+                        else
+                            let v14 : int64 = v11 - 1L
+                            US11_1
+        let v23 : char =
+            match v19 with
+            | US11_1 -> (* None *)
+                failwith<char> "Option does not have a value."
+            | US11_0(v20) -> (* Some *)
+                v20
+        let v24 : bool = v0 = v23
+        if v24 then
+            true
+        else
+            let v25 : int64 = v1 + 1L
+            method18(v0, v25)
+and method19 (v0 : UH0, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32) : struct (System.Text.StringBuilder * int32 * int32) =
+    match v0 with
+    | UH0_1(v4, v5) -> (* Cons *)
+        let v6 : bool = '\n' = v4
+        let struct (v9 : int32, v10 : int32) =
+            if v6 then
+                let v7 : int32 = v3 + 1
+                struct (1, v7)
+            else
+                let v8 : int32 = v2 + 1
+                struct (v8, v3)
+        let v17 : System.Text.StringBuilder =
+            if v6 then
+                let v11 : (unit -> System.Text.StringBuilder) = v1.Clear
+                let v12 : System.Text.StringBuilder = v11 ()
+                v1
+            else
+                let v13 : (char -> string) = _.ToString()
+                let v14 : string = v13 v4
+                let v15 : (string -> System.Text.StringBuilder) = v1.Append
+                let v16 : System.Text.StringBuilder = v15 v14
+                v1
+        method19(v5, v17, v9, v10)
+    | UH0_0 -> (* Nil *)
+        struct (v1, v2, v3)
+and method20 (v0 : string, v1 : string, v2 : System.Text.StringBuilder, v3 : int32, v4 : int32) : US12 =
+    let v5 : bool = "" = v1
+    let v57 : US10 =
+        if v5 then
+            let v6 : char list = []
+            let v7 : char list = ' ' :: v6 
+            let v8 : char list = '"' :: v7 
+            let v9 : char list = '`' :: v8 
+            let v10 : char list = '\\' :: v9 
+            let v11 : (char list -> (char [])) = List.toArray
+            let v12 : (char []) = v11 v10
+            let v13 : string = $"parsing.none_of / unexpected end of input / chars: %A{v12} / s: %A{struct (v2, v3, v4)}"
+            US10_1(v13)
+        else
+            let v15 : char = v1.[int 0]
+            let v16 : (string -> int32) = String.length
+            let v17 : int32 = v16 v1
+            let v18 : (int32 -> int32) = int32
+            let v19 : int32 = v18 1
+            let v20 : (int32 -> int32) = int32
+            let v21 : int32 = v20 v17
+            let v22 : string = v1.[int v19..int v21]
+            let v23 : int64 = 0L
+            let v24 : bool = method18(v15, v23)
+            let v25 : bool = v24 = false
+            if v25 then
+                let v26 : (char -> string) = _.ToString()
+                let v27 : string = v26 v15
+                let v28 : int32 = v27.Length
+                let v29 : (char []) = Array.zeroCreate<char> (v28)
+                let v30 : Mut4 = {l0 = 0} : Mut4
+                while method12(v28, v30) do
+                    let v32 : int32 = v30.l0
+                    let v33 : char = v27.[int v32]
+                    v29.[int v32] <- v33
+                    let v34 : int32 = v32 + 1
+                    v30.l0 <- v34
+                    ()
+                let v35 : ((char []) -> char list) = Array.toList
+                let v36 : char list = v35 v29
+                let v37 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+                let v38 : (char -> (UH0 -> UH0)) = method13()
+                let v39 : (char list -> (UH0 -> UH0)) = v37 v38
+                let v40 : (UH0 -> UH0) = v39 v36
+                let v41 : UH0 = UH0_0
+                let v42 : UH0 = v40 v41
+                let struct (v43 : System.Text.StringBuilder, v44 : int32, v45 : int32) = method19(v42, v2, v3, v4)
+                US10_0(v15, v22, v43, v44, v45)
+            else
+                let v47 : char list = []
+                let v48 : char list = ' ' :: v47 
+                let v49 : char list = '"' :: v48 
+                let v50 : char list = '`' :: v49 
+                let v51 : char list = '\\' :: v50 
+                let v52 : (char list -> (char [])) = List.toArray
+                let v53 : (char []) = v52 v51
+                let v54 : string = $"parsing.none_of / unexpected char: '{v15}' / chars: %A{v53} / s: %A{struct (v2, v3, v4)}"
+                US10_1(v54)
+    match v57 with
+    | US10_1(v67) -> (* Error *)
+        US12_0(v0, v1, v2, v3, v4)
+    | US10_0(v58, v59, v60, v61, v62) -> (* Ok *)
+        let v63 : (char -> string) = _.ToString()
+        let v64 : string = v63 v58
+        let v65 : string = v0 + v64 
+        method20(v65, v59, v60, v61, v62)
+and method22 (v0 : char, v1 : int64) : bool =
+    let v2 : bool = v1 >= 3L
+    if v2 then
+        false
+    else
+        let v3 : bool = v1 = 0L
+        let v15 : US11 =
+            if v3 then
+                US11_0('\\')
+            else
+                let v5 : int64 = v1 - 1L
+                let v6 : bool = v5 = 0L
+                if v6 then
+                    US11_0('`')
+                else
+                    let v8 : int64 = v5 - 1L
+                    let v9 : bool = v8 = 0L
+                    if v9 then
+                        US11_0('"')
+                    else
+                        let v11 : int64 = v8 - 1L
+                        US11_1
+        let v19 : char =
+            match v15 with
+            | US11_1 -> (* None *)
+                failwith<char> "Option does not have a value."
+            | US11_0(v16) -> (* Some *)
+                v16
+        let v20 : bool = v0 = v19
+        if v20 then
+            true
+        else
+            let v21 : int64 = v1 + 1L
+            method22(v0, v21)
+and closure20 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32) : US12 =
+    let v4 : bool = "" = v0
+    let v60 : US10 =
+        if v4 then
+            let v5 : string = $"parsing.p_char / unexpected end of input / s: %A{struct (v1, v2, v3)}"
+            US10_1(v5)
+        else
+            let v7 : char = v0.[int 0]
+            let v8 : bool = v7 = '\\'
+            if v8 then
+                let v9 : (string -> int32) = String.length
+                let v10 : int32 = v9 v0
+                let v11 : (int32 -> int32) = int32
+                let v12 : int32 = v11 1
+                let v13 : (int32 -> int32) = int32
+                let v14 : int32 = v13 v10
+                let v15 : string = v0.[int v12..int v14]
+                let v16 : (char -> string) = _.ToString()
+                let v17 : string = v16 v7
+                let v18 : int32 = v17.Length
+                let v19 : (char []) = Array.zeroCreate<char> (v18)
+                let v20 : Mut4 = {l0 = 0} : Mut4
+                while method12(v18, v20) do
+                    let v22 : int32 = v20.l0
+                    let v23 : char = v17.[int v22]
+                    v19.[int v22] <- v23
+                    let v24 : int32 = v22 + 1
+                    v20.l0 <- v24
+                    ()
+                let v25 : ((char []) -> char list) = Array.toList
+                let v26 : char list = v25 v19
+                let v27 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+                let v28 : (char -> (UH0 -> UH0)) = method13()
+                let v29 : (char list -> (UH0 -> UH0)) = v27 v28
+                let v30 : (UH0 -> UH0) = v29 v26
+                let v31 : UH0 = UH0_0
+                let v32 : UH0 = v30 v31
+                let struct (v33 : System.Text.StringBuilder, v34 : int32, v35 : int32) = method19(v32, v1, v2, v3)
+                US10_0(v7, v15, v33, v34, v35)
+            else
+                let v37 : (string -> int32) = String.length
+                let v38 : int32 = v37 v0
+                let v39 : string = "\n"
+                let v40 : int32 = v0.IndexOf v39 
+                let v41 : int32 = v40 - 1
+                let v42 : bool = -2 = v41
+                let v43 : int32 =
+                    if v42 then
+                        v38
+                    else
+                        v41
+                let v44 : (int32 -> int32) = int32
+                let v45 : int32 = v44 0
+                let v46 : (int32 -> int32) = int32
+                let v47 : int32 = v46 v43
+                let v48 : string = v0.[int v45..int v47]
+                let v49 : string = $"parsing.p_char / expected: '{'\\'}' / line: {v3} / col: {v2}
+{v1}{v48}"
+                let v50 : int32 = v2 - 1
+                let v51 : (int32 -> (string -> string)) = String.replicate
+                let v52 : (string -> string) = v51 v50
+                let v53 : string = " "
+                let v54 : string = v52 v53
+                let v55 : string = "^"
+                let v56 : string = v54 + v55 
+                let v57 : string = $"{v49}
+{v56}
+"
+                US10_1(v57)
+    let v102 : US10 =
+        match v60 with
+        | US10_1(v99) -> (* Error *)
+            US10_1(v99)
+        | US10_0(v61, v62, v63, v64, v65) -> (* Ok *)
+            let v66 : bool = "" = v62
+            if v66 then
+                let v67 : string = $"parsing.any_char / unexpected end of input / s: %A{struct (v63, v64, v65)}"
+                US10_1(v67)
+            else
+                let v69 : char = v62.[int 0]
+                let v70 : (string -> int32) = String.length
+                let v71 : int32 = v70 v62
+                let v72 : (int32 -> int32) = int32
+                let v73 : int32 = v72 1
+                let v74 : (int32 -> int32) = int32
+                let v75 : int32 = v74 v71
+                let v76 : string = v62.[int v73..int v75]
+                let v77 : (char -> string) = _.ToString()
+                let v78 : string = v77 v69
+                let v79 : int32 = v78.Length
+                let v80 : (char []) = Array.zeroCreate<char> (v79)
+                let v81 : Mut4 = {l0 = 0} : Mut4
+                while method12(v79, v81) do
+                    let v83 : int32 = v81.l0
+                    let v84 : char = v78.[int v83]
+                    v80.[int v83] <- v84
+                    let v85 : int32 = v83 + 1
+                    v81.l0 <- v85
+                    ()
+                let v86 : ((char []) -> char list) = Array.toList
+                let v87 : char list = v86 v80
+                let v88 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+                let v89 : (char -> (UH0 -> UH0)) = method13()
+                let v90 : (char list -> (UH0 -> UH0)) = v88 v89
+                let v91 : (UH0 -> UH0) = v90 v87
+                let v92 : UH0 = UH0_0
+                let v93 : UH0 = v91 v92
+                let struct (v94 : System.Text.StringBuilder, v95 : int32, v96 : int32) = method19(v93, v63, v64, v65)
+                US10_0(v69, v76, v94, v95, v96)
+    match v102 with
+    | US10_1(v110) -> (* Error *)
+        US12_1(v110)
+    | US10_0(v103, v104, v105, v106, v107) -> (* Ok *)
+        let v108 : string = $"{'\\'}{v103}"
+        US12_0(v108, v104, v105, v106, v107)
+and closure21 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32) : US12 =
+    let v4 : bool = "" = v0
+    let v60 : US10 =
+        if v4 then
+            let v5 : string = $"parsing.p_char / unexpected end of input / s: %A{struct (v1, v2, v3)}"
+            US10_1(v5)
+        else
+            let v7 : char = v0.[int 0]
+            let v8 : bool = v7 = '`'
+            if v8 then
+                let v9 : (string -> int32) = String.length
+                let v10 : int32 = v9 v0
+                let v11 : (int32 -> int32) = int32
+                let v12 : int32 = v11 1
+                let v13 : (int32 -> int32) = int32
+                let v14 : int32 = v13 v10
+                let v15 : string = v0.[int v12..int v14]
+                let v16 : (char -> string) = _.ToString()
+                let v17 : string = v16 v7
+                let v18 : int32 = v17.Length
+                let v19 : (char []) = Array.zeroCreate<char> (v18)
+                let v20 : Mut4 = {l0 = 0} : Mut4
+                while method12(v18, v20) do
+                    let v22 : int32 = v20.l0
+                    let v23 : char = v17.[int v22]
+                    v19.[int v22] <- v23
+                    let v24 : int32 = v22 + 1
+                    v20.l0 <- v24
+                    ()
+                let v25 : ((char []) -> char list) = Array.toList
+                let v26 : char list = v25 v19
+                let v27 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+                let v28 : (char -> (UH0 -> UH0)) = method13()
+                let v29 : (char list -> (UH0 -> UH0)) = v27 v28
+                let v30 : (UH0 -> UH0) = v29 v26
+                let v31 : UH0 = UH0_0
+                let v32 : UH0 = v30 v31
+                let struct (v33 : System.Text.StringBuilder, v34 : int32, v35 : int32) = method19(v32, v1, v2, v3)
+                US10_0(v7, v15, v33, v34, v35)
+            else
+                let v37 : (string -> int32) = String.length
+                let v38 : int32 = v37 v0
+                let v39 : string = "\n"
+                let v40 : int32 = v0.IndexOf v39 
+                let v41 : int32 = v40 - 1
+                let v42 : bool = -2 = v41
+                let v43 : int32 =
+                    if v42 then
+                        v38
+                    else
+                        v41
+                let v44 : (int32 -> int32) = int32
+                let v45 : int32 = v44 0
+                let v46 : (int32 -> int32) = int32
+                let v47 : int32 = v46 v43
+                let v48 : string = v0.[int v45..int v47]
+                let v49 : string = $"parsing.p_char / expected: '{'`'}' / line: {v3} / col: {v2}
+{v1}{v48}"
+                let v50 : int32 = v2 - 1
+                let v51 : (int32 -> (string -> string)) = String.replicate
+                let v52 : (string -> string) = v51 v50
+                let v53 : string = " "
+                let v54 : string = v52 v53
+                let v55 : string = "^"
+                let v56 : string = v54 + v55 
+                let v57 : string = $"{v49}
+{v56}
+"
+                US10_1(v57)
+    let v102 : US10 =
+        match v60 with
+        | US10_1(v99) -> (* Error *)
+            US10_1(v99)
+        | US10_0(v61, v62, v63, v64, v65) -> (* Ok *)
+            let v66 : bool = "" = v62
+            if v66 then
+                let v67 : string = $"parsing.any_char / unexpected end of input / s: %A{struct (v63, v64, v65)}"
+                US10_1(v67)
+            else
+                let v69 : char = v62.[int 0]
+                let v70 : (string -> int32) = String.length
+                let v71 : int32 = v70 v62
+                let v72 : (int32 -> int32) = int32
+                let v73 : int32 = v72 1
+                let v74 : (int32 -> int32) = int32
+                let v75 : int32 = v74 v71
+                let v76 : string = v62.[int v73..int v75]
+                let v77 : (char -> string) = _.ToString()
+                let v78 : string = v77 v69
+                let v79 : int32 = v78.Length
+                let v80 : (char []) = Array.zeroCreate<char> (v79)
+                let v81 : Mut4 = {l0 = 0} : Mut4
+                while method12(v79, v81) do
+                    let v83 : int32 = v81.l0
+                    let v84 : char = v78.[int v83]
+                    v80.[int v83] <- v84
+                    let v85 : int32 = v83 + 1
+                    v81.l0 <- v85
+                    ()
+                let v86 : ((char []) -> char list) = Array.toList
+                let v87 : char list = v86 v80
+                let v88 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+                let v89 : (char -> (UH0 -> UH0)) = method13()
+                let v90 : (char list -> (UH0 -> UH0)) = v88 v89
+                let v91 : (UH0 -> UH0) = v90 v87
+                let v92 : UH0 = UH0_0
+                let v93 : UH0 = v91 v92
+                let struct (v94 : System.Text.StringBuilder, v95 : int32, v96 : int32) = method19(v93, v63, v64, v65)
+                US10_0(v69, v76, v94, v95, v96)
+    match v102 with
+    | US10_1(v110) -> (* Error *)
+        US12_1(v110)
+    | US10_0(v103, v104, v105, v106, v107) -> (* Ok *)
+        let v108 : string = $"{'`'}{v103}"
+        US12_0(v108, v104, v105, v106, v107)
+and method23 (v0 : string, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32, v4 : UH2) : US12 =
+    match v4 with
+    | UH2_1(v7, v8) -> (* Cons *)
+        let v9 : US12 = v7 struct (v0, v1, v2, v3)
+        match v9 with
+        | US12_1(v15) -> (* Error *)
+            method23(v0, v1, v2, v3, v8)
+        | US12_0(v10, v11, v12, v13, v14) -> (* Ok *)
+            v9
+    | UH2_0 -> (* Nil *)
+        let v5 : string = "choice / no parsers succeeded"
+        US12_1(v5)
+and method24 (v0 : UH1, v1 : UH1) : UH1 =
     match v0 with
     | UH1_1(v2, v3) -> (* Cons *)
-        let v4 : UH1 = method15(v3, v1)
-        UH1_1(v2, v4)
+        let v4 : UH1 = UH1_1(v2, v1)
+        method24(v3, v4)
     | UH1_0 -> (* Nil *)
         v1
-and method14 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7) : struct (UH1 * string) =
-    match v3 with
-    | US7_2(v51, v52) -> (* Escaped *)
-        match v2 with
-        | UH0_1(v53, v54) -> (* Cons *)
-            let v55 : bool = '\\' = v53
-            if v55 then
-                let v56 : US7 = US7_1(v53)
-                method13(v0, v1, v54, v3, v56)
-            else
-                let v59 : bool = '`' = v53
-                if v59 then
-                    let v60 : US7 = US7_1(v53)
-                    method13(v0, v1, v54, v3, v60)
-                else
-                    let v63 : bool = 0uy = v51
-                    if v63 then
-                        let v64 : bool = '\\' = v52
-                        if v64 then
-                            let v65 : bool = '"' = v53
-                            if v65 then
-                                let v66 : string = $"{v0}{v52}\""
-                                let v67 : US7 = US7_2(v51, v52)
-                                method13(v66, v1, v54, v3, v67)
-                            else
-                                let v70 : bool = ' ' = v53
-                                if v70 then
-                                    let v71 : string = $"{v0} "
-                                    method14(v71, v1, v54, v3)
-                                else
-                                    let v74 : bool = 1uy = v51
-                                    if v74 then
-                                        let v75 : bool = v3 <> v3 
-                                        if v75 then
-                                            let v76 : string = $"{v0}\{v53}"
-                                            method14(v76, v1, v54, v3)
-                                        else
-                                            let v79 : string = $"{v0}{v53}"
-                                            method14(v79, v1, v54, v3)
-                                    else
-                                        let v84 : string = $"{v0}{v53}"
-                                        method14(v84, v1, v54, v3)
-                        else
-                            let v93 : bool = '`' = v52
-                            if v93 then
-                                let v94 : bool = '"' = v53
-                                if v94 then
-                                    let v95 : string = $"{v0}{v52}\""
-                                    let v96 : US7 = US7_2(v51, v52)
-                                    method13(v95, v1, v54, v3, v96)
-                                else
-                                    let v99 : bool = ' ' = v53
-                                    if v99 then
-                                        let v100 : string = $"{v0} "
-                                        method14(v100, v1, v54, v3)
-                                    else
-                                        let v103 : bool = 1uy = v51
-                                        if v103 then
-                                            let v104 : bool = v3 <> v3 
-                                            if v104 then
-                                                let v105 : string = $"{v0}\{v53}"
-                                                method14(v105, v1, v54, v3)
-                                            else
-                                                let v108 : string = $"{v0}{v53}"
-                                                method14(v108, v1, v54, v3)
-                                        else
-                                            let v113 : string = $"{v0}{v53}"
-                                            method14(v113, v1, v54, v3)
-                            else
-                                let v122 : bool = '"' = v53
-                                if v122 then
-                                    let v123 : string = $"{v0}{v52}\""
-                                    let v124 : US7 = US7_2(v51, v52)
-                                    method13(v123, v1, v54, v3, v124)
-                                else
-                                    let v127 : bool = ' ' = v53
-                                    if v127 then
-                                        let v128 : string = $"{v0} "
-                                        method14(v128, v1, v54, v3)
-                                    else
-                                        let v131 : bool = 1uy = v51
-                                        if v131 then
-                                            let v132 : bool = v3 <> v3 
-                                            if v132 then
-                                                let v133 : string = $"{v0}\{v53}"
-                                                method14(v133, v1, v54, v3)
-                                            else
-                                                let v136 : string = $"{v0}{v53}"
-                                                method14(v136, v1, v54, v3)
-                                        else
-                                            let v141 : string = $"{v0}{v53}"
-                                            method14(v141, v1, v54, v3)
-                    else
-                        let v154 : bool = '"' = v53
-                        if v154 then
-                            let v155 : string = $"{v0}{v52}\""
-                            let v156 : US7 = US7_2(v51, v52)
-                            method13(v155, v1, v54, v3, v156)
-                        else
-                            let v159 : bool = ' ' = v53
-                            if v159 then
-                                let v160 : string = $"{v0} "
-                                method14(v160, v1, v54, v3)
-                            else
-                                let v163 : bool = 1uy = v51
-                                if v163 then
-                                    let v164 : bool = v3 <> v3 
-                                    if v164 then
-                                        let v165 : string = $"{v0}\{v53}"
-                                        method14(v165, v1, v54, v3)
-                                    else
-                                        let v168 : string = $"{v0}{v53}"
-                                        method14(v168, v1, v54, v3)
-                                else
-                                    let v173 : string = $"{v0}{v53}"
-                                    method14(v173, v1, v54, v3)
-        | _ ->
-            let v188 : bool = 0uy = v51
-            if v188 then
-                let v189 : bool = '\\' = v52
-                if v189 then
-                    let v190 : bool = 1uy = v51
-                    if v190 then
-                        let v192 : bool = v0 = ""
-                        let v196 : UH1 =
-                            if v192 then
-                                v1
-                            else
-                                let v193 : UH1 = UH1_0
-                                let v194 : UH1 = UH1_1(v0, v193)
-                                method15(v1, v194)
-                        struct (v196, v0)
-                    else
-                        let v198 : bool = v0 = ""
-                        let v202 : UH1 =
-                            if v198 then
-                                v1
-                            else
-                                let v199 : UH1 = UH1_0
-                                let v200 : UH1 = UH1_1(v0, v199)
-                                method15(v1, v200)
-                        struct (v202, v0)
-                else
-                    let v205 : bool = '`' = v52
-                    if v205 then
-                        let v206 : bool = 1uy = v51
-                        if v206 then
-                            let v208 : bool = v0 = ""
-                            let v212 : UH1 =
-                                if v208 then
-                                    v1
-                                else
-                                    let v209 : UH1 = UH1_0
-                                    let v210 : UH1 = UH1_1(v0, v209)
-                                    method15(v1, v210)
-                            struct (v212, v0)
-                        else
-                            let v214 : bool = v0 = ""
-                            let v218 : UH1 =
-                                if v214 then
-                                    v1
-                                else
-                                    let v215 : UH1 = UH1_0
-                                    let v216 : UH1 = UH1_1(v0, v215)
-                                    method15(v1, v216)
-                            struct (v218, v0)
-                    else
-                        let v221 : bool = 1uy = v51
-                        if v221 then
-                            let v223 : bool = v0 = ""
-                            let v227 : UH1 =
-                                if v223 then
-                                    v1
-                                else
-                                    let v224 : UH1 = UH1_0
-                                    let v225 : UH1 = UH1_1(v0, v224)
-                                    method15(v1, v225)
-                            struct (v227, v0)
-                        else
-                            let v229 : bool = v0 = ""
-                            let v233 : UH1 =
-                                if v229 then
-                                    v1
-                                else
-                                    let v230 : UH1 = UH1_0
-                                    let v231 : UH1 = UH1_1(v0, v230)
-                                    method15(v1, v231)
-                            struct (v233, v0)
-            else
-                let v240 : bool = 1uy = v51
-                if v240 then
-                    let v242 : bool = v0 = ""
-                    let v246 : UH1 =
-                        if v242 then
-                            v1
-                        else
-                            let v243 : UH1 = UH1_0
-                            let v244 : UH1 = UH1_1(v0, v243)
-                            method15(v1, v244)
-                    struct (v246, v0)
-                else
-                    let v248 : bool = v0 = ""
-                    let v252 : UH1 =
-                        if v248 then
-                            v1
-                        else
-                            let v249 : UH1 = UH1_0
-                            let v250 : UH1 = UH1_1(v0, v249)
-                            method15(v1, v250)
-                    struct (v252, v0)
-    | US7_1(v259) -> (* Quoted *)
-        let v260 : bool = '"' = v259
-        if v260 then
-            match v2 with
-            | UH0_1(v261, v262) -> (* Cons *)
-                let v263 : bool = '"' = v261
-                if v263 then
-                    let v264 : US7 = US7_0
-                    method13(v0, v1, v262, v3, v264)
-                else
-                    let v267 : bool = '\\' = v259
-                    if v267 then
-                        let v268 : bool = '\\' = v261
-                        if v268 then
-                            let v269 : uint8 = 0uy
-                            let v270 : US7 = US7_2(v269, v261)
-                            method13(v0, v1, v262, v3, v270)
-                        else
-                            let v273 : bool = '`' = v261
-                            if v273 then
-                                let v274 : uint8 = 0uy
-                                let v275 : US7 = US7_2(v274, v261)
-                                method13(v0, v1, v262, v3, v275)
-                            else
-                                let v278 : bool = ' ' = v261
-                                if v278 then
-                                    let v279 : string = $"{v0} "
-                                    method14(v279, v1, v262, v3)
-                                else
-                                    let v282 : string = $"{v0}{v261}"
-                                    method14(v282, v1, v262, v3)
-                    else
-                        let v291 : bool = '`' = v259
-                        if v291 then
-                            let v292 : bool = '\\' = v261
-                            if v292 then
-                                let v293 : uint8 = 0uy
-                                let v294 : US7 = US7_2(v293, v261)
-                                method13(v0, v1, v262, v3, v294)
-                            else
-                                let v297 : bool = '`' = v261
-                                if v297 then
-                                    let v298 : uint8 = 0uy
-                                    let v299 : US7 = US7_2(v298, v261)
-                                    method13(v0, v1, v262, v3, v299)
-                                else
-                                    let v302 : bool = ' ' = v261
-                                    if v302 then
-                                        let v303 : string = $"{v0} "
-                                        method14(v303, v1, v262, v3)
-                                    else
-                                        let v306 : string = $"{v0}{v261}"
-                                        method14(v306, v1, v262, v3)
-                        else
-                            let v315 : bool = '\\' = v261
-                            if v315 then
-                                let v316 : uint8 = 0uy
-                                let v317 : US7 = US7_2(v316, v261)
-                                method13(v0, v1, v262, v3, v317)
-                            else
-                                let v320 : bool = '`' = v261
-                                if v320 then
-                                    let v321 : uint8 = 0uy
-                                    let v322 : US7 = US7_2(v321, v261)
-                                    method13(v0, v1, v262, v3, v322)
-                                else
-                                    let v325 : bool = ' ' = v261
-                                    if v325 then
-                                        let v326 : string = $"{v0} "
-                                        method14(v326, v1, v262, v3)
-                                    else
-                                        let v329 : string = $"{v0}{v261}"
-                                        method14(v329, v1, v262, v3)
-            | _ ->
-                let v344 : bool = '\\' = v259
-                if v344 then
-                    let v346 : bool = v0 = ""
-                    let v350 : UH1 =
-                        if v346 then
-                            v1
-                        else
-                            let v347 : UH1 = UH1_0
-                            let v348 : UH1 = UH1_1(v0, v347)
-                            method15(v1, v348)
-                    struct (v350, v0)
-                else
-                    let v351 : bool = '`' = v259
-                    if v351 then
-                        let v353 : bool = v0 = ""
-                        let v357 : UH1 =
-                            if v353 then
-                                v1
-                            else
-                                let v354 : UH1 = UH1_0
-                                let v355 : UH1 = UH1_1(v0, v354)
-                                method15(v1, v355)
-                        struct (v357, v0)
-                    else
-                        let v359 : bool = v0 = ""
-                        let v363 : UH1 =
-                            if v359 then
-                                v1
-                            else
-                                let v360 : UH1 = UH1_0
-                                let v361 : UH1 = UH1_1(v0, v360)
-                                method15(v1, v361)
-                        struct (v363, v0)
+and method21 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32, v4 : int32) : US9 =
+    let v5 : bool = "" = v1
+    let v55 : US10 =
+        if v5 then
+            let v6 : char list = []
+            let v7 : char list = '"' :: v6 
+            let v8 : char list = '`' :: v7 
+            let v9 : char list = '\\' :: v8 
+            let v10 : (char list -> (char [])) = List.toArray
+            let v11 : (char []) = v10 v9
+            let v12 : string = $"parsing.none_of / unexpected end of input / chars: %A{v11} / s: %A{struct (v2, v3, v4)}"
+            US10_1(v12)
         else
-            let v370 : bool = '\\' = v259
-            if v370 then
-                match v2 with
-                | UH0_1(v371, v372) -> (* Cons *)
-                    let v373 : bool = '"' = v371
-                    if v373 then
-                        let v374 : US7 = US7_2(0uy, '\\')
-                        let v375 : bool = v3 <> v374 
-                        let v378 : bool =
-                            if v375 then
-                                let v376 : US7 = US7_2(0uy, '`')
-                                let v377 : bool = v3 <> v376 
-                                v377
-                            else
-                                false
-                        if v378 then
-                            let v379 : string = $"{v0}{v259}\""
-                            let v380 : char = '"'
-                            let v381 : US7 = US7_1(v380)
-                            method13(v379, v1, v372, v3, v381)
-                        else
-                            let v384 : string = $"{v0}{v259}\""
-                            let v385 : char = '"'
-                            let v386 : US7 = US7_1(v385)
-                            method13(v384, v1, v372, v3, v386)
-                    else
-                        let v391 : bool = '\\' = v371
-                        if v391 then
-                            let v392 : uint8 = 0uy
-                            let v393 : US7 = US7_2(v392, v371)
-                            method13(v0, v1, v372, v3, v393)
-                        else
-                            let v396 : bool = '`' = v371
-                            if v396 then
-                                let v397 : uint8 = 0uy
-                                let v398 : US7 = US7_2(v397, v371)
-                                method13(v0, v1, v372, v3, v398)
-                            else
-                                let v401 : bool = ' ' = v371
-                                if v401 then
-                                    let v402 : string = $"{v0} "
-                                    method14(v402, v1, v372, v3)
-                                else
-                                    let v405 : string = $"{v0}{v371}"
-                                    method14(v405, v1, v372, v3)
-                | _ ->
-                    let v417 : bool = v0 = ""
-                    let v421 : UH1 =
-                        if v417 then
-                            v1
-                        else
-                            let v418 : UH1 = UH1_0
-                            let v419 : UH1 = UH1_1(v0, v418)
-                            method15(v1, v419)
-                    struct (v421, v0)
+            let v14 : char = v1.[int 0]
+            let v15 : (string -> int32) = String.length
+            let v16 : int32 = v15 v1
+            let v17 : (int32 -> int32) = int32
+            let v18 : int32 = v17 1
+            let v19 : (int32 -> int32) = int32
+            let v20 : int32 = v19 v16
+            let v21 : string = v1.[int v18..int v20]
+            let v22 : int64 = 0L
+            let v23 : bool = method22(v14, v22)
+            let v24 : bool = v23 = false
+            if v24 then
+                let v25 : (char -> string) = _.ToString()
+                let v26 : string = v25 v14
+                let v27 : int32 = v26.Length
+                let v28 : (char []) = Array.zeroCreate<char> (v27)
+                let v29 : Mut4 = {l0 = 0} : Mut4
+                while method12(v27, v29) do
+                    let v31 : int32 = v29.l0
+                    let v32 : char = v26.[int v31]
+                    v28.[int v31] <- v32
+                    let v33 : int32 = v31 + 1
+                    v29.l0 <- v33
+                    ()
+                let v34 : ((char []) -> char list) = Array.toList
+                let v35 : char list = v34 v28
+                let v36 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+                let v37 : (char -> (UH0 -> UH0)) = method13()
+                let v38 : (char list -> (UH0 -> UH0)) = v36 v37
+                let v39 : (UH0 -> UH0) = v38 v35
+                let v40 : UH0 = UH0_0
+                let v41 : UH0 = v39 v40
+                let struct (v42 : System.Text.StringBuilder, v43 : int32, v44 : int32) = method19(v41, v2, v3, v4)
+                US10_0(v14, v21, v42, v43, v44)
             else
-                let v424 : bool = '`' = v259
-                if v424 then
-                    match v2 with
-                    | UH0_1(v425, v426) -> (* Cons *)
-                        let v427 : bool = '"' = v425
-                        if v427 then
-                            let v428 : US7 = US7_2(0uy, '\\')
-                            let v429 : bool = v3 <> v428 
-                            let v432 : bool =
-                                if v429 then
-                                    let v430 : US7 = US7_2(0uy, '`')
-                                    let v431 : bool = v3 <> v430 
-                                    v431
-                                else
-                                    false
-                            if v432 then
-                                let v433 : string = $"{v0}{v259}\""
-                                let v434 : char = '"'
-                                let v435 : US7 = US7_1(v434)
-                                method13(v433, v1, v426, v3, v435)
-                            else
-                                let v438 : string = $"{v0}{v259}\""
-                                let v439 : char = '"'
-                                let v440 : US7 = US7_1(v439)
-                                method13(v438, v1, v426, v3, v440)
-                        else
-                            let v445 : bool = '\\' = v425
-                            if v445 then
-                                let v446 : uint8 = 0uy
-                                let v447 : US7 = US7_2(v446, v425)
-                                method13(v0, v1, v426, v3, v447)
-                            else
-                                let v450 : bool = '`' = v425
-                                if v450 then
-                                    let v451 : uint8 = 0uy
-                                    let v452 : US7 = US7_2(v451, v425)
-                                    method13(v0, v1, v426, v3, v452)
-                                else
-                                    let v455 : bool = ' ' = v425
-                                    if v455 then
-                                        let v456 : string = $"{v0} "
-                                        method14(v456, v1, v426, v3)
-                                    else
-                                        let v459 : string = $"{v0}{v425}"
-                                        method14(v459, v1, v426, v3)
-                    | _ ->
-                        let v471 : bool = v0 = ""
-                        let v475 : UH1 =
-                            if v471 then
-                                v1
-                            else
-                                let v472 : UH1 = UH1_0
-                                let v473 : UH1 = UH1_1(v0, v472)
-                                method15(v1, v473)
-                        struct (v475, v0)
-                else
-                    match v2 with
-                    | UH0_1(v478, v479) -> (* Cons *)
-                        let v480 : bool = '\\' = v478
-                        if v480 then
-                            let v481 : uint8 = 0uy
-                            let v482 : US7 = US7_2(v481, v478)
-                            method13(v0, v1, v479, v3, v482)
-                        else
-                            let v485 : bool = '`' = v478
-                            if v485 then
-                                let v486 : uint8 = 0uy
-                                let v487 : US7 = US7_2(v486, v478)
-                                method13(v0, v1, v479, v3, v487)
-                            else
-                                let v490 : bool = '"' = v478
-                                if v490 then
-                                    let v491 : UH1 = UH1_0
-                                    let v492 : UH1 = UH1_1(v0, v491)
-                                    let v493 : UH1 = method15(v1, v492)
-                                    let v494 : string = ""
-                                    let v495 : US7 = US7_0
-                                    method13(v494, v493, v479, v3, v495)
-                                else
-                                    let v498 : bool = ' ' = v478
-                                    if v498 then
-                                        let v499 : string = $"{v0} "
-                                        method14(v499, v1, v479, v3)
-                                    else
-                                        let v502 : string = $"{v0}{v478}"
-                                        method14(v502, v1, v479, v3)
-                    | _ ->
-                        let v514 : bool = v0 = ""
-                        let v518 : UH1 =
-                            if v514 then
-                                v1
-                            else
-                                let v515 : UH1 = UH1_0
-                                let v516 : UH1 = UH1_1(v0, v515)
-                                method15(v1, v516)
-                        struct (v518, v0)
-    | US7_0 -> (* Start *)
-        match v2 with
-        | UH0_1(v4, v5) -> (* Cons *)
-            let v6 : bool = '"' = v4
-            if v6 then
-                let v7 : string = ""
-                let v8 : char = '"'
-                let v9 : US7 = US7_1(v8)
-                method13(v7, v1, v5, v3, v9)
-            else
-                let v12 : bool = '\\' = v4
-                if v12 then
-                    let v13 : uint8 = 0uy
-                    let v14 : US7 = US7_2(v13, v4)
-                    method13(v0, v1, v5, v3, v14)
-                else
-                    let v17 : bool = '`' = v4
-                    if v17 then
-                        let v18 : uint8 = 0uy
-                        let v19 : US7 = US7_2(v18, v4)
-                        method13(v0, v1, v5, v3, v19)
-                    else
-                        let v22 : bool = ' ' = v4
-                        if v22 then
-                            let v24 : bool = v0 = ""
-                            let v28 : UH1 =
-                                if v24 then
-                                    v1
-                                else
-                                    let v25 : UH1 = UH1_0
-                                    let v26 : UH1 = UH1_1(v0, v25)
-                                    method15(v1, v26)
-                            let v29 : string = ""
-                            method14(v29, v28, v5, v3)
-                        else
-                            let v32 : string = $"{v0}{v4}"
-                            method14(v32, v1, v5, v3)
-        | _ ->
-            let v44 : bool = v0 = ""
-            let v48 : UH1 =
-                if v44 then
-                    v1
-                else
-                    let v45 : UH1 = UH1_0
-                    let v46 : UH1 = UH1_1(v0, v45)
-                    method15(v1, v46)
-            struct (v48, v0)
-and method13 (v0 : string, v1 : UH1, v2 : UH0, v3 : US7, v4 : US7) : struct (UH1 * string) =
-    match v4 with
-    | US7_2(v52, v53) -> (* Escaped *)
-        match v2 with
-        | UH0_1(v54, v55) -> (* Cons *)
-            let v56 : bool = '\\' = v54
-            if v56 then
-                let v57 : US7 = US7_1(v54)
-                method13(v0, v1, v55, v4, v57)
-            else
-                let v60 : bool = '`' = v54
-                if v60 then
-                    let v61 : US7 = US7_1(v54)
-                    method13(v0, v1, v55, v4, v61)
-                else
-                    match v3 with
-                    | US7_0 -> (* Start *)
-                        let v64 : bool = '"' = v54
-                        if v64 then
-                            method14(v0, v1, v55, v4)
-                        else
-                            let v67 : bool = 0uy = v52
-                            if v67 then
-                                let v68 : bool = '\\' = v53
-                                if v68 then
-                                    let v69 : bool = ' ' = v54
-                                    if v69 then
-                                        let v70 : string = $"{v0} "
-                                        method14(v70, v1, v55, v4)
-                                    else
-                                        let v73 : bool = 1uy = v52
-                                        if v73 then
-                                            let v74 : bool = v3 <> v4 
-                                            if v74 then
-                                                let v75 : string = $"{v0}\{v54}"
-                                                method13(v75, v1, v55, v4, v3)
-                                            else
-                                                let v78 : string = $"{v0}{v54}"
-                                                method14(v78, v1, v55, v4)
-                                        else
-                                            let v83 : string = $"{v0}{v54}"
-                                            method14(v83, v1, v55, v4)
-                                else
-                                    let v90 : bool = '`' = v53
-                                    if v90 then
-                                        let v91 : bool = ' ' = v54
-                                        if v91 then
-                                            let v92 : string = $"{v0} "
-                                            method14(v92, v1, v55, v4)
-                                        else
-                                            let v95 : bool = 1uy = v52
-                                            if v95 then
-                                                let v96 : bool = v3 <> v4 
-                                                if v96 then
-                                                    let v97 : string = $"{v0}\{v54}"
-                                                    method13(v97, v1, v55, v4, v3)
-                                                else
-                                                    let v100 : string = $"{v0}{v54}"
-                                                    method14(v100, v1, v55, v4)
-                                            else
-                                                let v105 : string = $"{v0}{v54}"
-                                                method14(v105, v1, v55, v4)
-                                    else
-                                        let v112 : bool = ' ' = v54
-                                        if v112 then
-                                            let v113 : string = $"{v0} "
-                                            method14(v113, v1, v55, v4)
-                                        else
-                                            let v116 : bool = 1uy = v52
-                                            if v116 then
-                                                let v117 : bool = v3 <> v4 
-                                                if v117 then
-                                                    let v118 : string = $"{v0}\{v54}"
-                                                    method13(v118, v1, v55, v4, v3)
-                                                else
-                                                    let v121 : string = $"{v0}{v54}"
-                                                    method14(v121, v1, v55, v4)
-                                            else
-                                                let v126 : string = $"{v0}{v54}"
-                                                method14(v126, v1, v55, v4)
-                            else
-                                let v137 : bool = ' ' = v54
-                                if v137 then
-                                    let v138 : string = $"{v0} "
-                                    method14(v138, v1, v55, v4)
-                                else
-                                    let v141 : bool = 1uy = v52
-                                    if v141 then
-                                        let v142 : bool = v3 <> v4 
-                                        if v142 then
-                                            let v143 : string = $"{v0}\{v54}"
-                                            method13(v143, v1, v55, v4, v3)
-                                        else
-                                            let v146 : string = $"{v0}{v54}"
-                                            method14(v146, v1, v55, v4)
-                                    else
-                                        let v151 : string = $"{v0}{v54}"
-                                        method14(v151, v1, v55, v4)
-                    | _ ->
-                        let v162 : bool = 0uy = v52
-                        if v162 then
-                            let v163 : bool = '\\' = v53
-                            if v163 then
-                                match v3 with
-                                | US7_1(v164) -> (* Quoted *)
-                                    let v165 : bool = '"' = v164
-                                    if v165 then
-                                        let v166 : string = $"{v0}{v53}{v54}"
-                                        let v167 : char = '"'
-                                        let v168 : US7 = US7_1(v167)
-                                        method13(v166, v1, v55, v4, v168)
-                                    else
-                                        let v171 : bool = '"' = v54
-                                        if v171 then
-                                            let v172 : string = $"{v0}{v53}\""
-                                            let v173 : US7 = US7_2(v52, v53)
-                                            method13(v172, v1, v55, v4, v173)
-                                        else
-                                            let v176 : bool = ' ' = v54
-                                            if v176 then
-                                                let v177 : string = $"{v0} "
-                                                method14(v177, v1, v55, v4)
-                                            else
-                                                let v180 : bool = 1uy = v52
-                                                if v180 then
-                                                    let v181 : bool = v3 <> v4 
-                                                    if v181 then
-                                                        let v182 : string = $"{v0}\{v54}"
-                                                        method13(v182, v1, v55, v4, v3)
-                                                    else
-                                                        let v185 : string = $"{v0}{v54}"
-                                                        method14(v185, v1, v55, v4)
-                                                else
-                                                    let v190 : string = $"{v0}{v54}"
-                                                    method14(v190, v1, v55, v4)
-                                | _ ->
-                                    let v201 : bool = '"' = v54
-                                    if v201 then
-                                        let v202 : string = $"{v0}{v53}\""
-                                        let v203 : US7 = US7_2(v52, v53)
-                                        method13(v202, v1, v55, v4, v203)
-                                    else
-                                        let v206 : bool = ' ' = v54
-                                        if v206 then
-                                            let v207 : string = $"{v0} "
-                                            method14(v207, v1, v55, v4)
-                                        else
-                                            let v210 : bool = 1uy = v52
-                                            if v210 then
-                                                let v211 : bool = v3 <> v4 
-                                                if v211 then
-                                                    let v212 : string = $"{v0}\{v54}"
-                                                    method13(v212, v1, v55, v4, v3)
-                                                else
-                                                    let v215 : string = $"{v0}{v54}"
-                                                    method14(v215, v1, v55, v4)
-                                            else
-                                                let v220 : string = $"{v0}{v54}"
-                                                method14(v220, v1, v55, v4)
-                            else
-                                let v231 : bool = '`' = v53
-                                if v231 then
-                                    match v3 with
-                                    | US7_1(v232) -> (* Quoted *)
-                                        let v233 : bool = '"' = v232
-                                        if v233 then
-                                            let v234 : string = $"{v0}{v53}{v54}"
-                                            let v235 : char = '"'
-                                            let v236 : US7 = US7_1(v235)
-                                            method13(v234, v1, v55, v4, v236)
-                                        else
-                                            let v239 : bool = '"' = v54
-                                            if v239 then
-                                                let v240 : string = $"{v0}{v53}\""
-                                                let v241 : US7 = US7_2(v52, v53)
-                                                method13(v240, v1, v55, v4, v241)
-                                            else
-                                                let v244 : bool = ' ' = v54
-                                                if v244 then
-                                                    let v245 : string = $"{v0} "
-                                                    method14(v245, v1, v55, v4)
-                                                else
-                                                    let v248 : bool = 1uy = v52
-                                                    if v248 then
-                                                        let v249 : bool = v3 <> v4 
-                                                        if v249 then
-                                                            let v250 : string = $"{v0}\{v54}"
-                                                            method13(v250, v1, v55, v4, v3)
-                                                        else
-                                                            let v253 : string = $"{v0}{v54}"
-                                                            method14(v253, v1, v55, v4)
-                                                    else
-                                                        let v258 : string = $"{v0}{v54}"
-                                                        method14(v258, v1, v55, v4)
-                                    | _ ->
-                                        let v269 : bool = '"' = v54
-                                        if v269 then
-                                            let v270 : string = $"{v0}{v53}\""
-                                            let v271 : US7 = US7_2(v52, v53)
-                                            method13(v270, v1, v55, v4, v271)
-                                        else
-                                            let v274 : bool = ' ' = v54
-                                            if v274 then
-                                                let v275 : string = $"{v0} "
-                                                method14(v275, v1, v55, v4)
-                                            else
-                                                let v278 : bool = 1uy = v52
-                                                if v278 then
-                                                    let v279 : bool = v3 <> v4 
-                                                    if v279 then
-                                                        let v280 : string = $"{v0}\{v54}"
-                                                        method13(v280, v1, v55, v4, v3)
-                                                    else
-                                                        let v283 : string = $"{v0}{v54}"
-                                                        method14(v283, v1, v55, v4)
-                                                else
-                                                    let v288 : string = $"{v0}{v54}"
-                                                    method14(v288, v1, v55, v4)
-                                else
-                                    let v299 : bool = '"' = v54
-                                    if v299 then
-                                        let v300 : string = $"{v0}{v53}\""
-                                        let v301 : US7 = US7_2(v52, v53)
-                                        method13(v300, v1, v55, v4, v301)
-                                    else
-                                        let v304 : bool = ' ' = v54
-                                        if v304 then
-                                            let v305 : string = $"{v0} "
-                                            method14(v305, v1, v55, v4)
-                                        else
-                                            let v308 : bool = 1uy = v52
-                                            if v308 then
-                                                let v309 : bool = v3 <> v4 
-                                                if v309 then
-                                                    let v310 : string = $"{v0}\{v54}"
-                                                    method13(v310, v1, v55, v4, v3)
-                                                else
-                                                    let v313 : string = $"{v0}{v54}"
-                                                    method14(v313, v1, v55, v4)
-                                            else
-                                                let v318 : string = $"{v0}{v54}"
-                                                method14(v318, v1, v55, v4)
-                        else
-                            let v331 : bool = '"' = v54
-                            if v331 then
-                                let v332 : string = $"{v0}{v53}\""
-                                let v333 : US7 = US7_2(v52, v53)
-                                method13(v332, v1, v55, v4, v333)
-                            else
-                                let v336 : bool = ' ' = v54
-                                if v336 then
-                                    let v337 : string = $"{v0} "
-                                    method14(v337, v1, v55, v4)
-                                else
-                                    let v340 : bool = 1uy = v52
-                                    if v340 then
-                                        let v341 : bool = v3 <> v4 
-                                        if v341 then
-                                            let v342 : string = $"{v0}\{v54}"
-                                            method13(v342, v1, v55, v4, v3)
-                                        else
-                                            let v345 : string = $"{v0}{v54}"
-                                            method14(v345, v1, v55, v4)
-                                    else
-                                        let v350 : string = $"{v0}{v54}"
-                                        method14(v350, v1, v55, v4)
-        | _ ->
-            match v3 with
-            | US7_0 -> (* Start *)
-                let v367 : bool = 0uy = v52
-                if v367 then
-                    let v368 : bool = '\\' = v53
-                    if v368 then
-                        let v369 : bool = 1uy = v52
-                        if v369 then
-                            let v371 : bool = v0 = ""
-                            let v375 : UH1 =
-                                if v371 then
-                                    v1
-                                else
-                                    let v372 : UH1 = UH1_0
-                                    let v373 : UH1 = UH1_1(v0, v372)
-                                    method15(v1, v373)
-                            struct (v375, v0)
-                        else
-                            let v377 : bool = v0 = ""
-                            let v381 : UH1 =
-                                if v377 then
-                                    v1
-                                else
-                                    let v378 : UH1 = UH1_0
-                                    let v379 : UH1 = UH1_1(v0, v378)
-                                    method15(v1, v379)
-                            struct (v381, v0)
-                    else
-                        let v384 : bool = '`' = v53
-                        if v384 then
-                            let v385 : bool = 1uy = v52
-                            if v385 then
-                                let v387 : bool = v0 = ""
-                                let v391 : UH1 =
-                                    if v387 then
-                                        v1
-                                    else
-                                        let v388 : UH1 = UH1_0
-                                        let v389 : UH1 = UH1_1(v0, v388)
-                                        method15(v1, v389)
-                                struct (v391, v0)
-                            else
-                                let v393 : bool = v0 = ""
-                                let v397 : UH1 =
-                                    if v393 then
-                                        v1
-                                    else
-                                        let v394 : UH1 = UH1_0
-                                        let v395 : UH1 = UH1_1(v0, v394)
-                                        method15(v1, v395)
-                                struct (v397, v0)
-                        else
-                            let v400 : bool = 1uy = v52
-                            if v400 then
-                                let v402 : bool = v0 = ""
-                                let v406 : UH1 =
-                                    if v402 then
-                                        v1
-                                    else
-                                        let v403 : UH1 = UH1_0
-                                        let v404 : UH1 = UH1_1(v0, v403)
-                                        method15(v1, v404)
-                                struct (v406, v0)
-                            else
-                                let v408 : bool = v0 = ""
-                                let v412 : UH1 =
-                                    if v408 then
-                                        v1
-                                    else
-                                        let v409 : UH1 = UH1_0
-                                        let v410 : UH1 = UH1_1(v0, v409)
-                                        method15(v1, v410)
-                                struct (v412, v0)
-                else
-                    let v419 : bool = 1uy = v52
-                    if v419 then
-                        let v421 : bool = v0 = ""
-                        let v425 : UH1 =
-                            if v421 then
-                                v1
-                            else
-                                let v422 : UH1 = UH1_0
-                                let v423 : UH1 = UH1_1(v0, v422)
-                                method15(v1, v423)
-                        struct (v425, v0)
-                    else
-                        let v427 : bool = v0 = ""
-                        let v431 : UH1 =
-                            if v427 then
-                                v1
-                            else
-                                let v428 : UH1 = UH1_0
-                                let v429 : UH1 = UH1_1(v0, v428)
-                                method15(v1, v429)
-                        struct (v431, v0)
-            | _ ->
-                let v436 : bool = 0uy = v52
-                if v436 then
-                    let v437 : bool = '\\' = v53
-                    if v437 then
-                        match v3 with
-                        | US7_1(v438) -> (* Quoted *)
-                            let v439 : bool = '"' = v438
-                            if v439 then
-                                let v440 : bool = 1uy = v52
-                                if v440 then
-                                    let v442 : bool = v0 = ""
-                                    let v446 : UH1 =
-                                        if v442 then
-                                            v1
-                                        else
-                                            let v443 : UH1 = UH1_0
-                                            let v444 : UH1 = UH1_1(v0, v443)
-                                            method15(v1, v444)
-                                    struct (v446, v0)
-                                else
-                                    let v448 : bool = v0 = ""
-                                    let v452 : UH1 =
-                                        if v448 then
-                                            v1
-                                        else
-                                            let v449 : UH1 = UH1_0
-                                            let v450 : UH1 = UH1_1(v0, v449)
-                                            method15(v1, v450)
-                                    struct (v452, v0)
-                            else
-                                let v455 : bool = 1uy = v52
-                                if v455 then
-                                    let v457 : bool = v0 = ""
-                                    let v461 : UH1 =
-                                        if v457 then
-                                            v1
-                                        else
-                                            let v458 : UH1 = UH1_0
-                                            let v459 : UH1 = UH1_1(v0, v458)
-                                            method15(v1, v459)
-                                    struct (v461, v0)
-                                else
-                                    let v463 : bool = v0 = ""
-                                    let v467 : UH1 =
-                                        if v463 then
-                                            v1
-                                        else
-                                            let v464 : UH1 = UH1_0
-                                            let v465 : UH1 = UH1_1(v0, v464)
-                                            method15(v1, v465)
-                                    struct (v467, v0)
-                        | _ ->
-                            let v472 : bool = 1uy = v52
-                            if v472 then
-                                let v474 : bool = v0 = ""
-                                let v478 : UH1 =
-                                    if v474 then
-                                        v1
-                                    else
-                                        let v475 : UH1 = UH1_0
-                                        let v476 : UH1 = UH1_1(v0, v475)
-                                        method15(v1, v476)
-                                struct (v478, v0)
-                            else
-                                let v480 : bool = v0 = ""
-                                let v484 : UH1 =
-                                    if v480 then
-                                        v1
-                                    else
-                                        let v481 : UH1 = UH1_0
-                                        let v482 : UH1 = UH1_1(v0, v481)
-                                        method15(v1, v482)
-                                struct (v484, v0)
-                    else
-                        let v489 : bool = '`' = v53
-                        if v489 then
-                            match v3 with
-                            | US7_1(v490) -> (* Quoted *)
-                                let v491 : bool = '"' = v490
-                                if v491 then
-                                    let v492 : bool = 1uy = v52
-                                    if v492 then
-                                        let v494 : bool = v0 = ""
-                                        let v498 : UH1 =
-                                            if v494 then
-                                                v1
-                                            else
-                                                let v495 : UH1 = UH1_0
-                                                let v496 : UH1 = UH1_1(v0, v495)
-                                                method15(v1, v496)
-                                        struct (v498, v0)
-                                    else
-                                        let v500 : bool = v0 = ""
-                                        let v504 : UH1 =
-                                            if v500 then
-                                                v1
-                                            else
-                                                let v501 : UH1 = UH1_0
-                                                let v502 : UH1 = UH1_1(v0, v501)
-                                                method15(v1, v502)
-                                        struct (v504, v0)
-                                else
-                                    let v507 : bool = 1uy = v52
-                                    if v507 then
-                                        let v509 : bool = v0 = ""
-                                        let v513 : UH1 =
-                                            if v509 then
-                                                v1
-                                            else
-                                                let v510 : UH1 = UH1_0
-                                                let v511 : UH1 = UH1_1(v0, v510)
-                                                method15(v1, v511)
-                                        struct (v513, v0)
-                                    else
-                                        let v515 : bool = v0 = ""
-                                        let v519 : UH1 =
-                                            if v515 then
-                                                v1
-                                            else
-                                                let v516 : UH1 = UH1_0
-                                                let v517 : UH1 = UH1_1(v0, v516)
-                                                method15(v1, v517)
-                                        struct (v519, v0)
-                            | _ ->
-                                let v524 : bool = 1uy = v52
-                                if v524 then
-                                    let v526 : bool = v0 = ""
-                                    let v530 : UH1 =
-                                        if v526 then
-                                            v1
-                                        else
-                                            let v527 : UH1 = UH1_0
-                                            let v528 : UH1 = UH1_1(v0, v527)
-                                            method15(v1, v528)
-                                    struct (v530, v0)
-                                else
-                                    let v532 : bool = v0 = ""
-                                    let v536 : UH1 =
-                                        if v532 then
-                                            v1
-                                        else
-                                            let v533 : UH1 = UH1_0
-                                            let v534 : UH1 = UH1_1(v0, v533)
-                                            method15(v1, v534)
-                                    struct (v536, v0)
-                        else
-                            let v541 : bool = 1uy = v52
-                            if v541 then
-                                let v543 : bool = v0 = ""
-                                let v547 : UH1 =
-                                    if v543 then
-                                        v1
-                                    else
-                                        let v544 : UH1 = UH1_0
-                                        let v545 : UH1 = UH1_1(v0, v544)
-                                        method15(v1, v545)
-                                struct (v547, v0)
-                            else
-                                let v549 : bool = v0 = ""
-                                let v553 : UH1 =
-                                    if v549 then
-                                        v1
-                                    else
-                                        let v550 : UH1 = UH1_0
-                                        let v551 : UH1 = UH1_1(v0, v550)
-                                        method15(v1, v551)
-                                struct (v553, v0)
-                else
-                    let v560 : bool = 1uy = v52
-                    if v560 then
-                        let v562 : bool = v0 = ""
-                        let v566 : UH1 =
-                            if v562 then
-                                v1
-                            else
-                                let v563 : UH1 = UH1_0
-                                let v564 : UH1 = UH1_1(v0, v563)
-                                method15(v1, v564)
-                        struct (v566, v0)
-                    else
-                        let v568 : bool = v0 = ""
-                        let v572 : UH1 =
-                            if v568 then
-                                v1
-                            else
-                                let v569 : UH1 = UH1_0
-                                let v570 : UH1 = UH1_1(v0, v569)
-                                method15(v1, v570)
-                        struct (v572, v0)
-    | US7_1(v581) -> (* Quoted *)
-        let v582 : bool = '"' = v581
-        if v582 then
-            match v3 with
-            | US7_1(v583) -> (* Quoted *)
-                match v2 with
-                | UH0_1(v584, v585) -> (* Cons *)
-                    let v586 : bool = '"' = v584
-                    if v586 then
-                        let v587 : US7 = US7_0
-                        method13(v0, v1, v585, v4, v587)
-                    else
-                        let v590 : bool = '\\' = v581
-                        if v590 then
-                            let v591 : bool = '\\' = v584
-                            if v591 then
-                                let v592 : uint8 = 0uy
-                                let v593 : US7 = US7_2(v592, v584)
-                                method13(v0, v1, v585, v4, v593)
-                            else
-                                let v596 : bool = '`' = v584
-                                if v596 then
-                                    let v597 : uint8 = 0uy
-                                    let v598 : US7 = US7_2(v597, v584)
-                                    method13(v0, v1, v585, v4, v598)
-                                else
-                                    let v601 : bool = ' ' = v584
-                                    if v601 then
-                                        let v602 : string = $"{v0} "
-                                        method14(v602, v1, v585, v4)
-                                    else
-                                        let v605 : string = $"{v0}{v584}"
-                                        method14(v605, v1, v585, v4)
-                        else
-                            let v614 : bool = '`' = v581
-                            if v614 then
-                                let v615 : bool = '\\' = v584
-                                if v615 then
-                                    let v616 : uint8 = 0uy
-                                    let v617 : US7 = US7_2(v616, v584)
-                                    method13(v0, v1, v585, v4, v617)
-                                else
-                                    let v620 : bool = '`' = v584
-                                    if v620 then
-                                        let v621 : uint8 = 0uy
-                                        let v622 : US7 = US7_2(v621, v584)
-                                        method13(v0, v1, v585, v4, v622)
-                                    else
-                                        let v625 : bool = ' ' = v584
-                                        if v625 then
-                                            let v626 : string = $"{v0} "
-                                            method14(v626, v1, v585, v4)
-                                        else
-                                            let v629 : string = $"{v0}{v584}"
-                                            method14(v629, v1, v585, v4)
-                            else
-                                let v638 : bool = '\\' = v584
-                                if v638 then
-                                    let v639 : uint8 = 0uy
-                                    let v640 : US7 = US7_2(v639, v584)
-                                    method13(v0, v1, v585, v4, v640)
-                                else
-                                    let v643 : bool = '`' = v584
-                                    if v643 then
-                                        let v644 : uint8 = 0uy
-                                        let v645 : US7 = US7_2(v644, v584)
-                                        method13(v0, v1, v585, v4, v645)
-                                    else
-                                        let v648 : bool = ' ' = v584
-                                        if v648 then
-                                            let v649 : string = $"{v0} "
-                                            method14(v649, v1, v585, v4)
-                                        else
-                                            let v652 : string = $"{v0}{v584}"
-                                            method14(v652, v1, v585, v4)
-                | _ ->
-                    let v667 : bool = '\\' = v581
-                    if v667 then
-                        let v669 : bool = v0 = ""
-                        let v673 : UH1 =
-                            if v669 then
-                                v1
-                            else
-                                let v670 : UH1 = UH1_0
-                                let v671 : UH1 = UH1_1(v0, v670)
-                                method15(v1, v671)
-                        struct (v673, v0)
-                    else
-                        let v674 : bool = '`' = v581
-                        if v674 then
-                            let v676 : bool = v0 = ""
-                            let v680 : UH1 =
-                                if v676 then
-                                    v1
-                                else
-                                    let v677 : UH1 = UH1_0
-                                    let v678 : UH1 = UH1_1(v0, v677)
-                                    method15(v1, v678)
-                            struct (v680, v0)
-                        else
-                            let v682 : bool = v0 = ""
-                            let v686 : UH1 =
-                                if v682 then
-                                    v1
-                                else
-                                    let v683 : UH1 = UH1_0
-                                    let v684 : UH1 = UH1_1(v0, v683)
-                                    method15(v1, v684)
-                            struct (v686, v0)
-            | _ ->
-                let v693 : bool = '\\' = v581
-                if v693 then
-                    match v2 with
-                    | UH0_1(v694, v695) -> (* Cons *)
-                        let v696 : bool = '"' = v694
-                        if v696 then
-                            let v697 : US7 = US7_2(0uy, '\\')
-                            let v698 : bool = v3 <> v697 
-                            let v701 : bool =
-                                if v698 then
-                                    let v699 : US7 = US7_2(0uy, '`')
-                                    let v700 : bool = v3 <> v699 
-                                    v700
-                                else
-                                    false
-                            if v701 then
-                                let v702 : string = $"{v0}{v581}\""
-                                let v703 : char = '"'
-                                let v704 : US7 = US7_1(v703)
-                                method13(v702, v1, v695, v4, v704)
-                            else
-                                let v707 : US7 = US7_0
-                                method13(v0, v1, v695, v4, v707)
-                        else
-                            let v712 : bool = '\\' = v694
-                            if v712 then
-                                let v713 : uint8 = 1uy
-                                let v714 : US7 = US7_2(v713, v694)
-                                method13(v0, v1, v695, v4, v714)
-                            else
-                                let v717 : bool = '`' = v694
-                                if v717 then
-                                    let v718 : uint8 = 1uy
-                                    let v719 : US7 = US7_2(v718, v694)
-                                    method13(v0, v1, v695, v4, v719)
-                                else
-                                    match v3 with
-                                    | US7_2(v722, v723) -> (* Escaped *)
-                                        let v724 : bool = 0uy = v722
-                                        if v724 then
-                                            let v725 : bool = ' ' = v694
-                                            if v725 then
-                                                let v726 : string = $"{v0} "
-                                                method14(v726, v1, v695, v4)
-                                            else
-                                                let v729 : string = $"{v0}{v694}"
-                                                method14(v729, v1, v695, v4)
-                                        else
-                                            let v734 : bool = ' ' = v694
-                                            if v734 then
-                                                let v735 : string = $"{v0} "
-                                                method14(v735, v1, v695, v4)
-                                            else
-                                                let v738 : string = $"{v0}{v694}"
-                                                method14(v738, v1, v695, v4)
-                                    | _ ->
-                                        let v745 : bool = ' ' = v694
-                                        if v745 then
-                                            let v746 : string = $"{v0} "
-                                            method14(v746, v1, v695, v4)
-                                        else
-                                            let v749 : string = $"{v0}{v694}"
-                                            method14(v749, v1, v695, v4)
-                    | _ ->
-                        match v3 with
-                        | US7_2(v762, v763) -> (* Escaped *)
-                            let v764 : bool = 0uy = v762
-                            if v764 then
-                                let v766 : bool = v0 = ""
-                                let v770 : UH1 =
-                                    if v766 then
-                                        v1
-                                    else
-                                        let v767 : UH1 = UH1_0
-                                        let v768 : UH1 = UH1_1(v0, v767)
-                                        method15(v1, v768)
-                                struct (v770, v0)
-                            else
-                                let v772 : bool = v0 = ""
-                                let v776 : UH1 =
-                                    if v772 then
-                                        v1
-                                    else
-                                        let v773 : UH1 = UH1_0
-                                        let v774 : UH1 = UH1_1(v0, v773)
-                                        method15(v1, v774)
-                                struct (v776, v0)
-                        | _ ->
-                            let v780 : bool = v0 = ""
-                            let v784 : UH1 =
-                                if v780 then
-                                    v1
-                                else
-                                    let v781 : UH1 = UH1_0
-                                    let v782 : UH1 = UH1_1(v0, v781)
-                                    method15(v1, v782)
-                            struct (v784, v0)
-                else
-                    let v789 : bool = '`' = v581
-                    if v789 then
-                        match v2 with
-                        | UH0_1(v790, v791) -> (* Cons *)
-                            let v792 : bool = '"' = v790
-                            if v792 then
-                                let v793 : US7 = US7_2(0uy, '\\')
-                                let v794 : bool = v3 <> v793 
-                                let v797 : bool =
-                                    if v794 then
-                                        let v795 : US7 = US7_2(0uy, '`')
-                                        let v796 : bool = v3 <> v795 
-                                        v796
-                                    else
-                                        false
-                                if v797 then
-                                    let v798 : string = $"{v0}{v581}\""
-                                    let v799 : char = '"'
-                                    let v800 : US7 = US7_1(v799)
-                                    method13(v798, v1, v791, v4, v800)
-                                else
-                                    let v803 : US7 = US7_0
-                                    method13(v0, v1, v791, v4, v803)
-                            else
-                                let v808 : bool = '\\' = v790
-                                if v808 then
-                                    let v809 : uint8 = 1uy
-                                    let v810 : US7 = US7_2(v809, v790)
-                                    method13(v0, v1, v791, v4, v810)
-                                else
-                                    let v813 : bool = '`' = v790
-                                    if v813 then
-                                        let v814 : uint8 = 1uy
-                                        let v815 : US7 = US7_2(v814, v790)
-                                        method13(v0, v1, v791, v4, v815)
-                                    else
-                                        match v3 with
-                                        | US7_2(v818, v819) -> (* Escaped *)
-                                            let v820 : bool = 0uy = v818
-                                            if v820 then
-                                                let v821 : bool = ' ' = v790
-                                                if v821 then
-                                                    let v822 : string = $"{v0} "
-                                                    method14(v822, v1, v791, v4)
-                                                else
-                                                    let v825 : string = $"{v0}{v790}"
-                                                    method14(v825, v1, v791, v4)
-                                            else
-                                                let v830 : bool = ' ' = v790
-                                                if v830 then
-                                                    let v831 : string = $"{v0} "
-                                                    method14(v831, v1, v791, v4)
-                                                else
-                                                    let v834 : string = $"{v0}{v790}"
-                                                    method14(v834, v1, v791, v4)
-                                        | _ ->
-                                            let v841 : bool = ' ' = v790
-                                            if v841 then
-                                                let v842 : string = $"{v0} "
-                                                method14(v842, v1, v791, v4)
-                                            else
-                                                let v845 : string = $"{v0}{v790}"
-                                                method14(v845, v1, v791, v4)
-                        | _ ->
-                            match v3 with
-                            | US7_2(v858, v859) -> (* Escaped *)
-                                let v860 : bool = 0uy = v858
-                                if v860 then
-                                    let v862 : bool = v0 = ""
-                                    let v866 : UH1 =
-                                        if v862 then
-                                            v1
-                                        else
-                                            let v863 : UH1 = UH1_0
-                                            let v864 : UH1 = UH1_1(v0, v863)
-                                            method15(v1, v864)
-                                    struct (v866, v0)
-                                else
-                                    let v868 : bool = v0 = ""
-                                    let v872 : UH1 =
-                                        if v868 then
-                                            v1
-                                        else
-                                            let v869 : UH1 = UH1_0
-                                            let v870 : UH1 = UH1_1(v0, v869)
-                                            method15(v1, v870)
-                                    struct (v872, v0)
-                            | _ ->
-                                let v876 : bool = v0 = ""
-                                let v880 : UH1 =
-                                    if v876 then
-                                        v1
-                                    else
-                                        let v877 : UH1 = UH1_0
-                                        let v878 : UH1 = UH1_1(v0, v877)
-                                        method15(v1, v878)
-                                struct (v880, v0)
-                    else
-                        match v2 with
-                        | UH0_1(v885, v886) -> (* Cons *)
-                            let v887 : bool = '\\' = v885
-                            if v887 then
-                                let v888 : uint8 = 1uy
-                                let v889 : US7 = US7_2(v888, v885)
-                                method13(v0, v1, v886, v4, v889)
-                            else
-                                let v892 : bool = '`' = v885
-                                if v892 then
-                                    let v893 : uint8 = 1uy
-                                    let v894 : US7 = US7_2(v893, v885)
-                                    method13(v0, v1, v886, v4, v894)
-                                else
-                                    match v3 with
-                                    | US7_2(v897, v898) -> (* Escaped *)
-                                        let v899 : bool = 0uy = v897
-                                        if v899 then
-                                            let v900 : bool = '"' = v885
-                                            if v900 then
-                                                let v901 : string = $"{v0}"
-                                                let v902 : char = '"'
-                                                let v903 : US7 = US7_1(v902)
-                                                method13(v901, v1, v886, v4, v903)
-                                            else
-                                                let v906 : bool = ' ' = v885
-                                                if v906 then
-                                                    let v907 : string = $"{v0} "
-                                                    method14(v907, v1, v886, v4)
-                                                else
-                                                    let v910 : string = $"{v0}{v885}"
-                                                    method14(v910, v1, v886, v4)
-                                        else
-                                            let v917 : bool = '"' = v885
-                                            if v917 then
-                                                let v918 : UH1 = UH1_0
-                                                let v919 : UH1 = UH1_1(v0, v918)
-                                                let v920 : UH1 = method15(v1, v919)
-                                                let v921 : string = ""
-                                                let v922 : US7 = US7_0
-                                                method13(v921, v920, v886, v4, v922)
-                                            else
-                                                let v925 : bool = ' ' = v885
-                                                if v925 then
-                                                    let v926 : string = $"{v0} "
-                                                    method14(v926, v1, v886, v4)
-                                                else
-                                                    let v929 : string = $"{v0}{v885}"
-                                                    method14(v929, v1, v886, v4)
-                                    | _ ->
-                                        let v938 : bool = '"' = v885
-                                        if v938 then
-                                            let v939 : UH1 = UH1_0
-                                            let v940 : UH1 = UH1_1(v0, v939)
-                                            let v941 : UH1 = method15(v1, v940)
-                                            let v942 : string = ""
-                                            let v943 : US7 = US7_0
-                                            method13(v942, v941, v886, v4, v943)
-                                        else
-                                            let v946 : bool = ' ' = v885
-                                            if v946 then
-                                                let v947 : string = $"{v0} "
-                                                method14(v947, v1, v886, v4)
-                                            else
-                                                let v950 : string = $"{v0}{v885}"
-                                                method14(v950, v1, v886, v4)
-                        | _ ->
-                            match v3 with
-                            | US7_2(v963, v964) -> (* Escaped *)
-                                let v965 : bool = 0uy = v963
-                                if v965 then
-                                    let v967 : bool = v0 = ""
-                                    let v971 : UH1 =
-                                        if v967 then
-                                            v1
-                                        else
-                                            let v968 : UH1 = UH1_0
-                                            let v969 : UH1 = UH1_1(v0, v968)
-                                            method15(v1, v969)
-                                    struct (v971, v0)
-                                else
-                                    let v973 : bool = v0 = ""
-                                    let v977 : UH1 =
-                                        if v973 then
-                                            v1
-                                        else
-                                            let v974 : UH1 = UH1_0
-                                            let v975 : UH1 = UH1_1(v0, v974)
-                                            method15(v1, v975)
-                                    struct (v977, v0)
-                            | _ ->
-                                let v981 : bool = v0 = ""
-                                let v985 : UH1 =
-                                    if v981 then
-                                        v1
-                                    else
-                                        let v982 : UH1 = UH1_0
-                                        let v983 : UH1 = UH1_1(v0, v982)
-                                        method15(v1, v983)
-                                struct (v985, v0)
-        else
-            let v996 : bool = '\\' = v581
-            if v996 then
-                match v2 with
-                | UH0_1(v997, v998) -> (* Cons *)
-                    let v999 : bool = '"' = v997
-                    if v999 then
-                        let v1000 : US7 = US7_2(0uy, '\\')
-                        let v1001 : bool = v3 <> v1000 
-                        let v1004 : bool =
-                            if v1001 then
-                                let v1002 : US7 = US7_2(0uy, '`')
-                                let v1003 : bool = v3 <> v1002 
-                                v1003
-                            else
-                                false
-                        if v1004 then
-                            let v1005 : string = $"{v0}{v581}\""
-                            let v1006 : char = '"'
-                            let v1007 : US7 = US7_1(v1006)
-                            method13(v1005, v1, v998, v4, v1007)
-                        else
-                            match v3 with
-                            | US7_1(v1010) -> (* Quoted *)
-                                let v1011 : string = $"{v0}{v581}\""
-                                let v1012 : char = '"'
-                                let v1013 : US7 = US7_1(v1012)
-                                method13(v1011, v1, v998, v4, v1013)
-                            | _ ->
-                                let v1016 : US7 = US7_0
-                                method13(v0, v1, v998, v4, v1016)
-                    else
-                        match v3 with
-                        | US7_1(v1023) -> (* Quoted *)
-                            let v1024 : bool = '\\' = v997
-                            if v1024 then
-                                let v1025 : uint8 = 0uy
-                                let v1026 : US7 = US7_2(v1025, v997)
-                                method13(v0, v1, v998, v4, v1026)
-                            else
-                                let v1029 : bool = '`' = v997
-                                if v1029 then
-                                    let v1030 : uint8 = 0uy
-                                    let v1031 : US7 = US7_2(v1030, v997)
-                                    method13(v0, v1, v998, v4, v1031)
-                                else
-                                    let v1034 : bool = ' ' = v997
-                                    if v1034 then
-                                        let v1035 : string = $"{v0} "
-                                        method14(v1035, v1, v998, v4)
-                                    else
-                                        let v1038 : string = $"{v0}{v997}"
-                                        method14(v1038, v1, v998, v4)
-                        | _ ->
-                            let v1047 : bool = '\\' = v997
-                            if v1047 then
-                                let v1048 : uint8 = 1uy
-                                let v1049 : US7 = US7_2(v1048, v997)
-                                method13(v0, v1, v998, v4, v1049)
-                            else
-                                let v1052 : bool = '`' = v997
-                                if v1052 then
-                                    let v1053 : uint8 = 1uy
-                                    let v1054 : US7 = US7_2(v1053, v997)
-                                    method13(v0, v1, v998, v4, v1054)
-                                else
-                                    match v3 with
-                                    | US7_2(v1057, v1058) -> (* Escaped *)
-                                        let v1059 : bool = 0uy = v1057
-                                        if v1059 then
-                                            let v1060 : bool = ' ' = v997
-                                            if v1060 then
-                                                let v1061 : string = $"{v0} "
-                                                method14(v1061, v1, v998, v4)
-                                            else
-                                                let v1064 : string = $"{v0}{v997}"
-                                                method14(v1064, v1, v998, v4)
-                                        else
-                                            let v1069 : bool = ' ' = v997
-                                            if v1069 then
-                                                let v1070 : string = $"{v0} "
-                                                method14(v1070, v1, v998, v4)
-                                            else
-                                                let v1073 : string = $"{v0}{v997}"
-                                                method14(v1073, v1, v998, v4)
-                                    | _ ->
-                                        let v1080 : bool = ' ' = v997
-                                        if v1080 then
-                                            let v1081 : string = $"{v0} "
-                                            method14(v1081, v1, v998, v4)
-                                        else
-                                            let v1084 : string = $"{v0}{v997}"
-                                            method14(v1084, v1, v998, v4)
-                | _ ->
-                    match v3 with
-                    | US7_2(v1106, v1107) -> (* Escaped *)
-                        let v1108 : bool = 0uy = v1106
-                        if v1108 then
-                            let v1110 : bool = v0 = ""
-                            let v1114 : UH1 =
-                                if v1110 then
-                                    v1
-                                else
-                                    let v1111 : UH1 = UH1_0
-                                    let v1112 : UH1 = UH1_1(v0, v1111)
-                                    method15(v1, v1112)
-                            struct (v1114, v0)
-                        else
-                            let v1116 : bool = v0 = ""
-                            let v1120 : UH1 =
-                                if v1116 then
-                                    v1
-                                else
-                                    let v1117 : UH1 = UH1_0
-                                    let v1118 : UH1 = UH1_1(v0, v1117)
-                                    method15(v1, v1118)
-                            struct (v1120, v0)
-                    | US7_1(v1099) -> (* Quoted *)
-                        let v1101 : bool = v0 = ""
-                        let v1105 : UH1 =
-                            if v1101 then
-                                v1
-                            else
-                                let v1102 : UH1 = UH1_0
-                                let v1103 : UH1 = UH1_1(v0, v1102)
-                                method15(v1, v1103)
-                        struct (v1105, v0)
-                    | _ ->
-                        let v1124 : bool = v0 = ""
-                        let v1128 : UH1 =
-                            if v1124 then
-                                v1
-                            else
-                                let v1125 : UH1 = UH1_0
-                                let v1126 : UH1 = UH1_1(v0, v1125)
-                                method15(v1, v1126)
-                        struct (v1128, v0)
-            else
-                let v1135 : bool = '`' = v581
-                if v1135 then
-                    match v2 with
-                    | UH0_1(v1136, v1137) -> (* Cons *)
-                        let v1138 : bool = '"' = v1136
-                        if v1138 then
-                            let v1139 : US7 = US7_2(0uy, '\\')
-                            let v1140 : bool = v3 <> v1139 
-                            let v1143 : bool =
-                                if v1140 then
-                                    let v1141 : US7 = US7_2(0uy, '`')
-                                    let v1142 : bool = v3 <> v1141 
-                                    v1142
-                                else
-                                    false
-                            if v1143 then
-                                let v1144 : string = $"{v0}{v581}\""
-                                let v1145 : char = '"'
-                                let v1146 : US7 = US7_1(v1145)
-                                method13(v1144, v1, v1137, v4, v1146)
-                            else
-                                match v3 with
-                                | US7_1(v1149) -> (* Quoted *)
-                                    let v1150 : string = $"{v0}{v581}\""
-                                    let v1151 : char = '"'
-                                    let v1152 : US7 = US7_1(v1151)
-                                    method13(v1150, v1, v1137, v4, v1152)
-                                | _ ->
-                                    let v1155 : US7 = US7_0
-                                    method13(v0, v1, v1137, v4, v1155)
-                        else
-                            match v3 with
-                            | US7_1(v1162) -> (* Quoted *)
-                                let v1163 : bool = '\\' = v1136
-                                if v1163 then
-                                    let v1164 : uint8 = 0uy
-                                    let v1165 : US7 = US7_2(v1164, v1136)
-                                    method13(v0, v1, v1137, v4, v1165)
-                                else
-                                    let v1168 : bool = '`' = v1136
-                                    if v1168 then
-                                        let v1169 : uint8 = 0uy
-                                        let v1170 : US7 = US7_2(v1169, v1136)
-                                        method13(v0, v1, v1137, v4, v1170)
-                                    else
-                                        let v1173 : bool = ' ' = v1136
-                                        if v1173 then
-                                            let v1174 : string = $"{v0} "
-                                            method14(v1174, v1, v1137, v4)
-                                        else
-                                            let v1177 : string = $"{v0}{v1136}"
-                                            method14(v1177, v1, v1137, v4)
-                            | _ ->
-                                let v1186 : bool = '\\' = v1136
-                                if v1186 then
-                                    let v1187 : uint8 = 1uy
-                                    let v1188 : US7 = US7_2(v1187, v1136)
-                                    method13(v0, v1, v1137, v4, v1188)
-                                else
-                                    let v1191 : bool = '`' = v1136
-                                    if v1191 then
-                                        let v1192 : uint8 = 1uy
-                                        let v1193 : US7 = US7_2(v1192, v1136)
-                                        method13(v0, v1, v1137, v4, v1193)
-                                    else
-                                        match v3 with
-                                        | US7_2(v1196, v1197) -> (* Escaped *)
-                                            let v1198 : bool = 0uy = v1196
-                                            if v1198 then
-                                                let v1199 : bool = ' ' = v1136
-                                                if v1199 then
-                                                    let v1200 : string = $"{v0} "
-                                                    method14(v1200, v1, v1137, v4)
-                                                else
-                                                    let v1203 : string = $"{v0}{v1136}"
-                                                    method14(v1203, v1, v1137, v4)
-                                            else
-                                                let v1208 : bool = ' ' = v1136
-                                                if v1208 then
-                                                    let v1209 : string = $"{v0} "
-                                                    method14(v1209, v1, v1137, v4)
-                                                else
-                                                    let v1212 : string = $"{v0}{v1136}"
-                                                    method14(v1212, v1, v1137, v4)
-                                        | _ ->
-                                            let v1219 : bool = ' ' = v1136
-                                            if v1219 then
-                                                let v1220 : string = $"{v0} "
-                                                method14(v1220, v1, v1137, v4)
-                                            else
-                                                let v1223 : string = $"{v0}{v1136}"
-                                                method14(v1223, v1, v1137, v4)
-                    | _ ->
-                        match v3 with
-                        | US7_2(v1245, v1246) -> (* Escaped *)
-                            let v1247 : bool = 0uy = v1245
-                            if v1247 then
-                                let v1249 : bool = v0 = ""
-                                let v1253 : UH1 =
-                                    if v1249 then
-                                        v1
-                                    else
-                                        let v1250 : UH1 = UH1_0
-                                        let v1251 : UH1 = UH1_1(v0, v1250)
-                                        method15(v1, v1251)
-                                struct (v1253, v0)
-                            else
-                                let v1255 : bool = v0 = ""
-                                let v1259 : UH1 =
-                                    if v1255 then
-                                        v1
-                                    else
-                                        let v1256 : UH1 = UH1_0
-                                        let v1257 : UH1 = UH1_1(v0, v1256)
-                                        method15(v1, v1257)
-                                struct (v1259, v0)
-                        | US7_1(v1238) -> (* Quoted *)
-                            let v1240 : bool = v0 = ""
-                            let v1244 : UH1 =
-                                if v1240 then
-                                    v1
-                                else
-                                    let v1241 : UH1 = UH1_0
-                                    let v1242 : UH1 = UH1_1(v0, v1241)
-                                    method15(v1, v1242)
-                            struct (v1244, v0)
-                        | _ ->
-                            let v1263 : bool = v0 = ""
-                            let v1267 : UH1 =
-                                if v1263 then
-                                    v1
-                                else
-                                    let v1264 : UH1 = UH1_0
-                                    let v1265 : UH1 = UH1_1(v0, v1264)
-                                    method15(v1, v1265)
-                            struct (v1267, v0)
-                else
-                    match v3 with
-                    | US7_1(v1274) -> (* Quoted *)
-                        match v2 with
-                        | UH0_1(v1275, v1276) -> (* Cons *)
-                            let v1277 : bool = '\\' = v1275
-                            if v1277 then
-                                let v1278 : uint8 = 0uy
-                                let v1279 : US7 = US7_2(v1278, v1275)
-                                method13(v0, v1, v1276, v4, v1279)
-                            else
-                                let v1282 : bool = '`' = v1275
-                                if v1282 then
-                                    let v1283 : uint8 = 0uy
-                                    let v1284 : US7 = US7_2(v1283, v1275)
-                                    method13(v0, v1, v1276, v4, v1284)
-                                else
-                                    let v1287 : bool = '"' = v1275
-                                    if v1287 then
-                                        let v1288 : UH1 = UH1_0
-                                        let v1289 : UH1 = UH1_1(v0, v1288)
-                                        let v1290 : UH1 = method15(v1, v1289)
-                                        let v1291 : string = ""
-                                        let v1292 : US7 = US7_0
-                                        method13(v1291, v1290, v1276, v4, v1292)
-                                    else
-                                        let v1295 : bool = ' ' = v1275
-                                        if v1295 then
-                                            let v1296 : string = $"{v0} "
-                                            method14(v1296, v1, v1276, v4)
-                                        else
-                                            let v1299 : string = $"{v0}{v1275}"
-                                            method14(v1299, v1, v1276, v4)
-                        | _ ->
-                            let v1311 : bool = v0 = ""
-                            let v1315 : UH1 =
-                                if v1311 then
-                                    v1
-                                else
-                                    let v1312 : UH1 = UH1_0
-                                    let v1313 : UH1 = UH1_1(v0, v1312)
-                                    method15(v1, v1313)
-                            struct (v1315, v0)
-                    | _ ->
-                        match v2 with
-                        | UH0_1(v1318, v1319) -> (* Cons *)
-                            let v1320 : bool = '\\' = v1318
-                            if v1320 then
-                                let v1321 : uint8 = 1uy
-                                let v1322 : US7 = US7_2(v1321, v1318)
-                                method13(v0, v1, v1319, v4, v1322)
-                            else
-                                let v1325 : bool = '`' = v1318
-                                if v1325 then
-                                    let v1326 : uint8 = 1uy
-                                    let v1327 : US7 = US7_2(v1326, v1318)
-                                    method13(v0, v1, v1319, v4, v1327)
-                                else
-                                    match v3 with
-                                    | US7_2(v1330, v1331) -> (* Escaped *)
-                                        let v1332 : bool = 0uy = v1330
-                                        if v1332 then
-                                            let v1333 : bool = '"' = v1318
-                                            if v1333 then
-                                                let v1334 : string = $"{v0}"
-                                                let v1335 : char = '"'
-                                                let v1336 : US7 = US7_1(v1335)
-                                                method13(v1334, v1, v1319, v4, v1336)
-                                            else
-                                                let v1339 : bool = ' ' = v1318
-                                                if v1339 then
-                                                    let v1340 : string = $"{v0} "
-                                                    method14(v1340, v1, v1319, v4)
-                                                else
-                                                    let v1343 : string = $"{v0}{v1318}"
-                                                    method14(v1343, v1, v1319, v4)
-                                        else
-                                            let v1350 : bool = '"' = v1318
-                                            if v1350 then
-                                                let v1351 : UH1 = UH1_0
-                                                let v1352 : UH1 = UH1_1(v0, v1351)
-                                                let v1353 : UH1 = method15(v1, v1352)
-                                                let v1354 : string = ""
-                                                let v1355 : US7 = US7_0
-                                                method13(v1354, v1353, v1319, v4, v1355)
-                                            else
-                                                let v1358 : bool = ' ' = v1318
-                                                if v1358 then
-                                                    let v1359 : string = $"{v0} "
-                                                    method14(v1359, v1, v1319, v4)
-                                                else
-                                                    let v1362 : string = $"{v0}{v1318}"
-                                                    method14(v1362, v1, v1319, v4)
-                                    | _ ->
-                                        let v1371 : bool = '"' = v1318
-                                        if v1371 then
-                                            let v1372 : UH1 = UH1_0
-                                            let v1373 : UH1 = UH1_1(v0, v1372)
-                                            let v1374 : UH1 = method15(v1, v1373)
-                                            let v1375 : string = ""
-                                            let v1376 : US7 = US7_0
-                                            method13(v1375, v1374, v1319, v4, v1376)
-                                        else
-                                            let v1379 : bool = ' ' = v1318
-                                            if v1379 then
-                                                let v1380 : string = $"{v0} "
-                                                method14(v1380, v1, v1319, v4)
-                                            else
-                                                let v1383 : string = $"{v0}{v1318}"
-                                                method14(v1383, v1, v1319, v4)
-                        | _ ->
-                            match v3 with
-                            | US7_2(v1396, v1397) -> (* Escaped *)
-                                let v1398 : bool = 0uy = v1396
-                                if v1398 then
-                                    let v1400 : bool = v0 = ""
-                                    let v1404 : UH1 =
-                                        if v1400 then
-                                            v1
-                                        else
-                                            let v1401 : UH1 = UH1_0
-                                            let v1402 : UH1 = UH1_1(v0, v1401)
-                                            method15(v1, v1402)
-                                    struct (v1404, v0)
-                                else
-                                    let v1406 : bool = v0 = ""
-                                    let v1410 : UH1 =
-                                        if v1406 then
-                                            v1
-                                        else
-                                            let v1407 : UH1 = UH1_0
-                                            let v1408 : UH1 = UH1_1(v0, v1407)
-                                            method15(v1, v1408)
-                                    struct (v1410, v0)
-                            | _ ->
-                                let v1414 : bool = v0 = ""
-                                let v1418 : UH1 =
-                                    if v1414 then
-                                        v1
-                                    else
-                                        let v1415 : UH1 = UH1_0
-                                        let v1416 : UH1 = UH1_1(v0, v1415)
-                                        method15(v1, v1416)
-                                struct (v1418, v0)
-    | US7_0 -> (* Start *)
-        match v2 with
-        | UH0_1(v5, v6) -> (* Cons *)
-            let v7 : bool = '"' = v5
-            if v7 then
-                let v8 : string = ""
-                let v9 : char = '"'
-                let v10 : US7 = US7_1(v9)
-                method13(v8, v1, v6, v4, v10)
-            else
-                let v13 : bool = '\\' = v5
-                if v13 then
-                    let v14 : uint8 = 0uy
-                    let v15 : US7 = US7_2(v14, v5)
-                    method13(v0, v1, v6, v4, v15)
-                else
-                    let v18 : bool = '`' = v5
-                    if v18 then
-                        let v19 : uint8 = 0uy
-                        let v20 : US7 = US7_2(v19, v5)
-                        method13(v0, v1, v6, v4, v20)
-                    else
-                        let v23 : bool = ' ' = v5
-                        if v23 then
-                            let v25 : bool = v0 = ""
-                            let v29 : UH1 =
-                                if v25 then
-                                    v1
-                                else
-                                    let v26 : UH1 = UH1_0
-                                    let v27 : UH1 = UH1_1(v0, v26)
-                                    method15(v1, v27)
-                            let v30 : string = ""
-                            method14(v30, v29, v6, v4)
-                        else
-                            let v33 : string = $"{v0}{v5}"
-                            method14(v33, v1, v6, v4)
-        | _ ->
-            let v45 : bool = v0 = ""
-            let v49 : UH1 =
-                if v45 then
-                    v1
-                else
-                    let v46 : UH1 = UH1_0
-                    let v47 : UH1 = UH1_1(v0, v46)
-                    method15(v1, v47)
-            struct (v49, v0)
-and method16 (v0 : UH1, v1 : string list) : string list =
+                let v46 : char list = []
+                let v47 : char list = '"' :: v46 
+                let v48 : char list = '`' :: v47 
+                let v49 : char list = '\\' :: v48 
+                let v50 : (char list -> (char [])) = List.toArray
+                let v51 : (char []) = v50 v49
+                let v52 : string = $"parsing.none_of / unexpected char: '{v14}' / chars: %A{v51} / s: %A{struct (v2, v3, v4)}"
+                US10_1(v52)
+    let v67 : US12 =
+        match v55 with
+        | US10_1(v64) -> (* Error *)
+            US12_1(v64)
+        | US10_0(v56, v57, v58, v59, v60) -> (* Ok *)
+            let v61 : (char -> string) = _.ToString()
+            let v62 : string = v61 v56
+            US12_0(v62, v57, v58, v59, v60)
+    let v81 : US12 =
+        match v67 with
+        | US12_1(v73) -> (* Error *)
+            let v74 : (struct (string * System.Text.StringBuilder * int32 * int32) -> US12) = closure20()
+            let v75 : (struct (string * System.Text.StringBuilder * int32 * int32) -> US12) = closure21()
+            let v76 : UH2 = UH2_0
+            let v77 : UH2 = UH2_1(v75, v76)
+            let v78 : UH2 = UH2_1(v74, v77)
+            method23(v1, v2, v3, v4, v78)
+        | US12_0(v68, v69, v70, v71, v72) -> (* Ok *)
+            v67
+    match v81 with
+    | US12_1(v89) -> (* Error *)
+        let v90 : UH1 = UH1_0
+        let v91 : UH1 = method24(v0, v90)
+        US9_0(v91, v1, v2, v3, v4)
+    | US12_0(v82, v83, v84, v85, v86) -> (* Ok *)
+        let v87 : UH1 = UH1_1(v82, v0)
+        method21(v87, v83, v84, v85, v86)
+and method25 (v0 : UH1, v1 : string list) : string list =
     match v0 with
     | UH1_1(v2, v3) -> (* Cons *)
-        let v4 : string list = method16(v3, v1)
+        let v4 : string list = method25(v3, v1)
         let v5 : string list = v2 :: v4 
         v5
     | UH1_0 -> (* Nil *)
         v1
-and method12 (v0 : string) : (string []) =
-    let v1 : UH1 = UH1_0
-    let v2 : string = ""
+and method26 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32, v4 : int32) : US9 =
+    let v5 : bool = "" = v1
+    let v55 : US10 =
+        if v5 then
+            let v6 : char list = []
+            let v7 : char list = '"' :: v6 
+            let v8 : char list = '`' :: v7 
+            let v9 : char list = '\\' :: v8 
+            let v10 : (char list -> (char [])) = List.toArray
+            let v11 : (char []) = v10 v9
+            let v12 : string = $"parsing.none_of / unexpected end of input / chars: %A{v11} / s: %A{struct (v2, v3, v4)}"
+            US10_1(v12)
+        else
+            let v14 : char = v1.[int 0]
+            let v15 : (string -> int32) = String.length
+            let v16 : int32 = v15 v1
+            let v17 : (int32 -> int32) = int32
+            let v18 : int32 = v17 1
+            let v19 : (int32 -> int32) = int32
+            let v20 : int32 = v19 v16
+            let v21 : string = v1.[int v18..int v20]
+            let v22 : int64 = 0L
+            let v23 : bool = method22(v14, v22)
+            let v24 : bool = v23 = false
+            if v24 then
+                let v25 : (char -> string) = _.ToString()
+                let v26 : string = v25 v14
+                let v27 : int32 = v26.Length
+                let v28 : (char []) = Array.zeroCreate<char> (v27)
+                let v29 : Mut4 = {l0 = 0} : Mut4
+                while method12(v27, v29) do
+                    let v31 : int32 = v29.l0
+                    let v32 : char = v26.[int v31]
+                    v28.[int v31] <- v32
+                    let v33 : int32 = v31 + 1
+                    v29.l0 <- v33
+                    ()
+                let v34 : ((char []) -> char list) = Array.toList
+                let v35 : char list = v34 v28
+                let v36 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+                let v37 : (char -> (UH0 -> UH0)) = method13()
+                let v38 : (char list -> (UH0 -> UH0)) = v36 v37
+                let v39 : (UH0 -> UH0) = v38 v35
+                let v40 : UH0 = UH0_0
+                let v41 : UH0 = v39 v40
+                let struct (v42 : System.Text.StringBuilder, v43 : int32, v44 : int32) = method19(v41, v2, v3, v4)
+                US10_0(v14, v21, v42, v43, v44)
+            else
+                let v46 : char list = []
+                let v47 : char list = '"' :: v46 
+                let v48 : char list = '`' :: v47 
+                let v49 : char list = '\\' :: v48 
+                let v50 : (char list -> (char [])) = List.toArray
+                let v51 : (char []) = v50 v49
+                let v52 : string = $"parsing.none_of / unexpected char: '{v14}' / chars: %A{v51} / s: %A{struct (v2, v3, v4)}"
+                US10_1(v52)
+    let v67 : US12 =
+        match v55 with
+        | US10_1(v64) -> (* Error *)
+            US12_1(v64)
+        | US10_0(v56, v57, v58, v59, v60) -> (* Ok *)
+            let v61 : (char -> string) = _.ToString()
+            let v62 : string = v61 v56
+            US12_0(v62, v57, v58, v59, v60)
+    match v67 with
+    | US12_1(v75) -> (* Error *)
+        let v76 : UH1 = UH1_0
+        let v77 : UH1 = method24(v0, v76)
+        US9_0(v77, v1, v2, v3, v4)
+    | US12_0(v68, v69, v70, v71, v72) -> (* Ok *)
+        let v73 : UH1 = UH1_1(v68, v0)
+        method26(v73, v69, v70, v71, v72)
+and method27 (v0 : string, v1 : int32) : int32 =
+    let v2 : int32 = v0.Length
+    let v3 : bool = v1 >= v2
+    if v3 then
+        v1
+    else
+        let v4 : char = v0.[int v1]
+        let v5 : bool = v4 = ' '
+        if v5 then
+            let v6 : int32 = v1 + 1
+            method27(v0, v6)
+        else
+            v1
+and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32, v4 : int32) : US9 =
+    let v5 : bool = "" = v1
+    let v57 : US10 =
+        if v5 then
+            let v6 : char list = []
+            let v7 : char list = ' ' :: v6 
+            let v8 : char list = '"' :: v7 
+            let v9 : char list = '`' :: v8 
+            let v10 : char list = '\\' :: v9 
+            let v11 : (char list -> (char [])) = List.toArray
+            let v12 : (char []) = v11 v10
+            let v13 : string = $"parsing.none_of / unexpected end of input / chars: %A{v12} / s: %A{struct (v2, v3, v4)}"
+            US10_1(v13)
+        else
+            let v15 : char = v1.[int 0]
+            let v16 : (string -> int32) = String.length
+            let v17 : int32 = v16 v1
+            let v18 : (int32 -> int32) = int32
+            let v19 : int32 = v18 1
+            let v20 : (int32 -> int32) = int32
+            let v21 : int32 = v20 v17
+            let v22 : string = v1.[int v19..int v21]
+            let v23 : int64 = 0L
+            let v24 : bool = method18(v15, v23)
+            let v25 : bool = v24 = false
+            if v25 then
+                let v26 : (char -> string) = _.ToString()
+                let v27 : string = v26 v15
+                let v28 : int32 = v27.Length
+                let v29 : (char []) = Array.zeroCreate<char> (v28)
+                let v30 : Mut4 = {l0 = 0} : Mut4
+                while method12(v28, v30) do
+                    let v32 : int32 = v30.l0
+                    let v33 : char = v27.[int v32]
+                    v29.[int v32] <- v33
+                    let v34 : int32 = v32 + 1
+                    v30.l0 <- v34
+                    ()
+                let v35 : ((char []) -> char list) = Array.toList
+                let v36 : char list = v35 v29
+                let v37 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+                let v38 : (char -> (UH0 -> UH0)) = method13()
+                let v39 : (char list -> (UH0 -> UH0)) = v37 v38
+                let v40 : (UH0 -> UH0) = v39 v36
+                let v41 : UH0 = UH0_0
+                let v42 : UH0 = v40 v41
+                let struct (v43 : System.Text.StringBuilder, v44 : int32, v45 : int32) = method19(v42, v2, v3, v4)
+                US10_0(v15, v22, v43, v44, v45)
+            else
+                let v47 : char list = []
+                let v48 : char list = ' ' :: v47 
+                let v49 : char list = '"' :: v48 
+                let v50 : char list = '`' :: v49 
+                let v51 : char list = '\\' :: v50 
+                let v52 : (char list -> (char [])) = List.toArray
+                let v53 : (char []) = v52 v51
+                let v54 : string = $"parsing.none_of / unexpected char: '{v15}' / chars: %A{v53} / s: %A{struct (v2, v3, v4)}"
+                US10_1(v54)
+    let v69 : US12 =
+        match v57 with
+        | US10_1(v58) -> (* Error *)
+            US12_1(v58)
+        | US10_0(v60, v61, v62, v63, v64) -> (* Ok *)
+            let v65 : (char -> string) = _.ToString()
+            let v66 : string = v65 v60
+            method20(v66, v61, v62, v63, v64)
+    let v292 : US12 =
+        match v69 with
+        | US12_1(v75) -> (* Error *)
+            let v131 : US10 =
+                if v5 then
+                    let v76 : string = $"parsing.p_char / unexpected end of input / s: %A{struct (v2, v3, v4)}"
+                    US10_1(v76)
+                else
+                    let v78 : char = v1.[int 0]
+                    let v79 : bool = v78 = '"'
+                    if v79 then
+                        let v80 : (string -> int32) = String.length
+                        let v81 : int32 = v80 v1
+                        let v82 : (int32 -> int32) = int32
+                        let v83 : int32 = v82 1
+                        let v84 : (int32 -> int32) = int32
+                        let v85 : int32 = v84 v81
+                        let v86 : string = v1.[int v83..int v85]
+                        let v87 : (char -> string) = _.ToString()
+                        let v88 : string = v87 v78
+                        let v89 : int32 = v88.Length
+                        let v90 : (char []) = Array.zeroCreate<char> (v89)
+                        let v91 : Mut4 = {l0 = 0} : Mut4
+                        while method12(v89, v91) do
+                            let v93 : int32 = v91.l0
+                            let v94 : char = v88.[int v93]
+                            v90.[int v93] <- v94
+                            let v95 : int32 = v93 + 1
+                            v91.l0 <- v95
+                            ()
+                        let v96 : ((char []) -> char list) = Array.toList
+                        let v97 : char list = v96 v90
+                        let v98 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+                        let v99 : (char -> (UH0 -> UH0)) = method13()
+                        let v100 : (char list -> (UH0 -> UH0)) = v98 v99
+                        let v101 : (UH0 -> UH0) = v100 v97
+                        let v102 : UH0 = UH0_0
+                        let v103 : UH0 = v101 v102
+                        let struct (v104 : System.Text.StringBuilder, v105 : int32, v106 : int32) = method19(v103, v2, v3, v4)
+                        US10_0(v78, v86, v104, v105, v106)
+                    else
+                        let v108 : (string -> int32) = String.length
+                        let v109 : int32 = v108 v1
+                        let v110 : string = "\n"
+                        let v111 : int32 = v1.IndexOf v110 
+                        let v112 : int32 = v111 - 1
+                        let v113 : bool = -2 = v112
+                        let v114 : int32 =
+                            if v113 then
+                                v109
+                            else
+                                v112
+                        let v115 : (int32 -> int32) = int32
+                        let v116 : int32 = v115 0
+                        let v117 : (int32 -> int32) = int32
+                        let v118 : int32 = v117 v114
+                        let v119 : string = v1.[int v116..int v118]
+                        let v120 : string = $"parsing.p_char / expected: '{'"'}' / line: {v4} / col: {v3}
+{v2}{v119}"
+                        let v121 : int32 = v3 - 1
+                        let v122 : (int32 -> (string -> string)) = String.replicate
+                        let v123 : (string -> string) = v122 v121
+                        let v124 : string = " "
+                        let v125 : string = v123 v124
+                        let v126 : string = "^"
+                        let v127 : string = v125 + v126 
+                        let v128 : string = $"{v120}
+{v127}
+"
+                        US10_1(v128)
+            let v237 : US12 =
+                match v131 with
+                | US10_1(v234) -> (* Error *)
+                    US12_1(v234)
+                | US10_0(v132, v133, v134, v135, v136) -> (* Ok *)
+                    let v137 : UH1 = UH1_0
+                    let v138 : US9 = method21(v137, v133, v134, v135, v136)
+                    let v155 : US12 =
+                        match v138 with
+                        | US9_1(v152) -> (* Error *)
+                            US12_1(v152)
+                        | US9_0(v139, v140, v141, v142, v143) -> (* Ok *)
+                            let v144 : string list = []
+                            let v145 : string list = method25(v139, v144)
+                            let v146 : string seq = seq { for i = 0 to v145.Length - 1 do yield v145.[i] }
+                            let v147 : (string -> (string seq -> string)) = String.concat
+                            let v148 : string = ""
+                            let v149 : (string seq -> string) = v147 v148
+                            let v150 : string = v149 v146
+                            US12_0(v150, v140, v141, v142, v143)
+                    match v155 with
+                    | US12_1(v229) -> (* Error *)
+                        let v230 : string = "between / expected content"
+                        US12_1(v230)
+                    | US12_0(v156, v157, v158, v159, v160) -> (* Ok *)
+                        let v161 : bool = "" = v157
+                        let v217 : US10 =
+                            if v161 then
+                                let v162 : string = $"parsing.p_char / unexpected end of input / s: %A{struct (v158, v159, v160)}"
+                                US10_1(v162)
+                            else
+                                let v164 : char = v157.[int 0]
+                                let v165 : bool = v164 = '"'
+                                if v165 then
+                                    let v166 : (string -> int32) = String.length
+                                    let v167 : int32 = v166 v157
+                                    let v168 : (int32 -> int32) = int32
+                                    let v169 : int32 = v168 1
+                                    let v170 : (int32 -> int32) = int32
+                                    let v171 : int32 = v170 v167
+                                    let v172 : string = v157.[int v169..int v171]
+                                    let v173 : (char -> string) = _.ToString()
+                                    let v174 : string = v173 v164
+                                    let v175 : int32 = v174.Length
+                                    let v176 : (char []) = Array.zeroCreate<char> (v175)
+                                    let v177 : Mut4 = {l0 = 0} : Mut4
+                                    while method12(v175, v177) do
+                                        let v179 : int32 = v177.l0
+                                        let v180 : char = v174.[int v179]
+                                        v176.[int v179] <- v180
+                                        let v181 : int32 = v179 + 1
+                                        v177.l0 <- v181
+                                        ()
+                                    let v182 : ((char []) -> char list) = Array.toList
+                                    let v183 : char list = v182 v176
+                                    let v184 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+                                    let v185 : (char -> (UH0 -> UH0)) = method13()
+                                    let v186 : (char list -> (UH0 -> UH0)) = v184 v185
+                                    let v187 : (UH0 -> UH0) = v186 v183
+                                    let v188 : UH0 = UH0_0
+                                    let v189 : UH0 = v187 v188
+                                    let struct (v190 : System.Text.StringBuilder, v191 : int32, v192 : int32) = method19(v189, v158, v159, v160)
+                                    US10_0(v164, v172, v190, v191, v192)
+                                else
+                                    let v194 : (string -> int32) = String.length
+                                    let v195 : int32 = v194 v157
+                                    let v196 : string = "\n"
+                                    let v197 : int32 = v157.IndexOf v196 
+                                    let v198 : int32 = v197 - 1
+                                    let v199 : bool = -2 = v198
+                                    let v200 : int32 =
+                                        if v199 then
+                                            v195
+                                        else
+                                            v198
+                                    let v201 : (int32 -> int32) = int32
+                                    let v202 : int32 = v201 0
+                                    let v203 : (int32 -> int32) = int32
+                                    let v204 : int32 = v203 v200
+                                    let v205 : string = v157.[int v202..int v204]
+                                    let v206 : string = $"parsing.p_char / expected: '{'"'}' / line: {v160} / col: {v159}
+{v158}{v205}"
+                                    let v207 : int32 = v159 - 1
+                                    let v208 : (int32 -> (string -> string)) = String.replicate
+                                    let v209 : (string -> string) = v208 v207
+                                    let v210 : string = " "
+                                    let v211 : string = v209 v210
+                                    let v212 : string = "^"
+                                    let v213 : string = v211 + v212 
+                                    let v214 : string = $"{v206}
+{v213}
+"
+                                    US10_1(v214)
+                        match v217 with
+                        | US10_1(v224) -> (* Error *)
+                            let v225 : string = $"between / expected closing delimiter / e: %A{v224} / input: %A{struct (v1, v2, v3, v4)} / rest1: %A{struct (v133, v134, v135, v136)} / rest2: %A{struct (v157, v158, v159, v160)}"
+                            US12_1(v225)
+                        | US10_0(v218, v219, v220, v221, v222) -> (* Ok *)
+                            US12_0(v156, v219, v220, v221, v222)
+            match v237 with
+            | US12_1(v243) -> (* Error *)
+                let v244 : (struct (string * System.Text.StringBuilder * int32 * int32) -> US12) = closure20()
+                let v245 : (struct (string * System.Text.StringBuilder * int32 * int32) -> US12) = closure21()
+                let v246 : UH2 = UH2_0
+                let v247 : UH2 = UH2_1(v245, v246)
+                let v248 : UH2 = UH2_1(v244, v247)
+                let v249 : US12 = method23(v1, v2, v3, v4, v248)
+                let v260 : US12 =
+                    match v249 with
+                    | US12_1(v257) -> (* Error *)
+                        US12_1(v257)
+                    | US12_0(v250, v251, v252, v253, v254) -> (* Ok *)
+                        let v255 : string = ""
+                        US12_0(v255, v251, v252, v253, v254)
+                let v271 : US9 =
+                    match v260 with
+                    | US12_1(v268) -> (* Error *)
+                        US9_1(v268)
+                    | US12_0(v261, v262, v263, v264, v265) -> (* Ok *)
+                        let v266 : UH1 = UH1_0
+                        method26(v266, v262, v263, v264, v265)
+                match v271 with
+                | US9_1(v285) -> (* Error *)
+                    US12_1(v285)
+                | US9_0(v272, v273, v274, v275, v276) -> (* Ok *)
+                    let v277 : string list = []
+                    let v278 : string list = method25(v272, v277)
+                    let v279 : string seq = seq { for i = 0 to v278.Length - 1 do yield v278.[i] }
+                    let v280 : (string -> (string seq -> string)) = String.concat
+                    let v281 : string = ""
+                    let v282 : (string seq -> string) = v280 v281
+                    let v283 : string = v282 v279
+                    US12_0(v283, v273, v274, v275, v276)
+            | US12_0(v238, v239, v240, v241, v242) -> (* Ok *)
+                v237
+        | US12_0(v70, v71, v72, v73, v74) -> (* Ok *)
+            v69
+    match v292 with
+    | US12_1(v293) -> (* Error *)
+        let v294 : UH1 = UH1_0
+        let v295 : UH1 = method24(v0, v294)
+        US9_0(v295, v1, v2, v3, v4)
+    | US12_0(v297, v298, v299, v300, v301) -> (* Ok *)
+        let v302 : int32 = 0
+        let v303 : int32 = method27(v298, v302)
+        let v304 : bool = 0 = v303
+        let v315 : US13 =
+            if v304 then
+                let v305 : string = "spaces1 / expected at least one space"
+                US13_1(v305)
+            else
+                let v307 : (string -> int32) = String.length
+                let v308 : int32 = v307 v298
+                let v309 : (int32 -> int32) = int32
+                let v310 : int32 = v309 v303
+                let v311 : (int32 -> int32) = int32
+                let v312 : int32 = v311 v308
+                let v313 : string = v298.[int v310..int v312]
+                US13_0(v313, v299, v300, v301)
+        match v315 with
+        | US13_1(v316) -> (* Error *)
+            let v317 : UH1 = UH1_0
+            let v318 : UH1 = UH1_1(v297, v317)
+            let v319 : UH1 = method24(v0, v318)
+            US9_0(v319, v298, v299, v300, v301)
+        | US13_0(v321, v322, v323, v324) -> (* Ok *)
+            let v325 : UH1 = UH1_1(v297, v0)
+            method17(v325, v321, v322, v323, v324)
+and method16 (v0 : string) : US8 =
     let mutable _v0 = None
     #if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v3 : (string -> string option) = Option.ofObj
-    let v4 : string option = v3 v0
-    v4 
+    let v1 : (string -> string option) = Option.ofObj
+    let v2 : string option = v1 v0
+    v2 
     #else
     Some v0 
     #endif
     |> fun x -> _v0 <- Some x
-    let v5 : string option = match _v0 with Some x -> x | None -> failwith "optionm'.of_obj / _v0=None"
-    let v6 : US4 option = None
-    let _v6 = ref v6 
-    match v5 with
-    | Some x -> (
-    (fun () ->
-    (fun () ->
-    let v7 : string = x
-    let v8 : US4 = US4_0(v7)
-    v8 
-    )
-    |> fun x -> x () |> Some
-    ) () ) | None -> None
-    |> fun x -> _v6.Value <- x
-    let v9 : US4 option = _v6.Value 
-    let v10 : US4 = US4_1
-    let v11 : US4 = v9 |> Option.defaultValue v10 
-    let v14 : string =
+    let v3 : string option = match _v0 with Some x -> x | None -> failwith "optionm'.of_obj / _v0=None"
+    let v4 : string = ""
+    let v5 : string = v3 |> Option.defaultValue v4 
+    let v6 : (string -> System.Text.StringBuilder) = System.Text.StringBuilder 
+    let v7 : System.Text.StringBuilder = v6 v4
+    let v8 : UH1 = UH1_0
+    let v9 : int32 = 1
+    let v10 : int32 = 1
+    let v11 : US9 = method17(v8, v5, v7, v9, v10)
+    let v25 : US14 =
         match v11 with
-        | US4_1 -> (* None *)
-            v2
-        | US4_0(v12) -> (* Some *)
-            v12
-    let v15 : int32 = v14.Length
-    let v16 : (char []) = Array.zeroCreate<char> (v15)
-    let v17 : Mut4 = {l0 = 0} : Mut4
-    while method4(v15, v17) do
-        let v19 : int32 = v17.l0
-        let v20 : char = v14.[int v19]
-        v16.[int v19] <- v20
-        let v21 : int32 = v19 + 1
-        v17.l0 <- v21
-        ()
-    let v22 : ((char []) -> char list) = Array.toList
-    let v23 : char list = v22 v16
-    let v24 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-    let v25 : (char -> (UH0 -> UH0)) = method5()
-    let v26 : (char list -> (UH0 -> UH0)) = v24 v25
-    let v27 : (UH0 -> UH0) = v26 v23
-    let v28 : UH0 = UH0_0
-    let v29 : UH0 = v27 v28
-    let v30 : US7 = US7_0
-    let v31 : US7 = US7_0
-    let struct (v32 : UH1, v33 : string) = method13(v2, v1, v29, v31, v30)
-    let v34 : string list = []
-    let v35 : string list = method16(v32, v34)
-    let v36 : (string list -> (string [])) = List.toArray
-    let v37 : (string []) = v36 v35
-    v37
-and closure18 () (v0 : string) : (string []) =
-    method12(v0)
+        | US9_1(v22) -> (* Error *)
+            US14_1(v22)
+        | US9_0(v12, v13, v14, v15, v16) -> (* Ok *)
+            let v17 : string list = []
+            let v18 : string list = method25(v12, v17)
+            let v19 : (string list -> (string [])) = List.toArray
+            let v20 : (string []) = v19 v18
+            US14_0(v20)
+    match v25 with
+    | US14_1(v28) -> (* Error *)
+        US8_1(v28)
+    | US14_0(v26) -> (* Ok *)
+        US8_0(v26)
+and closure19 () (v0 : string) : Result<(string []), string> =
+    let v1 : US8 = method16(v0)
+    match v1 with
+    | US8_1(v4) -> (* Error *)
+        let v5 : Result<(string []), string> = Error v4 
+        v5
+    | US8_0(v2) -> (* Ok *)
+        let v3 : Result<(string []), string> = Ok v2 
+        v3
 let v0 : (US0 -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
 let v1 : US0 = US0_0
 if State.trace_state.IsNone then State.trace_state <- v0 v1 |> Some
-let v2 : (unit -> bool) = closure2()
-let is_windows () = v2 ()
-let v3 : (unit -> string) = closure3()
-let get_executable_suffix () = v3 ()
-let v4 : (string -> Async<struct (int32 * string)>) = closure4()
-let execute_async x = v4 x
-let v5 : (struct (System.Threading.CancellationToken option * string * (struct (string * string) []) * (struct (bool * string * int32) -> Async<unit>) option * (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option * bool * string option) -> Async<struct (int32 * string)>) = closure16()
-let execute_with_options_async x = v5 x
-let v6 : ((Heap0 -> Heap0) -> struct (System.Threading.CancellationToken option * string * (struct (string * string) []) * (struct (bool * string * int32) -> Async<unit>) option * (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option * bool * string option)) = closure17()
-let execution_options x = v6 x
-let v7 : (string -> (string [])) = closure18()
-let split_args x = v7 x
+let v2 : (unit -> unit) = closure2()
+let current_process_kill () = v2 ()
+let v3 : (string -> Async<struct (int32 * string)>) = closure7()
+let execute_async x = v3 x
+let v4 : (struct (System.Threading.CancellationToken option * string * (struct (string * string) []) * (struct (bool * string * int32) -> Async<unit>) option * (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option * bool * string option) -> Async<struct (int32 * string)>) = closure17()
+let execute_with_options_async x = v4 x
+let v5 : ((Heap0 -> Heap0) -> struct (System.Threading.CancellationToken option * string * (struct (string * string) []) * (struct (bool * string * int32) -> Async<unit>) option * (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option * bool * string option)) = closure18()
+let execution_options x = v5 x
+let v6 : (string -> Result<(string []), string>) = closure19()
+let split_args x = v6 x
 ()

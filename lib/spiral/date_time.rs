@@ -76,6 +76,90 @@ pub mod Date_time {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US2 {
+        US2_0,
+        US2_1,
+        US2_2,
+    }
+    impl Date_time::US2 {
+        pub fn get_IsUS2_0(this_: &MutCell<Date_time::US2>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS2_1(this_: &MutCell<Date_time::US2>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS2_2(this_: &MutCell<Date_time::US2>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+    }
+    impl core::fmt::Display for Date_time::US2 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US3 {
+        US3_0(Date_time::US2),
+        US3_1(Date_time::US2),
+        US3_2(Date_time::US2),
+        US3_3(Date_time::US2),
+        US3_4(Date_time::US2),
+    }
+    impl Date_time::US3 {
+        pub fn get_IsUS3_0(this_: &MutCell<Date_time::US3>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS3_1(this_: &MutCell<Date_time::US3>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS3_2(this_: &MutCell<Date_time::US3>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS3_3(this_: &MutCell<Date_time::US3>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS3_4(this_: &MutCell<Date_time::US3>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+    }
+    impl core::fmt::Display for Date_time::US3 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
     pub fn method1(v0_1: chrono::DateTime<chrono::Utc>) -> chrono::DateTime<chrono::Utc> {
         v0_1
     }
@@ -83,9 +167,12 @@ pub mod Date_time {
         v0_1
     }
     pub fn method3() -> string {
-        string("yyyyMMdd-HHmm-ssff-ffff-f")
+        string("hh:mm")
     }
     pub fn method4() -> string {
+        string("yyyyMMdd-HHmm-ssff-ffff-f")
+    }
+    pub fn method5() -> string {
         string("hhmm")
     }
     pub fn method0(v0_1: Guid, v1_1: DateTime) -> Guid {
@@ -165,30 +252,45 @@ pub mod Date_time {
                 let _v56: MutCell<Option<TimeSpan>> = MutCell::new(None::<TimeSpan>);
                 _v56.set(Some(zero));
                 {
-                    let v74: TimeSpan = match &_v56.get().clone() {
+                    let v83: TimeSpan = match &_v56.get().clone() {
                         None => panic!("{}", string("base.run_target / _v56=None"),),
                         Some(_v56_0_0) => _v56_0_0.clone(),
                     };
-                    let v78: u8 = if v74.hours() > 0_i32 { 1_u8 } else { 0_u8 };
-                    let v81: string = v74.to_string(string("hh:mm"));
-                    let v82: string = sprintf!(
-                        "{}{}{}",
-                        v78,
-                        getSlice(v81.clone(), Some(0_i32), Some(1_i32)),
-                        getSlice(v81, Some(3_i32), Some(4_i32))
-                    );
+                    let v87: u8 = if v83.hours() > 0_i32 { 1_u8 } else { 0_u8 };
+                    let v88: string = Date_time::method3();
+                    let _v89: MutCell<Option<string>> = MutCell::new(None::<string>);
                     {
-                        let x_7: Guid = parse(sprintf!(
-                            "{}{}{}",
-                            v46.clone(),
-                            v82.clone(),
-                            getSlice(toString(v0_1), Some(length(v46) + length(v82)), None::<i32>)
-                        ));
-                        _v2.set(Some(x_7))
+                        let x_7: string = v83.to_string(v88);
+                        _v89.set(Some(x_7))
                     }
-                    match &_v2.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v2=None"),),
-                        Some(_v2_0_0) => _v2_0_0.clone(),
+                    {
+                        let v96: string = match &_v89.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v89=None"),),
+                            Some(_v89_0_0) => _v89_0_0.clone(),
+                        };
+                        let v97: string = sprintf!(
+                            "{}{}{}",
+                            v87,
+                            getSlice(v96.clone(), Some(0_i32), Some(1_i32)),
+                            getSlice(v96, Some(3_i32), Some(4_i32))
+                        );
+                        {
+                            let x_9: Guid = parse(sprintf!(
+                                "{}{}{}",
+                                v46.clone(),
+                                v97.clone(),
+                                getSlice(
+                                    toString(v0_1),
+                                    Some(length(v46) + length(v97)),
+                                    None::<i32>
+                                )
+                            ));
+                            _v2.set(Some(x_9))
+                        }
+                        match &_v2.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v2=None"),),
+                            Some(_v2_0_0) => _v2_0_0.clone(),
+                        }
                     }
                 }
             }
@@ -219,14 +321,14 @@ pub mod Date_time {
             move |v: string| Date_time::closure4(v0_1.clone(), v)
         })
     }
-    pub fn method5() -> Func1<string, Func1<string, Func1<string, string>>> {
+    pub fn method6() -> Func1<string, Func1<string, Func1<string, string>>> {
         Func1::new(move |v: string| Date_time::closure3((), v))
     }
     pub fn closure2(unitVar: (), v0_1: Guid) -> DateTime {
         let v2_1: string = toString(v0_1);
         let _v4: MutCell<Option<DateTime>> = MutCell::new(None::<DateTime>);
         {
-            let x: DateTime = DateTime::parse((Date_time::method5())(string("-"))(string(""))(
+            let x: DateTime = DateTime::parse((Date_time::method6())(string("-"))(string(""))(
                 getSlice(v2_1, None::<i32>, Some(24_i32)),
             ));
             _v4.set(Some(x))

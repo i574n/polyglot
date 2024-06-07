@@ -28,20 +28,24 @@ function Invoke-Block {
         [string] $Location = "",
         [int] $Retries = 1
     )
+    if (!$EnvironmentVariables) {
+        $EnvironmentVariables = @{}
+    }
+    $sep = $IsWindows ? ";" : ":"
+    $EnvironmentVariables["PATH"] = "$env:PATH$sep$HOME/.cargo/bin$sep$HOME/.bun/bin"
+
     if ($Linux -and $IsWindows) {
         $envVars = ""
-        if ($EnvironmentVariables) {
+        if ($EnvironmentVariables.Count -gt 0) {
             $envVars = $EnvironmentVariables.Keys | ForEach-Object { "$_=$($EnvironmentVariables[$_])" } | ForEach-Object { "$_ " }
         }
     } else {
         $originalEnvironmentVariables = @{}
-        if ($EnvironmentVariables) {
-            foreach ($var in $EnvironmentVariables.Keys) {
-                if (Test-Path "Env:$var") {
-                    $originalEnvironmentVariables[$var] = (Get-Item "Env:$var").Value
-                }
-                Set-Item -Path "Env:$var" -Value $EnvironmentVariables[$var]
+        foreach ($var in $EnvironmentVariables.Keys) {
+            if (Test-Path "Env:$var") {
+                $originalEnvironmentVariables[$var] = (Get-Item "Env:$var").Value
             }
+            Set-Item -Path "Env:$var" -Value $EnvironmentVariables[$var]
         }
     }
 
@@ -94,15 +98,13 @@ function Invoke-Block {
     Set-Location $OldLocation
 
     if (!($Linux -and $IsWindows)) {
-        if ($EnvironmentVariables) {
-            foreach ($var in $EnvironmentVariables.Keys) {
-                if ($null -eq $originalEnvironmentVariables[$var]) {
-                    if (Test-Path "Env:$var") {
-                        Remove-Item "Env:$var"
-                    }
-                } else {
-                    Set-Item -Path "Env:$var" -Value $originalEnvironmentVariables[$var]
+        foreach ($var in $EnvironmentVariables.Keys) {
+            if ($null -eq $originalEnvironmentVariables[$var]) {
+                if (Test-Path "Env:$var") {
+                    Remove-Item "Env:$var"
                 }
+            } else {
+                Set-Item -Path "Env:$var" -Value $originalEnvironmentVariables[$var]
             }
         }
     }
@@ -213,7 +215,7 @@ function Invoke-Dib {
     }
     Write-Output "core.Invoke-Dib / Get-Location: $(Get-Location) / path: $path / _args: $($_args | ConvertTo-Json)"
 
-    $mergedArgs["EnvironmentVariables"] = @{ AUTOMATION = $True }
+    $mergedArgs["EnvironmentVariables"] = @{ LOG_LEVEL = "Verbose" }
 
     { Invoke-Block @mergedArgs } | Invoke-Block
 

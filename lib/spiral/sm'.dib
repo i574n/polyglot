@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -39,45 +39,64 @@ inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>]\n#endif\ntype std_string_String = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::slice::Windows<$0>\")>]\n#endif\ntype std_slice_Windows<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Regex\")>]\n#endif\ntype regex_Regex = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Captures\")>]\n#endif\ntype regex_Captures = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Captures<$0>\")>]\n#endif\ntype regex_Captures<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::CaptureMatches\")>]\n#endif\ntype regex_CaptureMatches = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::CaptureNames\")>]\n#endif\ntype regex_CaptureNames = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Match\")>]\n#endif\ntype regex_Match = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Error\")>]\n#endif\ntype regex_Error = class end"
 
 #!spiral
 
 inl types () =
-    rust.types ()
-    mapm.types ()
-    types ()
-
-#!spiral
-
-nominal display t = $'std_fmt_Display<`t>'
-nominal str = $'Str'
-nominal base64_decode_error = $'base64_DecodeError'
-nominal borsh_io_error = $'borsh_io_Error'
-nominal utf8_error = $'std_str_Utf8Error'
-nominal from_utf8_error = $'std_string_FromUtf8Error'
-nominal json_value = $'serde_json_Value'
-nominal json_error = $'serde_json_Error'
-nominal serde_wasm_bindgen_error = $'serde_wasm_bindgen_Error'
-nominal js_string = $'js_sys_JsString'
-nominal os_str = $'std_ffi_OsStr'
-nominal os_string = $'std_ffi_OsString'
-nominal std_string = $'std_string_String'
+    backend_switch {
+        Fsharp = fun () =>
+            rust.types ()
+            mapm.types ()
+            am'.types ()
+            types ()
+        Python = fun () => ()
+    }
 
 #!markdown
 
-## contains
+## symbol_to_string
+
+#!spiral
+
+inl symbol_to_string forall t {symbol}. (x : t) : string =
+    !!!!SymbolToString(x)
+
+#!markdown
+
+## fsharp
+
+#!markdown
+
+### format_debug
+
+#!spiral
+
+inl format_debug x : string =
+    backend_switch {
+        Fsharp = fun () => $'$"%A{!x}"' : string
+        Python = fun () => $'f"{!x}"' : string
+    }
+
+#!markdown
+
+### contains
 
 #!spiral
 
 inl contains (value : string) (s : string) : bool =
-    $'!s.Contains !value '
+    backend_switch {
+        Fsharp = fun () => $'!s.Contains !value ' : bool
+        Python = fun () => $'!value in !s ' : bool
+    }
 
 #!markdown
 
-## ends_with
+### ends_with
 
 #!spiral
 
@@ -86,7 +105,7 @@ inl ends_with (value : string) (s : string) : bool =
 
 #!markdown
 
-## last_index_of
+### last_index_of
 
 #!spiral
 
@@ -95,7 +114,16 @@ inl last_index_of (search : string) (s : string) : i32 =
 
 #!markdown
 
-## pad_left
+### index_of
+
+#!spiral
+
+inl index_of (search : string) (s : string) : i32 =
+    $'!s.IndexOf !search '
+
+#!markdown
+
+### pad_left
 
 #!spiral
 
@@ -104,7 +132,7 @@ inl pad_left (total_width : i32) (padding_char : char) (s : string) : string =
 
 #!markdown
 
-## pad_right
+### pad_right
 
 #!spiral
 
@@ -121,7 +149,16 @@ inl pad_right (total_width : i32) (padding_char : char) (s : string) : string =
 
 #!markdown
 
-## starts_with
+### replicate
+
+#!spiral
+
+inl replicate (n : i32) (s : string) : string =
+    s |> $'String.replicate' n
+
+#!markdown
+
+### starts_with
 
 #!spiral
 
@@ -130,7 +167,16 @@ inl starts_with (value : string) (s : string) : bool =
 
 #!markdown
 
-## substring
+### is_white_space
+
+#!spiral
+
+inl is_white_space (c : char) : bool =
+    c |> $'System.Char.IsWhiteSpace'
+
+#!markdown
+
+### substring
 
 #!spiral
 
@@ -139,7 +185,7 @@ inl substring (start : i32) (len : i32) (str : string) : string =
 
 #!markdown
 
-## to_lower
+### to_lower
 
 #!spiral
 
@@ -148,7 +194,7 @@ inl to_lower (input : string) : string =
 
 #!markdown
 
-## to_upper
+### to_upper
 
 #!spiral
 
@@ -157,7 +203,67 @@ inl to_upper (input : string) : string =
 
 #!markdown
 
-## trim
+### char_to_upper
+
+#!spiral
+
+inl char_to_upper (input : char) : char =
+    $'System.Char.ToUpper !input '
+
+#!markdown
+
+## string_builder
+
+#!spiral
+
+nominal string_builder = $'System.Text.StringBuilder'
+
+inl string_builder (initial : string) : string_builder =
+    initial |> $'`string_builder '
+
+#!markdown
+
+## builder_append
+
+#!spiral
+
+inl builder_append (item : string) (sb : string_builder) : string_builder =
+    ($'!sb.Append' item : string_builder) |> ignore
+    sb
+
+#!markdown
+
+## builder_replace
+
+#!spiral
+
+inl builder_replace (old : string) (new : string) (sb : string_builder) : string_builder =
+    ($'!sb.Replace (!old, !new)' : string_builder) |> ignore
+    sb
+
+#!markdown
+
+## builder_insert
+
+#!spiral
+
+inl builder_insert (n : i32) (s : string) (sb : string_builder) : string_builder =
+    ($'!sb.Insert (!n, !s)' : string_builder) |> ignore
+    sb
+
+#!markdown
+
+## builder_clear
+
+#!spiral
+
+inl builder_clear (sb : string_builder) : string_builder =
+    ($'!sb.Clear' () : string_builder) |> ignore
+    sb
+
+#!markdown
+
+### trim
 
 #!spiral
 
@@ -166,7 +272,7 @@ inl trim (input : string) : string =
 
 #!markdown
 
-## trim_end
+### trim_end
 
 #!spiral
 
@@ -175,7 +281,7 @@ inl trim_end (trim_chars : array_base char) (input : string) : string =
 
 #!markdown
 
-## trim_start
+### trim_start
 
 #!spiral
 
@@ -184,7 +290,7 @@ inl trim_start (trim_chars : array_base char) (input : string) : string =
 
 #!markdown
 
-## length
+### length
 
 #!spiral
 
@@ -193,7 +299,7 @@ inl length forall dim {int}. (input : string) : dim =
 
 #!markdown
 
-## length'
+### length'
 
 #!spiral
 
@@ -202,7 +308,7 @@ inl length' forall dim. (input : string) : dim =
 
 #!markdown
 
-## is_empty
+### is_empty
 
 #!spiral
 
@@ -211,7 +317,7 @@ inl is_empty (input : string) : bool =
 
 #!markdown
 
-## slice
+### slice
 
 #!spiral
 
@@ -220,7 +326,7 @@ inl slice from to s : string =
 
 #!markdown
 
-## range
+### range
 
 #!spiral
 
@@ -232,161 +338,11 @@ inl range forall t. (start : am'.range t) (end : am'.range t) s =
         | End start_fn, End end_fn =>
             inl len = s |> length'
             start_fn len, end_fn len
-    s |> slice (start |> u64) (end |> u64)
+    s |> slice (start |> i32) (end |> i32)
 
 #!markdown
 
-## raw_string_literal
-
-#!spiral
-
-inl raw_string_literal (s : string) : rust.ref' str =
-    !\($'"r#\\"" + !s + "\\"#"')
-
-#!markdown
-
-## raw_string_literal_static
-
-#!spiral
-
-inl raw_string_literal_static (s : string) : rust.static_ref' str =
-    !\($'"r#\\"" + !s + "\\"#"')
-
-#!markdown
-
-## (~#)
-
-#!spiral
-
-inl (~#) s =
-    s |> raw_string_literal
-
-#!markdown
-
-## (~##)
-
-#!spiral
-
-inl (~##) s =
-    s |> raw_string_literal_static
-
-#!markdown
-
-## include_str
-
-#!spiral
-
-inl include_str (path : string) : rust.ref' str =
-    !\($'"include_str\!(\\\"" + !path + "\\\")"')
-
-#!markdown
-
-## as_str
-
-#!spiral
-
-inl as_str (s : string) : rust.ref' str =
-    // !\\(s, $'"fable_library_rust::String_::LrcStr::as_str(&$0)"')
-    !\\(s, $'"&*$0"')
-
-#!markdown
-
-## from_std_string
-
-#!spiral
-
-inl from_std_string (str : std_string) : string =
-    !\\(str, $'"fable_library_rust::String_::fromString($0)"')
-
-#!markdown
-
-## ref_to_std_string
-
-#!spiral
-
-inl ref_to_std_string (str : rust.ref' str) : std_string =
-    !\\(str, $'"String::from($0)"')
-
-#!markdown
-
-## cow_to_std_string
-
-#!spiral
-
-inl cow_to_std_string (str : rust.cow str) : std_string =
-    !\\(str, $'"String::from($0)"')
-
-#!markdown
-
-## to_std_string
-
-#!spiral
-
-inl to_std_string (s : string) : std_string =
-    s |> as_str |> ref_to_std_string
-
-#!markdown
-
-## as_str_std
-
-#!spiral
-
-inl as_str_std (s : std_string) : rust.ref' str =
-    !\\(s, $'"$0.as_str()"')
-
-#!markdown
-
-## into_boxed_str
-
-#!spiral
-
-inl into_boxed_str (s : std_string) : rust.box str =
-    !\\(s, $'"$0.into_boxed_str()"')
-
-#!markdown
-
-## os_string_as_ref
-
-#!spiral
-
-inl os_string_as_ref (s : os_string) : rust.ref' os_str =
-    !\\(s, $'"$0.as_ref()"')
-
-#!markdown
-
-## to_os_string
-
-#!spiral
-
-inl to_os_string (s : rust.ref' os_str) : os_string =
-    !\\(s, $'"$0.to_os_string()"')
-
-#!markdown
-
-## os_to_str
-
-#!spiral
-
-inl os_to_str (s : os_string) : optionm'.option' (rust.ref' str) =
-    !\\(s, $'"$0.to_str()"')
-
-#!markdown
-
-## from_os_str_ref
-
-#!spiral
-
-inl from_os_str_ref s =
-    s
-    |> to_os_string
-    |> os_to_str
-    |> optionm'.unwrap
-    |> ref_to_std_string
-    |> from_std_string
-
-#!markdown
-
-## obj_to_string
+### obj_to_string
 
 #!spiral
 
@@ -395,7 +351,7 @@ inl obj_to_string x : string =
 
 #!markdown
 
-## to_string any
+### to_string any
 
 #!spiral
 
@@ -404,102 +360,7 @@ instance to_string any =
 
 #!markdown
 
-## to_string result t u
-
-#!spiral
-
-instance to_string result t u = fun x =>
-    real
-        open rust
-        typecase (t * u) with
-        | string * string =>
-            match x with
-            | Ok x => x
-            | Error x => $'"sm\'.to_string result / Error: " + !x + ""' : string
-        | std_string * std_string =>
-            match x with
-            | Ok x => from_std_string x
-            | Error x => $'"sm\'.to_string result / Error: " + string !x + ""' : string
-        | _ => obj_to_string `u x
-
-#!markdown
-
-## format_debug
-
-#!spiral
-
-inl format_debug x : string =
-    $'$"%A{!x}"'
-
-#!markdown
-
-## format_custom'
-
-#!spiral
-
-inl format_custom' format x : std_string =
-    !\\(x, $'"format\!(\\\"" + !format + "\\\", $0)"')
-
-#!markdown
-
-## format'
-
-#!spiral
-
-inl format' x : std_string =
-    run_target function
-        | Rust _ => fun () =>
-            !\\(x, $'"format\!(\\\"{}\\\", $0)"')
-        | _ => fun () => null ()
-
-#!markdown
-
-## format_debug'
-
-#!spiral
-
-inl format_debug' x : std_string =
-    run_target function
-        | Rust _ => fun () =>
-            !\\(x, $'"format\!(\\\"{:?}\\\", $0)"')
-        | _ => fun () => null ()
-
-#!markdown
-
-## format_pretty'
-
-#!spiral
-
-inl format_pretty' x : std_string =
-    run_target function
-        | Rust _ => fun () =>
-            !\\(x, $'"format\!(\\\"{:#?}\\\", $0)"')
-        | _ => fun () => null ()
-
-#!markdown
-
-## format_hex'
-
-#!spiral
-
-inl format_hex' x : std_string =
-    run_target function
-        | Rust _ => fun () =>
-            !\\(x, $'"format\!(\\\"{:x}\\\", $0)"')
-        | _ => fun () => null ()
-
-#!markdown
-
-## format''
-
-#!spiral
-
-inl format'' (format : string) : std_string =
-    !\($'@@$"format\!(" + !format + ")"')
-
-#!markdown
-
-## format_exception
+### format_exception
 
 #!spiral
 
@@ -514,12 +375,12 @@ inl format_exception (ex : exn) : string =
 
 fun () => failwith "test"
 |> _throws
-|> optionm.map sm'.format_exception
+|> optionm.map format_exception
 |> _assert_eq (Some "System.Exception: test")
 
 #!markdown
 
-## replace
+### replace
 
 #!spiral
 
@@ -528,262 +389,7 @@ inl replace (old_value : string) (new_value : string) (s : string) : string =
 
 #!markdown
 
-## regex
-
-#!spiral
-
-nominal regex = $'regex_Regex'
-
-#!markdown
-
-## regex_error
-
-#!spiral
-
-nominal regex_error = $'regex_Error'
-
-#!markdown
-
-## new_regex
-
-#!spiral
-
-inl new_regex (pattern : string) : resultm.result' regex regex_error =
-    run_target function
-        | Rust (Native) => fun () =>
-            inl pattern = join pattern
-            !\\(pattern, $'$"regex::Regex::new(&$0)"')
-        | _ => fun () => null ()
-
-#!markdown
-
-## captures
-
-#!spiral
-
-nominal regex_captures = $'regex_Captures'
-
-#!markdown
-
-## regex_capture_matches
-
-#!spiral
-
-nominal regex_capture_matches = $'regex_CaptureMatches'
-
-#!markdown
-
-## regex_captures
-
-#!spiral
-
-inl regex_captures (s : string) (regex : regex) : am'.vec (mapm.hash_map (rust.ref' str) (rust.ref' str)) =
-    inl s = join s
-    !\\(regex, $'$"$0.captures_iter(&*!s).map(|caps| $0.capture_names().map(|x| x.and_then(|n| Some((n, caps.name(n)?.as_str())))).flatten().collect()).collect()"')
-
-#!markdown
-
-## replace_regex
-
-#!spiral
-
-inl replace_regex (pattern : string) (replacement : string) (s : string) : string =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            inl replacement = join replacement
-            $'System.Text.RegularExpressions.Regex.Replace (!s, !pattern, !replacement)'
-        | Rust (Native) => fun () =>
-            inl s = join s
-            inl replacement = join replacement
-            inl regex = pattern |> new_regex |> resultm.unwrap'
-            !\\((regex, s, replacement), $'$"$0.replace_all(&$1, &*$2)"')
-            |> cow_to_std_string
-            |> from_std_string
-        | _ => fun () => null ()
-
-#!spiral
-
-//// test
-
-" 123"
-|> replace_regex "\\s\\w2" ""
-|> _assert_eq "3"
-
-#!spiral
-
-//// test
-///! rust -d regex
-
-types ()
-" 123"
-|> replace_regex "\\s\\w2" ""
-|> _assert_eq "3"
-
-#!markdown
-
-## serialize
-
-#!spiral
-
-inl serialize forall t. (x : t) : resultm.result' std_string json_error =
-    !\($'"serde_json::to_string(&!x)"')
-
-#!markdown
-
-## deserialize
-
-#!spiral
-
-inl deserialize forall t. (json : string) : resultm.result' t std_string =
-    inl json = join json
-    inl json = json |> as_str
-    !\($'"serde_json::from_str(&!json)"')
-    |> resultm.map_error' fun (x : json_error) => x |> format'
-
-#!markdown
-
-## borsh_deserialize
-
-#!spiral
-
-inl borsh_deserialize forall t. (data : array_base u8) : resultm.result' t std_string =
-    inl data = data |> am'.as_slice
-    (!\($'"true; let mut !data = !data"') : bool) |> ignore
-    inl result = !\($'"borsh::BorshDeserialize::deserialize(&mut !data)"')
-    result
-    |> resultm.map_error' fun (x : borsh_io_error) => x |> format'
-
-#!markdown
-
-## deserialize_vec
-
-#!spiral
-
-inl deserialize_vec (value : json_value) : resultm.result' (am'.vec u8) std_string =
-    inl value = join value
-    !\($'"serde_json::from_value(!value)"')
-    |> resultm.map_error' fun (x : json_error) => x |> format'
-
-#!markdown
-
-## encode_uri_component
-
-#!spiral
-
-inl encode_uri_component (s : std_string) : js_string =
-    !\($'"js_sys::encode_uri_component(&!s)"')
-
-#!markdown
-
-## strip_prefix
-
-#!spiral
-
-inl strip_prefix (prefix : char) (s : std_string) : optionm'.option' (rust.ref' str) =
-    inl s = join s
-    !\($'"!s.strip_prefix(!prefix)"')
-
-#!markdown
-
-## str_from_utf8
-
-#!spiral
-
-inl str_from_utf8 (bytes : rust.ref' (am'.slice u8)) : resultm.result' (rust.ref' str) utf8_error =
-    !\($'"std::str::from_utf8(!bytes)"')
-
-#!markdown
-
-## string_from_utf8
-
-#!spiral
-
-inl string_from_utf8 (bytes : am'.vec u8) : resultm.result' std_string from_utf8_error =
-    !\($'"std::string::String::from_utf8(!bytes)"')
-
-#!markdown
-
-## base64_decode
-
-#!spiral
-
-inl base64_decode (s : std_string) : result std_string std_string =
-    fun () =>
-        inl s = join s
-        inl bytes : resultm.result' (am'.vec u8) base64_decode_error =
-            !\($'"base64::Engine::decode(&base64::engine::general_purpose::STANDARD, !s)"')
-        bytes
-        |> resultm.map_error' format'
-        |> resultm.try'
-        |> string_from_utf8
-        |> resultm.map_error' format'
-    |> fun x =>
-        join x ()
-        |> resultm.unbox
-
-#!markdown
-
-## encoding'
-
-#!spiral
-
-nominal encoding' = $'encoding_rs_Encoding'
-
-#!markdown
-
-## encoding_utf8'
-
-#!spiral
-
-inl encoding_utf8' () : rust.ref' encoding' =
-    !\($'"encoding_rs::UTF_8"')
-
-#!markdown
-
-## encoding_1252
-
-#!spiral
-
-inl encoding_1252' () : rust.ref' encoding' =
-    !\($'"encoding_rs::WINDOWS_1252"')
-
-#!markdown
-
-## encoding_encode
-
-#!spiral
-
-inl encoding_encode' (encoding : rust.ref' encoding') (text : string) : rust.cow (am'.slice u8) =
-    !\\((encoding, text), $'"$0.encode(&*$1).0"')
-
-#!markdown
-
-## write_all_text
-
-#!spiral
-
-inl write_all_text (path : string) (text : string) : () =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            inl text = join text
-            $'System.IO.File.WriteAllText (!path, !text)'
-        | Rust (Native) => fun () =>
-            open rust_operators
-            !\\((path, text), $'"std::fs::write(&*$0, &*$1).unwrap()"')
-        | _ => fun () => null ()
-
-#!markdown
-
-## utf8_decode
-
-#!spiral
-
-inl utf8_decode (data : am'.vec u8) : resultm.result' std_string (rust.cow str) =
-    !\($'$"encoding::Encoding::decode(encoding::all::UTF_8, &!data, encoding::DecoderTrap::Replace)"')
-
-#!markdown
-
-## concat_array_trailing
+### concat_array_trailing
 
 #!spiral
 
@@ -809,7 +415,7 @@ inl concat_array_trailing (separator : string) (input : a i32 string) =
 
 #!markdown
 
-## concat_list_trailing
+### concat_list_trailing
 
 #!spiral
 
@@ -835,17 +441,15 @@ inl concat_list_trailing separator input =
 
 #!markdown
 
-## concat_list_heap_trailing
+### concat_list_heap_trailing
 
 #!spiral
 
 inl concat_list_heap_trailing separator input =
     inl separator = join separator
-    inl separator = separator |> as_str
+    inl separator = separator
     ("", input)
     ||> listm.fold fun acc (x : string) =>
-        inl acc = acc |> to_std_string
-        inl x = x |> as_str
         $'$"{!acc}{!x}{!separator}"'
 
 #!spiral
@@ -867,17 +471,16 @@ types ()
 
 #!markdown
 
-## concat
+### concat
 
 #!spiral
 
-inl concat (a : string) (b : seq.seq' _) : string =
-    inl a = join a
+inl concat (a : string) (b : seq.seq' string) : string =
     b |> $'String.concat' a
 
 #!markdown
 
-## ellipsis
+### ellipsis
 
 #!spiral
 
@@ -900,7 +503,7 @@ inl ellipsis (max : i32) (s : string) =
 
 #!markdown
 
-## ellipsis_end
+### ellipsis_end
 
 #!spiral
 
@@ -936,7 +539,7 @@ let ellipsis_end (max : i64) (s : string) =
 
 #!markdown
 
-## format_ellipsis
+### format_ellipsis
 
 #!spiral
 
@@ -947,7 +550,7 @@ inl format_ellipsis s =
 
 #!markdown
 
-## split
+### split
 
 #!spiral
 
@@ -956,18 +559,18 @@ inl split (separator : string) (str : string) : array_base string =
 
 #!markdown
 
-## split_string
+### split_string
 
 #!spiral
 
 inl split_string (separator : array_base string) (str : string) : array_base string =
     run_target function
         | Fsharp (Native) => fun () => $'!str.Split (!separator, System.StringSplitOptions.None)'
-        | _ => fun () => str |> split ((a separator : _ i32 _) |> seq.of_array |> concat "")
+        | _ => fun () => str |> split ((a separator : _ i32 _) |> seq.of_array |> concat (join ""))
 
 #!markdown
 
-## join'
+### join'
 
 #!spiral
 
@@ -976,12 +579,21 @@ inl join' (concat : string) (s : a i32 string) : string =
 
 #!markdown
 
-## to_char_array
+### index
+
+#!spiral
+
+inl index i (str : string) : char =
+    sm.index str i
+
+#!markdown
+
+### to_char_array
 
 #!spiral
 
 inl to_char_array (str : string) : a i32 char =
-    am.init (str |> sm.length) (fun i => sm.index str i)
+    am.init (str |> sm.length) (fun i => str |> index i)
 
 #!spiral
 
@@ -989,16 +601,16 @@ inl to_char_array (str : string) : a i32 char =
 
 "abc"
 |> to_char_array
-|> _assert_eq (a ;['a'; 'b'; 'c'])
+|> _assert_eq (a ;[ 'a'; 'b'; 'c' ])
 
 #!markdown
 
-## to_char_list
+### to_char_list
 
 #!spiral
 
 inl to_char_list (str : string) : list char =
-    listm.init (str |> sm.length) (fun (i : i64) => sm.index str i)
+    listm.init (str |> sm.length) (fun (i : i64) => str |> index i)
 
 #!spiral
 
@@ -1006,27 +618,37 @@ inl to_char_list (str : string) : list char =
 
 "abc"
 |> to_char_list
-|> _assert_eq ['a'; 'b'; 'c']
+|> _assert_eq [ 'a'; 'b'; 'c' ]
+
+#!markdown
+
+### encoding
 
 #!spiral
 
 nominal encoding = $'System.Text.Encoding'
 
+#!markdown
+
+### encoding_utf8
+
+#!spiral
+
 inl encoding_utf8 () : encoding =
-    $'System.Text.Encoding.UTF8'
+    $'`encoding.UTF8'
 
 #!markdown
 
-## utf8_get_bytes
+### utf8_get_bytes
 
 #!spiral
 
 inl utf8_get_bytes (s : string) : a i32 u8 =
-    s |> $'`encoding.UTF8.GetBytes'
+    s |> (encoding_utf8 () |> $'_.GetBytes')
 
 #!markdown
 
-## byte_to_string
+### byte_to_string
 
 #!spiral
 
@@ -1035,7 +657,628 @@ inl byte_to_string (format : string) (x : u8) : string =
 
 #!markdown
 
-## windows
+## rust
+
+#!markdown
+
+### display
+
+#!spiral
+
+nominal display t = $'std_fmt_Display<`t>'
+
+#!markdown
+
+### str
+
+#!spiral
+
+nominal str = $'Str'
+
+#!markdown
+
+### base64_decode_error
+
+#!spiral
+
+nominal base64_decode_error = $'base64_DecodeError'
+
+#!markdown
+
+### borsh_io_error
+
+#!spiral
+
+nominal borsh_io_error = $'borsh_io_Error'
+
+#!markdown
+
+### utf8_error
+
+#!spiral
+
+nominal utf8_error = $'std_str_Utf8Error'
+
+#!markdown
+
+### from_utf8_error
+
+#!spiral
+
+nominal from_utf8_error = $'std_string_FromUtf8Error'
+
+#!markdown
+
+### json_value
+
+#!spiral
+
+nominal json_value = $'serde_json_Value'
+
+#!markdown
+
+### json_error
+
+#!spiral
+
+nominal json_error = $'serde_json_Error'
+
+#!markdown
+
+### serde_wasm_bindgen_error
+
+#!spiral
+
+nominal serde_wasm_bindgen_error = $'serde_wasm_bindgen_Error'
+
+#!markdown
+
+### js_string
+
+#!spiral
+
+nominal js_string = $'js_sys_JsString'
+
+#!markdown
+
+### os_str
+
+#!spiral
+
+nominal os_str = $'std_ffi_OsStr'
+
+#!markdown
+
+### os_string
+
+#!spiral
+
+nominal os_string = $'std_ffi_OsString'
+
+#!markdown
+
+### std_string
+
+#!spiral
+
+nominal std_string = $'std_string_String'
+
+#!markdown
+
+### raw_string_literal
+
+#!spiral
+
+inl raw_string_literal (s : string) : rust.ref' str =
+    !\($'"r#\\"" + !s + "\\"#"')
+
+#!markdown
+
+### raw_string_literal_static
+
+#!spiral
+
+inl raw_string_literal_static (s : string) : rust.static_ref str =
+    !\($'"r#\\"" + !s + "\\"#"')
+
+#!markdown
+
+### (~#)
+
+#!spiral
+
+inl (~#) s =
+    s |> raw_string_literal
+
+#!markdown
+
+### (~##)
+
+#!spiral
+
+inl (~##) s =
+    s |> raw_string_literal_static
+
+#!markdown
+
+### include_str
+
+#!spiral
+
+inl include_str (path : string) : rust.ref' str =
+    !\($'"include_str\!(\\\"" + !path + "\\\")"')
+
+#!markdown
+
+### as_str
+
+#!spiral
+
+inl as_str (s : string) : rust.ref' str =
+    // !\\(s, $'"fable_library_rust::String_::LrcStr::as_str(&$0)"')
+    !\\(s, $'"&*$0"')
+
+#!markdown
+
+### from_std_string
+
+#!spiral
+
+inl from_std_string (str : std_string) : string =
+    !\\(str, $'"fable_library_rust::String_::fromString($0)"')
+
+#!markdown
+
+### ref_to_std_string
+
+#!spiral
+
+inl ref_to_std_string (str : rust.ref' str) : std_string =
+    !\\(str, $'"String::from($0)"')
+
+#!markdown
+
+### cow_to_std_string
+
+#!spiral
+
+inl cow_to_std_string (str : rust.cow str) : std_string =
+    !\\(str, $'"String::from($0)"')
+
+#!markdown
+
+### to_std_string
+
+#!spiral
+
+inl to_std_string (s : string) : std_string =
+    s |> as_str |> ref_to_std_string
+
+#!markdown
+
+### as_str_std
+
+#!spiral
+
+inl as_str_std (s : std_string) : rust.ref' str =
+    !\\(s, $'"$0.as_str()"')
+
+#!markdown
+
+### into_boxed_str
+
+#!spiral
+
+inl into_boxed_str (s : std_string) : rust.box str =
+    !\\(s, $'"$0.into_boxed_str()"')
+
+#!markdown
+
+### os_string_as_ref
+
+#!spiral
+
+inl os_string_as_ref (s : os_string) : rust.ref' os_str =
+    !\\(s, $'"$0.as_ref()"')
+
+#!markdown
+
+### to_os_string
+
+#!spiral
+
+inl to_os_string (s : rust.ref' os_str) : os_string =
+    !\\(s, $'"$0.to_os_string()"')
+
+#!markdown
+
+### os_to_str
+
+#!spiral
+
+inl os_to_str (s : os_string) : optionm'.option' (rust.ref' str) =
+    !\\(s, $'"$0.to_str()"')
+
+#!markdown
+
+### from_os_str_ref
+
+#!spiral
+
+inl from_os_str_ref s =
+    s
+    |> to_os_string
+    |> os_to_str
+    |> optionm'.unwrap
+    |> ref_to_std_string
+    |> from_std_string
+
+#!markdown
+
+### format_custom'
+
+#!spiral
+
+inl format_custom' (format : string) x : std_string =
+    run_target function
+        | Rust _ => fun () =>
+            !\\(x, $'"format\!(\\\"" + !format + "\\\", $0)"')
+        | _ => fun () => null ()
+
+#!markdown
+
+### format'
+
+#!spiral
+
+inl format' x : std_string =
+    run_target function
+        | Rust _ => fun () =>
+            !\\(x, $'"format\!(\\\"{}\\\", $0)"')
+        | _ => fun () => null ()
+
+#!markdown
+
+### format_debug'
+
+#!spiral
+
+inl format_debug' x : std_string =
+    run_target function
+        | Rust _ => fun () =>
+            !\\(x, $'"format\!(\\\"{:?}\\\", $0)"')
+        | _ => fun () => null ()
+
+#!markdown
+
+### format_pretty'
+
+#!spiral
+
+inl format_pretty' x : std_string =
+    run_target function
+        | Rust _ => fun () =>
+            !\\(x, $'"format\!(\\\"{:#?}\\\", $0)"')
+        | _ => fun () => null ()
+
+#!markdown
+
+### format_hex'
+
+#!spiral
+
+inl format_hex' x : std_string =
+    !\\(x, $'"format\!(\\\"{:02x}\\\", $0)"')
+
+#!markdown
+
+### format''
+
+#!spiral
+
+inl format'' (format : string) : std_string =
+    !\($'@@$"format\!(" + !format + ")"')
+
+#!markdown
+
+### regex
+
+#!spiral
+
+nominal regex = $'regex_Regex'
+
+#!markdown
+
+### regex_error
+
+#!spiral
+
+nominal regex_error = $'regex_Error'
+
+#!markdown
+
+### new_regex
+
+#!spiral
+
+inl new_regex (pattern : string) : resultm.result' regex regex_error =
+    !\\(pattern, $'$"regex::Regex::new(&$0)"')
+
+#!markdown
+
+### captures
+
+#!spiral
+
+nominal regex_captures t = $'regex_Captures<`t>'
+
+#!markdown
+
+### regex_capture_matches
+
+#!spiral
+
+nominal regex_capture_matches = $'regex_CaptureMatches'
+
+#!markdown
+
+### regex_capture_names
+
+#!spiral
+
+nominal regex_capture_names = $'regex_CaptureNames'
+
+inl regex_capture_names (regex : regex) : regex_capture_names =
+    !\\(regex, $'$"$0.capture_names()"')
+
+#!markdown
+
+### match'
+
+#!spiral
+
+nominal match' = $'regex_Match'
+
+#!markdown
+
+### regex_captures_iter
+
+#!spiral
+
+inl regex_captures_iter (s : rust.static_ref (rust.mut' std_string)) (regex : regex) : regex_capture_matches =
+    !\($'$"!regex.captures_iter(!s)"')
+
+#!markdown
+
+### regex_captures
+
+#!spiral
+
+inl regex_captures (s : string) (regex : regex) : am'.vec (mapm.hash_map string string) =
+    // inl s = join s
+    // !\\(regex, $'$"$0.captures_iter(&*!s).map(|caps| $0.capture_names().map(|x| x.and_then(|n| Some((n, caps.name(n)?.as_str())))).flatten().collect()).collect()"')
+
+    inl s = s |> to_std_string
+    fun () =>
+        inl matches =
+            inl s = s |> rust.new_box |> rust.box_leak
+            regex |> regex_captures_iter s
+
+        (!\($'"true; let _result : Vec<_> = !matches.map(|x| { //"') : bool) |> ignore
+
+        inl fn (match' : rust.static_ref (rust.mut' (regex_captures rust.static_lifetime))) : mapm.hash_map string string =
+
+            inl names = regex |> regex_capture_names
+
+            (!\($'"true; let _result : std::collections::HashMap<_, _> = !names.map(|x| { //"') : bool) |> ignore
+
+            inl fn (n : string) : pair string string =
+                inl n' = n |> rust.clone
+
+                new_pair n' !\\(n, $'$"!match'.name(&$0).map(|x| x.as_str()).unwrap_or(\\\"\\\").to_string().into()"')
+
+            (!\\(fn !\($'"x.unwrap_or(\\\"\\\").to_string().into()"'), $'"true; $0 }).map(|x| std::sync::Arc::try_unwrap(x).unwrap_or_else(|x| (*x).clone())).collect()"') : bool) |> ignore
+
+            !\($'"_result"')
+
+        inl x =
+            !\($'$"x"')
+            |> rust.new_box
+            |> rust.box_leak
+
+        (!\\(fn x, $'"true; $0 }).collect::<Vec<_>>()"') : bool) |> ignore
+
+        !\($'"_result"')
+
+    |> rust.capture_move
+
+#!spiral
+
+//// test
+///! rust -d regex
+
+types ()
+"fable-library-ts\\.(?<a>[\\d.]+)$"
+|> new_regex
+|> resultm.unwrap'
+|> regex_captures "fable_modules/fable-library-ts.4.17.0"
+|> am'.vec_map (mapm.to_vec >> am'.vec_sort_by_key id)
+|> sm'.format_debug
+|> _assert_eq (
+    ;[
+        ;[ "", ""; "a", "4.17.0" ]
+        |> am'.to_vec
+    ]
+    |> am'.to_vec
+    |> sm'.format_debug
+)
+
+#!markdown
+
+### replace_regex'
+
+#!spiral
+
+inl replace_regex' (pattern : string) (replacement : a i32 string) (s : string) : string =
+    run_target function
+        | Rust (Native) => fun () =>
+            inl s = join s
+            inl replacement = join replacement
+            inl regex = pattern |> new_regex |> resultm.unwrap'
+            !\\((regex, #s, replacement), $'$"$0.replace_all($1, &*$2)"')
+            |> cow_to_std_string
+            |> from_std_string
+        | _ => fun () => null ()
+
+#!markdown
+
+### serialize
+
+#!spiral
+
+inl serialize forall t. (x : t) : resultm.result' std_string json_error =
+    !\($'"serde_json::to_string(&!x)"')
+
+#!markdown
+
+### deserialize
+
+#!spiral
+
+inl deserialize forall t. (json : string) : resultm.result' t std_string =
+    inl json = join json
+    inl json = json |> as_str
+    !\($'"serde_json::from_str(&!json)"')
+    |> resultm.map_error' fun (x : json_error) => x |> format'
+
+#!markdown
+
+### borsh_deserialize
+
+#!spiral
+
+inl borsh_deserialize forall t. (data : array_base u8) : resultm.result' t std_string =
+    inl data = data |> am'.as_slice
+    (!\($'"true; let mut !data = !data"') : bool) |> ignore
+    inl result = !\($'"borsh::BorshDeserialize::deserialize(&mut !data)"')
+    result
+    |> resultm.map_error' fun (x : borsh_io_error) => x |> format'
+
+#!markdown
+
+### deserialize_vec
+
+#!spiral
+
+inl deserialize_vec (value : json_value) : resultm.result' (am'.vec u8) std_string =
+    inl value = join value
+    !\($'"serde_json::from_value(!value)"')
+    |> resultm.map_error' fun (x : json_error) => x |> format'
+
+#!markdown
+
+### encode_uri_component
+
+#!spiral
+
+inl encode_uri_component (s : std_string) : js_string =
+    !\($'"js_sys::encode_uri_component(&!s)"')
+
+#!markdown
+
+### strip_prefix
+
+#!spiral
+
+inl strip_prefix (prefix : char) (s : std_string) : optionm'.option' (rust.ref' str) =
+    inl s = join s
+    !\($'"!s.strip_prefix(!prefix)"')
+
+#!markdown
+
+### str_from_utf8
+
+#!spiral
+
+inl str_from_utf8 (bytes : rust.ref' (am'.slice u8)) : resultm.result' (rust.ref' str) utf8_error =
+    !\($'"std::str::from_utf8(!bytes)"')
+
+#!markdown
+
+### string_from_utf8
+
+#!spiral
+
+inl string_from_utf8 (bytes : am'.vec u8) : resultm.result' std_string from_utf8_error =
+    !\($'"std::string::String::from_utf8(!bytes)"')
+
+#!markdown
+
+### base64_decode
+
+#!spiral
+
+inl base64_decode (s : std_string) : result std_string std_string =
+    fun () =>
+        inl s = join s
+        inl bytes : resultm.result' (am'.vec u8) base64_decode_error =
+            !\($'"base64::Engine::decode(&base64::engine::general_purpose::STANDARD, !s)"')
+        bytes
+        |> resultm.map_error' format'
+        |> resultm.try'
+        |> string_from_utf8
+        |> resultm.map_error' format'
+    |> fun x =>
+        join x ()
+        |> resultm.unbox
+
+#!markdown
+
+### encoding'
+
+#!spiral
+
+nominal encoding' = $'encoding_rs_Encoding'
+
+#!markdown
+
+### encoding_utf8'
+
+#!spiral
+
+inl encoding_utf8' () : rust.ref' encoding' =
+    !\($'"encoding_rs::UTF_8"')
+
+#!markdown
+
+### encoding_1252
+
+#!spiral
+
+inl encoding_1252' () : rust.ref' encoding' =
+    !\($'"encoding_rs::WINDOWS_1252"')
+
+#!markdown
+
+### encoding_encode
+
+#!spiral
+
+inl encoding_encode' (encoding : rust.ref' encoding') (text : string) : rust.cow (am'.slice u8) =
+    !\\((encoding, text), $'"$0.encode(&*$1).0"')
+
+#!markdown
+
+### utf8_decode
+
+#!spiral
+
+inl utf8_decode (data : am'.vec u8) : resultm.result' std_string (rust.cow str) =
+    !\($'$"encoding::Encoding::decode(encoding::all::UTF_8, &!data, encoding::DecoderTrap::Replace)"')
+
+#!markdown
+
+### windows
 
 #!spiral
 
@@ -1050,7 +1293,7 @@ inl windows (len : unativeint) (source : am'.vec u8) : windows u8 =
 
 #!markdown
 
-## any
+### any
 
 #!spiral
 
@@ -1067,7 +1310,7 @@ inl any forall t. (fn : string -> bool) (source : windows t) : bool =
 
 #!markdown
 
-## slice_contains
+### slice_contains
 
 #!spiral
 
@@ -1081,13 +1324,116 @@ inl slice_contains (text : string) (source : am'.vec u8) : bool =
 
 #!markdown
 
-## as_bytes
+### as_bytes
 
 #!spiral
 
 inl as_bytes (text : string) : rust.ref' (am'.slice u8) =
     inl text = join text
     !\($'"!text.as_bytes()"')
+
+#!markdown
+
+## python
+
+#!markdown
+
+### encode_utf8
+
+#!spiral
+
+inl encode_utf8 (s : string) : string =
+    open py_operators
+    inl encoding = "utf-8"
+    !\\((s, encoding), $'"$0.encode($1)"')
+
+#!markdown
+
+## target
+
+#!markdown
+
+### to_string result t u
+
+#!spiral
+
+instance to_string result t u = fun x =>
+    real
+        open rust
+        typecase (t * u) with
+        | string * string =>
+            match x with
+            | Ok x => x
+            | Error x => $'"sm\'.to_string result / Error: " + !x + ""' : string
+        | std_string * std_string =>
+            match x with
+            | Ok x => from_std_string x
+            | Error x => $'"sm\'.to_string result / Error: " + string !x + ""' : string
+        | _ => obj_to_string `u x
+
+#!markdown
+
+### replace_regex
+
+#!spiral
+
+inl replace_regex (pattern : string) (replacement : string) (s : string) : string =
+    inl replacement = join replacement
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl pattern = join pattern
+            $'System.Text.RegularExpressions.Regex.Replace (!s, !pattern, !replacement)'
+        | Rust (Native) => fun () =>
+            inl s = join s
+            inl regex = pattern |> new_regex |> resultm.unwrap'
+            !\\((regex, s, replacement), $'$"$0.replace_all(&$1, &*$2)"')
+            |> cow_to_std_string
+            |> from_std_string
+        | _ => fun () => null ()
+
+#!spiral
+
+//// test
+
+" 123"
+|> replace_regex "\\s\\w2" ""
+|> _assert_eq "3"
+
+#!spiral
+
+//// test
+///! rust -d regex
+
+types ()
+" 123"
+|> replace_regex "\\s\\w2" ""
+|> _assert_eq "3"
+
+#!spiral
+
+//// test
+///! rust -d regex
+
+types ()
+"    let main args =\n        ()\n"
+|> replace_regex $'@@"(?P<a> *)(?P<b>let\\s+main\\s+.*?\\s*=)"' "$a[<EntryPoint>]\n$a$b"
+|> _assert_eq "    [<EntryPoint>]\n    let main args =\n        ()\n"
+
+#!markdown
+
+### write_all_text
+
+#!spiral
+
+inl write_all_text (path : string) (text : string) : () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl text = join text
+            $'System.IO.File.WriteAllText (!path, !text)'
+        | Rust (Native) => fun () =>
+            open rust_operators
+            !\\((path, text), $'"std::fs::write(&*$0, &*$1).unwrap()"')
+        | _ => fun () => null ()
 
 #!markdown
 

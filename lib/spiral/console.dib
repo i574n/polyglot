@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -19,7 +19,10 @@ open testing
 #!spiral
 
 inl write_line obj : () =
-    obj |> $'System.Console.WriteLine'
+    backend_switch {
+        Fsharp = fun () => obj |> $'System.Console.WriteLine' : ()
+        Python = fun () => $'print(!obj)' : ()
+    }
 
 #!spiral
 

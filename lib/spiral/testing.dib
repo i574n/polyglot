@@ -1,10 +1,14 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
 # testing
+
+#!markdown
+
+## __expect
 
 #!spiral
 
@@ -15,34 +19,127 @@ inl __expect fn log name b a =
     if log |> not
     then "__expect"
     else
-        inl text = $'$"{!name} / actual: %A{!a} / expected: %A{!b}"'
+        inl text =
+            backend_switch {
+                Fsharp = fun () => $'$"{!name} / actual: %A{!a} / expected: %A{!b}"' : string
+                Python = fun () => $'f"{!name} / actual: {!a} / expected: {!b}"' : string
+            }
         text |> console.write_line
         text
     |> assert result
 
+#!markdown
+
+## __assert_approx_eq
+
+#!spiral
+
 inl __assert_approx_eq log e b a = __expect (fun a b => abs (b - a) < (e |> optionm.defaultWith 0.00000001)) log "assert_approx_eq" b a
 inl _assert_approx_eq e b a = __assert_approx_eq true e b a
+
+#!spiral
+
+//// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
+
+12.345f64
+|> _assert_approx_eq (Some 0.0001f64) 12.345f64
+
+#!spiral
+
+//// test
+
+1f64
+|> _assert_approx_eq (Some 3) 2
+
+#!spiral
+
+//// test
+
+(dyn 1f64)
+|> _assert_approx_eq (Some 3) 2
+
+#!markdown
+
+## __assert_eq
+
+#!spiral
 
 inl __assert_eq log b a = __expect (=) log "assert_eq" b a
 inl _assert_eq b a = __assert_eq true b a
 
+#!markdown
+
+## __assert_eq
+
+#!spiral
+
 inl __assert_eq' log b a = __expect (=.) log "assert_eq'" b a
 inl _assert_eq' b a = __assert_eq' true b a
+
+#!markdown
+
+## __assert_ne
+
+#!spiral
 
 inl __assert_ne log b a = __expect (<>.) log "assert_ne" b a
 inl _assert_ne b a = __assert_ne true b a
 
+#!markdown
+
+## __assert_gt
+
+#!spiral
+
 inl __assert_gt log b a = __expect (>) log "assert_gt" b a
 inl _assert_gt b a = __assert_gt true b a
+
+#!markdown
+
+## __assert_ge
+
+#!spiral
 
 inl __assert_ge log b a = __expect (>=) log "assert_ge" b a
 inl _assert_ge b a = __assert_ge true b a
 
+#!markdown
+
+## __assert_lt
+
+#!spiral
+
 inl __assert_lt log b a = __expect (<) log "assert_lt" b a
 inl _assert_lt b a = __assert_lt true b a
 
+#!markdown
+
+## __assert_le
+
+#!spiral
+
 inl __assert_le log b a = __expect (<=) log "assert_le" b a
 inl _assert_le b a = __assert_le true b a
+
+#!markdown
+
+## __assert_string_contains
+
+#!spiral
+
+inl __assert_string_contains log b a = __expect sm'.contains log "assert_string_contains" a b
+inl _assert_string_contains b a = __assert_string_contains true b a
+
+#!markdown
+
+## __assert_contains
+
+#!spiral
 
 inl __assert_contains forall t. log (b : t) a =
     __expect
@@ -56,13 +153,18 @@ inl __assert_contains forall t. log (b : t) a =
         log "assert_contains" b a
 inl _assert_contains b a = __assert_contains true b a
 
-inl __assert_string_contains log b a = __expect sm'.contains log "assert_string_contains" a b
-inl _assert_string_contains b a = __assert_string_contains true b a
+#!spiral
 
-inl _throws (fn : () -> ()) : option exn =
-    inl none = None : option exn
-    inl some (s : exn) = Some s
-    $'try !fn (); !none with ex -> ex |> !some '
+//// test
+
+"abcd"
+|> _assert_contains 'b'
+
+#!markdown
+
+## __assert_between
+
+#!spiral
 
 inl __assert_between log a b actual =
     inl assert_between actual (a, b) =
@@ -72,26 +174,20 @@ inl __assert_between log a b actual =
     __expect assert_between log "assert_between" (a, b) actual
 inl _assert_between a b actual = __assert_between true a b actual
 
-#!spiral
+#!markdown
 
-//// test
-
-1f64
-|> _assert_approx_eq (Some 3) 2
+## _throws
 
 #!spiral
 
-//// test
+inl _throws (fn : () -> ()) : option exn =
+    inl none = None : option exn
+    inl some (s : exn) = Some s
+    $'try !fn (); !none with ex -> ex |> !some '
 
-"abcd"
-|> _assert_contains 'b'
+#!markdown
 
-#!spiral
-
-//// test
-
-(dyn 1f64)
-|> _assert_approx_eq (Some 3) 2
+## print_and_return
 
 #!spiral
 

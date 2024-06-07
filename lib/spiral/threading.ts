@@ -88,6 +88,12 @@ export function method0(v0_1: any): (() => void) {
     };
 }
 
+export function method1(v0_1: any): (() => void) {
+    return (): void => {
+        closure1(v0_1, undefined);
+    };
+}
+
 export function closure0(unitVar: void, v0_1: Option<any>): [any, IDisposable] {
     let _v1: Option<[any, IDisposable]> = undefined;
     const patternInput: [any, IDisposable] = defaultOf();

@@ -2,7 +2,10 @@
 
 /// ## write_line
 inl write_line obj : () =
-    obj |> $'System.Console.WriteLine'
+    backend_switch {
+        Fsharp = fun () => obj |> $'System.Console.WriteLine' : ()
+        Python = fun () => $'print(!obj)' : ()
+    }
 
 inl write_line_ ~obj : () =
     obj |> $'System.Console.WriteLine'

@@ -5,22 +5,15 @@ function FixRust {
     )
     process {
         $text `
+            -replace [regex]::Escape("),);"), "));" `
+            -replace [regex]::Escape("},);"), "});" `
             -replace "get_or_insert_with", "get_or_init" `
-            -replace "_self_.", "self."
-    }
-}
-
-function FixRust2 {
-    param (
-        [Parameter(Mandatory, ValueFromPipeline)]
-        $text
-    )
-    process {
-        $text `
+            -replace "_self_.", "self." `
             -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();" `
             -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;" `
             -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();" `
-            -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();"
+            -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();" `
+            -replace "use fable_library_rust::System::TimeZoneInfo;", "type TimeZoneInfo = i64;"
     }
 }
 
@@ -55,7 +48,7 @@ function CopyTarget {
             $lib,
             $name
         )
-        $name = $Language -eq "py" -and $name -eq "threading" ? "$($name)_" : $name
+        $name = $Language -eq "py" -and @("threading", "platform") -contains $name ? "$($name)_" : $name
         $name = $Language -eq "py" ? $name.ToLower() : $name
         $from = "$TargetDir/target/$Language/lib/$lib/$name.$Language"
         $to = "$root/lib/$lib/$name$_runtime.$Language"
@@ -71,34 +64,15 @@ function CopyTarget {
         }
         if ($Language -eq "rs") {
             $text = $text `
-                -replace [regex]::Escape("),);"), "));" `
-                -replace [regex]::Escape("},);"), "});" `
                 | FixRust
 
-            if ($name -in @("date_time", "file_system")) {
-                $text = $text `
-                    -replace "use fable_library_rust::System::TimeZoneInfo;", "type TimeZoneInfo = i64;"
-            }
             if ($name -in @("async_", "runtime", "threading", "networking", "file_system")) {
                 $text = $text `
                     -replace "use fable_library_rust::Async_::Async;", "type Async<T> = T;"
             }
-            if ($name -in @("async_", "runtime", "threading")) {
-                $text = $text `
-                    -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();"
-            }
             if ($name -in @("threading")) {
                 $text = $text `
                     -replace "use fable_library_rust::System::Threading::CancellationTokenSource;", "type CancellationTokenSource = ();"
-            }
-            if ($name -eq "runtime") {
-                $text = $text `
-                    -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();" `
-                    -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;"
-            }
-            if ($name -in @("runtime", "threading", "file_system")) {
-                $text = $text `
-                    -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();"
             }
             if ($name -in @("common") -and !$Runtime) {
                 $text = $text `
@@ -116,13 +90,13 @@ function CopyTarget {
                 $text = $text `
                     -replace "defaultOf\(\),", "defaultOf::<std::rc::Rc<dyn IDisposable>>(),"
             }
-            if ($name -eq "file_system" -and $Runtime -in @("wasm", "contract")) {
+            if ($name -eq "file_system" -and $Runtime -in @("contract")) {
                 $text = $text `
                     -replace "chrono::Utc", "()" `
                     -replace "chrono::Local", "()" `
                     -replace "chrono::DateTime", "Option" `
                     -replace "use fable_library_rust::DateTime_::DateTime;", "type DateTime = ();" `
-                    -replace "use fable_library_rust::Guid_::Guid;", "type Guid = ();" `
+                    -replace "use fable_library_rust::Guid_::Guid;", "type Guid = ();"
             }
         }
 
@@ -133,6 +107,7 @@ function CopyTarget {
     CopyItem "spiral" "common"
     CopyItem "spiral" "date_time"
     CopyItem "spiral" "async_"
+    CopyItem "spiral" "platform"
     CopyItem "spiral" "runtime"
     CopyItem "spiral" "threading"
     CopyItem "spiral" "networking"
@@ -153,7 +128,7 @@ function GetTargetDir {
         [string] $ProjectName
     )
     $root = "$PSScriptRoot/../.."
-    $result = (Resolve-Path "$root/target/polyglot/builder/$ProjectName").Path
+    $result = (Resolve-Path "$root/target/Builder/$ProjectName").Path
     Write-Host "targetDir: $result"
     $result
 }
@@ -170,12 +145,12 @@ function BuildFable {
     )
     $root = "$PSScriptRoot/../.."
 
-    { dotnet fable "$TargetDir/$ProjectName.fsproj" --optimize --lang $Language --extension ".$Language" --outDir $TargetDir/target/$Language $($Runtime ? @("--define", $Runtime) : @()) } | Invoke-Block -Location $root
+    { dotnet fable "$TargetDir/$ProjectName.fsproj" --optimize --lang $Language --extension ".$Language" --outDir $TargetDir/target/$Language --define $($IsWindows ? "_WINDOWS" : "_LINUX") $($Runtime ? @("--define", $Runtime) : @()) } | Invoke-Block -Location $root
 
     CopyTarget $TargetDir $root $Language $Runtime.ToLower()
 }
 
 
 function GetFsxModules {
-    @("lib/spiral/common.fsx", "lib/spiral/sm.fsx", "lib/spiral/crypto.fsx", "lib/spiral/date_time.fsx", "lib/spiral/async_.fsx", "lib/spiral/threading.fsx", "lib/spiral/networking.fsx", "lib/spiral/runtime.fsx", "lib/spiral/file_system.fsx", "lib/spiral/trace.fsx", "lib/spiral/lib.fsx")
+    @("lib/spiral/common.fsx", "lib/spiral/sm.fsx", "lib/spiral/crypto.fsx", "lib/spiral/date_time.fsx", "lib/spiral/async_.fsx", "lib/spiral/threading.fsx", "lib/spiral/networking.fsx", "lib/spiral/platform.fsx", "lib/spiral/runtime.fsx", "lib/spiral/file_system.fsx", "lib/spiral/trace.fsx", "lib/spiral/lib.fsx")
 }

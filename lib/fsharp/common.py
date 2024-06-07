@@ -3,14 +3,14 @@ from collections.abc import Callable
 from typing import Any
 from fable_modules.fable_library.reflection import (TypeInfo, union_type)
 from fable_modules.fable_library.types import (Array, Union)
-from ......lib.spiral.lib import SpiralTrace_trace
-from ......lib.spiral.trace import US0
+from .....lib.spiral.lib import SpiralTrace_trace
+from .....lib.spiral.trace import US0
 
 nl: str = "\n"
 
 q: str = "\""
 
-def _expr119() -> TypeInfo:
+def _expr192() -> TypeInfo:
     return union_type("Polyglot.Common.TraceLevel", [], TraceLevel, lambda: [[], [], [], [], []])
 
 
@@ -25,7 +25,7 @@ class TraceLevel(Union):
         return ["Verbose", "Debug", "Info", "Warning", "Critical"]
 
 
-TraceLevel_reflection = _expr119
+TraceLevel_reflection = _expr192
 
 def TraceLevel__get_IsVerbose(this: TraceLevel, unit_arg: None) -> bool:
     if this.tag == 0:

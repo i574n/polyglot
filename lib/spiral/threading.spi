@@ -50,6 +50,8 @@ inl join' forall t.
         ) =
     !\\(x, $'"std::thread::JoinHandle::join($0)"')
 
+nominal thread = $'System.Threading.Thread'
+
 /// ## cancellation_token
 nominal cancellation_token = $'System.Threading.CancellationToken'
 

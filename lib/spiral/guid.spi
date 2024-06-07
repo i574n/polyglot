@@ -11,7 +11,18 @@ inl new_guid (x : string) : guid =
 inl new_raw_guid () : guid =
     $'System.Guid.NewGuid' ()
 
+/// ## hash_guid
+type hash_guid = guid
+
+let hash_guid (~hash : string) : hash_guid =
+    run_target function
+        | Rust (Contract) => fun () => null ()
+        | _ => fun () =>
+            inl hash = hash |> sm'.pad_left 32i32 '0'
+            $'`hash_guid $"{!hash.[0..7]}-{!hash.[8..11]}-{!hash.[12..15]}-{!hash.[16..19]}-{!hash.[20..31]}"'
+
 /// ## main
 inl main () =
     $'let new_guid x = !new_guid x' : ()
+    $'let hash_guid x = !hash_guid x' : ()
     $'let new_raw_guid x = !new_raw_guid x' : ()

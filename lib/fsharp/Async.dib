@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -394,3 +394,20 @@ async {
 |> retryAsync 3
 |> Async.RunSynchronously
 |> _assertEqual (Ok 2)
+
+#!markdown
+
+## fold
+
+#!fsharp
+
+let fold folder state array =
+    let rec loop acc i =
+        async {
+            if i < Array.length array then
+                let! newAcc = folder acc array.[i]
+                return! loop newAcc (i + 1)
+            else
+                return acc
+        }
+    loop state 0

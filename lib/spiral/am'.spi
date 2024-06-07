@@ -1,7 +1,7 @@
 /// # am'
 open rust_operators
 
-/// ## types ()
+/// ## types
 inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>]\n#endif\ntype Slice<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype Slice'<'T> = class end"
@@ -15,15 +15,40 @@ inl length forall dim {int} el. (a : a dim el) : dim =
 inl index forall dim {int} el. (i : dim) (a : a dim el) : el =
     index a i
 
+/// ## base
+inl base forall dim {int} el. ((a a) : a dim el) : array_base el =
+    a
+
+/// ## base'
+inl base' forall el. ((a a) : a int el) : array_base el =
+    a
+
+/// ## generic_equable
+inl generic_equable x1 x2 =
+    if length x1 <>.. length x2
+    then false
+    else
+        let rec loop i =
+            if i < length x1
+            then index i x1 = index i x2 && loop (i + 1)
+            else true
+        loop 0
+
+/// ## equable
+instance equable a dim {number; int} t = generic_equable
+
 /// ## append
-instance append a dim {int; number} t =
-    am.append
+instance append a dim {int; number} t = am.append
 
 /// ## collect
-inl collect forall t r. (fn : t -> a i32 r) (items : a i32 t) : a i32 r =
+inl collect forall t r. (fn : t -> a int r) (items : a int t) : a int r =
     items
     |> am.map fn
     |> am.fold (++) (a ;[])
+
+/// ## init
+inl init n : a int _ =
+    am.init n id
 
 /// ## choose
 inl choose f l =
@@ -35,13 +60,13 @@ inl choose f l =
     |> listm.toArray
 
 /// ## sum
-inl sum (a' : a _ _) =
-    a' |> am.fold (+) 0
+inl sum a =
+    a |> am.fold (+) 0
 
 /// ## init_series
-inl init_series start end inc =
+inl init_series start end inc : a int _ =
     inl total = conv ((end - start) / inc) + 1
-    am.init total (conv >> (*) inc >> (+) start) : a i32 _
+    am.init total (conv >> (*) inc >> (+) start)
 
 /// ## head
 inl head (ar : a _ _) =
@@ -75,7 +100,7 @@ inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a d
 inl map_base forall t u. (fn : t -> u) (x : array_base t) : array_base u =
     a x
     |> am.map fn
-    |> fun (a x : _ i64 _) => x
+    |> fun (a x : _ int _) => x
 
 /// ## average
 inl average forall el {number}. (a : a _ el) : el =
@@ -84,6 +109,14 @@ inl average forall el {number}. (a : a _ el) : el =
 /// ## distinct
 inl distinct forall dim el. (a : a dim el) : a dim el =
     a |> $'Array.distinct'
+
+/// ## skip
+inl skip forall dim el. (n : dim) (a : a dim el) : a dim el =
+    a |> $'Array.skip' n
+
+/// ## skip_while
+inl skip_while forall dim el. (fn : el -> bool) (a : a dim el) : a dim el =
+    a |> $'Array.skipWhile' fn
 
 /// ## to_list'
 inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
@@ -213,13 +246,13 @@ inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : vec t) : vec u =
 
 /// ## vec_map
 inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
-    (!\($'"true; let _result = !ar.into_iter().map(|x| { //"') : bool) |> ignore
+    (!\($'"true; let _result : Vec<_> = !ar.into_iter().map(|x| { //"') : bool) |> ignore
     (!\\(fn !\($'"x"'), $'"true; $0 }).collect::<Vec<_>>()"') : bool) |> ignore
     !\($'"_result"')
 
 /// ## vec_map'''
 inl vec_map''' forall t u. (fn : t -> u) (ar : vec t) : vec u =
-    (!\($'"true; let _result = !ar.into_iter().map(|x| { //"') : bool) |> ignore
+    (!\($'"true; let _result : Vec<_> = !ar.into_iter().map(|x| { //"') : bool) |> ignore
     (!\\(fn !\($'"x"'), $'"true; $0 }}).collect::<Vec<_>>(); {{ //"') : bool) |> ignore
     !\($'"_result"')
 
@@ -324,12 +357,10 @@ inl any forall t. (fn : t -> bool) (source : array_base t) : bool =
     !\($'"!source.any(|x| !fn(x))"')
 
 /// ## iter_collect vec
-open iter_prototypes
-
-instance iter_collect vec = fun (iter : iter_prototypes.into_iterator u) =>
+instance iter_collect vec = fun (iter : into_iterator u) =>
     !\($'"!iter.collect::<Vec<_>>()"')
 
-instance iter_collect'' vec = fun (iter : iter_prototypes.into_iterator (t (u v))) =>
+instance iter_collect'' vec = fun (iter : into_iterator (t (u v))) =>
     !\($'"!iter.collect::<Vec<_>>()"')
 
 /// ## new_vec
@@ -338,6 +369,6 @@ inl new_vec forall t. (items : list t) : vec t =
         (items, ("", 0i32))
         ||> listm.foldBack fun (x : t) (acc, i) =>
             inl x = join x
-            $'"!x"' +. (if i = 0 then "" else ",") +. acc, i + 1
+            $'"!x"' +. (if i = 0 then "" else ", ") +. acc, i + 1
         |> fst
     !\($'"vec\![" + !items + "]"')

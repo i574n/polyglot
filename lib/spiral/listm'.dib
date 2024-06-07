@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -69,6 +69,15 @@ inl fold_back' forall t u. (fn : t -> u) (list : list' t) (init : list u) : list
 
 inl filter' forall t. (fn : t -> bool) (list : list' t) : list' t =
     list |> $'"List.filter !fn"'
+
+#!markdown
+
+## map
+
+#!spiral
+
+inl map forall t u. (fn : t -> u) (list : list' t) : list' u =
+    list |> $'List.map' fn
 
 #!markdown
 
@@ -192,7 +201,7 @@ listm.init 10i32 id
 
 #!markdown
 
-## list_item
+## item
 
 #!spiral
 
@@ -584,3 +593,35 @@ inl try_pick fn list =
 listm.init 10i32 id
 |> try_pick (fun x => if x = 5i32 then Some x else None)
 |> _assert_eq (Some 5i32)
+
+#!markdown
+
+## exists'
+
+#!spiral
+
+inl exists' f x =
+    inl length_x : i64 = x |> listm.length
+    let rec loop i =
+        if i >= length_x
+        then false
+        elif x |> item i |> f
+        then true
+        else loop (i + 1)
+    loop 0
+
+#!spiral
+
+//// test
+
+[ 'a'; 'b'; 'c' ]
+|> exists' fun x => x = 'b'
+|> _assert_eq true
+
+[ 'a'; 'b' ]
+|> exists' fun x => x = 'c'
+|> _assert_eq false
+
+[]
+|> exists' fun x => x = 'a'
+|> _assert_eq false

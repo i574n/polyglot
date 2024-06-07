@@ -12,11 +12,15 @@ inline_colorization = { workspace = true }
 chrono = { workspace = true }
 regex = { workspace = true }
 clap = { workspace = true }
-futures-lite = { workspace = true }
 serde_json = { workspace = true }
-futures = "~0.3"
+tokio = { workspace = true }
+tokio-stream = "~0.1"
 encoding_rs = "~0.8"
 encoding_rs_io = "~0.1"
+rand = "~0.9.0-alpha.1"
+sha2 = "~0.11.0-pre.3"
+async-walkdir = "~1.0"
+rayon = "~1.10"
 
 [dev-dependencies]
 

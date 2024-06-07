@@ -8064,12 +8064,15 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="n">types</span> <span class="p">()</span>
 <span class="n">get_tasks</span> <span class="p">()</span>
-<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_pretty'</span>
-<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
 <span class="o">|&gt;</span> <span class="n">_assert_string_contains</span> <span class="s2">"01"</span>
 </pre></div>
 </div>
@@ -8083,28 +8086,27 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_string_contains / actual: "01" / expected: "UH2_1(
-    UH0_0,
-    "01",
-    US4_0(
-        US3_0,
-    ),
-    UH2_1(
-        UH0_0,
-        "02",
-        US4_0(
-            US3_0,
-        ),
-        UH2_1(
-            UH0_0,
-            "03",
-            US4_0(
-                US3_0,
-            ),
-            UH2_0,
-        ),
-    ),
-)"
+<pre>.py output (Cuda):
+assert_string_contains / actual: 01 / expected: UH2_1(v0=UH0_0(), v1='01', v2=US4_0(v0=US3_0()), v3=UH2_1(v0=UH0_0(), v1='02', v2=US4_0(v0=US3_0()), v3=UH2_1(v0=UH0_0(), v1='03', v2=US4_0(v0=US3_0()), v3=UH2_0())))
+
+.rs output:
+assert_string_contains / actual: "01" / expected: "UH2_1(UH0_0, "01", US4_0(US3_0), UH2_1(UH0_0, "02", US4_0(US3_0), UH2_1(UH0_0, "03", US4_0(US3_0), UH2_0)))"
+
+.ts output:
+assert_string_contains / actual: 01 / expected: UH2_1 (UH0_0, 01, US4_0 US3_0, UH2_1 (UH0_0, 02, US4_0 US3_0, UH2_1 (UH0_0, 03, US4_0 US3_0, UH2_0)))
+
+.py output:
+assert_string_contains / actual: 01 / expected: UH2_1 (UH0_0, 01, US4_0 US3_0, UH2_1 (UH0_0, 02, US4_0 US3_0, UH2_1 (UH0_0, 03, US4_0 US3_0, UH2_0)))
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+assert_string_contains / actual: "01" / expected: "UH2_1
+  (UH0_0, "01", US4_0 US3_0,
+   UH2_1 (UH0_0, "02", US4_0 US3_0, UH2_1 (UH0_0, "03", US4_0 US3_0, UH2_0)))"
 </pre>
 </div>
 </div>
@@ -8119,7 +8121,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="n">get_tasks</span> <span class="p">()</span>
 <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.try_item 0i32</span>
@@ -8137,7 +8143,25 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "01" / expected: "01"
+<pre>.py output (Cuda):
+assert_eq / actual: 01 / expected: 01
+
+.rs output:
+assert_eq / actual: "01" / expected: "01"
+
+.ts output:
+assert_eq / actual: 01 / expected: 01
+
+.py output:
+assert_eq / actual: 01 / expected: 01
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+assert_eq / actual: "01" / expected: "01"
 </pre>
 </div>
 </div>

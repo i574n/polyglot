@@ -3,14 +3,14 @@ open rust_operators
 
 /// ## types
 inl types () =
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_std::task::JoinHandle<$0>\")>]\n#endif\ntype async_std_task_JoinHandle<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>]\n#endif\ntype std_future_Future<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::vec::IntoIter<$0>\")>]\n#endif\ntype rayon_vec_IntoIter<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::iter::Map<$0, _>\")>]\n#endif\ntype rayon_iter_Map<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures_lite::stream::StreamExt\")>]\n#endif\ntype futures_lite_stream_StreamExt = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>]\n#endif\ntype futures_future_TryJoinAll<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::Fuse<$0>\")>]\n#endif\ntype futures_future_Fuse<'T> = class end"
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::JoinAll<$0>\")>]\n#endif\ntype futures_future_JoinAll<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>]\n#endif\ntype futures_future_TryJoinAll<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::iter::Map<$0, _>\")>]\n#endif\ntype rayon_iter_Map<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::vec::IntoIter<$0>\")>]\n#endif\ntype rayon_vec_IntoIter<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>]\n#endif\ntype std_future_Future<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::prelude::stream::Fuse<$0>\")>]\n#endif\ntype futures_future_Fuse<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::task::JoinHandle<$0>\")>]\n#endif\ntype tokio_task_JoinHandle<'T> = class end"
+    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio_stream::StreamExt\")>]\n#endif\ntype tokio_stream_StreamExt = class end"
 
 /// ## async
 nominal async t = $'Async<`t>'
@@ -34,21 +34,35 @@ type future_pin_send t = rust.pin (rust.box (rust.send (rust.dyn' (future t))))
 
 /// ## block_on
 inl block_on forall t. (fn : future_pin t) : t =
+    inl runtime : infer =
+        !\($'$"tokio::runtime::Builder::new_multi_thread().enable_all().build().unwrap()"')
+    !\\(fn, $'"!runtime.handle().block_on($0)"')
+
+/// ## block_on'
+inl block_on' forall t. (fn : future_pin t) : t =
     !\\(fn, $'"futures_lite::future::block_on($0)"')
+
+/// ## block_on''
+inl block_on'' forall t. (fn : future_pin t) : t =
+    !\\(fn, $'"futures::executor::block_on($0)"')
+
+/// ## block_on'''
+inl block_on''' forall t. (fn : future_pin t) : t =
+    !\\(fn, $'"async_std::task::block_on($0)"')
 
 /// ## block_on_send
 inl block_on_send forall t. (fn : future_pin_send t) : t =
-    !\($'"futures_lite::future::block_on(!fn)"')
+    !\($'"tokio::runtime::block_on(!fn)"')
 
 /// ## stream_ext
-nominal stream_ext = $'futures_lite_stream_StreamExt'
+nominal stream_ext = $'tokio_stream_StreamExt'
 
 /// ## join_handle
-nominal join_handle t = $'async_std_task_JoinHandle<`t>'
+nominal join_handle t = $'tokio_task_JoinHandle<`t>'
 
 /// ## spawn
 inl spawn forall t. (fn : future_pin_send t) : join_handle t =
-    !\($'"async_std::task::spawn(!fn)"')
+    !\($'"tokio::runtime::spawn(!fn)"')
 
 /// ## try_join_all
 nominal try_join_all t = $'futures_future_TryJoinAll<`t>'
@@ -355,11 +369,11 @@ inl run_with_timeout_async forall t. (timeout : i32) (fn : async t) : async (opt
                 |> map function
                     | Ok result => Some result
                     | Error ex when ex |> sm'.format_debug |> sm'.contains "System.TimeoutException" =>
-                        trace Debug (fun () => $'"run_with_timeout_async"') _locals
+                        trace Debug (fun () => $'"async.run_with_timeout_async"') _locals
                         None
                     | Error (ex : exn) =>
                         inl ex = ex |> sm'.format_exception
-                        trace Critical (fun () => $'$"run_with_timeout_async** / ex: {!ex}"') _locals
+                        trace Critical (fun () => $'$"async.run_with_timeout_async** / ex: {!ex}"') _locals
                         None
                 |> return_await
             |> new_async_unit

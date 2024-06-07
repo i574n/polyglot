@@ -44,7 +44,7 @@ export function throttle<T extends (...args: Parameters<T>) => Promise<Awaited<R
 }
 
 export const getFileTokenRange = async (workspaceRoot: string, text: string) => {
-  const targetDir = path.join(workspaceRoot, "target/polyglot/spiral_eval")
+  const targetDir = path.join(workspaceRoot, "target/spiral_Eval")
   if (!fs.existsSync(targetDir)) {
     fs.mkdirSync(targetDir, { recursive: true })
   }

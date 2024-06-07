@@ -7857,7 +7857,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 critical #2 runWithTimeoutChoiceAsync / ex: System.Exception: error / timeout: 60
+<pre>00:00:00 critical #2 runWithTimeoutChoiceAsync / ex: System.Exception: error / timeout: 60
 &lt;null&gt;
 
 </pre>
@@ -8015,7 +8015,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:01 critical #4 runWithTimeoutAsync** / ex: System.Exception: error
-   at FSI_0035.it@4-119.Invoke(Unit unitVar)
+   at FSI_0036.it@4-119.Invoke(Unit unitVar)
    at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
    at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
 --- End of stack trace from previous location ---
@@ -8479,6 +8479,40 @@ a.anchor-link {
 Ok 2
 
 </pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="fold">fold<a class="anchor-link" href="#fold">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=42">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">fold</span> <span class="n">folder</span> <span class="n">state</span> <span class="n">array</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">acc</span> <span class="n">i</span> <span class="o">=</span>
+        <span class="k">async</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">length</span> <span class="n">array</span> <span class="n">then</span>
+                <span class="n">let</span><span class="err">!</span> <span class="n">newAcc</span> <span class="o">=</span> <span class="n">folder</span> <span class="n">acc</span> <span class="n">array</span><span class="o">.</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="n">newAcc</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span>
+                <span class="k">return</span> <span class="n">acc</span>
+        <span class="p">}</span>
+    <span class="n">loop</span> <span class="n">state</span> <span class="mi">0</span>
+</pre></div>
 </div>
 </div>
 </div>

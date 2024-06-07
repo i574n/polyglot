@@ -13,6 +13,10 @@
 
 #!pwsh
 
+{ pwsh ../apps/spiral/builder/build.ps1 -SkipFsx 1 } | Invoke-Block
+
+#!pwsh
+
 { pwsh ../apps/parser/build.ps1 } | Invoke-Block
 
 #!pwsh

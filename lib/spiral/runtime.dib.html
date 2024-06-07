@@ -7924,155 +7924,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="os_platform">os_platform<a class="anchor-link" href="#os_platform">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">os_platform</span><span class="s1">' = $'</span><span class="n">System</span><span class="o">.</span><span class="n">Runtime</span><span class="o">.</span><span class="n">InteropServices</span><span class="o">.</span><span class="n">OSPlatform</span><span class="s1">'</span>
-
-<span class="n">union</span> <span class="n">os_platform</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Windows</span>
-
-<span class="n">inl</span> <span class="n">os_platform</span> <span class="o">=</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Windows</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'`os_platform'</span><span class="o">.</span><span class="n">Windows</span><span class="s1">' : os_platform'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="is_os_platform">is_os_platform<a class="anchor-link" href="#is_os_platform">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">is_os_platform</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">os_platform</span><span class="s1">') : bool =</span>
-    <span class="n">x</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform'</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="is_windows">is_windows<a class="anchor-link" href="#is_windows">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">is_windows</span> <span class="p">()</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">Windows</span> <span class="o">|&gt;</span> <span class="n">os_platform</span> <span class="o">|&gt;</span> <span class="n">is_os_platform</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"cfg\!(windows)"'</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="get_executable_suffix">get_executable_suffix<a class="anchor-link" href="#get_executable_suffix">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=35">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get_executable_suffix</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="k">if</span> <span class="n">is_windows</span> <span class="p">()</span>
-    <span class="n">then</span> <span class="s2">".exe"</span>
-    <span class="k">else</span> <span class="s2">""</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">get_executable_suffix</span> <span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="quoted">quoted<a class="anchor-link" href="#quoted">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8089,7 +7945,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8099,7 +7955,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8112,7 +7968,7 @@ a.anchor-link {
     <span class="o">|</span> <span class="n">Path</span> <span class="p">:</span> <span class="n">quoted</span>
     <span class="o">|</span> <span class="n">Arguments</span>
 
-<span class="n">inl</span> <span class="n">split_command</span> <span class="p">(</span><span class="n">command</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
+<span class="n">let</span> <span class="n">split_command</span> <span class="p">(</span><span class="n">command</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="p">(</span><span class="n">chars</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">char</span><span class="p">)</span> <span class="n">step</span> <span class="o">=</span>
         <span class="k">match</span> <span class="n">step</span><span class="p">,</span> <span class="n">chars</span> <span class="k">with</span>
         <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="p">((</span><span class="s1">'"'</span> <span class="o">|</span> <span class="s1">'</span><span class="se">\'</span><span class="s1">'</span><span class="p">)</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="n">when</span> <span class="n">path</span> <span class="o">=</span> <span class="s2">""</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Path</span> <span class="n">Quoted</span><span class="p">)</span>
@@ -8128,7 +7984,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8187,7 +8043,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8197,7 +8053,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=43">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8212,7 +8068,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8222,7 +8078,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8237,7 +8093,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8247,7 +8103,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=47">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8262,7 +8118,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8272,7 +8128,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8288,7 +8144,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8298,7 +8154,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8314,7 +8170,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8324,7 +8180,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8340,7 +8196,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8350,7 +8206,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=55">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8366,7 +8222,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8376,7 +8232,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=57">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8395,7 +8251,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8405,7 +8261,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8424,7 +8280,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8434,7 +8290,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=61">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8450,7 +8306,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8460,7 +8316,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=63">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8476,7 +8332,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8486,7 +8342,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=65">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8502,7 +8358,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=66">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8512,7 +8368,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=67">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=58">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8528,7 +8384,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=68">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8538,7 +8394,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=69">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=60">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8554,7 +8410,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=70">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8564,7 +8420,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=71">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=62">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8580,7 +8436,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=72">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=63">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8590,7 +8446,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=73">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=64">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8610,7 +8466,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=74">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8620,7 +8476,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=75">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=66">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8656,7 +8512,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8666,7 +8522,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=77">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=68">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8681,7 +8537,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
                 <span class="n">inl</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">arguments</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">command</span> <span class="o">|&gt;</span> <span class="n">split_command</span>
                 <span class="n">inl</span> <span class="n">working_directory</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">working_directory</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox |&gt; optionm'</span><span class="o">.</span><span class="n">default_value</span> <span class="s2">""</span>
 
-                <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"execute_with_options_async / options: %A{!options}"'</span><span class="p">)</span> <span class="p">(</span><span class="n">join</span> <span class="n">_locals</span><span class="p">)</span>
+                <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"runtime.execute_with_options_async / options: %A{!options}"'</span><span class="p">)</span> <span class="p">(</span><span class="n">join</span> <span class="n">_locals</span><span class="p">)</span>
 
                 <span class="n">inl</span> <span class="n">utf8</span> <span class="o">=</span> <span class="n">sm</span><span class="s1">'.encoding_utf8 ()</span>
                 <span class="n">inl</span> <span class="n">start_info</span> <span class="p">:</span> <span class="n">process_start_info</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.Diagnostics.ProcessStartInfo (Arguments = !arguments, StandardOutputEncoding = !utf8, WorkingDirectory = !working_directory, FileName = !file_name, CreateNoWindow = true, RedirectStandardError = true, RedirectStandardOutput = true, UseShellExecute = false)'</span>
@@ -8723,7 +8579,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
                 <span class="n">proc</span> <span class="o">|&gt;</span> <span class="n">process_add_error_data_received</span> <span class="p">(</span><span class="n">event</span> <span class="n">true</span> <span class="o">&gt;&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">start_immediate</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="n">proc</span> <span class="o">|&gt;</span> <span class="n">process_start</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-                <span class="n">then</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"execute_with_options_async / process_start error"'</span>
+                <span class="n">then</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"runtime.execute_with_options_async / process_start error"'</span>
 
                 <span class="n">proc</span> <span class="o">|&gt;</span> <span class="n">process_begin_error_read_line</span>
                 <span class="n">proc</span> <span class="o">|&gt;</span> <span class="n">process_begin_output_read_line</span>
@@ -8755,7 +8611,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
                                 <span class="n">inl</span> <span class="n">ex</span><span class="s1">' = ex |&gt; sm'</span><span class="o">.</span><span class="n">format_exception</span>
                                 <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">threading</span><span class="o">.</span><span class="n">concurrent_stack_push</span> <span class="n">ex</span><span class="s1">'</span>
                                 <span class="n">inl</span> <span class="n">ex</span> <span class="p">:</span> <span class="k">async</span><span class="o">.</span><span class="n">task_canceled_exception</span> <span class="o">=</span> <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">unbox</span>
-                                <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"execute_with_options_async / WaitForExitAsync / ex: %A{!ex}"'</span><span class="p">)</span> <span class="p">(</span><span class="n">join</span> <span class="n">_locals</span><span class="p">)</span>
+                                <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"runtime.execute_with_options_async / WaitForExitAsync / ex: %A{!ex}"'</span><span class="p">)</span> <span class="p">(</span><span class="n">join</span> <span class="n">_locals</span><span class="p">)</span>
                                 <span class="p">(</span><span class="n">limit</span><span class="o">.</span><span class="n">min</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">return</span>
                     <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async_unit</span>
                     <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">let</span><span class="s1">'</span>
@@ -8767,7 +8623,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
                     <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.concat "</span><span class="se">\n</span><span class="s1">"</span>
 
                 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                    <span class="err">$</span><span class="s1">'$"execute_with_options_async / exit_code: {!exit_code} / output.Length: {!output.Length}"'</span>
+                    <span class="err">$</span><span class="s1">'$"runtime.execute_with_options_async / exit_code: {!exit_code} / output.Length: {!output.Length}"'</span>
                 <span class="p">)</span> <span class="p">(</span><span class="n">join</span> <span class="n">_locals</span><span class="p">)</span>
 
                 <span class="p">(</span><span class="n">exit_code</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">return</span>
@@ -8781,7 +8637,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=78">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8791,7 +8647,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=79">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=70">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8809,7 +8665,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=80">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=71">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8820,13 +8676,19 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">types</span> <span class="p">()</span>
-<span class="n">inl</span> <span class="n">temp_folder</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">file_system</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-<span class="n">disposable</span> <span class="o">|&gt;</span> <span class="n">use</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-<span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s2">"test.txt"</span>
-<span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">temp_folder</span> <span class="o">&lt;/&gt;</span> <span class="n">file_name</span>
 
 <span class="n">inl</span> <span class="n">content</span> <span class="o">=</span> <span class="s2">"╭─[ 你好，世界！こんにちは世界！ ]─╮"</span>
 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s2">"test.txt"</span>
+    <span class="n">inl</span> <span class="n">temp_dir</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span>
+        <span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
+        <span class="o">|&gt;</span> <span class="n">crypto</span><span class="o">.</span><span class="n">hash_text</span>
+        <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">create_temp_dir</span><span class="s1">'</span>
+    <span class="n">disposable</span> <span class="o">|&gt;</span> <span class="n">use</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+
+    <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">temp_dir</span> <span class="o">&lt;/&gt;</span> <span class="n">file_name</span>
+
     <span class="n">inl</span> <span class="n">exit_code</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">execute_async</span> <span class="err">$</span><span class="s1">'\@$"pwsh -c ""Get-Content {!path}"""'</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">let</span><span class="s1">'</span>
     <span class="n">exit_code</span> <span class="o">|&gt;</span> <span class="n">join</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
     <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">_assert_string_contains</span> <span class="s2">"not exist"</span>
@@ -8835,7 +8697,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 
     <span class="n">execution_options</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
         <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'\@$"cat ""{!file_name}"""'</span>
-        <span class="n">working_directory</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">temp_folder</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
+        <span class="n">working_directory</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">temp_dir</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
     <span class="p">}</span>
     <span class="o">|&gt;</span> <span class="n">execute_with_options_async</span>
     <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">let</span><span class="s1">'</span>
@@ -8843,7 +8705,7 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 
     <span class="n">execution_options</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
         <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'\@$"pwsh -c ""[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Content {!file_name}"""'</span>
-        <span class="n">working_directory</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">temp_folder</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
+        <span class="n">working_directory</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">temp_dir</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
     <span class="p">}</span>
     <span class="o">|&gt;</span> <span class="n">execute_with_options_async</span>
     <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span>
@@ -8868,23 +8730,25 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00   debug #1 execute_with_options_async / options: struct (None,
-        "pwsh -c "Get-Content /tmp/!dotnet-repl/20240521-0306-4100-0044-0000007800db/test.txt"",
+<pre>00:00:00   debug #1 runtime.execute_with_options_async / options: struct (None,
+        "pwsh -c "Get-Content /tmp/!create_temp_path_/dotnet-repl/76793606-813b-88ad-7791-7ce2871edce9/test.txt"",
         [||], None, None, true, None)
-00:00:00 verbose #2 ! <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path '/tmp/!dotnet-repl/20240521-0306-4100-0044-0000007800db/test.txt' because it does not exist.</span>
-00:00:00   debug #3 execute_with_options_async / exit_code: 1 / output.Length: 150
+00:00:00 verbose #2 ! <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path '/tmp/!create_temp_path_/dotnet-repl/76793606-813b-88ad-7791-7ce2871edce9/test.txt' because it does not exist.</span>
+00:00:00   debug #3 runtime.execute_with_options_async / exit_code: 1 / output.Length: 168
 assert_eq / actual: 1 / expected: 1
-assert_string_contains / actual: "not exist" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Get-Content: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Cannot find path '/tmp/!dotnet-repl/20240521-0306-4100-0044-0000007800db/test.txt' because it does not exist.</span>"
-00:00:00   debug #4 execute_with_options_async / options: struct (None, "cat "test.txt"", [||], None, None, true,
-        Some "/tmp/!dotnet-repl/20240521-0306-4100-0044-0000007800db")
+assert_string_contains / actual: "not exist" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Get-Content: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Cannot find path '/tmp/!create_temp_path_/dotnet-repl/76793606-813b-88ad-7791-7ce2871edce9/test.txt' because it does not exist.</span>"
+00:00:00   debug #4 runtime.execute_with_options_async / options: struct (None, "cat "test.txt"", [||], None, None, true,
+        Some
+          "/tmp/!create_temp_path_/dotnet-repl/76793606-813b-88ad-7791-7ce2871edce9")
 00:00:00 verbose #5 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:00   debug #6 execute_with_options_async / exit_code: 0 / output.Length: 22
-00:00:00   debug #7 execute_with_options_async / options: struct (None,
+00:00:00   debug #6 runtime.execute_with_options_async / exit_code: 0 / output.Length: 22
+00:00:00   debug #7 runtime.execute_with_options_async / options: struct (None,
         "pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Content test.txt"",
         [||], None, None, true,
-        Some "/tmp/!dotnet-repl/20240521-0306-4100-0044-0000007800db")
+        Some
+          "/tmp/!create_temp_path_/dotnet-repl/76793606-813b-88ad-7791-7ce2871edce9")
 00:00:00 verbose #8 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:00   debug #9 execute_with_options_async / exit_code: 0 / output.Length: 22
+00:00:00   debug #9 runtime.execute_with_options_async / exit_code: 0 / output.Length: 22
 assert_eq / actual: 0 / expected: 0
 assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
 assert_eq / actual: true / expected: true
@@ -8893,7 +8757,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=81">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=72">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8904,11 +8768,18 @@ assert_eq / actual: true / expected: true
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">file_system</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
-<span class="n">inl</span> <span class="n">temp_dir</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">file_system</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-<span class="n">disposable</span> <span class="o">|&gt;</span> <span class="n">use</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-    <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">temp_dir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span>
-    <span class="s2">"0"</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
+    <span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s2">"test.txt"</span>
+    <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">"0"</span>
+
+    <span class="n">inl</span> <span class="n">temp_dir</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span>
+        <span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
+        <span class="o">|&gt;</span> <span class="n">crypto</span><span class="o">.</span><span class="n">hash_text</span>
+        <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">create_temp_dir</span><span class="s1">'</span>
+    <span class="n">disposable</span> <span class="o">|&gt;</span> <span class="n">use</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">temp_dir</span> <span class="o">&lt;/&gt;</span> <span class="n">file_name</span>
+    <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
 
     <span class="n">inl</span> <span class="n">cts</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">new_cancellation_token_source</span> <span class="p">()</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"1"</span><span class="p">)</span> <span class="n">_locals</span>
@@ -8951,13 +8822,13 @@ assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00   debug #1 1
 00:00:00   debug #2 2
-00:00:00   debug #3 execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "pwsh -c "Get-Content /tmp/!dotnet-repl/20240521-0306-4329-2968-20000043976c/test.txt"",
+00:00:00   debug #3 runtime.execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
+        "pwsh -c "Get-Content /tmp/!create_temp_path_/dotnet-repl/613830ed-016e-d959-8d21-02dc1c63c252/test.txt"",
         [||], None, None, true, None)
 00:00:00   debug #4 3
 00:00:00   debug #5 4
-00:00:00 warning #6 execute_with_options_async / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
-00:00:00   debug #7 execute_with_options_async / exit_code: -2147483648 / output.Length: 66
+00:00:00 warning #6 runtime.execute_with_options_async / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
+00:00:00   debug #7 runtime.execute_with_options_async / exit_code: -2147483648 / output.Length: 66
 00:00:00   debug #8 5
 assert_eq / actual: -2147483648 / expected: -2147483648
 assert_eq / actual: "System.Threading.Tasks.TaskCanceledException: A task was canceled." / expected: "System.Threading.Tasks.TaskCanceledException: A task was canceled."
@@ -8968,7 +8839,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=82">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=73">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8978,7 +8849,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=83">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=74">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8986,76 +8857,34 @@ assert_eq / actual: true / expected: true
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">args_parse_step</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Start</span>
-    <span class="o">|</span> <span class="n">Quoted</span> <span class="p">:</span> <span class="n">char</span>
-    <span class="o">|</span> <span class="n">Escaped</span> <span class="p">:</span> <span class="n">u8</span> <span class="o">*</span> <span class="n">char</span>
-
-<span class="n">let</span> <span class="n">split_args</span> <span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">array_base</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span> <span class="p">(</span><span class="n">chars</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">char</span><span class="p">)</span> <span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span> <span class="o">=</span>
-        <span class="o">//</span> <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"split_args / current: %A{!current} / acc: %A{!acc} / step: %A{!step} / last: %A{!last}"'</span><span class="p">)</span> <span class="n">_locals</span>
-        <span class="k">match</span> <span class="n">step</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">chars</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">Start</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="s1">'"'</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Quoted</span> <span class="s1">'"'</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">Escaped</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="p">((</span><span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span> <span class="s1">'\`'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">c</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Quoted</span> <span class="n">c</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">Escaped</span> <span class="n">_</span><span class="p">,</span> <span class="n">Start</span><span class="p">,</span> <span class="p">(</span><span class="s1">'"'</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">Quoted</span> <span class="p">(</span><span class="s1">'"'</span><span class="p">),</span> <span class="n">Quoted</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="s1">'"'</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Start</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">Escaped</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span> <span class="s1">'\`'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">c</span><span class="p">),</span> <span class="n">Quoted</span> <span class="p">(</span><span class="s1">'"'</span><span class="p">),</span> <span class="p">(</span><span class="n">c</span><span class="s1">' :: tail) =&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"{!current}{!c}{!c'</span><span class="p">}</span><span class="s2">"') tail (Quoted '"</span><span class="s1">', step)</span>
-        <span class="o">|</span> <span class="n">Quoted</span> <span class="p">((</span><span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span> <span class="s1">'\`'</span><span class="p">)</span> <span class="k">as</span> <span class="n">c</span><span class="p">),</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="s1">'"'</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span>
-                <span class="n">when</span> <span class="n">last</span> <span class="o">&lt;&gt;.</span> <span class="n">Escaped</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'</span><span class="se">\\</span><span class="s1">'</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">last</span> <span class="o">&lt;&gt;.</span> <span class="n">Escaped</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'\`'</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"{!current}{!c}</span><span class="se">\\\"</span><span class="s1">"'</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Quoted</span> <span class="s1">'"'</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">Quoted</span> <span class="p">((</span><span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span> <span class="s1">'\`'</span><span class="p">)</span> <span class="k">as</span> <span class="n">c</span><span class="p">),</span> <span class="n">Quoted</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="s1">'"'</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"{!current}{!c}</span><span class="se">\\\"</span><span class="s1">"'</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Quoted</span> <span class="s1">'"'</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">Quoted</span> <span class="p">(</span><span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span> <span class="s1">'\`'</span><span class="p">),</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="s1">'"'</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Start</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">Escaped</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="s1">'"'</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"{!current}{!c}</span><span class="se">\\\"</span><span class="s1">"'</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Escaped</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">Quoted</span> <span class="n">_</span><span class="p">,</span> <span class="n">Quoted</span> <span class="n">_</span><span class="p">,</span> <span class="p">((</span><span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span> <span class="s1">'\`'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">c</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Escaped</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">Quoted</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="p">((</span><span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span> <span class="s1">'\`'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">c</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Escaped</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">Quoted</span> <span class="n">_</span><span class="p">,</span> <span class="n">Escaped</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span> <span class="p">(</span><span class="s1">'"'</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"{!current}"'</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Quoted</span> <span class="s1">'"'</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">Quoted</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="s1">'"'</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span> <span class="o">++</span> <span class="p">[</span> <span class="n">current</span> <span class="p">],</span> <span class="s2">""</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Start</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="p">(</span><span class="n">Escaped</span> <span class="n">_</span> <span class="o">|</span> <span class="n">Quoted</span> <span class="n">_</span><span class="p">),</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="s1">' '</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"{!current} "'</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="p">((</span><span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span> <span class="s1">'\`'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">c</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Escaped</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="s1">' '</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">((</span><span class="k">if</span> <span class="n">current</span> <span class="o">=</span> <span class="s2">""</span> <span class="n">then</span> <span class="n">acc</span> <span class="k">else</span> <span class="n">acc</span> <span class="o">++</span> <span class="p">[</span> <span class="n">current</span> <span class="p">]),</span> <span class="s2">""</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">Escaped</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">char</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="n">when</span> <span class="n">last</span> <span class="o">&lt;&gt;.</span> <span class="n">step</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"{!current}</span><span class="se">\\</span><span class="s1">{!char}"'</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">last</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">char</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="err">$</span><span class="s1">'$"{!current}{!char}"'</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">current</span> <span class="o">=</span> <span class="s2">""</span> <span class="n">then</span> <span class="n">acc</span> <span class="k">else</span> <span class="n">acc</span> <span class="o">++</span> <span class="p">[</span> <span class="n">current</span> <span class="p">]),</span> <span class="n">current</span>
-    <span class="n">loop</span>
-        <span class="p">([],</span> <span class="s2">""</span><span class="p">)</span>
-        <span class="p">(</span>
-            <span class="n">args</span>
-            <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.of_obj</span>
-            <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
-            <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value ""</span>
-            <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_char_array</span>
-            <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.to_list'</span>
-            <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.unbox</span>
-        <span class="p">)</span>
-        <span class="p">(</span><span class="n">Start</span><span class="p">,</span> <span class="n">Start</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">fst</span>
-    <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box</span>
-    <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
-    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">split_args</span> <span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">result</span> <span class="p">(</span><span class="n">array_base</span> <span class="n">string</span><span class="p">)</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="nb">open</span> <span class="n">parsing</span>
+    <span class="n">inl</span> <span class="n">esc</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">'</span><span class="se">\\</span><span class="s1">'</span><span class="p">;</span> <span class="s1">'`'</span> <span class="p">]</span>
+    <span class="n">inl</span> <span class="n">quotes</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">'"'</span> <span class="p">]</span>
+    <span class="n">inl</span> <span class="n">special</span> <span class="o">=</span> <span class="n">esc</span> <span class="o">++</span> <span class="n">quotes</span>
+    <span class="n">inl</span> <span class="n">p_esc_char</span> <span class="n">c</span> <span class="o">=</span>
+        <span class="n">p_char</span> <span class="n">c</span> <span class="o">&gt;&gt;.</span> <span class="n">any_char</span> <span class="p">()</span> <span class="o">|&gt;&gt;</span> <span class="n">fun</span> <span class="n">c</span><span class="s1">' =&gt; $'</span><span class="err">$</span><span class="s2">"{!c}{!c'}"</span><span class="s1">'</span>
+    <span class="n">inl</span> <span class="n">p_word</span> <span class="o">=</span> <span class="n">special</span> <span class="o">|&gt;</span> <span class="n">none_of</span> <span class="o">|&gt;&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
+    <span class="n">inl</span> <span class="n">p_plain</span> <span class="o">=</span> <span class="n">special</span> <span class="o">++</span> <span class="p">[</span> <span class="s1">' '</span> <span class="p">]</span> <span class="o">|&gt;</span> <span class="n">none_of</span> <span class="o">|&gt;</span> <span class="n">many1_chars</span>
+    <span class="n">inl</span> <span class="n">p_text</span> <span class="o">=</span> <span class="n">p_word</span> <span class="o">|&gt;</span> <span class="n">many1_strings</span>
+    <span class="n">inl</span> <span class="n">p_esc</span> <span class="o">=</span> <span class="n">esc</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">p_esc_char</span> <span class="o">|&gt;</span> <span class="n">choice</span>
+    <span class="n">inl</span> <span class="n">p_quoted</span> <span class="o">=</span> <span class="p">(</span><span class="n">p_word</span> <span class="o">&lt;|&gt;</span> <span class="n">p_esc</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">many</span> <span class="o">|&gt;&gt;</span> <span class="p">(</span><span class="n">listm</span><span class="s1">'.box &gt;&gt; seq.of_list'</span> <span class="o">&gt;&gt;</span> <span class="n">sm</span><span class="s1">'.concat "")</span>
+    <span class="n">inl</span> <span class="n">p_quoted_all</span> <span class="o">=</span> <span class="n">p_quoted</span> <span class="o">|&gt;</span> <span class="n">between</span> <span class="p">(</span><span class="n">p_char</span> <span class="s1">'"'</span><span class="p">)</span> <span class="p">(</span><span class="n">p_char</span> <span class="s1">'"'</span><span class="p">)</span>
+    <span class="n">inl</span> <span class="n">p_esc_root</span> <span class="o">=</span> <span class="n">p_esc</span> <span class="o">|&gt;&gt;</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="s2">""</span><span class="p">)</span> <span class="o">&gt;&gt;.</span> <span class="p">(</span><span class="n">p_word</span> <span class="o">|&gt;</span> <span class="n">many</span><span class="p">)</span> <span class="o">|&gt;&gt;</span> <span class="p">(</span><span class="n">listm</span><span class="s1">'.box &gt;&gt; seq.of_list'</span> <span class="o">&gt;&gt;</span> <span class="n">sm</span><span class="s1">'.concat "")</span>
+    <span class="n">inl</span> <span class="n">p_content</span> <span class="o">=</span> <span class="n">p_plain</span> <span class="o">&lt;|&gt;</span> <span class="n">p_quoted_all</span> <span class="o">&lt;|&gt;</span> <span class="n">p_esc_root</span>
+    <span class="n">inl</span> <span class="n">p_args</span> <span class="o">=</span> <span class="n">spaces1</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">sep_by</span> <span class="n">p_content</span>
+    <span class="n">args</span>
+    <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.of_obj</span>
+    <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value'</span> <span class="s2">""</span>
+    <span class="o">|&gt;</span> <span class="n">parse</span> <span class="n">p_args</span>
+    <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">x</span> <span class="o">|&gt;</span> <span class="n">fst</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">' : _ i32 _)</span>
+    <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=84">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9065,9 +8894,62 @@ assert_eq / actual: true / expected: true
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="s2">"a b </span><span class="se">\"</span><span class="s2">c d</span><span class="se">\"</span><span class="s2"> e"</span>
-<span class="o">|&gt;</span> <span class="n">split_args</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "a"; "b"; "c d"; "e" ]</span>
+<span class="p">[</span>
+    <span class="s2">"a b c"</span><span class="p">,</span>
+    <span class="p">;[</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span><span class="p">;</span> <span class="s2">"c"</span> <span class="p">]</span>
+
+    <span class="s2">"e f </span><span class="se">\"</span><span class="s2">g h</span><span class="se">\"</span><span class="s2"> i"</span><span class="p">,</span>
+    <span class="p">;[</span> <span class="s2">"e"</span><span class="p">;</span> <span class="s2">"f"</span><span class="p">;</span> <span class="s2">"g h"</span><span class="p">;</span> <span class="s2">"i"</span> <span class="p">]</span>
+
+    <span class="s2">"</span><span class="se">\"</span><span class="s2">j k</span><span class="se">\"</span><span class="s2"> </span><span class="se">\"</span><span class="s2">l</span><span class="se">\"</span><span class="s2"> </span><span class="se">\"</span><span class="s2">m</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span>
+    <span class="p">;[</span> <span class="s2">"j k"</span><span class="p">;</span> <span class="s2">"l"</span><span class="p">;</span> <span class="s2">"m"</span> <span class="p">]</span>
+
+    <span class="s2">"s -t </span><span class="se">\"</span><span class="s2">u \`</span><span class="se">\"</span><span class="s2">v\`</span><span class="se">\"</span><span class="s2"> w</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span>
+    <span class="p">;[</span> <span class="s2">"s"</span><span class="p">;</span> <span class="s2">"-t"</span><span class="p">;</span> <span class="s2">"u \`</span><span class="se">\"</span><span class="s2">v\`</span><span class="se">\"</span><span class="s2"> w"</span> <span class="p">]</span>
+
+    <span class="s2">"n -o </span><span class="se">\"</span><span class="s2">p </span><span class="se">\\\"</span><span class="s2">q</span><span class="se">\\\"</span><span class="s2"> r</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span>
+    <span class="p">;[</span> <span class="s2">"n"</span><span class="p">;</span> <span class="s2">"-o"</span><span class="p">;</span> <span class="s2">"p </span><span class="se">\\\"</span><span class="s2">q</span><span class="se">\\\"</span><span class="s2"> r"</span> <span class="p">]</span>
+
+    <span class="s2">"r -s </span><span class="se">\"</span><span class="s2">t </span><span class="se">\\\"</span><span class="s2">u</span><span class="se">\\\"\"</span><span class="s2">"</span><span class="p">,</span>
+    <span class="p">;[</span> <span class="s2">"r"</span><span class="p">;</span> <span class="s2">"-s"</span><span class="p">;</span> <span class="s2">"t </span><span class="se">\\\"</span><span class="s2">u</span><span class="se">\\\"</span><span class="s2">"</span> <span class="p">]</span>
+
+    <span class="err">$</span><span class="s1">'$"x -y </span><span class="se">\\\"</span><span class="s1">$z -a </span><span class="se">\'</span><span class="s1">(b=</span><span class="se">\\\\\\</span><span class="s1">"c-id=)[a-fA-F0-9]{{8}}</span><span class="se">\'</span><span class="s1">, {{ \`$_[1] + \`$d++ }}</span><span class="se">\\\"</span><span class="s1">"'</span><span class="p">,</span>
+    <span class="p">;[</span> <span class="s2">"x"</span><span class="p">;</span> <span class="s2">"-y"</span><span class="p">;</span> <span class="s2">"$z -a '(b=</span><span class="se">\\\"</span><span class="s2">c-id=)[a-fA-F0-9]</span><span class="si">{8}</span><span class="s2">', { `$_[1] + `$d++ }"</span> <span class="p">]</span>
+
+    <span class="s2">"e -f </span><span class="se">\"</span><span class="s2">$g -h '(i=`</span><span class="se">\"</span><span class="s2">j-id=)[a-fA-F0-9]</span><span class="si">{8}</span><span class="s2">', { `$_[1] + `$k++ }</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span>
+    <span class="p">;[</span> <span class="s2">"e"</span><span class="p">;</span> <span class="s2">"-f"</span><span class="p">;</span> <span class="s2">"$g -h '(i=`</span><span class="se">\"</span><span class="s2">j-id=)[a-fA-F0-9]</span><span class="si">{8}</span><span class="s2">', { `$_[1] + `$k++ }"</span> <span class="p">]</span>
+    
+    <span class="err">$</span><span class="s1">'$"--l </span><span class="se">\\\\\\</span><span class="s1">"</span><span class="se">\'\'\'</span><span class="s1"> m </span><span class="se">\'\'\'\\\\\\</span><span class="s1">" "'</span><span class="p">,</span>
+    <span class="p">;[</span> <span class="s2">"--l"</span><span class="p">;</span> <span class="s2">"''' m '''"</span> <span class="p">]</span>
+
+    <span class="err">$</span><span class="s1">'$"n --o --p q --r </span><span class="se">\\\"</span><span class="s1">s:/t u/v.w</span><span class="se">\\\"</span><span class="s1"> --x </span><span class="se">\\\"</span><span class="s1">y:/z.a</span><span class="se">\\\"</span><span class="s1"> --b c.d </span><span class="se">\\\"\\\\</span><span class="s1">e{{f-g}}</span><span class="se">\\\"</span><span class="s1"> h.i </span><span class="se">\\\"</span><span class="s1">j (k)</span><span class="se">\\\"</span><span class="s1">"'</span><span class="p">,</span>
+    <span class="p">;[</span> <span class="s2">"n"</span><span class="p">;</span> <span class="s2">"--o"</span><span class="p">;</span> <span class="s2">"--p"</span><span class="p">;</span> <span class="s2">"q"</span><span class="p">;</span> <span class="s2">"--r"</span><span class="p">;</span> <span class="s2">"s:/t u/v.w"</span><span class="p">;</span> <span class="s2">"--x"</span><span class="p">;</span> <span class="s2">"y:/z.a"</span><span class="p">;</span> <span class="s2">"--b"</span><span class="p">;</span> <span class="s2">"c.d"</span><span class="p">;</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">e{f-g}"</span><span class="p">;</span> <span class="s2">"h.i"</span><span class="p">;</span> <span class="s2">"j (k)"</span> <span class="p">]</span>
+
+    <span class="err">$</span><span class="s1">'\@$"l ""m n:</span><span class="se">\\</span><span class="s1">o.p"""'</span><span class="p">,</span>
+    <span class="p">;[</span> <span class="s2">"l"</span><span class="p">;</span> <span class="s2">"m n:</span><span class="se">\\</span><span class="s2">o.p"</span> <span class="p">]</span>
+<span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">rev</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="nb">input</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=&gt;</span>
+    <span class="nb">input</span>
+    <span class="o">|&gt;</span> <span class="n">split_args</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
+        <span class="k">try</span>
+            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                <span class="p">(</span><span class="err">$</span><span class="s1">'$"</span><span class="se">\n</span><span class="s1">input: {!input}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+                <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+                <span class="n">x</span>
+                <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">get</span>
+                <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' expected</span>
+                <span class="n">false</span>
+            <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
+                <span class="p">(</span><span class="err">$</span><span class="s1">'$"error / expected: %A{!expected} / ex: %A{!ex}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+                <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+                <span class="n">Some</span> <span class="n">true</span>
+        <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.filter id</span>
+<span class="o">|&gt;</span> <span class="n">function</span>
+    <span class="o">|</span> <span class="p">[]</span> <span class="o">=&gt;</span> <span class="p">()</span>
+    <span class="o">|</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"{!x}"'</span>
 </pre></div>
 </div>
 </div>
@@ -9080,332 +8962,48 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: [|"a"; "b"; "c d"; "e"|] / expected: [|"a"; "b"; "c d"; "e"|]
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=85">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<pre>
+input: a b c
+assert_eq' / actual: [|"a"; "b"; "c"|] / expected: [|"a"; "b"; "c"|]
 
-<span class="s2">"a b e"</span>
-<span class="o">|&gt;</span> <span class="n">split_args</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "a"; "b"; "e" ]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: [|"a"; "b"; "e"|] / expected: [|"a"; "b"; "e"|]
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=86">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+input: e f "g h" i
+assert_eq' / actual: [|"e"; "f"; "g h"; "i"|] / expected: [|"e"; "f"; "g h"; "i"|]
 
-<span class="s2">"</span><span class="se">\"</span><span class="s2">a b</span><span class="se">\"</span><span class="s2"> </span><span class="se">\"</span><span class="s2">e</span><span class="se">\"</span><span class="s2"> </span><span class="se">\"</span><span class="s2">f</span><span class="se">\"</span><span class="s2">"</span>
-<span class="o">|&gt;</span> <span class="n">split_args</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "a b"; "e"; "f" ]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: [|"a b"; "e"; "f"|] / expected: [|"a b"; "e"; "f"|]
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=87">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+input: "j k" "l" "m"
+assert_eq' / actual: [|"j k"; "l"; "m"|] / expected: [|"j k"; "l"; "m"|]
 
-<span class="s2">"a -b </span><span class="se">\"</span><span class="s2">c </span><span class="se">\\\"</span><span class="s2">d</span><span class="se">\\\"\"</span><span class="s2">"</span>
-<span class="o">|&gt;</span> <span class="n">split_args</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "a"; "-b"; "c </span><span class="se">\\\"</span><span class="s1">d</span><span class="se">\\\"</span><span class="s1">" ]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: [|"a"; "-b"; "c \"d\""|] / expected: [|"a"; "-b"; "c \"d\""|]
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=88">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+input: s -t "u `"v`" w"
+assert_eq' / actual: [|"s"; "-t"; "u `"v`" w"|] / expected: [|"s"; "-t"; "u `"v`" w"|]
 
-<span class="s2">"a -b </span><span class="se">\"</span><span class="s2">c </span><span class="se">\\\"</span><span class="s2">d</span><span class="se">\\\"</span><span class="s2"> e</span><span class="se">\"</span><span class="s2">"</span>
-<span class="o">|&gt;</span> <span class="n">split_args</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "a"; "-b"; "c </span><span class="se">\\\"</span><span class="s1">d</span><span class="se">\\\"</span><span class="s1"> e" ]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: [|"a"; "-b"; "c \"d\" e"|] / expected: [|"a"; "-b"; "c \"d\" e"|]
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=89">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+input: n -o "p \"q\" r"
+assert_eq' / actual: [|"n"; "-o"; "p \"q\" r"|] / expected: [|"n"; "-o"; "p \"q\" r"|]
 
-<span class="s2">"a -b </span><span class="se">\"</span><span class="s2">c \`</span><span class="se">\"</span><span class="s2">d\`</span><span class="se">\"</span><span class="s2"> e</span><span class="se">\"</span><span class="s2">"</span>
-<span class="o">|&gt;</span> <span class="n">split_args</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "a"; "-b"; "c \`</span><span class="se">\"</span><span class="s1">d\`</span><span class="se">\"</span><span class="s1"> e" ]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: [|"a"; "-b"; "c `"d`" e"|] / expected: [|"a"; "-b"; "c `"d`" e"|]
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=90">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+input: r -s "t \"u\""
+assert_eq' / actual: [|"r"; "-s"; "t \"u\""|] / expected: [|"r"; "-s"; "t \"u\""|]
 
-<span class="err">$</span><span class="s1">'$"--text </span><span class="se">\\\\\\</span><span class="s1">"</span><span class="se">\'\'\'</span><span class="s1"> value </span><span class="se">\'\'\'\\\\\\</span><span class="s1">" "'</span>
-<span class="o">|&gt;</span> <span class="n">split_args</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "--text"; "'''</span> <span class="n">value</span> <span class="s1">'''" ]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: [|"--text"; "''' value '''"|] / expected: [|"--text"; "''' value '''"|]
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=91">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+input: x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"
+assert_eq' / actual: [|"x"; "-y"; "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"|] / expected: [|"x"; "-y"; "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"|]
 
-<span class="err">$</span><span class="s1">'\@$"run ""get c:</span><span class="se">\\</span><span class="s1">test.txt"""'</span>
-<span class="o">|&gt;</span> <span class="n">split_args</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "run"; "get c:</span><span class="se">\\</span><span class="s1">test.txt" ]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: [|"run"; "get c:\test.txt"|] / expected: [|"run"; "get c:\test.txt"|]
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=92">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+input: e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"
+assert_eq' / actual: [|"e"; "-f"; "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"|] / expected: [|"e"; "-f"; "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"|]
 
-<span class="s2">"pwsh -c </span><span class="se">\"</span><span class="s2">$x -replace '(id=`</span><span class="se">\"</span><span class="s2">cell-id=)[a-fA-F0-9]</span><span class="si">{8}</span><span class="s2">', { `$_[1] + `$counter++ }</span><span class="se">\"</span><span class="s2">"</span>
-<span class="o">|&gt;</span> <span class="n">split_args</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "pwsh"; "-c"; "$x -replace '</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="err">`</span>\<span class="s2">"cell-id=)[a-fA-F0-9]</span><span class="si">{8}</span><span class="s2">', { `$_[1] + `$counter++ }"</span> <span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: [|"pwsh"; "-c";
-  "$x -replace '(id=`"cell-id=)[a-fA-F0-9]{8}', { `$_[1] + `$counter++ }"|] / expected: [|"pwsh"; "-c";
-  "$x -replace '(id=`"cell-id=)[a-fA-F0-9]{8}', { `$_[1] + `$counter++ }"|]
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=93">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+input: --l \"''' m '''\" 
+assert_eq' / actual: [|"--l"; "''' m '''"|] / expected: [|"--l"; "''' m '''"|]
 
-<span class="err">$</span><span class="s1">'$"pwsh -c </span><span class="se">\\\"</span><span class="s1">$x -replace </span><span class="se">\'</span><span class="s1">(id=</span><span class="se">\\\\\\</span><span class="s1">"cell-id=)[a-fA-F0-9]{{8}}</span><span class="se">\'</span><span class="s1">, {{ \`$_[1] + \`$counter++ }}</span><span class="se">\\\"</span><span class="s1">"'</span>
-<span class="o">|&gt;</span> <span class="n">split_args</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "pwsh"; "-c"; "$x -replace '</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span>\\\<span class="s2">"cell-id=)[a-fA-F0-9]</span><span class="si">{8}</span><span class="s2">', { `$_[1] + `$counter++ }"</span> <span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: [|"pwsh"; "-c";
-  "$x -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { `$_[1] + `$counter++ }"|] / expected: [|"pwsh"; "-c";
-  "$x -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { `$_[1] + `$counter++ }"|]
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=94">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+input: n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)"
+assert_eq' / actual: [|"n"; "--o"; "--p"; "q"; "--r"; "s:/t u/v.w"; "--x"; "y:/z.a"; "--b"; "c.d";
+  "\e{f-g}"; "h.i"; "j (k)"|] / expected: [|"n"; "--o"; "--p"; "q"; "--r"; "s:/t u/v.w"; "--x"; "y:/z.a"; "--b"; "c.d";
+  "\e{f-g}"; "h.i"; "j (k)"|]
 
-<span class="err">$</span><span class="s1">'$"a --b --c d --e </span><span class="se">\\\"</span><span class="s1">c:/f f/test.hangul.md</span><span class="se">\\\"</span><span class="s1"> --output </span><span class="se">\\\"</span><span class="s1">c:/md.pdf</span><span class="se">\\\"</span><span class="s1"> --set tex.template.add </span><span class="se">\\\"\\\\</span><span class="s1">usepackage{{cjkutf8-ko}}</span><span class="se">\\\"</span><span class="s1"> rendering.highlight.theme </span><span class="se">\\\"</span><span class="s1">Solarized (dark)</span><span class="se">\\\"</span><span class="s1">"'</span>
-<span class="o">|&gt;</span> <span class="n">split_args</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "a"; "--b"; "--c"; "d"; "--e"; "c:/f f/test.hangul.md"; "--output"; "c:/md.pdf"; "--set"; "tex.template.add"; "</span><span class="se">\\</span><span class="s1">usepackage{cjkutf8-ko}"; "rendering.highlight.theme"; "Solarized (dark)" ]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: [|"a"; "--b"; "--c"; "d"; "--e"; "c:/f f/test.hangul.md"; "--output";
-  "c:/md.pdf"; "--set"; "tex.template.add"; "\usepackage{cjkutf8-ko}";
-  "rendering.highlight.theme"; "Solarized (dark)"|] / expected: [|"a"; "--b"; "--c"; "d"; "--e"; "c:/f f/test.hangul.md"; "--output";
-  "c:/md.pdf"; "--set"; "tex.template.add"; "\usepackage{cjkutf8-ko}";
-  "rendering.highlight.theme"; "Solarized (dark)"|]
+input: l "m n:\o.p"
+assert_eq' / actual: [|"l"; "m n:\o.p"|] / expected: [|"l"; "m n:\o.p"|]
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=95">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9415,7 +9013,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=96">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=77">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9434,7 +9032,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=97">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=78">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9444,7 +9042,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=98">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=79">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9462,7 +9060,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=99">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=80">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9472,7 +9070,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=100">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=81">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9488,7 +9086,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=101">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=82">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9498,7 +9096,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=102">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=83">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9514,7 +9112,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=103">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=84">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9524,7 +9122,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=104">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=85">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9541,7 +9139,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=105">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=86">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9551,7 +9149,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=106">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=87">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9567,7 +9165,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=107">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=88">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9577,7 +9175,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=108">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=89">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9593,7 +9191,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=109">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9603,7 +9201,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=110">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=91">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9619,7 +9217,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=111">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=92">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9629,7 +9227,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=112">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=93">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9649,7 +9247,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=113">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9659,7 +9257,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=114">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=95">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9680,7 +9278,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=115">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=96">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9690,7 +9288,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=116">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=97">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9709,7 +9307,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=117">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=98">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9719,7 +9317,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=118">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=99">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9738,7 +9336,45 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=119">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=100">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="current_process_kill">current_process_kill<a class="anchor-link" href="#current_process_kill">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=101">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">current_process_kill</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">fn</span> <span class="p">()</span> <span class="o">=</span>
+                <span class="n">run_target</span> <span class="n">function</span>
+                    <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                        <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"runtime.current_process_kill"</span><span class="p">)</span> <span class="n">_locals</span>
+                        <span class="err">$</span><span class="s1">'System.Threading.Thread.Sleep 2000'</span>
+                        <span class="err">$</span><span class="s1">'System.Environment.Exit 1'</span>
+                        <span class="err">$</span><span class="s1">'System.Diagnostics.Process.GetCurrentProcess().Kill ()'</span> <span class="p">:</span> <span class="p">()</span>
+                    <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+            <span class="n">inl</span> <span class="n">thread</span> <span class="p">:</span> <span class="n">threading</span><span class="o">.</span><span class="n">thread</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'new System.Threading.Thread (!fn)'</span>
+            <span class="n">thread</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Start()'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=102">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9748,7 +9384,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=120">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=103">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9812,7 +9448,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=121">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=104">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9822,7 +9458,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=122">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=105">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9840,6 +9476,7 @@ assert_eq / actual: true / expected: true
             <span class="n">inl</span> <span class="n">arguments</span> <span class="o">=</span>
                 <span class="n">arguments</span>
                 <span class="o">|&gt;</span> <span class="n">split_args</span>
+                <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">get</span>
                 <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.to_vec</span>
                 <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map sm'</span><span class="o">.</span><span class="n">to_std_string</span>
 
@@ -9987,8 +9624,13 @@ assert_eq / actual: true / expected: true
                                     <span class="n">output</span>
                                     <span class="o">|&gt;</span> <span class="n">process_output_status</span>
                                     <span class="o">|&gt;</span> <span class="n">process_exit_status_code</span>
-                                    <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unwrap</span>
-                                <span class="n">exit_code</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="n">channel_receiver</span><span class="s1">'</span>
+                                    <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
+                                <span class="k">match</span> <span class="n">exit_code</span> <span class="k">with</span>
+                                <span class="o">|</span> <span class="n">Some</span> <span class="n">exit_code</span> <span class="o">=&gt;</span> <span class="n">exit_code</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="n">channel_receiver</span><span class="s1">'</span>
+                                <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span>
+                                    <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                                    <span class="p">(</span><span class="s2">"runtime.execute_with_options / exit_code=None"</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string |&gt; Some),</span>
+                                    <span class="n">Some</span> <span class="n">channel_receiver</span><span class="s1">'</span>
                             <span class="o">|</span> <span class="n">Error</span> <span class="n">error</span> <span class="o">=&gt;</span>
                                 <span class="n">trace</span> <span class="n">Critical</span>
                                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"runtime.execute_with_options / output error"'</span>
@@ -10009,7 +9651,7 @@ assert_eq / actual: true / expected: true
                                     <span class="o">|&gt;</span> <span class="n">threading</span><span class="o">.</span><span class="n">arc_mutex_lock</span>
                                     <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
                                     <span class="o">|&gt;</span> <span class="nb">iter</span><span class="o">.</span><span class="n">iter</span>
-                                    <span class="o">|&gt;</span> <span class="n">iter_prototypes</span><span class="o">.</span><span class="n">iter_collect</span><span class="s1">''</span>
+                                    <span class="o">|&gt;</span> <span class="n">iter_collect</span><span class="s1">''</span>
                                     <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map sm'</span><span class="o">.</span><span class="n">from_std_string</span>
                                     <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.from_vec</span>
                                     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span>
@@ -10027,8 +9669,9 @@ assert_eq / actual: true / expected: true
                                     <span class="o">+.</span> <span class="err">$</span><span class="s1">'$" / std_trace.Length: {!std_trace.Length} / {!_locals ()}"'</span>
                             <span class="n">new_pair</span> <span class="n">exit_code</span> <span class="n">std_trace</span>
                 <span class="o">|&gt;</span> <span class="n">capture</span>
-            <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">future_init</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">1</span>
-            <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">block_on</span>
+            <span class="o">//</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">future_init</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">1</span>
+            <span class="o">//</span> <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">block_on</span>
+            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">()</span>
             <span class="o">|&gt;</span> <span class="n">from_pair</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -10037,7 +9680,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=123">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=106">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10047,7 +9690,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=124">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=107">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10066,17 +9709,17 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=125">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=108">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="test-1">test 1<a class="anchor-link" href="#test-1">¶</a></h3>
+<h3 id="tests">tests<a class="anchor-link" href="#tests">¶</a></h3>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=126">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=109">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10085,42 +9728,43 @@ assert_eq / actual: true / expected: true
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span> <span class="n">encoding_rs</span> <span class="n">encoding_rs_io</span> <span class="n">futures</span> <span class="n">futures</span><span class="o">-</span><span class="n">lite</span> <span class="n">regex</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span> <span class="n">encoding_rs</span> <span class="n">encoding_rs_io</span> <span class="n">regex</span> <span class="n">sha2</span>
 
 <span class="n">types</span> <span class="p">()</span>
-<span class="n">inl</span> <span class="n">temp_folder</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">file_system</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
+
 <span class="n">inl</span> <span class="n">content</span> <span class="o">=</span> <span class="s2">"╭─[ 你好，世界！こんにちは世界！ ]─╮"</span>
-<span class="o">//</span> <span class="n">inl</span> <span class="n">content</span> <span class="o">=</span> <span class="s2">"test"</span>
-<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-    <span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="n">join</span> <span class="s2">"test.txt"</span>
-    <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">temp_folder</span> <span class="o">&lt;/&gt;</span> <span class="n">file_name</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">normalize_path</span>
-    <span class="n">inl</span> <span class="n">exit_code</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span>
-        <span class="n">execute</span> <span class="err">$</span><span class="s1">'\@$"pwsh -c ""[IO.File]::ReadAllText(</span><span class="se">\'</span><span class="s1">{!path}</span><span class="se">\'</span><span class="s1">)"""'</span>
-    <span class="n">exit_code</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
-    <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">_assert_string_contains</span> <span class="s2">"not find file"</span>
 
-    <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">write_all_text</span> <span class="n">path</span>
+<span class="n">inl</span> <span class="n">file_name</span> <span class="o">=</span> <span class="n">join</span> <span class="s2">"test.txt"</span>
+<span class="n">inl</span> <span class="n">temp_dir</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span>
+    <span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
+    <span class="o">|&gt;</span> <span class="n">crypto</span><span class="o">.</span><span class="n">hash_text</span>
+    <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">create_temp_dir</span><span class="s1">'</span>
+<span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">temp_dir</span> <span class="o">&lt;/&gt;</span> <span class="n">file_name</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">normalize_path</span>
+<span class="n">inl</span> <span class="n">exit_code</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span>
+    <span class="n">execute</span> <span class="err">$</span><span class="s1">'\@$"pwsh -c ""[IO.File]::ReadAllText(</span><span class="se">\'</span><span class="s1">{!path}</span><span class="se">\'</span><span class="s1">)"""'</span>
+<span class="n">exit_code</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
+<span class="n">result</span> <span class="o">|&gt;</span> <span class="n">_assert_string_contains</span> <span class="s2">"not find file"</span>
 
-    <span class="n">execution_options</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
-        <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'\@$"cat ""{!file_name}"""'</span>
-        <span class="n">working_directory</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">temp_folder</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
-    <span class="p">}</span>
-    <span class="o">|&gt;</span> <span class="n">execute_with_options</span>
-    <span class="o">|&gt;</span> <span class="n">ignore</span>
+<span class="n">content</span> <span class="o">|&gt;</span> <span class="n">file_system</span><span class="o">.</span><span class="n">write_all_text</span> <span class="n">path</span>
 
+<span class="n">execution_options</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'\@$"cat ""{!file_name}"""'</span>
+    <span class="n">working_directory</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">temp_dir</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
+<span class="p">}</span>
+<span class="o">|&gt;</span> <span class="n">execute_with_options</span>
+<span class="o">|&gt;</span> <span class="n">ignore</span>
+
+<span class="n">inl</span> <span class="n">exit_code</span><span class="p">,</span> <span class="n">output</span> <span class="o">=</span>
     <span class="n">execution_options</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
         <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'\@$"pwsh -c ""[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText(</span><span class="se">\'</span><span class="s1">{!file_name}</span><span class="se">\'</span><span class="s1">)"""'</span>
-        <span class="n">working_directory</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">temp_folder</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
+        <span class="n">working_directory</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">temp_dir</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
     <span class="p">}</span>
     <span class="o">|&gt;</span> <span class="n">execute_with_options</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">fn</span> <span class="o">=&gt;</span> <span class="n">fn</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Some</span>
-<span class="o">|&gt;</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">exit_code</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span> <span class="o">=&gt;</span>
-        <span class="n">exit_code</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span><span class="n">i32</span>
-        <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">content</span>
-        <span class="n">true</span>
-    <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+
+<span class="n">exit_code</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span><span class="n">i32</span>
+<span class="n">output</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">content</span>
+
 <span class="n">disposable</span> <span class="o">|&gt;</span> <span class="n">use</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 </pre></div>
 </div>
@@ -10134,28 +9778,27 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_directory / dir: /tmp/!spiral_builder_cbc78ee7258b9f449ebaa94923dd95cd991ae28c46dc2d1cc920519a17ed43cc/20240521-0307-0871-5885-000000f3b69d
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "[IO.File]::ReadAllText('/tmp/!spiral_builder_cbc78ee7258b9f449ebaa94923dd95cd991ae28c46dc2d1cc920519a17ed43cc/20240521-0307-0871-5885-000000f3b69d/test.txt')"] / options: (None, "pwsh -c "[IO.File]::ReadAllText('/tmp/!spiral_builder_cbc78ee7258b9f449ebaa94923dd95cd991ae28c46dc2d1cc920519a17ed43cc/20240521-0307-0871-5885-000000f3b69d/test.txt')"", Array(MutCell([])), None, None, true, None)
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file '/tmp/!spiral_builder_cbc78ee7258b9f449ebaa94923dd95cd991ae28c46dc2d1cc920519a17ed43cc/20240521-0307-0871-5885-000000f3b69d/test.txt'."</span>
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / exit_code: 1 / std_trace.Length: 265
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / dir: /tmp/!create_temp_path_/spiral_builder_6115839235548e426ec2f15bac6204bd04bf8dbc5b2de2ecdbdcf45ca9e11df9/9242780b-ce0e-9155-5e07-f6ee5667aa16
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "[IO.File]::ReadAllText('/tmp/!create_temp_path_/spiral_builder_6115839235548e426ec2f15bac6204bd04bf8dbc5b2de2ecdbdcf45ca9e11df9/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"] / options: (None, "pwsh -c "[IO.File]::ReadAllText('/tmp/!create_temp_path_/spiral_builder_6115839235548e426ec2f15bac6204bd04bf8dbc5b2de2ecdbdcf45ca9e11df9/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"", Array(MutCell([])), None, None, true, None)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file '/tmp/!create_temp_path_/spiral_builder_6115839235548e426ec2f15bac6204bd04bf8dbc5b2de2ecdbdcf45ca9e11df9/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt'."</span>
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / exit_code: 1 / std_trace.Length: 283
 assert_eq / actual: 1 / expected: 1
-assert_string_contains / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file '/tmp/!spiral_builder_cbc78ee7258b9f449ebaa94923dd95cd991ae28c46dc2d1cc920519a17ed43cc/20240521-0307-0871-5885-000000f3b69d/test.txt'."</span>"
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 runtime.execute_with_options / file_name: cat / arguments: ["test.txt"] / options: (None, "cat "test.txt"", Array(MutCell([])), None, None, true, Some("/tmp/!spiral_builder_cbc78ee7258b9f449ebaa94923dd95cd991ae28c46dc2d1cc920519a17ed43cc/20240521-0307-0871-5885-000000f3b69d"))
+assert_string_contains / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file '/tmp/!create_temp_path_/spiral_builder_6115839235548e426ec2f15bac6204bd04bf8dbc5b2de2ecdbdcf45ca9e11df9/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt'."</span>"
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 runtime.execute_with_options / file_name: cat / arguments: ["test.txt"] / options: (None, "cat "test.txt"", Array(MutCell([])), None, None, true, Some("/tmp/!create_temp_path_/spiral_builder_6115839235548e426ec2f15bac6204bd04bf8dbc5b2de2ecdbdcf45ca9e11df9/9242780b-ce0e-9155-5e07-f6ee5667aa16"))
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 22
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #8 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"] / options: (None, "pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"", Array(MutCell([])), None, None, true, Some("/tmp/!spiral_builder_cbc78ee7258b9f449ebaa94923dd95cd991ae28c46dc2d1cc920519a17ed43cc/20240521-0307-0871-5885-000000f3b69d"))
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #8 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"] / options: (None, "pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"", Array(MutCell([])), None, None, true, Some("/tmp/!create_temp_path_/spiral_builder_6115839235548e426ec2f15bac6204bd04bf8dbc5b2de2ecdbdcf45ca9e11df9/9242780b-ce0e-9155-5e07-f6ee5667aa16"))
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #10 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 22
 assert_eq / actual: 0 / expected: 0
 assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
-assert_eq / actual: true / expected: true
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=127">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=110">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10165,7 +9808,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=128">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=111">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10180,7 +9823,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=129">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=112">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10190,7 +9833,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=130">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=113">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10198,14 +9841,14 @@ assert_eq / actual: true / expected: true
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_command</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">str</span><span class="p">)</span> <span class="p">:</span> <span class="n">command</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_command</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span> <span class="n">sm</span><span class="s1">'.str) : command =</span>
     <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::Command::new($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=131">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=114">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10221,7 +9864,7 @@ assert_eq / actual: true / expected: true
 <span class="o">|&gt;</span> <span class="n">new_command</span>
 <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_pretty'</span>
 <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
-<span class="o">|&gt;</span> <span class="n">_assert_string_contains</span> <span class="s2">"command"</span>
+<span class="o">|&gt;</span> <span class="n">_assert_string_contains</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">command</span><span class="se">\"</span><span class="s2">"</span>
 </pre></div>
 </div>
 </div>
@@ -10234,7 +9877,7 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_string_contains / actual: "command" / expected: "Command {
+<pre>assert_string_contains / actual: ""command"" / expected: "Command {
     name: "command",
     long_flag: None,
     short_flag: None,
@@ -10291,7 +9934,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=132">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=115">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10301,7 +9944,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=133">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=116">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10316,7 +9959,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=134">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=117">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10326,7 +9969,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=135">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=118">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10334,14 +9977,14 @@ assert_eq / actual: true / expected: true
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_arg</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">str</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_arg</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span> <span class="n">sm</span><span class="s1">'.str) : arg =</span>
     <span class="err">!</span>\\<span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::Arg::new($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=136">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=119">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10357,7 +10000,7 @@ assert_eq / actual: true / expected: true
 <span class="o">|&gt;</span> <span class="n">new_arg</span>
 <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_pretty'</span>
 <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
-<span class="o">|&gt;</span> <span class="n">_assert_string_contains</span> <span class="s2">"arg"</span>
+<span class="o">|&gt;</span> <span class="n">_assert_string_contains</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">arg</span><span class="se">\"</span><span class="s2">"</span>
 </pre></div>
 </div>
 </div>
@@ -10370,7 +10013,7 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_string_contains / actual: "arg" / expected: "Arg {
+<pre>assert_string_contains / actual: ""arg"" / expected: "Arg {
     id: "arg",
     help: None,
     long_help: None,
@@ -10407,7 +10050,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=137">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=120">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10417,7 +10060,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=138">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=121">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10433,7 +10076,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=139">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=122">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10443,7 +10086,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=140">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=123">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10459,7 +10102,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=141">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=124">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10469,7 +10112,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=142">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=125">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10485,7 +10128,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=143">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=126">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10495,7 +10138,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=144">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=127">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10503,7 +10146,7 @@ assert_eq / actual: true / expected: true
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_long</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">str</span><span class="p">)</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_long</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span> <span class="n">sm</span><span class="s1">'.str) (arg : arg) : arg =</span>
     <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.long($1)"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -10511,7 +10154,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=145">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=128">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10521,7 +10164,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=146">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=129">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10529,7 +10172,7 @@ assert_eq / actual: true / expected: true
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_value_names</span> <span class="p">(</span><span class="n">values</span> <span class="p">:</span> <span class="n">array_base</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">str</span><span class="p">))</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_value_names</span> <span class="p">(</span><span class="n">values</span> <span class="p">:</span> <span class="n">array_base</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">static_ref</span> <span class="n">sm</span><span class="s1">'.str)) (arg : arg) : arg =</span>
     <span class="n">inl</span> <span class="n">values</span> <span class="o">=</span> <span class="n">values</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.to_vec</span>
     <span class="err">!</span>\\<span class="p">((</span><span class="n">arg</span><span class="p">,</span> <span class="n">values</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.value_names($1)"'</span><span class="p">)</span>
 </pre></div>
@@ -10538,7 +10181,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=147">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=130">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10548,7 +10191,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=148">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=131">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10564,7 +10207,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=149">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=132">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10574,7 +10217,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=150">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=133">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10589,7 +10232,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=151">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=134">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10599,7 +10242,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=152">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=135">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10625,7 +10268,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=153">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=136">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10635,7 +10278,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=154">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=137">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10651,7 +10294,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=155">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=138">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10661,7 +10304,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=156">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=139">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10678,7 +10321,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=157">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=140">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10688,7 +10331,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=158">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=141">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10703,7 +10346,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=159">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=142">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10713,7 +10356,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=160">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=143">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10728,7 +10371,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=161">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=144">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10738,7 +10381,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=162">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=145">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10754,37 +10397,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=163">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="value_parser_possible_values">value_parser_possible_values<a class="anchor-link" href="#value_parser_possible_values">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=164">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">value_parser_possible_values</span> <span class="p">(</span><span class="n">values</span> <span class="p">:</span> <span class="n">array_base</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">value_parser</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">values</span> <span class="o">=</span>
-        <span class="n">values</span>
-        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.to_vec</span>
-        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map (sm'</span><span class="o">.</span><span class="n">to_std_string</span> <span class="o">&gt;&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">new_box</span> <span class="o">&gt;&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">box_leak</span> <span class="o">&gt;&gt;</span> <span class="n">new_possible_value</span><span class="p">)</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::builder::PossibleValuesParser::new($0).into()"'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=165">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=146">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10794,7 +10407,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=166">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=147">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10810,7 +10423,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=167">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=148">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10820,7 +10433,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=168">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=149">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10836,7 +10449,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=169">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=150">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10846,7 +10459,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=170">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=151">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10862,42 +10475,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=171">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="arg_union">arg_union<a class="anchor-link" href="#arg_union">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=172">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_union</span> <span class="n">forall</span> <span class="n">union_type</span> <span class="p">{</span><span class="n">to_string</span><span class="p">}</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">union_type</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
-    <span class="n">arg</span>
-    <span class="o">|&gt;</span> <span class="n">arg_value_parser</span> <span class="p">(</span>
-        <span class="n">real</span> <span class="n">get_union_fields_untag</span> <span class="err">`</span><span class="n">union_type</span> <span class="p">()</span>
-        <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">union_type</span>
-        <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">to_string</span>
-        <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box</span>
-        <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
-        <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
-        <span class="o">|&gt;</span> <span class="n">value_parser_possible_values</span>
-    <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=173">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=152">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10907,7 +10485,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=174">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=153">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10948,7 +10526,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=175">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=154">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10958,7 +10536,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=176">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=155">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10974,7 +10552,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=177">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=156">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10984,7 +10562,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=178">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=157">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10999,7 +10577,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=179">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=158">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11009,7 +10587,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=180">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=159">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11025,7 +10603,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=181">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=160">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11035,7 +10613,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=182">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=161">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11052,7 +10630,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=183">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=162">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11062,7 +10640,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=184">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=163">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11084,7 +10662,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=185">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=164">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11094,7 +10672,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=186">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=165">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11112,7 +10690,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=187">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=166">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11122,7 +10700,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=188">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=167">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11140,7 +10718,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=189">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=168">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11150,7 +10728,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=190">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=169">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11168,7 +10746,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=191">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=170">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11178,7 +10756,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=192">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=171">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11196,7 +10774,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=193">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=172">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11206,7 +10784,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=194">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=173">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11222,7 +10800,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=195">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=174">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11232,7 +10810,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=196">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=175">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11248,33 +10826,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=197">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="command_debug_assert">command_debug_assert<a class="anchor-link" href="#command_debug_assert">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=198">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">command_debug_assert</span> <span class="p">(</span><span class="n">command</span> <span class="p">:</span> <span class="n">command</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">!</span>\\<span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::Command::debug_assert($0)"'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=199">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=176">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11284,7 +10836,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=200">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=177">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11300,7 +10852,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=201">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=178">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11310,7 +10862,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=202">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=179">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11326,7 +10878,139 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=203">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=180">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="value_parser_possible_values">value_parser_possible_values<a class="anchor-link" href="#value_parser_possible_values">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=181">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">value_parser_possible_values</span> <span class="p">(</span><span class="n">values</span> <span class="p">:</span> <span class="n">array_base</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">value_parser</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">values</span> <span class="o">=</span>
+        <span class="n">values</span>
+        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.to_vec</span>
+        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.vec_map (sm'</span><span class="o">.</span><span class="n">to_std_string</span> <span class="o">&gt;&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">new_box</span> <span class="o">&gt;&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">box_leak</span> <span class="o">&gt;&gt;</span> <span class="n">new_possible_value</span><span class="p">)</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"Into::&lt;clap::builder::ValueParser&gt;::into(clap::builder::PossibleValuesParser::new($0))"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=182">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="arg_union">arg_union<a class="anchor-link" href="#arg_union">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=183">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">arg_union</span> <span class="n">forall</span> <span class="n">union_type</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">union_type</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">(</span><span class="n">arg</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span> <span class="o">=</span>
+    <span class="n">arg</span>
+    <span class="o">|&gt;</span> <span class="n">arg_value_parser</span> <span class="p">(</span>
+        <span class="n">real</span> <span class="n">reflection</span><span class="o">.</span><span class="n">get_union_fields_untag</span> <span class="err">`</span><span class="n">union_type</span> <span class="p">()</span>
+        <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">union_type</span><span class="p">)</span>
+        <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span>
+        <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box</span>
+        <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
+        <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
+        <span class="o">|&gt;</span> <span class="n">value_parser_possible_values</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=184">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">clap</span>
+
+<span class="c1">##"command"</span>
+<span class="o">|&gt;</span> <span class="n">new_command</span>
+<span class="o">|&gt;</span> <span class="n">command_init_arg</span> <span class="p">(</span><span class="s2">"trace-level"</span><span class="p">,</span> <span class="s1">'t'</span><span class="p">)</span> <span class="p">(</span>
+    <span class="n">real</span> <span class="n">arg_union</span> <span class="err">`</span><span class="n">trace_level</span> <span class="n">ignore</span>
+<span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">command_get_matches_from</span> <span class="p">;[</span> <span class="s2">"_"</span><span class="p">;</span> <span class="s2">"--trace-level"</span><span class="p">;</span> <span class="s2">"Critical"</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">matches_get_one</span> <span class="s2">"trace-level"</span>
+<span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unwrap</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
+<span class="o">|&gt;</span> <span class="n">reflection</span><span class="o">.</span><span class="n">union_try_pick</span>
+<span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">Critical</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>assert_eq / actual: US1_4 / expected: US1_4
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=185">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="command_debug_assert">command_debug_assert<a class="anchor-link" href="#command_debug_assert">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=186">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">command_debug_assert</span> <span class="p">(</span><span class="n">command</span> <span class="p">:</span> <span class="n">command</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"clap::Command::debug_assert($0)"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=187">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11336,7 +11020,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=204">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=188">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11347,8 +11031,7 @@ assert_eq / actual: true / expected: true
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">types</span> <span class="p">()</span>
     <span class="n">init_trace_state</span> <span class="kc">None</span>
-    <span class="err">$</span><span class="s1">'let is_windows () = !is_windows ()'</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s1">'let get_executable_suffix () = !get_executable_suffix ()'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let current_process_kill () = !current_process_kill ()'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let execute_async x = !execute_async x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let execute_with_options_async x = !execute_with_options_async x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="n">inl</span> <span class="n">execution_options</span> <span class="n">fn</span> <span class="o">=</span>
@@ -11358,6 +11041,7 @@ assert_eq / actual: true / expected: true
             <span class="o">|&gt;</span> <span class="n">fn</span>
             <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">!</span><span class="n">x</span>
     <span class="err">$</span><span class="s1">'let execution_options x = !execution_options x'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="n">inl</span> <span class="n">split_args</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">split_args</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">box</span>
     <span class="err">$</span><span class="s1">'let split_args x = !split_args x'</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>

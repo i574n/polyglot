@@ -47,8 +47,12 @@ pub mod Lib {
     pub mod SpiralCrypto {
         use super::*;
         use crate::Crypto::hash_text as hash_text_1;
+        use crate::Crypto::hash_to_port as hash_to_port_1;
         pub fn hash_text(x: string) -> string {
             hash_text_1(x)
+        }
+        pub fn hash_to_port(x: string) -> u16 {
+            hash_to_port_1(x)
         }
     }
     pub mod SpiralSm {
@@ -127,9 +131,9 @@ pub mod Lib {
     }
     pub mod SpiralFileSystem {
         use super::*;
-        use crate::File_system::create_temp_directory as create_temp_directory_1;
-        use crate::File_system::create_temp_directory_name as create_temp_directory_name_1;
-        use crate::File_system::find_parent as find_parent_1;
+        use crate::File_system::create_temp_dir as create_temp_dir_1;
+        use crate::File_system::create_temp_dir_ as create_temp_dir__1;
+        use crate::File_system::create_temp_path as create_temp_path_1;
         use crate::File_system::get_source_directory as get_source_directory_1;
         use crate::File_system::get_workspace_root as get_workspace_root_1;
         use crate::File_system::new_file_uri as new_file_uri_1;
@@ -141,20 +145,20 @@ pub mod Lib {
         pub fn get_source_directory() -> string {
             get_source_directory_1()
         }
-        pub fn find_parent(x: string) -> Func1<bool, Func1<string, string>> {
-            find_parent_1(x)
-        }
         pub fn normalize_path(x: string) -> string {
             normalize_path_1(x)
         }
         pub fn new_file_uri(x: string) -> string {
             new_file_uri_1(x)
         }
-        pub fn create_temp_directory() -> (string, LrcPtr<dyn IDisposable>) {
-            create_temp_directory_1()
+        pub fn create_temp_dir() -> (string, LrcPtr<dyn IDisposable>) {
+            create_temp_dir_1()
         }
-        pub fn create_temp_directory_name() -> string {
-            create_temp_directory_name_1()
+        pub fn create_temp_dir_(x: string) -> (string, LrcPtr<dyn IDisposable>) {
+            create_temp_dir__1(x)
+        }
+        pub fn create_temp_path() -> string {
+            create_temp_path_1()
         }
     }
     pub fn set_trace_level(new_level: US0) {

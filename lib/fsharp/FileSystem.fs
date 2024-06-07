@@ -70,7 +70,7 @@ module FileSystem =
                     let path = getEventPath event.FullPath
                     ticks (), [
                         FileSystemChange.Created (path, None)
-                        if SpiralRuntime.is_windows () then
+                        if SpiralPlatform.is_windows () then
                             FileSystemChange.Changed (path, None)
                     ])
 
@@ -129,7 +129,7 @@ module FileSystem =
 
         let disposable =
             new_disposable (fun () ->
-                trace Debug (fun () -> "watchWithFilter / Disposing watch stream") _locals
+                trace Debug (fun () -> "FileSystem.watchWithFilter / Disposing watch stream") _locals
                 watcher.EnableRaisingEvents <- false
                 watcher.Dispose ()
             )

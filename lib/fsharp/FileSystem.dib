@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -11,7 +11,7 @@
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
-#r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"
+#r @"../../../../../../../.nuget/packages/argu/6.2.4/lib/netstandard2.0/Argu.dll"
 
 #!fsharp
 
@@ -101,7 +101,7 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
                 let path = getEventPath event.FullPath
                 ticks (), [
                     FileSystemChange.Created (path, None)
-                    if SpiralRuntime.is_windows () then
+                    if SpiralPlatform.is_windows () then
                         FileSystemChange.Changed (path, None)
                 ])
 
@@ -160,7 +160,7 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
 
     let disposable =
         new_disposable (fun () ->
-            trace Debug (fun () -> "watchWithFilter / Disposing watch stream") _locals
+            trace Debug (fun () -> "FileSystem.watchWithFilter / Disposing watch stream") _locals
             watcher.EnableRaisingEvents <- false
             watcher.Dispose ()
         )
@@ -192,7 +192,10 @@ let inline testEventsRaw
     (watchFn : (_ -> bool) -> string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable)
     write
     =
-    let struct (tempDir, tempDisposable) = SpiralFileSystem.create_temp_directory ()
+    let struct (tempDir, tempDisposable) =
+        "FileSystem.testEventsRaw"
+        |> SpiralCrypto.hash_text
+        |> SpiralFileSystem.create_temp_dir'
     let stream, disposable = watchFn (fun _ -> true) tempDir
 
     let events = System.Collections.Concurrent.ConcurrentBag ()
@@ -229,7 +232,7 @@ let inline testEventsRaw
         |> List.map (fun (diff, n, event) -> $"{n} / {diff} / {event}" |> SpiralSm.ellipsis_end 100L)
         |> SpiralSm.concat "\n"
     let _locals () = $"eventsLog: \n{eventsLog} / {_locals ()}"
-    trace Debug (fun () -> "testEventsRaw") _locals
+    trace Debug (fun () -> "FileSystem.testEventsRaw") _locals
 
     events
     |> Seq.toList
@@ -433,7 +436,10 @@ let inline testEventsSorted
     (watchFn : string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable)
     write
     =
-    let struct (tempDir, tempDisposable) = SpiralFileSystem.create_temp_directory ()
+    let struct (tempDir, tempDisposable) =
+        "FileSystem.testEventsSorted"
+        |> SpiralCrypto.hash_text
+        |> SpiralFileSystem.create_temp_dir'
     let stream, disposable = watchFn tempDir
 
     let events = System.Collections.Concurrent.ConcurrentBag ()

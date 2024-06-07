@@ -118,6 +118,19 @@ inl map_error'' forall t e u. (fn : e -> u) (source : result' t e) : result' t u
 inl option_ok_or forall t e. (e : e) (source : optionm'.option' t) : result' t e =
     !\\(source, $'"$0.ok_or(!e)"')
 
+/// ## unwrap_or_else
+inl unwrap_or_else forall t e u. (fn : e -> u) (source : result' t e) : u =
+    (!\\(source, $'"true; let _result = $0.unwrap_or_else(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
+    !\($'"_result"')
+
+/// ## map_or_else
+inl map_or_else forall t e u v. (fn : e -> v) (fn2 : u -> v) (source : result' t e) : v =
+    (!\\(source, $'"true; let _result = $0.map_or_else(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 }, |x| { //"') : bool) |> ignore
+    (!\\(fn2 !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
+    !\($'"_result"')
+
 /// ## as_ref
 inl as_ref forall t e. (source : result' t e) : result' (rust.ref' t) (rust.ref' e) =
     !\($'"!source.as_ref()"')
@@ -126,6 +139,12 @@ inl as_ref forall t e. (source : result' t e) : result' (rust.ref' t) (rust.ref'
 inl as_ref' forall t e. (source : rust.ref' (result' t e)) : result' (rust.ref' t) (rust.ref' e) =
     !\($'"!source.as_ref()"')
 
+/// ## unwrap_err
+inl unwrap_err forall t u. (x : result t u) : u =
+    match x with
+    | Ok x => failwith $'$"resultm.unwrap_err / x: {!x}"'
+    | Error x => x
+
 /// ## unwrap_or'
 inl unwrap_or' forall t u. (default : t) (x : result' t u) : t =
     !\\((x, default), $'"$0.unwrap_or($1)"')
@@ -133,6 +152,10 @@ inl unwrap_or' forall t u. (default : t) (x : result' t u) : t =
 /// ## expect
 inl expect forall t u. (error : rust.ref' string) (x : result' t u) : t =
     !\($'"!x.expect(&!error)"')
+
+/// ## is_err
+inl is_err forall t u. (x : result' t u) : bool =
+    !\($'"!x.is_err()"')
 
 /// ## ok'
 inl ok' forall t. (x : result' t _) : optionm'.option' t =

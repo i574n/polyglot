@@ -1,5 +1,4 @@
 /// # iter
-open iter_prototypes
 open rust_operators
 
 /// ## types
@@ -23,10 +22,10 @@ inl iter_map forall t u. (fn : t -> u) (iter : into_iterator t) : into_iterator 
     !\\(fn, $'"!iter.map(|x| $0(x))"')
 
 /// ## try_for_each
-inl try_for_each forall t. (fn : t -> rust.try ()) x : resultm.result' () sm'.std_string =
+inl try_for_each forall t. (fn : t -> rust.try ()) x : resultm.result' () string =
     (!\($'"true; let mut !x = !x; let _result = !x.try_for_each(|x| { //"') : bool) |> ignore
     (!\\(fn !\($'"x"'), $'"true; $0 }); //"') : bool) |> ignore
-    !\($'"_result"')
+    !\($'"_result.map_err(|x| x.into())"')
 
 /// ## enumerate
 inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
@@ -35,6 +34,6 @@ inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t
     |> am'.to_vec
     |> into_iter
     |> iter_enumerate
-    |> iter_prototypes.iter_collect
+    |> iter_collect
     |> am'.vec_map' from_pair
     |> am'.from_vec

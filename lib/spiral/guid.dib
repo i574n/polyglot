@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -40,10 +40,53 @@ inl new_raw_guid () : guid =
 
 #!markdown
 
+## hash_guid
+
+#!spiral
+
+type hash_guid = guid
+
+let hash_guid (~hash : string) : hash_guid =
+    run_target function
+        | Rust (Contract) => fun () => null ()
+        | _ => fun () =>
+            inl hash = hash |> sm'.pad_left 32i32 '0'
+            $'`hash_guid $"{!hash.[0..7]}-{!hash.[8..11]}-{!hash.[12..15]}-{!hash.[16..19]}-{!hash.[20..31]}"'
+
+#!spiral
+
+//// test
+
+""
+|> hash_guid
+|> _assert_eq' (new_guid "00000000-0000-0000-0000-000000000000")
+
+"123456789012345678901234567890123"
+|> hash_guid
+|> _assert_eq' (new_guid "12345678-9012-3456-7890-123456789012")
+
+#!spiral
+
+//// test
+///! rust
+///! typescript
+///! python
+
+""
+|> hash_guid
+|> _assert_eq' (new_guid "00000000-0000-0000-0000-000000000000")
+
+"123456789012345678901234567890123"
+|> hash_guid
+|> _assert_eq' (new_guid "12345678-9012-3456-7890-123456789012")
+
+#!markdown
+
 ## main
 
 #!spiral
 
 inl main () =
     $'let new_guid x = !new_guid x' : ()
+    $'let hash_guid x = !hash_guid x' : ()
     $'let new_raw_guid x = !new_raw_guid x' : ()

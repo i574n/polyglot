@@ -1,25 +1,32 @@
 packages:
     |core-
 modules:
+    am'_prototypes-
     base-
-    guid
     rust
     rust_operators
     ts
     ts_operators
+    py
+    py_operators
     optionm'
     optionm'_operators
     resultm
     console
     listm'
-    iter_prototypes
+    iter_prototypes-
     am'
     seq
     math
     mapm
+    iter
+    sm'_prototypes-
     sm'
     sm'_operators
-    iter
+    reflection
+    guid
+    parsing
+    platform
     env
     date_time
     trace-

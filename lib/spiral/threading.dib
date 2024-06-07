@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -84,6 +84,10 @@ inl join' forall t.
             )
         ) =
     !\\(x, $'"std::thread::JoinHandle::join($0)"')
+
+#!spiral
+
+nominal thread = $'System.Threading.Thread'
 
 #!markdown
 

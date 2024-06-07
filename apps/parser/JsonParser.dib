@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -47,7 +47,6 @@ The JSON spec is available at [json.org](http://www.json.org/). I'll paraphase i
   * An array begins with [ (left bracket) and ends with ] (right bracket).
   * Values are separated by , (comma).
 * Whitespace can be inserted between any pair of tokens.
-
 *)
 
 #!fsharp

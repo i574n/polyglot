@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
 
 #!markdown
 
@@ -48,6 +48,15 @@ inl types () =
 
 #!spiral
 
+inl types () =
+    backend_switch {
+        Fsharp = fun () =>
+            types ()
+        Python = fun () => ()
+    }
+
+#!spiral
+
 nominal unit = $'unit'
 nominal any = $'core_any_Any'
 nominal try t = $'core_ops_Try<`t>'
@@ -81,7 +90,6 @@ nominal impl t = $'Impl<`t>'
 nominal mut' t = $'Mut<`t>'
 nominal ref' t = $'Ref<`t>'
 nominal send t = lifetime_join t $'Send<`t>'
-nominal static_ref' t = static_ref t
 
 #!markdown
 
@@ -138,6 +146,15 @@ inl emit' forall t. (x : t) : t =
 
 inl clone forall t. (x : t) : t =
     !\\(x, $'"$0.clone()"')
+
+#!markdown
+
+## dbg
+
+#!spiral
+
+inl dbg forall t. (x : t) : t =
+    !\\(x, $'"dbg\!($0)"')
 
 #!markdown
 
@@ -350,7 +367,7 @@ inl move forall t. (fn : () -> t) : func0 t =
 
 #!spiral
 
-inl to_static_ref_unbox forall t. (x : ref' t) : static_ref' t =
+inl to_static_ref_unbox forall t. (x : ref' t) : static_ref t =
     x |> unbox
 
 #!markdown
@@ -359,7 +376,7 @@ inl to_static_ref_unbox forall t. (x : ref' t) : static_ref' t =
 
 #!spiral
 
-inl from_static_ref_unbox forall t. (x : static_ref' t) : ref' t =
+inl from_static_ref_unbox forall t. (x : static_ref t) : ref' t =
     x |> unbox
 
 #!markdown
@@ -368,7 +385,7 @@ inl from_static_ref_unbox forall t. (x : static_ref' t) : ref' t =
 
 #!spiral
 
-inl box_leak forall t. (x : box t) : static_ref' (mut' t) =
+inl box_leak forall t. (x : box t) : static_ref (mut' t) =
     !\\(x, $'"Box::leak($0)"')
 
 #!markdown

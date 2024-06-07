@@ -20,7 +20,7 @@ module Runtime =
 
         let parser =
             Argu.ArgumentParser.Create<'T> (
-                programName = $"{assemblyName}{SpiralRuntime.get_executable_suffix ()}",
+                programName = $"{assemblyName}{SpiralPlatform.get_executable_suffix ()}",
                 errorHandler = errorHandler
             )
 

@@ -77,6 +77,12 @@ pub mod Threading {
             move || Threading::closure1(v0_1.clone(), ())
         })
     }
+    pub fn method1(v0_1: LrcPtr<CancellationTokenSource>) -> Func0<()> {
+        Func0::new({
+            let v0_1 = v0_1.clone();
+            move || Threading::closure1(v0_1.clone(), ())
+        })
+    }
     pub fn closure0(
         unitVar: (),
         v0_1: Option<CancellationToken>,
