@@ -10,7 +10,7 @@ $ErrorActionPreference = "Stop"
 #     media/cellOutputScrollButtons.ts `
 # } | Invoke-Block
 
-{ esbuild --bundle --outdir=out --external:vscode --format=cjs --platform=node `
+{ ~/.bun/bin/bunx --bun esbuild --bundle --outdir=out --external:vscode --format=cjs --platform=node `
     src/extension.ts `
     media/cellOutputScrollButtons.ts `
 } | Invoke-Block

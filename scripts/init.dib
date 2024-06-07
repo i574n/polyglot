@@ -33,7 +33,7 @@ rustup +nightly update
 
 #!pwsh
 
-{ cargo +nightly install trunk --version 0.20.0 } | Invoke-Block -OnError Continue
+{ cargo +nightly install trunk --version 0.20.2 } | Invoke-Block -OnError Continue
 
 #!pwsh
 
@@ -41,23 +41,9 @@ rustup +nightly update
 
 #!pwsh
 
-npm install -g esbuild
-
-#!pwsh
-
-npm install -g @chialab/rna
-
-#!pwsh
-
-npm install -g @chialab/rna-bundler
-
-#!pwsh
-
-npm install -g @playwright/test@1.44.0
-
-#!pwsh
-
-npx -y playwright@1.44.0 install
+if (!(Search-Command "nix")) {
+    { ~/.bun/bin/bunx --bun playwright@1.44.0 install } | Invoke-Block
+}
 
 #!pwsh
 

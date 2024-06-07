@@ -413,7 +413,7 @@ let directory_separator_char () : char =
 /// ## get_current_directory
 let get_current_directory () : string =
     run_target function
-        | Rust (Contract) => fun () => null ()
+        | Rust (Contract | Wasm) => fun () => null ()
         | Rust (Native) => fun () =>
             open rust_operators
             inl current_dir = !\($'"std::env::current_dir()"') : resultm.result' path_buf stream.io_error
@@ -785,12 +785,12 @@ inl find_parent name is_file root_dir =
 
 /// ## get_workspace_root
 inl get_workspace_root () =
-    (None, [ get_source_directory (); get_current_directory () ])
+    (None, [ get_source_directory; get_current_directory ])
     ||> listm.fold fun acc path =>
         match acc with
         | Some path => Some path
         | None =>
-            path
+            path ()
             |> find_parent ("polyglot" </> ".paket") false
             |> function
             | Ok path => Some path

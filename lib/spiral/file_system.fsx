@@ -5803,85 +5803,7 @@ and closure51 () (v0 : string) : string =
     let v2 : string = v0.TrimStart v1 
     let v3 : string = $"file:///{v2}"
     v3
-and method48 () : string =
-    let v0 : bool = true
-    let mutable _v0 : string option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1 : string = "std::env::current_dir()"
-    let v2 : Result<std_path_PathBuf, std_io_Error> = Fable.Core.RustInterop.emitRustExpr () v1 
-    let v3 : string = "$0.unwrap()"
-    let v4 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v2 v3 
-    let v5 : string = "$0.display()"
-    let v6 : std_path_Display = Fable.Core.RustInterop.emitRustExpr v4 v5 
-    let v7 : bool = true
-    let mutable _v7 : std_string_String option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v8 : string = "format!(\"{}\", $0)"
-    let v9 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v8 
-    v9 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v10 : string = "format!(\"{}\", $0)"
-    let v11 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v10 
-    v11 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v12 : string = "format!(\"{}\", $0)"
-    let v13 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v12 
-    v13 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v14 : std_string_String = null |> unbox<std_string_String>
-    v14 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v15 : std_string_String = null |> unbox<std_string_String>
-    v15 
-    #endif
-#else
-    let v16 : std_string_String = null |> unbox<std_string_String>
-    v16 
-    #endif
-    |> fun x -> _v7 <- Some x
-    let v17 : std_string_String = match _v7 with Some x -> x | None -> failwith "base.run_target / _v7=None"
-    let v18 : string = "fable_library_rust::String_::fromString($0)"
-    let v19 : string = Fable.Core.RustInterop.emitRustExpr v17 v18 
-    v19 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v20 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
-    let v21 : string = v20 ()
-    v21 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = null |> unbox<string>
-    v22 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v23 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
-    let v24 : string = v23 ()
-    v24 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v25 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
-    let v26 : string = v25 ()
-    v26 
-    #endif
-#else
-    let v27 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
-    let v28 : string = v27 ()
-    v28 
-    #endif
-    |> fun x -> _v0 <- Some x
-    let v29 : string = match _v0 with Some x -> x | None -> failwith "base.run_target / _v0=None"
-    v29
-and method51 (v0 : string) : string option =
+and method50 (v0 : string) : string option =
     let v1 : bool = true
     let mutable _v1 : US3 option = None 
     
@@ -6012,16 +5934,16 @@ and method51 (v0 : string) : string option =
         let v53 : string option = Some v52 
         v53
 and closure53 () (v0 : string) : string option =
-    method51(v0)
-and method50 () : (string -> string option) =
+    method50(v0)
+and method49 () : (string -> string option) =
     closure53()
-and method52 (v0 : string, v1 : string, v2 : string) : US13 =
+and method51 (v0 : string, v1 : string, v2 : string) : US13 =
     let v3 : string = method31(v2, v0)
     let v4 : bool = method7(v3)
     if v4 then
         US13_0(v2)
     else
-        let v6 : (string -> string option) = method50()
+        let v6 : (string -> string option) = method49()
         let v7 : string option = v6 v2
         let v8 : US3 option = None
         let _v8 = ref v8 
@@ -6044,14 +5966,14 @@ and method52 (v0 : string, v1 : string, v2 : string) : US13 =
             let v16 : string = $"""No parent for {if false then "file" else "dir"} '{v0}' at '{v1}' (until '{v2}')"""
             US13_1(v16)
         | US3_0(v14) -> (* Some *)
-            method52(v0, v1, v14)
-and method49 (v0 : string, v1 : string) : US13 =
+            method51(v0, v1, v14)
+and method48 (v0 : string, v1 : string) : US13 =
     let v2 : string = method31(v1, v0)
     let v3 : bool = method7(v2)
     if v3 then
         US13_0(v1)
     else
-        let v5 : (string -> string option) = method50()
+        let v5 : (string -> string option) = method49()
         let v6 : string option = v5 v1
         let v7 : US3 option = None
         let _v7 = ref v7 
@@ -6074,7 +5996,7 @@ and method49 (v0 : string, v1 : string) : US13 =
             let v15 : string = $"""No parent for {if false then "file" else "dir"} '{v0}' at '{v1}' (until '{v1}')"""
             US13_1(v15)
         | US3_0(v13) -> (* Some *)
-            method52(v0, v1, v13)
+            method51(v0, v1, v13)
 and closure54 () () : string =
     let v0 : string = "file_system.get_workspace_root"
     v0
@@ -6082,28 +6004,105 @@ and closure55 (v0 : string) () : string =
     let v1 : (unit -> string) = closure6()
     let v2 : string = $"error: {v0} / {v1 ()}"
     v2
+and method52 () : string =
+    let v0 : bool = true
+    let mutable _v0 : string option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1 : string = "std::env::current_dir()"
+    let v2 : Result<std_path_PathBuf, std_io_Error> = Fable.Core.RustInterop.emitRustExpr () v1 
+    let v3 : string = "$0.unwrap()"
+    let v4 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v2 v3 
+    let v5 : string = "$0.display()"
+    let v6 : std_path_Display = Fable.Core.RustInterop.emitRustExpr v4 v5 
+    let v7 : bool = true
+    let mutable _v7 : std_string_String option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v8 : string = "format!(\"{}\", $0)"
+    let v9 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v8 
+    v9 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v10 : string = "format!(\"{}\", $0)"
+    let v11 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v10 
+    v11 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v12 : string = "format!(\"{}\", $0)"
+    let v13 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v12 
+    v13 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v14 : std_string_String = null |> unbox<std_string_String>
+    v14 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v15 : std_string_String = null |> unbox<std_string_String>
+    v15 
+    #endif
+#else
+    let v16 : std_string_String = null |> unbox<std_string_String>
+    v16 
+    #endif
+    |> fun x -> _v7 <- Some x
+    let v17 : std_string_String = match _v7 with Some x -> x | None -> failwith "base.run_target / _v7=None"
+    let v18 : string = "fable_library_rust::String_::fromString($0)"
+    let v19 : string = Fable.Core.RustInterop.emitRustExpr v17 v18 
+    v19 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v20 : string = null |> unbox<string>
+    v20 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v21 : string = null |> unbox<string>
+    v21 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v22 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
+    let v23 : string = v22 ()
+    v23 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v24 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
+    let v25 : string = v24 ()
+    v25 
+    #endif
+#else
+    let v26 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
+    let v27 : string = v26 ()
+    v27 
+    #endif
+    |> fun x -> _v0 <- Some x
+    let v28 : string = match _v0 with Some x -> x | None -> failwith "base.run_target / _v0=None"
+    v28
 and closure52 () () : string =
     let v0 : string = __SOURCE_DIRECTORY__
-    let v1 : string = method48()
-    let v2 : string = "polyglot"
-    let v3 : string = ".paket"
-    let v4 : string = method31(v2, v3)
-    let v5 : US13 = method49(v4, v0)
-    let v14 : US3 =
-        match v5 with
-        | US13_1(v8) -> (* Error *)
-            let v9 : US0 = US0_3
-            let v10 : (unit -> string) = closure54()
-            let v11 : (unit -> string) = closure55(v8)
-            method9(v9, v10, v11)
+    let v1 : string = "polyglot"
+    let v2 : string = ".paket"
+    let v3 : string = method31(v1, v2)
+    let v4 : US13 = method48(v3, v0)
+    let v13 : US3 =
+        match v4 with
+        | US13_1(v7) -> (* Error *)
+            let v8 : US0 = US0_3
+            let v9 : (unit -> string) = closure54()
+            let v10 : (unit -> string) = closure55(v7)
+            method9(v8, v9, v10)
             US3_1
-        | US13_0(v6) -> (* Ok *)
-            US3_0(v6)
+        | US13_0(v5) -> (* Ok *)
+            US3_0(v5)
     let v29 : US3 =
-        match v14 with
+        match v13 with
         | US3_1 -> (* None *)
-            let v17 : string = method31(v2, v3)
-            let v18 : US13 = method49(v17, v1)
+            let v16 : string = method52()
+            let v17 : string = method31(v1, v2)
+            let v18 : US13 = method48(v17, v16)
             match v18 with
             | US13_1(v21) -> (* Error *)
                 let v22 : US0 = US0_3
@@ -6113,15 +6112,15 @@ and closure52 () () : string =
                 US3_1
             | US13_0(v19) -> (* Ok *)
                 US3_0(v19)
-        | US3_0(v15) -> (* Some *)
-            US3_0(v15)
+        | US3_0(v14) -> (* Some *)
+            US3_0(v14)
     let v33 : string =
         match v29 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
         | US3_0(v30) -> (* Some *)
             v30
-    method31(v33, v2)
+    method31(v33, v1)
 and method53 (v0 : string) : unit =
     let v1 : bool = true
     let mutable _v1 : unit option = None 
@@ -6152,26 +6151,26 @@ and method53 (v0 : string) : unit =
     let v6 : System.Guid = method22(v5, v3)
     let v7 : string = $"{v2}_{v6}.txt"
     let v8 : string = __SOURCE_DIRECTORY__
-    let v9 : string = method48()
-    let v10 : string = "polyglot"
-    let v11 : string = ".paket"
-    let v12 : string = method31(v10, v11)
-    let v13 : US13 = method49(v12, v8)
-    let v22 : US3 =
-        match v13 with
-        | US13_1(v16) -> (* Error *)
-            let v17 : US0 = US0_3
-            let v18 : (unit -> string) = closure54()
-            let v19 : (unit -> string) = closure55(v16)
-            method9(v17, v18, v19)
+    let v9 : string = "polyglot"
+    let v10 : string = ".paket"
+    let v11 : string = method31(v9, v10)
+    let v12 : US13 = method48(v11, v8)
+    let v21 : US3 =
+        match v12 with
+        | US13_1(v15) -> (* Error *)
+            let v16 : US0 = US0_3
+            let v17 : (unit -> string) = closure54()
+            let v18 : (unit -> string) = closure55(v15)
+            method9(v16, v17, v18)
             US3_1
-        | US13_0(v14) -> (* Ok *)
-            US3_0(v14)
+        | US13_0(v13) -> (* Ok *)
+            US3_0(v13)
     let v37 : US3 =
-        match v22 with
+        match v21 with
         | US3_1 -> (* None *)
-            let v25 : string = method31(v10, v11)
-            let v26 : US13 = method49(v25, v9)
+            let v24 : string = method52()
+            let v25 : string = method31(v9, v10)
+            let v26 : US13 = method48(v25, v24)
             match v26 with
             | US13_1(v29) -> (* Error *)
                 let v30 : US0 = US0_3
@@ -6181,15 +6180,15 @@ and method53 (v0 : string) : unit =
                 US3_1
             | US13_0(v27) -> (* Ok *)
                 US3_0(v27)
-        | US3_0(v23) -> (* Some *)
-            US3_0(v23)
+        | US3_0(v22) -> (* Some *)
+            US3_0(v22)
     let v41 : string =
         match v37 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
         | US3_0(v38) -> (* Some *)
             v38
-    let v42 : string = method31(v41, v10)
+    let v42 : string = method31(v41, v9)
     let v43 : string = "target/trace"
     let v44 : string = method31(v42, v43)
     let v45 : bool = true
