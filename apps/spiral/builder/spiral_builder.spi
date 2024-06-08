@@ -679,6 +679,7 @@ inl process_dib { path retries working_directory } =
 
                 $'$"{!path}.ipynb"'
                 |> file_system.read_all_text
+                |> sm'.replace "\r\n" "\n"
                 |> sm'.replace "\\r\\n" "\\n"
                 |> file_system.write_all_text $'$"{!path}.ipynb"'
 

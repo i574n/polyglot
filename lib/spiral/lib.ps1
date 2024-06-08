@@ -55,6 +55,8 @@ function CopyTarget {
         Copy-Item $from $to -Force
 
         $text = Get-Content $to
+        $text = $text `
+            -replace "`r`n", "`n"
 
         if ($Language -eq "ts") {
             $text = $text `

@@ -18,9 +18,9 @@ if (!(Search-Command "rustup")) {
         /bin/sh $rustupScriptPath -y
         $env:PATH = "~/.cargo/bin:$env:PATH"
     }
-    rustup install nightly
-    rustup default nightly
 }
+rustup install nightly
+rustup default nightly
 
 function Search-DotnetSdk($version) {
     $sdks = & dotnet --list-sdks
@@ -33,25 +33,33 @@ function Search-DotnetSdk($version) {
 }
 
 
-if (!$IsWindows) {
-    if (!(Search-DotnetSdk "9")) {
-        curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version "9.0.100-preview.1.24101.2"
+if (!(Search-Command "nix")) {
+    if (!$IsWindows) {
+        if (!(Search-DotnetSdk "9")) {
+            curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version "9.0.100-preview.1.24101.2"
+        }
+
+        if (!(Test-Path "~/.bun/bin/bun")) {
+            curl -fsSL https://bun.sh/install | bash
+            $env:PATH = "~/.bun/bin:$env:PATH"
+        }
+
+        # if (!(Search-Command "mono")) {
+        #     sudo apt-add-repository 'deb https://download.mono-project.com/repo/ubuntu stable-focal main'
+        #     sudo apt install -y mono-complete
+        # }
+
+        if (!(Search-Command "pip")) {
+            sudo apt install -y python3-pip
+        }
     }
 
-    curl -fsSL https://bun.sh/install | bash
-    $env:PATH = "~/.bun/bin:$env:PATH"
-
-    # if (!(Search-Command "mono")) {
-    #     sudo apt-add-repository 'deb https://download.mono-project.com/repo/ubuntu stable-focal main'
-    #     sudo apt install -y mono-complete
-    # }
-
-    if (!(Search-Command "pip")) {
-        sudo apt install -y python3-pip
-    }
+    pip install -r ../requirements.txt
+} else {
+    mkdir -p ~/.bun/bin
+    ln -s /run/current-system/sw/bin/bun ~/.bun/bin/bun
+    ln -s /run/current-system/sw/bin/bunx ~/.bun/bin/bunx
 }
-
-pip install -r ../requirements.txt
 
 dotnet tool restore
 

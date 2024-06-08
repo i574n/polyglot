@@ -9200,7 +9200,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">get_current_directory</span> <span class="p">()</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span> <span class="o">|</span> <span class="n">Wasm</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="n">inl</span> <span class="n">current_dir</span> <span class="o">=</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::env::current_dir()"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' path_buf stream.io_error</span>
@@ -9554,7 +9554,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240607-1052-2483-8303-8000007d16be" / expected: '/'
+<pre>assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240608-0011-4755-5574-50000034cb26" / expected: '/'
 </pre>
 </div>
 </div>
@@ -9586,7 +9586,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_caf11764820a75c1483358e5e92d48a907ab5bdd50b26745a1e6dd96e181cc71/20240607-1052-3331-9216-000000243df1" / expected: '/'
+<pre>assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_caf11764820a75c1483358e5e92d48a907ab5bdd50b26745a1e6dd96e181cc71/20240608-0011-4869-2952-000000686084" / expected: '/'
 </pre>
 </div>
 </div>
@@ -10326,7 +10326,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=163">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=163">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10343,6 +10343,19 @@ assert_eq / actual: true / expected: true
 <span class="o">|&gt;</span> <span class="n">directory_exists</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>assert_eq / actual: true / expected: true
+</pre>
 </div>
 </div>
 </div>
@@ -10379,7 +10392,7 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / dir: /tmp/!create_temp_path_/spiral_builder_6f87f8d62d3c1a27dae9d3fd854ec1ee6002f41c518b9167024a99082d48a284/20240607-1052-4716-5990-0000008fdc19
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / dir: /tmp/!create_temp_path_/spiral_builder_6f87f8d62d3c1a27dae9d3fd854ec1ee6002f41c518b9167024a99082d48a284/20240608-0011-5526-5729-00000064b9ac
 assert_eq / actual: true / expected: true
 assert_eq / actual: false / expected: false
 </pre>
@@ -10680,12 +10693,12 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get_workspace_root</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">[</span> <span class="n">get_source_directory</span> <span class="p">();</span> <span class="n">get_current_directory</span> <span class="p">()</span> <span class="p">])</span>
+    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">[</span> <span class="n">get_source_directory</span><span class="p">;</span> <span class="n">get_current_directory</span> <span class="p">])</span>
     <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="n">acc</span> <span class="n">path</span> <span class="o">=&gt;</span>
         <span class="k">match</span> <span class="n">acc</span> <span class="k">with</span>
         <span class="o">|</span> <span class="n">Some</span> <span class="n">path</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="n">path</span>
         <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span>
-            <span class="n">path</span>
+            <span class="n">path</span> <span class="p">()</span>
             <span class="o">|&gt;</span> <span class="n">find_parent</span> <span class="p">(</span><span class="s2">"polyglot"</span> <span class="o">&lt;/&gt;</span> <span class="s2">".paket"</span><span class="p">)</span> <span class="n">false</span>
             <span class="o">|&gt;</span> <span class="n">function</span>
             <span class="o">|</span> <span class="n">Ok</span> <span class="n">path</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="n">path</span>
@@ -11265,7 +11278,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=201">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=201">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11340,6 +11353,34 @@ assert_eq / actual: true / expected: true
     <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">false</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:00   debug #1 1
+00:00:00   debug #2 2
+00:00:00   debug #3 3
+00:00:00   debug #4 _1
+00:00:00   debug #5 _2
+00:00:00   debug #6 4
+00:00:00   debug #7 5
+00:00:01   debug #8 file_system.wait_for_file_access / path: test2.txt / retry: 100 / ex: System.IO.IOException: The process cannot access the file '/tmp/!create_temp_path_/dotnet-repl/613830ed-016e-d959-8d21-02dc1c63c252/test2.txt' because it is being used by another process.
+00:00:02   debug #9 _3
+00:00:02   debug #10 6
+00:00:02   debug #11 7
+00:00:02   debug #12 8
+assert_between / actual: 0L / expected: struct (0L, 0L)
+assert_between / actual: 167L / expected: struct (100L, 200L)
+assert_eq / actual: "0" / expected: "0"
+assert_eq / actual: true / expected: true
+</pre>
 </div>
 </div>
 </div>

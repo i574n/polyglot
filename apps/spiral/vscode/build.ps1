@@ -12,4 +12,4 @@ EnsureSymbolicLink -Path "./LICENSE" -Target "../../../LICENSE"
 
 { pwsh ./compile.ps1 } | Invoke-Block
 
-{ ~/.bun/bin/bunx @vscode/vsce package --pre-release --out "out/" } | Invoke-Block
+{ ~/.bun/bin/bunx --bun @vscode/vsce package --pre-release --out "out/" } | Invoke-Block

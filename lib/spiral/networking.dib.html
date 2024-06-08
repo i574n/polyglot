@@ -8502,7 +8502,7 @@ assert_eq / actual: false / expected: false
 00:00:00 verbose #85 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 verbose #86 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 verbose #87 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:00 verbose #88 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:01 verbose #88 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:01 verbose #89 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:01 verbose #90 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:01 verbose #91 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
@@ -8755,7 +8755,7 @@ assert_eq / actual: false / expected: false
 00:00:03 verbose #338 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:03 verbose #339 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:03 verbose #340 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:03 verbose #341 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:04 verbose #341 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:04 verbose #342 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:04 verbose #343 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:04 verbose #344 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
@@ -8926,11 +8926,12 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00   debug #1 1
+00:00:00   debug #2 _1
 00:00:00   debug #2 2
-00:00:00   debug #3 _1
-00:00:00   debug #4 3
-00:00:00 verbose #5 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:00 verbose #6 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: True
+00:00:00   debug #3 3
+00:00:00 verbose #4 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 verbose #5 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: True
+00:00:00 verbose #6 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 verbose #7 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 verbose #8 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 verbose #9 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
@@ -8970,16 +8971,15 @@ assert_eq / actual: true / expected: true
 00:00:00 verbose #43 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 verbose #44 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 verbose #45 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:00 verbose #46 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:00   debug #47 _2
-00:00:00   debug #48 _3
-00:00:00   debug #49 4
-00:00:00 verbose #50 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: False
-00:00:00   debug #51 _4
-00:00:00   debug #52 _5
-00:00:00 verbose #53 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:00   debug #54 5
-00:00:00   debug #55 6
+00:00:00   debug #46 _2
+00:00:00   debug #47 _3
+00:00:00   debug #48 4
+00:00:00 verbose #49 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: False
+00:00:00   debug #50 _4
+00:00:00   debug #51 _5
+00:00:00 verbose #52 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00   debug #53 5
+00:00:00   debug #54 6
 assert_between / actual: 41L / expected: struct (2L, 150L)
 assert_between / actual: 16L / expected: struct (0L, 60L)
 assert_eq / actual: true / expected: true
@@ -9182,8 +9182,8 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00   debug #1 1
-00:00:00   debug #2 2
-00:00:00   debug #3 _1
+00:00:00   debug #2 _1
+00:00:00   debug #3 2
 00:00:00   debug #4 _2
 00:00:00   debug #5 _3
 00:00:00   debug #6 3

@@ -2001,90 +2001,12 @@ and method12 () : string =
 and method13 () : string =
     let v0 : string = "deps"
     v0
-and method14 () : string =
-    let v0 : bool = true
-    let mutable _v0 : string option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v1 : string = "std::env::current_dir()"
-    let v2 : Result<std_path_PathBuf, std_io_Error> = Fable.Core.RustInterop.emitRustExpr () v1 
-    let v3 : string = "$0.unwrap()"
-    let v4 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v2 v3 
-    let v5 : string = "$0.display()"
-    let v6 : std_path_Display = Fable.Core.RustInterop.emitRustExpr v4 v5 
-    let v7 : bool = true
-    let mutable _v7 : std_string_String option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v8 : string = "format!(\"{}\", $0)"
-    let v9 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v8 
-    v9 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v10 : string = "format!(\"{}\", $0)"
-    let v11 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v10 
-    v11 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v12 : string = "format!(\"{}\", $0)"
-    let v13 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v12 
-    v13 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v14 : std_string_String = null |> unbox<std_string_String>
-    v14 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v15 : std_string_String = null |> unbox<std_string_String>
-    v15 
-    #endif
-#else
-    let v16 : std_string_String = null |> unbox<std_string_String>
-    v16 
-    #endif
-    |> fun x -> _v7 <- Some x
-    let v17 : std_string_String = match _v7 with Some x -> x | None -> failwith "base.run_target / _v7=None"
-    let v18 : string = "fable_library_rust::String_::fromString($0)"
-    let v19 : string = Fable.Core.RustInterop.emitRustExpr v17 v18 
-    v19 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    let v20 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
-    let v21 : string = v20 ()
-    v21 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = null |> unbox<string>
-    v22 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    let v23 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
-    let v24 : string = v23 ()
-    v24 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v25 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
-    let v26 : string = v25 ()
-    v26 
-    #endif
-#else
-    let v27 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
-    let v28 : string = v27 ()
-    v28 
-    #endif
-    |> fun x -> _v0 <- Some x
-    let v29 : string = match _v0 with Some x -> x | None -> failwith "base.run_target / _v0=None"
-    v29
-and method17 (v0 : string) : string =
+and method16 (v0 : string) : string =
     v0
-and method16 (v0 : string, v1 : string) : struct (string * string) =
-    let v2 : string = method17(v0)
+and method15 (v0 : string, v1 : string) : struct (string * string) =
+    let v2 : string = method16(v0)
     struct (v1, v2)
-and method15 (v0 : string, v1 : string) : string =
+and method14 (v0 : string, v1 : string) : string =
     let v2 : bool = true
     let mutable _v2 : string option = None 
     
@@ -2157,7 +2079,7 @@ and method15 (v0 : string, v1 : string) : string =
 #if FABLE_COMPILER_TYPESCRIPT
     let v35 : string = "path"
     let v36 : IPathJoin = Fable.Core.JsInterop.importAll v35 
-    let struct (v37 : string, v38 : string) = method16(v1, v0)
+    let struct (v37 : string, v38 : string) = method15(v1, v0)
     let v39 : string = "v36.join($0, $1)"
     let v40 : string = Fable.Core.JsInterop.emitJsExpr struct (v37, v38) v39 
     v40 
@@ -2176,7 +2098,7 @@ and method15 (v0 : string, v1 : string) : string =
     |> fun x -> _v2 <- Some x
     let v46 : string = match _v2 with Some x -> x | None -> failwith "base.run_target / _v2=None"
     v46
-and method19 (v0 : string) : bool =
+and method18 (v0 : string) : bool =
     let v1 : bool = true
     let mutable _v1 : bool option = None 
     
@@ -2232,7 +2154,7 @@ and method19 (v0 : string) : bool =
     |> fun x -> _v1 <- Some x
     let v25 : bool = match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
     v25
-and method21 (v0 : string) : string option =
+and method20 (v0 : string) : string option =
     let v1 : bool = true
     let mutable _v1 : US3 option = None 
     
@@ -2363,16 +2285,16 @@ and method21 (v0 : string) : string option =
         let v53 : string option = Some v52 
         v53
 and closure9 () (v0 : string) : string option =
-    method21(v0)
-and method20 () : (string -> string option) =
+    method20(v0)
+and method19 () : (string -> string option) =
     closure9()
-and method22 (v0 : string, v1 : string, v2 : string) : US12 =
-    let v3 : string = method15(v2, v0)
-    let v4 : bool = method19(v3)
+and method21 (v0 : string, v1 : string, v2 : string) : US12 =
+    let v3 : string = method14(v2, v0)
+    let v4 : bool = method18(v3)
     if v4 then
         US12_0(v2)
     else
-        let v6 : (string -> string option) = method20()
+        let v6 : (string -> string option) = method19()
         let v7 : string option = v6 v2
         let v8 : US3 option = None
         let _v8 = ref v8 
@@ -2395,14 +2317,14 @@ and method22 (v0 : string, v1 : string, v2 : string) : US12 =
             let v16 : string = $"""No parent for {if false then "file" else "dir"} '{v0}' at '{v1}' (until '{v2}')"""
             US12_1(v16)
         | US3_0(v14) -> (* Some *)
-            method22(v0, v1, v14)
-and method18 (v0 : string, v1 : string) : US12 =
-    let v2 : string = method15(v1, v0)
-    let v3 : bool = method19(v2)
+            method21(v0, v1, v14)
+and method17 (v0 : string, v1 : string) : US12 =
+    let v2 : string = method14(v1, v0)
+    let v3 : bool = method18(v2)
     if v3 then
         US12_0(v1)
     else
-        let v5 : (string -> string option) = method20()
+        let v5 : (string -> string option) = method19()
         let v6 : string option = v5 v1
         let v7 : US3 option = None
         let _v7 = ref v7 
@@ -2425,7 +2347,7 @@ and method18 (v0 : string, v1 : string) : US12 =
             let v15 : string = $"""No parent for {if false then "file" else "dir"} '{v0}' at '{v1}' (until '{v1}')"""
             US12_1(v15)
         | US3_0(v13) -> (* Some *)
-            method22(v0, v1, v13)
+            method21(v0, v1, v13)
 and closure10 () () : string =
     let v0 : string = "file_system.get_workspace_root"
     v0
@@ -2433,6 +2355,83 @@ and closure11 (v0 : string) () : string =
     let v1 : (unit -> string) = closure6()
     let v2 : string = $"error: {v0} / {v1 ()}"
     v2
+and method22 () : string =
+    let v0 : bool = true
+    let mutable _v0 : string option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v1 : string = "std::env::current_dir()"
+    let v2 : Result<std_path_PathBuf, std_io_Error> = Fable.Core.RustInterop.emitRustExpr () v1 
+    let v3 : string = "$0.unwrap()"
+    let v4 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v2 v3 
+    let v5 : string = "$0.display()"
+    let v6 : std_path_Display = Fable.Core.RustInterop.emitRustExpr v4 v5 
+    let v7 : bool = true
+    let mutable _v7 : std_string_String option = None 
+    
+#if FABLE_COMPILER || WASM || CONTRACT
+    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v8 : string = "format!(\"{}\", $0)"
+    let v9 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v8 
+    v9 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v10 : string = "format!(\"{}\", $0)"
+    let v11 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v10 
+    v11 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v12 : string = "format!(\"{}\", $0)"
+    let v13 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v12 
+    v13 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v14 : std_string_String = null |> unbox<std_string_String>
+    v14 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v15 : std_string_String = null |> unbox<std_string_String>
+    v15 
+    #endif
+#else
+    let v16 : std_string_String = null |> unbox<std_string_String>
+    v16 
+    #endif
+    |> fun x -> _v7 <- Some x
+    let v17 : std_string_String = match _v7 with Some x -> x | None -> failwith "base.run_target / _v7=None"
+    let v18 : string = "fable_library_rust::String_::fromString($0)"
+    let v19 : string = Fable.Core.RustInterop.emitRustExpr v17 v18 
+    v19 
+    #endif
+#if FABLE_COMPILER_RUST && WASM
+    let v20 : string = null |> unbox<string>
+    v20 
+    #endif
+#if FABLE_COMPILER_RUST && CONTRACT
+    let v21 : string = null |> unbox<string>
+    v21 
+    #endif
+#if FABLE_COMPILER_TYPESCRIPT
+    let v22 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
+    let v23 : string = v22 ()
+    v23 
+    #endif
+#if FABLE_COMPILER_PYTHON
+    let v24 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
+    let v25 : string = v24 ()
+    v25 
+    #endif
+#else
+    let v26 : (unit -> string) = System.IO.Directory.GetCurrentDirectory
+    let v27 : string = v26 ()
+    v27 
+    #endif
+    |> fun x -> _v0 <- Some x
+    let v28 : string = match _v0 with Some x -> x | None -> failwith "base.run_target / _v0=None"
+    v28
 and method23 (v0 : string) : string =
     let v1 : bool = true
     let mutable _v1 : string option = None 
@@ -5506,8 +5505,8 @@ and method68 (v0 : string) : string =
     let v11 : bool = v10 = false
     let v101 : string =
         if v11 then
-            let v12 : string = method14()
-            let v13 : string = method15(v12, v2)
+            let v12 : string = method22()
+            let v13 : string = method14(v12, v2)
             let v14 : string = method70(v13)
             let v15 : string = "/"
             let v16 : (string []) = v14.Split v15 
@@ -5673,8 +5672,8 @@ and method67 (v0 : string) : string =
     let v1 : string = method68(v0)
     method70(v1)
 and method66 (v0 : string) : string =
-    let v1 : string = method14()
-    let v2 : string = method15(v1, v0)
+    let v1 : string = method22()
+    let v2 : string = method14(v1, v0)
     method67(v2)
 and closure52 () (v0 : std_string_String) : string =
     let v1 : string = "fable_library_rust::String_::fromString($0)"
@@ -5942,7 +5941,7 @@ and method85 (v0 : bool, v1 : string) : unit =
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v3 : string = method86(v1)
-    let v4 : bool = method19(v3)
+    let v4 : bool = method18(v3)
     if v4 then
         if v0 then
             let v5 : string = "std::fs::remove_dir_all(&*$0).unwrap()"
@@ -7697,18 +7696,18 @@ and method92 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let v371 : System.Guid = match _v2 with Some x -> x | None -> failwith "base.run_target / _v2=None"
     v371
 and method98 (v0 : string, v1 : string) : unit =
-    let v2 : bool = method19(v0)
+    let v2 : bool = method18(v0)
     let v3 : bool = v2 = false
     if v3 then
         let v4 : System.IDisposable = method82(v0)
         ()
     let v5 : string = method23(v1)
-    let v6 : bool = method19(v5)
+    let v6 : bool = method18(v5)
     let v7 : bool = v6 = false
     if v7 then
         let v8 : System.IDisposable = method82(v5)
         ()
-    let v9 : bool = method19(v1)
+    let v9 : bool = method18(v1)
     let v14 : bool =
         if v9 then
             let v10 : string = "std::fs::read_link(&*$0)"
@@ -7721,7 +7720,7 @@ and method98 (v0 : string, v1 : string) : unit =
     if v14 then
         let v15 : bool = true
         method85(v15, v1)
-    let v16 : bool = method19(v1)
+    let v16 : bool = method18(v1)
     let v17 : bool = v16 = false
     if v17 then
         let v18 : bool = true
@@ -8730,7 +8729,7 @@ and method10 (v0 : US0, v1 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_F
     let v10 : US4 option = _v6.Value 
     let v11 : US4 = US4_1
     let v12 : US4 = v10 |> Option.defaultValue v11 
-    let v2337 : (struct (string * string) []) =
+    let v2338 : (struct (string * string) []) =
         match v12 with
         | US4_0(v13, v14) -> (* Some *)
             let v15 : string = "fable_library_rust::String_::fromString($0)"
@@ -8936,26 +8935,26 @@ and method10 (v0 : US0, v1 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_F
                 |> fun x -> _v103 <- Some x
                 let v126 : string = match _v103 with Some x -> x | None -> failwith "base.run_target / _v103=None"
                 let v127 : string = __SOURCE_DIRECTORY__
-                let v128 : string = method14()
-                let v129 : string = "polyglot"
-                let v130 : string = ".paket"
-                let v131 : string = method15(v129, v130)
-                let v132 : US12 = method18(v131, v127)
-                let v141 : US3 =
-                    match v132 with
-                    | US12_1(v135) -> (* Error *)
-                        let v136 : US0 = US0_3
-                        let v137 : (unit -> string) = closure10()
-                        let v138 : (unit -> string) = closure11(v135)
-                        method5(v136, v137, v138)
+                let v128 : string = "polyglot"
+                let v129 : string = ".paket"
+                let v130 : string = method14(v128, v129)
+                let v131 : US12 = method17(v130, v127)
+                let v140 : US3 =
+                    match v131 with
+                    | US12_1(v134) -> (* Error *)
+                        let v135 : US0 = US0_3
+                        let v136 : (unit -> string) = closure10()
+                        let v137 : (unit -> string) = closure11(v134)
+                        method5(v135, v136, v137)
                         US3_1
-                    | US12_0(v133) -> (* Ok *)
-                        US3_0(v133)
+                    | US12_0(v132) -> (* Ok *)
+                        US3_0(v132)
                 let v156 : US3 =
-                    match v141 with
+                    match v140 with
                     | US3_1 -> (* None *)
-                        let v144 : string = method15(v129, v130)
-                        let v145 : US12 = method18(v144, v128)
+                        let v143 : string = method22()
+                        let v144 : string = method14(v128, v129)
+                        let v145 : US12 = method17(v144, v143)
                         match v145 with
                         | US12_1(v148) -> (* Error *)
                             let v149 : US0 = US0_3
@@ -8965,16 +8964,16 @@ and method10 (v0 : US0, v1 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_F
                             US3_1
                         | US12_0(v146) -> (* Ok *)
                             US3_0(v146)
-                    | US3_0(v142) -> (* Some *)
-                        US3_0(v142)
+                    | US3_0(v141) -> (* Some *)
+                        US3_0(v141)
                 let v160 : string =
                     match v156 with
                     | US3_1 -> (* None *)
                         failwith<string> "Option does not have a value."
                     | US3_0(v157) -> (* Some *)
                         v157
-                let v161 : string = method15(v160, v129)
-                let v162 : string = method14()
+                let v161 : string = method14(v160, v128)
+                let v162 : string = method22()
                 let v163 : (unit -> string) = v162.ToLower
                 let v164 : string = v163 ()
                 let v165 : (unit -> string) = v161.ToLower
@@ -9006,10 +9005,10 @@ and method10 (v0 : US0, v1 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_F
                     match v85 with
                     | US8_0 -> (* Pip *)
                         let v186 : string = "requirements.txt"
-                        method15(v185, v186)
+                        method14(v185, v186)
                     | US8_1 -> (* Poetry *)
                         let v188 : string = "pyproject.toml"
-                        method15(v185, v188)
+                        method14(v185, v188)
                 let v192 : string = "true; let _result : Vec<_> = v102.into_iter().map(|x| { //"
                 let v193 : bool = Fable.Core.RustInterop.emitRustExpr () v192 
                 let v194 : string = "x"
@@ -9362,7 +9361,7 @@ and method10 (v0 : US0, v1 : clap_ArgMatches) : std_pin_Pin<Box<Dyn<std_future_F
                         let v476 : uint8 = 1uy
                         let struct (v477 : int32, v478 : string) = method79(v475, v470, v464, v476)
                         let v479 : bool = v477 <> 0 
-                        let struct (v576 : int32, v577 : string) =
+                        let struct (v577 : int32, v578 : string) =
                             if v479 then
                                 struct (v477, v478)
                             else
@@ -9579,18 +9578,19 @@ jupyter_result: {v488}"
                                     #endif
                                     |> fun x -> _v542 <- Some x
                                     let v565 : string = match _v542 with Some x -> x | None -> failwith "base.run_target / _v542=None"
-                                    let v566 : string = "\\r\\n"
-                                    let v567 : string = "\\n"
-                                    let v568 : string = v565.Replace (v566, v567)
-                                    let v569 : string = $"{v464}.ipynb"
-                                    let v570 : bool = true
-                                    let mutable _v570 : unit option = None 
+                                    let v566 : string = v565.Replace (v534, v535)
+                                    let v567 : string = "\\r\\n"
+                                    let v568 : string = "\\n"
+                                    let v569 : string = v566.Replace (v567, v568)
+                                    let v570 : string = $"{v464}.ipynb"
+                                    let v571 : bool = true
+                                    let mutable _v571 : unit option = None 
                                     
 #if FABLE_COMPILER || WASM || CONTRACT
                                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                    let v571 : string = "std::fs::write(&*$0, &*$1).unwrap()"
-                                    Fable.Core.RustInterop.emitRustExpr struct (v569, v568) v571 
+                                    let v572 : string = "std::fs::write(&*$0, &*$1).unwrap()"
+                                    Fable.Core.RustInterop.emitRustExpr struct (v570, v569) v572 
                                     () 
                                     #endif
 #if FABLE_COMPILER_RUST && WASM
@@ -9610,179 +9610,178 @@ jupyter_result: {v488}"
                                     () 
                                     #endif
 #else
-                                    let v572 : string = method27(v568)
-                                    System.IO.File.WriteAllText (v569, v572)
+                                    let v573 : string = method27(v569)
+                                    System.IO.File.WriteAllText (v570, v573)
                                     () 
                                     #endif
-                                    |> fun x -> _v570 <- Some x
-                                    match _v570 with Some x -> x | None -> failwith "base.run_target / _v570=None"
-                                    let v573 : string = $"repl_result: {v478}
+                                    |> fun x -> _v571 <- Some x
+                                    match _v571 with Some x -> x | None -> failwith "base.run_target / _v571=None"
+                                    let v574 : string = $"repl_result: {v478}
 
 jupyter_result: {v488}
 
 pwsh_replace_html_result: {v505}"
-                                    struct (v504, v573)
-                        let v578 : US0 = US0_1
-                        let v579 : (unit -> string) = closure59()
-                        let v580 : (unit -> string) = closure60(v577, v576)
-                        method5(v578, v579, v580)
-                        let v581 : bool = v576 <> 0 
-                        if v581 then
-                            let v582 : (unit -> string) = closure6()
-                            let v583 : string = $"spiral_builder.run / dib / exit_code: {v576} / result: {v577} / {v582 ()}"
-                            failwith<unit> v583
-                        let v584 : string = "stdio"
-                        [|struct (v584, v577)|]
+                                    struct (v504, v574)
+                        let v579 : US0 = US0_1
+                        let v580 : (unit -> string) = closure59()
+                        let v581 : (unit -> string) = closure60(v578, v577)
+                        method5(v579, v580, v581)
+                        let v582 : bool = v577 <> 0 
+                        if v582 then
+                            let v583 : (unit -> string) = closure6()
+                            let v584 : string = $"spiral_builder.run / dib / exit_code: {v577} / result: {v578} / {v583 ()}"
+                            failwith<unit> v584
+                        let v585 : string = "stdio"
+                        [|struct (v585, v578)|]
                     else
-                        let v586 : string = "fable_library_rust::String_::fromString($0)"
-                        let v587 : string = Fable.Core.RustInterop.emitRustExpr v13 v586 
-                        let v589 : bool = v587 = "rust"
-                        let struct (v2310 : US3, v2311 : US3, v2312 : US3) =
-                            if v589 then
-                                let v590 : string = method63()
-                                let v591 : string = "&*$0"
-                                let v592 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v590 v591 
-                                let v593 : string = "clap::ArgMatches::get_one(&$0, v592).cloned()"
-                                let v594 : std_string_String option = Fable.Core.RustInterop.emitRustExpr v14 v593 
-                                let v595 : US5 option = None
-                                let _v595 = ref v595 
-                                match v594 with
+                        let v587 : string = "fable_library_rust::String_::fromString($0)"
+                        let v588 : string = Fable.Core.RustInterop.emitRustExpr v13 v587 
+                        let v590 : bool = v588 = "rust"
+                        let struct (v2311 : US3, v2312 : US3, v2313 : US3) =
+                            if v590 then
+                                let v591 : string = method63()
+                                let v592 : string = "&*$0"
+                                let v593 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v591 v592 
+                                let v594 : string = "clap::ArgMatches::get_one(&$0, v593).cloned()"
+                                let v595 : std_string_String option = Fable.Core.RustInterop.emitRustExpr v14 v594 
+                                let v596 : US5 option = None
+                                let _v596 = ref v596 
+                                match v595 with
                                 | Some x -> (
                                 (fun () ->
                                 (fun () ->
-                                let v596 : std_string_String = x
-                                let v597 : US5 = US5_0(v596)
-                                v597 
+                                let v597 : std_string_String = x
+                                let v598 : US5 = US5_0(v597)
+                                v598 
                                 )
                                 |> fun x -> x () |> Some
                                 ) () ) | None -> None
-                                |> fun x -> _v595.Value <- x
-                                let v598 : US5 option = _v595.Value 
-                                let v599 : US5 = US5_1
-                                let v600 : US5 = v598 |> Option.defaultValue v599 
-                                let v604 : std_string_String =
-                                    match v600 with
+                                |> fun x -> _v596.Value <- x
+                                let v599 : US5 option = _v596.Value 
+                                let v600 : US5 = US5_1
+                                let v601 : US5 = v599 |> Option.defaultValue v600 
+                                let v605 : std_string_String =
+                                    match v601 with
                                     | US5_1 -> (* None *)
                                         failwith<std_string_String> "Option does not have a value."
-                                    | US5_0(v601) -> (* Some *)
-                                        v601
-                                let v605 : string = "fable_library_rust::String_::fromString($0)"
-                                let v606 : string = Fable.Core.RustInterop.emitRustExpr v604 v605 
-                                let v607 : string = method13()
-                                let v608 : string = "&*$0"
-                                let v609 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v607 v608 
-                                let v610 : string = "clap::ArgMatches::get_many(&$0, v609).map(|x| x.cloned().into_iter().collect())"
-                                let v611 : Vec<std_string_String> option = Fable.Core.RustInterop.emitRustExpr v14 v610 
-                                let v612 : US9 option = None
-                                let _v612 = ref v612 
-                                match v611 with
+                                    | US5_0(v602) -> (* Some *)
+                                        v602
+                                let v606 : string = "fable_library_rust::String_::fromString($0)"
+                                let v607 : string = Fable.Core.RustInterop.emitRustExpr v605 v606 
+                                let v608 : string = method13()
+                                let v609 : string = "&*$0"
+                                let v610 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v608 v609 
+                                let v611 : string = "clap::ArgMatches::get_many(&$0, v610).map(|x| x.cloned().into_iter().collect())"
+                                let v612 : Vec<std_string_String> option = Fable.Core.RustInterop.emitRustExpr v14 v611 
+                                let v613 : US9 option = None
+                                let _v613 = ref v613 
+                                match v612 with
                                 | Some x -> (
                                 (fun () ->
                                 (fun () ->
-                                let v613 : Vec<std_string_String> = x
-                                let v614 : US9 = US9_0(v613)
-                                v614 
+                                let v614 : Vec<std_string_String> = x
+                                let v615 : US9 = US9_0(v614)
+                                v615 
                                 )
                                 |> fun x -> x () |> Some
                                 ) () ) | None -> None
-                                |> fun x -> _v612.Value <- x
-                                let v615 : US9 option = _v612.Value 
-                                let v616 : US9 = US9_1
-                                let v617 : US9 = v615 |> Option.defaultValue v616 
-                                let v618 : (std_string_String []) = [||]
-                                let v619 : string = "$0.to_vec()"
-                                let v620 : Vec<std_string_String> = Fable.Core.RustInterop.emitRustExpr v618 v619 
-                                let v623 : Vec<std_string_String> =
-                                    match v617 with
+                                |> fun x -> _v613.Value <- x
+                                let v616 : US9 option = _v613.Value 
+                                let v617 : US9 = US9_1
+                                let v618 : US9 = v616 |> Option.defaultValue v617 
+                                let v619 : (std_string_String []) = [||]
+                                let v620 : string = "$0.to_vec()"
+                                let v621 : Vec<std_string_String> = Fable.Core.RustInterop.emitRustExpr v619 v620 
+                                let v624 : Vec<std_string_String> =
+                                    match v618 with
                                     | US9_1 -> (* None *)
-                                        v620
-                                    | US9_0(v621) -> (* Some *)
                                         v621
-                                let v625 : bool =
+                                    | US9_0(v622) -> (* Some *)
+                                        v622
+                                let v626 : bool =
                                     match v0 with
                                     | US0_0 -> (* Verbose *)
                                         true
                                     | _ ->
                                         false
-                                let v626 : bool = true
-                                let mutable _v626 : string option = None 
-                                
-#if FABLE_COMPILER || WASM || CONTRACT
-                                
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
                                 let v627 : bool = true
-                                let mutable _v627 : Vec<uint8> option = None 
+                                let mutable _v627 : string option = None 
                                 
 #if FABLE_COMPILER || WASM || CONTRACT
                                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                let v628 : string = "std::fs::read(&*$0).unwrap()"
-                                let v629 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v606 v628 
-                                v629 
-                                #endif
-#if FABLE_COMPILER_RUST && WASM
-                                let v630 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                let v628 : bool = true
+                                let mutable _v628 : Vec<uint8> option = None 
+                                
+#if FABLE_COMPILER || WASM || CONTRACT
+                                
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                let v629 : string = "std::fs::read(&*$0).unwrap()"
+                                let v630 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v607 v629 
                                 v630 
                                 #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                 let v631 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                 v631 
                                 #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                 let v632 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                 v632 
                                 #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                 let v633 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                 v633 
                                 #endif
+#if FABLE_COMPILER_PYTHON
+                                let v634 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                v634 
+                                #endif
 #else
-                                let v634 : (uint8 []) = v606 |> System.IO.File.ReadAllBytes
-                                let v635 : string = "$0.to_vec()"
-                                let v636 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v634 v635 
-                                v636 
+                                let v635 : (uint8 []) = v607 |> System.IO.File.ReadAllBytes
+                                let v636 : string = "$0.to_vec()"
+                                let v637 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v635 v636 
+                                v637 
                                 #endif
-                                |> fun x -> _v627 <- Some x
-                                let v637 : Vec<uint8> = match _v627 with Some x -> x | None -> failwith "base.run_target / _v627=None"
-                                let v638 : string = "std::string::String::from_utf8(v637)"
-                                let v639 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v638 
-                                let v640 : string = "$0.unwrap()"
-                                let v641 : std_string_String = Fable.Core.RustInterop.emitRustExpr v639 v640 
-                                let v642 : string = "fable_library_rust::String_::fromString($0)"
-                                let v643 : string = Fable.Core.RustInterop.emitRustExpr v641 v642 
-                                v643 
-                                #endif
-#if FABLE_COMPILER_RUST && WASM
-                                let v644 : string = null |> unbox<string>
+                                |> fun x -> _v628 <- Some x
+                                let v638 : Vec<uint8> = match _v628 with Some x -> x | None -> failwith "base.run_target / _v628=None"
+                                let v639 : string = "std::string::String::from_utf8(v638)"
+                                let v640 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v639 
+                                let v641 : string = "$0.unwrap()"
+                                let v642 : std_string_String = Fable.Core.RustInterop.emitRustExpr v640 v641 
+                                let v643 : string = "fable_library_rust::String_::fromString($0)"
+                                let v644 : string = Fable.Core.RustInterop.emitRustExpr v642 v643 
                                 v644 
                                 #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                 let v645 : string = null |> unbox<string>
                                 v645 
                                 #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                 let v646 : string = null |> unbox<string>
                                 v646 
                                 #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                 let v647 : string = null |> unbox<string>
                                 v647 
                                 #endif
-#else
-                                let v648 : string = v606 |> System.IO.File.ReadAllText
+#if FABLE_COMPILER_PYTHON
+                                let v648 : string = null |> unbox<string>
                                 v648 
                                 #endif
-                                |> fun x -> _v626 <- Some x
-                                let v649 : string = match _v626 with Some x -> x | None -> failwith "base.run_target / _v626=None"
-                                let v650 : string = "rs"
-                                let v651 : string = $"%A{struct (v650, v649)}"
-                                let v652 : string = method80(v651)
-                                let v653 : string = __SOURCE_DIRECTORY__
-                                let v654 : string = method14()
+#else
+                                let v649 : string = v607 |> System.IO.File.ReadAllText
+                                v649 
+                                #endif
+                                |> fun x -> _v627 <- Some x
+                                let v650 : string = match _v627 with Some x -> x | None -> failwith "base.run_target / _v627=None"
+                                let v651 : string = "rs"
+                                let v652 : string = $"%A{struct (v651, v650)}"
+                                let v653 : string = method80(v652)
+                                let v654 : string = __SOURCE_DIRECTORY__
                                 let v655 : string = "polyglot"
                                 let v656 : string = ".paket"
-                                let v657 : string = method15(v655, v656)
-                                let v658 : US12 = method18(v657, v653)
+                                let v657 : string = method14(v655, v656)
+                                let v658 : US12 = method17(v657, v654)
                                 let v667 : US3 =
                                     match v658 with
                                     | US12_1(v661) -> (* Error *)
@@ -9793,202 +9792,203 @@ pwsh_replace_html_result: {v505}"
                                         US3_1
                                     | US12_0(v659) -> (* Ok *)
                                         US3_0(v659)
-                                let v682 : US3 =
+                                let v683 : US3 =
                                     match v667 with
                                     | US3_1 -> (* None *)
-                                        let v670 : string = method15(v655, v656)
-                                        let v671 : US12 = method18(v670, v654)
-                                        match v671 with
-                                        | US12_1(v674) -> (* Error *)
-                                            let v675 : US0 = US0_3
-                                            let v676 : (unit -> string) = closure10()
-                                            let v677 : (unit -> string) = closure11(v674)
-                                            method5(v675, v676, v677)
+                                        let v670 : string = method22()
+                                        let v671 : string = method14(v655, v656)
+                                        let v672 : US12 = method17(v671, v670)
+                                        match v672 with
+                                        | US12_1(v675) -> (* Error *)
+                                            let v676 : US0 = US0_3
+                                            let v677 : (unit -> string) = closure10()
+                                            let v678 : (unit -> string) = closure11(v675)
+                                            method5(v676, v677, v678)
                                             US3_1
-                                        | US12_0(v672) -> (* Ok *)
-                                            US3_0(v672)
+                                        | US12_0(v673) -> (* Ok *)
+                                            US3_0(v673)
                                     | US3_0(v668) -> (* Some *)
                                         US3_0(v668)
-                                let v686 : string =
-                                    match v682 with
+                                let v687 : string =
+                                    match v683 with
                                     | US3_1 -> (* None *)
                                         failwith<string> "Option does not have a value."
-                                    | US3_0(v683) -> (* Some *)
-                                        v683
-                                let v687 : string = method15(v686, v655)
-                                let v688 : string = "target/spiral_builder"
-                                let v689 : string = method15(v687, v688)
-                                let v690 : string = "spiral_builder"
-                                let v691 : string = method15(v689, v690)
-                                let v692 : string = "packages"
-                                let v693 : string = method15(v691, v692)
-                                let v694 : string = method15(v693, v652)
-                                let v695 : System.IDisposable = method82(v694)
-                                let v696 : string = $"{v690}.fs"
-                                let v697 : string = method15(v694, v696)
-                                let v698 : string = method70(v697)
-                                method24(v698, v649)
-                                let v699 : string list = []
-                                let v700 : string seq = seq { for i = 0 to v699.Length - 1 do yield v699.[i] }
-                                let v701 : (string -> (string seq -> string)) = String.concat
-                                let v702 : string = "\\n        "
-                                let v703 : (string seq -> string) = v701 v702
-                                let v704 : string = v703 v700
-                                let v705 : string = "Fable.Core"
-                                let v706 : string = $"<PackageReference Include=\"{v705}\" Version=\"*\" />"
-                                let v707 : string list = []
-                                let v708 : string list = v706 :: v707 
-                                let v709 : string seq = seq { for i = 0 to v708.Length - 1 do yield v708.[i] }
-                                let v710 : (string -> (string seq -> string)) = String.concat
-                                let v711 : (string seq -> string) = v710 v702
-                                let v712 : string = v711 v709
-                                let v713 : string = $"{v690}.fsproj"
-                                let v714 : string = method15(v694, v713)
-                                let v715 : string = method70(v714)
-                                let v716 : string = $"<Project Sdk=\"Microsoft.NET.Sdk\">"
-                                let v717 : string = $"<PropertyGroup>"
-                                let v718 : string = "\n"
-                                let v719 : string = v716 + v718 
-                                let v720 : string = v719 + v717 
-                                let v721 : string = $"    <TargetFramework>net9.0</TargetFramework>"
-                                let v722 : string = v720 + v718 
-                                let v723 : string = v722 + v721 
-                                let v724 : string = $"    <LangVersion>preview</LangVersion>"
-                                let v725 : string = v723 + v718 
-                                let v726 : string = v725 + v724 
-                                let v727 : string = $"    <RollForward>Major</RollForward>"
-                                let v728 : string = v726 + v718 
-                                let v729 : string = v728 + v727 
-                                let v730 : string = $"    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>"
-                                let v731 : string = v729 + v718 
-                                let v732 : string = v731 + v730 
-                                let v733 : string = $"    <PublishAot>false</PublishAot>"
-                                let v734 : string = v732 + v718 
-                                let v735 : string = v734 + v733 
-                                let v736 : string = $"    <PublishTrimmed>false</PublishTrimmed>"
-                                let v737 : string = v735 + v718 
-                                let v738 : string = v737 + v736 
-                                let v739 : string = $"    <PublishSingleFile>true</PublishSingleFile>"
-                                let v740 : string = v738 + v718 
-                                let v741 : string = v740 + v739 
-                                let v742 : string = $"    <SelfContained>true</SelfContained>"
-                                let v743 : string = v741 + v718 
-                                let v744 : string = v743 + v742 
-                                let v745 : string = $"    <Version>0.0.1-alpha.1</Version>"
-                                let v746 : string = v744 + v718 
-                                let v747 : string = v746 + v745 
-                                let v748 : string = $"    <OutputType>Exe</OutputType>"
-                                let v749 : string = v747 + v718 
-                                let v750 : string = v749 + v748 
-                                let v751 : string = $"</PropertyGroup>"
-                                let v752 : string = v750 + v718 
-                                let v753 : string = v752 + v751 
-                                let v754 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('FreeBSD'))\">"
-                                let v755 : string = v753 + v718 
-                                let v756 : string = v755 + v754 
-                                let v757 : string = $"    <DefineConstants>_FREEBSD</DefineConstants>"
-                                let v758 : string = v756 + v718 
-                                let v759 : string = v758 + v757 
-                                let v760 : string = $"</PropertyGroup>"
-                                let v761 : string = v759 + v718 
-                                let v762 : string = v761 + v760 
-                                let v763 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Linux'))\">"
-                                let v764 : string = v762 + v718 
-                                let v765 : string = v764 + v763 
-                                let v766 : string = $"    <DefineConstants>_LINUX</DefineConstants>"
-                                let v767 : string = v765 + v718 
-                                let v768 : string = v767 + v766 
-                                let v769 : string = $"</PropertyGroup>"
-                                let v770 : string = v768 + v718 
-                                let v771 : string = v770 + v769 
-                                let v772 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('OSX'))\">"
-                                let v773 : string = v771 + v718 
-                                let v774 : string = v773 + v772 
-                                let v775 : string = $"    <DefineConstants>_OSX</DefineConstants>"
-                                let v776 : string = v774 + v718 
-                                let v777 : string = v776 + v775 
-                                let v778 : string = $"</PropertyGroup>"
-                                let v779 : string = v777 + v718 
-                                let v780 : string = v779 + v778 
-                                let v781 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Windows'))\">"
-                                let v782 : string = v780 + v718 
-                                let v783 : string = v782 + v781 
-                                let v784 : string = $"    <DefineConstants>_WINDOWS</DefineConstants>"
-                                let v785 : string = v783 + v718 
-                                let v786 : string = v785 + v784 
-                                let v787 : string = $"</PropertyGroup>"
-                                let v788 : string = v786 + v718 
-                                let v789 : string = v788 + v787 
-                                let v790 : string = $"<ItemGroup>"
-                                let v791 : string = v789 + v718 
-                                let v792 : string = v791 + v790 
-                                let v793 : string = $"    {v704}"
-                                let v794 : string = v792 + v718 
-                                let v795 : string = v794 + v793 
-                                let v796 : string = $"    <Compile Include=\"{v698}\" />"
-                                let v797 : string = v795 + v718 
-                                let v798 : string = v797 + v796 
-                                let v799 : string = $"</ItemGroup>"
-                                let v800 : string = v798 + v718 
-                                let v801 : string = v800 + v799 
-                                let v802 : string = $"<ItemGroup>"
-                                let v803 : string = v801 + v718 
-                                let v804 : string = v803 + v802 
-                                let v805 : string = $"    {v712}"
-                                let v806 : string = v804 + v718 
-                                let v807 : string = v806 + v805 
-                                let v808 : string = $"</ItemGroup>"
-                                let v809 : string = v807 + v718 
-                                let v810 : string = v809 + v808 
-                                let v811 : string = $"</Project>"
-                                let v812 : string = v810 + v718 
-                                let v813 : string = v812 + v811 
-                                method24(v715, v813)
-                                let v814 : string = method23(v715)
-                                let v815 : string = "Cargo.toml"
-                                let v816 : string = method15(v814, v815)
-                                let v817 : string = "../.."
-                                let v818 : string = method15(v814, v817)
-                                let v819 : string = method15(v818, v815)
-                                let v820 : bool = method26(v816)
-                                let v821 : bool = v820 = false
-                                if v821 then
-                                    let v822 : System.DateTime = System.DateTime.Now
-                                    let v823 : (unit -> System.Guid) = System.Guid.NewGuid
-                                    let v824 : System.Guid = v823 ()
-                                    let v825 : System.Guid = method92(v824, v822)
-                                    let v826 : (System.Guid -> string) = _.ToString()
-                                    let v827 : string = v826 v825
-                                    let v828 : string = $"[package]"
-                                    let v829 : string = $"name = \"spiral_builder_{v827}\""
-                                    let v830 : string = v828 + v718 
-                                    let v831 : string = v830 + v829 
-                                    let v832 : string = $"version = \"0.0.1\""
-                                    let v833 : string = v831 + v718 
-                                    let v834 : string = v833 + v832 
-                                    let v835 : string = $"edition = \"2021\""
-                                    let v836 : string = v834 + v718 
-                                    let v837 : string = v836 + v835 
-                                    let v838 : string = $""
-                                    let v839 : string = v837 + v718 
-                                    let v840 : string = v839 + v838 
-                                    let v841 : string = $"[[bin]]"
-                                    let v842 : string = v840 + v718 
-                                    let v843 : string = v842 + v841 
-                                    let v844 : string = $"name = \"spiral_builder_{v827}\""
-                                    let v845 : string = v843 + v718 
-                                    let v846 : string = v845 + v844 
-                                    let v847 : string = $"path = \"spiral_builder.{v650}\""
-                                    let v848 : string = v846 + v718 
-                                    let v849 : string = v848 + v847 
-                                    let v850 : bool = true
-                                    let mutable _v850 : unit option = None 
+                                    | US3_0(v684) -> (* Some *)
+                                        v684
+                                let v688 : string = method14(v687, v655)
+                                let v689 : string = "target/spiral_builder"
+                                let v690 : string = method14(v688, v689)
+                                let v691 : string = "spiral_builder"
+                                let v692 : string = method14(v690, v691)
+                                let v693 : string = "packages"
+                                let v694 : string = method14(v692, v693)
+                                let v695 : string = method14(v694, v653)
+                                let v696 : System.IDisposable = method82(v695)
+                                let v697 : string = $"{v691}.fs"
+                                let v698 : string = method14(v695, v697)
+                                let v699 : string = method70(v698)
+                                method24(v699, v650)
+                                let v700 : string list = []
+                                let v701 : string seq = seq { for i = 0 to v700.Length - 1 do yield v700.[i] }
+                                let v702 : (string -> (string seq -> string)) = String.concat
+                                let v703 : string = "\\n        "
+                                let v704 : (string seq -> string) = v702 v703
+                                let v705 : string = v704 v701
+                                let v706 : string = "Fable.Core"
+                                let v707 : string = $"<PackageReference Include=\"{v706}\" Version=\"*\" />"
+                                let v708 : string list = []
+                                let v709 : string list = v707 :: v708 
+                                let v710 : string seq = seq { for i = 0 to v709.Length - 1 do yield v709.[i] }
+                                let v711 : (string -> (string seq -> string)) = String.concat
+                                let v712 : (string seq -> string) = v711 v703
+                                let v713 : string = v712 v710
+                                let v714 : string = $"{v691}.fsproj"
+                                let v715 : string = method14(v695, v714)
+                                let v716 : string = method70(v715)
+                                let v717 : string = $"<Project Sdk=\"Microsoft.NET.Sdk\">"
+                                let v718 : string = $"<PropertyGroup>"
+                                let v719 : string = "\n"
+                                let v720 : string = v717 + v719 
+                                let v721 : string = v720 + v718 
+                                let v722 : string = $"    <TargetFramework>net9.0</TargetFramework>"
+                                let v723 : string = v721 + v719 
+                                let v724 : string = v723 + v722 
+                                let v725 : string = $"    <LangVersion>preview</LangVersion>"
+                                let v726 : string = v724 + v719 
+                                let v727 : string = v726 + v725 
+                                let v728 : string = $"    <RollForward>Major</RollForward>"
+                                let v729 : string = v727 + v719 
+                                let v730 : string = v729 + v728 
+                                let v731 : string = $"    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>"
+                                let v732 : string = v730 + v719 
+                                let v733 : string = v732 + v731 
+                                let v734 : string = $"    <PublishAot>false</PublishAot>"
+                                let v735 : string = v733 + v719 
+                                let v736 : string = v735 + v734 
+                                let v737 : string = $"    <PublishTrimmed>false</PublishTrimmed>"
+                                let v738 : string = v736 + v719 
+                                let v739 : string = v738 + v737 
+                                let v740 : string = $"    <PublishSingleFile>true</PublishSingleFile>"
+                                let v741 : string = v739 + v719 
+                                let v742 : string = v741 + v740 
+                                let v743 : string = $"    <SelfContained>true</SelfContained>"
+                                let v744 : string = v742 + v719 
+                                let v745 : string = v744 + v743 
+                                let v746 : string = $"    <Version>0.0.1-alpha.1</Version>"
+                                let v747 : string = v745 + v719 
+                                let v748 : string = v747 + v746 
+                                let v749 : string = $"    <OutputType>Exe</OutputType>"
+                                let v750 : string = v748 + v719 
+                                let v751 : string = v750 + v749 
+                                let v752 : string = $"</PropertyGroup>"
+                                let v753 : string = v751 + v719 
+                                let v754 : string = v753 + v752 
+                                let v755 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('FreeBSD'))\">"
+                                let v756 : string = v754 + v719 
+                                let v757 : string = v756 + v755 
+                                let v758 : string = $"    <DefineConstants>_FREEBSD</DefineConstants>"
+                                let v759 : string = v757 + v719 
+                                let v760 : string = v759 + v758 
+                                let v761 : string = $"</PropertyGroup>"
+                                let v762 : string = v760 + v719 
+                                let v763 : string = v762 + v761 
+                                let v764 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Linux'))\">"
+                                let v765 : string = v763 + v719 
+                                let v766 : string = v765 + v764 
+                                let v767 : string = $"    <DefineConstants>_LINUX</DefineConstants>"
+                                let v768 : string = v766 + v719 
+                                let v769 : string = v768 + v767 
+                                let v770 : string = $"</PropertyGroup>"
+                                let v771 : string = v769 + v719 
+                                let v772 : string = v771 + v770 
+                                let v773 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('OSX'))\">"
+                                let v774 : string = v772 + v719 
+                                let v775 : string = v774 + v773 
+                                let v776 : string = $"    <DefineConstants>_OSX</DefineConstants>"
+                                let v777 : string = v775 + v719 
+                                let v778 : string = v777 + v776 
+                                let v779 : string = $"</PropertyGroup>"
+                                let v780 : string = v778 + v719 
+                                let v781 : string = v780 + v779 
+                                let v782 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Windows'))\">"
+                                let v783 : string = v781 + v719 
+                                let v784 : string = v783 + v782 
+                                let v785 : string = $"    <DefineConstants>_WINDOWS</DefineConstants>"
+                                let v786 : string = v784 + v719 
+                                let v787 : string = v786 + v785 
+                                let v788 : string = $"</PropertyGroup>"
+                                let v789 : string = v787 + v719 
+                                let v790 : string = v789 + v788 
+                                let v791 : string = $"<ItemGroup>"
+                                let v792 : string = v790 + v719 
+                                let v793 : string = v792 + v791 
+                                let v794 : string = $"    {v705}"
+                                let v795 : string = v793 + v719 
+                                let v796 : string = v795 + v794 
+                                let v797 : string = $"    <Compile Include=\"{v699}\" />"
+                                let v798 : string = v796 + v719 
+                                let v799 : string = v798 + v797 
+                                let v800 : string = $"</ItemGroup>"
+                                let v801 : string = v799 + v719 
+                                let v802 : string = v801 + v800 
+                                let v803 : string = $"<ItemGroup>"
+                                let v804 : string = v802 + v719 
+                                let v805 : string = v804 + v803 
+                                let v806 : string = $"    {v713}"
+                                let v807 : string = v805 + v719 
+                                let v808 : string = v807 + v806 
+                                let v809 : string = $"</ItemGroup>"
+                                let v810 : string = v808 + v719 
+                                let v811 : string = v810 + v809 
+                                let v812 : string = $"</Project>"
+                                let v813 : string = v811 + v719 
+                                let v814 : string = v813 + v812 
+                                method24(v716, v814)
+                                let v815 : string = method23(v716)
+                                let v816 : string = "Cargo.toml"
+                                let v817 : string = method14(v815, v816)
+                                let v818 : string = "../.."
+                                let v819 : string = method14(v815, v818)
+                                let v820 : string = method14(v819, v816)
+                                let v821 : bool = method26(v817)
+                                let v822 : bool = v821 = false
+                                if v822 then
+                                    let v823 : System.DateTime = System.DateTime.Now
+                                    let v824 : (unit -> System.Guid) = System.Guid.NewGuid
+                                    let v825 : System.Guid = v824 ()
+                                    let v826 : System.Guid = method92(v825, v823)
+                                    let v827 : (System.Guid -> string) = _.ToString()
+                                    let v828 : string = v827 v826
+                                    let v829 : string = $"[package]"
+                                    let v830 : string = $"name = \"spiral_builder_{v828}\""
+                                    let v831 : string = v829 + v719 
+                                    let v832 : string = v831 + v830 
+                                    let v833 : string = $"version = \"0.0.1\""
+                                    let v834 : string = v832 + v719 
+                                    let v835 : string = v834 + v833 
+                                    let v836 : string = $"edition = \"2021\""
+                                    let v837 : string = v835 + v719 
+                                    let v838 : string = v837 + v836 
+                                    let v839 : string = $""
+                                    let v840 : string = v838 + v719 
+                                    let v841 : string = v840 + v839 
+                                    let v842 : string = $"[[bin]]"
+                                    let v843 : string = v841 + v719 
+                                    let v844 : string = v843 + v842 
+                                    let v845 : string = $"name = \"spiral_builder_{v828}\""
+                                    let v846 : string = v844 + v719 
+                                    let v847 : string = v846 + v845 
+                                    let v848 : string = $"path = \"spiral_builder.{v651}\""
+                                    let v849 : string = v847 + v719 
+                                    let v850 : string = v849 + v848 
+                                    let v851 : bool = true
+                                    let mutable _v851 : unit option = None 
                                     
 #if FABLE_COMPILER || WASM || CONTRACT
                                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                    let v851 : string = "std::fs::write(&*$0, &*$1).unwrap()"
-                                    Fable.Core.RustInterop.emitRustExpr struct (v816, v849) v851 
+                                    let v852 : string = "std::fs::write(&*$0, &*$1).unwrap()"
+                                    Fable.Core.RustInterop.emitRustExpr struct (v817, v850) v852 
                                     () 
                                     #endif
 #if FABLE_COMPILER_RUST && WASM
@@ -10008,52 +10008,52 @@ pwsh_replace_html_result: {v505}"
                                     () 
                                     #endif
 #else
-                                    let v852 : string = method27(v849)
-                                    System.IO.File.WriteAllText (v816, v852)
+                                    let v853 : string = method27(v850)
+                                    System.IO.File.WriteAllText (v817, v853)
                                     () 
                                     #endif
-                                    |> fun x -> _v850 <- Some x
-                                    match _v850 with Some x -> x | None -> failwith "base.run_target / _v850=None"
+                                    |> fun x -> _v851 <- Some x
+                                    match _v851 with Some x -> x | None -> failwith "base.run_target / _v851=None"
                                     ()
-                                let v853 : bool = method26(v819)
-                                let v854 : bool = v853 = false
-                                if v854 then
-                                    let v855 : System.DateTime = System.DateTime.Now
-                                    let v856 : (unit -> System.Guid) = System.Guid.NewGuid
-                                    let v857 : System.Guid = v856 ()
-                                    let v858 : System.Guid = method92(v857, v855)
-                                    let v859 : (System.Guid -> string) = _.ToString()
-                                    let v860 : string = v859 v858
-                                    let v861 : string = $"[package]"
-                                    let v862 : string = $"name = \"spiral_builder_{v860}\""
-                                    let v863 : string = v861 + v718 
-                                    let v864 : string = v863 + v862 
-                                    let v865 : string = $"version = \"0.0.1\""
-                                    let v866 : string = v864 + v718 
-                                    let v867 : string = v866 + v865 
-                                    let v868 : string = $"edition = \"2021\""
-                                    let v869 : string = v867 + v718 
-                                    let v870 : string = v869 + v868 
-                                    let v871 : string = $""
-                                    let v872 : string = v870 + v718 
-                                    let v873 : string = v872 + v871 
-                                    let v874 : string = $"[[bin]]"
-                                    let v875 : string = v873 + v718 
-                                    let v876 : string = v875 + v874 
-                                    let v877 : string = $"name = \"spiral_builder_{v860}\""
-                                    let v878 : string = v876 + v718 
-                                    let v879 : string = v878 + v877 
-                                    let v880 : string = $"path = \"spiral_builder.{v650}\""
-                                    let v881 : string = v879 + v718 
-                                    let v882 : string = v881 + v880 
-                                    let v883 : bool = true
-                                    let mutable _v883 : unit option = None 
+                                let v854 : bool = method26(v820)
+                                let v855 : bool = v854 = false
+                                if v855 then
+                                    let v856 : System.DateTime = System.DateTime.Now
+                                    let v857 : (unit -> System.Guid) = System.Guid.NewGuid
+                                    let v858 : System.Guid = v857 ()
+                                    let v859 : System.Guid = method92(v858, v856)
+                                    let v860 : (System.Guid -> string) = _.ToString()
+                                    let v861 : string = v860 v859
+                                    let v862 : string = $"[package]"
+                                    let v863 : string = $"name = \"spiral_builder_{v861}\""
+                                    let v864 : string = v862 + v719 
+                                    let v865 : string = v864 + v863 
+                                    let v866 : string = $"version = \"0.0.1\""
+                                    let v867 : string = v865 + v719 
+                                    let v868 : string = v867 + v866 
+                                    let v869 : string = $"edition = \"2021\""
+                                    let v870 : string = v868 + v719 
+                                    let v871 : string = v870 + v869 
+                                    let v872 : string = $""
+                                    let v873 : string = v871 + v719 
+                                    let v874 : string = v873 + v872 
+                                    let v875 : string = $"[[bin]]"
+                                    let v876 : string = v874 + v719 
+                                    let v877 : string = v876 + v875 
+                                    let v878 : string = $"name = \"spiral_builder_{v861}\""
+                                    let v879 : string = v877 + v719 
+                                    let v880 : string = v879 + v878 
+                                    let v881 : string = $"path = \"spiral_builder.{v651}\""
+                                    let v882 : string = v880 + v719 
+                                    let v883 : string = v882 + v881 
+                                    let v884 : bool = true
+                                    let mutable _v884 : unit option = None 
                                     
 #if FABLE_COMPILER || WASM || CONTRACT
                                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                    let v884 : string = "std::fs::write(&*$0, &*$1).unwrap()"
-                                    Fable.Core.RustInterop.emitRustExpr struct (v819, v882) v884 
+                                    let v885 : string = "std::fs::write(&*$0, &*$1).unwrap()"
+                                    Fable.Core.RustInterop.emitRustExpr struct (v820, v883) v885 
                                     () 
                                     #endif
 #if FABLE_COMPILER_RUST && WASM
@@ -10073,17 +10073,16 @@ pwsh_replace_html_result: {v505}"
                                     () 
                                     #endif
 #else
-                                    let v885 : string = method27(v882)
-                                    System.IO.File.WriteAllText (v819, v885)
+                                    let v886 : string = method27(v883)
+                                    System.IO.File.WriteAllText (v820, v886)
                                     () 
                                     #endif
-                                    |> fun x -> _v883 <- Some x
-                                    match _v883 with Some x -> x | None -> failwith "base.run_target / _v883=None"
+                                    |> fun x -> _v884 <- Some x
+                                    match _v884 with Some x -> x | None -> failwith "base.run_target / _v884=None"
                                     ()
-                                let v886 : string = __SOURCE_DIRECTORY__
-                                let v887 : string = method14()
-                                let v888 : string = method15(v655, v656)
-                                let v889 : US12 = method18(v888, v886)
+                                let v887 : string = __SOURCE_DIRECTORY__
+                                let v888 : string = method14(v655, v656)
+                                let v889 : US12 = method17(v888, v887)
                                 let v898 : US3 =
                                     match v889 with
                                     | US12_1(v892) -> (* Error *)
@@ -10094,714 +10093,714 @@ pwsh_replace_html_result: {v505}"
                                         US3_1
                                     | US12_0(v890) -> (* Ok *)
                                         US3_0(v890)
-                                let v913 : US3 =
+                                let v914 : US3 =
                                     match v898 with
                                     | US3_1 -> (* None *)
-                                        let v901 : string = method15(v655, v656)
-                                        let v902 : US12 = method18(v901, v887)
-                                        match v902 with
-                                        | US12_1(v905) -> (* Error *)
-                                            let v906 : US0 = US0_3
-                                            let v907 : (unit -> string) = closure10()
-                                            let v908 : (unit -> string) = closure11(v905)
-                                            method5(v906, v907, v908)
+                                        let v901 : string = method22()
+                                        let v902 : string = method14(v655, v656)
+                                        let v903 : US12 = method17(v902, v901)
+                                        match v903 with
+                                        | US12_1(v906) -> (* Error *)
+                                            let v907 : US0 = US0_3
+                                            let v908 : (unit -> string) = closure10()
+                                            let v909 : (unit -> string) = closure11(v906)
+                                            method5(v907, v908, v909)
                                             US3_1
-                                        | US12_0(v903) -> (* Ok *)
-                                            US3_0(v903)
+                                        | US12_0(v904) -> (* Ok *)
+                                            US3_0(v904)
                                     | US3_0(v899) -> (* Some *)
                                         US3_0(v899)
-                                let v917 : string =
-                                    match v913 with
+                                let v918 : string =
+                                    match v914 with
                                     | US3_1 -> (* None *)
                                         failwith<string> "Option does not have a value."
-                                    | US3_0(v914) -> (* Some *)
-                                        v914
-                                let v918 : string = method15(v917, v655)
-                                let v919 : string = method14()
-                                let v920 : (unit -> string) = v919.ToLower
-                                let v921 : string = v920 ()
-                                let v922 : (unit -> string) = v918.ToLower
-                                let v923 : string = v922 ()
-                                let v924 : bool = v921.StartsWith v923 
-                                let v927 : US12 =
-                                    if v924 then
-                                        US12_1(v923)
+                                    | US3_0(v915) -> (* Some *)
+                                        v915
+                                let v919 : string = method14(v918, v655)
+                                let v920 : string = method22()
+                                let v921 : (unit -> string) = v920.ToLower
+                                let v922 : string = v921 ()
+                                let v923 : (unit -> string) = v919.ToLower
+                                let v924 : string = v923 ()
+                                let v925 : bool = v922.StartsWith v924 
+                                let v928 : US12 =
+                                    if v925 then
+                                        US12_1(v924)
                                     else
-                                        US12_0(v923)
-                                let v933 : Result<string, string> =
-                                    match v927 with
-                                    | US12_1(v930) -> (* Error *)
-                                        let v931 : Result<string, string> = Error v930 
-                                        v931
-                                    | US12_0(v928) -> (* Ok *)
-                                        let v929 : Result<string, string> = Ok v928 
-                                        v929
-                                let v934 : string = "true; let _result = $0.unwrap_or_else(|x| { //"
-                                let v935 : bool = Fable.Core.RustInterop.emitRustExpr v933 v934 
-                                let v936 : string = "x"
-                                let v937 : string = Fable.Core.RustInterop.emitRustExpr () v936 
-                                let v938 : string = "true; $0 })"
-                                let v939 : bool = Fable.Core.RustInterop.emitRustExpr v937 v938 
-                                let v940 : string = "_result"
-                                let v941 : string = Fable.Core.RustInterop.emitRustExpr () v940 
-                                let v942 : string = "lib/rust/fable/fable_modules/fable-library-rust"
-                                let v943 : string = method15(v941, v942)
-                                let v944 : string = "fable_modules/fable-library-rust"
-                                let v945 : string = method15(v814, v944)
-                                method98(v943, v945)
-                                let struct (v946 : int32, v947 : string) = method99(v814, v650, v715, v927)
-                                let v948 : bool = v946 <> 0 
-                                if v948 then
-                                    let v949 : US0 = US0_4
-                                    let v950 : (unit -> string) = closure76()
-                                    let v951 : (unit -> string) = closure77(v947, v946)
-                                    method5(v949, v950, v951)
-                                    let v952 : US3 = US3_1
-                                    let v953 : US3 = US3_0(v650)
-                                    let v954 : US3 = US3_0(v947)
-                                    struct (v952, v953, v954)
+                                        US12_0(v924)
+                                let v934 : Result<string, string> =
+                                    match v928 with
+                                    | US12_1(v931) -> (* Error *)
+                                        let v932 : Result<string, string> = Error v931 
+                                        v932
+                                    | US12_0(v929) -> (* Ok *)
+                                        let v930 : Result<string, string> = Ok v929 
+                                        v930
+                                let v935 : string = "true; let _result = $0.unwrap_or_else(|x| { //"
+                                let v936 : bool = Fable.Core.RustInterop.emitRustExpr v934 v935 
+                                let v937 : string = "x"
+                                let v938 : string = Fable.Core.RustInterop.emitRustExpr () v937 
+                                let v939 : string = "true; $0 })"
+                                let v940 : bool = Fable.Core.RustInterop.emitRustExpr v938 v939 
+                                let v941 : string = "_result"
+                                let v942 : string = Fable.Core.RustInterop.emitRustExpr () v941 
+                                let v943 : string = "lib/rust/fable/fable_modules/fable-library-rust"
+                                let v944 : string = method14(v942, v943)
+                                let v945 : string = "fable_modules/fable-library-rust"
+                                let v946 : string = method14(v815, v945)
+                                method98(v944, v946)
+                                let struct (v947 : int32, v948 : string) = method99(v815, v651, v716, v928)
+                                let v949 : bool = v947 <> 0 
+                                if v949 then
+                                    let v950 : US0 = US0_4
+                                    let v951 : (unit -> string) = closure76()
+                                    let v952 : (unit -> string) = closure77(v948, v947)
+                                    method5(v950, v951, v952)
+                                    let v953 : US3 = US3_1
+                                    let v954 : US3 = US3_0(v651)
+                                    let v955 : US3 = US3_0(v948)
+                                    struct (v953, v954, v955)
                                 else
-                                    let v955 : string = "true; let _result : Vec<_> = v623.into_iter().map(|x| { //"
-                                    let v956 : bool = Fable.Core.RustInterop.emitRustExpr () v955 
-                                    let v957 : string = "x"
-                                    let v958 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v957 
-                                    let v959 : string = "fable_library_rust::String_::fromString($0)"
-                                    let v960 : string = Fable.Core.RustInterop.emitRustExpr v958 v959 
-                                    let v961 : string = "="
-                                    let v962 : bool = v960.Contains v961 
-                                    let v971 : string =
-                                        if v962 then
-                                            v960
+                                    let v956 : string = "true; let _result : Vec<_> = v624.into_iter().map(|x| { //"
+                                    let v957 : bool = Fable.Core.RustInterop.emitRustExpr () v956 
+                                    let v958 : string = "x"
+                                    let v959 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v958 
+                                    let v960 : string = "fable_library_rust::String_::fromString($0)"
+                                    let v961 : string = Fable.Core.RustInterop.emitRustExpr v959 v960 
+                                    let v962 : string = "="
+                                    let v963 : bool = v961.Contains v962 
+                                    let v972 : string =
+                                        if v963 then
+                                            v961
                                         else
-                                            let v963 : string = "]"
-                                            let v964 : bool = v960.EndsWith v963 
-                                            if v964 then
-                                                let v965 : string = $"={{version='*',features=["
-                                                let v966 : string = "["
-                                                let v967 : string = v960.Replace (v966, v965)
-                                                let v968 : string = $"{v967}}}"
-                                                v968
-                                            else
-                                                let v969 : string = $"{v960}='*'"
+                                            let v964 : string = "]"
+                                            let v965 : bool = v961.EndsWith v964 
+                                            if v965 then
+                                                let v966 : string = $"={{version='*',features=["
+                                                let v967 : string = "["
+                                                let v968 : string = v961.Replace (v967, v966)
+                                                let v969 : string = $"{v968}}}"
                                                 v969
-                                    let v972 : string = "true; $0 }).collect::<Vec<_>>()"
-                                    let v973 : bool = Fable.Core.RustInterop.emitRustExpr v971 v972 
-                                    let v974 : string = "_result"
-                                    let v975 : Vec<string> = Fable.Core.RustInterop.emitRustExpr () v974 
-                                    let v976 : string = "fable_library_rust::NativeArray_::array_from($0)"
-                                    let v977 : (string []) = Fable.Core.RustInterop.emitRustExpr v975 v976 
-                                    let v978 : string seq = seq { for i = 0 to v977.Length - 1 do yield v977.[i] }
-                                    let v979 : (string -> (string seq -> string)) = String.concat
-                                    let v980 : (string seq -> string) = v979 v718
-                                    let v981 : string = v980 v978
-                                    let v982 : string = $"[package]"
-                                    let v983 : string = $"name = \"spiral_builder_{v652}\""
-                                    let v984 : string = v982 + v718 
-                                    let v985 : string = v984 + v983 
-                                    let v986 : string = $"version = \"0.0.1\""
-                                    let v987 : string = v985 + v718 
-                                    let v988 : string = v987 + v986 
-                                    let v989 : string = $"edition = \"2021\""
-                                    let v990 : string = v988 + v718 
-                                    let v991 : string = v990 + v989 
-                                    let v992 : string = $""
-                                    let v993 : string = v991 + v718 
-                                    let v994 : string = v993 + v992 
-                                    let v995 : string = $"[dependencies]"
-                                    let v996 : string = v994 + v718 
-                                    let v997 : string = v996 + v995 
-                                    let v998 : string = $"fable_library_rust = {{ workspace = true }}"
-                                    let v999 : string = v997 + v718 
-                                    let v1000 : string = v999 + v998 
-                                    let v1001 : string = $"inline_colorization = {{ workspace = true }}"
-                                    let v1002 : string = v1000 + v718 
-                                    let v1003 : string = v1002 + v1001 
-                                    let v1004 : string = $"{v981}"
-                                    let v1005 : string = v1003 + v718 
-                                    let v1006 : string = v1005 + v1004 
-                                    let v1007 : string = $""
-                                    let v1008 : string = v1006 + v718 
-                                    let v1009 : string = v1008 + v1007 
-                                    let v1010 : string = $"[[bin]]"
-                                    let v1011 : string = v1009 + v718 
-                                    let v1012 : string = v1011 + v1010 
-                                    let v1013 : string = $"name = \"spiral_builder_{v652}\""
-                                    let v1014 : string = v1012 + v718 
-                                    let v1015 : string = v1014 + v1013 
-                                    let v1016 : string = $"path = \"spiral_builder.rs\" "
-                                    let v1017 : string = v1015 + v718 
-                                    let v1018 : string = v1017 + v1016 
-                                    let v1019 : string = method70(v941)
-                                    let v1020 : string = $"[workspace]"
-                                    let v1021 : string = $"resolver = \"2\""
-                                    let v1022 : string = v1020 + v718 
-                                    let v1023 : string = v1022 + v1021 
-                                    let v1024 : string = $"members = [\"packages/*\"]"
-                                    let v1025 : string = v1023 + v718 
-                                    let v1026 : string = v1025 + v1024 
-                                    let v1027 : string = $""
-                                    let v1028 : string = v1026 + v718 
-                                    let v1029 : string = v1028 + v1027 
-                                    let v1030 : string = $"[workspace.dependencies.fable_library_rust]"
-                                    let v1031 : string = v1029 + v718 
-                                    let v1032 : string = v1031 + v1030 
-                                    let v1033 : string = $"path = \"{v1019}/lib/rust/fable/fable_modules/fable-library-rust\""
-                                    let v1034 : string = v1032 + v718 
-                                    let v1035 : string = v1034 + v1033 
-                                    let v1036 : string = $"default-features = false"
-                                    let v1037 : string = v1035 + v718 
-                                    let v1038 : string = v1037 + v1036 
-                                    let v1039 : string = $"features = [\"static_do_bindings\", \"datetime\", \"guid\", \"threaded\"]"
-                                    let v1040 : string = v1038 + v718 
-                                    let v1041 : string = v1040 + v1039 
-                                    let v1042 : string = $""
-                                    let v1043 : string = v1041 + v718 
-                                    let v1044 : string = v1043 + v1042 
-                                    let v1045 : string = $"[workspace.dependencies]"
-                                    let v1046 : string = v1044 + v718 
-                                    let v1047 : string = v1046 + v1045 
-                                    let v1048 : string = $"inline_colorization = \"~0.1\""
-                                    let v1049 : string = v1047 + v718 
-                                    let v1050 : string = v1049 + v1048 
-                                    method24(v816, v1018)
-                                    method24(v819, v1050)
-                                    let v1051 : string = "src/Range.rs"
-                                    let v1052 : string = method15(v945, v1051)
-                                    let v1053 : bool = method26(v1052)
-                                    if v1053 then
-                                        let v1054 : bool = true
-                                        let mutable _v1054 : string option = None 
-                                        
-#if FABLE_COMPILER || WASM || CONTRACT
-                                        
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                            else
+                                                let v970 : string = $"{v961}='*'"
+                                                v970
+                                    let v973 : string = "true; $0 }).collect::<Vec<_>>()"
+                                    let v974 : bool = Fable.Core.RustInterop.emitRustExpr v972 v973 
+                                    let v975 : string = "_result"
+                                    let v976 : Vec<string> = Fable.Core.RustInterop.emitRustExpr () v975 
+                                    let v977 : string = "fable_library_rust::NativeArray_::array_from($0)"
+                                    let v978 : (string []) = Fable.Core.RustInterop.emitRustExpr v976 v977 
+                                    let v979 : string seq = seq { for i = 0 to v978.Length - 1 do yield v978.[i] }
+                                    let v980 : (string -> (string seq -> string)) = String.concat
+                                    let v981 : (string seq -> string) = v980 v719
+                                    let v982 : string = v981 v979
+                                    let v983 : string = $"[package]"
+                                    let v984 : string = $"name = \"spiral_builder_{v653}\""
+                                    let v985 : string = v983 + v719 
+                                    let v986 : string = v985 + v984 
+                                    let v987 : string = $"version = \"0.0.1\""
+                                    let v988 : string = v986 + v719 
+                                    let v989 : string = v988 + v987 
+                                    let v990 : string = $"edition = \"2021\""
+                                    let v991 : string = v989 + v719 
+                                    let v992 : string = v991 + v990 
+                                    let v993 : string = $""
+                                    let v994 : string = v992 + v719 
+                                    let v995 : string = v994 + v993 
+                                    let v996 : string = $"[dependencies]"
+                                    let v997 : string = v995 + v719 
+                                    let v998 : string = v997 + v996 
+                                    let v999 : string = $"fable_library_rust = {{ workspace = true }}"
+                                    let v1000 : string = v998 + v719 
+                                    let v1001 : string = v1000 + v999 
+                                    let v1002 : string = $"inline_colorization = {{ workspace = true }}"
+                                    let v1003 : string = v1001 + v719 
+                                    let v1004 : string = v1003 + v1002 
+                                    let v1005 : string = $"{v982}"
+                                    let v1006 : string = v1004 + v719 
+                                    let v1007 : string = v1006 + v1005 
+                                    let v1008 : string = $""
+                                    let v1009 : string = v1007 + v719 
+                                    let v1010 : string = v1009 + v1008 
+                                    let v1011 : string = $"[[bin]]"
+                                    let v1012 : string = v1010 + v719 
+                                    let v1013 : string = v1012 + v1011 
+                                    let v1014 : string = $"name = \"spiral_builder_{v653}\""
+                                    let v1015 : string = v1013 + v719 
+                                    let v1016 : string = v1015 + v1014 
+                                    let v1017 : string = $"path = \"spiral_builder.rs\" "
+                                    let v1018 : string = v1016 + v719 
+                                    let v1019 : string = v1018 + v1017 
+                                    let v1020 : string = method70(v942)
+                                    let v1021 : string = $"[workspace]"
+                                    let v1022 : string = $"resolver = \"2\""
+                                    let v1023 : string = v1021 + v719 
+                                    let v1024 : string = v1023 + v1022 
+                                    let v1025 : string = $"members = [\"packages/*\"]"
+                                    let v1026 : string = v1024 + v719 
+                                    let v1027 : string = v1026 + v1025 
+                                    let v1028 : string = $""
+                                    let v1029 : string = v1027 + v719 
+                                    let v1030 : string = v1029 + v1028 
+                                    let v1031 : string = $"[workspace.dependencies.fable_library_rust]"
+                                    let v1032 : string = v1030 + v719 
+                                    let v1033 : string = v1032 + v1031 
+                                    let v1034 : string = $"path = \"{v1020}/lib/rust/fable/fable_modules/fable-library-rust\""
+                                    let v1035 : string = v1033 + v719 
+                                    let v1036 : string = v1035 + v1034 
+                                    let v1037 : string = $"default-features = false"
+                                    let v1038 : string = v1036 + v719 
+                                    let v1039 : string = v1038 + v1037 
+                                    let v1040 : string = $"features = [\"static_do_bindings\", \"datetime\", \"guid\", \"threaded\"]"
+                                    let v1041 : string = v1039 + v719 
+                                    let v1042 : string = v1041 + v1040 
+                                    let v1043 : string = $""
+                                    let v1044 : string = v1042 + v719 
+                                    let v1045 : string = v1044 + v1043 
+                                    let v1046 : string = $"[workspace.dependencies]"
+                                    let v1047 : string = v1045 + v719 
+                                    let v1048 : string = v1047 + v1046 
+                                    let v1049 : string = $"inline_colorization = \"~0.1\""
+                                    let v1050 : string = v1048 + v719 
+                                    let v1051 : string = v1050 + v1049 
+                                    method24(v817, v1019)
+                                    method24(v820, v1051)
+                                    let v1052 : string = "src/Range.rs"
+                                    let v1053 : string = method14(v946, v1052)
+                                    let v1054 : bool = method26(v1053)
+                                    if v1054 then
                                         let v1055 : bool = true
-                                        let mutable _v1055 : Vec<uint8> option = None 
+                                        let mutable _v1055 : string option = None 
                                         
 #if FABLE_COMPILER || WASM || CONTRACT
                                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                        let v1056 : string = "std::fs::read(&*$0).unwrap()"
-                                        let v1057 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1052 v1056 
-                                        v1057 
-                                        #endif
-#if FABLE_COMPILER_RUST && WASM
-                                        let v1058 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                        let v1056 : bool = true
+                                        let mutable _v1056 : Vec<uint8> option = None 
+                                        
+#if FABLE_COMPILER || WASM || CONTRACT
+                                        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                        let v1057 : string = "std::fs::read(&*$0).unwrap()"
+                                        let v1058 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1053 v1057 
                                         v1058 
                                         #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                         let v1059 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                         v1059 
                                         #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                         let v1060 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                         v1060 
                                         #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                         let v1061 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                         v1061 
                                         #endif
+#if FABLE_COMPILER_PYTHON
+                                        let v1062 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                        v1062 
+                                        #endif
 #else
-                                        let v1062 : (uint8 []) = v1052 |> System.IO.File.ReadAllBytes
-                                        let v1063 : string = "$0.to_vec()"
-                                        let v1064 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1062 v1063 
-                                        v1064 
+                                        let v1063 : (uint8 []) = v1053 |> System.IO.File.ReadAllBytes
+                                        let v1064 : string = "$0.to_vec()"
+                                        let v1065 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1063 v1064 
+                                        v1065 
                                         #endif
-                                        |> fun x -> _v1055 <- Some x
-                                        let v1065 : Vec<uint8> = match _v1055 with Some x -> x | None -> failwith "base.run_target / _v1055=None"
-                                        let v1066 : string = "std::string::String::from_utf8(v1065)"
-                                        let v1067 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v1066 
-                                        let v1068 : string = "$0.unwrap()"
-                                        let v1069 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1067 v1068 
-                                        let v1070 : string = "fable_library_rust::String_::fromString($0)"
-                                        let v1071 : string = Fable.Core.RustInterop.emitRustExpr v1069 v1070 
-                                        v1071 
-                                        #endif
-#if FABLE_COMPILER_RUST && WASM
-                                        let v1072 : string = null |> unbox<string>
+                                        |> fun x -> _v1056 <- Some x
+                                        let v1066 : Vec<uint8> = match _v1056 with Some x -> x | None -> failwith "base.run_target / _v1056=None"
+                                        let v1067 : string = "std::string::String::from_utf8(v1066)"
+                                        let v1068 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v1067 
+                                        let v1069 : string = "$0.unwrap()"
+                                        let v1070 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1068 v1069 
+                                        let v1071 : string = "fable_library_rust::String_::fromString($0)"
+                                        let v1072 : string = Fable.Core.RustInterop.emitRustExpr v1070 v1071 
                                         v1072 
                                         #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                         let v1073 : string = null |> unbox<string>
                                         v1073 
                                         #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                         let v1074 : string = null |> unbox<string>
                                         v1074 
                                         #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                         let v1075 : string = null |> unbox<string>
                                         v1075 
                                         #endif
-#else
-                                        let v1076 : string = v1052 |> System.IO.File.ReadAllText
+#if FABLE_COMPILER_PYTHON
+                                        let v1076 : string = null |> unbox<string>
                                         v1076 
                                         #endif
-                                        |> fun x -> _v1054 <- Some x
-                                        let v1077 : string = match _v1054 with Some x -> x | None -> failwith "base.run_target / _v1054=None"
-                                        let v1078 : string = "use crate::String_::fromCharCode;"
-                                        let v1079 : string = "use crate::String_::fromChar;"
-                                        let v1080 : string = v1077.Replace (v1078, v1079)
-                                        let v1081 : string = "fromCharCode(c)"
-                                        let v1082 : string = "std::char::from_u32(c).unwrap()"
-                                        let v1083 : string = v1080.Replace (v1081, v1082)
-                                        method24(v1052, v1083)
-                                    let v1084 : uint8 = 1uy
-                                    let struct (v1085 : int32, v1086 : string) = method101(v816, v927, v1084)
-                                    let v1087 : bool = v1085 <> 0 
-                                    if v1087 then
-                                        let v1088 : US0 = US0_4
-                                        let v1089 : (unit -> string) = closure78()
-                                        let v1090 : (unit -> string) = closure79(v1086, v1085)
-                                        method5(v1088, v1089, v1090)
-                                    let v1091 : string = $"{v690}.{v650}"
-                                    let v1092 : string = method15(v814, v1091)
-                                    let v1093 : bool = true
-                                    let mutable _v1093 : string option = None 
-                                    
-#if FABLE_COMPILER || WASM || CONTRACT
-                                    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+#else
+                                        let v1077 : string = v1053 |> System.IO.File.ReadAllText
+                                        v1077 
+                                        #endif
+                                        |> fun x -> _v1055 <- Some x
+                                        let v1078 : string = match _v1055 with Some x -> x | None -> failwith "base.run_target / _v1055=None"
+                                        let v1079 : string = "use crate::String_::fromCharCode;"
+                                        let v1080 : string = "use crate::String_::fromChar;"
+                                        let v1081 : string = v1078.Replace (v1079, v1080)
+                                        let v1082 : string = "fromCharCode(c)"
+                                        let v1083 : string = "std::char::from_u32(c).unwrap()"
+                                        let v1084 : string = v1081.Replace (v1082, v1083)
+                                        method24(v1053, v1084)
+                                    let v1085 : uint8 = 1uy
+                                    let struct (v1086 : int32, v1087 : string) = method101(v817, v928, v1085)
+                                    let v1088 : bool = v1086 <> 0 
+                                    if v1088 then
+                                        let v1089 : US0 = US0_4
+                                        let v1090 : (unit -> string) = closure78()
+                                        let v1091 : (unit -> string) = closure79(v1087, v1086)
+                                        method5(v1089, v1090, v1091)
+                                    let v1092 : string = $"{v691}.{v651}"
+                                    let v1093 : string = method14(v815, v1092)
                                     let v1094 : bool = true
-                                    let mutable _v1094 : Vec<uint8> option = None 
+                                    let mutable _v1094 : string option = None 
                                     
 #if FABLE_COMPILER || WASM || CONTRACT
                                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                    let v1095 : string = "std::fs::read(&*$0).unwrap()"
-                                    let v1096 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1092 v1095 
-                                    v1096 
-                                    #endif
-#if FABLE_COMPILER_RUST && WASM
-                                    let v1097 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                    let v1095 : bool = true
+                                    let mutable _v1095 : Vec<uint8> option = None 
+                                    
+#if FABLE_COMPILER || WASM || CONTRACT
+                                    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                    let v1096 : string = "std::fs::read(&*$0).unwrap()"
+                                    let v1097 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1093 v1096 
                                     v1097 
                                     #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                     let v1098 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                     v1098 
                                     #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                     let v1099 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                     v1099 
                                     #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                     let v1100 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                     v1100 
                                     #endif
+#if FABLE_COMPILER_PYTHON
+                                    let v1101 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                    v1101 
+                                    #endif
 #else
-                                    let v1101 : (uint8 []) = v1092 |> System.IO.File.ReadAllBytes
-                                    let v1102 : string = "$0.to_vec()"
-                                    let v1103 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1101 v1102 
-                                    v1103 
+                                    let v1102 : (uint8 []) = v1093 |> System.IO.File.ReadAllBytes
+                                    let v1103 : string = "$0.to_vec()"
+                                    let v1104 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1102 v1103 
+                                    v1104 
                                     #endif
-                                    |> fun x -> _v1094 <- Some x
-                                    let v1104 : Vec<uint8> = match _v1094 with Some x -> x | None -> failwith "base.run_target / _v1094=None"
-                                    let v1105 : string = "std::string::String::from_utf8(v1104)"
-                                    let v1106 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v1105 
-                                    let v1107 : string = "$0.unwrap()"
-                                    let v1108 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1106 v1107 
-                                    let v1109 : string = "fable_library_rust::String_::fromString($0)"
-                                    let v1110 : string = Fable.Core.RustInterop.emitRustExpr v1108 v1109 
-                                    v1110 
-                                    #endif
-#if FABLE_COMPILER_RUST && WASM
-                                    let v1111 : string = null |> unbox<string>
+                                    |> fun x -> _v1095 <- Some x
+                                    let v1105 : Vec<uint8> = match _v1095 with Some x -> x | None -> failwith "base.run_target / _v1095=None"
+                                    let v1106 : string = "std::string::String::from_utf8(v1105)"
+                                    let v1107 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v1106 
+                                    let v1108 : string = "$0.unwrap()"
+                                    let v1109 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1107 v1108 
+                                    let v1110 : string = "fable_library_rust::String_::fromString($0)"
+                                    let v1111 : string = Fable.Core.RustInterop.emitRustExpr v1109 v1110 
                                     v1111 
                                     #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                     let v1112 : string = null |> unbox<string>
                                     v1112 
                                     #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                     let v1113 : string = null |> unbox<string>
                                     v1113 
                                     #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                     let v1114 : string = null |> unbox<string>
                                     v1114 
                                     #endif
-#else
-                                    let v1115 : string = v1092 |> System.IO.File.ReadAllText
+#if FABLE_COMPILER_PYTHON
+                                    let v1115 : string = null |> unbox<string>
                                     v1115 
                                     #endif
-                                    |> fun x -> _v1093 <- Some x
-                                    let v1116 : string = match _v1093 with Some x -> x | None -> failwith "base.run_target / _v1093=None"
-                                    let v1117 : string = "\"{\".into()"
-                                    let v1118 : string = Fable.Core.RustInterop.emitRustExpr () v1117 
-                                    let v1119 : string = "pub fn main() -> Result<(), String> "
-                                    let v1120 : string = v1119 + v1118 
-                                    let v1121 : string = $"{v1120} Ok(()) }}"
-                                    let v1122 : bool = v1116.Contains v1120 
-                                    let v1198 : string =
-                                        if v1122 then
-                                            v1116
+#else
+                                    let v1116 : string = v1093 |> System.IO.File.ReadAllText
+                                    v1116 
+                                    #endif
+                                    |> fun x -> _v1094 <- Some x
+                                    let v1117 : string = match _v1094 with Some x -> x | None -> failwith "base.run_target / _v1094=None"
+                                    let v1118 : string = "\"{\".into()"
+                                    let v1119 : string = Fable.Core.RustInterop.emitRustExpr () v1118 
+                                    let v1120 : string = "pub fn main() -> Result<(), String> "
+                                    let v1121 : string = v1120 + v1119 
+                                    let v1122 : string = $"{v1121} Ok(()) }}"
+                                    let v1123 : bool = v1117.Contains v1121 
+                                    let v1199 : string =
+                                        if v1123 then
+                                            v1117
                                         else
-                                            let v1123 : string = "\";\".into()"
-                                            let v1124 : string = Fable.Core.RustInterop.emitRustExpr () v1123 
-                                            let v1125 : string = "),)"
-                                            let v1126 : string = v1125 + v1124 
-                                            let v1127 : string = "));"
-                                            let v1128 : string = v1116.Replace (v1126, v1127)
-                                            let v1129 : string = "\";\".into()"
-                                            let v1130 : string = Fable.Core.RustInterop.emitRustExpr () v1129 
-                                            let v1131 : string = "},)"
-                                            let v1132 : string = v1131 + v1130 
-                                            let v1133 : string = "});"
-                                            let v1134 : string = v1128.Replace (v1132, v1133)
-                                            let v1135 : string = method103()
-                                            let v1136 : bool = true
-                                            let mutable _v1136 : string option = None 
+                                            let v1124 : string = "\";\".into()"
+                                            let v1125 : string = Fable.Core.RustInterop.emitRustExpr () v1124 
+                                            let v1126 : string = "),)"
+                                            let v1127 : string = v1126 + v1125 
+                                            let v1128 : string = "));"
+                                            let v1129 : string = v1117.Replace (v1127, v1128)
+                                            let v1130 : string = "\";\".into()"
+                                            let v1131 : string = Fable.Core.RustInterop.emitRustExpr () v1130 
+                                            let v1132 : string = "},)"
+                                            let v1133 : string = v1132 + v1131 
+                                            let v1134 : string = "});"
+                                            let v1135 : string = v1129.Replace (v1133, v1134)
+                                            let v1136 : string = method103()
+                                            let v1137 : bool = true
+                                            let mutable _v1137 : string option = None 
                                             
 #if FABLE_COMPILER || WASM || CONTRACT
                                             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                            let v1137 : string = method72(v1134)
-                                            let v1138 : string = $"regex::Regex::new(&$0)"
-                                            let v1139 : string = "\\s\\sdefaultOf\\(\\);"
-                                            let v1140 : Result<regex_Regex, regex_Error> = Fable.Core.RustInterop.emitRustExpr v1139 v1138 
-                                            let v1141 : string = "$0.unwrap()"
-                                            let v1142 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v1140 v1141 
-                                            let v1143 : string = $"$0.replace_all(&$1, &*$2)"
-                                            let v1144 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v1142, v1137, v1135) v1143 
-                                            let v1145 : string = "String::from($0)"
-                                            let v1146 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1144 v1145 
-                                            let v1147 : string = "fable_library_rust::String_::fromString($0)"
-                                            let v1148 : string = Fable.Core.RustInterop.emitRustExpr v1146 v1147 
-                                            v1148 
-                                            #endif
-#if FABLE_COMPILER_RUST && WASM
-                                            let v1149 : string = null |> unbox<string>
+                                            let v1138 : string = method72(v1135)
+                                            let v1139 : string = $"regex::Regex::new(&$0)"
+                                            let v1140 : string = "\\s\\sdefaultOf\\(\\);"
+                                            let v1141 : Result<regex_Regex, regex_Error> = Fable.Core.RustInterop.emitRustExpr v1140 v1139 
+                                            let v1142 : string = "$0.unwrap()"
+                                            let v1143 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v1141 v1142 
+                                            let v1144 : string = $"$0.replace_all(&$1, &*$2)"
+                                            let v1145 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v1143, v1138, v1136) v1144 
+                                            let v1146 : string = "String::from($0)"
+                                            let v1147 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1145 v1146 
+                                            let v1148 : string = "fable_library_rust::String_::fromString($0)"
+                                            let v1149 : string = Fable.Core.RustInterop.emitRustExpr v1147 v1148 
                                             v1149 
                                             #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                             let v1150 : string = null |> unbox<string>
                                             v1150 
                                             #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                             let v1151 : string = null |> unbox<string>
                                             v1151 
                                             #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                             let v1152 : string = null |> unbox<string>
                                             v1152 
                                             #endif
-#else
-                                            let v1153 : string = method104()
-                                            let v1154 : string = System.Text.RegularExpressions.Regex.Replace (v1134, v1153, v1135)
-                                            v1154 
+#if FABLE_COMPILER_PYTHON
+                                            let v1153 : string = null |> unbox<string>
+                                            v1153 
                                             #endif
-                                            |> fun x -> _v1136 <- Some x
-                                            let v1155 : string = match _v1136 with Some x -> x | None -> failwith "base.run_target / _v1136=None"
-                                            let v1156 : string = "\",\".into()"
-                                            let v1157 : string = Fable.Core.RustInterop.emitRustExpr () v1156 
-                                            let v1158 : string = "defaultOf()"
-                                            let v1159 : string = v1158 + v1157 
-                                            let v1160 : string = "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
-                                            let v1161 : string = v1155.Replace (v1159, v1160)
-                                            let v1162 : string = "\"_.\".into()"
-                                            let v1163 : string = Fable.Core.RustInterop.emitRustExpr () v1162 
-                                            let v1164 : string = "_self"
-                                            let v1165 : string = v1164 + v1163 
-                                            let v1166 : string = "self."
-                                            let v1167 : string = v1161.Replace (v1165, v1166)
-                                            let v1168 : string = "\"h\".into()"
-                                            let v1169 : string = Fable.Core.RustInterop.emitRustExpr () v1168 
-                                            let v1170 : string = "get_or_insert_wit"
-                                            let v1171 : string = v1170 + v1169 
-                                            let v1172 : string = "get_or_init"
-                                            let v1173 : string = v1167.Replace (v1171, v1172)
-                                            let v1174 : string = "\";\".into()"
-                                            let v1175 : string = Fable.Core.RustInterop.emitRustExpr () v1174 
-                                            let v1176 : string = "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1"
-                                            let v1177 : string = v1176 + v1175 
-                                            let v1178 : string = "type ConcurrentStack_1<T> = T;"
-                                            let v1179 : string = v1173.Replace (v1177, v1178)
-                                            let v1180 : string = "\";\".into()"
-                                            let v1181 : string = Fable.Core.RustInterop.emitRustExpr () v1180 
-                                            let v1182 : string = "use fable_library_rust::System::Threading::CancellationToken"
-                                            let v1183 : string = v1182 + v1181 
-                                            let v1184 : string = "type CancellationToken = ();"
-                                            let v1185 : string = v1179.Replace (v1183, v1184)
-                                            let v1186 : string = "\";\".into()"
-                                            let v1187 : string = Fable.Core.RustInterop.emitRustExpr () v1186 
-                                            let v1188 : string = "use fable_library_rust::System::TimeZoneInfo"
-                                            let v1189 : string = v1188 + v1187 
-                                            let v1190 : string = "type TimeZoneInfo = i64;"
-                                            let v1191 : string = v1185.Replace (v1189, v1190)
-                                            let v1192 : string = "\";\".into()"
-                                            let v1193 : string = Fable.Core.RustInterop.emitRustExpr () v1192 
-                                            let v1194 : string = "use fable_library_rust::System::Threading::Tasks::TaskCanceledException"
-                                            let v1195 : string = v1194 + v1193 
-                                            let v1196 : string = "type TaskCanceledException = ();"
-                                            let v1197 : string = v1191.Replace (v1195, v1196)
-                                            v1197
-                                    let v1199 : bool = v1122 = false
-                                    if v1199 then
-                                        let v1200 : string = $"{v1198}\n\n{v1121}\n"
-                                        method24(v1092, v1200)
-                                    let v1201 : string = $"cargo +nightly run --manifest-path \"{v816}\""
-                                    let v1202 : string = "TRACE_LEVEL"
-                                    let v1203 : string = "Verbose"
-                                    let v1204 : string = "RUSTC_WRAPPER"
-                                    let v1205 : string = "sccache"
-                                    let v1206 : string = "RUSTFLAGS"
-                                    let v1207 : string = "-C prefer-dynamic"
-                                    let v1208 : (struct (string * string) []) = [|struct (v1202, v1203); struct (v1204, v1205); struct (v1206, v1207)|]
-                                    let v1209 : System.Threading.CancellationToken option = None
-                                    let v1210 : (struct (string * string) []) = [||]
-                                    let v1211 : (struct (bool * string * int32) -> Async<unit>) option = None
-                                    let v1212 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option = None
-                                    let v1213 : string option = None
-                                    let v1219 : Result<string, string> =
-                                        match v927 with
-                                        | US12_1(v1216) -> (* Error *)
-                                            let v1217 : Result<string, string> = Error v1216 
-                                            v1217
-                                        | US12_0(v1214) -> (* Ok *)
-                                            let v1215 : Result<string, string> = Ok v1214 
-                                            v1215
-                                    let v1220 : string = "v1219.ok()"
-                                    let v1221 : string option = Fable.Core.RustInterop.emitRustExpr () v1220 
-                                    let v1222 : bool = true
-                                    let struct (v1223 : int32, v1224 : string) = method28(v1209, v1201, v1208, v1211, v1212, v1222, v1221)
-                                    let v1225 : string = ""
-                                    let v1226 : string = $"target/debug/spiral_builder_{v652}{v1225}"
-                                    let v1227 : string = method15(v818, v1226)
-                                    let v1228 : string = ".pdb"
-                                    let v1229 : string = $"target/debug/spiral_builder_{v652}{v1228}"
-                                    let v1230 : string = method15(v818, v1229)
-                                    let v1231 : string = ".exe"
-                                    let v1232 : string = $"target/debug/spiral_builder_{v652}{v1231}"
-                                    let v1233 : string = method15(v818, v1232)
-                                    let v1234 : string = ".d"
-                                    let v1235 : string = $"target/debug/spiral_builder_{v652}{v1234}"
-                                    let v1236 : string = method15(v818, v1235)
-                                    let v1237 : bool = method26(v1227)
-                                    let v1238 : bool = method26(v1230)
-                                    let v1239 : bool = method26(v1233)
-                                    let v1240 : bool = method26(v1236)
-                                    let v1241 : US0 = US0_0
-                                    let v1242 : (unit -> string) = closure80()
-                                    let v1243 : (unit -> string) = closure81(v1092, v1236, v1240, v1233, v1239, v1230, v1238, v1227, v1237)
-                                    method5(v1241, v1242, v1243)
-                                    let v1247 : UH3 =
-                                        if v1237 then
-                                            let v1244 : UH3 = UH3_0
-                                            UH3_1(v1227, v1237, v1244)
+#else
+                                            let v1154 : string = method104()
+                                            let v1155 : string = System.Text.RegularExpressions.Regex.Replace (v1135, v1154, v1136)
+                                            v1155 
+                                            #endif
+                                            |> fun x -> _v1137 <- Some x
+                                            let v1156 : string = match _v1137 with Some x -> x | None -> failwith "base.run_target / _v1137=None"
+                                            let v1157 : string = "\",\".into()"
+                                            let v1158 : string = Fable.Core.RustInterop.emitRustExpr () v1157 
+                                            let v1159 : string = "defaultOf()"
+                                            let v1160 : string = v1159 + v1158 
+                                            let v1161 : string = "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
+                                            let v1162 : string = v1156.Replace (v1160, v1161)
+                                            let v1163 : string = "\"_.\".into()"
+                                            let v1164 : string = Fable.Core.RustInterop.emitRustExpr () v1163 
+                                            let v1165 : string = "_self"
+                                            let v1166 : string = v1165 + v1164 
+                                            let v1167 : string = "self."
+                                            let v1168 : string = v1162.Replace (v1166, v1167)
+                                            let v1169 : string = "\"h\".into()"
+                                            let v1170 : string = Fable.Core.RustInterop.emitRustExpr () v1169 
+                                            let v1171 : string = "get_or_insert_wit"
+                                            let v1172 : string = v1171 + v1170 
+                                            let v1173 : string = "get_or_init"
+                                            let v1174 : string = v1168.Replace (v1172, v1173)
+                                            let v1175 : string = "\";\".into()"
+                                            let v1176 : string = Fable.Core.RustInterop.emitRustExpr () v1175 
+                                            let v1177 : string = "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1"
+                                            let v1178 : string = v1177 + v1176 
+                                            let v1179 : string = "type ConcurrentStack_1<T> = T;"
+                                            let v1180 : string = v1174.Replace (v1178, v1179)
+                                            let v1181 : string = "\";\".into()"
+                                            let v1182 : string = Fable.Core.RustInterop.emitRustExpr () v1181 
+                                            let v1183 : string = "use fable_library_rust::System::Threading::CancellationToken"
+                                            let v1184 : string = v1183 + v1182 
+                                            let v1185 : string = "type CancellationToken = ();"
+                                            let v1186 : string = v1180.Replace (v1184, v1185)
+                                            let v1187 : string = "\";\".into()"
+                                            let v1188 : string = Fable.Core.RustInterop.emitRustExpr () v1187 
+                                            let v1189 : string = "use fable_library_rust::System::TimeZoneInfo"
+                                            let v1190 : string = v1189 + v1188 
+                                            let v1191 : string = "type TimeZoneInfo = i64;"
+                                            let v1192 : string = v1186.Replace (v1190, v1191)
+                                            let v1193 : string = "\";\".into()"
+                                            let v1194 : string = Fable.Core.RustInterop.emitRustExpr () v1193 
+                                            let v1195 : string = "use fable_library_rust::System::Threading::Tasks::TaskCanceledException"
+                                            let v1196 : string = v1195 + v1194 
+                                            let v1197 : string = "type TaskCanceledException = ();"
+                                            let v1198 : string = v1192.Replace (v1196, v1197)
+                                            v1198
+                                    let v1200 : bool = v1123 = false
+                                    if v1200 then
+                                        let v1201 : string = $"{v1199}\n\n{v1122}\n"
+                                        method24(v1093, v1201)
+                                    let v1202 : string = $"cargo +nightly run --manifest-path \"{v817}\""
+                                    let v1203 : string = "TRACE_LEVEL"
+                                    let v1204 : string = "Verbose"
+                                    let v1205 : string = "RUSTC_WRAPPER"
+                                    let v1206 : string = "sccache"
+                                    let v1207 : string = "RUSTFLAGS"
+                                    let v1208 : string = "-C prefer-dynamic"
+                                    let v1209 : (struct (string * string) []) = [|struct (v1203, v1204); struct (v1205, v1206); struct (v1207, v1208)|]
+                                    let v1210 : System.Threading.CancellationToken option = None
+                                    let v1211 : (struct (string * string) []) = [||]
+                                    let v1212 : (struct (bool * string * int32) -> Async<unit>) option = None
+                                    let v1213 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option = None
+                                    let v1214 : string option = None
+                                    let v1220 : Result<string, string> =
+                                        match v928 with
+                                        | US12_1(v1217) -> (* Error *)
+                                            let v1218 : Result<string, string> = Error v1217 
+                                            v1218
+                                        | US12_0(v1215) -> (* Ok *)
+                                            let v1216 : Result<string, string> = Ok v1215 
+                                            v1216
+                                    let v1221 : string = "v1220.ok()"
+                                    let v1222 : string option = Fable.Core.RustInterop.emitRustExpr () v1221 
+                                    let v1223 : bool = true
+                                    let struct (v1224 : int32, v1225 : string) = method28(v1210, v1202, v1209, v1212, v1213, v1223, v1222)
+                                    let v1226 : string = ""
+                                    let v1227 : string = $"target/debug/spiral_builder_{v653}{v1226}"
+                                    let v1228 : string = method14(v819, v1227)
+                                    let v1229 : string = ".pdb"
+                                    let v1230 : string = $"target/debug/spiral_builder_{v653}{v1229}"
+                                    let v1231 : string = method14(v819, v1230)
+                                    let v1232 : string = ".exe"
+                                    let v1233 : string = $"target/debug/spiral_builder_{v653}{v1232}"
+                                    let v1234 : string = method14(v819, v1233)
+                                    let v1235 : string = ".d"
+                                    let v1236 : string = $"target/debug/spiral_builder_{v653}{v1235}"
+                                    let v1237 : string = method14(v819, v1236)
+                                    let v1238 : bool = method26(v1228)
+                                    let v1239 : bool = method26(v1231)
+                                    let v1240 : bool = method26(v1234)
+                                    let v1241 : bool = method26(v1237)
+                                    let v1242 : US0 = US0_0
+                                    let v1243 : (unit -> string) = closure80()
+                                    let v1244 : (unit -> string) = closure81(v1093, v1237, v1241, v1234, v1240, v1231, v1239, v1228, v1238)
+                                    method5(v1242, v1243, v1244)
+                                    let v1248 : UH3 =
+                                        if v1238 then
+                                            let v1245 : UH3 = UH3_0
+                                            UH3_1(v1228, v1238, v1245)
                                         else
                                             UH3_0
-                                    let v1249 : UH3 =
-                                        if v1238 then
-                                            UH3_1(v1230, v1238, v1247)
-                                        else
-                                            v1247
-                                    let v1251 : UH3 =
+                                    let v1250 : UH3 =
                                         if v1239 then
-                                            UH3_1(v1233, v1239, v1249)
+                                            UH3_1(v1231, v1239, v1248)
                                         else
-                                            v1249
-                                    let v1253 : UH3 =
+                                            v1248
+                                    let v1252 : UH3 =
                                         if v1240 then
-                                            UH3_1(v1236, v1240, v1251)
+                                            UH3_1(v1234, v1240, v1250)
                                         else
-                                            v1251
-                                    method105(v1253)
-                                    let v1254 : int32 = v1208.Length
-                                    let v1255 : (string []) = Array.zeroCreate<string> (v1254)
-                                    let v1256 : Mut4 = {l0 = 0} : Mut4
-                                    while method32(v1254, v1256) do
-                                        let v1258 : int32 = v1256.l0
-                                        let struct (v1259 : string, v1260 : string) = v1208.[int v1258]
-                                        let v1261 : string = $"$env:{v1259}=''{v1260}''"
-                                        v1255.[int v1258] <- v1261
-                                        let v1262 : int32 = v1258 + 1
-                                        v1256.l0 <- v1262
+                                            v1250
+                                    let v1254 : UH3 =
+                                        if v1241 then
+                                            UH3_1(v1237, v1241, v1252)
+                                        else
+                                            v1252
+                                    method105(v1254)
+                                    let v1255 : int32 = v1209.Length
+                                    let v1256 : (string []) = Array.zeroCreate<string> (v1255)
+                                    let v1257 : Mut4 = {l0 = 0} : Mut4
+                                    while method32(v1255, v1257) do
+                                        let v1259 : int32 = v1257.l0
+                                        let struct (v1260 : string, v1261 : string) = v1209.[int v1259]
+                                        let v1262 : string = $"$env:{v1260}=''{v1261}''"
+                                        v1256.[int v1259] <- v1262
+                                        let v1263 : int32 = v1259 + 1
+                                        v1257.l0 <- v1263
                                         ()
-                                    let v1263 : ((string []) -> string seq) = Seq.ofArray
-                                    let v1264 : string seq = v1263 v1255
-                                    let v1265 : (string -> (string seq -> string)) = String.concat
-                                    let v1266 : string = ";"
-                                    let v1267 : (string seq -> string) = v1265 v1266
-                                    let v1268 : string = v1267 v1264
-                                    let v1269 : string = $"pwsh -c '{v1268}; {v1201}'"
-                                    let v1270 : bool = v1223 = 0
-                                    if v1270 then
-                                        let v1271 : (unit -> string) = closure82(v1224)
-                                        let v1272 : (string -> US3) = closure45()
-                                        let v1273 : (exn -> US3) = closure84(v1092, v1224, v1269)
-                                        let v1274 : US3 = try v1271 () |> v1272 with ex -> v1273 ex 
-                                        let v1279 : string option =
-                                            match v1274 with
+                                    let v1264 : ((string []) -> string seq) = Seq.ofArray
+                                    let v1265 : string seq = v1264 v1256
+                                    let v1266 : (string -> (string seq -> string)) = String.concat
+                                    let v1267 : string = ";"
+                                    let v1268 : (string seq -> string) = v1266 v1267
+                                    let v1269 : string = v1268 v1265
+                                    let v1270 : string = $"pwsh -c '{v1269}; {v1202}'"
+                                    let v1271 : bool = v1224 = 0
+                                    if v1271 then
+                                        let v1272 : (unit -> string) = closure82(v1225)
+                                        let v1273 : (string -> US3) = closure45()
+                                        let v1274 : (exn -> US3) = closure84(v1093, v1225, v1270)
+                                        let v1275 : US3 = try v1272 () |> v1273 with ex -> v1274 ex 
+                                        let v1280 : string option =
+                                            match v1275 with
                                             | US3_1 -> (* None *)
-                                                let v1277 : string option = None
+                                                let v1278 : string option = None
+                                                v1278
+                                            | US3_0(v1276) -> (* Some *)
+                                                let v1277 : string option = Some v1276 
                                                 v1277
-                                            | US3_0(v1275) -> (* Some *)
-                                                let v1276 : string option = Some v1275 
-                                                v1276
-                                        let v1280 : string = "$0.unwrap()"
-                                        let v1281 : string = Fable.Core.RustInterop.emitRustExpr v1279 v1280 
-                                        let v1282 : US3 = US3_0(v1198)
-                                        let v1283 : US3 = US3_0(v650)
-                                        let v1284 : US3 = US3_0(v1281)
-                                        struct (v1282, v1283, v1284)
+                                        let v1281 : string = "$0.unwrap()"
+                                        let v1282 : string = Fable.Core.RustInterop.emitRustExpr v1280 v1281 
+                                        let v1283 : US3 = US3_0(v1199)
+                                        let v1284 : US3 = US3_0(v651)
+                                        let v1285 : US3 = US3_0(v1282)
+                                        struct (v1283, v1284, v1285)
                                     else
-                                        let v1285 : US0 = US0_4
-                                        let v1286 : (unit -> string) = closure87()
-                                        let v1287 : (unit -> string) = closure88(v1092, v1224, v1223, v1269)
-                                        method5(v1285, v1286, v1287)
-                                        let v1288 : US3 = US3_1
-                                        let v1289 : US3 = US3_0(v650)
-                                        let v1290 : US3 = US3_1
-                                        struct (v1288, v1289, v1290)
+                                        let v1286 : US0 = US0_4
+                                        let v1287 : (unit -> string) = closure87()
+                                        let v1288 : (unit -> string) = closure88(v1093, v1225, v1224, v1270)
+                                        method5(v1286, v1287, v1288)
+                                        let v1289 : US3 = US3_1
+                                        let v1290 : US3 = US3_0(v651)
+                                        let v1291 : US3 = US3_1
+                                        struct (v1289, v1290, v1291)
                             else
-                                let v1297 : string = "fable_library_rust::String_::fromString($0)"
-                                let v1298 : string = Fable.Core.RustInterop.emitRustExpr v13 v1297 
-                                let v1300 : bool = v1298 = "typescript"
-                                if v1300 then
-                                    let v1301 : string = method63()
-                                    let v1302 : string = "&*$0"
-                                    let v1303 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1301 v1302 
-                                    let v1304 : string = "clap::ArgMatches::get_one(&$0, v1303).cloned()"
-                                    let v1305 : std_string_String option = Fable.Core.RustInterop.emitRustExpr v14 v1304 
-                                    let v1306 : US5 option = None
-                                    let _v1306 = ref v1306 
-                                    match v1305 with
+                                let v1298 : string = "fable_library_rust::String_::fromString($0)"
+                                let v1299 : string = Fable.Core.RustInterop.emitRustExpr v13 v1298 
+                                let v1301 : bool = v1299 = "typescript"
+                                if v1301 then
+                                    let v1302 : string = method63()
+                                    let v1303 : string = "&*$0"
+                                    let v1304 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1302 v1303 
+                                    let v1305 : string = "clap::ArgMatches::get_one(&$0, v1304).cloned()"
+                                    let v1306 : std_string_String option = Fable.Core.RustInterop.emitRustExpr v14 v1305 
+                                    let v1307 : US5 option = None
+                                    let _v1307 = ref v1307 
+                                    match v1306 with
                                     | Some x -> (
                                     (fun () ->
                                     (fun () ->
-                                    let v1307 : std_string_String = x
-                                    let v1308 : US5 = US5_0(v1307)
-                                    v1308 
+                                    let v1308 : std_string_String = x
+                                    let v1309 : US5 = US5_0(v1308)
+                                    v1309 
                                     )
                                     |> fun x -> x () |> Some
                                     ) () ) | None -> None
-                                    |> fun x -> _v1306.Value <- x
-                                    let v1309 : US5 option = _v1306.Value 
-                                    let v1310 : US5 = US5_1
-                                    let v1311 : US5 = v1309 |> Option.defaultValue v1310 
-                                    let v1315 : std_string_String =
-                                        match v1311 with
+                                    |> fun x -> _v1307.Value <- x
+                                    let v1310 : US5 option = _v1307.Value 
+                                    let v1311 : US5 = US5_1
+                                    let v1312 : US5 = v1310 |> Option.defaultValue v1311 
+                                    let v1316 : std_string_String =
+                                        match v1312 with
                                         | US5_1 -> (* None *)
                                             failwith<std_string_String> "Option does not have a value."
-                                        | US5_0(v1312) -> (* Some *)
-                                            v1312
-                                    let v1316 : string = "fable_library_rust::String_::fromString($0)"
-                                    let v1317 : string = Fable.Core.RustInterop.emitRustExpr v1315 v1316 
-                                    let v1318 : string = method13()
-                                    let v1319 : string = "&*$0"
-                                    let v1320 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1318 v1319 
-                                    let v1321 : string = "clap::ArgMatches::get_many(&$0, v1320).map(|x| x.cloned().into_iter().collect())"
-                                    let v1322 : Vec<std_string_String> option = Fable.Core.RustInterop.emitRustExpr v14 v1321 
-                                    let v1323 : US9 option = None
-                                    let _v1323 = ref v1323 
-                                    match v1322 with
+                                        | US5_0(v1313) -> (* Some *)
+                                            v1313
+                                    let v1317 : string = "fable_library_rust::String_::fromString($0)"
+                                    let v1318 : string = Fable.Core.RustInterop.emitRustExpr v1316 v1317 
+                                    let v1319 : string = method13()
+                                    let v1320 : string = "&*$0"
+                                    let v1321 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1319 v1320 
+                                    let v1322 : string = "clap::ArgMatches::get_many(&$0, v1321).map(|x| x.cloned().into_iter().collect())"
+                                    let v1323 : Vec<std_string_String> option = Fable.Core.RustInterop.emitRustExpr v14 v1322 
+                                    let v1324 : US9 option = None
+                                    let _v1324 = ref v1324 
+                                    match v1323 with
                                     | Some x -> (
                                     (fun () ->
                                     (fun () ->
-                                    let v1324 : Vec<std_string_String> = x
-                                    let v1325 : US9 = US9_0(v1324)
-                                    v1325 
+                                    let v1325 : Vec<std_string_String> = x
+                                    let v1326 : US9 = US9_0(v1325)
+                                    v1326 
                                     )
                                     |> fun x -> x () |> Some
                                     ) () ) | None -> None
-                                    |> fun x -> _v1323.Value <- x
-                                    let v1326 : US9 option = _v1323.Value 
-                                    let v1327 : US9 = US9_1
-                                    let v1328 : US9 = v1326 |> Option.defaultValue v1327 
-                                    let v1329 : (std_string_String []) = [||]
-                                    let v1330 : string = "$0.to_vec()"
-                                    let v1331 : Vec<std_string_String> = Fable.Core.RustInterop.emitRustExpr v1329 v1330 
-                                    let v1334 : Vec<std_string_String> =
-                                        match v1328 with
+                                    |> fun x -> _v1324.Value <- x
+                                    let v1327 : US9 option = _v1324.Value 
+                                    let v1328 : US9 = US9_1
+                                    let v1329 : US9 = v1327 |> Option.defaultValue v1328 
+                                    let v1330 : (std_string_String []) = [||]
+                                    let v1331 : string = "$0.to_vec()"
+                                    let v1332 : Vec<std_string_String> = Fable.Core.RustInterop.emitRustExpr v1330 v1331 
+                                    let v1335 : Vec<std_string_String> =
+                                        match v1329 with
                                         | US9_1 -> (* None *)
-                                            v1331
-                                        | US9_0(v1332) -> (* Some *)
                                             v1332
-                                    let v1336 : bool =
+                                        | US9_0(v1333) -> (* Some *)
+                                            v1333
+                                    let v1337 : bool =
                                         match v0 with
                                         | US0_0 -> (* Verbose *)
                                             true
                                         | _ ->
                                             false
-                                    let v1337 : bool = true
-                                    let mutable _v1337 : string option = None 
-                                    
-#if FABLE_COMPILER || WASM || CONTRACT
-                                    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
                                     let v1338 : bool = true
-                                    let mutable _v1338 : Vec<uint8> option = None 
+                                    let mutable _v1338 : string option = None 
                                     
 #if FABLE_COMPILER || WASM || CONTRACT
                                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                    let v1339 : string = "std::fs::read(&*$0).unwrap()"
-                                    let v1340 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1317 v1339 
-                                    v1340 
-                                    #endif
-#if FABLE_COMPILER_RUST && WASM
-                                    let v1341 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                    let v1339 : bool = true
+                                    let mutable _v1339 : Vec<uint8> option = None 
+                                    
+#if FABLE_COMPILER || WASM || CONTRACT
+                                    
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                    let v1340 : string = "std::fs::read(&*$0).unwrap()"
+                                    let v1341 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1318 v1340 
                                     v1341 
                                     #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                     let v1342 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                     v1342 
                                     #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                     let v1343 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                     v1343 
                                     #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                     let v1344 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                     v1344 
                                     #endif
+#if FABLE_COMPILER_PYTHON
+                                    let v1345 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                    v1345 
+                                    #endif
 #else
-                                    let v1345 : (uint8 []) = v1317 |> System.IO.File.ReadAllBytes
-                                    let v1346 : string = "$0.to_vec()"
-                                    let v1347 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1345 v1346 
-                                    v1347 
+                                    let v1346 : (uint8 []) = v1318 |> System.IO.File.ReadAllBytes
+                                    let v1347 : string = "$0.to_vec()"
+                                    let v1348 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1346 v1347 
+                                    v1348 
                                     #endif
-                                    |> fun x -> _v1338 <- Some x
-                                    let v1348 : Vec<uint8> = match _v1338 with Some x -> x | None -> failwith "base.run_target / _v1338=None"
-                                    let v1349 : string = "std::string::String::from_utf8(v1348)"
-                                    let v1350 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v1349 
-                                    let v1351 : string = "$0.unwrap()"
-                                    let v1352 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1350 v1351 
-                                    let v1353 : string = "fable_library_rust::String_::fromString($0)"
-                                    let v1354 : string = Fable.Core.RustInterop.emitRustExpr v1352 v1353 
-                                    v1354 
-                                    #endif
-#if FABLE_COMPILER_RUST && WASM
-                                    let v1355 : string = null |> unbox<string>
+                                    |> fun x -> _v1339 <- Some x
+                                    let v1349 : Vec<uint8> = match _v1339 with Some x -> x | None -> failwith "base.run_target / _v1339=None"
+                                    let v1350 : string = "std::string::String::from_utf8(v1349)"
+                                    let v1351 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v1350 
+                                    let v1352 : string = "$0.unwrap()"
+                                    let v1353 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1351 v1352 
+                                    let v1354 : string = "fable_library_rust::String_::fromString($0)"
+                                    let v1355 : string = Fable.Core.RustInterop.emitRustExpr v1353 v1354 
                                     v1355 
                                     #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                     let v1356 : string = null |> unbox<string>
                                     v1356 
                                     #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                     let v1357 : string = null |> unbox<string>
                                     v1357 
                                     #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                     let v1358 : string = null |> unbox<string>
                                     v1358 
                                     #endif
-#else
-                                    let v1359 : string = v1317 |> System.IO.File.ReadAllText
+#if FABLE_COMPILER_PYTHON
+                                    let v1359 : string = null |> unbox<string>
                                     v1359 
                                     #endif
-                                    |> fun x -> _v1337 <- Some x
-                                    let v1360 : string = match _v1337 with Some x -> x | None -> failwith "base.run_target / _v1337=None"
-                                    let v1361 : string = "ts"
-                                    let v1362 : string = $"%A{struct (v1361, v1360)}"
-                                    let v1363 : string = method80(v1362)
-                                    let v1364 : string = __SOURCE_DIRECTORY__
-                                    let v1365 : string = method14()
+#else
+                                    let v1360 : string = v1318 |> System.IO.File.ReadAllText
+                                    v1360 
+                                    #endif
+                                    |> fun x -> _v1338 <- Some x
+                                    let v1361 : string = match _v1338 with Some x -> x | None -> failwith "base.run_target / _v1338=None"
+                                    let v1362 : string = "ts"
+                                    let v1363 : string = $"%A{struct (v1362, v1361)}"
+                                    let v1364 : string = method80(v1363)
+                                    let v1365 : string = __SOURCE_DIRECTORY__
                                     let v1366 : string = "polyglot"
                                     let v1367 : string = ".paket"
-                                    let v1368 : string = method15(v1366, v1367)
-                                    let v1369 : US12 = method18(v1368, v1364)
+                                    let v1368 : string = method14(v1366, v1367)
+                                    let v1369 : US12 = method17(v1368, v1365)
                                     let v1378 : US3 =
                                         match v1369 with
                                         | US12_1(v1372) -> (* Error *)
@@ -10812,162 +10811,162 @@ pwsh_replace_html_result: {v505}"
                                             US3_1
                                         | US12_0(v1370) -> (* Ok *)
                                             US3_0(v1370)
-                                    let v1393 : US3 =
+                                    let v1394 : US3 =
                                         match v1378 with
                                         | US3_1 -> (* None *)
-                                            let v1381 : string = method15(v1366, v1367)
-                                            let v1382 : US12 = method18(v1381, v1365)
-                                            match v1382 with
-                                            | US12_1(v1385) -> (* Error *)
-                                                let v1386 : US0 = US0_3
-                                                let v1387 : (unit -> string) = closure10()
-                                                let v1388 : (unit -> string) = closure11(v1385)
-                                                method5(v1386, v1387, v1388)
+                                            let v1381 : string = method22()
+                                            let v1382 : string = method14(v1366, v1367)
+                                            let v1383 : US12 = method17(v1382, v1381)
+                                            match v1383 with
+                                            | US12_1(v1386) -> (* Error *)
+                                                let v1387 : US0 = US0_3
+                                                let v1388 : (unit -> string) = closure10()
+                                                let v1389 : (unit -> string) = closure11(v1386)
+                                                method5(v1387, v1388, v1389)
                                                 US3_1
-                                            | US12_0(v1383) -> (* Ok *)
-                                                US3_0(v1383)
+                                            | US12_0(v1384) -> (* Ok *)
+                                                US3_0(v1384)
                                         | US3_0(v1379) -> (* Some *)
                                             US3_0(v1379)
-                                    let v1397 : string =
-                                        match v1393 with
+                                    let v1398 : string =
+                                        match v1394 with
                                         | US3_1 -> (* None *)
                                             failwith<string> "Option does not have a value."
-                                        | US3_0(v1394) -> (* Some *)
-                                            v1394
-                                    let v1398 : string = method15(v1397, v1366)
-                                    let v1399 : string = "target/spiral_builder"
-                                    let v1400 : string = method15(v1398, v1399)
-                                    let v1401 : string = "spiral_builder"
-                                    let v1402 : string = method15(v1400, v1401)
-                                    let v1403 : string = "packages"
-                                    let v1404 : string = method15(v1402, v1403)
-                                    let v1405 : string = method15(v1404, v1363)
-                                    let v1406 : System.IDisposable = method82(v1405)
-                                    let v1407 : string = $"{v1401}.fs"
-                                    let v1408 : string = method15(v1405, v1407)
-                                    let v1409 : string = method70(v1408)
-                                    method24(v1409, v1360)
-                                    let v1410 : string list = []
-                                    let v1411 : string seq = seq { for i = 0 to v1410.Length - 1 do yield v1410.[i] }
-                                    let v1412 : (string -> (string seq -> string)) = String.concat
-                                    let v1413 : string = "\\n        "
-                                    let v1414 : (string seq -> string) = v1412 v1413
-                                    let v1415 : string = v1414 v1411
-                                    let v1416 : string = "Fable.Core"
-                                    let v1417 : string = $"<PackageReference Include=\"{v1416}\" Version=\"*\" />"
-                                    let v1418 : string list = []
-                                    let v1419 : string list = v1417 :: v1418 
-                                    let v1420 : string seq = seq { for i = 0 to v1419.Length - 1 do yield v1419.[i] }
-                                    let v1421 : (string -> (string seq -> string)) = String.concat
-                                    let v1422 : (string seq -> string) = v1421 v1413
-                                    let v1423 : string = v1422 v1420
-                                    let v1424 : string = $"{v1401}.fsproj"
-                                    let v1425 : string = method15(v1405, v1424)
-                                    let v1426 : string = method70(v1425)
-                                    let v1427 : string = $"<Project Sdk=\"Microsoft.NET.Sdk\">"
-                                    let v1428 : string = $"<PropertyGroup>"
-                                    let v1429 : string = "\n"
-                                    let v1430 : string = v1427 + v1429 
-                                    let v1431 : string = v1430 + v1428 
-                                    let v1432 : string = $"    <TargetFramework>net9.0</TargetFramework>"
-                                    let v1433 : string = v1431 + v1429 
-                                    let v1434 : string = v1433 + v1432 
-                                    let v1435 : string = $"    <LangVersion>preview</LangVersion>"
-                                    let v1436 : string = v1434 + v1429 
-                                    let v1437 : string = v1436 + v1435 
-                                    let v1438 : string = $"    <RollForward>Major</RollForward>"
-                                    let v1439 : string = v1437 + v1429 
-                                    let v1440 : string = v1439 + v1438 
-                                    let v1441 : string = $"    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>"
-                                    let v1442 : string = v1440 + v1429 
-                                    let v1443 : string = v1442 + v1441 
-                                    let v1444 : string = $"    <PublishAot>false</PublishAot>"
-                                    let v1445 : string = v1443 + v1429 
-                                    let v1446 : string = v1445 + v1444 
-                                    let v1447 : string = $"    <PublishTrimmed>false</PublishTrimmed>"
-                                    let v1448 : string = v1446 + v1429 
-                                    let v1449 : string = v1448 + v1447 
-                                    let v1450 : string = $"    <PublishSingleFile>true</PublishSingleFile>"
-                                    let v1451 : string = v1449 + v1429 
-                                    let v1452 : string = v1451 + v1450 
-                                    let v1453 : string = $"    <SelfContained>true</SelfContained>"
-                                    let v1454 : string = v1452 + v1429 
-                                    let v1455 : string = v1454 + v1453 
-                                    let v1456 : string = $"    <Version>0.0.1-alpha.1</Version>"
-                                    let v1457 : string = v1455 + v1429 
-                                    let v1458 : string = v1457 + v1456 
-                                    let v1459 : string = $"    <OutputType>Exe</OutputType>"
-                                    let v1460 : string = v1458 + v1429 
-                                    let v1461 : string = v1460 + v1459 
-                                    let v1462 : string = $"</PropertyGroup>"
-                                    let v1463 : string = v1461 + v1429 
-                                    let v1464 : string = v1463 + v1462 
-                                    let v1465 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('FreeBSD'))\">"
-                                    let v1466 : string = v1464 + v1429 
-                                    let v1467 : string = v1466 + v1465 
-                                    let v1468 : string = $"    <DefineConstants>_FREEBSD</DefineConstants>"
-                                    let v1469 : string = v1467 + v1429 
-                                    let v1470 : string = v1469 + v1468 
-                                    let v1471 : string = $"</PropertyGroup>"
-                                    let v1472 : string = v1470 + v1429 
-                                    let v1473 : string = v1472 + v1471 
-                                    let v1474 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Linux'))\">"
-                                    let v1475 : string = v1473 + v1429 
-                                    let v1476 : string = v1475 + v1474 
-                                    let v1477 : string = $"    <DefineConstants>_LINUX</DefineConstants>"
-                                    let v1478 : string = v1476 + v1429 
-                                    let v1479 : string = v1478 + v1477 
-                                    let v1480 : string = $"</PropertyGroup>"
-                                    let v1481 : string = v1479 + v1429 
-                                    let v1482 : string = v1481 + v1480 
-                                    let v1483 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('OSX'))\">"
-                                    let v1484 : string = v1482 + v1429 
-                                    let v1485 : string = v1484 + v1483 
-                                    let v1486 : string = $"    <DefineConstants>_OSX</DefineConstants>"
-                                    let v1487 : string = v1485 + v1429 
-                                    let v1488 : string = v1487 + v1486 
-                                    let v1489 : string = $"</PropertyGroup>"
-                                    let v1490 : string = v1488 + v1429 
-                                    let v1491 : string = v1490 + v1489 
-                                    let v1492 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Windows'))\">"
-                                    let v1493 : string = v1491 + v1429 
-                                    let v1494 : string = v1493 + v1492 
-                                    let v1495 : string = $"    <DefineConstants>_WINDOWS</DefineConstants>"
-                                    let v1496 : string = v1494 + v1429 
-                                    let v1497 : string = v1496 + v1495 
-                                    let v1498 : string = $"</PropertyGroup>"
-                                    let v1499 : string = v1497 + v1429 
-                                    let v1500 : string = v1499 + v1498 
-                                    let v1501 : string = $"<ItemGroup>"
-                                    let v1502 : string = v1500 + v1429 
-                                    let v1503 : string = v1502 + v1501 
-                                    let v1504 : string = $"    {v1415}"
-                                    let v1505 : string = v1503 + v1429 
-                                    let v1506 : string = v1505 + v1504 
-                                    let v1507 : string = $"    <Compile Include=\"{v1409}\" />"
-                                    let v1508 : string = v1506 + v1429 
-                                    let v1509 : string = v1508 + v1507 
-                                    let v1510 : string = $"</ItemGroup>"
-                                    let v1511 : string = v1509 + v1429 
-                                    let v1512 : string = v1511 + v1510 
-                                    let v1513 : string = $"<ItemGroup>"
-                                    let v1514 : string = v1512 + v1429 
-                                    let v1515 : string = v1514 + v1513 
-                                    let v1516 : string = $"    {v1423}"
-                                    let v1517 : string = v1515 + v1429 
-                                    let v1518 : string = v1517 + v1516 
-                                    let v1519 : string = $"</ItemGroup>"
-                                    let v1520 : string = v1518 + v1429 
-                                    let v1521 : string = v1520 + v1519 
-                                    let v1522 : string = $"</Project>"
-                                    let v1523 : string = v1521 + v1429 
-                                    let v1524 : string = v1523 + v1522 
-                                    method24(v1426, v1524)
-                                    let v1525 : string = method23(v1426)
-                                    let v1526 : string = __SOURCE_DIRECTORY__
-                                    let v1527 : string = method14()
-                                    let v1528 : string = method15(v1366, v1367)
-                                    let v1529 : US12 = method18(v1528, v1526)
+                                        | US3_0(v1395) -> (* Some *)
+                                            v1395
+                                    let v1399 : string = method14(v1398, v1366)
+                                    let v1400 : string = "target/spiral_builder"
+                                    let v1401 : string = method14(v1399, v1400)
+                                    let v1402 : string = "spiral_builder"
+                                    let v1403 : string = method14(v1401, v1402)
+                                    let v1404 : string = "packages"
+                                    let v1405 : string = method14(v1403, v1404)
+                                    let v1406 : string = method14(v1405, v1364)
+                                    let v1407 : System.IDisposable = method82(v1406)
+                                    let v1408 : string = $"{v1402}.fs"
+                                    let v1409 : string = method14(v1406, v1408)
+                                    let v1410 : string = method70(v1409)
+                                    method24(v1410, v1361)
+                                    let v1411 : string list = []
+                                    let v1412 : string seq = seq { for i = 0 to v1411.Length - 1 do yield v1411.[i] }
+                                    let v1413 : (string -> (string seq -> string)) = String.concat
+                                    let v1414 : string = "\\n        "
+                                    let v1415 : (string seq -> string) = v1413 v1414
+                                    let v1416 : string = v1415 v1412
+                                    let v1417 : string = "Fable.Core"
+                                    let v1418 : string = $"<PackageReference Include=\"{v1417}\" Version=\"*\" />"
+                                    let v1419 : string list = []
+                                    let v1420 : string list = v1418 :: v1419 
+                                    let v1421 : string seq = seq { for i = 0 to v1420.Length - 1 do yield v1420.[i] }
+                                    let v1422 : (string -> (string seq -> string)) = String.concat
+                                    let v1423 : (string seq -> string) = v1422 v1414
+                                    let v1424 : string = v1423 v1421
+                                    let v1425 : string = $"{v1402}.fsproj"
+                                    let v1426 : string = method14(v1406, v1425)
+                                    let v1427 : string = method70(v1426)
+                                    let v1428 : string = $"<Project Sdk=\"Microsoft.NET.Sdk\">"
+                                    let v1429 : string = $"<PropertyGroup>"
+                                    let v1430 : string = "\n"
+                                    let v1431 : string = v1428 + v1430 
+                                    let v1432 : string = v1431 + v1429 
+                                    let v1433 : string = $"    <TargetFramework>net9.0</TargetFramework>"
+                                    let v1434 : string = v1432 + v1430 
+                                    let v1435 : string = v1434 + v1433 
+                                    let v1436 : string = $"    <LangVersion>preview</LangVersion>"
+                                    let v1437 : string = v1435 + v1430 
+                                    let v1438 : string = v1437 + v1436 
+                                    let v1439 : string = $"    <RollForward>Major</RollForward>"
+                                    let v1440 : string = v1438 + v1430 
+                                    let v1441 : string = v1440 + v1439 
+                                    let v1442 : string = $"    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>"
+                                    let v1443 : string = v1441 + v1430 
+                                    let v1444 : string = v1443 + v1442 
+                                    let v1445 : string = $"    <PublishAot>false</PublishAot>"
+                                    let v1446 : string = v1444 + v1430 
+                                    let v1447 : string = v1446 + v1445 
+                                    let v1448 : string = $"    <PublishTrimmed>false</PublishTrimmed>"
+                                    let v1449 : string = v1447 + v1430 
+                                    let v1450 : string = v1449 + v1448 
+                                    let v1451 : string = $"    <PublishSingleFile>true</PublishSingleFile>"
+                                    let v1452 : string = v1450 + v1430 
+                                    let v1453 : string = v1452 + v1451 
+                                    let v1454 : string = $"    <SelfContained>true</SelfContained>"
+                                    let v1455 : string = v1453 + v1430 
+                                    let v1456 : string = v1455 + v1454 
+                                    let v1457 : string = $"    <Version>0.0.1-alpha.1</Version>"
+                                    let v1458 : string = v1456 + v1430 
+                                    let v1459 : string = v1458 + v1457 
+                                    let v1460 : string = $"    <OutputType>Exe</OutputType>"
+                                    let v1461 : string = v1459 + v1430 
+                                    let v1462 : string = v1461 + v1460 
+                                    let v1463 : string = $"</PropertyGroup>"
+                                    let v1464 : string = v1462 + v1430 
+                                    let v1465 : string = v1464 + v1463 
+                                    let v1466 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('FreeBSD'))\">"
+                                    let v1467 : string = v1465 + v1430 
+                                    let v1468 : string = v1467 + v1466 
+                                    let v1469 : string = $"    <DefineConstants>_FREEBSD</DefineConstants>"
+                                    let v1470 : string = v1468 + v1430 
+                                    let v1471 : string = v1470 + v1469 
+                                    let v1472 : string = $"</PropertyGroup>"
+                                    let v1473 : string = v1471 + v1430 
+                                    let v1474 : string = v1473 + v1472 
+                                    let v1475 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Linux'))\">"
+                                    let v1476 : string = v1474 + v1430 
+                                    let v1477 : string = v1476 + v1475 
+                                    let v1478 : string = $"    <DefineConstants>_LINUX</DefineConstants>"
+                                    let v1479 : string = v1477 + v1430 
+                                    let v1480 : string = v1479 + v1478 
+                                    let v1481 : string = $"</PropertyGroup>"
+                                    let v1482 : string = v1480 + v1430 
+                                    let v1483 : string = v1482 + v1481 
+                                    let v1484 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('OSX'))\">"
+                                    let v1485 : string = v1483 + v1430 
+                                    let v1486 : string = v1485 + v1484 
+                                    let v1487 : string = $"    <DefineConstants>_OSX</DefineConstants>"
+                                    let v1488 : string = v1486 + v1430 
+                                    let v1489 : string = v1488 + v1487 
+                                    let v1490 : string = $"</PropertyGroup>"
+                                    let v1491 : string = v1489 + v1430 
+                                    let v1492 : string = v1491 + v1490 
+                                    let v1493 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Windows'))\">"
+                                    let v1494 : string = v1492 + v1430 
+                                    let v1495 : string = v1494 + v1493 
+                                    let v1496 : string = $"    <DefineConstants>_WINDOWS</DefineConstants>"
+                                    let v1497 : string = v1495 + v1430 
+                                    let v1498 : string = v1497 + v1496 
+                                    let v1499 : string = $"</PropertyGroup>"
+                                    let v1500 : string = v1498 + v1430 
+                                    let v1501 : string = v1500 + v1499 
+                                    let v1502 : string = $"<ItemGroup>"
+                                    let v1503 : string = v1501 + v1430 
+                                    let v1504 : string = v1503 + v1502 
+                                    let v1505 : string = $"    {v1416}"
+                                    let v1506 : string = v1504 + v1430 
+                                    let v1507 : string = v1506 + v1505 
+                                    let v1508 : string = $"    <Compile Include=\"{v1410}\" />"
+                                    let v1509 : string = v1507 + v1430 
+                                    let v1510 : string = v1509 + v1508 
+                                    let v1511 : string = $"</ItemGroup>"
+                                    let v1512 : string = v1510 + v1430 
+                                    let v1513 : string = v1512 + v1511 
+                                    let v1514 : string = $"<ItemGroup>"
+                                    let v1515 : string = v1513 + v1430 
+                                    let v1516 : string = v1515 + v1514 
+                                    let v1517 : string = $"    {v1424}"
+                                    let v1518 : string = v1516 + v1430 
+                                    let v1519 : string = v1518 + v1517 
+                                    let v1520 : string = $"</ItemGroup>"
+                                    let v1521 : string = v1519 + v1430 
+                                    let v1522 : string = v1521 + v1520 
+                                    let v1523 : string = $"</Project>"
+                                    let v1524 : string = v1522 + v1430 
+                                    let v1525 : string = v1524 + v1523 
+                                    method24(v1427, v1525)
+                                    let v1526 : string = method23(v1427)
+                                    let v1527 : string = __SOURCE_DIRECTORY__
+                                    let v1528 : string = method14(v1366, v1367)
+                                    let v1529 : US12 = method17(v1528, v1527)
                                     let v1538 : US3 =
                                         match v1529 with
                                         | US12_1(v1532) -> (* Error *)
@@ -10978,589 +10977,589 @@ pwsh_replace_html_result: {v505}"
                                             US3_1
                                         | US12_0(v1530) -> (* Ok *)
                                             US3_0(v1530)
-                                    let v1553 : US3 =
+                                    let v1554 : US3 =
                                         match v1538 with
                                         | US3_1 -> (* None *)
-                                            let v1541 : string = method15(v1366, v1367)
-                                            let v1542 : US12 = method18(v1541, v1527)
-                                            match v1542 with
-                                            | US12_1(v1545) -> (* Error *)
-                                                let v1546 : US0 = US0_3
-                                                let v1547 : (unit -> string) = closure10()
-                                                let v1548 : (unit -> string) = closure11(v1545)
-                                                method5(v1546, v1547, v1548)
+                                            let v1541 : string = method22()
+                                            let v1542 : string = method14(v1366, v1367)
+                                            let v1543 : US12 = method17(v1542, v1541)
+                                            match v1543 with
+                                            | US12_1(v1546) -> (* Error *)
+                                                let v1547 : US0 = US0_3
+                                                let v1548 : (unit -> string) = closure10()
+                                                let v1549 : (unit -> string) = closure11(v1546)
+                                                method5(v1547, v1548, v1549)
                                                 US3_1
-                                            | US12_0(v1543) -> (* Ok *)
-                                                US3_0(v1543)
+                                            | US12_0(v1544) -> (* Ok *)
+                                                US3_0(v1544)
                                         | US3_0(v1539) -> (* Some *)
                                             US3_0(v1539)
-                                    let v1557 : string =
-                                        match v1553 with
+                                    let v1558 : string =
+                                        match v1554 with
                                         | US3_1 -> (* None *)
                                             failwith<string> "Option does not have a value."
-                                        | US3_0(v1554) -> (* Some *)
-                                            v1554
-                                    let v1558 : string = method15(v1557, v1366)
-                                    let v1559 : string = method14()
-                                    let v1560 : (unit -> string) = v1559.ToLower
-                                    let v1561 : string = v1560 ()
-                                    let v1562 : (unit -> string) = v1558.ToLower
-                                    let v1563 : string = v1562 ()
-                                    let v1564 : bool = v1561.StartsWith v1563 
-                                    let v1567 : US12 =
-                                        if v1564 then
-                                            US12_1(v1563)
+                                        | US3_0(v1555) -> (* Some *)
+                                            v1555
+                                    let v1559 : string = method14(v1558, v1366)
+                                    let v1560 : string = method22()
+                                    let v1561 : (unit -> string) = v1560.ToLower
+                                    let v1562 : string = v1561 ()
+                                    let v1563 : (unit -> string) = v1559.ToLower
+                                    let v1564 : string = v1563 ()
+                                    let v1565 : bool = v1562.StartsWith v1564 
+                                    let v1568 : US12 =
+                                        if v1565 then
+                                            US12_1(v1564)
                                         else
-                                            US12_0(v1563)
-                                    let v1573 : Result<string, string> =
-                                        match v1567 with
-                                        | US12_1(v1570) -> (* Error *)
-                                            let v1571 : Result<string, string> = Error v1570 
-                                            v1571
-                                        | US12_0(v1568) -> (* Ok *)
-                                            let v1569 : Result<string, string> = Ok v1568 
-                                            v1569
-                                    let v1574 : string = "true; let _result = $0.unwrap_or_else(|x| { //"
-                                    let v1575 : bool = Fable.Core.RustInterop.emitRustExpr v1573 v1574 
-                                    let v1576 : string = "x"
-                                    let v1577 : string = Fable.Core.RustInterop.emitRustExpr () v1576 
-                                    let v1578 : string = "true; $0 })"
-                                    let v1579 : bool = Fable.Core.RustInterop.emitRustExpr v1577 v1578 
-                                    let v1580 : string = "_result"
-                                    let v1581 : string = Fable.Core.RustInterop.emitRustExpr () v1580 
-                                    let v1582 : string = "lib/typescript/fable/fable_modules"
-                                    let v1583 : string = method15(v1581, v1582)
-                                    let v1584 : string = "async_walkdir::WalkDir::new(&*$0)"
-                                    let v1585 : async_walkdir_WalkDir = Fable.Core.RustInterop.emitRustExpr v1583 v1584 
-                                    let v1586 : string = "async_walkdir::WalkDir::filter($0, |x| $1(x))"
-                                    let v1587 : (async_walkdir_DirEntry -> std_pin_Pin<Box<LifetimeJoin<Dyn<std_future_Future<async_walkdir_Filtering>>, Send<Dyn<std_future_Future<async_walkdir_Filtering>>>>>>) = closure89()
-                                    let v1588 : async_walkdir_WalkDir = Fable.Core.RustInterop.emitRustExpr struct (v1585, v1587) v1586 
-                                    let v1589 : (Result<async_walkdir_DirEntry, std_io_Error> -> struct (string * string) option) = method112()
-                                    let v1590 : string = "tokio_stream::StreamExt::collect(tokio_stream::StreamExt::filter_map(v1588, |x| v1589(x))).await"
-                                    let v1591 : Vec<struct (string * string)> = Fable.Core.RustInterop.emitRustExpr () v1590 
-                                    let v1592 : string = "rayon::iter::IntoParallelIterator::into_par_iter(v1591)"
-                                    let v1593 : rayon_vec_IntoIter<struct (string * string)> = Fable.Core.RustInterop.emitRustExpr () v1592 
-                                    let v1594 : string = "rayon::iter::ParallelIterator::map($0, |x| $1(x))"
-                                    let v1595 : (struct (string * string) -> struct (string * string)) = closure97()
-                                    let v1596 : rayon_iter_Map<rayon_vec_IntoIter<struct (string * string)>> = Fable.Core.RustInterop.emitRustExpr struct (v1593, v1595) v1594 
-                                    let v1597 : string = "rayon::iter::ParallelIterator::collect($0)"
-                                    let v1598 : Vec<struct (string * string)> = Fable.Core.RustInterop.emitRustExpr v1596 v1597 
-                                    let v1599 : string = "fable_library_rust::NativeArray_::array_from($0)"
-                                    let v1600 : (struct (string * string) []) = Fable.Core.RustInterop.emitRustExpr v1598 v1599 
-                                    let v1601 : (int32 -> ((struct (string * string) []) -> struct (string * string) option)) = Array.tryItem
-                                    let v1602 : ((struct (string * string) []) -> struct (string * string) option) = v1601 0
-                                    let v1603 : struct (string * string) option = v1602 v1600
-                                    let v1604 : US39 option = None
-                                    let _v1604 = ref v1604 
-                                    match v1603 with
+                                            US12_0(v1564)
+                                    let v1574 : Result<string, string> =
+                                        match v1568 with
+                                        | US12_1(v1571) -> (* Error *)
+                                            let v1572 : Result<string, string> = Error v1571 
+                                            v1572
+                                        | US12_0(v1569) -> (* Ok *)
+                                            let v1570 : Result<string, string> = Ok v1569 
+                                            v1570
+                                    let v1575 : string = "true; let _result = $0.unwrap_or_else(|x| { //"
+                                    let v1576 : bool = Fable.Core.RustInterop.emitRustExpr v1574 v1575 
+                                    let v1577 : string = "x"
+                                    let v1578 : string = Fable.Core.RustInterop.emitRustExpr () v1577 
+                                    let v1579 : string = "true; $0 })"
+                                    let v1580 : bool = Fable.Core.RustInterop.emitRustExpr v1578 v1579 
+                                    let v1581 : string = "_result"
+                                    let v1582 : string = Fable.Core.RustInterop.emitRustExpr () v1581 
+                                    let v1583 : string = "lib/typescript/fable/fable_modules"
+                                    let v1584 : string = method14(v1582, v1583)
+                                    let v1585 : string = "async_walkdir::WalkDir::new(&*$0)"
+                                    let v1586 : async_walkdir_WalkDir = Fable.Core.RustInterop.emitRustExpr v1584 v1585 
+                                    let v1587 : string = "async_walkdir::WalkDir::filter($0, |x| $1(x))"
+                                    let v1588 : (async_walkdir_DirEntry -> std_pin_Pin<Box<LifetimeJoin<Dyn<std_future_Future<async_walkdir_Filtering>>, Send<Dyn<std_future_Future<async_walkdir_Filtering>>>>>>) = closure89()
+                                    let v1589 : async_walkdir_WalkDir = Fable.Core.RustInterop.emitRustExpr struct (v1586, v1588) v1587 
+                                    let v1590 : (Result<async_walkdir_DirEntry, std_io_Error> -> struct (string * string) option) = method112()
+                                    let v1591 : string = "tokio_stream::StreamExt::collect(tokio_stream::StreamExt::filter_map(v1589, |x| v1590(x))).await"
+                                    let v1592 : Vec<struct (string * string)> = Fable.Core.RustInterop.emitRustExpr () v1591 
+                                    let v1593 : string = "rayon::iter::IntoParallelIterator::into_par_iter(v1592)"
+                                    let v1594 : rayon_vec_IntoIter<struct (string * string)> = Fable.Core.RustInterop.emitRustExpr () v1593 
+                                    let v1595 : string = "rayon::iter::ParallelIterator::map($0, |x| $1(x))"
+                                    let v1596 : (struct (string * string) -> struct (string * string)) = closure97()
+                                    let v1597 : rayon_iter_Map<rayon_vec_IntoIter<struct (string * string)>> = Fable.Core.RustInterop.emitRustExpr struct (v1594, v1596) v1595 
+                                    let v1598 : string = "rayon::iter::ParallelIterator::collect($0)"
+                                    let v1599 : Vec<struct (string * string)> = Fable.Core.RustInterop.emitRustExpr v1597 v1598 
+                                    let v1600 : string = "fable_library_rust::NativeArray_::array_from($0)"
+                                    let v1601 : (struct (string * string) []) = Fable.Core.RustInterop.emitRustExpr v1599 v1600 
+                                    let v1602 : (int32 -> ((struct (string * string) []) -> struct (string * string) option)) = Array.tryItem
+                                    let v1603 : ((struct (string * string) []) -> struct (string * string) option) = v1602 0
+                                    let v1604 : struct (string * string) option = v1603 v1601
+                                    let v1605 : US39 option = None
+                                    let _v1605 = ref v1605 
+                                    match v1604 with
                                     | Some x -> (
                                     (fun () ->
                                     (fun () ->
-                                    let struct (v1605 : string, v1606 : string) = x
-                                    let v1607 : US39 = US39_0(v1605, v1606)
-                                    v1607 
+                                    let struct (v1606 : string, v1607 : string) = x
+                                    let v1608 : US39 = US39_0(v1606, v1607)
+                                    v1608 
                                     )
                                     |> fun x -> x () |> Some
                                     ) () ) | None -> None
-                                    |> fun x -> _v1604.Value <- x
-                                    let v1608 : US39 option = _v1604.Value 
-                                    let v1609 : US39 = US39_1
-                                    let v1610 : US39 = v1608 |> Option.defaultValue v1609 
-                                    let v1611 : US0 = US0_1
-                                    let v1612 : (unit -> string) = closure98()
-                                    let v1613 : (unit -> string) = closure99(v1610)
-                                    method5(v1611, v1612, v1613)
-                                    match v1610 with
+                                    |> fun x -> _v1605.Value <- x
+                                    let v1609 : US39 option = _v1605.Value 
+                                    let v1610 : US39 = US39_1
+                                    let v1611 : US39 = v1609 |> Option.defaultValue v1610 
+                                    let v1612 : US0 = US0_1
+                                    let v1613 : (unit -> string) = closure98()
+                                    let v1614 : (unit -> string) = closure99(v1611)
+                                    method5(v1612, v1613, v1614)
+                                    match v1611 with
                                     | US39_1 -> (* None *)
                                         ()
-                                    | US39_0(v1614, v1615) -> (* Some *)
-                                        let v1616 : string = $"fable-library-{v1361}.{v1615}"
-                                        let v1617 : string = method15(v1583, v1616)
-                                        let v1618 : string = $"fable_modules/fable-library-{v1361}.{v1615}"
-                                        let v1619 : string = method15(v1525, v1618)
-                                        method98(v1617, v1619)
-                                    let struct (v1620 : int32, v1621 : string) = method99(v1525, v1361, v1426, v1567)
-                                    let v1622 : bool = v1620 <> 0 
-                                    if v1622 then
-                                        let v1623 : US0 = US0_4
-                                        let v1624 : (unit -> string) = closure100(v1621, v1620)
-                                        let v1625 : (unit -> string) = closure6()
-                                        method5(v1623, v1624, v1625)
-                                        let v1626 : US3 = US3_1
-                                        let v1627 : US3 = US3_0(v1361)
-                                        let v1628 : US3 = US3_0(v1621)
-                                        struct (v1626, v1627, v1628)
+                                    | US39_0(v1615, v1616) -> (* Some *)
+                                        let v1617 : string = $"fable-library-{v1362}.{v1616}"
+                                        let v1618 : string = method14(v1584, v1617)
+                                        let v1619 : string = $"fable_modules/fable-library-{v1362}.{v1616}"
+                                        let v1620 : string = method14(v1526, v1619)
+                                        method98(v1618, v1620)
+                                    let struct (v1621 : int32, v1622 : string) = method99(v1526, v1362, v1427, v1568)
+                                    let v1623 : bool = v1621 <> 0 
+                                    if v1623 then
+                                        let v1624 : US0 = US0_4
+                                        let v1625 : (unit -> string) = closure100(v1622, v1621)
+                                        let v1626 : (unit -> string) = closure6()
+                                        method5(v1624, v1625, v1626)
+                                        let v1627 : US3 = US3_1
+                                        let v1628 : US3 = US3_0(v1362)
+                                        let v1629 : US3 = US3_0(v1622)
+                                        struct (v1627, v1628, v1629)
                                     else
-                                        let v1629 : string = "true; let _result : Vec<_> = v1334.into_iter().map(|x| { //"
-                                        let v1630 : bool = Fable.Core.RustInterop.emitRustExpr () v1629 
-                                        let v1631 : string = "x"
-                                        let v1632 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1631 
-                                        let v1633 : string = "fable_library_rust::String_::fromString($0)"
-                                        let v1634 : string = Fable.Core.RustInterop.emitRustExpr v1632 v1633 
-                                        let v1635 : string = "="
-                                        let v1636 : bool = v1634.Contains v1635 
-                                        let v1638 : string =
-                                            if v1636 then
-                                                v1634
+                                        let v1630 : string = "true; let _result : Vec<_> = v1335.into_iter().map(|x| { //"
+                                        let v1631 : bool = Fable.Core.RustInterop.emitRustExpr () v1630 
+                                        let v1632 : string = "x"
+                                        let v1633 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v1632 
+                                        let v1634 : string = "fable_library_rust::String_::fromString($0)"
+                                        let v1635 : string = Fable.Core.RustInterop.emitRustExpr v1633 v1634 
+                                        let v1636 : string = "="
+                                        let v1637 : bool = v1635.Contains v1636 
+                                        let v1639 : string =
+                                            if v1637 then
+                                                v1635
                                             else
-                                                let v1637 : string = $"\"{v1634}\":\"*\""
-                                                v1637
-                                        let v1639 : string = "true; $0 }).collect::<Vec<_>>()"
-                                        let v1640 : bool = Fable.Core.RustInterop.emitRustExpr v1638 v1639 
-                                        let v1641 : string = "_result"
-                                        let v1642 : Vec<string> = Fable.Core.RustInterop.emitRustExpr () v1641 
-                                        let v1643 : string = "fable_library_rust::NativeArray_::array_from($0)"
-                                        let v1644 : (string []) = Fable.Core.RustInterop.emitRustExpr v1642 v1643 
-                                        let v1645 : string seq = seq { for i = 0 to v1644.Length - 1 do yield v1644.[i] }
-                                        let v1646 : (string -> (string seq -> string)) = String.concat
-                                        let v1647 : string = ",\n"
-                                        let v1648 : (string seq -> string) = v1646 v1647
-                                        let v1649 : string = v1648 v1645
-                                        let v1650 : string = $"{{"
-                                        let v1651 : string = $"  \"name\": \"spiral_builder_{v1363}\","
-                                        let v1652 : string = v1650 + v1651 
-                                        let v1653 : string = $"  \"dependencies\": {{"
-                                        let v1654 : string = v1652 + v1653 
-                                        let v1655 : string = v1654 + v1649 
-                                        let v1656 : string = $"  }},"
-                                        let v1657 : string = v1655 + v1656 
-                                        let v1658 : string = $"    \"devDependencies\": {{"
-                                        let v1659 : string = v1657 + v1658 
-                                        let v1660 : string = $"  }},"
-                                        let v1661 : string = v1659 + v1660 
-                                        let v1662 : string = $"}}"
-                                        let v1663 : string = v1661 + v1662 
-                                        let v1664 : string = "package.json"
-                                        let v1665 : string = method15(v1525, v1664)
-                                        let v1666 : string = "../.."
-                                        let v1667 : string = method15(v1525, v1666)
-                                        let v1668 : string = method15(v1667, v1664)
-                                        method24(v1665, v1663)
-                                        let v1669 : string = ""
-                                        method24(v1668, v1669)
-                                        let v1670 : string = $"{v1401}.{v1361}"
-                                        let v1671 : string = method15(v1525, v1670)
-                                        let v1672 : US0 = US0_1
-                                        let v1673 : (unit -> string) = closure101()
-                                        let v1674 : (unit -> string) = closure102(v1671)
-                                        method5(v1672, v1673, v1674)
-                                        let v1675 : bool = true
-                                        let mutable _v1675 : string option = None 
-                                        
-#if FABLE_COMPILER || WASM || CONTRACT
-                                        
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                let v1638 : string = $"\"{v1635}\":\"*\""
+                                                v1638
+                                        let v1640 : string = "true; $0 }).collect::<Vec<_>>()"
+                                        let v1641 : bool = Fable.Core.RustInterop.emitRustExpr v1639 v1640 
+                                        let v1642 : string = "_result"
+                                        let v1643 : Vec<string> = Fable.Core.RustInterop.emitRustExpr () v1642 
+                                        let v1644 : string = "fable_library_rust::NativeArray_::array_from($0)"
+                                        let v1645 : (string []) = Fable.Core.RustInterop.emitRustExpr v1643 v1644 
+                                        let v1646 : string seq = seq { for i = 0 to v1645.Length - 1 do yield v1645.[i] }
+                                        let v1647 : (string -> (string seq -> string)) = String.concat
+                                        let v1648 : string = ",\n"
+                                        let v1649 : (string seq -> string) = v1647 v1648
+                                        let v1650 : string = v1649 v1646
+                                        let v1651 : string = $"{{"
+                                        let v1652 : string = $"  \"name\": \"spiral_builder_{v1364}\","
+                                        let v1653 : string = v1651 + v1652 
+                                        let v1654 : string = $"  \"dependencies\": {{"
+                                        let v1655 : string = v1653 + v1654 
+                                        let v1656 : string = v1655 + v1650 
+                                        let v1657 : string = $"  }},"
+                                        let v1658 : string = v1656 + v1657 
+                                        let v1659 : string = $"    \"devDependencies\": {{"
+                                        let v1660 : string = v1658 + v1659 
+                                        let v1661 : string = $"  }},"
+                                        let v1662 : string = v1660 + v1661 
+                                        let v1663 : string = $"}}"
+                                        let v1664 : string = v1662 + v1663 
+                                        let v1665 : string = "package.json"
+                                        let v1666 : string = method14(v1526, v1665)
+                                        let v1667 : string = "../.."
+                                        let v1668 : string = method14(v1526, v1667)
+                                        let v1669 : string = method14(v1668, v1665)
+                                        method24(v1666, v1664)
+                                        let v1670 : string = ""
+                                        method24(v1669, v1670)
+                                        let v1671 : string = $"{v1402}.{v1362}"
+                                        let v1672 : string = method14(v1526, v1671)
+                                        let v1673 : US0 = US0_1
+                                        let v1674 : (unit -> string) = closure101()
+                                        let v1675 : (unit -> string) = closure102(v1672)
+                                        method5(v1673, v1674, v1675)
                                         let v1676 : bool = true
-                                        let mutable _v1676 : Vec<uint8> option = None 
+                                        let mutable _v1676 : string option = None 
                                         
 #if FABLE_COMPILER || WASM || CONTRACT
                                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                        let v1677 : string = "std::fs::read(&*$0).unwrap()"
-                                        let v1678 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1671 v1677 
-                                        v1678 
-                                        #endif
-#if FABLE_COMPILER_RUST && WASM
-                                        let v1679 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                        let v1677 : bool = true
+                                        let mutable _v1677 : Vec<uint8> option = None 
+                                        
+#if FABLE_COMPILER || WASM || CONTRACT
+                                        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                        let v1678 : string = "std::fs::read(&*$0).unwrap()"
+                                        let v1679 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1672 v1678 
                                         v1679 
                                         #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                         let v1680 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                         v1680 
                                         #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                         let v1681 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                         v1681 
                                         #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                         let v1682 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                         v1682 
                                         #endif
+#if FABLE_COMPILER_PYTHON
+                                        let v1683 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                        v1683 
+                                        #endif
 #else
-                                        let v1683 : (uint8 []) = v1671 |> System.IO.File.ReadAllBytes
-                                        let v1684 : string = "$0.to_vec()"
-                                        let v1685 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1683 v1684 
-                                        v1685 
+                                        let v1684 : (uint8 []) = v1672 |> System.IO.File.ReadAllBytes
+                                        let v1685 : string = "$0.to_vec()"
+                                        let v1686 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1684 v1685 
+                                        v1686 
                                         #endif
-                                        |> fun x -> _v1676 <- Some x
-                                        let v1686 : Vec<uint8> = match _v1676 with Some x -> x | None -> failwith "base.run_target / _v1676=None"
-                                        let v1687 : string = "std::string::String::from_utf8(v1686)"
-                                        let v1688 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v1687 
-                                        let v1689 : string = "$0.unwrap()"
-                                        let v1690 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1688 v1689 
-                                        let v1691 : string = "fable_library_rust::String_::fromString($0)"
-                                        let v1692 : string = Fable.Core.RustInterop.emitRustExpr v1690 v1691 
-                                        v1692 
-                                        #endif
-#if FABLE_COMPILER_RUST && WASM
-                                        let v1693 : string = null |> unbox<string>
+                                        |> fun x -> _v1677 <- Some x
+                                        let v1687 : Vec<uint8> = match _v1677 with Some x -> x | None -> failwith "base.run_target / _v1677=None"
+                                        let v1688 : string = "std::string::String::from_utf8(v1687)"
+                                        let v1689 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v1688 
+                                        let v1690 : string = "$0.unwrap()"
+                                        let v1691 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1689 v1690 
+                                        let v1692 : string = "fable_library_rust::String_::fromString($0)"
+                                        let v1693 : string = Fable.Core.RustInterop.emitRustExpr v1691 v1692 
                                         v1693 
                                         #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                         let v1694 : string = null |> unbox<string>
                                         v1694 
                                         #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                         let v1695 : string = null |> unbox<string>
                                         v1695 
                                         #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                         let v1696 : string = null |> unbox<string>
                                         v1696 
                                         #endif
-#else
-                                        let v1697 : string = v1671 |> System.IO.File.ReadAllText
+#if FABLE_COMPILER_PYTHON
+                                        let v1697 : string = null |> unbox<string>
                                         v1697 
                                         #endif
-                                        |> fun x -> _v1675 <- Some x
-                                        let v1698 : string = match _v1675 with Some x -> x | None -> failwith "base.run_target / _v1675=None"
-                                        let v1699 : string = "// spiral_builder.process_typescript"
-                                        let v1700 : bool = v1698.Contains v1699 
-                                        let v1725 : string =
-                                            if v1700 then
-                                                v1698
+#else
+                                        let v1698 : string = v1672 |> System.IO.File.ReadAllText
+                                        v1698 
+                                        #endif
+                                        |> fun x -> _v1676 <- Some x
+                                        let v1699 : string = match _v1676 with Some x -> x | None -> failwith "base.run_target / _v1676=None"
+                                        let v1700 : string = "// spiral_builder.process_typescript"
+                                        let v1701 : bool = v1699.Contains v1700 
+                                        let v1726 : string =
+                                            if v1701 then
+                                                v1699
                                             else
-                                                let v1701 : string = $"\"./fable_modules/fable-library-ts.{v1610}/"
-                                                let v1702 : string = $"\"{v1581}/lib/typescript/fable/fable_modules/fable-library-ts.{v1610}/"
-                                                let v1703 : string = v1698.Replace (v1701, v1702)
-                                                let v1704 : string = method103()
-                                                let v1705 : bool = true
-                                                let mutable _v1705 : string option = None 
+                                                let v1702 : string = $"\"./fable_modules/fable-library-ts.{v1611}/"
+                                                let v1703 : string = $"\"{v1582}/lib/typescript/fable/fable_modules/fable-library-ts.{v1611}/"
+                                                let v1704 : string = v1699.Replace (v1702, v1703)
+                                                let v1705 : string = method103()
+                                                let v1706 : bool = true
+                                                let mutable _v1706 : string option = None 
                                                 
 #if FABLE_COMPILER || WASM || CONTRACT
                                                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                                let v1706 : string = method72(v1703)
-                                                let v1707 : string = $"regex::Regex::new(&$0)"
-                                                let v1708 : string = "\\s\\sdefaultOf\\(\\);"
-                                                let v1709 : Result<regex_Regex, regex_Error> = Fable.Core.RustInterop.emitRustExpr v1708 v1707 
-                                                let v1710 : string = "$0.unwrap()"
-                                                let v1711 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v1709 v1710 
-                                                let v1712 : string = $"$0.replace_all(&$1, &*$2)"
-                                                let v1713 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v1711, v1706, v1704) v1712 
-                                                let v1714 : string = "String::from($0)"
-                                                let v1715 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1713 v1714 
-                                                let v1716 : string = "fable_library_rust::String_::fromString($0)"
-                                                let v1717 : string = Fable.Core.RustInterop.emitRustExpr v1715 v1716 
-                                                v1717 
-                                                #endif
-#if FABLE_COMPILER_RUST && WASM
-                                                let v1718 : string = null |> unbox<string>
+                                                let v1707 : string = method72(v1704)
+                                                let v1708 : string = $"regex::Regex::new(&$0)"
+                                                let v1709 : string = "\\s\\sdefaultOf\\(\\);"
+                                                let v1710 : Result<regex_Regex, regex_Error> = Fable.Core.RustInterop.emitRustExpr v1709 v1708 
+                                                let v1711 : string = "$0.unwrap()"
+                                                let v1712 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v1710 v1711 
+                                                let v1713 : string = $"$0.replace_all(&$1, &*$2)"
+                                                let v1714 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v1712, v1707, v1705) v1713 
+                                                let v1715 : string = "String::from($0)"
+                                                let v1716 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1714 v1715 
+                                                let v1717 : string = "fable_library_rust::String_::fromString($0)"
+                                                let v1718 : string = Fable.Core.RustInterop.emitRustExpr v1716 v1717 
                                                 v1718 
                                                 #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                                 let v1719 : string = null |> unbox<string>
                                                 v1719 
                                                 #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                                 let v1720 : string = null |> unbox<string>
                                                 v1720 
                                                 #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                                 let v1721 : string = null |> unbox<string>
                                                 v1721 
                                                 #endif
-#else
-                                                let v1722 : string = method104()
-                                                let v1723 : string = System.Text.RegularExpressions.Regex.Replace (v1703, v1722, v1704)
-                                                v1723 
+#if FABLE_COMPILER_PYTHON
+                                                let v1722 : string = null |> unbox<string>
+                                                v1722 
                                                 #endif
-                                                |> fun x -> _v1705 <- Some x
-                                                let v1724 : string = match _v1705 with Some x -> x | None -> failwith "base.run_target / _v1705=None"
-                                                v1724
-                                        let v1726 : bool = v1700 = false
-                                        if v1726 then
-                                            let v1727 : string = $"{v1725}\n\n{v1699}\n"
-                                            method24(v1671, v1727)
-                                        let v1728 : string = $"bun run \"{v1671}\""
-                                        let v1729 : string = "PATH"
-                                        let v1730 : string = method2(v1729)
-                                        let v1731 : bool = v1730 = ""
-                                        let v1758 : US3 =
-                                            if v1731 then
+#else
+                                                let v1723 : string = method104()
+                                                let v1724 : string = System.Text.RegularExpressions.Regex.Replace (v1704, v1723, v1705)
+                                                v1724 
+                                                #endif
+                                                |> fun x -> _v1706 <- Some x
+                                                let v1725 : string = match _v1706 with Some x -> x | None -> failwith "base.run_target / _v1706=None"
+                                                v1725
+                                        let v1727 : bool = v1701 = false
+                                        if v1727 then
+                                            let v1728 : string = $"{v1726}\n\n{v1700}\n"
+                                            method24(v1672, v1728)
+                                        let v1729 : string = $"bun run \"{v1672}\""
+                                        let v1730 : string = "PATH"
+                                        let v1731 : string = method2(v1730)
+                                        let v1732 : bool = v1731 = ""
+                                        let v1759 : US3 =
+                                            if v1732 then
                                                 US3_1
                                             else
-                                                let v1733 : bool = true
-                                                let mutable _v1733 : bool option = None 
+                                                let v1734 : bool = true
+                                                let mutable _v1734 : bool option = None 
                                                 
 #if FABLE_COMPILER || WASM || CONTRACT
                                                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                                let v1734 : string = "cfg!(windows)"
-                                                let v1735 : bool = Fable.Core.RustInterop.emitRustExpr () v1734 
-                                                v1735 
+                                                let v1735 : string = "cfg!(windows)"
+                                                let v1736 : bool = Fable.Core.RustInterop.emitRustExpr () v1735 
+                                                v1736 
                                                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                                                let v1736 : string = "cfg!(windows)"
-                                                let v1737 : bool = Fable.Core.RustInterop.emitRustExpr () v1736 
-                                                v1737 
+                                                let v1737 : string = "cfg!(windows)"
+                                                let v1738 : bool = Fable.Core.RustInterop.emitRustExpr () v1737 
+                                                v1738 
                                                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                                                let v1738 : string = "cfg!(windows)"
-                                                let v1739 : bool = Fable.Core.RustInterop.emitRustExpr () v1738 
-                                                v1739 
+                                                let v1739 : string = "cfg!(windows)"
+                                                let v1740 : bool = Fable.Core.RustInterop.emitRustExpr () v1739 
+                                                v1740 
                                                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                                                let v1740 : US10 = US10_0
-                                                let v1741 : US11 = US11_3(v1740)
-                                                let v1742 : string = $"platform.is_windows / target: {v1741}"
-                                                let v1743 : bool = failwith<bool> v1742
-                                                v1743 
+                                                let v1741 : US10 = US10_0
+                                                let v1742 : US11 = US11_3(v1741)
+                                                let v1743 : string = $"platform.is_windows / target: {v1742}"
+                                                let v1744 : bool = failwith<bool> v1743
+                                                v1744 
                                                 #endif
 #if FABLE_COMPILER_PYTHON
-                                                let v1744 : US10 = US10_0
-                                                let v1745 : US11 = US11_4(v1744)
-                                                let v1746 : string = $"platform.is_windows / target: {v1745}"
-                                                let v1747 : bool = failwith<bool> v1746
-                                                v1747 
+                                                let v1745 : US10 = US10_0
+                                                let v1746 : US11 = US11_4(v1745)
+                                                let v1747 : string = $"platform.is_windows / target: {v1746}"
+                                                let v1748 : bool = failwith<bool> v1747
+                                                v1748 
                                                 #endif
 #else
-                                                let v1748 : System.Runtime.InteropServices.OSPlatform = System.Runtime.InteropServices.OSPlatform.Windows
-                                                let v1749 : (System.Runtime.InteropServices.OSPlatform -> bool) = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
-                                                let v1750 : bool = v1749 v1748
-                                                v1750 
+                                                let v1749 : System.Runtime.InteropServices.OSPlatform = System.Runtime.InteropServices.OSPlatform.Windows
+                                                let v1750 : (System.Runtime.InteropServices.OSPlatform -> bool) = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
+                                                let v1751 : bool = v1750 v1749
+                                                v1751 
                                                 #endif
-                                                |> fun x -> _v1733 <- Some x
-                                                let v1751 : bool = match _v1733 with Some x -> x | None -> failwith "base.run_target / _v1733=None"
-                                                let v1754 : string =
-                                                    if v1751 then
-                                                        let v1752 : string = ";"
-                                                        v1752
-                                                    else
-                                                        let v1753 : string = ":"
+                                                |> fun x -> _v1734 <- Some x
+                                                let v1752 : bool = match _v1734 with Some x -> x | None -> failwith "base.run_target / _v1734=None"
+                                                let v1755 : string =
+                                                    if v1752 then
+                                                        let v1753 : string = ";"
                                                         v1753
-                                                let v1755 : string = "~/.bun/bin"
-                                                let v1756 : string = $"{v1755}{v1754}{v1730}"
-                                                US3_0(v1756)
-                                        let v1764 : UH4 =
-                                            match v1758 with
+                                                    else
+                                                        let v1754 : string = ":"
+                                                        v1754
+                                                let v1756 : string = "~/.bun/bin"
+                                                let v1757 : string = $"{v1756}{v1755}{v1731}"
+                                                US3_0(v1757)
+                                        let v1765 : UH4 =
+                                            match v1759 with
                                             | US3_1 -> (* None *)
                                                 UH4_0
-                                            | US3_0(v1759) -> (* Some *)
-                                                let v1760 : UH4 = UH4_0
-                                                UH4_1(v1729, v1759, v1760)
-                                        let v1765 : string = "TRACE_LEVEL"
-                                        let v1766 : string = "Verbose"
-                                        let v1767 : UH4 = UH4_0
-                                        let v1768 : UH4 = UH4_1(v1765, v1766, v1767)
-                                        let v1769 : UH4 = method113(v1764, v1768)
-                                        let v1770 : struct (string * string) list = []
-                                        let v1771 : struct (string * string) list = method114(v1769, v1770)
-                                        let v1772 : (struct (string * string) list -> (struct (string * string) [])) = List.toArray
-                                        let v1773 : (struct (string * string) []) = v1772 v1771
-                                        let v1774 : System.Threading.CancellationToken option = None
-                                        let v1775 : (struct (string * string) []) = [||]
-                                        let v1776 : (struct (bool * string * int32) -> Async<unit>) option = None
-                                        let v1777 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option = None
-                                        let v1778 : string option = None
-                                        let v1784 : Result<string, string> =
-                                            match v1567 with
-                                            | US12_1(v1781) -> (* Error *)
-                                                let v1782 : Result<string, string> = Error v1781 
-                                                v1782
-                                            | US12_0(v1779) -> (* Ok *)
-                                                let v1780 : Result<string, string> = Ok v1779 
-                                                v1780
-                                        let v1785 : string = "v1784.ok()"
-                                        let v1786 : string option = Fable.Core.RustInterop.emitRustExpr () v1785 
-                                        let v1787 : bool = true
-                                        let struct (v1788 : int32, v1789 : string) = method28(v1774, v1728, v1773, v1776, v1777, v1787, v1786)
-                                        let v1790 : int32 = v1773.Length
-                                        let v1791 : (string []) = Array.zeroCreate<string> (v1790)
-                                        let v1792 : Mut4 = {l0 = 0} : Mut4
-                                        while method32(v1790, v1792) do
-                                            let v1794 : int32 = v1792.l0
-                                            let struct (v1795 : string, v1796 : string) = v1773.[int v1794]
-                                            let v1797 : string = $"$env:{v1795}=''{v1796}''"
-                                            v1791.[int v1794] <- v1797
-                                            let v1798 : int32 = v1794 + 1
-                                            v1792.l0 <- v1798
+                                            | US3_0(v1760) -> (* Some *)
+                                                let v1761 : UH4 = UH4_0
+                                                UH4_1(v1730, v1760, v1761)
+                                        let v1766 : string = "TRACE_LEVEL"
+                                        let v1767 : string = "Verbose"
+                                        let v1768 : UH4 = UH4_0
+                                        let v1769 : UH4 = UH4_1(v1766, v1767, v1768)
+                                        let v1770 : UH4 = method113(v1765, v1769)
+                                        let v1771 : struct (string * string) list = []
+                                        let v1772 : struct (string * string) list = method114(v1770, v1771)
+                                        let v1773 : (struct (string * string) list -> (struct (string * string) [])) = List.toArray
+                                        let v1774 : (struct (string * string) []) = v1773 v1772
+                                        let v1775 : System.Threading.CancellationToken option = None
+                                        let v1776 : (struct (string * string) []) = [||]
+                                        let v1777 : (struct (bool * string * int32) -> Async<unit>) option = None
+                                        let v1778 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option = None
+                                        let v1779 : string option = None
+                                        let v1785 : Result<string, string> =
+                                            match v1568 with
+                                            | US12_1(v1782) -> (* Error *)
+                                                let v1783 : Result<string, string> = Error v1782 
+                                                v1783
+                                            | US12_0(v1780) -> (* Ok *)
+                                                let v1781 : Result<string, string> = Ok v1780 
+                                                v1781
+                                        let v1786 : string = "v1785.ok()"
+                                        let v1787 : string option = Fable.Core.RustInterop.emitRustExpr () v1786 
+                                        let v1788 : bool = true
+                                        let struct (v1789 : int32, v1790 : string) = method28(v1775, v1729, v1774, v1777, v1778, v1788, v1787)
+                                        let v1791 : int32 = v1774.Length
+                                        let v1792 : (string []) = Array.zeroCreate<string> (v1791)
+                                        let v1793 : Mut4 = {l0 = 0} : Mut4
+                                        while method32(v1791, v1793) do
+                                            let v1795 : int32 = v1793.l0
+                                            let struct (v1796 : string, v1797 : string) = v1774.[int v1795]
+                                            let v1798 : string = $"$env:{v1796}=''{v1797}''"
+                                            v1792.[int v1795] <- v1798
+                                            let v1799 : int32 = v1795 + 1
+                                            v1793.l0 <- v1799
                                             ()
-                                        let v1799 : ((string []) -> string seq) = Seq.ofArray
-                                        let v1800 : string seq = v1799 v1791
-                                        let v1801 : (string -> (string seq -> string)) = String.concat
-                                        let v1802 : string = ";"
-                                        let v1803 : (string seq -> string) = v1801 v1802
-                                        let v1804 : string = v1803 v1800
-                                        let v1805 : string = $"pwsh -c '{v1804}; {v1728}'"
-                                        let v1806 : bool = v1788 = 0
-                                        if v1806 then
-                                            let v1807 : (unit -> string) = closure103(v1789)
-                                            let v1808 : (string -> US3) = closure45()
-                                            let v1809 : (exn -> US3) = closure104(v1671, v1789, v1805)
-                                            let v1810 : US3 = try v1807 () |> v1808 with ex -> v1809 ex 
-                                            let v1815 : string option =
-                                                match v1810 with
+                                        let v1800 : ((string []) -> string seq) = Seq.ofArray
+                                        let v1801 : string seq = v1800 v1792
+                                        let v1802 : (string -> (string seq -> string)) = String.concat
+                                        let v1803 : string = ";"
+                                        let v1804 : (string seq -> string) = v1802 v1803
+                                        let v1805 : string = v1804 v1801
+                                        let v1806 : string = $"pwsh -c '{v1805}; {v1729}'"
+                                        let v1807 : bool = v1789 = 0
+                                        if v1807 then
+                                            let v1808 : (unit -> string) = closure103(v1790)
+                                            let v1809 : (string -> US3) = closure45()
+                                            let v1810 : (exn -> US3) = closure104(v1672, v1790, v1806)
+                                            let v1811 : US3 = try v1808 () |> v1809 with ex -> v1810 ex 
+                                            let v1816 : string option =
+                                                match v1811 with
                                                 | US3_1 -> (* None *)
-                                                    let v1813 : string option = None
+                                                    let v1814 : string option = None
+                                                    v1814
+                                                | US3_0(v1812) -> (* Some *)
+                                                    let v1813 : string option = Some v1812 
                                                     v1813
-                                                | US3_0(v1811) -> (* Some *)
-                                                    let v1812 : string option = Some v1811 
-                                                    v1812
-                                            let v1816 : string = "$0.unwrap()"
-                                            let v1817 : string = Fable.Core.RustInterop.emitRustExpr v1815 v1816 
-                                            let v1818 : US3 = US3_0(v1725)
-                                            let v1819 : US3 = US3_0(v1361)
-                                            let v1820 : US3 = US3_0(v1817)
-                                            struct (v1818, v1819, v1820)
+                                            let v1817 : string = "$0.unwrap()"
+                                            let v1818 : string = Fable.Core.RustInterop.emitRustExpr v1816 v1817 
+                                            let v1819 : US3 = US3_0(v1726)
+                                            let v1820 : US3 = US3_0(v1362)
+                                            let v1821 : US3 = US3_0(v1818)
+                                            struct (v1819, v1820, v1821)
                                         else
-                                            let v1821 : US0 = US0_4
-                                            let v1822 : (unit -> string) = closure107()
-                                            let v1823 : (unit -> string) = closure108(v1671, v1789, v1788, v1805)
-                                            method5(v1821, v1822, v1823)
-                                            let v1824 : US3 = US3_1
-                                            let v1825 : US3 = US3_0(v1361)
-                                            let v1826 : US3 = US3_1
-                                            struct (v1824, v1825, v1826)
+                                            let v1822 : US0 = US0_4
+                                            let v1823 : (unit -> string) = closure107()
+                                            let v1824 : (unit -> string) = closure108(v1672, v1790, v1789, v1806)
+                                            method5(v1822, v1823, v1824)
+                                            let v1825 : US3 = US3_1
+                                            let v1826 : US3 = US3_0(v1362)
+                                            let v1827 : US3 = US3_1
+                                            struct (v1825, v1826, v1827)
                                 else
-                                    let v1833 : string = "fable_library_rust::String_::fromString($0)"
-                                    let v1834 : string = Fable.Core.RustInterop.emitRustExpr v13 v1833 
-                                    let v1836 : bool = v1834 = "python"
-                                    if v1836 then
-                                        let v1837 : string = method63()
-                                        let v1838 : string = "&*$0"
-                                        let v1839 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1837 v1838 
-                                        let v1840 : string = "clap::ArgMatches::get_one(&$0, v1839).cloned()"
-                                        let v1841 : std_string_String option = Fable.Core.RustInterop.emitRustExpr v14 v1840 
-                                        let v1842 : US5 option = None
-                                        let _v1842 = ref v1842 
-                                        match v1841 with
+                                    let v1834 : string = "fable_library_rust::String_::fromString($0)"
+                                    let v1835 : string = Fable.Core.RustInterop.emitRustExpr v13 v1834 
+                                    let v1837 : bool = v1835 = "python"
+                                    if v1837 then
+                                        let v1838 : string = method63()
+                                        let v1839 : string = "&*$0"
+                                        let v1840 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1838 v1839 
+                                        let v1841 : string = "clap::ArgMatches::get_one(&$0, v1840).cloned()"
+                                        let v1842 : std_string_String option = Fable.Core.RustInterop.emitRustExpr v14 v1841 
+                                        let v1843 : US5 option = None
+                                        let _v1843 = ref v1843 
+                                        match v1842 with
                                         | Some x -> (
                                         (fun () ->
                                         (fun () ->
-                                        let v1843 : std_string_String = x
-                                        let v1844 : US5 = US5_0(v1843)
-                                        v1844 
+                                        let v1844 : std_string_String = x
+                                        let v1845 : US5 = US5_0(v1844)
+                                        v1845 
                                         )
                                         |> fun x -> x () |> Some
                                         ) () ) | None -> None
-                                        |> fun x -> _v1842.Value <- x
-                                        let v1845 : US5 option = _v1842.Value 
-                                        let v1846 : US5 = US5_1
-                                        let v1847 : US5 = v1845 |> Option.defaultValue v1846 
-                                        let v1851 : std_string_String =
-                                            match v1847 with
+                                        |> fun x -> _v1843.Value <- x
+                                        let v1846 : US5 option = _v1843.Value 
+                                        let v1847 : US5 = US5_1
+                                        let v1848 : US5 = v1846 |> Option.defaultValue v1847 
+                                        let v1852 : std_string_String =
+                                            match v1848 with
                                             | US5_1 -> (* None *)
                                                 failwith<std_string_String> "Option does not have a value."
-                                            | US5_0(v1848) -> (* Some *)
-                                                v1848
-                                        let v1852 : string = "fable_library_rust::String_::fromString($0)"
-                                        let v1853 : string = Fable.Core.RustInterop.emitRustExpr v1851 v1852 
-                                        let v1854 : string = method13()
-                                        let v1855 : string = "&*$0"
-                                        let v1856 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1854 v1855 
-                                        let v1857 : string = "clap::ArgMatches::get_many(&$0, v1856).map(|x| x.cloned().into_iter().collect())"
-                                        let v1858 : Vec<std_string_String> option = Fable.Core.RustInterop.emitRustExpr v14 v1857 
-                                        let v1859 : US9 option = None
-                                        let _v1859 = ref v1859 
-                                        match v1858 with
+                                            | US5_0(v1849) -> (* Some *)
+                                                v1849
+                                        let v1853 : string = "fable_library_rust::String_::fromString($0)"
+                                        let v1854 : string = Fable.Core.RustInterop.emitRustExpr v1852 v1853 
+                                        let v1855 : string = method13()
+                                        let v1856 : string = "&*$0"
+                                        let v1857 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v1855 v1856 
+                                        let v1858 : string = "clap::ArgMatches::get_many(&$0, v1857).map(|x| x.cloned().into_iter().collect())"
+                                        let v1859 : Vec<std_string_String> option = Fable.Core.RustInterop.emitRustExpr v14 v1858 
+                                        let v1860 : US9 option = None
+                                        let _v1860 = ref v1860 
+                                        match v1859 with
                                         | Some x -> (
                                         (fun () ->
                                         (fun () ->
-                                        let v1860 : Vec<std_string_String> = x
-                                        let v1861 : US9 = US9_0(v1860)
-                                        v1861 
+                                        let v1861 : Vec<std_string_String> = x
+                                        let v1862 : US9 = US9_0(v1861)
+                                        v1862 
                                         )
                                         |> fun x -> x () |> Some
                                         ) () ) | None -> None
-                                        |> fun x -> _v1859.Value <- x
-                                        let v1862 : US9 option = _v1859.Value 
-                                        let v1863 : US9 = US9_1
-                                        let v1864 : US9 = v1862 |> Option.defaultValue v1863 
-                                        let v1865 : (std_string_String []) = [||]
-                                        let v1866 : string = "$0.to_vec()"
-                                        let v1867 : Vec<std_string_String> = Fable.Core.RustInterop.emitRustExpr v1865 v1866 
-                                        let v1870 : Vec<std_string_String> =
-                                            match v1864 with
+                                        |> fun x -> _v1860.Value <- x
+                                        let v1863 : US9 option = _v1860.Value 
+                                        let v1864 : US9 = US9_1
+                                        let v1865 : US9 = v1863 |> Option.defaultValue v1864 
+                                        let v1866 : (std_string_String []) = [||]
+                                        let v1867 : string = "$0.to_vec()"
+                                        let v1868 : Vec<std_string_String> = Fable.Core.RustInterop.emitRustExpr v1866 v1867 
+                                        let v1871 : Vec<std_string_String> =
+                                            match v1865 with
                                             | US9_1 -> (* None *)
-                                                v1867
-                                            | US9_0(v1868) -> (* Some *)
                                                 v1868
-                                        let v1872 : bool =
+                                            | US9_0(v1869) -> (* Some *)
+                                                v1869
+                                        let v1873 : bool =
                                             match v0 with
                                             | US0_0 -> (* Verbose *)
                                                 true
                                             | _ ->
                                                 false
-                                        let v1873 : bool = true
-                                        let mutable _v1873 : string option = None 
-                                        
-#if FABLE_COMPILER || WASM || CONTRACT
-                                        
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
                                         let v1874 : bool = true
-                                        let mutable _v1874 : Vec<uint8> option = None 
+                                        let mutable _v1874 : string option = None 
                                         
 #if FABLE_COMPILER || WASM || CONTRACT
                                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                        let v1875 : string = "std::fs::read(&*$0).unwrap()"
-                                        let v1876 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1853 v1875 
-                                        v1876 
-                                        #endif
-#if FABLE_COMPILER_RUST && WASM
-                                        let v1877 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                        let v1875 : bool = true
+                                        let mutable _v1875 : Vec<uint8> option = None 
+                                        
+#if FABLE_COMPILER || WASM || CONTRACT
+                                        
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                        let v1876 : string = "std::fs::read(&*$0).unwrap()"
+                                        let v1877 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1854 v1876 
                                         v1877 
                                         #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                         let v1878 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                         v1878 
                                         #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                         let v1879 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                         v1879 
                                         #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                         let v1880 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                         v1880 
                                         #endif
+#if FABLE_COMPILER_PYTHON
+                                        let v1881 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                        v1881 
+                                        #endif
 #else
-                                        let v1881 : (uint8 []) = v1853 |> System.IO.File.ReadAllBytes
-                                        let v1882 : string = "$0.to_vec()"
-                                        let v1883 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1881 v1882 
-                                        v1883 
+                                        let v1882 : (uint8 []) = v1854 |> System.IO.File.ReadAllBytes
+                                        let v1883 : string = "$0.to_vec()"
+                                        let v1884 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v1882 v1883 
+                                        v1884 
                                         #endif
-                                        |> fun x -> _v1874 <- Some x
-                                        let v1884 : Vec<uint8> = match _v1874 with Some x -> x | None -> failwith "base.run_target / _v1874=None"
-                                        let v1885 : string = "std::string::String::from_utf8(v1884)"
-                                        let v1886 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v1885 
-                                        let v1887 : string = "$0.unwrap()"
-                                        let v1888 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1886 v1887 
-                                        let v1889 : string = "fable_library_rust::String_::fromString($0)"
-                                        let v1890 : string = Fable.Core.RustInterop.emitRustExpr v1888 v1889 
-                                        v1890 
-                                        #endif
-#if FABLE_COMPILER_RUST && WASM
-                                        let v1891 : string = null |> unbox<string>
+                                        |> fun x -> _v1875 <- Some x
+                                        let v1885 : Vec<uint8> = match _v1875 with Some x -> x | None -> failwith "base.run_target / _v1875=None"
+                                        let v1886 : string = "std::string::String::from_utf8(v1885)"
+                                        let v1887 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v1886 
+                                        let v1888 : string = "$0.unwrap()"
+                                        let v1889 : std_string_String = Fable.Core.RustInterop.emitRustExpr v1887 v1888 
+                                        let v1890 : string = "fable_library_rust::String_::fromString($0)"
+                                        let v1891 : string = Fable.Core.RustInterop.emitRustExpr v1889 v1890 
                                         v1891 
                                         #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                         let v1892 : string = null |> unbox<string>
                                         v1892 
                                         #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                         let v1893 : string = null |> unbox<string>
                                         v1893 
                                         #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                         let v1894 : string = null |> unbox<string>
                                         v1894 
                                         #endif
-#else
-                                        let v1895 : string = v1853 |> System.IO.File.ReadAllText
+#if FABLE_COMPILER_PYTHON
+                                        let v1895 : string = null |> unbox<string>
                                         v1895 
                                         #endif
-                                        |> fun x -> _v1873 <- Some x
-                                        let v1896 : string = match _v1873 with Some x -> x | None -> failwith "base.run_target / _v1873=None"
-                                        let v1897 : string = "py"
-                                        let v1898 : string = $"%A{struct (v1897, v1896)}"
-                                        let v1899 : string = method80(v1898)
-                                        let v1900 : string = __SOURCE_DIRECTORY__
-                                        let v1901 : string = method14()
+#else
+                                        let v1896 : string = v1854 |> System.IO.File.ReadAllText
+                                        v1896 
+                                        #endif
+                                        |> fun x -> _v1874 <- Some x
+                                        let v1897 : string = match _v1874 with Some x -> x | None -> failwith "base.run_target / _v1874=None"
+                                        let v1898 : string = "py"
+                                        let v1899 : string = $"%A{struct (v1898, v1897)}"
+                                        let v1900 : string = method80(v1899)
+                                        let v1901 : string = __SOURCE_DIRECTORY__
                                         let v1902 : string = "polyglot"
                                         let v1903 : string = ".paket"
-                                        let v1904 : string = method15(v1902, v1903)
-                                        let v1905 : US12 = method18(v1904, v1900)
+                                        let v1904 : string = method14(v1902, v1903)
+                                        let v1905 : US12 = method17(v1904, v1901)
                                         let v1914 : US3 =
                                             match v1905 with
                                             | US12_1(v1908) -> (* Error *)
@@ -11571,162 +11570,162 @@ pwsh_replace_html_result: {v505}"
                                                 US3_1
                                             | US12_0(v1906) -> (* Ok *)
                                                 US3_0(v1906)
-                                        let v1929 : US3 =
+                                        let v1930 : US3 =
                                             match v1914 with
                                             | US3_1 -> (* None *)
-                                                let v1917 : string = method15(v1902, v1903)
-                                                let v1918 : US12 = method18(v1917, v1901)
-                                                match v1918 with
-                                                | US12_1(v1921) -> (* Error *)
-                                                    let v1922 : US0 = US0_3
-                                                    let v1923 : (unit -> string) = closure10()
-                                                    let v1924 : (unit -> string) = closure11(v1921)
-                                                    method5(v1922, v1923, v1924)
+                                                let v1917 : string = method22()
+                                                let v1918 : string = method14(v1902, v1903)
+                                                let v1919 : US12 = method17(v1918, v1917)
+                                                match v1919 with
+                                                | US12_1(v1922) -> (* Error *)
+                                                    let v1923 : US0 = US0_3
+                                                    let v1924 : (unit -> string) = closure10()
+                                                    let v1925 : (unit -> string) = closure11(v1922)
+                                                    method5(v1923, v1924, v1925)
                                                     US3_1
-                                                | US12_0(v1919) -> (* Ok *)
-                                                    US3_0(v1919)
+                                                | US12_0(v1920) -> (* Ok *)
+                                                    US3_0(v1920)
                                             | US3_0(v1915) -> (* Some *)
                                                 US3_0(v1915)
-                                        let v1933 : string =
-                                            match v1929 with
+                                        let v1934 : string =
+                                            match v1930 with
                                             | US3_1 -> (* None *)
                                                 failwith<string> "Option does not have a value."
-                                            | US3_0(v1930) -> (* Some *)
-                                                v1930
-                                        let v1934 : string = method15(v1933, v1902)
-                                        let v1935 : string = "target/spiral_builder"
-                                        let v1936 : string = method15(v1934, v1935)
-                                        let v1937 : string = "spiral_builder"
-                                        let v1938 : string = method15(v1936, v1937)
-                                        let v1939 : string = "packages"
-                                        let v1940 : string = method15(v1938, v1939)
-                                        let v1941 : string = method15(v1940, v1899)
-                                        let v1942 : System.IDisposable = method82(v1941)
-                                        let v1943 : string = $"{v1937}.fs"
-                                        let v1944 : string = method15(v1941, v1943)
-                                        let v1945 : string = method70(v1944)
-                                        method24(v1945, v1896)
-                                        let v1946 : string list = []
-                                        let v1947 : string seq = seq { for i = 0 to v1946.Length - 1 do yield v1946.[i] }
-                                        let v1948 : (string -> (string seq -> string)) = String.concat
-                                        let v1949 : string = "\\n        "
-                                        let v1950 : (string seq -> string) = v1948 v1949
-                                        let v1951 : string = v1950 v1947
-                                        let v1952 : string = "Fable.Core"
-                                        let v1953 : string = $"<PackageReference Include=\"{v1952}\" Version=\"*\" />"
-                                        let v1954 : string list = []
-                                        let v1955 : string list = v1953 :: v1954 
-                                        let v1956 : string seq = seq { for i = 0 to v1955.Length - 1 do yield v1955.[i] }
-                                        let v1957 : (string -> (string seq -> string)) = String.concat
-                                        let v1958 : (string seq -> string) = v1957 v1949
-                                        let v1959 : string = v1958 v1956
-                                        let v1960 : string = $"{v1937}.fsproj"
-                                        let v1961 : string = method15(v1941, v1960)
-                                        let v1962 : string = method70(v1961)
-                                        let v1963 : string = $"<Project Sdk=\"Microsoft.NET.Sdk\">"
-                                        let v1964 : string = $"<PropertyGroup>"
-                                        let v1965 : string = "\n"
-                                        let v1966 : string = v1963 + v1965 
-                                        let v1967 : string = v1966 + v1964 
-                                        let v1968 : string = $"    <TargetFramework>net9.0</TargetFramework>"
-                                        let v1969 : string = v1967 + v1965 
-                                        let v1970 : string = v1969 + v1968 
-                                        let v1971 : string = $"    <LangVersion>preview</LangVersion>"
-                                        let v1972 : string = v1970 + v1965 
-                                        let v1973 : string = v1972 + v1971 
-                                        let v1974 : string = $"    <RollForward>Major</RollForward>"
-                                        let v1975 : string = v1973 + v1965 
-                                        let v1976 : string = v1975 + v1974 
-                                        let v1977 : string = $"    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>"
-                                        let v1978 : string = v1976 + v1965 
-                                        let v1979 : string = v1978 + v1977 
-                                        let v1980 : string = $"    <PublishAot>false</PublishAot>"
-                                        let v1981 : string = v1979 + v1965 
-                                        let v1982 : string = v1981 + v1980 
-                                        let v1983 : string = $"    <PublishTrimmed>false</PublishTrimmed>"
-                                        let v1984 : string = v1982 + v1965 
-                                        let v1985 : string = v1984 + v1983 
-                                        let v1986 : string = $"    <PublishSingleFile>true</PublishSingleFile>"
-                                        let v1987 : string = v1985 + v1965 
-                                        let v1988 : string = v1987 + v1986 
-                                        let v1989 : string = $"    <SelfContained>true</SelfContained>"
-                                        let v1990 : string = v1988 + v1965 
-                                        let v1991 : string = v1990 + v1989 
-                                        let v1992 : string = $"    <Version>0.0.1-alpha.1</Version>"
-                                        let v1993 : string = v1991 + v1965 
-                                        let v1994 : string = v1993 + v1992 
-                                        let v1995 : string = $"    <OutputType>Exe</OutputType>"
-                                        let v1996 : string = v1994 + v1965 
-                                        let v1997 : string = v1996 + v1995 
-                                        let v1998 : string = $"</PropertyGroup>"
-                                        let v1999 : string = v1997 + v1965 
-                                        let v2000 : string = v1999 + v1998 
-                                        let v2001 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('FreeBSD'))\">"
-                                        let v2002 : string = v2000 + v1965 
-                                        let v2003 : string = v2002 + v2001 
-                                        let v2004 : string = $"    <DefineConstants>_FREEBSD</DefineConstants>"
-                                        let v2005 : string = v2003 + v1965 
-                                        let v2006 : string = v2005 + v2004 
-                                        let v2007 : string = $"</PropertyGroup>"
-                                        let v2008 : string = v2006 + v1965 
-                                        let v2009 : string = v2008 + v2007 
-                                        let v2010 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Linux'))\">"
-                                        let v2011 : string = v2009 + v1965 
-                                        let v2012 : string = v2011 + v2010 
-                                        let v2013 : string = $"    <DefineConstants>_LINUX</DefineConstants>"
-                                        let v2014 : string = v2012 + v1965 
-                                        let v2015 : string = v2014 + v2013 
-                                        let v2016 : string = $"</PropertyGroup>"
-                                        let v2017 : string = v2015 + v1965 
-                                        let v2018 : string = v2017 + v2016 
-                                        let v2019 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('OSX'))\">"
-                                        let v2020 : string = v2018 + v1965 
-                                        let v2021 : string = v2020 + v2019 
-                                        let v2022 : string = $"    <DefineConstants>_OSX</DefineConstants>"
-                                        let v2023 : string = v2021 + v1965 
-                                        let v2024 : string = v2023 + v2022 
-                                        let v2025 : string = $"</PropertyGroup>"
-                                        let v2026 : string = v2024 + v1965 
-                                        let v2027 : string = v2026 + v2025 
-                                        let v2028 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Windows'))\">"
-                                        let v2029 : string = v2027 + v1965 
-                                        let v2030 : string = v2029 + v2028 
-                                        let v2031 : string = $"    <DefineConstants>_WINDOWS</DefineConstants>"
-                                        let v2032 : string = v2030 + v1965 
-                                        let v2033 : string = v2032 + v2031 
-                                        let v2034 : string = $"</PropertyGroup>"
-                                        let v2035 : string = v2033 + v1965 
-                                        let v2036 : string = v2035 + v2034 
-                                        let v2037 : string = $"<ItemGroup>"
-                                        let v2038 : string = v2036 + v1965 
-                                        let v2039 : string = v2038 + v2037 
-                                        let v2040 : string = $"    {v1951}"
-                                        let v2041 : string = v2039 + v1965 
-                                        let v2042 : string = v2041 + v2040 
-                                        let v2043 : string = $"    <Compile Include=\"{v1945}\" />"
-                                        let v2044 : string = v2042 + v1965 
-                                        let v2045 : string = v2044 + v2043 
-                                        let v2046 : string = $"</ItemGroup>"
-                                        let v2047 : string = v2045 + v1965 
-                                        let v2048 : string = v2047 + v2046 
-                                        let v2049 : string = $"<ItemGroup>"
-                                        let v2050 : string = v2048 + v1965 
-                                        let v2051 : string = v2050 + v2049 
-                                        let v2052 : string = $"    {v1959}"
-                                        let v2053 : string = v2051 + v1965 
-                                        let v2054 : string = v2053 + v2052 
-                                        let v2055 : string = $"</ItemGroup>"
-                                        let v2056 : string = v2054 + v1965 
-                                        let v2057 : string = v2056 + v2055 
-                                        let v2058 : string = $"</Project>"
-                                        let v2059 : string = v2057 + v1965 
-                                        let v2060 : string = v2059 + v2058 
-                                        method24(v1962, v2060)
-                                        let v2061 : string = method23(v1962)
-                                        let v2062 : string = __SOURCE_DIRECTORY__
-                                        let v2063 : string = method14()
-                                        let v2064 : string = method15(v1902, v1903)
-                                        let v2065 : US12 = method18(v2064, v2062)
+                                            | US3_0(v1931) -> (* Some *)
+                                                v1931
+                                        let v1935 : string = method14(v1934, v1902)
+                                        let v1936 : string = "target/spiral_builder"
+                                        let v1937 : string = method14(v1935, v1936)
+                                        let v1938 : string = "spiral_builder"
+                                        let v1939 : string = method14(v1937, v1938)
+                                        let v1940 : string = "packages"
+                                        let v1941 : string = method14(v1939, v1940)
+                                        let v1942 : string = method14(v1941, v1900)
+                                        let v1943 : System.IDisposable = method82(v1942)
+                                        let v1944 : string = $"{v1938}.fs"
+                                        let v1945 : string = method14(v1942, v1944)
+                                        let v1946 : string = method70(v1945)
+                                        method24(v1946, v1897)
+                                        let v1947 : string list = []
+                                        let v1948 : string seq = seq { for i = 0 to v1947.Length - 1 do yield v1947.[i] }
+                                        let v1949 : (string -> (string seq -> string)) = String.concat
+                                        let v1950 : string = "\\n        "
+                                        let v1951 : (string seq -> string) = v1949 v1950
+                                        let v1952 : string = v1951 v1948
+                                        let v1953 : string = "Fable.Core"
+                                        let v1954 : string = $"<PackageReference Include=\"{v1953}\" Version=\"*\" />"
+                                        let v1955 : string list = []
+                                        let v1956 : string list = v1954 :: v1955 
+                                        let v1957 : string seq = seq { for i = 0 to v1956.Length - 1 do yield v1956.[i] }
+                                        let v1958 : (string -> (string seq -> string)) = String.concat
+                                        let v1959 : (string seq -> string) = v1958 v1950
+                                        let v1960 : string = v1959 v1957
+                                        let v1961 : string = $"{v1938}.fsproj"
+                                        let v1962 : string = method14(v1942, v1961)
+                                        let v1963 : string = method70(v1962)
+                                        let v1964 : string = $"<Project Sdk=\"Microsoft.NET.Sdk\">"
+                                        let v1965 : string = $"<PropertyGroup>"
+                                        let v1966 : string = "\n"
+                                        let v1967 : string = v1964 + v1966 
+                                        let v1968 : string = v1967 + v1965 
+                                        let v1969 : string = $"    <TargetFramework>net9.0</TargetFramework>"
+                                        let v1970 : string = v1968 + v1966 
+                                        let v1971 : string = v1970 + v1969 
+                                        let v1972 : string = $"    <LangVersion>preview</LangVersion>"
+                                        let v1973 : string = v1971 + v1966 
+                                        let v1974 : string = v1973 + v1972 
+                                        let v1975 : string = $"    <RollForward>Major</RollForward>"
+                                        let v1976 : string = v1974 + v1966 
+                                        let v1977 : string = v1976 + v1975 
+                                        let v1978 : string = $"    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>"
+                                        let v1979 : string = v1977 + v1966 
+                                        let v1980 : string = v1979 + v1978 
+                                        let v1981 : string = $"    <PublishAot>false</PublishAot>"
+                                        let v1982 : string = v1980 + v1966 
+                                        let v1983 : string = v1982 + v1981 
+                                        let v1984 : string = $"    <PublishTrimmed>false</PublishTrimmed>"
+                                        let v1985 : string = v1983 + v1966 
+                                        let v1986 : string = v1985 + v1984 
+                                        let v1987 : string = $"    <PublishSingleFile>true</PublishSingleFile>"
+                                        let v1988 : string = v1986 + v1966 
+                                        let v1989 : string = v1988 + v1987 
+                                        let v1990 : string = $"    <SelfContained>true</SelfContained>"
+                                        let v1991 : string = v1989 + v1966 
+                                        let v1992 : string = v1991 + v1990 
+                                        let v1993 : string = $"    <Version>0.0.1-alpha.1</Version>"
+                                        let v1994 : string = v1992 + v1966 
+                                        let v1995 : string = v1994 + v1993 
+                                        let v1996 : string = $"    <OutputType>Exe</OutputType>"
+                                        let v1997 : string = v1995 + v1966 
+                                        let v1998 : string = v1997 + v1996 
+                                        let v1999 : string = $"</PropertyGroup>"
+                                        let v2000 : string = v1998 + v1966 
+                                        let v2001 : string = v2000 + v1999 
+                                        let v2002 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('FreeBSD'))\">"
+                                        let v2003 : string = v2001 + v1966 
+                                        let v2004 : string = v2003 + v2002 
+                                        let v2005 : string = $"    <DefineConstants>_FREEBSD</DefineConstants>"
+                                        let v2006 : string = v2004 + v1966 
+                                        let v2007 : string = v2006 + v2005 
+                                        let v2008 : string = $"</PropertyGroup>"
+                                        let v2009 : string = v2007 + v1966 
+                                        let v2010 : string = v2009 + v2008 
+                                        let v2011 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Linux'))\">"
+                                        let v2012 : string = v2010 + v1966 
+                                        let v2013 : string = v2012 + v2011 
+                                        let v2014 : string = $"    <DefineConstants>_LINUX</DefineConstants>"
+                                        let v2015 : string = v2013 + v1966 
+                                        let v2016 : string = v2015 + v2014 
+                                        let v2017 : string = $"</PropertyGroup>"
+                                        let v2018 : string = v2016 + v1966 
+                                        let v2019 : string = v2018 + v2017 
+                                        let v2020 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('OSX'))\">"
+                                        let v2021 : string = v2019 + v1966 
+                                        let v2022 : string = v2021 + v2020 
+                                        let v2023 : string = $"    <DefineConstants>_OSX</DefineConstants>"
+                                        let v2024 : string = v2022 + v1966 
+                                        let v2025 : string = v2024 + v2023 
+                                        let v2026 : string = $"</PropertyGroup>"
+                                        let v2027 : string = v2025 + v1966 
+                                        let v2028 : string = v2027 + v2026 
+                                        let v2029 : string = $"<PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Windows'))\">"
+                                        let v2030 : string = v2028 + v1966 
+                                        let v2031 : string = v2030 + v2029 
+                                        let v2032 : string = $"    <DefineConstants>_WINDOWS</DefineConstants>"
+                                        let v2033 : string = v2031 + v1966 
+                                        let v2034 : string = v2033 + v2032 
+                                        let v2035 : string = $"</PropertyGroup>"
+                                        let v2036 : string = v2034 + v1966 
+                                        let v2037 : string = v2036 + v2035 
+                                        let v2038 : string = $"<ItemGroup>"
+                                        let v2039 : string = v2037 + v1966 
+                                        let v2040 : string = v2039 + v2038 
+                                        let v2041 : string = $"    {v1952}"
+                                        let v2042 : string = v2040 + v1966 
+                                        let v2043 : string = v2042 + v2041 
+                                        let v2044 : string = $"    <Compile Include=\"{v1946}\" />"
+                                        let v2045 : string = v2043 + v1966 
+                                        let v2046 : string = v2045 + v2044 
+                                        let v2047 : string = $"</ItemGroup>"
+                                        let v2048 : string = v2046 + v1966 
+                                        let v2049 : string = v2048 + v2047 
+                                        let v2050 : string = $"<ItemGroup>"
+                                        let v2051 : string = v2049 + v1966 
+                                        let v2052 : string = v2051 + v2050 
+                                        let v2053 : string = $"    {v1960}"
+                                        let v2054 : string = v2052 + v1966 
+                                        let v2055 : string = v2054 + v2053 
+                                        let v2056 : string = $"</ItemGroup>"
+                                        let v2057 : string = v2055 + v1966 
+                                        let v2058 : string = v2057 + v2056 
+                                        let v2059 : string = $"</Project>"
+                                        let v2060 : string = v2058 + v1966 
+                                        let v2061 : string = v2060 + v2059 
+                                        method24(v1963, v2061)
+                                        let v2062 : string = method23(v1963)
+                                        let v2063 : string = __SOURCE_DIRECTORY__
+                                        let v2064 : string = method14(v1902, v1903)
+                                        let v2065 : US12 = method17(v2064, v2063)
                                         let v2074 : US3 =
                                             match v2065 with
                                             | US12_1(v2068) -> (* Error *)
@@ -11737,403 +11736,404 @@ pwsh_replace_html_result: {v505}"
                                                 US3_1
                                             | US12_0(v2066) -> (* Ok *)
                                                 US3_0(v2066)
-                                        let v2089 : US3 =
+                                        let v2090 : US3 =
                                             match v2074 with
                                             | US3_1 -> (* None *)
-                                                let v2077 : string = method15(v1902, v1903)
-                                                let v2078 : US12 = method18(v2077, v2063)
-                                                match v2078 with
-                                                | US12_1(v2081) -> (* Error *)
-                                                    let v2082 : US0 = US0_3
-                                                    let v2083 : (unit -> string) = closure10()
-                                                    let v2084 : (unit -> string) = closure11(v2081)
-                                                    method5(v2082, v2083, v2084)
+                                                let v2077 : string = method22()
+                                                let v2078 : string = method14(v1902, v1903)
+                                                let v2079 : US12 = method17(v2078, v2077)
+                                                match v2079 with
+                                                | US12_1(v2082) -> (* Error *)
+                                                    let v2083 : US0 = US0_3
+                                                    let v2084 : (unit -> string) = closure10()
+                                                    let v2085 : (unit -> string) = closure11(v2082)
+                                                    method5(v2083, v2084, v2085)
                                                     US3_1
-                                                | US12_0(v2079) -> (* Ok *)
-                                                    US3_0(v2079)
+                                                | US12_0(v2080) -> (* Ok *)
+                                                    US3_0(v2080)
                                             | US3_0(v2075) -> (* Some *)
                                                 US3_0(v2075)
-                                        let v2093 : string =
-                                            match v2089 with
+                                        let v2094 : string =
+                                            match v2090 with
                                             | US3_1 -> (* None *)
                                                 failwith<string> "Option does not have a value."
-                                            | US3_0(v2090) -> (* Some *)
-                                                v2090
-                                        let v2094 : string = method15(v2093, v1902)
-                                        let v2095 : string = method14()
-                                        let v2096 : (unit -> string) = v2095.ToLower
-                                        let v2097 : string = v2096 ()
-                                        let v2098 : (unit -> string) = v2094.ToLower
-                                        let v2099 : string = v2098 ()
-                                        let v2100 : bool = v2097.StartsWith v2099 
-                                        let v2103 : US12 =
-                                            if v2100 then
-                                                US12_1(v2099)
+                                            | US3_0(v2091) -> (* Some *)
+                                                v2091
+                                        let v2095 : string = method14(v2094, v1902)
+                                        let v2096 : string = method22()
+                                        let v2097 : (unit -> string) = v2096.ToLower
+                                        let v2098 : string = v2097 ()
+                                        let v2099 : (unit -> string) = v2095.ToLower
+                                        let v2100 : string = v2099 ()
+                                        let v2101 : bool = v2098.StartsWith v2100 
+                                        let v2104 : US12 =
+                                            if v2101 then
+                                                US12_1(v2100)
                                             else
-                                                US12_0(v2099)
-                                        let v2109 : Result<string, string> =
-                                            match v2103 with
-                                            | US12_1(v2106) -> (* Error *)
-                                                let v2107 : Result<string, string> = Error v2106 
-                                                v2107
-                                            | US12_0(v2104) -> (* Ok *)
-                                                let v2105 : Result<string, string> = Ok v2104 
-                                                v2105
-                                        let v2110 : string = "true; let _result = $0.unwrap_or_else(|x| { //"
-                                        let v2111 : bool = Fable.Core.RustInterop.emitRustExpr v2109 v2110 
-                                        let v2112 : string = "x"
-                                        let v2113 : string = Fable.Core.RustInterop.emitRustExpr () v2112 
-                                        let v2114 : string = "true; $0 })"
-                                        let v2115 : bool = Fable.Core.RustInterop.emitRustExpr v2113 v2114 
-                                        let v2116 : string = "_result"
-                                        let v2117 : string = Fable.Core.RustInterop.emitRustExpr () v2116 
-                                        let v2118 : string = "lib/python/fable/fable_modules"
-                                        let v2119 : string = method15(v2117, v2118)
-                                        let v2120 : string = $"fable-library-{v1897}"
-                                        let v2121 : string = method15(v2119, v2120)
-                                        let v2122 : string = $"fable_modules/fable-library"
-                                        let v2123 : string = method15(v2061, v2122)
-                                        method98(v2121, v2123)
-                                        let struct (v2124 : int32, v2125 : string) = method99(v2061, v1897, v1962, v2103)
-                                        let v2126 : bool = v2124 <> 0 
-                                        if v2126 then
-                                            let v2127 : US0 = US0_4
-                                            let v2128 : (unit -> string) = closure109(v2125, v2124)
-                                            let v2129 : (unit -> string) = closure6()
-                                            method5(v2127, v2128, v2129)
-                                            let v2130 : US3 = US3_1
-                                            let v2131 : US3 = US3_0(v1897)
-                                            let v2132 : US3 = US3_0(v2125)
-                                            struct (v2130, v2131, v2132)
+                                                US12_0(v2100)
+                                        let v2110 : Result<string, string> =
+                                            match v2104 with
+                                            | US12_1(v2107) -> (* Error *)
+                                                let v2108 : Result<string, string> = Error v2107 
+                                                v2108
+                                            | US12_0(v2105) -> (* Ok *)
+                                                let v2106 : Result<string, string> = Ok v2105 
+                                                v2106
+                                        let v2111 : string = "true; let _result = $0.unwrap_or_else(|x| { //"
+                                        let v2112 : bool = Fable.Core.RustInterop.emitRustExpr v2110 v2111 
+                                        let v2113 : string = "x"
+                                        let v2114 : string = Fable.Core.RustInterop.emitRustExpr () v2113 
+                                        let v2115 : string = "true; $0 })"
+                                        let v2116 : bool = Fable.Core.RustInterop.emitRustExpr v2114 v2115 
+                                        let v2117 : string = "_result"
+                                        let v2118 : string = Fable.Core.RustInterop.emitRustExpr () v2117 
+                                        let v2119 : string = "lib/python/fable/fable_modules"
+                                        let v2120 : string = method14(v2118, v2119)
+                                        let v2121 : string = $"fable-library-{v1898}"
+                                        let v2122 : string = method14(v2120, v2121)
+                                        let v2123 : string = $"fable_modules/fable-library"
+                                        let v2124 : string = method14(v2062, v2123)
+                                        method98(v2122, v2124)
+                                        let struct (v2125 : int32, v2126 : string) = method99(v2062, v1898, v1963, v2104)
+                                        let v2127 : bool = v2125 <> 0 
+                                        if v2127 then
+                                            let v2128 : US0 = US0_4
+                                            let v2129 : (unit -> string) = closure109(v2126, v2125)
+                                            let v2130 : (unit -> string) = closure6()
+                                            method5(v2128, v2129, v2130)
+                                            let v2131 : US3 = US3_1
+                                            let v2132 : US3 = US3_0(v1898)
+                                            let v2133 : US3 = US3_0(v2126)
+                                            struct (v2131, v2132, v2133)
                                         else
-                                            let v2133 : string = "true; let _result : Vec<_> = v1870.into_iter().map(|x| { //"
-                                            let v2134 : bool = Fable.Core.RustInterop.emitRustExpr () v2133 
-                                            let v2135 : string = "x"
-                                            let v2136 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v2135 
-                                            let v2137 : string = "fable_library_rust::String_::fromString($0)"
-                                            let v2138 : string = Fable.Core.RustInterop.emitRustExpr v2136 v2137 
-                                            let v2139 : string = "="
-                                            let v2140 : bool = v2138.Contains v2139 
-                                            let v2142 : string =
-                                                if v2140 then
-                                                    v2138
+                                            let v2134 : string = "true; let _result : Vec<_> = v1871.into_iter().map(|x| { //"
+                                            let v2135 : bool = Fable.Core.RustInterop.emitRustExpr () v2134 
+                                            let v2136 : string = "x"
+                                            let v2137 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v2136 
+                                            let v2138 : string = "fable_library_rust::String_::fromString($0)"
+                                            let v2139 : string = Fable.Core.RustInterop.emitRustExpr v2137 v2138 
+                                            let v2140 : string = "="
+                                            let v2141 : bool = v2139.Contains v2140 
+                                            let v2143 : string =
+                                                if v2141 then
+                                                    v2139
                                                 else
-                                                    let v2141 : string = $"\"{v2138}\":\"*\""
-                                                    v2141
-                                            let v2143 : string = "true; $0 }).collect::<Vec<_>>()"
-                                            let v2144 : bool = Fable.Core.RustInterop.emitRustExpr v2142 v2143 
-                                            let v2145 : string = "_result"
-                                            let v2146 : Vec<string> = Fable.Core.RustInterop.emitRustExpr () v2145 
-                                            let v2147 : string = "fable_library_rust::NativeArray_::array_from($0)"
-                                            let v2148 : (string []) = Fable.Core.RustInterop.emitRustExpr v2146 v2147 
-                                            let v2149 : string seq = seq { for i = 0 to v2148.Length - 1 do yield v2148.[i] }
-                                            let v2150 : (string -> (string seq -> string)) = String.concat
-                                            let v2151 : string = ",\n"
-                                            let v2152 : (string seq -> string) = v2150 v2151
-                                            let v2153 : string = v2152 v2149
-                                            let v2154 : string = $"{{"
-                                            let v2155 : string = $"  \"name\": \"spiral_builder_{v1899}\","
-                                            let v2156 : string = v2154 + v2155 
-                                            let v2157 : string = $"  \"dependencies\": {{"
-                                            let v2158 : string = v2156 + v2157 
-                                            let v2159 : string = v2158 + v2153 
-                                            let v2160 : string = $"  }},"
-                                            let v2161 : string = v2159 + v2160 
-                                            let v2162 : string = $"    \"devDependencies\": {{"
-                                            let v2163 : string = v2161 + v2162 
-                                            let v2164 : string = $"  }},"
-                                            let v2165 : string = v2163 + v2164 
-                                            let v2166 : string = $"}}"
-                                            let v2167 : string = v2165 + v2166 
-                                            let v2168 : string = "package.json"
-                                            let v2169 : string = method15(v2061, v2168)
-                                            let v2170 : string = "../.."
-                                            let v2171 : string = method15(v2061, v2170)
-                                            let v2172 : string = method15(v2171, v2168)
-                                            method24(v2169, v2167)
-                                            let v2173 : string = ""
-                                            method24(v2172, v2173)
-                                            let v2174 : string = $"{v1937}.{v1897}"
-                                            let v2175 : string = method15(v2061, v2174)
-                                            let v2176 : US0 = US0_1
-                                            let v2177 : (unit -> string) = closure110()
-                                            let v2178 : (unit -> string) = closure111(v2175)
-                                            method5(v2176, v2177, v2178)
-                                            let v2179 : bool = true
-                                            let mutable _v2179 : string option = None 
-                                            
-#if FABLE_COMPILER || WASM || CONTRACT
-                                            
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                                    let v2142 : string = $"\"{v2139}\":\"*\""
+                                                    v2142
+                                            let v2144 : string = "true; $0 }).collect::<Vec<_>>()"
+                                            let v2145 : bool = Fable.Core.RustInterop.emitRustExpr v2143 v2144 
+                                            let v2146 : string = "_result"
+                                            let v2147 : Vec<string> = Fable.Core.RustInterop.emitRustExpr () v2146 
+                                            let v2148 : string = "fable_library_rust::NativeArray_::array_from($0)"
+                                            let v2149 : (string []) = Fable.Core.RustInterop.emitRustExpr v2147 v2148 
+                                            let v2150 : string seq = seq { for i = 0 to v2149.Length - 1 do yield v2149.[i] }
+                                            let v2151 : (string -> (string seq -> string)) = String.concat
+                                            let v2152 : string = ",\n"
+                                            let v2153 : (string seq -> string) = v2151 v2152
+                                            let v2154 : string = v2153 v2150
+                                            let v2155 : string = $"{{"
+                                            let v2156 : string = $"  \"name\": \"spiral_builder_{v1900}\","
+                                            let v2157 : string = v2155 + v2156 
+                                            let v2158 : string = $"  \"dependencies\": {{"
+                                            let v2159 : string = v2157 + v2158 
+                                            let v2160 : string = v2159 + v2154 
+                                            let v2161 : string = $"  }},"
+                                            let v2162 : string = v2160 + v2161 
+                                            let v2163 : string = $"    \"devDependencies\": {{"
+                                            let v2164 : string = v2162 + v2163 
+                                            let v2165 : string = $"  }},"
+                                            let v2166 : string = v2164 + v2165 
+                                            let v2167 : string = $"}}"
+                                            let v2168 : string = v2166 + v2167 
+                                            let v2169 : string = "package.json"
+                                            let v2170 : string = method14(v2062, v2169)
+                                            let v2171 : string = "../.."
+                                            let v2172 : string = method14(v2062, v2171)
+                                            let v2173 : string = method14(v2172, v2169)
+                                            method24(v2170, v2168)
+                                            let v2174 : string = ""
+                                            method24(v2173, v2174)
+                                            let v2175 : string = $"{v1938}.{v1898}"
+                                            let v2176 : string = method14(v2062, v2175)
+                                            let v2177 : US0 = US0_1
+                                            let v2178 : (unit -> string) = closure110()
+                                            let v2179 : (unit -> string) = closure111(v2176)
+                                            method5(v2177, v2178, v2179)
                                             let v2180 : bool = true
-                                            let mutable _v2180 : Vec<uint8> option = None 
+                                            let mutable _v2180 : string option = None 
                                             
 #if FABLE_COMPILER || WASM || CONTRACT
                                             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                            let v2181 : string = "std::fs::read(&*$0).unwrap()"
-                                            let v2182 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v2175 v2181 
-                                            v2182 
-                                            #endif
-#if FABLE_COMPILER_RUST && WASM
-                                            let v2183 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                            let v2181 : bool = true
+                                            let mutable _v2181 : Vec<uint8> option = None 
+                                            
+#if FABLE_COMPILER || WASM || CONTRACT
+                                            
+#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+                                            let v2182 : string = "std::fs::read(&*$0).unwrap()"
+                                            let v2183 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v2176 v2182 
                                             v2183 
                                             #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                             let v2184 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                             v2184 
                                             #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                             let v2185 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                             v2185 
                                             #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                             let v2186 : Vec<uint8> = null |> unbox<Vec<uint8>>
                                             v2186 
                                             #endif
+#if FABLE_COMPILER_PYTHON
+                                            let v2187 : Vec<uint8> = null |> unbox<Vec<uint8>>
+                                            v2187 
+                                            #endif
 #else
-                                            let v2187 : (uint8 []) = v2175 |> System.IO.File.ReadAllBytes
-                                            let v2188 : string = "$0.to_vec()"
-                                            let v2189 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v2187 v2188 
-                                            v2189 
+                                            let v2188 : (uint8 []) = v2176 |> System.IO.File.ReadAllBytes
+                                            let v2189 : string = "$0.to_vec()"
+                                            let v2190 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr v2188 v2189 
+                                            v2190 
                                             #endif
-                                            |> fun x -> _v2180 <- Some x
-                                            let v2190 : Vec<uint8> = match _v2180 with Some x -> x | None -> failwith "base.run_target / _v2180=None"
-                                            let v2191 : string = "std::string::String::from_utf8(v2190)"
-                                            let v2192 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v2191 
-                                            let v2193 : string = "$0.unwrap()"
-                                            let v2194 : std_string_String = Fable.Core.RustInterop.emitRustExpr v2192 v2193 
-                                            let v2195 : string = "fable_library_rust::String_::fromString($0)"
-                                            let v2196 : string = Fable.Core.RustInterop.emitRustExpr v2194 v2195 
-                                            v2196 
-                                            #endif
-#if FABLE_COMPILER_RUST && WASM
-                                            let v2197 : string = null |> unbox<string>
+                                            |> fun x -> _v2181 <- Some x
+                                            let v2191 : Vec<uint8> = match _v2181 with Some x -> x | None -> failwith "base.run_target / _v2181=None"
+                                            let v2192 : string = "std::string::String::from_utf8(v2191)"
+                                            let v2193 : Result<std_string_String, std_string_FromUtf8Error> = Fable.Core.RustInterop.emitRustExpr () v2192 
+                                            let v2194 : string = "$0.unwrap()"
+                                            let v2195 : std_string_String = Fable.Core.RustInterop.emitRustExpr v2193 v2194 
+                                            let v2196 : string = "fable_library_rust::String_::fromString($0)"
+                                            let v2197 : string = Fable.Core.RustInterop.emitRustExpr v2195 v2196 
                                             v2197 
                                             #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                             let v2198 : string = null |> unbox<string>
                                             v2198 
                                             #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                             let v2199 : string = null |> unbox<string>
                                             v2199 
                                             #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                             let v2200 : string = null |> unbox<string>
                                             v2200 
                                             #endif
-#else
-                                            let v2201 : string = v2175 |> System.IO.File.ReadAllText
+#if FABLE_COMPILER_PYTHON
+                                            let v2201 : string = null |> unbox<string>
                                             v2201 
                                             #endif
-                                            |> fun x -> _v2179 <- Some x
-                                            let v2202 : string = match _v2179 with Some x -> x | None -> failwith "base.run_target / _v2179=None"
-                                            let v2203 : string = "# spiral_builder.process_python"
-                                            let v2204 : bool = v2202.Contains v2203 
-                                            let v2232 : string =
-                                                if v2204 then
-                                                    v2202
+#else
+                                            let v2202 : string = v2176 |> System.IO.File.ReadAllText
+                                            v2202 
+                                            #endif
+                                            |> fun x -> _v2180 <- Some x
+                                            let v2203 : string = match _v2180 with Some x -> x | None -> failwith "base.run_target / _v2180=None"
+                                            let v2204 : string = "# spiral_builder.process_python"
+                                            let v2205 : bool = v2203.Contains v2204 
+                                            let v2233 : string =
+                                                if v2205 then
+                                                    v2203
                                                 else
-                                                    let v2205 : string = "\";\".into()"
-                                                    let v2206 : string = Fable.Core.RustInterop.emitRustExpr () v2205 
-                                                    let v2207 : string = "),)"
-                                                    let v2208 : string = v2207 + v2206 
-                                                    let v2209 : string = "));"
-                                                    let v2210 : string = v2202.Replace (v2208, v2209)
-                                                    let v2211 : string = method103()
-                                                    let v2212 : bool = true
-                                                    let mutable _v2212 : string option = None 
+                                                    let v2206 : string = "\";\".into()"
+                                                    let v2207 : string = Fable.Core.RustInterop.emitRustExpr () v2206 
+                                                    let v2208 : string = "),)"
+                                                    let v2209 : string = v2208 + v2207 
+                                                    let v2210 : string = "));"
+                                                    let v2211 : string = v2203.Replace (v2209, v2210)
+                                                    let v2212 : string = method103()
+                                                    let v2213 : bool = true
+                                                    let mutable _v2213 : string option = None 
                                                     
 #if FABLE_COMPILER || WASM || CONTRACT
                                                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                                    let v2213 : string = method72(v2210)
-                                                    let v2214 : string = $"regex::Regex::new(&$0)"
-                                                    let v2215 : string = "\\s\\sdefaultOf\\(\\);"
-                                                    let v2216 : Result<regex_Regex, regex_Error> = Fable.Core.RustInterop.emitRustExpr v2215 v2214 
-                                                    let v2217 : string = "$0.unwrap()"
-                                                    let v2218 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v2216 v2217 
-                                                    let v2219 : string = $"$0.replace_all(&$1, &*$2)"
-                                                    let v2220 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v2218, v2213, v2211) v2219 
-                                                    let v2221 : string = "String::from($0)"
-                                                    let v2222 : std_string_String = Fable.Core.RustInterop.emitRustExpr v2220 v2221 
-                                                    let v2223 : string = "fable_library_rust::String_::fromString($0)"
-                                                    let v2224 : string = Fable.Core.RustInterop.emitRustExpr v2222 v2223 
-                                                    v2224 
-                                                    #endif
-#if FABLE_COMPILER_RUST && WASM
-                                                    let v2225 : string = null |> unbox<string>
+                                                    let v2214 : string = method72(v2211)
+                                                    let v2215 : string = $"regex::Regex::new(&$0)"
+                                                    let v2216 : string = "\\s\\sdefaultOf\\(\\);"
+                                                    let v2217 : Result<regex_Regex, regex_Error> = Fable.Core.RustInterop.emitRustExpr v2216 v2215 
+                                                    let v2218 : string = "$0.unwrap()"
+                                                    let v2219 : regex_Regex = Fable.Core.RustInterop.emitRustExpr v2217 v2218 
+                                                    let v2220 : string = $"$0.replace_all(&$1, &*$2)"
+                                                    let v2221 : std_borrow_Cow<Str> = Fable.Core.RustInterop.emitRustExpr struct (v2219, v2214, v2212) v2220 
+                                                    let v2222 : string = "String::from($0)"
+                                                    let v2223 : std_string_String = Fable.Core.RustInterop.emitRustExpr v2221 v2222 
+                                                    let v2224 : string = "fable_library_rust::String_::fromString($0)"
+                                                    let v2225 : string = Fable.Core.RustInterop.emitRustExpr v2223 v2224 
                                                     v2225 
                                                     #endif
-#if FABLE_COMPILER_RUST && CONTRACT
+#if FABLE_COMPILER_RUST && WASM
                                                     let v2226 : string = null |> unbox<string>
                                                     v2226 
                                                     #endif
-#if FABLE_COMPILER_TYPESCRIPT
+#if FABLE_COMPILER_RUST && CONTRACT
                                                     let v2227 : string = null |> unbox<string>
                                                     v2227 
                                                     #endif
-#if FABLE_COMPILER_PYTHON
+#if FABLE_COMPILER_TYPESCRIPT
                                                     let v2228 : string = null |> unbox<string>
                                                     v2228 
                                                     #endif
-#else
-                                                    let v2229 : string = method104()
-                                                    let v2230 : string = System.Text.RegularExpressions.Regex.Replace (v2210, v2229, v2211)
-                                                    v2230 
+#if FABLE_COMPILER_PYTHON
+                                                    let v2229 : string = null |> unbox<string>
+                                                    v2229 
                                                     #endif
-                                                    |> fun x -> _v2212 <- Some x
-                                                    let v2231 : string = match _v2212 with Some x -> x | None -> failwith "base.run_target / _v2212=None"
-                                                    v2231
-                                            let v2233 : bool = v2204 = false
-                                            if v2233 then
-                                                let v2234 : string = $"{v2232}\n\n{v2203}\n"
-                                                method24(v2175, v2234)
-                                            let v2235 : string = $"python \"{v2175}\""
-                                            let v2236 : string = "TRACE_LEVEL"
-                                            let v2237 : string = "Verbose"
-                                            let v2238 : (struct (string * string) []) = [|struct (v2236, v2237)|]
-                                            let v2239 : System.Threading.CancellationToken option = None
-                                            let v2240 : (struct (string * string) []) = [||]
-                                            let v2241 : (struct (bool * string * int32) -> Async<unit>) option = None
-                                            let v2242 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option = None
-                                            let v2243 : string option = None
-                                            let v2249 : Result<string, string> =
-                                                match v2103 with
-                                                | US12_1(v2246) -> (* Error *)
-                                                    let v2247 : Result<string, string> = Error v2246 
-                                                    v2247
-                                                | US12_0(v2244) -> (* Ok *)
-                                                    let v2245 : Result<string, string> = Ok v2244 
-                                                    v2245
-                                            let v2250 : string = "v2249.ok()"
-                                            let v2251 : string option = Fable.Core.RustInterop.emitRustExpr () v2250 
-                                            let v2252 : bool = true
-                                            let struct (v2253 : int32, v2254 : string) = method28(v2239, v2235, v2238, v2241, v2242, v2252, v2251)
-                                            let v2255 : int32 = v2238.Length
-                                            let v2256 : (string []) = Array.zeroCreate<string> (v2255)
-                                            let v2257 : Mut4 = {l0 = 0} : Mut4
-                                            while method32(v2255, v2257) do
-                                                let v2259 : int32 = v2257.l0
-                                                let struct (v2260 : string, v2261 : string) = v2238.[int v2259]
-                                                let v2262 : string = $"$env:{v2260}=''{v2261}''"
-                                                v2256.[int v2259] <- v2262
-                                                let v2263 : int32 = v2259 + 1
-                                                v2257.l0 <- v2263
+#else
+                                                    let v2230 : string = method104()
+                                                    let v2231 : string = System.Text.RegularExpressions.Regex.Replace (v2211, v2230, v2212)
+                                                    v2231 
+                                                    #endif
+                                                    |> fun x -> _v2213 <- Some x
+                                                    let v2232 : string = match _v2213 with Some x -> x | None -> failwith "base.run_target / _v2213=None"
+                                                    v2232
+                                            let v2234 : bool = v2205 = false
+                                            if v2234 then
+                                                let v2235 : string = $"{v2233}\n\n{v2204}\n"
+                                                method24(v2176, v2235)
+                                            let v2236 : string = $"python \"{v2176}\""
+                                            let v2237 : string = "TRACE_LEVEL"
+                                            let v2238 : string = "Verbose"
+                                            let v2239 : (struct (string * string) []) = [|struct (v2237, v2238)|]
+                                            let v2240 : System.Threading.CancellationToken option = None
+                                            let v2241 : (struct (string * string) []) = [||]
+                                            let v2242 : (struct (bool * string * int32) -> Async<unit>) option = None
+                                            let v2243 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option = None
+                                            let v2244 : string option = None
+                                            let v2250 : Result<string, string> =
+                                                match v2104 with
+                                                | US12_1(v2247) -> (* Error *)
+                                                    let v2248 : Result<string, string> = Error v2247 
+                                                    v2248
+                                                | US12_0(v2245) -> (* Ok *)
+                                                    let v2246 : Result<string, string> = Ok v2245 
+                                                    v2246
+                                            let v2251 : string = "v2250.ok()"
+                                            let v2252 : string option = Fable.Core.RustInterop.emitRustExpr () v2251 
+                                            let v2253 : bool = true
+                                            let struct (v2254 : int32, v2255 : string) = method28(v2240, v2236, v2239, v2242, v2243, v2253, v2252)
+                                            let v2256 : int32 = v2239.Length
+                                            let v2257 : (string []) = Array.zeroCreate<string> (v2256)
+                                            let v2258 : Mut4 = {l0 = 0} : Mut4
+                                            while method32(v2256, v2258) do
+                                                let v2260 : int32 = v2258.l0
+                                                let struct (v2261 : string, v2262 : string) = v2239.[int v2260]
+                                                let v2263 : string = $"$env:{v2261}=''{v2262}''"
+                                                v2257.[int v2260] <- v2263
+                                                let v2264 : int32 = v2260 + 1
+                                                v2258.l0 <- v2264
                                                 ()
-                                            let v2264 : ((string []) -> string seq) = Seq.ofArray
-                                            let v2265 : string seq = v2264 v2256
-                                            let v2266 : (string -> (string seq -> string)) = String.concat
-                                            let v2267 : string = ";"
-                                            let v2268 : (string seq -> string) = v2266 v2267
-                                            let v2269 : string = v2268 v2265
-                                            let v2270 : string = $"pwsh -c '{v2269}; {v2235}'"
-                                            let v2271 : bool = v2253 = 0
-                                            if v2271 then
-                                                let v2272 : (unit -> string) = closure112(v2254)
-                                                let v2273 : (string -> US3) = closure45()
-                                                let v2274 : (exn -> US3) = closure113(v2175, v2254, v2270)
-                                                let v2275 : US3 = try v2272 () |> v2273 with ex -> v2274 ex 
-                                                let v2280 : string option =
-                                                    match v2275 with
+                                            let v2265 : ((string []) -> string seq) = Seq.ofArray
+                                            let v2266 : string seq = v2265 v2257
+                                            let v2267 : (string -> (string seq -> string)) = String.concat
+                                            let v2268 : string = ";"
+                                            let v2269 : (string seq -> string) = v2267 v2268
+                                            let v2270 : string = v2269 v2266
+                                            let v2271 : string = $"pwsh -c '{v2270}; {v2236}'"
+                                            let v2272 : bool = v2254 = 0
+                                            if v2272 then
+                                                let v2273 : (unit -> string) = closure112(v2255)
+                                                let v2274 : (string -> US3) = closure45()
+                                                let v2275 : (exn -> US3) = closure113(v2176, v2255, v2271)
+                                                let v2276 : US3 = try v2273 () |> v2274 with ex -> v2275 ex 
+                                                let v2281 : string option =
+                                                    match v2276 with
                                                     | US3_1 -> (* None *)
-                                                        let v2278 : string option = None
+                                                        let v2279 : string option = None
+                                                        v2279
+                                                    | US3_0(v2277) -> (* Some *)
+                                                        let v2278 : string option = Some v2277 
                                                         v2278
-                                                    | US3_0(v2276) -> (* Some *)
-                                                        let v2277 : string option = Some v2276 
-                                                        v2277
-                                                let v2281 : string = "$0.unwrap()"
-                                                let v2282 : string = Fable.Core.RustInterop.emitRustExpr v2280 v2281 
-                                                let v2283 : US3 = US3_0(v2232)
-                                                let v2284 : US3 = US3_0(v1897)
-                                                let v2285 : US3 = US3_0(v2282)
-                                                struct (v2283, v2284, v2285)
+                                                let v2282 : string = "$0.unwrap()"
+                                                let v2283 : string = Fable.Core.RustInterop.emitRustExpr v2281 v2282 
+                                                let v2284 : US3 = US3_0(v2233)
+                                                let v2285 : US3 = US3_0(v1898)
+                                                let v2286 : US3 = US3_0(v2283)
+                                                struct (v2284, v2285, v2286)
                                             else
-                                                let v2286 : US0 = US0_4
-                                                let v2287 : (unit -> string) = closure116()
-                                                let v2288 : (unit -> string) = closure117(v2175, v2254, v2253, v2270)
-                                                method5(v2286, v2287, v2288)
-                                                let v2289 : US3 = US3_1
-                                                let v2290 : US3 = US3_0(v1897)
-                                                let v2291 : US3 = US3_1
-                                                struct (v2289, v2290, v2291)
+                                                let v2287 : US0 = US0_4
+                                                let v2288 : (unit -> string) = closure116()
+                                                let v2289 : (unit -> string) = closure117(v2176, v2255, v2254, v2271)
+                                                method5(v2287, v2288, v2289)
+                                                let v2290 : US3 = US3_1
+                                                let v2291 : US3 = US3_0(v1898)
+                                                let v2292 : US3 = US3_1
+                                                struct (v2290, v2291, v2292)
                                     else
-                                        let v2298 : US0 = US0_1
-                                        let v2299 : (unit -> string) = closure118()
-                                        let v2300 : (unit -> string) = closure119(v14, v13)
-                                        method5(v2298, v2299, v2300)
-                                        let v2301 : US3 = US3_1
+                                        let v2299 : US0 = US0_1
+                                        let v2300 : (unit -> string) = closure118()
+                                        let v2301 : (unit -> string) = closure119(v14, v13)
+                                        method5(v2299, v2300, v2301)
                                         let v2302 : US3 = US3_1
                                         let v2303 : US3 = US3_1
-                                        struct (v2301, v2302, v2303)
-                        let v2316 : string =
-                            match v2311 with
-                            | US3_1 -> (* None *)
-                                let v2314 : string = ""
-                                v2314
-                            | US3_0(v2313) -> (* Some *)
-                                v2313
-                        let v2317 : string = "extension"
-                        let v2321 : string =
-                            match v2310 with
-                            | US3_1 -> (* None *)
-                                let v2319 : string = ""
-                                v2319
-                            | US3_0(v2318) -> (* Some *)
-                                v2318
-                        let v2322 : string = "code"
-                        let v2326 : string =
+                                        let v2304 : US3 = US3_1
+                                        struct (v2302, v2303, v2304)
+                        let v2317 : string =
                             match v2312 with
                             | US3_1 -> (* None *)
-                                let v2324 : string = ""
+                                let v2315 : string = ""
+                                v2315
+                            | US3_0(v2314) -> (* Some *)
+                                v2314
+                        let v2318 : string = "extension"
+                        let v2322 : string =
+                            match v2311 with
+                            | US3_1 -> (* None *)
+                                let v2320 : string = ""
+                                v2320
+                            | US3_0(v2319) -> (* Some *)
+                                v2319
+                        let v2323 : string = "code"
+                        let v2327 : string =
+                            match v2313 with
+                            | US3_1 -> (* None *)
+                                let v2325 : string = ""
+                                v2325
+                            | US3_0(v2324) -> (* Some *)
                                 v2324
-                            | US3_0(v2323) -> (* Some *)
-                                v2323
-                        let v2327 : string = "output"
-                        [|struct (v2317, v2316); struct (v2322, v2321); struct (v2327, v2326)|]
+                        let v2328 : string = "output"
+                        [|struct (v2318, v2317); struct (v2323, v2322); struct (v2328, v2327)|]
         | _ ->
-            let v2332 : string = "extension"
-            let v2333 : string = ""
-            let v2334 : string = "code"
-            let v2335 : string = "output"
-            [|struct (v2332, v2333); struct (v2334, v2333); struct (v2335, v2333)|]
-    let v2338 : string = "$0.to_vec()"
-    let v2339 : Vec<struct (string * string)> = Fable.Core.RustInterop.emitRustExpr v2337 v2338 
-    let v2340 : string = "$0.into_iter().map(|x| $1(x.clone())).collect::<Vec<_>>()"
-    let v2341 : (struct (string * string) -> (std_string_String * std_string_String)) = closure120()
-    let v2342 : Vec<(std_string_String * std_string_String)> = Fable.Core.RustInterop.emitRustExpr struct (v2339, v2341) v2340 
-    let v2343 : string = "std::collections::BTreeMap::from_iter(v2342.iter().map(|x| x.as_ref()).map(|&(ref k, ref v)| (k.clone(), v.clone())))"
-    let v2344 : std_collections_BTreeMap<std_string_String, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v2343 
-    let v2345 : string = "serde_json::to_string(&v2344)"
-    let v2346 : Result<std_string_String, serde_json_Error> = Fable.Core.RustInterop.emitRustExpr () v2345 
-    let v2347 : (serde_json_Error -> string) = method115()
-    let v2348 : string = "$0.map_err(|x| $1(x))"
-    let v2349 : Result<std_string_String, string> = Fable.Core.RustInterop.emitRustExpr struct (v2346, v2347) v2348 
-    let v2350 : string = "true; let _result = $0.map(|x| { //"
-    let v2351 : bool = Fable.Core.RustInterop.emitRustExpr v2349 v2350 
-    let v2352 : string = "x"
-    let v2353 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v2352 
-    let v2354 : string = "fable_library_rust::String_::fromString($0)"
-    let v2355 : string = Fable.Core.RustInterop.emitRustExpr v2353 v2354 
-    let v2356 : string = "true; $0 })"
-    let v2357 : bool = Fable.Core.RustInterop.emitRustExpr v2355 v2356 
-    let v2358 : string = "_result"
-    let v2359 : Result<string, string> = Fable.Core.RustInterop.emitRustExpr () v2358 
-    let v2360 : Result<string, string> = method116(v2359)
-    let v2361 : string = ""
-    let v2362 : string = "}"
-    let v2363 : string = v2361 + v2362 
-    let v2364 : string = v2363 + v2362 
-    let v2365 : string = v2364 + v2362 
-    let v2366 : string = "{"
-    let v2367 : string = v2361 + v2366 
-    let v2368 : string = v2367 + v2366 
-    let v2369 : string = "v2360 " + v2365 + "); " + v2368 + " //"
-    Fable.Core.RustInterop.emitRustExpr () v2369 
-    let v2370 : string = "__result"
-    let v2371 : std_pin_Pin<Box<Dyn<std_future_Future<Result<string, string>>>>> = Fable.Core.RustInterop.emitRustExpr () v2370 
-    v2371
+            let v2333 : string = "extension"
+            let v2334 : string = ""
+            let v2335 : string = "code"
+            let v2336 : string = "output"
+            [|struct (v2333, v2334); struct (v2335, v2334); struct (v2336, v2334)|]
+    let v2339 : string = "$0.to_vec()"
+    let v2340 : Vec<struct (string * string)> = Fable.Core.RustInterop.emitRustExpr v2338 v2339 
+    let v2341 : string = "$0.into_iter().map(|x| $1(x.clone())).collect::<Vec<_>>()"
+    let v2342 : (struct (string * string) -> (std_string_String * std_string_String)) = closure120()
+    let v2343 : Vec<(std_string_String * std_string_String)> = Fable.Core.RustInterop.emitRustExpr struct (v2340, v2342) v2341 
+    let v2344 : string = "std::collections::BTreeMap::from_iter(v2343.iter().map(|x| x.as_ref()).map(|&(ref k, ref v)| (k.clone(), v.clone())))"
+    let v2345 : std_collections_BTreeMap<std_string_String, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v2344 
+    let v2346 : string = "serde_json::to_string(&v2345)"
+    let v2347 : Result<std_string_String, serde_json_Error> = Fable.Core.RustInterop.emitRustExpr () v2346 
+    let v2348 : (serde_json_Error -> string) = method115()
+    let v2349 : string = "$0.map_err(|x| $1(x))"
+    let v2350 : Result<std_string_String, string> = Fable.Core.RustInterop.emitRustExpr struct (v2347, v2348) v2349 
+    let v2351 : string = "true; let _result = $0.map(|x| { //"
+    let v2352 : bool = Fable.Core.RustInterop.emitRustExpr v2350 v2351 
+    let v2353 : string = "x"
+    let v2354 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v2353 
+    let v2355 : string = "fable_library_rust::String_::fromString($0)"
+    let v2356 : string = Fable.Core.RustInterop.emitRustExpr v2354 v2355 
+    let v2357 : string = "true; $0 })"
+    let v2358 : bool = Fable.Core.RustInterop.emitRustExpr v2356 v2357 
+    let v2359 : string = "_result"
+    let v2360 : Result<string, string> = Fable.Core.RustInterop.emitRustExpr () v2359 
+    let v2361 : Result<string, string> = method116(v2360)
+    let v2362 : string = ""
+    let v2363 : string = "}"
+    let v2364 : string = v2362 + v2363 
+    let v2365 : string = v2364 + v2363 
+    let v2366 : string = v2365 + v2363 
+    let v2367 : string = "{"
+    let v2368 : string = v2362 + v2367 
+    let v2369 : string = v2368 + v2367 
+    let v2370 : string = "v2361 " + v2366 + "); " + v2369 + " //"
+    Fable.Core.RustInterop.emitRustExpr () v2370 
+    let v2371 : string = "__result"
+    let v2372 : std_pin_Pin<Box<Dyn<std_future_Future<Result<string, string>>>>> = Fable.Core.RustInterop.emitRustExpr () v2371 
+    v2372
 and closure1 () (v0 : (string [])) : int32 =
     let v1 : (US0 -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure2()
     let v2 : US0 = US0_0

@@ -48,9 +48,9 @@ if ($extensionsPath.Count -gt 0) {
 
     if (!$fast) {
         { ~/.bun/bin/bun install } | Invoke-Block -Location $extensionSrcPath
-        { ~/.bun/bin/bunx tsc --build } | Invoke-Block -Location $extensionSrcPath
+        { ~/.bun/bin/bunx --bun tsc --build } | Invoke-Block -Location $extensionSrcPath
     }
-    { ~/.bun/bin/bunx @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath
+    { ~/.bun/bin/bunx --bun @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath
 }
 
 foreach ($extensionsPath in $extensionsPath) {
