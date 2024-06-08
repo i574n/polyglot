@@ -633,17 +633,16 @@ let split_args (args : string) : result (array_base string) string =
     inl p_plain = special ++ [ ' ' ] |> none_of |> many1_chars
     inl p_text = p_word |> many1_strings
     inl p_esc = esc |> listm.map p_esc_char |> choice
-    inl p_quoted = (p_word <|> p_esc) |> many |>> (listm'.box >> seq.of_list' >> sm'.concat "")
+    inl p_quoted = (p_word <|> p_esc) |> many |>> sm'.concat_list ""
     inl p_quoted_all = p_quoted |> between (p_char '"') (p_char '"')
-    inl p_esc_root = p_esc |>> (fun _ => "") >>. (p_word |> many) |>> (listm'.box >> seq.of_list' >> sm'.concat "")
+    inl p_esc_root = p_esc |>> (fun _ => "") >>. (p_word |> many) |>> sm'.concat_list ""
     inl p_content = p_plain <|> p_quoted_all <|> p_esc_root
     inl p_args = spaces1 () |> sep_by p_content
     args
     |> optionm'.of_obj
     |> optionm'.default_value' ""
     |> parse p_args
-    |> resultm.map fun x => (x |> fst |> listm'.box |> listm'.to_array' : _ i32 _)
-    |> resultm.map (fun (a x : _ i32 _) => x)
+    |> resultm.map (fst >> listm'.box >> listm'.to_array')
 
 #!spiral
 
@@ -1589,7 +1588,6 @@ inl arg_union forall union_type. (fn : union_type -> ()) (arg : arg) : arg =
         |> listm.map fst
         |> listm'.box
         |> listm'.to_array'
-        |> fun (a x : _ i32 _) => x
         |> value_parser_possible_values
     )
 

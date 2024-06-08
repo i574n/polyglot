@@ -600,7 +600,7 @@ inl (>>.) forall t u. (a : parser t) (b : parser u) : parser u = fun input, s =>
 
 inl none_of (chars : list char) : parser char = function
     | "", s =>
-        inl chars = chars |> listm'.box |> listm'.to_array' |> fun x => x : _ int _
+        inl chars = chars |> listm'.box |> listm'.to_array'
         Error $'$"parsing.none_of / unexpected end of input / chars: %A{!chars} / s: %A{!s}"'
     | x, s =>
         inl first_char = x |> sm'.index 0i32
@@ -608,7 +608,7 @@ inl none_of (chars : list char) : parser char = function
         if chars |> listm'.exists' ((=) first_char) |> not
         then Ok (first_char, rest, s |> update (sm'.obj_to_string first_char))
         else
-            inl chars = chars |> listm'.box |> listm'.to_array' |> fun x => x : _ int _
+            inl chars = chars |> listm'.box |> listm'.to_array'
             Error $'$"parsing.none_of / unexpected char: \'{!first_char}\' / chars: %A{!chars} / s: %A{!s}"'
 
 #!spiral

@@ -408,9 +408,6 @@ and UH2 =
 and [<Struct>] US13 =
     | US13_0 of f0_0 : string * f0_1 : System.Text.StringBuilder * f0_2 : int32 * f0_3 : int32
     | US13_1 of f1_0 : string
-and [<Struct>] US14 =
-    | US14_0 of f0_0 : (string [])
-    | US14_1 of f1_0 : string
 let rec method0 () : string =
     let v0 : string = "TRACE_LEVEL"
     v0
@@ -3238,21 +3235,15 @@ and method16 (v0 : string) : US8 =
     let v9 : int32 = 1
     let v10 : int32 = 1
     let v11 : US9 = method17(v8, v5, v7, v9, v10)
-    let v25 : US14 =
-        match v11 with
-        | US9_1(v22) -> (* Error *)
-            US14_1(v22)
-        | US9_0(v12, v13, v14, v15, v16) -> (* Ok *)
-            let v17 : string list = []
-            let v18 : string list = method25(v12, v17)
-            let v19 : (string list -> (string [])) = List.toArray
-            let v20 : (string []) = v19 v18
-            US14_0(v20)
-    match v25 with
-    | US14_1(v28) -> (* Error *)
-        US8_1(v28)
-    | US14_0(v26) -> (* Ok *)
-        US8_0(v26)
+    match v11 with
+    | US9_1(v22) -> (* Error *)
+        US8_1(v22)
+    | US9_0(v12, v13, v14, v15, v16) -> (* Ok *)
+        let v17 : string list = []
+        let v18 : string list = method25(v12, v17)
+        let v19 : (string list -> (string [])) = List.toArray
+        let v20 : (string []) = v19 v18
+        US8_0(v20)
 and closure19 () (v0 : string) : Result<(string []), string> =
     let v1 : US8 = method16(v0)
     match v1 with

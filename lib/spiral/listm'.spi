@@ -49,7 +49,7 @@ inl distinct' forall t. (list : list' t) : list' t =
     list |> $'List.distinct'
 
 /// ## to_array'
-inl to_array' forall dim t. (items : list' t) : a dim t =
+inl to_array' forall t. (items : list' t) : array_base t =
     items |> $'List.toArray'
 
 /// ## append

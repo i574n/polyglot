@@ -2010,32 +2010,7 @@ pub mod File_system {
     pub fn closure51(unitVar: (), v0_1: string) -> string {
         sprintf!("file:///{}", trimStartChars(v0_1, new_array(&['/'])))
     }
-    pub fn method48() -> string {
-        let _v0: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v2_1: Result<std::path::PathBuf, std::io::Error> = std::env::current_dir();
-        let v4_1: std::path::PathBuf = v2_1.unwrap();
-        let v6_1: std::path::Display = v4_1.display();
-        let _v7: MutCell<Option<std::string::String>> = MutCell::new(None::<std::string::String>);
-        {
-            let x: std::string::String = format!("{}", v6_1);
-            _v7.set(Some(x))
-        }
-        {
-            let v17_1: std::string::String = match &_v7.get().clone() {
-                None => panic!("{}", string("base.run_target / _v7=None"),),
-                Some(_v7_0_0) => _v7_0_0.clone(),
-            };
-            {
-                let x_2: string = fable_library_rust::String_::fromString(v17_1);
-                _v0.set(Some(x_2))
-            }
-            match &_v0.get().clone() {
-                None => panic!("{}", string("base.run_target / _v0=None"),),
-                Some(_v0_0_0) => _v0_0_0.clone(),
-            }
-        }
-    }
-    pub fn method51(v0_1: string) -> Option<string> {
+    pub fn method50(v0_1: string) -> Option<string> {
         let _v1: MutCell<Option<File_system::US3>> = MutCell::new(None::<File_system::US3>);
         let v3_1: &str = &*v0_1;
         let v5_1: std::string::String = String::from(v3_1);
@@ -2074,23 +2049,23 @@ pub mod File_system {
         }
     }
     pub fn closure53(unitVar: (), v0_1: string) -> Option<string> {
-        File_system::method51(v0_1)
+        File_system::method50(v0_1)
     }
-    pub fn method50() -> Func1<string, Option<string>> {
+    pub fn method49() -> Func1<string, Option<string>> {
         Func1::new(move |v: string| File_system::closure53((), v))
     }
-    pub fn method52(v0_1: string, v1_1: string, v2_1: string) -> File_system::US13 {
+    pub fn method51(v0_1: string, v1_1: string, v2_1: string) -> File_system::US13 {
         let v0_1: MutCell<string> = MutCell::new(v0_1.clone());
         let v1_1: MutCell<string> = MutCell::new(v1_1.clone());
         let v2_1: MutCell<string> = MutCell::new(v2_1.clone());
-        '_method52: loop {
-            break '_method52 (if File_system::method7(File_system::method31(
+        '_method51: loop {
+            break '_method51 (if File_system::method7(File_system::method31(
                 v2_1.get().clone(),
                 v0_1.get().clone(),
             )) {
                 File_system::US13::US13_0(v2_1.get().clone())
             } else {
-                let v7_1: Option<string> = (File_system::method50())(v2_1.get().clone());
+                let v7_1: Option<string> = (File_system::method49())(v2_1.get().clone());
                 let _v8: LrcPtr<MutCell<Option<File_system::US3>>> =
                     refCell(None::<File_system::US3>);
                 {
@@ -2120,7 +2095,7 @@ pub mod File_system {
                             v0_1.set(v0_1_temp);
                             v1_1.set(v1_1_temp);
                             v2_1.set(v2_1_temp);
-                            continue '_method52;
+                            continue '_method51;
                         }
                         _ => File_system::US13::US13_1(sprintf!(
                             "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
@@ -2134,11 +2109,11 @@ pub mod File_system {
             });
         }
     }
-    pub fn method49(v0_1: string, v1_1: string) -> File_system::US13 {
+    pub fn method48(v0_1: string, v1_1: string) -> File_system::US13 {
         if File_system::method7(File_system::method31(v1_1.clone(), v0_1.clone())) {
             File_system::US13::US13_0(v1_1.clone())
         } else {
-            let v6_1: Option<string> = (File_system::method50())(v1_1.clone());
+            let v6_1: Option<string> = (File_system::method49())(v1_1.clone());
             let _v7: LrcPtr<MutCell<Option<File_system::US3>>> = refCell(None::<File_system::US3>);
             {
                 let x_2: Option<File_system::US3> = match &v6_1 {
@@ -2157,7 +2132,7 @@ pub mod File_system {
                 let v12_1: File_system::US3 =
                     defaultValue(File_system::US3::US3_1, _v7.get().clone());
                 match &v12_1 {
-                    File_system::US3::US3_0(v12_1_0_0) => File_system::method52(
+                    File_system::US3::US3_0(v12_1_0_0) => File_system::method51(
                         v0_1.clone(),
                         v1_1.clone(),
                         match &v12_1 {
@@ -2182,23 +2157,47 @@ pub mod File_system {
     pub fn closure55(v0_1: string, unitVar: ()) -> string {
         sprintf!("error: {} / {}", v0_1, File_system::closure6((), ()))
     }
+    pub fn method52() -> string {
+        let _v0: MutCell<Option<string>> = MutCell::new(None::<string>);
+        let v2_1: Result<std::path::PathBuf, std::io::Error> = std::env::current_dir();
+        let v4_1: std::path::PathBuf = v2_1.unwrap();
+        let v6_1: std::path::Display = v4_1.display();
+        let _v7: MutCell<Option<std::string::String>> = MutCell::new(None::<std::string::String>);
+        {
+            let x: std::string::String = format!("{}", v6_1);
+            _v7.set(Some(x))
+        }
+        {
+            let v17_1: std::string::String = match &_v7.get().clone() {
+                None => panic!("{}", string("base.run_target / _v7=None"),),
+                Some(_v7_0_0) => _v7_0_0.clone(),
+            };
+            {
+                let x_2: string = fable_library_rust::String_::fromString(v17_1);
+                _v0.set(Some(x_2))
+            }
+            match &_v0.get().clone() {
+                None => panic!("{}", string("base.run_target / _v0=None"),),
+                Some(_v0_0_0) => _v0_0_0.clone(),
+            }
+        }
+    }
     pub fn closure52(unitVar: (), unitVar_1: ()) -> string {
-        let v1_1: string = File_system::method48();
-        let v5_1: File_system::US13 = File_system::method49(
+        let v4_1: File_system::US13 = File_system::method48(
             File_system::method31(string("polyglot"), string(".paket")),
             string("C:\\home\\git\\polyglot\\lib\\spiral"),
         );
-        let v14_1: File_system::US3 = match &v5_1 {
-            File_system::US13::US13_0(v5_1_0_0) => File_system::US3::US3_0(v5_1_0_0.clone()),
-            File_system::US13::US13_1(v5_1_1_0) => {
+        let v13_1: File_system::US3 = match &v4_1 {
+            File_system::US13::US13_0(v4_1_0_0) => File_system::US3::US3_0(v4_1_0_0.clone()),
+            File_system::US13::US13_1(v4_1_1_0) => {
                 File_system::method9(
                     File_system::US0::US0_3,
                     Func0::new(move || File_system::closure54((), ())),
                     Func0::new({
-                        let v5_1 = v5_1.clone();
+                        let v4_1 = v4_1.clone();
                         move || {
                             File_system::closure55(
-                                match &v5_1 {
+                                match &v4_1 {
                                     File_system::US13::US13_1(x) => x.clone(),
                                     _ => unreachable!(),
                                 },
@@ -2210,15 +2209,16 @@ pub mod File_system {
                 File_system::US3::US3_1
             }
         };
-        let v29: File_system::US3 = match &v14_1 {
-            File_system::US3::US3_0(v14_1_0_0) => File_system::US3::US3_0(match &v14_1 {
+        let v29: File_system::US3 = match &v13_1 {
+            File_system::US3::US3_0(v13_1_0_0) => File_system::US3::US3_0(match &v13_1 {
                 File_system::US3::US3_0(x) => x.clone(),
                 _ => unreachable!(),
             }),
             _ => {
-                let v18_1: File_system::US13 = File_system::method49(
+                let v16_1: string = File_system::method52();
+                let v18_1: File_system::US13 = File_system::method48(
                     File_system::method31(string("polyglot"), string(".paket")),
-                    v1_1,
+                    v16_1,
                 );
                 match &v18_1 {
                     File_system::US13::US13_0(v18_1_0_0) => {

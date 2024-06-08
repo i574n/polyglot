@@ -714,7 +714,7 @@ inl process_rust { fs_path deps trace_level } =
                     fun ex =>
                         trace Critical
                             fun () => "spiral_builder.process_rust / Exception"
-                            fun () => $'$"ex: {!ex} / new_code_path: {!new_code_path} / external_command: {!external_command} / cargo_run_result: {!cargo_run_result} / {!_locals ()}"'
+                            fun () => $'$"ex: {!ex} / cargo_run_result: {!cargo_run_result} / new_code_path: {!new_code_path} / external_command: {!external_command} / {!_locals ()}"'
                         None
                 |> optionm'.box
                 |> optionm'.unwrap
@@ -723,7 +723,7 @@ inl process_rust { fs_path deps trace_level } =
         else
             trace Critical
                 fun () => "spiral_builder.process_rust / error"
-                fun () => $'$"exit_code: {!exit_code} / new_code_path: {!new_code_path} / external_command: {!external_command} / cargo_run_result: {!cargo_run_result}"'
+                fun () => $'$"exit_code: {!exit_code} / cargo_run_result: {!cargo_run_result} / new_code_path: {!new_code_path} / external_command: {!external_command}"'
             { extension = Some extension; code = None; output = None }
 
 #!markdown
@@ -996,7 +996,6 @@ inl process_typescript { fs_path deps trace_level } =
             ]
             |> listm'.box
             |> listm'.to_array'
-            |> am'.base'
         inl exit_code, run_result =
             runtime.execution_options fun x => { x with
                 command
@@ -1034,7 +1033,7 @@ inl process_typescript { fs_path deps trace_level } =
         else
             trace Critical
                 fun () => "spiral_builder.process_typescript / error"
-                fun () => $'$"exit_code: {!exit_code} / new_code_path: {!new_code_path} / external_command: {!external_command} / run_result: {!run_result}"'
+                fun () => $'$"exit_code: {!exit_code} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command}"'
             { extension = Some extension; code = None; output = None }
 
 #!markdown
@@ -1184,7 +1183,7 @@ inl process_python { fs_path deps trace_level } =
                     fun ex =>
                         trace Critical
                             fun () => "spiral_builder.process_python / Exception"
-                            fun () => $'$"ex: {!ex} / new_code_path: {!new_code_path} / external_command: {!external_command} / run_result: {!run_result} / {!_locals ()}"'
+                            fun () => $'$"ex: {!ex} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command} / {!_locals ()}"'
                         None
                 |> optionm'.box
                 |> optionm'.unwrap
@@ -1193,7 +1192,7 @@ inl process_python { fs_path deps trace_level } =
         else
             trace Critical
                 fun () => "spiral_builder.process_python / error"
-                fun () => $'$"exit_code: {!exit_code} / new_code_path: {!new_code_path} / external_command: {!external_command} / run_result: {!run_result}"'
+                fun () => $'$"exit_code: {!exit_code} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command}"'
             { extension = Some extension; code = None; output = None }
 
 #!markdown
@@ -1273,7 +1272,7 @@ inl process_cuda { py_path env deps } =
     if exit_code <>. 0 then
         trace Critical
             fun () => "spiral_builder.process_cuda / env install error"
-            fun () => $'$"env: {!env} / exit_code: {!exit_code} / new_code_path: {!new_code_path} / run_result: {!run_result}"'
+            fun () => $'$"env: {!env} / exit_code: {!exit_code} / run_result: {!run_result} / new_code_path: {!new_code_path}"'
         { extension = Some extension; code = None; output = None }
     else
         inl command = 
@@ -1300,7 +1299,8 @@ inl process_cuda { py_path env deps } =
                 |> seq.of_array
                 |> sm'.concat ";"
             $'$"pwsh -c \'{!vars}; {!command}\'"' : string
-        if exit_code = 0 then
+        if exit_code = 0
+            || (run_result |> sm'.contains "cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver") then
             inl output =
                 try
                     fun () =>
@@ -1312,7 +1312,7 @@ inl process_cuda { py_path env deps } =
                     fun ex =>
                         trace Critical
                             fun () => "spiral_builder.process_cuda / Exception"
-                            fun () => $'$"ex: {!ex} / new_code_path: {!new_code_path} / external_command: {!external_command} / run_result: {!run_result} / {!_locals ()}"'
+                            fun () => $'$"ex: {!ex} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command} / {!_locals ()}"'
                         None
                 |> optionm'.box
                 |> optionm'.unwrap
@@ -1321,7 +1321,7 @@ inl process_cuda { py_path env deps } =
         else
             trace Critical
                 fun () => "spiral_builder.process_cuda / error"
-                fun () => $'$"exit_code: {!exit_code} / new_code_path: {!new_code_path} / external_command: {!external_command} / run_result: {!run_result}"'
+                fun () => $'$"exit_code: {!exit_code} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command}"'
             { extension = Some extension; code = None; output = None }
 
 #!markdown
@@ -1380,7 +1380,7 @@ inl process_fsharp { spi_path } =
                 fun ex =>
                     trace Critical
                         fun () => "spiral_builder.process_fsharp / Exception"
-                        fun () => $'$"ex: {!ex} / new_code_path: {!new_code_path} / external_command: {!external_command} / run_result: {!run_result} / {!_locals ()}"'
+                        fun () => $'$"ex: {!ex} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command} / {!_locals ()}"'
                     None
             |> optionm'.box
             |> optionm'.unwrap
@@ -1389,7 +1389,7 @@ inl process_fsharp { spi_path } =
     else
         trace Critical
             fun () => "spiral_builder.process_fsharp / error"
-            fun () => $'$"exit_code: {!exit_code} / new_code_path: {!new_code_path} / external_command: {!external_command} / run_result: {!run_result}"'
+            fun () => $'$"exit_code: {!exit_code} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command}"'
         { extension = Some extension; code = None; output = None }
 
 #!markdown

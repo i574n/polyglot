@@ -480,6 +480,18 @@ inl concat (a : string) (b : seq.seq' string) : string =
 
 #!markdown
 
+## concat_list
+
+#!spiral
+
+inl concat_list s list =
+    list
+    |> listm'.box
+    |> seq.of_list'
+    |> concat s
+
+#!markdown
+
 ### ellipsis
 
 #!spiral

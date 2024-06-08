@@ -99,6 +99,7 @@ instance append a dim {int; number} t = am.append
 
 //// test
 ///! fsharp
+///! cuda
 ///! rust
 ///! typescript
 ///! python

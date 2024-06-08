@@ -649,32 +649,6 @@ pub mod Runtime {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
-    pub enum US14 {
-        US14_0(Array<string>),
-        US14_1(string),
-    }
-    impl Runtime::US14 {
-        pub fn get_IsUS14_0(this_: &MutCell<Runtime::US14>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS14_1(this_: &MutCell<Runtime::US14>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
-    impl core::fmt::Display for Runtime::US14 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
     pub fn method0() -> string {
         string("TRACE_LEVEL")
     }
@@ -3210,18 +3184,14 @@ pub mod Runtime {
                 1_i32,
                 1_i32,
             );
-            let v25: Runtime::US14 = match &v11 {
+            match &v11 {
                 Runtime::US9::US9_0(v11_0_0, v11_0_1, v11_0_2, v11_0_3, v11_0_4) => {
-                    Runtime::US14::US14_0(toArray(Runtime::method25(
+                    Runtime::US8::US8_0(toArray(Runtime::method25(
                         v11_0_0.clone(),
                         empty::<string>(),
                     )))
                 }
-                Runtime::US9::US9_1(v11_1_0) => Runtime::US14::US14_1(v11_1_0.clone()),
-            };
-            match &v25 {
-                Runtime::US14::US14_0(v25_0_0) => Runtime::US8::US8_0(v25_0_0.clone()),
-                Runtime::US14::US14_1(v25_1_0) => Runtime::US8::US8_1(v25_1_0.clone()),
+                Runtime::US9::US9_1(v11_1_0) => Runtime::US8::US8_1(v11_1_0.clone()),
             }
         }
     }

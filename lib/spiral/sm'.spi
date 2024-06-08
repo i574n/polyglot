@@ -210,6 +210,13 @@ inl concat_list_heap_trailing separator input =
 inl concat (a : string) (b : seq.seq' string) : string =
     b |> $'String.concat' a
 
+/// ## concat_list
+inl concat_list s list =
+    list
+    |> listm'.box
+    |> seq.of_list'
+    |> concat s
+
 /// ### ellipsis
 inl ellipsis (max : i32) (s : string) =
     if sm.length s <= max
