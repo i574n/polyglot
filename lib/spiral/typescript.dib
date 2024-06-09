@@ -1,0 +1,55 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
+
+#!markdown
+
+# typescript
+
+#!markdown
+
+### emit_expr
+
+#!spiral
+
+inl emit_expr forall a t. (args : a) (code : string) : t =
+    real
+        $'Fable.Core.JsInterop.emitJsExpr !args !code ' : t
+
+#!markdown
+
+###
+
+#!spiral
+
+inl (~!\) forall t. (code : string) : t =
+    emit_expr () code
+
+#!markdown
+
+###
+
+#!spiral
+
+inl (~!\\) forall t u. ((args : t), (code : string)) : u =
+    emit_expr args code
+
+#!markdown
+
+###
+
+#!spiral
+
+inl import_all forall t. (file : string) : t =
+    real
+        $'Fable.Core.JsInterop.importAll !file ' : t
+
+#!markdown
+
+###
+
+#!spiral
+
+inl import forall t. (name : string) (file : string) : t =
+    real
+        $'Fable.Core.JsInterop.import !name !file ' : t

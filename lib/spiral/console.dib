@@ -14,7 +14,54 @@ open testing
 
 #!markdown
 
-## write_line
+## fsharp
+
+#!markdown
+
+### write_line_
+
+#!spiral
+
+inl write_line_ ~obj : () =
+    obj |> $'System.Console.WriteLine'
+
+#!markdown
+
+### console_color
+
+#!spiral
+
+nominal console_color = $'System.ConsoleColor'
+
+#!markdown
+
+### reset_color
+
+#!spiral
+
+inl reset_color () : () =
+    run_target function
+        | Fsharp => fun () => $'System.Console.ResetColor' ()
+        | _ => fun () => ()
+
+#!markdown
+
+### set_foreground_color
+
+#!spiral
+
+inl set_foreground_color (color : console_color) : () =
+    run_target function
+        | Fsharp => fun () => $'System.Console.ForegroundColor <- !color '
+        | _ => fun () => ()
+
+#!markdown
+
+## console
+
+#!markdown
+
+### write_line
 
 #!spiral
 
@@ -23,22 +70,3 @@ inl write_line obj : () =
         Fsharp = fun () => obj |> $'System.Console.WriteLine' : ()
         Python = fun () => $'print(!obj)' : ()
     }
-
-#!spiral
-
-inl write_line_ ~obj : () =
-    obj |> $'System.Console.WriteLine'
-
-#!spiral
-
-nominal console_color = $'System.ConsoleColor'
-
-inl reset_color () : () =
-    run_target function
-        | Fsharp => fun () => $'System.Console.ResetColor' ()
-        | _ => fun () => ()
-
-inl set_foreground_color (color : console_color) : () =
-    run_target function
-        | Fsharp => fun () => $'System.Console.ForegroundColor <- !color '
-        | _ => fun () => ()

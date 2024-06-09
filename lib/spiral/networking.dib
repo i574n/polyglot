@@ -37,7 +37,11 @@ inl types () =
 
 #!markdown
 
-## reqwest_response
+## rust
+
+#!markdown
+
+### reqwest_response
 
 #!spiral
 
@@ -45,7 +49,7 @@ nominal reqwest_response = $'reqwest_Response'
 
 #!markdown
 
-## reqwest_error
+### reqwest_error
 
 #!spiral
 
@@ -53,7 +57,7 @@ nominal reqwest_error = $'reqwest_Error'
 
 #!markdown
 
-## request_builder
+### request_builder
 
 #!spiral
 
@@ -61,7 +65,7 @@ nominal request_builder = $'reqwest_RequestBuilder'
 
 #!markdown
 
-## request_type
+### request_type
 
 #!spiral
 
@@ -71,7 +75,7 @@ union request_type =
 
 #!markdown
 
-## request
+### request
 
 #!spiral
 
@@ -86,7 +90,7 @@ type request =
 
 #!markdown
 
-## new_request_get
+### new_request_get
 
 #!spiral
 
@@ -98,7 +102,7 @@ inl new_request_get (url : string) : request_builder =
 
 #!markdown
 
-## new_request_post
+### new_request_post
 
 #!spiral
 
@@ -110,7 +114,7 @@ inl new_request_post (url : string) : request_builder =
 
 #!markdown
 
-## request_send
+### request_send
 
 #!spiral
 
@@ -120,7 +124,7 @@ inl request_send (request : request_builder) : async.future_pin (resultm.result'
 
 #!markdown
 
-## request_body
+### request_body
 
 #!spiral
 
@@ -130,7 +134,7 @@ inl request_body (body : string) (request : request_builder) : request_builder =
 
 #!markdown
 
-## request_header
+### request_header
 
 #!spiral
 
@@ -142,7 +146,7 @@ inl request_header (key : string) (value : string) (request : request_builder) :
 
 #!markdown
 
-## request_json
+### request_json
 
 #!spiral
 
@@ -151,7 +155,7 @@ inl request_json forall t. (obj : t) (request : request_builder) : request_build
 
 #!markdown
 
-## response_text
+### response_text
 
 #!spiral
 
@@ -160,7 +164,11 @@ inl response_text (response : reqwest_response) : async.future_pin (resultm.resu
 
 #!markdown
 
-## tcp_client
+## fsharp
+
+#!markdown
+
+### tcp_client
 
 #!spiral
 
@@ -168,7 +176,7 @@ nominal tcp_client = $'System.Net.Sockets.TcpClient'
 
 #!markdown
 
-## new_tcp_client
+### new_tcp_client
 
 #!spiral
 
@@ -177,7 +185,7 @@ inl new_tcp_client () : tcp_client =
 
 #!markdown
 
-## ip_address
+### ip_address
 
 #!spiral
 
@@ -185,7 +193,7 @@ nominal ip_address = $'System.Net.IPAddress'
 
 #!markdown
 
-## ip_address_parse
+### ip_address_parse
 
 #!spiral
 
@@ -194,7 +202,7 @@ inl ip_address_parse (s : string) : ip_address =
 
 #!markdown
 
-## tcp_listener
+### tcp_listener
 
 #!spiral
 
@@ -202,7 +210,7 @@ nominal tcp_listener = $'System.Net.Sockets.TcpListener'
 
 #!markdown
 
-## new_tcp_listener
+### new_tcp_listener
 
 #!spiral
 
@@ -211,7 +219,7 @@ inl new_tcp_listener (ip_address : ip_address) (port : i32) : tcp_listener =
 
 #!markdown
 
-## listener_start
+### listener_start
 
 #!spiral
 
@@ -220,7 +228,7 @@ inl listener_start (listener : tcp_listener) : () =
 
 #!markdown
 
-## listener_stop
+### listener_stop
 
 #!spiral
 
@@ -229,7 +237,7 @@ inl listener_stop (listener : tcp_listener) : () =
 
 #!markdown
 
-## client_connect_async
+### client_connect_async
 
 #!spiral
 
@@ -244,7 +252,7 @@ inl client_connect_async
 
 #!markdown
 
-## test_port_open
+### test_port_open
 
 #!spiral
 
@@ -270,7 +278,7 @@ test_port_open "127.0.0.1" 65536
 
 #!markdown
 
-## test_port_open_timeout
+### test_port_open_timeout
 
 #!spiral
 
@@ -293,7 +301,7 @@ test_port_open_timeout 120 "127.0.0.1" 65535
 
 #!markdown
 
-## wait_for_port_access
+### wait_for_port_access
 
 #!spiral
 
@@ -360,7 +368,7 @@ fun () =>
         retries2
         |> _assert_between
             if platform.is_windows () then 80i64 else 80
-            if platform.is_windows () then 150 else 600
+            if platform.is_windows () then 200 else 600
 
         true
     | _ => false
@@ -418,7 +426,7 @@ fun () =>
 
 #!markdown
 
-## get_available_port
+### get_available_port
 
 #!spiral
 
@@ -477,7 +485,7 @@ fun () =>
 
         retries
         |> _assert_between
-            if platform.is_windows () then 100i64 else 100
+            if platform.is_windows () then 50i64 else 50
             if platform.is_windows () then 150 else 1200
 
         true

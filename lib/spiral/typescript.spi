@@ -1,0 +1,24 @@
+/// # typescript
+
+/// ### emit_expr
+inl emit_expr forall a t. (args : a) (code : string) : t =
+    real
+        $'Fable.Core.JsInterop.emitJsExpr !args !code ' : t
+
+/// ###
+inl (~!\) forall t. (code : string) : t =
+    emit_expr () code
+
+/// ###
+inl (~!\\) forall t u. ((args : t), (code : string)) : u =
+    emit_expr args code
+
+/// ###
+inl import_all forall t. (file : string) : t =
+    real
+        $'Fable.Core.JsInterop.importAll !file ' : t
+
+/// ###
+inl import forall t. (name : string) (file : string) : t =
+    real
+        $'Fable.Core.JsInterop.import !name !file ' : t

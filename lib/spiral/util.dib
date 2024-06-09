@@ -14,7 +14,7 @@ open testing
 
 #!markdown
 
-## ski
+### ski
 
 #!spiral
 
@@ -26,11 +26,11 @@ union rec ski =
 
 inl rec eval ski =
     match ski with
-    | App (App (K, x), y) => eval x
-    | App (App (App (S, x), y), z) => eval (App (App (x, z), App (y, z)))
-    | App (I, x) => eval x
+    | App (App (K, x), y) => x |> eval
+    | App (App (App (S, x), y), z) => App (App (x, z), App (y, z)) |> eval
+    | App (I, x) => x |> eval
     | App (K, x) => App (K, eval x)
-    | App (f, x) => eval (App (eval f, x))
+    | App (f, x) => App (eval f, x) |> eval
     | _ => ski
 
 #!spiral
@@ -40,50 +40,64 @@ inl rec eval ski =
 eval I
 |> _assert_eq I
 
-eval (App (I, I))
+App (I, I)
+|> eval
 |> _assert_eq I
 
-eval (App (I, App (I, I)))
+App (I, App (I, I))
+|> eval
 |> _assert_eq I
 
-eval (App (App (I, I), I))
+App (App (I, I), I)
+|> eval
 |> _assert_eq I
 
-eval (App (App (App (I, I), I), I))
+App (App (App (I, I), I), I)
+|> eval
 |> _assert_eq I
 
 eval K
 |> _assert_eq K
 
-eval (App (K, I))
+App (K, I)
+|> eval
 |> _assert_eq (App (K, I))
 
-eval (App (K, K))
+App (K, K)
+|> eval
 |> _assert_eq (App (K, K))
 
-eval (App (App (K, I), K))
+App (App (K, I), K)
+|> eval
 |> _assert_eq I
 
-eval (App (App (K, K), I))
+App (App (K, K), I)
+|> eval
 |> _assert_eq K
 
-eval (App (App (App (App (K, K), I), S), K))
+App (App (App (App (K, K), I), S), K)
+|> eval
 |> _assert_eq S
 
 eval S
 |> _assert_eq S
 
-eval (App (App (App (S, I), I), I))
+App (App (App (S, I), I), I)
+|> eval
 |> _assert_eq I
 
-eval (App (App (App (S, K), K), I))
+App (App (App (S, K), K), I)
+|> eval
 |> _assert_eq I
 
-eval (App (App (App (S, K), I), (App (App (K, I), S))))
+App (App (App (S, K), I), (App (App (K, I), S)))
+|> eval
 |> _assert_eq I
 
-eval (App (App (K, S), App (I, App (App (App (S, K), S), I))))
+App (App (K, S), App (I, App (App (App (S, K), S), I)))
+|> eval
 |> _assert_eq S
 
-eval (App (App (App (S, K), I), K))
+App (App (App (S, K), I), K)
+|> eval
 |> _assert_eq K

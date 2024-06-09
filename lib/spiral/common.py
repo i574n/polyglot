@@ -480,11 +480,11 @@ def closure11(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_
 
     _v93.contents = x_2
     v98: US1 = default_arg(_v93.contents, US1(1))
-    def _arrow49(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
+    def _arrow47(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
         v105: Any = create(op_subtraction(ticks_1(now()), v98.fields[0]))
         return create_1(1, 1, 1, hours(v105), minutes(v105), seconds(v105), milliseconds(v105))
 
-    x_3: str = to_string(_arrow49() if (v98.tag == 0) else now(), method10())
+    x_3: str = to_string(_arrow47() if (v98.tag == 0) else now(), method10())
     _v10 = x_3
     v147: str
     if _v10 is None:
@@ -530,10 +530,10 @@ def closure11(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], str], unit_
     _v211: str | None = None
     x_5: str = pad_left(v207.lower(), 7, " ")
     _v211 = x_5
-    def _arrow58(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> str:
+    def _arrow54(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> str:
         raise Exception("base.run_target / _v211=None")
 
-    return trim_end(trim_start(((((((((("" + v147) + " ") + (_arrow58() if (_v211 is None) else _v211)) + " #") + str(pattern_input[0].l0)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
+    return trim_end(trim_start(((((((((("" + v147) + " ") + (_arrow54() if (_v211 is None) else _v211)) + " #") + str(pattern_input[0].l0)) + " ") + v1_1(None)) + " / ") + v2_1(None)) + ""), " ", "/")
 
 
 def method11(v0_1: US0, v1_1: Callable[[], str]) -> None:
@@ -592,14 +592,6 @@ def closure7(v0_1: int, v1_1: Exception) -> US5:
         return closure9(v0_1, v1_1, None)
 
     method7(US0(3), v3_1, v4_1)
-    _v5: None | None = None
-    _v5 = some(None)
-    if _v5 is None:
-        raise Exception("base.run_target / _v5=None")
-
-    else: 
-        value_1(_v5)
-
     return US5(1)
 
 

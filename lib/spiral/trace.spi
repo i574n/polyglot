@@ -6,7 +6,9 @@ inl types () =
     sm'.types ()
     env.types ()
 
-/// ## trace_level
+/// ## trace
+
+/// ### trace_level
 union trace_level =
     | Verbose
     | Debug
@@ -14,7 +16,7 @@ union trace_level =
     | Warning
     | Critical
 
-/// ## read_state
+/// ### read_state
 inl read_state () =
     run_target function
         | Rust (Contract | Wasm) => fun () =>
@@ -35,7 +37,7 @@ inl read_state () =
                     else None
             }
 
-/// ## trace_state
+/// ### trace_state
 type trace_state =
     {
         count : mut i64
@@ -55,7 +57,7 @@ inl new_trace_state trace_level' =
         repl_start = repl_start |> optionm'.box
     } : trace_state
 
-/// ## init_trace_state
+/// ### init_trace_state
 inl init_trace_state trace_level : () =
     inl trace_level =
         trace_level
@@ -63,16 +65,16 @@ inl init_trace_state trace_level : () =
     global "module State = let mutable trace_state = None"
     $'if State.trace_state.IsNone then State.trace_state <- !new_trace_state !trace_level |> Some' : ()
 
-/// ## get_trace_state_or_init
+/// ### get_trace_state_or_init
 inl get_trace_state_or_init trace_level : trace_state =
     init_trace_state trace_level
     // $'match State.trace_state with Some x -> x | None -> failwith "trace.get_trace_state_or_init / State.trace_state=None"'
     $'State.trace_state.Value'
 
-/// ## _locals
+/// ### _locals
 inl _locals () = ""
 
-/// ## test_trace_level
+/// ### test_trace_level
 inl test_trace_level level : bool =
     inl state = get_trace_state_or_init None
     inl level' = *state.level
@@ -83,7 +85,7 @@ inl test_trace_level level : bool =
         inl level' : i32 = real real_core.union_tag level'
         level >= level'
 
-/// ## trace_raw
+/// ### trace_raw
 let rec trace_raw level fn =
     inl trace_state = get_trace_state_or_init None
     if level |> test_trace_level then
@@ -100,7 +102,7 @@ let rec trace_raw level fn =
 
         *trace_state.trace_file text
 
-/// ## trace
+/// ### trace
 let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string) =
     fun () =>
         inl trace_state = get_trace_state_or_init None

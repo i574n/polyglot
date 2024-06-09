@@ -111,21 +111,18 @@ inl none_of_ (x : list char) : parser_ char () =
     x
     |> listm'.box
     |> listm'.to_array'
-    |> fun x => x : _ i32 _
     |> $'FParsec.CharParsers.noneOf'
 
 inl any_of_ (x : list char) : parser_ char () =
     x
     |> listm'.box
     |> listm'.to_array'
-    |> fun x => x : _ i32 _
     |> $'FParsec.CharParsers.anyOf'
 
 inl skip_any_of_ (x : list char) : parser_ () () =
     x
     |> listm'.box
     |> listm'.to_array'
-    |> fun x => x : _ i32 _
     |> $'FParsec.CharParsers.skipAnyOf'
 
 inl between_ forall t u v x. (a : parser_ t x) (b : parser_ u x) (c : parser_ v x) : parser_ v x =
@@ -240,11 +237,13 @@ inl split_args (args : string) : result (array_base (string * position_)) (strin
     inl p_args = spaces1_ () |> sep_by_ p_content
     args
     |> parse_ p_args
-    |> resultm.map fun (a, b) =>
+    |> resultm.map fun (a', b') =>
         (
             (
-                (a |> listm'.to_array' : _ i32 _)
-                |> am.map fun x => x, b
+                a'
+                |> listm'.to_array'
+                |> a
+                |> am.map fun x => x, b'
                 |> fun (a x : _ i32 _) => x
             )
         )
@@ -309,7 +308,11 @@ inl split_args (args : string) : result (array_base (string * position_)) (strin
 
 #!markdown
 
-## range
+## parsing
+
+#!markdown
+
+### range
 
 #!spiral
 
@@ -321,7 +324,7 @@ type range =
 
 #!markdown
 
-## position
+### position
 
 #!spiral
 
@@ -333,7 +336,7 @@ type position =
 
 #!markdown
 
-## parser_state
+### parser_state
 
 #!spiral
 
@@ -345,7 +348,7 @@ type parser_state =
 
 #!markdown
 
-## parser
+### parser
 
 #!spiral
 
@@ -353,7 +356,7 @@ type parser t = string * parser_state -> result (t * string * parser_state) stri
 
 #!markdown
 
-## parse
+### parse
 
 #!spiral
 
@@ -362,7 +365,7 @@ inl parse forall t. (p : parser t) (input : string) : result (t * string * parse
 
 #!markdown
 
-## inc
+### inc
 
 #!spiral
 
@@ -373,7 +376,7 @@ inl inc c (s : parser_state) =
 
 #!markdown
 
-## update
+### update
 
 #!spiral
 
@@ -389,7 +392,7 @@ inl update result (s : parser_state) =
 
 #!markdown
 
-## any_char
+### any_char
 
 #!spiral
 
@@ -425,7 +428,7 @@ inl any_char () : parser char = function
 
 #!markdown
 
-## p_char
+### p_char
 
 #!spiral
 
@@ -480,7 +483,7 @@ inl p_char (c : char) : parser char = function
 
 #!markdown
 
-## any_string
+### any_string
 
 #!spiral
 
@@ -517,7 +520,7 @@ inl any_string length : parser string = fun input, s =>
 
 #!markdown
 
-## skip_any_string
+### skip_any_string
 
 #!spiral
 
@@ -545,7 +548,7 @@ inl skip_any_string length : parser () = fun input, s =>
 
 #!markdown
 
-## (>>.)
+### (>>.)
 
 #!spiral
 
@@ -594,13 +597,13 @@ inl (>>.) forall t u. (a : parser t) (b : parser u) : parser u = fun input, s =>
 
 #!markdown
 
-## none_of
+### none_of
 
 #!spiral
 
 inl none_of (chars : list char) : parser char = function
     | "", s =>
-        inl chars = chars |> listm'.box |> listm'.to_array' |> fun x => x : _ int _
+        inl chars = chars |> listm'.box |> listm'.to_array'
         Error $'$"parsing.none_of / unexpected end of input / chars: %A{!chars} / s: %A{!s}"'
     | x, s =>
         inl first_char = x |> sm'.index 0i32
@@ -608,7 +611,7 @@ inl none_of (chars : list char) : parser char = function
         if chars |> listm'.exists' ((=) first_char) |> not
         then Ok (first_char, rest, s |> update (sm'.obj_to_string first_char))
         else
-            inl chars = chars |> listm'.box |> listm'.to_array' |> fun x => x : _ int _
+            inl chars = chars |> listm'.box |> listm'.to_array'
             Error $'$"parsing.none_of / unexpected char: \'{!first_char}\' / chars: %A{!chars} / s: %A{!s}"'
 
 #!spiral
@@ -647,7 +650,7 @@ inl none_of (chars : list char) : parser char = function
 
 #!markdown
 
-## (<|>)
+### (<|>)
 
 #!spiral
 
@@ -675,7 +678,7 @@ inl (<|>) forall t. (a : parser t) (b : parser t) : parser t = fun input, s =>
 
 #!markdown
 
-## (|>>)
+### (|>>)
 
 #!spiral
 
@@ -699,7 +702,7 @@ inl (|>>) p f : parser _ = fun input =>
 
 #!markdown
 
-## many1_chars
+### many1_chars
 
 #!spiral
 
@@ -728,7 +731,7 @@ inl many1_chars p : parser string = fun input =>
 
 #!markdown
 
-## many1
+### many1
 
 #!spiral
 
@@ -770,7 +773,7 @@ inl many1 p : parser (list _) = fun input =>
 
 #!markdown
 
-## many1_strings
+### many1_strings
 
 #!spiral
 
@@ -795,7 +798,7 @@ inl many1_strings p : parser string = fun input =>
 
 #!markdown
 
-## choice
+### choice
 
 #!spiral
 
@@ -832,7 +835,7 @@ inl choice parsers : parser _ = fun input =>
 
 #!markdown
 
-## many
+### many
 
 #!spiral
 
@@ -858,7 +861,7 @@ inl many p : parser (list _) = fun input =>
 
 #!markdown
 
-## between
+### between
 
 #!spiral
 
@@ -894,7 +897,7 @@ inl between p_open p_close p_content : parser _ = fun input =>
 
 #!markdown
 
-## sep_by
+### sep_by
 
 #!spiral
 
@@ -910,7 +913,7 @@ inl sep_by p sep : parser (list _) = fun input, s =>
 
 #!markdown
 
-## span
+### span
 
 #!spiral
 
@@ -925,7 +928,7 @@ inl span pred str =
 
 #!markdown
 
-## spaces1
+### spaces1
 
 #!spiral
 
@@ -936,7 +939,7 @@ inl spaces1 () : parser () = fun input, s =>
 
 #!markdown
 
-## p_digit
+### p_digit
 
 #!spiral
 

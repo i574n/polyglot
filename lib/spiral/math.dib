@@ -12,6 +12,44 @@
 
 open testing
 
+#!markdown
+
+## math
+
+#!markdown
+
+### e
+
+#!spiral
+
+inl e () =
+    exp 1f64
+
+#!markdown
+
+## square
+
+#!spiral
+
+inl square x =
+    x ** 2
+
+#!spiral
+
+//// test
+
+5f64
+|> sqrt
+|> square
+|> _assert_approx_eq None 5
+
+#!spiral
+
+//// test
+
+e () |> square
+|> _assert_approx_eq None 7.3890560989306495
+
 #!spiral
 
 //// test
@@ -65,7 +103,11 @@ pi / 2 |> cos
 
 #!markdown
 
-## atan2
+## fsharp
+
+#!markdown
+
+### atan2
 
 #!spiral
 
@@ -78,15 +120,6 @@ inl atan2 (y : f64) (x : f64) : f64 =
 
 0 |> atan2 1
 |> _assert_eq 1.5707963267948966
-
-#!markdown
-
-## e
-
-#!spiral
-
-inl e () =
-    exp 1f64
 
 #!markdown
 
@@ -183,28 +216,3 @@ inl round forall t {float}. (x : t) : t =
 
 0.6 |> round
 |> _assert_eq 1f64
-
-#!markdown
-
-## square
-
-#!spiral
-
-inl square x =
-    x ** 2
-
-#!spiral
-
-//// test
-
-5f64
-|> sqrt
-|> square
-|> _assert_approx_eq None 5
-
-#!spiral
-
-//// test
-
-e () |> square
-|> _assert_approx_eq None 7.3890560989306495

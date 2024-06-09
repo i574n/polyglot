@@ -14,111 +14,20 @@ open testing
 
 #!markdown
 
-## types 
+## types
 
 #!spiral
 
 inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::iter::Fuse<$0>\")>]\n#endif\ntype core_iter_Fuse<'T> = class end"
 
-#!spiral
-
-nominal fuse t = $'core_iter_Fuse<`t>'
-
-#!markdown
-
-## seq'
-
-#!spiral
-
-nominal seq' t = $'`t seq'
-
-#!markdown
-
-## of_array'
-
-#!spiral
-
-inl of_array' forall dim t. (items : a dim t) : seq' t =
-    $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
-
-#!spiral
-
-//// test
-
-(a ;[ "a"; "b" ] : _ i32 _)
-|> of_array'
-
-#!spiral
-
-inl of_array forall dim t. (items : a dim t) : seq' t =
-    items |> $'Seq.ofArray'
-
-#!spiral
-
-//// test
-
-(a ;[ "a"; "b" ] : _ i32 _)
-|> of_array
-
-#!markdown
-
-## to_array'
-
-#!spiral
-
-inl to_array' forall dim t. (items : seq' t) : a dim t =
-    items |> $'Seq.toArray'
-
-#!spiral
-
-//// test
-
-(a ;[ "a"; "b" ] : _ i32 _)
-|> of_array'
-|> to_array'
-|> _assert_eq (a ;[ "a"; "b" ] : _ i32 _)
-
-#!markdown
-
-## of_list'
-
-#!spiral
-
-inl of_list' forall t. (items : listm'.list' t) : seq' t =
-    $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
-
-#!markdown
-
-## to_list'
-
-#!spiral
-
-inl to_list' forall t. (items : seq' t) : listm'.list' t =
-    items |> $'Seq.toList'
-
-#!spiral
-
-//// test
-
-(a ;[ "a"; "b" ] : _ i32 _)
-|> of_array
-|> to_list'
-|> listm'.unbox
-|> _assert_eq ([ "a"; "b" ])
-
-#!markdown
-
-## rev'
-
-#!spiral
-
-inl rev'' forall t u. (items : t) : seq' u =
-    items |> $'Seq.rev'
-
 #!markdown
 
 ## seq
+
+#!markdown
+
+### seq
 
 #!spiral
 
@@ -126,7 +35,7 @@ type seq dim el = dim -> option el
 
 #!markdown
 
-## try_item
+### try_item
 
 #!spiral
 
@@ -135,7 +44,7 @@ inl try_item n s =
 
 #!markdown
 
-## from_list
+### from_list
 
 #!spiral
 
@@ -155,7 +64,7 @@ listm.init 10i32 print_and_return
 
 #!markdown
 
-## map
+### map
 
 #!spiral
 
@@ -177,7 +86,7 @@ listm.init 10i32 id
 
 #!markdown
 
-## mapi
+### mapi
 
 #!spiral
 
@@ -199,7 +108,7 @@ listm.init 10i32 print_and_return
 
 #!markdown
 
-## choose
+### choose
 
 #!spiral
 
@@ -234,7 +143,7 @@ listm.init 10i32 print_and_return
 
 #!markdown
 
-## indexed
+### indexed
 
 #!spiral
 
@@ -255,7 +164,7 @@ listm.init 10i32 ((*) 2)
 
 #!markdown
 
-## zip
+### zip
 
 #!spiral
 
@@ -272,7 +181,7 @@ inl zip n seq1 seq2 =
 
 #!markdown
 
-## zip_with
+### zip_with
 
 #!spiral
 
@@ -291,7 +200,7 @@ inl zip_with fn seq1 seq2 =
 
 #!markdown
 
-## fold
+### fold
 
 #!spiral
 
@@ -311,7 +220,7 @@ inl fold_ fn init seq =
 
 #!markdown
 
-## sum
+### sum
 
 #!spiral
 
@@ -333,7 +242,7 @@ listm.init 10i32 id
 
 #!markdown
 
-## to_list
+### to_list
 
 #!spiral
 
@@ -359,7 +268,7 @@ listm.init 10i32 id
 
 #!markdown
 
-## from_array
+### from_array
 
 #!spiral
 
@@ -380,7 +289,7 @@ a ;[ 1; 2; 3 ]
 
 #!markdown
 
-## to_array
+### to_array
 
 #!spiral
 
@@ -410,7 +319,7 @@ listm.init 10i32 id
 
 #!markdown
 
-## take_while
+### take_while
 
 #!spiral
 
@@ -443,7 +352,7 @@ stream.new_finite_stream print_and_return 10i32
 
 #!markdown
 
-## take_while_
+### take_while_
 
 #!spiral
 
@@ -494,7 +403,7 @@ stream.new_finite_stream print_and_return 10i32
 
 #!markdown
 
-## memoize
+### memoize
 
 #!spiral
 
@@ -539,7 +448,7 @@ seq
 
 #!markdown
 
-## iterate
+### iterate
 
 #!spiral
 
@@ -588,7 +497,7 @@ inl iterate' f x0 num_steps =
 
 #!markdown
 
-## find_last
+### find_last
 
 #!spiral
 
@@ -604,3 +513,110 @@ inl array_find_last forall item result. (fn : item -> option result) (target : a
 
 inl list_find_last forall item result. (fn : item -> option result) (target : list item) : option result =
     find_last listm.foldBack fn target
+
+#!markdown
+
+## fsharp
+
+#!markdown
+
+### seq'
+
+#!spiral
+
+nominal seq' t = $'`t seq'
+
+#!markdown
+
+### of_array'
+
+#!spiral
+
+inl of_array' forall dim t. (items : a dim t) : seq' t =
+    $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
+
+#!spiral
+
+//// test
+
+(a ;[ "a"; "b" ] : _ i32 _)
+|> of_array'
+
+#!spiral
+
+inl of_array forall dim t. (items : a dim t) : seq' t =
+    items |> $'Seq.ofArray'
+
+#!spiral
+
+//// test
+
+(a ;[ "a"; "b" ] : _ i32 _)
+|> of_array
+
+#!markdown
+
+### to_array'
+
+#!spiral
+
+inl to_array' forall dim t. (items : seq' t) : a dim t =
+    items |> $'Seq.toArray'
+
+#!spiral
+
+//// test
+
+(a ;[ "a"; "b" ] : _ i32 _)
+|> of_array'
+|> to_array'
+|> _assert_eq (a ;[ "a"; "b" ] : _ i32 _)
+
+#!markdown
+
+### of_list'
+
+#!spiral
+
+inl of_list' forall t. (items : listm'.list' t) : seq' t =
+    $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
+
+#!markdown
+
+### to_list'
+
+#!spiral
+
+inl to_list' forall t. (items : seq' t) : listm'.list' t =
+    items |> $'Seq.toList'
+
+#!spiral
+
+//// test
+
+(a ;[ "a"; "b" ] : _ i32 _)
+|> of_array
+|> to_list'
+|> listm'.unbox
+|> _assert_eq ([ "a"; "b" ])
+
+#!markdown
+
+### rev'
+
+#!spiral
+
+inl rev'' forall t u. (items : t) : seq' u =
+    items |> $'Seq.rev'
+
+#!markdown
+
+## rust
+
+#!markdown
+
+### fuse
+
+#!spiral
+
+nominal fuse t = $'core_iter_Fuse<`t>'

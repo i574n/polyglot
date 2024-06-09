@@ -1,9 +1,11 @@
-/// ## benchmark (Polyglot)
+/// ## benchmark
+
+/// ## fsharp
 inl gc_collect () =
     run_target function
         | Fsharp _ => fun () => $'System.GC.Collect' ()
         | _ => fun () => ()
-        
+
 inl printfn x =
     console.write_line x
 
@@ -18,7 +20,7 @@ inl stopwatch_elapsed_milliseconds (stopwatch : stopwatch) : i64 =
 inl stopwatch_start (stopwatch : stopwatch) : () =
     $'!stopwatch.Start' ()
 
-/// ## test_case_result
+/// ### test_case_result
 type test_case_result =
     {
         Input : string
@@ -27,7 +29,7 @@ type test_case_result =
         TimeList : a u64 i64
     }
 
-/// ## run
+/// ### run
 inl run forall input expected.
     count
     (solutions : list (string * (input -> expected)))
@@ -72,7 +74,7 @@ inl run forall input expected.
         TimeList = results_with_time |> am.map snd
     }
 
-/// ## run_all
+/// ### run_all
 inl run_all forall input expected.
     test_name
     count
@@ -86,7 +88,7 @@ inl run_all forall input expected.
     |> listm.toArray
     |> am.map (run count solutions)
 
-/// ## sort_result_list
+/// ### sort_result_list
 inl sort_result_list results =
     inl table =
         inl rows =
@@ -185,7 +187,7 @@ inl sort_result_list results =
     |> am.iter fun ((i : i32), avg) =>
         printfn ($'$"Test case %d{!i + 1}. Average Time: %A{!avg}  "' : string)
 
-/// ## empty2Tests
+/// ### empty2Tests
 
 /// Test: Empty2
 /// 
@@ -206,7 +208,7 @@ inl sort_result_list results =
 /// Ranking
 /// Test case 1. Average Time: 56L
 
-/// ## emptyTests
+/// ### emptyTests
 
 /// Test: Empty
 /// 

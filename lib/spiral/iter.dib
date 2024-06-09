@@ -8,13 +8,13 @@
 
 #!spiral
 
-//// test
-
-open testing
+open rust_operators
 
 #!spiral
 
-open rust_operators
+//// test
+
+open testing
 
 #!markdown
 
@@ -27,7 +27,11 @@ inl types () =
 
 #!markdown
 
-## iter_enumerate
+## rust
+
+#!markdown
+
+### iter_enumerate
 
 #!spiral
 
@@ -36,7 +40,7 @@ inl iter_enumerate forall t. (iter : into_iterator t) : into_iterator (pair unat
 
 #!markdown
 
-## into_iter
+### into_iter
 
 #!spiral
 
@@ -45,7 +49,7 @@ inl into_iter forall (t : * -> *) u. (x : t u) : into_iterator u =
 
 #!markdown
 
-## iter
+### iter
 
 #!spiral
 
@@ -54,7 +58,7 @@ inl iter forall (t : * -> *) u. (x : t u) : into_iterator u =
 
 #!markdown
 
-## iter_map
+### iter_map
 
 #!spiral
 
@@ -63,7 +67,7 @@ inl iter_map forall t u. (fn : t -> u) (iter : into_iterator t) : into_iterator 
 
 #!markdown
 
-## try_for_each
+### try_for_each
 
 #!spiral
 
@@ -74,7 +78,7 @@ inl try_for_each forall t. (fn : t -> rust.try ()) x : resultm.result' () string
 
 #!markdown
 
-## enumerate
+### enumerate
 
 #!spiral
 

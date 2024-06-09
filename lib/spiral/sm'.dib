@@ -59,7 +59,11 @@ inl types () =
 
 #!markdown
 
-## symbol_to_string
+## sm'
+
+#!markdown
+
+### symbol_to_string
 
 #!spiral
 
@@ -68,31 +72,182 @@ inl symbol_to_string forall t {symbol}. (x : t) : string =
 
 #!markdown
 
+### index
+
+#!spiral
+
+inl index i (str : string) : char =
+    sm.index str i
+
+#!markdown
+
+### to_char_array
+
+#!spiral
+
+inl to_char_array (str : string) : a i32 char =
+    am.init (str |> sm.length) (fun i => str |> index i)
+
+#!spiral
+
+//// test
+
+"abc"
+|> to_char_array
+|> _assert_eq (a ;[ 'a'; 'b'; 'c' ])
+
+#!markdown
+
+### to_char_list
+
+#!spiral
+
+inl to_char_list (str : string) : list char =
+    listm.init (str |> sm.length) (fun (i : i64) => str |> index i)
+
+#!spiral
+
+//// test
+
+"abc"
+|> to_char_list
+|> _assert_eq [ 'a'; 'b'; 'c' ]
+
+#!markdown
+
+### length
+
+#!spiral
+
+inl length forall dim {int}. (input : string) : dim =
+    input |> sm.length
+
+#!markdown
+
+### is_empty
+
+#!spiral
+
+inl is_empty (input : string) : bool =
+    length input = 0i32
+
+#!markdown
+
+### slice
+
+#!spiral
+
+inl slice from to s : string =
+    sm.slice s { from to }
+
+#!markdown
+
+### concat_array_trailing
+
+#!spiral
+
+inl concat_array_trailing (separator : string) (input : a i32 string) =
+    ("", input)
+    ||> am.fold fun acc (x : string) =>
+        $'!acc + !x + !separator + ""'
+
+#!spiral
+
+//// test
+///! rust
+
+;[
+    "1"
+    "2"
+    "3"
+]
+|> fun x =>
+    inl code = (a x : _ i32 _) |> concat_array_trailing "\n"
+    code
+    |> _assert_eq "1\n2\n3\n"
+
+#!markdown
+
+### concat_list_trailing
+
+#!spiral
+
+inl concat_list_trailing separator input =
+    ("", input)
+    ||> listm.fold fun acc (x : string) =>
+        $'!acc + !x + !separator + ""'
+
+#!spiral
+
+//// test
+///! rust
+
+[
+    "1"
+    "2"
+    "3"
+]
+|> fun x =>
+    inl code = (x : _) |> concat_list_trailing "\n"
+    code
+    |> _assert_eq "1\n2\n3\n"
+
+#!markdown
+
+### concat_list_heap_trailing
+
+#!spiral
+
+inl concat_list_heap_trailing separator input =
+    inl separator = join separator
+    inl separator = separator
+    ("", input)
+    ||> listm.fold fun acc (x : string) =>
+        $'$"{!acc}{!x}{!separator}"'
+
+#!spiral
+
+//// test
+///! rust
+
+types ()
+
+[
+    "1"
+    "2"
+    "3"
+]
+|> fun x =>
+    inl code = (x : _) |> concat_list_heap_trailing "\n"
+    code
+    |> _assert_eq "1\n2\n3\n"
+
+#!markdown
+
+### ellipsis
+
+#!spiral
+
+inl ellipsis (max : i32) (s : string) =
+    if sm.length s <= max
+    then s
+    else s |> slice 0 (max - 1) |> fun x => $'!x + "..."'
+
+#!spiral
+
+//// test
+
+"12345"
+|> ellipsis 2
+|> _assert_eq "12..."
+
+"12345"
+|> ellipsis 4
+|> _assert_eq "1234..."
+
+#!markdown
+
 ## fsharp
-
-#!markdown
-
-### format_debug
-
-#!spiral
-
-inl format_debug x : string =
-    backend_switch {
-        Fsharp = fun () => $'$"%A{!x}"' : string
-        Python = fun () => $'f"{!x}"' : string
-    }
-
-#!markdown
-
-### contains
-
-#!spiral
-
-inl contains (value : string) (s : string) : bool =
-    backend_switch {
-        Fsharp = fun () => $'!s.Contains !value ' : bool
-        Python = fun () => $'!value in !s ' : bool
-    }
 
 #!markdown
 
@@ -212,7 +367,7 @@ inl char_to_upper (input : char) : char =
 
 #!markdown
 
-## string_builder
+### string_builder
 
 #!spiral
 
@@ -223,7 +378,7 @@ inl string_builder (initial : string) : string_builder =
 
 #!markdown
 
-## builder_append
+### builder_append
 
 #!spiral
 
@@ -233,7 +388,7 @@ inl builder_append (item : string) (sb : string_builder) : string_builder =
 
 #!markdown
 
-## builder_replace
+### builder_replace
 
 #!spiral
 
@@ -243,7 +398,7 @@ inl builder_replace (old : string) (new : string) (sb : string_builder) : string
 
 #!markdown
 
-## builder_insert
+### builder_insert
 
 #!spiral
 
@@ -253,7 +408,7 @@ inl builder_insert (n : i32) (s : string) (sb : string_builder) : string_builder
 
 #!markdown
 
-## builder_clear
+### builder_clear
 
 #!spiral
 
@@ -290,55 +445,12 @@ inl trim_start (trim_chars : array_base char) (input : string) : string =
 
 #!markdown
 
-### length
-
-#!spiral
-
-inl length forall dim {int}. (input : string) : dim =
-    input |> sm.length
-
-#!markdown
-
 ### length'
 
 #!spiral
 
 inl length' forall dim. (input : string) : dim =
     input |> $'String.length'
-
-#!markdown
-
-### is_empty
-
-#!spiral
-
-inl is_empty (input : string) : bool =
-    length input = 0i32
-
-#!markdown
-
-### slice
-
-#!spiral
-
-inl slice from to s : string =
-    sm.slice s { from to }
-
-#!markdown
-
-### range
-
-#!spiral
-
-inl range forall t. (start : am'.range t) (end : am'.range t) s =
-    inl start, end =
-        match start, end with
-        | Start start, End fn =>
-            start, s |> length' |> fn
-        | End start_fn, End end_fn =>
-            inl len = s |> length'
-            start_fn len, end_fn len
-    s |> slice (start |> i32) (end |> i32)
 
 #!markdown
 
@@ -360,26 +472,6 @@ instance to_string any =
 
 #!markdown
 
-### format_exception
-
-#!spiral
-
-inl format_exception (ex : exn) : string =
-    run_target function
-        | Fsharp (Native) => fun () => $'$"{!ex.GetType ()}: {!ex.Message}"'
-        | _ => fun () => ex |> format_debug
-
-#!spiral
-
-//// test
-
-fun () => failwith "test"
-|> _throws
-|> optionm.map format_exception
-|> _assert_eq (Some "System.Exception: test")
-
-#!markdown
-
 ### replace
 
 #!spiral
@@ -389,164 +481,12 @@ inl replace (old_value : string) (new_value : string) (s : string) : string =
 
 #!markdown
 
-### concat_array_trailing
-
-#!spiral
-
-inl concat_array_trailing (separator : string) (input : a i32 string) =
-    ("", input)
-    ||> am.fold fun acc (x : string) =>
-        $'!acc + !x + !separator + ""'
-
-#!spiral
-
-//// test
-///! rust
-
-;[
-    "1"
-    "2"
-    "3"
-]
-|> fun x =>
-    inl code = (a x : _ i32 _) |> concat_array_trailing "\n"
-    code
-    |> _assert_eq "1\n2\n3\n"
-
-#!markdown
-
-### concat_list_trailing
-
-#!spiral
-
-inl concat_list_trailing separator input =
-    ("", input)
-    ||> listm.fold fun acc (x : string) =>
-        $'!acc + !x + !separator + ""'
-
-#!spiral
-
-//// test
-///! rust
-
-[
-    "1"
-    "2"
-    "3"
-]
-|> fun x =>
-    inl code = (x : _) |> concat_list_trailing "\n"
-    code
-    |> _assert_eq "1\n2\n3\n"
-
-#!markdown
-
-### concat_list_heap_trailing
-
-#!spiral
-
-inl concat_list_heap_trailing separator input =
-    inl separator = join separator
-    inl separator = separator
-    ("", input)
-    ||> listm.fold fun acc (x : string) =>
-        $'$"{!acc}{!x}{!separator}"'
-
-#!spiral
-
-//// test
-///! rust
-
-types ()
-
-[
-    "1"
-    "2"
-    "3"
-]
-|> fun x =>
-    inl code = (x : _) |> concat_list_heap_trailing "\n"
-    code
-    |> _assert_eq "1\n2\n3\n"
-
-#!markdown
-
 ### concat
 
 #!spiral
 
 inl concat (a : string) (b : seq.seq' string) : string =
     b |> $'String.concat' a
-
-#!markdown
-
-### ellipsis
-
-#!spiral
-
-inl ellipsis (max : i32) (s : string) =
-    if sm.length s <= max
-    then s
-    else s |> slice 0 (max - 1) |> fun x => $'!x + "..."'
-
-#!spiral
-
-//// test
-
-"12345"
-|> ellipsis 2
-|> _assert_eq "12..."
-
-"12345"
-|> ellipsis 4
-|> _assert_eq "1234..."
-
-#!markdown
-
-### ellipsis_end
-
-#!spiral
-
-let ellipsis_end (max : i64) (s : string) =
-    inl len = sm.length s
-    if len <= max
-    then s
-    else
-        inl half = f64 max / 2
-        inl start_half = half |> math.ceil |> i64
-        inl end_half = half |> math.floor |> i64
-        inl start = s |> slice 0 (start_half - 1)
-        inl end = s |> slice (len - end_half) (len - 1)
-        (a ;[start; "..."; end] : _ i32 _)
-        |> seq.of_array
-        |> concat ""
-
-#!spiral
-
-//// test
-
-"12345"
-|> ellipsis_end 2
-|> _assert_eq "1...5"
-
-"12345"
-|> ellipsis_end 3
-|> _assert_eq "12...5"
-
-"1234567"
-|> ellipsis_end 4
-|> _assert_eq "12...67"
-
-#!markdown
-
-### format_ellipsis
-
-#!spiral
-
-inl format_ellipsis s =
-    s
-    |> format_debug
-    |> ellipsis_end 400
 
 #!markdown
 
@@ -576,49 +516,6 @@ inl split_string (separator : array_base string) (str : string) : array_base str
 
 inl join' (concat : string) (s : a i32 string) : string =
     $'System.String.Join (!concat, !s)'
-
-#!markdown
-
-### index
-
-#!spiral
-
-inl index i (str : string) : char =
-    sm.index str i
-
-#!markdown
-
-### to_char_array
-
-#!spiral
-
-inl to_char_array (str : string) : a i32 char =
-    am.init (str |> sm.length) (fun i => str |> index i)
-
-#!spiral
-
-//// test
-
-"abc"
-|> to_char_array
-|> _assert_eq (a ;[ 'a'; 'b'; 'c' ])
-
-#!markdown
-
-### to_char_list
-
-#!spiral
-
-inl to_char_list (str : string) : list char =
-    listm.init (str |> sm.length) (fun (i : i64) => str |> index i)
-
-#!spiral
-
-//// test
-
-"abc"
-|> to_char_list
-|> _assert_eq [ 'a'; 'b'; 'c' ]
 
 #!markdown
 
@@ -1201,7 +1098,7 @@ inl strip_prefix (prefix : char) (s : std_string) : optionm'.option' (rust.ref' 
 #!spiral
 
 inl str_from_utf8 (bytes : rust.ref' (am'.slice u8)) : resultm.result' (rust.ref' str) utf8_error =
-    !\($'"std::str::from_utf8(!bytes)"')
+    !\\(bytes, $'"std::str::from_utf8($0)"')
 
 #!markdown
 
@@ -1210,7 +1107,8 @@ inl str_from_utf8 (bytes : rust.ref' (am'.slice u8)) : resultm.result' (rust.ref
 #!spiral
 
 inl string_from_utf8 (bytes : am'.vec u8) : resultm.result' std_string from_utf8_error =
-    !\($'"std::string::String::from_utf8(!bytes)"')
+    inl bytes = join bytes
+    !\\(bytes, $'"std::string::String::from_utf8($0)"')
 
 #!markdown
 
@@ -1343,13 +1241,37 @@ inl as_bytes (text : string) : rust.ref' (am'.slice u8) =
 #!spiral
 
 inl encode_utf8 (s : string) : string =
-    open py_operators
+    open python_operators
     inl encoding = "utf-8"
     !\\((s, encoding), $'"$0.encode($1)"')
 
 #!markdown
 
-## target
+## sm'
+
+#!markdown
+
+### format_debug
+
+#!spiral
+
+inl format_debug x : string =
+    backend_switch {
+        Fsharp = fun () => $'$"%A{!x}"' : string
+        Python = fun () => $'f"{!x}"' : string
+    }
+
+#!markdown
+
+### contains
+
+#!spiral
+
+inl contains (value : string) (s : string) : bool =
+    backend_switch {
+        Fsharp = fun () => $'!s.Contains !value ' : bool
+        Python = fun () => $'!value in !s ' : bool
+    }
 
 #!markdown
 
@@ -1370,6 +1292,112 @@ instance to_string result t u = fun x =>
             | Ok x => from_std_string x
             | Error x => $'"sm\'.to_string result / Error: " + string !x + ""' : string
         | _ => obj_to_string `u x
+
+#!markdown
+
+### format_exception
+
+#!spiral
+
+inl format_exception (ex : exn) : string =
+    run_target function
+        | Fsharp (Native) => fun () => $'$"{!ex.GetType ()}: {!ex.Message}"'
+        | _ => fun () => ex |> format_debug
+
+#!spiral
+
+//// test
+///! fsharp
+///! rust
+///! typescript
+///! python
+
+fun () => failwith "test"
+|> _throws
+|> optionm.value
+|> sm'.format_exception
+|> _assert_eq (run_target function
+    | Fsharp _ => fun () => "System.Exception: test"
+    | Rust _ => fun () => "Exception { message: \"test\" }"
+    | TypeScript _ => fun () => "Error: test"
+    | Python _ => fun () => "test"
+    | _ => fun () => null ()
+)
+
+#!markdown
+
+### range
+
+#!spiral
+
+inl range forall t. (start : am'.range t) (end : am'.range t) s =
+    inl start, end =
+        match start, end with
+        | Start start, End fn =>
+            start, s |> length' |> fn
+        | End start_fn, End end_fn =>
+            inl len = s |> length'
+            start_fn len, end_fn len
+    s |> slice (start |> i32) (end |> i32)
+
+#!markdown
+
+### concat_list
+
+#!spiral
+
+inl concat_list s list =
+    list
+    |> listm'.box
+    |> seq.of_list'
+    |> concat s
+
+#!markdown
+
+### ellipsis_end
+
+#!spiral
+
+let ellipsis_end (max : i64) (s : string) =
+    inl len = sm.length s
+    if len <= max
+    then s
+    else
+        inl half = f64 max / 2
+        inl start_half = half |> math.ceil |> i64
+        inl end_half = half |> math.floor |> i64
+        inl start = s |> slice 0 (start_half - 1)
+        inl end = s |> slice (len - end_half) (len - 1)
+        (a ;[start; "..."; end] : _ i32 _)
+        |> seq.of_array
+        |> concat ""
+
+#!spiral
+
+//// test
+
+"12345"
+|> ellipsis_end 2
+|> _assert_eq "1...5"
+
+"12345"
+|> ellipsis_end 3
+|> _assert_eq "12...5"
+
+"1234567"
+|> ellipsis_end 4
+|> _assert_eq "12...67"
+
+#!markdown
+
+### format_ellipsis
+
+#!spiral
+
+inl format_ellipsis s =
+    s
+    |> format_debug
+    |> ellipsis_end 400
 
 #!markdown
 
@@ -1471,7 +1499,11 @@ inl main () =
 
 #!markdown
 
-## to_string std_string
+## rust
+
+#!markdown
+
+### to_string std_string
 
 #!spiral
 

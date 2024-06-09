@@ -649,32 +649,6 @@ pub mod Runtime {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
-    pub enum US14 {
-        US14_0(Array<string>),
-        US14_1(string),
-    }
-    impl Runtime::US14 {
-        pub fn get_IsUS14_0(this_: &MutCell<Runtime::US14>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS14_1(this_: &MutCell<Runtime::US14>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
-    impl core::fmt::Display for Runtime::US14 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
     pub fn method0() -> string {
         string("TRACE_LEVEL")
     }
@@ -843,7 +817,7 @@ pub mod Runtime {
         }
     }
     pub fn closure4(unitVar: (), unitVar_1: ()) -> string {
-        string("runtime.current_process_kill")
+        string("runtime.current_process_kill / exiting... 3")
     }
     pub fn closure5(unitVar: (), unitVar_1: ()) -> string {
         string("")
@@ -1152,6 +1126,12 @@ pub mod Runtime {
             }),
         );
     }
+    pub fn closure7(unitVar: (), unitVar_1: ()) -> string {
+        string("runtime.current_process_kill / exiting... 2")
+    }
+    pub fn closure8(unitVar: (), unitVar_1: ()) -> string {
+        string("runtime.current_process_kill / exiting... 1")
+    }
     pub fn closure3(unitVar: (), unitVar_1: ()) {
         let _v0: MutCell<Option<()>> = MutCell::new(None::<()>);
         defaultOf::<()>();
@@ -1178,17 +1158,17 @@ pub mod Runtime {
     pub fn method12(v0_1: i32, v1_1: LrcPtr<Runtime::Mut4>) -> bool {
         v1_1.l0.get().clone() < v0_1
     }
-    pub fn closure9(v0_1: char, v1_1: LrcPtr<Runtime::UH0>) -> LrcPtr<Runtime::UH0> {
+    pub fn closure11(v0_1: char, v1_1: LrcPtr<Runtime::UH0>) -> LrcPtr<Runtime::UH0> {
         LrcPtr::new(Runtime::UH0::UH0_1(v0_1, v1_1))
     }
-    pub fn closure8(unitVar: (), v0_1: char) -> Func1<LrcPtr<Runtime::UH0>, LrcPtr<Runtime::UH0>> {
+    pub fn closure10(unitVar: (), v0_1: char) -> Func1<LrcPtr<Runtime::UH0>, LrcPtr<Runtime::UH0>> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: LrcPtr<Runtime::UH0>| Runtime::closure9(v0_1, v)
+            move |v: LrcPtr<Runtime::UH0>| Runtime::closure11(v0_1, v)
         })
     }
     pub fn method13() -> Func1<char, Func1<LrcPtr<Runtime::UH0>, LrcPtr<Runtime::UH0>>> {
-        Func1::new(move |v: char| Runtime::closure8((), v))
+        Func1::new(move |v: char| Runtime::closure10((), v))
     }
     pub fn method14(
         v0_1: string,
@@ -1538,7 +1518,7 @@ pub mod Runtime {
             )
         }
     }
-    pub fn closure10(
+    pub fn closure12(
         v0_1: Option<CancellationToken>,
         v1_1: string,
         v2_1: Array<(string, string)>,
@@ -1556,10 +1536,10 @@ pub mod Runtime {
     pub fn method15() -> Func0<string> {
         Func0::new(move || Runtime::closure5((), ()))
     }
-    pub fn closure12(v0_1: string, unitVar: ()) -> string {
+    pub fn closure14(v0_1: string, unitVar: ()) -> string {
         v0_1
     }
-    pub fn closure11(
+    pub fn closure13(
         v0_1: Option<CancellationToken>,
         v1_1: string,
         v2_1: Array<(string, string)>,
@@ -1591,7 +1571,7 @@ pub mod Runtime {
             ()
         }
     }
-    pub fn closure13(
+    pub fn closure15(
         v0_1: Option<CancellationToken>,
         v1_1: string,
         v2_1: Array<(string, string)>,
@@ -1623,7 +1603,7 @@ pub mod Runtime {
             ()
         }
     }
-    pub fn closure14(v0_1: (), unitVar: ()) {
+    pub fn closure16(v0_1: (), unitVar: ()) {
         let _v1: MutCell<Option<bool>> = MutCell::new(None::<bool>);
         {
             let x: bool = unbox::<bool>(&defaultOf());
@@ -1644,13 +1624,13 @@ pub mod Runtime {
             ()
         }
     }
-    pub fn closure15(v0_1: LrcPtr<TaskCanceledException>, unitVar: ()) -> string {
+    pub fn closure17(v0_1: LrcPtr<TaskCanceledException>, unitVar: ()) -> string {
         sprintf!(
             "runtime.execute_with_options_async / WaitForExitAsync / ex: {:?}",
             v0_1
         )
     }
-    pub fn closure16(v0_1: i32, v1_1: string, unitVar: ()) -> string {
+    pub fn closure18(v0_1: i32, v1_1: string, unitVar: ()) -> string {
         sprintf!(
             "runtime.execute_with_options_async / exit_code: {} / output.Length: {}",
             v0_1,
@@ -1677,7 +1657,7 @@ pub mod Runtime {
             Some(_v7_0_0) => _v7_0_0.clone(),
         }
     }
-    pub fn closure7(unitVar: (), v0_1: string) -> Arc<Async<(i32, string)>> {
+    pub fn closure9(unitVar: (), v0_1: string) -> Arc<Async<(i32, string)>> {
         Runtime::method9(
             None::<CancellationToken>,
             v0_1,
@@ -1688,7 +1668,7 @@ pub mod Runtime {
             None::<string>,
         )
     }
-    pub fn closure17(
+    pub fn closure19(
         unitVar: (),
         _arg: (
             Option<CancellationToken>,
@@ -1710,7 +1690,7 @@ pub mod Runtime {
             _arg.6.clone(),
         )
     }
-    pub fn closure18(
+    pub fn closure20(
         unitVar: (),
         v0_1: Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>,
     ) -> (
@@ -1983,7 +1963,7 @@ pub mod Runtime {
             });
         }
     }
-    pub fn closure20(
+    pub fn closure22(
         unitVar: (),
         _arg: (string, LrcPtr<StringBuilder>, i32, i32),
     ) -> Runtime::US12 {
@@ -2128,7 +2108,7 @@ pub mod Runtime {
             Runtime::US10::US10_1(v102_1_0) => Runtime::US12::US12_1(v102_1_0.clone()),
         }
     }
-    pub fn closure21(
+    pub fn closure23(
         unitVar: (),
         _arg: (string, LrcPtr<StringBuilder>, i32, i32),
     ) -> Runtime::US12 {
@@ -2451,7 +2431,7 @@ pub mod Runtime {
                         LrcPtr::new(Runtime::UH2::UH2_1(
                             Func1::new(
                                 move |arg10_0040: (string, LrcPtr<StringBuilder>, i32, i32)| {
-                                    Runtime::closure20((), arg10_0040)
+                                    Runtime::closure22((), arg10_0040)
                                 },
                             ),
                             LrcPtr::new(Runtime::UH2::UH2_1(
@@ -2462,7 +2442,7 @@ pub mod Runtime {
                                         i32,
                                         i32,
                                     )| {
-                                        Runtime::closure21((), arg10_0040_1)
+                                        Runtime::closure23((), arg10_0040_1)
                                     },
                                 ),
                                 LrcPtr::new(Runtime::UH2::UH2_0),
@@ -3033,7 +3013,7 @@ pub mod Runtime {
                                                 i32,
                                                 i32,
                                             )| {
-                                                Runtime::closure20((), arg10_0040)
+                                                Runtime::closure22((), arg10_0040)
                                             },
                                         ),
                                         LrcPtr::new(Runtime::UH2::UH2_1(
@@ -3044,7 +3024,7 @@ pub mod Runtime {
                                                     i32,
                                                     i32,
                                                 )| {
-                                                    Runtime::closure21((), arg10_0040_1)
+                                                    Runtime::closure23((), arg10_0040_1)
                                                 },
                                             ),
                                             LrcPtr::new(Runtime::UH2::UH2_0),
@@ -3210,22 +3190,18 @@ pub mod Runtime {
                 1_i32,
                 1_i32,
             );
-            let v25: Runtime::US14 = match &v11 {
+            match &v11 {
                 Runtime::US9::US9_0(v11_0_0, v11_0_1, v11_0_2, v11_0_3, v11_0_4) => {
-                    Runtime::US14::US14_0(toArray(Runtime::method25(
+                    Runtime::US8::US8_0(toArray(Runtime::method25(
                         v11_0_0.clone(),
                         empty::<string>(),
                     )))
                 }
-                Runtime::US9::US9_1(v11_1_0) => Runtime::US14::US14_1(v11_1_0.clone()),
-            };
-            match &v25 {
-                Runtime::US14::US14_0(v25_0_0) => Runtime::US8::US8_0(v25_0_0.clone()),
-                Runtime::US14::US14_1(v25_1_0) => Runtime::US8::US8_1(v25_1_0.clone()),
+                Runtime::US9::US9_1(v11_1_0) => Runtime::US8::US8_1(v11_1_0.clone()),
             }
         }
     }
-    pub fn closure19(unitVar: (), v0_1: string) -> Result<Array<string>, string> {
+    pub fn closure21(unitVar: (), v0_1: string) -> Result<Array<string>, string> {
         let v1_1: Runtime::US8 = Runtime::method16(v0_1);
         match &v1_1 {
             Runtime::US8::US8_0(v1_1_0_0) => Ok::<Array<string>, string>(v1_1_0_0.clone()),
@@ -3274,7 +3250,7 @@ pub mod Runtime {
     }
     pub fn v3() -> Func1<string, Arc<Async<(i32, string)>>> {
         static v3: OnceInit<Func1<string, Arc<Async<(i32, string)>>>> = OnceInit::new();
-        v3.get_or_init(|| Func1::new(move |v: string| Runtime::closure7((), v)))
+        v3.get_or_init(|| Func1::new(move |v: string| Runtime::closure9((), v)))
             .clone()
     }
     pub fn execute_async(x: string) -> Arc<Async<(i32, string)>> {
@@ -3316,7 +3292,7 @@ pub mod Runtime {
                     Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
                     bool,
                     Option<string>,
-                )| Runtime::closure17((), arg10_0040),
+                )| Runtime::closure19((), arg10_0040),
             )
         })
         .clone()
@@ -3363,7 +3339,7 @@ pub mod Runtime {
         v5.get_or_init(|| {
             Func1::new(
                 move |v: Func1<LrcPtr<Runtime::Heap0>, LrcPtr<Runtime::Heap0>>| {
-                    Runtime::closure18((), v)
+                    Runtime::closure20((), v)
                 },
             )
         })
@@ -3384,7 +3360,7 @@ pub mod Runtime {
     }
     pub fn v6() -> Func1<string, Result<Array<string>, string>> {
         static v6: OnceInit<Func1<string, Result<Array<string>, string>>> = OnceInit::new();
-        v6.get_or_init(|| Func1::new(move |v: string| Runtime::closure19((), v)))
+        v6.get_or_init(|| Func1::new(move |v: string| Runtime::closure21((), v)))
             .clone()
     }
     pub fn split_args(x: string) -> Result<Array<string>, string> {

@@ -29,7 +29,11 @@ inl types () =
 
 #!markdown
 
-## length
+## am'
+
+#!markdown
+
+### length
 
 #!spiral
 
@@ -38,7 +42,7 @@ inl length forall dim {int} el. (a : a dim el) : dim =
 
 #!markdown
 
-## index
+### index
 
 #!spiral
 
@@ -47,7 +51,7 @@ inl index forall dim {int} el. (i : dim) (a : a dim el) : el =
 
 #!markdown
 
-## base
+### base
 
 #!spiral
 
@@ -56,7 +60,7 @@ inl base forall dim {int} el. ((a a) : a dim el) : array_base el =
 
 #!markdown
 
-## base'
+### base'
 
 #!spiral
 
@@ -65,7 +69,7 @@ inl base' forall el. ((a a) : a int el) : array_base el =
 
 #!markdown
 
-## generic_equable
+### generic_equable
 
 #!spiral
 
@@ -81,7 +85,7 @@ inl generic_equable x1 x2 =
 
 #!markdown
 
-## equable
+### equable
 
 #!spiral
 
@@ -89,7 +93,7 @@ instance equable a dim {number; int} t = generic_equable
 
 #!markdown
 
-## append
+### append
 
 #!spiral
 
@@ -99,6 +103,7 @@ instance append a dim {int; number} t = am.append
 
 //// test
 ///! fsharp
+///! cuda
 ///! rust
 ///! typescript
 ///! python
@@ -108,7 +113,18 @@ a' ;[ -1i64; 0 ] ++ a' ;[ 1; 2 ]
 
 #!markdown
 
-## collect
+### map_base
+
+#!spiral
+
+inl map_base forall t u. (fn : t -> u) (x : array_base t) : array_base u =
+    a x
+    |> am.map fn
+    |> fun (a x : _ int _) => x
+
+#!markdown
+
+### collect
 
 #!spiral
 
@@ -119,7 +135,7 @@ inl collect forall t r. (fn : t -> a int r) (items : a int t) : a int r =
 
 #!markdown
 
-## init
+### init
 
 #!spiral
 
@@ -128,7 +144,7 @@ inl init n : a int _ =
 
 #!markdown
 
-## choose
+### choose
 
 #!spiral
 
@@ -154,7 +170,7 @@ inl choose f l =
 
 #!markdown
 
-## sum
+### sum
 
 #!spiral
 
@@ -176,7 +192,7 @@ inl sum a =
 
 #!markdown
 
-## init_series
+### init_series
 
 #!spiral
 
@@ -197,7 +213,7 @@ init_series 0 1 0.5
 
 #!markdown
 
-## head
+### head
 
 #!spiral
 
@@ -208,7 +224,7 @@ inl head (ar : a _ _) =
 
 #!markdown
 
-## last
+### last
 
 #!spiral
 
@@ -233,7 +249,7 @@ inl last (ar : a _ _) =
 
 #!markdown
 
-## try_pick
+### try_pick
 
 #!spiral
 
@@ -258,7 +274,7 @@ inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
 
 #!markdown
 
-## indexed'
+### indexed'
 
 #!spiral
 
@@ -278,135 +294,7 @@ am.init 3i32 ((*) 2)
 
 #!markdown
 
-## map_base
-
-#!spiral
-
-inl map_base forall t u. (fn : t -> u) (x : array_base t) : array_base u =
-    a x
-    |> am.map fn
-    |> fun (a x : _ int _) => x
-
-#!markdown
-
-## average
-
-#!spiral
-
-inl average forall el {number}. (a : a _ el) : el =
-    a |> $'Array.average'
-
-#!markdown
-
-## distinct
-
-#!spiral
-
-inl distinct forall dim el. (a : a dim el) : a dim el =
-    a |> $'Array.distinct'
-
-#!markdown
-
-## skip
-
-#!spiral
-
-inl skip forall dim el. (n : dim) (a : a dim el) : a dim el =
-    a |> $'Array.skip' n
-
-#!markdown
-
-## skip_while
-
-#!spiral
-
-inl skip_while forall dim el. (fn : el -> bool) (a : a dim el) : a dim el =
-    a |> $'Array.skipWhile' fn
-
-#!markdown
-
-## to_list'
-
-#!spiral
-
-inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
-    items |> $'Array.toList'
-
-#!spiral
-
-//// test
-
-a' ;[ "a"; "b" ]
-|> to_list'
-|> listm'.unbox
-|> _assert_eq [ "a"; "b" ]
-
-#!markdown
-
-## parallel_map
-
-#!spiral
-
-inl parallel_map forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
-    a |> $'Array.Parallel.map' fn
-
-#!markdown
-
-## map'
-
-#!spiral
-
-inl map' forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
-    $'!a |> Array.map !fn '
-
-#!markdown
-
-## sort_by
-
-#!spiral
-
-inl sort_by forall dim el. (fn : el -> _) (a : a dim el) : a dim el =
-    a |> $'Array.sortBy' fn
-
-#!markdown
-
-## sort
-
-#!spiral
-
-inl sort forall dim el. (a : a dim el) : a dim el =
-    a |> $'Array.sort'
-
-#!markdown
-
-## sort_descending
-
-#!spiral
-
-inl sort_descending forall dim el. (a : a dim el) : a dim el =
-    a |> $'Array.sortDescending'
-
-#!markdown
-
-## transpose
-
-#!spiral
-
-inl transpose forall dim el. (a : a dim (a dim el)) : a dim (a dim el) =
-    a |> $'Array.transpose'
-
-#!markdown
-
-## try_item
-
-#!spiral
-
-inl try_item forall dim el. (i : i32) (a : a dim el) : option el =
-    a |> $'Array.tryItem' i |> optionm'.unbox
-
-#!markdown
-
-## indexed
+### indexed
 
 #!spiral
 
@@ -428,251 +316,7 @@ am.init 3i32 ((*) 2)
 
 #!markdown
 
-## vec
-
-#!spiral
-
-nominal vec t = $'Vec<`t>'
-
-#!markdown
-
-## from_vec
-
-#!spiral
-
-inl from_vec forall dim el. (vec : vec el) : a dim el =
-    !\\(vec, $'"fable_library_rust::NativeArray_::array_from($0)"')
-
-#!markdown
-
-## to_vec
-
-#!spiral
-
-inl to_vec forall t. (ab : array_base t) : vec t =
-    !\\(ab, $'"$0.to_vec()"')
-
-#!markdown
-
-## vec_push
-
-#!spiral
-
-inl vec_push forall el. (el : el) (vec : vec el) : vec el =
-    inl el = join el
-    inl vec = join vec
-    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
-    // inl vec = vec |> rust.to_mut
-    (!\($'"true; !vec.push(!el)"') : bool) |> ignore
-    !\($'"!vec"')
-
-#!markdown
-
-## vec_reverse
-
-#!spiral
-
-inl vec_reverse forall el. (vec : vec el) : vec el =
-    inl vec = join vec
-    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
-    (!\($'"true; !vec.reverse()"') : bool) |> ignore
-    !\($'"!vec"')
-
-#!markdown
-
-## vec_retain
-
-#!spiral
-
-inl vec_retain forall el. (fn : el -> bool) (vec : vec el) : vec el =
-    inl vec = join vec
-    inl fn = join fn
-    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
-    // inl vec = vec |> rust.to_mut
-    (!\($'"true; !vec.retain(|x| !fn(x.clone()))"') : bool) |> ignore
-    !\($'"!vec"')
-
-#!markdown
-
-## vec_sort_by_key
-
-#!spiral
-
-inl vec_sort_by_key forall el t. (fn : el -> t) (vec : vec el) : vec el =
-    inl vec = join vec
-    inl fn = join fn
-    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
-    // inl vec = vec |> rust.to_mut
-    (!\($'"true; !vec.sort_by_key(|x| !fn(x.clone()))"') : bool) |> ignore
-    !\($'"!vec"')
-
-#!markdown
-
-## vec_extend
-
-#!spiral
-
-inl vec_extend forall el. (el : vec el) (vec : vec el) : vec el =
-    inl el = join el
-    inl vec = join vec
-    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
-    // inl vec = vec |> rust.to_mut
-    (!\($'"true; !vec.extend(!el)"') : bool) |> ignore
-    !\($'"!vec"')
-
-#!markdown
-
-## vec_collect
-
-#!spiral
-
-inl vec_collect fn vec =
-    ((;[] |> to_vec), (vec |> from_vec : _ i32 _))
-    ||> am.fold fun acc x =>
-        acc |> vec_extend (fn x)
-
-#!markdown
-
-## vec_collect_option
-
-#!spiral
-
-inl vec_collect_option vec =
-    ((;[] |> to_vec |> Ok), (vec |> from_vec : _ i32 _))
-    ||> am.fold fun acc x =>
-        x
-        |> resultm.unbox
-        |> fun x =>
-            match acc, x |> resultm.map optionm'.unbox with
-            | Ok acc, Ok (Some x) => acc |> vec_extend x |> Ok
-            | _, Error error => error |> Error
-            | _ => acc
-
-#!markdown
-
-## vec_collect_into
-
-#!spiral
-
-inl vec_collect_into forall (c : * -> * -> *) t e.
-    (x : vec (c t e))
-    : c (vec t) e
-    =
-    !\($'"!x.into_iter().collect()"')
-
-#!markdown
-
-## vec_mapi
-
-#!spiral
-
-inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : vec t) : vec u =
-    inl fn = join fn
-    inl ar = join ar
-    !\($'"!ar.iter().enumerate().map(|(i, x)| !fn(i.try_into().unwrap())(x.clone())).collect::<Vec<_>>()"')
-
-#!markdown
-
-## vec_map
-
-#!spiral
-
-inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
-    (!\($'"true; let _result : Vec<_> = !ar.into_iter().map(|x| { //"') : bool) |> ignore
-    (!\\(fn !\($'"x"'), $'"true; $0 }).collect::<Vec<_>>()"') : bool) |> ignore
-    !\($'"_result"')
-
-#!markdown
-
-## vec_map'''
-
-#!spiral
-
-inl vec_map''' forall t u. (fn : t -> u) (ar : vec t) : vec u =
-    (!\($'"true; let _result : Vec<_> = !ar.into_iter().map(|x| { //"') : bool) |> ignore
-    (!\\(fn !\($'"x"'), $'"true; $0 }}).collect::<Vec<_>>(); {{ //"') : bool) |> ignore
-    !\($'"_result"')
-
-#!markdown
-
-## vec_map'
-
-#!spiral
-
-inl vec_map' forall t u. (fn : t -> u) (ar : vec t) : vec u =
-    !\\((ar, fn), $'"$0.into_iter().map(|x| $1(x.clone())).collect::<Vec<_>>()"')
-
-#!markdown
-
-## vec_fold'
-
-#!spiral
-
-inl vec_fold' forall t u. (fn : u -> t -> u) (init : u) (ar : vec t) : u =
-    (!\\(ar, $'"true; let _result = $0.into_iter().fold(!init, |acc, x| { //"') : bool) |> ignore
-    (!\\(fn !\($'"acc"') !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
-    !\($'"_result"')
-
-#!markdown
-
-## vec_for_each
-
-#!spiral
-
-inl vec_for_each forall t. (fn : t -> ()) (ar : vec t) : () =
-    !\\((ar, fn), $'"$0.iter().for_each(|x| { $1(x.clone()); })"')
-
-#!markdown
-
-## vec_for_each'
-
-#!spiral
-
-inl vec_for_each' forall t. (fn : t -> ()) (ar : vec t) : () =
-    (!\($'"true; !ar.into_iter().for_each(|x| { //"') : bool) |> ignore
-    inl x = fn !\($'"x"')
-    (!\($'"true; !x }}); { //"') : bool) |> ignore
-
-#!markdown
-
-## vec_filter
-
-#!spiral
-
-inl vec_filter forall t. (fn : t -> bool) (ar : vec t) : vec t =
-    inl fn = join fn
-    inl ar = join ar
-    !\($'"!ar.into_iter().filter(|x| !fn(x.clone().clone())).collect::<Vec<_>>()"')
-
-#!markdown
-
-## vec_len
-
-#!spiral
-
-inl vec_len forall t. (vec : vec t) : unativeint =
-    !\\(vec, $'"$0.len()"')
-
-#!markdown
-
-## vec_chunks
-
-#!spiral
-
-inl vec_chunks forall t. (n : i32) (vec : vec t) : vec (vec t) =
-    !\\(vec, $'"$0.chunks(!n).map(|x| x.into_iter().map(|x| x.clone()).collect::<Vec<_>>()).collect::<Vec<_>>()"')
-
-#!markdown
-
-## slice
-
-#!spiral
-
-nominal slice t = $'Slice<`t>'
-
-#!markdown
-
-## slice
+### slice
 
 #!spiral
 
@@ -693,7 +337,7 @@ x |> slice 0 2 |> _assert_eq (a ;[ 1; 2 ])
 
 #!markdown
 
-## range
+### range
 
 #!spiral
 
@@ -713,7 +357,255 @@ inl range start end s =
 
 #!markdown
 
-## slice'
+## rust
+
+#!markdown
+
+### vec
+
+#!spiral
+
+nominal vec t = $'Vec<`t>'
+
+#!markdown
+
+### from_vec
+
+#!spiral
+
+inl from_vec forall dim el. (vec : vec el) : a dim el =
+    !\\(vec, $'"fable_library_rust::NativeArray_::array_from($0)"')
+
+#!markdown
+
+### to_vec
+
+#!spiral
+
+inl to_vec forall t. (ab : array_base t) : vec t =
+    !\\(ab, $'"$0.to_vec()"')
+
+#!markdown
+
+### vec_push
+
+#!spiral
+
+inl vec_push forall el. (el : el) (vec : vec el) : vec el =
+    inl el = join el
+    inl vec = join vec
+    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
+    // inl vec = vec |> rust.to_mut
+    (!\($'"true; !vec.push(!el)"') : bool) |> ignore
+    !\($'"!vec"')
+
+#!markdown
+
+### vec_reverse
+
+#!spiral
+
+inl vec_reverse forall el. (vec : vec el) : vec el =
+    inl vec = join vec
+    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
+    (!\($'"true; !vec.reverse()"') : bool) |> ignore
+    !\($'"!vec"')
+
+#!markdown
+
+### vec_retain
+
+#!spiral
+
+inl vec_retain forall el. (fn : el -> bool) (vec : vec el) : vec el =
+    inl vec = join vec
+    inl fn = join fn
+    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
+    // inl vec = vec |> rust.to_mut
+    (!\($'"true; !vec.retain(|x| !fn(x.clone()))"') : bool) |> ignore
+    !\($'"!vec"')
+
+#!markdown
+
+### vec_sort_by_key
+
+#!spiral
+
+inl vec_sort_by_key forall el t. (fn : el -> t) (vec : vec el) : vec el =
+    inl vec = join vec
+    inl fn = join fn
+    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
+    // inl vec = vec |> rust.to_mut
+    (!\($'"true; !vec.sort_by_key(|x| !fn(x.clone()))"') : bool) |> ignore
+    !\($'"!vec"')
+
+#!markdown
+
+### vec_extend
+
+#!spiral
+
+inl vec_extend forall el. (el : vec el) (vec : vec el) : vec el =
+    inl el = join el
+    inl vec = join vec
+    (!\($'"true; let mut !vec = !vec"') : bool) |> ignore
+    // inl vec = vec |> rust.to_mut
+    (!\($'"true; !vec.extend(!el)"') : bool) |> ignore
+    !\($'"!vec"')
+
+#!markdown
+
+### vec_collect
+
+#!spiral
+
+inl vec_collect fn vec =
+    ((;[] |> to_vec), (vec |> from_vec : _ i32 _))
+    ||> am.fold fun acc x =>
+        acc |> vec_extend (fn x)
+
+#!markdown
+
+### vec_collect_option
+
+#!spiral
+
+inl vec_collect_option vec =
+    ((;[] |> to_vec |> Ok), (vec |> from_vec : _ i32 _))
+    ||> am.fold fun acc x =>
+        x
+        |> resultm.unbox
+        |> fun x =>
+            match acc, x |> resultm.map optionm'.unbox with
+            | Ok acc, Ok (Some x) => acc |> vec_extend x |> Ok
+            | _, Error error => error |> Error
+            | _ => acc
+
+#!markdown
+
+### vec_collect_into
+
+#!spiral
+
+inl vec_collect_into forall (c : * -> * -> *) t e.
+    (x : vec (c t e))
+    : c (vec t) e
+    =
+    !\($'"!x.into_iter().collect()"')
+
+#!markdown
+
+### vec_mapi
+
+#!spiral
+
+inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : vec t) : vec u =
+    inl fn = join fn
+    inl ar = join ar
+    !\($'"!ar.iter().enumerate().map(|(i, x)| !fn(i.try_into().unwrap())(x.clone())).collect::<Vec<_>>()"')
+
+#!markdown
+
+### vec_map
+
+#!spiral
+
+inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
+    (!\($'"true; let _result : Vec<_> = !ar.into_iter().map(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 }).collect::<Vec<_>>()"') : bool) |> ignore
+    !\($'"_result"')
+
+#!markdown
+
+### vec_map'''
+
+#!spiral
+
+inl vec_map''' forall t u. (fn : t -> u) (ar : vec t) : vec u =
+    (!\($'"true; let _result : Vec<_> = !ar.into_iter().map(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 }}).collect::<Vec<_>>(); {{ //"') : bool) |> ignore
+    !\($'"_result"')
+
+#!markdown
+
+### vec_map'
+
+#!spiral
+
+inl vec_map' forall t u. (fn : t -> u) (ar : vec t) : vec u =
+    !\\((ar, fn), $'"$0.into_iter().map(|x| $1(x.clone())).collect::<Vec<_>>()"')
+
+#!markdown
+
+### vec_fold'
+
+#!spiral
+
+inl vec_fold' forall t u. (fn : u -> t -> u) (init : u) (ar : vec t) : u =
+    (!\\(ar, $'"true; let _result = $0.into_iter().fold(!init, |acc, x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"acc"') !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
+    !\($'"_result"')
+
+#!markdown
+
+### vec_for_each
+
+#!spiral
+
+inl vec_for_each forall t. (fn : t -> ()) (ar : vec t) : () =
+    !\\((ar, fn), $'"$0.iter().for_each(|x| { $1(x.clone()); })"')
+
+#!markdown
+
+### vec_for_each'
+
+#!spiral
+
+inl vec_for_each' forall t. (fn : t -> ()) (ar : vec t) : () =
+    (!\($'"true; !ar.into_iter().for_each(|x| { //"') : bool) |> ignore
+    inl x = fn !\($'"x"')
+    (!\($'"true; !x }}); { //"') : bool) |> ignore
+
+#!markdown
+
+### vec_filter
+
+#!spiral
+
+inl vec_filter forall t. (fn : t -> bool) (ar : vec t) : vec t =
+    inl fn = join fn
+    inl ar = join ar
+    !\($'"!ar.into_iter().filter(|x| !fn(x.clone().clone())).collect::<Vec<_>>()"')
+
+#!markdown
+
+### vec_len
+
+#!spiral
+
+inl vec_len forall t. (vec : vec t) : unativeint =
+    !\\(vec, $'"$0.len()"')
+
+#!markdown
+
+### vec_chunks
+
+#!spiral
+
+inl vec_chunks forall t. (n : i32) (vec : vec t) : vec (vec t) =
+    !\\(vec, $'"$0.chunks(!n).map(|x| x.into_iter().map(|x| x.clone()).collect::<Vec<_>>()).collect::<Vec<_>>()"')
+
+#!markdown
+
+### slice
+
+#!spiral
+
+nominal slice t = $'Slice<`t>'
+
+#!markdown
+
+### slice'
 
 #!spiral
 
@@ -721,7 +613,7 @@ nominal slice' el dim = $'Slice\'<`el>'
 
 #!markdown
 
-## slice_singleton
+### slice_singleton
 
 #!spiral
 
@@ -735,7 +627,7 @@ inl slice_singleton forall dim el. (x : option el) : slice' el dim =
 
 #!markdown
 
-## slice_length
+### slice_length
 
 #!spiral
 
@@ -744,7 +636,7 @@ inl slice_length forall t dim. (x : slice' t dim) : unativeint =
 
 #!markdown
 
-## slice_range
+### slice_range
 
 #!spiral
 
@@ -760,7 +652,7 @@ inl slice_range forall t dim. (start : range t) (end : range t) (s : slice' t di
 
 #!markdown
 
-## new_slice
+### new_slice
 
 #!spiral
 
@@ -769,7 +661,7 @@ inl new_slice forall el dim. (el : el) : slice' el dim =
 
 #!markdown
 
-## as_slice
+### as_slice
 
 #!spiral
 
@@ -779,7 +671,7 @@ inl as_slice forall t. (x : array_base t) : rust.ref' (slice t) =
 
 #!markdown
 
-## slice_to_vec
+### slice_to_vec
 
 #!spiral
 
@@ -788,7 +680,7 @@ inl slice_to_vec forall t. (slice : rust.ref' (slice t)) : vec t =
 
 #!markdown
 
-## any
+### any
 
 #!spiral
 
@@ -797,7 +689,7 @@ inl any forall t. (fn : t -> bool) (source : array_base t) : bool =
 
 #!markdown
 
-## iter_collect vec
+### iter_collect vec
 
 #!spiral
 
@@ -809,7 +701,7 @@ instance iter_collect'' vec = fun (iter : into_iterator (t (u v))) =>
 
 #!markdown
 
-## new_vec
+### new_vec
 
 #!spiral
 
@@ -834,3 +726,124 @@ sm'.types ()
 |> sm'.format_debug'
 |> sm'.from_std_string
 |> _assert_eq "[0, 1]"
+
+#!markdown
+
+## fsharp
+
+#!markdown
+
+### average
+
+#!spiral
+
+inl average forall el {number}. (a : a _ el) : el =
+    a |> $'Array.average'
+
+#!markdown
+
+### distinct
+
+#!spiral
+
+inl distinct forall dim el. (a : a dim el) : a dim el =
+    a |> $'Array.distinct'
+
+#!markdown
+
+### skip
+
+#!spiral
+
+inl skip forall dim el. (n : dim) (a : a dim el) : a dim el =
+    a |> $'Array.skip' n
+
+#!markdown
+
+### skip_while
+
+#!spiral
+
+inl skip_while forall dim el. (fn : el -> bool) (a : a dim el) : a dim el =
+    a |> $'Array.skipWhile' fn
+
+#!markdown
+
+### to_list'
+
+#!spiral
+
+inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
+    items |> $'Array.toList'
+
+#!spiral
+
+//// test
+
+a' ;[ "a"; "b" ]
+|> to_list'
+|> listm'.unbox
+|> _assert_eq [ "a"; "b" ]
+
+#!markdown
+
+### parallel_map
+
+#!spiral
+
+inl parallel_map forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
+    a |> $'Array.Parallel.map' fn
+
+#!markdown
+
+### map'
+
+#!spiral
+
+inl map' forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
+    $'!a |> Array.map !fn '
+
+#!markdown
+
+### sort_by
+
+#!spiral
+
+inl sort_by forall dim el. (fn : el -> _) (a : a dim el) : a dim el =
+    a |> $'Array.sortBy' fn
+
+#!markdown
+
+### sort
+
+#!spiral
+
+inl sort forall dim el. (a : a dim el) : a dim el =
+    a |> $'Array.sort'
+
+#!markdown
+
+### sort_descending
+
+#!spiral
+
+inl sort_descending forall dim el. (a : a dim el) : a dim el =
+    a |> $'Array.sortDescending'
+
+#!markdown
+
+### transpose
+
+#!spiral
+
+inl transpose forall dim el. (a : a dim (a dim el)) : a dim (a dim el) =
+    a |> $'Array.transpose'
+
+#!markdown
+
+### try_item
+
+#!spiral
+
+inl try_item forall dim el. (i : i32) (a : a dim el) : option el =
+    a |> $'Array.tryItem' i |> optionm'.unbox

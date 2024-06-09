@@ -16,13 +16,17 @@ open testing
 
 ## guid
 
+#!markdown
+
+### guid
+
 #!spiral
 
 nominal guid = $'System.Guid'
 
 #!markdown
 
-## new_guid
+### new_guid
 
 #!spiral
 
@@ -31,7 +35,7 @@ inl new_guid (x : string) : guid =
 
 #!markdown
 
-## new_raw_guid
+### new_raw_guid
 
 #!spiral
 
@@ -40,7 +44,7 @@ inl new_raw_guid () : guid =
 
 #!markdown
 
-## hash_guid
+### hash_guid
 
 #!spiral
 

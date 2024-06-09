@@ -25,7 +25,11 @@ inl types () =
 
 #!markdown
 
-## trace_level
+## trace
+
+#!markdown
+
+### trace_level
 
 #!spiral
 
@@ -38,7 +42,7 @@ union trace_level =
 
 #!markdown
 
-## read_state
+### read_state
 
 #!spiral
 
@@ -64,7 +68,7 @@ inl read_state () =
 
 #!markdown
 
-## trace_state
+### trace_state
 
 #!spiral
 
@@ -89,7 +93,7 @@ inl new_trace_state trace_level' =
 
 #!markdown
 
-## init_trace_state
+### init_trace_state
 
 #!spiral
 
@@ -102,7 +106,7 @@ inl init_trace_state trace_level : () =
 
 #!markdown
 
-## get_trace_state_or_init
+### get_trace_state_or_init
 
 #!spiral
 
@@ -113,7 +117,7 @@ inl get_trace_state_or_init trace_level : trace_state =
 
 #!markdown
 
-## _locals
+### _locals
 
 #!spiral
 
@@ -121,7 +125,7 @@ inl _locals () = ""
 
 #!markdown
 
-## test_trace_level
+### test_trace_level
 
 #!spiral
 
@@ -150,7 +154,7 @@ test_trace_level Verbose |> _assert_eq true
 
 #!markdown
 
-## trace_raw
+### trace_raw
 
 #!spiral
 
@@ -172,7 +176,7 @@ let rec trace_raw level fn =
 
 #!markdown
 
-## trace
+### trace
 
 #!spiral
 

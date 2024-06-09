@@ -36,7 +36,7 @@ class IPathJoin(Protocol):
         ...
 
 
-def _expr209() -> TypeInfo:
+def _expr208() -> TypeInfo:
     return class_type("File_system.Disposable", None, Disposable)
 
 
@@ -49,7 +49,7 @@ class Disposable(IDisposable):
         _.f(None)
 
 
-Disposable_reflection = _expr209
+Disposable_reflection = _expr208
 
 def Disposable__ctor_3A5B6456(f: Callable[[], None]) -> Disposable:
     return Disposable(f)
@@ -61,7 +61,7 @@ class IPathDirname(Protocol):
         ...
 
 
-def _expr210() -> TypeInfo:
+def _expr209() -> TypeInfo:
     return union_type("File_system.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -77,9 +77,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr210
+US0_reflection = _expr209
 
-def _expr211() -> TypeInfo:
+def _expr210() -> TypeInfo:
     return record_type("File_system.Mut0", [], Mut0, lambda: [("l0", int64_type)])
 
 
@@ -87,9 +87,9 @@ def _expr211() -> TypeInfo:
 class Mut0(Record):
     l0: int64
 
-Mut0_reflection = _expr211
+Mut0_reflection = _expr210
 
-def _expr212() -> TypeInfo:
+def _expr211() -> TypeInfo:
     return record_type("File_system.Mut1", [], Mut1, lambda: [("l0", bool_type)])
 
 
@@ -97,9 +97,9 @@ def _expr212() -> TypeInfo:
 class Mut1(Record):
     l0: bool
 
-Mut1_reflection = _expr212
+Mut1_reflection = _expr211
 
-def _expr213() -> TypeInfo:
+def _expr212() -> TypeInfo:
     return record_type("File_system.Mut2", [], Mut2, lambda: [("l0", US0_reflection())])
 
 
@@ -107,9 +107,9 @@ def _expr213() -> TypeInfo:
 class Mut2(Record):
     l0: US0
 
-Mut2_reflection = _expr213
+Mut2_reflection = _expr212
 
-def _expr214() -> TypeInfo:
+def _expr213() -> TypeInfo:
     return record_type("File_system.Mut3", [], Mut3, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -117,9 +117,9 @@ def _expr214() -> TypeInfo:
 class Mut3(Record):
     l0: Callable[[str], None]
 
-Mut3_reflection = _expr214
+Mut3_reflection = _expr213
 
-def _expr215() -> TypeInfo:
+def _expr214() -> TypeInfo:
     return union_type("File_system.US1", [], US1, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -135,9 +135,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr215
+US1_reflection = _expr214
 
-def _expr216() -> TypeInfo:
+def _expr215() -> TypeInfo:
     return union_type("File_system.US2", [], US2, lambda: [[("f0_0", US0_reflection())], []])
 
 
@@ -153,9 +153,9 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr216
+US2_reflection = _expr215
 
-def _expr217() -> TypeInfo:
+def _expr216() -> TypeInfo:
     return union_type("File_system.US3", [], US3, lambda: [[("f0_0", string_type)], []])
 
 
@@ -171,9 +171,9 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr217
+US3_reflection = _expr216
 
-def _expr218() -> TypeInfo:
+def _expr217() -> TypeInfo:
     return union_type("File_system.US4", [], US4, lambda: [[], [], []])
 
 
@@ -189,9 +189,9 @@ class US4(Union):
         return ["US4_0", "US4_1", "US4_2"]
 
 
-US4_reflection = _expr218
+US4_reflection = _expr217
 
-def _expr219() -> TypeInfo:
+def _expr218() -> TypeInfo:
     return union_type("File_system.US5", [], US5, lambda: [[("f0_0", US4_reflection())], [("f1_0", US4_reflection())], [("f2_0", US4_reflection())], [("f3_0", US4_reflection())], [("f4_0", US4_reflection())]])
 
 
@@ -207,9 +207,9 @@ class US5(Union):
         return ["US5_0", "US5_1", "US5_2", "US5_3", "US5_4"]
 
 
-US5_reflection = _expr219
+US5_reflection = _expr218
 
-def _expr220() -> TypeInfo:
+def _expr219() -> TypeInfo:
     return union_type("File_system.US7", [], US7, lambda: [[], [], []])
 
 
@@ -225,9 +225,9 @@ class US7(Union):
         return ["US7_0", "US7_1", "US7_2"]
 
 
-US7_reflection = _expr220
+US7_reflection = _expr219
 
-def _expr221() -> TypeInfo:
+def _expr220() -> TypeInfo:
     return union_type("File_system.US8", [], US8, lambda: [[], [], [], [], []])
 
 
@@ -243,9 +243,9 @@ class US8(Union):
         return ["US8_0", "US8_1", "US8_2", "US8_3", "US8_4"]
 
 
-US8_reflection = _expr221
+US8_reflection = _expr220
 
-def _expr222() -> TypeInfo:
+def _expr221() -> TypeInfo:
     return union_type("File_system.US6", [], US6, lambda: [[("f0_0", US7_reflection()), ("f0_1", US8_reflection())], []])
 
 
@@ -261,9 +261,9 @@ class US6(Union):
         return ["US6_0", "US6_1"]
 
 
-US6_reflection = _expr222
+US6_reflection = _expr221
 
-def _expr223() -> TypeInfo:
+def _expr222() -> TypeInfo:
     return union_type("File_system.US9", [], US9, lambda: [[("f0_0", int64_type)], [("f1_0", class_type("System.Exception"))]])
 
 
@@ -279,9 +279,9 @@ class US9(Union):
         return ["US9_0", "US9_1"]
 
 
-US9_reflection = _expr223
+US9_reflection = _expr222
 
-def _expr224() -> TypeInfo:
+def _expr223() -> TypeInfo:
     return union_type("File_system.US10", [], US10, lambda: [[("f0_0", int64_type)], [("f1_0", class_type("System.Exception"))]])
 
 
@@ -297,9 +297,9 @@ class US10(Union):
         return ["US10_0", "US10_1"]
 
 
-US10_reflection = _expr224
+US10_reflection = _expr223
 
-def _expr225() -> TypeInfo:
+def _expr224() -> TypeInfo:
     return union_type("File_system.US11", [], US11, lambda: [[("f0_0", class_type("File_system.chrono_DateTime`1", [class_type("File_system.chrono_Utc")]))], []])
 
 
@@ -315,9 +315,9 @@ class US11(Union):
         return ["US11_0", "US11_1"]
 
 
-US11_reflection = _expr225
+US11_reflection = _expr224
 
-def _expr226() -> TypeInfo:
+def _expr225() -> TypeInfo:
     return union_type("File_system.US12", [], US12, lambda: [[], [("f1_0", class_type("File_system.std_string_String"))]])
 
 
@@ -333,7 +333,25 @@ class US12(Union):
         return ["US12_0", "US12_1"]
 
 
-US12_reflection = _expr226
+US12_reflection = _expr225
+
+def _expr226() -> TypeInfo:
+    return union_type("File_system.US13", [], US13, lambda: [[("f0_0", string_type)], [("f1_0", string_type)]])
+
+
+class US13(Union):
+    __slots__ = ["tag", "fields"]
+    def __init__(self, tag: int, *fields: Any) -> None:
+        super().__init__()
+        self.tag: int = tag or 0
+        self.fields: Array[Any] = list(fields)
+
+    @staticmethod
+    def cases() -> list[str]:
+        return ["US13_0", "US13_1"]
+
+
+US13_reflection = _expr226
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:
@@ -660,6 +678,24 @@ def US12__get_IsUS12_0(this: FSharpRef[US12], unit_arg: None) -> bool:
 
 
 def US12__get_IsUS12_1(this: FSharpRef[US12], unit_arg: None) -> bool:
+    if this.tag == 1:
+        return True
+
+    else: 
+        return False
+
+
+
+def US13__get_IsUS13_0(this: FSharpRef[US13], unit_arg: None) -> bool:
+    if this.tag == 0:
+        return True
+
+    else: 
+        return False
+
+
+
+def US13__get_IsUS13_1(this: FSharpRef[US13], unit_arg: None) -> bool:
     if this.tag == 1:
         return True
 
@@ -1030,7 +1066,7 @@ def closure13(unit_var: None, v0_1: str) -> Async[str]:
 
 
 
-def method16(v0_1: str) -> bool:
+def method17(v0_1: str) -> bool:
     _v1: bool | None = None
     _v1 = None
     if _v1 is None:
@@ -1041,8 +1077,12 @@ def method16(v0_1: str) -> bool:
 
 
 
-def closure15(v0_1: str, v1_1: str) -> Async[bool]:
-    _v2: Async[bool] | None = None
+def method18(v0_1: Vec_1[uint8]) -> Vec_1[uint8]:
+    return v0_1
+
+
+def method16(v0_1: str, v1_1: str) -> bool:
+    _v2: bool | None = None
     _v2 = None
     if _v2 is None:
         raise Exception("base.run_target / _v2=None")
@@ -1052,8 +1092,12 @@ def closure15(v0_1: str, v1_1: str) -> Async[bool]:
 
 
 
-def closure14(unit_var: None, v0_1: str) -> Callable[[str], Async[bool]]:
-    def _arrow232(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[bool]:
+def closure15(v0_1: str, v1_1: str) -> bool:
+    return method16(v0_1, v1_1)
+
+
+def closure14(unit_var: None, v0_1: str) -> Callable[[str], bool]:
+    def _arrow232(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> bool:
         return closure15(v0_1, v)
 
     return _arrow232
@@ -1113,7 +1157,7 @@ def closure22(v0_1: str, v1_1: Exception, unit_var: None) -> str:
     return ((((("path: " + closure5(None, v0_1)) + " / ex: ") + v9_1) + " / ") + closure6(None, None)) + ""
 
 
-def method17(v0_1: str, v1_1: int64) -> Async[int64]:
+def method19(v0_1: str, v1_1: int64) -> Async[int64]:
     _v2: Async[int64] | None = None
     _v2 = None
     if _v2 is None:
@@ -1156,7 +1200,7 @@ def closure26(v0_1: str, v1_1: str, v2_1: Exception, unit_var: None) -> str:
     return ((((((("old_path: " + v11_1(v1_1)) + " / new_path: ") + v11_1(v0_1)) + " / ex: ") + v10_1) + " / ") + closure6(None, None)) + ""
 
 
-def method18(v0_1: str, v1_1: str, v2_1: int64) -> Async[int64]:
+def method20(v0_1: str, v1_1: str, v2_1: int64) -> Async[int64]:
     _v3: Async[int64] | None = None
     _v3 = None
     if _v3 is None:
@@ -1209,15 +1253,15 @@ def closure33(unit_var: None, unit_var_1: None) -> str:
     return "read_all_text_retry_async"
 
 
-def method20(v0_1: int64, v1_1: str) -> str:
+def method22(v0_1: int64, v1_1: str) -> str:
     return ((((("retry: " + str(v0_1)) + " / ex: ") + v1_1) + " / ") + closure6(None, None)) + ""
 
 
 def closure34(v0_1: int64, v1_1: str, unit_var: None) -> str:
-    return method20(v0_1, v1_1)
+    return method22(v0_1, v1_1)
 
 
-def method19(v0_1: str, v1_1: int64) -> Async[str | None]:
+def method21(v0_1: str, v1_1: int64) -> Async[str | None]:
     _v2: Async[str | None] | None = None
     _v2 = None
     if _v2 is None:
@@ -1239,29 +1283,29 @@ def closure27(unit_var: None, v0_1: str) -> Async[str | None]:
 
 
 
-def method23(v0_1: chrono_DateTime_1[chrono_Utc]) -> chrono_DateTime_1[chrono_Utc]:
+def method25(v0_1: chrono_DateTime_1[chrono_Utc]) -> chrono_DateTime_1[chrono_Utc]:
     return v0_1
 
 
-def method24(v0_1: chrono_DateTime_1[chrono_Local]) -> chrono_DateTime_1[chrono_Local]:
+def method26(v0_1: chrono_DateTime_1[chrono_Local]) -> chrono_DateTime_1[chrono_Local]:
     return v0_1
-
-
-def method25(__unit: None=None) -> str:
-    return "hh:mm"
-
-
-def method26(__unit: None=None) -> str:
-    return "yyyyMMdd-HHmm-ssff-ffff-f"
 
 
 def method27(__unit: None=None) -> str:
+    return "hh:mm"
+
+
+def method28(__unit: None=None) -> str:
+    return "yyyyMMdd-HHmm-ssff-ffff-f"
+
+
+def method29(__unit: None=None) -> str:
     return "hhmm"
 
 
-def method22(v0_1: str, v1_1: Any) -> str:
+def method24(v0_1: str, v1_1: Any) -> str:
     _v2: str | None = None
-    v259: str = to_string(v1_1, method26())
+    v259: str = to_string(v1_1, method28())
     _v260: Any | None = None
     _v260 = None
     v268: Any
@@ -1283,7 +1327,7 @@ def method22(v0_1: str, v1_1: Any) -> str:
         v296 = _v269
 
     v300: uint8 = uint8(1) if (hours(v296) > 0) else uint8(0)
-    v301: str = method27()
+    v301: str = method29()
     _v302: str | None = None
     x_4: str = to_string_1(v296, "c", {})
     _v302 = x_4
@@ -1302,7 +1346,7 @@ def method22(v0_1: str, v1_1: Any) -> str:
 
 
 
-def method29(__unit: None=None) -> str:
+def method31(__unit: None=None) -> str:
     _v0: str | None = None
     x: str
     raise Exception(("file_system.get_temp_path / target: " + str(US5(4, US4(0)))) + "")
@@ -1315,19 +1359,19 @@ def method29(__unit: None=None) -> str:
 
 
 
-def method30(__unit: None=None) -> str:
+def method32(__unit: None=None) -> str:
     return "!create_temp_path_"
 
 
-def method33(v0_1: str) -> str:
+def method35(v0_1: str) -> str:
     return v0_1
 
 
-def method32(v0_1: str, v1_1: str) -> tuple[str, str]:
-    return (v1_1, method33(v0_1))
+def method34(v0_1: str, v1_1: str) -> tuple[str, str]:
+    return (v1_1, method35(v0_1))
 
 
-def method31(v0_1: str, v1_1: str) -> str:
+def method33(v0_1: str, v1_1: str) -> str:
     _v2: str | None = None
     x: str
     raise Exception(((((("file_system.(</>) / target: " + str(US5(4, US4(0)))) + " / a: ") + v0_1) + " / b: ") + v1_1) + "")
@@ -1340,11 +1384,11 @@ def method31(v0_1: str, v1_1: str) -> str:
 
 
 
-def method35(__unit: None=None) -> str:
+def method37(__unit: None=None) -> str:
     return "CARGO_PKG_NAME"
 
 
-def method34(__unit: None=None) -> str:
+def method36(__unit: None=None) -> str:
     _v0: str | None = None
     x: str
     raise Exception(("env.get_entry_assembly_name / target: " + str(US5(4, US4(0)))) + "")
@@ -1357,9 +1401,9 @@ def method34(__unit: None=None) -> str:
 
 
 
-def method28(v0_1: str) -> str:
+def method30(v0_1: str) -> str:
     _v1: str | None = None
-    x: str = method31(method31(method31(method29(), method30()), method34()), str(v0_1))
+    x: str = method33(method33(method33(method31(), method32()), method36()), str(v0_1))
     _v1 = x
     if _v1 is None:
         raise Exception("base.run_target / _v1=None")
@@ -1369,10 +1413,10 @@ def method28(v0_1: str) -> str:
 
 
 
-def method21(__unit: None=None) -> str:
+def method23(__unit: None=None) -> str:
     _v0: str | None = None
     v17_1: Any = now()
-    x: str = method28(method22(new_guid(), v17_1))
+    x: str = method30(method24(new_guid(), v17_1))
     _v0 = x
     if _v0 is None:
         raise Exception("base.run_target / _v0=None")
@@ -1383,10 +1427,10 @@ def method21(__unit: None=None) -> str:
 
 
 def closure35(unit_var: None, unit_var_1: None) -> str:
-    return method21()
+    return method23()
 
 
-def method37(v0_1: str) -> str:
+def method39(v0_1: str) -> str:
     return v0_1
 
 
@@ -1401,11 +1445,11 @@ def closure37(unit_var: None, v0_1: std_io_Error) -> std_string_String:
 
 
 
-def method38(__unit: None=None) -> Callable[[std_io_Error], std_string_String]:
-    def _arrow237(v: std_io_Error) -> std_string_String:
+def method40(__unit: None=None) -> Callable[[std_io_Error], std_string_String]:
+    def _arrow238(v: std_io_Error) -> std_string_String:
         return closure37(None, v)
 
-    return _arrow237
+    return _arrow238
 
 
 def closure38(unit_var: None, unit_var_1: None) -> US12:
@@ -1436,18 +1480,18 @@ def closure44(v0_1: str, unit_var: None) -> None:
     method5(True, v0_1)
 
 
-def method39(v0_1: str) -> Callable[[], None]:
-    def _arrow238(__unit: None=None, v0_1: Any=v0_1) -> None:
-        closure44(v0_1, None)
-
-    return _arrow238
-
-
-def method40(v0_1: str) -> Callable[[], None]:
+def method41(v0_1: str) -> Callable[[], None]:
     def _arrow239(__unit: None=None, v0_1: Any=v0_1) -> None:
         closure44(v0_1, None)
 
     return _arrow239
+
+
+def method42(v0_1: str) -> Callable[[], None]:
+    def _arrow240(__unit: None=None, v0_1: Any=v0_1) -> None:
+        closure44(v0_1, None)
+
+    return _arrow240
 
 
 def closure45(unit_var: None, unit_var_1: None) -> str:
@@ -1487,21 +1531,21 @@ def closure47(v0_1: str, unit_var: None) -> None:
 
 
 
-def method41(v0_1: str) -> Callable[[], None]:
-    def _arrow240(__unit: None=None, v0_1: Any=v0_1) -> None:
-        closure47(v0_1, None)
-
-    return _arrow240
-
-
-def method42(v0_1: str) -> Callable[[], None]:
+def method43(v0_1: str) -> Callable[[], None]:
     def _arrow241(__unit: None=None, v0_1: Any=v0_1) -> None:
         closure47(v0_1, None)
 
     return _arrow241
 
 
-def method36(v0_1: str) -> IDisposable:
+def method44(v0_1: str) -> Callable[[], None]:
+    def _arrow242(__unit: None=None, v0_1: Any=v0_1) -> None:
+        closure47(v0_1, None)
+
+    return _arrow242
+
+
+def method38(v0_1: str) -> IDisposable:
     _v1: IDisposable | None = None
     _v75: Any | None = None
     _v75 = None
@@ -1524,11 +1568,11 @@ def method36(v0_1: str) -> IDisposable:
     if v91 == False:
         _v93: Any | None = None
         _v93 = None
-        def _arrow242(__unit: None=None, v0_1: Any=v0_1) -> Any:
+        def _arrow243(__unit: None=None, v0_1: Any=v0_1) -> Any:
             raise Exception("base.run_target / _v93=None")
 
         v102: str = to_text(interpolate("%A%P()", [{
-            "CreationTime": _arrow242() if (_v93 is None) else _v93,
+            "CreationTime": _arrow243() if (_v93 is None) else _v93,
             "Exists": v91
         }]))
         def v104(__unit: None=None, v0_1: Any=v0_1) -> str:
@@ -1558,11 +1602,11 @@ def method36(v0_1: str) -> IDisposable:
 
 
 def closure36(unit_var: None, unit_var_1: None) -> tuple[str, IDisposable]:
-    v0_1: str = method21()
-    return (v0_1, method36(v0_1))
+    v0_1: str = method23()
+    return (v0_1, method38(v0_1))
 
 
-def method43(v0_1: str) -> str:
+def method45(v0_1: str) -> str:
     _v1: str | None = None
     v9_1: str = pad_left(v0_1, 32, "0")
     x: str = parse(((((((((("" + v9_1[0:7 + 1]) + "-") + v9_1[8:11 + 1]) + "-") + v9_1[12:15 + 1]) + "-") + v9_1[16:19 + 1]) + "-") + v9_1[20:31 + 1]) + "")
@@ -1576,23 +1620,53 @@ def method43(v0_1: str) -> str:
 
 
 def closure48(unit_var: None, v0_1: str) -> tuple[str, IDisposable]:
-    v2_1: str = method28(method43(v0_1))
-    return (v2_1, method36(v2_1))
+    v2_1: str = method30(method45(v0_1))
+    return (v2_1, method38(v2_1))
 
 
 def closure49(unit_var: None, unit_var_1: None) -> str:
     return "C:\\home\\git\\polyglot\\lib\\spiral"
 
 
-def closure53(unit_var: None, v0_1: str) -> bool:
-    return method16(v0_1)
+def method47(__unit: None=None) -> str:
+    return ""
 
 
-def closure54(unit_var: None, v0_1: str) -> bool:
-    return method7(v0_1)
+def method48(v0_1: str) -> str:
+    return v0_1
 
 
-def method46(v0_1: str) -> str | None:
+def method49(__unit: None=None) -> str:
+    return "^\\\\\\\\\\?\\\\"
+
+
+def method46(v0_1: str) -> str:
+    v1_1: str = method47()
+    _v2: str | None = None
+    _v2 = None
+    v21: str
+    if _v2 is None:
+        raise Exception("base.run_target / _v2=None")
+
+    else: 
+        v21 = _v2
+
+    def _arrow244(__unit: None=None, v0_1: Any=v0_1) -> str:
+        _arg: str = v21[0]
+        return _arg.lower()
+
+    return replace(((("" + _arrow244()) + "") + v21[1:len(v21)]) + "", "\\", "/")
+
+
+def closure50(unit_var: None, v0_1: str) -> str:
+    return method46(v0_1)
+
+
+def closure51(unit_var: None, v0_1: str) -> str:
+    return ("file:///" + trim_start(v0_1, "/")) + ""
+
+
+def method52(v0_1: str) -> str | None:
     _v1: US3 | None = None
     _v1 = None
     v51: US3
@@ -1610,219 +1684,144 @@ def method46(v0_1: str) -> str | None:
 
 
 
-def closure55(unit_var: None, v0_1: str) -> str | None:
-    return method46(v0_1)
+def closure53(unit_var: None, v0_1: str) -> str | None:
+    return method52(v0_1)
 
 
-def method45(__unit: None=None) -> Callable[[str], str | None]:
-    def _arrow244(v: str) -> str | None:
-        return closure55(None, v)
-
-    return _arrow244
-
-
-def method47(v0_1_mut: str, v1_1_mut: bool, v2_1_mut: str, v3_1_mut: str) -> str:
-    while True:
-        (v0_1, v1_1, v2_1, v3_1) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut)
-        def _arrow245(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3_1: Any=v3_1) -> bool:
-            return closure53(None, v)
-
-        def _arrow246(v_1: str, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3_1: Any=v3_1) -> bool:
-            return closure54(None, v_1)
-
-        if (_arrow245 if v1_1 else _arrow246)(method31(v3_1, v0_1)):
-            return v3_1
-
-        else: 
-            v10_1: str | None = method45()(v3_1)
-            _v11: FSharpRef[US3 | None] = FSharpRef(None)
-            x_2: US3 | None
-            if v10_1 is None:
-                x_2 = None
-
-            else: 
-                x: str = v10_1
-                def x_1(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3_1: Any=v3_1) -> US3:
-                    return US3(0, x)
-
-                x_2 = x_1(None)
-
-            _v11.contents = x_2
-            v16_1: US3 = default_arg(_v11.contents, US3(1))
-            if v16_1.tag == 0:
-                v0_1_mut = v0_1
-                v1_1_mut = v1_1
-                v2_1_mut = v2_1
-                v3_1_mut = v16_1.fields[0]
-                continue
-
-            else: 
-                raise Exception(((((((("No parent for " + ("file" if v1_1 else "dir")) + " \'") + v0_1) + "\' at \'") + v2_1) + "\' (until \'") + v3_1) + "\')")
-
-
-        break
-
-
-def method44(v0_1: str, v1_1: bool, v2_1: str) -> str:
-    def _arrow247(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> bool:
+def method51(__unit: None=None) -> Callable[[str], str | None]:
+    def _arrow245(v: str) -> str | None:
         return closure53(None, v)
 
-    def _arrow248(v_1: str, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> bool:
-        return closure54(None, v_1)
-
-    if (_arrow247 if v1_1 else _arrow248)(method31(v2_1, v0_1)):
-        return v2_1
-
-    else: 
-        v9_1: str | None = method45()(v2_1)
-        _v10: FSharpRef[US3 | None] = FSharpRef(None)
-        x_2: US3 | None
-        if v9_1 is None:
-            x_2 = None
-
-        else: 
-            x: str = v9_1
-            def x_1(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> US3:
-                return US3(0, x)
-
-            x_2 = x_1(None)
-
-        _v10.contents = x_2
-        v15_1: US3 = default_arg(_v10.contents, US3(1))
-        if v15_1.tag == 0:
-            return method47(v0_1, v1_1, v2_1, v15_1.fields[0])
-
-        else: 
-            raise Exception(((((((("No parent for " + ("file" if v1_1 else "dir")) + " \'") + v0_1) + "\' at \'") + v2_1) + "\' (until \'") + v2_1) + "\')")
+    return _arrow245
 
 
-
-
-def closure52(v0_1: str, v1_1: bool, v2_1: str) -> str:
-    return method44(v0_1, v1_1, v2_1)
-
-
-def closure51(v0_1: str, v1_1: bool) -> Callable[[str], str]:
-    def _arrow249(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1) -> str:
-        return closure52(v0_1, v1_1, v)
-
-    return _arrow249
-
-
-def closure50(unit_var: None, v0_1: str) -> Callable[[bool, str], str]:
-    def _arrow250(v: bool, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[str], str]:
-        return closure51(v0_1, v)
-
-    return _arrow250
-
-
-def method49(__unit: None=None) -> str:
-    return ""
-
-
-def method50(v0_1: str) -> str:
-    return v0_1
-
-
-def method51(__unit: None=None) -> str:
-    return "^\\\\\\\\\\?\\\\"
-
-
-def method48(v0_1: str) -> str:
-    v1_1: str = method49()
-    _v2: str | None = None
-    _v2 = None
-    v21_1: str
-    if _v2 is None:
-        raise Exception("base.run_target / _v2=None")
-
-    else: 
-        v21_1 = _v2
-
-    def _arrow251(__unit: None=None, v0_1: Any=v0_1) -> str:
-        _arg: str = v21_1[0]
-        return _arg.lower()
-
-    return replace(((("" + _arrow251()) + "") + v21_1[1:len(v21_1)]) + "", "\\", "/")
-
-
-def closure56(unit_var: None, v0_1: str) -> str:
-    return method48(v0_1)
-
-
-def closure57(unit_var: None, v0_1: str) -> str:
-    return ("file:///" + trim_start(v0_1, "/")) + ""
-
-
-def method53(v0_1_mut: str, v1_1_mut: str, v2_1_mut: str) -> str:
+def method53(v0_1_mut: str, v1_1_mut: str, v2_1_mut: str) -> US13:
     while True:
         (v0_1, v1_1, v2_1) = (v0_1_mut, v1_1_mut, v2_1_mut)
-        if method7(method31(v2_1, v0_1)):
-            return v2_1
+        if method7(method33(v2_1, v0_1)):
+            return US13(0, v2_1)
 
         else: 
-            v6_1: str | None = method45()(v2_1)
-            _v7: FSharpRef[US3 | None] = FSharpRef(None)
+            v7_1: str | None = method51()(v2_1)
+            _v8: FSharpRef[US3 | None] = FSharpRef(None)
             x_2: US3 | None
-            if v6_1 is None:
+            if v7_1 is None:
                 x_2 = None
 
             else: 
-                x: str = v6_1
+                x: str = v7_1
                 def x_1(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> US3:
                     return US3(0, x)
 
                 x_2 = x_1(None)
 
-            _v7.contents = x_2
-            v12_1: US3 = default_arg(_v7.contents, US3(1))
-            if v12_1.tag == 0:
+            _v8.contents = x_2
+            v13_1: US3 = default_arg(_v8.contents, US3(1))
+            if v13_1.tag == 0:
                 v0_1_mut = v0_1
                 v1_1_mut = v1_1
-                v2_1_mut = v12_1.fields[0]
+                v2_1_mut = v13_1.fields[0]
                 continue
 
             else: 
-                raise Exception(((((((("No parent for " + "dir") + " \'") + v0_1) + "\' at \'") + v1_1) + "\' (until \'") + v2_1) + "\')")
+                return US13(1, ((((((("No parent for " + "dir") + " \'") + v0_1) + "\' at \'") + v1_1) + "\' (until \'") + v2_1) + "\')")
 
 
         break
 
 
-def method52(v0_1: str, v1_1: str) -> str:
-    if method7(method31(v1_1, v0_1)):
-        return v1_1
+def method50(v0_1: str, v1_1: str) -> US13:
+    if method7(method33(v1_1, v0_1)):
+        return US13(0, v1_1)
 
     else: 
-        v5_1: str | None = method45()(v1_1)
-        _v6: FSharpRef[US3 | None] = FSharpRef(None)
+        v6_1: str | None = method51()(v1_1)
+        _v7: FSharpRef[US3 | None] = FSharpRef(None)
         x_2: US3 | None
-        if v5_1 is None:
+        if v6_1 is None:
             x_2 = None
 
         else: 
-            x: str = v5_1
+            x: str = v6_1
             def x_1(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> US3:
                 return US3(0, x)
 
             x_2 = x_1(None)
 
-        _v6.contents = x_2
-        v11_1: US3 = default_arg(_v6.contents, US3(1))
-        if v11_1.tag == 0:
-            return method53(v0_1, v1_1, v11_1.fields[0])
+        _v7.contents = x_2
+        v12_1: US3 = default_arg(_v7.contents, US3(1))
+        if v12_1.tag == 0:
+            return method53(v0_1, v1_1, v12_1.fields[0])
 
         else: 
-            raise Exception(((((((("No parent for " + "dir") + " \'") + v0_1) + "\' at \'") + v1_1) + "\' (until \'") + v1_1) + "\')")
+            return US13(1, ((((((("No parent for " + "dir") + " \'") + v0_1) + "\' at \'") + v1_1) + "\' (until \'") + v1_1) + "\')")
 
 
 
 
-def closure58(unit_var: None, unit_var_1: None) -> str:
-    return method31(method52(method31("polyglot", ".paket"), "C:\\home\\git\\polyglot\\lib\\spiral"), "polyglot")
+def closure54(unit_var: None, unit_var_1: None) -> str:
+    return "file_system.get_workspace_root"
 
 
-def method54(v0_1: str) -> None:
+def closure55(v0_1: str, unit_var: None) -> str:
+    return ((("error: " + v0_1) + " / ") + closure6(None, None)) + ""
+
+
+def method54(__unit: None=None) -> str:
+    _v0: str | None = None
+    _v0 = None
+    if _v0 is None:
+        raise Exception("base.run_target / _v0=None")
+
+    else: 
+        return _v0
+
+
+
+def closure52(unit_var: None, unit_var_1: None) -> str:
+    v4_1: US13 = method50(method33("polyglot", ".paket"), "C:\\home\\git\\polyglot\\lib\\spiral")
+    v13_1: US3
+    if v4_1.tag == 0:
+        v13_1 = US3(0, v4_1.fields[0])
+
+    else: 
+        def v9_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> str:
+            return closure54(None, None)
+
+        def v10_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> str:
+            return closure55(v4_1.fields[0], None)
+
+        method9(US0(3), v9_1, v10_1)
+        v13_1 = US3(1)
+
+    v29: US3
+    if v13_1.tag == 0:
+        v29 = US3(0, v13_1.fields[0])
+
+    else: 
+        v16_1: str = method54()
+        v18_1: US13 = method50(method33("polyglot", ".paket"), v16_1)
+        if v18_1.tag == 0:
+            v29 = US3(0, v18_1.fields[0])
+
+        else: 
+            def v23(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> str:
+                return closure54(None, None)
+
+            def v24(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> str:
+                return closure55(v18_1.fields[0], None)
+
+            method9(US0(3), v23, v24)
+            v29 = US3(1)
+
+
+    def _arrow254(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> str:
+        raise Exception("Option does not have a value.")
+
+    return method33(v29.fields[0] if (v29.tag == 0) else _arrow254(), "polyglot")
+
+
+def method55(v0_1: str) -> None:
     _v1: None | None = None
     _v1 = some(None)
     if _v1 is None:
@@ -1833,34 +1832,34 @@ def method54(v0_1: str) -> None:
 
 
 
-def closure60(unit_var: None, v0_1: str) -> None:
-    method54(v0_1)
+def closure57(unit_var: None, v0_1: str) -> None:
+    method55(v0_1)
 
 
-def closure59(unit_var: None, v0_1: bool) -> None:
+def closure56(unit_var: None, v0_1: bool) -> None:
     if State_trace_state() is None:
         State_trace_state(closure0(None, US0(0)))
 
     pattern_input: tuple[Mut0, Mut1, Mut2, int64 | None, Mut3] = value_4(State_trace_state())
-    def _arrow253(v_1: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
-        closure60(None, v_1)
+    def _arrow255(v_1: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
+        closure57(None, v_1)
 
-    def _arrow254(v_2: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
+    def _arrow256(v_2: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> None:
         closure1(None, v_2)
 
-    v10_1: Callable[[str], None] = _arrow253 if v0_1 else _arrow254
+    v10_1: Callable[[str], None] = _arrow255 if v0_1 else _arrow256
     pattern_input[4].l0 = v10_1
 
 
-def closure62(v0_1: str, v1_1: str) -> str:
-    return method31(v0_1, v1_1)
+def closure59(v0_1: str, v1_1: str) -> str:
+    return method33(v0_1, v1_1)
 
 
-def closure61(unit_var: None, v0_1: str) -> Callable[[str], str]:
-    def _arrow256(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
-        return closure62(v0_1, v)
+def closure58(unit_var: None, v0_1: str) -> Callable[[str], str]:
+    def _arrow257(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+        return closure59(v0_1, v)
 
-    return _arrow256
+    return _arrow257
 
 
 def _arrow258(v: US0) -> tuple[Mut0, Mut1, Mut2, int64 | None, Mut3]:
@@ -1876,203 +1875,193 @@ if State_trace_state() is None:
     State_trace_state(v0(v1))
 
 
-def _arrow262(v: str) -> Async[int64]:
+def _arrow259(v: str) -> Async[int64]:
     return closure2(None, v)
 
 
-v2: Callable[[str], Async[int64]] = _arrow262
+v2: Callable[[str], Async[int64]] = _arrow259
 
 def delete_directory_async(x: str) -> Async[int64]:
     return v2(x)
 
 
-def _arrow265(v: US6) -> Callable[[str], Async[int64]]:
+def _arrow260(v: US6) -> Callable[[str], Async[int64]]:
     return closure8(None, v)
 
 
-v3: Callable[[US6, str], Async[int64]] = _arrow265
+v3: Callable[[US6, str], Async[int64]] = _arrow260
 
 def wait_for_file_access(x: US6) -> Callable[[str], Async[int64]]:
     return v3(x)
 
 
-def _arrow266(v: str) -> Async[int64]:
+def _arrow261(v: str) -> Async[int64]:
     return closure12(None, v)
 
 
-v4: Callable[[str], Async[int64]] = _arrow266
+v4: Callable[[str], Async[int64]] = _arrow261
 
 def wait_for_file_access_read(x: str) -> Async[int64]:
     return v4(x)
 
 
-def _arrow267(v: str) -> Async[str]:
+def _arrow262(v: str) -> Async[str]:
     return closure13(None, v)
 
 
-v5: Callable[[str], Async[str]] = _arrow267
+v5: Callable[[str], Async[str]] = _arrow262
 
 def read_all_text_async(x: str) -> Async[str]:
     return v5(x)
 
 
-def _arrow268(v: str) -> Callable[[str], Async[bool]]:
+def _arrow263(v: str) -> Callable[[str], bool]:
     return closure14(None, v)
 
 
-v6: Callable[[str, str], Async[bool]] = _arrow268
+v6: Callable[[str, str], bool] = _arrow263
 
-def file_exists_content(x: str) -> Callable[[str], Async[bool]]:
+def file_exists_content(x: str) -> Callable[[str], bool]:
     return v6(x)
 
 
-def _arrow269(v: str) -> Callable[[str], Async[None]]:
+def _arrow264(v: str) -> Callable[[str], Async[None]]:
     return closure16(None, v)
 
 
-v7: Callable[[str, str], Async[None]] = _arrow269
+v7: Callable[[str, str], Async[None]] = _arrow264
 
 def write_all_text_async(x: str) -> Callable[[str], Async[None]]:
     return v7(x)
 
 
-def _arrow270(v: str) -> Callable[[str], Async[None]]:
+def _arrow265(v: str) -> Callable[[str], Async[None]]:
     return closure18(None, v)
 
 
-v8: Callable[[str, str], Async[None]] = _arrow270
+v8: Callable[[str, str], Async[None]] = _arrow265
 
 def write_all_text_exists(x: str) -> Callable[[str], Async[None]]:
     return v8(x)
 
 
-def _arrow271(v: str) -> Async[int64]:
+def _arrow266(v: str) -> Async[int64]:
     return closure20(None, v)
 
 
-v9: Callable[[str], Async[int64]] = _arrow271
+v9: Callable[[str], Async[int64]] = _arrow266
 
 def delete_file_async(x: str) -> Async[int64]:
     return v9(x)
 
 
-def _arrow272(v: str) -> Callable[[str], Async[int64]]:
+def _arrow267(v: str) -> Callable[[str], Async[int64]]:
     return closure23(None, v)
 
 
-v10: Callable[[str, str], Async[int64]] = _arrow272
+v10: Callable[[str, str], Async[int64]] = _arrow267
 
 def move_file_async(x: str) -> Callable[[str], Async[int64]]:
     return v10(x)
 
 
-def _arrow273(v: str) -> Async[str | None]:
+def _arrow268(v: str) -> Async[str | None]:
     return closure27(None, v)
 
 
-v11: Callable[[str], Async[str | None]] = _arrow273
+v11: Callable[[str], Async[str | None]] = _arrow268
 
 def read_all_text_retry_async(x: str) -> Async[str | None]:
     return v11(x)
 
 
-def _arrow274(__unit: None=None) -> str:
+def _arrow269(__unit: None=None) -> str:
     return closure35(None, None)
 
 
-v12: Callable[[], str] = _arrow274
+v12: Callable[[], str] = _arrow269
 
 def create_temp_path(__unit: None=None) -> str:
     return v12(None)
 
 
-def _arrow275(__unit: None=None) -> tuple[str, IDisposable]:
+def _arrow270(__unit: None=None) -> tuple[str, IDisposable]:
     return closure36(None, None)
 
 
-v13: Callable[[], tuple[str, IDisposable]] = _arrow275
+v13: Callable[[], tuple[str, IDisposable]] = _arrow270
 
 def create_temp_dir(__unit: None=None) -> tuple[str, IDisposable]:
     return v13(None)
 
 
-def _arrow276(v: str) -> tuple[str, IDisposable]:
+def _arrow271(v: str) -> tuple[str, IDisposable]:
     return closure48(None, v)
 
 
-v14: Callable[[str], tuple[str, IDisposable]] = _arrow276
+v14: Callable[[str], tuple[str, IDisposable]] = _arrow271
 
 def create_temp_dir_0027(x: str) -> tuple[str, IDisposable]:
     return v14(x)
 
 
-def _arrow277(__unit: None=None) -> str:
+def _arrow272(__unit: None=None) -> str:
     return closure49(None, None)
 
 
-v15: Callable[[], str] = _arrow277
+v15: Callable[[], str] = _arrow272
 
 def get_source_directory(__unit: None=None) -> str:
     return v15(None)
 
 
-def _arrow278(v: str) -> Callable[[bool, str], str]:
+def _arrow273(v: str) -> str:
     return closure50(None, v)
 
 
-v16: Callable[[str, bool, str], str] = _arrow278
+v16: Callable[[str], str] = _arrow273
 
-def find_parent(x: str) -> Callable[[bool, str], str]:
+def normalize_path(x: str) -> str:
     return v16(x)
 
 
-def _arrow279(v: str) -> str:
-    return closure56(None, v)
+def _arrow274(v: str) -> str:
+    return closure51(None, v)
 
 
-v17: Callable[[str], str] = _arrow279
+v17: Callable[[str], str] = _arrow274
 
-def normalize_path(x: str) -> str:
+def new_file_uri(x: str) -> str:
     return v17(x)
 
 
-def _arrow280(v: str) -> str:
-    return closure57(None, v)
+def _arrow275(__unit: None=None) -> str:
+    return closure52(None, None)
 
 
-v18: Callable[[str], str] = _arrow280
-
-def new_file_uri(x: str) -> str:
-    return v18(x)
-
-
-def _arrow281(__unit: None=None) -> str:
-    return closure58(None, None)
-
-
-v19: Callable[[], str] = _arrow281
+v18: Callable[[], str] = _arrow275
 
 def get_workspace_root(__unit: None=None) -> str:
-    return v19(None)
+    return v18(None)
 
 
-def _arrow282(v: bool) -> None:
-    closure59(None, v)
+def _arrow276(v: bool) -> None:
+    closure56(None, v)
 
 
-v20: Callable[[bool], None] = _arrow282
+v19: Callable[[bool], None] = _arrow276
 
 def init_trace_file(x: bool) -> None:
-    v20(x)
+    v19(x)
 
 
-def _arrow283(v: str) -> Callable[[str], str]:
-    return closure61(None, v)
+def _arrow277(v: str) -> Callable[[str], str]:
+    return closure58(None, v)
 
 
-v21: Callable[[str, str], str] = _arrow283
+v20: Callable[[str, str], str] = _arrow277
 
 def op_less_divide_greater(x: str) -> Callable[[str], str]:
-    return v21(x)
+    return v20(x)
 
 

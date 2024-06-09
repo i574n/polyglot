@@ -6,30 +6,24 @@ inl types () =
     rust.types ()
     sm'.types ()
 
-/// ## prototype
+/// ## common
+
+/// ### (:>)
 prototype (~:>) r : forall t. t -> r
 
-/// ## upcast
-inl upcast forall t u. (x : t) : u =
-    $'!x :> `u '
-
-/// ## downcast
-inl downcast forall t u. (x : t) : u =
-    $'!x :?> `u '
-
-/// ## to_any
+/// ### to_any
 inl to_any forall t. (obj : t) : any =
     $'!obj '
 
 instance (~:>) any = to_any
 
-/// ## (||>)
+/// ### (||>)
 
-/// ## flip
+/// ### flip
 inl flip fn a b =
     fn b a
 
-/// ## join_body
+/// ### join_body
 inl join_body body acc x =
     if var_is x |> not
     then body acc x
@@ -37,7 +31,7 @@ inl join_body body acc x =
         inl acc = dyn acc
         join body acc x
 
-/// ## join_body_unit
+/// ### join_body_unit
 inl join_body_unit body d x =
     if var_is d |> not
     then body x
@@ -45,62 +39,7 @@ inl join_body_unit body d x =
         inl x = dyn x
         join body x
 
-/// ## nameof
-inl nameof x : string =
-    $'nameof !x '
-
-/// ## disposable
-nominal disposable t = $'System.IDisposable'
-
-/// ## dispose
-inl dispose (disposable : disposable _) : () =
-    disposable |> $'_.Dispose()'
-
-/// ## new_disposable
-inl new_disposable (fn : () -> ()) : disposable _ =
-    run_target function
-        | Rust _ => fun () =>
-            global "type Disposable (f : unit -> unit) = interface System.IDisposable with member _.Dispose () = f ()"
-            inl fn = join fn
-            $'new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr !fn "$0()" )'
-        | Fsharp _ => fun () =>
-            inl fn = join fn
-            $'{ new System.IDisposable with member _.Dispose () = !fn () }'
-        | _ => fun () => null ()
-
-/// ## return
-inl return forall t. (x : t) : () =
-    $'return !x '
-
-inl return' forall t. (x : t) : t =
-    $'return !x '
-
-/// ## sleep
-inl sleep (n : i32) : () =
-    run_target function
-        | Fsharp (Native) => fun () => $'System.Threading.Thread.Sleep' n
-        | _ => fun () => ()
-
-/// ## retry_fn
-inl retry_fn forall t. retries (fn : () -> t) : option t =
-    let rec loop retry =
-        try
-            fun () =>
-                if retry < retries
-                then fn () |> Some
-                else None
-            fun ex =>
-                trace Warning
-                    fun () => "common.retry_fn"
-                    fun () => $'$"retry: {!retry} / ex: %A{!ex} / {!_locals ()}"'
-                sleep 1
-                None
-        |> function
-            | Some x => x
-            | None => loop (retry + 1)
-    loop 0
-
-/// ## retry_fn'
+/// ### retry_fn'
 inl retry_fn' retries fn =
     let rec loop retry =
         inl is_error, result =
@@ -116,17 +55,65 @@ inl retry_fn' retries fn =
             loop (retry + 1)
     loop 1
 
-/// ## random
+/// ## fsharp
+
+/// ### nameof
+inl nameof x : string =
+    $'nameof !x '
+
+/// ### upcast
+inl upcast forall t u. (x : t) : u =
+    $'!x :> `u '
+
+/// ### downcast
+inl downcast forall t u. (x : t) : u =
+    $'!x :?> `u '
+
+/// ### random
 nominal random = $'System.Random'
 
 inl random () : random =
     $'`random ' ()
 
-/// ## random_next
+/// ### random_next
 inl random_next (min : i32) (max : i32) (random : random) : i32 =
     $'!random.Next (!min, !max)'
 
-/// ## random'
+/// ### disposable
+nominal disposable t = $'System.IDisposable'
+
+/// ### dispose
+inl dispose (disposable : disposable _) : () =
+    disposable |> $'_.Dispose()'
+
+/// ### return
+inl return forall t. (x : t) : () =
+    $'return !x '
+
+inl return' forall t. (x : t) : t =
+    $'return !x '
+
+/// ### retry_fn
+inl retry_fn forall t. retries (fn : () -> t) : option t =
+    let rec loop retry =
+        try
+            fun () =>
+                if retry < retries
+                then fn () |> Some
+                else None
+            fun ex =>
+                trace Warning
+                    fun () => "common.retry_fn"
+                    fun () => $'$"retry: {!retry} / ex: %A{!ex} / {!_locals ()}"'
+                None
+        |> function
+            | Some x => x
+            | None => loop (retry + 1)
+    loop 0
+
+/// ## common
+
+/// ### random'
 inl random' forall t. (min : t) (max : t) : t =
     run_target function
         | Rust (Contract) => fun () =>
@@ -136,6 +123,18 @@ inl random' forall t. (min : t) (max : t) : t =
             !\\((min, max), $'"rand::Rng::gen_range(&mut rand::thread_rng(), $0..$1)"')
         | _ => fun () =>
             random () |> random_next (i32 min) (i32 max) |> convert
+
+/// ### new_disposable
+inl new_disposable (fn : () -> ()) : disposable _ =
+    run_target function
+        | Rust _ => fun () =>
+            global "type Disposable (f : unit -> unit) = interface System.IDisposable with member _.Dispose () = f ()"
+            inl fn = join fn
+            $'new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr !fn "$0()" )'
+        | Fsharp _ => fun () =>
+            inl fn = join fn
+            $'{ new System.IDisposable with member _.Dispose () = !fn () }'
+        | _ => fun () => null ()
 
 /// ## main
 inl main () =

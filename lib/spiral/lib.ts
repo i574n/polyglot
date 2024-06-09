@@ -3,7 +3,7 @@ import { hash_to_port, hash_text } from "../../../../../../../lib/spiral/crypto.
 import { int32, uint16 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { trim_end, trim_start, trim, to_lower, substring, starts_with, split_string, split, slice, replace_regex, replace, format_exception, ends_with, ellipsis_end, ellipsis, contains, concat } from "../../../../../../../lib/spiral/sm.fsx";
 import { int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
-import { State_trace_state as State_trace_state_1, Mut3 as Mut3_1, Mut2 as Mut2_1, Mut1 as Mut1_1, Mut0 as Mut0_1, US0_US0_0 as US0_US0_0_1, US0_US0_4 as US0_US0_4_1, US0_US0_3 as US0_US0_3_1, US0_US0_2 as US0_US0_2_1, US0_US0_1 as US0_US0_1_1, create_temp_path, create_temp_dir$0027, create_temp_dir, new_file_uri, normalize_path, find_parent, get_source_directory, get_workspace_root } from "../../../../../../../lib/spiral/file_system.fsx";
+import { State_trace_state as State_trace_state_1, Mut3 as Mut3_1, Mut2 as Mut2_1, Mut1 as Mut1_1, Mut0 as Mut0_1, US0_US0_0 as US0_US0_0_1, US0_US0_4 as US0_US0_4_1, US0_US0_3 as US0_US0_3_1, US0_US0_2 as US0_US0_2_1, US0_US0_1 as US0_US0_1_1, create_temp_path, create_temp_dir$0027, create_temp_dir, new_file_uri, normalize_path, get_source_directory, get_workspace_root } from "../../../../../../../lib/spiral/file_system.fsx";
 import { IDisposable } from "../../deps/Fable/src/fable-library-ts/Util.js";
 import { iterate } from "../../deps/Fable/src/fable-library-ts/Seq.js";
 import { State_trace_state, Mut3, Mut2, Mut1, Mut0, US0_US0_0, US0_US0_4, US0_US0_3, US0_US0_2, US0_US0_1 } from "../../../../../../../lib/spiral/networking.fsx";
@@ -97,10 +97,6 @@ export function SpiralFileSystem_get_workspace_root(): string {
 
 export function SpiralFileSystem_get_source_directory(): string {
     return get_source_directory();
-}
-
-export function SpiralFileSystem_find_parent(x: string): ((arg0: boolean) => ((arg0: string) => string)) {
-    return find_parent(x);
 }
 
 export function SpiralFileSystem_normalize_path(x: string): string {

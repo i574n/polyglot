@@ -639,36 +639,6 @@ export function US13_$reflection(): TypeInfo {
     return union_type("Runtime.US13", [], US13, () => [[["f0_0", string_type], ["f0_1", class_type("System.Text.StringBuilder")], ["f0_2", int32_type], ["f0_3", int32_type]], [["f1_0", string_type]]]);
 }
 
-export type US14_$union = 
-    | US14<0>
-    | US14<1>
-
-export type US14_$cases = {
-    0: ["US14_0", [string[]]],
-    1: ["US14_1", [string]]
-}
-
-export function US14_US14_0(f0_0: string[]) {
-    return new US14<0>(0, [f0_0]);
-}
-
-export function US14_US14_1(f1_0: string) {
-    return new US14<1>(1, [f1_0]);
-}
-
-export class US14<Tag extends keyof US14_$cases> extends Union<Tag, US14_$cases[Tag][0]> {
-    constructor(readonly tag: Tag, readonly fields: US14_$cases[Tag][1]) {
-        super();
-    }
-    cases() {
-        return ["US14_0", "US14_1"];
-    }
-}
-
-export function US14_$reflection(): TypeInfo {
-    return union_type("Runtime.US14", [], US14, () => [[["f0_0", array_type(string_type)]], [["f1_0", string_type]]]);
-}
-
 export function US0__get_IsUS0_0(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
     if ((this$ as any)['tag'] === 0) {
         return true;
@@ -1011,24 +981,6 @@ export function US13__get_IsUS13_1(this$: FSharpRef<US13_$union>, unitArg: void)
     }
 }
 
-export function US14__get_IsUS14_0(this$: FSharpRef<US14_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US14__get_IsUS14_1(this$: FSharpRef<US14_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 1) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
 export function method0(): string {
     return "TRACE_LEVEL";
 }
@@ -1104,7 +1056,7 @@ export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Op
 }
 
 export function closure4(unitVar: void, unitVar_1: void): string {
-    return "runtime.current_process_kill";
+    return "runtime.current_process_kill / exiting... 3";
 }
 
 export function closure5(unitVar: void, unitVar_1: void): string {
@@ -1230,6 +1182,14 @@ export function method4(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => str
     method8(v0_1, (): string => closure6(v0_1, v1_1, v2_1, undefined));
 }
 
+export function closure7(unitVar: void, unitVar_1: void): string {
+    return "runtime.current_process_kill / exiting... 2";
+}
+
+export function closure8(unitVar: void, unitVar_1: void): string {
+    return "runtime.current_process_kill / exiting... 1";
+}
+
 export function closure3(unitVar: void, unitVar_1: void): void {
     let _v0: Option<void> = undefined;
     defaultOf();
@@ -1262,16 +1222,16 @@ export function method12(v0_1: int32, v1_1: Mut4): boolean {
     return v1_1.l0 < v0_1;
 }
 
-export function closure9(v0_1: string, v1_1: UH0_$union): UH0_$union {
+export function closure11(v0_1: string, v1_1: UH0_$union): UH0_$union {
     return UH0_UH0_1(v0_1, v1_1);
 }
 
-export function closure8(unitVar: void, v0_1: string): ((arg0: UH0_$union) => UH0_$union) {
-    return (v: UH0_$union): UH0_$union => closure9(v0_1, v);
+export function closure10(unitVar: void, v0_1: string): ((arg0: UH0_$union) => UH0_$union) {
+    return (v: UH0_$union): UH0_$union => closure11(v0_1, v);
 }
 
 export function method13(): ((arg0: string) => ((arg0: UH0_$union) => UH0_$union)) {
-    return (v: string): ((arg0: UH0_$union) => UH0_$union) => closure8(undefined, v);
+    return (v: string): ((arg0: UH0_$union) => UH0_$union) => closure10(undefined, v);
 }
 
 export function method14(v0_1_mut: string, v1_1_mut: string, v2_1_mut: UH0_$union, v3_1_mut: US4_$union): [string, string] {
@@ -1487,7 +1447,7 @@ export function method10(v0_1: string): [string, string] {
     return method14(patternInput[1], patternInput[0], foldBack<string, UH0_$union>(uncurry2(method13()), v11, UH0_UH0_0()), US4_US4_0());
 }
 
-export function closure10(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, unitVar: void): string {
+export function closure12(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, unitVar: void): string {
     return toText(interpolate("runtime.execute_with_options_async / options: %A%P()", [[v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1] as [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]]));
 }
 
@@ -1495,11 +1455,11 @@ export function method15(): (() => string) {
     return (): string => closure5(undefined, undefined);
 }
 
-export function closure12(v0_1: string, unitVar: void): string {
+export function closure14(v0_1: string, unitVar: void): string {
     return v0_1;
 }
 
-export function closure11(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, v7: void, v8: any, v9: void): void {
+export function closure13(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, v7: void, v8: any, v9: void): void {
     let _v10: Option<any> = undefined;
     const x: any = defaultOf();
     _v10 = x;
@@ -1521,7 +1481,7 @@ export function closure11(v0_1: Option<any>, v1_1: string, v2_1: [string, string
     }
 }
 
-export function closure13(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, v7: void, v8: any, v9: void): void {
+export function closure15(v0_1: Option<any>, v1_1: string, v2_1: [string, string][], v3_1: Option<((arg0: [boolean, string, int32]) => any)>, v4_1: Option<((arg0: any) => void)>, v5_1: boolean, v6_1: Option<string>, v7: void, v8: any, v9: void): void {
     let _v10: Option<any> = undefined;
     const x: any = defaultOf();
     _v10 = x;
@@ -1543,7 +1503,7 @@ export function closure13(v0_1: Option<any>, v1_1: string, v2_1: [string, string
     }
 }
 
-export function closure14(v0_1: void, unitVar: void): void {
+export function closure16(v0_1: void, unitVar: void): void {
     let _v1: Option<boolean> = undefined;
     const x: boolean = defaultOf();
     _v1 = x;
@@ -1562,11 +1522,11 @@ export function closure14(v0_1: void, unitVar: void): void {
     }
 }
 
-export function closure15(v0_1: any, unitVar: void): string {
+export function closure17(v0_1: any, unitVar: void): string {
     return toText(interpolate("runtime.execute_with_options_async / WaitForExitAsync / ex: %A%P()", [v0_1]));
 }
 
-export function closure16(v0_1: int32, v1_1: string, unitVar: void): string {
+export function closure18(v0_1: int32, v1_1: string, unitVar: void): string {
     return `runtime.execute_with_options_async / exit_code: ${v0_1} / output.Length: ${v1_1.length}`;
 }
 
@@ -1582,15 +1542,15 @@ export function method9(v0_1: Option<any>, v1_1: string, v2_1: [string, string][
     }
 }
 
-export function closure7(unitVar: void, v0_1: string): any {
+export function closure9(unitVar: void, v0_1: string): any {
     return method9(undefined, v0_1, [], undefined, undefined, true, undefined);
 }
 
-export function closure17(unitVar: void, _arg: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]): any {
+export function closure19(unitVar: void, _arg: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]): any {
     return method9(_arg[0], _arg[1], _arg[2], _arg[3], _arg[4], _arg[5], _arg[6]);
 }
 
-export function closure18(unitVar: void, v0_1: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>] {
+export function closure20(unitVar: void, v0_1: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>] {
     const v8: Heap0 = v0_1(new Heap0(undefined, "", [], undefined, undefined, true, undefined));
     return [v8.l0, v8.l1, v8.l2, v8.l3, v8.l4, v8.l5, v8.l6] as [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>];
 }
@@ -1758,7 +1718,7 @@ export function method22(v0_1_mut: string, v1_1_mut: int64): boolean {
     }
 }
 
-export function closure20(unitVar: void, _arg: [string, any, int32, int32]): US12_$union {
+export function closure22(unitVar: void, _arg: [string, any, int32, int32]): US12_$union {
     const v3_1: int32 = _arg[3] | 0;
     const v2_1: int32 = _arg[2] | 0;
     const v1_1: any = _arg[1];
@@ -1841,7 +1801,7 @@ ${replicate(v2_1 - 1, " ") + "^"}
     }
 }
 
-export function closure21(unitVar: void, _arg: [string, any, int32, int32]): US12_$union {
+export function closure23(unitVar: void, _arg: [string, any, int32, int32]): US12_$union {
     const v3_1: int32 = _arg[3] | 0;
     const v2_1: int32 = _arg[2] | 0;
     const v1_1: any = _arg[1];
@@ -2017,7 +1977,7 @@ export function method21(v0_1_mut: UH1_$union, v1_1_mut: string, v2_1_mut: any, 
         }
         else {
             const v73: string = v67.fields[0];
-            v81 = method23(v1_1, v2_1, v3_1, v4_1, UH2_UH2_1((arg10$0040: [string, any, int32, int32]): US12_$union => closure20(undefined, arg10$0040), UH2_UH2_1((arg10$0040_1: [string, any, int32, int32]): US12_$union => closure21(undefined, arg10$0040_1), UH2_UH2_0())));
+            v81 = method23(v1_1, v2_1, v3_1, v4_1, UH2_UH2_1((arg10$0040: [string, any, int32, int32]): US12_$union => closure22(undefined, arg10$0040), UH2_UH2_1((arg10$0040_1: [string, any, int32, int32]): US12_$union => closure23(undefined, arg10$0040_1), UH2_UH2_0())));
         }
         if (v81.tag === /* US12_0 */ 0) {
             v0_1_mut = UH1_UH1_1(v81.fields[0], v0_1);
@@ -2283,7 +2243,7 @@ ${replicate(v159 - 1, " ") + "^"}
             }
             else {
                 const v243: string = v237.fields[0];
-                const v249: US12_$union = method23(v1_1, v2_1, v3_1, v4_1, UH2_UH2_1((arg10$0040: [string, any, int32, int32]): US12_$union => closure20(undefined, arg10$0040), UH2_UH2_1((arg10$0040_1: [string, any, int32, int32]): US12_$union => closure21(undefined, arg10$0040_1), UH2_UH2_0())));
+                const v249: US12_$union = method23(v1_1, v2_1, v3_1, v4_1, UH2_UH2_1((arg10$0040: [string, any, int32, int32]): US12_$union => closure22(undefined, arg10$0040), UH2_UH2_1((arg10$0040_1: [string, any, int32, int32]): US12_$union => closure23(undefined, arg10$0040_1), UH2_UH2_0())));
                 let v260: US12_$union;
                 if (v249.tag === /* US12_0 */ 0) {
                     const v250: string = v249.fields[0];
@@ -2356,26 +2316,19 @@ export function method16(v0_1: string): US8_$union {
     const v11: US9_$union = method17(UH1_UH1_0(), defaultArg((_v0 == null) ? (() => {
         throw new Error("optionm\'.of_obj / _v0=None");
     })() : value_12(_v0), ""), StringBuilder_$ctor_Z721C83C5(""), 1, 1);
-    let v25: US14_$union;
     if (v11.tag === /* US9_0 */ 0) {
         const v16: int32 = v11.fields[4] | 0;
         const v15: int32 = v11.fields[3] | 0;
         const v14: any = v11.fields[2];
         const v13: string = v11.fields[1];
-        v25 = US14_US14_0(toArray<string>(method25(v11.fields[0], empty<string>())));
+        return US8_US8_0(toArray<string>(method25(v11.fields[0], empty<string>())));
     }
     else {
-        v25 = US14_US14_1(v11.fields[0]);
-    }
-    if (v25.tag === /* US14_0 */ 0) {
-        return US8_US8_0(v25.fields[0]);
-    }
-    else {
-        return US8_US8_1(v25.fields[0]);
+        return US8_US8_1(v11.fields[0]);
     }
 }
 
-export function closure19(unitVar: void, v0_1: string): FSharpResult$2_$union<string[], string> {
+export function closure21(unitVar: void, v0_1: string): FSharpResult$2_$union<string[], string> {
     const v1_1: US8_$union = method16(v0_1);
     if (v1_1.tag === /* US8_0 */ 0) {
         return FSharpResult$2_Ok<string[], string>(v1_1.fields[0]);
@@ -2401,25 +2354,25 @@ export function current_process_kill(): void {
     v2();
 }
 
-export const v3 = (v: string): any => closure7(undefined, v);
+export const v3 = (v: string): any => closure9(undefined, v);
 
 export function execute_async(x: string): any {
     return v3(x);
 }
 
-export const v4 = (arg10$0040: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]): any => closure17(undefined, arg10$0040);
+export const v4 = (arg10$0040: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]): any => closure19(undefined, arg10$0040);
 
 export function execute_with_options_async(x: [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>]): any {
     return v4(x);
 }
 
-export const v5 = (v: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>] => closure18(undefined, v);
+export const v5 = (v: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>] => closure20(undefined, v);
 
 export function execution_options(x: ((arg0: Heap0) => Heap0)): [Option<any>, string, [string, string][], Option<((arg0: [boolean, string, int32]) => any)>, Option<((arg0: any) => void)>, boolean, Option<string>] {
     return v5(x);
 }
 
-export const v6 = (v: string): FSharpResult$2_$union<string[], string> => closure19(undefined, v);
+export const v6 = (v: string): FSharpResult$2_$union<string[], string> => closure21(undefined, v);
 
 export function split_args(x: string): FSharpResult$2_$union<string[], string> {
     return v6(x);

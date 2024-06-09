@@ -1,5 +1,7 @@
 /// # reflection
 
+/// ## reflection
+
 /// ### get_union_fields
 inl get_union_fields forall union_type. () : list (string * union_type) =
     real
@@ -38,7 +40,7 @@ inl get_union_fields_untag forall union_type. () : list (string * union_type) =
                 inl result = fst `(list (string * union_type)) `i32 result
                 listm.rev `(string * union_type) result
 
-/// ## union_try_pick
+/// ### union_try_pick
 inl union_try_pick forall t. (key : string) : option t =
     real get_union_fields_untag `t ()
     |> listm'.try_pick fun key', x =>
@@ -46,7 +48,7 @@ inl union_try_pick forall t. (key : string) : option t =
         then Some x
         else None
 
-/// ## union_to_string
+/// ### union_to_string
 inl union_to_string forall t. (x : t) : string =
     real get_union_fields_untag `t ()
     |> listm'.try_pick fun key, x' =>

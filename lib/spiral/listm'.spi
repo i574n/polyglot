@@ -1,97 +1,47 @@
-/// # listm
+/// # listm'
 
-/// ## list'
-nominal list' t = $'`t list'
+/// ## listm'
 
-inl empty' forall t. () : list' t =
-    $'[]'
-
-inl cons' forall t. (head : t) (tail : list' t) : list' t =
-    $'!head :: !tail '
-
-/// ## box
-inl box forall t. (list : list t) : list' t =
-    (list, empty' ())
-    ||> listm.foldBack fun x acc =>
-        acc |> cons' x
-
-/// ## fold'
-inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
-    (init, list)
-    ||> $'List.fold' join fun acc x => Cons (fn x, acc)
-
-/// ## fold_back'
-inl fold_back' forall t u. (fn : t -> u) (list : list' t) (init : list u) : list u =
-    (list, init)
-    ||> $'List.foldBack' join fun x acc => Cons (fn x, acc)
-
-/// ## filter'
-inl filter' forall t. (fn : t -> bool) (list : list' t) : list' t =
-    list |> $'"List.filter !fn"'
-
-/// ## map
-inl map forall t u. (fn : t -> u) (list : list' t) : list' u =
-    list |> $'List.map' fn
-
-/// ## filter
-inl filter forall t. (fn : t -> bool) (list : list t) : list t =
-    (list, Nil)
-    ||> listm.foldBack fun x acc =>
-        if fn x then x :: acc else acc
-
-/// ## unbox
-inl unbox forall t. (list : list' t) : list t =
-    (list, Nil)
-    ||> fold_back' id
-
-/// ## distinct'
-inl distinct' forall t. (list : list' t) : list' t =
-    list |> $'List.distinct'
-
-/// ## to_array'
-inl to_array' forall dim t. (items : list' t) : a dim t =
-    items |> $'List.toArray'
-
-/// ## append
+/// ### append
 instance append list t =
     listm.append
 
-/// ## collect
+/// ### collect
 inl collect forall t r. (fn : t -> list r) (items : list t) : list r =
     items
     |> listm.map fn
     |> listm.fold (++) []
 
-/// ## init_series
+/// ### init_series
 inl init_series start end inc =
     inl total : f64 = conv ((end - start) / inc) + 1
     listm.init total (conv >> (*) inc >> (+) start)
 
-/// ## try_item
+/// ### try_item
 inl rec try_item i = function
     | Cons (x, _) when i = 0 => Some x
     | Cons (_, xs) => try_item (i - 1) xs
     | Nil => None
 
-/// ## item
+/// ### item
 inl item i =
     try_item i >> optionm.value
 
-/// ## try_item_
+/// ### try_item_
 let rec try_item_ i = function
     | Cons (x, _) when i = 0 => Some x
     | Cons (_, xs) => try_item_ (i - 1) xs
     | Nil => None
 
-/// ## item_
+/// ### item_
 inl item_ i =
     try_item_ i >> optionm.value
 
-/// ## sum
+/// ### sum
 inl sum list =
     list |> listm.fold (+) 0
 
-/// ## unzip
+/// ### unzip
 inl unzip list =
     (([], []), list)
     ||> listm.fold fun (acc_x, acc_y) (x, y) =>
@@ -99,7 +49,7 @@ inl unzip list =
     |> fun x, y =>
         x |> listm.rev, y |> listm.rev
 
-/// ## try_index_of
+/// ### try_index_of
 inl try_index_of item list =
     inl rec loop i = function
         | [] => None
@@ -144,7 +94,7 @@ inl try_index_of__ item list =
 inl index_of__ item =
     try_index_of__ item >> optionm.value
 
-/// ## try_find
+/// ### try_find
 inl try_find fn list =
     inl rec loop = function
         | [] => None
@@ -169,7 +119,7 @@ inl find x =
 inl find_ x =
     try_find_ x >> optionm.value
 
-/// ## choose
+/// ### choose
 inl choose f l =
     (l, [])
     ||> listm.foldBack fun x acc =>
@@ -177,7 +127,13 @@ inl choose f l =
         | Some y => y :: acc
         | None => acc
 
-/// ## zip_with
+/// ### filter
+inl filter forall t. (fn : t -> bool) (list : list t) : list t =
+    (list, Nil)
+    ||> listm.foldBack fun x acc =>
+        if fn x then x :: acc else acc
+
+/// ### zip_with
 inl zip_with fn xs ys =
     inl rec loop acc xs ys =
         match xs, ys with
@@ -194,14 +150,14 @@ inl zip_with_ fn xs ys =
         | _ => listm.rev acc
     loop [] xs ys
 
-/// ## zip
+/// ### zip
 inl zip xs ys =
     zip_with pair xs ys
 
 inl zip_ xs ys =
     zip_with_ pair xs ys
 
-/// ## indexed
+/// ### indexed
 inl indexed list =
     (([], 0), list)
     ||> listm.fold fun (acc, i) x =>
@@ -209,7 +165,7 @@ inl indexed list =
     |> fst
     |> listm.rev
 
-/// ## group_by
+/// ### group_by
 inl group_by fn list =
     (list, [])
     ||> listm.foldBack fun x acc =>
@@ -224,19 +180,19 @@ inl group_by fn list =
         then new_acc
         else (xk, [ x ]) :: new_acc
 
-/// ## forall'
+/// ### forall'
 inl forall' fn (head :: tail) =
     (true, tail)
     ||> listm.fold fun acc x =>
         acc && x = head
 
-/// ## last
+/// ### last
 inl last list =
     list
     |> listm.rev
     |> item 0i32
 
-/// ## try_pick
+/// ### try_pick
 inl try_pick fn list =
     inl rec body fn = function
         | [] => None
@@ -253,7 +209,7 @@ inl try_pick fn list =
             join body fn list
     loop list
 
-/// ## exists'
+/// ### exists'
 inl exists' f x =
     inl length_x : i64 = x |> listm.length
     let rec loop i =
@@ -263,3 +219,51 @@ inl exists' f x =
         then true
         else loop (i + 1)
     loop 0
+
+/// ## fsharp
+
+/// ### list'
+nominal list' t = $'`t list'
+
+inl empty' forall t. () : list' t =
+    $'[]'
+
+inl cons' forall t. (head : t) (tail : list' t) : list' t =
+    $'!head :: !tail '
+
+/// ### box
+inl box forall t. (list : list t) : list' t =
+    (list, empty' ())
+    ||> listm.foldBack fun x acc =>
+        acc |> cons' x
+
+/// ### fold'
+inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
+    (init, list)
+    ||> $'List.fold' join fun acc x => Cons (fn x, acc)
+
+/// ### fold_back'
+inl fold_back' forall t u. (fn : t -> u) (list : list' t) (init : list u) : list u =
+    (list, init)
+    ||> $'List.foldBack' join fun x acc => Cons (fn x, acc)
+
+/// ### filter'
+inl filter' forall t. (fn : t -> bool) (list : list' t) : list' t =
+    list |> $'"List.filter !fn"'
+
+/// ### map
+inl map forall t u. (fn : t -> u) (list : list' t) : list' u =
+    list |> $'List.map' fn
+
+/// ### unbox
+inl unbox forall t. (list : list' t) : list t =
+    (list, Nil)
+    ||> fold_back' id
+
+/// ### distinct'
+inl distinct' forall t. (list : list' t) : list' t =
+    list |> $'List.distinct'
+
+/// ### to_array'
+inl to_array' forall t. (items : list' t) : array_base t =
+    items |> $'List.toArray'

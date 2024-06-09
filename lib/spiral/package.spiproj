@@ -5,10 +5,10 @@ modules:
     base-
     rust
     rust_operators
-    ts
-    ts_operators
-    py
-    py_operators
+    typescript
+    typescript_operators
+    python
+    python_operators
     optionm'
     optionm'_operators
     resultm

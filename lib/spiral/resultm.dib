@@ -18,15 +18,11 @@ open testing
 
 #!markdown
 
-## result'
-
-#!spiral
-
-nominal result' t u = $'Result<`t, `u>'
+## resultm
 
 #!markdown
 
-## from_option_error
+### from_option_error
 
 #!spiral
 
@@ -37,7 +33,7 @@ inl from_option_error error opt =
 
 #!markdown
 
-## from_option
+### from_option
 
 #!spiral
 
@@ -46,7 +42,7 @@ inl from_option opt =
 
 #!markdown
 
-## flatten_option
+### flatten_option
 
 #!spiral
 
@@ -58,7 +54,7 @@ inl flatten_option forall t u. (x : option (result (option t) u)) : result (opti
 
 #!markdown
 
-## flatten
+### flatten
 
 #!spiral
 
@@ -69,34 +65,7 @@ inl flatten forall t u. (x : result (result t u) u) : result t u =
 
 #!markdown
 
-## try'
-
-#!spiral
-
-inl try' forall t u. (x : result' t u) : t =
-    !\\(x, $'"$0?"')
-
-#!markdown
-
-## to_try
-
-#!spiral
-
-inl to_try forall t u. (x : result' t u) : rust.try t =
-    !\\(x, $'"$0"')
-
-#!markdown
-
-## unwrap'
-
-#!spiral
-
-inl unwrap' forall t u. (x : result' t u) : t =
-    !\\(x, $'"$0.unwrap()"')
-
-#!markdown
-
-## get
+### get
 
 #!spiral
 
@@ -107,7 +76,63 @@ inl get forall t e. (source : result t e) : t =
 
 #!markdown
 
-## unbox
+### map
+
+#!spiral
+
+inl map forall t e u. (fn : t -> u) (source : result t e) : result u e =
+    match source with
+    | Ok x => x |> fn |> Ok
+    | Error x => Error x
+
+#!markdown
+
+### map_error
+
+#!spiral
+
+inl map_error forall t e u. (fn : e -> u) (source : result t e) : result t u =
+    match source with
+    | Ok x => Ok x
+    | Error x => x |> fn |> Error
+
+#!markdown
+
+### unwrap_err
+
+#!spiral
+
+inl unwrap_err forall t u. (x : result t u) : u =
+    match x with
+    | Ok x => failwith $'$"resultm.unwrap_err / x: {!x}"'
+    | Error x => x
+
+#!markdown
+
+### ok
+
+#!spiral
+
+inl ok forall t. (x : result t _) : option t =
+    match x with
+    | Ok x => Some x
+    | Error _ => None
+
+#!markdown
+
+## fsharp
+
+#!markdown
+
+### result'
+
+#!spiral
+
+nominal result' t u = $'Result<`t, `u>'
+
+#!markdown
+
+### unbox
 
 #!spiral
 
@@ -121,7 +146,49 @@ inl unbox forall t u. (x : result' t u) : result t u =
 
 #!markdown
 
-## unbox'
+### box
+
+#!spiral
+
+inl box forall t u. (x : result t u) : result' t u =
+    match x with
+    | Ok x => $'Ok !x '
+    | Error err => $'Error !err '
+
+#!markdown
+
+## rust
+
+#!markdown
+
+### try'
+
+#!spiral
+
+inl try' forall t u. (x : result' t u) : t =
+    !\\(x, $'"$0?"')
+
+#!markdown
+
+### to_try
+
+#!spiral
+
+inl to_try forall t u. (x : result' t u) : rust.try t =
+    !\\(x, $'"$0"')
+
+#!markdown
+
+### unwrap'
+
+#!spiral
+
+inl unwrap' forall t u. (x : result' t u) : t =
+    !\\(x, $'"$0.unwrap()"')
+
+#!markdown
+
+### unbox'
 
 #!spiral
 
@@ -145,40 +212,7 @@ inl unbox' forall t u. (x : result' t u) : result t u =
 
 #!markdown
 
-## box
-
-#!spiral
-
-inl box forall t u. (x : result t u) : result' t u =
-    match x with
-    | Ok x => $'Ok !x '
-    | Error err => $'Error !err '
-
-#!markdown
-
-## map
-
-#!spiral
-
-inl map forall t e u. (fn : t -> u) (source : result t e) : result u e =
-    match source with
-    | Ok x => x |> fn |> Ok
-    | Error x => Error x
-
-#!markdown
-
-## map_error
-
-#!spiral
-
-inl map_error forall t e u. (fn : e -> u) (source : result t e) : result t u =
-    match source with
-    | Ok x => Ok x
-    | Error x => x |> fn |> Error
-
-#!markdown
-
-## map'
+### map'
 
 #!spiral
 
@@ -189,7 +223,7 @@ inl map' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
 
 #!markdown
 
-## map''
+### map''
 
 #!spiral
 
@@ -200,7 +234,7 @@ inl map'' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
 
 #!markdown
 
-## map_error'
+### map_error'
 
 #!spiral
 
@@ -210,7 +244,7 @@ inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u 
 
 #!markdown
 
-## map_error''
+### map_error''
 
 #!spiral
 
@@ -221,7 +255,7 @@ inl map_error'' forall t e u. (fn : e -> u) (source : result' t e) : result' t u
 
 #!markdown
 
-## option_ok_or
+### option_ok_or
 
 #!spiral
 
@@ -230,7 +264,7 @@ inl option_ok_or forall t e. (e : e) (source : optionm'.option' t) : result' t e
 
 #!markdown
 
-## unwrap_or_else
+### unwrap_or_else
 
 #!spiral
 
@@ -241,7 +275,7 @@ inl unwrap_or_else forall t e u. (fn : e -> u) (source : result' t e) : u =
 
 #!markdown
 
-## map_or_else
+### map_or_else
 
 #!spiral
 
@@ -253,7 +287,7 @@ inl map_or_else forall t e u v. (fn : e -> v) (fn2 : u -> v) (source : result' t
 
 #!markdown
 
-## as_ref
+### as_ref
 
 #!spiral
 
@@ -262,7 +296,7 @@ inl as_ref forall t e. (source : result' t e) : result' (rust.ref' t) (rust.ref'
 
 #!markdown
 
-## as_ref'
+### as_ref'
 
 #!spiral
 
@@ -271,18 +305,7 @@ inl as_ref' forall t e. (source : rust.ref' (result' t e)) : result' (rust.ref' 
 
 #!markdown
 
-## unwrap_err
-
-#!spiral
-
-inl unwrap_err forall t u. (x : result t u) : u =
-    match x with
-    | Ok x => failwith $'$"resultm.unwrap_err / x: {!x}"'
-    | Error x => x
-
-#!markdown
-
-## unwrap_or'
+### unwrap_or'
 
 #!spiral
 
@@ -291,7 +314,7 @@ inl unwrap_or' forall t u. (default : t) (x : result' t u) : t =
 
 #!markdown
 
-## expect
+### expect
 
 #!spiral
 
@@ -300,7 +323,7 @@ inl expect forall t u. (error : rust.ref' string) (x : result' t u) : t =
 
 #!markdown
 
-## is_err
+### is_err
 
 #!spiral
 
@@ -309,7 +332,7 @@ inl is_err forall t u. (x : result' t u) : bool =
 
 #!markdown
 
-## ok'
+### ok'
 
 #!spiral
 
@@ -318,18 +341,7 @@ inl ok' forall t. (x : result' t _) : optionm'.option' t =
 
 #!markdown
 
-## ok
-
-#!spiral
-
-inl ok forall t. (x : result t _) : option t =
-    match x with
-    | Ok x => Some x
-    | Error _ => None
-
-#!markdown
-
-## transpose
+### transpose
 
 #!spiral
 
@@ -338,7 +350,7 @@ inl transpose forall t u. (x : optionm'.option' (result' t u)) : result' (option
 
 #!markdown
 
-## rc_try_unwrap
+### rc_try_unwrap
 
 #!spiral
 

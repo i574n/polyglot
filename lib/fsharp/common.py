@@ -10,7 +10,7 @@ nl: str = "\n"
 
 q: str = "\""
 
-def _expr192() -> TypeInfo:
+def _expr191() -> TypeInfo:
     return union_type("Polyglot.Common.TraceLevel", [], TraceLevel, lambda: [[], [], [], [], []])
 
 
@@ -25,7 +25,7 @@ class TraceLevel(Union):
         return ["Verbose", "Debug", "Info", "Warning", "Critical"]
 
 
-TraceLevel_reflection = _expr192
+TraceLevel_reflection = _expr191
 
 def TraceLevel__get_IsVerbose(this: TraceLevel, unit_arg: None) -> bool:
     if this.tag == 0:

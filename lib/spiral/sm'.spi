@@ -35,25 +35,63 @@ inl types () =
         Python = fun () => ()
     }
 
-/// ## symbol_to_string
+/// ## sm'
+
+/// ### symbol_to_string
 inl symbol_to_string forall t {symbol}. (x : t) : string =
     !!!!SymbolToString(x)
 
+/// ### index
+inl index i (str : string) : char =
+    sm.index str i
+
+/// ### to_char_array
+inl to_char_array (str : string) : a i32 char =
+    am.init (str |> sm.length) (fun i => str |> index i)
+
+/// ### to_char_list
+inl to_char_list (str : string) : list char =
+    listm.init (str |> sm.length) (fun (i : i64) => str |> index i)
+
+/// ### length
+inl length forall dim {int}. (input : string) : dim =
+    input |> sm.length
+
+/// ### is_empty
+inl is_empty (input : string) : bool =
+    length input = 0i32
+
+/// ### slice
+inl slice from to s : string =
+    sm.slice s { from to }
+
+/// ### concat_array_trailing
+inl concat_array_trailing (separator : string) (input : a i32 string) =
+    ("", input)
+    ||> am.fold fun acc (x : string) =>
+        $'!acc + !x + !separator + ""'
+
+/// ### concat_list_trailing
+inl concat_list_trailing separator input =
+    ("", input)
+    ||> listm.fold fun acc (x : string) =>
+        $'!acc + !x + !separator + ""'
+
+/// ### concat_list_heap_trailing
+inl concat_list_heap_trailing separator input =
+    inl separator = join separator
+    inl separator = separator
+    ("", input)
+    ||> listm.fold fun acc (x : string) =>
+        $'$"{!acc}{!x}{!separator}"'
+
+/// ### ellipsis
+inl ellipsis (max : i32) (s : string) =
+    if sm.length s <= max
+    then s
+    else s |> slice 0 (max - 1) |> fun x => $'!x + "..."'
+
 /// ## fsharp
-
-/// ### format_debug
-inl format_debug x : string =
-    backend_switch {
-        Fsharp = fun () => $'$"%A{!x}"' : string
-        Python = fun () => $'f"{!x}"' : string
-    }
-
-/// ### contains
-inl contains (value : string) (s : string) : bool =
-    backend_switch {
-        Fsharp = fun () => $'!s.Contains !value ' : bool
-        Python = fun () => $'!value in !s ' : bool
-    }
 
 /// ### ends_with
 inl ends_with (value : string) (s : string) : bool =
@@ -103,28 +141,28 @@ inl to_upper (input : string) : string =
 inl char_to_upper (input : char) : char =
     $'System.Char.ToUpper !input '
 
-/// ## string_builder
+/// ### string_builder
 nominal string_builder = $'System.Text.StringBuilder'
 
 inl string_builder (initial : string) : string_builder =
     initial |> $'`string_builder '
 
-/// ## builder_append
+/// ### builder_append
 inl builder_append (item : string) (sb : string_builder) : string_builder =
     ($'!sb.Append' item : string_builder) |> ignore
     sb
 
-/// ## builder_replace
+/// ### builder_replace
 inl builder_replace (old : string) (new : string) (sb : string_builder) : string_builder =
     ($'!sb.Replace (!old, !new)' : string_builder) |> ignore
     sb
 
-/// ## builder_insert
+/// ### builder_insert
 inl builder_insert (n : i32) (s : string) (sb : string_builder) : string_builder =
     ($'!sb.Insert (!n, !s)' : string_builder) |> ignore
     sb
 
-/// ## builder_clear
+/// ### builder_clear
 inl builder_clear (sb : string_builder) : string_builder =
     ($'!sb.Clear' () : string_builder) |> ignore
     sb
@@ -141,32 +179,9 @@ inl trim_end (trim_chars : array_base char) (input : string) : string =
 inl trim_start (trim_chars : array_base char) (input : string) : string =
     $'!input.TrimStart !trim_chars '
 
-/// ### length
-inl length forall dim {int}. (input : string) : dim =
-    input |> sm.length
-
 /// ### length'
 inl length' forall dim. (input : string) : dim =
     input |> $'String.length'
-
-/// ### is_empty
-inl is_empty (input : string) : bool =
-    length input = 0i32
-
-/// ### slice
-inl slice from to s : string =
-    sm.slice s { from to }
-
-/// ### range
-inl range forall t. (start : am'.range t) (end : am'.range t) s =
-    inl start, end =
-        match start, end with
-        | Start start, End fn =>
-            start, s |> length' |> fn
-        | End start_fn, End end_fn =>
-            inl len = s |> length'
-            start_fn len, end_fn len
-    s |> slice (start |> i32) (end |> i32)
 
 /// ### obj_to_string
 inl obj_to_string x : string =
@@ -176,66 +191,13 @@ inl obj_to_string x : string =
 instance to_string any =
     obj_to_string
 
-/// ### format_exception
-inl format_exception (ex : exn) : string =
-    run_target function
-        | Fsharp (Native) => fun () => $'$"{!ex.GetType ()}: {!ex.Message}"'
-        | _ => fun () => ex |> format_debug
-
 /// ### replace
 inl replace (old_value : string) (new_value : string) (s : string) : string =
     $'!s.Replace (!old_value, !new_value)'
 
-/// ### concat_array_trailing
-inl concat_array_trailing (separator : string) (input : a i32 string) =
-    ("", input)
-    ||> am.fold fun acc (x : string) =>
-        $'!acc + !x + !separator + ""'
-
-/// ### concat_list_trailing
-inl concat_list_trailing separator input =
-    ("", input)
-    ||> listm.fold fun acc (x : string) =>
-        $'!acc + !x + !separator + ""'
-
-/// ### concat_list_heap_trailing
-inl concat_list_heap_trailing separator input =
-    inl separator = join separator
-    inl separator = separator
-    ("", input)
-    ||> listm.fold fun acc (x : string) =>
-        $'$"{!acc}{!x}{!separator}"'
-
 /// ### concat
 inl concat (a : string) (b : seq.seq' string) : string =
     b |> $'String.concat' a
-
-/// ### ellipsis
-inl ellipsis (max : i32) (s : string) =
-    if sm.length s <= max
-    then s
-    else s |> slice 0 (max - 1) |> fun x => $'!x + "..."'
-
-/// ### ellipsis_end
-let ellipsis_end (max : i64) (s : string) =
-    inl len = sm.length s
-    if len <= max
-    then s
-    else
-        inl half = f64 max / 2
-        inl start_half = half |> math.ceil |> i64
-        inl end_half = half |> math.floor |> i64
-        inl start = s |> slice 0 (start_half - 1)
-        inl end = s |> slice (len - end_half) (len - 1)
-        (a ;[start; "..."; end] : _ i32 _)
-        |> seq.of_array
-        |> concat ""
-
-/// ### format_ellipsis
-inl format_ellipsis s =
-    s
-    |> format_debug
-    |> ellipsis_end 400
 
 /// ### split
 inl split (separator : string) (str : string) : array_base string =
@@ -250,18 +212,6 @@ inl split_string (separator : array_base string) (str : string) : array_base str
 /// ### join'
 inl join' (concat : string) (s : a i32 string) : string =
     $'System.String.Join (!concat, !s)'
-
-/// ### index
-inl index i (str : string) : char =
-    sm.index str i
-
-/// ### to_char_array
-inl to_char_array (str : string) : a i32 char =
-    am.init (str |> sm.length) (fun i => str |> index i)
-
-/// ### to_char_list
-inl to_char_list (str : string) : list char =
-    listm.init (str |> sm.length) (fun (i : i64) => str |> index i)
 
 /// ### encoding
 nominal encoding = $'System.Text.Encoding'
@@ -541,11 +491,12 @@ inl strip_prefix (prefix : char) (s : std_string) : optionm'.option' (rust.ref' 
 
 /// ### str_from_utf8
 inl str_from_utf8 (bytes : rust.ref' (am'.slice u8)) : resultm.result' (rust.ref' str) utf8_error =
-    !\($'"std::str::from_utf8(!bytes)"')
+    !\\(bytes, $'"std::str::from_utf8($0)"')
 
 /// ### string_from_utf8
 inl string_from_utf8 (bytes : am'.vec u8) : resultm.result' std_string from_utf8_error =
-    !\($'"std::string::String::from_utf8(!bytes)"')
+    inl bytes = join bytes
+    !\\(bytes, $'"std::string::String::from_utf8($0)"')
 
 /// ### base64_decode
 inl base64_decode (s : std_string) : result std_string std_string =
@@ -621,11 +572,25 @@ inl as_bytes (text : string) : rust.ref' (am'.slice u8) =
 
 /// ### encode_utf8
 inl encode_utf8 (s : string) : string =
-    open py_operators
+    open python_operators
     inl encoding = "utf-8"
     !\\((s, encoding), $'"$0.encode($1)"')
 
-/// ## target
+/// ## sm'
+
+/// ### format_debug
+inl format_debug x : string =
+    backend_switch {
+        Fsharp = fun () => $'$"%A{!x}"' : string
+        Python = fun () => $'f"{!x}"' : string
+    }
+
+/// ### contains
+inl contains (value : string) (s : string) : bool =
+    backend_switch {
+        Fsharp = fun () => $'!s.Contains !value ' : bool
+        Python = fun () => $'!value in !s ' : bool
+    }
 
 /// ### to_string result t u
 instance to_string result t u = fun x =>
@@ -641,6 +606,51 @@ instance to_string result t u = fun x =>
             | Ok x => from_std_string x
             | Error x => $'"sm\'.to_string result / Error: " + string !x + ""' : string
         | _ => obj_to_string `u x
+
+/// ### format_exception
+inl format_exception (ex : exn) : string =
+    run_target function
+        | Fsharp (Native) => fun () => $'$"{!ex.GetType ()}: {!ex.Message}"'
+        | _ => fun () => ex |> format_debug
+
+/// ### range
+inl range forall t. (start : am'.range t) (end : am'.range t) s =
+    inl start, end =
+        match start, end with
+        | Start start, End fn =>
+            start, s |> length' |> fn
+        | End start_fn, End end_fn =>
+            inl len = s |> length'
+            start_fn len, end_fn len
+    s |> slice (start |> i32) (end |> i32)
+
+/// ### concat_list
+inl concat_list s list =
+    list
+    |> listm'.box
+    |> seq.of_list'
+    |> concat s
+
+/// ### ellipsis_end
+let ellipsis_end (max : i64) (s : string) =
+    inl len = sm.length s
+    if len <= max
+    then s
+    else
+        inl half = f64 max / 2
+        inl start_half = half |> math.ceil |> i64
+        inl end_half = half |> math.floor |> i64
+        inl start = s |> slice 0 (start_half - 1)
+        inl end = s |> slice (len - end_half) (len - 1)
+        (a ;[start; "..."; end] : _ i32 _)
+        |> seq.of_array
+        |> concat ""
+
+/// ### format_ellipsis
+inl format_ellipsis s =
+    s
+    |> format_debug
+    |> ellipsis_end 400
 
 /// ### replace_regex
 inl replace_regex (pattern : string) (replacement : string) (s : string) : string =
@@ -697,6 +707,8 @@ inl main () =
     $'let join\' x = !join' x' : ()
     $'let to_char_array x = !to_char_array x' : ()
 
-/// ## to_string std_string
+/// ## rust
+
+/// ### to_string std_string
 open rust
 instance to_string std_string = from_std_string

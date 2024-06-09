@@ -34,7 +34,21 @@ inl types () =
 
 #!markdown
 
-## join_handle
+## rust
+
+#!markdown
+
+### sleep
+
+#!spiral
+
+inl sleep (duration : date_time.duration) : () =
+    inl duration = join duration
+    !\($'"std::thread::sleep(!duration)"')
+
+#!markdown
+
+### join_handle
 
 #!spiral
 
@@ -42,7 +56,7 @@ nominal join_handle t = $'std_thread_JoinHandle<`t>'
 
 #!markdown
 
-## spawn
+### spawn
 
 #!spiral
 
@@ -60,7 +74,7 @@ inl spawn forall t. depth flag (x : () -> t) : join_handle t =
 
 #!markdown
 
-## join'
+### join'
 
 #!spiral
 
@@ -85,13 +99,182 @@ inl join' forall t.
         ) =
     !\\(x, $'"std::thread::JoinHandle::join($0)"')
 
+#!markdown
+
+### arc
+
+#!spiral
+
+nominal arc t = $'std_sync_Arc<`t>'
+
+#!markdown
+
+### new_arc
+
+#!spiral
+
+inl new_arc forall t. (x : t) : arc t =
+    !\\(x, $'"std::sync::Arc::new($0)"')
+
+#!markdown
+
+### mutex
+
+#!spiral
+
+nominal mutex t = $'std_sync_Mutex<`t>'
+
+#!markdown
+
+### new_mutex
+
+#!spiral
+
+inl new_mutex forall t. (x : t) : mutex t =
+    !\\(x, $'"std::sync::Mutex::new($0)"')
+
+#!markdown
+
+### new_arc_mutex
+
+#!spiral
+
+inl new_arc_mutex forall t. (x : t) : arc (mutex t) =
+    x |> new_mutex |> new_arc
+
+#!markdown
+
+### arc_clone
+
+#!spiral
+
+inl arc_clone forall t. (x : arc t) : arc t =
+    inl x = join x
+    !\($'"std::sync::Arc::clone(&!x)"')
+
+#!markdown
+
+### mutex_guard
+
+#!spiral
+
+nominal mutex_guard t = $'std_sync_MutexGuard<`t>'
+
+#!markdown
+
+### poison_error
+
+#!spiral
+
+nominal poison_error t = $'std_sync_PoisonError<`t>'
+
+#!markdown
+
+### arc_mutex_lock
+
+#!spiral
+
+inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard t) (poison_error (mutex_guard t)) =
+    inl x = join x
+    !\($'"!x.lock()"')
+
+#!markdown
+
+### mutex_guard_ref
+
+#!spiral
+
+inl mutex_guard_ref forall t. (x : mutex_guard t) : rust.ref' t =
+    !\\(x, $'"&$0"')
+
+#!markdown
+
+### mutex_guard_ref_mut
+
+#!spiral
+
+inl mutex_guard_ref_mut forall t. (x : mutex_guard t) : rust.ref' (rust.mut' t) =
+    (!\($'"true; let mut !x = !x"') : bool) |> ignore
+    !\\(x, $'"&mut $0"')
+
+#!markdown
+
+### mutex_guard_as_mut
+
+#!spiral
+
+inl mutex_guard_as_mut forall (t : * -> *) u. (x : mutex_guard (t u)) : t (rust.ref' (rust.mut' u)) =
+    (!\($'"true; let mut !x = !x"') : bool) |> ignore
+    !\\(x, $'"$0.as_mut()"')
+
+#!markdown
+
+### channel_receiver
+
+#!spiral
+
+nominal channel_receiver t = $'std_sync_mpsc_Receiver<`t>'
+
+#!markdown
+
+### channel_sender
+
+#!spiral
+
+nominal channel_sender t = $'std_sync_mpsc_Sender<`t>'
+
+#!markdown
+
+### new_channel
+
+#!spiral
+
+inl new_channel () : channel_sender sm'.std_string * arc (channel_receiver sm'.std_string) =
+    !\($'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"')
+
+#!markdown
+
+### send_error
+
+#!spiral
+
+nominal send_error t = $'std_sync_mpsc_SendError<`t>'
+
+#!markdown
+
+### channel_send
+
+#!spiral
+
+inl channel_send forall t. (line : t) (sender : rust.ref' (channel_sender t)) : resultm.result' () (send_error sm'.std_string) =
+    !\\((sender, line), $'"$0.send($1)"')
+
+#!markdown
+
+## fsharp
+
+#!markdown
+
+### sleep'
+
+#!spiral
+
+inl sleep' (n : i32) : () =
+    run_target function
+        | Fsharp (Native) => fun () => $'System.Threading.Thread.Sleep' n
+        | _ => fun () => ()
+
+#!markdown
+
+### thread
+
 #!spiral
 
 nominal thread = $'System.Threading.Thread'
 
 #!markdown
 
-## cancellation_token
+### cancellation_token
 
 #!spiral
 
@@ -99,7 +282,7 @@ nominal cancellation_token = $'System.Threading.CancellationToken'
 
 #!markdown
 
-## cancellation_token_source
+### cancellation_token_source
 
 #!spiral
 
@@ -107,7 +290,7 @@ nominal cancellation_token_source = $'System.Threading.CancellationTokenSource'
 
 #!markdown
 
-## cancellation_token_registration
+### cancellation_token_registration
 
 #!spiral
 
@@ -115,7 +298,7 @@ nominal cancellation_token_registration = $'System.Threading.CancellationTokenRe
 
 #!markdown
 
-## cancellation_source_token
+### cancellation_source_token
 
 #!spiral
 
@@ -124,7 +307,7 @@ inl cancellation_source_token (x : cancellation_token_source) : cancellation_tok
 
 #!markdown
 
-## cancellation_source_cancel
+### cancellation_source_cancel
 
 #!spiral
 
@@ -136,7 +319,7 @@ inl cancellation_source_cancel (x : cancellation_token_source) : () =
 
 #!markdown
 
-## create_linked_token_source
+### create_linked_token_source
 
 #!spiral
 
@@ -145,17 +328,7 @@ inl create_linked_token_source (x : array_base cancellation_token) : cancellatio
 
 #!markdown
 
-## sleep
-
-#!spiral
-
-inl sleep (duration : date_time.duration) : () =
-    inl duration = join duration
-    !\($'"std::thread::sleep(!duration)"')
-
-#!markdown
-
-## concurrent_stack
+### concurrent_stack
 
 #!spiral
 
@@ -163,7 +336,7 @@ nominal concurrent_stack t = $'System.Collections.Concurrent.ConcurrentStack<`t>
 
 #!markdown
 
-## concurrent_stack_push
+### concurrent_stack_push
 
 #!spiral
 
@@ -172,7 +345,7 @@ inl concurrent_stack_push forall t. (item : t) (stack : concurrent_stack t) : ()
 
 #!markdown
 
-## token_none
+### token_none
 
 #!spiral
 
@@ -181,7 +354,7 @@ inl token_none () : cancellation_token =
 
 #!markdown
 
-## new_concurrent_stack
+### new_concurrent_stack
 
 #!spiral
 
@@ -190,7 +363,7 @@ inl new_concurrent_stack forall t. () : concurrent_stack t =
 
 #!markdown
 
-## token_register
+### token_register
 
 #!spiral
 
@@ -199,7 +372,7 @@ inl token_register (fn : () -> ()) (ct : cancellation_token) : cancellation_toke
 
 #!markdown
 
-## new_cancellation_token_source
+### new_cancellation_token_source
 
 #!spiral
 
@@ -213,7 +386,7 @@ inl token_cancellation_requested (ct : cancellation_token) : bool =
 
 #!markdown
 
-## new_disposable_token
+### new_disposable_token
 
 #!spiral
 
@@ -256,156 +429,6 @@ fun () =>
 |> async.new_async_unit
 |> async.run_synchronously
 |> _assert_eq 11i32
-
-#!markdown
-
-## arc
-
-#!spiral
-
-nominal arc t = $'std_sync_Arc<`t>'
-
-#!markdown
-
-## new_arc
-
-#!spiral
-
-inl new_arc forall t. (x : t) : arc t =
-    !\\(x, $'"std::sync::Arc::new($0)"')
-
-#!markdown
-
-## mutex
-
-#!spiral
-
-nominal mutex t = $'std_sync_Mutex<`t>'
-
-#!markdown
-
-## new_mutex
-
-#!spiral
-
-inl new_mutex forall t. (x : t) : mutex t =
-    !\\(x, $'"std::sync::Mutex::new($0)"')
-
-#!markdown
-
-## new_arc_mutex
-
-#!spiral
-
-inl new_arc_mutex forall t. (x : t) : arc (mutex t) =
-    x |> new_mutex |> new_arc
-
-#!markdown
-
-## arc_clone
-
-#!spiral
-
-inl arc_clone forall t. (x : arc t) : arc t =
-    inl x = join x
-    !\($'"std::sync::Arc::clone(&!x)"')
-
-#!markdown
-
-## mutex_guard
-
-#!spiral
-
-nominal mutex_guard t = $'std_sync_MutexGuard<`t>'
-
-#!markdown
-
-## poison_error
-
-#!spiral
-
-nominal poison_error t = $'std_sync_PoisonError<`t>'
-
-#!markdown
-
-## arc_mutex_lock
-
-#!spiral
-
-inl arc_mutex_lock forall t. (x : arc (mutex t)) : resultm.result' (mutex_guard t) (poison_error (mutex_guard t)) =
-    inl x = join x
-    !\($'"!x.lock()"')
-
-#!markdown
-
-## mutex_guard_ref
-
-#!spiral
-
-inl mutex_guard_ref forall t. (x : mutex_guard t) : rust.ref' t =
-    !\\(x, $'"&$0"')
-
-#!markdown
-
-## mutex_guard_ref_mut
-
-#!spiral
-
-inl mutex_guard_ref_mut forall t. (x : mutex_guard t) : rust.ref' (rust.mut' t) =
-    (!\($'"true; let mut !x = !x"') : bool) |> ignore
-    !\\(x, $'"&mut $0"')
-
-#!markdown
-
-## mutex_guard_as_mut
-
-#!spiral
-
-inl mutex_guard_as_mut forall (t : * -> *) u. (x : mutex_guard (t u)) : t (rust.ref' (rust.mut' u)) =
-    (!\($'"true; let mut !x = !x"') : bool) |> ignore
-    !\\(x, $'"$0.as_mut()"')
-
-#!markdown
-
-## channel_receiver
-
-#!spiral
-
-nominal channel_receiver t = $'std_sync_mpsc_Receiver<`t>'
-
-#!markdown
-
-## channel_sender
-
-#!spiral
-
-nominal channel_sender t = $'std_sync_mpsc_Sender<`t>'
-
-#!markdown
-
-## new_channel
-
-#!spiral
-
-inl new_channel () : channel_sender sm'.std_string * arc (channel_receiver sm'.std_string) =
-    !\($'"{ let (sender, receiver) = std::sync::mpsc::channel(); (sender, std::sync::Arc::new(receiver)) }"')
-
-#!markdown
-
-## send_error
-
-#!spiral
-
-nominal send_error t = $'std_sync_mpsc_SendError<`t>'
-
-#!markdown
-
-## channel_send
-
-#!spiral
-
-inl channel_send forall t. (line : t) (sender : rust.ref' (channel_sender t)) : resultm.result' () (send_error sm'.std_string) =
-    !\\((sender, line), $'"$0.send($1)"')
 
 #!markdown
 
