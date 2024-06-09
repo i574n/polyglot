@@ -7767,8 +7767,8 @@ a.anchor-link {
 <pre>00:00:00   debug #1 runtime.execute_with_options_async / options: struct (None,
         "pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/dotnet-repl/9ca8b18d-ee77-4684-ad12-21e1354945fc/test.txt' -Algorithm SHA256).Hash"",
         [||], None, None, true, None)
-00:00:02 verbose #2 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
-00:00:02   debug #3 runtime.execute_with_options_async / exit_code: 0 / output.Length: 64
+00:00:00 verbose #2 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
+00:00:00   debug #3 runtime.execute_with_options_async / exit_code: 0 / output.Length: 64
 assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 </pre>
 </div>
@@ -7815,10 +7815,10 @@ assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805dac
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / dir: C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_50a32bdf0c6e59990a57c38a0071cbbe54d803754fbedcc0d24b3d883a24dac7\ba0aa16a-6c5a-be3f-b526-70110c680e36
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_50a32bdf0c6e59990a57c38a0071cbbe54d803754fbedcc0d24b3d883a24dac7/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"] / options: (None, "pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_50a32bdf0c6e59990a57c38a0071cbbe54d803754fbedcc0d24b3d883a24dac7/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"", Array(MutCell([])), None, None, true, None)
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 64
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / dir: C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_2b0c4bc8bc7a56a32c5e9d7e0b81dc88a1beb982078acc4160892dc6a4f16785\ba0aa16a-6c5a-be3f-b526-70110c680e36
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_2b0c4bc8bc7a56a32c5e9d7e0b81dc88a1beb982078acc4160892dc6a4f16785/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"] / options: (None, "pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_2b0c4bc8bc7a56a32c5e9d7e0b81dc88a1beb982078acc4160892dc6a4f16785/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"", Array(MutCell([])), None, None, true, None)
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 64
 assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 </pre>
 </div>
@@ -7953,7 +7953,7 @@ assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805dac
     <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let mut !reader = !reader"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
     <span class="n">inl</span> <span class="n">hasher</span> <span class="o">=</span> <span class="n">new_sha256</span> <span class="p">()</span>
     <span class="p">(</span><span class="o">!</span><span class="se">\(</span><span class="s1">$'"true; let mut !hasher = !hasher"'</span><span class="o">)</span><span class="w"> </span>:<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>ignore
-    
+
     <span class="n">real</span>
         <span class="n">inl</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">1024</span>
         <span class="n">inl</span> <span class="n">zero</span> <span class="o">=</span> <span class="n">convert</span> <span class="err">`</span><span class="n">i32</span> <span class="err">`</span><span class="n">unativeint</span> <span class="mi">0</span>
@@ -8147,9 +8147,9 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">create_hash</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="nb">any</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">ts_operators</span>
+    <span class="nb">open</span> <span class="n">typescript_operators</span>
     <span class="k">global</span> <span class="s2">"type ICryptoCreateHash = abstract createHash: x: string -&gt; obj"</span>
-    <span class="n">inl</span> <span class="n">crypto</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'ICryptoCreateHash'</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">import_all</span> <span class="s2">"crypto"</span>
+    <span class="n">inl</span> <span class="n">crypto</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'ICryptoCreateHash'</span> <span class="o">=</span> <span class="n">typescript</span><span class="o">.</span><span class="n">import_all</span> <span class="s2">"crypto"</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"!crypto.createHash($0)"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -8176,7 +8176,7 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hash_update</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="p">:</span> <span class="nb">any</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">ts_operators</span>
+    <span class="nb">open</span> <span class="n">typescript_operators</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">((</span>x,<span class="w"> </span>s<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.update($1, \'utf8\')"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -8203,7 +8203,7 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hash_digest</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">ts_operators</span>
+    <span class="nb">open</span> <span class="n">typescript_operators</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">((</span>x,<span class="w"> </span>s<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.digest($1)"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -8266,9 +8266,9 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">hashlib_sha256</span> <span class="p">()</span> <span class="p">:</span> <span class="n">py_sha256</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">py_operators</span>
+    <span class="nb">open</span> <span class="n">python_operators</span>
     <span class="k">global</span> <span class="s2">"type IHashlibSha256 = abstract sha256: x: unit -&gt; obj"</span>
-    <span class="n">inl</span> <span class="n">hashlib</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'IHashlibSha256'</span> <span class="o">=</span> <span class="n">py</span><span class="o">.</span><span class="n">import_all</span> <span class="s2">"hashlib"</span>
+    <span class="n">inl</span> <span class="n">hashlib</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'IHashlibSha256'</span> <span class="o">=</span> <span class="n">python</span><span class="o">.</span><span class="n">import_all</span> <span class="s2">"hashlib"</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!hashlib.sha256()"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -8295,7 +8295,7 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">sha256_update</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">sha256</span> <span class="p">:</span> <span class="n">py_sha256</span><span class="p">)</span> <span class="p">:</span> <span class="n">py_sha256</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">py_operators</span>
+    <span class="nb">open</span> <span class="n">python_operators</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">(</span>x,<span class="w"> </span><span class="s1">$'"!sha256.update($0)"'</span><span class="o">)</span>
     <span class="n">sha256</span>
 </pre></div>
@@ -8323,7 +8323,7 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">sha256_hexdigest</span> <span class="p">(</span><span class="n">sha256</span> <span class="p">:</span> <span class="n">py_sha256</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">py_operators</span>
+    <span class="nb">open</span> <span class="n">python_operators</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!sha256.hexdigest()"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -8337,11 +8337,22 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="hash_text">hash_text<a class="anchor-link" href="#hash_text">¶</a></h2>
+<h2 id="crypto">crypto<a class="anchor-link" href="#crypto">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=48">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="hash_text">hash_text<a class="anchor-link" href="#hash_text">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8381,7 +8392,7 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8442,17 +8453,17 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="hash_to_port">hash_to_port<a class="anchor-link" href="#hash_to_port">¶</a></h2>
+<h3 id="hash_to_port">hash_to_port<a class="anchor-link" href="#hash_to_port">¶</a></h3>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8473,7 +8484,7 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8530,7 +8541,7 @@ assert_eq / actual: 19273us / expected: 19273us
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8540,7 +8551,7 @@ assert_eq / actual: 19273us / expected: 19273us
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=54">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

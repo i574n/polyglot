@@ -4,62 +4,36 @@
 inl types () =
     global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::iter::Fuse<$0>\")>]\n#endif\ntype core_iter_Fuse<'T> = class end"
 
-nominal fuse t = $'core_iter_Fuse<`t>'
-
-/// ## seq'
-nominal seq' t = $'`t seq'
-
-/// ## of_array'
-inl of_array' forall dim t. (items : a dim t) : seq' t =
-    $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
-
-inl of_array forall dim t. (items : a dim t) : seq' t =
-    items |> $'Seq.ofArray'
-
-/// ## to_array'
-inl to_array' forall dim t. (items : seq' t) : a dim t =
-    items |> $'Seq.toArray'
-
-/// ## of_list'
-inl of_list' forall t. (items : listm'.list' t) : seq' t =
-    $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
-
-/// ## to_list'
-inl to_list' forall t. (items : seq' t) : listm'.list' t =
-    items |> $'Seq.toList'
-
-/// ## rev'
-inl rev'' forall t u. (items : t) : seq' u =
-    items |> $'Seq.rev'
-
 /// ## seq
+
+/// ### seq
 type seq dim el = dim -> option el
 
-/// ## try_item
+/// ### try_item
 inl try_item n s =
     n |> s
 
-/// ## from_list
+/// ### from_list
 inl from_list list =
     fun n =>
         list
         |> listm'.try_item n
 
-/// ## map
+/// ### map
 inl map fn s =
     fun n =>
         n
         |> s
         |> optionm.map fn
 
-/// ## mapi
+/// ### mapi
 inl mapi fn s =
     fun n =>
         n
         |> s
         |> optionm.map (fn n)
 
-/// ## choose
+/// ### choose
 inl choose forall dim {number} t u. (fn : t -> option u) (s : seq dim t) : seq dim u =
     fun n =>
         inl rec body fn s i i' =
@@ -79,22 +53,22 @@ inl choose forall dim {number} t u. (fn : t -> option u) (s : seq dim t) : seq d
                 join body fn s i i'
         loop 0 0
 
-/// ## indexed
+/// ### indexed
 inl indexed s =
     s
     |> mapi fun i x =>
         i, x
 
-/// ## zip
+/// ### zip
 inl zip n seq1 seq2 =
     seq1 n, seq2 n
 
-/// ## zip_with
+/// ### zip_with
 inl zip_with fn seq1 seq2 =
     fun n =>
         fn (seq1 n) (seq2 n)
 
-/// ## fold
+/// ### fold
 inl fold fn init seq =
     inl rec loop acc n =
         match seq n with
@@ -109,14 +83,14 @@ inl fold_ fn init seq =
         | None => acc
     loop init 0
 
-/// ## sum
+/// ### sum
 inl sum seq =
     seq |> fold (+) 0
 
 inl sum_ seq =
     seq |> fold_ (+) 0
 
-/// ## to_list
+/// ### to_list
 inl to_list seq =
     seq
     |> fold (fun acc x => x :: acc) []
@@ -127,14 +101,14 @@ inl to_list_ seq =
     |> fold_ (fun acc x => x :: acc) []
     |> listm.rev
 
-/// ## from_array
+/// ### from_array
 inl from_array forall dim {number; int} el. (array : a dim el) : seq dim el =
     fun n =>
         if n >= length array
         then None
         else index array n |> Some
 
-/// ## to_array
+/// ### to_array
 inl to_array seq =
     inl ar = a ;[] |> mut
     ((), seq)
@@ -149,7 +123,7 @@ inl to_array_ seq =
         ar <- *ar ++ a ;[x]
     *ar
 
-/// ## take_while
+/// ### take_while
 inl take_while cond seq =
     inl rec loop acc i =
         match seq i with
@@ -157,7 +131,7 @@ inl take_while cond seq =
         | _ => acc |> listm.rev
     loop [] 0
 
-/// ## take_while_
+/// ### take_while_
 inl take_while_ cond seq =
     let rec loop acc i =
         match seq i with
@@ -165,7 +139,7 @@ inl take_while_ cond seq =
         | _ => acc |> listm.rev
     loop [] 0
 
-/// ## memoize
+/// ### memoize
 inl memoize seq =
     inl state = mut []
     fun n =>
@@ -186,7 +160,7 @@ inl memoize_ seq =
             state <- (n, new_state) :: *state
             new_state
 
-/// ## iterate
+/// ### iterate
 inl iterate f x0 num_steps =
     inl rec loop x n =
         if n <= 0
@@ -205,7 +179,7 @@ inl iterate' f x0 num_steps =
     listm.init num_steps id
     |> listm.fold (fun x _ => f x) x0
 
-/// ## find_last
+/// ### find_last
 inl find_last forall item result. fold_fn fn target : option result =
     fold_fn (fun (item : item) (result : option result) =>
         match result with
@@ -218,3 +192,36 @@ inl array_find_last forall item result. (fn : item -> option result) (target : a
 
 inl list_find_last forall item result. (fn : item -> option result) (target : list item) : option result =
     find_last listm.foldBack fn target
+
+/// ## fsharp
+
+/// ### seq'
+nominal seq' t = $'`t seq'
+
+/// ### of_array'
+inl of_array' forall dim t. (items : a dim t) : seq' t =
+    $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
+
+inl of_array forall dim t. (items : a dim t) : seq' t =
+    items |> $'Seq.ofArray'
+
+/// ### to_array'
+inl to_array' forall dim t. (items : seq' t) : a dim t =
+    items |> $'Seq.toArray'
+
+/// ### of_list'
+inl of_list' forall t. (items : listm'.list' t) : seq' t =
+    $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
+
+/// ### to_list'
+inl to_list' forall t. (items : seq' t) : listm'.list' t =
+    items |> $'Seq.toList'
+
+/// ### rev'
+inl rev'' forall t u. (items : t) : seq' u =
+    items |> $'Seq.rev'
+
+/// ## rust
+
+/// ### fuse
+nominal fuse t = $'core_iter_Fuse<`t>'

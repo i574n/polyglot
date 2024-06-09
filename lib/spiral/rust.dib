@@ -55,45 +55,234 @@ inl types () =
         Python = fun () => ()
     }
 
+#!markdown
+
+## rust
+
+#!markdown
+
+###
+
 #!spiral
 
-nominal unit = $'unit'
 nominal any = $'core_any_Any'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal try t = $'core_ops_Try<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal cow t = $'std_borrow_Cow<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal ref_cell t = $'std_cell_RefCell<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal rc t = $'std_rc_Rc<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal lifetime_join' (t : * -> *) u = $'LifetimeRef<`(t u)>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal lifetime_join t u = $'LifetimeJoin<`t, `u>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal lifetime t u = $'Lifetime<`t, `u>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal static_lifetime = $'StaticLifetime'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal ref t = $'Ref<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal static_ref t = ref (lifetime static_lifetime t)
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal weak_rc t = $'std_rc_Weak<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal box t = $'Box<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal mut_cell t = $'MutCell<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal pin t = $'std_pin_Pin<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal dyn' t = $'Dyn<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal fn' t = $'Fn<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal action_fn t = $'ActionFn<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal action_fn2 t u = $'ActionFn2<`t, `u>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal fn_once t = $'FnOnce<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal fn_unit = $'FnUnit'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal func0 t = $'Func0<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal func1 t u =
     `(
         typecase t with
         | () => `func0 `u
         | _ => $'' : $'Func0<`t, `u>'
     )
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal impl t = $'Impl<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal mut' t = $'Mut<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal ref' t = $'Ref<`t>'
+
+#!markdown
+
+###
+
+#!spiral
+
 nominal send t = lifetime_join t $'Send<`t>'
 
 #!markdown
 
-## emit_expr
+### emit_expr
 
 #!spiral
 
@@ -103,7 +292,7 @@ inl emit_expr forall a t. (args : a) (code : string) : t =
 
 #!markdown
 
-## (~!\\)
+### (~!\\)
 
 #!spiral
 
@@ -112,7 +301,7 @@ inl (~!\) forall t. (code : string) : t =
 
 #!markdown
 
-## (~!\\\\)
+### (~!\\\\)
 
 #!spiral
 
@@ -121,7 +310,7 @@ inl (~!\\) forall t u. ((args : t), (code : string)) : u =
 
 #!markdown
 
-## emit
+### emit
 
 #!spiral
 
@@ -130,7 +319,7 @@ inl emit forall t. (x : t) : t =
 
 #!markdown
 
-## emit'
+### emit'
 
 #!spiral
 
@@ -140,7 +329,7 @@ inl emit' forall t. (x : t) : t =
 
 #!markdown
 
-## clone
+### clone
 
 #!spiral
 
@@ -149,7 +338,7 @@ inl clone forall t. (x : t) : t =
 
 #!markdown
 
-## dbg
+### dbg
 
 #!spiral
 
@@ -158,7 +347,7 @@ inl dbg forall t. (x : t) : t =
 
 #!markdown
 
-## new_box
+### new_box
 
 #!spiral
 
@@ -167,7 +356,7 @@ inl new_box forall t. (x : t) : box t =
 
 #!markdown
 
-## new_rc
+### new_rc
 
 #!spiral
 
@@ -176,7 +365,7 @@ inl new_rc forall t. (x : t) : rc t =
 
 #!markdown
 
-## rc_clone
+### rc_clone
 
 #!spiral
 
@@ -185,7 +374,7 @@ inl rc_clone forall t. (x : rc t) : rc t =
 
 #!markdown
 
-## rc_unwrap_or_clone
+### rc_unwrap_or_clone
 
 #!spiral
 
@@ -194,7 +383,7 @@ inl rc_unwrap_or_clone forall t. (x : rc t) : t =
 
 #!markdown
 
-## rc_downgrade
+### rc_downgrade
 
 #!spiral
 
@@ -204,7 +393,7 @@ inl rc_downgrade forall t. (x : rc t) : weak_rc t =
 
 #!markdown
 
-## new_ref_cell
+### new_ref_cell
 
 #!spiral
 
@@ -214,7 +403,7 @@ inl new_ref_cell forall t. (x : t) : ref_cell t =
 
 #!markdown
 
-## ref_cell_borrow
+### ref_cell_borrow
 
 #!spiral
 
@@ -224,7 +413,7 @@ inl ref_cell_borrow forall t. (x : rc (ref_cell t)) : t =
 
 #!markdown
 
-## ref_cell_borrow_mut
+### ref_cell_borrow_mut
 
 #!spiral
 
@@ -234,7 +423,7 @@ inl ref_cell_borrow_mut forall t. (x : rc (ref_cell t)) : mut' t =
 
 #!markdown
 
-## to_mut
+### to_mut
 
 #!spiral
 
@@ -251,7 +440,7 @@ inl to_mut forall t. (x : t) : t =
 
 #!markdown
 
-## ref_map
+### ref_map
 
 #!spiral
 
@@ -260,7 +449,7 @@ inl ref_map forall t u. (fn : t -> u) (x : ref' t) : ref' u =
 
 #!markdown
 
-## ref_invoke
+### ref_invoke
 
 #!spiral
 
@@ -269,7 +458,7 @@ inl ref_invoke forall t u. (fn : t -> u) (ref : ref' t) : u =
 
 #!markdown
 
-## cow_as_ref
+### cow_as_ref
 
 #!spiral
 
@@ -278,7 +467,7 @@ inl cow_as_ref forall t. (s : cow t) : ref' t =
 
 #!markdown
 
-## from_mut
+### from_mut
 
 #!spiral
 
@@ -287,7 +476,7 @@ inl from_mut forall t. (x : mut' t) : t =
 
 #!markdown
 
-## box_fn
+### box_fn
 
 #!spiral
 
@@ -297,7 +486,7 @@ inl box_fn forall t. (x : () -> ()) : box t =
 
 #!markdown
 
-## box_pin
+### box_pin
 
 #!spiral
 
@@ -307,7 +496,7 @@ inl box_pin forall t. (x : t) : pin (box t) =
 
 #!markdown
 
-## to_ref
+### to_ref
 
 #!spiral
 
@@ -316,7 +505,7 @@ inl to_ref forall t. (x : t) : ref' t =
 
 #!markdown
 
-## deref
+### deref
 
 #!spiral
 
@@ -325,7 +514,7 @@ inl deref forall t. (ref : ref' t) : t =
 
 #!markdown
 
-## ops_deref
+### ops_deref
 
 #!spiral
 
@@ -335,7 +524,7 @@ inl ops_deref forall t. (ref : t) : t =
 
 #!markdown
 
-## func0_invoke
+### func0_invoke
 
 #!spiral
 
@@ -344,7 +533,7 @@ inl func0_invoke forall t. (x : func0 t) : t =
 
 #!markdown
 
-## func0_move
+### func0_move
 
 #!spiral
 
@@ -354,7 +543,7 @@ inl func0_move forall t. (fn : func0 t) : t =
 
 #!markdown
 
-## move
+### move
 
 #!spiral
 
@@ -363,7 +552,7 @@ inl move forall t. (fn : () -> t) : func0 t =
 
 #!markdown
 
-## to_static_ref_unbox
+### to_static_ref_unbox
 
 #!spiral
 
@@ -372,7 +561,7 @@ inl to_static_ref_unbox forall t. (x : ref' t) : static_ref t =
 
 #!markdown
 
-## from_static_ref_unbox
+### from_static_ref_unbox
 
 #!spiral
 
@@ -381,7 +570,7 @@ inl from_static_ref_unbox forall t. (x : static_ref t) : ref' t =
 
 #!markdown
 
-## box_leak
+### box_leak
 
 #!spiral
 
@@ -390,7 +579,7 @@ inl box_leak forall t. (x : box t) : static_ref (mut' t) =
 
 #!markdown
 
-## drop
+### drop
 
 #!spiral
 
@@ -399,7 +588,7 @@ inl drop forall t. (x : t) : () =
 
 #!markdown
 
-## break
+### break
 
 #!spiral
 
@@ -408,7 +597,7 @@ inl break () : () =
 
 #!markdown
 
-## fix_closure'
+### fix_closure'
 
 #!spiral
 
@@ -437,7 +626,7 @@ fix_closure' (0, 0) ()
 
 #!markdown
 
-## fix_closure
+### fix_closure
 
 #!spiral
 
@@ -447,7 +636,7 @@ inl fix_closure depth x =
 
 #!markdown
 
-## loop
+### loop
 
 #!spiral
 
@@ -467,7 +656,7 @@ inl loop (depth : i32) (fn : () -> ()) : () =
 
 #!markdown
 
-## run_tests
+### run_tests
 
 #!spiral
 
@@ -486,7 +675,7 @@ inl run_tests tests =
 
 #!markdown
 
-## capture
+### capture
 
 #!spiral
 
@@ -497,7 +686,7 @@ inl capture forall t. (fn : () -> t) : t =
 
 #!markdown
 
-## capture_move
+### capture_move
 
 #!spiral
 

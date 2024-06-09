@@ -184,6 +184,9 @@ nominal infer = $'_'
 /// ### any
 nominal any = $'obj'
 
+/// ### unit
+nominal unit = $'unit'
+
 /// ### null
 inl null forall t. () : t =
     backend_switch {
@@ -194,6 +197,18 @@ inl null forall t. () : t =
 /// ### defaultof
 inl defaultof forall t. () : t =
     $'Unchecked.defaultof<`t>'
+
+/// ### choice2'
+nominal choice2' a b = $'Choice<`a, `b>'
+
+/// ### choice2_unbox
+inl choice2_unbox forall t1 t2. (choice : choice2' t1 t2) : choice2 t1 t2 =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl c1of2 (x : t1) : _ _ t2 = C1of2 x
+            inl c2of2 (x : t2) : _ t1 _ = C2of2 x
+            $'match !choice with Choice1Of2 x -> !c1of2 x | Choice2Of2 x -> !c2of2 x'
+        | _ => fun () => null ()
 
 /// ## pair
 

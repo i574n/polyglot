@@ -8,7 +8,11 @@
 
 #!markdown
 
-## __expect
+## testing
+
+#!markdown
+
+### __expect
 
 #!spiral
 
@@ -30,7 +34,7 @@ inl __expect fn log name b a =
 
 #!markdown
 
-## __assert_approx_eq
+### __assert_approx_eq
 
 #!spiral
 
@@ -65,7 +69,7 @@ inl _assert_approx_eq e b a = __assert_approx_eq true e b a
 
 #!markdown
 
-## __assert_eq
+### __assert_eq
 
 #!spiral
 
@@ -74,7 +78,7 @@ inl _assert_eq b a = __assert_eq true b a
 
 #!markdown
 
-## __assert_eq
+### __assert_eq'
 
 #!spiral
 
@@ -83,7 +87,7 @@ inl _assert_eq' b a = __assert_eq' true b a
 
 #!markdown
 
-## __assert_ne
+### __assert_ne
 
 #!spiral
 
@@ -92,7 +96,7 @@ inl _assert_ne b a = __assert_ne true b a
 
 #!markdown
 
-## __assert_gt
+### __assert_gt
 
 #!spiral
 
@@ -101,7 +105,7 @@ inl _assert_gt b a = __assert_gt true b a
 
 #!markdown
 
-## __assert_ge
+### __assert_ge
 
 #!spiral
 
@@ -110,7 +114,7 @@ inl _assert_ge b a = __assert_ge true b a
 
 #!markdown
 
-## __assert_lt
+### __assert_lt
 
 #!spiral
 
@@ -119,7 +123,7 @@ inl _assert_lt b a = __assert_lt true b a
 
 #!markdown
 
-## __assert_le
+### __assert_le
 
 #!spiral
 
@@ -128,7 +132,7 @@ inl _assert_le b a = __assert_le true b a
 
 #!markdown
 
-## __assert_string_contains
+### __assert_string_contains
 
 #!spiral
 
@@ -137,7 +141,25 @@ inl _assert_string_contains b a = __assert_string_contains true b a
 
 #!markdown
 
-## __assert_contains
+### __assert_between
+
+#!spiral
+
+inl __assert_between log a b actual =
+    inl assert_between actual (a, b) =
+        __assert_ge false a actual
+        __assert_le false b actual
+        true
+    __expect assert_between log "assert_between" (a, b) actual
+inl _assert_between a b actual = __assert_between true a b actual
+
+#!markdown
+
+## fsharp
+
+#!markdown
+
+### __assert_contains
 
 #!spiral
 
@@ -162,21 +184,7 @@ inl _assert_contains b a = __assert_contains true b a
 
 #!markdown
 
-## __assert_between
-
-#!spiral
-
-inl __assert_between log a b actual =
-    inl assert_between actual (a, b) =
-        __assert_ge false a actual
-        __assert_le false b actual
-        true
-    __expect assert_between log "assert_between" (a, b) actual
-inl _assert_between a b actual = __assert_between true a b actual
-
-#!markdown
-
-## _throws
+### _throws
 
 #!spiral
 
@@ -187,7 +195,7 @@ inl _throws (fn : () -> ()) : option exn =
 
 #!markdown
 
-## print_and_return
+### print_and_return
 
 #!spiral
 

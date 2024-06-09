@@ -14,6 +14,10 @@ open testing
 
 #!markdown
 
+## reflection
+
+#!markdown
+
 ### get_union_fields
 
 #!spiral
@@ -43,6 +47,7 @@ inl get_union_fields forall union_type. () : list (string * union_type) =
 get_union_fields ()
 |> listm'.box
 |> listm'.to_array'
+|> a
 |> am'.sort_by snd
 |> fun x => x : a i32 _
 |> _assert_eq' (a ;[ "Native", Native; "Wasm", Wasm; "Contract", Contract ])
@@ -86,12 +91,13 @@ inl get_union_fields_untag forall union_type. () : list (string * union_type) =
 get_union_fields_untag ()
 |> listm'.box
 |> listm'.to_array'
+|> a
 |> fun x => x : a i32 _
 |> _assert_eq' (a ;[ "Native", Native; "Wasm", Wasm; "Contract", Contract ])
 
 #!markdown
 
-## union_try_pick
+### union_try_pick
 
 #!spiral
 
@@ -104,7 +110,7 @@ inl union_try_pick forall t. (key : string) : option t =
 
 #!markdown
 
-## union_to_string
+### union_to_string
 
 #!spiral
 

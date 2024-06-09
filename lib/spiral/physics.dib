@@ -18,7 +18,7 @@ open testing
 
 #!markdown
 
-## init_series
+### init_series
 
 #!spiral
 
@@ -50,7 +50,7 @@ inl y = x |> am.map (y_pos 0 20 -9.8)
 
 #!markdown
 
-## velocity_cf
+### velocity_cf
 
 #!spiral
 
@@ -88,7 +88,7 @@ inl y = x |> am.map (velocity_cf 0.1f64 0.6 [ 0.04; -0.08 ])
 
 #!markdown
 
-## derivative
+### derivative
 
 #!spiral
 
@@ -125,7 +125,7 @@ derivative 0.000000000000000001 (fun x => x ** 4 / 4) 1 - 1
 
 #!markdown
 
-## integration
+### integration
 
 #!spiral
 
@@ -179,7 +179,7 @@ integral'' 0.01 math.square 0 1
 
 #!markdown
 
-## anti_derivative
+### anti_derivative
 
 #!spiral
 
@@ -188,7 +188,7 @@ inl anti_derivative dt v0 a t =
 
 #!markdown
 
-## velocity_ft
+### velocity_ft
 
 #!spiral
 
@@ -202,7 +202,7 @@ inl velocity_ft dt : velocity_ft =
 
 #!markdown
 
-## position_ft
+### position_ft
 
 #!spiral
 
@@ -239,7 +239,7 @@ inl y = x |> am.map (position_ft 0.1f64 20 0 0 [ pedal_coast ])
 
 #!markdown
 
-## velocity_fv
+### velocity_fv
 
 #!spiral
 
@@ -269,7 +269,7 @@ inl y = x |> am.map (velocity_fv 1 70 0f64 [ fun _ => 100; f_air 2 1.225 0.6 ])
 
 #!markdown
 
-## velocity_ftv
+### velocity_ftv
 
 #!spiral
 
@@ -302,7 +302,7 @@ inl y =
 
 #!markdown
 
-## velocity_ftxv
+### velocity_ftxv
 
 #!spiral
 
@@ -386,7 +386,7 @@ inl y = x |> am.map pingpong_velocity
 
 #!markdown
 
-## shift
+### shift
 
 #!spiral
 
@@ -465,7 +465,7 @@ solver (runge_kutta_4 1) (of_state_1d >> exponential >> rrr) (state_1d (0, 1, 1)
 
 #!markdown
 
-## vec
+### vec
 
 #!spiral
 
@@ -488,7 +488,7 @@ vec 1 2 3 .z
 
 #!markdown
 
-### consts
+#### consts
 
 #!spiral
 
@@ -499,7 +499,7 @@ inl zero_vec () = vec 0 0 0
 
 #!markdown
 
-### ^+^
+#### ^+^
 
 #!spiral
 
@@ -515,7 +515,7 @@ vec 1 2 3 ^+^ vec 4 5 6
 
 #!markdown
 
-### sum_vec
+#### sum_vec
 
 #!spiral
 
@@ -532,7 +532,7 @@ inl sum_vec vs =
 
 #!markdown
 
-### *^
+#### *^
 
 #!spiral
 
@@ -555,7 +555,7 @@ inl (*^) c { x y z } =
 
 #!markdown
 
-### ^*
+#### ^*
 
 #!spiral
 
@@ -571,7 +571,7 @@ vec 1 2 3 ^* 5
 
 #!markdown
 
-### ^/
+#### ^/
 
 #!spiral
 
@@ -587,7 +587,7 @@ vec 1 2 3 ^/ 5
 
 #!markdown
 
-### negate_vec
+#### negate_vec
 
 #!spiral
 
@@ -604,7 +604,7 @@ vec 1 2 3
 
 #!markdown
 
-### ^-^
+#### ^-^
 
 #!spiral
 
@@ -620,7 +620,7 @@ vec 1 2 3 ^-^ vec 4 5 6
 
 #!markdown
 
-### <.>
+#### <.>
 
 #!spiral
 
@@ -636,7 +636,7 @@ vec 1 2 3 <.> vec 4 5 6
 
 #!markdown
 
-### \>\<
+#### \>\<
 
 #!spiral
 
@@ -655,7 +655,7 @@ vec 1 2 3 >< vec 4 5 6
 
 #!markdown
 
-### magnitude
+#### magnitude
 
 #!spiral
 
@@ -672,7 +672,7 @@ vec 1 2 3
 
 #!markdown
 
-### v1
+#### v1
 
 #!spiral
 
@@ -688,7 +688,7 @@ v1 1
 
 #!markdown
 
-### vec_derivative
+#### vec_derivative
 
 #!spiral
 
@@ -707,7 +707,7 @@ vec_derivative 0.01 v1 3 .x
 
 #!markdown
 
-## states_ps
+### states_ps
 
 #!spiral
 
@@ -907,7 +907,7 @@ best_angle (30f64, 60f64)
 
 #!markdown
 
-## relativity_ps
+### relativity_ps
 
 #!spiral
 
@@ -1020,7 +1020,7 @@ inl relativity_y : a i32 _ = relativity_y |> listm.toArray
 
 #!markdown
 
-### system kinetic energy versus time 1
+#### system kinetic energy versus time 1
 
 #!spiral
 
@@ -1214,7 +1214,7 @@ inl time_ke_rk4_y : a i32 _ = time_ke_rk4_y |> listm.toArray
 
 #!markdown
 
-### wave 1
+#### wave 1
 
 #!spiral
 
@@ -1310,7 +1310,7 @@ let main () =
 
 #!markdown
 
-### system kinetic energy versus time 2
+#### system kinetic energy versus time 2
 
 #!spiral
 
@@ -1525,7 +1525,7 @@ inl time_ke_rk4_y : a i32 _ = time_ke_rk4_y |> listm.toArray
 
 #!markdown
 
-### wave 2
+#### wave 2
 
 #!spiral
 

@@ -1749,9 +1749,9 @@ and closure9 (v0 : int32, v1 : string) (v2 : int32) : Async<bool> =
     let v106 : US5 = v98 
     let v112 : US6 =
         match v106 with
-        | US5_0(v107) -> (* Choice1Of2 *)
+        | US5_0(v107) -> (* C1of2 *)
             US6_0(v107)
-        | US5_1(v109) -> (* Choice2Of2 *)
+        | US5_1(v109) -> (* C2of2 *)
             US6_1(v109)
     return v112 
     }
@@ -2436,9 +2436,9 @@ and method9 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) 
             let v160 : US5 = v152 
             let v166 : US6 =
                 match v160 with
-                | US5_0(v161) -> (* Choice1Of2 *)
+                | US5_0(v161) -> (* C1of2 *)
                     US6_0(v161)
-                | US5_1(v163) -> (* Choice2Of2 *)
+                | US5_1(v163) -> (* C2of2 *)
                     US6_1(v163)
             return v166 
             }
@@ -3184,9 +3184,9 @@ and method10 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
             let v158 : US5 = v150 
             let v164 : US6 =
                 match v158 with
-                | US5_0(v159) -> (* Choice1Of2 *)
+                | US5_0(v159) -> (* C1of2 *)
                     US6_0(v159)
-                | US5_1(v161) -> (* Choice2Of2 *)
+                | US5_1(v161) -> (* C2of2 *)
                     US6_1(v161)
             return v164 
             }

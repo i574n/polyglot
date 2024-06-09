@@ -850,15 +850,7 @@ pub mod Common {
                 move || Common::closure9(v0_1, v1_1.clone(), ())
             }),
         );
-        {
-            let _v5: MutCell<Option<()>> = MutCell::new(None::<()>);
-            _v5.set(Some(()));
-            match &_v5.get().clone() {
-                None => panic!("{}", string("base.run_target / _v5=None"),),
-                Some(_v5_0_0) => _v5_0_0.clone(),
-            }
-            Common::US5::US5_1
-        }
+        Common::US5::US5_1
     }
     pub fn method6(v0_1: i32, v1_1: Func0<()>, v2_1: i32) -> Common::US4 {
         let v0_1: MutCell<i32> = MutCell::new(v0_1);

@@ -34,28 +34,11 @@ inl types () =
 
 #!markdown
 
-## async
-
-#!spiral
-
-nominal async t = $'Async<`t>'
+## rust
 
 #!markdown
 
-## task
-
-#!spiral
-
-nominal task t =
-    `(
-        typecase t with
-        | () => $'' : $'System.Threading.Tasks.Task'
-        | _ => $'' : $'System.Threading.Tasks.Task<`t>'
-    )
-
-#!markdown
-
-## future
+### future
 
 #!spiral
 
@@ -63,7 +46,7 @@ nominal future t = $'std_future_Future<`t>'
 
 #!markdown
 
-## future_pin
+### future_pin
 
 #!spiral
 
@@ -71,7 +54,7 @@ type future_pin t = rust.pin (rust.box (rust.dyn' (future t)))
 
 #!markdown
 
-## future_pin_send
+### future_pin_send
 
 #!spiral
 
@@ -79,7 +62,7 @@ type future_pin_send t = rust.pin (rust.box (rust.send (rust.dyn' (future t))))
 
 #!markdown
 
-## block_on
+### block_on
 
 #!spiral
 
@@ -90,7 +73,7 @@ inl block_on forall t. (fn : future_pin t) : t =
 
 #!markdown
 
-## block_on'
+### block_on'
 
 #!spiral
 
@@ -99,7 +82,7 @@ inl block_on' forall t. (fn : future_pin t) : t =
 
 #!markdown
 
-## block_on''
+### block_on''
 
 #!spiral
 
@@ -108,7 +91,7 @@ inl block_on'' forall t. (fn : future_pin t) : t =
 
 #!markdown
 
-## block_on'''
+### block_on'''
 
 #!spiral
 
@@ -117,7 +100,7 @@ inl block_on''' forall t. (fn : future_pin t) : t =
 
 #!markdown
 
-## block_on_send
+### block_on_send
 
 #!spiral
 
@@ -126,7 +109,7 @@ inl block_on_send forall t. (fn : future_pin_send t) : t =
 
 #!markdown
 
-## stream_ext
+### stream_ext
 
 #!spiral
 
@@ -134,7 +117,7 @@ nominal stream_ext = $'tokio_stream_StreamExt'
 
 #!markdown
 
-## join_handle
+### join_handle
 
 #!spiral
 
@@ -142,7 +125,7 @@ nominal join_handle t = $'tokio_task_JoinHandle<`t>'
 
 #!markdown
 
-## spawn
+### spawn
 
 #!spiral
 
@@ -151,7 +134,7 @@ inl spawn forall t. (fn : future_pin_send t) : join_handle t =
 
 #!markdown
 
-## try_join_all
+### try_join_all
 
 #!spiral
 
@@ -163,7 +146,7 @@ inl try_join_all forall t. (x : am'.vec (future_pin (resultm.result' t sm'.std_s
 
 #!markdown
 
-## fuse
+### fuse
 
 #!spiral
 
@@ -174,7 +157,7 @@ inl future_fuse forall t. (x : future_pin t) : fuse (future_pin t) =
 
 #!markdown
 
-## join_all
+### join_all
 
 #!spiral
 
@@ -186,7 +169,7 @@ inl join_all forall t. (x : am'.vec (future_pin t)) : join_all (future_pin t) =
 
 #!markdown
 
-## join_all_send
+### join_all_send
 
 #!spiral
 
@@ -196,7 +179,7 @@ inl join_all_send forall t. (x : am'.vec (future_pin_send t)) : join_all (future
 
 #!markdown
 
-## await_handle
+### await_handle
 
 #!spiral
 
@@ -205,7 +188,7 @@ inl await_handle forall t. (x : join_handle t) : t =
 
 #!markdown
 
-## await_all
+### await_all
 
 #!spiral
 
@@ -214,7 +197,7 @@ inl await_all forall t. (x : join_all (future_pin t)) : am'.vec t =
 
 #!markdown
 
-## await_all_send
+### await_all_send
 
 #!spiral
 
@@ -223,7 +206,7 @@ inl await_all_send forall t. (x : join_all (future_pin_send t)) : am'.vec t =
 
 #!markdown
 
-## try_await_all
+### try_await_all
 
 #!spiral
 
@@ -232,7 +215,7 @@ inl try_await_all forall t. (x : try_join_all (future_pin (resultm.result' t sm'
 
 #!markdown
 
-## try_await_all_send
+### try_await_all_send
 
 #!spiral
 
@@ -241,7 +224,7 @@ inl try_await_all_send forall t. (x : try_join_all (future_pin_send (resultm.res
 
 #!markdown
 
-## await
+### await
 
 #!spiral
 
@@ -250,7 +233,7 @@ inl await forall t. (x : future_pin t) : t =
 
 #!markdown
 
-## await
+### await
 
 #!spiral
 
@@ -259,7 +242,7 @@ inl await_send forall t. (x : future_pin_send t) : t =
 
 #!markdown
 
-## into_iter
+### into_iter
 
 #!spiral
 
@@ -267,7 +250,7 @@ nominal into_iter t = $'rayon_vec_IntoIter<`t>'
 
 #!markdown
 
-## into_par_iter
+### into_par_iter
 
 #!spiral
 
@@ -276,7 +259,7 @@ inl into_par_iter forall t. (x : am'.vec t) : into_iter t =
 
 #!markdown
 
-## par_iter
+### par_iter
 
 #!spiral
 
@@ -285,7 +268,7 @@ inl par_iter forall t. (x : am'.vec t) : into_iter t =
 
 #!markdown
 
-## iter_map
+### iter_map
 
 #!spiral
 
@@ -293,7 +276,7 @@ nominal iter_map t u = $'rayon_iter_Map<`t>'
 
 #!markdown
 
-## par_map
+### par_map
 
 #!spiral
 
@@ -302,7 +285,7 @@ inl par_map forall t u. (fn : t -> u) (ar : into_iter t) : iter_map (into_iter t
 
 #!markdown
 
-## par_collect
+### par_collect
 
 #!spiral
 
@@ -311,7 +294,7 @@ inl par_collect forall t u. (iter : iter_map (into_iter t) u) : am'.vec u =
 
 #!markdown
 
-## try_join_all_iter
+### try_join_all_iter
 
 #!spiral
 
@@ -321,7 +304,7 @@ inl try_join_all_iter forall t. (x : am'.vec (future_pin_send (resultm.result' t
 
 #!markdown
 
-## new_future
+### new_future
 
 #!spiral
 
@@ -333,7 +316,7 @@ inl new_future forall t. (x : () -> t) : future_pin t =
 
 #!markdown
 
-## new_future_move
+### new_future_move
 
 #!spiral
 
@@ -345,7 +328,7 @@ inl new_future_move forall t. (x : () -> t) : future_pin t =
 
 #!markdown
 
-## future_init
+### future_init
 
 #!spiral
 
@@ -367,7 +350,7 @@ inl future_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future
 
 #!markdown
 
-## future_init_send
+### future_init_send
 
 #!spiral
 
@@ -390,7 +373,7 @@ inl future_init_send forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : f
 
 #!markdown
 
-## new_future_move_init
+### new_future_move_init
 
 #!spiral
 
@@ -399,7 +382,6 @@ inl new_future_move_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t)
     // join
     //     !\($'"{Box::pin(async move { //"')
     //     inl x' = x () |> fun x => join $'!x '
-    // 
     //         inl depth = depth |> fst
     //         if depth = 1
     //         then !\($'"!x' })"')
@@ -414,7 +396,32 @@ inl new_future_move_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t)
 
 #!markdown
 
-## new_async_unit
+## fsharp
+
+#!markdown
+
+### async
+
+#!spiral
+
+nominal async t = $'Async<`t>'
+
+#!markdown
+
+### task
+
+#!spiral
+
+nominal task t =
+    `(
+        typecase t with
+        | () => $'' : $'System.Threading.Tasks.Task'
+        | _ => $'' : $'System.Threading.Tasks.Task<`t>'
+    )
+
+#!markdown
+
+### new_async_unit
 
 #!spiral
 
@@ -432,7 +439,7 @@ inl new_async_unit forall t. (fn : () -> ()) : async t =
 
 #!markdown
 
-## new_async
+### new_async
 
 #!spiral
 
@@ -441,7 +448,7 @@ inl new_async forall t. (fn : () -> t) : async t =
 
 #!markdown
 
-## new_task
+### new_task
 
 #!spiral
 
@@ -459,7 +466,7 @@ inl new_task forall t. (fn : () -> t) : task t =
 
 #!markdown
 
-## await_task
+### await_task
 
 #!spiral
 
@@ -471,7 +478,7 @@ inl await_task forall t. (a : task t) : async t =
 
 #!markdown
 
-## ignore
+### ignore
 
 #!spiral
 
@@ -483,7 +490,7 @@ inl ignore forall t. (a : async t) : async () =
 
 #!markdown
 
-## run_synchronously
+### run_synchronously
 
 #!spiral
 
@@ -495,7 +502,7 @@ inl run_synchronously forall t. (a : async t) : t =
 
 #!markdown
 
-## start
+### start
 
 #!spiral
 
@@ -507,7 +514,7 @@ inl start (a : async ()) : () =
 
 #!markdown
 
-## start_child
+### start_child
 
 #!spiral
 
@@ -519,7 +526,7 @@ inl start_child forall t. (a : async t) : async (async t) =
 
 #!markdown
 
-## start_child_timeout
+### start_child_timeout
 
 #!spiral
 
@@ -531,7 +538,7 @@ inl start_child_timeout forall t. (timeout : i32) (a : async t) : async (async t
 
 #!markdown
 
-## start_immediate
+### start_immediate
 
 #!spiral
 
@@ -543,7 +550,7 @@ inl start_immediate forall t. (a : async t) : () =
 
 #!markdown
 
-## task_canceled_exception
+### task_canceled_exception
 
 #!spiral
 
@@ -551,7 +558,7 @@ nominal task_canceled_exception = $'System.Threading.Tasks.TaskCanceledException
 
 #!markdown
 
-## sleep
+### sleep
 
 #!spiral
 
@@ -563,7 +570,7 @@ inl sleep (ms : i32) : async () =
 
 #!markdown
 
-## do
+### do
 
 #!spiral
 
@@ -572,7 +579,7 @@ inl do (a : async ()) : () =
 
 #!markdown
 
-## let'
+### let'
 
 #!spiral
 
@@ -582,7 +589,7 @@ inl let' forall t. (a : async t) : t =
 
 #!markdown
 
-## return_await
+### return_await
 
 #!spiral
 
@@ -591,7 +598,7 @@ inl return_await forall t. (a : async t) : () =
 
 #!markdown
 
-## return_await'
+### return_await'
 
 #!spiral
 
@@ -600,7 +607,7 @@ inl return_await' forall t. (a : async t) : t =
 
 #!markdown
 
-## map
+### map
 
 #!spiral
 
@@ -612,37 +619,11 @@ inl map forall t u. (fn : t -> u) (a : async t) : async u =
 
 #!markdown
 
-## choice
+### catch'
 
 #!spiral
 
-union choice t1 t2 =
-    | Choice1Of2 : t1
-    | Choice2Of2 : t2
-
-nominal choice' t1 t2 = $'Choice<`t1, `t2>'
-
-#!markdown
-
-## choice_unbox
-
-#!spiral
-
-inl choice_unbox forall t1 t2. (choice : choice' t1 t2) : choice t1 t2 =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            inl choice1Of2 (x : t1) : _ _ t2 = Choice1Of2 x
-            inl choice2Of2 (x : t2) : _ t1 _ = Choice2Of2 x
-            $'match !choice with Choice1Of2 x -> !choice1Of2 x | Choice2Of2 x -> !choice2Of2 x'
-        | _ => fun () => null ()
-
-#!markdown
-
-## catch'
-
-#!spiral
-
-inl catch' forall t e. (a : async t) : async (choice' t e) =
+inl catch' forall t e. (a : async t) : async (choice2' t e) =
     run_target function
         | Fsharp (Native) => fun () =>
             a |> $'Async.Catch'
@@ -650,21 +631,21 @@ inl catch' forall t e. (a : async t) : async (choice' t e) =
 
 #!markdown
 
-## catch
+### catch
 
 #!spiral
 
 inl catch forall t e. (a : async t) : async (result t e) =
     a
     |> catch'
-    |> map choice_unbox
+    |> map choice2_unbox
     |> map function
-        | Choice1Of2 result => Ok result
-        | Choice2Of2 ex => Error ex
+        | C1of2 result => Ok result
+        | C2of2 ex => Error ex
 
 #!markdown
 
-## run_with_timeout_async
+### run_with_timeout_async
 
 #!spiral
 
@@ -691,7 +672,7 @@ inl run_with_timeout_async forall t. (timeout : i32) (fn : async t) : async (opt
 
 #!markdown
 
-## run_with_timeout
+### run_with_timeout
 
 #!spiral
 
@@ -702,7 +683,7 @@ inl run_with_timeout timeout fn =
 
 #!markdown
 
-## cancellation_token
+### cancellation_token
 
 #!spiral
 
@@ -716,7 +697,7 @@ inl default_cancellation_token () : threading.cancellation_token =
 
 #!markdown
 
-## merge_cancellation_token_with_default_async
+### merge_cancellation_token_with_default_async
 
 #!spiral
 
@@ -736,7 +717,7 @@ inl merge_cancellation_token_with_default_async
 
 #!markdown
 
-## with_trace_level
+### with_trace_level
 
 #!spiral
 
@@ -753,7 +734,7 @@ inl with_trace_level forall t. level fn : _ t = new_async fun () =>
 
 #!markdown
 
-## value_task
+### value_task
 
 #!spiral
 
@@ -761,7 +742,7 @@ nominal value_task = $'System.Threading.Tasks.ValueTask'
 
 #!markdown
 
-## value_task_as_task
+### value_task_as_task
 
 #!spiral
 
@@ -770,7 +751,7 @@ inl value_task_as_task (task : value_task) : task () =
 
 #!markdown
 
-## await_value_task_unit
+### await_value_task_unit
 
 #!spiral
 

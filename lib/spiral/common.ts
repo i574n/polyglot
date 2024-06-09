@@ -656,14 +656,6 @@ export function method7(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => str
 
 export function closure7(v0_1: int32, v1_1: Error): US5_$union {
     method7(US0_US0_3(), (): string => closure8(undefined, undefined), (): string => closure9(v0_1, v1_1, undefined));
-    let _v5: Option<void> = undefined;
-    _v5 = some(undefined);
-    if (_v5 == null) {
-        throw new Error("base.run_target / _v5=None");
-    }
-    else {
-        value_1(_v5);
-    }
     return US5_US5_1();
 }
 

@@ -63,7 +63,11 @@ inl types () =
 
 #!markdown
 
-## process_child
+## rust
+
+#!markdown
+
+### process_child
 
 #!spiral
 
@@ -71,35 +75,7 @@ nominal process_child = $'std_process_Child'
 
 #!markdown
 
-## process_child_stderr
-
-#!spiral
-
-nominal process_child_stderr = $'std_process_ChildStderr'
-
-inl process_child_stderr
-    (child : rust.ref' (rust.mut' process_child))
-    : rust.ref' (rust.mut' (optionm'.option' process_child_stderr))
-    =
-    !\($'"&mut !child.stderr"')
-
-#!markdown
-
-## process_child_stdout
-
-#!spiral
-
-nominal process_child_stdout = $'std_process_ChildStdout'
-
-inl process_child_stdout
-    (child : rust.ref' (rust.mut' process_child))
-    : rust.ref' (rust.mut' (optionm'.option' process_child_stdout))
-    =
-    !\($'"&mut !child.stdout"')
-
-#!markdown
-
-## process_child_stdin
+### process_child_stdin
 
 #!spiral
 
@@ -113,57 +89,100 @@ inl process_child_stdin
 
 #!markdown
 
-## process_command
-
-#!spiral
-
-nominal process_command = $'std_process_Command'
+## runtime
 
 #!markdown
 
-## process_stdio
+### split_args
 
 #!spiral
 
-nominal process_stdio = $'std_process_Stdio'
-
-#!markdown
-
-## process_output
-
-#!spiral
-
-nominal process_output = $'std_process_Output'
-
-#!markdown
-
-## process_exit_status
-
-#!spiral
-
-nominal process_exit_status = $'std_process_ExitStatus'
-
-#!markdown
-
-## process_output_status
-
-#!spiral
-
-inl process_output_status (output : process_output) : process_exit_status =
-    !\\(output, $'"$0.status"')
-
-#!markdown
-
-## process_exit_status_code
+let split_args (args : string) : result (array_base string) string =
+    open parsing
+    inl esc = [ '\\'; '`' ]
+    inl quotes = [ '"' ]
+    inl special = esc ++ quotes
+    inl p_esc_char c =
+        p_char c >>. any_char () |>> fun c' => $'$"{!c}{!c'}"'
+    inl p_word = special |> none_of |>> sm'.obj_to_string
+    inl p_plain = special ++ [ ' ' ] |> none_of |> many1_chars
+    inl p_text = p_word |> many1_strings
+    inl p_esc = esc |> listm.map p_esc_char |> choice
+    inl p_quoted = (p_word <|> p_esc) |> many |>> sm'.concat_list ""
+    inl p_quoted_all = p_quoted |> between (p_char '"') (p_char '"')
+    inl p_esc_root = p_esc |>> (fun _ => "") >>. (p_word |> many) |>> sm'.concat_list ""
+    inl p_content = p_plain <|> p_quoted_all <|> p_esc_root
+    inl p_args = spaces1 () |> sep_by p_content
+    args
+    |> optionm'.of_obj
+    |> optionm'.default_value' ""
+    |> parse p_args
+    |> resultm.map (fst >> listm'.box >> listm'.to_array')
 
 #!spiral
 
-inl process_exit_status_code (status : process_exit_status) : optionm'.option' i32 =
-    !\\(status, $'"$0.code()"')
+//// test
+
+[
+    "a b c",
+    ;[ "a"; "b"; "c" ]
+
+    "e f \"g h\" i",
+    ;[ "e"; "f"; "g h"; "i" ]
+
+    "\"j k\" \"l\" \"m\"",
+    ;[ "j k"; "l"; "m" ]
+
+    "s -t \"u \`\"v\`\" w\"",
+    ;[ "s"; "-t"; "u \`\"v\`\" w" ]
+
+    "n -o \"p \\\"q\\\" r\"",
+    ;[ "n"; "-o"; "p \\\"q\\\" r" ]
+
+    "r -s \"t \\\"u\\\"\"",
+    ;[ "r"; "-s"; "t \\\"u\\\"" ]
+
+    $'$"x -y \\\"$z -a \'(b=\\\\\\"c-id=)[a-fA-F0-9]{{8}}\', {{ \`$_[1] + \`$d++ }}\\\""',
+    ;[ "x"; "-y"; "$z -a '(b=\\\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }" ]
+
+    "e -f \"$g -h '(i=`\"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }\"",
+    ;[ "e"; "-f"; "$g -h '(i=`\"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }" ]
+
+    $'$"--l \\\\\\"\'\'\' m \'\'\'\\\\\\" "',
+    ;[ "--l"; "''' m '''" ]
+
+    $'$"n --o --p q --r \\\"s:/t u/v.w\\\" --x \\\"y:/z.a\\\" --b c.d \\\"\\\\e{{f-g}}\\\" h.i \\\"j (k)\\\""',
+    ;[ "n"; "--o"; "--p"; "q"; "--r"; "s:/t u/v.w"; "--x"; "y:/z.a"; "--b"; "c.d"; "\\e{f-g}"; "h.i"; "j (k)" ]
+
+    $'\@$"l ""m n:\\o.p"""',
+    ;[ "l"; "m n:\\o.p" ]
+]
+|> listm.rev
+|> listm.map fun input, expected =>
+    input
+    |> split_args
+    |> fun x =>
+        try
+            fun () =>
+                ($'$"\ninput: {!input}"' : string)
+                |> console.write_line
+                x
+                |> resultm.get
+                |> _assert_eq' expected
+                false
+            fun ex =>
+                ($'$"error / expected: %A{!expected} / ex: %A{!ex}"' : string)
+                |> console.write_line
+                Some true
+        |> optionm.value
+|> listm'.filter id
+|> function
+    | [] => ()
+    | x => failwith $'$"{!x}"'
 
 #!markdown
 
-## quoted
+### quoted
 
 #!spiral
 
@@ -173,7 +192,7 @@ union quoted =
 
 #!markdown
 
-## split_command
+### split_command
 
 #!spiral
 
@@ -224,145 +243,7 @@ split_command $'\@"..\\..\\file 1.exe -c \\\\""echo 1\\\\"""'
 
 #!markdown
 
-## process
-
-#!spiral
-
-nominal process = $'System.Diagnostics.Process'
-
-#!markdown
-
-## process_start_info
-
-#!spiral
-
-nominal process_start_info = $'System.Diagnostics.ProcessStartInfo'
-
-#!markdown
-
-## data_received_event_args
-
-#!spiral
-
-nominal data_received_event_args = $'System.Diagnostics.DataReceivedEventArgs'
-
-#!markdown
-
-## new_process
-
-#!spiral
-
-inl new_process (process_start_info : process_start_info) : process =
-    $'new `process (StartInfo = !process_start_info)'
-
-#!markdown
-
-## process_start
-
-#!spiral
-
-inl process_start (process : process) : bool =
-    $'!process.Start' ()
-
-#!markdown
-
-## process_exit_code
-
-#!spiral
-
-inl process_exit_code (process : process) : i32 =
-    $'!process.ExitCode'
-
-#!markdown
-
-## process_id
-
-#!spiral
-
-inl process_id (process : process) : i32 =
-    $'!process.Id'
-
-#!markdown
-
-## process_has_exited
-
-#!spiral
-
-inl process_has_exited (process : process) : bool =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            $'!process.HasExited'
-        | _ => fun () => null ()
-
-#!markdown
-
-## process_kill
-
-#!spiral
-
-inl process_kill (process : process) : () =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            $'!process.Kill' ()
-        | _ => fun () => null ()
-
-#!markdown
-
-## process_begin_error_read_line
-
-#!spiral
-
-inl process_begin_error_read_line (process : process) : () =
-    $'!process.BeginErrorReadLine' ()
-
-#!markdown
-
-## process_begin_output_read_line
-
-#!spiral
-
-inl process_begin_output_read_line (process : process) : () =
-    $'!process.BeginOutputReadLine' ()
-
-#!markdown
-
-## process_add_output_data_received
-
-#!spiral
-
-inl process_add_output_data_received fn (process : process) : () =
-    $'!process.OutputDataReceived.Add !fn '
-
-#!markdown
-
-## process_add_error_data_received
-
-#!spiral
-
-inl process_add_error_data_received fn (process : process) : () =
-    $'!process.ErrorDataReceived.Add !fn '
-
-#!markdown
-
-## process_wait_for_exit_async
-
-#!spiral
-
-inl process_wait_for_exit_async (ct : threading.cancellation_token) (process : process) : async.task () =
-    $'!process.WaitForExitAsync !ct '
-
-#!markdown
-
-## event_data
-
-#!spiral
-
-inl event_data (e : data_received_event_args) : string =
-    $'!e.Data'
-
-#!markdown
-
-## execution_line
+### execution_line
 
 #!spiral
 
@@ -375,7 +256,7 @@ type execution_line =
 
 #!markdown
 
-## execution_options
+### execution_options
 
 #!spiral
 
@@ -404,7 +285,850 @@ inl execution_options (fn : execution_options -> execution_options) : execution_
 
 #!markdown
 
-## execute_with_options_async
+## rust
+
+#!markdown
+
+### process_child_stderr
+
+#!spiral
+
+nominal process_child_stderr = $'std_process_ChildStderr'
+
+inl process_child_stderr
+    (child : rust.ref' (rust.mut' process_child))
+    : rust.ref' (rust.mut' (optionm'.option' process_child_stderr))
+    =
+    !\($'"&mut !child.stderr"')
+
+#!markdown
+
+### process_child_stdout
+
+#!spiral
+
+nominal process_child_stdout = $'std_process_ChildStdout'
+
+inl process_child_stdout
+    (child : rust.ref' (rust.mut' process_child))
+    : rust.ref' (rust.mut' (optionm'.option' process_child_stdout))
+    =
+    !\($'"&mut !child.stdout"')
+
+#!markdown
+
+### process_command
+
+#!spiral
+
+nominal process_command = $'std_process_Command'
+
+#!markdown
+
+### process_stdio
+
+#!spiral
+
+nominal process_stdio = $'std_process_Stdio'
+
+#!markdown
+
+### process_output
+
+#!spiral
+
+nominal process_output = $'std_process_Output'
+
+#!markdown
+
+### process_exit_status
+
+#!spiral
+
+nominal process_exit_status = $'std_process_ExitStatus'
+
+#!markdown
+
+### process_output_status
+
+#!spiral
+
+inl process_output_status (output : process_output) : process_exit_status =
+    !\\(output, $'"$0.status"')
+
+#!markdown
+
+### process_exit_status_code
+
+#!spiral
+
+inl process_exit_status_code (status : process_exit_status) : optionm'.option' i32 =
+    !\\(status, $'"$0.code()"')
+
+#!markdown
+
+### stdin_write_all
+
+#!spiral
+
+inl stdin_write_all (stdin : threading.mutex_guard process_child_stdin) (text : string) : () =
+    inl stream = text |> sm'.as_bytes
+    inl stdin = join stdin
+    (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
+    (!\\(stdin, $'"true; std::io::Write::write_all(&mut *$0, !stream).unwrap()"') : bool) |> ignore
+
+#!markdown
+
+### stdin_flush
+
+#!spiral
+
+inl stdin_flush (stdin : threading.mutex_guard process_child_stdin) : () =
+    inl stdin = join stdin
+    (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
+    (!\\(stdin, $'"true; std::io::Write::flush(&mut *$0).unwrap()"') : bool) |> ignore
+
+#!markdown
+
+### new_process_command
+
+#!spiral
+
+inl new_process_command (file_name : string) : process_command =
+    !\\(file_name, $'"std::process::Command::new(&*$0)"')
+
+#!markdown
+
+### process_stdio_piped
+
+#!spiral
+
+inl process_stdio_piped () : process_stdio =
+    !\($'"std::process::Stdio::piped()"')
+
+#!markdown
+
+### process_command_args
+
+#!spiral
+
+inl process_command_args (args : am'.vec sm'.std_string) (c : process_command) : rust.ref' (rust.mut' process_command) =
+    (!\($'"true; let mut !c = !c"') : bool) |> ignore
+    !\\((c, args), $'"std::process::Command::args(&mut $0, &*$1)"')
+
+#!markdown
+
+### process_command_stdout
+
+#!spiral
+
+inl process_command_stdout (stdio : process_stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+    !\\(c, $'"std::process::Command::stdout($0, std::process::Stdio::piped())"')
+
+#!markdown
+
+### process_command_stderr
+
+#!spiral
+
+inl process_command_stderr (stdio : process_stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+    !\\(c, $'"std::process::Command::stderr($0, std::process::Stdio::piped())"')
+
+#!markdown
+
+### process_command_stdin
+
+#!spiral
+
+inl process_command_stdin (stdio : process_stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+    !\\(c, $'"std::process::Command::stdin($0, std::process::Stdio::piped())"')
+
+#!markdown
+
+### process_command_current_dir
+
+#!spiral
+
+inl process_command_current_dir
+    (dir : string)
+    (c : rust.ref' (rust.mut' process_command))
+    : rust.ref' (rust.mut' process_command)
+    =
+    !\\(dir, $'"std::process::Command::current_dir(!c, &*$0)"')
+
+#!markdown
+
+### process_command_env
+
+#!spiral
+
+inl process_command_env
+    (key : string)
+    (value : string)
+    (c : rust.ref' (rust.mut' process_command))
+    : rust.ref' (rust.mut' process_command)
+    =
+    !\\((key, value), $'"std::process::Command::env(!c, &*$0, &*$1)"')
+
+#!markdown
+
+### process_command_spawn
+
+#!spiral
+
+inl process_command_spawn
+    (c : rust.ref' (rust.mut' process_command))
+    : resultm.result' process_child stream.io_error
+    =
+    !\\(c, $'"std::process::Command::spawn($0)"')
+
+#!markdown
+
+### child_wait_with_output
+
+#!spiral
+
+inl child_wait_with_output
+    (child : process_child)
+    : resultm.result' process_output stream.io_error
+    =
+    !\\(child, $'"$0.wait_with_output()"')
+
+#!markdown
+
+### stdio_line
+
+#!spiral
+
+inl stdio_line
+    (stdio : result () ())
+    (trace' : bool)
+    (channel_sender : threading.arc (threading.mutex (threading.channel_sender sm'.std_string)))
+    (line : resultm.result' sm'.std_string stream.io_error)
+    : resultm.result' () sm'.std_string
+    =
+    inl highlight text =
+        $'$"\\u001b[4;7m{!text}\\u001b[0m"'
+    inl line =
+        match
+            line
+            |> resultm.map_error' sm'.format'
+            |> resultm.unbox'
+        with
+        | Ok line =>
+            inl line =
+                line
+                |> sm'.from_std_string
+                // |> sm'.as_bytes
+                // |> am'.slice_to_vec
+                |> sm'.encoding_encode' (sm'.encoding_utf8' ())
+                |> rust.cow_as_ref
+                |> sm'.str_from_utf8
+                // |> sm'.utf8_decode
+                |> resultm.unwrap'
+                |> sm'.ref_to_std_string
+                // String::from_utf8_lossy(line.as_bytes()).into()
+            inl line_log = line |> sm'.from_std_string
+            inl text =
+                match stdio with
+                | Ok () => $'$"> {!line_log}"'
+                | Error () => $'$"\! {!line_log}"'
+            if trace'
+            then trace Verbose (fun () => text) _locals
+            else text |> console.write_line
+            match stdio with
+            | Ok () => line
+            | Error () => line |> highlight |> sm'.to_std_string
+        | Error e =>
+            trace Critical
+                fun () => $'$"runtime.stdio_line"'
+                fun () => $'$"e: {!e} / {!_locals ()}"'
+            e |> highlight |> sm'.to_std_string
+    channel_sender
+    |> threading.arc_mutex_lock
+    |> resultm.unwrap'
+    |> threading.mutex_guard_ref
+    |> threading.channel_send line
+    |> resultm.map_error' sm'.format'
+
+#!markdown
+
+### command
+
+#!spiral
+
+nominal command = $'clap_Command'
+
+#!markdown
+
+### new_command
+
+#!spiral
+
+inl new_command (s : rust.static_ref sm'.str) : command =
+    !\\(s, $'"clap::Command::new($0)"')
+
+#!spiral
+
+//// test
+///! rust -d clap
+
+types ()
+##"command"
+|> new_command
+|> sm'.format_pretty'
+|> sm'.from_std_string
+|> _assert_string_contains "\"command\""
+
+#!markdown
+
+### arg
+
+#!spiral
+
+nominal arg = $'clap_Arg'
+
+#!markdown
+
+### new_arg
+
+#!spiral
+
+inl new_arg (s : rust.static_ref sm'.str) : arg =
+    !\\(s, $'"clap::Arg::new($0)"')
+
+#!spiral
+
+//// test
+///! rust -d clap
+
+types ()
+##"arg"
+|> new_arg
+|> sm'.format_pretty'
+|> sm'.from_std_string
+|> _assert_string_contains "\"arg\""
+
+#!markdown
+
+### command_arg
+
+#!spiral
+
+inl command_arg (arg : arg) (command : command) : command =
+    !\\((command, arg), $'"clap::Command::arg($0, $1)"')
+
+#!markdown
+
+### arg_required
+
+#!spiral
+
+inl arg_required (value : bool) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.required($1)"')
+
+#!markdown
+
+### arg_short
+
+#!spiral
+
+inl arg_short (value : char) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.short($1)"')
+
+#!markdown
+
+### arg_long
+
+#!spiral
+
+inl arg_long (value : rust.static_ref sm'.str) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.long($1)"')
+
+#!markdown
+
+### arg_value_names
+
+#!spiral
+
+inl arg_value_names (values : array_base (rust.static_ref sm'.str)) (arg : arg) : arg =
+    inl values = values |> am'.to_vec
+    !\\((arg, values), $'"$0.value_names($1)"')
+
+#!markdown
+
+### arg_num_args
+
+#!spiral
+
+inl arg_num_args (value : i32) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.num_args($1)"')
+
+#!markdown
+
+### value_range
+
+#!spiral
+
+nominal value_range = $'clap_builder_ValueRange'
+
+#!markdown
+
+### new_value_range
+
+#!spiral
+
+inl new_value_range start end : value_range =
+    inl len = 0i32 |> convert
+    inl start, end =
+        open am'
+        match start, end with
+        | Start start, End fn =>
+            start, len |> fn
+        | End start_fn, End end_fn =>
+            start_fn len, end_fn len
+    match start, end with
+    | start, end when end =. len => !\($'"clap::builder::ValueRange::new(!start..)"')
+    | start, end => !\($'"clap::builder::ValueRange::new(!start..!end)"')
+
+#!markdown
+
+### arg_num_args_range
+
+#!spiral
+
+inl arg_num_args_range (value : value_range) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.num_args($1)"')
+
+#!markdown
+
+### arg_value_name
+
+#!spiral
+
+inl arg_value_name (value : string) (arg : arg) : arg =
+    inl value = value |> sm'.as_str
+    !\\((arg, value), $'"$0.value_name($1)"')
+
+#!markdown
+
+### value_parser
+
+#!spiral
+
+nominal value_parser = $'clap_builder_ValueParser'
+
+#!markdown
+
+### possible_value
+
+#!spiral
+
+nominal possible_value = $'clap_builder_PossibleValue'
+
+#!markdown
+
+### new_possible_value
+
+#!spiral
+
+inl new_possible_value forall t. (x : t) : possible_value =
+    !\\(x, $'"clap::builder::PossibleValue::new(&**$0)"')
+
+#!markdown
+
+### value_parser_path_buf
+
+#!spiral
+
+inl value_parser_path_buf () : value_parser =
+    !\($'"clap::value_parser\!(std::path::PathBuf)"')
+
+#!markdown
+
+### value_parser_expr
+
+#!spiral
+
+inl value_parser_expr (expr : string) : value_parser =
+    !\($'"clap::value_parser\!(" + !expr + ").into()"')
+
+#!markdown
+
+### arg_value_parser
+
+#!spiral
+
+inl arg_value_parser (values : value_parser) (arg : arg) : arg =
+    !\\((arg, values), $'"$0.value_parser($1)"')
+
+#!markdown
+
+### arg_action
+
+#!spiral
+
+nominal arg_action' = $'clap_ArgAction'
+
+union arg_action =
+    | Set
+    | Append
+    | SetTrue
+    | SetFalse
+    | Count
+    | Help
+    | HelpShort
+    | HelpLong
+    | Version
+
+inl arg_action = function
+    | Set => !\($'"clap::ArgAction::Set"') : arg_action'
+    | Append => !\($'"clap::ArgAction::Append"') : arg_action'
+    | SetTrue => !\($'"clap::ArgAction::SetTrue"') : arg_action'
+    | SetFalse => !\($'"clap::ArgAction::SetFalse"') : arg_action'
+    | Count => !\($'"clap::ArgAction::Count"') : arg_action'
+    | Help => !\($'"clap::ArgAction::Help"') : arg_action'
+    | HelpShort => !\($'"clap::ArgAction::HelpShort"') : arg_action'
+    | HelpLong => !\($'"clap::ArgAction::HelpLong"') : arg_action'
+    | Version => !\($'"clap::ArgAction::Version"') : arg_action'
+
+inl arg_action (value : arg_action) (arg : arg) : arg =
+    inl value = value |> arg_action
+    !\\((arg, value), $'"$0.action($1)"')
+
+#!markdown
+
+### arg_index
+
+#!spiral
+
+inl arg_index (value : i32) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.index($1)"')
+
+#!markdown
+
+### arg_matches
+
+#!spiral
+
+nominal arg_matches = $'clap_ArgMatches'
+
+#!markdown
+
+### command_get_matches
+
+#!spiral
+
+inl command_get_matches (command : command) : arg_matches =
+    !\\(command, $'"clap::Command::get_matches($0)"')
+
+#!markdown
+
+### command_get_matches_from
+
+#!spiral
+
+inl command_get_matches_from (args : array_base string) (command : command) : arg_matches =
+    inl args = args |> am'.to_vec |> am'.vec_map sm'.to_std_string
+    !\\(command, $'"clap::Command::get_matches_from($0, !args)"')
+
+#!markdown
+
+### command_init_arg
+
+#!spiral
+
+inl command_init_arg (long, short) fn command =
+    command
+    |> command_arg (
+        new_arg ##long
+        |> arg_short short
+        |> arg_long ##long
+        |> fn
+    )
+
+#!markdown
+
+### matches_get_one
+
+#!spiral
+
+inl matches_get_one forall t. (x : string) (matches : arg_matches) : optionm'.option' t =
+    inl x = join x
+    inl x = x |> sm'.as_str
+    !\\(matches, $'"clap::ArgMatches::get_one(&$0, !x).cloned()"')
+
+#!markdown
+
+### matches_get_flag
+
+#!spiral
+
+inl matches_get_flag (x : string) (matches : arg_matches) : bool =
+    inl x = join x
+    inl x = x |> sm'.as_str
+    !\($'"clap::ArgMatches::get_flag(&!matches, !x)"')
+
+#!markdown
+
+### matches_get_many
+
+#!spiral
+
+inl matches_get_many forall t. (x : string) (matches : arg_matches) : optionm'.option' (am'.vec t) =
+    inl x = join x
+    inl x = x |> sm'.as_str
+    !\\(matches, $'"clap::ArgMatches::get_many(&$0, !x).map(|x| x.cloned().into_iter().collect())"')
+
+#!markdown
+
+### matches_get_occurrences
+
+#!spiral
+
+inl matches_get_occurrences (x : string) (matches : arg_matches) : optionm'.option' (array_base sm'.std_string) =
+    inl x = join x
+    inl x = x |> sm'.as_str
+    !\($'"clap::ArgMatches::get_occurrences(&!matches, !x).cloned()"')
+
+#!markdown
+
+### matches_subcommand
+
+#!spiral
+
+inl matches_subcommand (matches : arg_matches) : optionm'.option' (sm'.std_string * arg_matches) =
+    !\\((matches, sm'.ref_to_std_string), $'"clap::ArgMatches::subcommand(Box::leak(Box::new($0))).map(|(a, b)| ($1(a), b.clone()))"')
+
+#!markdown
+
+### matches_values_of
+
+#!spiral
+
+inl matches_values_of (x : string) (matches : arg_matches) : array_base sm'.std_string =
+    !\\((matches, x), $'"clap::ArgMatches::values_of($0, &*$1)"')
+
+#!markdown
+
+### command_subcommand_required
+
+#!spiral
+
+inl command_subcommand_required (value : bool) (command : command) : command =
+    !\\(command, $'"clap::Command::subcommand_required($0, !value)"')
+
+#!markdown
+
+### command_subcommand
+
+#!spiral
+
+inl command_subcommand (subcommand : command) (command : command) : command =
+    !\\(command, $'"clap::Command::subcommand($0, !subcommand)"')
+
+#!markdown
+
+### value_parser_possible_values
+
+#!spiral
+
+inl value_parser_possible_values (values : array_base string) : value_parser =
+    inl values =
+        values
+        |> am'.to_vec
+        |> am'.vec_map (sm'.to_std_string >> rust.new_box >> rust.box_leak >> new_possible_value)
+    !\\(values, $'"Into::<clap::builder::ValueParser>::into(clap::builder::PossibleValuesParser::new($0))"')
+
+#!markdown
+
+### arg_union
+
+#!spiral
+
+inl arg_union forall union_type. (fn : union_type -> ()) (arg : arg) : arg =
+    arg
+    |> arg_value_parser (
+        real reflection.get_union_fields_untag `union_type ()
+        |> fun x => x : _ (string * union_type)
+        |> listm.map fst
+        |> listm'.box
+        |> listm'.to_array'
+        |> value_parser_possible_values
+    )
+
+#!spiral
+
+//// test
+///! rust -d clap
+
+##"command"
+|> new_command
+|> command_init_arg ("trace-level", 't') (
+    real arg_union `trace_level ignore
+)
+|> command_get_matches_from ;[ "_"; "--trace-level"; "Critical" ]
+|> matches_get_one "trace-level"
+|> optionm'.unwrap
+|> sm'.from_std_string
+|> reflection.union_try_pick
+|> optionm.value
+|> _assert_eq Critical
+
+#!markdown
+
+### command_debug_assert
+
+#!spiral
+
+inl command_debug_assert (command : command) : () =
+    !\\(command, $'"clap::Command::debug_assert($0)"')
+
+#!markdown
+
+## fsharp
+
+#!markdown
+
+### process
+
+#!spiral
+
+nominal process = $'System.Diagnostics.Process'
+
+#!markdown
+
+### process_start_info
+
+#!spiral
+
+nominal process_start_info = $'System.Diagnostics.ProcessStartInfo'
+
+#!markdown
+
+### data_received_event_args
+
+#!spiral
+
+nominal data_received_event_args = $'System.Diagnostics.DataReceivedEventArgs'
+
+#!markdown
+
+### new_process
+
+#!spiral
+
+inl new_process (process_start_info : process_start_info) : process =
+    $'new `process (StartInfo = !process_start_info)'
+
+#!markdown
+
+### process_start
+
+#!spiral
+
+inl process_start (process : process) : bool =
+    $'!process.Start' ()
+
+#!markdown
+
+### process_exit_code
+
+#!spiral
+
+inl process_exit_code (process : process) : i32 =
+    $'!process.ExitCode'
+
+#!markdown
+
+### process_id
+
+#!spiral
+
+inl process_id (process : process) : i32 =
+    $'!process.Id'
+
+#!markdown
+
+### process_has_exited
+
+#!spiral
+
+inl process_has_exited (process : process) : bool =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!process.HasExited'
+        | _ => fun () => null ()
+
+#!markdown
+
+### process_kill
+
+#!spiral
+
+inl process_kill (process : process) : () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!process.Kill' ()
+        | _ => fun () => null ()
+
+#!markdown
+
+### process_begin_error_read_line
+
+#!spiral
+
+inl process_begin_error_read_line (process : process) : () =
+    $'!process.BeginErrorReadLine' ()
+
+#!markdown
+
+### process_begin_output_read_line
+
+#!spiral
+
+inl process_begin_output_read_line (process : process) : () =
+    $'!process.BeginOutputReadLine' ()
+
+#!markdown
+
+### process_add_output_data_received
+
+#!spiral
+
+inl process_add_output_data_received fn (process : process) : () =
+    $'!process.OutputDataReceived.Add !fn '
+
+#!markdown
+
+### process_add_error_data_received
+
+#!spiral
+
+inl process_add_error_data_received fn (process : process) : () =
+    $'!process.ErrorDataReceived.Add !fn '
+
+#!markdown
+
+### process_wait_for_exit_async
+
+#!spiral
+
+inl process_wait_for_exit_async (ct : threading.cancellation_token) (process : process) : async.task () =
+    $'!process.WaitForExitAsync !ct '
+
+#!markdown
+
+### event_data
+
+#!spiral
+
+inl event_data (e : data_received_event_args) : string =
+    $'!e.Data'
+
+#!markdown
+
+### execute_with_options_async
 
 #!spiral
 
@@ -512,7 +1236,7 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
 
 #!markdown
 
-## execute_async
+### execute_async
 
 #!spiral
 
@@ -618,225 +1342,7 @@ fun () =>
 
 #!markdown
 
-## split_args
-
-#!spiral
-
-let split_args (args : string) : result (array_base string) string =
-    open parsing
-    inl esc = [ '\\'; '`' ]
-    inl quotes = [ '"' ]
-    inl special = esc ++ quotes
-    inl p_esc_char c =
-        p_char c >>. any_char () |>> fun c' => $'$"{!c}{!c'}"'
-    inl p_word = special |> none_of |>> sm'.obj_to_string
-    inl p_plain = special ++ [ ' ' ] |> none_of |> many1_chars
-    inl p_text = p_word |> many1_strings
-    inl p_esc = esc |> listm.map p_esc_char |> choice
-    inl p_quoted = (p_word <|> p_esc) |> many |>> sm'.concat_list ""
-    inl p_quoted_all = p_quoted |> between (p_char '"') (p_char '"')
-    inl p_esc_root = p_esc |>> (fun _ => "") >>. (p_word |> many) |>> sm'.concat_list ""
-    inl p_content = p_plain <|> p_quoted_all <|> p_esc_root
-    inl p_args = spaces1 () |> sep_by p_content
-    args
-    |> optionm'.of_obj
-    |> optionm'.default_value' ""
-    |> parse p_args
-    |> resultm.map (fst >> listm'.box >> listm'.to_array')
-
-#!spiral
-
-//// test
-
-[
-    "a b c",
-    ;[ "a"; "b"; "c" ]
-
-    "e f \"g h\" i",
-    ;[ "e"; "f"; "g h"; "i" ]
-
-    "\"j k\" \"l\" \"m\"",
-    ;[ "j k"; "l"; "m" ]
-
-    "s -t \"u \`\"v\`\" w\"",
-    ;[ "s"; "-t"; "u \`\"v\`\" w" ]
-
-    "n -o \"p \\\"q\\\" r\"",
-    ;[ "n"; "-o"; "p \\\"q\\\" r" ]
-
-    "r -s \"t \\\"u\\\"\"",
-    ;[ "r"; "-s"; "t \\\"u\\\"" ]
-
-    $'$"x -y \\\"$z -a \'(b=\\\\\\"c-id=)[a-fA-F0-9]{{8}}\', {{ \`$_[1] + \`$d++ }}\\\""',
-    ;[ "x"; "-y"; "$z -a '(b=\\\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }" ]
-
-    "e -f \"$g -h '(i=`\"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }\"",
-    ;[ "e"; "-f"; "$g -h '(i=`\"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }" ]
-    
-    $'$"--l \\\\\\"\'\'\' m \'\'\'\\\\\\" "',
-    ;[ "--l"; "''' m '''" ]
-
-    $'$"n --o --p q --r \\\"s:/t u/v.w\\\" --x \\\"y:/z.a\\\" --b c.d \\\"\\\\e{{f-g}}\\\" h.i \\\"j (k)\\\""',
-    ;[ "n"; "--o"; "--p"; "q"; "--r"; "s:/t u/v.w"; "--x"; "y:/z.a"; "--b"; "c.d"; "\\e{f-g}"; "h.i"; "j (k)" ]
-
-    $'\@$"l ""m n:\\o.p"""',
-    ;[ "l"; "m n:\\o.p" ]
-]
-|> listm.rev
-|> listm.map fun input, expected =>
-    input
-    |> split_args
-    |> fun x =>
-        try
-            fun () =>
-                ($'$"\ninput: {!input}"' : string)
-                |> console.write_line
-                x
-                |> resultm.get
-                |> _assert_eq' expected
-                false
-            fun ex =>
-                ($'$"error / expected: %A{!expected} / ex: %A{!ex}"' : string)
-                |> console.write_line
-                Some true
-        |> optionm.value
-|> listm'.filter id
-|> function
-    | [] => ()
-    | x => failwith $'$"{!x}"'
-
-#!markdown
-
-## stdin_write_all
-
-#!spiral
-
-inl stdin_write_all (stdin : threading.mutex_guard process_child_stdin) (text : string) : () =
-    inl stream = text |> sm'.as_bytes
-    inl stdin = join stdin
-    (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
-    (!\\(stdin, $'"true; std::io::Write::write_all(&mut *$0, !stream).unwrap()"') : bool) |> ignore
-
-#!markdown
-
-## stdin_flush
-
-#!spiral
-
-inl stdin_flush (stdin : threading.mutex_guard process_child_stdin) : () =
-    inl stdin = join stdin
-    (!\($'"true; let mut !stdin = !stdin"') : bool) |> ignore
-    (!\\(stdin, $'"true; std::io::Write::flush(&mut *$0).unwrap()"') : bool) |> ignore
-
-#!markdown
-
-## new_process_command
-
-#!spiral
-
-inl new_process_command (file_name : string) : process_command =
-    !\\(file_name, $'"std::process::Command::new(&*$0)"')
-
-#!markdown
-
-## process_stdio_piped
-
-#!spiral
-
-inl process_stdio_piped () : process_stdio =
-    !\($'"std::process::Stdio::piped()"')
-
-#!markdown
-
-## process_command_args
-
-#!spiral
-
-inl process_command_args (args : am'.vec sm'.std_string) (c : process_command) : rust.ref' (rust.mut' process_command) =
-    (!\($'"true; let mut !c = !c"') : bool) |> ignore
-    !\\((c, args), $'"std::process::Command::args(&mut $0, &*$1)"')
-
-#!markdown
-
-## process_command_stdout
-
-#!spiral
-
-inl process_command_stdout (stdio : process_stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
-    !\\(c, $'"std::process::Command::stdout($0, std::process::Stdio::piped())"')
-
-#!markdown
-
-## process_command_stderr
-
-#!spiral
-
-inl process_command_stderr (stdio : process_stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
-    !\\(c, $'"std::process::Command::stderr($0, std::process::Stdio::piped())"')
-
-#!markdown
-
-## process_command_stdin
-
-#!spiral
-
-inl process_command_stdin (stdio : process_stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
-    !\\(c, $'"std::process::Command::stdin($0, std::process::Stdio::piped())"')
-
-#!markdown
-
-## process_command_current_dir
-
-#!spiral
-
-inl process_command_current_dir
-    (dir : string)
-    (c : rust.ref' (rust.mut' process_command))
-    : rust.ref' (rust.mut' process_command)
-    =
-    !\\(dir, $'"std::process::Command::current_dir(!c, &*$0)"')
-
-#!markdown
-
-## process_command_env
-
-#!spiral
-
-inl process_command_env
-    (key : string)
-    (value : string)
-    (c : rust.ref' (rust.mut' process_command))
-    : rust.ref' (rust.mut' process_command)
-    =
-    !\\((key, value), $'"std::process::Command::env(!c, &*$0, &*$1)"')
-
-#!markdown
-
-## process_command_spawn
-
-#!spiral
-
-inl process_command_spawn
-    (c : rust.ref' (rust.mut' process_command))
-    : resultm.result' process_child stream.io_error
-    =
-    !\\(c, $'"std::process::Command::spawn($0)"')
-
-#!markdown
-
-## child_wait_with_output
-
-#!spiral
-
-inl child_wait_with_output
-    (child : process_child)
-    : resultm.result' process_output stream.io_error
-    =
-    !\\(child, $'"$0.wait_with_output()"')
-
-#!markdown
-
-## current_process_kill
+### current_process_kill
 
 #!spiral
 
@@ -846,9 +1352,12 @@ inl current_process_kill () =
             inl fn () =
                 run_target function
                     | Fsharp (Native) => fun () =>
-                        trace Warning (fun () => "runtime.current_process_kill") _locals
-                        $'System.Threading.Thread.Sleep 2000'
-                        $'System.Environment.Exit 1'
+                        trace Warning (fun () => "runtime.current_process_kill / exiting... 3") _locals
+                        $'System.Threading.Thread.Sleep 300'
+                        trace Warning (fun () => "runtime.current_process_kill / exiting... 2") _locals
+                        $'System.Console.Out.Flush ()'
+                        $'System.Threading.Thread.Sleep 60'
+                        trace Warning (fun () => "runtime.current_process_kill / exiting... 1") _locals
                         $'System.Diagnostics.Process.GetCurrentProcess().Kill ()' : ()
                     | _ => fun () => null ()
             inl thread : threading.thread = $'new System.Threading.Thread (!fn)'
@@ -857,64 +1366,11 @@ inl current_process_kill () =
 
 #!markdown
 
-## stdio_line
-
-#!spiral
-
-inl stdio_line
-    (stdio : result () ())
-    (trace' : bool)
-    (channel_sender : threading.arc (threading.mutex (threading.channel_sender sm'.std_string)))
-    (line : resultm.result' sm'.std_string stream.io_error)
-    : resultm.result' () sm'.std_string
-    =
-    inl highlight text =
-        $'$"\\u001b[4;7m{!text}\\u001b[0m"'
-    inl line =
-        match
-            line
-            |> resultm.map_error' sm'.format'
-            |> resultm.unbox'
-        with
-        | Ok line =>
-            inl line =
-                line
-                |> sm'.from_std_string
-                // |> sm'.as_bytes
-                // |> am'.slice_to_vec
-                |> sm'.encoding_encode' (sm'.encoding_utf8' ())
-                |> rust.cow_as_ref
-                |> sm'.str_from_utf8
-                // |> sm'.utf8_decode
-                |> resultm.unwrap'
-                |> sm'.ref_to_std_string
-                // String::from_utf8_lossy(line.as_bytes()).into()
-            inl line_log = line |> sm'.from_std_string
-            inl text =
-                match stdio with
-                | Ok () => $'$"> {!line_log}"'
-                | Error () => $'$"\! {!line_log}"'
-            if trace'
-            then trace Verbose (fun () => text) _locals
-            else text |> console.write_line
-            match stdio with
-            | Ok () => line
-            | Error () => line |> highlight |> sm'.to_std_string
-        | Error e =>
-            trace Critical
-                fun () => $'$"runtime.stdio_line"'
-                fun () => $'$"e: {!e} / {!_locals ()}"'
-            e |> highlight |> sm'.to_std_string
-    channel_sender
-    |> threading.arc_mutex_lock
-    |> resultm.unwrap'
-    |> threading.mutex_guard_ref
-    |> threading.channel_send line
-    |> resultm.map_error' sm'.format'
+## runtime
 
 #!markdown
 
-## execute_with_options
+### execute_with_options
 
 #!spiral
 
@@ -1129,7 +1585,7 @@ let execute_with_options (options : execution_options) : i32 * string =
 
 #!markdown
 
-### execute
+#### execute
 
 #!spiral
 
@@ -1141,7 +1597,7 @@ inl execute command =
 
 #!markdown
 
-### tests
+#### tests
 
 #!spiral
 
@@ -1187,436 +1643,17 @@ disposable |> use |> ignore
 
 #!markdown
 
-## command
+### execute_retry
 
 #!spiral
 
-nominal command = $'clap_Command'
-
-#!markdown
-
-## new_command
-
-#!spiral
-
-inl new_command (s : rust.static_ref sm'.str) : command =
-    !\\(s, $'"clap::Command::new($0)"')
-
-#!spiral
-
-//// test
-///! rust -d clap
-
-types ()
-##"command"
-|> new_command
-|> sm'.format_pretty'
-|> sm'.from_std_string
-|> _assert_string_contains "\"command\""
-
-#!markdown
-
-## arg
-
-#!spiral
-
-nominal arg = $'clap_Arg'
-
-#!markdown
-
-## new_arg
-
-#!spiral
-
-inl new_arg (s : rust.static_ref sm'.str) : arg =
-    !\\(s, $'"clap::Arg::new($0)"')
-
-#!spiral
-
-//// test
-///! rust -d clap
-
-types ()
-##"arg"
-|> new_arg
-|> sm'.format_pretty'
-|> sm'.from_std_string
-|> _assert_string_contains "\"arg\""
-
-#!markdown
-
-## command_arg
-
-#!spiral
-
-inl command_arg (arg : arg) (command : command) : command =
-    !\\((command, arg), $'"clap::Command::arg($0, $1)"')
-
-#!markdown
-
-## arg_required
-
-#!spiral
-
-inl arg_required (value : bool) (arg : arg) : arg =
-    !\\((arg, value), $'"$0.required($1)"')
-
-#!markdown
-
-## arg_short
-
-#!spiral
-
-inl arg_short (value : char) (arg : arg) : arg =
-    !\\((arg, value), $'"$0.short($1)"')
-
-#!markdown
-
-## arg_long
-
-#!spiral
-
-inl arg_long (value : rust.static_ref sm'.str) (arg : arg) : arg =
-    !\\((arg, value), $'"$0.long($1)"')
-
-#!markdown
-
-## arg_value_names
-
-#!spiral
-
-inl arg_value_names (values : array_base (rust.static_ref sm'.str)) (arg : arg) : arg =
-    inl values = values |> am'.to_vec
-    !\\((arg, values), $'"$0.value_names($1)"')
-
-#!markdown
-
-## arg_num_args
-
-#!spiral
-
-inl arg_num_args (value : i32) (arg : arg) : arg =
-    !\\((arg, value), $'"$0.num_args($1)"')
-
-#!markdown
-
-## value_range
-
-#!spiral
-
-nominal value_range = $'clap_builder_ValueRange'
-
-#!markdown
-
-## new_value_range
-
-#!spiral
-
-inl new_value_range start end : value_range =
-    inl len = 0i32 |> convert
-    inl start, end =
-        open am'
-        match start, end with
-        | Start start, End fn =>
-            start, len |> fn
-        | End start_fn, End end_fn =>
-            start_fn len, end_fn len
-    match start, end with
-    | start, end when end =. len => !\($'"clap::builder::ValueRange::new(!start..)"')
-    | start, end => !\($'"clap::builder::ValueRange::new(!start..!end)"')
-
-#!markdown
-
-## arg_num_args_range
-
-#!spiral
-
-inl arg_num_args_range (value : value_range) (arg : arg) : arg =
-    !\\((arg, value), $'"$0.num_args($1)"')
-
-#!markdown
-
-## arg_value_name
-
-#!spiral
-
-inl arg_value_name (value : string) (arg : arg) : arg =
-    inl value = value |> sm'.as_str
-    !\\((arg, value), $'"$0.value_name($1)"')
-
-#!markdown
-
-## value_parser
-
-#!spiral
-
-nominal value_parser = $'clap_builder_ValueParser'
-
-#!markdown
-
-## possible_value
-
-#!spiral
-
-nominal possible_value = $'clap_builder_PossibleValue'
-
-#!markdown
-
-## new_possible_value
-
-#!spiral
-
-inl new_possible_value forall t. (x : t) : possible_value =
-    !\\(x, $'"clap::builder::PossibleValue::new(&**$0)"')
-
-#!markdown
-
-## value_parser_path_buf
-
-#!spiral
-
-inl value_parser_path_buf () : value_parser =
-    !\($'"clap::value_parser\!(std::path::PathBuf)"')
-
-#!markdown
-
-## value_parser_expr
-
-#!spiral
-
-inl value_parser_expr (expr : string) : value_parser =
-    !\($'"clap::value_parser\!(" + !expr + ").into()"')
-
-#!markdown
-
-## arg_value_parser
-
-#!spiral
-
-inl arg_value_parser (values : value_parser) (arg : arg) : arg =
-    !\\((arg, values), $'"$0.value_parser($1)"')
-
-#!markdown
-
-## arg_action
-
-#!spiral
-
-nominal arg_action' = $'clap_ArgAction'
-
-union arg_action =
-    | Set
-    | Append
-    | SetTrue
-    | SetFalse
-    | Count
-    | Help
-    | HelpShort
-    | HelpLong
-    | Version
-
-inl arg_action = function
-    | Set => !\($'"clap::ArgAction::Set"') : arg_action'
-    | Append => !\($'"clap::ArgAction::Append"') : arg_action'
-    | SetTrue => !\($'"clap::ArgAction::SetTrue"') : arg_action'
-    | SetFalse => !\($'"clap::ArgAction::SetFalse"') : arg_action'
-    | Count => !\($'"clap::ArgAction::Count"') : arg_action'
-    | Help => !\($'"clap::ArgAction::Help"') : arg_action'
-    | HelpShort => !\($'"clap::ArgAction::HelpShort"') : arg_action'
-    | HelpLong => !\($'"clap::ArgAction::HelpLong"') : arg_action'
-    | Version => !\($'"clap::ArgAction::Version"') : arg_action'
-
-inl arg_action (value : arg_action) (arg : arg) : arg =
-    inl value = value |> arg_action
-    !\\((arg, value), $'"$0.action($1)"')
-
-#!markdown
-
-## arg_index
-
-#!spiral
-
-inl arg_index (value : i32) (arg : arg) : arg =
-    !\\((arg, value), $'"$0.index($1)"')
-
-#!markdown
-
-## arg_matches
-
-#!spiral
-
-nominal arg_matches = $'clap_ArgMatches'
-
-#!markdown
-
-## command_get_matches
-
-#!spiral
-
-inl command_get_matches (command : command) : arg_matches =
-    !\\(command, $'"clap::Command::get_matches($0)"')
-
-#!markdown
-
-## command_get_matches_from
-
-#!spiral
-
-inl command_get_matches_from (args : array_base string) (command : command) : arg_matches =
-    inl args = args |> am'.to_vec |> am'.vec_map sm'.to_std_string
-    !\\(command, $'"clap::Command::get_matches_from($0, !args)"')
-
-#!markdown
-
-## command_init_arg
-
-#!spiral
-
-inl command_init_arg (long, short) fn command =
-    command
-    |> command_arg (
-        new_arg ##long
-        |> arg_short short
-        |> arg_long ##long
-        |> fn
-    )
-
-#!markdown
-
-## matches_get_one
-
-#!spiral
-
-inl matches_get_one forall t. (x : string) (matches : arg_matches) : optionm'.option' t =
-    inl x = join x
-    inl x = x |> sm'.as_str
-    !\\(matches, $'"clap::ArgMatches::get_one(&$0, !x).cloned()"')
-
-#!markdown
-
-## matches_get_flag
-
-#!spiral
-
-inl matches_get_flag (x : string) (matches : arg_matches) : bool =
-    inl x = join x
-    inl x = x |> sm'.as_str
-    !\($'"clap::ArgMatches::get_flag(&!matches, !x)"')
-
-#!markdown
-
-## matches_get_many
-
-#!spiral
-
-inl matches_get_many forall t. (x : string) (matches : arg_matches) : optionm'.option' (am'.vec t) =
-    inl x = join x
-    inl x = x |> sm'.as_str
-    !\\(matches, $'"clap::ArgMatches::get_many(&$0, !x).map(|x| x.cloned().into_iter().collect())"')
-
-#!markdown
-
-## matches_get_occurrences
-
-#!spiral
-
-inl matches_get_occurrences (x : string) (matches : arg_matches) : optionm'.option' (array_base sm'.std_string) =
-    inl x = join x
-    inl x = x |> sm'.as_str
-    !\($'"clap::ArgMatches::get_occurrences(&!matches, !x).cloned()"')
-
-#!markdown
-
-## matches_subcommand
-
-#!spiral
-
-inl matches_subcommand (matches : arg_matches) : optionm'.option' (sm'.std_string * arg_matches) =
-    !\\((matches, sm'.ref_to_std_string), $'"clap::ArgMatches::subcommand(Box::leak(Box::new($0))).map(|(a, b)| ($1(a), b.clone()))"')
-
-#!markdown
-
-## matches_values_of
-
-#!spiral
-
-inl matches_values_of (x : string) (matches : arg_matches) : array_base sm'.std_string =
-    !\\((matches, x), $'"clap::ArgMatches::values_of($0, &*$1)"')
-
-#!markdown
-
-## command_subcommand_required
-
-#!spiral
-
-inl command_subcommand_required (value : bool) (command : command) : command =
-    !\\(command, $'"clap::Command::subcommand_required($0, !value)"')
-
-#!markdown
-
-## command_subcommand
-
-#!spiral
-
-inl command_subcommand (subcommand : command) (command : command) : command =
-    !\\(command, $'"clap::Command::subcommand($0, !subcommand)"')
-
-#!markdown
-
-## value_parser_possible_values
-
-#!spiral
-
-inl value_parser_possible_values (values : array_base string) : value_parser =
-    inl values =
-        values
-        |> am'.to_vec
-        |> am'.vec_map (sm'.to_std_string >> rust.new_box >> rust.box_leak >> new_possible_value)
-    !\\(values, $'"Into::<clap::builder::ValueParser>::into(clap::builder::PossibleValuesParser::new($0))"')
-
-#!markdown
-
-## arg_union
-
-#!spiral
-
-inl arg_union forall union_type. (fn : union_type -> ()) (arg : arg) : arg =
-    arg
-    |> arg_value_parser (
-        real reflection.get_union_fields_untag `union_type ()
-        |> fun x => x : _ (string * union_type)
-        |> listm.map fst
-        |> listm'.box
-        |> listm'.to_array'
-        |> value_parser_possible_values
-    )
-
-#!spiral
-
-//// test
-///! rust -d clap
-
-##"command"
-|> new_command
-|> command_init_arg ("trace-level", 't') (
-    real arg_union `trace_level ignore
-)
-|> command_get_matches_from ;[ "_"; "--trace-level"; "Critical" ]
-|> matches_get_one "trace-level"
-|> optionm'.unwrap
-|> sm'.from_std_string
-|> reflection.union_try_pick
-|> optionm.value
-|> _assert_eq Critical
-
-#!markdown
-
-## command_debug_assert
-
-#!spiral
-
-inl command_debug_assert (command : command) : () =
-    !\\(command, $'"clap::Command::debug_assert($0)"')
+let execute_retry retries options =
+    fun () =>
+        inl exit_code, result = options |> execute_with_options
+        if exit_code = 0
+        then Ok (exit_code, result)
+        else Error (exit_code, result)
+    |> retry_fn' retries
 
 #!markdown
 

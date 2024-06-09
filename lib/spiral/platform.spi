@@ -4,7 +4,9 @@ open rust_operators
 inl types () =
     ()
 
-/// ## os_platform
+/// ## fsharp
+
+/// ### os_platform
 nominal os_platform' = $'System.Runtime.InteropServices.OSPlatform'
 
 union os_platform =
@@ -19,7 +21,7 @@ inl os_platform = function
     | OSX => $'`os_platform'.OSX' : os_platform'
     | Windows => $'`os_platform'.Windows' : os_platform'
 
-/// ## run_platform
+/// ### run_platform
 inl run_platform forall t. (fn : os_platform -> (() -> t)) : t =
     inl result = dyn true
     $'let mutable _!result : `t option = None '
@@ -35,11 +37,19 @@ inl run_platform forall t. (fn : os_platform -> (() -> t)) : t =
     $'|> fun x -> _!result <- Some x'
     $'match _!result with Some x -> x | None -> failwith "runtime.run_platform / _!result=None"'
 
-/// ## is_os_platform
+/// ### is_os_platform
 inl is_os_platform (x : os_platform') : bool =
     x |> $'System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform'
 
-/// ## is_windows
+/// ### is_windows'
+inl is_windows' () : bool =
+    run_platform function
+        | Windows => fun () => true
+        | _ => fun () => false
+
+/// ## platform
+
+/// ### is_windows
 inl is_windows () : bool =
     run_target function
         | Rust _ => fun () =>
@@ -48,13 +58,7 @@ inl is_windows () : bool =
             Windows |> os_platform |> is_os_platform
         | target => fun () => failwith $'$"platform.is_windows / target: {!target}"'
 
-/// ## is_windows'
-inl is_windows' () : bool =
-    run_platform function
-        | Windows => fun () => true
-        | _ => fun () => false
-
-/// ## get_executable_suffix
+/// ### get_executable_suffix
 inl get_executable_suffix () =
     if is_windows ()
     then ".exe"

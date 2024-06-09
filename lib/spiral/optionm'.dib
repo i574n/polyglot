@@ -4,7 +4,11 @@
 
 #!markdown
 
-# optionm
+# optionm'
+
+#!spiral
+
+open rust_operators
 
 #!spiral
 
@@ -12,13 +16,13 @@
 
 open testing
 
-#!spiral
+#!markdown
 
-open rust_operators
+## optionm'
 
 #!markdown
 
-## default_value
+### default_value
 
 #!spiral
 
@@ -35,7 +39,7 @@ None
 
 #!markdown
 
-## (/??)
+### (/??)
 
 #!spiral
 
@@ -51,7 +55,7 @@ None /?? 3i32
 
 #!markdown
 
-## default_with
+### default_with
 
 #!spiral
 
@@ -69,7 +73,7 @@ None
 
 #!markdown
 
-## choose
+### choose
 
 #!spiral
 
@@ -88,7 +92,7 @@ inl choose fn a b =
 
 #!markdown
 
-## iter
+### iter
 
 #!spiral
 
@@ -111,7 +115,22 @@ None |> iter fn
 
 #!markdown
 
-## option'
+### flatten
+
+#!spiral
+
+inl flatten x =
+    match x with
+    | Some (Some x) => Some x
+    | _ => None
+
+#!markdown
+
+## fsharp
+
+#!markdown
+
+### option'
 
 #!spiral
 
@@ -119,7 +138,7 @@ nominal option' t = $'`t option'
 
 #!markdown
 
-## none'
+### none'
 
 #!spiral
 
@@ -128,7 +147,7 @@ inl none' forall t. () : option' t =
 
 #!markdown
 
-## some'
+### some'
 
 #!spiral
 
@@ -137,7 +156,7 @@ inl some' forall t. (x : t) : option' t =
 
 #!markdown
 
-## default_value'
+### default_value'
 
 #!spiral
 
@@ -146,16 +165,21 @@ inl default_value' forall t. (value : t) (x : option' t) : t =
 
 #!markdown
 
-## try'
+### box
 
 #!spiral
 
-inl try' forall t. (x : option' t) : t =
-    !\\(x, $'"$0?"')
+inl box forall t. (x : option t) : option' t =
+    // x
+    // |> optionm.map some'
+    // |> default_with none'
+    match x with
+    | Some x => some' x
+    | None => none' ()
 
 #!markdown
 
-## map
+### map
 
 #!spiral
 
@@ -176,32 +200,7 @@ inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
 
 #!markdown
 
-## box
-
-#!spiral
-
-inl box forall t. (x : option t) : option' t =
-    // x
-    // |> optionm.map some'
-    // |> default_with none'
-    match x with
-    | Some x => some' x
-    | None => none' ()
-
-#!markdown
-
-## map'
-
-#!spiral
-
-inl map' forall t u. (fn : t -> u) (x : option' t) : option' u =
-    (!\($'"true; let _result = !x.map(|x| { //"') : bool) |> ignore
-    (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
-    !\($'"_result"')
-
-#!markdown
-
-## map''
+### map''
 
 #!spiral
 
@@ -210,7 +209,7 @@ inl map'' forall t u. (fn : t -> u) (x : option' t) : option' u =
 
 #!markdown
 
-## unbox
+### unbox
 
 #!spiral
 
@@ -244,7 +243,7 @@ inl y' = y |> box |> map id |> unbox
 
 #!markdown
 
-## of_obj
+### of_obj
 
 #!spiral
 
@@ -279,18 +278,7 @@ null ()
 
 #!markdown
 
-## flatten
-
-#!spiral
-
-inl flatten x =
-    match x with
-    | Some (Some x) => Some x
-    | _ => None
-
-#!markdown
-
-## flatten'
+### flatten'
 
 #!spiral
 
@@ -302,7 +290,31 @@ inl flatten' x =
 
 #!markdown
 
-## unwrap
+## rust
+
+#!markdown
+
+### try'
+
+#!spiral
+
+inl try' forall t. (x : option' t) : t =
+    !\\(x, $'"$0?"')
+
+#!markdown
+
+### map'
+
+#!spiral
+
+inl map' forall t u. (fn : t -> u) (x : option' t) : option' u =
+    (!\($'"true; let _result = !x.map(|x| { //"') : bool) |> ignore
+    (!\\(fn !\($'"x"'), $'"true; $0 })"') : bool) |> ignore
+    !\($'"_result"')
+
+#!markdown
+
+### unwrap
 
 #!spiral
 
@@ -311,7 +323,7 @@ inl unwrap forall t. (x : option' t) : t =
 
 #!markdown
 
-## take
+### take
 
 #!spiral
 
@@ -321,7 +333,7 @@ inl take forall t. (x : option' t) : option' t =
 
 #!markdown
 
-## take_ref
+### take_ref
 
 #!spiral
 
@@ -331,7 +343,7 @@ inl take_ref forall t. (x : rust.ref' (option' t)) : option' t =
 
 #!markdown
 
-## take_ref_mut
+### take_ref_mut
 
 #!spiral
 
@@ -340,7 +352,7 @@ inl take_ref_mut forall t. (x : rust.ref' (rust.mut' (option' t))) : option' t =
 
 #!markdown
 
-## as_ref
+### as_ref
 
 #!spiral
 
@@ -349,7 +361,7 @@ inl as_ref forall t. (x : rust.ref' (option' t)) : option' (rust.ref' t) =
 
 #!markdown
 
-## as_mut
+### as_mut
 
 #!spiral
 
@@ -358,7 +370,7 @@ inl as_mut forall t. (x : rust.ref' (rust.mut' (option' t))) : option' (rust.ref
 
 #!markdown
 
-## unwrap_or
+### unwrap_or
 
 #!spiral
 
@@ -367,7 +379,7 @@ inl unwrap_or forall t. (def : t) (x : option' t) : t =
 
 #!markdown
 
-## and_then
+### and_then
 
 #!spiral
 
@@ -376,7 +388,7 @@ inl and_then forall t u. (fn : t -> option' u) (x : option' t) : option' u =
 
 #!markdown
 
-## rc_upgrade
+### rc_upgrade
 
 #!spiral
 
@@ -385,7 +397,7 @@ inl rc_upgrade forall t. (x : rust.weak_rc t) : option' (rust.rc t) =
 
 #!markdown
 
-## rc_into_inner
+### rc_into_inner
 
 #!spiral
 

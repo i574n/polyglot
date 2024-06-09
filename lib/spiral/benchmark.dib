@@ -4,7 +4,7 @@
 
 #!markdown
 
-## benchmark (Polyglot)
+## benchmark
 
 #!spiral
 
@@ -12,13 +12,17 @@
 
 open testing
 
+#!markdown
+
+## fsharp
+
 #!spiral
 
 inl gc_collect () =
     run_target function
         | Fsharp _ => fun () => $'System.GC.Collect' ()
         | _ => fun () => ()
-        
+
 inl printfn x =
     console.write_line x
 
@@ -35,7 +39,7 @@ inl stopwatch_start (stopwatch : stopwatch) : () =
 
 #!markdown
 
-## test_case_result
+### test_case_result
 
 #!spiral
 
@@ -49,7 +53,7 @@ type test_case_result =
 
 #!markdown
 
-## run
+### run
 
 #!spiral
 
@@ -99,7 +103,7 @@ inl run forall input expected.
 
 #!markdown
 
-## run_all
+### run_all
 
 #!spiral
 
@@ -118,7 +122,7 @@ inl run_all forall input expected.
 
 #!markdown
 
-## sort_result_list
+### sort_result_list
 
 #!spiral
 
@@ -229,16 +233,16 @@ inl is_fast () =
 
 #!markdown
 
-## empty2Tests
+### empty2Tests
 
 #!markdown
 
 Test: Empty2
 
-Solution: (a, a)  
+Solution: (a, a)
 Test case 1. A. Time: 59L
 
-Solution: (a, a)  
+Solution: (a, a)
 Test case 1. A. Time: 53L
 
 Input   | Expected        | Result  | Best
@@ -246,10 +250,10 @@ Input   | Expected        | Result  | Best
 (a, a)  | a               | a       | (1, 59)
 (a, a)  | a               | a       | (1, 53)
 
-Averages  
+Averages
 Test case 1. Average Time: 56L
 
-Ranking  
+Ranking
 Test case 1. Average Time: 56L
 
 #!spiral
@@ -289,19 +293,19 @@ empty_2_tests ()
 
 #!markdown
 
-## emptyTests
+### emptyTests
 
 #!markdown
 
 Test: Empty
 
-Solution: 0  
+Solution: 0
 Test case 1. A. Time: 61L
 
-Solution: 2  
+Solution: 2
 Test case 1. A. Time: 62L
 
-Solution: 5  
+Solution: 5
 Test case 1. A. Time: 70L
 
 Input   | Expected        | Result  | Best
@@ -310,10 +314,10 @@ Input   | Expected        | Result  | Best
 2       | 2               | 2       | (1, 62)
 5       | 5               | 5       | (1, 70)
 
-Averages  
+Averages
 Test case 1. Average Time: 64L
 
-Ranking  
+Ranking
 Test case 1. Average Time: 64L
 
 #!spiral

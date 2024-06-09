@@ -23,7 +23,11 @@ inl types () =
 
 #!markdown
 
-## os_platform
+## fsharp
+
+#!markdown
+
+### os_platform
 
 #!spiral
 
@@ -43,7 +47,7 @@ inl os_platform = function
 
 #!markdown
 
-## run_platform
+### run_platform
 
 #!spiral
 
@@ -64,7 +68,7 @@ inl run_platform forall t. (fn : os_platform -> (() -> t)) : t =
 
 #!markdown
 
-## is_os_platform
+### is_os_platform
 
 #!spiral
 
@@ -73,7 +77,22 @@ inl is_os_platform (x : os_platform') : bool =
 
 #!markdown
 
-## is_windows
+### is_windows'
+
+#!spiral
+
+inl is_windows' () : bool =
+    run_platform function
+        | Windows => fun () => true
+        | _ => fun () => false
+
+#!markdown
+
+## platform
+
+#!markdown
+
+### is_windows
 
 #!spiral
 
@@ -87,18 +106,7 @@ inl is_windows () : bool =
 
 #!markdown
 
-## is_windows'
-
-#!spiral
-
-inl is_windows' () : bool =
-    run_platform function
-        | Windows => fun () => true
-        | _ => fun () => false
-
-#!markdown
-
-## get_executable_suffix
+### get_executable_suffix
 
 #!spiral
 

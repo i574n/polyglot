@@ -4,7 +4,7 @@
 
 #!markdown
 
-# listm
+# listm'
 
 #!spiral
 
@@ -14,123 +14,11 @@ open testing
 
 #!markdown
 
-## list'
-
-#!spiral
-
-nominal list' t = $'`t list'
-
-#!spiral
-
-inl empty' forall t. () : list' t =
-    $'[]'
-
-#!spiral
-
-inl cons' forall t. (head : t) (tail : list' t) : list' t =
-    $'!head :: !tail '
+## listm'
 
 #!markdown
 
-## box
-
-#!spiral
-
-inl box forall t. (list : list t) : list' t =
-    (list, empty' ())
-    ||> listm.foldBack fun x acc =>
-        acc |> cons' x
-
-#!markdown
-
-## fold'
-
-#!spiral
-
-inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
-    (init, list)
-    ||> $'List.fold' join fun acc x => Cons (fn x, acc)
-
-#!markdown
-
-## fold_back'
-
-#!spiral
-
-inl fold_back' forall t u. (fn : t -> u) (list : list' t) (init : list u) : list u =
-    (list, init)
-    ||> $'List.foldBack' join fun x acc => Cons (fn x, acc)
-
-#!markdown
-
-## filter'
-
-#!spiral
-
-inl filter' forall t. (fn : t -> bool) (list : list' t) : list' t =
-    list |> $'"List.filter !fn"'
-
-#!markdown
-
-## map
-
-#!spiral
-
-inl map forall t u. (fn : t -> u) (list : list' t) : list' u =
-    list |> $'List.map' fn
-
-#!markdown
-
-## filter
-
-#!spiral
-
-inl filter forall t. (fn : t -> bool) (list : list t) : list t =
-    (list, Nil)
-    ||> listm.foldBack fun x acc =>
-        if fn x then x :: acc else acc
-
-#!markdown
-
-## unbox
-
-#!spiral
-
-inl unbox forall t. (list : list' t) : list t =
-    (list, Nil)
-    ||> fold_back' id
-
-#!markdown
-
-## distinct'
-
-#!spiral
-
-inl distinct' forall t. (list : list' t) : list' t =
-    list |> $'List.distinct'
-
-#!spiral
-
-//// test
-
-[ "1"; "2"; "2"; "3" ]
-|> box
-|> distinct'
-|> unbox
-|> _assert_eq [ "1"; "2"; "3" ]
-
-#!markdown
-
-## to_array'
-
-#!spiral
-
-inl to_array' forall t. (items : list' t) : array_base t =
-    items |> $'List.toArray'
-
-#!markdown
-
-## append
+### append
 
 #!spiral
 
@@ -146,7 +34,7 @@ instance append list t =
 
 #!markdown
 
-## collect
+### collect
 
 #!spiral
 
@@ -157,7 +45,7 @@ inl collect forall t r. (fn : t -> list r) (items : list t) : list r =
 
 #!markdown
 
-## init_series
+### init_series
 
 #!spiral
 
@@ -174,7 +62,7 @@ init_series 0 1 0.5
 
 #!markdown
 
-## try_item
+### try_item
 
 #!spiral
 
@@ -201,7 +89,7 @@ listm.init 10i32 id
 
 #!markdown
 
-## item
+### item
 
 #!spiral
 
@@ -230,7 +118,7 @@ fun () =>
 
 #!markdown
 
-## try_item_
+### try_item_
 
 #!spiral
 
@@ -241,7 +129,7 @@ let rec try_item_ i = function
 
 #!markdown
 
-## item_
+### item_
 
 #!spiral
 
@@ -250,7 +138,7 @@ inl item_ i =
 
 #!markdown
 
-## sum
+### sum
 
 #!spiral
 
@@ -267,7 +155,7 @@ listm.init 10i32 id
 
 #!markdown
 
-## unzip
+### unzip
 
 #!spiral
 
@@ -294,7 +182,7 @@ listm.init 10i32 id
 
 #!markdown
 
-## try_index_of
+### try_index_of
 
 #!spiral
 
@@ -360,7 +248,7 @@ listm.init 10i32 id
 
 #!markdown
 
-## try_find
+### try_find
 
 #!spiral
 
@@ -408,7 +296,7 @@ listm.init 10i32 id
 
 #!markdown
 
-## choose
+### choose
 
 #!spiral
 
@@ -429,7 +317,18 @@ listm.init 10i32 id
 
 #!markdown
 
-## zip_with
+### filter
+
+#!spiral
+
+inl filter forall t. (fn : t -> bool) (list : list t) : list t =
+    (list, Nil)
+    ||> listm.foldBack fun x acc =>
+        if fn x then x :: acc else acc
+
+#!markdown
+
+### zip_with
 
 #!spiral
 
@@ -459,7 +358,7 @@ inl zip_with_ fn xs ys =
 
 #!markdown
 
-## zip
+### zip
 
 #!spiral
 
@@ -479,7 +378,7 @@ inl zip_ xs ys =
 
 #!markdown
 
-## indexed
+### indexed
 
 #!spiral
 
@@ -500,7 +399,7 @@ listm.init 5i32 ((*) 2)
 
 #!markdown
 
-## group_by
+### group_by
 
 #!spiral
 
@@ -528,7 +427,7 @@ listm.init 10i32 id
 
 #!markdown
 
-## forall'
+### forall'
 
 #!spiral
 
@@ -547,7 +446,7 @@ inl forall' fn (head :: tail) =
 
 #!markdown
 
-## last
+### last
 
 #!spiral
 
@@ -566,7 +465,7 @@ listm.init 10i32 id
 
 #!markdown
 
-## try_pick
+### try_pick
 
 #!spiral
 
@@ -596,7 +495,7 @@ listm.init 10i32 id
 
 #!markdown
 
-## exists'
+### exists'
 
 #!spiral
 
@@ -625,3 +524,112 @@ inl exists' f x =
 []
 |> exists' fun x => x = 'a'
 |> _assert_eq false
+
+#!markdown
+
+## fsharp
+
+#!markdown
+
+### list'
+
+#!spiral
+
+nominal list' t = $'`t list'
+
+#!spiral
+
+inl empty' forall t. () : list' t =
+    $'[]'
+
+#!spiral
+
+inl cons' forall t. (head : t) (tail : list' t) : list' t =
+    $'!head :: !tail '
+
+#!markdown
+
+### box
+
+#!spiral
+
+inl box forall t. (list : list t) : list' t =
+    (list, empty' ())
+    ||> listm.foldBack fun x acc =>
+        acc |> cons' x
+
+#!markdown
+
+### fold'
+
+#!spiral
+
+inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
+    (init, list)
+    ||> $'List.fold' join fun acc x => Cons (fn x, acc)
+
+#!markdown
+
+### fold_back'
+
+#!spiral
+
+inl fold_back' forall t u. (fn : t -> u) (list : list' t) (init : list u) : list u =
+    (list, init)
+    ||> $'List.foldBack' join fun x acc => Cons (fn x, acc)
+
+#!markdown
+
+### filter'
+
+#!spiral
+
+inl filter' forall t. (fn : t -> bool) (list : list' t) : list' t =
+    list |> $'"List.filter !fn"'
+
+#!markdown
+
+### map
+
+#!spiral
+
+inl map forall t u. (fn : t -> u) (list : list' t) : list' u =
+    list |> $'List.map' fn
+
+#!markdown
+
+### unbox
+
+#!spiral
+
+inl unbox forall t. (list : list' t) : list t =
+    (list, Nil)
+    ||> fold_back' id
+
+#!markdown
+
+### distinct'
+
+#!spiral
+
+inl distinct' forall t. (list : list' t) : list' t =
+    list |> $'List.distinct'
+
+#!spiral
+
+//// test
+
+[ "1"; "2"; "2"; "3" ]
+|> box
+|> distinct'
+|> unbox
+|> _assert_eq [ "1"; "2"; "3" ]
+
+#!markdown
+
+### to_array'
+
+#!spiral
+
+inl to_array' forall t. (items : list' t) : array_base t =
+    items |> $'List.toArray'

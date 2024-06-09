@@ -1278,33 +1278,6 @@ and closure7 (v0 : int32) (v1 : exn) : US5 =
     let v3 : (unit -> string) = closure8()
     let v4 : (unit -> string) = closure9(v0, v1)
     method7(v2, v3, v4)
-    let v5 : bool = true
-    let mutable _v5 : unit option = None 
-    
-#if FABLE_COMPILER || WASM || CONTRACT
-    
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    () 
-    #endif
-#if FABLE_COMPILER_RUST && WASM
-    () 
-    #endif
-#if FABLE_COMPILER_RUST && CONTRACT
-    () 
-    #endif
-#if FABLE_COMPILER_TYPESCRIPT
-    () 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    () 
-    #endif
-#else
-    let v6 : (int32 -> unit) = System.Threading.Thread.Sleep
-    v6 1
-    () 
-    #endif
-    |> fun x -> _v5 <- Some x
-    match _v5 with Some x -> x | None -> failwith "base.run_target / _v5=None"
     US5_1
 and method6 (v0 : int32, v1 : (unit -> unit), v2 : int32) : US4 =
     let v3 : (unit -> US4) = closure5(v0, v1, v2)

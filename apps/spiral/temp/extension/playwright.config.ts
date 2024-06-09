@@ -15,7 +15,7 @@ export default {
 
   webServer: [
     {
-      command: "cd dist && npx serve",
+      command: "cd dist && pwsh -c \"~/.bun/bin/bunx --bun serve\"",
       url: baseURL,
       timeout: 40 * 1000,
       reuseExistingServer: false, // !process.env.CI,

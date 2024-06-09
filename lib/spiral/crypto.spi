@@ -64,7 +64,7 @@ inl hash_read data : resultm.result' string stream.io_error =
     (!\($'"true; let mut !reader = !reader"') : bool) |> ignore
     inl hasher = new_sha256 ()
     (!\($'"true; let mut !hasher = !hasher"') : bool) |> ignore
-    
+
     real
         inl size = 1024
         inl zero = convert `i32 `unativeint 0
@@ -108,19 +108,19 @@ inl get_file_hash (path : string) =
 
 /// ### create_hash
 inl create_hash (x : string) : any =
-    open ts_operators
+    open typescript_operators
     global "type ICryptoCreateHash = abstract createHash: x: string -> obj"
-    inl crypto : $'ICryptoCreateHash' = ts.import_all "crypto"
+    inl crypto : $'ICryptoCreateHash' = typescript.import_all "crypto"
     !\\(x, $'"!crypto.createHash($0)"')
 
 /// ### hash_update
 inl hash_update (s : string) (x : any) : any =
-    open ts_operators
+    open typescript_operators
     !\\((x, s), $'"$0.update($1, \'utf8\')"')
 
 /// ### hash_digest
 inl hash_digest (s : string) (x : any) : string =
-    open ts_operators
+    open typescript_operators
     !\\((x, s), $'"$0.digest($1)"')
 
 /// ## python
@@ -130,23 +130,25 @@ nominal py_sha256 = any
 
 /// ### hashlib_sha256
 inl hashlib_sha256 () : py_sha256 =
-    open py_operators
+    open python_operators
     global "type IHashlibSha256 = abstract sha256: x: unit -> obj"
-    inl hashlib : $'IHashlibSha256' = py.import_all "hashlib"
+    inl hashlib : $'IHashlibSha256' = python.import_all "hashlib"
     !\($'"!hashlib.sha256()"')
 
 /// ### sha256_update
 inl sha256_update (x : string) (sha256 : py_sha256) : py_sha256 =
-    open py_operators
+    open python_operators
     !\\(x, $'"!sha256.update($0)"')
     sha256
 
 /// ### sha256_hexdigest
 inl sha256_hexdigest (sha256 : py_sha256) : string =
-    open py_operators
+    open python_operators
     !\($'"!sha256.hexdigest()"')
 
-/// ## hash_text
+/// ## crypto
+
+/// ### hash_text
 let hash_text (~input : string) =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -175,7 +177,7 @@ let hash_text (~input : string) =
             |> sha256_hexdigest
         | _ => fun () => null ()
 
-/// ## hash_to_port
+/// ### hash_to_port
 inl hash_to_port (text : string) : u16 =
     inl first_letter_code = text |> sm'.index 0i32 |> i32
     inl hash_part = text |> sm'.slice 0i32 7

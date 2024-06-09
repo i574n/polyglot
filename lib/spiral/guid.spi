@@ -1,17 +1,19 @@
 /// # guid
 
 /// ## guid
+
+/// ### guid
 nominal guid = $'System.Guid'
 
-/// ## new_guid
+/// ### new_guid
 inl new_guid (x : string) : guid =
     x |> convert
 
-/// ## new_raw_guid
+/// ### new_raw_guid
 inl new_raw_guid () : guid =
     $'System.Guid.NewGuid' ()
 
-/// ## hash_guid
+/// ### hash_guid
 type hash_guid = guid
 
 let hash_guid (~hash : string) : hash_guid =

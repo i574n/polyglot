@@ -157,6 +157,10 @@ inl write_all_text_async (path : string) (text : string) : _ () =
 /// ### file_system_info
 nominal file_system_info = $'System.IO.FileSystemInfo'
 
+/// ### get_source_directory
+inl get_source_directory () =
+    $'__SOURCE_DIRECTORY__' : string
+
 /// ## rust
 
 /// ### display
@@ -308,12 +312,14 @@ inl read_link (path : string) : resultm.result' path_buf stream.io_error =
 
 /// ### ts_path_join
 inl ts_path_join (b : string) (a : string) : string =
-    open ts_operators
+    open typescript_operators
     global "type IPathJoin = abstract join: [<System.ParamArray>] paths: string[] -> string"
-    inl path : $'IPathJoin' = ts.import_all "path"
+    inl path : $'IPathJoin' = typescript.import_all "path"
     !\\((join a, join b), $'"!path.join($0, $1)"')
 
-/// ## (< />)
+/// ## file_system
+
+/// ### (< />)
 let (</>) (a : string) (b : string) : string =
     run_target function
         | Rust (Contract) => fun () => null ()
@@ -331,7 +337,7 @@ let (</>) (a : string) (b : string) : string =
             $'System.IO.Path.Combine (!a, !b)'
         | target => fun () => failwith $'$"file_system.(</>) / target: {!target} / a: {!a} / b: {!b}"'
 
-/// ## get_temp_path
+/// ### get_temp_path
 let get_temp_path () : string =
     run_target function
         | Rust (Contract) => fun () => null ()
@@ -345,7 +351,7 @@ let get_temp_path () : string =
             $'System.IO.Path.GetTempPath' ()
         | target => fun () => failwith $'$"file_system.get_temp_path / target: {!target}"'
 
-/// ## get_file_name
+/// ### get_file_name
 let get_file_name (path : string) : string =
     run_target function
         | Rust (Contract) => fun () => null ()
@@ -359,7 +365,7 @@ let get_file_name (path : string) : string =
             path |> $'System.IO.Path.GetFileName'
         | target => fun () => failwith $'$"file_system.get_file_name / target: {!target} / path: {!path}"'
 
-/// ## get_file_name_without_extension
+/// ### get_file_name_without_extension
 let get_file_name_without_extension (path : string) : string =
     run_target function
         | Rust (Contract) => fun () => null ()
@@ -372,7 +378,7 @@ let get_file_name_without_extension (path : string) : string =
         | _ => fun () =>
             path |> $'System.IO.Path.GetFileNameWithoutExtension'
 
-/// ## get_directory_name
+/// ### get_directory_name
 let get_directory_name (path : string) : string =
     run_target function
         | Rust (Contract) => fun () => null ()
@@ -387,7 +393,7 @@ let get_directory_name (path : string) : string =
         | _ => fun () =>
             path |> $'System.IO.Path.GetDirectoryName'
 
-/// ## get_extension
+/// ### get_extension
 let get_extension (path : string) : string =
     run_target function
         | Rust (Contract) => fun () => null ()
@@ -400,7 +406,7 @@ let get_extension (path : string) : string =
         | _ => fun () =>
             path |> $'System.IO.Path.GetExtension'
 
-/// ## directory_separator_char
+/// ### directory_separator_char
 let directory_separator_char () : char =
     run_target function
         | Rust (Native) => fun () =>
@@ -408,9 +414,8 @@ let directory_separator_char () : char =
             !\($'"std::path::MAIN_SEPARATOR"')
         | _ => fun () =>
             $'System.IO.Path.DirectorySeparatorChar'
-        | _ => fun () => null ()
 
-/// ## get_current_directory
+/// ### get_current_directory
 let get_current_directory () : string =
     run_target function
         | Rust (Contract | Wasm) => fun () => null ()
@@ -422,15 +427,16 @@ let get_current_directory () : string =
             |> path_buf_display
             |> sm'.format'
             |> sm'.from_std_string
-        | _ => fun () =>
+        | Fsharp (Native) => fun () =>
             $'System.IO.Directory.GetCurrentDirectory' ()
+        | _ => fun () => null ()
 
-/// ## normalize_path
+/// ### normalize_path
 let normalize_path (path : string) : string =
     inl path = path |> sm'.replace_regex @"^\\\\\?\\" ""
     $'$"{!path.[0] |> string |> _.ToLower()}{!path.[1..]}"' |> sm'.replace "\\" "/"
 
-/// ## get_full_path
+/// ### get_full_path
 let get_full_path (path : string) : string =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -466,7 +472,7 @@ let get_full_path (path : string) : string =
                 |> sm'.from_std_string
         | _ => fun () => null ()
 
-/// ## create_temp_path'
+/// ### create_temp_path'
 let create_temp_path' (guid : guid.guid) =
     run_target function
         | Rust (Contract) => fun () => null ()
@@ -476,7 +482,7 @@ let create_temp_path' (guid : guid.guid) =
             </> (env.get_entry_assembly_name ())
             </> (guid |> sm'.obj_to_string)
 
-/// ## create_temp_path
+/// ### create_temp_path
 let create_temp_path () =
     run_target function
         | Rust (Contract) => fun () => null ()
@@ -485,11 +491,7 @@ let create_temp_path () =
             |> date_time.new_guid_from_date_time
             |> create_temp_path'
 
-/// ## get_source_directory
-inl get_source_directory () =
-    $'__SOURCE_DIRECTORY__' : string
-
-/// ## directory_exists
+/// ### directory_exists
 let directory_exists (path : string) : bool =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -499,12 +501,12 @@ let directory_exists (path : string) : bool =
             path_buf_exists path || path_buf_is_dir path || path_buf_is_symlink path
         | TypeScript (Native) => fun () =>
             global "type IFsExistsSync = abstract existsSync: path: string -> bool"
-            open ts_operators
-            inl fs : $'IFsExistsSync' = ts.import_all "fs"
+            open typescript_operators
+            inl fs : $'IFsExistsSync' = typescript.import_all "fs"
             !\\((fs, path), $'"$0.existsSync($1)"')
         | _ => fun () => null ()
 
-/// ## directory_get_parent
+/// ### directory_get_parent
 let directory_get_parent (path : string) : optionm'.option' string =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -523,13 +525,14 @@ let directory_get_parent (path : string) : optionm'.option' string =
             |> sm'.from_std_string
             |> Some
         | TypeScript _ => fun () =>
+            open typescript_operators
             global "type IPathDirname = abstract dirname: path: string -> string"
-            inl fs : $'IPathDirname' = ts.import_all "path"
-            ts.emit_expr path $'"!fs.dirname($0)"' |> Some
+            inl fs : $'IPathDirname' = typescript.import_all "path"
+            !\\(path, $'"!fs.dirname($0)"') |> Some
         | _ => fun () => null ()
     |> optionm'.box
 
-/// ## file_copy
+/// ### file_copy
 let file_copy (new_path : string) (old_path : string) : () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -543,7 +546,7 @@ let file_copy (new_path : string) (old_path : string) : () =
             |> ignore
         | _ => fun () => null ()
 
-/// ## file_exists
+/// ### file_exists
 let file_exists (path : string) : bool =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -552,13 +555,13 @@ let file_exists (path : string) : bool =
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             path_buf_exists path_buf && path_buf_is_file path_buf
         | TypeScript (Native) => fun () =>
-            open ts_operators
+            open typescript_operators
             global "type IFsExistsSync = abstract existsSync: path: string -> bool"
-            inl fs : $'IFsExistsSync' = ts.import_all "fs"
+            inl fs : $'IFsExistsSync' = typescript.import_all "fs"
             !\\((fs, path), $'"$0.existsSync($1)"')
         | _ => fun () => null ()
 
-/// ## directory_delete
+/// ### directory_delete
 let directory_delete recursive (path : string) : () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -572,7 +575,7 @@ let directory_delete recursive (path : string) : () =
                 else !\\(path, $'"std::fs::remove_dir(&*$0).unwrap()"')
         | _ => fun () => null ()
 
-/// ## write_all_text
+/// ### write_all_text
 inl write_all_text (path : string) (text : string) : () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -583,7 +586,7 @@ inl write_all_text (path : string) (text : string) : () =
             !\\((path, text), $'"std::fs::write(&*$0, &*$1).unwrap()"')
         | _ => fun () => null ()
 
-/// ## read_all_bytes
+/// ### read_all_bytes
 inl read_all_bytes (path : string) : am'.vec u8 =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -594,7 +597,7 @@ inl read_all_bytes (path : string) : am'.vec u8 =
             !\\(path, $'"std::fs::read(&*$0).unwrap()"')
         | _ => fun () => null ()
 
-/// ## read_all_text
+/// ### read_all_text
 inl read_all_text (path : string) : string =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -607,7 +610,7 @@ inl read_all_text (path : string) : string =
             |> sm'.from_std_string
         | _ => fun () => null ()
 
-/// ## directory_create_symbolic_link
+/// ### directory_create_symbolic_link
 inl directory_create_symbolic_link (target : string) (path : string) : () =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -620,7 +623,225 @@ inl directory_create_symbolic_link (target : string) (path : string) : () =
                 | _ => fun () => !\\((target, path), $'"std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"')
         | _ => fun () => null ()
 
-/// ## wait_for_file_access
+/// ### find_parent
+inl find_parent name is_file root_dir =
+    let rec loop dir =
+        if dir </> name |> (if is_file then file_exists else directory_exists)
+        then dir |> Ok
+        else
+            inl result = dir |> (join directory_get_parent)
+            match result |> optionm'.unbox with
+            | Some parent => parent |> loop
+            | None => ($'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\' (until \'{!dir}\')"""' : string) |> Error
+    loop root_dir
+
+/// ### get_workspace_root
+inl get_workspace_root () =
+    (None, [ get_source_directory; get_current_directory ])
+    ||> listm.fold fun acc path =>
+        match acc with
+        | Some path => Some path
+        | None =>
+            path ()
+            |> find_parent ("polyglot" </> ".paket") false
+            |> function
+            | Ok path => Some path
+            | Error error =>
+                trace Warning
+                    fun () => "file_system.get_workspace_root"
+                    fun () => $'$"error: {!error} / {!_locals ()}"'
+                None
+    |> optionm.value
+    |> fun root => root </> "polyglot"
+
+/// ### get_workspace_root_external
+inl get_workspace_root_external () =
+    inl workspace_root = get_workspace_root ()
+    inl current_dir = get_current_directory () |> sm'.to_lower
+    inl workspace_root = workspace_root |> sm'.to_lower
+    if current_dir |> sm'.starts_with workspace_root
+    then Error workspace_root
+    else Ok workspace_root
+
+/// ### standardize_path
+let standardize_path path =
+    path |> get_full_path |> normalize_path
+
+/// ### absolute_path
+let absolute_path path =
+    inl current_dir = get_current_directory ()
+    current_dir </> path |> standardize_path
+
+/// ### new_file_uri
+inl new_file_uri (path : string) : string =
+    inl path = path |> sm'.trim_start ;[ '/' ]
+    $'$"file:///{!path}"'
+
+/// ### file_delete
+inl file_delete (path : string) : () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.File.Delete'
+        | Rust (Native) => fun () =>
+            open rust_operators
+            !\\(path, $'"std::fs::remove_file(&*$0).unwrap()"')
+        | _ => fun () => null ()
+
+/// ## rust
+
+/// ### file_exists_content
+let file_exists_content path content : bool =
+    run_target function
+        | Rust (Native) => fun () =>
+            if path |> file_exists |> not
+            then false
+            else
+                inl existing_content = path |> read_all_text
+                content = existing_content
+        | _ => fun () => null ()
+
+/// ### write_all_text_exists
+let write_all_text_exists path contents =
+    inl exists' = contents |> file_exists_content path
+    if not exists'
+    then contents |> write_all_text path
+
+/// ## fsharp
+
+/// ### file_exists_content_async
+inl file_exists_content_async path content : async.async bool =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            fun () =>
+                fix_condition
+                    fun () => path |> file_exists |> not
+                    fun () => false |> return
+                    fun () =>
+                        inl existing_content = path |> read_all_text_async |> async.let'
+                        content = existing_content |> return
+            |> async.new_async_unit
+        | _ => fun () => null ()
+
+/// ### write_all_text_exists_async
+inl write_all_text_exists_async path contents =
+    fun () =>
+        inl exists' = contents |> file_exists_content_async path |> async.let'
+        if not exists'
+        then contents |> write_all_text_async path |> async.do
+    |> async.new_async
+
+/// ### delete_directory_async
+inl delete_directory_async path : _ i64 =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            let rec loop (retry : i64) =
+                fun () =>
+                    try_unit
+                        fun () =>
+                            path |> directory_delete true
+                            retry |> return
+                        fun ex =>
+                            if retry % 100i64 = 0 then
+                                inl ex = ex |> sm'.format_exception
+                                trace Debug
+                                    fun () => "file_system.delete_directory_async"
+                                    fun () => $'$"path: {!path |> !get_file_name} / ex: {!ex} / {!_locals ()}"'
+                            async.sleep 10i32 |> async.do
+                            loop (retry + 1) |> async.return_await
+                |> async.new_async
+            loop 0
+        | _ => fun () => null ()
+
+/// ### trace_file
+let rec trace_file text =
+    run_target function
+    | Fsharp (Native) => fun () =>
+        try_unit
+            fun () =>
+                inl assembly_name = env.get_entry_assembly_name ()
+                inl guid = date_time.now () |> date_time.new_guid_from_date_time
+                inl file_name = $'$"{!assembly_name}_{!guid}.txt"'
+
+                inl workspace_root = get_workspace_root ()
+                inl trace_dir = workspace_root </> "target/trace"
+                trace_dir |> create_directory |> ignore
+                inl path = trace_dir </> file_name
+                text |> write_all_text_async path |> async.run_synchronously
+            fun ex =>
+                trace_file $'$"file_system.trace_file / ex: %A{!ex}"'
+    | _ => fun () => ()
+
+/// ### init_trace_file
+inl init_trace_file enabled =
+    inl state_trace_file = get_trace_state_or_init None .trace_file
+    state_trace_file <- if enabled then trace_file else ignore
+
+/// ## file_system
+
+/// ### create_dir
+let create_dir dir =
+    run_target function
+        | Rust (Contract | Wasm) => fun () => null ()
+        | Rust (Native) => fun () =>
+            inl dir = join dir
+            match dir |> create_dir_all |> resultm.map_error' sm'.format' |> resultm.unbox with
+            | Ok () =>
+                trace Verbose
+                    fun () => "file_system.create_dir"
+                    fun () => $'$"dir: {!dir} / {!_locals ()}"'
+            | Error error =>
+                trace Critical
+                    fun () => "file_system.create_dir"
+                    fun () => $'$"dir: {!dir} / error: {!error} / {!_locals ()}"'
+            inl disposable : _ () = new_disposable fun () =>
+                dir
+                |> directory_delete true
+            disposable
+        | _ => fun () =>
+            inl directory_info = dir |> create_directory
+            inl exists' = directory_info |> directory_info_exists
+            if not exists' then
+                inl creation_time = directory_info |> directory_info_creation_time
+                inl result = ($'{| Exists = !exists'; CreationTime = !creation_time |}' : any) |> sm'.format_debug
+                trace Debug
+                    fun () => "file_system.create_dir"
+                    fun () => $'$"dir: {!dir} / result: {!result} {!_locals ()}"'
+            inl disposable : _ () = new_disposable fun () =>
+                dir
+                |> delete_directory_async
+                |> async.ignore
+                |> async.run_synchronously
+            disposable
+
+/// ### create_temp_dir
+inl create_temp_dir () =
+    inl dir = create_temp_path ()
+    dir, dir |> create_dir
+
+/// ### create_temp_dir'
+inl create_temp_dir' (hash : string) =
+    inl dir = hash |> guid.hash_guid |> create_temp_path'
+    dir, dir |> create_dir
+
+/// ### link_directory
+let link_directory target_path path =
+    if target_path |> directory_exists |> not
+    then target_path |> create_dir |> ignore
+
+    inl lib_dir_path = path |> get_directory_name
+    if lib_dir_path |> directory_exists |> not
+    then lib_dir_path |> create_dir |> ignore
+
+    if (path |> directory_exists)
+        && (path |> read_link |> resultm.is_err) then
+        path |> directory_delete true
+
+    if path |> directory_exists |> not then
+        path |> directory_create_symbolic_link target_path
+
+/// ## fsharp
+
+/// ### wait_for_file_access
 inl wait_for_file_access access path =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -658,7 +879,7 @@ inl wait_for_file_access_read path =
         ShareRead
     ))
 
-/// ## read_all_text_retry_async
+/// ### read_all_text_retry_async
 inl read_all_text_retry_async full_path : async.async (optionm'.option' string) =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -688,190 +909,29 @@ inl read_all_text_retry_async full_path : async.async (optionm'.option' string) 
             loop 0
         | _ => fun () => null ()
 
-/// ## delete_directory_async
-inl delete_directory_async path : _ i64 =
+/// ### move_file_async
+inl move_file_async new_path old_path : _ i64 =
     run_target function
         | Fsharp (Native) => fun () =>
             let rec loop (retry : i64) =
                 fun () =>
                     try_unit
                         fun () =>
-                            path |> directory_delete true
-                            retry |> return
+                            old_path |> file_move new_path
+                            return retry
                         fun ex =>
-                            if retry % 100i64 = 0 then
-                                inl ex = ex |> sm'.format_exception
-                                trace Debug
-                                    fun () => "file_system.delete_directory_async"
-                                    fun () => $'$"path: {!path |> !get_file_name} / ex: {!ex} / {!_locals ()}"'
-                            async.sleep 10i32 |> async.do
+                            if retry % 100 = 0 then
+                                inl _locals () =
+                                    inl ex = ex |> sm'.format_exception
+                                    $'$"old_path: {!old_path |> !get_file_name} / new_path: {!new_path |> !get_file_name} / ex: {!ex} / {!_locals ()}"'
+                                trace Warning (fun () => "move_file_async") _locals
+                            async.sleep 10 |> async.do
                             loop (retry + 1) |> async.return_await
-                |> async.new_async
+                |> async.new_async_unit
             loop 0
         | _ => fun () => null ()
 
-/// ## create_dir
-let create_dir dir =
-    run_target function
-        | Rust (Contract | Wasm) => fun () => null ()
-        | Rust (Native) => fun () =>
-            inl dir = join dir
-            match dir |> create_dir_all |> resultm.map_error' sm'.format' |> resultm.unbox with
-            | Ok () =>
-                trace Verbose
-                    fun () => "file_system.create_dir"
-                    fun () => $'$"dir: {!dir} / {!_locals ()}"'
-            | Error error =>
-                trace Critical
-                    fun () => "file_system.create_dir"
-                    fun () => $'$"dir: {!dir} / error: {!error} / {!_locals ()}"'
-            inl disposable : _ () = new_disposable fun () =>
-                dir
-                |> directory_delete true
-            disposable
-        | _ => fun () =>
-            inl directory_info = dir |> create_directory
-            inl exists' = directory_info |> directory_info_exists
-            if not exists' then
-                inl creation_time = directory_info |> directory_info_creation_time
-                inl result = ($'{| Exists = !exists'; CreationTime = !creation_time |}' : any) |> sm'.format_debug
-                trace Debug
-                    fun () => "file_system.create_dir"
-                    fun () => $'$"dir: {!dir} / result: {!result} {!_locals ()}"'
-            inl disposable : _ () = new_disposable fun () =>
-                dir
-                |> delete_directory_async
-                |> async.ignore
-                |> async.run_synchronously
-            disposable
-
-/// ## create_temp_dir
-inl create_temp_dir () =
-    inl dir = create_temp_path ()
-    dir, dir |> create_dir
-
-/// ## create_temp_dir'
-inl create_temp_dir' (hash : string) =
-    inl dir = hash |> guid.hash_guid |> create_temp_path'
-    dir, dir |> create_dir
-
-/// ## link_directory
-let link_directory target_path path =
-    if target_path |> directory_exists |> not
-    then target_path |> create_dir |> ignore
-
-    inl lib_dir_path = path |> get_directory_name
-    if lib_dir_path |> directory_exists |> not
-    then lib_dir_path |> create_dir |> ignore
-
-    if (path |> directory_exists)
-        && (path |> read_link |> resultm.is_err) then
-        path |> directory_delete true
-
-    if path |> directory_exists |> not then
-        path |> directory_create_symbolic_link target_path
-
-/// ## find_parent
-inl find_parent name is_file root_dir =
-    let rec loop dir =
-        if dir </> name |> (if is_file then file_exists else directory_exists)
-        then dir |> Ok
-        else
-            inl result = dir |> (join directory_get_parent)
-            match result |> optionm'.unbox with
-            | Some parent => parent |> loop
-            | None => ($'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\' (until \'{!dir}\')"""' : string) |> Error
-    loop root_dir
-
-/// ## get_workspace_root
-inl get_workspace_root () =
-    (None, [ get_source_directory; get_current_directory ])
-    ||> listm.fold fun acc path =>
-        match acc with
-        | Some path => Some path
-        | None =>
-            path ()
-            |> find_parent ("polyglot" </> ".paket") false
-            |> function
-            | Ok path => Some path
-            | Error error =>
-                trace Warning
-                    fun () => "file_system.get_workspace_root"
-                    fun () => $'$"error: {!error} / {!_locals ()}"'
-                None
-    |> optionm.value
-    |> fun root => root </> "polyglot"
-
-/// ## get_workspace_root_external
-inl get_workspace_root_external () =
-    inl workspace_root = get_workspace_root ()
-    inl current_dir = get_current_directory () |> sm'.to_lower
-    inl workspace_root = workspace_root |> sm'.to_lower
-    if current_dir |> sm'.starts_with workspace_root
-    then Error workspace_root
-    else Ok workspace_root
-
-/// ## standardize_path
-let standardize_path path =
-    path |> get_full_path |> normalize_path
-
-/// ## absolute_path
-let absolute_path path =
-    inl current_dir = get_current_directory ()
-    current_dir </> path |> standardize_path
-
-/// ## new_file_uri
-inl new_file_uri (path : string) : string =
-    inl path = path |> sm'.trim_start ;[ '/' ]
-    $'$"file:///{!path}"'
-
-/// ## file_exists_content'
-let file_exists_content' path content : bool =
-    run_target function
-        | Rust (Native) => fun () =>
-            if path |> file_exists |> not
-            then false
-            else
-                inl existing_content = path |> read_all_text
-                content = existing_content
-        | _ => fun () => null ()
-
-/// ## write_all_text_exists'
-let write_all_text_exists' path contents =
-    inl exists' = contents |> file_exists_content' path
-    if not exists'
-    then contents |> write_all_text path
-
-/// ## trace_file
-let rec trace_file text =
-    run_target function
-    | Fsharp (Native) => fun () =>
-        try_unit
-            fun () =>
-                inl assembly_name = env.get_entry_assembly_name ()
-                inl guid = date_time.now () |> date_time.new_guid_from_date_time
-                inl file_name = $'$"{!assembly_name}_{!guid}.txt"'
-
-                inl workspace_root = get_workspace_root ()
-                inl trace_dir = workspace_root </> "target/trace"
-                trace_dir |> create_directory |> ignore
-                inl path = trace_dir </> file_name
-                text |> write_all_text_async path |> async.run_synchronously
-            fun ex =>
-                trace_file $'$"file_system.trace_file / ex: %A{!ex}"'
-    | _ => fun () => ()
-
-/// ## file_delete
-inl file_delete (path : string) : () =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            path |> $'System.IO.File.Delete'
-        | Rust (Native) => fun () =>
-            open rust_operators
-            !\\(path, $'"std::fs::remove_file(&*$0).unwrap()"')
-        | _ => fun () => null ()
-
-/// ## delete_file_async
+/// ### delete_file_async
 inl delete_file_async path : _ i64 =
     run_target function
         | Fsharp (Native) => fun () =>
@@ -894,55 +954,6 @@ inl delete_file_async path : _ i64 =
             loop 0
         | _ => fun () => null ()
 
-/// ## move_file_async
-inl move_file_async new_path old_path : _ i64 =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            let rec loop (retry : i64) =
-                fun () =>
-                    try_unit
-                        fun () =>
-                            old_path |> file_move new_path
-                            return retry
-                        fun ex =>
-                            if retry % 100 = 0 then
-                                inl _locals () =
-                                    inl ex = ex |> sm'.format_exception
-                                    $'$"old_path: {!old_path |> !get_file_name} / new_path: {!new_path |> !get_file_name} / ex: {!ex} / {!_locals ()}"'
-                                trace Warning (fun () => "move_file_async") _locals
-                            async.sleep 10 |> async.do
-                            loop (retry + 1) |> async.return_await
-                |> async.new_async_unit
-            loop 0
-        | _ => fun () => null ()
-
-/// ## file_exists_content
-inl file_exists_content path content : _ bool =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            fun () =>
-                fix_condition
-                    fun () => path |> file_exists |> not
-                    fun () => false |> return
-                    fun () =>
-                        inl existing_content = path |> read_all_text_async |> async.let'
-                        content = existing_content |> return
-            |> async.new_async_unit
-        | _ => fun () => null ()
-
-/// ## write_all_text_exists
-inl write_all_text_exists path contents =
-    fun () =>
-        inl exists' = contents |> file_exists_content path |> async.let'
-        if not exists'
-        then contents |> write_all_text_async path |> async.do
-    |> async.new_async
-
-/// ## init_trace_file
-inl init_trace_file enabled =
-    inl state_trace_file = get_trace_state_or_init None .trace_file
-    state_trace_file <- if enabled then trace_file else ignore
-
 /// ## main
 inl main () =
     types ()
@@ -953,7 +964,7 @@ inl main () =
     $'let read_all_text_async x = !read_all_text_async x' : ()
     $'let file_exists_content x = !file_exists_content x' : ()
     $'let write_all_text_async x = !write_all_text_async x' : ()
-    $'let write_all_text_exists x = !write_all_text_exists x' : ()
+    $'let write_all_text_exists x = !write_all_text_exists_async x' : ()
     $'let delete_file_async x = !delete_file_async x' : ()
     $'let move_file_async x = !move_file_async x' : ()
     $'let read_all_text_retry_async x = !read_all_text_retry_async x' : ()

@@ -865,7 +865,7 @@ and closure0 () (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3) =
             v269
     struct (v261, v260, v265, v272, v267)
 and closure4 () () : string =
-    let v0 : string = "runtime.current_process_kill"
+    let v0 : string = "runtime.current_process_kill / exiting... 3"
     v0
 and closure5 () () : string =
     let v0 : string = ""
@@ -1389,6 +1389,12 @@ and method8 (v0 : US0, v1 : (unit -> string)) : unit =
 and method4 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
     let v3 : (unit -> string) = closure6(v0, v1, v2)
     method8(v0, v3)
+and closure7 () () : string =
+    let v0 : string = "runtime.current_process_kill / exiting... 2"
+    v0
+and closure8 () () : string =
+    let v0 : string = "runtime.current_process_kill / exiting... 1"
+    v0
 and closure3 () () : unit =
     let v0 : bool = true
     let mutable _v0 : unit option = None 
@@ -1420,8 +1426,15 @@ and closure3 () () : unit =
     let v2 : (unit -> string) = closure4()
     let v3 : (unit -> string) = closure5()
     method4(v1, v2, v3)
-    System.Threading.Thread.Sleep 2000
-    System.Environment.Exit 1
+    System.Threading.Thread.Sleep 300
+    let v4 : US0 = US0_3
+    let v5 : (unit -> string) = closure7()
+    method4(v4, v5, v3)
+    System.Console.Out.Flush ()
+    System.Threading.Thread.Sleep 60
+    let v6 : US0 = US0_3
+    let v7 : (unit -> string) = closure8()
+    method4(v6, v7, v3)
     System.Diagnostics.Process.GetCurrentProcess().Kill ()
     () 
     #endif
@@ -1471,12 +1484,12 @@ and method12 (v0 : int32, v1 : Mut4) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and closure9 (v0 : char) (v1 : UH0) : UH0 =
+and closure11 (v0 : char) (v1 : UH0) : UH0 =
     UH0_1(v0, v1)
-and closure8 () (v0 : char) : (UH0 -> UH0) =
-    closure9(v0)
+and closure10 () (v0 : char) : (UH0 -> UH0) =
+    closure11(v0)
 and method13 () : (char -> (UH0 -> UH0)) =
-    closure8()
+    closure10()
 and method14 (v0 : string, v1 : string, v2 : UH0, v3 : US4) : struct (string * string) =
     match v2 with
     | UH0_1(v4, v5) -> (* Cons *)
@@ -1631,14 +1644,14 @@ and method10 (v0 : string) : struct (string * string) =
     let v17 : UH0 = v15 v16
     let v18 : US4 = US4_0
     method14(v2, v1, v17, v18)
-and closure10 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) () : string =
+and closure12 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) () : string =
     let v7 : string = $"runtime.execute_with_options_async / options: %A{struct (v0, v1, v2, v3, v4, v5, v6)}"
     v7
 and method15 () : (unit -> string) =
     closure5()
-and closure12 (v0 : string) () : string =
+and closure14 (v0 : string) () : string =
     v0
-and closure11 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option, v7 : System.Diagnostics.Process, v8 : System.Collections.Concurrent.ConcurrentStack<string>) (v9 : System.Diagnostics.DataReceivedEventArgs) : unit =
+and closure13 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option, v7 : System.Diagnostics.Process, v8 : System.Collections.Concurrent.ConcurrentStack<string>) (v9 : System.Diagnostics.DataReceivedEventArgs) : unit =
     let v10 : bool = true
     let mutable _v10 : Async<unit> option = None 
     
@@ -1700,7 +1713,7 @@ and closure11 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
         let v30 : string = $"> {v17}"
         if v5 then
             let v31 : US0 = US0_0
-            let v32 : (unit -> string) = closure12(v30)
+            let v32 : (unit -> string) = closure14(v30)
             let v33 : (unit -> string) = closure5()
             method4(v31, v32, v33)
         else
@@ -1750,7 +1763,7 @@ and closure11 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
     |> fun x -> _v40 <- Some x
     match _v40 with Some x -> x | None -> failwith "base.run_target / _v40=None"
     ()
-and closure13 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option, v7 : System.Diagnostics.Process, v8 : System.Collections.Concurrent.ConcurrentStack<string>) (v9 : System.Diagnostics.DataReceivedEventArgs) : unit =
+and closure15 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option, v7 : System.Diagnostics.Process, v8 : System.Collections.Concurrent.ConcurrentStack<string>) (v9 : System.Diagnostics.DataReceivedEventArgs) : unit =
     let v10 : bool = true
     let mutable _v10 : Async<unit> option = None 
     
@@ -1812,7 +1825,7 @@ and closure13 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
         let v30 : string = $"! {v17}"
         if v5 then
             let v31 : US0 = US0_0
-            let v32 : (unit -> string) = closure12(v30)
+            let v32 : (unit -> string) = closure14(v30)
             let v33 : (unit -> string) = closure5()
             method4(v31, v32, v33)
         else
@@ -1863,7 +1876,7 @@ and closure13 (v0 : System.Threading.CancellationToken option, v1 : string, v2 :
     |> fun x -> _v41 <- Some x
     match _v41 with Some x -> x | None -> failwith "base.run_target / _v41=None"
     ()
-and closure14 (v0 : System.Diagnostics.Process) () : unit =
+and closure16 (v0 : System.Diagnostics.Process) () : unit =
     let v1 : bool = true
     let mutable _v1 : bool option = None 
     
@@ -1930,10 +1943,10 @@ and closure14 (v0 : System.Diagnostics.Process) () : unit =
         |> fun x -> _v10 <- Some x
         match _v10 with Some x -> x | None -> failwith "base.run_target / _v10=None"
         ()
-and closure15 (v0 : System.Threading.Tasks.TaskCanceledException) () : string =
+and closure17 (v0 : System.Threading.Tasks.TaskCanceledException) () : string =
     let v1 : string = $"runtime.execute_with_options_async / WaitForExitAsync / ex: %A{v0}"
     v1
-and closure16 (v0 : int32, v1 : string) () : string =
+and closure18 (v0 : int32, v1 : string) () : string =
     let v2 : string = $"runtime.execute_with_options_async / exit_code: {v0} / output.Length: {v1.Length}"
     v2
 and method9 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) : Async<struct (int32 * string)> =
@@ -2017,7 +2030,7 @@ and method9 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
         | US3_0(v28) -> (* Some *)
             v28
     let v32 : US0 = US0_1
-    let v33 : (unit -> string) = closure10(v0, v1, v2, v3, v4, v5, v6)
+    let v33 : (unit -> string) = closure12(v0, v1, v2, v3, v4, v5, v6)
     let v34 : (unit -> string) = method15()
     method4(v32, v33, v34)
     let v35 : System.Text.Encoding = System.Text.Encoding.UTF8
@@ -2036,9 +2049,9 @@ and method9 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     let v45 : System.Diagnostics.Process = v44 
     let v46 : (unit -> System.Collections.Concurrent.ConcurrentStack<string>) = System.Collections.Concurrent.ConcurrentStack<string>
     let v47 : System.Collections.Concurrent.ConcurrentStack<string> = v46 ()
-    let v48 : (System.Diagnostics.DataReceivedEventArgs -> unit) = closure11(v0, v1, v2, v3, v4, v5, v6, v45, v47)
+    let v48 : (System.Diagnostics.DataReceivedEventArgs -> unit) = closure13(v0, v1, v2, v3, v4, v5, v6, v45, v47)
     v45.OutputDataReceived.Add v48 
-    let v49 : (System.Diagnostics.DataReceivedEventArgs -> unit) = closure13(v0, v1, v2, v3, v4, v5, v6, v45, v47)
+    let v49 : (System.Diagnostics.DataReceivedEventArgs -> unit) = closure15(v0, v1, v2, v3, v4, v5, v6, v45, v47)
     v45.ErrorDataReceived.Add v49 
     let v50 : (unit -> bool) = v45.Start
     let v51 : bool = v50 ()
@@ -2151,7 +2164,7 @@ and method9 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     let! v88 = v88 
     let v89 : System.Threading.CancellationToken = v88 
     let v90 : ((unit -> unit) -> System.Threading.CancellationTokenRegistration) = v89.Register
-    let v91 : (unit -> unit) = closure14(v45)
+    let v91 : (unit -> unit) = closure16(v45)
     let v92 : System.Threading.CancellationTokenRegistration = v90 v91
     use v92 = v92 
     let v93 : System.Threading.CancellationTokenRegistration = v92 
@@ -2258,7 +2271,7 @@ and method9 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     v121 v120
     let v122 : System.Threading.Tasks.TaskCanceledException = v112 |> unbox<System.Threading.Tasks.TaskCanceledException>
     let v123 : US0 = US0_3
-    let v124 : (unit -> string) = closure15(v122)
+    let v124 : (unit -> string) = closure17(v122)
     let v125 : (unit -> string) = method15()
     method4(v123, v124, v125)
     return -2147483648 
@@ -2280,7 +2293,7 @@ and method9 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     let v133 : (string seq -> string) = v131 v132
     let v134 : string = v133 v130
     let v135 : US0 = US0_1
-    let v136 : (unit -> string) = closure16(v128, v134)
+    let v136 : (unit -> string) = closure18(v128, v134)
     let v137 : (unit -> string) = method15()
     method4(v135, v136, v137)
     return struct (v128, v134) 
@@ -2296,7 +2309,7 @@ and method9 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     |> fun x -> _v7 <- Some x
     let v140 : Async<struct (int32 * string)> = match _v7 with Some x -> x | None -> failwith "base.run_target / _v7=None"
     v140
-and closure7 () (v0 : string) : Async<struct (int32 * string)> =
+and closure9 () (v0 : string) : Async<struct (int32 * string)> =
     let v1 : System.Threading.CancellationToken option = None
     let v2 : (struct (string * string) []) = [||]
     let v3 : (struct (bool * string * int32) -> Async<unit>) option = None
@@ -2304,9 +2317,9 @@ and closure7 () (v0 : string) : Async<struct (int32 * string)> =
     let v5 : string option = None
     let v6 : bool = true
     method9(v1, v0, v2, v3, v4, v6, v5)
-and closure17 () struct (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) : Async<struct (int32 * string)> =
+and closure19 () struct (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) : Async<struct (int32 * string)> =
     method9(v0, v1, v2, v3, v4, v5, v6)
-and closure18 () (v0 : (Heap0 -> Heap0)) : struct (System.Threading.CancellationToken option * string * (struct (string * string) []) * (struct (bool * string * int32) -> Async<unit>) option * (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option * bool * string option) =
+and closure20 () (v0 : (Heap0 -> Heap0)) : struct (System.Threading.CancellationToken option * string * (struct (string * string) []) * (struct (bool * string * int32) -> Async<unit>) option * (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option * bool * string option) =
     let v1 : System.Threading.CancellationToken option = None
     let v2 : (struct (string * string) []) = [||]
     let v3 : (struct (bool * string * int32) -> Async<unit>) option = None
@@ -2487,7 +2500,7 @@ and method22 (v0 : char, v1 : int64) : bool =
         else
             let v21 : int64 = v1 + 1L
             method22(v0, v21)
-and closure20 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32) : US12 =
+and closure22 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32) : US12 =
     let v4 : bool = "" = v0
     let v60 : US10 =
         if v4 then
@@ -2602,7 +2615,7 @@ and closure20 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
     | US10_0(v103, v104, v105, v106, v107) -> (* Ok *)
         let v108 : string = $"{'\\'}{v103}"
         US12_0(v108, v104, v105, v106, v107)
-and closure21 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32) : US12 =
+and closure23 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32) : US12 =
     let v4 : bool = "" = v0
     let v60 : US10 =
         if v4 then
@@ -2803,8 +2816,8 @@ and method21 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
     let v81 : US12 =
         match v67 with
         | US12_1(v73) -> (* Error *)
-            let v74 : (struct (string * System.Text.StringBuilder * int32 * int32) -> US12) = closure20()
-            let v75 : (struct (string * System.Text.StringBuilder * int32 * int32) -> US12) = closure21()
+            let v74 : (struct (string * System.Text.StringBuilder * int32 * int32) -> US12) = closure22()
+            let v75 : (struct (string * System.Text.StringBuilder * int32 * int32) -> US12) = closure23()
             let v76 : UH2 = UH2_0
             let v77 : UH2 = UH2_1(v75, v76)
             let v78 : UH2 = UH2_1(v74, v77)
@@ -3149,8 +3162,8 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                             US12_0(v156, v219, v220, v221, v222)
             match v237 with
             | US12_1(v243) -> (* Error *)
-                let v244 : (struct (string * System.Text.StringBuilder * int32 * int32) -> US12) = closure20()
-                let v245 : (struct (string * System.Text.StringBuilder * int32 * int32) -> US12) = closure21()
+                let v244 : (struct (string * System.Text.StringBuilder * int32 * int32) -> US12) = closure22()
+                let v245 : (struct (string * System.Text.StringBuilder * int32 * int32) -> US12) = closure23()
                 let v246 : UH2 = UH2_0
                 let v247 : UH2 = UH2_1(v245, v246)
                 let v248 : UH2 = UH2_1(v244, v247)
@@ -3244,7 +3257,7 @@ and method16 (v0 : string) : US8 =
         let v19 : (string list -> (string [])) = List.toArray
         let v20 : (string []) = v19 v18
         US8_0(v20)
-and closure19 () (v0 : string) : Result<(string []), string> =
+and closure21 () (v0 : string) : Result<(string []), string> =
     let v1 : US8 = method16(v0)
     match v1 with
     | US8_1(v4) -> (* Error *)
@@ -3258,12 +3271,12 @@ let v1 : US0 = US0_0
 if State.trace_state.IsNone then State.trace_state <- v0 v1 |> Some
 let v2 : (unit -> unit) = closure2()
 let current_process_kill () = v2 ()
-let v3 : (string -> Async<struct (int32 * string)>) = closure7()
+let v3 : (string -> Async<struct (int32 * string)>) = closure9()
 let execute_async x = v3 x
-let v4 : (struct (System.Threading.CancellationToken option * string * (struct (string * string) []) * (struct (bool * string * int32) -> Async<unit>) option * (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option * bool * string option) -> Async<struct (int32 * string)>) = closure17()
+let v4 : (struct (System.Threading.CancellationToken option * string * (struct (string * string) []) * (struct (bool * string * int32) -> Async<unit>) option * (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option * bool * string option) -> Async<struct (int32 * string)>) = closure19()
 let execute_with_options_async x = v4 x
-let v5 : ((Heap0 -> Heap0) -> struct (System.Threading.CancellationToken option * string * (struct (string * string) []) * (struct (bool * string * int32) -> Async<unit>) option * (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option * bool * string option)) = closure18()
+let v5 : ((Heap0 -> Heap0) -> struct (System.Threading.CancellationToken option * string * (struct (string * string) []) * (struct (bool * string * int32) -> Async<unit>) option * (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option * bool * string option)) = closure20()
 let execution_options x = v5 x
-let v6 : (string -> Result<(string []), string>) = closure19()
+let v6 : (string -> Result<(string []), string>) = closure21()
 let split_args x = v6 x
 ()

@@ -176,7 +176,7 @@ inl hash_read data : resultm.result' string stream.io_error =
     (!\($'"true; let mut !reader = !reader"') : bool) |> ignore
     inl hasher = new_sha256 ()
     (!\($'"true; let mut !hasher = !hasher"') : bool) |> ignore
-    
+
     real
         inl size = 1024
         inl zero = convert `i32 `unativeint 0
@@ -281,9 +281,9 @@ disposable |> use |> ignore
 #!spiral
 
 inl create_hash (x : string) : any =
-    open ts_operators
+    open typescript_operators
     global "type ICryptoCreateHash = abstract createHash: x: string -> obj"
-    inl crypto : $'ICryptoCreateHash' = ts.import_all "crypto"
+    inl crypto : $'ICryptoCreateHash' = typescript.import_all "crypto"
     !\\(x, $'"!crypto.createHash($0)"')
 
 #!markdown
@@ -293,7 +293,7 @@ inl create_hash (x : string) : any =
 #!spiral
 
 inl hash_update (s : string) (x : any) : any =
-    open ts_operators
+    open typescript_operators
     !\\((x, s), $'"$0.update($1, \'utf8\')"')
 
 #!markdown
@@ -303,7 +303,7 @@ inl hash_update (s : string) (x : any) : any =
 #!spiral
 
 inl hash_digest (s : string) (x : any) : string =
-    open ts_operators
+    open typescript_operators
     !\\((x, s), $'"$0.digest($1)"')
 
 #!markdown
@@ -325,9 +325,9 @@ nominal py_sha256 = any
 #!spiral
 
 inl hashlib_sha256 () : py_sha256 =
-    open py_operators
+    open python_operators
     global "type IHashlibSha256 = abstract sha256: x: unit -> obj"
-    inl hashlib : $'IHashlibSha256' = py.import_all "hashlib"
+    inl hashlib : $'IHashlibSha256' = python.import_all "hashlib"
     !\($'"!hashlib.sha256()"')
 
 #!markdown
@@ -337,7 +337,7 @@ inl hashlib_sha256 () : py_sha256 =
 #!spiral
 
 inl sha256_update (x : string) (sha256 : py_sha256) : py_sha256 =
-    open py_operators
+    open python_operators
     !\\(x, $'"!sha256.update($0)"')
     sha256
 
@@ -348,12 +348,16 @@ inl sha256_update (x : string) (sha256 : py_sha256) : py_sha256 =
 #!spiral
 
 inl sha256_hexdigest (sha256 : py_sha256) : string =
-    open py_operators
+    open python_operators
     !\($'"!sha256.hexdigest()"')
 
 #!markdown
 
-## hash_text
+## crypto
+
+#!markdown
+
+### hash_text
 
 #!spiral
 
@@ -405,7 +409,7 @@ types ()
 
 #!markdown
 
-## hash_to_port
+### hash_to_port
 
 #!spiral
 
