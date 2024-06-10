@@ -19,7 +19,11 @@ open testing
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::iter::Fuse<$0>\")>]\n#endif\ntype core_iter_Fuse<'T> = class end"
+    backend_switch {
+        Fsharp = fun () =>
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::iter::Fuse<$0>\")>]\n#endif\ntype core_iter_Fuse<'T> = class end"
+        Python = fun () => ()
+    }
 
 #!markdown
 
@@ -524,7 +528,7 @@ inl list_find_last forall item result. (fn : item -> option result) (target : li
 
 #!spiral
 
-nominal seq' t = $'`t seq'
+nominal seq' t = $"backend_switch `({ Fsharp : $"`t seq"; Python : t })"
 
 #!markdown
 
@@ -533,7 +537,10 @@ nominal seq' t = $'`t seq'
 #!spiral
 
 inl of_array' forall dim t. (items : a dim t) : seq' t =
-    $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
+    backend_switch {
+        Fsharp = fun () => $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }' : seq' t
+        Python = fun () => $'!items ' : seq' t
+    }
 
 #!spiral
 
@@ -545,7 +552,10 @@ inl of_array' forall dim t. (items : a dim t) : seq' t =
 #!spiral
 
 inl of_array forall dim t. (items : a dim t) : seq' t =
-    items |> $'Seq.ofArray'
+    backend_switch {
+        Fsharp = fun () => items |> $'Seq.ofArray' : seq' t
+        Python = fun () => $'!items ' : seq' t
+    }
 
 #!spiral
 
@@ -561,7 +571,10 @@ inl of_array forall dim t. (items : a dim t) : seq' t =
 #!spiral
 
 inl to_array' forall dim t. (items : seq' t) : a dim t =
-    items |> $'Seq.toArray'
+    backend_switch {
+        Fsharp = fun () => items |> $'Seq.toArray' : a dim t
+        Python = fun () => $'!items ' : a dim t
+    }
 
 #!spiral
 
@@ -579,7 +592,10 @@ inl to_array' forall dim t. (items : seq' t) : a dim t =
 #!spiral
 
 inl of_list' forall t. (items : listm'.list' t) : seq' t =
-    $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
+    backend_switch {
+        Fsharp = fun () => $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }' : seq' t
+        Python = fun () => $'!items ' : seq' t
+    }
 
 #!markdown
 
@@ -588,7 +604,10 @@ inl of_list' forall t. (items : listm'.list' t) : seq' t =
 #!spiral
 
 inl to_list' forall t. (items : seq' t) : listm'.list' t =
-    items |> $'Seq.toList'
+    backend_switch {
+        Fsharp = fun () => items |> $'Seq.toList' : listm'.list' t
+        Python = fun () => $'!items ' : listm'.list' t
+    }
 
 #!spiral
 
@@ -607,7 +626,10 @@ inl to_list' forall t. (items : seq' t) : listm'.list' t =
 #!spiral
 
 inl rev'' forall t u. (items : t) : seq' u =
-    items |> $'Seq.rev'
+    backend_switch {
+        Fsharp = fun () => items |> $'Seq.rev' : seq' u
+        Python = fun () => $'reversed(!items)' : seq' u
+    }
 
 #!markdown
 

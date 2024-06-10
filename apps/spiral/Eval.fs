@@ -719,7 +719,7 @@ module Eval =
                                         |> Array.append errors
                                     ch, errors
                                 | [], _ ->
-                                    let code = code |> List.rev |> String.concat "\n\n"
+                                    let code = code |> List.rev |> String.concat "\n\n\n"
                                     let code =
                                         if printCode
                                         then $"\"\"\"{code}\n\n\n\"\"\""
@@ -742,9 +742,9 @@ module Eval =
                                                 let ch, errors = fsi_eval eval cancellationToken
                                                 let errors =
                                                     errors
-                                                    |> Array.map (fun (e1, e2, e3, _) ->
-                                                        (e1, e2, e3, ("", (0, 0), (0, 0)))
-                                                    )
+                                                    // |> Array.map (fun (e1, e2, e3, _) ->
+                                                    //     (e1, e2, e3, ("", (0, 0), (0, 0)))
+                                                    // )
                                                     |> Array.append acc_errors
                                                 match ch with
                                                 | Choice1Of2 v ->

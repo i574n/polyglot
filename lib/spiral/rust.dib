@@ -19,41 +19,41 @@ open testing
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::any::Any\")>]\n#endif\ntype core_any_Any = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype core_ops_Try<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func0<$0>\")>]\n#endif\ntype Func0<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func1<$0, $1>\")>]\n#endif\ntype Func0<'T, 'U> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>]\n#endif\ntype Box<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>]\n#endif\ntype Dyn<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Send\")>]\n#endif\ntype Send<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>]\n#endif\ntype Fn<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn()\")>]\n#endif\ntype FnUnit = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>]\n#endif\ntype FnOnce<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0)\")>]\n#endif\ntype ActionFn<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0, $1)\")>]\n#endif\ntype ActionFn2<'T, 'U> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>]\n#endif\ntype Impl<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>]\n#endif\ntype Mut<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>]\n#endif\ntype Ref<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0 + $1\")>]\n#endif\ntype LifetimeJoin<'T, 'U> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"'static\")>]\n#endif\ntype StaticLifetime = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0\")>]\n#endif\ntype LifetimeRef<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0 $1\")>]\n#endif\ntype Lifetime<'T, 'U> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"MutCell<$0>\")>]\n#endif\ntype MutCell<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::any::Any\")>]\n#endif\ntype std_any_Any = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::borrow::Cow<$0>\")>]\n#endif\ntype std_borrow_Cow<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::cell::RefCell<$0>\")>]\n#endif\ntype std_cell_RefCell<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>]\n#endif\ntype std_pin_Pin<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>]\n#endif\ntype std_rc_Rc<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Weak<$0>\")>]\n#endif\ntype std_rc_Weak<'T> = class end"
+    backend_switch {
+        Fsharp = fun () =>
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::any::Any\")>]\n#endif\ntype core_any_Any = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype core_ops_Try<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func0<$0>\")>]\n#endif\ntype Func0<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func1<$0, $1>\")>]\n#endif\ntype Func0<'T, 'U> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>]\n#endif\ntype Box<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>]\n#endif\ntype Dyn<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Send\")>]\n#endif\ntype Send<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>]\n#endif\ntype Fn<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn()\")>]\n#endif\ntype FnUnit = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>]\n#endif\ntype FnOnce<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0)\")>]\n#endif\ntype ActionFn<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0, $1)\")>]\n#endif\ntype ActionFn2<'T, 'U> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>]\n#endif\ntype Impl<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>]\n#endif\ntype Mut<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>]\n#endif\ntype Ref<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0 + $1\")>]\n#endif\ntype LifetimeJoin<'T, 'U> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"'static\")>]\n#endif\ntype StaticLifetime = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0\")>]\n#endif\ntype LifetimeRef<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0 $1\")>]\n#endif\ntype Lifetime<'T, 'U> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"MutCell<$0>\")>]\n#endif\ntype MutCell<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::any::Any\")>]\n#endif\ntype std_any_Any = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::borrow::Cow<$0>\")>]\n#endif\ntype std_borrow_Cow<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::cell::RefCell<$0>\")>]\n#endif\ntype std_cell_RefCell<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>]\n#endif\ntype std_pin_Pin<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>]\n#endif\ntype std_rc_Rc<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Weak<$0>\")>]\n#endif\ntype std_rc_Weak<'T> = class end"
+        Python = fun () => ()
+    }
 
 #!spiral
 
 inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            types ()
-        Python = fun () => ()
-    }
+    types ()
 
 #!markdown
 

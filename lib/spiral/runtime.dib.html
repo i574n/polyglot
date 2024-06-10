@@ -7587,21 +7587,25 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::Arg</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_Arg = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::ArgAction</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_ArgAction = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::Command</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_Command = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::ArgMatches</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_ArgMatches = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::builder::ValueRange</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_builder_ValueRange = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::builder::ValueParser</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_builder_ValueParser = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::builder::PossibleValue</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_builder_PossibleValue = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::Child</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_Child = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::ChildStderr</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_ChildStderr = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::ChildStdout</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_ChildStdout = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::ChildStdin</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_ChildStdin = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::Command</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_Command = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::ExitStatus</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_ExitStatus = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::Output</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_Output = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::Stdio</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_Stdio = class end"</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::Arg</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_Arg = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::ArgAction</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_ArgAction = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::Command</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_Command = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::ArgMatches</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_ArgMatches = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::builder::ValueRange</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_builder_ValueRange = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::builder::ValueParser</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_builder_ValueParser = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">clap::builder::PossibleValue</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type clap_builder_PossibleValue = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::Child</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_Child = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::ChildStderr</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_ChildStderr = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::ChildStdout</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_ChildStdout = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::ChildStdin</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_ChildStdin = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::Command</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_Command = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::ExitStatus</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_ExitStatus = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::Output</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_Output = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::process::Stdio</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_process_Stdio = class end"</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -7779,6 +7783,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">////!</span><span class="w"> </span>cuda<span class="w"> </span>//<span class="w"> </span>Only<span class="w"> </span>stack<span class="w"> </span>allocated<span class="w"> </span>primitive<span class="w"> </span>types<span class="w"> </span><span class="o">(</span>i8,i16,i32,i64<span class="w"> </span>and<span class="w"> </span>u8,u16,u32,u64<span class="w"> </span>and<span class="w"> </span>f32,f64<span class="w"> </span>and<span class="w"> </span>bool<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>allowed<span class="w"> </span><span class="k">in</span><span class="w"> </span>CuPy<span class="w"> </span>arrays.
+<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
 
 <span class="p">[</span>
     <span class="s2">"a b c"</span><span class="p">,</span>
@@ -7819,6 +7828,7 @@ a.anchor-link {
     <span class="nb">input</span>
     <span class="o">|&gt;</span> <span class="n">split_args</span>
     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
+        <span class="n">inl</span> <span class="n">expected</span><span class="s1">' = join expected</span>
         <span class="k">try</span>
             <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                 <span class="p">(</span><span class="err">$</span><span class="s1">'$"</span><span class="se">\n</span><span class="s1">input: {!input}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
@@ -7828,7 +7838,7 @@ a.anchor-link {
                 <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' expected</span>
                 <span class="n">false</span>
             <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
-                <span class="p">(</span><span class="err">$</span><span class="s1">'$"error / expected: %A{!expected} / ex: %A{!ex}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+                <span class="p">(</span><span class="err">$</span><span class="s1">'$"error / expected: %A{!expected'</span><span class="p">}</span> <span class="o">/</span> <span class="n">ex</span><span class="p">:</span> <span class="o">%</span><span class="k">A</span>{!ex}"' : string)
                 <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
                 <span class="n">Some</span> <span class="n">true</span>
         <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
@@ -7848,7 +7858,118 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
+<pre>.rs output:
+
+input: a b c
+assert_eq' / actual: Array(MutCell(["a", "b", "c"])) / expected: Array(MutCell(["a", "b", "c"]))
+
+input: e f "g h" i
+assert_eq' / actual: Array(MutCell(["e", "f", "g h", "i"])) / expected: Array(MutCell(["e", "f", "g h", "i"]))
+
+input: "j k" "l" "m"
+assert_eq' / actual: Array(MutCell(["j k", "l", "m"])) / expected: Array(MutCell(["j k", "l", "m"]))
+
+input: s -t "u `"v`" w"
+assert_eq' / actual: Array(MutCell(["s", "-t", "u `"v`" w"])) / expected: Array(MutCell(["s", "-t", "u `"v`" w"]))
+
+input: n -o "p \"q\" r"
+assert_eq' / actual: Array(MutCell(["n", "-o", "p \"q\" r"])) / expected: Array(MutCell(["n", "-o", "p \"q\" r"]))
+
+input: r -s "t \"u\""
+assert_eq' / actual: Array(MutCell(["r", "-s", "t \"u\""])) / expected: Array(MutCell(["r", "-s", "t \"u\""]))
+
+input: x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"
+assert_eq' / actual: Array(MutCell(["x", "-y", "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"])) / expected: Array(MutCell(["x", "-y", "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"]))
+
+input: e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"
+assert_eq' / actual: Array(MutCell(["e", "-f", "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"])) / expected: Array(MutCell(["e", "-f", "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"]))
+
+input: --l \"''' m '''\" 
+assert_eq' / actual: Array(MutCell(["--l", "''' m '''"])) / expected: Array(MutCell(["--l", "''' m '''"]))
+
+input: n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)"
+assert_eq' / actual: Array(MutCell(["n", "--o", "--p", "q", "--r", "s:/t u/v.w", "--x", "y:/z.a", "--b", "c.d", "\e{f-g}", "h.i", "j (k)"])) / expected: Array(MutCell(["n", "--o", "--p", "q", "--r", "s:/t u/v.w", "--x", "y:/z.a", "--b", "c.d", "\e{f-g}", "h.i", "j (k)"]))
+
+input: l "m n:\o.p"
+assert_eq' / actual: Array(MutCell(["l", "m n:\o.p"])) / expected: Array(MutCell(["l", "m n:\o.p"]))
+
+.ts output:
+
+input: a b c
+assert_eq' / actual: a,b,c / expected: a,b,c
+
+input: e f "g h" i
+assert_eq' / actual: e,f,g h,i / expected: e,f,g h,i
+
+input: "j k" "l" "m"
+assert_eq' / actual: j k,l,m / expected: j k,l,m
+
+input: s -t "u `"v`" w"
+assert_eq' / actual: s,-t,u `"v`" w / expected: s,-t,u `"v`" w
+
+input: n -o "p \"q\" r"
+assert_eq' / actual: n,-o,p \"q\" r / expected: n,-o,p \"q\" r
+
+input: r -s "t \"u\""
+assert_eq' / actual: r,-s,t \"u\" / expected: r,-s,t \"u\"
+
+input: x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"
+assert_eq' / actual: x,-y,$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ } / expected: x,-y,$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }
+
+input: e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"
+assert_eq' / actual: e,-f,$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ } / expected: e,-f,$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }
+
+input: --l \"''' m '''\" 
+assert_eq' / actual: --l,''' m ''' / expected: --l,''' m '''
+
+input: n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)"
+assert_eq' / actual: n,--o,--p,q,--r,s:/t u/v.w,--x,y:/z.a,--b,c.d,\e{f-g},h.i,j (k) / expected: n,--o,--p,q,--r,s:/t u/v.w,--x,y:/z.a,--b,c.d,\e{f-g},h.i,j (k)
+
+input: l "m n:\o.p"
+assert_eq' / actual: l,m n:\o.p / expected: l,m n:\o.p
+
+.py output:
+
+input: a b c
+assert_eq' / actual: ['a', 'b', 'c'] / expected: ['a', 'b', 'c']
+
+input: e f "g h" i
+assert_eq' / actual: ['e', 'f', 'g h', 'i'] / expected: ['e', 'f', 'g h', 'i']
+
+input: "j k" "l" "m"
+assert_eq' / actual: ['j k', 'l', 'm'] / expected: ['j k', 'l', 'm']
+
+input: s -t "u `"v`" w"
+assert_eq' / actual: ['s', '-t', 'u `"v`" w'] / expected: ['s', '-t', 'u `"v`" w']
+
+input: n -o "p \"q\" r"
+assert_eq' / actual: ['n', '-o', 'p \\"q\\" r'] / expected: ['n', '-o', 'p \\"q\\" r']
+
+input: r -s "t \"u\""
+assert_eq' / actual: ['r', '-s', 't \\"u\\"'] / expected: ['r', '-s', 't \\"u\\"']
+
+input: x -y "$z -a '(b=\"c-id=)[a-fA-F0-9]{8}', { `$_[1] + `$d++ }"
+assert_eq' / actual: ['x', '-y', '$z -a \'(b=\\"c-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$d++ }'] / expected: ['x', '-y', '$z -a \'(b=\\"c-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$d++ }']
+
+input: e -f "$g -h '(i=`"j-id=)[a-fA-F0-9]{8}', { `$_[1] + `$k++ }"
+assert_eq' / actual: ['e', '-f', '$g -h \'(i=`"j-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$k++ }'] / expected: ['e', '-f', '$g -h \'(i=`"j-id=)[a-fA-F0-9]{8}\', { `$_[1] + `$k++ }']
+
+input: --l \"''' m '''\" 
+assert_eq' / actual: ['--l', "''' m '''"] / expected: ['--l', "''' m '''"]
+
+input: n --o --p q --r "s:/t u/v.w" --x "y:/z.a" --b c.d "\e{f-g}" h.i "j (k)"
+assert_eq' / actual: ['n', '--o', '--p', 'q', '--r', 's:/t u/v.w', '--x', 'y:/z.a', '--b', 'c.d', '\\e{f-g}', 'h.i', 'j (k)'] / expected: ['n', '--o', '--p', 'q', '--r', 's:/t u/v.w', '--x', 'y:/z.a', '--b', 'c.d', '\\e{f-g}', 'h.i', 'j (k)']
+
+input: l "m n:\o.p"
+assert_eq' / actual: ['l', 'm n:\\o.p'] / expected: ['l', 'm n:\\o.p']
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+
 input: a b c
 assert_eq' / actual: [|"a"; "b"; "c"|] / expected: [|"a"; "b"; "c"|]
 
@@ -10555,25 +10676,25 @@ assert_eq / actual: struct ("../../file", "1.exe -c \\"echo 1\\"") / expected: s
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00   debug #1 runtime.execute_with_options_async / options: struct (None,
+<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options_async / options: struct (None,
         "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\76793606-813b-88ad-7791-7ce2871edce9\test.txt"",
         [||], None, None, true, None)
-00:00:00 verbose #2 ! <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\76793606-813b-88ad-7791-7ce2871edce9\test.txt' because it does not exist.</span>
-00:00:00   debug #3 runtime.execute_with_options_async / exit_code: 1 / output.Length: 197
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #2 ! <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\76793606-813b-88ad-7791-7ce2871edce9\test.txt' because it does not exist.</span>
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options_async / exit_code: 1 / output.Length: 197
 assert_eq / actual: 1 / expected: 1
 assert_string_contains / actual: "not exist" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Get-Content: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\76793606-813b-88ad-7791-7ce2871edce9\test.txt' because it does not exist.</span>"
-00:00:00   debug #4 runtime.execute_with_options_async / options: struct (None, "cat "test.txt"", [||], None, None, true,
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options_async / options: struct (None, "cat "test.txt"", [||], None, None, true,
         Some
           "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\76793606-813b-88ad-7791-7ce2871edce9")
-00:00:00 verbose #5 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:00   debug #6 runtime.execute_with_options_async / exit_code: 0 / output.Length: 22
-00:00:00   debug #7 runtime.execute_with_options_async / options: struct (None,
+00:00:03 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
+00:00:03 <span class="ansi-blue-intense-fg">  debug</span> #6 runtime.execute_with_options_async / exit_code: 0 / output.Length: 22
+00:00:03 <span class="ansi-blue-intense-fg">  debug</span> #7 runtime.execute_with_options_async / options: struct (None,
         "pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Content test.txt"",
         [||], None, None, true,
         Some
           "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\76793606-813b-88ad-7791-7ce2871edce9")
-00:00:01 verbose #8 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:01   debug #9 runtime.execute_with_options_async / exit_code: 0 / output.Length: 22
+00:00:05 <span class="ansi-black-intense-fg">verbose</span> #8 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
+00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #9 runtime.execute_with_options_async / exit_code: 0 / output.Length: 22
 assert_eq / actual: 0 / expected: 0
 assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
 assert_eq / actual: true / expected: true
@@ -10645,16 +10766,16 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00   debug #1 1
-00:00:00   debug #2 2
-00:00:00   debug #3 runtime.execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
+<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
         "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\613830ed-016e-d959-8d21-02dc1c63c252\test.txt"",
         [||], None, None, true, None)
-00:00:00   debug #4 3
-00:00:00   debug #5 4
-00:00:00 warning #6 runtime.execute_with_options_async / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
-00:00:00   debug #7 runtime.execute_with_options_async / exit_code: -2147483648 / output.Length: 66
-00:00:00   debug #8 5
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 4
+00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #6 runtime.execute_with_options_async / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #7 runtime.execute_with_options_async / exit_code: -2147483648 / output.Length: 66
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #8 5
 assert_eq / actual: -2147483648 / expected: -2147483648
 assert_eq / actual: "System.Threading.Tasks.TaskCanceledException: A task was canceled." / expected: "System.Threading.Tasks.TaskCanceledException: A task was canceled."
 assert_eq / actual: true / expected: true
@@ -11046,18 +11167,18 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / dir: C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_f1a2cca2b1aa9cd34fcec483acbc3dcf3b8a8e0d148c94905e7eed849324379e\9242780b-ce0e-9155-5e07-f6ee5667aa16
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_f1a2cca2b1aa9cd34fcec483acbc3dcf3b8a8e0d148c94905e7eed849324379e/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"] / options: (None, "pwsh -c "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_f1a2cca2b1aa9cd34fcec483acbc3dcf3b8a8e0d148c94905e7eed849324379e/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"", Array(MutCell([])), None, None, true, None)
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_f1a2cca2b1aa9cd34fcec483acbc3dcf3b8a8e0d148c94905e7eed849324379e\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / exit_code: 1 / std_trace.Length: 312
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / dir: C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_f14c10fb0352b351bb4b8f65feeeac81f88676c5ef7767312451632e9976aaf7\9242780b-ce0e-9155-5e07-f6ee5667aa16
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_f14c10fb0352b351bb4b8f65feeeac81f88676c5ef7767312451632e9976aaf7/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"] / options: (None, "pwsh -c "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_f14c10fb0352b351bb4b8f65feeeac81f88676c5ef7767312451632e9976aaf7/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"", Array(MutCell([])), None, None, true, None)
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_f14c10fb0352b351bb4b8f65feeeac81f88676c5ef7767312451632e9976aaf7\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / exit_code: 1 / std_trace.Length: 312
 assert_eq / actual: 1 / expected: 1
-assert_string_contains / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_f1a2cca2b1aa9cd34fcec483acbc3dcf3b8a8e0d148c94905e7eed849324379e\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>"
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 runtime.execute_with_options / file_name: cat / arguments: ["test.txt"] / options: (None, "cat "test.txt"", Array(MutCell([])), None, None, true, Some("C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_f1a2cca2b1aa9cd34fcec483acbc3dcf3b8a8e0d148c94905e7eed849324379e\9242780b-ce0e-9155-5e07-f6ee5667aa16"))
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 22
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #8 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"] / options: (None, "pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"", Array(MutCell([])), None, None, true, Some("C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_f1a2cca2b1aa9cd34fcec483acbc3dcf3b8a8e0d148c94905e7eed849324379e\9242780b-ce0e-9155-5e07-f6ee5667aa16"))
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #10 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 22
+assert_string_contains / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_f14c10fb0352b351bb4b8f65feeeac81f88676c5ef7767312451632e9976aaf7\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>"
+00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #5 runtime.execute_with_options / file_name: cat / arguments: ["test.txt"] / options: (None, "cat "test.txt"", Array(MutCell([])), None, None, true, Some("C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_f14c10fb0352b351bb4b8f65feeeac81f88676c5ef7767312451632e9976aaf7\9242780b-ce0e-9155-5e07-f6ee5667aa16"))
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #7 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 22
+00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #8 runtime.execute_with_options / file_name: pwsh / arguments: ["-c", "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"] / options: (None, "pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"", Array(MutCell([])), None, None, true, Some("C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_f14c10fb0352b351bb4b8f65feeeac81f88676c5ef7767312451632e9976aaf7\9242780b-ce0e-9155-5e07-f6ee5667aa16"))
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
+00:00:03 <span class="ansi-black-intense-fg">verbose</span> #10 runtime.execute_with_options / result / exit_code: 0 / std_trace.Length: 22
 assert_eq / actual: 0 / expected: 0
 assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
 </pre>

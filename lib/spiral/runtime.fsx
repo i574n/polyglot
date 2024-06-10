@@ -486,49 +486,82 @@ and method1 (v0 : string) : string =
     let v52 : obj = Fable.Core.PyInterop.emitPyExpr () v51 
     let v53 : string = "v52.get($0)"
     let v54 : string = Fable.Core.PyInterop.emitPyExpr v0 v53 
-    v54 
-    #endif
-#else
-    let v55 : (string -> string) = System.Environment.GetEnvironmentVariable
-    let v56 : string = v55 v0
-    let mutable _v56 = None
+    let mutable _v54 = None
     #if !FABLE_COMPILER && !WASM && !CONTRACT
-    let v57 : (string -> string option) = Option.ofObj
-    let v58 : string option = v57 v56
-    v58 
+    let v55 : (string -> string option) = Option.ofObj
+    let v56 : string option = v55 v54
+    v56 
     #else
-    Some v56 
+    Some v54 
     #endif
-    |> fun x -> _v56 <- Some x
-    let v59 : string option = match _v56 with Some x -> x | None -> failwith "optionm'.of_obj / _v56=None"
-    let v60 : US3 option = None
-    let _v60 = ref v60 
-    match v59 with
+    |> fun x -> _v54 <- Some x
+    let v57 : string option = match _v54 with Some x -> x | None -> failwith "optionm'.of_obj / _v54=None"
+    let v58 : US3 option = None
+    let _v58 = ref v58 
+    match v57 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v61 : string = x
-    let v62 : US3 = US3_0(v61)
-    v62 
+    let v59 : string = x
+    let v60 : US3 = US3_0(v59)
+    v60 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v60.Value <- x
-    let v63 : US3 option = _v60.Value 
-    let v64 : US3 = US3_1
-    let v65 : US3 = v63 |> Option.defaultValue v64 
-    let v69 : string =
-        match v65 with
+    |> fun x -> _v58.Value <- x
+    let v61 : US3 option = _v58.Value 
+    let v62 : US3 = US3_1
+    let v63 : US3 = v61 |> Option.defaultValue v62 
+    let v67 : string =
+        match v63 with
         | US3_1 -> (* None *)
-            let v67 : string = ""
-            v67
-        | US3_0(v66) -> (* Some *)
-            v66
-    v69 
+            let v65 : string = ""
+            v65
+        | US3_0(v64) -> (* Some *)
+            v64
+    v67 
+    #endif
+#else
+    let v68 : (string -> string) = System.Environment.GetEnvironmentVariable
+    let v69 : string = v68 v0
+    let mutable _v69 = None
+    #if !FABLE_COMPILER && !WASM && !CONTRACT
+    let v70 : (string -> string option) = Option.ofObj
+    let v71 : string option = v70 v69
+    v71 
+    #else
+    Some v69 
+    #endif
+    |> fun x -> _v69 <- Some x
+    let v72 : string option = match _v69 with Some x -> x | None -> failwith "optionm'.of_obj / _v69=None"
+    let v73 : US3 option = None
+    let _v73 = ref v73 
+    match v72 with
+    | Some x -> (
+    (fun () ->
+    (fun () ->
+    let v74 : string = x
+    let v75 : US3 = US3_0(v74)
+    v75 
+    )
+    |> fun x -> x () |> Some
+    ) () ) | None -> None
+    |> fun x -> _v73.Value <- x
+    let v76 : US3 option = _v73.Value 
+    let v77 : US3 = US3_1
+    let v78 : US3 = v76 |> Option.defaultValue v77 
+    let v82 : string =
+        match v78 with
+        | US3_1 -> (* None *)
+            let v80 : string = ""
+            v80
+        | US3_0(v79) -> (* Some *)
+            v79
+    v82 
     #endif
     |> fun x -> _v1 <- Some x
-    let v70 : string = match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
-    v70
+    let v83 : string = match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
+    v83
 and method3 () : string =
     let v0 : string = "AUTOMATION"
     v0
@@ -879,6 +912,9 @@ and method6 () : string =
 and method7 () : string =
     let v0 : string = "HH:mm:ss"
     v0
+and method8 () : string =
+    let v0 : string = "\u001b[0m"
+    v0
 and closure6 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : string =
     let v3 : (US0 -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
     let v4 : US0 = US0_0
@@ -929,404 +965,475 @@ and closure6 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
             let v32 : System.DateTime = System.DateTime (1, 1, 1, v25, v27, v29, v31)
             v32
     let v36 : string = method5()
-    let v37 : string = v35.ToString v36 
-    v37 
+    let v37 : (string -> string) = v35.ToString
+    let v38 : string = v37 v36
+    v38 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v38 : US1 option = None
-    let _v38 = ref v38 
+    let v39 : US1 option = None
+    let _v39 = ref v39 
     match v8 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v39 : int64 = x
-    let v40 : US1 = US1_0(v39)
-    v40 
+    let v40 : int64 = x
+    let v41 : US1 = US1_0(v40)
+    v41 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v38.Value <- x
-    let v41 : US1 option = _v38.Value 
-    let v42 : US1 = US1_1
-    let v43 : US1 = v41 |> Option.defaultValue v42 
-    let v62 : System.DateTime =
-        match v43 with
+    |> fun x -> _v39.Value <- x
+    let v42 : US1 option = _v39.Value 
+    let v43 : US1 = US1_1
+    let v44 : US1 = v42 |> Option.defaultValue v43 
+    let v63 : System.DateTime =
+        match v44 with
         | US1_1 -> (* None *)
-            let v60 : System.DateTime = System.DateTime.Now
+            let v61 : System.DateTime = System.DateTime.Now
+            v61
+        | US1_0(v45) -> (* Some *)
+            let v46 : System.DateTime = System.DateTime.Now
+            let v47 : (System.DateTime -> int64) = _.Ticks
+            let v48 : int64 = v47 v46
+            let v49 : int64 = v48 - v45
+            let v50 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v51 : System.TimeSpan = v50 v49
+            let v52 : (System.TimeSpan -> int32) = _.Hours
+            let v53 : int32 = v52 v51
+            let v54 : (System.TimeSpan -> int32) = _.Minutes
+            let v55 : int32 = v54 v51
+            let v56 : (System.TimeSpan -> int32) = _.Seconds
+            let v57 : int32 = v56 v51
+            let v58 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v59 : int32 = v58 v51
+            let v60 : System.DateTime = System.DateTime (1, 1, 1, v53, v55, v57, v59)
             v60
-        | US1_0(v44) -> (* Some *)
-            let v45 : System.DateTime = System.DateTime.Now
-            let v46 : (System.DateTime -> int64) = _.Ticks
-            let v47 : int64 = v46 v45
-            let v48 : int64 = v47 - v44
-            let v49 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v50 : System.TimeSpan = v49 v48
-            let v51 : (System.TimeSpan -> int32) = _.Hours
-            let v52 : int32 = v51 v50
-            let v53 : (System.TimeSpan -> int32) = _.Minutes
-            let v54 : int32 = v53 v50
-            let v55 : (System.TimeSpan -> int32) = _.Seconds
-            let v56 : int32 = v55 v50
-            let v57 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v58 : int32 = v57 v50
-            let v59 : System.DateTime = System.DateTime (1, 1, 1, v52, v54, v56, v58)
-            v59
-    let v63 : string = method5()
-    let v64 : string = v62.ToString v63 
-    v64 
+    let v64 : string = method5()
+    let v65 : (string -> string) = v63.ToString
+    let v66 : string = v65 v64
+    v66 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v65 : string = method6()
-    v65 
+    let v67 : string = method6()
+    v67 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v66 : US1 option = None
-    let _v66 = ref v66 
+    let v68 : US1 option = None
+    let _v68 = ref v68 
     match v8 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v67 : int64 = x
-    let v68 : US1 = US1_0(v67)
-    v68 
+    let v69 : int64 = x
+    let v70 : US1 = US1_0(v69)
+    v70 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v66.Value <- x
-    let v69 : US1 option = _v66.Value 
-    let v70 : US1 = US1_1
-    let v71 : US1 = v69 |> Option.defaultValue v70 
-    let v90 : System.DateTime =
-        match v71 with
+    |> fun x -> _v68.Value <- x
+    let v71 : US1 option = _v68.Value 
+    let v72 : US1 = US1_1
+    let v73 : US1 = v71 |> Option.defaultValue v72 
+    let v92 : System.DateTime =
+        match v73 with
         | US1_1 -> (* None *)
-            let v88 : System.DateTime = System.DateTime.Now
-            v88
-        | US1_0(v72) -> (* Some *)
-            let v73 : System.DateTime = System.DateTime.Now
-            let v74 : (System.DateTime -> int64) = _.Ticks
-            let v75 : int64 = v74 v73
-            let v76 : int64 = v75 - v72
-            let v77 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v78 : System.TimeSpan = v77 v76
-            let v79 : (System.TimeSpan -> int32) = _.Hours
-            let v80 : int32 = v79 v78
-            let v81 : (System.TimeSpan -> int32) = _.Minutes
-            let v82 : int32 = v81 v78
-            let v83 : (System.TimeSpan -> int32) = _.Seconds
-            let v84 : int32 = v83 v78
-            let v85 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v86 : int32 = v85 v78
-            let v87 : System.DateTime = System.DateTime (1, 1, 1, v80, v82, v84, v86)
-            v87
-    let v91 : string = method7()
-    let v92 : string = v90.ToString v91 
-    v92 
+            let v90 : System.DateTime = System.DateTime.Now
+            v90
+        | US1_0(v74) -> (* Some *)
+            let v75 : System.DateTime = System.DateTime.Now
+            let v76 : (System.DateTime -> int64) = _.Ticks
+            let v77 : int64 = v76 v75
+            let v78 : int64 = v77 - v74
+            let v79 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v80 : System.TimeSpan = v79 v78
+            let v81 : (System.TimeSpan -> int32) = _.Hours
+            let v82 : int32 = v81 v80
+            let v83 : (System.TimeSpan -> int32) = _.Minutes
+            let v84 : int32 = v83 v80
+            let v85 : (System.TimeSpan -> int32) = _.Seconds
+            let v86 : int32 = v85 v80
+            let v87 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v88 : int32 = v87 v80
+            let v89 : System.DateTime = System.DateTime (1, 1, 1, v82, v84, v86, v88)
+            v89
+    let v93 : string = method7()
+    let v94 : (string -> string) = v92.ToString
+    let v95 : string = v94 v93
+    v95 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v93 : US1 option = None
-    let _v93 = ref v93 
+    let v96 : US1 option = None
+    let _v96 = ref v96 
     match v8 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v94 : int64 = x
-    let v95 : US1 = US1_0(v94)
-    v95 
+    let v97 : int64 = x
+    let v98 : US1 = US1_0(v97)
+    v98 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v93.Value <- x
-    let v96 : US1 option = _v93.Value 
-    let v97 : US1 = US1_1
-    let v98 : US1 = v96 |> Option.defaultValue v97 
-    let v117 : System.DateTime =
-        match v98 with
+    |> fun x -> _v96.Value <- x
+    let v99 : US1 option = _v96.Value 
+    let v100 : US1 = US1_1
+    let v101 : US1 = v99 |> Option.defaultValue v100 
+    let v120 : System.DateTime =
+        match v101 with
         | US1_1 -> (* None *)
-            let v115 : System.DateTime = System.DateTime.Now
-            v115
-        | US1_0(v99) -> (* Some *)
-            let v100 : System.DateTime = System.DateTime.Now
-            let v101 : (System.DateTime -> int64) = _.Ticks
-            let v102 : int64 = v101 v100
-            let v103 : int64 = v102 - v99
-            let v104 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v105 : System.TimeSpan = v104 v103
-            let v106 : (System.TimeSpan -> int32) = _.Hours
-            let v107 : int32 = v106 v105
-            let v108 : (System.TimeSpan -> int32) = _.Minutes
-            let v109 : int32 = v108 v105
-            let v110 : (System.TimeSpan -> int32) = _.Seconds
-            let v111 : int32 = v110 v105
-            let v112 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v113 : int32 = v112 v105
-            let v114 : System.DateTime = System.DateTime (1, 1, 1, v107, v109, v111, v113)
-            v114
-    let v118 : string = method7()
-    let v119 : string = v117.ToString v118 
-    v119 
+            let v118 : System.DateTime = System.DateTime.Now
+            v118
+        | US1_0(v102) -> (* Some *)
+            let v103 : System.DateTime = System.DateTime.Now
+            let v104 : (System.DateTime -> int64) = _.Ticks
+            let v105 : int64 = v104 v103
+            let v106 : int64 = v105 - v102
+            let v107 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v108 : System.TimeSpan = v107 v106
+            let v109 : (System.TimeSpan -> int32) = _.Hours
+            let v110 : int32 = v109 v108
+            let v111 : (System.TimeSpan -> int32) = _.Minutes
+            let v112 : int32 = v111 v108
+            let v113 : (System.TimeSpan -> int32) = _.Seconds
+            let v114 : int32 = v113 v108
+            let v115 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v116 : int32 = v115 v108
+            let v117 : System.DateTime = System.DateTime (1, 1, 1, v110, v112, v114, v116)
+            v117
+    let v121 : string = method7()
+    let v122 : (string -> string) = v120.ToString
+    let v123 : string = v122 v121
+    v123 
     #endif
 #else
-    let v120 : US1 option = None
-    let _v120 = ref v120 
+    let v124 : US1 option = None
+    let _v124 = ref v124 
     match v8 with
     | Some x -> (
     (fun () ->
     (fun () ->
-    let v121 : int64 = x
-    let v122 : US1 = US1_0(v121)
-    v122 
+    let v125 : int64 = x
+    let v126 : US1 = US1_0(v125)
+    v126 
     )
     |> fun x -> x () |> Some
     ) () ) | None -> None
-    |> fun x -> _v120.Value <- x
-    let v123 : US1 option = _v120.Value 
-    let v124 : US1 = US1_1
-    let v125 : US1 = v123 |> Option.defaultValue v124 
-    let v144 : System.DateTime =
-        match v125 with
+    |> fun x -> _v124.Value <- x
+    let v127 : US1 option = _v124.Value 
+    let v128 : US1 = US1_1
+    let v129 : US1 = v127 |> Option.defaultValue v128 
+    let v148 : System.DateTime =
+        match v129 with
         | US1_1 -> (* None *)
-            let v142 : System.DateTime = System.DateTime.Now
-            v142
-        | US1_0(v126) -> (* Some *)
-            let v127 : System.DateTime = System.DateTime.Now
-            let v128 : (System.DateTime -> int64) = _.Ticks
-            let v129 : int64 = v128 v127
-            let v130 : int64 = v129 - v126
-            let v131 : (int64 -> System.TimeSpan) = System.TimeSpan 
-            let v132 : System.TimeSpan = v131 v130
-            let v133 : (System.TimeSpan -> int32) = _.Hours
-            let v134 : int32 = v133 v132
-            let v135 : (System.TimeSpan -> int32) = _.Minutes
-            let v136 : int32 = v135 v132
-            let v137 : (System.TimeSpan -> int32) = _.Seconds
-            let v138 : int32 = v137 v132
-            let v139 : (System.TimeSpan -> int32) = _.Milliseconds
-            let v140 : int32 = v139 v132
-            let v141 : System.DateTime = System.DateTime (1, 1, 1, v134, v136, v138, v140)
-            v141
-    let v145 : string = method7()
-    let v146 : string = v144.ToString v145 
-    v146 
+            let v146 : System.DateTime = System.DateTime.Now
+            v146
+        | US1_0(v130) -> (* Some *)
+            let v131 : System.DateTime = System.DateTime.Now
+            let v132 : (System.DateTime -> int64) = _.Ticks
+            let v133 : int64 = v132 v131
+            let v134 : int64 = v133 - v130
+            let v135 : (int64 -> System.TimeSpan) = System.TimeSpan 
+            let v136 : System.TimeSpan = v135 v134
+            let v137 : (System.TimeSpan -> int32) = _.Hours
+            let v138 : int32 = v137 v136
+            let v139 : (System.TimeSpan -> int32) = _.Minutes
+            let v140 : int32 = v139 v136
+            let v141 : (System.TimeSpan -> int32) = _.Seconds
+            let v142 : int32 = v141 v136
+            let v143 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v144 : int32 = v143 v136
+            let v145 : System.DateTime = System.DateTime (1, 1, 1, v138, v140, v142, v144)
+            v145
+    let v149 : string = method7()
+    let v150 : (string -> string) = v148.ToString
+    let v151 : string = v150 v149
+    v151 
     #endif
     |> fun x -> _v10 <- Some x
-    let v147 : string = match _v10 with Some x -> x | None -> failwith "base.run_target / _v10=None"
-    let v150 : bool =
+    let v152 : string = match _v10 with Some x -> x | None -> failwith "base.run_target / _v10=None"
+    let v155 : bool =
         match v0 with
         | US0_0 -> (* Verbose *)
             true
         | _ ->
             false
-    let v154 : US3 =
-        if v150 then
-            let v151 : string = "Verbose"
-            US3_0(v151)
+    let v159 : US3 =
+        if v155 then
+            let v156 : string = "Verbose"
+            US3_0(v156)
         else
             US3_1
-    let v203 : US3 =
-        match v154 with
+    let v208 : US3 =
+        match v159 with
         | US3_1 -> (* None *)
-            let v159 : bool =
+            let v164 : bool =
                 match v0 with
                 | US0_1 -> (* Debug *)
                     true
                 | _ ->
                     false
-            let v163 : US3 =
-                if v159 then
-                    let v160 : string = "Debug"
-                    US3_0(v160)
+            let v168 : US3 =
+                if v164 then
+                    let v165 : string = "Debug"
+                    US3_0(v165)
                 else
                     US3_1
-            match v163 with
+            match v168 with
             | US3_1 -> (* None *)
-                let v168 : bool =
+                let v173 : bool =
                     match v0 with
                     | US0_2 -> (* Info *)
                         true
                     | _ ->
                         false
-                let v172 : US3 =
-                    if v168 then
-                        let v169 : string = "Info"
-                        US3_0(v169)
+                let v177 : US3 =
+                    if v173 then
+                        let v174 : string = "Info"
+                        US3_0(v174)
                     else
                         US3_1
-                match v172 with
+                match v177 with
                 | US3_1 -> (* None *)
-                    let v177 : bool =
+                    let v182 : bool =
                         match v0 with
                         | US0_3 -> (* Warning *)
                             true
                         | _ ->
                             false
-                    let v181 : US3 =
-                        if v177 then
-                            let v178 : string = "Warning"
-                            US3_0(v178)
+                    let v186 : US3 =
+                        if v182 then
+                            let v183 : string = "Warning"
+                            US3_0(v183)
                         else
                             US3_1
-                    match v181 with
+                    match v186 with
                     | US3_1 -> (* None *)
-                        let v186 : bool =
+                        let v191 : bool =
                             match v0 with
                             | US0_4 -> (* Critical *)
                                 true
                             | _ ->
                                 false
-                        let v190 : US3 =
-                            if v186 then
-                                let v187 : string = "Critical"
-                                US3_0(v187)
+                        let v195 : US3 =
+                            if v191 then
+                                let v192 : string = "Critical"
+                                US3_0(v192)
                             else
                                 US3_1
-                        match v190 with
+                        match v195 with
                         | US3_1 -> (* None *)
                             US3_1
-                        | US3_0(v191) -> (* Some *)
-                            US3_0(v191)
-                    | US3_0(v182) -> (* Some *)
-                        US3_0(v182)
-                | US3_0(v173) -> (* Some *)
-                    US3_0(v173)
-            | US3_0(v164) -> (* Some *)
-                US3_0(v164)
-        | US3_0(v155) -> (* Some *)
-            US3_0(v155)
-    let v207 : string =
-        match v203 with
+                        | US3_0(v196) -> (* Some *)
+                            US3_0(v196)
+                    | US3_0(v187) -> (* Some *)
+                        US3_0(v187)
+                | US3_0(v178) -> (* Some *)
+                    US3_0(v178)
+            | US3_0(v169) -> (* Some *)
+                US3_0(v169)
+        | US3_0(v160) -> (* Some *)
+            US3_0(v160)
+    let v212 : string =
+        match v208 with
         | US3_1 -> (* None *)
             failwith<string> "Option does not have a value."
-        | US3_0(v204) -> (* Some *)
-            v204
-    let v208 : (unit -> string) = v207.ToLower
-    let v209 : string = v208 ()
-    let v210 : string = v209.PadLeft (7, ' ')
-    let v211 : bool = true
-    let mutable _v211 : string option = None 
+        | US3_0(v209) -> (* Some *)
+            v209
+    let v213 : (unit -> string) = v212.ToLower
+    let v214 : string = v213 ()
+    let v215 : string = v214.PadLeft (7, ' ')
+    let v216 : bool = true
+    let mutable _v216 : string option = None 
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v226 : Ref<Str> =
+    let v231 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v220 : string = "inline_colorization::color_bright_red"
-            let v221 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v220 
-            v221
+            let v225 : string = "inline_colorization::color_bright_red"
+            let v226 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v225 
+            v226
         | US0_1 -> (* Debug *)
-            let v214 : string = "inline_colorization::color_bright_blue"
-            let v215 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v214 
-            v215
+            let v219 : string = "inline_colorization::color_bright_blue"
+            let v220 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v219 
+            v220
         | US0_2 -> (* Info *)
-            let v216 : string = "inline_colorization::color_bright_green"
-            let v217 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v216 
-            v217
+            let v221 : string = "inline_colorization::color_bright_green"
+            let v222 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v221 
+            v222
         | US0_0 -> (* Verbose *)
-            let v212 : string = "inline_colorization::color_bright_black"
-            let v213 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v212 
-            v213
+            let v217 : string = "inline_colorization::color_bright_black"
+            let v218 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v217 
+            v218
         | US0_3 -> (* Warning *)
-            let v218 : string = "inline_colorization::color_yellow"
-            let v219 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v218 
-            v219
-    let v227 : string = "&*$0"
-    let v228 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v210 v227 
-    let v229 : string = "inline_colorization::color_reset"
-    let v230 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v229 
-    let v231 : string = "\"{v226}{v228}{v230}\""
-    let v232 : string = @$"format!(" + v231 + ")"
-    let v233 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v232 
-    let v234 : string = "fable_library_rust::String_::fromString($0)"
-    let v235 : string = Fable.Core.RustInterop.emitRustExpr v233 v234 
-    v235 
+            let v223 : string = "inline_colorization::color_yellow"
+            let v224 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v223 
+            v224
+    let v232 : string = "&*$0"
+    let v233 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v215 v232 
+    let v234 : string = "inline_colorization::color_reset"
+    let v235 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v234 
+    let v236 : string = "\"{v231}{v233}{v235}\""
+    let v237 : string = @$"format!(" + v236 + ")"
+    let v238 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v237 
+    let v239 : string = "fable_library_rust::String_::fromString($0)"
+    let v240 : string = Fable.Core.RustInterop.emitRustExpr v238 v239 
+    v240 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v250 : Ref<Str> =
+    let v255 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v244 : string = "inline_colorization::color_bright_red"
-            let v245 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v244 
-            v245
+            let v249 : string = "inline_colorization::color_bright_red"
+            let v250 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v249 
+            v250
         | US0_1 -> (* Debug *)
-            let v238 : string = "inline_colorization::color_bright_blue"
-            let v239 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v238 
-            v239
+            let v243 : string = "inline_colorization::color_bright_blue"
+            let v244 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v243 
+            v244
         | US0_2 -> (* Info *)
-            let v240 : string = "inline_colorization::color_bright_green"
-            let v241 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v240 
-            v241
+            let v245 : string = "inline_colorization::color_bright_green"
+            let v246 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v245 
+            v246
         | US0_0 -> (* Verbose *)
-            let v236 : string = "inline_colorization::color_bright_black"
-            let v237 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v236 
-            v237
+            let v241 : string = "inline_colorization::color_bright_black"
+            let v242 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v241 
+            v242
         | US0_3 -> (* Warning *)
-            let v242 : string = "inline_colorization::color_yellow"
-            let v243 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v242 
-            v243
-    let v251 : string = "&*$0"
-    let v252 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v210 v251 
-    let v253 : string = "inline_colorization::color_reset"
-    let v254 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v253 
-    let v255 : string = "\"{v250}{v252}{v254}\""
-    let v256 : string = @$"format!(" + v255 + ")"
-    let v257 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v256 
-    let v258 : string = "fable_library_rust::String_::fromString($0)"
-    let v259 : string = Fable.Core.RustInterop.emitRustExpr v257 v258 
-    v259 
+            let v247 : string = "inline_colorization::color_yellow"
+            let v248 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v247 
+            v248
+    let v256 : string = "&*$0"
+    let v257 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v215 v256 
+    let v258 : string = "inline_colorization::color_reset"
+    let v259 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v258 
+    let v260 : string = "\"{v255}{v257}{v259}\""
+    let v261 : string = @$"format!(" + v260 + ")"
+    let v262 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v261 
+    let v263 : string = "fable_library_rust::String_::fromString($0)"
+    let v264 : string = Fable.Core.RustInterop.emitRustExpr v262 v263 
+    v264 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v274 : Ref<Str> =
+    let v279 : Ref<Str> =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v268 : string = "inline_colorization::color_bright_red"
-            let v269 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v268 
-            v269
+            let v273 : string = "inline_colorization::color_bright_red"
+            let v274 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v273 
+            v274
         | US0_1 -> (* Debug *)
-            let v262 : string = "inline_colorization::color_bright_blue"
-            let v263 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v262 
-            v263
+            let v267 : string = "inline_colorization::color_bright_blue"
+            let v268 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v267 
+            v268
         | US0_2 -> (* Info *)
-            let v264 : string = "inline_colorization::color_bright_green"
-            let v265 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v264 
-            v265
+            let v269 : string = "inline_colorization::color_bright_green"
+            let v270 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v269 
+            v270
         | US0_0 -> (* Verbose *)
-            let v260 : string = "inline_colorization::color_bright_black"
-            let v261 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v260 
-            v261
+            let v265 : string = "inline_colorization::color_bright_black"
+            let v266 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v265 
+            v266
         | US0_3 -> (* Warning *)
-            let v266 : string = "inline_colorization::color_yellow"
-            let v267 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v266 
-            v267
-    let v275 : string = "&*$0"
-    let v276 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v210 v275 
-    let v277 : string = "inline_colorization::color_reset"
-    let v278 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v277 
-    let v279 : string = "\"{v274}{v276}{v278}\""
-    let v280 : string = @$"format!(" + v279 + ")"
-    let v281 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v280 
-    let v282 : string = "fable_library_rust::String_::fromString($0)"
-    let v283 : string = Fable.Core.RustInterop.emitRustExpr v281 v282 
-    v283 
+            let v271 : string = "inline_colorization::color_yellow"
+            let v272 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v271 
+            v272
+    let v280 : string = "&*$0"
+    let v281 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v215 v280 
+    let v282 : string = "inline_colorization::color_reset"
+    let v283 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v282 
+    let v284 : string = "\"{v279}{v281}{v283}\""
+    let v285 : string = @$"format!(" + v284 + ")"
+    let v286 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v285 
+    let v287 : string = "fable_library_rust::String_::fromString($0)"
+    let v288 : string = Fable.Core.RustInterop.emitRustExpr v286 v287 
+    v288 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    v210 
+    let v298 : string =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v293 : string = "\u001b[91m"
+            v293
+        | US0_1 -> (* Debug *)
+            let v290 : string = "\u001b[94m"
+            v290
+        | US0_2 -> (* Info *)
+            let v291 : string = "\u001b[92m"
+            v291
+        | US0_0 -> (* Verbose *)
+            let v289 : string = "\u001b[90m"
+            v289
+        | US0_3 -> (* Warning *)
+            let v292 : string = "\u001b[93m"
+            v292
+    let v299 : string = method8()
+    let v300 : string = v298 + v215 
+    let v301 : string = v300 + v299 
+    v301 
     #endif
 #if FABLE_COMPILER_PYTHON
-    v210 
+    let v311 : string =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v306 : string = "\u001b[91m"
+            v306
+        | US0_1 -> (* Debug *)
+            let v303 : string = "\u001b[94m"
+            v303
+        | US0_2 -> (* Info *)
+            let v304 : string = "\u001b[92m"
+            v304
+        | US0_0 -> (* Verbose *)
+            let v302 : string = "\u001b[90m"
+            v302
+        | US0_3 -> (* Warning *)
+            let v305 : string = "\u001b[93m"
+            v305
+    let v312 : string = method8()
+    let v313 : string = v311 + v215 
+    let v314 : string = v313 + v312 
+    v314 
     #endif
 #else
-    v210 
+    let v324 : string =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v319 : string = "\u001b[91m"
+            v319
+        | US0_1 -> (* Debug *)
+            let v316 : string = "\u001b[94m"
+            v316
+        | US0_2 -> (* Info *)
+            let v317 : string = "\u001b[92m"
+            v317
+        | US0_0 -> (* Verbose *)
+            let v315 : string = "\u001b[90m"
+            v315
+        | US0_3 -> (* Warning *)
+            let v318 : string = "\u001b[93m"
+            v318
+    let v325 : string = method8()
+    let v326 : string = v324 + v215 
+    let v327 : string = v326 + v325 
+    v327 
     #endif
-    |> fun x -> _v211 <- Some x
-    let v284 : string = match _v211 with Some x -> x | None -> failwith "base.run_target / _v211=None"
-    let v285 : int64 = v5.l0
-    let v286 : string = $"{v147} {v284} #{v285} %s{v1 ()} / %s{v2 ()}"
-    let v287 : (char []) = [||]
-    let v288 : string = v286.TrimStart v287 
-    let v289 : (char []) = [|' '; '/'|]
-    let v290 : string = v288.TrimEnd v289 
-    v290
-and method8 (v0 : US0, v1 : (unit -> string)) : unit =
+    |> fun x -> _v216 <- Some x
+    let v328 : string = match _v216 with Some x -> x | None -> failwith "base.run_target / _v216=None"
+    let v329 : int64 = v5.l0
+    let v330 : string = $"{v152} {v328} #{v329} %s{v1 ()} / %s{v2 ()}"
+    let v331 : char list = []
+    let v332 : (char list -> (char [])) = List.toArray
+    let v333 : (char []) = v332 v331
+    let v334 : string = v330.TrimStart v333 
+    let v335 : char list = []
+    let v336 : char list = '/' :: v335 
+    let v337 : char list = ' ' :: v336 
+    let v338 : (char list -> (char [])) = List.toArray
+    let v339 : (char []) = v338 v337
+    let v340 : string = v334.TrimEnd v339 
+    v340
+and method9 (v0 : US0, v1 : (unit -> string)) : unit =
     let v2 : (US0 -> struct (Mut0 * Mut1 * Mut2 * int64 option * Mut3)) = closure0()
     let v3 : US0 = US0_0
     if State.trace_state.IsNone then State.trace_state <- v2 v3 |> Some
@@ -1388,7 +1495,7 @@ and method8 (v0 : US0, v1 : (unit -> string)) : unit =
         v29 v24
 and method4 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
     let v3 : (unit -> string) = closure6(v0, v1, v2)
-    method8(v0, v3)
+    method9(v0, v3)
 and closure7 () () : string =
     let v0 : string = "runtime.current_process_kill / exiting... 2"
     v0
@@ -1477,10 +1584,10 @@ and closure2 () () : unit =
     |> fun x -> _v0 <- Some x
     match _v0 with Some x -> x | None -> failwith "base.run_target / _v0=None"
     ()
-and method11 () : struct (string * string) =
+and method12 () : struct (string * string) =
     let v0 : string = ""
     struct (v0, v0)
-and method12 (v0 : int32, v1 : Mut4) : bool =
+and method13 (v0 : int32, v1 : Mut4) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
@@ -1488,9 +1595,9 @@ and closure11 (v0 : char) (v1 : UH0) : UH0 =
     UH0_1(v0, v1)
 and closure10 () (v0 : char) : (UH0 -> UH0) =
     closure11(v0)
-and method13 () : (char -> (UH0 -> UH0)) =
+and method14 () : (char -> (UH0 -> UH0)) =
     closure10()
-and method14 (v0 : string, v1 : string, v2 : UH0, v3 : US4) : struct (string * string) =
+and method15 (v0 : string, v1 : string, v2 : UH0, v3 : US4) : struct (string * string) =
     match v2 with
     | UH0_1(v4, v5) -> (* Cons *)
         let v6 : bool = '"' = v4
@@ -1499,35 +1606,35 @@ and method14 (v0 : string, v1 : string, v2 : UH0, v3 : US4) : struct (string * s
             if v8 then
                 let v9 : US5 = US5_0
                 let v10 : US4 = US4_1(v9)
-                method14(v0, v1, v5, v10)
+                method15(v0, v1, v5, v10)
             else
                 match v3 with
                 | US4_2 -> (* Arguments *)
                     let v38 : string = $"{v0}{v4}"
                     let v39 : US4 = US4_2
-                    method14(v38, v1, v5, v39)
+                    method15(v38, v1, v5, v39)
                 | US4_1(v13) -> (* Path *)
                     match v13 with
                     | US5_0 -> (* Quoted *)
                         let v14 : US5 = US5_1
                         let v15 : US4 = US4_1(v14)
-                        method14(v0, v1, v5, v15)
+                        method15(v0, v1, v5, v15)
                     | _ ->
                         let v18 : bool = ' ' = v4
                         if v18 then
                             let v19 : US4 = US4_2
-                            method14(v0, v1, v5, v19)
+                            method15(v0, v1, v5, v19)
                         else
                             let v22 : string = $"{v1}{v4}"
-                            method14(v0, v22, v5, v3)
+                            method15(v0, v22, v5, v3)
                 | US4_0 -> (* Start *)
                     let v29 : bool = ' ' = v4
                     if v29 then
                         let v30 : US4 = US4_2
-                        method14(v0, v1, v5, v30)
+                        method15(v0, v1, v5, v30)
                     else
                         let v33 : string = $"{v1}{v4}"
-                        method14(v0, v33, v5, v3)
+                        method15(v0, v33, v5, v3)
         else
             let v50 : bool = ''' = v4
             if v50 then
@@ -1535,41 +1642,41 @@ and method14 (v0 : string, v1 : string, v2 : UH0, v3 : US4) : struct (string * s
                 if v52 then
                     let v53 : US5 = US5_0
                     let v54 : US4 = US4_1(v53)
-                    method14(v0, v1, v5, v54)
+                    method15(v0, v1, v5, v54)
                 else
                     match v3 with
                     | US4_2 -> (* Arguments *)
                         let v82 : string = $"{v0}{v4}"
                         let v83 : US4 = US4_2
-                        method14(v82, v1, v5, v83)
+                        method15(v82, v1, v5, v83)
                     | US4_1(v57) -> (* Path *)
                         match v57 with
                         | US5_0 -> (* Quoted *)
                             let v58 : US5 = US5_1
                             let v59 : US4 = US4_1(v58)
-                            method14(v0, v1, v5, v59)
+                            method15(v0, v1, v5, v59)
                         | _ ->
                             let v62 : bool = ' ' = v4
                             if v62 then
                                 let v63 : US4 = US4_2
-                                method14(v0, v1, v5, v63)
+                                method15(v0, v1, v5, v63)
                             else
                                 let v66 : string = $"{v1}{v4}"
-                                method14(v0, v66, v5, v3)
+                                method15(v0, v66, v5, v3)
                     | US4_0 -> (* Start *)
                         let v73 : bool = ' ' = v4
                         if v73 then
                             let v74 : US4 = US4_2
-                            method14(v0, v1, v5, v74)
+                            method15(v0, v1, v5, v74)
                         else
                             let v77 : string = $"{v1}{v4}"
-                            method14(v0, v77, v5, v3)
+                            method15(v0, v77, v5, v3)
             else
                 match v3 with
                 | US4_2 -> (* Arguments *)
                     let v126 : string = $"{v0}{v4}"
                     let v127 : US4 = US4_2
-                    method14(v126, v1, v5, v127)
+                    method15(v126, v1, v5, v127)
                 | US4_1(v94) -> (* Path *)
                     match v94 with
                     | US5_0 -> (* Quoted *)
@@ -1578,26 +1685,26 @@ and method14 (v0 : string, v1 : string, v2 : UH0, v3 : US4) : struct (string * s
                             let v96 : string = $"{v1} "
                             let v97 : US5 = US5_0
                             let v98 : US4 = US4_1(v97)
-                            method14(v0, v96, v5, v98)
+                            method15(v0, v96, v5, v98)
                         else
                             let v101 : string = $"{v1}{v4}"
-                            method14(v0, v101, v5, v3)
+                            method15(v0, v101, v5, v3)
                     | _ ->
                         let v106 : bool = ' ' = v4
                         if v106 then
                             let v107 : US4 = US4_2
-                            method14(v0, v1, v5, v107)
+                            method15(v0, v1, v5, v107)
                         else
                             let v110 : string = $"{v1}{v4}"
-                            method14(v0, v110, v5, v3)
+                            method15(v0, v110, v5, v3)
                 | US4_0 -> (* Start *)
                     let v117 : bool = ' ' = v4
                     if v117 then
                         let v118 : US4 = US4_2
-                        method14(v0, v1, v5, v118)
+                        method15(v0, v1, v5, v118)
                     else
                         let v121 : string = $"{v1}{v4}"
-                        method14(v0, v121, v5, v3)
+                        method15(v0, v121, v5, v3)
     | _ ->
         match v3 with
         | US4_2 -> (* Arguments *)
@@ -1622,12 +1729,12 @@ and method14 (v0 : string, v1 : string, v2 : UH0, v3 : US4) : struct (string * s
             let v150 : string = "/"
             let v151 : string = v1.Replace (v149, v150)
             struct (v151, v0)
-and method10 (v0 : string) : struct (string * string) =
-    let struct (v1 : string, v2 : string) = method11()
+and method11 (v0 : string) : struct (string * string) =
+    let struct (v1 : string, v2 : string) = method12()
     let v3 : int32 = v0.Length
     let v4 : (char []) = Array.zeroCreate<char> (v3)
     let v5 : Mut4 = {l0 = 0} : Mut4
-    while method12(v3, v5) do
+    while method13(v3, v5) do
         let v7 : int32 = v5.l0
         let v8 : char = v0.[int v7]
         v4.[int v7] <- v8
@@ -1637,17 +1744,17 @@ and method10 (v0 : string) : struct (string * string) =
     let v10 : ((char []) -> char list) = Array.toList
     let v11 : char list = v10 v4
     let v12 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-    let v13 : (char -> (UH0 -> UH0)) = method13()
+    let v13 : (char -> (UH0 -> UH0)) = method14()
     let v14 : (char list -> (UH0 -> UH0)) = v12 v13
     let v15 : (UH0 -> UH0) = v14 v11
     let v16 : UH0 = UH0_0
     let v17 : UH0 = v15 v16
     let v18 : US4 = US4_0
-    method14(v2, v1, v17, v18)
+    method15(v2, v1, v17, v18)
 and closure12 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) () : string =
     let v7 : string = $"runtime.execute_with_options_async / options: %A{struct (v0, v1, v2, v3, v4, v5, v6)}"
     v7
-and method15 () : (unit -> string) =
+and method16 () : (unit -> string) =
     closure5()
 and closure14 (v0 : string) () : string =
     v0
@@ -1949,7 +2056,7 @@ and closure17 (v0 : System.Threading.Tasks.TaskCanceledException) () : string =
 and closure18 (v0 : int32, v1 : string) () : string =
     let v2 : string = $"runtime.execute_with_options_async / exit_code: {v0} / output.Length: {v1.Length}"
     v2
-and method9 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) : Async<struct (int32 * string)> =
+and method10 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) : Async<struct (int32 * string)> =
     let v7 : bool = true
     let mutable _v7 : Async<struct (int32 * string)> option = None 
     
@@ -2005,7 +2112,7 @@ and method9 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     let v19 : Async<struct (int32 * string)> option = None
     let mutable _v19 = v19 
     async {
-    let struct (v20 : string, v21 : string) = method10(v1)
+    let struct (v20 : string, v21 : string) = method11(v1)
     let v22 : US3 option = None
     let _v22 = ref v22 
     match v6 with
@@ -2031,13 +2138,13 @@ and method9 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
             v28
     let v32 : US0 = US0_1
     let v33 : (unit -> string) = closure12(v0, v1, v2, v3, v4, v5, v6)
-    let v34 : (unit -> string) = method15()
+    let v34 : (unit -> string) = method16()
     method4(v32, v33, v34)
     let v35 : System.Text.Encoding = System.Text.Encoding.UTF8
     let v36 : System.Diagnostics.ProcessStartInfo = System.Diagnostics.ProcessStartInfo (Arguments = v21, StandardOutputEncoding = v35, WorkingDirectory = v31, FileName = v20, CreateNoWindow = true, RedirectStandardError = true, RedirectStandardOutput = true, UseShellExecute = false)
     let v37 : int32 = v2.Length
     let v38 : Mut4 = {l0 = 0} : Mut4
-    while method12(v37, v38) do
+    while method13(v37, v38) do
         let v40 : int32 = v38.l0
         let struct (v41 : string, v42 : string) = v2.[int v40]
         v36.EnvironmentVariables.[v41] <- v42 
@@ -2272,7 +2379,7 @@ and method9 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     let v122 : System.Threading.Tasks.TaskCanceledException = v112 |> unbox<System.Threading.Tasks.TaskCanceledException>
     let v123 : US0 = US0_3
     let v124 : (unit -> string) = closure17(v122)
-    let v125 : (unit -> string) = method15()
+    let v125 : (unit -> string) = method16()
     method4(v123, v124, v125)
     return -2147483648 
     (*
@@ -2294,7 +2401,7 @@ and method9 (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (
     let v134 : string = v133 v130
     let v135 : US0 = US0_1
     let v136 : (unit -> string) = closure18(v128, v134)
-    let v137 : (unit -> string) = method15()
+    let v137 : (unit -> string) = method16()
     method4(v135, v136, v137)
     return struct (v128, v134) 
     }
@@ -2316,9 +2423,9 @@ and closure9 () (v0 : string) : Async<struct (int32 * string)> =
     let v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option = None
     let v5 : string option = None
     let v6 : bool = true
-    method9(v1, v0, v2, v3, v4, v6, v5)
+    method10(v1, v0, v2, v3, v4, v6, v5)
 and closure19 () struct (v0 : System.Threading.CancellationToken option, v1 : string, v2 : (struct (string * string) []), v3 : (struct (bool * string * int32) -> Async<unit>) option, v4 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option, v5 : bool, v6 : string option) : Async<struct (int32 * string)> =
-    method9(v0, v1, v2, v3, v4, v5, v6)
+    method10(v0, v1, v2, v3, v4, v5, v6)
 and closure20 () (v0 : (Heap0 -> Heap0)) : struct (System.Threading.CancellationToken option * string * (struct (string * string) []) * (struct (bool * string * int32) -> Async<unit>) option * (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option * bool * string option) =
     let v1 : System.Threading.CancellationToken option = None
     let v2 : (struct (string * string) []) = [||]
@@ -2336,7 +2443,7 @@ and closure20 () (v0 : (Heap0 -> Heap0)) : struct (System.Threading.Cancellation
     let v14 : bool = v8.l5
     let v15 : string option = v8.l6
     struct (v9, v10, v11, v12, v13, v14, v15)
-and method18 (v0 : char, v1 : int64) : bool =
+and method19 (v0 : char, v1 : int64) : bool =
     let v2 : bool = v1 >= 4L
     if v2 then
         false
@@ -2374,8 +2481,8 @@ and method18 (v0 : char, v1 : int64) : bool =
             true
         else
             let v25 : int64 = v1 + 1L
-            method18(v0, v25)
-and method19 (v0 : UH0, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32) : struct (System.Text.StringBuilder * int32 * int32) =
+            method19(v0, v25)
+and method20 (v0 : UH0, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32) : struct (System.Text.StringBuilder * int32 * int32) =
     match v0 with
     | UH0_1(v4, v5) -> (* Cons *)
         let v6 : bool = '\n' = v4
@@ -2397,10 +2504,10 @@ and method19 (v0 : UH0, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32) 
                 let v15 : (string -> System.Text.StringBuilder) = v1.Append
                 let v16 : System.Text.StringBuilder = v15 v14
                 v1
-        method19(v5, v17, v9, v10)
+        method20(v5, v17, v9, v10)
     | UH0_0 -> (* Nil *)
         struct (v1, v2, v3)
-and method20 (v0 : string, v1 : string, v2 : System.Text.StringBuilder, v3 : int32, v4 : int32) : US12 =
+and method21 (v0 : string, v1 : string, v2 : System.Text.StringBuilder, v3 : int32, v4 : int32) : US12 =
     let v5 : bool = "" = v1
     let v57 : US10 =
         if v5 then
@@ -2423,7 +2530,7 @@ and method20 (v0 : string, v1 : string, v2 : System.Text.StringBuilder, v3 : int
             let v21 : int32 = v20 v17
             let v22 : string = v1.[int v19..int v21]
             let v23 : int64 = 0L
-            let v24 : bool = method18(v15, v23)
+            let v24 : bool = method19(v15, v23)
             let v25 : bool = v24 = false
             if v25 then
                 let v26 : (char -> string) = _.ToString()
@@ -2431,7 +2538,7 @@ and method20 (v0 : string, v1 : string, v2 : System.Text.StringBuilder, v3 : int
                 let v28 : int32 = v27.Length
                 let v29 : (char []) = Array.zeroCreate<char> (v28)
                 let v30 : Mut4 = {l0 = 0} : Mut4
-                while method12(v28, v30) do
+                while method13(v28, v30) do
                     let v32 : int32 = v30.l0
                     let v33 : char = v27.[int v32]
                     v29.[int v32] <- v33
@@ -2441,12 +2548,12 @@ and method20 (v0 : string, v1 : string, v2 : System.Text.StringBuilder, v3 : int
                 let v35 : ((char []) -> char list) = Array.toList
                 let v36 : char list = v35 v29
                 let v37 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-                let v38 : (char -> (UH0 -> UH0)) = method13()
+                let v38 : (char -> (UH0 -> UH0)) = method14()
                 let v39 : (char list -> (UH0 -> UH0)) = v37 v38
                 let v40 : (UH0 -> UH0) = v39 v36
                 let v41 : UH0 = UH0_0
                 let v42 : UH0 = v40 v41
-                let struct (v43 : System.Text.StringBuilder, v44 : int32, v45 : int32) = method19(v42, v2, v3, v4)
+                let struct (v43 : System.Text.StringBuilder, v44 : int32, v45 : int32) = method20(v42, v2, v3, v4)
                 US10_0(v15, v22, v43, v44, v45)
             else
                 let v47 : char list = []
@@ -2465,8 +2572,8 @@ and method20 (v0 : string, v1 : string, v2 : System.Text.StringBuilder, v3 : int
         let v63 : (char -> string) = _.ToString()
         let v64 : string = v63 v58
         let v65 : string = v0 + v64 
-        method20(v65, v59, v60, v61, v62)
-and method22 (v0 : char, v1 : int64) : bool =
+        method21(v65, v59, v60, v61, v62)
+and method23 (v0 : char, v1 : int64) : bool =
     let v2 : bool = v1 >= 3L
     if v2 then
         false
@@ -2499,7 +2606,7 @@ and method22 (v0 : char, v1 : int64) : bool =
             true
         else
             let v21 : int64 = v1 + 1L
-            method22(v0, v21)
+            method23(v0, v21)
 and closure22 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32) : US12 =
     let v4 : bool = "" = v0
     let v60 : US10 =
@@ -2522,7 +2629,7 @@ and closure22 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
                 let v18 : int32 = v17.Length
                 let v19 : (char []) = Array.zeroCreate<char> (v18)
                 let v20 : Mut4 = {l0 = 0} : Mut4
-                while method12(v18, v20) do
+                while method13(v18, v20) do
                     let v22 : int32 = v20.l0
                     let v23 : char = v17.[int v22]
                     v19.[int v22] <- v23
@@ -2532,12 +2639,12 @@ and closure22 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
                 let v25 : ((char []) -> char list) = Array.toList
                 let v26 : char list = v25 v19
                 let v27 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-                let v28 : (char -> (UH0 -> UH0)) = method13()
+                let v28 : (char -> (UH0 -> UH0)) = method14()
                 let v29 : (char list -> (UH0 -> UH0)) = v27 v28
                 let v30 : (UH0 -> UH0) = v29 v26
                 let v31 : UH0 = UH0_0
                 let v32 : UH0 = v30 v31
-                let struct (v33 : System.Text.StringBuilder, v34 : int32, v35 : int32) = method19(v32, v1, v2, v3)
+                let struct (v33 : System.Text.StringBuilder, v34 : int32, v35 : int32) = method20(v32, v1, v2, v3)
                 US10_0(v7, v15, v33, v34, v35)
             else
                 let v37 : (string -> int32) = String.length
@@ -2592,7 +2699,7 @@ and closure22 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
                 let v79 : int32 = v78.Length
                 let v80 : (char []) = Array.zeroCreate<char> (v79)
                 let v81 : Mut4 = {l0 = 0} : Mut4
-                while method12(v79, v81) do
+                while method13(v79, v81) do
                     let v83 : int32 = v81.l0
                     let v84 : char = v78.[int v83]
                     v80.[int v83] <- v84
@@ -2602,12 +2709,12 @@ and closure22 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
                 let v86 : ((char []) -> char list) = Array.toList
                 let v87 : char list = v86 v80
                 let v88 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-                let v89 : (char -> (UH0 -> UH0)) = method13()
+                let v89 : (char -> (UH0 -> UH0)) = method14()
                 let v90 : (char list -> (UH0 -> UH0)) = v88 v89
                 let v91 : (UH0 -> UH0) = v90 v87
                 let v92 : UH0 = UH0_0
                 let v93 : UH0 = v91 v92
-                let struct (v94 : System.Text.StringBuilder, v95 : int32, v96 : int32) = method19(v93, v63, v64, v65)
+                let struct (v94 : System.Text.StringBuilder, v95 : int32, v96 : int32) = method20(v93, v63, v64, v65)
                 US10_0(v69, v76, v94, v95, v96)
     match v102 with
     | US10_1(v110) -> (* Error *)
@@ -2637,7 +2744,7 @@ and closure23 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
                 let v18 : int32 = v17.Length
                 let v19 : (char []) = Array.zeroCreate<char> (v18)
                 let v20 : Mut4 = {l0 = 0} : Mut4
-                while method12(v18, v20) do
+                while method13(v18, v20) do
                     let v22 : int32 = v20.l0
                     let v23 : char = v17.[int v22]
                     v19.[int v22] <- v23
@@ -2647,12 +2754,12 @@ and closure23 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
                 let v25 : ((char []) -> char list) = Array.toList
                 let v26 : char list = v25 v19
                 let v27 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-                let v28 : (char -> (UH0 -> UH0)) = method13()
+                let v28 : (char -> (UH0 -> UH0)) = method14()
                 let v29 : (char list -> (UH0 -> UH0)) = v27 v28
                 let v30 : (UH0 -> UH0) = v29 v26
                 let v31 : UH0 = UH0_0
                 let v32 : UH0 = v30 v31
-                let struct (v33 : System.Text.StringBuilder, v34 : int32, v35 : int32) = method19(v32, v1, v2, v3)
+                let struct (v33 : System.Text.StringBuilder, v34 : int32, v35 : int32) = method20(v32, v1, v2, v3)
                 US10_0(v7, v15, v33, v34, v35)
             else
                 let v37 : (string -> int32) = String.length
@@ -2707,7 +2814,7 @@ and closure23 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
                 let v79 : int32 = v78.Length
                 let v80 : (char []) = Array.zeroCreate<char> (v79)
                 let v81 : Mut4 = {l0 = 0} : Mut4
-                while method12(v79, v81) do
+                while method13(v79, v81) do
                     let v83 : int32 = v81.l0
                     let v84 : char = v78.[int v83]
                     v80.[int v83] <- v84
@@ -2717,12 +2824,12 @@ and closure23 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
                 let v86 : ((char []) -> char list) = Array.toList
                 let v87 : char list = v86 v80
                 let v88 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-                let v89 : (char -> (UH0 -> UH0)) = method13()
+                let v89 : (char -> (UH0 -> UH0)) = method14()
                 let v90 : (char list -> (UH0 -> UH0)) = v88 v89
                 let v91 : (UH0 -> UH0) = v90 v87
                 let v92 : UH0 = UH0_0
                 let v93 : UH0 = v91 v92
-                let struct (v94 : System.Text.StringBuilder, v95 : int32, v96 : int32) = method19(v93, v63, v64, v65)
+                let struct (v94 : System.Text.StringBuilder, v95 : int32, v96 : int32) = method20(v93, v63, v64, v65)
                 US10_0(v69, v76, v94, v95, v96)
     match v102 with
     | US10_1(v110) -> (* Error *)
@@ -2730,26 +2837,26 @@ and closure23 () struct (v0 : string, v1 : System.Text.StringBuilder, v2 : int32
     | US10_0(v103, v104, v105, v106, v107) -> (* Ok *)
         let v108 : string = $"{'`'}{v103}"
         US12_0(v108, v104, v105, v106, v107)
-and method23 (v0 : string, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32, v4 : UH2) : US12 =
+and method24 (v0 : string, v1 : System.Text.StringBuilder, v2 : int32, v3 : int32, v4 : UH2) : US12 =
     match v4 with
     | UH2_1(v7, v8) -> (* Cons *)
         let v9 : US12 = v7 struct (v0, v1, v2, v3)
         match v9 with
         | US12_1(v15) -> (* Error *)
-            method23(v0, v1, v2, v3, v8)
+            method24(v0, v1, v2, v3, v8)
         | US12_0(v10, v11, v12, v13, v14) -> (* Ok *)
             v9
     | UH2_0 -> (* Nil *)
         let v5 : string = "choice / no parsers succeeded"
         US12_1(v5)
-and method24 (v0 : UH1, v1 : UH1) : UH1 =
+and method25 (v0 : UH1, v1 : UH1) : UH1 =
     match v0 with
     | UH1_1(v2, v3) -> (* Cons *)
         let v4 : UH1 = UH1_1(v2, v1)
-        method24(v3, v4)
+        method25(v3, v4)
     | UH1_0 -> (* Nil *)
         v1
-and method21 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32, v4 : int32) : US9 =
+and method22 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32, v4 : int32) : US9 =
     let v5 : bool = "" = v1
     let v55 : US10 =
         if v5 then
@@ -2771,7 +2878,7 @@ and method21 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
             let v20 : int32 = v19 v16
             let v21 : string = v1.[int v18..int v20]
             let v22 : int64 = 0L
-            let v23 : bool = method22(v14, v22)
+            let v23 : bool = method23(v14, v22)
             let v24 : bool = v23 = false
             if v24 then
                 let v25 : (char -> string) = _.ToString()
@@ -2779,7 +2886,7 @@ and method21 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                 let v27 : int32 = v26.Length
                 let v28 : (char []) = Array.zeroCreate<char> (v27)
                 let v29 : Mut4 = {l0 = 0} : Mut4
-                while method12(v27, v29) do
+                while method13(v27, v29) do
                     let v31 : int32 = v29.l0
                     let v32 : char = v26.[int v31]
                     v28.[int v31] <- v32
@@ -2789,12 +2896,12 @@ and method21 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                 let v34 : ((char []) -> char list) = Array.toList
                 let v35 : char list = v34 v28
                 let v36 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-                let v37 : (char -> (UH0 -> UH0)) = method13()
+                let v37 : (char -> (UH0 -> UH0)) = method14()
                 let v38 : (char list -> (UH0 -> UH0)) = v36 v37
                 let v39 : (UH0 -> UH0) = v38 v35
                 let v40 : UH0 = UH0_0
                 let v41 : UH0 = v39 v40
-                let struct (v42 : System.Text.StringBuilder, v43 : int32, v44 : int32) = method19(v41, v2, v3, v4)
+                let struct (v42 : System.Text.StringBuilder, v43 : int32, v44 : int32) = method20(v41, v2, v3, v4)
                 US10_0(v14, v21, v42, v43, v44)
             else
                 let v46 : char list = []
@@ -2821,26 +2928,26 @@ and method21 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
             let v76 : UH2 = UH2_0
             let v77 : UH2 = UH2_1(v75, v76)
             let v78 : UH2 = UH2_1(v74, v77)
-            method23(v1, v2, v3, v4, v78)
+            method24(v1, v2, v3, v4, v78)
         | US12_0(v68, v69, v70, v71, v72) -> (* Ok *)
             v67
     match v81 with
     | US12_1(v89) -> (* Error *)
         let v90 : UH1 = UH1_0
-        let v91 : UH1 = method24(v0, v90)
+        let v91 : UH1 = method25(v0, v90)
         US9_0(v91, v1, v2, v3, v4)
     | US12_0(v82, v83, v84, v85, v86) -> (* Ok *)
         let v87 : UH1 = UH1_1(v82, v0)
-        method21(v87, v83, v84, v85, v86)
-and method25 (v0 : UH1, v1 : string list) : string list =
+        method22(v87, v83, v84, v85, v86)
+and method26 (v0 : UH1, v1 : string list) : string list =
     match v0 with
     | UH1_1(v2, v3) -> (* Cons *)
-        let v4 : string list = method25(v3, v1)
+        let v4 : string list = method26(v3, v1)
         let v5 : string list = v2 :: v4 
         v5
     | UH1_0 -> (* Nil *)
         v1
-and method26 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32, v4 : int32) : US9 =
+and method27 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32, v4 : int32) : US9 =
     let v5 : bool = "" = v1
     let v55 : US10 =
         if v5 then
@@ -2862,7 +2969,7 @@ and method26 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
             let v20 : int32 = v19 v16
             let v21 : string = v1.[int v18..int v20]
             let v22 : int64 = 0L
-            let v23 : bool = method22(v14, v22)
+            let v23 : bool = method23(v14, v22)
             let v24 : bool = v23 = false
             if v24 then
                 let v25 : (char -> string) = _.ToString()
@@ -2870,7 +2977,7 @@ and method26 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                 let v27 : int32 = v26.Length
                 let v28 : (char []) = Array.zeroCreate<char> (v27)
                 let v29 : Mut4 = {l0 = 0} : Mut4
-                while method12(v27, v29) do
+                while method13(v27, v29) do
                     let v31 : int32 = v29.l0
                     let v32 : char = v26.[int v31]
                     v28.[int v31] <- v32
@@ -2880,12 +2987,12 @@ and method26 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                 let v34 : ((char []) -> char list) = Array.toList
                 let v35 : char list = v34 v28
                 let v36 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-                let v37 : (char -> (UH0 -> UH0)) = method13()
+                let v37 : (char -> (UH0 -> UH0)) = method14()
                 let v38 : (char list -> (UH0 -> UH0)) = v36 v37
                 let v39 : (UH0 -> UH0) = v38 v35
                 let v40 : UH0 = UH0_0
                 let v41 : UH0 = v39 v40
-                let struct (v42 : System.Text.StringBuilder, v43 : int32, v44 : int32) = method19(v41, v2, v3, v4)
+                let struct (v42 : System.Text.StringBuilder, v43 : int32, v44 : int32) = method20(v41, v2, v3, v4)
                 US10_0(v14, v21, v42, v43, v44)
             else
                 let v46 : char list = []
@@ -2907,12 +3014,12 @@ and method26 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
     match v67 with
     | US12_1(v75) -> (* Error *)
         let v76 : UH1 = UH1_0
-        let v77 : UH1 = method24(v0, v76)
+        let v77 : UH1 = method25(v0, v76)
         US9_0(v77, v1, v2, v3, v4)
     | US12_0(v68, v69, v70, v71, v72) -> (* Ok *)
         let v73 : UH1 = UH1_1(v68, v0)
-        method26(v73, v69, v70, v71, v72)
-and method27 (v0 : string, v1 : int32) : int32 =
+        method27(v73, v69, v70, v71, v72)
+and method28 (v0 : string, v1 : int32) : int32 =
     let v2 : int32 = v0.Length
     let v3 : bool = v1 >= v2
     if v3 then
@@ -2922,10 +3029,10 @@ and method27 (v0 : string, v1 : int32) : int32 =
         let v5 : bool = v4 = ' '
         if v5 then
             let v6 : int32 = v1 + 1
-            method27(v0, v6)
+            method28(v0, v6)
         else
             v1
-and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32, v4 : int32) : US9 =
+and method18 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32, v4 : int32) : US9 =
     let v5 : bool = "" = v1
     let v57 : US10 =
         if v5 then
@@ -2948,7 +3055,7 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
             let v21 : int32 = v20 v17
             let v22 : string = v1.[int v19..int v21]
             let v23 : int64 = 0L
-            let v24 : bool = method18(v15, v23)
+            let v24 : bool = method19(v15, v23)
             let v25 : bool = v24 = false
             if v25 then
                 let v26 : (char -> string) = _.ToString()
@@ -2956,7 +3063,7 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                 let v28 : int32 = v27.Length
                 let v29 : (char []) = Array.zeroCreate<char> (v28)
                 let v30 : Mut4 = {l0 = 0} : Mut4
-                while method12(v28, v30) do
+                while method13(v28, v30) do
                     let v32 : int32 = v30.l0
                     let v33 : char = v27.[int v32]
                     v29.[int v32] <- v33
@@ -2966,12 +3073,12 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                 let v35 : ((char []) -> char list) = Array.toList
                 let v36 : char list = v35 v29
                 let v37 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-                let v38 : (char -> (UH0 -> UH0)) = method13()
+                let v38 : (char -> (UH0 -> UH0)) = method14()
                 let v39 : (char list -> (UH0 -> UH0)) = v37 v38
                 let v40 : (UH0 -> UH0) = v39 v36
                 let v41 : UH0 = UH0_0
                 let v42 : UH0 = v40 v41
-                let struct (v43 : System.Text.StringBuilder, v44 : int32, v45 : int32) = method19(v42, v2, v3, v4)
+                let struct (v43 : System.Text.StringBuilder, v44 : int32, v45 : int32) = method20(v42, v2, v3, v4)
                 US10_0(v15, v22, v43, v44, v45)
             else
                 let v47 : char list = []
@@ -2990,7 +3097,7 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
         | US10_0(v60, v61, v62, v63, v64) -> (* Ok *)
             let v65 : (char -> string) = _.ToString()
             let v66 : string = v65 v60
-            method20(v66, v61, v62, v63, v64)
+            method21(v66, v61, v62, v63, v64)
     let v292 : US12 =
         match v69 with
         | US12_1(v75) -> (* Error *)
@@ -3014,7 +3121,7 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                         let v89 : int32 = v88.Length
                         let v90 : (char []) = Array.zeroCreate<char> (v89)
                         let v91 : Mut4 = {l0 = 0} : Mut4
-                        while method12(v89, v91) do
+                        while method13(v89, v91) do
                             let v93 : int32 = v91.l0
                             let v94 : char = v88.[int v93]
                             v90.[int v93] <- v94
@@ -3024,12 +3131,12 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                         let v96 : ((char []) -> char list) = Array.toList
                         let v97 : char list = v96 v90
                         let v98 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-                        let v99 : (char -> (UH0 -> UH0)) = method13()
+                        let v99 : (char -> (UH0 -> UH0)) = method14()
                         let v100 : (char list -> (UH0 -> UH0)) = v98 v99
                         let v101 : (UH0 -> UH0) = v100 v97
                         let v102 : UH0 = UH0_0
                         let v103 : UH0 = v101 v102
-                        let struct (v104 : System.Text.StringBuilder, v105 : int32, v106 : int32) = method19(v103, v2, v3, v4)
+                        let struct (v104 : System.Text.StringBuilder, v105 : int32, v106 : int32) = method20(v103, v2, v3, v4)
                         US10_0(v78, v86, v104, v105, v106)
                     else
                         let v108 : (string -> int32) = String.length
@@ -3067,14 +3174,14 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                     US12_1(v234)
                 | US10_0(v132, v133, v134, v135, v136) -> (* Ok *)
                     let v137 : UH1 = UH1_0
-                    let v138 : US9 = method21(v137, v133, v134, v135, v136)
+                    let v138 : US9 = method22(v137, v133, v134, v135, v136)
                     let v155 : US12 =
                         match v138 with
                         | US9_1(v152) -> (* Error *)
                             US12_1(v152)
                         | US9_0(v139, v140, v141, v142, v143) -> (* Ok *)
                             let v144 : string list = []
-                            let v145 : string list = method25(v139, v144)
+                            let v145 : string list = method26(v139, v144)
                             let v146 : string seq = seq { for i = 0 to v145.Length - 1 do yield v145.[i] }
                             let v147 : (string -> (string seq -> string)) = String.concat
                             let v148 : string = ""
@@ -3107,7 +3214,7 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                                     let v175 : int32 = v174.Length
                                     let v176 : (char []) = Array.zeroCreate<char> (v175)
                                     let v177 : Mut4 = {l0 = 0} : Mut4
-                                    while method12(v175, v177) do
+                                    while method13(v175, v177) do
                                         let v179 : int32 = v177.l0
                                         let v180 : char = v174.[int v179]
                                         v176.[int v179] <- v180
@@ -3117,12 +3224,12 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                                     let v182 : ((char []) -> char list) = Array.toList
                                     let v183 : char list = v182 v176
                                     let v184 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
-                                    let v185 : (char -> (UH0 -> UH0)) = method13()
+                                    let v185 : (char -> (UH0 -> UH0)) = method14()
                                     let v186 : (char list -> (UH0 -> UH0)) = v184 v185
                                     let v187 : (UH0 -> UH0) = v186 v183
                                     let v188 : UH0 = UH0_0
                                     let v189 : UH0 = v187 v188
-                                    let struct (v190 : System.Text.StringBuilder, v191 : int32, v192 : int32) = method19(v189, v158, v159, v160)
+                                    let struct (v190 : System.Text.StringBuilder, v191 : int32, v192 : int32) = method20(v189, v158, v159, v160)
                                     US10_0(v164, v172, v190, v191, v192)
                                 else
                                     let v194 : (string -> int32) = String.length
@@ -3167,7 +3274,7 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                 let v246 : UH2 = UH2_0
                 let v247 : UH2 = UH2_1(v245, v246)
                 let v248 : UH2 = UH2_1(v244, v247)
-                let v249 : US12 = method23(v1, v2, v3, v4, v248)
+                let v249 : US12 = method24(v1, v2, v3, v4, v248)
                 let v260 : US12 =
                     match v249 with
                     | US12_1(v257) -> (* Error *)
@@ -3181,13 +3288,13 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
                         US9_1(v268)
                     | US12_0(v261, v262, v263, v264, v265) -> (* Ok *)
                         let v266 : UH1 = UH1_0
-                        method26(v266, v262, v263, v264, v265)
+                        method27(v266, v262, v263, v264, v265)
                 match v271 with
                 | US9_1(v285) -> (* Error *)
                     US12_1(v285)
                 | US9_0(v272, v273, v274, v275, v276) -> (* Ok *)
                     let v277 : string list = []
-                    let v278 : string list = method25(v272, v277)
+                    let v278 : string list = method26(v272, v277)
                     let v279 : string seq = seq { for i = 0 to v278.Length - 1 do yield v278.[i] }
                     let v280 : (string -> (string seq -> string)) = String.concat
                     let v281 : string = ""
@@ -3201,11 +3308,11 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
     match v292 with
     | US12_1(v293) -> (* Error *)
         let v294 : UH1 = UH1_0
-        let v295 : UH1 = method24(v0, v294)
+        let v295 : UH1 = method25(v0, v294)
         US9_0(v295, v1, v2, v3, v4)
     | US12_0(v297, v298, v299, v300, v301) -> (* Ok *)
         let v302 : int32 = 0
-        let v303 : int32 = method27(v298, v302)
+        let v303 : int32 = method28(v298, v302)
         let v304 : bool = 0 = v303
         let v315 : US13 =
             if v304 then
@@ -3224,12 +3331,12 @@ and method17 (v0 : UH1, v1 : string, v2 : System.Text.StringBuilder, v3 : int32,
         | US13_1(v316) -> (* Error *)
             let v317 : UH1 = UH1_0
             let v318 : UH1 = UH1_1(v297, v317)
-            let v319 : UH1 = method24(v0, v318)
+            let v319 : UH1 = method25(v0, v318)
             US9_0(v319, v298, v299, v300, v301)
         | US13_0(v321, v322, v323, v324) -> (* Ok *)
             let v325 : UH1 = UH1_1(v297, v0)
-            method17(v325, v321, v322, v323, v324)
-and method16 (v0 : string) : US8 =
+            method18(v325, v321, v322, v323, v324)
+and method17 (v0 : string) : US8 =
     let mutable _v0 = None
     #if !FABLE_COMPILER && !WASM && !CONTRACT
     let v1 : (string -> string option) = Option.ofObj
@@ -3247,18 +3354,18 @@ and method16 (v0 : string) : US8 =
     let v8 : UH1 = UH1_0
     let v9 : int32 = 1
     let v10 : int32 = 1
-    let v11 : US9 = method17(v8, v5, v7, v9, v10)
+    let v11 : US9 = method18(v8, v5, v7, v9, v10)
     match v11 with
     | US9_1(v22) -> (* Error *)
         US8_1(v22)
     | US9_0(v12, v13, v14, v15, v16) -> (* Ok *)
         let v17 : string list = []
-        let v18 : string list = method25(v12, v17)
+        let v18 : string list = method26(v12, v17)
         let v19 : (string list -> (string [])) = List.toArray
         let v20 : (string []) = v19 v18
         US8_0(v20)
 and closure21 () (v0 : string) : Result<(string []), string> =
-    let v1 : US8 = method16(v0)
+    let v1 : US8 = method17(v0)
     match v1 with
     | US8_1(v4) -> (* Error *)
         let v5 : Result<(string []), string> = Error v4 

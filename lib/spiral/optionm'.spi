@@ -36,7 +36,7 @@ inl flatten x =
 /// ## fsharp
 
 /// ### option'
-nominal option' t = $'`t option'
+nominal option' t = $"backend_switch `({ Fsharp : $"`t option"; Python : t })"
 
 /// ### none'
 inl none' forall t. () : option' t =
@@ -44,11 +44,17 @@ inl none' forall t. () : option' t =
 
 /// ### some'
 inl some' forall t. (x : t) : option' t =
-    $'Some !x '
+    backend_switch {
+        Fsharp = fun () => $'Some !x ' : option' t
+        Python = fun () => $'!x # some\' ' : option' t
+    }
 
 /// ### default_value'
 inl default_value' forall t. (value : t) (x : option' t) : t =
-    $'!x |> Option.defaultValue !value '
+    backend_switch {
+        Fsharp = fun () => $'!x |> Option.defaultValue !value ' : t
+        Python = fun () => $'!x or !value ' : t
+    }
 
 /// ### box
 inl box forall t. (x : option t) : option' t =
@@ -61,23 +67,33 @@ inl box forall t. (x : option t) : option' t =
 
 /// ### map
 inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
-    inl result : option' u = none' ()
-    $'let _!result = ref !result '
-    $'match !x with'
-    $'| Some x -> ('
-    $'(fun () ->'
-    $'(fun () ->'
-    inl x = dyn $'x'
-    x |> fn |> emit_unit
-    $')'
-    $'|> fun x -> x () |> Some'
-    $') () ) | None -> None'
-    $'|> fun x -> _!result.Value <- x'
-    $'_!result.Value '
+    backend_switch {
+        Fsharp = fun () =>
+            inl result : option' u = none' ()
+            $'let _!result = ref !result '
+            $'match !x with'
+            $'| Some x -> ('
+            $'(fun () ->'
+            $'(fun () ->'
+            inl x = dyn $'x'
+            x |> fn |> emit_unit
+            $')'
+            $'|> fun x -> x () |> Some'
+            $') () ) | None -> None'
+            $'|> fun x -> _!result.Value <- x'
+            $'_!result.Value ' : option' u
+        Python = fun () =>
+            if x =. none' ()
+            then none' ()
+            else fn $'!x ' |> fun x => $'!x ' : option' u
+    }
 
 /// ### map''
 inl map'' forall t u. (fn : t -> u) (x : option' t) : option' u =
-    $'!x |> Option.map !fn '
+    backend_switch {
+        Fsharp = fun () => $'!x |> Option.map !fn ' : option' u
+        Python = fun () => x |> map fn
+    }
 
 /// ### unbox
 inl unbox forall t. (x : option' t) : option t =
@@ -89,14 +105,19 @@ inl unbox forall t. (x : option' t) : option t =
 
 /// ### of_obj
 inl of_obj forall t. (x : t) : option' t =
-    $'let mutable _!x = None'
-    $'#if \!FABLE_COMPILER && \!WASM && \!CONTRACT'
-    ((x |> $'Option.ofObj') : option' t) |> emit_unit
-    $'#else'
-    $'Some !x '
-    $'#endif'
-    $'|> fun x -> _!x <- Some x'
-    $'match _!x with Some x -> x | None -> failwith "optionm\'.of_obj / _!x=None"'
+    backend_switch {
+        Fsharp = fun () =>
+            $'let mutable _!x = None'
+            $'#if \!FABLE_COMPILER && \!WASM && \!CONTRACT'
+            ((x |> $'Option.ofObj') : option' t) |> emit_unit
+            $'#else'
+            $'Some !x '
+            $'#endif'
+            $'|> fun x -> _!x <- Some x'
+            $'match _!x with Some x -> x | None -> failwith "optionm\'.of_obj / _!x=None"' : option' t
+        Python = fun () =>
+            $'!x ' : option' t
+    }
 
 /// ### flatten'
 inl flatten' x =

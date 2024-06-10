@@ -624,7 +624,10 @@ inl ref_set_value forall t. (value : t) (ref : ref t) : ref t =
 #!spiral
 
 inl convert forall t u. (x : t) : u =
-    $'!x |> `u '
+    backend_switch {
+        Fsharp = fun () => $'!x |> `u ' : u
+        Python = fun () => $'!x ' : u
+    }
 
 #!markdown
 
@@ -633,7 +636,10 @@ inl convert forall t u. (x : t) : u =
 #!spiral
 
 inl unbox forall t u. (x : t) : u =
-    $'!x |> unbox<`u>'
+    backend_switch {
+        Fsharp = fun () => $'!x |> unbox<`u>' : u
+        Python = fun () => $'!x ' : u
+    }
 
 #!markdown
 

@@ -7663,6 +7663,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">///!</span><span class="w"> </span>cuda
+<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
 
 <span class="p">(</span><span class="mi">3</span><span class="n">i32</span><span class="p">,</span> <span class="mi">2</span><span class="n">i32</span><span class="p">)</span>
 <span class="o">||&gt;</span> <span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
@@ -7679,7 +7684,25 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 1 / expected: 1
+<pre>.py output (Cuda):
+assert_eq / actual: 1 / expected: 1
+
+.rs output:
+assert_eq / actual: 1 / expected: 1
+
+.ts output:
+assert_eq / actual: 1 / expected: 1
+
+.py output:
+assert_eq / actual: 1 / expected: 1
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+assert_eq / actual: 1 / expected: 1
 </pre>
 </div>
 </div>
@@ -7720,6 +7743,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">///!</span><span class="w"> </span>cuda
+<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
 
 <span class="p">(</span><span class="mi">1</span><span class="n">i32</span><span class="p">,</span> <span class="mi">2</span><span class="n">i32</span><span class="p">)</span>
 <span class="o">||&gt;</span> <span class="n">flip</span> <span class="n">pair</span>
@@ -7736,7 +7764,25 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: struct (2, 1) / expected: struct (2, 1)
+<pre>.py output (Cuda):
+assert_eq / actual: (2, 1) / expected: (2, 1)
+
+.rs output:
+assert_eq / actual: (2, 1) / expected: (2, 1)
+
+.ts output:
+assert_eq / actual: 2,1 / expected: 2,1
+
+.py output:
+assert_eq / actual: (2, 1) / expected: (2, 1)
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+assert_eq / actual: struct (2, 1) / expected: struct (2, 1)
 </pre>
 </div>
 </div>
@@ -7799,6 +7845,12 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">///!</span><span class="w"> </span>cuda
+<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">true</span>
 
 <span class="p">[</span> <span class="mi">5</span><span class="n">i32</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">join</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">fold_list</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span> <span class="mi">0</span>
@@ -7815,7 +7867,297 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 15 / expected: 15
+<pre>.py output (Cuda):
+assert_eq / actual: 15 / expected: 15
+
+.rs output:
+assert_eq / actual: 15 / expected: 15
+
+.ts output:
+assert_eq / actual: 15 / expected: 15
+
+.py output:
+assert_eq / actual: 15 / expected: 15
+
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx:
+let rec method1 () : int32 =
+    3
+and method2 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : int32 = method1()
+    let v1 : int32 = 9 + v0
+    let v2 : int32 = v1 + 2
+    let v3 : int32 = v2 + 1
+    let v4 : bool = v3 = 15
+    let v6 : bool =
+        if v4 then
+            true
+        else
+            method2(v4)
+    let v7 : string = "assert_eq"
+    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{15}"
+    let v9 : (string -&gt; unit) = System.Console.WriteLine
+    v9 v8
+    let v10 : bool = v6 = false
+    if v10 then
+        failwith&lt;unit&gt; v8
+method0()
+
+
+.fsx:
+System.Console.WriteLine ".fsx output:"
+let rec method1 () : int32 =
+    3
+and method2 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : int32 = method1()
+    let v1 : int32 = 9 + v0
+    let v2 : int32 = v1 + 2
+    let v3 : int32 = v2 + 1
+    let v4 : bool = v3 = 15
+    let v6 : bool =
+        if v4 then
+            true
+        else
+            method2(v4)
+    let v7 : string = "assert_eq"
+    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{15}"
+    let v9 : (string -&gt; unit) = System.Console.WriteLine
+    v9 v8
+    let v10 : bool = v6 = false
+    if v10 then
+        failwith&lt;unit&gt; v8
+method0()
+
+.rs:
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+#![allow(unreachable_code)]
+#![allow(unused_attributes)]
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
+mod module_e44a0073 {
+    pub mod Spiral_builder {
+        use super::*;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::String_::printfn;
+        use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::string;
+        pub fn method1() -&gt; i32 {
+            3_i32
+        }
+        pub fn method2(v0: bool) -&gt; bool {
+            v0
+        }
+        pub fn method0() {
+            let v3: i32 = 9_i32 + Spiral_builder::method1() + 2_i32 + 1_i32;
+            let v4: bool = v3 == 15_i32;
+            let v6: bool = if v4 {
+                true
+            } else {
+                Spiral_builder::method2(v4)
+            };
+            let v8: string = sprintf!(
+                "{} / actual: {:?} / expected: {:?}",
+                string("assert_eq"),
+                v3,
+                15_i32
+            );
+            printfn!("{0}", v8.clone());
+            if v6 == false {
+                panic!("{}", v8,);
+            }
+        }
+        on_startup!(Spiral_builder::method0());
+    }
+}
+pub use module_e44a0073::*;
+
+pub fn main() -&gt; Result&lt;(), String&gt; {
+    Ok(())
+}
+
+.ts:
+import { int32 } from "./fable_modules/fable-library-ts.4.17.0/Int32.js";
+import { interpolate, toText } from "./fable_modules/fable-library-ts.4.17.0/String.js";
+
+export function method1(): int32 {
+    return 3;
+}
+
+export function method2(v0: boolean): boolean {
+    return v0;
+}
+
+export function method0(): void {
+    const v3: int32 = (((9 + method1()) + 2) + 1) | 0;
+    const v4: boolean = v3 === 15;
+    const v6: boolean = v4 ? true : method2(v4);
+    const v8: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]));
+    console.log(v8);
+    if (v6 === false) {
+        throw new Error(v8);
+    }
+}
+
+method0();
+
+
+
+// spiral_builder.process_typescript
+
+.py:
+from fable_modules.fable_library.string_ import (to_text, interpolate)
+
+def method1(__unit: None=None) -&gt; int:
+    return 3
+
+
+def method2(v0: bool) -&gt; bool:
+    return v0
+
+
+def method0(__unit: None=None) -&gt; None:
+    v3: int = (((9 + method1()) + 2) + 1) or 0
+    v4: bool = v3 == 15
+    v6: bool = True if v4 else method2(v4)
+    v8: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]))
+    print(v8)
+    if v6 == False:
+        raise Exception(v8)
+
+
+
+method0()
+
+
+
+# spiral_builder.process_python
+
+.py:
+kernel = r"""
+template &lt;typename el, int dim&gt; struct static_array { el v[dim]; };
+template &lt;typename el, int dim, typename default_int&gt; struct static_array_list { el v[dim]; default_int length; };
+"""
+class static_array(list):
+    def __init__(self, length):
+        for _ in range(length):
+            self.append(None)
+
+class static_array_list(static_array):
+    def __init__(self, length):
+        super().__init__(length)
+        self.length = 0
+import cupy as cp
+from dataclasses import dataclass
+from typing import NamedTuple, Union, Callable, Tuple
+i8 = i16 = i32 = i64 = u8 = u16 = u32 = u64 = int; f32 = f64 = float; char = string = str
+
+def method1() -&gt; i32:
+    return 3
+def method2(v0 : bool) -&gt; bool:
+    return v0
+def method0() -&gt; None:
+    v0 = method1()
+    v1 = 9 + v0
+    del v0
+    v2 = v1 + 2
+    del v1
+    v3 = v2 + 1
+    del v2
+    v4 = v3 == 15
+    if v4:
+        v6 = True
+    else:
+        v6 = method2(v4)
+    del v4
+    v7 = "assert_eq"
+    v8 = f"{v7} / actual: {v3} / expected: {15}"
+    del v3, v7
+    print(v8)
+    v9 = v6 == False
+    del v6
+    if v9:
+        del v9
+        raise Exception(v8)
+    else:
+        del v8, v9
+        return 
+def main():
+    return method0()
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
+
+
+.py:
+kernel = r"""
+template &lt;typename el, int dim&gt; struct static_array { el v[dim]; };
+template &lt;typename el, int dim, typename default_int&gt; struct static_array_list { el v[dim]; default_int length; };
+"""
+class static_array(list):
+    def __init__(self, length):
+        for _ in range(length):
+            self.append(None)
+
+class static_array_list(static_array):
+    def __init__(self, length):
+        super().__init__(length)
+        self.length = 0
+import cupy as cp
+from dataclasses import dataclass
+from typing import NamedTuple, Union, Callable, Tuple
+i8 = i16 = i32 = i64 = u8 = u16 = u32 = u64 = int; f32 = f64 = float; char = string = str
+
+def method1() -&gt; i32:
+    return 3
+def method2(v0 : bool) -&gt; bool:
+    return v0
+def method0() -&gt; None:
+    v0 = method1()
+    v1 = 9 + v0
+    del v0
+    v2 = v1 + 2
+    del v1
+    v3 = v2 + 1
+    del v2
+    v4 = v3 == 15
+    if v4:
+        v6 = True
+    else:
+        v6 = method2(v4)
+    del v4
+    v7 = "assert_eq"
+    v8 = f"{v7} / actual: {v3} / expected: {15}"
+    del v3, v7
+    print(v8)
+    v9 = v6 == False
+    del v6
+    if v9:
+        del v9
+        raise Exception(v8)
+    else:
+        del v8, v9
+        return 
+def main():
+    return method0()
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
+
+.fsx output:
+assert_eq / actual: 15 / expected: 15
 </pre>
 </div>
 </div>
@@ -7830,6 +8172,12 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">///!</span><span class="w"> </span>cuda
+<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">true</span>
 
 <span class="p">[</span> <span class="mi">5</span><span class="n">i32</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">join</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">fold_list</span> <span class="p">(</span><span class="n">join_body</span> <span class="p">(</span><span class="o">+</span><span class="p">))</span> <span class="mi">0</span>
@@ -7846,7 +8194,326 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 15 / expected: 15
+<pre>.py output (Cuda):
+assert_eq / actual: 15 / expected: 15
+
+.rs output:
+assert_eq / actual: 15 / expected: 15
+
+.ts output:
+assert_eq / actual: 15 / expected: 15
+
+.py output:
+assert_eq / actual: 15 / expected: 15
+
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx:
+let rec method1 () : int32 =
+    3
+and method2 (v0 : int32, v1 : int32) : int32 =
+    let v2 : int32 = v1 + v0
+    v2
+and method3 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : int32 = method1()
+    let v1 : int32 = 9
+    let v2 : int32 = method2(v0, v1)
+    let v3 : int32 = v2 + 2
+    let v4 : int32 = v3 + 1
+    let v5 : bool = v4 = 15
+    let v7 : bool =
+        if v5 then
+            true
+        else
+            method3(v5)
+    let v8 : string = "assert_eq"
+    let v9 : string = $"{v8} / actual: %A{v4} / expected: %A{15}"
+    let v10 : (string -&gt; unit) = System.Console.WriteLine
+    v10 v9
+    let v11 : bool = v7 = false
+    if v11 then
+        failwith&lt;unit&gt; v9
+method0()
+
+
+.fsx:
+System.Console.WriteLine ".fsx output:"
+let rec method1 () : int32 =
+    3
+and method2 (v0 : int32, v1 : int32) : int32 =
+    let v2 : int32 = v1 + v0
+    v2
+and method3 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : int32 = method1()
+    let v1 : int32 = 9
+    let v2 : int32 = method2(v0, v1)
+    let v3 : int32 = v2 + 2
+    let v4 : int32 = v3 + 1
+    let v5 : bool = v4 = 15
+    let v7 : bool =
+        if v5 then
+            true
+        else
+            method3(v5)
+    let v8 : string = "assert_eq"
+    let v9 : string = $"{v8} / actual: %A{v4} / expected: %A{15}"
+    let v10 : (string -&gt; unit) = System.Console.WriteLine
+    v10 v9
+    let v11 : bool = v7 = false
+    if v11 then
+        failwith&lt;unit&gt; v9
+method0()
+
+.rs:
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+#![allow(unreachable_code)]
+#![allow(unused_attributes)]
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
+mod module_c3fbeca4 {
+    pub mod Spiral_builder {
+        use super::*;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::String_::printfn;
+        use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::string;
+        pub fn method1() -&gt; i32 {
+            3_i32
+        }
+        pub fn method2(v0: i32, v1: i32) -&gt; i32 {
+            v1 + v0
+        }
+        pub fn method3(v0: bool) -&gt; bool {
+            v0
+        }
+        pub fn method0() {
+            let v4: i32 = Spiral_builder::method2(Spiral_builder::method1(), 9_i32) + 2_i32 + 1_i32;
+            let v5: bool = v4 == 15_i32;
+            let v7: bool = if v5 {
+                true
+            } else {
+                Spiral_builder::method3(v5)
+            };
+            let v9: string = sprintf!(
+                "{} / actual: {:?} / expected: {:?}",
+                string("assert_eq"),
+                v4,
+                15_i32
+            );
+            printfn!("{0}", v9.clone());
+            if v7 == false {
+                panic!("{}", v9,);
+            }
+        }
+        on_startup!(Spiral_builder::method0());
+    }
+}
+pub use module_c3fbeca4::*;
+
+pub fn main() -&gt; Result&lt;(), String&gt; {
+    Ok(())
+}
+
+.ts:
+import { int32 } from "./fable_modules/fable-library-ts.4.17.0/Int32.js";
+import { interpolate, toText } from "./fable_modules/fable-library-ts.4.17.0/String.js";
+
+export function method1(): int32 {
+    return 3;
+}
+
+export function method2(v0: int32, v1: int32): int32 {
+    return v1 + v0;
+}
+
+export function method3(v0: boolean): boolean {
+    return v0;
+}
+
+export function method0(): void {
+    const v4: int32 = ((method2(method1(), 9) + 2) + 1) | 0;
+    const v5: boolean = v4 === 15;
+    const v7: boolean = v5 ? true : method3(v5);
+    const v9: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v4, 15]));
+    console.log(v9);
+    if (v7 === false) {
+        throw new Error(v9);
+    }
+}
+
+method0();
+
+
+
+// spiral_builder.process_typescript
+
+.py:
+from fable_modules.fable_library.string_ import (to_text, interpolate)
+
+def method1(__unit: None=None) -&gt; int:
+    return 3
+
+
+def method2(v0: int, v1: int) -&gt; int:
+    return v1 + v0
+
+
+def method3(v0: bool) -&gt; bool:
+    return v0
+
+
+def method0(__unit: None=None) -&gt; None:
+    v4: int = ((method2(method1(), 9) + 2) + 1) or 0
+    v5: bool = v4 == 15
+    v7: bool = True if v5 else method3(v5)
+    v9: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v4, 15]))
+    print(v9)
+    if v7 == False:
+        raise Exception(v9)
+
+
+
+method0()
+
+
+
+# spiral_builder.process_python
+
+.py:
+kernel = r"""
+template &lt;typename el, int dim&gt; struct static_array { el v[dim]; };
+template &lt;typename el, int dim, typename default_int&gt; struct static_array_list { el v[dim]; default_int length; };
+"""
+class static_array(list):
+    def __init__(self, length):
+        for _ in range(length):
+            self.append(None)
+
+class static_array_list(static_array):
+    def __init__(self, length):
+        super().__init__(length)
+        self.length = 0
+import cupy as cp
+from dataclasses import dataclass
+from typing import NamedTuple, Union, Callable, Tuple
+i8 = i16 = i32 = i64 = u8 = u16 = u32 = u64 = int; f32 = f64 = float; char = string = str
+
+def method1() -&gt; i32:
+    return 3
+def method2(v0 : i32, v1 : i32) -&gt; i32:
+    v2 = v1 + v0
+    del v0, v1
+    return v2
+def method3(v0 : bool) -&gt; bool:
+    return v0
+def method0() -&gt; None:
+    v0 = method1()
+    v1 = 9
+    v2 = method2(v0, v1)
+    del v0, v1
+    v3 = v2 + 2
+    del v2
+    v4 = v3 + 1
+    del v3
+    v5 = v4 == 15
+    if v5:
+        v7 = True
+    else:
+        v7 = method3(v5)
+    del v5
+    v8 = "assert_eq"
+    v9 = f"{v8} / actual: {v4} / expected: {15}"
+    del v4, v8
+    print(v9)
+    v10 = v7 == False
+    del v7
+    if v10:
+        del v10
+        raise Exception(v9)
+    else:
+        del v9, v10
+        return 
+def main():
+    return method0()
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
+
+
+.py:
+kernel = r"""
+template &lt;typename el, int dim&gt; struct static_array { el v[dim]; };
+template &lt;typename el, int dim, typename default_int&gt; struct static_array_list { el v[dim]; default_int length; };
+"""
+class static_array(list):
+    def __init__(self, length):
+        for _ in range(length):
+            self.append(None)
+
+class static_array_list(static_array):
+    def __init__(self, length):
+        super().__init__(length)
+        self.length = 0
+import cupy as cp
+from dataclasses import dataclass
+from typing import NamedTuple, Union, Callable, Tuple
+i8 = i16 = i32 = i64 = u8 = u16 = u32 = u64 = int; f32 = f64 = float; char = string = str
+
+def method1() -&gt; i32:
+    return 3
+def method2(v0 : i32, v1 : i32) -&gt; i32:
+    v2 = v1 + v0
+    del v0, v1
+    return v2
+def method3(v0 : bool) -&gt; bool:
+    return v0
+def method0() -&gt; None:
+    v0 = method1()
+    v1 = 9
+    v2 = method2(v0, v1)
+    del v0, v1
+    v3 = v2 + 2
+    del v2
+    v4 = v3 + 1
+    del v3
+    v5 = v4 == 15
+    if v5:
+        v7 = True
+    else:
+        v7 = method3(v5)
+    del v5
+    v8 = "assert_eq"
+    v9 = f"{v8} / actual: {v4} / expected: {15}"
+    del v4, v8
+    print(v9)
+    v10 = v7 == False
+    del v7
+    if v10:
+        del v10
+        raise Exception(v9)
+    else:
+        del v9, v10
+        return 
+def main():
+    return method0()
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
+
+.fsx output:
+assert_eq / actual: 15 / expected: 15
 </pre>
 </div>
 </div>
@@ -7891,6 +8558,12 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">///!</span><span class="w"> </span>cuda
+<span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
+<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">true</span>
 
 <span class="p">[</span> <span class="mi">5</span><span class="n">i32</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">join</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">fold_list</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="n">n</span> <span class="o">=&gt;</span> <span class="n">join_body_unit</span> <span class="p">((</span><span class="o">+</span><span class="p">)</span> <span class="n">acc</span><span class="p">)</span> <span class="n">n</span> <span class="n">n</span><span class="p">)</span> <span class="mi">0</span>
@@ -7907,7 +8580,322 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 15 / expected: 15
+<pre>.py output (Cuda):
+assert_eq / actual: 15 / expected: 15
+
+.rs output:
+assert_eq / actual: 15 / expected: 15
+
+.ts output:
+assert_eq / actual: 15 / expected: 15
+
+.py output:
+assert_eq / actual: 15 / expected: 15
+
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx:
+let rec method1 () : int32 =
+    3
+and method2 (v0 : int32) : int32 =
+    let v1 : int32 = 9 + v0
+    v1
+and method3 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : int32 = method1()
+    let v1 : int32 = method2(v0)
+    let v2 : int32 = v1 + 2
+    let v3 : int32 = v2 + 1
+    let v4 : bool = v3 = 15
+    let v6 : bool =
+        if v4 then
+            true
+        else
+            method3(v4)
+    let v7 : string = "assert_eq"
+    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{15}"
+    let v9 : (string -&gt; unit) = System.Console.WriteLine
+    v9 v8
+    let v10 : bool = v6 = false
+    if v10 then
+        failwith&lt;unit&gt; v8
+method0()
+
+
+.fsx:
+System.Console.WriteLine ".fsx output:"
+let rec method1 () : int32 =
+    3
+and method2 (v0 : int32) : int32 =
+    let v1 : int32 = 9 + v0
+    v1
+and method3 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : int32 = method1()
+    let v1 : int32 = method2(v0)
+    let v2 : int32 = v1 + 2
+    let v3 : int32 = v2 + 1
+    let v4 : bool = v3 = 15
+    let v6 : bool =
+        if v4 then
+            true
+        else
+            method3(v4)
+    let v7 : string = "assert_eq"
+    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{15}"
+    let v9 : (string -&gt; unit) = System.Console.WriteLine
+    v9 v8
+    let v10 : bool = v6 = false
+    if v10 then
+        failwith&lt;unit&gt; v8
+method0()
+
+.rs:
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+#![allow(unreachable_code)]
+#![allow(unused_attributes)]
+#![allow(unused_imports)]
+#![allow(unused_macros)]
+#![allow(unused_parens)]
+#![allow(unused_variables)]
+mod module_995febe3 {
+    pub mod Spiral_builder {
+        use super::*;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::String_::printfn;
+        use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::string;
+        pub fn method1() -&gt; i32 {
+            3_i32
+        }
+        pub fn method2(v0: i32) -&gt; i32 {
+            9_i32 + v0
+        }
+        pub fn method3(v0: bool) -&gt; bool {
+            v0
+        }
+        pub fn method0() {
+            let v3: i32 = Spiral_builder::method2(Spiral_builder::method1()) + 2_i32 + 1_i32;
+            let v4: bool = v3 == 15_i32;
+            let v6: bool = if v4 {
+                true
+            } else {
+                Spiral_builder::method3(v4)
+            };
+            let v8: string = sprintf!(
+                "{} / actual: {:?} / expected: {:?}",
+                string("assert_eq"),
+                v3,
+                15_i32
+            );
+            printfn!("{0}", v8.clone());
+            if v6 == false {
+                panic!("{}", v8,);
+            }
+        }
+        on_startup!(Spiral_builder::method0());
+    }
+}
+pub use module_995febe3::*;
+
+pub fn main() -&gt; Result&lt;(), String&gt; {
+    Ok(())
+}
+
+.ts:
+import { int32 } from "./fable_modules/fable-library-ts.4.17.0/Int32.js";
+import { interpolate, toText } from "./fable_modules/fable-library-ts.4.17.0/String.js";
+
+export function method1(): int32 {
+    return 3;
+}
+
+export function method2(v0: int32): int32 {
+    return 9 + v0;
+}
+
+export function method3(v0: boolean): boolean {
+    return v0;
+}
+
+export function method0(): void {
+    const v3: int32 = ((method2(method1()) + 2) + 1) | 0;
+    const v4: boolean = v3 === 15;
+    const v6: boolean = v4 ? true : method3(v4);
+    const v8: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]));
+    console.log(v8);
+    if (v6 === false) {
+        throw new Error(v8);
+    }
+}
+
+method0();
+
+
+
+// spiral_builder.process_typescript
+
+.py:
+from fable_modules.fable_library.string_ import (to_text, interpolate)
+
+def method1(__unit: None=None) -&gt; int:
+    return 3
+
+
+def method2(v0: int) -&gt; int:
+    return 9 + v0
+
+
+def method3(v0: bool) -&gt; bool:
+    return v0
+
+
+def method0(__unit: None=None) -&gt; None:
+    v3: int = ((method2(method1()) + 2) + 1) or 0
+    v4: bool = v3 == 15
+    v6: bool = True if v4 else method3(v4)
+    v8: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]))
+    print(v8)
+    if v6 == False:
+        raise Exception(v8)
+
+
+
+method0()
+
+
+
+# spiral_builder.process_python
+
+.py:
+kernel = r"""
+template &lt;typename el, int dim&gt; struct static_array { el v[dim]; };
+template &lt;typename el, int dim, typename default_int&gt; struct static_array_list { el v[dim]; default_int length; };
+"""
+class static_array(list):
+    def __init__(self, length):
+        for _ in range(length):
+            self.append(None)
+
+class static_array_list(static_array):
+    def __init__(self, length):
+        super().__init__(length)
+        self.length = 0
+import cupy as cp
+from dataclasses import dataclass
+from typing import NamedTuple, Union, Callable, Tuple
+i8 = i16 = i32 = i64 = u8 = u16 = u32 = u64 = int; f32 = f64 = float; char = string = str
+
+def method1() -&gt; i32:
+    return 3
+def method2(v0 : i32) -&gt; i32:
+    v1 = 9 + v0
+    del v0
+    return v1
+def method3(v0 : bool) -&gt; bool:
+    return v0
+def method0() -&gt; None:
+    v0 = method1()
+    v1 = method2(v0)
+    del v0
+    v2 = v1 + 2
+    del v1
+    v3 = v2 + 1
+    del v2
+    v4 = v3 == 15
+    if v4:
+        v6 = True
+    else:
+        v6 = method3(v4)
+    del v4
+    v7 = "assert_eq"
+    v8 = f"{v7} / actual: {v3} / expected: {15}"
+    del v3, v7
+    print(v8)
+    v9 = v6 == False
+    del v6
+    if v9:
+        del v9
+        raise Exception(v8)
+    else:
+        del v8, v9
+        return 
+def main():
+    return method0()
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
+
+
+.py:
+kernel = r"""
+template &lt;typename el, int dim&gt; struct static_array { el v[dim]; };
+template &lt;typename el, int dim, typename default_int&gt; struct static_array_list { el v[dim]; default_int length; };
+"""
+class static_array(list):
+    def __init__(self, length):
+        for _ in range(length):
+            self.append(None)
+
+class static_array_list(static_array):
+    def __init__(self, length):
+        super().__init__(length)
+        self.length = 0
+import cupy as cp
+from dataclasses import dataclass
+from typing import NamedTuple, Union, Callable, Tuple
+i8 = i16 = i32 = i64 = u8 = u16 = u32 = u64 = int; f32 = f64 = float; char = string = str
+
+def method1() -&gt; i32:
+    return 3
+def method2(v0 : i32) -&gt; i32:
+    v1 = 9 + v0
+    del v0
+    return v1
+def method3(v0 : bool) -&gt; bool:
+    return v0
+def method0() -&gt; None:
+    v0 = method1()
+    v1 = method2(v0)
+    del v0
+    v2 = v1 + 2
+    del v1
+    v3 = v2 + 1
+    del v2
+    v4 = v3 == 15
+    if v4:
+        v6 = True
+    else:
+        v6 = method3(v4)
+    del v4
+    v7 = "assert_eq"
+    v8 = f"{v7} / actual: {v3} / expected: {15}"
+    del v3, v7
+    print(v8)
+    v9 = v6 == False
+    del v6
+    if v9:
+        del v9
+        raise Exception(v8)
+    else:
+        del v8, v9
+        return 
+def main():
+    return method0()
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
+
+.fsx output:
+assert_eq / actual: 15 / expected: 15
 </pre>
 </div>
 </div>
@@ -8113,7 +9101,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">disposable</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.IDisposable'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">disposable</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"backend_switch `({ Fsharp : $'System.IDisposable'; Python : $'object' })"</span>
 </pre></div>
 </div>
 </div>
@@ -8139,7 +9127,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">dispose</span> <span class="p">(</span><span class="n">disposable</span> <span class="p">:</span> <span class="n">disposable</span> <span class="n">_</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">disposable</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Dispose()'</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">disposable</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Dispose()'</span> <span class="p">:</span> <span class="p">()</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!disposable.__exit__(None, None, None)'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -8223,41 +9214,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">inl</span> <span class="n">retry_fn_test</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
-<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-    <span class="n">retry_fn_test</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">retry_fn_test</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="o">*</span><span class="n">retry_fn_test</span>
-<span class="o">|&gt;</span> <span class="n">retry_fn</span> <span class="mi">3</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">1</span><span class="n">i32</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: US0_0 1 / expected: US0_0 1
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">////!</span><span class="w"> </span>cuda<span class="w"> </span>//<span class="w"> </span><span class="nv">v3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">$"retry: {v0} / ex: %A{v1} / {v2 ()}"</span>
 <span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
 
 <span class="n">types</span> <span class="p">()</span>
 <span class="n">inl</span> <span class="n">retry_fn_test</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
@@ -8278,56 +9239,28 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: US0_0(1) / expected: US0_0(1)
+<pre>.rs output:
+assert_eq' / actual: US0_0(1) / expected: US0_0(1)
+
+.ts output:
+assert_eq' / actual: US0_0 1 / expected: US0_0 1
+
+.py output:
+assert_eq' / actual: US0_0 1 / expected: US0_0 1
 </pre>
 </div>
 </div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">inl</span> <span class="n">retry_fn_test</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
-<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-    <span class="k">if</span> <span class="o">*</span><span class="n">retry_fn_test</span> <span class="o">&gt;=</span> <span class="mi">2</span>
-    <span class="n">then</span> <span class="o">*</span><span class="n">retry_fn_test</span>
-    <span class="k">else</span>
-        <span class="n">retry_fn_test</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">retry_fn_test</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">failwith</span> <span class="s2">"test"</span>
-<span class="o">|&gt;</span> <span class="n">retry_fn</span> <span class="mi">3</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">2</span><span class="n">i32</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 warning #1 common.retry_fn / retry: 0 / ex: System.Exception: test
-   at FSI_0028.closure0(Mut0 v0, Int32 v1, Unit unitVar2)
-   at FSI_0028.method1(Mut0 v0, Int32 v1)
-00:00:00 warning #2 common.retry_fn / retry: 1 / ex: System.Exception: test
-   at FSI_0028.closure0(Mut0 v0, Int32 v1, Unit unitVar2)
-   at FSI_0028.method1(Mut0 v0, Int32 v1)
-assert_eq / actual: US0_0 2 / expected: US0_0 2
+<pre>.fsx output:
+assert_eq' / actual: US0_0 1 / expected: US0_0 1
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8336,7 +9269,11 @@ assert_eq / actual: US0_0 2 / expected: US0_0 2
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">////!</span><span class="w"> </span>cuda<span class="w"> </span>//<span class="w"> </span><span class="nv">v3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">$"retry: {v0} / ex: %A{v1} / {v2 ()}"</span>
 <span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
 
 <span class="n">types</span> <span class="p">()</span>
 <span class="n">inl</span> <span class="n">retry_fn_test</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
@@ -8360,16 +9297,41 @@ assert_eq / actual: US0_0 2 / expected: US0_0 2
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-yellow-fg">warning</span> #1 common.retry_fn / retry: 0 / ex: Exception { message: "test" }
+<pre>.rs output:
+00:00:00 <span class="ansi-yellow-fg">warning</span> #1 common.retry_fn / retry: 0 / ex: Exception { message: "test" }
 00:00:00 <span class="ansi-yellow-fg">warning</span> #2 common.retry_fn / retry: 1 / ex: Exception { message: "test" }
 assert_eq' / actual: US0_0(2) / expected: US0_0(2)
+
+.ts output:
+00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / retry: 0 / ex: Error: test
+00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / retry: 1 / ex: Error: test
+assert_eq' / actual: US0_0 2 / expected: US0_0 2
+
+.py output:
+00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / retry: 0 / ex: test
+00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / retry: 1 / ex: test
+assert_eq' / actual: US0_0 2 / expected: US0_0 2
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / retry: 0 / ex: System.Exception: test
+   at FSI_0033.closure0(Mut0 v0, Int32 v1, Unit unitVar2)
+   at FSI_0033.method1(Mut0 v0, Int32 v1)
+00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / retry: 1 / ex: System.Exception: test
+   at FSI_0033.closure0(Mut0 v0, Int32 v1, Unit unitVar2)
+   at FSI_0033.method1(Mut0 v0, Int32 v1)
+assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8380,7 +9342,7 @@ assert_eq' / actual: US0_0(2) / expected: US0_0(2)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8390,7 +9352,7 @@ assert_eq' / actual: US0_0(2) / expected: US0_0(2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8413,7 +9375,7 @@ assert_eq' / actual: US0_0(2) / expected: US0_0(2)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8423,7 +9385,7 @@ assert_eq' / actual: US0_0(2) / expected: US0_0(2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=52">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8437,16 +9399,24 @@ assert_eq' / actual: US0_0(2) / expected: US0_0(2)
             <span class="k">global</span> <span class="s2">"type Disposable (f : unit -&gt; unit) = interface System.IDisposable with member _.Dispose () = f ()"</span>
             <span class="n">inl</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">join</span> <span class="n">fn</span>
             <span class="err">$</span><span class="s1">'new Disposable (fun () -&gt; Fable.Core.RustInterop.emitRustExpr !fn "$0()" )'</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">|</span> <span class="n">TypeScript</span> <span class="n">_</span> <span class="o">|</span> <span class="n">Python</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">join</span> <span class="n">fn</span>
             <span class="err">$</span><span class="s1">'{ new System.IDisposable with member _.Dispose () = !fn () }'</span>
+        <span class="o">|</span> <span class="n">Cuda</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'class Disposable:'</span>
+            <span class="err">$</span><span class="s1">'    def __init__(self, fn):'</span>
+            <span class="err">$</span><span class="s1">'        self.fn = fn'</span>
+            <span class="err">$</span><span class="s1">'    def __exit__(self, exc_type, exc_value, traceback):'</span>
+            <span class="err">$</span><span class="s1">'        self.fn()'</span>
+            <span class="err">$</span><span class="s1">'        return False'</span>
+            <span class="err">$</span><span class="s1">'Disposable(!fn)'</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8455,40 +9425,11 @@ assert_eq' / actual: US0_0(2) / expected: US0_0(2)
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">inl</span> <span class="n">new_disposable_test</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
-<span class="n">new_disposable</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">new_disposable_test</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">new_disposable_test</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">disposable</span> <span class="p">()</span>
-<span class="o">|&gt;</span> <span class="n">dispose</span>
-<span class="o">*</span><span class="n">new_disposable_test</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 1 / expected: 1
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///!</span><span class="w"> </span>fsharp
+<span class="o">///!</span><span class="w"> </span>cuda
 <span class="o">///!</span><span class="w"> </span>rust
+<span class="o">///!</span><span class="w"> </span>typescript
+<span class="o">///!</span><span class="w"> </span>python
 
 <span class="n">inl</span> <span class="n">new_disposable_test</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
 <span class="n">new_disposable</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">new_disposable_test</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">new_disposable_test</span> <span class="o">+</span> <span class="mi">1</span>
@@ -8507,13 +9448,31 @@ assert_eq' / actual: US0_0(2) / expected: US0_0(2)
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 1 / expected: 1
+<pre>.py output (Cuda):
+assert_eq / actual: 1 / expected: 1
+
+.rs output:
+assert_eq / actual: 1 / expected: 1
+
+.ts output:
+assert_eq / actual: 1 / expected: 1
+
+.py output:
+assert_eq / actual: 1 / expected: 1
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+assert_eq / actual: 1 / expected: 1
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8552,7 +9511,7 @@ assert_eq' / actual: US0_0(2) / expected: US0_0(2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8590,7 +9549,7 @@ assert_eq' / actual: US0_0(2) / expected: US0_0(2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8628,7 +9587,7 @@ assert_eq' / actual: US0_0(2) / expected: US0_0(2)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8638,7 +9597,7 @@ assert_eq' / actual: US0_0(2) / expected: US0_0(2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

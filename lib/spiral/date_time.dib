@@ -24,11 +24,16 @@ open testing
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::DateTime<$0>\")>]\n#endif\ntype chrono_DateTime<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Local\")>]\n#endif\ntype chrono_Local = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::NaiveDateTime\")>]\n#endif\ntype chrono_NaiveDateTime = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Utc\")>]\n#endif\ntype chrono_Utc = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::time::Duration\")>]\n#endif\ntype std_time_Duration = class end"
+    backend_switch {
+        Fsharp = fun () =>
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::DateTime<$0>\")>]\n#endif\ntype chrono_DateTime<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Local\")>]\n#endif\ntype chrono_Local = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::NaiveDateTime\")>]\n#endif\ntype chrono_NaiveDateTime = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Utc\")>]\n#endif\ntype chrono_Utc = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::time::Duration\")>]\n#endif\ntype std_time_Duration = class end"
+        Python = fun () =>
+            global "import datetime"
+    }
 
 #!spiral
 
@@ -81,7 +86,7 @@ inl test_guid () =
 
 #!spiral
 
-nominal date_time = $'System.DateTime'
+nominal date_time = $"backend_switch `({ Fsharp : $"System.DateTime"; Python : $"datetime.datetime" })"
 
 #!markdown
 
@@ -93,7 +98,12 @@ inl date_time_milliseconds
     (year : int) (month : int) (day : int) (hour : int) (minute : int) (second : int) (millisecond : int)
     : date_time
     =
-    $'System.DateTime (!year, !month, !day, !hour, !minute, !second, !millisecond)'
+    backend_switch {
+        Fsharp = fun () =>
+            $'System.DateTime (!year, !month, !day, !hour, !minute, !second, !millisecond)' : date_time
+        Python = fun () =>
+            $'datetime.datetime(!year, !month, !day, !hour, !minute, !second, !millisecond)' : date_time
+    }
 
 #!markdown
 
@@ -105,7 +115,12 @@ inl date_time_utc
     (year : int) (month : int) (day : int) (hour : int) (minute : int) (second : int)
     : date_time
     =
-    $'System.DateTime (!year, !month, !day, !hour, !minute, !second, System.DateTimeKind.Utc)'
+    backend_switch {
+        Fsharp = fun () =>
+            $'System.DateTime (!year, !month, !day, !hour, !minute, !second, System.DateTimeKind.Utc)' : date_time
+        Python = fun () =>
+            $'datetime.datetime(!year, !month, !day, !hour, !minute, !second, tzinfo=datetime.timezone.utc)' : date_time
+    }
 
 #!markdown
 
@@ -114,7 +129,10 @@ inl date_time_utc
 #!spiral
 
 inl ticks (date_time : date_time) : timestamp =
-    date_time |> $'_.Ticks'
+    backend_switch {
+        Fsharp = fun () => date_time |> $'_.Ticks' : timestamp
+        Python = fun () => $'!date_time.timestamp()' : timestamp
+    }
 
 #!markdown
 
@@ -123,7 +141,10 @@ inl ticks (date_time : date_time) : timestamp =
 #!spiral
 
 inl format (format : string) (date_time : date_time) : string =
-    $'!date_time.ToString' format
+    backend_switch {
+        Fsharp = fun () => $'!date_time.ToString' format : string
+        Python = fun () => $'!date_time.strftime(!format)' : string
+    }
 
 #!markdown
 
@@ -131,8 +152,11 @@ inl format (format : string) (date_time : date_time) : string =
 
 #!spiral
 
-inl format_iso8601 (date_time : date_time) =
-    date_time |> format "yyyy-MM-ddTHH-mm-ss.fff"
+inl format_iso8601 (date_time : date_time) : string =
+    backend_switch {
+        Fsharp = fun () => date_time |> format "yyyy-MM-ddTHH-mm-ss.fff" : string
+        Python = fun () => date_time |> format "%Y-%m-%dT%H-%M-%S.%f" : string
+    }
 
 #!markdown
 
@@ -141,7 +165,10 @@ inl format_iso8601 (date_time : date_time) =
 #!spiral
 
 inl min_value () : date_time =
-    $'System.DateTime.MinValue'
+    backend_switch {
+        Fsharp = fun () => $'System.DateTime.MinValue' : date_time
+        Python = fun () => $'datetime.datetime.min' : date_time
+    }
 
 #!markdown
 
@@ -150,7 +177,10 @@ inl min_value () : date_time =
 #!spiral
 
 inl max_value () : date_time =
-    $'System.DateTime.MaxValue'
+    backend_switch {
+        Fsharp = fun () => $'System.DateTime.MaxValue' : date_time
+        Python = fun () => $'datetime.datetime.max' : date_time
+    }
 
 #!markdown
 
@@ -159,7 +189,10 @@ inl max_value () : date_time =
 #!spiral
 
 inl unix_epoch () : date_time =
-    $'System.DateTime.UnixEpoch'
+    backend_switch {
+        Fsharp = fun () => $'System.DateTime.UnixEpoch' : date_time
+        Python = fun () => $'datetime.datetime(1970, 1, 1)' : date_time
+    }
 
 #!markdown
 
@@ -168,7 +201,10 @@ inl unix_epoch () : date_time =
 #!spiral
 
 inl to_universal_time (date_time : date_time) : date_time =
-    date_time |> $'_.ToUniversalTime()'
+    backend_switch {
+        Fsharp = fun () => date_time |> $'_.ToUniversalTime()' : date_time
+        Python = fun () => $'!date_time.astimezone(datetime.timezone.utc)' : date_time
+    }
 
 #!markdown
 
@@ -201,10 +237,13 @@ inl specify_date_kind (kind : date_time_kind) (date_time : date_time) : date_tim
 
 #!spiral
 
-nominal time_span = $'System.TimeSpan'
+nominal time_span = $"backend_switch `({ Fsharp : $"System.TimeSpan"; Python : $"datetime.timedelta" })"
 
 inl time_span x : time_span =
-    x |> $'`time_span '
+    backend_switch {
+        Fsharp = fun () => x |> $'`time_span ' : time_span
+        Python = fun () => $'datetime.timedelta(!x)' : time_span
+    }
 
 #!markdown
 
@@ -235,7 +274,10 @@ inl time_span_format (format : string) (time_span : time_span) : string =
 #!spiral
 
 inl hours (time_span : time_span) : i32 =
-    time_span |> $'_.Hours'
+    backend_switch {
+        Fsharp = fun () => time_span |> $'_.Hours' : i32
+        Python = fun () => $'!time_span.days * 24 + !time_span.seconds // 3600' : i32
+    }
 
 #!markdown
 
@@ -244,7 +286,10 @@ inl hours (time_span : time_span) : i32 =
 #!spiral
 
 inl milliseconds (time_span : time_span) : i32 =
-    time_span |> $'_.Milliseconds'
+    backend_switch {
+        Fsharp = fun () => time_span |> $'_.Milliseconds' : i32
+        Python = fun () => $'!time_span.microseconds // 1000' : i32
+    }
 
 #!markdown
 
@@ -253,7 +298,10 @@ inl milliseconds (time_span : time_span) : i32 =
 #!spiral
 
 inl minutes (time_span : time_span) : i32 =
-    time_span |> $'_.Minutes'
+    backend_switch {
+        Fsharp = fun () => time_span |> $'_.Minutes' : i32
+        Python = fun () => $'!time_span.seconds // 60' : i32
+    }
 
 #!markdown
 
@@ -262,7 +310,10 @@ inl minutes (time_span : time_span) : i32 =
 #!spiral
 
 inl seconds (time_span : time_span) : i32 =
-    time_span |> $'_.Seconds'
+    backend_switch {
+        Fsharp = fun () => time_span |> $'_.Seconds' : i32
+        Python = fun () => $'!time_span.seconds % 60' : i32
+    }
 
 #!markdown
 
@@ -271,7 +322,10 @@ inl seconds (time_span : time_span) : i32 =
 #!spiral
 
 inl total_seconds (time_span : time_span) : f64 =
-    time_span |> $'_.TotalSeconds'
+    backend_switch {
+        Fsharp = fun () => time_span |> $'_.TotalSeconds' : f64
+        Python = fun () => $'!time_span.total_seconds()' : f64
+    }
 
 #!markdown
 
@@ -297,7 +351,12 @@ inl add_days (days : i32) (date_time : date_time) : date_time =
 #!spiral
 
 inl now () : date_time =
-    $'System.DateTime.Now'
+    backend_switch {
+        Fsharp = fun () => $'System.DateTime.Now' : date_time
+        Python = fun () =>
+            global "import datetime"
+            $'datetime.datetime.now()' : date_time
+    }
 
 #!markdown
 
@@ -306,27 +365,52 @@ inl now () : date_time =
 #!spiral
 
 inl utc_now () : date_time =
-    $'System.DateTime.UtcNow'
+    backend_switch {
+        Fsharp = fun () => $'System.DateTime.UtcNow' : date_time
+        Python = fun () =>
+            global "import datetime"
+            $'datetime.datetime.utcnow()' : date_time
+    }
 
 #!markdown
 
 ## rust
 
+#!markdown
+
+### duration
+
 #!spiral
 
 nominal duration = $'std_time_Duration'
+
+#!markdown
+
+### date_time'
 
 #!spiral
 
 nominal date_time' t = $'chrono_DateTime<`t>'
 
+#!markdown
+
+### local
+
 #!spiral
 
 nominal local = $'chrono_Local'
 
+#!markdown
+
+### naive_date_time
+
 #!spiral
 
 nominal naive_date_time = $'chrono_NaiveDateTime'
+
+#!markdown
+
+## utc
 
 #!spiral
 

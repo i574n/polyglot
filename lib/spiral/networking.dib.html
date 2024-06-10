@@ -7585,9 +7585,13 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">reqwest_wasm::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type reqwest_Error = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">reqwest_wasm::RequestBuilder</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type reqwest_RequestBuilder = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">reqwest_wasm::Response</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type reqwest_Response = class end"</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">reqwest_wasm::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type reqwest_Error = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">reqwest_wasm::RequestBuilder</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type reqwest_RequestBuilder = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">reqwest_wasm::Response</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type reqwest_Response = class end"</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -8257,7 +8261,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 verbose #1 networking.test_port_open / port: 65536 / ex: System.ArgumentOutOfRangeException: Specified argument was out of the range of valid values. (Parameter 'port')
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 networking.test_port_open / port: 65536 / ex: System.ArgumentOutOfRangeException: Specified argument was out of the range of valid values. (Parameter 'port')
 assert_eq / actual: US4_0 false / expected: US4_0 false
 </pre>
 </div>
@@ -8321,7 +8325,7 @@ assert_eq / actual: US4_0 false / expected: US4_0 false
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00   debug #1 async.run_with_timeout_async / timeout: 120
+<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 async.run_with_timeout_async / timeout: 120
 assert_eq / actual: false / expected: false
 </pre>
 </div>
@@ -8437,25 +8441,25 @@ assert_eq / actual: false / expected: false
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00   debug #1 1
-00:00:00   debug #2 _1
-00:00:00   debug #3 2
-00:00:00   debug #4 3
-00:00:02 verbose #5 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:02 verbose #6 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: None / status: True
-00:00:04 verbose #7 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:05   debug #8 _2
-00:00:05   debug #9 _3
-00:00:05   debug #10 4
-00:00:05 verbose #11 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: None / status: False
-00:00:06 verbose #12 networking.wait_for_port_access / port: 5555 / retry: 100 / timeout: None / status: False
-00:00:07   debug #13 _4
-00:00:07   debug #14 _5
-00:00:09 verbose #15 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:09   debug #16 5
-00:00:09   debug #17 6
+<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 3
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #5 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #6 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: None / status: True
+00:00:04 <span class="ansi-black-intense-fg">verbose</span> #7 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
+00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #8 _2
+00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #9 _3
+00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #10 4
+00:00:05 <span class="ansi-black-intense-fg">verbose</span> #11 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: None / status: False
+00:00:06 <span class="ansi-black-intense-fg">verbose</span> #12 networking.wait_for_port_access / port: 5555 / retry: 100 / timeout: None / status: False
+00:00:07 <span class="ansi-blue-intense-fg">  debug</span> #13 _4
+00:00:07 <span class="ansi-blue-intense-fg">  debug</span> #14 _5
+00:00:09 <span class="ansi-black-intense-fg">verbose</span> #15 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
+00:00:09 <span class="ansi-blue-intense-fg">  debug</span> #16 5
+00:00:09 <span class="ansi-blue-intense-fg">  debug</span> #17 6
 assert_between / actual: 2L / expected: struct (2L, 5L)
-assert_between / actual: 120L / expected: struct (80L, 200L)
+assert_between / actual: 113L / expected: struct (80L, 200L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8529,29 +8533,28 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00   debug #1 1
-00:00:00   debug #2 2
-00:00:00   debug #3 _1
-00:00:00   debug #4 3
-00:00:00   debug #5 async.run_with_timeout_async / timeout: 60
-00:00:00 verbose #6 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: True
-00:00:00   debug #7 async.run_with_timeout_async / timeout: 60
-00:00:00   debug #8 async.run_with_timeout_async / timeout: 60
-00:00:00   debug #9 async.run_with_timeout_async / timeout: 60
-00:00:00   debug #10 async.run_with_timeout_async / timeout: 60
-00:00:00   debug #11 async.run_with_timeout_async / timeout: 60
-00:00:00   debug #12 _2
-00:00:00   debug #13 _3
-00:00:00   debug #14 async.run_with_timeout_async / timeout: 60
-00:00:00   debug #15 4
-00:00:00 verbose #16 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: False
-00:00:00   debug #17 _4
-00:00:00   debug #18 _5
-00:00:00   debug #19 async.run_with_timeout_async / timeout: 60
-00:00:00   debug #20 5
-00:00:00   debug #21 6
-assert_between / actual: 7L / expected: struct (4L, 15L)
-assert_between / actual: 8L / expected: struct (5L, 20L)
+<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 async.run_with_timeout_async / timeout: 60
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: True
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #7 async.run_with_timeout_async / timeout: 60
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #8 async.run_with_timeout_async / timeout: 60
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #9 async.run_with_timeout_async / timeout: 60
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #10 async.run_with_timeout_async / timeout: 60
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #11 async.run_with_timeout_async / timeout: 60
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #12 _2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #13 _3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #14 4
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #15 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: False
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #16 _4
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #17 _5
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #18 async.run_with_timeout_async / timeout: 60
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #19 5
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #20 6
+assert_between / actual: 6L / expected: struct (4L, 15L)
+assert_between / actual: 12L / expected: struct (5L, 20L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8660,23 +8663,23 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00   debug #1 1
-00:00:00   debug #2 _1
-00:00:00   debug #3 2
-00:00:00   debug #4 _2
-00:00:00   debug #5 _3
-00:00:00   debug #6 3
-00:00:02 verbose #7 networking.test_port_open / port: 5557 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:02   debug #8 4
-00:00:02 verbose #9 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: None / status: False
-00:00:03 verbose #10 networking.wait_for_port_access / port: 5555 / retry: 100 / timeout: None / status: False
-00:00:04   debug #11 _4
-00:00:04   debug #12 _5
-00:00:06 verbose #13 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:06   debug #14 5
-00:00:06   debug #15 6
+<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 _2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 3
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #7 networking.test_port_open / port: 5557 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #8 4
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #9 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: None / status: False
+00:00:03 <span class="ansi-black-intense-fg">verbose</span> #10 networking.wait_for_port_access / port: 5555 / retry: 100 / timeout: None / status: False
+00:00:04 <span class="ansi-blue-intense-fg">  debug</span> #11 _4
+00:00:04 <span class="ansi-blue-intense-fg">  debug</span> #12 _5
+00:00:06 <span class="ansi-black-intense-fg">verbose</span> #13 networking.test_port_open / port: 5555 / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
+00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #14 5
+00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #15 6
 assert_eq / actual: 5557 / expected: 5557
-assert_between / actual: 110L / expected: struct (50L, 150L)
+assert_between / actual: 109L / expected: struct (50L, 150L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -8749,20 +8752,20 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00   debug #1 1
-00:00:00   debug #2 _1
-00:00:00   debug #3 2
-00:00:00   debug #4 _2
-00:00:00   debug #5 _3
-00:00:00   debug #6 3
-00:00:00   debug #7 async.run_with_timeout_async / timeout: 60
-00:00:00   debug #8 4
-00:00:00 verbose #9 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: False
-00:00:00   debug #10 _4
-00:00:00   debug #11 _5
-00:00:00   debug #12 async.run_with_timeout_async / timeout: 60
-00:00:00   debug #13 5
-00:00:00   debug #14 6
+<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 _2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #7 async.run_with_timeout_async / timeout: 60
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #8 4
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 networking.wait_for_port_access / port: 5555 / retry: 0 / timeout: Some 60 / status: False
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #10 _4
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #11 _5
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #12 async.run_with_timeout_async / timeout: 60
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #13 5
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #14 6
 assert_eq / actual: 5557 / expected: 5557
 assert_between / actual: 3L / expected: struct (2L, 10L)
 assert_eq / actual: true / expected: true

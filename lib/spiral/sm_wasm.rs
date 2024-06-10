@@ -1,6 +1,12 @@
 pub mod Sm {
     use super::*;
     use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
+    use fable_library_rust::List_::cons;
+    use fable_library_rust::List_::empty;
+    use fable_library_rust::List_::foldBack;
+    use fable_library_rust::List_::ofArray as ofArray_1;
+    use fable_library_rust::List_::toArray as toArray_1;
+    use fable_library_rust::List_::List;
     use fable_library_rust::NativeArray_::count;
     use fable_library_rust::NativeArray_::new_array;
     use fable_library_rust::NativeArray_::new_init;
@@ -9,6 +15,7 @@ pub mod Sm {
     use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::unbox;
     use fable_library_rust::Native_::Func1;
+    use fable_library_rust::Native_::Func2;
     use fable_library_rust::Native_::LrcPtr;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
@@ -35,6 +42,32 @@ pub mod Sm {
     use fable_library_rust::String_::trimEndChars;
     use fable_library_rust::String_::trimStartChars;
     use fable_library_rust::System::Exception;
+    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum UH0 {
+        UH0_0,
+        UH0_1(char, LrcPtr<Sm::UH0>),
+    }
+    impl Sm::UH0 {
+        pub fn get_IsUH0_0(this_: LrcPtr<Sm::UH0>, unitArg: ()) -> bool {
+            if let Sm::UH0::UH0_0 = this_.as_ref() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUH0_1(this_: LrcPtr<Sm::UH0>, unitArg: ()) -> bool {
+            if let Sm::UH0::UH0_1(this__1_0, this__1_1) = this_.as_ref() {
+                true
+            } else {
+                false
+            }
+        }
+    }
+    impl core::fmt::Display for Sm::UH0 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
     #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
     pub struct Mut0 {
         pub l0: MutCell<i32>,
@@ -235,25 +268,67 @@ pub mod Sm {
     pub fn closure30(unitVar: (), v0_1: string) -> string {
         trim_1(v0_1)
     }
-    pub fn closure32(v0_1: Array<char>, v1_1: string) -> string {
-        trimEndChars(v1_1, v0_1)
+    pub fn closure33(v0_1: char, v1_1: LrcPtr<Sm::UH0>) -> LrcPtr<Sm::UH0> {
+        LrcPtr::new(Sm::UH0::UH0_1(v0_1, v1_1))
+    }
+    pub fn closure32(unitVar: (), v0_1: char) -> Func1<LrcPtr<Sm::UH0>, LrcPtr<Sm::UH0>> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            move |v: LrcPtr<Sm::UH0>| Sm::closure33(v0_1, v)
+        })
+    }
+    pub fn method4() -> Func1<char, Func1<LrcPtr<Sm::UH0>, LrcPtr<Sm::UH0>>> {
+        Func1::new(move |v: char| Sm::closure32((), v))
+    }
+    pub fn method5(v0_1: LrcPtr<Sm::UH0>, v1_1: List<char>) -> List<char> {
+        match v0_1.as_ref() {
+            Sm::UH0::UH0_0 => v1_1.clone(),
+            Sm::UH0::UH0_1(v0_1_1_0, v0_1_1_1) => cons(
+                match v0_1.as_ref() {
+                    Sm::UH0::UH0_1(x, _) => x.clone(),
+                    _ => unreachable!(),
+                },
+                Sm::method5(
+                    match v0_1.as_ref() {
+                        Sm::UH0::UH0_1(_, x) => x.clone(),
+                        _ => unreachable!(),
+                    },
+                    v1_1.clone(),
+                ),
+            ),
+        }
+    }
+    pub fn closure34(v0_1: LrcPtr<Sm::UH0>, v1_1: string) -> string {
+        trimEndChars(v1_1, toArray_1(Sm::method5(v0_1, empty::<char>())))
     }
     pub fn closure31(unitVar: (), v0_1: Array<char>) -> Func1<string, string> {
+        let v2_1: List<char> = ofArray_1(v0_1);
+        let v8_1: LrcPtr<Sm::UH0> = foldBack(
+            Func2::new(move |b0: char, b1: LrcPtr<Sm::UH0>| (Sm::method4())(b0)(b1)),
+            v2_1,
+            LrcPtr::new(Sm::UH0::UH0_0),
+        );
         Func1::new({
-            let v0_1 = v0_1.clone();
-            move |v: string| Sm::closure32(v0_1.clone(), v)
+            let v8_1 = v8_1.clone();
+            move |v: string| Sm::closure34(v8_1.clone(), v)
         })
     }
-    pub fn closure34(v0_1: Array<char>, v1_1: string) -> string {
-        trimStartChars(v1_1, v0_1)
+    pub fn closure36(v0_1: LrcPtr<Sm::UH0>, v1_1: string) -> string {
+        trimStartChars(v1_1, toArray_1(Sm::method5(v0_1, empty::<char>())))
     }
-    pub fn closure33(unitVar: (), v0_1: Array<char>) -> Func1<string, string> {
+    pub fn closure35(unitVar: (), v0_1: Array<char>) -> Func1<string, string> {
+        let v2_1: List<char> = ofArray_1(v0_1);
+        let v8_1: LrcPtr<Sm::UH0> = foldBack(
+            Func2::new(move |b0: char, b1: LrcPtr<Sm::UH0>| (Sm::method4())(b0)(b1)),
+            v2_1,
+            LrcPtr::new(Sm::UH0::UH0_0),
+        );
         Func1::new({
-            let v0_1 = v0_1.clone();
-            move |v: string| Sm::closure34(v0_1.clone(), v)
+            let v8_1 = v8_1.clone();
+            move |v: string| Sm::closure36(v8_1.clone(), v)
         })
     }
-    pub fn closure36(v0_1: i32, v1_1: string) -> string {
+    pub fn closure38(v0_1: i32, v1_1: string) -> string {
         if length(v1_1.clone()) <= v0_1 {
             v1_1.clone()
         } else {
@@ -263,13 +338,13 @@ pub mod Sm {
             )
         }
     }
-    pub fn closure35(unitVar: (), v0_1: i32) -> Func1<string, string> {
+    pub fn closure37(unitVar: (), v0_1: i32) -> Func1<string, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: string| Sm::closure36(v0_1, v)
+            move |v: string| Sm::closure38(v0_1, v)
         })
     }
-    pub fn method4(v0_1: i64, v1_1: string) -> string {
+    pub fn method6(v0_1: i64, v1_1: string) -> string {
         let v2_1: i64 = length(v1_1.clone()) as i64;
         if v2_1 <= v0_1 {
             v1_1.clone()
@@ -295,16 +370,16 @@ pub mod Sm {
             )
         }
     }
-    pub fn closure38(v0_1: i64, v1_1: string) -> string {
-        Sm::method4(v0_1, v1_1)
+    pub fn closure40(v0_1: i64, v1_1: string) -> string {
+        Sm::method6(v0_1, v1_1)
     }
-    pub fn closure37(unitVar: (), v0_1: i64) -> Func1<string, string> {
+    pub fn closure39(unitVar: (), v0_1: i64) -> Func1<string, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: string| Sm::closure38(v0_1, v)
+            move |v: string| Sm::closure40(v0_1, v)
         })
     }
-    pub fn closure39(unitVar: (), v0_1: LrcPtr<Exception>) -> string {
+    pub fn closure41(unitVar: (), v0_1: LrcPtr<Exception>) -> string {
         let _v1: MutCell<Option<string>> = MutCell::new(None::<string>);
         {
             let x: string = sprintf!("{:?}", v0_1);
@@ -315,16 +390,16 @@ pub mod Sm {
             Some(_v1_0_0) => _v1_0_0.clone(),
         }
     }
-    pub fn method5(v0_1: i32, v1_1: LrcPtr<Sm::Mut0>) -> bool {
+    pub fn method7(v0_1: i32, v1_1: LrcPtr<Sm::Mut0>) -> bool {
         v1_1.l0.get().clone() < v0_1
     }
-    pub fn closure41(v0_1: string, v1_1: Array<string>) -> string {
+    pub fn closure43(v0_1: string, v1_1: Array<string>) -> string {
         let v2_1: i32 = count(v1_1.clone());
         let v4_1: LrcPtr<Sm::Mut0> = LrcPtr::new(Sm::Mut0 {
             l0: MutCell::new(0_i32),
             l1: MutCell::new(string("")),
         });
-        while Sm::method5(v2_1, v4_1.clone()) {
+        while Sm::method7(v2_1, v4_1.clone()) {
             let v6_1: i32 = v4_1.l0.get().clone();
             let v9_1: string = append(
                 append(
@@ -340,43 +415,43 @@ pub mod Sm {
         }
         v4_1.l1.get().clone()
     }
-    pub fn closure40(unitVar: (), v0_1: string) -> Func1<Array<string>, string> {
+    pub fn closure42(unitVar: (), v0_1: string) -> Func1<Array<string>, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: Array<string>| Sm::closure41(v0_1.clone(), v)
+            move |v: Array<string>| Sm::closure43(v0_1.clone(), v)
         })
     }
-    pub fn closure43(v0_1: string, v1_1: LrcPtr<dyn IEnumerable_1<string>>) -> string {
+    pub fn closure45(v0_1: string, v1_1: LrcPtr<dyn IEnumerable_1<string>>) -> string {
         join(v0_1, toArray(v1_1))
     }
-    pub fn closure42(
+    pub fn closure44(
         unitVar: (),
         v0_1: string,
     ) -> Func1<LrcPtr<dyn IEnumerable_1<string>>, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: LrcPtr<dyn IEnumerable_1<string>>| Sm::closure43(v0_1.clone(), v)
+            move |v: LrcPtr<dyn IEnumerable_1<string>>| Sm::closure45(v0_1.clone(), v)
         })
     }
-    pub fn closure45(v0_1: string, v1_1: Array<string>) -> string {
+    pub fn closure47(v0_1: string, v1_1: Array<string>) -> string {
         join(v0_1, v1_1)
     }
-    pub fn closure44(unitVar: (), v0_1: string) -> Func1<Array<string>, string> {
+    pub fn closure46(unitVar: (), v0_1: string) -> Func1<Array<string>, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: Array<string>| Sm::closure45(v0_1.clone(), v)
+            move |v: Array<string>| Sm::closure47(v0_1.clone(), v)
         })
     }
-    pub fn method6(v0_1: i32, v1_1: LrcPtr<Sm::Mut1>) -> bool {
+    pub fn method8(v0_1: i32, v1_1: LrcPtr<Sm::Mut1>) -> bool {
         v1_1.l0.get().clone() < v0_1
     }
-    pub fn closure46(unitVar: (), v0_1: string) -> Array<char> {
+    pub fn closure48(unitVar: (), v0_1: string) -> Array<char> {
         let v1_1: i32 = length(v0_1.clone());
         let v2_1: Array<char> = new_init(&'\u{0000}', v1_1);
         let v3_1: LrcPtr<Sm::Mut1> = LrcPtr::new(Sm::Mut1 {
             l0: MutCell::new(0_i32),
         });
-        while Sm::method6(v1_1, v3_1.clone()) {
+        while Sm::method8(v1_1, v3_1.clone()) {
             let v5_1: i32 = v3_1.l0.get().clone();
             let v6_1: char = getCharAt(v0_1.clone(), v5_1);
             v2_1.get_mut()[v5_1 as usize] = v6_1;
@@ -510,7 +585,7 @@ pub mod Sm {
     }
     pub fn v15() -> Func1<Array<char>, Func1<string, string>> {
         static v15: OnceInit<Func1<Array<char>, Func1<string, string>>> = OnceInit::new();
-        v15.get_or_init(|| Func1::new(move |v: Array<char>| Sm::closure33((), v)))
+        v15.get_or_init(|| Func1::new(move |v: Array<char>| Sm::closure35((), v)))
             .clone()
     }
     pub fn trim_start(x: Array<char>) -> Func1<string, string> {
@@ -518,7 +593,7 @@ pub mod Sm {
     }
     pub fn v16() -> Func1<i32, Func1<string, string>> {
         static v16: OnceInit<Func1<i32, Func1<string, string>>> = OnceInit::new();
-        v16.get_or_init(|| Func1::new(move |v: i32| Sm::closure35((), v)))
+        v16.get_or_init(|| Func1::new(move |v: i32| Sm::closure37((), v)))
             .clone()
     }
     pub fn ellipsis(x: i32) -> Func1<string, string> {
@@ -526,7 +601,7 @@ pub mod Sm {
     }
     pub fn v17() -> Func1<i64, Func1<string, string>> {
         static v17: OnceInit<Func1<i64, Func1<string, string>>> = OnceInit::new();
-        v17.get_or_init(|| Func1::new(move |v: i64| Sm::closure37((), v)))
+        v17.get_or_init(|| Func1::new(move |v: i64| Sm::closure39((), v)))
             .clone()
     }
     pub fn ellipsis_end(x: i64) -> Func1<string, string> {
@@ -534,7 +609,7 @@ pub mod Sm {
     }
     pub fn v18() -> Func1<LrcPtr<Exception>, string> {
         static v18: OnceInit<Func1<LrcPtr<Exception>, string>> = OnceInit::new();
-        v18.get_or_init(|| Func1::new(move |v: LrcPtr<Exception>| Sm::closure39((), v)))
+        v18.get_or_init(|| Func1::new(move |v: LrcPtr<Exception>| Sm::closure41((), v)))
             .clone()
     }
     pub fn format_exception(x: LrcPtr<Exception>) -> string {
@@ -542,7 +617,7 @@ pub mod Sm {
     }
     pub fn v19() -> Func1<string, Func1<Array<string>, string>> {
         static v19: OnceInit<Func1<string, Func1<Array<string>, string>>> = OnceInit::new();
-        v19.get_or_init(|| Func1::new(move |v: string| Sm::closure40((), v)))
+        v19.get_or_init(|| Func1::new(move |v: string| Sm::closure42((), v)))
             .clone()
     }
     pub fn concat_array_trailing(x: string) -> Func1<Array<string>, string> {
@@ -551,7 +626,7 @@ pub mod Sm {
     pub fn v20() -> Func1<string, Func1<LrcPtr<dyn IEnumerable_1<string>>, string>> {
         static v20: OnceInit<Func1<string, Func1<LrcPtr<dyn IEnumerable_1<string>>, string>>> =
             OnceInit::new();
-        v20.get_or_init(|| Func1::new(move |v: string| Sm::closure42((), v)))
+        v20.get_or_init(|| Func1::new(move |v: string| Sm::closure44((), v)))
             .clone()
     }
     pub fn concat(x: string) -> Func1<LrcPtr<dyn IEnumerable_1<string>>, string> {
@@ -559,7 +634,7 @@ pub mod Sm {
     }
     pub fn v21() -> Func1<string, Func1<Array<string>, string>> {
         static v21: OnceInit<Func1<string, Func1<Array<string>, string>>> = OnceInit::new();
-        v21.get_or_init(|| Func1::new(move |v: string| Sm::closure44((), v)))
+        v21.get_or_init(|| Func1::new(move |v: string| Sm::closure46((), v)))
             .clone()
     }
     pub fn join_(x: string) -> Func1<Array<string>, string> {
@@ -567,7 +642,7 @@ pub mod Sm {
     }
     pub fn v22() -> Func1<string, Array<char>> {
         static v22: OnceInit<Func1<string, Array<char>>> = OnceInit::new();
-        v22.get_or_init(|| Func1::new(move |v: string| Sm::closure46((), v)))
+        v22.get_or_init(|| Func1::new(move |v: string| Sm::closure48((), v)))
             .clone()
     }
     pub fn to_char_array(x: string) -> Array<char> {

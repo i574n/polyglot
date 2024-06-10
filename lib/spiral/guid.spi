@@ -1,9 +1,17 @@
 /// # guid
 
+/// ## types
+inl types () =
+    backend_switch {
+        Fsharp = fun () => ()
+        Python = fun () =>
+            global "import uuid"
+    }
+
 /// ## guid
 
 /// ### guid
-nominal guid = $'System.Guid'
+nominal guid = $"backend_switch `({ Fsharp : $"System.Guid"; Python : $"uuid.UUID" })"
 
 /// ### new_guid
 inl new_guid (x : string) : guid =
@@ -11,7 +19,10 @@ inl new_guid (x : string) : guid =
 
 /// ### new_raw_guid
 inl new_raw_guid () : guid =
-    $'System.Guid.NewGuid' ()
+    backend_switch {
+        Fsharp = fun () => $'System.Guid.NewGuid' () : guid
+        Python = fun () => $'uuid.uuid4()' : guid
+    }
 
 /// ### hash_guid
 type hash_guid = guid
@@ -21,7 +32,11 @@ let hash_guid (~hash : string) : hash_guid =
         | Rust (Contract) => fun () => null ()
         | _ => fun () =>
             inl hash = hash |> sm'.pad_left 32i32 '0'
-            $'`hash_guid $"{!hash.[0..7]}-{!hash.[8..11]}-{!hash.[12..15]}-{!hash.[16..19]}-{!hash.[20..31]}"'
+            backend_switch {
+                Fsharp = fun () =>
+                    $'`hash_guid $"{!hash.[0..7]}-{!hash.[8..11]}-{!hash.[12..15]}-{!hash.[16..19]}-{!hash.[20..31]}"' : hash_guid
+                Python = fun () => $'f"{!hash[0:8]}-{!hash[8:12]}-{!hash[12:16]}-{!hash[16:20]}-{!hash[20:32]}"' : hash_guid
+            }
 
 /// ## main
 inl main () =

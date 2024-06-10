@@ -535,7 +535,7 @@ inl exists' f x =
 
 #!spiral
 
-nominal list' t = $'`t list'
+nominal list' t = $"backend_switch `({ Fsharp : $'`t list'; Python : $'List[`t]' })"
 
 #!spiral
 
@@ -545,7 +545,12 @@ inl empty' forall t. () : list' t =
 #!spiral
 
 inl cons' forall t. (head : t) (tail : list' t) : list' t =
-    $'!head :: !tail '
+    backend_switch {
+        Fsharp = fun () => $'!head :: !tail ' : list' t
+        Python = fun () =>
+            $'!tail.insert(0, !head)'
+            $'!tail ' : list' t
+    }
 
 #!markdown
 
@@ -565,8 +570,16 @@ inl box forall t. (list : list t) : list' t =
 #!spiral
 
 inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
-    (init, list)
-    ||> $'List.fold' join fun acc x => Cons (fn x, acc)
+    backend_switch {
+        Fsharp = fun () =>
+            (init, list)
+            ||> $'List.fold' join fun acc x => Cons (fn x, acc)
+            : list u
+        Python = fun () =>
+            $'x = !init '
+            $'for x in !list: x = !fn(x)'
+            $'x' : list u
+    }
 
 #!markdown
 
@@ -575,8 +588,16 @@ inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
 #!spiral
 
 inl fold_back' forall t u. (fn : t -> u) (list : list' t) (init : list u) : list u =
-    (list, init)
-    ||> $'List.foldBack' join fun x acc => Cons (fn x, acc)
+    backend_switch {
+        Fsharp = fun () =>
+            (list, init)
+            ||> $'List.foldBack' join fun x acc => Cons (fn x, acc)
+            : list u
+        Python = fun () =>
+            $'x = !init '
+            $'for x in reversed(!list): x = !fn(x)'
+            $'x' : list u
+    }
 
 #!markdown
 
@@ -585,7 +606,10 @@ inl fold_back' forall t u. (fn : t -> u) (list : list' t) (init : list u) : list
 #!spiral
 
 inl filter' forall t. (fn : t -> bool) (list : list' t) : list' t =
-    list |> $'"List.filter !fn"'
+    backend_switch {
+        Fsharp = fun () => list |> $'"List.filter !fn"' : list' t
+        Python = fun () => $'list(filter(!fn, !list))' : list' t
+    }
 
 #!markdown
 
@@ -594,7 +618,10 @@ inl filter' forall t. (fn : t -> bool) (list : list' t) : list' t =
 #!spiral
 
 inl map forall t u. (fn : t -> u) (list : list' t) : list' u =
-    list |> $'List.map' fn
+    backend_switch {
+        Fsharp = fun () => list |> $'List.map' fn : list' u
+        Python = fun () => $'list(map(!fn, !list))' : list' u
+    }
 
 #!markdown
 
@@ -613,7 +640,10 @@ inl unbox forall t. (list : list' t) : list t =
 #!spiral
 
 inl distinct' forall t. (list : list' t) : list' t =
-    list |> $'List.distinct'
+    backend_switch {
+        Fsharp = fun () => list |> $'List.distinct' : list' t
+        Python = fun () => $'list(set(!list))' : list' t
+    }
 
 #!spiral
 
@@ -632,4 +662,7 @@ inl distinct' forall t. (list : list' t) : list' t =
 #!spiral
 
 inl to_array' forall t. (items : list' t) : array_base t =
-    items |> $'List.toArray'
+    backend_switch {
+        Fsharp = fun () => items |> $'List.toArray' : array_base t
+        Python = fun () => $'cp.array(!items)' : array_base t
+    }

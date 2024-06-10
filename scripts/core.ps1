@@ -31,8 +31,10 @@ function Invoke-Block {
     if (!$EnvironmentVariables) {
         $EnvironmentVariables = @{}
     }
-    $sep = $IsWindows ? ";" : ":"
-    $EnvironmentVariables["PATH"] = "$env:PATH$sep$HOME/.cargo/bin$sep$HOME/.bun/bin"
+    if (!$Linux) {
+        $sep = $IsWindows ? ";" : ":"
+        $EnvironmentVariables["PATH"] = "$env:PATH$sep$HOME/.cargo/bin$sep$HOME/.bun/bin"
+    }
 
     if ($Linux -and $IsWindows) {
         $envVars = ""

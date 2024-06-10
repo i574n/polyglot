@@ -206,7 +206,10 @@ type regex_Match = class end
 [<Fable.Core.Erase; Fable.Core.Emit("regex::Error")>]
 #endif
 type regex_Error = class end
-type Mut0 = {mutable l0 : int32; mutable l1 : string}
+type UH0 =
+    | UH0_0
+    | UH0_1 of char * UH0
+and Mut0 = {mutable l0 : int32; mutable l1 : string}
 and Mut1 = {mutable l0 : int32}
 let rec closure1 (v0 : string) (v1 : string) : bool =
     let v2 : bool = v1.Contains v0 
@@ -395,17 +398,55 @@ and closure29 () (v0 : string) : string =
 and closure30 () (v0 : string) : string =
     let v1 : (unit -> string) = v0.Trim
     v1 ()
-and closure32 (v0 : (char [])) (v1 : string) : string =
-    let v2 : string = v1.TrimEnd v0 
-    v2
+and closure33 (v0 : char) (v1 : UH0) : UH0 =
+    UH0_1(v0, v1)
+and closure32 () (v0 : char) : (UH0 -> UH0) =
+    closure33(v0)
+and method4 () : (char -> (UH0 -> UH0)) =
+    closure32()
+and method5 (v0 : UH0, v1 : char list) : char list =
+    match v0 with
+    | UH0_1(v2, v3) -> (* Cons *)
+        let v4 : char list = method5(v3, v1)
+        let v5 : char list = v2 :: v4 
+        v5
+    | UH0_0 -> (* Nil *)
+        v1
+and closure34 (v0 : UH0) (v1 : string) : string =
+    let v2 : char list = []
+    let v3 : char list = method5(v0, v2)
+    let v4 : (char list -> (char [])) = List.toArray
+    let v5 : (char []) = v4 v3
+    let v6 : string = v1.TrimEnd v5 
+    v6
 and closure31 () (v0 : (char [])) : (string -> string) =
-    closure32(v0)
-and closure34 (v0 : (char [])) (v1 : string) : string =
-    let v2 : string = v1.TrimStart v0 
-    v2
-and closure33 () (v0 : (char [])) : (string -> string) =
-    closure34(v0)
-and closure36 (v0 : int32) (v1 : string) : string =
+    let v1 : ((char []) -> char list) = Array.toList
+    let v2 : char list = v1 v0
+    let v3 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+    let v4 : (char -> (UH0 -> UH0)) = method4()
+    let v5 : (char list -> (UH0 -> UH0)) = v3 v4
+    let v6 : (UH0 -> UH0) = v5 v2
+    let v7 : UH0 = UH0_0
+    let v8 : UH0 = v6 v7
+    closure34(v8)
+and closure36 (v0 : UH0) (v1 : string) : string =
+    let v2 : char list = []
+    let v3 : char list = method5(v0, v2)
+    let v4 : (char list -> (char [])) = List.toArray
+    let v5 : (char []) = v4 v3
+    let v6 : string = v1.TrimStart v5 
+    v6
+and closure35 () (v0 : (char [])) : (string -> string) =
+    let v1 : ((char []) -> char list) = Array.toList
+    let v2 : char list = v1 v0
+    let v3 : ((char -> (UH0 -> UH0)) -> (char list -> (UH0 -> UH0))) = List.foldBack
+    let v4 : (char -> (UH0 -> UH0)) = method4()
+    let v5 : (char list -> (UH0 -> UH0)) = v3 v4
+    let v6 : (UH0 -> UH0) = v5 v2
+    let v7 : UH0 = UH0_0
+    let v8 : UH0 = v6 v7
+    closure36(v8)
+and closure38 (v0 : int32) (v1 : string) : string =
     let v2 : int32 = v1.Length
     let v3 : bool = v2 <= v0
     if v3 then
@@ -415,9 +456,9 @@ and closure36 (v0 : int32) (v1 : string) : string =
         let v5 : string = v1.[int 0..int v4]
         let v6 : string = v5 + "..."
         v6
-and closure35 () (v0 : int32) : (string -> string) =
-    closure36(v0)
-and method4 (v0 : int64, v1 : string) : string =
+and closure37 () (v0 : int32) : (string -> string) =
+    closure38(v0)
+and method6 (v0 : int64, v1 : string) : string =
     let v2 : int64 = System.Convert.ToInt64 v1.Length
     let v3 : bool = v2 <= v0
     if v3 then
@@ -447,11 +488,11 @@ and method4 (v0 : int64, v1 : string) : string =
         let v25 : string = ""
         let v26 : (string seq -> string) = v24 v25
         v26 v23
-and closure38 (v0 : int64) (v1 : string) : string =
-    method4(v0, v1)
-and closure37 () (v0 : int64) : (string -> string) =
-    closure38(v0)
-and closure39 () (v0 : exn) : string =
+and closure40 (v0 : int64) (v1 : string) : string =
+    method6(v0, v1)
+and closure39 () (v0 : int64) : (string -> string) =
+    closure40(v0)
+and closure41 () (v0 : exn) : string =
     let v1 : bool = true
     let mutable _v1 : string option = None 
     
@@ -484,15 +525,15 @@ and closure39 () (v0 : exn) : string =
     |> fun x -> _v1 <- Some x
     let v8 : string = match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
     v8
-and method5 (v0 : int32, v1 : Mut0) : bool =
+and method7 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and closure41 (v0 : string) (v1 : (string [])) : string =
+and closure43 (v0 : string) (v1 : (string [])) : string =
     let v2 : int32 = v1.Length
     let v3 : string = ""
     let v4 : Mut0 = {l0 = 0; l1 = v3} : Mut0
-    while method5(v2, v4) do
+    while method7(v2, v4) do
         let v6 : int32 = v4.l0
         let v7 : string = v4.l1
         let v8 : string = v1.[int v6]
@@ -503,28 +544,28 @@ and closure41 (v0 : string) (v1 : (string [])) : string =
         ()
     let v11 : string = v4.l1
     v11
-and closure40 () (v0 : string) : ((string []) -> string) =
-    closure41(v0)
-and closure43 (v0 : string) (v1 : string seq) : string =
+and closure42 () (v0 : string) : ((string []) -> string) =
+    closure43(v0)
+and closure45 (v0 : string) (v1 : string seq) : string =
     let v2 : (string -> (string seq -> string)) = String.concat
     let v3 : (string seq -> string) = v2 v0
     v3 v1
-and closure42 () (v0 : string) : (string seq -> string) =
-    closure43(v0)
-and closure45 (v0 : string) (v1 : (string [])) : string =
+and closure44 () (v0 : string) : (string seq -> string) =
+    closure45(v0)
+and closure47 (v0 : string) (v1 : (string [])) : string =
     let v2 : string = System.String.Join (v0, v1)
     v2
-and closure44 () (v0 : string) : ((string []) -> string) =
-    closure45(v0)
-and method6 (v0 : int32, v1 : Mut1) : bool =
+and closure46 () (v0 : string) : ((string []) -> string) =
+    closure47(v0)
+and method8 (v0 : int32, v1 : Mut1) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and closure46 () (v0 : string) : (char []) =
+and closure48 () (v0 : string) : (char []) =
     let v1 : int32 = v0.Length
     let v2 : (char []) = Array.zeroCreate<char> (v1)
     let v3 : Mut1 = {l0 = 0} : Mut1
-    while method6(v1, v3) do
+    while method8(v1, v3) do
         let v5 : int32 = v3.l0
         let v6 : char = v0.[int v5]
         v2.[int v5] <- v6
@@ -562,20 +603,20 @@ let v13 : (string -> string) = closure30()
 let trim x = v13 x
 let v14 : ((char []) -> (string -> string)) = closure31()
 let trim_end x = v14 x
-let v15 : ((char []) -> (string -> string)) = closure33()
+let v15 : ((char []) -> (string -> string)) = closure35()
 let trim_start x = v15 x
-let v16 : (int32 -> (string -> string)) = closure35()
+let v16 : (int32 -> (string -> string)) = closure37()
 let ellipsis x = v16 x
-let v17 : (int64 -> (string -> string)) = closure37()
+let v17 : (int64 -> (string -> string)) = closure39()
 let ellipsis_end x = v17 x
-let v18 : (exn -> string) = closure39()
+let v18 : (exn -> string) = closure41()
 let format_exception x = v18 x
-let v19 : (string -> ((string []) -> string)) = closure40()
+let v19 : (string -> ((string []) -> string)) = closure42()
 let concat_array_trailing x = v19 x
-let v20 : (string -> (string seq -> string)) = closure42()
+let v20 : (string -> (string seq -> string)) = closure44()
 let concat x = v20 x
-let v21 : (string -> ((string []) -> string)) = closure44()
+let v21 : (string -> ((string []) -> string)) = closure46()
 let join' x = v21 x
-let v22 : (string -> (char [])) = closure46()
+let v22 : (string -> (char [])) = closure48()
 let to_char_array x = v22 x
 ()
