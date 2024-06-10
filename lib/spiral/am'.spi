@@ -3,9 +3,13 @@ open rust_operators
 
 /// ## types
 inl types () =
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>]\n#endif\ntype Slice<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype Slice'<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>]\n#endif\ntype Vec<'T> = class end"
+    backend_switch {
+        Fsharp = fun () =>
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>]\n#endif\ntype Slice<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype Slice'<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>]\n#endif\ntype Vec<'T> = class end"
+        Python = fun () => ()
+    }
 
 /// ## am'
 
@@ -97,21 +101,12 @@ inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
         | Some _ => acc
         | None => x |> fn
 
-/// ### indexed'
-inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a dim t) : a dim' (u * t) =
+/// ### indexed
+inl indexed forall t dim {int; number} dim' {int; number} u {number}. (ar : a dim t) : a dim' (u * t) =
     ((0, a ;[]), ar)
     ||> am.fold fun (i, acc) x =>
         i + 1, acc ++ a ;[i, x]
     |> snd
-
-/// ### indexed
-inl indexed (array : a _ _) =
-    (([], 0), array)
-    ||> am.fold fun (acc, i) x =>
-        (i, x) :: acc, i + 1
-    |> fst
-    |> listm.rev
-    |> listm.toArray
 
 /// ### slice
 inl slice forall dim {int; number} el. from nearTo s : a dim el =

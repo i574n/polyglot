@@ -14,6 +14,19 @@ open testing
 
 #!markdown
 
+## types
+
+#!spiral
+
+inl types () =
+    backend_switch {
+        Fsharp = fun () => ()
+        Python = fun () =>
+            global "import uuid"
+    }
+
+#!markdown
+
 ## guid
 
 #!markdown
@@ -22,7 +35,7 @@ open testing
 
 #!spiral
 
-nominal guid = $'System.Guid'
+nominal guid = $"backend_switch `({ Fsharp : $"System.Guid"; Python : $"uuid.UUID" })"
 
 #!markdown
 
@@ -40,7 +53,10 @@ inl new_guid (x : string) : guid =
 #!spiral
 
 inl new_raw_guid () : guid =
-    $'System.Guid.NewGuid' ()
+    backend_switch {
+        Fsharp = fun () => $'System.Guid.NewGuid' () : guid
+        Python = fun () => $'uuid.uuid4()' : guid
+    }
 
 #!markdown
 
@@ -55,26 +71,22 @@ let hash_guid (~hash : string) : hash_guid =
         | Rust (Contract) => fun () => null ()
         | _ => fun () =>
             inl hash = hash |> sm'.pad_left 32i32 '0'
-            $'`hash_guid $"{!hash.[0..7]}-{!hash.[8..11]}-{!hash.[12..15]}-{!hash.[16..19]}-{!hash.[20..31]}"'
+            backend_switch {
+                Fsharp = fun () =>
+                    $'`hash_guid $"{!hash.[0..7]}-{!hash.[8..11]}-{!hash.[12..15]}-{!hash.[16..19]}-{!hash.[20..31]}"' : hash_guid
+                Python = fun () => $'f"{!hash[0:8]}-{!hash[8:12]}-{!hash[12:16]}-{!hash[16:20]}-{!hash[20:32]}"' : hash_guid
+            }
 
 #!spiral
 
 //// test
-
-""
-|> hash_guid
-|> _assert_eq' (new_guid "00000000-0000-0000-0000-000000000000")
-
-"123456789012345678901234567890123"
-|> hash_guid
-|> _assert_eq' (new_guid "12345678-9012-3456-7890-123456789012")
-
-#!spiral
-
-//// test
+///! fsharp
+///! cuda
 ///! rust
 ///! typescript
 ///! python
+
+types ()
 
 ""
 |> hash_guid

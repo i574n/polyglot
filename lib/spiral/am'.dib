@@ -23,9 +23,13 @@ open rust_operators
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>]\n#endif\ntype Slice<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype Slice'<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>]\n#endif\ntype Vec<'T> = class end"
+    backend_switch {
+        Fsharp = fun () =>
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>]\n#endif\ntype Slice<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype Slice'<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>]\n#endif\ntype Vec<'T> = class end"
+        Python = fun () => ()
+    }
 
 #!markdown
 
@@ -160,6 +164,8 @@ inl choose f l =
 
 //// test
 ///! fsharp
+///! cuda
+////! rust // v0.get_mut()[v2.get().clone() as usize] = match v1.get().clone().as_ref() { ^ expected `i32`, found `usize`
 ///! typescript
 ///! python
 
@@ -181,6 +187,7 @@ inl sum a =
 
 //// test
 ///! fsharp
+///! cuda
 ///! rust
 ///! typescript
 ///! python
@@ -204,6 +211,7 @@ inl init_series start end inc : a int _ =
 
 //// test
 ///! fsharp
+///! cuda
 ///! rust
 ///! typescript
 ///! python
@@ -238,6 +246,7 @@ inl last (ar : a _ _) =
 
 //// test
 ///! fsharp
+///! cuda
 ///! rust
 ///! typescript
 ///! python
@@ -264,6 +273,8 @@ inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
 
 //// test
 ///! fsharp
+///! cuda
+////! rust // match &v23 { Spiral_builder::US0::US0_0(x) => x.clone(), _ => unreachable!(), } == 5_i32
 ///! typescript
 ///! python
 
@@ -274,11 +285,11 @@ inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
 
 #!markdown
 
-### indexed'
+### indexed
 
 #!spiral
 
-inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a dim t) : a dim' (u * t) =
+inl indexed forall t dim {int; number} dim' {int; number} u {number}. (ar : a dim t) : a dim' (u * t) =
     ((0, a ;[]), ar)
     ||> am.fold fun (i, acc) x =>
         i + 1, acc ++ a ;[i, x]
@@ -287,32 +298,15 @@ inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a d
 #!spiral
 
 //// test
-
-am.init 3i32 ((*) 2)
-|> indexed'
-|> _assert_eq (a ;[0i32, 0; 1, 2; 2, 4] : a i32 _)
-
-#!markdown
-
-### indexed
-
-#!spiral
-
-inl indexed (array : a _ _) =
-    (([], 0), array)
-    ||> am.fold fun (acc, i) x =>
-        (i, x) :: acc, i + 1
-    |> fst
-    |> listm.rev
-    |> listm.toArray
-
-#!spiral
-
-//// test
+///! fsharp
+////! cuda // Only stack allocated primitive types (i8,i16,i32,i64 and u8,u16,u32,u64 and f32,f64 and bool) are allowed in CuPy arrays.
+///! rust
+///! typescript
+///! python
 
 am.init 3i32 ((*) 2)
 |> indexed
-|> _assert_eq (a ;[0i32, 0; 1, 2; 2, 4] : a i32 _)
+|> _assert_eq (a ;[0i32, 0; 1, 2; 2, 4] : a int _)
 
 #!markdown
 
@@ -326,6 +320,11 @@ inl slice forall dim {int; number} el. from nearTo s : a dim el =
 #!spiral
 
 //// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
 
 inl x : _ i32 _ = a ;[ 1i32; 2; 3 ]
 x |> slice 0 0 |> _assert_eq (a ;[])
@@ -779,11 +778,16 @@ inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
 #!spiral
 
 //// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
 
-a' ;[ "a"; "b" ]
+a' ;[ -3i32; 6 ]
 |> to_list'
 |> listm'.unbox
-|> _assert_eq [ "a"; "b" ]
+|> _assert_eq [ -3; 6 ]
 
 #!markdown
 

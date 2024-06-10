@@ -1,12 +1,43 @@
-import { Record } from "../../deps/Fable/src/fable-library-ts/Types.js";
+import { Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
+import { record_type, string_type, int32_type, union_type, char_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import { float64, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
-import { defaultOf, IComparable, IEquatable } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { record_type, string_type, int32_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { uncurry2, defaultOf, IComparable, IEquatable } from "../../deps/Fable/src/fable-library-ts/Util.js";
 import { interpolate, toText, trimStart, trimEnd, substring as substring_1, join, split as split_1, replace as replace_1, padRight, padLeft, endsWith } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { value as value_5, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 import { ofArray } from "../../deps/Fable/src/fable-library-ts/Seq.js";
+import { foldBack, ofArray as ofArray_1, empty, toArray, FSharpList, cons } from "../../deps/Fable/src/fable-library-ts/List.js";
 import { toInt32, op_Subtraction, fromFloat64, toFloat64, compare, int64, fromInt32, toInt64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { setItem, fill, item } from "../../deps/Fable/src/fable-library-ts/Array.js";
+
+export type UH0_$union = 
+    | UH0<0>
+    | UH0<1>
+
+export type UH0_$cases = {
+    0: ["UH0_0", []],
+    1: ["UH0_1", [string, UH0_$union]]
+}
+
+export function UH0_UH0_0() {
+    return new UH0<0>(0, []);
+}
+
+export function UH0_UH0_1(Item1: string, Item2: UH0_$union) {
+    return new UH0<1>(1, [Item1, Item2]);
+}
+
+export class UH0<Tag extends keyof UH0_$cases> extends Union<Tag, UH0_$cases[Tag][0]> {
+    constructor(readonly tag: Tag, readonly fields: UH0_$cases[Tag][1]) {
+        super();
+    }
+    cases() {
+        return ["UH0_0", "UH0_1"];
+    }
+}
+
+export function UH0_$reflection(): TypeInfo {
+    return union_type("Sm.UH0", [], UH0, () => [[], [["Item1", char_type], ["Item2", UH0_$reflection()]]]);
+}
 
 export class Mut0 extends Record implements IEquatable<Mut0>, IComparable<Mut0> {
     l0: int32;
@@ -32,6 +63,24 @@ export class Mut1 extends Record implements IEquatable<Mut1>, IComparable<Mut1> 
 
 export function Mut1_$reflection(): TypeInfo {
     return record_type("Sm.Mut1", [], Mut1, () => [["l0", int32_type]]);
+}
+
+export function UH0__get_IsUH0_0(this$: UH0_$union, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === /* UH0_0 */ 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function UH0__get_IsUH0_1(this$: UH0_$union, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === /* UH0_1 */ 1) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 export function closure1(v0_1: string, v1_1: string): boolean {
@@ -192,23 +241,48 @@ export function closure30(unitVar: void, v0_1: string): string {
     return v0_1.trim();
 }
 
-export function closure32(v0_1: string[], v1_1: string): string {
-    return trimEnd(v1_1, ...v0_1);
+export function closure33(v0_1: string, v1_1: UH0_$union): UH0_$union {
+    return UH0_UH0_1(v0_1, v1_1);
+}
+
+export function closure32(unitVar: void, v0_1: string): ((arg0: UH0_$union) => UH0_$union) {
+    return (v: UH0_$union): UH0_$union => closure33(v0_1, v);
+}
+
+export function method4(): ((arg0: string) => ((arg0: UH0_$union) => UH0_$union)) {
+    return (v: string): ((arg0: UH0_$union) => UH0_$union) => closure32(undefined, v);
+}
+
+export function method5(v0_1: UH0_$union, v1_1: FSharpList<string>): FSharpList<string> {
+    if (v0_1.tag === /* UH0_0 */ 0) {
+        return v1_1;
+    }
+    else {
+        return cons(v0_1.fields[0], method5(v0_1.fields[1], v1_1));
+    }
+}
+
+export function closure34(v0_1: UH0_$union, v1_1: string): string {
+    return trimEnd(v1_1, ...toArray<string>(method5(v0_1, empty<string>())));
 }
 
 export function closure31(unitVar: void, v0_1: string[]): ((arg0: string) => string) {
-    return (v: string): string => closure32(v0_1, v);
+    const v2_1: FSharpList<string> = ofArray_1<string>(v0_1);
+    const v8_1: UH0_$union = foldBack<string, UH0_$union>(uncurry2(method4()), v2_1, UH0_UH0_0());
+    return (v: string): string => closure34(v8_1, v);
 }
 
-export function closure34(v0_1: string[], v1_1: string): string {
-    return trimStart(v1_1, ...v0_1);
+export function closure36(v0_1: UH0_$union, v1_1: string): string {
+    return trimStart(v1_1, ...toArray<string>(method5(v0_1, empty<string>())));
 }
 
-export function closure33(unitVar: void, v0_1: string[]): ((arg0: string) => string) {
-    return (v: string): string => closure34(v0_1, v);
+export function closure35(unitVar: void, v0_1: string[]): ((arg0: string) => string) {
+    const v2_1: FSharpList<string> = ofArray_1<string>(v0_1);
+    const v8_1: UH0_$union = foldBack<string, UH0_$union>(uncurry2(method4()), v2_1, UH0_UH0_0());
+    return (v: string): string => closure36(v8_1, v);
 }
 
-export function closure36(v0_1: int32, v1_1: string): string {
+export function closure38(v0_1: int32, v1_1: string): string {
     if (v1_1.length <= v0_1) {
         return v1_1;
     }
@@ -218,11 +292,11 @@ export function closure36(v0_1: int32, v1_1: string): string {
     }
 }
 
-export function closure35(unitVar: void, v0_1: int32): ((arg0: string) => string) {
-    return (v: string): string => closure36(v0_1, v);
+export function closure37(unitVar: void, v0_1: int32): ((arg0: string) => string) {
+    return (v: string): string => closure38(v0_1, v);
 }
 
-export function method4(v0_1: int64, v1_1: string): string {
+export function method6(v0_1: int64, v1_1: string): string {
     const v2_1: int64 = toInt64(fromInt32(v1_1.length));
     if (compare(v2_1, v0_1) <= 0) {
         return v1_1;
@@ -239,15 +313,15 @@ export function method4(v0_1: int64, v1_1: string): string {
     }
 }
 
-export function closure38(v0_1: int64, v1_1: string): string {
-    return method4(v0_1, v1_1);
+export function closure40(v0_1: int64, v1_1: string): string {
+    return method6(v0_1, v1_1);
 }
 
-export function closure37(unitVar: void, v0_1: int64): ((arg0: string) => string) {
-    return (v: string): string => closure38(v0_1, v);
+export function closure39(unitVar: void, v0_1: int64): ((arg0: string) => string) {
+    return (v: string): string => closure40(v0_1, v);
 }
 
-export function closure39(unitVar: void, v0_1: Error): string {
+export function closure41(unitVar: void, v0_1: Error): string {
     let _v1: Option<string> = undefined;
     const x: string = toText(interpolate("%A%P()", [v0_1]));
     _v1 = x;
@@ -259,14 +333,14 @@ export function closure39(unitVar: void, v0_1: Error): string {
     }
 }
 
-export function method5(v0_1: int32, v1_1: Mut0): boolean {
+export function method7(v0_1: int32, v1_1: Mut0): boolean {
     return v1_1.l0 < v0_1;
 }
 
-export function closure41(v0_1: string, v1_1: string[]): string {
+export function closure43(v0_1: string, v1_1: string[]): string {
     const v2_1: int32 = v1_1.length | 0;
     const v4_1: Mut0 = new Mut0(0, "");
-    while (method5(v2_1, v4_1)) {
+    while (method7(v2_1, v4_1)) {
         const v6_1: int32 = v4_1.l0 | 0;
         const v9_1: string = ((v4_1.l1 + item(v6_1, v1_1)) + v0_1) + "";
         const v10_1: int32 = (v6_1 + 1) | 0;
@@ -276,35 +350,35 @@ export function closure41(v0_1: string, v1_1: string[]): string {
     return v4_1.l1;
 }
 
-export function closure40(unitVar: void, v0_1: string): ((arg0: string[]) => string) {
-    return (v: string[]): string => closure41(v0_1, v);
+export function closure42(unitVar: void, v0_1: string): ((arg0: string[]) => string) {
+    return (v: string[]): string => closure43(v0_1, v);
 }
 
-export function closure43(v0_1: string, v1_1: Iterable<string>): string {
+export function closure45(v0_1: string, v1_1: Iterable<string>): string {
     return join(v0_1, v1_1);
 }
 
-export function closure42(unitVar: void, v0_1: string): ((arg0: Iterable<string>) => string) {
-    return (v: Iterable<string>): string => closure43(v0_1, v);
+export function closure44(unitVar: void, v0_1: string): ((arg0: Iterable<string>) => string) {
+    return (v: Iterable<string>): string => closure45(v0_1, v);
 }
 
-export function closure45(v0_1: string, v1_1: string[]): string {
+export function closure47(v0_1: string, v1_1: string[]): string {
     return join(v0_1, v1_1);
 }
 
-export function closure44(unitVar: void, v0_1: string): ((arg0: string[]) => string) {
-    return (v: string[]): string => closure45(v0_1, v);
+export function closure46(unitVar: void, v0_1: string): ((arg0: string[]) => string) {
+    return (v: string[]): string => closure47(v0_1, v);
 }
 
-export function method6(v0_1: int32, v1_1: Mut1): boolean {
+export function method8(v0_1: int32, v1_1: Mut1): boolean {
     return v1_1.l0 < v0_1;
 }
 
-export function closure46(unitVar: void, v0_1: string): string[] {
+export function closure48(unitVar: void, v0_1: string): string[] {
     const v1_1: int32 = v0_1.length | 0;
     const v2_1: string[] = fill(new Array(v1_1), 0, v1_1, "");
     const v3_1: Mut1 = new Mut1(0);
-    while (method6(v1_1, v3_1)) {
+    while (method8(v1_1, v3_1)) {
         const v5_1: int32 = v3_1.l0 | 0;
         const v6_1: string = v0_1[v5_1];
         setItem(v2_1, v5_1, v6_1);
@@ -404,49 +478,49 @@ export function trim_end(x: string[]): ((arg0: string) => string) {
     return v14(x);
 }
 
-export const v15 = (v: string[]): ((arg0: string) => string) => closure33(undefined, v);
+export const v15 = (v: string[]): ((arg0: string) => string) => closure35(undefined, v);
 
 export function trim_start(x: string[]): ((arg0: string) => string) {
     return v15(x);
 }
 
-export const v16 = (v: int32): ((arg0: string) => string) => closure35(undefined, v);
+export const v16 = (v: int32): ((arg0: string) => string) => closure37(undefined, v);
 
 export function ellipsis(x: int32): ((arg0: string) => string) {
     return v16(x);
 }
 
-export const v17 = (v: int64): ((arg0: string) => string) => closure37(undefined, v);
+export const v17 = (v: int64): ((arg0: string) => string) => closure39(undefined, v);
 
 export function ellipsis_end(x: int64): ((arg0: string) => string) {
     return v17(x);
 }
 
-export const v18 = (v: Error): string => closure39(undefined, v);
+export const v18 = (v: Error): string => closure41(undefined, v);
 
 export function format_exception(x: Error): string {
     return v18(x);
 }
 
-export const v19 = (v: string): ((arg0: string[]) => string) => closure40(undefined, v);
+export const v19 = (v: string): ((arg0: string[]) => string) => closure42(undefined, v);
 
 export function concat_array_trailing(x: string): ((arg0: string[]) => string) {
     return v19(x);
 }
 
-export const v20 = (v: string): ((arg0: Iterable<string>) => string) => closure42(undefined, v);
+export const v20 = (v: string): ((arg0: Iterable<string>) => string) => closure44(undefined, v);
 
 export function concat(x: string): ((arg0: Iterable<string>) => string) {
     return v20(x);
 }
 
-export const v21 = (v: string): ((arg0: string[]) => string) => closure44(undefined, v);
+export const v21 = (v: string): ((arg0: string[]) => string) => closure46(undefined, v);
 
 export function join$0027(x: string): ((arg0: string[]) => string) {
     return v21(x);
 }
 
-export const v22 = (v: string): string[] => closure46(undefined, v);
+export const v22 = (v: string): string[] => closure48(undefined, v);
 
 export function to_char_array(x: string): string[] {
     return v22(x);

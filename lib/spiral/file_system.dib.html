@@ -7586,14 +7586,18 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::fs::File</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_fs_File = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::fs::FileType</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_fs_FileType = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::path::Display</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_path_Display = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::path::Path</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_path_Path = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::path::PathBuf</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_path_PathBuf = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">async_walkdir::DirEntry</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type async_walkdir_DirEntry = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">async_walkdir::Filtering</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type async_walkdir_Filtering = class end"</span>
-    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">async_walkdir::WalkDir</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type async_walkdir_WalkDir = class end"</span>
+    <span class="n">backend_switch</span> <span class="p">{</span>
+        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::fs::File</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_fs_File = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::fs::FileType</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_fs_FileType = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::path::Display</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_path_Display = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::path::Path</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_path_Path = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::path::PathBuf</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_path_PathBuf = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">async_walkdir::DirEntry</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type async_walkdir_DirEntry = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">async_walkdir::Filtering</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type async_walkdir_Filtering = class end"</span>
+            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">async_walkdir::WalkDir</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type async_walkdir_WalkDir = class end"</span>
+        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -9626,7 +9630,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_caf11764820a75c1483358e5e92d48a907ab5bdd50b26745a1e6dd96e181cc71/20240609-0633-0474-3694-0000005dfcc2" / expected: '/'
+assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_289f4f2dea94478d7a0e026ab13d0861f4ed26186ed733feb2cff778e1ec6d37/20240610-1627-5829-5863-000000a39f0b" / expected: '/'
 </pre>
 </div>
 </div>
@@ -9634,7 +9638,7 @@ assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_caf11764820a75
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240609-0633-0508-0875-00000072edce" / expected: '/'
+assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240610-1627-5871-7133-700000fbcc7b" / expected: '/'
 </pre>
 </div>
 </div>
@@ -10269,7 +10273,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_file_uri</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_start ;[ '</span><span class="o">/</span><span class="s1">' ]</span>
+    <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.trim_start [ '</span><span class="o">/</span><span class="s1">' ]</span>
     <span class="err">$</span><span class="s1">'$"file:///{!path}"'</span>
 </pre></div>
 </div>
@@ -10644,7 +10648,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 1L / expected: 1L
+<pre>assert_eq / actual: 3L / expected: 3L
 </pre>
 </div>
 </div>
@@ -10838,7 +10842,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / dir: /tmp/!create_temp_path_/spiral_builder_6f87f8d62d3c1a27dae9d3fd854ec1ee6002f41c518b9167024a99082d48a284/20240609-0633-3506-7367-000000143cda
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / dir: /tmp/!create_temp_path_/spiral_builder_0286fb3fd759e56b6e7e20a9dd19ea0d25cbb28aa593353a780b45f61f2b1a57/20240610-1628-0716-2220-00000045b86d
 assert_eq / actual: true / expected: true
 assert_eq / actual: false / expected: false
 </pre>
@@ -10916,15 +10920,15 @@ assert_eq / actual: false / expected: false
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00   debug #1 1
-00:00:00   debug #2 2
-00:00:00   debug #3 _1
-00:00:00   debug #4 3
-00:00:00   debug #5 _2
-00:00:00   debug #6 4
-00:00:00   debug #7 5
-00:00:02   debug #8 _3
-00:00:02   debug #9 6
+<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 4
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #7 5
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #8 _3
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #9 6
 assert_between / actual: 0L / expected: struct (0L, 0L)
 assert_eq / actual: true / expected: true
 </pre>
@@ -11153,20 +11157,20 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00   debug #1 1
-00:00:00   debug #2 2
-00:00:00   debug #3 3
-00:00:00   debug #4 _1
-00:00:00   debug #5 _2
-00:00:00   debug #6 4
-00:00:01   debug #7 file_system.wait_for_file_access / path: test.txt / retry: 100 / ex: System.IO.IOException: The process cannot access the file '/tmp/!create_temp_path_/dotnet-repl/613830ed-016e-d959-8d21-02dc1c63c252/test.txt' because it is being used by another process.
-00:00:02   debug #8 _3
-00:00:02   debug #9 _4
-00:00:02   debug #10 _5
-00:00:02   debug #11 _6
-00:00:02   debug #12 5
-00:00:02   debug #13 6
-00:00:02   debug #14 7
+<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 4
+00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #7 file_system.wait_for_file_access / path: test.txt / retry: 100 / ex: System.IO.IOException: The process cannot access the file '/tmp/!create_temp_path_/dotnet-repl/613830ed-016e-d959-8d21-02dc1c63c252/test.txt' because it is being used by another process.
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #8 _3
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #9 _4
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #10 _5
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #11 _6
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #12 5
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #13 6
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #14 7
 assert_between / actual: 167L / expected: struct (100L, 200L)
 assert_eq / actual: "1" / expected: "1"
 assert_eq / actual: true / expected: true
@@ -11357,18 +11361,18 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00   debug #1 1
-00:00:00   debug #2 2
-00:00:00   debug #3 3
-00:00:00   debug #4 _1
-00:00:00   debug #5 _2
-00:00:00   debug #6 4
-00:00:00   debug #7 5
-00:00:01   debug #8 file_system.wait_for_file_access / path: test2.txt / retry: 100 / ex: System.IO.IOException: The process cannot access the file '/tmp/!create_temp_path_/dotnet-repl/613830ed-016e-d959-8d21-02dc1c63c252/test2.txt' because it is being used by another process.
-00:00:02   debug #9 _3
-00:00:02   debug #10 6
-00:00:02   debug #11 7
-00:00:02   debug #12 8
+<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 4
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #7 5
+00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #8 file_system.wait_for_file_access / path: test2.txt / retry: 100 / ex: System.IO.IOException: The process cannot access the file '/tmp/!create_temp_path_/dotnet-repl/613830ed-016e-d959-8d21-02dc1c63c252/test2.txt' because it is being used by another process.
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #9 _3
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #10 6
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #11 7
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #12 8
 assert_between / actual: 0L / expected: struct (0L, 0L)
 assert_between / actual: 167L / expected: struct (100L, 200L)
 assert_eq / actual: "0" / expected: "0"
@@ -11497,15 +11501,15 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00   debug #1 1
-00:00:00   debug #2 2
-00:00:00   debug #3 3
-00:00:00   debug #4 _1
-00:00:00   debug #5 _2
-00:00:00   debug #6 4
-00:00:00   debug #7 5
-00:00:02   debug #8 _3
-00:00:02   debug #9 6
+<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 3
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _2
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 4
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #7 5
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #8 _3
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #9 6
 assert_between / actual: 0L / expected: struct (0L, 0L)
 assert_eq / actual: true / expected: true
 </pre>

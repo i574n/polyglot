@@ -24,7 +24,11 @@ open file_system_operators
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"sha2::Sha256\")>]\n#endif\ntype sha2_Sha256 = class end"
+    backend_switch {
+        Fsharp = fun () =>
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"sha2::Sha256\")>]\n#endif\ntype sha2_Sha256 = class end"
+        Python = fun () => ()
+    }
 
 #!spiral
 
@@ -325,10 +329,16 @@ nominal py_sha256 = any
 #!spiral
 
 inl hashlib_sha256 () : py_sha256 =
-    open python_operators
-    global "type IHashlibSha256 = abstract sha256: x: unit -> obj"
-    inl hashlib : $'IHashlibSha256' = python.import_all "hashlib"
-    !\($'"!hashlib.sha256()"')
+    backend_switch {
+        Fsharp = fun () =>
+            open python_operators
+            global "type IHashlibSha256 = abstract sha256: x: unit -> obj"
+            inl hashlib : $'IHashlibSha256' = python.import_all "hashlib"
+            !\($'"!hashlib.sha256()"') : py_sha256
+        Python = fun () =>
+            global "import hashlib"
+            $'hashlib.sha256()' : py_sha256
+    }
 
 #!markdown
 
@@ -337,8 +347,13 @@ inl hashlib_sha256 () : py_sha256 =
 #!spiral
 
 inl sha256_update (x : string) (sha256 : py_sha256) : py_sha256 =
-    open python_operators
-    !\\(x, $'"!sha256.update($0)"')
+    backend_switch {
+        Fsharp = fun () =>
+            open python_operators
+            !\\(x, $'"!sha256.update($0)"') : ()
+        Python = fun () =>
+            $'!sha256.update(!x)' : ()
+    }
     sha256
 
 #!markdown
@@ -348,8 +363,13 @@ inl sha256_update (x : string) (sha256 : py_sha256) : py_sha256 =
 #!spiral
 
 inl sha256_hexdigest (sha256 : py_sha256) : string =
-    open python_operators
-    !\($'"!sha256.hexdigest()"')
+    backend_switch {
+        Fsharp = fun () =>
+            open python_operators
+            !\($'"!sha256.hexdigest()"') : string
+        Python = fun () =>
+            $'!sha256.hexdigest()' : string
+    }
 
 #!markdown
 
@@ -383,7 +403,7 @@ let hash_text (~input : string) =
             |> stream.new_cursor
             |> hash_read
             |> resultm.unwrap'
-        | Python (Native) => fun () =>
+        | Python (Native) | Cuda (Native) => fun () =>
             hashlib_sha256 ()
             |> sha256_update (input |> sm'.encode_utf8)
             |> sha256_hexdigest
@@ -393,6 +413,7 @@ let hash_text (~input : string) =
 
 //// test
 ///! fsharp
+///! cuda
 ///! rust -d sha2
 ///! typescript
 ///! python
@@ -426,6 +447,7 @@ inl hash_to_port (text : string) : u16 =
 
 //// test
 ///! fsharp
+////! cuda // Only stack allocated primitive types (i8,i16,i32,i64 and u8,u16,u32,u64 and f32,f64 and bool) are allowed in CuPy arrays.
 ///! rust -d sha2
 ///! typescript
 ///! python

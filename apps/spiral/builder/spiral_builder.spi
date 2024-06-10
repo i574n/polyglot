@@ -300,7 +300,7 @@ inl read_file path =
         |> file_system.read_all_text
         |> sm'.replace_regex $'@@"(?P<a> *)(?P<b>let\\s+main\\s+.*?\\s*=)"' "$a[<EntryPoint>]\n$a$b"
 
-    inl code_trim = code |> sm'.trim_end ;[]
+    inl code_trim = code |> sm'.trim_end []
     if code_trim |> sm'.ends_with "\\n()"
     then code_trim |> sm'.slice 0i64 ((code_trim |> sm'.length) - 3)
     else code

@@ -255,11 +255,17 @@ inl ref_set_value forall t. (value : t) (ref : ref t) : ref t =
 
 /// ### convert
 inl convert forall t u. (x : t) : u =
-    $'!x |> `u '
+    backend_switch {
+        Fsharp = fun () => $'!x |> `u ' : u
+        Python = fun () => $'!x ' : u
+    }
 
 /// ### unbox
 inl unbox forall t u. (x : t) : u =
-    $'!x |> unbox<`u>'
+    backend_switch {
+        Fsharp = fun () => $'!x |> unbox<`u>' : u
+        Python = fun () => $'!x ' : u
+    }
 
 /// ### u8
 inl u8 forall t. (x : t) : u8 =

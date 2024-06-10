@@ -2,9 +2,10 @@
 
 /// ## types
 inl types () =
+    env.types ()
+    guid.types ()
     rust.types ()
     sm'.types ()
-    env.types ()
 
 /// ## trace
 
@@ -62,14 +63,25 @@ inl init_trace_state trace_level : () =
     inl trace_level =
         trace_level
         |> optionm'.default_value Verbose
-    global "module State = let mutable trace_state = None"
-    $'if State.trace_state.IsNone then State.trace_state <- !new_trace_state !trace_level |> Some' : ()
+    backend_switch {
+        Fsharp = fun () =>
+            global "module State = let mutable trace_state = None"
+            $'if State.trace_state.IsNone then State.trace_state <- !new_trace_state !trace_level |> Some' : ()
+        Python = fun () =>
+            global "class State: trace_state = None"
+            $'if State.trace_state is None: State.trace_state = !new_trace_state(!trace_level)' : ()
+    }
 
 /// ### get_trace_state_or_init
 inl get_trace_state_or_init trace_level : trace_state =
     init_trace_state trace_level
     // $'match State.trace_state with Some x -> x | None -> failwith "trace.get_trace_state_or_init / State.trace_state=None"'
-    $'State.trace_state.Value'
+    backend_switch {
+        Fsharp = fun () =>
+            $'State.trace_state.Value' : trace_state
+        Python = fun () =>
+            $'State.trace_state' : trace_state
+    }
 
 /// ### _locals
 inl _locals () = ""
@@ -92,13 +104,20 @@ let rec trace_raw level fn =
         inl count = trace_state.count
         count <- *count + 1
 
-        inl text = $'$"%s{!fn ()}"' : string
+        inl text =
+            backend_switch {
+                Fsharp = fun () => $'$"%s{!fn ()}"' : string
+                Python = fun () => fn () : string
+            }
         run_target function
             | Rust _ => fun () =>
                 open rust_operators
                 !\\(text, $'\@"println\!(""{}"", $0)"')
             | _ => fun () =>
-                $'System.Console.WriteLine !text '
+                backend_switch {
+                    Fsharp = fun () => $'System.Console.WriteLine !text ' : ()
+                    Python = fun () => $'print(!text)' : ()
+                }
 
         *trace_state.trace_file text
 
@@ -123,12 +142,15 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string)
                             (t |> date_time.seconds)
                             (t |> date_time.milliseconds)
                     | None => date_time.now ()
-                    |> fun date_time =>
-                        inl format =
-                            match target with
-                            | Rust _ => join "hh:mm:ss"
-                            | _ => join "HH:mm:ss"
-                        $'!date_time.ToString !format '
+                    |> date_time.format (
+                        backend_switch {
+                            Fsharp = fun () =>
+                                match target with
+                                | Rust _ => join "hh:mm:ss"
+                                | _ => join "HH:mm:ss"
+                            Python = fun () => "%H:%M:%S"
+                        }
+                    )
         inl level_str = level |> reflection.union_to_string |> sm'.to_lower |> sm'.pad_left 7 ' '
         inl level_str =
             run_target function
@@ -146,11 +168,23 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string)
                 $'"\\\"{!color}{!level_str}{!color_reset}\\\""'
                 |> sm'.format''
                 |> sm'.from_std_string
-            | _ => fun () => level_str
+            | _ => fun () =>
+                inl color =
+                    match level with
+                    | Verbose => $'"\\u001b[90m"'
+                    | Debug => $'"\\u001b[94m"'
+                    | Info => $'"\\u001b[92m"'
+                    | Warning => $'"\\u001b[93m"'
+                    | Critical => $'"\\u001b[91m"'
+                inl color_reset = join $'"\\u001b[0m"'
+                color +. level_str +. color_reset
         inl count = *trace_state.count
-        $'$"{!time} {!level_str} #{!count} %s{!text_fn ()} / %s{!locals ()}"'
-        |> sm'.trim_start ;[]
-        |> sm'.trim_end ;[ ' '; '/' ]
+        backend_switch {
+            Fsharp = fun () => $'$"{!time} {!level_str} #{!count} %s{!text_fn ()} / %s{!locals ()}"' : string
+            Python = fun () => $'f"{!time} {!level_str} #{!count} {!text_fn()} / {!locals()}"' : string
+        }
+        |> sm'.trim_start []
+        |> sm'.trim_end [ ' '; '/' ]
     |> trace_raw level
 
 /// ## main

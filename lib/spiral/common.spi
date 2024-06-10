@@ -80,11 +80,14 @@ inl random_next (min : i32) (max : i32) (random : random) : i32 =
     $'!random.Next (!min, !max)'
 
 /// ### disposable
-nominal disposable t = $'System.IDisposable'
+nominal disposable t = $"backend_switch `({ Fsharp : $'System.IDisposable'; Python : $'object' })"
 
 /// ### dispose
 inl dispose (disposable : disposable _) : () =
-    disposable |> $'_.Dispose()'
+    backend_switch {
+        Fsharp = fun () => disposable |> $'_.Dispose()' : ()
+        Python = fun () => $'!disposable.__exit__(None, None, None)' : ()
+    }
 
 /// ### return
 inl return forall t. (x : t) : () =
@@ -131,9 +134,17 @@ inl new_disposable (fn : () -> ()) : disposable _ =
             global "type Disposable (f : unit -> unit) = interface System.IDisposable with member _.Dispose () = f ()"
             inl fn = join fn
             $'new Disposable (fun () -> Fable.Core.RustInterop.emitRustExpr !fn "$0()" )'
-        | Fsharp _ => fun () =>
+        | Fsharp _ | TypeScript _ | Python _ => fun () =>
             inl fn = join fn
             $'{ new System.IDisposable with member _.Dispose () = !fn () }'
+        | Cuda _ => fun () =>
+            $'class Disposable:'
+            $'    def __init__(self, fn):'
+            $'        self.fn = fn'
+            $'    def __exit__(self, exc_type, exc_value, traceback):'
+            $'        self.fn()'
+            $'        return False'
+            $'Disposable(!fn)'
         | _ => fun () => null ()
 
 /// ## main

@@ -24,14 +24,18 @@ open testing
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::File\")>]\n#endif\ntype std_fs_File = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::FileType\")>]\n#endif\ntype std_fs_FileType = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Display\")>]\n#endif\ntype std_path_Display = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>]\n#endif\ntype std_path_Path = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::PathBuf\")>]\n#endif\ntype std_path_PathBuf = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::DirEntry\")>]\n#endif\ntype async_walkdir_DirEntry = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Filtering\")>]\n#endif\ntype async_walkdir_Filtering = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::WalkDir\")>]\n#endif\ntype async_walkdir_WalkDir = class end"
+    backend_switch {
+        Fsharp = fun () =>
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::File\")>]\n#endif\ntype std_fs_File = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::FileType\")>]\n#endif\ntype std_fs_FileType = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Display\")>]\n#endif\ntype std_path_Display = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>]\n#endif\ntype std_path_Path = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::PathBuf\")>]\n#endif\ntype std_path_PathBuf = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::DirEntry\")>]\n#endif\ntype async_walkdir_DirEntry = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Filtering\")>]\n#endif\ntype async_walkdir_Filtering = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::WalkDir\")>]\n#endif\ntype async_walkdir_WalkDir = class end"
+        Python = fun () => ()
+    }
 
 #!spiral
 
@@ -1188,7 +1192,7 @@ let absolute_path path =
 #!spiral
 
 inl new_file_uri (path : string) : string =
-    inl path = path |> sm'.trim_start ;[ '/' ]
+    inl path = path |> sm'.trim_start [ '/' ]
     $'$"file:///{!path}"'
 
 #!spiral

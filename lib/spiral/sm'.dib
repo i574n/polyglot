@@ -23,39 +23,39 @@ open rust_operators
 #!spiral
 
 inl types () =
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>]\n#endif\ntype Str = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"base64::DecodeError\")>]\n#endif\ntype base64_DecodeError = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"borsh::io::Error\")>]\n#endif\ntype borsh_io_Error = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs::Encoding\")>]\n#endif\ntype encoding_rs_Encoding = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::JsString\")>]\n#endif\ntype js_sys_JsString = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Error\")>]\n#endif\ntype serde_json_Error = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>]\n#endif\ntype serde_json_Value = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"serde_wasm_bindgen::Error\")>]\n#endif\ntype serde_wasm_bindgen_Error = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::OsStr\")>]\n#endif\ntype std_ffi_OsStr = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::OsString\")>]\n#endif\ntype std_ffi_OsString = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fmt::Display<$0>\")>]\n#endif\ntype std_fmt_Display<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::str::Utf8Error\")>]\n#endif\ntype std_str_Utf8Error = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::FromUtf8Error\")>]\n#endif\ntype std_string_FromUtf8Error = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>]\n#endif\ntype std_string_String = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::slice::Windows<$0>\")>]\n#endif\ntype std_slice_Windows<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Regex\")>]\n#endif\ntype regex_Regex = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Captures<$0>\")>]\n#endif\ntype regex_Captures<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::CaptureMatches\")>]\n#endif\ntype regex_CaptureMatches = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::CaptureNames\")>]\n#endif\ntype regex_CaptureNames = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Match\")>]\n#endif\ntype regex_Match = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Error\")>]\n#endif\ntype regex_Error = class end"
+    backend_switch {
+        Fsharp = fun () =>
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>]\n#endif\ntype Str = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"base64::DecodeError\")>]\n#endif\ntype base64_DecodeError = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"borsh::io::Error\")>]\n#endif\ntype borsh_io_Error = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs::Encoding\")>]\n#endif\ntype encoding_rs_Encoding = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::JsString\")>]\n#endif\ntype js_sys_JsString = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Error\")>]\n#endif\ntype serde_json_Error = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>]\n#endif\ntype serde_json_Value = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"serde_wasm_bindgen::Error\")>]\n#endif\ntype serde_wasm_bindgen_Error = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::OsStr\")>]\n#endif\ntype std_ffi_OsStr = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::OsString\")>]\n#endif\ntype std_ffi_OsString = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fmt::Display<$0>\")>]\n#endif\ntype std_fmt_Display<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::str::Utf8Error\")>]\n#endif\ntype std_str_Utf8Error = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::FromUtf8Error\")>]\n#endif\ntype std_string_FromUtf8Error = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>]\n#endif\ntype std_string_String = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::slice::Windows<$0>\")>]\n#endif\ntype std_slice_Windows<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Regex\")>]\n#endif\ntype regex_Regex = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Captures<$0>\")>]\n#endif\ntype regex_Captures<'T> = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::CaptureMatches\")>]\n#endif\ntype regex_CaptureMatches = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::CaptureNames\")>]\n#endif\ntype regex_CaptureNames = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Match\")>]\n#endif\ntype regex_Match = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"regex::Error\")>]\n#endif\ntype regex_Error = class end"
+        Python = fun () => ()
+    }
 
 #!spiral
 
 inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            rust.types ()
-            mapm.types ()
-            am'.types ()
-            types ()
-        Python = fun () => ()
-    }
+    rust.types ()
+    mapm.types ()
+    am'.types ()
+    types ()
 
 #!markdown
 
@@ -278,12 +278,41 @@ inl index_of (search : string) (s : string) : i32 =
 
 #!markdown
 
+### replicate
+
+#!spiral
+
+inl replicate (n : i32) (s : string) : string =
+    backend_switch {
+        Fsharp = fun () => s |> $'String.replicate' n : string
+        Python = fun () => $'!s * !n ' : string
+    }
+
+#!markdown
+
+### obj_to_string
+
+#!spiral
+
+inl obj_to_string x : string =
+    backend_switch {
+        Fsharp = fun () => x |> $'_.ToString()' : string
+        Python = fun () => $'str(!x)' : string
+    }
+
+#!markdown
+
 ### pad_left
 
 #!spiral
 
 inl pad_left (total_width : i32) (padding_char : char) (s : string) : string =
-    $'!s.PadLeft (!total_width, !padding_char)'
+    backend_switch {
+        Fsharp = fun () => $'!s.PadLeft (!total_width, !padding_char)' : string
+        Python = fun () =>
+            inl padding = padding_char |> obj_to_string |> replicate (total_width - length s)
+            padding +. s
+    }
 
 #!markdown
 
@@ -301,15 +330,6 @@ inl pad_right (total_width : i32) (padding_char : char) (s : string) : string =
 "123"
 |> pad_right 6 ' '
 |> _assert_eq "123   "
-
-#!markdown
-
-### replicate
-
-#!spiral
-
-inl replicate (n : i32) (s : string) : string =
-    s |> $'String.replicate' n
 
 #!markdown
 
@@ -345,7 +365,10 @@ inl substring (start : i32) (len : i32) (str : string) : string =
 #!spiral
 
 inl to_lower (input : string) : string =
-    $'!input.ToLower' ()
+    backend_switch {
+        Fsharp = fun () => $'!input.ToLower' () : string
+        Python = fun () => $'!input.lower()' : string
+    }
 
 #!markdown
 
@@ -427,12 +450,34 @@ inl trim (input : string) : string =
 
 #!markdown
 
+### concat
+
+#!spiral
+
+inl concat (a : string) (b : seq.seq' string) : string =
+    backend_switch {
+        Fsharp = fun () =>
+            b |> $'String.concat' a : string
+        Python = fun () =>
+            $'!a.join(!b)' : string
+    }
+
+#!markdown
+
 ### trim_end
 
 #!spiral
 
-inl trim_end (trim_chars : array_base char) (input : string) : string =
-    $'!input.TrimEnd !trim_chars '
+inl trim_end (trim_chars : list char) (input : string) : string =
+    inl trim_chars = trim_chars |> listm'.box
+    backend_switch {
+        Fsharp = fun () =>
+            inl trim_chars = trim_chars |> listm'.to_array'
+            $'!input.TrimEnd !trim_chars ' : string
+        Python = fun () =>
+            inl trim_chars = trim_chars |> listm'.map obj_to_string |> seq.of_list' |> concat ""
+            $'!input.rstrip(!trim_chars)' : string
+    }
 
 #!markdown
 
@@ -440,8 +485,16 @@ inl trim_end (trim_chars : array_base char) (input : string) : string =
 
 #!spiral
 
-inl trim_start (trim_chars : array_base char) (input : string) : string =
-    $'!input.TrimStart !trim_chars '
+inl trim_start (trim_chars : list char) (input : string) : string =
+    inl trim_chars = trim_chars |> listm'.box
+    backend_switch {
+        Fsharp = fun () =>
+            inl trim_chars = trim_chars |> listm'.to_array'
+            $'!input.TrimStart !trim_chars ' : string
+        Python = fun () =>
+            inl trim_chars = trim_chars |> listm'.map obj_to_string |> seq.of_list' |> concat ""
+            $'!input.lstrip(!trim_chars)' : string
+    }
 
 #!markdown
 
@@ -451,15 +504,6 @@ inl trim_start (trim_chars : array_base char) (input : string) : string =
 
 inl length' forall dim. (input : string) : dim =
     input |> $'String.length'
-
-#!markdown
-
-### obj_to_string
-
-#!spiral
-
-inl obj_to_string x : string =
-    x |> $'_.ToString()'
 
 #!markdown
 
@@ -478,15 +522,6 @@ instance to_string any =
 
 inl replace (old_value : string) (new_value : string) (s : string) : string =
     $'!s.Replace (!old_value, !new_value)'
-
-#!markdown
-
-### concat
-
-#!spiral
-
-inl concat (a : string) (b : seq.seq' string) : string =
-    b |> $'String.concat' a
 
 #!markdown
 
@@ -1241,9 +1276,14 @@ inl as_bytes (text : string) : rust.ref' (am'.slice u8) =
 #!spiral
 
 inl encode_utf8 (s : string) : string =
-    open python_operators
     inl encoding = "utf-8"
-    !\\((s, encoding), $'"$0.encode($1)"')
+    backend_switch {
+        Fsharp = fun () =>
+            open python_operators
+            !\\((s, encoding), $'"$0.encode($1)"') : string
+        Python = fun () =>
+            $'!s.encode(!encoding)' : string
+    }
 
 #!markdown
 
@@ -1486,7 +1526,9 @@ inl main () =
     $'let to_lower x = !to_lower x' : ()
     $'let to_upper x = !to_upper x' : ()
     $'let trim x = !trim x' : ()
+    inl trim_end x = (a x : _ int _) |> am'.to_list' |> listm'.unbox |> trim_end
     $'let trim_end x = !trim_end x' : ()
+    inl trim_start x = (a x : _ int _) |> am'.to_list' |> listm'.unbox |> trim_start
     $'let trim_start x = !trim_start x' : ()
     $'let ellipsis x = !ellipsis x' : ()
     $'let ellipsis_end x = !ellipsis_end x' : ()

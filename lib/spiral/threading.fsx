@@ -146,26 +146,28 @@ and closure0 () (v0 : System.Threading.CancellationToken option) : struct (Syste
     v32 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v33 : System.IDisposable = null |> unbox<System.IDisposable>
-    v33 
-    #endif
-#if FABLE_COMPILER_PYTHON
-    let v34 : System.IDisposable = null |> unbox<System.IDisposable>
+    let v33 : (unit -> unit) = method1(v25)
+    let v34 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v33 () }
     v34 
     #endif
-#else
+#if FABLE_COMPILER_PYTHON
     let v35 : (unit -> unit) = method1(v25)
     let v36 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v35 () }
     v36 
     #endif
+#else
+    let v37 : (unit -> unit) = method1(v25)
+    let v38 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v37 () }
+    v38 
+    #endif
     |> fun x -> _v26 <- Some x
-    let v37 : System.IDisposable = match _v26 with Some x -> x | None -> failwith "base.run_target / _v26=None"
-    let v38 : System.Threading.CancellationToken = v25.Token
-    struct (v38, v37) 
+    let v39 : System.IDisposable = match _v26 with Some x -> x | None -> failwith "base.run_target / _v26=None"
+    let v40 : System.Threading.CancellationToken = v25.Token
+    struct (v40, v39) 
     #endif
     |> fun x -> _v1 <- Some x
-    let struct (v39 : System.Threading.CancellationToken, v40 : System.IDisposable) = match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
-    struct (v39, v40)
+    let struct (v41 : System.Threading.CancellationToken, v42 : System.IDisposable) = match _v1 with Some x -> x | None -> failwith "base.run_target / _v1=None"
+    struct (v41, v42)
 let v0 : (System.Threading.CancellationToken option -> struct (System.Threading.CancellationToken * System.IDisposable)) = closure0()
 let new_disposable_token x = v0 x
 ()
