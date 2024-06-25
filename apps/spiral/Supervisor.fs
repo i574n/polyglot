@@ -91,8 +91,8 @@ module Supervisor =
                                 if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
                                     let rec loop retry = async {
                                         do!
-                                            SpiralNetworking.wait_for_port_access (Some 60) true host availablePort
-                                            |> Async.runWithTimeoutAsync 200
+                                            SpiralNetworking.wait_for_port_access (Some 100) true host availablePort
+                                            |> Async.runWithTimeoutAsync 500
                                             |> Async.Ignore
 
                                         let _locals () = $"port: {availablePort} / retry: {retry} / {_locals ()}"
