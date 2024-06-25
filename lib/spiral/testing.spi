@@ -64,6 +64,35 @@ inl __assert_between log a b actual =
     __expect assert_between log "assert_between" (a, b) actual
 inl _assert_between a b actual = __assert_between true a b actual
 
+inl _assert_fn fn list =
+    list
+    |> listm.rev
+    |> listm.map fun input, expected => join
+        input
+        |> fn
+        |> resultm.get
+        |> fun x =>
+            inl expected' = join expected
+            try
+                fun () =>
+                    console.write_line ""
+                    trace Verbose
+                        fun () => $'$"testing._assert_fn"'
+                        fun () => { input }
+                    x
+                    |> _assert_eq' expected'
+                    true
+                fun ex =>
+                    trace Critical
+                        fun () => $'$"testing._assert_fn / error"'
+                        fun () => { ex expected }
+                    Some false
+            |> optionm.value
+    |> listm'.filter not
+    |> function
+        | [] => ()
+        | x => failwith $'$"{!x}"'
+
 /// ## fsharp
 
 /// ### __assert_contains

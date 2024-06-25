@@ -47,7 +47,7 @@ if ($extensionsPath.Count -gt 0) {
     Copy-Item $path "$extensionSrcPath/compiler" -Recurse -Force
 
     if (!$fast) {
-        { ~/.bun/bin/bun install } | Invoke-Block -Location $extensionSrcPath
+        { ~/.bun/bin/bun install --frozen-lockfile } | Invoke-Block -Location $extensionSrcPath
         { ~/.bun/bin/bunx --bun tsc --build } | Invoke-Block -Location $extensionSrcPath
     }
     { ~/.bun/bin/bunx --bun @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath

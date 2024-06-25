@@ -1,0 +1,329 @@
+/// # sm'
+
+/// ## types
+
+/// ## sm'
+
+/// ### symbol_to_string
+inl symbol_to_string forall t {symbol}. : string =
+    // inl x = real_core.type_lit_to_lit `t
+    // inl x = real_core.type_to_symbol `t
+    // inl x = real_core.type_lit_to_lit `t
+    // !!!!SymbolToString (`(`t))
+    inl x = real_core.type_to_symbol `t
+    !!!!SymbolToString (x)
+
+/// ### index
+
+/// ### to_char_array
+
+/// ### length
+
+/// ### to_char_list
+
+/// ### is_empty
+
+/// ### slice
+
+/// ### format_debug
+inl format_debug forall t. (x : t) : string =
+    backend_switch `string `string {
+        Fsharp = fun () => $'$"%A{!x}"' : string
+        Python = fun () => $'f"{!x}"' : string
+    }
+
+/// ### prim
+
+/// ### printable
+prototype printable t : t -> ()
+
+/// ### real_format
+inl real_format forall t. (x : t) : string =
+    inl result = mut `string ""
+    real
+        let rec write x =
+            inl p ((a : string), b) =
+                inl s : string =
+                    backend_switch `string `string {
+                        Fsharp = fun () =>
+                            match b with
+                            | (_ : f32) | (_ : f64) => $'$"%+.6f{!b}"' : string
+                            | _ => $'$"{!b}"' : string
+                        Python = fun () =>
+                            match b with
+                            | (_ : f32) | (_ : f64) => $'"{:.6f}".format(!b)' : string
+                            | _ => $'!b ' : string
+                    }
+                result <- (+.) `string ((~*) `string result) s
+
+            match x with // According to Bing it shouldn't matter whether these are %d or %lld in printf.
+            | () => ()
+            | (x : i8) | (x : i16) | (x : i32) | (x : i64) => p ("%d", x)
+            | (x : u8) | (x : u16) | (x : u32) | (x : u64) => p ("%u", x)
+            | (x : f32) | (x : f64) => p ("%f", x)
+            | (x : string) => p ("%s", x)
+            | (x : char) => p ("%c", x)
+            | (x : bool) => p ("%s", if x then "true" else "false")
+            | (a,b) => write a . write ", " . write b
+            | {} as x =>
+                write "{ "
+                inl _result =
+                    real_core.record_fold
+                        fun { state = separator key value } =>
+                            write separator
+                            write (symbol_to_string `(`key)) . write " = " . write value
+                            "; "
+                        () x
+                write " }"
+            | x when real_core.symbol_is x => write (symbol_to_string `(`x))
+            | x when real_core.function_is x => write (x ())
+            | x =>
+                if real_core.union_is x then
+                    if real_core.prototype_has `(`x) printable then printable `(`x) x
+                    else
+                        write (format_debug `(`x) x)
+                        // real_core.unbox x (fun (k, v) =>
+                        //     write k
+                        //     match v with
+                        //     | () => ()
+                        //     | _ => write "(" . write v . write ")"
+                        //     )
+                elif real_core.nominal_is x && real_core.prototype_has `(`x) printable then printable `(`x) x
+                // elif layout_is x then write *x // TODO: Deal with all the layout type cases.
+                else write (format_debug `(`x) x)
+        write x
+    (~*) `string result
+
+/// ### format
+
+/// ### concat_array_trailing
+
+/// ### concat_list_trailing
+
+/// ### concat_list_heap_trailing
+
+/// ### ellipsis
+
+/// ## fsharp
+
+/// ### ends_with
+
+/// ### last_index_of
+
+/// ### index_of
+
+/// ### replicate
+
+/// ### obj_to_string
+
+/// ### pad_left
+
+/// ### pad_right
+
+/// ### starts_with
+
+/// ### is_white_space
+
+/// ### substring
+
+/// ### to_lower
+
+/// ### to_upper
+
+/// ### char_to_upper
+
+/// ### string_builder
+
+/// ### builder_append
+
+/// ### builder_replace
+
+/// ### builder_insert
+
+/// ### builder_clear
+
+/// ### trim
+
+/// ### concat
+
+/// ### trim_end
+
+/// ### trim_start
+
+/// ### length'
+
+/// ### to_string any
+
+/// ### replace
+
+/// ### split
+
+/// ### split_string
+
+/// ### join'
+
+/// ### encoding
+
+/// ### encoding_utf8
+
+/// ### utf8_get_bytes
+
+/// ### byte_to_string
+
+/// ## rust
+
+/// ### display
+
+/// ### str
+
+/// ### base64_decode_error
+
+/// ### borsh_io_error
+
+/// ### utf8_error
+
+/// ### from_utf8_error
+
+/// ### json_value
+
+/// ### json_error
+
+/// ### serde_wasm_bindgen_error
+
+/// ### js_string
+
+/// ### os_str
+
+/// ### os_string
+
+/// ### std_string
+
+/// ### raw_string_literal
+
+/// ### raw_string_literal_static
+
+/// ### (~#)
+
+/// ### (~##)
+
+/// ### include_str
+
+/// ### as_str
+
+/// ### from_std_string
+
+/// ### ref_to_std_string
+
+/// ### cow_to_std_string
+
+/// ### to_std_string
+
+/// ### as_str_std
+
+/// ### into_boxed_str
+
+/// ### os_string_as_ref
+
+/// ### to_os_string
+
+/// ### os_to_str
+
+/// ### from_os_str_ref
+
+/// ### format_custom'
+
+/// ### format'
+
+/// ### format_debug'
+
+/// ### format_pretty'
+
+/// ### format_hex'
+
+/// ### format''
+
+/// ### regex
+
+/// ### regex_error
+
+/// ### new_regex
+
+/// ### captures
+
+/// ### regex_capture_matches
+
+/// ### regex_capture_names
+
+/// ### match'
+
+/// ### regex_captures_iter
+
+/// ### regex_captures
+
+/// ### replace_regex'
+
+/// ### serialize
+
+/// ### deserialize
+
+/// ### borsh_deserialize
+
+/// ### deserialize_vec
+
+/// ### encode_uri_component
+
+/// ### strip_prefix
+
+/// ### str_from_utf8
+
+/// ### string_from_utf8
+
+/// ### base64_decode
+
+/// ### encoding'
+
+/// ### encoding_utf8'
+
+/// ### encoding_1252
+
+/// ### encoding_encode
+
+/// ### utf8_decode
+
+/// ### windows
+
+/// ### any
+
+/// ### slice_contains
+
+/// ### as_bytes
+
+/// ## python
+
+/// ### encode_utf8
+
+/// ## sm'
+
+/// ### contains
+
+/// ### to_string result t u
+
+/// ### format_exception
+
+/// ### range
+
+/// ### concat_list
+
+/// ### ellipsis_end
+
+/// ### format_ellipsis
+
+/// ### replace_regex
+
+/// ### write_all_text
+
+/// ## main
+
+/// ## rust
+
+/// ### to_string std_string

@@ -7562,39 +7562,8 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">gc_collect</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.GC.Collect'</span> <span class="p">()</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
-
-<span class="n">inl</span> <span class="n">printfn</span> <span class="n">x</span> <span class="o">=</span>
-    <span class="n">console</span><span class="o">.</span><span class="n">write_line</span> <span class="n">x</span>
-
-<span class="n">nominal</span> <span class="n">stopwatch</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.Diagnostics.Stopwatch'</span>
-
-<span class="n">inl</span> <span class="n">stopwatch</span> <span class="p">()</span> <span class="p">:</span> <span class="n">stopwatch</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'`stopwatch '</span> <span class="p">()</span>
-
-<span class="n">inl</span> <span class="n">stopwatch_elapsed_milliseconds</span> <span class="p">(</span><span class="n">stopwatch</span> <span class="p">:</span> <span class="n">stopwatch</span><span class="p">)</span> <span class="p">:</span> <span class="n">i64</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'!stopwatch.ElapsedMilliseconds'</span>
-
-<span class="n">inl</span> <span class="n">stopwatch_start</span> <span class="p">(</span><span class="n">stopwatch</span> <span class="p">:</span> <span class="n">stopwatch</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'!stopwatch.Start'</span> <span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7604,7 +7573,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7614,10 +7583,10 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">test_case_result</span> <span class="o">=</span>
     <span class="p">{</span>
-        <span class="n">Input</span> <span class="p">:</span> <span class="n">string</span>
-        <span class="n">Expected</span> <span class="p">:</span> <span class="n">string</span>
-        <span class="n">Result</span> <span class="p">:</span> <span class="n">string</span>
-        <span class="n">TimeList</span> <span class="p">:</span> <span class="n">a</span> <span class="n">u64</span> <span class="n">i64</span>
+        <span class="nb">input</span> <span class="p">:</span> <span class="n">string</span>
+        <span class="n">expected</span> <span class="p">:</span> <span class="n">string</span>
+        <span class="n">result</span> <span class="p">:</span> <span class="n">string</span>
+        <span class="n">time_list</span> <span class="p">:</span> <span class="n">a</span> <span class="n">u64</span> <span class="n">i64</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -7625,7 +7594,42 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="invoke">invoke<a class="anchor-link" href="#invoke">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">invoke</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="n">count</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">runtime</span><span class="o">.</span><span class="n">gc_collect</span> <span class="p">()</span>
+    <span class="n">inl</span> <span class="n">stopwatch</span> <span class="o">=</span> <span class="n">date_time</span><span class="o">.</span><span class="n">stopwatch</span> <span class="p">()</span>
+    <span class="n">stopwatch</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">stopwatch_start</span>
+    <span class="n">inl</span> <span class="n">time1</span> <span class="o">=</span> <span class="n">stopwatch</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">stopwatch_elapsed_milliseconds</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
+        <span class="n">am</span><span class="s1">'.init_series 0 count 1i32</span>
+        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.parallel_map fun _n =&gt; fn ()</span>
+        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.last</span>
+    <span class="n">inl</span> <span class="n">time2</span> <span class="o">=</span> <span class="p">(</span><span class="n">stopwatch</span> <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">stopwatch_elapsed_milliseconds</span><span class="p">)</span> <span class="o">-</span> <span class="n">time1</span>
+    <span class="n">result</span><span class="p">,</span> <span class="n">time2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7635,7 +7639,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7651,40 +7655,34 @@ a.anchor-link {
     <span class="o">=</span>
     <span class="n">inl</span> <span class="n">input_str</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
 
-    <span class="n">printfn</span> <span class="s2">""</span>
-    <span class="n">printfn</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"Solution: {!input_str}  "'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
-
-    <span class="n">inl</span> <span class="n">performance_invoke</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">expected</span><span class="p">)</span> <span class="o">=</span>
-        <span class="n">gc_collect</span> <span class="p">()</span>
-        <span class="n">inl</span> <span class="n">stopwatch</span> <span class="o">=</span> <span class="n">stopwatch</span> <span class="p">()</span>
-        <span class="n">stopwatch</span> <span class="o">|&gt;</span> <span class="n">stopwatch_start</span>
-        <span class="n">inl</span> <span class="n">time1</span> <span class="o">=</span> <span class="n">stopwatch</span> <span class="o">|&gt;</span> <span class="n">stopwatch_elapsed_milliseconds</span>
-        <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">expected</span> <span class="o">=</span>
-            <span class="n">am</span><span class="s1">'.init_series 0 count 1i32</span>
-            <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.parallel_map fun _n =&gt; fn ()</span>
-            <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.last</span>
-        <span class="n">inl</span> <span class="n">time2</span> <span class="o">=</span> <span class="p">(</span><span class="n">stopwatch</span> <span class="o">|&gt;</span> <span class="n">stopwatch_elapsed_milliseconds</span><span class="p">)</span> <span class="o">-</span> <span class="n">time1</span>
-        <span class="n">result</span><span class="p">,</span> <span class="n">time2</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">write_line</span> <span class="s2">""</span>
+    <span class="n">trace</span> <span class="n">Verbose</span>
+        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"benchmark.run"'</span>
+        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">input_str</span> <span class="o">=</span> <span class="n">input_str</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.ellipsis_end 40 }</span>
 
     <span class="n">inl</span> <span class="n">results_with_time</span> <span class="p">:</span> <span class="n">a</span> <span class="n">u64</span> <span class="n">_</span> <span class="o">=</span>
         <span class="n">solutions</span>
         <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.indexed</span>
         <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
-        <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="p">((</span><span class="n">i</span> <span class="p">:</span> <span class="n">i32</span><span class="p">),</span> <span class="p">(</span><span class="n">test_name</span><span class="p">,</span> <span class="n">solution</span><span class="p">))</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="n">result</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">performance_invoke</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">solution</span> <span class="nb">input</span>
-            <span class="n">printfn</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"Test case {!i + 1}. {!test_name}. Time: {!time}  "'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+        <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="p">((</span><span class="n">i</span> <span class="p">:</span> <span class="nb">int</span><span class="p">),</span> <span class="p">(</span><span class="n">test_name</span><span class="p">,</span> <span class="n">solution</span><span class="p">))</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">result</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">solution</span> <span class="nb">input</span>
+                <span class="o">|&gt;</span> <span class="n">invoke</span> <span class="n">count</span>
+            <span class="n">trace</span> <span class="n">Verbose</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"benchmark.run / solutions.map"'</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">test_name</span> <span class="n">time</span> <span class="p">}</span>
             <span class="n">result</span><span class="p">,</span> <span class="n">time</span>
 
     <span class="k">match</span> <span class="n">results_with_time</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span> <span class="k">with</span>
     <span class="o">|</span> <span class="n">array</span> <span class="n">when</span> <span class="n">length</span> <span class="n">array</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="p">()</span>
     <span class="o">|</span> <span class="n">array</span> <span class="n">when</span> <span class="n">array</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">forall</span><span class="s1">' ((=) (index array 0)) =&gt; ()</span>
-    <span class="o">|</span> <span class="n">results</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"Challenge error: {!results}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+    <span class="o">|</span> <span class="n">results</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"benchmark.run / error / results: {!results}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
 
     <span class="p">{</span>
-        <span class="n">Input</span> <span class="o">=</span> <span class="n">input_str</span>
-        <span class="n">Expected</span> <span class="o">=</span> <span class="n">expected</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
-        <span class="n">Result</span> <span class="o">=</span> <span class="n">results_with_time</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">array</span> <span class="o">=&gt;</span> <span class="n">index</span> <span class="n">array</span> <span class="mi">0</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
-        <span class="n">TimeList</span> <span class="o">=</span> <span class="n">results_with_time</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">snd</span>
+        <span class="nb">input</span> <span class="o">=</span> <span class="n">input_str</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="n">expected</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">results_with_time</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.index 0 |&gt; sm'</span><span class="o">.</span><span class="n">format_debug</span>
+        <span class="n">time_list</span> <span class="o">=</span> <span class="n">results_with_time</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">snd</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -7692,7 +7690,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7702,7 +7700,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7716,9 +7714,11 @@ a.anchor-link {
     <span class="p">(</span><span class="n">solutions</span> <span class="p">:</span> <span class="nb">list</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="p">(</span><span class="nb">input</span> <span class="o">-&gt;</span> <span class="n">expected</span><span class="p">)))</span>
     <span class="n">test_cases</span>
     <span class="o">=</span>
-    <span class="n">printfn</span> <span class="s2">""</span>
-    <span class="n">printfn</span> <span class="s2">""</span>
-    <span class="n">printfn</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"Test: {!test_name}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">write_line</span> <span class="s2">""</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">write_line</span> <span class="s2">"```"</span>
+    <span class="n">trace</span> <span class="n">Verbose</span>
+        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"benchmark.run_all"'</span>
+        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">test_name</span> <span class="n">count</span> <span class="p">}</span>
     <span class="n">test_cases</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
     <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">run</span> <span class="n">count</span> <span class="n">solutions</span><span class="p">)</span>
@@ -7728,7 +7728,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7738,7 +7738,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7752,23 +7752,23 @@ a.anchor-link {
             <span class="n">results</span>
             <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="p">(</span><span class="n">result</span> <span class="p">:</span> <span class="n">test_case_result</span><span class="p">)</span> <span class="o">=&gt;</span>
                 <span class="n">inl</span> <span class="n">best</span> <span class="o">=</span>
-                    <span class="n">result</span><span class="o">.</span><span class="n">TimeList</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">time_list</span>
                     <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.indexed</span>
                     <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span> <span class="o">=&gt;</span>
-                        <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="n">i64</span><span class="p">,</span> <span class="n">time</span>
+                        <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="n">i32</span><span class="p">,</span> <span class="n">time</span>
                     <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.sort_by snd</span>
-                    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">array</span> <span class="o">=&gt;</span> <span class="n">index</span> <span class="n">array</span> <span class="mi">0</span><span class="n">i32</span>
-                    <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
+                    <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.index 0i32</span>
+                    <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
                 <span class="n">inl</span> <span class="n">row</span> <span class="o">=</span>
                     <span class="p">[</span>
-                        <span class="n">result</span><span class="o">.</span><span class="n">Input</span>
-                        <span class="n">result</span><span class="o">.</span><span class="n">Expected</span>
-                        <span class="n">result</span><span class="o">.</span><span class="n">Result</span>
+                        <span class="n">result</span><span class="o">.</span><span class="n">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.ellipsis_end 40 |&gt; sm'</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"|"</span> <span class="s2">""</span>
+                        <span class="n">result</span><span class="o">.</span><span class="n">expected</span>
+                        <span class="n">result</span><span class="o">.</span><span class="n">result</span>
                         <span class="n">best</span>
                     <span class="p">]</span>
                 <span class="n">inl</span> <span class="n">color</span> <span class="p">:</span> <span class="n">option</span> <span class="n">console</span><span class="o">.</span><span class="n">console_color</span> <span class="o">=</span>
                     <span class="nb">open</span> <span class="n">console</span>
-                    <span class="k">match</span> <span class="n">result</span><span class="o">.</span><span class="n">Expected</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">Result</span> <span class="k">with</span>
+                    <span class="k">match</span> <span class="n">result</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">result</span> <span class="k">with</span>
                     <span class="o">|</span> <span class="n">true</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="err">$</span><span class="s1">'`console_color.DarkGreen'</span>
                     <span class="o">|</span> <span class="n">false</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="err">$</span><span class="s1">'`console_color.DarkRed'</span>
                 <span class="n">row</span><span class="p">,</span> <span class="n">color</span>
@@ -7776,10 +7776,10 @@ a.anchor-link {
         <span class="n">inl</span> <span class="n">header</span> <span class="o">=</span>
             <span class="p">[</span>
                 <span class="p">[</span>
-                    <span class="s2">"Input"</span>
-                    <span class="s2">"Expected"</span>
-                    <span class="s2">"Result"</span>
-                    <span class="s2">"Best"</span>
+                    <span class="s2">"input"</span>
+                    <span class="s2">"expected"</span>
+                    <span class="s2">"result"</span>
+                    <span class="s2">"best"</span>
                 <span class="p">]</span>
                 <span class="p">[</span>
                     <span class="s2">"---"</span>
@@ -7792,8 +7792,8 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
         <span class="n">rows</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">append</span> <span class="n">header</span>
 
-    <span class="n">inl</span> <span class="n">formattedTable</span> <span class="o">=</span>
-        <span class="n">inl</span> <span class="n">lengthMap</span> <span class="p">:</span> <span class="n">mapm</span><span class="o">.</span><span class="n">map</span> <span class="n">i32</span> <span class="n">i64</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">formatted_table</span> <span class="o">=</span>
+        <span class="n">inl</span> <span class="n">length_map</span> <span class="p">:</span> <span class="n">mapm</span><span class="o">.</span><span class="n">map</span> <span class="n">i32</span> <span class="n">i64</span> <span class="o">=</span>
             <span class="n">table</span>
             <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fst</span> <span class="o">&gt;&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.transpose</span>
@@ -7808,47 +7808,49 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">mapm</span><span class="o">.</span><span class="n">of_array</span>
         <span class="n">table</span>
         <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="n">newRow</span> <span class="o">=</span>
+            <span class="n">inl</span> <span class="n">new_row</span> <span class="o">=</span>
                 <span class="n">row</span>
                 <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.indexed</span>
                 <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span> <span class="o">=&gt;</span>
-                    <span class="n">cell</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.pad_right (lengthMap |&gt; mapm.item i |&gt; conv) '</span> <span class="s1">'</span>
+                    <span class="n">cell</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.pad_right (length_map |&gt; mapm.item i |&gt; conv) '</span> <span class="s1">'</span>
                 <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
-            <span class="n">newRow</span><span class="p">,</span> <span class="n">color</span>
+            <span class="n">new_row</span><span class="p">,</span> <span class="n">color</span>
 
-    <span class="n">printfn</span> <span class="s2">""</span>
-    <span class="n">formattedTable</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">write_line</span> <span class="s2">"```"</span>
+    <span class="n">formatted_table</span>
     <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="p">((</span><span class="n">row</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">string</span><span class="p">),</span> <span class="n">color</span><span class="p">)</span> <span class="o">=&gt;</span>
         <span class="k">match</span> <span class="n">color</span> <span class="k">with</span>
         <span class="o">|</span> <span class="n">Some</span> <span class="n">color</span> <span class="o">=&gt;</span> <span class="n">color</span> <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">set_foreground_color</span>
         <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">reset_color</span> <span class="p">()</span>
 
-        <span class="n">printfn</span> <span class="p">(</span><span class="n">row</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.join'</span> <span class="s2">"</span><span class="se">\t</span><span class="s2">| "</span><span class="p">)</span>
+        <span class="n">row</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.join'</span> <span class="s2">"</span><span class="se">\t</span><span class="s2">| "</span> <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
 
         <span class="n">console</span><span class="o">.</span><span class="n">reset_color</span> <span class="p">()</span>
 
     <span class="n">inl</span> <span class="n">averages</span> <span class="p">:</span> <span class="n">a</span> <span class="n">u64</span> <span class="n">_</span> <span class="o">=</span>
         <span class="n">results</span>
         <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="n">result</span> <span class="o">=&gt;</span>
-            <span class="n">result</span><span class="o">.</span><span class="n">TimeList</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">time_list</span>
             <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="err">$</span><span class="s1">'float'</span> <span class="p">:</span> <span class="n">i64</span> <span class="o">-&gt;</span> <span class="n">f64</span><span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.transpose</span>
         <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">am</span><span class="s1">'.average</span>
         <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="err">$</span><span class="s1">'int64'</span> <span class="p">:</span> <span class="n">f64</span> <span class="o">-&gt;</span> <span class="n">i64</span><span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.indexed</span>
 
-    <span class="n">printfn</span> <span class="s2">""</span>
-    <span class="n">printfn</span> <span class="s2">"Average Ranking  "</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">write_line</span> <span class="s2">"```"</span>
     <span class="n">averages</span>
     <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.sort_by snd</span>
     <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="p">((</span><span class="n">i</span> <span class="p">:</span> <span class="n">i32</span><span class="p">),</span> <span class="n">avg</span><span class="p">)</span> <span class="o">=&gt;</span>
-        <span class="n">printfn</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"Test case </span><span class="si">%d</span><span class="s1">{!i + 1}. Average Time: %A{!avg}  "'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+        <span class="n">trace</span> <span class="n">Verbose</span>
+            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"benchmark.sort_result_list / averages.iter"'</span>
+            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">avg</span> <span class="p">}</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">write_line</span> <span class="s2">"```"</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7866,7 +7868,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7877,7 +7879,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7916,10 +7918,27 @@ Test case 1. A. Time: 53L</p>
 Test case 1. Average Time: 56L</p>
 <p>Ranking
 Test case 1. Average Time: 56L</p>
+<hr/>
+<pre><code>01:12:03 [90mverbose[0m #1 benchmark.run_all / {count = 2000000; test_name = empty_2_tests}
+01:12:03 [90mverbose[0m #2 benchmark.run / {count = 2000000; expected = a; input = a, a; input_str = struct ("a", "a")}
+01:12:03 [90mverbose[0m #3 benchmark.run / solutions.map / {count = 2000000; expected = a; i = 0; input = a, a; input_str = struct ("a", "a"); test_name = A; time = 119}
+01:12:04 [90mverbose[0m #4 benchmark.run / solutions.map / {count = 2000000; expected = a; i = 1; input = a, a; input_str = struct ("a", "a"); test_name = B; time = 122}
+01:12:04 [90mverbose[0m #5 benchmark.run / {count = 2000000; expected = b; input = b, b; input_str = struct ("b", "b")}
+01:12:04 [90mverbose[0m #6 benchmark.run / solutions.map / {count = 2000000; expected = b; i = 0; input = b, b; input_str = struct ("b", "b"); test_name = A; time = 110}
+01:12:04 [90mverbose[0m #7 benchmark.run / solutions.map / {count = 2000000; expected = b; i = 1; input = b, b; input_str = struct ("b", "b"); test_name = B; time = 120}
+</code></pre>
+<p>Input            	| Expected	| Result	| Best<br/>
+---              	| ---     	| ---   	| ---<br/>
+struct ("a", "a")	| "a"     	| "a"   	| struct (1L, 119L)
+struct ("b", "b")	| "b"     	| "b"   	| struct (1L, 110L)</p>
+<pre><code>01:12:04 [90mverbose[0m #8 benchmark.sort_result_list / averages.iter / {avg = 114; i = 0}
+01:12:04 [90mverbose[0m #9 benchmark.sort_result_list / averages.iter / {avg = 121; i = 1}
+</code></pre>
+<p>`</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7955,7 +7974,7 @@ Test case 1. Average Time: 56L</p>
         <span class="n">then</span> <span class="mi">1000</span><span class="n">i32</span>
         <span class="k">else</span> <span class="mi">2000000</span><span class="n">i32</span>
 
-    <span class="n">run_all</span> <span class="p">(</span><span class="n">nameof</span> <span class="n">empty_2_tests</span><span class="p">)</span> <span class="n">count</span> <span class="n">solutions</span> <span class="n">test_cases</span>
+    <span class="n">run_all</span> <span class="p">(</span><span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">empty_2_tests</span> <span class="p">})</span> <span class="n">count</span> <span class="n">solutions</span> <span class="n">test_cases</span>
     <span class="o">|&gt;</span> <span class="n">sort_result_list</span>
 
 <span class="n">empty_2_tests</span> <span class="p">()</span>
@@ -7972,32 +7991,32 @@ Test case 1. Average Time: 56L</p>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
+```
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 benchmark.run_all / { test_name = empty_2_tests; count = 2000000 }
 
-Test: v0
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 benchmark.run / { input_str = struct ("a", "a") }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 benchmark.run / solutions.map / { i = 1; test_name = A; time = 248 }
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 benchmark.run / solutions.map / { i = 2; test_name = B; time = 242 }
 
-Solution: struct ("a", "a")  
-Test case 1. A. Time: 244  
-Test case 2. B. Time: 227  
-
-Solution: struct ("b", "b")  
-Test case 1. A. Time: 185  
-Test case 2. B. Time: 251  
-
-Input            	| Expected	| Result	| Best             
----              	| ---     	| ---   	| ---              
-struct ("a", "a")	| "a"     	| "a"   	| struct (2L, 227L)
-struct ("b", "b")	| "b"     	| "b"   	| struct (1L, 185L)
-
-Average Ranking  
-Test case 1. Average Time: 214L  
-Test case 2. Average Time: 239L  
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #5 benchmark.run / { input_str = struct ("b", "b") }
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #6 benchmark.run / solutions.map / { i = 1; test_name = A; time = 256 }
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #7 benchmark.run / solutions.map / { i = 2; test_name = B; time = 283 }
+```
+input            	| expected	| result	| best  
+---              	| ---     	| ---   	| ---   
+struct ("a", "a")	| "a"     	| "a"   	| 2, 242
+struct ("b", "b")	| "b"     	| "b"   	| 1, 256
+```
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #8 benchmark.sort_result_list / averages.iter / { i = 1; avg = 252 }
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #9 benchmark.sort_result_list / averages.iter / { i = 2; avg = 262 }
+```
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8008,7 +8027,7 @@ Test case 2. Average Time: 239L
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8055,10 +8074,26 @@ Test case 1. A. Time: 70L</p>
 Test case 1. Average Time: 64L</p>
 <p>Ranking
 Test case 1. Average Time: 64L</p>
+<hr/>
+<pre><code>01:21:25 [90mverbose[0m #1 benchmark.run_all / {count = 2000000; test_name = empty_1_tests}
+01:21:25 [90mverbose[0m #2 benchmark.run / {count = 2000000; expected = +1.000000; input = +0.000000; input_str = 0.0}
+01:21:25 [90mverbose[0m #3 benchmark.run / solutions.map / {count = 2000000; expected = +1.000000; i = 0; input = +0.000000; input_str = 0.0; test_name = A; time = 36}
+01:21:25 [90mverbose[0m #4 benchmark.run / {count = 2000000; expected = +3.000000; input = +2.000000; input_str = 2.0}
+01:21:25 [90mverbose[0m #5 benchmark.run / solutions.map / {count = 2000000; expected = +3.000000; i = 0; input = +2.000000; input_str = 2.0; test_name = A; time = 20}
+01:21:25 [90mverbose[0m #6 benchmark.run / {count = 2000000; expected = +6.000000; input = +5.000000; input_str = 5.0}
+01:21:25 [90mverbose[0m #7 benchmark.run / solutions.map / {count = 2000000; expected = +6.000000; i = 0; input = +5.000000; input_str = 5.0; test_name = A; time = 22}
+</code></pre>
+<p>Input	| Expected	| Result	| Best<br/>
+---  	| ---     	| ---   	| ---<br/>
+0.0  	| 1.0     	| 1.0   	| struct (1L, 36L)
+2.0  	| 3.0     	| 3.0   	| struct (1L, 20L)
+5.0  	| 6.0     	| 6.0   	| struct (1L, 22L)</p>
+<pre><code>01:21:25 [90mverbose[0m #8 benchmark.sort_result_list / averages.iter / {avg = 26; i = 0}
+</code></pre>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8091,7 +8126,7 @@ Test case 1. Average Time: 64L</p>
         <span class="n">then</span> <span class="mi">1000</span><span class="n">i32</span>
         <span class="k">else</span> <span class="mi">2000000</span><span class="n">i32</span>
 
-    <span class="n">run_all</span> <span class="p">(</span><span class="n">nameof</span> <span class="n">empty_1_tests</span><span class="p">)</span> <span class="n">count</span> <span class="n">solutions</span> <span class="n">test_cases</span>
+    <span class="n">run_all</span> <span class="p">(</span><span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">empty_1_tests</span> <span class="p">})</span> <span class="n">count</span> <span class="n">solutions</span> <span class="n">test_cases</span>
     <span class="o">|&gt;</span> <span class="n">sort_result_list</span>
 
 <span class="n">empty_1_tests</span> <span class="p">()</span>
@@ -8108,26 +8143,26 @@ Test case 1. Average Time: 64L</p>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
+```
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 benchmark.run_all / { test_name = empty_1_tests; count = 2000000 }
 
-Test: v0
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 benchmark.run / { input_str = 0.0 }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 benchmark.run / solutions.map / { i = 1; test_name = A; time = 78 }
 
-Solution: 0.0  
-Test case 1. A. Time: 63  
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 benchmark.run / { input_str = 2.0 }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 benchmark.run / solutions.map / { i = 1; test_name = A; time = 35 }
 
-Solution: 2.0  
-Test case 1. A. Time: 39  
-
-Solution: 5.0  
-Test case 1. A. Time: 22  
-
-Input	| Expected	| Result	| Best            
----  	| ---     	| ---   	| ---             
-0.0  	| 1.0     	| 1.0   	| struct (1L, 63L)
-2.0  	| 3.0     	| 3.0   	| struct (1L, 39L)
-5.0  	| 6.0     	| 6.0   	| struct (1L, 22L)
-
-Average Ranking  
-Test case 1. Average Time: 41L  
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 benchmark.run / { input_str = 5.0 }
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #7 benchmark.run / solutions.map / { i = 1; test_name = A; time = 51 }
+```
+input	| expected	| result	| best 
+---  	| ---     	| ---   	| ---  
+0.0  	| 1.0     	| 1.0   	| 1, 78
+2.0  	| 3.0     	| 3.0   	| 1, 35
+5.0  	| 6.0     	| 6.0   	| 1, 51
+```
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #8 benchmark.sort_result_list / averages.iter / { i = 1; avg = 54 }
+```
 </pre>
 </div>
 </div>

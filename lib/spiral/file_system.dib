@@ -32,6 +32,7 @@ inl types () =
             global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>]\n#endif\ntype std_path_Path = class end"
             global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::PathBuf\")>]\n#endif\ntype std_path_PathBuf = class end"
             global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::DirEntry\")>]\n#endif\ntype async_walkdir_DirEntry = class end"
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Error\")>]\n#endif\ntype async_walkdir_Error = class end"
             global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Filtering\")>]\n#endif\ntype async_walkdir_Filtering = class end"
             global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::WalkDir\")>]\n#endif\ntype async_walkdir_WalkDir = class end"
         Python = fun () => ()
@@ -457,12 +458,20 @@ union filtering =
 
 #!markdown
 
+### async_walkdir_error
+
+#!spiral
+
+nominal async_walkdir_error = $'async_walkdir_Error'
+
+#!markdown
+
 ### stream_filter_map
 
 #!spiral
 
 inl stream_filter_map forall t.
-    (fn : resultm.result' dir_entry stream.io_error -> optionm'.option' t)
+    (fn : resultm.result' dir_entry async_walkdir_error -> optionm'.option' t)
     (stream : walk_dir)
     : am'.vec t =
 
@@ -758,8 +767,11 @@ get_current_directory ()
 #!spiral
 
 let normalize_path (path : string) : string =
-    inl path = path |> sm'.replace_regex @"^\\\\\?\\" ""
-    $'$"{!path.[0] |> string |> _.ToLower()}{!path.[1..]}"' |> sm'.replace "\\" "/"
+    if path = ""
+    then ""
+    else
+        inl path = path |> sm'.replace_regex @"^\\\\\?\\" ""
+        $'$"{!path.[0] |> string |> _.ToLower()}{!path.[1..]}"' |> sm'.replace "\\" "/"
 
 #!markdown
 
@@ -1138,7 +1150,7 @@ inl get_workspace_root () =
             | Error error =>
                 trace Warning
                     fun () => "file_system.get_workspace_root"
-                    fun () => $'$"error: {!error} / {!_locals ()}"'
+                    fun () => { error }
                 None
     |> optionm.value
     |> fun root => root </> "polyglot"
@@ -1317,7 +1329,7 @@ inl delete_directory_async path : _ i64 =
                                 inl ex = ex |> sm'.format_exception
                                 trace Debug
                                     fun () => "file_system.delete_directory_async"
-                                    fun () => $'$"path: {!path |> !get_file_name} / ex: {!ex} / {!_locals ()}"'
+                                    fun () => { ex path = path |> get_file_name }
                             async.sleep 10i32 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
@@ -1396,11 +1408,11 @@ let create_dir dir =
             | Ok () =>
                 trace Verbose
                     fun () => "file_system.create_dir"
-                    fun () => $'$"dir: {!dir} / {!_locals ()}"'
+                    fun () => { dir }
             | Error error =>
                 trace Critical
                     fun () => "file_system.create_dir"
-                    fun () => $'$"dir: {!dir} / error: {!error} / {!_locals ()}"'
+                    fun () => { dir error }
             inl disposable : _ () = new_disposable fun () =>
                 dir
                 |> directory_delete true
@@ -1413,7 +1425,7 @@ let create_dir dir =
                 inl result = ($'{| Exists = !exists'; CreationTime = !creation_time |}' : any) |> sm'.format_debug
                 trace Debug
                     fun () => "file_system.create_dir"
-                    fun () => $'$"dir: {!dir} / result: {!result} {!_locals ()}"'
+                    fun () => { dir result }
             inl disposable : _ () = new_disposable fun () =>
                 dir
                 |> delete_directory_async
@@ -1463,7 +1475,7 @@ path
 
 inl lock_directory path =
     fun () =>
-        trace Debug (fun () => "_1") _locals
+        trace Debug (fun () => "_1") id
         "0" |> write_all_text_async (path </> "test.txt") |> async.do
         file_stream
             (path </> "test.txt")
@@ -1472,9 +1484,9 @@ inl lock_directory path =
             ShareNone
         |> use
         |> ignore
-        trace Debug (fun () => "_2") _locals
+        trace Debug (fun () => "_2") id
         async.sleep 2000 |> async.do
-        trace Debug (fun () => "_3") _locals
+        trace Debug (fun () => "_3") id
         () |> return
     |> async.new_async
 
@@ -1484,17 +1496,17 @@ disposable |> use |> ignore
 inl path = temp_dir </> "test"
 
 fun () =>
-    trace Debug (fun () => "1") _locals
+    trace Debug (fun () => "1") id
     path |> create_directory |> ignore
-    trace Debug (fun () => "2") _locals
+    trace Debug (fun () => "2") id
     inl child = path |> lock_directory |> async.start_child |> async.let'
-    trace Debug (fun () => "3") _locals
+    trace Debug (fun () => "3") id
     async.sleep 60 |> async.do
-    trace Debug (fun () => "4") _locals
+    trace Debug (fun () => "4") id
     inl retries = path |> delete_directory_async |> async.let'
-    trace Debug (fun () => "5") _locals
+    trace Debug (fun () => "5") id
     child |> async.do
-    trace Debug (fun () => "6") _locals
+    trace Debug (fun () => "6") id
     retries |> return
 |> async.new_async_unit
 |> async.run_with_timeout 3000
@@ -1574,7 +1586,7 @@ inl wait_for_file_access access path =
                                 inl ex = ex |> sm'.format_exception
                                 trace Debug
                                     fun () => "file_system.wait_for_file_access"
-                                    fun () => $'$"path: {!path |> !get_file_name} / retry: {!retry} / ex: {!ex} / {!_locals ()}"'
+                                    fun () => { path = path |> get_file_name; retry ex }
                             async.sleep 10i32 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
@@ -1594,7 +1606,7 @@ inl wait_for_file_access_read path =
 
 inl lock_file path =
     fun () =>
-        trace Debug (fun () => "_1") _locals
+        trace Debug (fun () => "_1") id
         inl stream : file_stream' =
             file_stream
                 path
@@ -1602,15 +1614,15 @@ inl lock_file path =
                 AccessReadWrite
                 ShareNone
             |> use
-        trace Debug (fun () => "_2") _locals
+        trace Debug (fun () => "_2") id
         async.sleep 2000 |> async.do
-        trace Debug (fun () => "_3") _locals
+        trace Debug (fun () => "_3") id
         ($'!stream.Seek (0L, System.IO.SeekOrigin.Begin)' : i64) |> ignore
-        trace Debug (fun () => "_4") _locals
+        trace Debug (fun () => "_4") id
         $'!stream.WriteByte' 49u8
-        trace Debug (fun () => "_5") _locals
+        trace Debug (fun () => "_5") id
         stream |> $'_.Flush()'
-        trace Debug (fun () => "_6") _locals
+        trace Debug (fun () => "_6") id
     |> async.new_async
 
 types ()
@@ -1627,19 +1639,19 @@ disposable |> use |> ignore
 inl path = temp_dir </> file_name
 
 fun () =>
-    trace Debug (fun () => "1") _locals
+    trace Debug (fun () => "1") id
     text |> write_all_text_async path |> async.do
-    trace Debug (fun () => "2") _locals
+    trace Debug (fun () => "2") id
     inl child = path |> lock_file |> async.start_child |> async.let'
-    trace Debug (fun () => "3") _locals
+    trace Debug (fun () => "3") id
     async.sleep 1 |> async.do
-    trace Debug (fun () => "4") _locals
+    trace Debug (fun () => "4") id
     inl retries = path |> wait_for_file_access None |> async.let'
-    trace Debug (fun () => "5") _locals
+    trace Debug (fun () => "5") id
     inl text = path |> read_all_text_async |> async.let'
-    trace Debug (fun () => "6") _locals
+    trace Debug (fun () => "6") id
     child |> async.do
-    trace Debug (fun () => "7") _locals
+    trace Debug (fun () => "7") id
     (retries, text) |> return
 |> async.new_async_unit
 |> async.run_with_timeout 3000
@@ -1682,8 +1694,9 @@ inl read_all_text_retry_async full_path : async.async (optionm'.option' string) 
                                 fun () => retry <> 0
                                 fun () =>
                                     inl ex = ex |> sm'.format_exception
-                                    let _locals () = $'$"retry: {!retry} / ex: {!ex} / {!_locals ()}"'
-                                    trace Debug (fun () => $'"read_all_text_retry_async"' : string) _locals
+                                    trace Debug
+                                        fun () => $'"read_all_text_retry_async"'
+                                        fun () => { retry ex }
                                     (None : _ string) |> optionm'.box |> return
                                 fun () =>
                                     loop (retry + 1) |> async.return_await
@@ -1708,10 +1721,14 @@ inl move_file_async new_path old_path : _ i64 =
                             return retry
                         fun ex =>
                             if retry % 100 = 0 then
-                                inl _locals () =
-                                    inl ex = ex |> sm'.format_exception
-                                    $'$"old_path: {!old_path |> !get_file_name} / new_path: {!new_path |> !get_file_name} / ex: {!ex} / {!_locals ()}"'
-                                trace Warning (fun () => "move_file_async") _locals
+
+                                trace Warning
+                                    fun () => "move_file_async"
+                                    fun () => {
+                                        old_path = old_path |> get_file_name
+                                        new_path = new_path |> get_file_name
+                                        ex
+                                    }
                             async.sleep 10 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async_unit
@@ -1724,7 +1741,7 @@ inl move_file_async new_path old_path : _ i64 =
 
 inl lock_file path =
     fun () =>
-        trace Debug (fun () => "_1") _locals
+        trace Debug (fun () => "_1") id
         file_stream
             path
             ModeOpen
@@ -1732,9 +1749,9 @@ inl lock_file path =
             ShareNone
         |> use
         |> ignore
-        trace Debug (fun () => "_2") _locals
+        trace Debug (fun () => "_2") id
         async.sleep 2000 |> async.do
-        trace Debug (fun () => "_3") _locals
+        trace Debug (fun () => "_3") id
     |> async.new_async
 
 types ()
@@ -1751,21 +1768,21 @@ fun () =>
     let path = temp_dir </> file_name
     let new_path = temp_dir </> "test2.txt"
 
-    trace Debug (fun () => "1") _locals
+    trace Debug (fun () => "1") id
     text |> write_all_text_async path |> async.do
-    trace Debug (fun () => "2") _locals
+    trace Debug (fun () => "2") id
     inl child = lock_file path |> async.start_child |> async.let'
-    trace Debug (fun () => "3") _locals
+    trace Debug (fun () => "3") id
     async.sleep 1 |> async.do
-    trace Debug (fun () => "4") _locals
+    trace Debug (fun () => "4") id
     inl retries1 = path |> move_file_async new_path |> async.let'
-    trace Debug (fun () => "5") _locals
+    trace Debug (fun () => "5") id
     inl retries2 = new_path |> wait_for_file_access None |> async.let'
-    trace Debug (fun () => "6") _locals
+    trace Debug (fun () => "6") id
     inl text = new_path |> read_all_text_async |> async.let'
-    trace Debug (fun () => "7") _locals
+    trace Debug (fun () => "7") id
     child |> async.do
-    trace Debug (fun () => "8") _locals
+    trace Debug (fun () => "8") id
     (retries1, retries2, text) |> return
 |> async.new_async_unit
 |> async.run_with_timeout 3000
@@ -1806,9 +1823,7 @@ inl delete_file_async path : _ i64 =
                             if retry % 100 = 0 then
                                 trace Warning
                                     fun () => "delete_file_async"
-                                    fun () =>
-                                        inl ex = ex |> sm'.format_exception
-                                        $'$"path: {!path |> !get_file_name} / ex: {!ex} / {!_locals ()}"'
+                                    fun () => { path = path |> get_file_name; ex = ex |> sm'.format_exception }
                             async.sleep 10 |> async.do
                             loop (retry + 1) |> async.return_await
                 |> async.new_async
@@ -1821,7 +1836,7 @@ inl delete_file_async path : _ i64 =
 
 inl lock_file path =
     fun () =>
-        trace Debug (fun () => "_1") _locals
+        trace Debug (fun () => "_1") id
         file_stream
             path
             ModeOpen
@@ -1829,9 +1844,9 @@ inl lock_file path =
             ShareNone
         |> use
         |> ignore
-        trace Debug (fun () => "_2") _locals
+        trace Debug (fun () => "_2") id
         async.sleep 2000 |> async.do
-        trace Debug (fun () => "_3") _locals
+        trace Debug (fun () => "_3") id
     |> async.new_async
 
 types ()
@@ -1847,17 +1862,17 @@ fun () =>
     disposable |> use |> ignore
     inl path = temp_dir </> file_name
 
-    trace Debug (fun () => "1") _locals
+    trace Debug (fun () => "1") id
     text |> write_all_text_async path |> async.do
-    trace Debug (fun () => "2") _locals
+    trace Debug (fun () => "2") id
     inl child = lock_file path |> async.start_child |> async.let'
-    trace Debug (fun () => "3") _locals
+    trace Debug (fun () => "3") id
     async.sleep 1 |> async.do
-    trace Debug (fun () => "4") _locals
+    trace Debug (fun () => "4") id
     inl retries = delete_file_async path |> async.let'
-    trace Debug (fun () => "5") _locals
+    trace Debug (fun () => "5") id
     child |> async.do
-    trace Debug (fun () => "6") _locals
+    trace Debug (fun () => "6") id
     return retries
 |> async.new_async_unit
 |> async.run_with_timeout 3000

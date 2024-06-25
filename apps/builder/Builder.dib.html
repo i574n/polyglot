@@ -7663,7 +7663,7 @@ a.anchor-link {
             <span class="n">let</span><span class="o">!</span><span class="w"> </span>exitCode,<span class="w"> </span><span class="nv">_result</span><span class="w"> </span><span class="o">=</span>
                 <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execution_options</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
                     <span class="p">{</span> <span class="n">x</span> <span class="k">with</span>
-                        <span class="n">l1</span> <span class="o">=</span> <span class="n">command</span>
+                        <span class="n">l0</span> <span class="o">=</span> <span class="n">command</span>
                         <span class="n">l6</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">fileDir</span>
                     <span class="p">}</span>
                 <span class="p">)</span>
@@ -7835,26 +7835,22 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #1 persistCodeProject / packages: [] / modules: [] / name: test1 / hash:  / code.Length: 15
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #2 buildProject / fullPath: C:\home\git\polyglot\target\Builder\test1\test1.fsproj
-00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options_async / options: struct (None,
-        "dotnet publish "C:\home\git\polyglot\target/Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime linux-x64",
-        [||], None, None, true, Some "C:\home\git\polyglot\target\Builder\test1")
-00:00:05 <span class="ansi-black-intense-fg">verbose</span> #2 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #3 &gt;   Determining projects to restore...
-00:00:07 <span class="ansi-black-intense-fg">verbose</span> #4 &gt;   Restored C:\home\git\polyglot\target\Builder\test1\test1.fsproj (in 351 ms).
-00:00:07 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\test1\test1.fsproj]
-00:00:08 <span class="ansi-black-intense-fg">verbose</span> #6 &gt;   test1 -&gt; C:\home\git\polyglot\target\Builder\test1\bin\Release\net9.0\linux-x64\test1.dll
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #7 &gt;   test1 -&gt; C:\home\git\polyglot\target\Builder\test1\dist\
-00:00:09 <span class="ansi-blue-intense-fg">  debug</span> #8 runtime.execute_with_options_async / exit_code: 0 / output.Length: 657
-00:00:09 <span class="ansi-blue-intense-fg">  debug</span> #9 runtime.execute_with_options_async / options: struct (None,
-        "dotnet publish "C:\home\git\polyglot\target/Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime win-x64",
-        [||], None, None, true, Some "C:\home\git\polyglot\target\Builder\test1")
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #10 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:10 <span class="ansi-black-intense-fg">verbose</span> #11 &gt;   Determining projects to restore...
-00:00:11 <span class="ansi-black-intense-fg">verbose</span> #12 &gt;   Restored C:\home\git\polyglot\target\Builder\test1\test1.fsproj (in 324 ms).
+00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options_async / { options = { command = dotnet publish "C:\home\git\polyglot\target/Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime linux-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot\target\Builder\test1" } }
+00:00:06 <span class="ansi-black-intense-fg">verbose</span> #2 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:07 <span class="ansi-black-intense-fg">verbose</span> #3 &gt;   Determining projects to restore...
+00:00:08 <span class="ansi-black-intense-fg">verbose</span> #4 &gt;   Restored C:\home\git\polyglot\target\Builder\test1\test1.fsproj (in 395 ms).
+00:00:08 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\test1\test1.fsproj]
+00:00:09 <span class="ansi-black-intense-fg">verbose</span> #6 &gt;   test1 -&gt; C:\home\git\polyglot\target\Builder\test1\bin\Release\net9.0\linux-x64\test1.dll
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #7 &gt;   test1 -&gt; C:\home\git\polyglot\target\Builder\test1\dist\
+00:00:10 <span class="ansi-blue-intense-fg">  debug</span> #8 runtime.execute_with_options_async / { exit_code = 0; output_length = 657 }
+00:00:10 <span class="ansi-blue-intense-fg">  debug</span> #9 runtime.execute_with_options_async / { options = { command = dotnet publish "C:\home\git\polyglot\target/Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime win-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot\target\Builder\test1" } }
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #10 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:11 <span class="ansi-black-intense-fg">verbose</span> #11 &gt;   Determining projects to restore...
+00:00:11 <span class="ansi-black-intense-fg">verbose</span> #12 &gt;   Restored C:\home\git\polyglot\target\Builder\test1\test1.fsproj (in 345 ms).
 00:00:11 <span class="ansi-black-intense-fg">verbose</span> #13 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\test1\test1.fsproj]
 00:00:12 <span class="ansi-black-intense-fg">verbose</span> #14 &gt;   test1 -&gt; C:\home\git\polyglot\target\Builder\test1\bin\Release\net9.0\win-x64\test1.dll
-00:00:14 <span class="ansi-black-intense-fg">verbose</span> #15 &gt;   test1 -&gt; C:\home\git\polyglot\target\Builder\test1\dist\
-00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #16 runtime.execute_with_options_async / exit_code: 0 / output.Length: 655
+00:00:15 <span class="ansi-black-intense-fg">verbose</span> #15 &gt;   test1 -&gt; C:\home\git\polyglot\target\Builder\test1\dist\
+00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #16 runtime.execute_with_options_async / { exit_code = 0; output_length = 655 }
 Some 0
 
 </pre>
@@ -7888,26 +7884,22 @@ Some 0
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:12 <span class="ansi-blue-intense-fg">  debug</span> #3 persistCodeProject / packages: [] / modules: [] / name: test2 / hash:  / code.Length: 15
-00:00:12 <span class="ansi-blue-intense-fg">  debug</span> #4 buildProject / fullPath: C:\home\git\polyglot\target\Builder\test2\test2.fsproj
-00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #17 runtime.execute_with_options_async / options: struct (None,
-        "dotnet publish "C:\home\git\polyglot\target/Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime linux-x64",
-        [||], None, None, true, Some "C:\home\git\polyglot\target\Builder\test2")
+<pre>00:00:11 <span class="ansi-blue-intense-fg">  debug</span> #3 persistCodeProject / packages: [] / modules: [] / name: test2 / hash:  / code.Length: 15
+00:00:11 <span class="ansi-blue-intense-fg">  debug</span> #4 buildProject / fullPath: C:\home\git\polyglot\target\Builder\test2\test2.fsproj
+00:00:15 <span class="ansi-blue-intense-fg">  debug</span> #17 runtime.execute_with_options_async / { options = { command = dotnet publish "C:\home\git\polyglot\target/Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime linux-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot\target\Builder\test2" } }
 00:00:15 <span class="ansi-black-intense-fg">verbose</span> #18 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
 00:00:16 <span class="ansi-black-intense-fg">verbose</span> #19 &gt;   Determining projects to restore...
-00:00:16 <span class="ansi-black-intense-fg">verbose</span> #20 &gt;   All projects are up-to-date for restore.
-00:00:16 <span class="ansi-black-intense-fg">verbose</span> #21 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\test2\test2.fsproj]
+00:00:16 <span class="ansi-black-intense-fg">verbose</span> #20 &gt;   Restored C:\home\git\polyglot\target\Builder\test2\test2.fsproj (in 354 ms).
+00:00:17 <span class="ansi-black-intense-fg">verbose</span> #21 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\test2\test2.fsproj]
 00:00:18 <span class="ansi-black-intense-fg">verbose</span> #22 &gt; C:\home\git\polyglot\target\Builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\target\Builder\test2\test2.fsproj]
-00:00:18 <span class="ansi-blue-intense-fg">  debug</span> #23 runtime.execute_with_options_async / exit_code: 1 / output.Length: 643
-00:00:18 <span class="ansi-blue-intense-fg">  debug</span> #24 runtime.execute_with_options_async / options: struct (None,
-        "dotnet publish "C:\home\git\polyglot\target/Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime win-x64",
-        [||], None, None, true, Some "C:\home\git\polyglot\target\Builder\test2")
+00:00:18 <span class="ansi-blue-intense-fg">  debug</span> #23 runtime.execute_with_options_async / { exit_code = 1; output_length = 679 }
+00:00:18 <span class="ansi-blue-intense-fg">  debug</span> #24 runtime.execute_with_options_async / { options = { command = dotnet publish "C:\home\git\polyglot\target/Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime win-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot\target\Builder\test2" } }
 00:00:18 <span class="ansi-black-intense-fg">verbose</span> #25 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
 00:00:19 <span class="ansi-black-intense-fg">verbose</span> #26 &gt;   Determining projects to restore...
-00:00:19 <span class="ansi-black-intense-fg">verbose</span> #27 &gt;   Restored C:\home\git\polyglot\target\Builder\test2\test2.fsproj (in 319 ms).
-00:00:19 <span class="ansi-black-intense-fg">verbose</span> #28 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\test2\test2.fsproj]
+00:00:20 <span class="ansi-black-intense-fg">verbose</span> #27 &gt;   Restored C:\home\git\polyglot\target\Builder\test2\test2.fsproj (in 327 ms).
+00:00:20 <span class="ansi-black-intense-fg">verbose</span> #28 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\test2\test2.fsproj]
 00:00:21 <span class="ansi-black-intense-fg">verbose</span> #29 &gt; C:\home\git\polyglot\target\Builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\target\Builder\test2\test2.fsproj]
-00:00:21 <span class="ansi-blue-intense-fg">  debug</span> #30 runtime.execute_with_options_async / exit_code: 1 / output.Length: 679
+00:00:21 <span class="ansi-blue-intense-fg">  debug</span> #30 runtime.execute_with_options_async / { exit_code = 1; output_length = 679 }
 00:00:18 <span class="ansi-red-intense-fg">critical</span> #5 buildCode / code: 1 + a |&gt; ignore / fsprojText: &lt;Project Sdk="Microsoft.NET.Sdk"&gt;
     &lt;PropertyGroup&gt;
         &lt;TargetFramework&gt;net9.0&lt;/TargetFramework&gt;
@@ -8267,28 +8259,22 @@ table th {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:19 <span class="ansi-blue-intense-fg">  debug</span> #6 persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.Reactive.Linq] / modules: [lib/spiral/common.fsx; lib/spiral/sm.fsx; lib/spiral/crypto.fsx; ... ] / name: Builder / hash:  / code.Length: 8207
 00:00:19 <span class="ansi-blue-intense-fg">  debug</span> #7 buildProject / fullPath: C:\home\git\polyglot\target\Builder\Builder\Builder.fsproj
-00:00:22 <span class="ansi-blue-intense-fg">  debug</span> #31 runtime.execute_with_options_async / options: struct (None,
-        "dotnet publish "C:\home\git\polyglot\target/Builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime linux-x64",
-        [||], None, None, true,
-        Some "C:\home\git\polyglot\target\Builder\Builder")
-00:00:22 <span class="ansi-black-intense-fg">verbose</span> #32 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:22 <span class="ansi-blue-intense-fg">  debug</span> #31 runtime.execute_with_options_async / { options = { command = dotnet publish "C:\home\git\polyglot\target/Builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime linux-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot\target\Builder\Builder" } }
+00:00:23 <span class="ansi-black-intense-fg">verbose</span> #32 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
 00:00:23 <span class="ansi-black-intense-fg">verbose</span> #33 &gt;   Determining projects to restore...
-00:00:24 <span class="ansi-black-intense-fg">verbose</span> #34 &gt;   Restored C:\home\git\polyglot\target\Builder\Builder\Builder.fsproj (in 372 ms).
+00:00:24 <span class="ansi-black-intense-fg">verbose</span> #34 &gt;   Restored C:\home\git\polyglot\target\Builder\Builder\Builder.fsproj (in 351 ms).
 00:00:24 <span class="ansi-black-intense-fg">verbose</span> #35 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\Builder\Builder.fsproj]
-00:00:33 <span class="ansi-black-intense-fg">verbose</span> #36 &gt;   Builder -&gt; C:\home\git\polyglot\target\Builder\Builder\bin\Release\net9.0\linux-x64\Builder.dll
-00:00:35 <span class="ansi-black-intense-fg">verbose</span> #37 &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
-00:00:35 <span class="ansi-blue-intense-fg">  debug</span> #38 runtime.execute_with_options_async / exit_code: 0 / output.Length: 665
-00:00:35 <span class="ansi-blue-intense-fg">  debug</span> #39 runtime.execute_with_options_async / options: struct (None,
-        "dotnet publish "C:\home\git\polyglot\target/Builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime win-x64",
-        [||], None, None, true,
-        Some "C:\home\git\polyglot\target\Builder\Builder")
-00:00:35 <span class="ansi-black-intense-fg">verbose</span> #40 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:35 <span class="ansi-black-intense-fg">verbose</span> #41 &gt;   Determining projects to restore...
-00:00:36 <span class="ansi-black-intense-fg">verbose</span> #42 &gt;   Restored C:\home\git\polyglot\target\Builder\Builder\Builder.fsproj (in 372 ms).
-00:00:36 <span class="ansi-black-intense-fg">verbose</span> #43 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\Builder\Builder.fsproj]
-00:00:46 <span class="ansi-black-intense-fg">verbose</span> #44 &gt;   Builder -&gt; C:\home\git\polyglot\target\Builder\Builder\bin\Release\net9.0\win-x64\Builder.dll
-00:00:49 <span class="ansi-black-intense-fg">verbose</span> #45 &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
-00:00:49 <span class="ansi-blue-intense-fg">  debug</span> #46 runtime.execute_with_options_async / exit_code: 0 / output.Length: 663
+00:00:25 <span class="ansi-black-intense-fg">verbose</span> #36 &gt;   Builder -&gt; C:\home\git\polyglot\target\Builder\Builder\bin\Release\net9.0\linux-x64\Builder.dll
+00:00:26 <span class="ansi-black-intense-fg">verbose</span> #37 &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
+00:00:26 <span class="ansi-blue-intense-fg">  debug</span> #38 runtime.execute_with_options_async / { exit_code = 0; output_length = 665 }
+00:00:26 <span class="ansi-blue-intense-fg">  debug</span> #39 runtime.execute_with_options_async / { options = { command = dotnet publish "C:\home\git\polyglot\target/Builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime win-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "C:\home\git\polyglot\target\Builder\Builder" } }
+00:00:26 <span class="ansi-black-intense-fg">verbose</span> #40 &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:27 <span class="ansi-black-intense-fg">verbose</span> #41 &gt;   Determining projects to restore...
+00:00:27 <span class="ansi-black-intense-fg">verbose</span> #42 &gt;   Restored C:\home\git\polyglot\target\Builder\Builder\Builder.fsproj (in 377 ms).
+00:00:27 <span class="ansi-black-intense-fg">verbose</span> #43 &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\Builder\Builder\Builder.fsproj]
+00:00:28 <span class="ansi-black-intense-fg">verbose</span> #44 &gt;   Builder -&gt; C:\home\git\polyglot\target\Builder\Builder\bin\Release\net9.0\win-x64\Builder.dll
+00:00:31 <span class="ansi-black-intense-fg">verbose</span> #45 &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
+00:00:31 <span class="ansi-blue-intense-fg">  debug</span> #46 runtime.execute_with_options_async / { exit_code = 0; output_length = 663 }
 </pre>
 </div>
 </div>

@@ -33,6 +33,7 @@ inl types () =
             global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::time::Duration\")>]\n#endif\ntype std_time_Duration = class end"
         Python = fun () =>
             global "import datetime"
+            global "import timeit"
     }
 
 #!spiral
@@ -371,6 +372,30 @@ inl utc_now () : date_time =
             global "import datetime"
             $'datetime.datetime.utcnow()' : date_time
     }
+
+#!markdown
+
+### stopwatch
+
+#!spiral
+
+nominal stopwatch = $"backend_switch `({ Fsharp : $'System.Diagnostics.Stopwatch'; Python : $'timeit.default_timer' })"
+
+inl stopwatch () : stopwatch =
+    backend_switch {
+        Fsharp = fun () => $'`stopwatch ' () : stopwatch
+        Python = fun () => $'`stopwatch ' : stopwatch
+    }
+
+#!spiral
+
+inl stopwatch_elapsed_milliseconds (stopwatch : stopwatch) : i64 =
+    $'!stopwatch.ElapsedMilliseconds'
+
+#!spiral
+
+inl stopwatch_start (stopwatch : stopwatch) : () =
+    $'!stopwatch.Start' ()
 
 #!markdown
 

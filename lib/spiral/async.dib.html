@@ -9185,18 +9185,20 @@ a.anchor-link {
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                <span class="n">inl</span> <span class="n">_locals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'$"timeout: {!timeout} / {!_locals ()}"'</span>
                 <span class="n">inl</span> <span class="n">child</span> <span class="o">=</span> <span class="n">fn</span> <span class="o">|&gt;</span> <span class="n">start_child_timeout</span> <span class="n">timeout</span> <span class="o">|&gt;</span> <span class="n">let</span><span class="s1">'</span>
                 <span class="n">child</span>
                 <span class="o">|&gt;</span> <span class="n">catch</span>
                 <span class="o">|&gt;</span> <span class="nb">map</span> <span class="n">function</span>
                     <span class="o">|</span> <span class="n">Ok</span> <span class="n">result</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="n">result</span>
                     <span class="o">|</span> <span class="n">Error</span> <span class="n">ex</span> <span class="n">when</span> <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug |&gt; sm'</span><span class="o">.</span><span class="n">contains</span> <span class="s2">"System.TimeoutException"</span> <span class="o">=&gt;</span>
-                        <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"async.run_with_timeout_async"'</span><span class="p">)</span> <span class="n">_locals</span>
+                        <span class="n">trace</span> <span class="n">Verbose</span>
+                            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"async.run_with_timeout_async"'</span>
+                            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">timeout</span> <span class="p">}</span>
                         <span class="kc">None</span>
                     <span class="o">|</span> <span class="n">Error</span> <span class="p">(</span><span class="n">ex</span> <span class="p">:</span> <span class="n">exn</span><span class="p">)</span> <span class="o">=&gt;</span>
-                        <span class="n">inl</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception</span>
-                        <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"async.run_with_timeout_async** / ex: {!ex}"'</span><span class="p">)</span> <span class="n">_locals</span>
+                        <span class="n">trace</span> <span class="n">Critical</span>
+                            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"async.run_with_timeout_async**"'</span>
+                            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">timeout</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_exception }</span>
                         <span class="kc">None</span>
                 <span class="o">|&gt;</span> <span class="n">return_await</span>
             <span class="o">|&gt;</span> <span class="n">new_async_unit</span>

@@ -269,7 +269,9 @@ inl test_port_open host port : _ bool = async.new_async fun () =>
             return true
         fun ex =>
             inl ex = ex |> sm'.format_exception
-            trace Verbose (fun () => $'$"networking.test_port_open / port: {!port} / ex: {!ex}"') _locals
+            trace Verbose
+                fun () => $'$"networking.test_port_open"'
+                fun () => { port ex }
             return false
 
 #!spiral
@@ -322,8 +324,9 @@ inl wait_for_port_access timeout status host port : _ i64 =
             fun () => retry |> return
             fun () =>
                 if retry % 100 = 0 then
-                    inl _locals () = $'$"port: {!port} / retry: {!retry} / timeout: %A{!timeout} / status: {!status} / {!_locals ()}"'
-                    trace Verbose (fun () => "networking.wait_for_port_access") _locals
+                    trace Verbose
+                        fun () => "networking.wait_for_port_access"
+                        fun () => { port retry timeout status }
                 async.sleep 10 |> async.do
                 loop (retry + 1) |> async.return_await
     loop 0i64
@@ -333,32 +336,32 @@ inl wait_for_port_access timeout status host port : _ i64 =
 //// test
 
 inl lock_port host port = async.new_async fun () =>
-    trace Debug (fun () => "_1") _locals
+    trace Debug (fun () => "_1") id
     async.sleep 5000 |> async.do
     inl listener = new_tcp_listener (host |> ip_address_parse) port |> use
-    trace Debug (fun () => "_2") _locals
+    trace Debug (fun () => "_2") id
     listener |> listener_start
-    trace Debug (fun () => "_3") _locals
+    trace Debug (fun () => "_3") id
     async.sleep 2000 |> async.do
-    trace Debug (fun () => "_4") _locals
+    trace Debug (fun () => "_4") id
     $'!listener.Stop' ()
-    trace Debug (fun () => "_5") _locals
+    trace Debug (fun () => "_5") id
 
 inl host = "127.0.0.1"
 inl port = 5555i32
 
 fun () =>
-    trace Debug (fun () => "1") _locals
+    trace Debug (fun () => "1") id
     inl child = lock_port host port |> async.start_child |> async.let'
-    trace Debug (fun () => "2") _locals
+    trace Debug (fun () => "2") id
     async.sleep 1 |> async.do
-    trace Debug (fun () => "3") _locals
+    trace Debug (fun () => "3") id
     inl retries1 = wait_for_port_access (None |> optionm'.box) true host port |> async.let'
-    trace Debug (fun () => "4") _locals
+    trace Debug (fun () => "4") id
     inl retries2 = wait_for_port_access (None |> optionm'.box) false host port |> async.let'
-    trace Debug (fun () => "5") _locals
+    trace Debug (fun () => "5") id
     child |> async.do
-    trace Debug (fun () => "6") _locals
+    trace Debug (fun () => "6") id
     (retries1, retries2) |> return
 |> async.new_async_unit
 |> async.run_with_timeout 20000
@@ -383,32 +386,32 @@ fun () =>
 //// test
 
 inl lock_port host port = async.new_async_unit fun () =>
-    trace Debug (fun () => "_1") _locals
+    trace Debug (fun () => "_1") id
     async.sleep 500 |> async.do
     inl listener = new_tcp_listener (ip_address_parse host) port |> use
-    trace Debug (fun () => "_2") _locals
+    trace Debug (fun () => "_2") id
     listener |> listener_start
-    trace Debug (fun () => "_3") _locals
+    trace Debug (fun () => "_3") id
     async.sleep 200 |> async.do
-    trace Debug (fun () => "_4") _locals
+    trace Debug (fun () => "_4") id
     listener |> listener_stop
-    trace Debug (fun () => "_5") _locals
+    trace Debug (fun () => "_5") id
 
 inl host = "127.0.0.1"
 inl port = 5555
 
 fun () =>
-    trace Debug (fun () => "1") _locals
+    trace Debug (fun () => "1") id
     inl child = lock_port host port |> async.start_child |> async.let'
-    trace Debug (fun () => "2") _locals
+    trace Debug (fun () => "2") id
     async.sleep 1 |> async.do
-    trace Debug (fun () => "3") _locals
+    trace Debug (fun () => "3") id
     inl retries1 = wait_for_port_access (Some 60 |> optionm'.box) true host port |> async.let'
-    trace Debug (fun () => "4") _locals
+    trace Debug (fun () => "4") id
     inl retries2 = wait_for_port_access (Some 60 |> optionm'.box) false host port |> async.let'
-    trace Debug (fun () => "5") _locals
+    trace Debug (fun () => "5") id
     child |> async.do
-    trace Debug (fun () => "6") _locals
+    trace Debug (fun () => "6") id
     (retries1, retries2) |> return
 |> async.new_async_unit
 |> async.run_with_timeout 2000
@@ -452,34 +455,34 @@ inl get_available_port timeout host initial_port : _ i32 =
 //// test
 
 inl lock_ports host port = async.new_async_unit fun () =>
-    trace Debug (fun () => "_1") _locals
+    trace Debug (fun () => "_1") id
     inl listener1 = new_tcp_listener (ip_address_parse host) port |> use
     inl listener2 = new_tcp_listener (ip_address_parse host) (port + 1) |> use
-    trace Debug (fun () => "_2") _locals
+    trace Debug (fun () => "_2") id
     listener1 |> listener_start
     listener2 |> listener_start
-    trace Debug (fun () => "_3") _locals
+    trace Debug (fun () => "_3") id
     async.sleep 4000 |> async.do
-    trace Debug (fun () => "_4") _locals
+    trace Debug (fun () => "_4") id
     listener1 |> listener_stop
     listener2 |> listener_stop
-    trace Debug (fun () => "_5") _locals
+    trace Debug (fun () => "_5") id
 
 inl host = "127.0.0.1"
 inl port = 5555
 
 fun () =>
-    trace Debug (fun () => "1") _locals
+    trace Debug (fun () => "1") id
     inl child = lock_ports host port |> async.start_child |> async.let'
-    trace Debug (fun () => "2") _locals
+    trace Debug (fun () => "2") id
     async.sleep 240 |> async.do
-    trace Debug (fun () => "3") _locals
+    trace Debug (fun () => "3") id
     inl available_port = get_available_port (None |> optionm'.box) host port |> async.let'
-    trace Debug (fun () => "4") _locals
+    trace Debug (fun () => "4") id
     inl retries = wait_for_port_access (None |> optionm'.box) false host port |> async.let'
-    trace Debug (fun () => "5") _locals
+    trace Debug (fun () => "5") id
     child |> async.do
-    trace Debug (fun () => "6") _locals
+    trace Debug (fun () => "6") id
     (available_port, retries) |> return
 |> async.new_async_unit
 |> async.run_with_timeout 15000
@@ -501,34 +504,34 @@ fun () =>
 //// test
 
 inl lock_ports host port = async.new_async_unit fun () =>
-    trace Debug (fun () => "_1") _locals
+    trace Debug (fun () => "_1") id
     inl listener1 = new_tcp_listener (ip_address_parse host) port |> use
     inl listener2 = new_tcp_listener (ip_address_parse host) (port + 1) |> use
-    trace Debug (fun () => "_2") _locals
+    trace Debug (fun () => "_2") id
     listener1 |> listener_start
     listener2 |> listener_start
-    trace Debug (fun () => "_3") _locals
+    trace Debug (fun () => "_3") id
     async.sleep 400 |> async.do
-    trace Debug (fun () => "_4") _locals
+    trace Debug (fun () => "_4") id
     listener1 |> listener_stop
     listener2 |> listener_stop
-    trace Debug (fun () => "_5") _locals
+    trace Debug (fun () => "_5") id
 
 inl host = "127.0.0.1"
 inl port = 5555
 
 fun () =>
-    trace Debug (fun () => "1") _locals
+    trace Debug (fun () => "1") id
     inl child = lock_ports host port |> async.start_child |> async.let'
-    trace Debug (fun () => "2") _locals
+    trace Debug (fun () => "2") id
     async.sleep 240 |> async.do
-    trace Debug (fun () => "3") _locals
+    trace Debug (fun () => "3") id
     inl available_port = get_available_port (Some 60 |> optionm'.box) host port |> async.let'
-    trace Debug (fun () => "4") _locals
+    trace Debug (fun () => "4") id
     inl retries = wait_for_port_access (Some 60 |> optionm'.box) false host port |> async.let'
-    trace Debug (fun () => "5") _locals
+    trace Debug (fun () => "5") id
     child |> async.do
-    trace Debug (fun () => "6") _locals
+    trace Debug (fun () => "6") id
     (available_port, retries) |> return
 |> async.new_async_unit
 |> async.run_with_timeout 1500

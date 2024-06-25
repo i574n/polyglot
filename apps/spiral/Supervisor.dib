@@ -47,7 +47,7 @@ open Microsoft.AspNetCore.SignalR.Client
 
 #!markdown
 
-## sendJson
+### sendJson
 
 #!fsharp
 
@@ -72,7 +72,7 @@ let inline sendJson (port : int) (json : string) = async {
 
 #!markdown
 
-## sendObj
+### sendObj
 
 #!fsharp
 
@@ -83,14 +83,42 @@ let inline sendObj port obj =
 
 #!markdown
 
-## awaitCompiler
+### VSCPos
 
 #!fsharp
 
 type VSCPos = {| line : int; character : int |}
+
+#!markdown
+
+### VSCRange
+
+#!fsharp
+
 type VSCRange = VSCPos * VSCPos
+
+#!markdown
+
+### RString
+
+#!fsharp
+
 type RString = VSCRange * string
+
+#!markdown
+
+### TracedError
+
+#!fsharp
+
 type TracedError = {| trace : string list; message : string |}
+
+#!markdown
+
+### ClientErrorsRes
+
+#!fsharp
+
 type ClientErrorsRes =
     | FatalError of string
     | TracedError of TracedError
@@ -99,9 +127,17 @@ type ClientErrorsRes =
     | ParserErrors of {| uri : string; errors : RString list |}
     | TypeErrors of {| uri : string; errors : RString list |}
 
+#!markdown
+
+### workspaceRoot
+
 #!fsharp
 
 let workspaceRoot = SpiralFileSystem.get_workspace_root ()
+
+#!markdown
+
+### awaitCompiler
 
 #!fsharp
 
@@ -111,7 +147,7 @@ let inline awaitCompiler port cancellationToken = async {
     let! ct = ct |> SpiralAsync.merge_cancellation_token_with_default_async
 
     let compiler = MailboxProcessor.Start (fun inbox -> async {
-        let! availablePort = SpiralNetworking.get_available_port (Some 500) host port
+        let! availablePort = SpiralNetworking.get_available_port (Some 180) host port
         if availablePort <> port then
             inbox.Post (port, false)
         else
@@ -124,8 +160,8 @@ let inline awaitCompiler port cancellationToken = async {
             let! exitCode, result =
                 SpiralRuntime.execution_options (fun x ->
                     { x with
-                        l0 = Some ct
-                        l1 = $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64"
+                        l0 = $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64"
+                        l1 = Some ct
                         l3 = Some (fun struct (_, line, _) -> async {
                             if line |> SpiralSm.contains $"System.IO.IOException: Failed to bind to address http://{host}:{port}: address already in use." then
                                 inbox.Post (port, false)
@@ -133,8 +169,8 @@ let inline awaitCompiler port cancellationToken = async {
                             if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
                                 let rec loop retry = async {
                                     do!
-                                        SpiralNetworking.wait_for_port_access (Some 100) true host availablePort
-                                        |> Async.runWithTimeoutAsync 2000
+                                        SpiralNetworking.wait_for_port_access (Some 60) true host availablePort
+                                        |> Async.runWithTimeoutAsync 200
                                         |> Async.Ignore
 
                                     let _locals () = $"port: {availablePort} / retry: {retry} / {_locals ()}"
@@ -184,7 +220,7 @@ let inline awaitCompiler port cancellationToken = async {
                 if managed
                 then do!
                     SpiralNetworking.wait_for_port_access (Some 100) false host serverPort
-                    |> Async.runWithTimeoutAsync 2000
+                    |> Async.runWithTimeoutAsync 1500
                     |> Async.Ignore
             }
             |> Async.RunSynchronously
@@ -199,7 +235,7 @@ let inline awaitCompiler port cancellationToken = async {
 
 #!markdown
 
-## getFilePathFromUri
+### getFilePathFromUri
 
 #!fsharp
 
@@ -210,7 +246,7 @@ let inline getFilePathFromUri uri =
 
 #!markdown
 
-## getCompilerPort
+### getCompilerPort
 
 #!fsharp
 
@@ -219,20 +255,24 @@ let inline getCompilerPort () =
 
 #!markdown
 
-## serialize_obj
+### serialize_obj
 
 #!fsharp
 
     let serializeObj obj =
-        obj
-        |> FSharp.Json.Json.serialize
-        |> SpiralSm.replace "\\\\" "\\"
-        |> SpiralSm.replace "\\r\\n" "\n"
-        |> SpiralSm.replace "\\n" "\n"
+        try
+            obj
+            |> FSharp.Json.Json.serialize
+            |> SpiralSm.replace "\\\\" "\\"
+            |> SpiralSm.replace "\\r\\n" "\n"
+            |> SpiralSm.replace "\\n" "\n"
+        with ex ->
+            trace Critical (fun () -> "Supervisor.serialize_obj / obj: %A{obj}") _locals
+            ""
 
 #!markdown
 
-## Backend
+### Backend
 
 #!fsharp
 
@@ -242,169 +282,195 @@ type Backend =
 
 #!markdown
 
-## buildFile
+### buildFile
 
 #!fsharp
 
-let inline buildFile backend timeout port cancellationToken path = async {
-    let fullPath = path |> System.IO.Path.GetFullPath
-    let fileDir = fullPath |> System.IO.Path.GetDirectoryName
-    let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
-    let! code = fullPath |> SpiralFileSystem.read_all_text_async
+let inline buildFile backend timeout port cancellationToken path =
+    let rec loop retry = async {
+        let fullPath = path |> System.IO.Path.GetFullPath
+        let fileDir = fullPath |> System.IO.Path.GetDirectoryName
+        let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
+        let! code = fullPath |> SpiralFileSystem.read_all_text_async
 
-    let stream, disposable = fileDir |> FileSystem.watchDirectory (fun _ -> false)
-    use _ = disposable
+        let stream, disposable = fileDir |> FileSystem.watchDirectory (fun _ -> true)
+        use _ = disposable
 
-    let struct (token, disposable) = SpiralThreading.new_disposable_token cancellationToken
-    use _ = disposable
+        let struct (token, disposable) = SpiralThreading.new_disposable_token cancellationToken
+        use _ = disposable
 
-    let port = port |> Option.defaultWith getCompilerPort
-    let! serverPort, errors, ct, disposable = awaitCompiler port (Some token)
-    use _ = disposable
+        let port = port |> Option.defaultWith getCompilerPort
+        let! serverPort, errors, ct, disposable = awaitCompiler port (Some token)
+        use _ = disposable
 
-    let outputFileName =
-        match backend with
-        | Fsharp -> $"{fileName}.fsx"
-        | Cuda -> $"{fileName}.py"
+        let outputFileName =
+            match backend with
+            | Fsharp -> $"{fileName}.fsx"
+            | Cuda -> $"{fileName}.py"
 
-    let outputContentSeq =
-        stream
-        |> FSharp.Control.AsyncSeq.chooseAsync (function
-            | _, (FileSystem.FileSystemChange.Changed (path, _))
-                when (path |> System.IO.Path.GetFileName) = outputFileName
-                ->
-                    fileDir </> path |> SpiralFileSystem.read_all_text_retry_async
-            | _ -> None |> Async.init
-        )
-        |> FSharp.Control.AsyncSeq.map (fun content ->
-            Some (content |> SpiralSm.replace "\r\n" "\n"), None
-        )
+        let outputContentSeq =
+            stream
+            |> FSharp.Control.AsyncSeq.chooseAsync (function
+                | _, (FileSystem.FileSystemChange.Changed (path, Some text))
+                    when (path |> System.IO.Path.GetFileName) = outputFileName
+                    ->
+                        // fileDir </> path |> SpiralFileSystem.read_all_text_retry_async
+                        text |> Some |> Async.init
+                | _ -> None |> Async.init
+            )
+            |> FSharp.Control.AsyncSeq.map (fun content ->
+                Some (content |> SpiralSm.replace "\r\n" "\n"), None
+            )
 
-    let inline printErrorData (data : {| uri : string; errors : RString list |}) =
-        let fileName = data.uri |> System.IO.Path.GetFileName
-        let errors =
-            data.errors
-            |> List.map snd
-            |> SpiralSm.concat "\n"
-        $"{fileName}:\n{errors}"
+        let inline printErrorData (data : {| uri : string; errors : RString list |}) =
+            let fileName = data.uri |> System.IO.Path.GetFileName
+            let errors =
+                data.errors
+                |> List.map snd
+                |> SpiralSm.concat "\n"
+            $"{fileName}:\n{errors}"
 
-    let errorsSeq =
-        errors
-        |> FSharp.Control.AsyncSeq.choose (fun error ->
-            match error with
-            | FatalError message ->
-                Some (message, error)
-            | TracedError data ->
-                Some (data.message, error)
-            | PackageErrors data when data.errors |> List.isEmpty |> not ->
-                Some (data |> printErrorData, error)
-            | TokenizerErrors data when data.errors |> List.isEmpty |> not ->
-                Some (data |> printErrorData, error)
-            | ParserErrors data when data.errors |> List.isEmpty |> not ->
-                Some (data |> printErrorData, error)
-            | TypeErrors data when data.errors |> List.isEmpty |> not ->
-                Some (data |> printErrorData, error)
-            | _ -> None
-        )
-        |> FSharp.Control.AsyncSeq.map (fun (message, error) ->
-            None, Some (message, error)
-        )
+        let errorsSeq =
+            errors
+            |> FSharp.Control.AsyncSeq.choose (fun error ->
+                match error with
+                | FatalError message ->
+                    Some (message, error)
+                | TracedError data ->
+                    Some (data.message, error)
+                | PackageErrors data when data.errors |> List.isEmpty |> not ->
+                    Some (data |> printErrorData, error)
+                | TokenizerErrors data when data.errors |> List.isEmpty |> not ->
+                    Some (data |> printErrorData, error)
+                | ParserErrors data when data.errors |> List.isEmpty |> not ->
+                    Some (data |> printErrorData, error)
+                | TypeErrors data when data.errors |> List.isEmpty |> not ->
+                    Some (data |> printErrorData, error)
+                | _ -> None
+            )
+            |> FSharp.Control.AsyncSeq.map (fun (message, error) ->
+                None, Some (message, error)
+            )
 
-    let timerSeq =
-        1000
-        |> FSharp.Control.AsyncSeq.intervalMs
-        |> FSharp.Control.AsyncSeq.map (fun _ -> None, None)
+        let timerSeq =
+            500
+            |> FSharp.Control.AsyncSeq.intervalMs
+            |> FSharp.Control.AsyncSeq.map (fun _ -> None, None)
 
-    let outputSeq =
-        [ outputContentSeq; errorsSeq; timerSeq ]
-        |> FSharp.Control.AsyncSeq.mergeAll
+        let outputSeq =
+            [ outputContentSeq; errorsSeq; timerSeq ]
+            |> FSharp.Control.AsyncSeq.mergeAll
 
-    let! outputChild =
-        ((None, [], 0), outputSeq)
-        ||> FSharp.Control.AsyncSeq.scan (
-            fun (outputContentResult, errors, typeErrorCount) (outputContent, error) ->
-                match outputContent, error with
-                | Some outputContent, None -> Some outputContent, errors, typeErrorCount
-                | None, Some (_, FatalError "File main has a type error somewhere in its path.") ->
-                    outputContentResult, errors, typeErrorCount + 1
-                | None, Some error -> outputContentResult, error :: errors, typeErrorCount
-                | None, None when typeErrorCount >= 1 ->
-                    outputContentResult, errors, typeErrorCount + 1
-                | _ -> outputContentResult, errors, typeErrorCount
-        )
-        |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (outputContent, errors, typeErrorCount) ->
-            trace Debug (fun () -> $"Supervisor.buildFile / takeWhileInclusive / path: {path} / outputContent: {outputContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 400} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") _locals
-#if INTERACTIVE
-            let errorWait = 2
-#else
-            let errorWait = 4
-#endif
-            match outputContent, errors with
-            | None, [] when typeErrorCount > errorWait -> false
-            | None, [] -> true
-            | _ -> false
-        )
-        |> FSharp.Control.AsyncSeq.tryLast
-        |> Async.withCancellationToken ct
-        |> Async.catch
-        |> Async.runWithTimeoutAsync timeout
-        |> Async.StartChild
+        let! outputChild =
+            ((None, [], 0), outputSeq)
+            ||> FSharp.Control.AsyncSeq.scan (
+                fun (outputContentResult, errors, typeErrorCount) (outputContent, error) ->
+                    trace Debug (fun () -> $"Supervisor.buildFile / AsyncSeq.scan / outputContent: {outputContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 400} / errors: {errors |> serializeObj} / outputContentResult: {outputContentResult} / typeErrorCount: {typeErrorCount} / retry: {retry} / error: {error} / path: {path}") _locals
+                    match outputContent, error with
+                    | Some outputContent, None -> Some outputContent, errors, typeErrorCount
+                    | None, Some (_, FatalError "File main has a type error somewhere in its path.") ->
+                        outputContentResult, errors, typeErrorCount + 1
+                    | None, Some error -> outputContentResult, error :: errors, typeErrorCount
+                    | None, None when typeErrorCount >= 1 ->
+                        outputContentResult, errors, typeErrorCount + 1
+                    | _ -> outputContentResult, errors, typeErrorCount
+            )
+            |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (outputContent, errors, typeErrorCount) ->
+                trace Debug (fun () -> $"Supervisor.buildFile / takeWhileInclusive / outputContent: {outputContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 400} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount} / retry: {retry} / path: {path}") _locals
+    #if INTERACTIVE
+                let errorWait = 2
+    #else
+                let errorWait = 2
+    #endif
+                match outputContent, errors with
+                | None, [] when typeErrorCount > errorWait -> false
+                | None, [] -> true
+                | _ -> false
+            )
+            |> FSharp.Control.AsyncSeq.tryLast
+            |> Async.withCancellationToken ct
+            |> Async.catch
+            |> Async.runWithTimeoutAsync timeout
+            |> Async.StartChild
 
-    let fullPathUri = fullPath |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
+        do! Async.Sleep 60
 
-    let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
-    let! _fileOpenResult = fileOpenObj |> sendObj serverPort
+        let fullPathUri = fullPath |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
 
-    // do! Async.Sleep 60
+        let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
+        let! _fileOpenResult = fileOpenObj |> sendObj serverPort
 
-    let backendId =
-        match backend with
-        | Fsharp -> "Fsharp"
-        | Cuda -> "Python + Cuda"
-    let buildFileObj = {| BuildFile = {| uri = fullPathUri; backend = backendId |} |}
-    let! _buildFileResult = buildFileObj |> sendObj serverPort
+        do! Async.Sleep 60
 
-    let! result =
-        outputChild
-        |> Async.map (function
-            | Some (Ok (Some (outputCode, errors, _))) ->
-                outputCode, errors |> List.distinct |> List.rev
-            | Some (Error ex) ->
-                trace Critical (fun () -> $"Supervisor.buildFile / error: {ex |> serializeObj}") _locals
-                None, []
-            | _ -> None, []
-        )
+        let backendId =
+            match backend with
+            | Fsharp -> "Fsharp"
+            | Cuda -> "Python + Cuda"
+        let buildFileObj = {| BuildFile = {| uri = fullPathUri; backend = backendId |} |}
+        let! _buildFileResult = buildFileObj |> sendObj serverPort
 
-    if fileDir |> SpiralSm.starts_with (workspaceRoot </> "target") then
-        let fileDirUri = fileDir |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
-        let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
-        let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
-        ()
+        let! result, typeErrorCount =
+            outputChild
+            |> Async.map (function
+                | Some (Ok (Some (outputCode, errors, typeErrorCount))) ->
+                    (outputCode, errors |> List.distinct |> List.rev), typeErrorCount
+                | Some (Error ex) ->
+                    trace Critical (fun () -> $"Supervisor.buildFile / error: {ex |> SpiralSm.format_exception} / retry: {retry}") _locals
+                    (None, []), 0
+                | _ -> (None, []), 0
+            )
+        
+        match result with
+        | None, _ when typeErrorCount > 0 && retry = 0 ->
+            return! loop (retry + 1)
+        | _ ->
+            if fileDir |> SpiralSm.starts_with (workspaceRoot </> "target") then
+                let fileDirUri = fileDir |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
+                let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
+                let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
+                ()
 
-    let outputPath = fileDir </> outputFileName
-    return outputPath, result
-}
+            let outputPath = fileDir </> outputFileName
+            return outputPath, result
+    }
+    loop 0
 
 #!markdown
 
-## persistCode
+### SpiralInput
 
 #!fsharp
 
-let inline persistCode backend code = async {
+type SpiralInput =
+    | Spi of string * string option
+    | Spir of string
+
+#!markdown
+
+### persistCode
+
+#!fsharp
+
+let inline persistCode backend input = async {
     let targetDir = workspaceRoot </> "target/spiral_Eval"
 
     let packagesDir = targetDir </> "packages"
 
-    let hashHex = $"{backend}{code}" |> SpiralCrypto.hash_text
+    let hashHex = $"%A{backend}%A{input}" |> SpiralCrypto.hash_text
 
     let codeDir = packagesDir </> hashHex
-
-    let spiPath = codeDir </> "main.spi"
-
     codeDir |> System.IO.Directory.CreateDirectory |> ignore
 
-    do! code |> SpiralFileSystem.write_all_text_exists spiPath
+    let moduleName = "main"
+
+    let spirModule, spiModule =
+        match input with
+        | Spi (spi, Some spir) -> true, true
+        | Spi (spi, None) -> false, true
+        | Spir spir -> true, false
+        |> fun (spir, spi) ->
+            (if spir then $"real_{moduleName}*-" else ""),
+            if spi then moduleName else ""
 
     let spiprojPath = codeDir </> "package.spiproj"
     let spiprojCode =
@@ -413,50 +479,68 @@ packages:
     |core-
     spiral-
 modules:
-    main
+    {spirModule}
+    {spiModule}
 """
     do! spiprojCode |> SpiralFileSystem.write_all_text_exists spiprojPath
 
+    let spirPath = codeDir </> $"real_{moduleName}.spir"
+    let spiPath = codeDir </> $"{moduleName}.spi"
+
+    let spirCode, spiCode =
+        match input with
+        | Spi (spi, Some spir) -> Some spir, Some spi
+        | Spi (spi, None) -> None, Some spi
+        | Spir spir -> Some spir, None
+
+    match spirCode with
+    | Some spir -> do! spir |> SpiralFileSystem.write_all_text_exists spirPath
+    | None -> ()
+    match spiCode with
+    | Some spi -> do! spi |> SpiralFileSystem.write_all_text_exists spiPath
+    | None -> ()
+
+    let spiralPath =
+        match input with
+        | Spi _ -> spiPath
+        | Spir _ -> spirPath
     match backend with
-    | None -> return spiPath, None
+    | None -> return spiralPath, None
     | Some backend ->
         let outputFileName =
+            let fileName =
+                match input with
+                | Spi _ -> moduleName
+                | Spir _ -> $"real_{moduleName}"
             match backend with
-            | Fsharp -> $"main.fsx"
-            | Cuda -> $"main.py"
+            | Fsharp -> $"{fileName}.fsx"
+            | Cuda -> $"{fileName}.py"
         let outputPath = codeDir </> outputFileName
-
         if outputPath |> System.IO.File.Exists |> not
-        then return spiPath, None
+        then return spiralPath, None
         else
-            let! oldCode = spiPath |> SpiralFileSystem.read_all_text_async
-            if oldCode <> code
-            then return spiPath, None
+            let! oldCode = spiralPath |> SpiralFileSystem.read_all_text_async
+            if oldCode <> (spiCode |> Option.defaultValue (spirCode |> Option.defaultValue ""))
+            then return spiralPath, None
             else
                 let! outputCode = outputPath |> SpiralFileSystem.read_all_text_async
-                return spiPath, Some (outputPath, outputCode |> SpiralSm.replace "\r\n" "\n")
+                return spiralPath, Some (outputPath, outputCode |> SpiralSm.replace "\r\n" "\n")
     }
 
 #!markdown
 
-## buildCode
+### buildCode
 
 #!fsharp
 
-let inline buildCode backend cache timeout cancellationToken code = async {
-    let! mainPath, outputCache = code |> persistCode (Some backend)
+let buildCode backend isCache timeout cancellationToken input = async {
+    let! mainPath, outputCache = input |> persistCode (Some backend)
     match outputCache with
-    | Some (outputPath, outputCode) when cache -> return mainPath, (outputPath, Some outputCode), []
+    | Some (outputPath, outputCode) when isCache -> return mainPath, (outputPath, Some outputCode), []
     | _ ->
         let! outputPath, (outputCode, errors) = mainPath |> buildFile backend timeout None cancellationToken
         return mainPath, (outputPath, outputCode), errors
 }
-
-#!fsharp
-
-//// test
-
-let buildCode cache timeout cancellationToken code = buildCode cache timeout cancellationToken code
 
 #!fsharp
 
@@ -471,6 +555,7 @@ inl main () =
     |> dyn
     |> ignore
 """
+|> fun code -> Spi (code, None)
 |> buildCode Fsharp false 15000 None
 |> Async.runWithTimeout 15000
 |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
@@ -493,9 +578,16 @@ let v0 : (unit -> int32) = closure0()
 //// test
 
 ""
+|> fun code -> Spi (code, None)
 |> buildCode Fsharp false 10000 None
 |> Async.runWithTimeout 10000
-|> _assertEqual None
+|> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
+|> _assertEqual (
+    Some (
+        None,
+        [ "Cannot find `main` in file main." ]
+    )
+)
 
 #!fsharp
 
@@ -504,6 +596,7 @@ let v0 : (unit -> int32) = closure0()
 """inl main () =
     1i32 / 0i32
 """
+|> fun code -> Spi (code, None)
 |> buildCode Fsharp false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
@@ -521,6 +614,7 @@ let v0 : (unit -> int32) = closure0()
 """inl main () =
     1 + ""
 """
+|> fun code -> Spi (code, None)
 |> buildCode Fsharp false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
@@ -543,6 +637,7 @@ Fails to satisfy: number"
 """inl main () =
     x + y
 """
+|> fun code -> Spi (code, None)
 |> buildCode Fsharp false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
@@ -570,6 +665,7 @@ inl main () =
         real_unbox ()
     ()
 """
+|> fun code -> Spi (code, None)
 |> buildCode Fsharp false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
@@ -592,6 +688,7 @@ inl main () =
             | _ => obj
         real_unbox `i32 1
 """
+|> fun code -> Spi (code, None)
 |> buildCode Fsharp false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
@@ -622,6 +719,7 @@ inl integral dt : integration =
 inl main () =
     integral 0.1 (fun x => x ** 2) 0 1
 """
+|> fun code -> Spi (code, None)
 |> buildCode Fsharp false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
@@ -652,24 +750,61 @@ inl integral dt : integration =
 inl main () =
     integral 0.1 (fun x => x ** 2) 0 1
 """
+|> fun code -> Spi (code, None)
 |> buildCode Cuda false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
 |> _assertEqual (
     Some (
-        Some "kernel = r\"\"\"
-template <typename el, int dim> struct static_array { el v[dim]; };
-template <typename el, int dim, typename default_int> struct static_array_list { el v[dim]; default_int length; };
-\"\"\"
-class static_array(list):
+        Some @"kernel = r""""""
+""""""
+class static_array():
     def __init__(self, length):
+        self.ptr = []
         for _ in range(length):
-            self.append(None)
+            self.ptr.append(None)
+
+    def __getitem__(self, index):
+        assert 0 <= index < len(self.ptr), ""The get index needs to be in range.""
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 <= index < len(self.ptr), ""The set index needs to be in range.""
+        self.ptr[index] = value
 
 class static_array_list(static_array):
     def __init__(self, length):
         super().__init__(length)
         self.length = 0
+
+    def __getitem__(self, index):
+        assert 0 <= index < self.length, ""The get index needs to be in range.""
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 <= index < self.length, ""The set index needs to be in range.""
+        self.ptr[index] = value
+
+    def push(self,value):
+        assert (self.length < len(self.ptr)), ""The length before pushing has to be less than the maximum length of the array.""
+        self.ptr[self.length] = value
+        self.length += 1
+
+    def pop(self):
+        assert (0 < self.length), ""The length before popping has to be greater than 0.""
+        self.length -= 1
+        return self.ptr[self.length]
+
+    def unsafe_set_length(self,i):
+        assert 0 <= i <= len(self.ptr), ""The new length has to be in range.""
+        self.length = i
+
+class dynamic_array(static_array): 
+    pass
+
+class dynamic_array_list(static_array_list):
+    def length_(self): return self.length
+
 import cupy as cp
 from dataclasses import dataclass
 from typing import NamedTuple, Union, Callable, Tuple
@@ -704,6 +839,7 @@ inl integral dt : integration =
 inl main () =
     integral 0.01 (fun x => x ** 2) 0 1
 """
+|> fun code -> Spi (code, None)
 |> buildCode Fsharp false 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
@@ -739,7 +875,7 @@ let inline getFileTokenRange port cancellationToken path = async {
     let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
     let! _fileOpenResult = fileOpenObj |> sendObj serverPort
 
-    // do! Async.Sleep 60
+    do! Async.Sleep 60
 
     let fileTokenRangeObj =
         {|
@@ -775,7 +911,7 @@ let inline getFileTokenRange port cancellationToken path = async {
 #!fsharp
 
 let inline getCodeTokenRange cancellationToken code = async {
-    let! mainPath, _ = persistCode None code
+    let! mainPath, _ = Spi (code, None) |> persistCode None
 
     let codeDir = mainPath |> System.IO.Path.GetDirectoryName
     let tokensPath = codeDir </> "tokens.json"
@@ -919,6 +1055,7 @@ let main args =
                         elif outputPath |> SpiralSm.ends_with ".py"
                         then Cuda
                         else failwith $"Supervisor.main / invalid backend / outputPath: {outputPath}"
+                    let isReal = inputPath |> SpiralSm.ends_with ".spir"
                     inputPath |> buildFile backend timeout (Some serverPort) None
 
                 errors
@@ -959,8 +1096,8 @@ let main args =
                 let! exitCode, result =
                     SpiralRuntime.execution_options (fun x ->
                         { x with
-                            l0 = Some compilerToken
-                            l1 = command
+                            l0 = command
+                            l1 = Some compilerToken
                         }
                     )
                     |> SpiralRuntime.execute_with_options_async

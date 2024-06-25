@@ -100,4 +100,4 @@ inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t
 types ()
 am'.init_series 0i32 2 1
 |> enumerate
-|> _assert_eq' (a ;[ unativeint 0i32, 0; unativeint 1i32, 1; unativeint 2i32, 2 ])
+|> _assert_eq' (a ;[ convert 0i32, 0; convert 1i32, 1; convert 2i32, 2 ])

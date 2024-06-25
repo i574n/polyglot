@@ -129,14 +129,6 @@ inl get_trace_state_or_init trace_level : trace_state =
 
 #!markdown
 
-### _locals
-
-#!spiral
-
-inl _locals () = ""
-
-#!markdown
-
 ### test_trace_level
 
 #!spiral
@@ -204,7 +196,7 @@ let rec trace_raw level fn =
 
 #!spiral
 
-let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string) =
+let trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
     fun () =>
         inl trace_state = get_trace_state_or_init None
         inl time =
@@ -261,9 +253,10 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string)
                 inl color_reset = join $'"\\u001b[0m"'
                 color +. level_str +. color_reset
         inl count = *trace_state.count
+        inl locals = locals () |> sm'.format
         backend_switch {
-            Fsharp = fun () => $'$"{!time} {!level_str} #{!count} %s{!text_fn ()} / %s{!locals ()}"' : string
-            Python = fun () => $'f"{!time} {!level_str} #{!count} {!text_fn()} / {!locals()}"' : string
+            Fsharp = fun () => $'$"{!time} {!level_str} #{!count} %s{!text_fn ()} / {!locals}"' : string
+            Python = fun () => $'f"{!time} {!level_str} #{!count} {!text_fn()} / {!locals}"' : string
         }
         |> sm'.trim_start []
         |> sm'.trim_end [ ' '; '/' ]
@@ -279,8 +272,8 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string)
 ///! python
 
 types ()
-trace Debug (fun () => "test1") _locals
-trace Debug (fun () => "test2") _locals
+trace Debug (fun () => "test1") id
+trace Debug (fun () => "test2") id
 get_trace_state_or_init None .count
 |> fun x => *x
 |> _assert_eq 2
@@ -294,4 +287,5 @@ get_trace_state_or_init None .count
 inl main () =
     types ()
     init_trace_state None
+    inl trace level text_fn (locals : () -> string) = trace level text_fn locals
     $'let trace x = !trace x' : ()

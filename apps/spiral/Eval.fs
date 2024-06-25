@@ -83,14 +83,22 @@ module Eval =
         |> List.collect id
         |> List.toArray
 
+    /// ### workspaceRoot
     let workspaceRoot = SpiralFileSystem.get_workspace_root ()
+
+    /// ### targetDir
     let targetDir = workspaceRoot </> "target/spiral_Eval"
     [ targetDir ]
     |> List.iter (fun dir -> if Directory.Exists dir |> not then Directory.CreateDirectory dir |> ignore)
 
+    /// ### assemblyName
     let assemblyName = Reflection.Assembly.GetEntryAssembly().GetName().Name
 
+    /// ## allCode
     let mutable allCode = ""
+
+    /// ## allCodeReal
+    let mutable allCodeReal = ""
 
     /// ## getParentProcessId
     let getParentProcessId () =
@@ -124,16 +132,24 @@ module Eval =
                         try
                             let tokensPath = codeDir </> "tokens.json"
                             if tokensPath |> File.Exists |> not then
-                                let codePath = codeDir </> "main.spi"
-                                let! tokens = codePath |> Supervisor.getFileTokenRange None None
-                                match tokens with
-                                | Some tokens ->
-                                    do!
-                                        tokens
-                                        |> FSharp.Json.Json.serialize
-                                        |> SpiralFileSystem.write_all_text_async tokensPath
-                                | None ->
-                                    trace Verbose (fun () -> $"Eval.startTokenRangeWatcher / GetDirectories / tokens: None") _locals
+                                let spiralCodePath = codeDir </> "main.spi"
+                                let spiralRealCodePath = codeDir </> "real_main.spir"
+                                let spiralExists = spiralCodePath |> System.IO.File.Exists
+                                let spiralRealExists = spiralRealCodePath |> System.IO.File.Exists
+                                if spiralExists |> not && spiralRealExists |> not
+                                then do! codeDir |> SpiralFileSystem.delete_directory_async |> Async.Ignore
+                                else
+                                    let! tokens =
+                                        if spiralExists then spiralCodePath else spiralRealCodePath
+                                        |> Supervisor.getFileTokenRange None None
+                                    match tokens with
+                                    | Some tokens ->
+                                        do!
+                                            tokens
+                                            |> FSharp.Json.Json.serialize
+                                            |> SpiralFileSystem.write_all_text_async tokensPath
+                                    | None ->
+                                        trace Verbose (fun () -> $"Eval.startTokenRangeWatcher / GetDirectories / tokens: None") _locals
                         with ex ->
                             trace Critical (fun () -> $"Eval.startTokenRangeWatcher / GetDirectories / ex: {ex |> SpiralSm.format_exception}") _locals
                     })
@@ -142,34 +158,32 @@ module Eval =
 
                 let streamAsyncChild =
                     stream
-                    |> FSharp.Control.AsyncSeq.iterAsyncParallel (fun (ticks, event) -> async {
-                        try
+                    |> FSharp.Control.AsyncSeq.iterAsyncParallel (fun (ticks, event) ->
                             match event with
                             | FileSystem.FileSystemChange.Changed (codePath, _)
-                                when System.IO.Path.GetFileName codePath = "main.spi"
+                                when [ "main.spi"; "real_main.spir" ]
+                                    |> List.contains (System.IO.Path.GetFileName codePath)
                                 ->
-                                let hashDir = codePath |> System.IO.Directory.GetParent
-                                let hashHex = hashDir.Name
-                                let codePath = tokensDir </> codePath
-                                let tokensPath = tokensDir </> hashHex </> "tokens.json"
-                                do!
-                                    codePath
-                                    |> SpiralFileSystem.wait_for_file_access_read
-                                    |> Async.runWithTimeoutAsync 3000
-                                    |> Async.Ignore
-                                let! tokens = codePath |> Supervisor.getFileTokenRange None None
-                                match tokens with
-                                | Some tokens ->
-                                    do!
-                                        tokens
-                                        |> FSharp.Json.Json.serialize
-                                        |> SpiralFileSystem.write_all_text_async tokensPath
-                                | None ->
-                                    trace Verbose (fun () -> $"Eval.startTokenRangeWatcher / iterAsyncParallel / tokens: None") _locals
-                            | _ -> ()
-                        with ex ->
-                            trace Critical (fun () -> $"Eval.startTokenRangeWatcher / iterAsyncParallel / ex: {ex |> SpiralSm.format_exception}") _locals
-                    })
+                                async {
+                                    let hashDir = codePath |> System.IO.Directory.GetParent
+                                    let hashHex = hashDir.Name
+                                    let codePath = tokensDir </> codePath
+                                    let tokensPath = tokensDir </> hashHex </> "tokens.json"
+                                    do! Async.Sleep 30
+                                    let! tokens = codePath |> Supervisor.getFileTokenRange None None
+                                    match tokens with
+                                    | Some tokens ->
+                                        do!
+                                            tokens
+                                            |> FSharp.Json.Json.serialize
+                                            |> SpiralFileSystem.write_all_text_exists tokensPath
+                                    | None ->
+                                        trace Verbose (fun () -> $"Eval.startTokenRangeWatcher / iterAsyncParallel / tokens: None") _locals
+                                }
+                                |> Async.retryAsync 2
+                                |> Async.map (Result.toOption >> Option.get)
+                            | _ -> () |> Async.init
+                    )
 
                 let parentAsyncChild = async {
                     let parentProcessId = getParentProcessId ()
@@ -250,8 +264,8 @@ module Eval =
             disposable.Dispose ()
         )
 
-    /// ## prepareSpi
-    let prepareSpi rawCellCode lines =
+    /// ## prepareSpiral
+    let prepareSpiral rawCellCode lines =
         let lastBlock =
             lines
             |> Array.tryFindBack (fun line ->
@@ -327,6 +341,7 @@ module Eval =
             spiralErrors: _
             code: string
             outputPath: string
+            isReal: bool
         |})
         = async {
         let inline _trace (fn : unit -> string) =
@@ -377,8 +392,8 @@ module Eval =
                         let! exitCode, result =
                             SpiralRuntime.execution_options (fun x ->
                                 { x with
-                                    l0 = props.cancellationToken
-                                    l1 = command
+                                    l0 = command
+                                    l1 = props.cancellationToken
                                     l2 = [|
                                         "AUTOMATION", assemblyName = "dotnet-repl" |> string
                                         "TRACE_LEVEL", $"%A{if props.printCode then props.traceLevel else Info}"
@@ -469,10 +484,10 @@ module Eval =
                             let code = commandResult.["code"]
                             let output = commandResult.["output"]
 
-                            if props.printCode
-                            then _trace (fun () -> $""".{extension}:{'\n'}{code}""")
-
                             let eval = output = "" && extension = "fsx"
+
+                            if props.printCode && not eval
+                            then _trace (fun () -> $""".{extension}:{'\n'}{code}""")
 
                             trace Debug
                                 (fun () -> $"Eval.processSpiralOutput / result")
@@ -490,7 +505,7 @@ module Eval =
                                             if props.backend = Supervisor.Fsharp
                                             then $".{extension} output:\n"
                                             else $".{extension} output ({props.backend}):\n"
-                                        $"{header}{output}"
+                                        $"""{if output |> SpiralSm.contains "\n" then "\n" else ""}{header}{output}"""
                                 elif eval
                                 then code
                                 else output
@@ -585,32 +600,23 @@ module Eval =
                 )
                 |> Option.defaultValue (60000 * 60)
 
-            let printCode =
+            let boolArg def command =
                 lines
                 |> Array.tryPick (fun line ->
-                    if line |> SpiralSm.starts_with "//// print_code="
-                    then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
-                    else None
+                    let text = $"//// {command}"
+                    match line.[0..text.Length-1], line.[text.Length..] with
+                    | head, "" when head = text ->
+                        Some true
+                    | head, _ when head = text ->
+                        line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((<>) "false")
+                    | _ -> None
                 )
-                |> Option.defaultValue false
+                |> Option.defaultValue def
 
-            let isTrace =
-                lines
-                |> Array.tryPick (fun line ->
-                    if line |> SpiralSm.starts_with "//// trace="
-                    then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
-                    else None
-                )
-                |> Option.defaultValue false
-
-            let isCache =
-                lines
-                |> Array.tryPick (fun line ->
-                    if line |> SpiralSm.starts_with "//// cache="
-                    then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
-                    else None
-                )
-                |> Option.defaultValue false
+            let printCode = "print_code" |> boolArg false
+            let isTrace = "trace" |> boolArg false
+            let isCache = "cache" |> boolArg false
+            let isReal = "real" |> boolArg false
 
             let oldLevel = get_trace_level ()
             let traceLevel =
@@ -626,9 +632,11 @@ module Eval =
 
             async {
                 try
-                    let cellCode, lastTopLevelIndex = prepareSpi rawCellCode lines
-
-                    let newAllCode = $"{allCode}\n\n{cellCode}"
+                    let cellCode, lastTopLevelIndex = prepareSpiral rawCellCode lines
+                    let newAllCode =
+                        if isReal
+                        then $"{allCodeReal}\n\n{cellCode}"
+                        else $"{allCode}\n\n{cellCode}"
 
                     let buildBackends =
                         if builderCommands.Length = 0
@@ -644,13 +652,17 @@ module Eval =
 
                     trace Verbose
                         (fun () -> $"Eval.eval")
-                        (fun () -> $"cellCode: {cellCode |> SpiralSm.ellipsis_end 400} / lastTopLevelIndex: {lastTopLevelIndex} / builderCommands: %A{builderCommands} / buildBackends: %A{buildBackends} / {_locals ()}")
+                        (fun () -> $"cellCode: {cellCode |> SpiralSm.ellipsis_end 400} / lastTopLevelIndex: {lastTopLevelIndex} / builderCommands: %A{builderCommands} / buildBackends: %A{buildBackends} / isReal: {isReal} / {_locals ()}")
 
                     let! buildCodeResults =
                         buildBackends
                         |> Array.map (fun backend -> async {
                             let! result =
-                                newAllCode
+                                if isReal
+                                then Supervisor.Spir newAllCode
+                                else
+                                    Supervisor.Spi
+                                        (newAllCode, if allCodeReal = "" then None else Some allCodeReal)
                                 |> Supervisor.buildCode backend isCache timeout cancellationToken
                             return backend, result
                         })
@@ -664,7 +676,7 @@ module Eval =
                             ((Ok [], [||]), buildCodeResults)
                             ||> Async.fold (fun acc buildCodeResult -> async {
                                 match buildCodeResult with
-                                | (backend, (spiPath, (outputPath, Some code), spiralErrors)) ->
+                                | backend, (_, (outputPath, Some code), spiralErrors) ->
                                     let spiralErrors =
                                         mapErrors (Warning, spiralErrors, lastTopLevelIndex) allCode
                                     let! result =
@@ -679,12 +691,16 @@ module Eval =
                                                 spiralErrors = spiralErrors
                                                 code = code
                                                 outputPath = outputPath
+                                                isReal = isReal
                                             |}
                                     match result, acc with
                                     | (Ok code, errors), (Ok acc_code, acc_errors) ->
                                         return Ok (acc_code @ code), acc_errors |> Array.append errors
                                     | (Error ex, errors), _ | _, (Error ex, errors) ->
                                         return Error ex, errors |> Array.append errors
+                                | _, (_, _, errors) when errors |> List.isEmpty |> not ->
+                                    return errors.[0] |> fst |> Exception |> Error,
+                                    mapErrors (TraceLevel.Critical, errors, lastTopLevelIndex) allCode
                                 | _ -> return acc
                             })
                         let cancellationToken = defaultArg cancellationToken System.Threading.CancellationToken.None
@@ -708,7 +724,7 @@ module Eval =
                             let ch, errors =
                                 match eval, code with
                                 | [], [] ->
-                                    Choice2Of2 (Exception $"Eval.eval / errors / buildCodeResults: %A{buildCodeResults} / code: %A{code}"), errors
+                                    Choice2Of2 (Exception $"Eval.eval / eval=[] / code=[] / buildCodeResults: %A{buildCodeResults} / code: %A{code}"), errors
                                 | [ eval ], [] ->
                                     let ch, errors2 = fsi_eval eval cancellationToken
                                     let errors =
@@ -719,10 +735,10 @@ module Eval =
                                         |> Array.append errors
                                     ch, errors
                                 | [], _ ->
-                                    let code = code |> List.rev |> String.concat "\n\n\n"
+                                    let code = code |> List.rev |> String.concat "\n\n"
                                     let code =
                                         if printCode
-                                        then $"\"\"\"{code}\n\n\n\"\"\""
+                                        then $"\"\"\"{code}\n\n\"\"\""
                                         else $"\"\"\"{code}\n\"\"\""
                                     let ch, errors2 = fsi_eval code cancellationToken
                                     let errors =
@@ -779,7 +795,9 @@ module Eval =
                                         ch, errors
                             match ch with
                             | Choice1Of2 v ->
-                                allCode <- newAllCode
+                                if isReal
+                                then allCodeReal <- newAllCode
+                                else allCode <- newAllCode
                                 return Ok(v), errors
                             | Choice2Of2 ex ->
                                 return Error ex, errors
