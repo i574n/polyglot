@@ -28,7 +28,7 @@ type position =
     }
 
 /// ### parser_state
-type parser_state =
+nominal parser_state =
     {
         line_text : sm'.string_builder
         position : position
@@ -39,24 +39,29 @@ type parser t = string * parser_state -> result (t * string * parser_state) stri
 
 /// ### parse
 inl parse forall t. (p : parser t) (input : string) : result (t * string * parser_state) string =
-    p (input, { line_text = "" |> sm'.string_builder; position = { line = 1; col = 1 } })
+    inl input =
+        input
+        |> optionm'.of_obj
+        |> optionm'.default_value' ""
+    p (input, { line_text = "" |> sm'.string_builder; position = { line = 1; col = 1 } } |> parser_state)
 
 /// ### inc
-inl inc c (s : parser_state) =
+inl inc c (parser_state s) =
     match c with
     | '\n' => { line = s.position.line + 1; col = 1 }
     | _ => { s.position with col = s.position.col + 1 }.position
 
 /// ### update
-inl update result (s : parser_state) =
+inl update result s =
     (s, result |> sm'.to_char_array |> am'.to_list' |> listm'.unbox)
-    ||> listm.fold fun s c => { s with
-        position = s |> inc c
-        line_text =
-            match c with
-            | '\n' => s.line_text |> sm'.builder_clear
-            | c => s.line_text |> sm'.builder_append (sm'.obj_to_string c)
-    }
+    ||> listm.fold fun (parser_state s) c =>
+        { s with
+            position = s |> parser_state |> inc c
+            line_text =
+                match c with
+                | '\n' => s.line_text |> sm'.builder_clear
+                | c => s.line_text |> sm'.builder_append (sm'.obj_to_string c)
+        } |> parser_state
 
 /// ### any_char
 inl any_char () : parser char = function
@@ -69,16 +74,15 @@ inl any_char () : parser char = function
 /// ### p_char
 inl p_char (c : char) : parser char = function
     | "", s => Error $'$"parsing.p_char / unexpected end of input / s: %A{!s}"'
-    | input, s =>
+    | input, parser_state ({ line_text position = { line col } } as s) =>
         inl first_char = input |> sm'.index 0i32
         if first_char = c
         then Ok (
             first_char,
             input |> sm'.range (am'.Start 1i32) (am'.End id),
-            s |> update (sm'.obj_to_string first_char)
+            s |> parser_state |> update (sm'.obj_to_string first_char)
         )
         else
-            inl { line_text position = { line col } } = s
             inl message : string =
                 inl rest =
                     input
@@ -118,6 +122,30 @@ inl (>>.) forall t u. (a : parser t) (b : parser u) : parser u = fun input, s =>
     | Ok (_, rest, s) => b (rest, s)
     | Error e => Error e
 
+/// ### (>>.)
+inl (.>>) forall t u. (a : parser t) (b : parser u) : parser t = fun input, s =>
+    match a (input, s) with
+    | Ok (result, rest, s) =>
+        match b (rest, s) with
+        | Ok (_, rest, s) => Ok (result, rest, s)
+        | Error e => Error e
+    | Error e => Error e
+
+/// ### (.>>.)
+inl (.>>.) forall t u. (a : parser t) (b : parser u) : parser (t * u) = fun input, s =>
+    match a (input, s) with
+    | Ok (result_a, rest, s) =>
+        match b (rest, s) with
+        | Ok (result_b, rest, s) => Ok ((result_a, result_b), rest, s)
+        | Error e => Error e
+    | Error e => Error e
+
+/// ### (>>%)
+inl (>>%) forall t u. (a : parser t) (b : u) : parser u = fun input, s =>
+    match a (input, s) with
+    | Ok (_, rest, s) => Ok (b, rest, s)
+    | Error e => Error e
+
 /// ### none_of
 inl none_of (chars : list char) : parser char = function
     | "", s =>
@@ -144,6 +172,14 @@ inl (|>>) p f : parser _ = fun input =>
     | Ok (result, rest) => Ok (f result, rest)
     | Error e => Error e
 
+/// ### many
+inl many p : parser (list _) = fun input =>
+    let rec loop acc input =
+        match p input with
+        | Ok (result, rest) => loop (result :: acc) rest
+        | Error _ => Ok (listm.rev acc, input)
+    loop [] input
+
 /// ### many1_chars
 inl many1_chars p : parser string = fun input =>
     match p input with
@@ -154,6 +190,21 @@ inl many1_chars p : parser string = fun input =>
             | Ok (result, rest) => loop (acc +. sm'.obj_to_string result) rest
             | Error _ => Ok (acc, input)
         loop (sm'.obj_to_string first_result) rest
+
+/// ### many_chars
+inl many_chars p : parser string = fun input =>
+    match many1_chars p input with
+    | Ok (result, rest) => Ok (result, rest)
+    | Error e => Ok ("", input)
+
+/// ### many_chars_till
+inl many_chars_till p end_p : parser string = fun input =>
+    match end_p input with
+    | Ok _ => Ok ("", input)
+    | Error _ =>
+        match many_chars p input with
+        | Ok (result, rest) => Ok (result, rest)
+        | Error e => Error e
 
 /// ### many1
 inl many1 p : parser (list _) = fun input =>
@@ -173,6 +224,13 @@ inl many1_strings p : parser string = fun input =>
         Ok (results |> listm.map sm'.obj_to_string |> listm'.box |> seq.of_list' |> sm'.concat "", rest)
     | Error e => Error e
 
+/// ### many_strings
+inl many_strings p : parser string = fun input =>
+    match many p input with
+    | Ok (results, rest) =>
+        Ok (results |> listm.map sm'.obj_to_string |> listm'.box |> seq.of_list' |> sm'.concat "", rest)
+    | Error e => Ok ("", input)
+
 /// ### choice
 inl choice parsers : parser _ = fun input =>
     let rec loop = function
@@ -182,14 +240,6 @@ inl choice parsers : parser _ = fun input =>
             | Ok _ as result => result
             | Error _ => loop ps
     loop parsers
-
-/// ### many
-inl many p : parser (list _) = fun input =>
-    let rec loop acc input =
-        match p input with
-        | Ok (result, rest) => loop (result :: acc) rest
-        | Error _ => Ok (listm.rev acc, input)
-    loop [] input
 
 /// ### between
 inl between p_open p_close p_content : parser _ = fun input =>
@@ -230,9 +280,32 @@ inl spaces1 () : parser () = fun input, s =>
     | 0i32 => Error "spaces1 / expected at least one space"
     | n => Ok ((), input |> sm'.range (am'.Start n) (am'.End id), s)
 
+/// ### spaces
+inl spaces () : parser () = fun input, s =>
+    input
+    |> span fun c => c = ' '
+    |> fun (n : i32) => Ok ((), input |> sm'.range (am'.Start n) (am'.End id), s)
+
 /// ### p_digit
 inl p_digit () : parser char = fun input, s =>
     match input |> sm'.index 0i32 with
     | ('0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9') as c =>
         Ok (c, input |> sm'.range (am'.Start 1i32) (am'.End id), s)
     | c => Error $'$"p_digit / unexpected char: {!c}"'
+
+/// ### opt
+inl opt p : parser (option _) = fun input, s =>
+    match p (input, s) with
+    | Ok (result, rest, s) => Ok (Some result, rest, s)
+    | Error _ => Ok (None, input, s)
+
+/// ### rest_of_line
+inl rest_of_line () : parser string = fun input, s =>
+    inl i : i32 = input |> span ((<>) '\n')
+    Ok (input |> sm'.range (am'.Start i) (am'.End id), input |> sm'.range (am'.Start i) (am'.End id), s)
+
+/// ### eof
+inl eof () : parser () = fun input, s =>
+    if sm'.length input = 0i32
+    then Ok ((), input, s)
+    else Error $'$"parsing.eof / expected end of input / input: %A{!input}"'

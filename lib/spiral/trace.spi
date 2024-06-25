@@ -83,9 +83,6 @@ inl get_trace_state_or_init trace_level : trace_state =
             $'State.trace_state' : trace_state
     }
 
-/// ### _locals
-inl _locals () = ""
-
 /// ### test_trace_level
 inl test_trace_level level : bool =
     inl state = get_trace_state_or_init None
@@ -122,7 +119,7 @@ let rec trace_raw level fn =
         *trace_state.trace_file text
 
 /// ### trace
-let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string) =
+let trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
     fun () =>
         inl trace_state = get_trace_state_or_init None
         inl time =
@@ -179,9 +176,10 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string)
                 inl color_reset = join $'"\\u001b[0m"'
                 color +. level_str +. color_reset
         inl count = *trace_state.count
+        inl locals = locals () |> sm'.format
         backend_switch {
-            Fsharp = fun () => $'$"{!time} {!level_str} #{!count} %s{!text_fn ()} / %s{!locals ()}"' : string
-            Python = fun () => $'f"{!time} {!level_str} #{!count} {!text_fn()} / {!locals()}"' : string
+            Fsharp = fun () => $'$"{!time} {!level_str} #{!count} %s{!text_fn ()} / {!locals}"' : string
+            Python = fun () => $'f"{!time} {!level_str} #{!count} {!text_fn()} / {!locals}"' : string
         }
         |> sm'.trim_start []
         |> sm'.trim_end [ ' '; '/' ]
@@ -191,4 +189,5 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> string)
 inl main () =
     types ()
     init_trace_state None
+    inl trace level text_fn (locals : () -> string) = trace level text_fn locals
     $'let trace x = !trace x' : ()

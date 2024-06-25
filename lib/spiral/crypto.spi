@@ -204,7 +204,7 @@ inl hash_to_port (text : string) : u16 =
     inl combined_value = convert_i32_base 16 hash_part + first_letter_code |> u16
     trace Verbose
         fun () => "crypto.hash_to_port"
-        fun () => $'$"first_letter_code: {!first_letter_code} / hash_part: {!hash_part} / combined_value: {!combined_value} / {!_locals ()}"'
+        fun () => { first_letter_code hash_part combined_value }
     combined_value % 48128 + 1024
 
 /// ## main

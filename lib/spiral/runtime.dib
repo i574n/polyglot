@@ -42,7 +42,8 @@ inl types () =
             global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ExitStatus\")>]\n#endif\ntype std_process_ExitStatus = class end"
             global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Output\")>]\n#endif\ntype std_process_Output = class end"
             global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Stdio\")>]\n#endif\ntype std_process_Stdio = class end"
-        Python = fun () => ()
+        Python = fun () =>
+            global "import gc"
     }
 
 #!spiral
@@ -67,32 +68,6 @@ inl types () =
 
 #!markdown
 
-## rust
-
-#!markdown
-
-### process_child
-
-#!spiral
-
-nominal process_child = $'std_process_Child'
-
-#!markdown
-
-### process_child_stdin
-
-#!spiral
-
-nominal process_child_stdin = $'std_process_ChildStdin'
-
-inl process_child_stdin
-    (child : rust.ref' (rust.mut' process_child))
-    : rust.ref' (rust.mut' (optionm'.option' process_child_stdin))
-    =
-    !\\(child, $'"&mut $0.stdin"')
-
-#!markdown
-
 ## runtime
 
 #!markdown
@@ -114,12 +89,10 @@ let split_args (args : string) : result (array_base string) string =
     inl p_esc = esc |> listm.map p_esc_char |> choice
     inl p_quoted = (p_word <|> p_esc) |> many |>> sm'.concat_list ""
     inl p_quoted_all = p_quoted |> between (p_char '"') (p_char '"')
-    inl p_esc_root = p_esc |>> (fun _ => "") >>. (p_word |> many) |>> sm'.concat_list ""
+    inl p_esc_root = p_esc >>% "" >>. (p_word |> many) |>> sm'.concat_list ""
     inl p_content = p_plain <|> p_quoted_all <|> p_esc_root
     inl p_args = spaces1 () |> sep_by p_content
     args
-    |> optionm'.of_obj
-    |> optionm'.default_value' ""
     |> parse p_args
     |> resultm.map (fst >> listm'.box >> listm'.to_array')
 
@@ -166,39 +139,7 @@ let split_args (args : string) : result (array_base string) string =
     $'\@$"l ""m n:\\o.p"""',
     ;[ "l"; "m n:\\o.p" ]
 ]
-|> listm.rev
-|> listm.map fun input, expected =>
-    input
-    |> split_args
-    |> fun x =>
-        inl expected' = join expected
-        try
-            fun () =>
-                ($'$"\ninput: {!input}"' : string)
-                |> console.write_line
-                x
-                |> resultm.get
-                |> _assert_eq' expected
-                false
-            fun ex =>
-                ($'$"error / expected: %A{!expected'} / ex: %A{!ex}"' : string)
-                |> console.write_line
-                Some true
-        |> optionm.value
-|> listm'.filter id
-|> function
-    | [] => ()
-    | x => failwith $'$"{!x}"'
-
-#!markdown
-
-### quoted
-
-#!spiral
-
-union quoted =
-    | Quoted
-    | NotQuoted
+|> _assert_fn split_args
 
 #!markdown
 
@@ -206,50 +147,55 @@ union quoted =
 
 #!spiral
 
-union command_parse_step =
-    | Start
-    | Path : quoted
-    | Arguments
-
-let split_command (command : string) =
-    let rec loop (path, args) (chars : list char) step =
-        match step, chars with
-        | _, (('"' | '\'') :: tail) when path = "" => loop (path, args) tail (Path Quoted)
-        | Path (Quoted), (('"' | '\'') :: tail) => loop (path, args) tail (Path NotQuoted)
-        | Path (Quoted), (' ' :: tail) => loop ($'$"{!path} "', args) tail (Path Quoted)
-        | (Start | Path _), (' ' :: tail) => loop (path, args) tail Arguments
-        | Arguments, (char :: tail) => loop (path, $'$"{!args}{!char}"') tail Arguments
-        | _, (char :: tail) => loop ($'$"{!path}{!char}"', args) tail step
-        | _ => path |> sm'.replace @"\" "/", args
-    loop (join "", "") (command |> sm'.to_char_array |> am'.to_list' |> listm'.unbox) Start
+let split_command (command : string) : result (string * option string) string =
+    open parsing
+    inl quotes = [ '"'; '\'' ]
+    inl p_quoted_char = quotes |> listm.map p_char |> choice
+    inl normalize = function '\\' => '/' | c => c
+    inl p_quoted = quotes |> none_of |>> normalize |> many_chars |> between p_quoted_char p_quoted_char
+    inl p_unquoted = quotes ++ [ ' ' ] |> none_of |>> normalize |> many1_chars
+    inl p_path = p_quoted <|> p_unquoted <|> eof () >>% "" .>> spaces ()
+    inl p_args = p_char ' ' |> opt >>. (any_char () |> many1_chars)
+    inl p_command = p_path .>>. (p_args |> opt)
+    command
+    |> parse p_command
+    |> resultm.map fst
 
 #!spiral
 
 //// test
+///! fsharp
+////! cuda // Only stack allocated primitive types (i8,i16,i32,i64 and u8,u16,u32,u64 and f32,f64 and bool) are allowed in CuPy arrays.
+///! rust
+///! typescript
+///! python
 
-split_command ""
-|> _assert_eq ("", "")
+[
+    "",
+    ("", None)
 
-split_command "/a/b/c"
-|> _assert_eq ("/a/b/c", "")
+    "/a/b/c",
+    ("/a/b/c", None)
 
-split_command "cat file.txt"
-|> _assert_eq ("cat", "file.txt")
+    "d e.f",
+    ("d", Some "e.f")
 
-split_command $'"""..\\..\\file.exe file1.txt file2.txt"""'
-|> _assert_eq ("../../file.exe", "file1.txt file2.txt")
+    $'"""..\\..\\g.h i.j k.l"""',
+    ("../../g.h", Some "i.j k.l")
 
-split_command $'\@"c:\\dir\\file.exe ""file1.txt file2.txt"""'
-|> _assert_eq ("c:/dir/file.exe", $'\@"""file1.txt file2.txt"""')
+    $'\@"m:\\n\\o.p ""q.r s.t"""',
+    ("m:/n/o.p", Some $'\@"""q.r s.t"""')
 
-split_command $'\@"""..\\..\\dir name\\file.exe"" ""file 1.txt"" file2.txt"'
-|> _assert_eq ("../../dir name/file.exe", $'\@"""file 1.txt"" file2.txt"')
+    $'\@"""..\\..\\u v\\w.x"" ""y z.a"" b.c"',
+    ("../../u v/w.x", Some $'\@"""y z.a"" b.c"')
 
-split_command $'\@"""..\\..\\file 1.exe"" -c \\\\""echo 1\\\\"""'
-|> _assert_eq ("../../file 1.exe", $'\@"-c \\\\""echo 1\\\\"""')
+    $'\@"""..\\..\\d e.f"" -g \\\\""h i\\\\"""',
+    ("../../d e.f", Some $'\@"-g \\\\""h i\\\\"""')
 
-split_command $'\@"..\\..\\file 1.exe -c \\\\""echo 1\\\\"""'
-|> _assert_eq ("../../file", $'\@"1.exe -c \\\\""echo 1\\\\"""')
+    $'\@"..\\..\\j k.l -m \\\\""n o\\\\"""',
+    ("../../j", Some $'\@"k.l -m \\\\""n o\\\\"""')
+]
+|> _assert_fn split_command
 
 #!markdown
 
@@ -263,6 +209,36 @@ type execution_line =
         line : string
         error : bool
     }
+
+#!markdown
+
+## rust
+
+#!markdown
+
+### process_child
+
+#!spiral
+
+nominal process_child = $'std_process_Child'
+
+#!markdown
+
+### process_child_stdin
+
+#!spiral
+
+nominal process_child_stdin = $'std_process_ChildStdin'
+
+inl process_child_stdin
+    (child : rust.ref' (rust.mut' process_child))
+    : rust.ref' (rust.mut' (optionm'.option' process_child_stdin))
+    =
+    !\\(child, $'"&mut $0.stdin"')
+
+#!markdown
+
+## runtime
 
 #!markdown
 
@@ -544,7 +520,7 @@ inl stdio_line
                 | Ok () => $'$"> {!line_log}"'
                 | Error () => $'$"\! {!line_log}"'
             if trace'
-            then trace Verbose (fun () => text) _locals
+            then trace Verbose (fun () => text) id
             else text |> console.write_line
             match stdio with
             | Ok () => line
@@ -552,7 +528,7 @@ inl stdio_line
         | Error e =>
             trace Critical
                 fun () => $'$"runtime.stdio_line"'
-                fun () => $'$"e: {!e} / {!_locals ()}"'
+                fun () => { e }
             e |> highlight |> sm'.to_std_string
     channel_sender
     |> threading.arc_mutex_lock
@@ -1146,13 +1122,27 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
     run_target function
         | Fsharp (Native) => fun () =>
             fun () =>
-                inl file_name, arguments = options.command |> split_command
+                inl file_name, arguments = options.command |> split_command |> resultm.get
                 inl working_directory = options.working_directory |> optionm'.unbox |> optionm'.default_value ""
 
-                trace Debug (fun () => $'$"runtime.execute_with_options_async / options: %A{!options}"') (join _locals)
+                trace Debug
+                    fun () => $'$"runtime.execute_with_options_async"'
+                    fun () => { options }
 
                 inl utf8 = sm'.encoding_utf8 ()
-                inl start_info : process_start_info = $'System.Diagnostics.ProcessStartInfo (Arguments = !arguments, StandardOutputEncoding = !utf8, WorkingDirectory = !working_directory, FileName = !file_name, CreateNoWindow = true, RedirectStandardError = true, RedirectStandardOutput = true, UseShellExecute = false)'
+                inl arguments = arguments |> optionm.value
+
+                $'let start_info = System.Diagnostics.ProcessStartInfo ('
+                $'  Arguments = !arguments,'
+                $'  StandardOutputEncoding = !utf8,'
+                $'  WorkingDirectory = !working_directory,'
+                $'  FileName = !file_name,'
+                $'  CreateNoWindow = true,'
+                $'  RedirectStandardError = true,'
+                $'  RedirectStandardOutput = true,'
+                $'  UseShellExecute = false'
+                $')'
+                inl start_info : process_start_info = $'start_info'
 
                 (a options.environment_variables : _ i32 _)
                 |> am.iter fun key, value =>
@@ -1180,7 +1170,7 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
                             then $'$"\! {!data}"'
                             else $'$"> {!data}"'
                         if options.trace
-                        then trace Verbose (fun () => text) _locals
+                        then trace Verbose (fun () => text) id
                         else text |> console.write_line
 
                         inl l = if error then $'"\\u001b[7;4m"' else ""
@@ -1223,7 +1213,9 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
                                 inl ex' = ex |> sm'.format_exception
                                 output |> threading.concurrent_stack_push ex'
                                 inl ex : async.task_canceled_exception = ex |> unbox
-                                trace Warning (fun () => $'$"runtime.execute_with_options_async / WaitForExitAsync / ex: %A{!ex}"') (join _locals)
+                                trace Warning
+                                    fun () => $'$"runtime.execute_with_options_async / WaitForExitAsync"'
+                                    fun () => { ex }
                                 (limit.min : i32) |> return
                     |> async.new_async_unit
                     |> async.let'
@@ -1234,9 +1226,9 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
                     |> fun x => x : seq.seq' string
                     |> sm'.concat "\n"
 
-                trace Debug (fun () =>
-                    $'$"runtime.execute_with_options_async / exit_code: {!exit_code} / output.Length: {!output.Length}"'
-                ) (join _locals)
+                trace Debug
+                    fun () => $'$"runtime.execute_with_options_async"'
+                    fun () => { exit_code output_length = output |> sm'.length : i32 }
 
                 (exit_code, output) |> return
             |> async.new_async_unit
@@ -1323,7 +1315,7 @@ fun () =>
     text |> file_system.write_all_text_async path |> async.do
 
     inl cts = threading.new_cancellation_token_source ()
-    trace Debug (fun () => "1") _locals
+    trace Debug (fun () => "1") id
     inl result =
         execution_options fun x => { x with
             command = $'\@$"pwsh -c ""Get-Content {!path}"""'
@@ -1332,13 +1324,13 @@ fun () =>
         |> execute_with_options_async
         |> async.start_child
         |> async.let'
-    trace Debug (fun () => "2") _locals
+    trace Debug (fun () => "2") id
     async.sleep 100 |> async.do
-    trace Debug (fun () => "3") _locals
+    trace Debug (fun () => "3") id
     cts |> threading.cancellation_source_cancel
-    trace Debug (fun () => "4") _locals
+    trace Debug (fun () => "4") id
     inl exit_code, output = result |> async.let'
-    trace Debug (fun () => "5") _locals
+    trace Debug (fun () => "5") id
     (exit_code, output) |> return
 |> async.new_async_unit
 |> async.run_with_timeout 10000
@@ -1362,17 +1354,29 @@ inl current_process_kill () =
             inl fn () =
                 run_target function
                     | Fsharp (Native) => fun () =>
-                        trace Warning (fun () => "runtime.current_process_kill / exiting... 3") _locals
+                        trace Warning (fun () => "runtime.current_process_kill / exiting... 3") id
                         $'System.Threading.Thread.Sleep 300'
-                        trace Warning (fun () => "runtime.current_process_kill / exiting... 2") _locals
+                        trace Warning (fun () => "runtime.current_process_kill / exiting... 2") id
                         $'System.Console.Out.Flush ()'
                         $'System.Threading.Thread.Sleep 60'
-                        trace Warning (fun () => "runtime.current_process_kill / exiting... 1") _locals
+                        trace Warning (fun () => "runtime.current_process_kill / exiting... 1") id
                         $'System.Diagnostics.Process.GetCurrentProcess().Kill ()' : ()
                     | _ => fun () => null ()
             inl thread : threading.thread = $'new System.Threading.Thread (!fn)'
             thread |> $'_.Start()' : ()
         | _ => fun () => null ()
+
+#!markdown
+
+### gc_collect
+
+#!spiral
+
+inl gc_collect () =
+    run_target function
+        | Fsharp _ => fun () => $'System.GC.Collect' () : ()
+        | Python _ => fun () => ($'gc.collect()' : int) |> ignore
+        | _ => fun () => ()
 
 #!markdown
 
@@ -1390,9 +1394,10 @@ let execute_with_options (options : execution_options) : i32 * string =
             options |> execute_with_options_async |> async.run_synchronously
         | Rust (Native) => fun () =>
             inl command = join options.command
-            inl file_name, arguments = command |> split_command
+            inl file_name, arguments = command |> split_command |> resultm.get
             inl arguments =
                 arguments
+                |> optionm'.default_value ""
                 |> split_args
                 |> resultm.get
                 |> am'.to_vec
@@ -1400,9 +1405,7 @@ let execute_with_options (options : execution_options) : i32 * string =
 
             trace Debug
                 fun () => $'$"runtime.execute_with_options"'
-                fun () =>
-                    $'$"file_name: {!file_name} / arguments: %A{!arguments}"'
-                    +. $'$" / options: %A{!options} / {!_locals ()}"'
+                fun () => { file_name arguments options }
 
             fun () =>
                 fun () =>
@@ -1552,12 +1555,12 @@ let execute_with_options (options : execution_options) : i32 * string =
                             | Error error =>
                                 trace Critical
                                     fun () => $'$"runtime.execute_with_options / output error"'
-                                    fun () => $'$"error: {!error} / {!_locals ()}"'
+                                    fun () => { error }
                                 -2i32, error |> Some, None
                         | Error error =>
                             trace Critical
                                 fun () => $'$"runtime.execute_with_options / child error"'
-                                fun () => $'$"error: {!error} / {!_locals ()}"'
+                                fun () => { error }
                             -1i32, error |> Some, None
                     |> function
                         | exit_code, std_trace, channel_receiver =>
@@ -1582,9 +1585,7 @@ let execute_with_options (options : execution_options) : i32 * string =
                                 )
                             trace Verbose
                                 fun () => $'$"runtime.execute_with_options / result"'
-                                fun () =>
-                                    $'$"exit_code: {!exit_code}"'
-                                    +. $'$" / std_trace.Length: {!std_trace.Length} / {!_locals ()}"'
+                                fun () => { exit_code std_trace_length = std_trace |> sm'.length : i32 }
                             new_pair exit_code std_trace
                 |> capture
             // |> async.future_init (3, 2) 1

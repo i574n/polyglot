@@ -7912,32 +7912,6 @@ and method0 () : unit =
 method0()
 
 
-.fsx:
-System.Console.WriteLine ".fsx output:"
-let rec method1 () : int32 =
-    3
-and method2 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
-    let v0 : int32 = method1()
-    let v1 : int32 = 9 + v0
-    let v2 : int32 = v1 + 2
-    let v3 : int32 = v2 + 1
-    let v4 : bool = v3 = 15
-    let v6 : bool =
-        if v4 then
-            true
-        else
-            method2(v4)
-    let v7 : string = "assert_eq"
-    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{15}"
-    let v9 : (string -&gt; unit) = System.Console.WriteLine
-    v9 v8
-    let v10 : bool = v6 = false
-    if v10 then
-        failwith&lt;unit&gt; v8
-method0()
-
 .rs:
 #![allow(dead_code)]
 #![allow(non_camel_case_types)]
@@ -8038,22 +8012,146 @@ method0()
 
 
 .py:
-
-
-.py:
 kernel = r"""
-template &lt;typename el, int dim&gt; struct static_array { el v[dim]; };
-template &lt;typename el, int dim, typename default_int&gt; struct static_array_list { el v[dim]; default_int length; };
 """
-class static_array(list):
+class static_array():
     def __init__(self, length):
+        self.ptr = []
         for _ in range(length):
-            self.append(None)
+            self.ptr.append(None)
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
+        self.ptr[index] = value
 
 class static_array_list(static_array):
     def __init__(self, length):
         super().__init__(length)
         self.length = 0
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
+        self.ptr[index] = value
+
+    def push(self,value):
+        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
+        self.ptr[self.length] = value
+        self.length += 1
+
+    def pop(self):
+        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
+        self.length -= 1
+        return self.ptr[self.length]
+
+    def unsafe_set_length(self,i):
+        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
+        self.length = i
+
+class dynamic_array(static_array): 
+    pass
+
+class dynamic_array_list(static_array_list):
+    def length_(self): return self.length
+
+import cupy as cp
+from dataclasses import dataclass
+from typing import NamedTuple, Union, Callable, Tuple
+i8 = i16 = i32 = i64 = u8 = u16 = u32 = u64 = int; f32 = f64 = float; char = string = str
+
+def method1() -&gt; i32:
+    return 3
+def method2(v0 : bool) -&gt; bool:
+    return v0
+def method0() -&gt; None:
+    v0 = method1()
+    v1 = 9 + v0
+    del v0
+    v2 = v1 + 2
+    del v1
+    v3 = v2 + 1
+    del v2
+    v4 = v3 == 15
+    if v4:
+        v6 = True
+    else:
+        v6 = method2(v4)
+    del v4
+    v7 = "assert_eq"
+    v8 = f"{v7} / actual: {v3} / expected: {15}"
+    del v3, v7
+    print(v8)
+    v9 = v6 == False
+    del v6
+    if v9:
+        del v9
+        raise Exception(v8)
+    else:
+        del v8, v9
+        return 
+def main():
+    return method0()
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
+
+
+.py:
+kernel = r"""
+"""
+class static_array():
+    def __init__(self, length):
+        self.ptr = []
+        for _ in range(length):
+            self.ptr.append(None)
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
+        self.ptr[index] = value
+
+class static_array_list(static_array):
+    def __init__(self, length):
+        super().__init__(length)
+        self.length = 0
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
+        self.ptr[index] = value
+
+    def push(self,value):
+        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
+        self.ptr[self.length] = value
+        self.length += 1
+
+    def pop(self):
+        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
+        self.length -= 1
+        return self.ptr[self.length]
+
+    def unsafe_set_length(self,i):
+        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
+        self.length = i
+
+class dynamic_array(static_array): 
+    pass
+
+class dynamic_array_list(static_array_list):
+    def length_(self): return self.length
+
 import cupy as cp
 from dataclasses import dataclass
 from typing import NamedTuple, Union, Callable, Tuple
@@ -8181,36 +8279,6 @@ and method0 () : unit =
 method0()
 
 
-.fsx:
-System.Console.WriteLine ".fsx output:"
-let rec method1 () : int32 =
-    3
-and method2 (v0 : int32, v1 : int32) : int32 =
-    let v2 : int32 = v1 + v0
-    v2
-and method3 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
-    let v0 : int32 = method1()
-    let v1 : int32 = 9
-    let v2 : int32 = method2(v0, v1)
-    let v3 : int32 = v2 + 2
-    let v4 : int32 = v3 + 1
-    let v5 : bool = v4 = 15
-    let v7 : bool =
-        if v5 then
-            true
-        else
-            method3(v5)
-    let v8 : string = "assert_eq"
-    let v9 : string = $"{v8} / actual: %A{v4} / expected: %A{15}"
-    let v10 : (string -&gt; unit) = System.Console.WriteLine
-    v10 v9
-    let v11 : bool = v7 = false
-    if v11 then
-        failwith&lt;unit&gt; v9
-method0()
-
 .rs:
 #![allow(dead_code)]
 #![allow(non_camel_case_types)]
@@ -8323,18 +8391,54 @@ method0()
 
 .py:
 kernel = r"""
-template &lt;typename el, int dim&gt; struct static_array { el v[dim]; };
-template &lt;typename el, int dim, typename default_int&gt; struct static_array_list { el v[dim]; default_int length; };
 """
-class static_array(list):
+class static_array():
     def __init__(self, length):
+        self.ptr = []
         for _ in range(length):
-            self.append(None)
+            self.ptr.append(None)
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
+        self.ptr[index] = value
 
 class static_array_list(static_array):
     def __init__(self, length):
         super().__init__(length)
         self.length = 0
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
+        self.ptr[index] = value
+
+    def push(self,value):
+        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
+        self.ptr[self.length] = value
+        self.length += 1
+
+    def pop(self):
+        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
+        self.length -= 1
+        return self.ptr[self.length]
+
+    def unsafe_set_length(self,i):
+        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
+        self.length = i
+
+class dynamic_array(static_array): 
+    pass
+
+class dynamic_array_list(static_array_list):
+    def length_(self): return self.length
+
 import cupy as cp
 from dataclasses import dataclass
 from typing import NamedTuple, Union, Callable, Tuple
@@ -8383,18 +8487,54 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 
 .py:
 kernel = r"""
-template &lt;typename el, int dim&gt; struct static_array { el v[dim]; };
-template &lt;typename el, int dim, typename default_int&gt; struct static_array_list { el v[dim]; default_int length; };
 """
-class static_array(list):
+class static_array():
     def __init__(self, length):
+        self.ptr = []
         for _ in range(length):
-            self.append(None)
+            self.ptr.append(None)
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
+        self.ptr[index] = value
 
 class static_array_list(static_array):
     def __init__(self, length):
         super().__init__(length)
         self.length = 0
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
+        self.ptr[index] = value
+
+    def push(self,value):
+        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
+        self.ptr[self.length] = value
+        self.length += 1
+
+    def pop(self):
+        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
+        self.length -= 1
+        return self.ptr[self.length]
+
+    def unsafe_set_length(self,i):
+        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
+        self.length = i
+
+class dynamic_array(static_array): 
+    pass
+
+class dynamic_array_list(static_array_list):
+    def length_(self): return self.length
+
 import cupy as cp
 from dataclasses import dataclass
 from typing import NamedTuple, Union, Callable, Tuple
@@ -8556,35 +8696,6 @@ and method0 () : unit =
 method0()
 
 
-.fsx:
-System.Console.WriteLine ".fsx output:"
-let rec method1 () : int32 =
-    3
-and method2 (v0 : int32) : int32 =
-    let v1 : int32 = 9 + v0
-    v1
-and method3 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
-    let v0 : int32 = method1()
-    let v1 : int32 = method2(v0)
-    let v2 : int32 = v1 + 2
-    let v3 : int32 = v2 + 1
-    let v4 : bool = v3 = 15
-    let v6 : bool =
-        if v4 then
-            true
-        else
-            method3(v4)
-    let v7 : string = "assert_eq"
-    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{15}"
-    let v9 : (string -&gt; unit) = System.Console.WriteLine
-    v9 v8
-    let v10 : bool = v6 = false
-    if v10 then
-        failwith&lt;unit&gt; v8
-method0()
-
 .rs:
 #![allow(dead_code)]
 #![allow(non_camel_case_types)]
@@ -8697,18 +8808,54 @@ method0()
 
 .py:
 kernel = r"""
-template &lt;typename el, int dim&gt; struct static_array { el v[dim]; };
-template &lt;typename el, int dim, typename default_int&gt; struct static_array_list { el v[dim]; default_int length; };
 """
-class static_array(list):
+class static_array():
     def __init__(self, length):
+        self.ptr = []
         for _ in range(length):
-            self.append(None)
+            self.ptr.append(None)
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
+        self.ptr[index] = value
 
 class static_array_list(static_array):
     def __init__(self, length):
         super().__init__(length)
         self.length = 0
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
+        self.ptr[index] = value
+
+    def push(self,value):
+        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
+        self.ptr[self.length] = value
+        self.length += 1
+
+    def pop(self):
+        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
+        self.length -= 1
+        return self.ptr[self.length]
+
+    def unsafe_set_length(self,i):
+        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
+        self.length = i
+
+class dynamic_array(static_array): 
+    pass
+
+class dynamic_array_list(static_array_list):
+    def length_(self): return self.length
+
 import cupy as cp
 from dataclasses import dataclass
 from typing import NamedTuple, Union, Callable, Tuple
@@ -8756,18 +8903,54 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 
 .py:
 kernel = r"""
-template &lt;typename el, int dim&gt; struct static_array { el v[dim]; };
-template &lt;typename el, int dim, typename default_int&gt; struct static_array_list { el v[dim]; default_int length; };
 """
-class static_array(list):
+class static_array():
     def __init__(self, length):
+        self.ptr = []
         for _ in range(length):
-            self.append(None)
+            self.ptr.append(None)
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
+        self.ptr[index] = value
 
 class static_array_list(static_array):
     def __init__(self, length):
         super().__init__(length)
         self.length = 0
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
+        self.ptr[index] = value
+
+    def push(self,value):
+        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
+        self.ptr[self.length] = value
+        self.length += 1
+
+    def pop(self):
+        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
+        self.length -= 1
+        return self.ptr[self.length]
+
+    def unsafe_set_length(self,i):
+        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
+        self.length = i
+
+class dynamic_array(static_array): 
+    pass
+
+class dynamic_array_list(static_array_list):
+    def length_(self): return self.length
+
 import cupy as cp
 from dataclasses import dataclass
 from typing import NamedTuple, Union, Callable, Tuple
@@ -8849,7 +9032,7 @@ assert_eq / actual: 15 / expected: 15
         <span class="k">else</span>
             <span class="n">trace</span> <span class="n">Debug</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"common.retry_fn</span><span class="se">\'</span><span class="s1"> / loop"'</span>
-                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"is_error: {!is_error} / retry: {!retry}/{!retries} / result: %A{!result} / {!_locals ()}"'</span>
+                <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">is_error</span> <span class="n">retry</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'$"{!retry}/{!retries}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">;</span> <span class="n">result</span> <span class="p">}</span>
             <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">loop</span> <span class="mi">1</span>
 </pre></div>
@@ -8875,37 +9058,11 @@ assert_eq / actual: 15 / expected: 15
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="nameof">nameof<a class="anchor-link" href="#nameof">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">nameof</span> <span class="n">x</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'nameof !x '</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="upcast">upcast<a class="anchor-link" href="#upcast">¶</a></h3>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8921,7 +9078,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8931,7 +9088,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8947,7 +9104,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8957,7 +9114,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8975,7 +9132,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8985,7 +9142,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9001,7 +9158,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9011,7 +9168,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9026,7 +9183,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9036,7 +9193,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9055,7 +9212,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9065,7 +9222,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9084,7 +9241,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9094,7 +9251,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=43">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9112,7 +9269,7 @@ assert_eq / actual: 15 / expected: 15
             <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
                 <span class="n">trace</span> <span class="ne">Warning</span>
                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"common.retry_fn"</span>
-                    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"retry: {!retry} / ex: %A{!ex} / {!_locals ()}"'</span>
+                    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">retry</span> <span class="n">ex</span> <span class="p">}</span>
                 <span class="kc">None</span>
         <span class="o">|&gt;</span> <span class="n">function</span>
             <span class="o">|</span> <span class="n">Some</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span>
@@ -9123,7 +9280,7 @@ assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9178,7 +9335,7 @@ assert_eq' / actual: US0_0 1 / expected: US0_0 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9215,19 +9372,22 @@ assert_eq' / actual: US0_0 1 / expected: US0_0 1
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.rs output:
-00:00:00 <span class="ansi-yellow-fg">warning</span> #1 common.retry_fn / retry: 0 / ex: Exception { message: "test" }
-00:00:00 <span class="ansi-yellow-fg">warning</span> #2 common.retry_fn / retry: 1 / ex: Exception { message: "test" }
+<pre>
+.rs output:
+00:00:00 <span class="ansi-yellow-fg">warning</span> #1 common.retry_fn / { retry = 0; ex = Exception { message: "test" } }
+00:00:00 <span class="ansi-yellow-fg">warning</span> #2 common.retry_fn / { retry = 1; ex = Exception { message: "test" } }
 assert_eq' / actual: US0_0(2) / expected: US0_0(2)
 
+
 .ts output:
-00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / retry: 0 / ex: Error: test
-00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / retry: 1 / ex: Error: test
+00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / { retry = 0; ex = Error: test }
+00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / { retry = 1; ex = Error: test }
 assert_eq' / actual: US0_0 2 / expected: US0_0 2
 
+
 .py output:
-00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / retry: 0 / ex: test
-00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / retry: 1 / ex: test
+00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / { retry = 0; ex = test }
+00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / { retry = 1; ex = test }
 assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </pre>
 </div>
@@ -9236,12 +9396,12 @@ assert_eq' / actual: US0_0 2 / expected: US0_0 2
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / retry: 0 / ex: System.Exception: test
-   at FSI_0033.closure0(Mut0 v0, Int32 v1, Unit unitVar2)
-   at FSI_0033.method1(Mut0 v0, Int32 v1)
-00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / retry: 1 / ex: System.Exception: test
-   at FSI_0033.closure0(Mut0 v0, Int32 v1, Unit unitVar2)
-   at FSI_0033.method1(Mut0 v0, Int32 v1)
+00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / { retry = 0; ex = System.Exception: test
+   at FSI_0032.closure1(Mut0 v0, Int32 v1, Unit unitVar2)
+   at FSI_0032.method1(Mut0 v0, Int32 v1) }
+00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / { retry = 1; ex = System.Exception: test
+   at FSI_0032.closure1(Mut0 v0, Int32 v1, Unit unitVar2)
+   at FSI_0032.method1(Mut0 v0, Int32 v1) }
 assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </pre>
 </div>
@@ -9249,7 +9409,7 @@ assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9260,7 +9420,7 @@ assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9270,7 +9430,7 @@ assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9293,7 +9453,7 @@ assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9303,7 +9463,7 @@ assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9334,7 +9494,7 @@ assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9390,7 +9550,7 @@ assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9429,7 +9589,7 @@ assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9467,7 +9627,7 @@ assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9505,7 +9665,7 @@ assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9515,7 +9675,7 @@ assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=56">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

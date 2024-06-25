@@ -12,7 +12,6 @@ modules:
     optionm'
     optionm'_operators
     resultm
-    console
     listm'
     iter_prototypes-
     am'
@@ -21,8 +20,10 @@ modules:
     mapm
     iter
     sm'_prototypes-
+    real_sm'*
     sm'
     sm'_operators
+    console
     reflection
     guid
     parsing

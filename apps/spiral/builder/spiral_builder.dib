@@ -231,7 +231,7 @@ inl persist_code_project packages modules name hash code =
 
     inl fs_path = target_dir </> $'$"{!name}.fs"' |> file_system.normalize_path
     code |> file_system.write_all_text_exists fs_path
-    
+
     inl modules_code =
         modules
         |> listm.map fun path =>
@@ -309,7 +309,7 @@ inl build_project runtime' output_dir path =
 
     trace Debug
         fun () => "build_project"
-        fun () => $'$"full_path: {!full_path} / {!_locals ()}"'
+        fun () => { full_path }
 
     match extension with
     | "fsproj" => ()
@@ -345,9 +345,7 @@ inl build_code runtime packages modules output_dir name code =
         inl fsproj_text = fsproj_path |> file_system.read_all_text
         trace Critical
             fun () => "build_code"
-            fun () =>
-                inl code = code |> sm'.ellipsis_end 400
-                $'$"code: {!code} / fsproj_text: {!fsproj_text} / {!_locals ()}"'
+            fun () => { code = code |> sm'.ellipsis_end 400; fsproj_text }
     exit_code
 
 #!spiral
@@ -467,14 +465,14 @@ inl process_rust { fs_path deps trace_level } =
     inl is_trace = trace_level = Verbose
     inl _trace (fn : () -> string) =
         if is_trace
-        then trace Info (fun () => $'$"spiral_builder.process_rust / {!fn ()}"') _locals
+        then trace Info (fun () => $'$"spiral_builder.process_rust / {!fn ()}"') id
         else fn () |> console.write_line
 
     inl extension = "rs"
     inl code = fs_path |> file_system.read_all_text
-    
+
     inl hash_hex = (extension, code) |> sm'.format_debug |> crypto.hash_text
-    
+
     inl workspace_name = "spiral_builder"
 
     inl fsproj_path =
@@ -519,11 +517,11 @@ inl process_rust { fs_path deps trace_level } =
 
     inl exit_code, dotnet_fable_result =
         execute_dotnet_fable { workspace_root_external fsproj_path extension package_dir }
-    
+
     if exit_code <>. 0 then
         trace Critical
             fun () => "spiral_builder.process_rust / dotnet fable error"
-            fun () => $'$"exit_code: {!exit_code} / dotnet_fable_result: {!dotnet_fable_result} / {!_locals ()}"'
+            fun () => { exit_code dotnet_fable_result }
         { extension = Some extension; code = None; output = Some dotnet_fable_result }
     else
         inl deps =
@@ -600,7 +598,7 @@ inl process_rust { fs_path deps trace_level } =
         if exit_code <>. 0 then
             trace Critical
                 fun () => "spiral_builder.process_rust / cargo fmt error"
-                fun () => $'$"exit_code: {!exit_code} / cargo_fmt_result: {!cargo_fmt_result} / {!_locals ()}"'
+                fun () => { exit_code cargo_fmt_result }
 
         inl new_code_path = package_dir </> $'$"{!workspace_name}.{!extension}"'
         inl new_code = new_code_path |> file_system.read_all_text
@@ -651,7 +649,7 @@ inl process_rust { fs_path deps trace_level } =
         then
             $'$"{!new_code}\\n\\n{!main_code}\\n"'
             |> file_system.write_all_text_exists new_code_path
-        
+
         inl command = $'$"cargo +nightly run --manifest-path \\\"{!cargo_toml_path}\\\""'
         inl environment_variables =
             inl fast = false
@@ -678,7 +676,7 @@ inl process_rust { fs_path deps trace_level } =
 
         trace Verbose
             fun () => "spiral_builder.process_rust"
-            fun () => $'$"new_code_path: {!new_code_path} / cleanup: %A{!cleanup} / {!_locals ()}"'
+            fun () => { new_code_path cleanup }
 
         cleanup
         |> listm'.filter snd
@@ -709,7 +707,7 @@ inl process_rust { fs_path deps trace_level } =
                     fun ex =>
                         trace Critical
                             fun () => "spiral_builder.process_rust / Exception"
-                            fun () => $'$"ex: {!ex} / cargo_run_result: {!cargo_run_result} / new_code_path: {!new_code_path} / external_command: {!external_command} / {!_locals ()}"'
+                            fun () => { ex cargo_run_result new_code_path external_command }
                         None
                 |> optionm'.box
                 |> optionm'.unwrap
@@ -718,7 +716,7 @@ inl process_rust { fs_path deps trace_level } =
         else
             trace Critical
                 fun () => "spiral_builder.process_rust / error"
-                fun () => $'$"exit_code: {!exit_code} / cargo_run_result: {!cargo_run_result} / new_code_path: {!new_code_path} / external_command: {!external_command}"'
+                fun () => { exit_code cargo_run_result new_code_path external_command }
             { extension = Some extension; code = None; output = None }
 
 #!markdown
@@ -745,13 +743,13 @@ inl process_dib { path retries working_directory } =
                     working_directory
                 }
                 |> runtime.execute_with_options
-            
+
             if exit_code = 0 || retry >= retries
             then exit_code, repl_result
             else
                 trace Debug
                     fun () => $'"spiral_builder.run / repl error"'
-                    fun () => $'$"exit_code: {!exit_code} / retry: {!retry}/{!retries} / repl_result: {!repl_result} / {!_locals ()}"'
+                    fun () => { exit_code repl_result retry = $'$"{!retry}/{!retries}"' : string }
                 loop (retry + 1)
         loop 1
 
@@ -767,7 +765,7 @@ inl process_dib { path retries working_directory } =
 
             trace Debug
                 fun () => $'"spiral_builder.run / dib / jupyter nbconvert"'
-                fun () => $'$"exit_code: {!exit_code} / jupyter_result.Length: {!jupyter_result.Length} / {!_locals ()}"'
+                fun () => { exit_code jupyter_result_length = jupyter_result |> sm'.length : i32 }
 
             if exit_code <>. 0
             then exit_code, $'$"repl_result: {!repl_result}\n\njupyter_result: {!jupyter_result}"'
@@ -781,7 +779,7 @@ inl process_dib { path retries working_directory } =
 
                 trace Debug
                     fun () => $'"spiral_builder.run / dib / html cell ids"'
-                    fun () => $'$"exit_code: {!exit_code} / pwsh_replace_html_result.Length: {!pwsh_replace_html_result.Length} / {!_locals ()}"'
+                    fun () => { exit_code pwsh_replace_html_result_length = pwsh_replace_html_result |> sm'.length : i32 }
 
                 $'$"{!path}.html"'
                 |> file_system.read_all_text
@@ -798,10 +796,10 @@ inl process_dib { path retries working_directory } =
 
     trace Debug
         fun () => $'"spiral_builder.run / dib"'
-        fun () => $'$"exit_code: {!exit_code} / result.Length: {!result.Length} / {!_locals ()}"'
+        fun () => { exit_code result_length = result |> sm'.length : i32 }
 
     if exit_code <>. 0
-    then failwith $'$"spiral_builder.run / dib / exit_code: {!exit_code} / result: {!result} / {!_locals ()}"'
+    then failwith $'$"spiral_builder.run / dib / exit_code: {!exit_code} / result: {!result}"'
     ;[
         "stdio",
         result
@@ -822,13 +820,13 @@ inl process_typescript { fs_path deps trace_level } =
     inl is_trace = trace_level = Verbose
     inl _trace (fn : () -> string) =
         if is_trace
-        then trace Info (fun () => $'$"spiral_builder.process_typescript / {!fn ()}"') _locals
+        then trace Info (fun () => $'$"spiral_builder.process_typescript / {!fn ()}"') id
         else fn () |> console.write_line
 
     inl code = fs_path |> file_system.read_all_text
-    
+
     inl hash_hex = (extension, code) |> sm'.format_debug |> crypto.hash_text
-    
+
     inl workspace_name = "spiral_builder"
 
     inl fsproj_path =
@@ -845,7 +843,7 @@ inl process_typescript { fs_path deps trace_level } =
     inl workspace_root = workspace_root_external |> resultm.box |> resultm.unwrap_or_else id
 
     inl lib_path = workspace_root </> "lib/typescript/fable/fable_modules"
-    
+
     inl versions =
         lib_path
         |> file_system.new_walk_dir
@@ -884,7 +882,7 @@ inl process_typescript { fs_path deps trace_level } =
             | Error error =>
                 trace Critical
                     fun () => $'"spiral_builder.process_typescript / stream_filter_map"'
-                    fun () => $'$"error: {!error} / {!_locals ()}"'
+                    fun () => { error }
                 None
             |> optionm'.box
         |> async.into_par_iter
@@ -900,9 +898,7 @@ inl process_typescript { fs_path deps trace_level } =
 
     trace Debug
         fun () => $'"spiral_builder.process_typescript"'
-        fun () =>
-            inl version = version |> sm'.format_pretty'
-            $'$"version: {!version} / {!_locals ()}"'
+        fun () => { version = version |> sm'.format_pretty' }
 
     match version with
     | None => ()
@@ -916,7 +912,9 @@ inl process_typescript { fs_path deps trace_level } =
         execute_dotnet_fable { workspace_root_external fsproj_path extension package_dir }
 
     if exit_code <>. 0 then
-        trace Critical (fun () => $'$"spiral_builder.process_typescript / exit_code: {!exit_code} / dotnet_fable_result: {!dotnet_fable_result}"') _locals
+        trace Critical
+            fun () => $'$"spiral_builder.process_typescript"'
+            fun () => { exit_code dotnet_fable_result }
         { extension = Some extension; code = None; output = Some dotnet_fable_result }
     else
         inl deps =
@@ -956,7 +954,7 @@ inl process_typescript { fs_path deps trace_level } =
         inl new_code_path = package_dir </> $'$"{!workspace_name}.{!extension}"'
         trace Debug
             fun () => $'"spiral_builder.process_typescript"'
-            fun () => $'$"new_code_path: {!new_code_path} / {!_locals ()}"'
+            fun () => { new_code_path }
         inl new_code = new_code_path |> file_system.read_all_text
 
         inl main_code_header =
@@ -980,7 +978,7 @@ inl process_typescript { fs_path deps trace_level } =
         if not cached then
             $'$"{!new_code}\\n\\n{!main_code}\\n"'
             |> file_system.write_all_text_exists new_code_path
-        
+
         inl command = $'$"bun run \\\"{!new_code_path}\\\""'
         inl environment_variables =
             match "~/.bun/bin" |> env.append_path with
@@ -1019,7 +1017,7 @@ inl process_typescript { fs_path deps trace_level } =
                     fun ex =>
                         trace Critical
                             fun () => "spiral_builder.process_typescript / Exception"
-                            fun () => $'$"ex: {!ex} / new_code_path: {!new_code_path} / external_command: {!external_command} / run_result: {!run_result} / {!_locals ()}"'
+                            fun () => { ex new_code_path external_command run_result }
                         None
                 |> optionm'.box
                 |> optionm'.unwrap
@@ -1028,7 +1026,7 @@ inl process_typescript { fs_path deps trace_level } =
         else
             trace Critical
                 fun () => "spiral_builder.process_typescript / error"
-                fun () => $'$"exit_code: {!exit_code} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command}"'
+                fun () => { exit_code run_result new_code_path external_command }
             { extension = Some extension; code = None; output = None }
 
 #!markdown
@@ -1046,13 +1044,13 @@ inl process_python { fs_path deps trace_level } =
     inl is_trace = trace_level = Verbose
     inl _trace (fn : () -> string) =
         if is_trace
-        then trace Info (fun () => $'$"spiral_builder.process_python / {!fn ()}"') _locals
+        then trace Info (fun () => $'$"spiral_builder.process_python / {!fn ()}"') id
         else fn () |> console.write_line
 
     inl code = fs_path |> file_system.read_all_text
-    
+
     inl hash_hex = (extension, code) |> sm'.format_debug |> crypto.hash_text
-    
+
     inl workspace_name = "spiral_builder"
 
     inl fsproj_path =
@@ -1069,7 +1067,7 @@ inl process_python { fs_path deps trace_level } =
     inl workspace_root = workspace_root_external |> resultm.box |> resultm.unwrap_or_else id
 
     inl lib_path = workspace_root </> "lib/python/fable/fable_modules"
-    
+
     inl lib_link_target_path = lib_path </> $'$"fable-library-{!extension}"'
     inl lib_link_path = package_dir </> $'$"fable_modules/fable-library"'
 
@@ -1079,7 +1077,9 @@ inl process_python { fs_path deps trace_level } =
         execute_dotnet_fable { workspace_root_external fsproj_path extension package_dir }
 
     if exit_code <>. 0 then
-        trace Critical (fun () => $'$"spiral_builder.process_python / exit_code: {!exit_code} / dotnet_fable_result: {!dotnet_fable_result}"') _locals
+        trace Critical
+            fun () => $'$"spiral_builder.process_python"'
+            fun () => { exit_code dotnet_fable_result }
         { extension = Some extension; code = None; output = Some dotnet_fable_result }
     else
         inl deps =
@@ -1119,7 +1119,7 @@ inl process_python { fs_path deps trace_level } =
         inl new_code_path = package_dir </> $'$"{!workspace_name}.{!extension}"'
         trace Debug
             fun () => $'"spiral_builder.process_python"'
-            fun () => $'$"new_code_path: {!new_code_path} / {!_locals ()}"'
+            fun () => { new_code_path }
         inl new_code = new_code_path |> file_system.read_all_text
 
         inl main_code_header =
@@ -1144,7 +1144,7 @@ inl process_python { fs_path deps trace_level } =
         then
             $'$"{!new_code}\\n\\n{!main_code}\\n"'
             |> file_system.write_all_text_exists new_code_path
-        
+
         inl command = $'$"python \\\"{!new_code_path}\\\""'
         inl environment_variables =
             ;[
@@ -1178,7 +1178,7 @@ inl process_python { fs_path deps trace_level } =
                     fun ex =>
                         trace Critical
                             fun () => "spiral_builder.process_python / Exception"
-                            fun () => $'$"ex: {!ex} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command} / {!_locals ()}"'
+                            fun () => { ex run_result new_code_path external_command }
                         None
                 |> optionm'.box
                 |> optionm'.unwrap
@@ -1187,7 +1187,7 @@ inl process_python { fs_path deps trace_level } =
         else
             trace Critical
                 fun () => "spiral_builder.process_python / error"
-                fun () => $'$"exit_code: {!exit_code} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command}"'
+                fun () => { exit_code run_result new_code_path external_command }
             { extension = Some extension; code = None; output = None }
 
 #!markdown
@@ -1202,7 +1202,7 @@ inl process_python { fs_path deps trace_level } =
 
 inl process_cuda { py_path env deps } =
     inl extension = "py"
-    
+
     inl new_code_path = py_path
     inl new_code = new_code_path |> file_system.read_all_text
 
@@ -1229,7 +1229,7 @@ inl process_cuda { py_path env deps } =
         |> fun x => x : _ i32 _
         |> seq.of_array'
         |> sm'.concat "\n"
-    
+
     inl exit_code, run_result =
         if deps = ""
         then 0, ""
@@ -1267,10 +1267,10 @@ inl process_cuda { py_path env deps } =
     if exit_code <>. 0 then
         trace Critical
             fun () => "spiral_builder.process_cuda / env install error"
-            fun () => $'$"env: {!env} / exit_code: {!exit_code} / run_result: {!run_result} / new_code_path: {!new_code_path}"'
+            fun () => { env exit_code run_result new_code_path }
         { extension = Some extension; code = None; output = None }
     else
-        inl command = 
+        inl command =
             match env with
             | Pip => $'$"python \\\"{!new_code_path}\\\""'
             | Poetry => $'$"poetry run python \\\"{!new_code_path}\\\""'
@@ -1307,7 +1307,7 @@ inl process_cuda { py_path env deps } =
                     fun ex =>
                         trace Critical
                             fun () => "spiral_builder.process_cuda / Exception"
-                            fun () => $'$"ex: {!ex} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command} / {!_locals ()}"'
+                            fun () => { ex run_result new_code_path external_command }
                         None
                 |> optionm'.box
                 |> optionm'.unwrap
@@ -1316,7 +1316,7 @@ inl process_cuda { py_path env deps } =
         else
             trace Critical
                 fun () => "spiral_builder.process_cuda / error"
-                fun () => $'$"exit_code: {!exit_code} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command}"'
+                fun () => { exit_code run_result new_code_path external_command }
             { extension = Some extension; code = None; output = None }
 
 #!markdown
@@ -1331,13 +1331,13 @@ inl process_cuda { py_path env deps } =
 
 inl process_fsharp { spi_path } =
     inl extension = "fsx"
-    
+
     inl new_code_path = spi_path
     inl new_code = new_code_path |> file_system.read_all_text
 
     inl workspace_root_external = file_system.get_workspace_root_external ()
     inl workspace_root = workspace_root_external |> resultm.box |> resultm.unwrap_or_else id
-    
+
     inl supervisor_path = workspace_root </> $"apps/spiral/dist/Supervisor!(platform.get_executable_suffix ())"
     inl code_dir = new_code_path |> file_system.get_directory_name
     inl file_name = new_code_path |> file_system.get_file_name_without_extension
@@ -1375,7 +1375,7 @@ inl process_fsharp { spi_path } =
                 fun ex =>
                     trace Critical
                         fun () => "spiral_builder.process_fsharp / Exception"
-                        fun () => $'$"ex: {!ex} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command} / {!_locals ()}"'
+                        fun () => { ex run_result new_code_path external_command }
                     None
             |> optionm'.box
             |> optionm'.unwrap
@@ -1384,7 +1384,7 @@ inl process_fsharp { spi_path } =
     else
         trace Critical
             fun () => "spiral_builder.process_fsharp / error"
-            fun () => $'$"exit_code: {!exit_code} / run_result: {!run_result} / new_code_path: {!new_code_path} / external_command: {!external_command}"'
+            fun () => { exit_code run_result new_code_path external_command }
         { extension = Some extension; code = None; output = None }
 
 #!markdown
@@ -1558,7 +1558,7 @@ let rec run trace_level (matches : runtime.arg_matches) : async.future_pin (resu
             | Some (subcommand, arg_matches) =>
                 trace Debug
                     fun () => $'"spiral_builder.run / invalid subcommand"'
-                    fun () => $'$"subcommand: {!subcommand} / arg_matches: %A{!arg_matches} / {!_locals ()}"'
+                    fun () => { subcommand arg_matches }
 
                 { extension = None; code = None; output = None }
             | _ =>
@@ -1769,10 +1769,10 @@ inl tests () =
 
 inl main (args : array_base string) =
     inl trace_state = get_trace_state_or_init None
-    
+
     trace Debug
         fun () => $'$"spiral_builder.main"'
-        fun () => $'$"args: {!args} / {!_locals ()}"'
+        fun () => { args }
 
     inl command = get_command ()
     inl arg_matches = command |> runtime.command_get_matches

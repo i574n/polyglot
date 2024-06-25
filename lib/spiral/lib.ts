@@ -120,25 +120,25 @@ export function SpiralFileSystem_create_temp_path(): string {
 }
 
 export function set_trace_level(new_level: US0_$union): void {
-    iterate<[Mut0, Mut1, Mut2, Option<int64>, Mut3]>((_arg: [Mut0, Mut1, Mut2, Option<int64>, Mut3]): void => {
-        _arg[2].l0 = ((new_level.tag === /* US0_1 */ 1) ? US0_US0_1() : ((new_level.tag === /* US0_2 */ 2) ? US0_US0_2() : ((new_level.tag === /* US0_3 */ 3) ? US0_US0_3() : ((new_level.tag === /* US0_4 */ 4) ? US0_US0_4() : US0_US0_0()))));
-    }, toArray<[Mut0, Mut1, Mut2, Option<int64>, Mut3]>(State_trace_state()));
-    iterate<[Mut0_1, Mut1_1, Mut2_1, Option<int64>, Mut3_1]>((_arg_1: [Mut0_1, Mut1_1, Mut2_1, Option<int64>, Mut3_1]): void => {
-        _arg_1[2].l0 = ((new_level.tag === /* US0_1 */ 1) ? US0_US0_1_1() : ((new_level.tag === /* US0_2 */ 2) ? US0_US0_2_1() : ((new_level.tag === /* US0_3 */ 3) ? US0_US0_3_1() : ((new_level.tag === /* US0_4 */ 4) ? US0_US0_4_1() : US0_US0_0_1()))));
-    }, toArray<[Mut0_1, Mut1_1, Mut2_1, Option<int64>, Mut3_1]>(State_trace_state_1()));
-    iterate<[Mut0_2, Mut1_2, Mut2_2, Option<int64>, Mut3_2]>((_arg_2: [Mut0_2, Mut1_2, Mut2_2, Option<int64>, Mut3_2]): void => {
-        _arg_2[2].l0 = ((new_level.tag === /* US0_1 */ 1) ? US0_US0_1_2() : ((new_level.tag === /* US0_2 */ 2) ? US0_US0_2_2() : ((new_level.tag === /* US0_3 */ 3) ? US0_US0_3_2() : ((new_level.tag === /* US0_4 */ 4) ? US0_US0_4_2() : US0_US0_0_2()))));
-    }, toArray<[Mut0_2, Mut1_2, Mut2_2, Option<int64>, Mut3_2]>(State_trace_state_2()));
-    iterate<[Mut0_3, Mut1_3, Mut2_3, Option<int64>, Mut3_3]>((_arg_3: [Mut0_3, Mut1_3, Mut2_3, Option<int64>, Mut3_3]): void => {
-        _arg_3[2].l0 = ((new_level.tag === /* US0_1 */ 1) ? US0_US0_1_3() : ((new_level.tag === /* US0_2 */ 2) ? US0_US0_2_3() : ((new_level.tag === /* US0_3 */ 3) ? US0_US0_3_3() : ((new_level.tag === /* US0_4 */ 4) ? US0_US0_4_3() : US0_US0_0_3()))));
-    }, toArray<[Mut0_3, Mut1_3, Mut2_3, Option<int64>, Mut3_3]>(State_trace_state_3()));
-    iterate<[Mut0_4, Mut1_4, Mut2_4, Option<int64>, Mut3_4]>((_arg_4: [Mut0_4, Mut1_4, Mut2_4, Option<int64>, Mut3_4]): void => {
-        _arg_4[2].l0 = new_level;
-    }, toArray<[Mut0_4, Mut1_4, Mut2_4, Option<int64>, Mut3_4]>(State_trace_state_4()));
+    iterate<[Mut0, Mut1, Mut2, Mut3, Option<int64>]>((_arg: [Mut0, Mut1, Mut2, Mut3, Option<int64>]): void => {
+        _arg[3].l0 = ((new_level.tag === /* US0_1 */ 1) ? US0_US0_1() : ((new_level.tag === /* US0_2 */ 2) ? US0_US0_2() : ((new_level.tag === /* US0_3 */ 3) ? US0_US0_3() : ((new_level.tag === /* US0_4 */ 4) ? US0_US0_4() : US0_US0_0()))));
+    }, toArray<[Mut0, Mut1, Mut2, Mut3, Option<int64>]>(State_trace_state()));
+    iterate<[Mut0_1, Mut1_1, Mut2_1, Mut3_1, Option<int64>]>((_arg_1: [Mut0_1, Mut1_1, Mut2_1, Mut3_1, Option<int64>]): void => {
+        _arg_1[3].l0 = ((new_level.tag === /* US0_1 */ 1) ? US0_US0_1_1() : ((new_level.tag === /* US0_2 */ 2) ? US0_US0_2_1() : ((new_level.tag === /* US0_3 */ 3) ? US0_US0_3_1() : ((new_level.tag === /* US0_4 */ 4) ? US0_US0_4_1() : US0_US0_0_1()))));
+    }, toArray<[Mut0_1, Mut1_1, Mut2_1, Mut3_1, Option<int64>]>(State_trace_state_1()));
+    iterate<[Mut0_2, Mut1_2, Mut2_2, Mut3_2, Option<int64>]>((_arg_2: [Mut0_2, Mut1_2, Mut2_2, Mut3_2, Option<int64>]): void => {
+        _arg_2[3].l0 = ((new_level.tag === /* US0_1 */ 1) ? US0_US0_1_2() : ((new_level.tag === /* US0_2 */ 2) ? US0_US0_2_2() : ((new_level.tag === /* US0_3 */ 3) ? US0_US0_3_2() : ((new_level.tag === /* US0_4 */ 4) ? US0_US0_4_2() : US0_US0_0_2()))));
+    }, toArray<[Mut0_2, Mut1_2, Mut2_2, Mut3_2, Option<int64>]>(State_trace_state_2()));
+    iterate<[Mut0_3, Mut1_3, Mut2_3, Mut3_3, Option<int64>]>((_arg_3: [Mut0_3, Mut1_3, Mut2_3, Mut3_3, Option<int64>]): void => {
+        _arg_3[3].l0 = ((new_level.tag === /* US0_1 */ 1) ? US0_US0_1_3() : ((new_level.tag === /* US0_2 */ 2) ? US0_US0_2_3() : ((new_level.tag === /* US0_3 */ 3) ? US0_US0_3_3() : ((new_level.tag === /* US0_4 */ 4) ? US0_US0_4_3() : US0_US0_0_3()))));
+    }, toArray<[Mut0_3, Mut1_3, Mut2_3, Mut3_3, Option<int64>]>(State_trace_state_3()));
+    iterate<[Mut0_4, Mut1_4, Mut2_4, Mut3_4, Option<int64>]>((_arg_4: [Mut0_4, Mut1_4, Mut2_4, Mut3_4, Option<int64>]): void => {
+        _arg_4[3].l0 = new_level;
+    }, toArray<[Mut0_4, Mut1_4, Mut2_4, Mut3_4, Option<int64>]>(State_trace_state_4()));
 }
 
 export function get_trace_level(): US0_$union {
-    return defaultArgWith<US0_$union>(map<[Mut0_4, Mut1_4, Mut2_4, Option<int64>, Mut3_4], US0_$union>((_arg: [Mut0_4, Mut1_4, Mut2_4, Option<int64>, Mut3_4]): US0_$union => _arg[2].l0, State_trace_state_4()), (): US0_$union => {
+    return defaultArgWith<US0_$union>(map<[Mut0_4, Mut1_4, Mut2_4, Mut3_4, Option<int64>], US0_$union>((_arg: [Mut0_4, Mut1_4, Mut2_4, Mut3_4, Option<int64>]): US0_$union => _arg[3].l0, State_trace_state_4()), (): US0_$union => {
         throw new Error("lib.get_trace_level / trace_state=None");
     });
 }

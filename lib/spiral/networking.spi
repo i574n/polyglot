@@ -133,7 +133,9 @@ inl test_port_open host port : _ bool = async.new_async fun () =>
             return true
         fun ex =>
             inl ex = ex |> sm'.format_exception
-            trace Verbose (fun () => $'$"networking.test_port_open / port: {!port} / ex: {!ex}"') _locals
+            trace Verbose
+                fun () => $'$"networking.test_port_open"'
+                fun () => { port ex }
             return false
 
 /// ### test_port_open_timeout
@@ -160,8 +162,9 @@ inl wait_for_port_access timeout status host port : _ i64 =
             fun () => retry |> return
             fun () =>
                 if retry % 100 = 0 then
-                    inl _locals () = $'$"port: {!port} / retry: {!retry} / timeout: %A{!timeout} / status: {!status} / {!_locals ()}"'
-                    trace Verbose (fun () => "networking.wait_for_port_access") _locals
+                    trace Verbose
+                        fun () => "networking.wait_for_port_access"
+                        fun () => { port retry timeout status }
                 async.sleep 10 |> async.do
                 loop (retry + 1) |> async.return_await
     loop 0i64

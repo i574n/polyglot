@@ -1,5 +1,6 @@
 /// # sm'
 open rust_operators
+open real_sm'
 
 /// ## types
 inl types () =
@@ -39,23 +40,23 @@ inl types () =
 
 /// ### symbol_to_string
 inl symbol_to_string forall t {symbol}. (x : t) : string =
-    !!!!SymbolToString(x)
+    real symbol_to_string `t
 
 /// ### index
 inl index i (str : string) : char =
     sm.index str i
 
 /// ### to_char_array
-inl to_char_array (str : string) : a i32 char =
+inl to_char_array (str : string) : a int char =
     am.init (str |> sm.length) (fun i => str |> index i)
-
-/// ### to_char_list
-inl to_char_list (str : string) : list char =
-    listm.init (str |> sm.length) (fun (i : i64) => str |> index i)
 
 /// ### length
 inl length forall dim {int}. (input : string) : dim =
     input |> sm.length
+
+/// ### to_char_list
+inl to_char_list (str : string) : list char =
+    listm.init (str |> length) (fun (i : i64) => str |> index i)
 
 /// ### is_empty
 inl is_empty (input : string) : bool =
@@ -64,6 +65,27 @@ inl is_empty (input : string) : bool =
 /// ### slice
 inl slice from to s : string =
     sm.slice s { from to }
+
+/// ### format_debug
+inl format_debug forall t. (x : t) : string =
+    real format_debug `t x
+
+/// ### prim
+inl prim x = real
+    match x with
+    | (x : i8) | (x : i16) | (x : i32) | (x : i64) => "%d", x
+    | (x : u8) | (x : u16) | (x : u32) | (x : u64) => "%u", x
+    | (x : f32) | (x : f64) => "%f", x
+    | (x : string) => "%s", x
+    | (x : char) => "%c", x
+
+/// ### printable
+
+/// ### real_format
+
+/// ### format
+inl format forall t. (x : t) : string =
+    real real_format `t x
 
 /// ### concat_array_trailing
 inl concat_array_trailing (separator : string) (input : a i32 string) =
@@ -242,10 +264,10 @@ inl split (separator : string) (str : string) : array_base string =
 inl split_string (separator : array_base string) (str : string) : array_base string =
     run_target function
         | Fsharp (Native) => fun () => $'!str.Split (!separator, System.StringSplitOptions.None)'
-        | _ => fun () => str |> split ((a separator : _ i32 _) |> seq.of_array |> concat (join ""))
+        | _ => fun () => str |> split ((a separator : _ int _) |> seq.of_array |> concat (join ""))
 
 /// ### join'
-inl join' (concat : string) (s : a i32 string) : string =
+inl join' (concat : string) (s : a int string) : string =
     $'System.String.Join (!concat, !s)'
 
 /// ### encoding
@@ -617,13 +639,6 @@ inl encode_utf8 (s : string) : string =
     }
 
 /// ## sm'
-
-/// ### format_debug
-inl format_debug x : string =
-    backend_switch {
-        Fsharp = fun () => $'$"%A{!x}"' : string
-        Python = fun () => $'f"{!x}"' : string
-    }
 
 /// ### contains
 inl contains (value : string) (s : string) : bool =

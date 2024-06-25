@@ -336,25 +336,45 @@ module SpiralFileSystem =
 #endif
 
 #if !INTERACTIVE
-        let struct (_, _, _, _, trace_file) = File_system.State.trace_state |> Option.get
+        let struct (_, _, _, trace_file, _) = File_system.State.trace_state |> Option.get
         let new_trace_file = trace_file.l0
 
-        let struct (_, _, _, _, trace_file) = Networking.State.trace_state |> Option.get
-        trace_file.l0 <- new_trace_file
+        let struct (_, _, _, trace_file, _) = Networking.State.trace_state |> Option.get
+        trace_file.l0 <-
+            match new_trace_file with
+            | File_system.US0_0 -> Networking.US0_0
+            | File_system.US0_1 -> Networking.US0_1
+            | File_system.US0_2 -> Networking.US0_2
+            | File_system.US0_3 -> Networking.US0_3
+            | File_system.US0_4 -> Networking.US0_4
 
-        let struct (_, _, _, _, trace_file) = Runtime.State.trace_state |> Option.get
-        trace_file.l0 <- new_trace_file
+        let struct (_, _, _, trace_file, _) = Runtime.State.trace_state |> Option.get
+        trace_file.l0 <-
+            match new_trace_file with
+            | File_system.US0_0 -> Runtime.US0_0
+            | File_system.US0_1 -> Runtime.US0_1
+            | File_system.US0_2 -> Runtime.US0_2
+            | File_system.US0_3 -> Runtime.US0_3
+            | File_system.US0_4 -> Runtime.US0_4
 
-        let struct (_, _, _, _, trace_file) = Trace.State.trace_state |> Option.get
-        trace_file.l0 <- new_trace_file
+        let struct (_, _, _, trace_file, _) = Trace.State.trace_state |> Option.get
+        trace_file.l0 <-
+            match new_trace_file with
+            | File_system.US0_0 -> Trace.US0_0
+            | File_system.US0_1 -> Trace.US0_1
+            | File_system.US0_2 -> Trace.US0_2
+            | File_system.US0_3 -> Trace.US0_3
+            | File_system.US0_4 -> Trace.US0_4
 
-        let struct (_, _, _, _, trace_file) = Common.State.trace_state |> Option.get
-        trace_file.l0 <- new_trace_file
-#else
-        let struct (_, _, _, _, trace_file) = State.trace_state |> Option.get
-        let new_trace_file = trace_file.l0
+        let struct (_, _, _, trace_file, _) = Common.State.trace_state |> Option.get
+        trace_file.l0 <-
+            match new_trace_file with
+            | File_system.US0_0 -> Common.US0_0
+            | File_system.US0_1 -> Common.US0_1
+            | File_system.US0_2 -> Common.US0_2
+            | File_system.US0_3 -> Common.US0_3
+            | File_system.US0_4 -> Common.US0_4
 #endif
-        trace_file.l0 <- new_trace_file
 
     let wait_for_file_access x =
 #if !INTERACTIVE
@@ -433,7 +453,7 @@ module SpiralFileSystem =
 let set_trace_level new_level =
 #if !INTERACTIVE
     Networking.State.trace_state
-    |> Option.iter (fun struct (_, _, level, _, _) ->
+    |> Option.iter (fun struct (_, _, _, level, _) ->
         level.l0 <-
             match new_level with
             | Trace.US0_0 -> Networking.US0_0
@@ -444,7 +464,7 @@ let set_trace_level new_level =
     )
 
     File_system.State.trace_state
-    |> Option.iter (fun struct (_, _, level, _, _) ->
+    |> Option.iter (fun struct (_, _, _, level, _) ->
         level.l0 <-
             match new_level with
             | Trace.US0_0 -> File_system.US0_0
@@ -455,7 +475,7 @@ let set_trace_level new_level =
     )
 
     Runtime.State.trace_state
-    |> Option.iter (fun struct (_, _, level, _, _) ->
+    |> Option.iter (fun struct (_, _, _, level, _) ->
         level.l0 <-
             match new_level with
             | Trace.US0_0 -> Runtime.US0_0
@@ -466,7 +486,7 @@ let set_trace_level new_level =
     )
 
     Common.State.trace_state
-    |> Option.iter (fun struct (_, _, level, _, _) ->
+    |> Option.iter (fun struct (_, _, _, level, _) ->
         level.l0 <-
             match new_level with
             | Trace.US0_0 -> Common.US0_0
@@ -480,7 +500,7 @@ let set_trace_level new_level =
 #else
     State.trace_state
 #endif
-    |> Option.iter (fun (struct (_, _, level, _, _)) ->
+    |> Option.iter (fun (struct (_, _, _, level, _)) ->
         level.l0 <- new_level
     )
 
@@ -490,7 +510,7 @@ let get_trace_level () =
 #else
     State.trace_state
 #endif
-    |> Option.map (fun struct (_, _, level, _, _) ->
+    |> Option.map (fun struct (_, _, _, level, _) ->
         level.l0
     )
     |> Option.defaultWith (fun () -> failwith "lib.get_trace_level / trace_state=None")

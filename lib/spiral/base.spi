@@ -309,13 +309,36 @@ inl convert_i32_base forall t. (base : i32) (x : t) : i32 =
 /// ## error
 
 /// ### exn
-nominal exn = $'exn'
+nominal exn = $"backend_switch `({ Fsharp : $'exn'; Python : $'BaseException' })"
+
+inl exn x =
+    x |> $'`exn '
 
 /// ### try
 inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
-    inl none = None : option t
-    inl some (s : t) = Some s
-    $'try !fn () |> !some with ex -> !ex_fn ex '
+    backend_switch {
+        Fsharp = fun () =>
+            inl some x : option t = Some x
+            inl some = dyn some
+            inl fn = dyn fn
+            inl ex_fn = dyn ex_fn
+            $'let result = ref !(None : option t)'
+            $'try'
+            $'    result.Value <- !fn () |> !some '
+            $'with ex ->'
+            $'    result.Value <- !ex_fn ex '
+            $'result.Value' : option t
+        Python = fun () =>
+            $'result = !(None : option t)'
+            inl fn = dyn fn
+            inl ex_fn = dyn ex_fn
+            $'try:'
+            $'    result = !fn()\n        \'\'\''
+            $'\'\'\''
+            $'except Exception as e:'
+            $'    result = !ex_fn(e)'
+            $'result' : option t
+    }
 
 /// ### try_unit
 inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =

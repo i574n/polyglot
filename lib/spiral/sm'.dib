@@ -15,6 +15,7 @@ open testing
 #!spiral
 
 open rust_operators
+open real_sm'
 
 #!markdown
 
@@ -67,8 +68,38 @@ inl types () =
 
 #!spiral
 
+//// real
+
+inl symbol_to_string forall t {symbol}. : string =
+    // inl x = real_core.type_lit_to_lit `t
+    // inl x = real_core.type_to_symbol `t
+    // inl x = real_core.type_lit_to_lit `t
+    // !!!!SymbolToString (`(`t))
+    inl x = real_core.type_to_symbol `t
+    !!!!SymbolToString (x)
+
+#!spiral
+
 inl symbol_to_string forall t {symbol}. (x : t) : string =
-    !!!!SymbolToString(x)
+    real symbol_to_string `t
+
+#!spiral
+
+//// test
+
+.test
+|> symbol_to_string
+|> _assert_eq "test"
+
+#!spiral
+
+//// test
+//// real
+
+open testing
+inl x = .test
+inl x = symbol_to_string `(`x)
+_assert_eq `string "test" x
 
 #!markdown
 
@@ -85,7 +116,7 @@ inl index i (str : string) : char =
 
 #!spiral
 
-inl to_char_array (str : string) : a i32 char =
+inl to_char_array (str : string) : a int char =
     am.init (str |> sm.length) (fun i => str |> index i)
 
 #!spiral
@@ -98,12 +129,21 @@ inl to_char_array (str : string) : a i32 char =
 
 #!markdown
 
+### length
+
+#!spiral
+
+inl length forall dim {int}. (input : string) : dim =
+    input |> sm.length
+
+#!markdown
+
 ### to_char_list
 
 #!spiral
 
 inl to_char_list (str : string) : list char =
-    listm.init (str |> sm.length) (fun (i : i64) => str |> index i)
+    listm.init (str |> length) (fun (i : i64) => str |> index i)
 
 #!spiral
 
@@ -112,15 +152,6 @@ inl to_char_list (str : string) : list char =
 "abc"
 |> to_char_list
 |> _assert_eq [ 'a'; 'b'; 'c' ]
-
-#!markdown
-
-### length
-
-#!spiral
-
-inl length forall dim {int}. (input : string) : dim =
-    input |> sm.length
 
 #!markdown
 
@@ -142,6 +173,143 @@ inl slice from to s : string =
 
 #!markdown
 
+### format_debug
+
+#!spiral
+
+//// real
+
+inl format_debug forall t. (x : t) : string =
+    backend_switch `string `string {
+        Fsharp = fun () => $'$"%A{!x}"' : string
+        Python = fun () => $'f"{!x}"' : string
+    }
+
+#!spiral
+
+inl format_debug forall t. (x : t) : string =
+    real format_debug `t x
+
+#!spiral
+
+//// test
+
+{ c = "1"; a = "2"; b = "3" }
+|> format_debug
+|> _assert_eq "struct (\"1\", \"2\", \"3\")"
+
+#!markdown
+
+### prim
+
+#!spiral
+
+inl prim x = real
+    match x with
+    | (x : i8) | (x : i16) | (x : i32) | (x : i64) => "%d", x
+    | (x : u8) | (x : u16) | (x : u32) | (x : u64) => "%u", x
+    | (x : f32) | (x : f64) => "%f", x
+    | (x : string) => "%s", x
+    | (x : char) => "%c", x
+
+#!markdown
+
+### printable
+
+#!spiral
+
+//// real
+
+prototype printable t : t -> ()
+
+#!markdown
+
+### real_format
+
+#!spiral
+
+//// real
+
+inl real_format forall t. (x : t) : string =
+    inl result = mut `string ""
+    real
+        let rec write x =
+            inl p ((a : string), b) =
+                inl s : string =
+                    backend_switch `string `string {
+                        Fsharp = fun () =>
+                            match b with
+                            | (_ : f32) | (_ : f64) => $'$"%+.6f{!b}"' : string
+                            | _ => $'$"{!b}"' : string
+                        Python = fun () =>
+                            match b with
+                            | (_ : f32) | (_ : f64) => $'"{:.6f}".format(!b)' : string
+                            | _ => $'!b ' : string
+                    }
+                result <- (+.) `string ((~*) `string result) s
+
+            match x with // According to Bing it shouldn't matter whether these are %d or %lld in printf.
+            | () => ()
+            | (x : i8) | (x : i16) | (x : i32) | (x : i64) => p ("%d", x)
+            | (x : u8) | (x : u16) | (x : u32) | (x : u64) => p ("%u", x)
+            | (x : f32) | (x : f64) => p ("%f", x)
+            | (x : string) => p ("%s", x)
+            | (x : char) => p ("%c", x)
+            | (x : bool) => p ("%s", if x then "true" else "false")
+            | (a,b) => write a . write ", " . write b
+            | {} as x =>
+                write "{ "
+                inl _result =
+                    real_core.record_fold
+                        fun { state = separator key value } =>
+                            write separator
+                            write (symbol_to_string `(`key)) . write " = " . write value
+                            "; "
+                        () x
+                write " }"
+            | x when real_core.symbol_is x => write (symbol_to_string `(`x))
+            | x when real_core.function_is x => write (x ())
+            | x =>
+                if real_core.union_is x then
+                    if real_core.prototype_has `(`x) printable then printable `(`x) x
+                    else
+                        write (format_debug `(`x) x)
+                        // real_core.unbox x (fun (k, v) =>
+                        //     write k
+                        //     match v with
+                        //     | () => ()
+                        //     | _ => write "(" . write v . write ")"
+                        //     )
+                elif real_core.nominal_is x && real_core.prototype_has `(`x) printable then printable `(`x) x
+                // elif layout_is x then write *x // TODO: Deal with all the layout type cases.
+                else write (format_debug `(`x) x)
+        write x
+    (~*) `string result
+
+#!markdown
+
+### format
+
+#!spiral
+
+inl format forall t. (x : t) : string =
+    real real_format `t x
+
+#!spiral
+
+//// test
+///! fsharp
+////! cuda
+////! rust
+////! typescript
+////! python
+
+("1", "2", ["3"; "4"], { b = "5"; c = "6"; a = fun () => "7" })
+|> format
+|> _assert_eq "1, 2, UH0_1 (\"3\", UH0_1 (\"4\", UH0_0)), { b = 5; c = 6; a = 7 }"
+
+#!markdown
+
 ### concat_array_trailing
 
 #!spiral
@@ -154,7 +322,7 @@ inl concat_array_trailing (separator : string) (input : a i32 string) =
 #!spiral
 
 //// test
-///! rust
+///! typescript
 
 ;[
     "1"
@@ -541,7 +709,7 @@ inl split (separator : string) (str : string) : array_base string =
 inl split_string (separator : array_base string) (str : string) : array_base string =
     run_target function
         | Fsharp (Native) => fun () => $'!str.Split (!separator, System.StringSplitOptions.None)'
-        | _ => fun () => str |> split ((a separator : _ i32 _) |> seq.of_array |> concat (join ""))
+        | _ => fun () => str |> split ((a separator : _ int _) |> seq.of_array |> concat (join ""))
 
 #!markdown
 
@@ -549,7 +717,7 @@ inl split_string (separator : array_base string) (str : string) : array_base str
 
 #!spiral
 
-inl join' (concat : string) (s : a i32 string) : string =
+inl join' (concat : string) (s : a int string) : string =
     $'System.String.Join (!concat, !s)'
 
 #!markdown
@@ -1288,18 +1456,6 @@ inl encode_utf8 (s : string) : string =
 #!markdown
 
 ## sm'
-
-#!markdown
-
-### format_debug
-
-#!spiral
-
-inl format_debug x : string =
-    backend_switch {
-        Fsharp = fun () => $'$"%A{!x}"' : string
-        Python = fun () => $'f"{!x}"' : string
-    }
 
 #!markdown
 

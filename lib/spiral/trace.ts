@@ -2,14 +2,14 @@ import { compare, IComparable, IEquatable, createAtom } from "../../deps/Fable/s
 import { some, defaultArg, value, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 import { op_Addition, op_Subtraction, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { FSharpRef, Record, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
-import { lambda_type, unit_type, string_type, bool_type, record_type, int64_type, union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { bool_type, lambda_type, unit_type, string_type, record_type, int64_type, union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import { create, toString, now, getTicks } from "../../deps/Fable/src/fable-library-ts/Date.js";
 import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
 import { trimStart, trimEnd, padLeft } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 
-export let State_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Option<int64>, Mut3]>>(undefined);
+export let State_trace_state = createAtom<Option<[Mut0, Mut1, Mut2, Mut3, Option<int64>]>>(undefined);
 
 export interface IOsEnviron {
     environ(): any
@@ -75,31 +75,7 @@ export function Mut0_$reflection(): TypeInfo {
     return record_type("Trace.Mut0", [], Mut0, () => [["l0", int64_type]]);
 }
 
-export class Mut1 extends Record implements IEquatable<Mut1>, IComparable<Mut1> {
-    l0: boolean;
-    constructor(l0: boolean) {
-        super();
-        this.l0 = l0;
-    }
-}
-
-export function Mut1_$reflection(): TypeInfo {
-    return record_type("Trace.Mut1", [], Mut1, () => [["l0", bool_type]]);
-}
-
-export class Mut2 extends Record implements IEquatable<Mut2>, IComparable<Mut2> {
-    l0: US0_$union;
-    constructor(l0: US0_$union) {
-        super();
-        this.l0 = l0;
-    }
-}
-
-export function Mut2_$reflection(): TypeInfo {
-    return record_type("Trace.Mut2", [], Mut2, () => [["l0", US0_$reflection()]]);
-}
-
-export class Mut3 extends Record {
+export class Mut1 extends Record {
     l0: ((arg0: string) => void);
     constructor(l0: ((arg0: string) => void)) {
         super();
@@ -107,8 +83,32 @@ export class Mut3 extends Record {
     }
 }
 
+export function Mut1_$reflection(): TypeInfo {
+    return record_type("Trace.Mut1", [], Mut1, () => [["l0", lambda_type(string_type, unit_type)]]);
+}
+
+export class Mut2 extends Record implements IEquatable<Mut2>, IComparable<Mut2> {
+    l0: boolean;
+    constructor(l0: boolean) {
+        super();
+        this.l0 = l0;
+    }
+}
+
+export function Mut2_$reflection(): TypeInfo {
+    return record_type("Trace.Mut2", [], Mut2, () => [["l0", bool_type]]);
+}
+
+export class Mut3 extends Record implements IEquatable<Mut3>, IComparable<Mut3> {
+    l0: US0_$union;
+    constructor(l0: US0_$union) {
+        super();
+        this.l0 = l0;
+    }
+}
+
 export function Mut3_$reflection(): TypeInfo {
-    return record_type("Trace.Mut3", [], Mut3, () => [["l0", lambda_type(string_type, unit_type)]]);
+    return record_type("Trace.Mut3", [], Mut3, () => [["l0", US0_$reflection()]]);
 }
 
 export type US1_$union = 
@@ -116,11 +116,11 @@ export type US1_$union =
     | US1<1>
 
 export type US1_$cases = {
-    0: ["US1_0", [int64]],
+    0: ["US1_0", [US0_$union]],
     1: ["US1_1", []]
 }
 
-export function US1_US1_0(f0_0: int64) {
+export function US1_US1_0(f0_0: US0_$union) {
     return new US1<0>(0, [f0_0]);
 }
 
@@ -138,7 +138,7 @@ export class US1<Tag extends keyof US1_$cases> extends Union<Tag, US1_$cases[Tag
 }
 
 export function US1_$reflection(): TypeInfo {
-    return union_type("Trace.US1", [], US1, () => [[["f0_0", int64_type]], []]);
+    return union_type("Trace.US1", [], US1, () => [[["f0_0", US0_$reflection()]], []]);
 }
 
 export type US2_$union = 
@@ -146,11 +146,11 @@ export type US2_$union =
     | US2<1>
 
 export type US2_$cases = {
-    0: ["US2_0", [US0_$union]],
+    0: ["US2_0", [int64]],
     1: ["US2_1", []]
 }
 
-export function US2_US2_0(f0_0: US0_$union) {
+export function US2_US2_0(f0_0: int64) {
     return new US2<0>(0, [f0_0]);
 }
 
@@ -168,7 +168,7 @@ export class US2<Tag extends keyof US2_$cases> extends Union<Tag, US2_$cases[Tag
 }
 
 export function US2_$reflection(): TypeInfo {
-    return union_type("Trace.US2", [], US2, () => [[["f0_0", US0_$reflection()]], []]);
+    return union_type("Trace.US2", [], US2, () => [[["f0_0", int64_type]], []]);
 }
 
 export type US3_$union = 
@@ -199,6 +199,18 @@ export class US3<Tag extends keyof US3_$cases> extends Union<Tag, US3_$cases[Tag
 
 export function US3_$reflection(): TypeInfo {
     return union_type("Trace.US3", [], US3, () => [[["f0_0", string_type]], []]);
+}
+
+export class Mut4 extends Record implements IEquatable<Mut4>, IComparable<Mut4> {
+    l0: string;
+    constructor(l0: string) {
+        super();
+        this.l0 = l0;
+    }
+}
+
+export function Mut4_$reflection(): TypeInfo {
+    return record_type("Trace.Mut4", [], Mut4, () => [["l0", string_type]]);
 }
 
 export function US0__get_IsUS0_0(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
@@ -327,37 +339,12 @@ export function method3(): string {
 export function closure1(unitVar: void, v0_1: string): void {
 }
 
-export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Option<int64>, Mut3] {
+export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] {
+    let v84: US1_$union, v92: US1_$union, v100: US1_$union, v108: US1_$union;
     let _v1: Option<[US1_$union, US2_$union]> = undefined;
     const v70: string = method1(method0());
-    const v76: US2_$union = ("Verbose" === v70) ? US2_US2_0(US0_US0_0()) : US2_US2_1();
-    let v121: US2_$union;
-    if (v76.tag === /* US2_0 */ 0) {
-        v121 = US2_US2_0(v76.fields[0]);
-    }
-    else {
-        const v84: US2_$union = ("Debug" === v70) ? US2_US2_0(US0_US0_1()) : US2_US2_1();
-        if (v84.tag === /* US2_0 */ 0) {
-            v121 = US2_US2_0(v84.fields[0]);
-        }
-        else {
-            const v92: US2_$union = ("Info" === v70) ? US2_US2_0(US0_US0_2()) : US2_US2_1();
-            if (v92.tag === /* US2_0 */ 0) {
-                v121 = US2_US2_0(v92.fields[0]);
-            }
-            else {
-                const v100: US2_$union = ("Warning" === v70) ? US2_US2_0(US0_US0_3()) : US2_US2_1();
-                if (v100.tag === /* US2_0 */ 0) {
-                    v121 = US2_US2_0(v100.fields[0]);
-                }
-                else {
-                    const v108: US2_$union = ("Critical" === v70) ? US2_US2_0(US0_US0_4()) : US2_US2_1();
-                    v121 = ((v108.tag === /* US2_0 */ 0) ? US2_US2_0(v108.fields[0]) : US2_US2_1());
-                }
-            }
-        }
-    }
-    const x = [(method1(method3()) === "True") ? US1_US1_0(getTicks(now())) : US1_US1_1(), v121] as [US1_$union, US2_$union];
+    const v76: US1_$union = ("Verbose" === v70) ? US1_US1_0(US0_US0_0()) : US1_US1_1();
+    const x = [(v76.tag === /* US1_0 */ 0) ? US1_US1_0(v76.fields[0]) : ((v84 = (("Debug" === v70) ? US1_US1_0(US0_US0_1()) : US1_US1_1()), (v84.tag === /* US1_0 */ 0) ? US1_US1_0(v84.fields[0]) : ((v92 = (("Info" === v70) ? US1_US1_0(US0_US0_2()) : US1_US1_1()), (v92.tag === /* US1_0 */ 0) ? US1_US1_0(v92.fields[0]) : ((v100 = (("Warning" === v70) ? US1_US1_0(US0_US0_3()) : US1_US1_1()), (v100.tag === /* US1_0 */ 0) ? US1_US1_0(v100.fields[0]) : ((v108 = (("Critical" === v70) ? US1_US1_0(US0_US0_4()) : US1_US1_1()), (v108.tag === /* US1_0 */ 0) ? US1_US1_0(v108.fields[0]) : US1_US1_1())))))))), (method1(method3()) === "True") ? US2_US2_0(getTicks(now())) : US2_US2_1()] as [US1_$union, US2_$union];
     _v1 = x;
     let patternInput: [US1_$union, US2_$union];
     if (_v1 == null) {
@@ -368,10 +355,9 @@ export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Op
     }
     const v259: US2_$union = patternInput[1];
     const v258: US1_$union = patternInput[0];
-    const v267: Mut3 = new Mut3((v: string): void => {
+    return [new Mut0(0n), new Mut1((v: string): void => {
         closure1(undefined, v);
-    });
-    return [new Mut0(0n), new Mut1(true), new Mut2((v259.tag === /* US2_0 */ 0) ? v259.fields[0] : v0_1), (v258.tag === /* US1_0 */ 0) ? v258.fields[0] : undefined, v267] as [Mut0, Mut1, Mut2, Option<int64>, Mut3];
+    }), new Mut2(true), new Mut3((v258.tag === /* US1_0 */ 0) ? v258.fields[0] : v0_1), (v259.tag === /* US2_0 */ 0) ? v259.fields[0] : undefined] as [Mut0, Mut1, Mut2, Mut3, Option<int64>];
 }
 
 export function method5(): string {
@@ -390,26 +376,32 @@ export function method8(): string {
     return "\u001b[0m";
 }
 
+export function method9(v0_1: Mut4, v1_1: string): void {
+    const v2_1 = `${v1_1}`;
+    const v4: string = v0_1.l0 + v2_1;
+    v0_1.l0 = v4;
+}
+
 export function closure5(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string), unitVar: void): string {
     let v74: int64, v80: number;
     if (State_trace_state() == null) {
         State_trace_state(closure0(undefined, US0_US0_0()));
     }
-    const patternInput: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value(State_trace_state());
-    const v8: Option<int64> = patternInput[3];
+    const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value(State_trace_state());
+    const v9: Option<int64> = patternInput[4];
     let _v10: Option<string> = undefined;
-    const _v68: FSharpRef<Option<US1_$union>> = new FSharpRef<Option<US1_$union>>(undefined);
-    let x_2: Option<US1_$union>;
-    if (v8 == null) {
+    const _v68: FSharpRef<Option<US2_$union>> = new FSharpRef<Option<US2_$union>>(undefined);
+    let x_2: Option<US2_$union>;
+    if (v9 == null) {
         x_2 = undefined;
     }
     else {
-        const x: int64 = value(v8);
-        x_2 = ((): US1_$union => US1_US1_0(x))();
+        const x: int64 = value(v9);
+        x_2 = ((): US2_$union => US2_US2_0(x))();
     }
     _v68.contents = x_2;
-    const v73: US1_$union = defaultArg(_v68.contents, US1_US1_1());
-    const x_3: string = toString((v73.tag === /* US1_0 */ 0) ? ((v74 = v73.fields[0], (v80 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v74))), create(1, 1, 1, hours(v80), minutes(v80), seconds(v80), milliseconds(v80))))) : now(), method7());
+    const v73: US2_$union = defaultArg(_v68.contents, US2_US2_1());
+    const x_3: string = toString((v73.tag === /* US2_0 */ 0) ? ((v74 = v73.fields[0], (v80 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v74))), create(1, 1, 1, hours(v80), minutes(v80), seconds(v80), milliseconds(v80))))) : now(), method7());
     _v10 = x_3;
     let v152: string;
     if (_v10 == null) {
@@ -456,24 +448,33 @@ export function closure5(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => st
     let _v216: Option<string> = undefined;
     const x_5: string = (((v0_1.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0_1.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0_1.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0_1.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v215) + method8();
     _v216 = x_5;
-    return trimEnd(trimStart(`${v152} ${(_v216 == null) ? (() => {
+    let v328: string;
+    if (_v216 == null) {
         throw new Error("base.run_target / _v216=None");
-    })() : value(_v216)} #${patternInput[0].l0} ${v1_1()} / ${v2_1()}`, ...[]), ...[" ", "/"]);
+    }
+    else {
+        v328 = value(_v216);
+    }
+    const v329: int64 = patternInput[0].l0;
+    const v332: Mut4 = new Mut4("");
+    method9(v332, v2_1());
+    const v333: string = v332.l0;
+    return trimEnd(trimStart(`${v152} ${v328} #${v329} ${v1_1()} / ${v333}`, ...[]), ...[" ", "/"]);
 }
 
-export function method9(v0_1: US0_$union, v1_1: (() => string)): void {
-    const v2_1 = (v: US0_$union): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(undefined, v);
+export function method10(v0_1: US0_$union, v1_1: (() => string)): void {
+    const v2_1 = (v: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] => closure0(undefined, v);
     if (State_trace_state() == null) {
         State_trace_state(v2_1(US0_US0_0()));
     }
-    const patternInput: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value(State_trace_state());
+    const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value(State_trace_state());
     const v4: Mut0 = patternInput[0];
     if (State_trace_state() == null) {
         State_trace_state(v2_1(US0_US0_0()));
     }
-    const patternInput_1: [Mut0, Mut1, Mut2, Option<int64>, Mut3] = value(State_trace_state());
-    const v15: US0_$union = patternInput_1[2].l0;
-    if ((patternInput_1[1].l0 === false) ? false : (find<US0_$union, int32>(v0_1, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
+    const patternInput_1: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value(State_trace_state());
+    const v15: US0_$union = patternInput_1[3].l0;
+    if ((patternInput_1[2].l0 === false) ? false : (find<US0_$union, int32>(v0_1, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
         Compare: compare,
     })) >= find<US0_$union, int32>(v15, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
         Compare: compare,
@@ -490,12 +491,12 @@ export function method9(v0_1: US0_$union, v1_1: (() => string)): void {
         else {
             value(_v25);
         }
-        patternInput[4].l0(v24);
+        patternInput[1].l0(v24);
     }
 }
 
 export function method4(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
-    method9(v0_1, (): string => closure5(v0_1, v1_1, v2_1, undefined));
+    method10(v0_1, (): string => closure5(v0_1, v1_1, v2_1, undefined));
 }
 
 export function closure4(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
@@ -512,7 +513,7 @@ export function closure2(unitVar: void, v0_1: US0_$union): ((arg0: (() => string
     return (v: (() => string)): ((arg0: (() => string)) => void) => closure3(v0_1, v);
 }
 
-export const v0 = (v: US0_$union): [Mut0, Mut1, Mut2, Option<int64>, Mut3] => closure0(undefined, v);
+export const v0 = (v: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] => closure0(undefined, v);
 
 export const v1: US0_$union = US0_US0_0();
 

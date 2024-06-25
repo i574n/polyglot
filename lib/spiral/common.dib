@@ -178,22 +178,13 @@ inl retry_fn' retries fn =
         else
             trace Debug
                 fun () => $'"common.retry_fn\' / loop"'
-                fun () => $'$"is_error: {!is_error} / retry: {!retry}/{!retries} / result: %A{!result} / {!_locals ()}"'
+                fun () => { is_error retry = $'$"{!retry}/{!retries}"' : string; result }
             loop (retry + 1)
     loop 1
 
 #!markdown
 
 ## fsharp
-
-#!markdown
-
-### nameof
-
-#!spiral
-
-inl nameof x : string =
-    $'nameof !x '
 
 #!markdown
 
@@ -281,7 +272,7 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
             fun ex =>
                 trace Warning
                     fun () => "common.retry_fn"
-                    fun () => $'$"retry: {!retry} / ex: %A{!ex} / {!_locals ()}"'
+                    fun () => { retry ex }
                 None
         |> function
             | Some x => x

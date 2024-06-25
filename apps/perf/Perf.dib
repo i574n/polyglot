@@ -823,6 +823,48 @@ rotateStringsTests
 
 ## rotate_strings_tests
 
+#!markdown
+
+```
+02:21:12 [90mverbose[0m #1 benchmark.run_all / {count = 2000000; test_name = rotate_strings_tests}
+
+02:21:12 [90mverbose[0m #2 benchmark.run / {input_str = "abc"}
+02:21:13 [90mverbose[0m #3 benchmark.run / solutions.map / {i = 1; test_name = F; time = 638}
+02:21:14 [90mverbose[0m #4 benchmark.run / solutions.map / {i = 2; test_name = FA; time = 779}
+
+02:21:14 [90mverbose[0m #5 benchmark.run / {input_str = "abcde"}
+02:21:15 [90mverbose[0m #6 benchmark.run / solutions.map / {i = 1; test_name = F; time = 745}
+02:21:16 [90mverbose[0m #7 benchmark.run / solutions.map / {i = 2; test_name = FA; time = 809}
+
+02:21:16 [90mverbose[0m #8 benchmark.run / {input_str = "abcdefghi"}
+02:21:17 [90mverbose[0m #9 benchmark.run / solutions.map / {i = 1; test_name = F; time = 1092}
+02:21:18 [90mverbose[0m #10 benchmark.run / solutions.map / {i = 2; test_name = FA; time = 1304}
+
+02:21:18 [90mverbose[0m #11 benchmark.run / {input_str = "abab"}
+02:21:19 [90mverbose[0m #12 benchmark.run / solutions.map / {i = 1; test_name = F; time = 536}
+02:21:20 [90mverbose[0m #13 benchmark.run / solutions.map / {i = 2; test_name = FA; time = 620}
+
+02:21:20 [90mverbose[0m #14 benchmark.run / {input_str = "aa"}
+02:21:21 [90mverbose[0m #15 benchmark.run / solutions.map / {i = 1; test_name = F; time = 365}
+02:21:21 [90mverbose[0m #16 benchmark.run / solutions.map / {i = 2; test_name = FA; time = 396}
+
+02:21:21 [90mverbose[0m #17 benchmark.run / {input_str = "z"}
+02:21:22 [90mverbose[0m #18 benchmark.run / solutions.map / {i = 1; test_name = F; time = 158}
+02:21:22 [90mverbose[0m #19 benchmark.run / solutions.map / {i = 2; test_name = FA; time = 143}
+```
+input      	| expected                                                                                   	| result                                                                                     	| best   
+---        	| ---                                                                                        	| ---                                                                                        	| ---    
+"abc"      	| "bca cab abc"                                                                              	| "bca cab abc"                                                                              	| 1, 638 
+"abcde"    	| "bcdea cdeab deabc eabcd abcde"                                                            	| "bcdea cdeab deabc eabcd abcde"                                                            	| 1, 745 
+"abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| 1, 1092
+"abab"     	| "baba abab baba abab"                                                                      	| "baba abab baba abab"                                                                      	| 1, 536 
+"aa"       	| "aa aa"                                                                                    	| "aa aa"                                                                                    	| 1, 365 
+"z"        	| "z"                                                                                        	| "z"                                                                                        	| 2, 143 
+```
+02:21:22 [90mverbose[0m #20 benchmark.sort_result_list / averages.iter / {avg = 589; i = 1}
+02:21:22 [90mverbose[0m #21 benchmark.sort_result_list / averages.iter / {avg = 675; i = 2}
+```
+
 #!spiral
 
 //// test
@@ -983,7 +1025,7 @@ inl rec rotate_strings_tests () =
         then 1000i32
         else 2000000i32
 
-    run_all (nameof rotate_strings_tests) count solutions test_cases
+    run_all (reflection.nameof { rotate_strings_tests }) count solutions test_cases
     |> sort_result_list
 
 rotate_strings_tests ()
@@ -998,6 +1040,90 @@ rotate_strings_tests ()
 #!markdown
 
 ## binary_search_tests
+
+#!markdown
+
+```
+02:19:29 [90mverbose[0m #1 benchmark.run_all / {count = 10000000; test_name = binary_search_tests}
+
+02:19:29 [90mverbose[0m #2 benchmark.run / {input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 6, 7)}
+02:19:30 [90mverbose[0m #3 benchmark.run / solutions.map / {i = 1; test_name = semi_open_1; time = 662}
+02:19:30 [90mverbose[0m #4 benchmark.run / solutions.map / {i = 2; test_name = closed_1; time = 619}
+02:19:31 [90mverbose[0m #5 benchmark.run / solutions.map / {i = 3; test_name = semi_open_2; time = 644}
+02:19:32 [90mverbose[0m #6 benchmark.run / solutions.map / {i = 4; test_name = closed_2; time = 610}
+
+02:19:32 [90mverbose[0m #7 benchmark.run / {input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 1, 7)}
+02:19:33 [90mverbose[0m #8 benchmark.run / solutions.map / {i = 1; test_name = semi_open_1; time = 607}
+02:19:33 [90mverbose[0m #9 benchmark.run / solutions.map / {i = 2; test_name = closed_1; time = 559}
+02:19:34 [90mverbose[0m #10 benchmark.run / solutions.map / {i = 3; test_name = semi_open_2; time = 612}
+02:19:35 [90mverbose[0m #11 benchmark.run / solutions.map / {i = 4; test_name = closed_2; time = 577}
+
+02:19:35 [90mverbose[0m #12 benchmark.run / {input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 11, 7)}
+02:19:35 [90mverbose[0m #13 benchmark.run / solutions.map / {i = 1; test_name = semi_open_1; time = 550}
+02:19:36 [90mverbose[0m #14 benchmark.run / solutions.map / {i = 2; test_name = closed_1; time = 580}
+02:19:37 [90mverbose[0m #15 benchmark.run / solutions.map / {i = 3; test_name = semi_open_2; time = 624}
+02:19:37 [90mverbose[0m #16 benchmark.run / solutions.map / {i = 4; test_name = closed_2; time = 590}
+
+02:19:37 [90mverbose[0m #17 benchmark.run / {input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 12, 7)}
+02:19:38 [90mverbose[0m #18 benchmark.run / solutions.map / {i = 1; test_name = semi_open_1; time = 574}
+02:19:39 [90mverbose[0m #19 benchmark.run / solutions.map / {i = 2; test_name = closed_1; time = 577}
+02:19:39 [90mverbose[0m #20 benchmark.run / solutions.map / {i = 3; test_name = semi_open_2; time = 582}
+02:19:40 [90mverbose[0m #21 benchmark.run / solutions.map / {i = 4; test_name = closed_2; time = 585}
+
+02:19:40 [90mverbose[0m #22 benchmark.run / {input_str = struct ([|1; 2; 3; 4...00; ...|], 60, 1000)}
+02:19:41 [90mverbose[0m #23 benchmark.run / solutions.map / {i = 1; test_name = semi_open_1; time = 610}
+02:19:42 [90mverbose[0m #24 benchmark.run / solutions.map / {i = 2; test_name = closed_1; time = 672}
+02:19:42 [90mverbose[0m #25 benchmark.run / solutions.map / {i = 3; test_name = semi_open_2; time = 636}
+02:19:43 [90mverbose[0m #26 benchmark.run / solutions.map / {i = 4; test_name = closed_2; time = 629}
+
+02:19:43 [90mverbose[0m #27 benchmark.run / {input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 6, 7)}
+02:19:44 [90mverbose[0m #28 benchmark.run / solutions.map / {i = 1; test_name = semi_open_1; time = 599}
+02:19:44 [90mverbose[0m #29 benchmark.run / solutions.map / {i = 2; test_name = closed_1; time = 561}
+02:19:45 [90mverbose[0m #30 benchmark.run / solutions.map / {i = 3; test_name = semi_open_2; time = 604}
+02:19:46 [90mverbose[0m #31 benchmark.run / solutions.map / {i = 4; test_name = closed_2; time = 573}
+
+02:19:46 [90mverbose[0m #32 benchmark.run / {input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 1, 7)}
+02:19:47 [90mverbose[0m #33 benchmark.run / solutions.map / {i = 1; test_name = semi_open_1; time = 635}
+02:19:47 [90mverbose[0m #34 benchmark.run / solutions.map / {i = 2; test_name = closed_1; time = 603}
+02:19:48 [90mverbose[0m #35 benchmark.run / solutions.map / {i = 3; test_name = semi_open_2; time = 644}
+02:19:49 [90mverbose[0m #36 benchmark.run / solutions.map / {i = 4; test_name = closed_2; time = 628}
+
+02:19:49 [90mverbose[0m #37 benchmark.run / {input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 11, 7)}
+02:19:49 [90mverbose[0m #38 benchmark.run / solutions.map / {i = 1; test_name = semi_open_1; time = 643}
+02:19:50 [90mverbose[0m #39 benchmark.run / solutions.map / {i = 2; test_name = closed_1; time = 606}
+02:19:51 [90mverbose[0m #40 benchmark.run / solutions.map / {i = 3; test_name = semi_open_2; time = 636}
+02:19:52 [90mverbose[0m #41 benchmark.run / solutions.map / {i = 4; test_name = closed_2; time = 624}
+
+02:19:52 [90mverbose[0m #42 benchmark.run / {input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 12, 7)}
+02:19:52 [90mverbose[0m #43 benchmark.run / solutions.map / {i = 1; test_name = semi_open_1; time = 689}
+02:19:53 [90mverbose[0m #44 benchmark.run / solutions.map / {i = 2; test_name = closed_1; time = 613}
+02:19:54 [90mverbose[0m #45 benchmark.run / solutions.map / {i = 3; test_name = semi_open_2; time = 623}
+02:19:55 [90mverbose[0m #46 benchmark.run / solutions.map / {i = 4; test_name = closed_2; time = 613}
+
+02:19:55 [90mverbose[0m #47 benchmark.run / {input_str = struct ([|1; 2; 3; 4...100; ...|], 60, 100)}
+02:19:55 [90mverbose[0m #48 benchmark.run / solutions.map / {i = 1; test_name = semi_open_1; time = 630}
+02:19:56 [90mverbose[0m #49 benchmark.run / solutions.map / {i = 2; test_name = closed_1; time = 633}
+02:19:57 [90mverbose[0m #50 benchmark.run / solutions.map / {i = 3; test_name = semi_open_2; time = 653}
+02:19:58 [90mverbose[0m #51 benchmark.run / solutions.map / {i = 4; test_name = closed_2; time = 646}
+```
+input                                    	| expected	| result  	| best  
+---                                      	| ---     	| ---     	| ---   
+struct ([1; 3; 4; 6; 8; 9; 11], 6, 7)    	| US4_0 3 	| US4_0 3 	| 4, 610
+struct ([1; 3; 4; 6; 8; 9; 11], 1, 7)    	| US4_0 0 	| US4_0 0 	| 2, 559
+struct ([1; 3; 4; 6; 8; 9; 11], 11, 7)   	| US4_0 6 	| US4_0 6 	| 1, 550
+struct ([1; 3; 4; 6; 8; 9; 11], 12, 7)   	| US4_1   	| US4_1   	| 1, 574
+struct ([1; 2; 3; 4...00; ...], 60, 1000)	| US4_0 59	| US4_0 59	| 1, 610
+struct ([1; 3; 4; 6; 8; 9; 11], 6, 7)    	| US4_0 3 	| US4_0 3 	| 2, 561
+struct ([1; 3; 4; 6; 8; 9; 11], 1, 7)    	| US4_0 0 	| US4_0 0 	| 2, 603
+struct ([1; 3; 4; 6; 8; 9; 11], 11, 7)   	| US4_0 6 	| US4_0 6 	| 2, 606
+struct ([1; 3; 4; 6; 8; 9; 11], 12, 7)   	| US4_1   	| US4_1   	| 2, 613
+struct ([1; 2; 3; 4...100; ...], 60, 100)	| US4_0 59	| US4_0 59	| 1, 630
+```
+02:19:58 [90mverbose[0m #52 benchmark.sort_result_list / averages.iter / {avg = 602; i = 2}
+02:19:58 [90mverbose[0m #53 benchmark.sort_result_list / averages.iter / {avg = 607; i = 4}
+02:19:58 [90mverbose[0m #54 benchmark.sort_result_list / averages.iter / {avg = 619; i = 1}
+02:19:58 [90mverbose[0m #55 benchmark.sort_result_list / averages.iter / {avg = 625; i = 3}
+```
 
 #!spiral
 
@@ -1102,13 +1228,13 @@ inl rec binary_search_tests () =
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 1 None), (Some 0i32)
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 11 None), (Some 6i32)
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 12 None), None
-        ((am'.init_series 1i32 100 1) |> arr_with_len 60 None), (Some 59)
+        ((am'.init_series 1i32 1000 1) |> arr_with_len 60 None), (Some 59)
 
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 6 (Some 7)), (Some 3i32)
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 1 (Some 7)), (Some 0i32)
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 11 (Some 7)), (Some 6i32)
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 12 (Some 7)), None
-        ((am'.init_series 1i32 100 1) |> arr_with_len 60 (Some 100)), (Some 59)
+        ((am'.init_series 1i32 1000 1) |> arr_with_len 60 (Some 100)), (Some 59)
     ]
 
     inl solutions = get_solutions ()
@@ -1118,9 +1244,9 @@ inl rec binary_search_tests () =
     inl count =
         if is_fast ()
         then 1000i32
-        else 8000000i32
+        else 10000000i32
 
-    run_all (nameof binary_search_tests) count solutions test_cases
+    run_all (reflection.nameof { binary_search_tests }) count solutions test_cases
     |> sort_result_list
 
 

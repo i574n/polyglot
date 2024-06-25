@@ -67,8 +67,8 @@ Formatter.Register<struct (string * string * string * struct (string * float arr
                 let! exitCode, result =
                     SpiralRuntime.execution_options (fun x ->
                         { x with
-                            l0 = Some ct
-                            l1 = plotExePath
+                            l0 = plotExePath
+                            l1 = Some ct
                             l6 = Some workspaceRoot
                         }
                     )

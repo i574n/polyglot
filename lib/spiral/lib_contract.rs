@@ -169,10 +169,10 @@ pub mod Lib {
                     LrcPtr<Mut0>,
                     LrcPtr<Mut1>,
                     LrcPtr<Mut2>,
-                    Option<i64>,
                     LrcPtr<Mut3>,
+                    Option<i64>,
                 )| {
-                    (_arg.2.clone()).l0.set(match &new_level {
+                    (_arg.3.clone()).l0.set(match &new_level {
                         US0::US0_1 => US0_1::US0_1,
                         US0::US0_2 => US0_1::US0_2,
                         US0::US0_3 => US0_1::US0_3,
@@ -190,10 +190,10 @@ pub mod Lib {
                     LrcPtr<Mut0_1>,
                     LrcPtr<Mut1_1>,
                     LrcPtr<Mut2_1>,
-                    Option<i64>,
                     LrcPtr<Mut3_1>,
+                    Option<i64>,
                 )| {
-                    (_arg_1.2.clone()).l0.set(match &new_level {
+                    (_arg_1.3.clone()).l0.set(match &new_level {
                         US0::US0_1 => US0_2::US0_1,
                         US0::US0_2 => US0_2::US0_2,
                         US0::US0_3 => US0_2::US0_3,
@@ -211,10 +211,10 @@ pub mod Lib {
                     LrcPtr<Mut0_2>,
                     LrcPtr<Mut1_2>,
                     LrcPtr<Mut2_2>,
-                    Option<i64>,
                     LrcPtr<Mut3_2>,
+                    Option<i64>,
                 )| {
-                    (_arg_2.2.clone()).l0.set(match &new_level {
+                    (_arg_2.3.clone()).l0.set(match &new_level {
                         US0::US0_1 => US0_3::US0_1,
                         US0::US0_2 => US0_3::US0_2,
                         US0::US0_3 => US0_3::US0_3,
@@ -232,10 +232,10 @@ pub mod Lib {
                     LrcPtr<Mut0_3>,
                     LrcPtr<Mut1_3>,
                     LrcPtr<Mut2_3>,
-                    Option<i64>,
                     LrcPtr<Mut3_3>,
+                    Option<i64>,
                 )| {
-                    (_arg_3.2.clone()).l0.set(match &new_level {
+                    (_arg_3.3.clone()).l0.set(match &new_level {
                         US0::US0_1 => US0_4::US0_1,
                         US0::US0_2 => US0_4::US0_2,
                         US0::US0_3 => US0_4::US0_3,
@@ -253,9 +253,9 @@ pub mod Lib {
                     LrcPtr<Mut0_4>,
                     LrcPtr<Mut1_4>,
                     LrcPtr<Mut2_4>,
-                    Option<i64>,
                     LrcPtr<Mut3_4>,
-                )| (_arg_4.2.clone()).l0.set(new_level.clone())
+                    Option<i64>,
+                )| (_arg_4.3.clone()).l0.set(new_level.clone())
             }),
             trace_state_4().get().clone(),
         )
@@ -269,9 +269,9 @@ pub mod Lib {
                         LrcPtr<Mut0_4>,
                         LrcPtr<Mut1_4>,
                         LrcPtr<Mut2_4>,
-                        Option<i64>,
                         LrcPtr<Mut3_4>,
-                    )| (_arg.2.clone()).l0.get().clone(),
+                        Option<i64>,
+                    )| (_arg.3.clone()).l0.get().clone(),
                 ),
                 trace_state_4().get().clone(),
             ),

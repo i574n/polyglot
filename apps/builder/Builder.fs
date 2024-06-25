@@ -39,7 +39,7 @@ module Builder =
                 let! exitCode, _result =
                     SpiralRuntime.execution_options (fun x ->
                         { x with
-                            l1 = command
+                            l0 = command
                             l6 = Some fileDir
                         }
                     )

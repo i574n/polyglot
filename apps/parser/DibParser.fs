@@ -10,6 +10,7 @@ module DibParser =
 
     open Common
     open FParsec
+    open SpiralFileSystem.Operators
 
     /// ## magicMarker
     let magicMarker : Parser<string, unit> = pstring "#!"
@@ -28,10 +29,32 @@ module DibParser =
         |> manyTill anyChar
         |>> (System.String.Concat >> SpiralSm.trim)
 
+    /// ## Output
+    type Output =
+        | Fs
+        | Md
+        | Spi
+        | Spir
+
+    /// ## Magic
+    type Magic =
+        | Fsharp
+        | Markdown
+        | Spiral of Output
+        | Magic of string
+
+    /// ## kernelOutputs
+    let inline kernelOutputs magic =
+        match magic with
+        | Fsharp -> [ Fs ]
+        | Markdown -> [ Md ]
+        | Spiral output -> [ output ]
+        | _ -> []
+
     /// ## Block
     type Block =
         {
-            magic : string
+            magic : Magic
             content : string
         }
 
@@ -41,6 +64,21 @@ module DibParser =
             magicCommand
             content
             (fun magic content ->
+                let magic, content =
+                    match magic with
+                    | "fsharp" -> Fsharp, content
+                    | "markdown" -> Markdown, content
+                    | "spiral" ->
+                        let output = if content |> SpiralSm.contains "//// real\n" then Spir else Spi
+                        let content =
+                            if output = Spi
+                            then content
+                            else
+                                content
+                                |> SpiralSm.replace "//// real\n\n" ""
+                                |> SpiralSm.replace "//// real\n" ""
+                        Spiral output, content
+                    | magic -> magic |> Magic, content
                 {
                     magic = magic
                     content = content
@@ -51,24 +89,10 @@ module DibParser =
         skipMany newline
         >>. sepEndBy block (skipMany1 newline)
 
-    /// ## Output
-    type Output =
-        | Fs
-        | Md
-        | Spi
-        | Spir
-
-    let inline kernelOutputs magic =
-        match magic with
-        | "fsharp" -> [ Fs ]
-        | "markdown" -> [ Md ]
-        | "spiral" -> [ Spi; Spir ]
-        | _ -> []
-
     /// ## formatBlock
     let inline formatBlock output (block : Block) =
         match output, block with
-        | output, { magic = "markdown"; content = content } ->
+        | output, { magic = Markdown; content = content } ->
             let markdownComment =
                 match output with
                 | Spi | Spir -> "/// "
@@ -83,18 +107,20 @@ module DibParser =
                 | line -> System.Text.RegularExpressions.Regex.Replace (line, "^\\s*", $"$&{markdownComment}")
             )
             |> SpiralSm.concat "\n"
-        | Fs, { magic = "fsharp"; content = content } ->
+        | Fs, { magic = Fsharp; content = content } ->
             let trimmedContent = content |> SpiralSm.trim
-            if trimmedContent |> SpiralSm.starts_with "//// test" || trimmedContent |> SpiralSm.starts_with "//// ignore"
+            if trimmedContent |> SpiralSm.contains "//// test\n"
+                || trimmedContent |> SpiralSm.contains "//// ignore\n"
             then ""
             else
                 content
                 |> SpiralSm.split "\n"
                 |> Array.filter (SpiralSm.trim_start [||] >> SpiralSm.starts_with "#r" >> not)
                 |> SpiralSm.concat "\n"
-        | (Spi | Spir), { magic = "spiral"; content = content } ->
+        | (Spi | Spir), { magic = Spiral output'; content = content } when output' = output ->
             let trimmedContent = content |> SpiralSm.trim
-            if trimmedContent |> SpiralSm.starts_with "//// test" || trimmedContent |> SpiralSm.starts_with "//// ignore"
+            if trimmedContent |> SpiralSm.contains "//// test\n"
+                || trimmedContent |> SpiralSm.contains "//// ignore\n"
             then ""
             else content
         | _ -> ""
@@ -110,7 +136,7 @@ module DibParser =
             (list, (None, []))
             ||> List.foldBack (fun (block, content) (lastMagic, acc) ->
                 let lineBreak =
-                    if block.magic = "markdown" && lastMagic <> Some "markdown" && lastMagic <> None
+                    if block.magic = Markdown && lastMagic <> Some Markdown && lastMagic <> None
                     then ""
                     else "\n"
                 Some block.magic, $"{content}{lineBreak}" :: acc
@@ -125,11 +151,11 @@ module DibParser =
             let blocks =
                 blocks
                 |> List.filter (fun block ->
-                    block.magic |> kernelOutputs |> List.contains output || block.magic = "markdown"
+                    block.magic |> kernelOutputs |> List.contains output || block.magic = Markdown
                 )
 
             match blocks with
-            | { magic = "markdown"; content = content } :: _
+            | { magic = Markdown; content = content } :: _
                 when output = Fs
                 && content |> SpiralSm.starts_with "# "
                 && content |> SpiralSm.ends_with ")"
@@ -163,7 +189,7 @@ module DibParser =
                                         | false, _ when singleQuoteLine () ->
                                             $"    {line}" :: lines, true
 
-                                        | false, _ when line |> SpiralSm.starts_with "#" && block.magic = "fsharp" ->
+                                        | false, _ when line |> SpiralSm.starts_with "#" && block.magic = Fsharp ->
                                             line :: lines, false
 
                                         | false, _ ->
@@ -190,7 +216,7 @@ module DibParser =
 
                 let moduleBlock =
                     {
-                        magic = "fsharp"
+                        magic = Fsharp
                         content =
                             $"#if !INTERACTIVE
 namespace {namespaceName}
@@ -231,7 +257,12 @@ module {moduleName} ="
             (fun () -> "writeDibCode")
             (fun () -> $"output: {output} / path: {path} / {_locals ()}")
         let! result = parseDibCode output path
-        let outputPath = path |> SpiralSm.replace ".dib" $".{output |> string |> SpiralSm.to_lower}"
+        let pathDir = path |> System.IO.Path.GetDirectoryName
+        let fileNameWithoutExt =
+            match output, path |> System.IO.Path.GetFileNameWithoutExtension with
+            | Spir, fileNameWithoutExt -> $"real_{fileNameWithoutExt}"
+            | _, fileNameWithoutExt -> fileNameWithoutExt
+        let outputPath = pathDir </> $"{fileNameWithoutExt}.{output |> string |> SpiralSm.to_lower}"
         do! result |> SpiralFileSystem.write_all_text_async outputPath
     }
 

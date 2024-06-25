@@ -2,10 +2,6 @@
 
 /// ## fsharp
 
-/// ### write_line_
-inl write_line_ ~obj : () =
-    obj |> $'System.Console.WriteLine'
-
 /// ### console_color
 nominal console_color = $'System.ConsoleColor'
 
@@ -28,4 +24,21 @@ inl write_line obj : () =
     backend_switch {
         Fsharp = fun () => obj |> $'System.Console.WriteLine' : ()
         Python = fun () => $'print(!obj)' : ()
+    }
+
+/// ### write
+inl write forall t. (x : t) : () =
+    inl s = x |> sm'.format
+    backend_switch {
+        Python = fun () => $'print(!s, end="")' : ()
+        Fsharp = fun () => s |> $'System.Console.Write' : ()
+    }
+
+/// ### write_ln
+inl write_ln l : () =
+    write l
+    backend_switch {
+        Cuda = fun () => $'printf("\\n")' : ()
+        Python = fun () => $"print()" : ()
+        Fsharp = fun () => write_line () : ()
     }

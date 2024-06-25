@@ -122,31 +122,31 @@ def SpiralFileSystem_create_temp_path(__unit: None=None) -> str:
 
 
 def set_trace_level(new_level: US0) -> None:
-    def action(_arg: tuple[Mut0, Mut1, Mut2, int64 | None, Mut3], new_level: Any=new_level) -> None:
-        _arg[2].l0 = US0_1(1) if (new_level.tag == 1) else (US0_1(2) if (new_level.tag == 2) else (US0_1(3) if (new_level.tag == 3) else (US0_1(4) if (new_level.tag == 4) else US0_1(0))))
+    def action(_arg: tuple[Mut0, Mut1, Mut2, Mut3, int64 | None], new_level: Any=new_level) -> None:
+        _arg[3].l0 = US0_1(1) if (new_level.tag == 1) else (US0_1(2) if (new_level.tag == 2) else (US0_1(3) if (new_level.tag == 3) else (US0_1(4) if (new_level.tag == 4) else US0_1(0))))
 
     iterate(action, to_array(State_trace_state()))
-    def action_1(_arg_1: tuple[Mut0_1, Mut1_1, Mut2_1, int64 | None, Mut3_1], new_level: Any=new_level) -> None:
-        _arg_1[2].l0 = US0_2(1) if (new_level.tag == 1) else (US0_2(2) if (new_level.tag == 2) else (US0_2(3) if (new_level.tag == 3) else (US0_2(4) if (new_level.tag == 4) else US0_2(0))))
+    def action_1(_arg_1: tuple[Mut0_1, Mut1_1, Mut2_1, Mut3_1, int64 | None], new_level: Any=new_level) -> None:
+        _arg_1[3].l0 = US0_2(1) if (new_level.tag == 1) else (US0_2(2) if (new_level.tag == 2) else (US0_2(3) if (new_level.tag == 3) else (US0_2(4) if (new_level.tag == 4) else US0_2(0))))
 
     iterate(action_1, to_array(State_trace_state_1()))
-    def action_2(_arg_2: tuple[Mut0_2, Mut1_2, Mut2_2, int64 | None, Mut3_2], new_level: Any=new_level) -> None:
-        _arg_2[2].l0 = US0_3(1) if (new_level.tag == 1) else (US0_3(2) if (new_level.tag == 2) else (US0_3(3) if (new_level.tag == 3) else (US0_3(4) if (new_level.tag == 4) else US0_3(0))))
+    def action_2(_arg_2: tuple[Mut0_2, Mut1_2, Mut2_2, Mut3_2, int64 | None], new_level: Any=new_level) -> None:
+        _arg_2[3].l0 = US0_3(1) if (new_level.tag == 1) else (US0_3(2) if (new_level.tag == 2) else (US0_3(3) if (new_level.tag == 3) else (US0_3(4) if (new_level.tag == 4) else US0_3(0))))
 
     iterate(action_2, to_array(State_trace_state_2()))
-    def action_3(_arg_3: tuple[Mut0_3, Mut1_3, Mut2_3, int64 | None, Mut3_3], new_level: Any=new_level) -> None:
-        _arg_3[2].l0 = US0_4(1) if (new_level.tag == 1) else (US0_4(2) if (new_level.tag == 2) else (US0_4(3) if (new_level.tag == 3) else (US0_4(4) if (new_level.tag == 4) else US0_4(0))))
+    def action_3(_arg_3: tuple[Mut0_3, Mut1_3, Mut2_3, Mut3_3, int64 | None], new_level: Any=new_level) -> None:
+        _arg_3[3].l0 = US0_4(1) if (new_level.tag == 1) else (US0_4(2) if (new_level.tag == 2) else (US0_4(3) if (new_level.tag == 3) else (US0_4(4) if (new_level.tag == 4) else US0_4(0))))
 
     iterate(action_3, to_array(State_trace_state_3()))
-    def action_4(_arg_4: tuple[Mut0_4, Mut1_4, Mut2_4, int64 | None, Mut3_4], new_level: Any=new_level) -> None:
-        _arg_4[2].l0 = new_level
+    def action_4(_arg_4: tuple[Mut0_4, Mut1_4, Mut2_4, Mut3_4, int64 | None], new_level: Any=new_level) -> None:
+        _arg_4[3].l0 = new_level
 
     iterate(action_4, to_array(State_trace_state_4()))
 
 
 def get_trace_level(__unit: None=None) -> US0:
-    def mapping(_arg: tuple[Mut0_4, Mut1_4, Mut2_4, int64 | None, Mut3_4]) -> US0:
-        return _arg[2].l0
+    def mapping(_arg: tuple[Mut0_4, Mut1_4, Mut2_4, Mut3_4, int64 | None]) -> US0:
+        return _arg[3].l0
 
     def def_thunk(__unit: None=None) -> US0:
         raise Exception("lib.get_trace_level / trace_state=None")

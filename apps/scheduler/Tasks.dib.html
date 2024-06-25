@@ -8087,16 +8087,16 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.py output (Cuda):
-assert_string_contains / actual: 01 / expected: UH2_1(v0=UH0_0(), v1='01', v2=US4_0(v0=US3_0()), v3=UH2_1(v0=UH0_0(), v1='02', v2=US4_0(v0=US3_0()), v3=UH2_1(v0=UH0_0(), v1='03', v2=US4_0(v0=US3_0()), v3=UH2_0())))
+assert_string_contains / actual: 01 / expected: UH2_1(v0='01', v1=US1_0(v0=US0_0()), v2=UH1_0(), v3=UH2_1(v0='02', v1=US1_0(v0=US0_0()), v2=UH1_0(), v3=UH2_1(v0='03', v1=US1_0(v0=US0_0()), v2=UH1_0(), v3=UH2_0())))
 
 .rs output:
-assert_string_contains / actual: "01" / expected: "UH2_1(UH0_0, "01", US4_0(US3_0), UH2_1(UH0_0, "02", US4_0(US3_0), UH2_1(UH0_0, "03", US4_0(US3_0), UH2_0)))"
+assert_string_contains / actual: "01" / expected: "UH2_1("01", US1_0(US0_0), UH1_0, UH2_1("02", US1_0(US0_0), UH1_0, UH2_1("03", US1_0(US0_0), UH1_0, UH2_0)))"
 
 .ts output:
-assert_string_contains / actual: 01 / expected: UH2_1 (UH0_0, 01, US4_0 US3_0, UH2_1 (UH0_0, 02, US4_0 US3_0, UH2_1 (UH0_0, 03, US4_0 US3_0, UH2_0)))
+assert_string_contains / actual: 01 / expected: UH2_1 (01, US1_0 US0_0, UH1_0, UH2_1 (02, US1_0 US0_0, UH1_0, UH2_1 (03, US1_0 US0_0, UH1_0, UH2_0)))
 
 .py output:
-assert_string_contains / actual: 01 / expected: UH2_1 (UH0_0, 01, US4_0 US3_0, UH2_1 (UH0_0, 02, US4_0 US3_0, UH2_1 (UH0_0, 03, US4_0 US3_0, UH2_0)))
+assert_string_contains / actual: 01 / expected: UH2_1 (01, US1_0 US0_0, UH1_0, UH2_1 (02, US1_0 US0_0, UH1_0, UH2_1 (03, US1_0 US0_0, UH1_0, UH2_0)))
 </pre>
 </div>
 </div>
@@ -8105,8 +8105,8 @@ assert_string_contains / actual: 01 / expected: UH2_1 (UH0_0, 01, US4_0 US3_0, U
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
 assert_string_contains / actual: "01" / expected: "UH2_1
-  (UH0_0, "01", US4_0 US3_0,
-   UH2_1 (UH0_0, "02", US4_0 US3_0, UH2_1 (UH0_0, "03", US4_0 US3_0, UH2_0)))"
+  ("01", US1_0 US0_0, UH1_0,
+   UH2_1 ("02", US1_0 US0_0, UH1_0, UH2_1 ("03", US1_0 US0_0, UH1_0, UH2_0)))"
 </pre>
 </div>
 </div>
