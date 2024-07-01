@@ -100,7 +100,7 @@ let inline persistCodeProject packages modules name hash code = async {
         match hash with
         | Some hash -> targetDir </> "packages" </> hash
         | None -> targetDir
-    System.IO.Directory.CreateDirectory targetDir |> ignore
+    targetDir |> System.IO.Directory.CreateDirectory |> ignore
 
     let filePath = targetDir </> $"{name}.fs" |> System.IO.Path.GetFullPath
     do! code |> SpiralFileSystem.write_all_text_exists filePath

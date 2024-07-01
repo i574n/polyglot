@@ -77,3 +77,4 @@ Invoke-Dib init.dib
 { pwsh ../apps/spiral/builder/build.ps1 -SkipPreBuild 1 } | Invoke-Block
 
 { pwsh ../lib/typescript/fable/build.ps1 } | Invoke-Block
+{ pwsh ../lib/python/fable/build.ps1 } | Invoke-Block

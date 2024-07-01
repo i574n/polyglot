@@ -303,6 +303,10 @@ nominal file = $'std_fs_File'
 inl file_open (path : string) : resultm.result' file stream.io_error =
     !\($'"std::fs::File::open(&*!path)"')
 
+/// ### rename
+inl rename (to : string) (path : string) : resultm.result' () stream.io_error =
+    !\($'"std::fs::rename(&*!path, &*!to)"')
+
 /// ### dir_entry_path
 inl dir_entry_path (dir_entry : dir_entry) : path_buf =
     !\\(dir_entry, $'"async_walkdir::DirEntry::path(&$0)"')
@@ -654,14 +658,14 @@ inl get_workspace_root () =
         | Some path => Some path
         | None =>
             path ()
-            |> find_parent ("polyglot" </> ".paket") false
+            |> find_parent ("polyglot" </> ".devcontainer") false
             |> function
-            | Ok path => Some path
-            | Error error =>
-                trace Warning
-                    fun () => "file_system.get_workspace_root"
-                    fun () => { error }
-                None
+                | Ok path => Some path
+                | Error error =>
+                    trace Warning
+                        fun () => "file_system.get_workspace_root"
+                        fun () => { error }
+                    None
     |> optionm.value
     |> fun root => root </> "polyglot"
 
@@ -697,25 +701,6 @@ inl file_delete (path : string) : () =
             open rust_operators
             !\\(path, $'"std::fs::remove_file(&*$0).unwrap()"')
         | _ => fun () => null ()
-
-/// ## rust
-
-/// ### file_exists_content
-let file_exists_content path content : bool =
-    run_target function
-        | Rust (Native) => fun () =>
-            if path |> file_exists |> not
-            then false
-            else
-                inl existing_content = path |> read_all_text
-                content = existing_content
-        | _ => fun () => null ()
-
-/// ### write_all_text_exists
-let write_all_text_exists path contents =
-    inl exists' = contents |> file_exists_content path
-    if not exists'
-    then contents |> write_all_text path
 
 /// ## fsharp
 
@@ -849,6 +834,28 @@ let link_directory target_path path =
 
     if path |> directory_exists |> not then
         path |> directory_create_symbolic_link target_path
+
+/// ## rust
+
+/// ### file_exists_content
+let file_exists_content path content : bool =
+    run_target function
+        | Rust (Native) => fun () =>
+            if path |> file_exists |> not
+            then false
+            else
+                inl existing_content = path |> read_all_text
+                content = existing_content
+        | _ => fun () => null ()
+
+/// ### write_all_text_exists
+let write_all_text_exists path contents =
+    inl exists' = contents |> file_exists_content path
+    if not exists' then
+        inl dir = path |> get_directory_name
+        if dir |> directory_exists |> not
+        then dir |> create_dir |> ignore
+        contents |> write_all_text path
 
 /// ## fsharp
 

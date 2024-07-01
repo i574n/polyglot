@@ -320,8 +320,6 @@ inl real_format forall t. (x : t) : string =
 
 /// ### replace_regex
 
-/// ### write_all_text
-
 /// ## main
 
 /// ## rust

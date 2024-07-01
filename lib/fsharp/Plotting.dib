@@ -77,7 +77,7 @@ Formatter.Register<struct (string * string * string * struct (string * float arr
                     return failwith $"plot failed with exit code {exitCode} and output {result}"
             return! svgPath |> SpiralFileSystem.read_all_text_async
         }
-        |> Async.runWithTimeoutStrict 10000
+        |> Async.runWithTimeout 10000
         |> Option.defaultValue json
     ),
     "text/html"

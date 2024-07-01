@@ -196,6 +196,17 @@ let get_command () =
 
 #!markdown
 
+### fable_target
+
+#!spiral
+
+union fable_target =
+    | Rust
+    | TypeScript
+    | Python
+
+#!markdown
+
 ### execute_dotnet_fable
 
 #!spiral
@@ -214,22 +225,26 @@ let execute_dotnet_fable { workspace_root_external fsproj_path extension package
 
 #!markdown
 
+### get_package_dir
+
+#!spiral
+
+inl get_package_dir { workspace_root target name hash } =
+    inl dir = workspace_root </> "target/spiral_builder" </> name
+    match hash, (target : option fable_target) with
+    | Some hash, Some target => dir </> "packages" </> (target |> reflection.union_to_string) </> hash
+    | _ => dir
+
+#!markdown
+
 ### persist_code_project
 
 #!spiral
 
-inl persist_code_project packages modules name hash code =
-    inl modules_code = ""
+inl persist_code_project { workspace_root package_dir packages modules name code } =
+    package_dir |> file_system.create_dir |> ignore
 
-    inl workspace_root = file_system.get_workspace_root ()
-    inl target_dir =
-        inl target_dir = workspace_root </> "target/spiral_builder" </> name
-        match hash with
-        | Some hash => target_dir </> "packages" </> hash
-        | None => target_dir
-    target_dir |> file_system.create_dir |> ignore
-
-    inl fs_path = target_dir </> $'$"{!name}.fs"' |> file_system.normalize_path
+    inl fs_path = package_dir </> $'$"{!name}.fs"' |> file_system.normalize_path
     code |> file_system.write_all_text_exists fs_path
 
     inl modules_code =
@@ -249,7 +264,7 @@ inl persist_code_project packages modules name hash code =
         |> seq.of_list'
         |> sm'.concat "\\n        "
 
-    inl fsproj_path = target_dir </> $'$"{!name}.fsproj"' |> file_system.normalize_path
+    inl fsproj_path = package_dir </> $'$"{!name}.fsproj"' |> file_system.normalize_path
     inl fsproj_code : string =
         $'$"<Project Sdk=\\\"Microsoft.NET.Sdk\\\">"'
         +#. $'$"<PropertyGroup>"'
@@ -338,8 +353,9 @@ inl build_project runtime' output_dir path =
 
 #!spiral
 
-inl build_code runtime packages modules output_dir name code =
-    inl fsproj_path = code |> persist_code_project packages modules name None
+inl build_code { workspace_root runtime packages modules output_dir name code } =
+    inl package_dir = get_package_dir { workspace_root name target = None; hash = None }
+    inl fsproj_path = persist_code_project { workspace_root package_dir packages modules name code }
     inl exit_code = fsproj_path |> build_project runtime output_dir
     if exit_code <>. 0 then
         inl fsproj_text = fsproj_path |> file_system.read_all_text
@@ -354,8 +370,17 @@ inl build_code runtime packages modules output_dir name code =
 ///! rust -d encoding_rs encoding_rs_io regex
 
 types ()
-"1 + 1 |> ignore"
-|> build_code None [] [] None "test1"
+
+build_code
+    {
+        workspace_root = file_system.get_workspace_root ()
+        runtime = None
+        packages = []
+        modules = []
+        output_dir = None
+        name = "test1"
+        code = "1 + 1 |> ignore"
+    }
 |> _assert_eq 0
 
 #!spiral
@@ -364,8 +389,17 @@ types ()
 ///! rust -d encoding_rs encoding_rs_io regex
 
 types ()
-"1 + a |> ignore"
-|> build_code None [] [] None "test2"
+
+build_code
+    {
+        workspace_root = file_system.get_workspace_root ()
+        runtime = None
+        packages = []
+        modules = []
+        output_dir = None
+        name = "test2"
+        code = "1 + a |> ignore"
+    }
 |> _assert_eq 2
 
 #!markdown
@@ -391,11 +425,11 @@ inl read_file path =
 
 #!spiral
 
-inl persist_file packages modules path =
+inl persist_file { workspace_root package_dir packages modules path } =
     inl full_path = path |> file_system.get_full_path
     inl name = full_path |> file_system.get_file_name_without_extension
     inl code = full_path |> read_file
-    code |> persist_code_project packages modules name None
+    persist_code_project { workspace_root package_dir packages modules name code }
 
 #!markdown
 
@@ -403,12 +437,19 @@ inl persist_file packages modules path =
 
 #!spiral
 
-inl build_file runtime packages modules path =
+inl build_file { workspace_root runtime packages modules path } =
     inl full_path = path |> file_system.get_full_path
     inl dir = full_path |> file_system.get_directory_name
-    inl name = full_path |> file_system.get_file_name_without_extension
-    inl code = full_path |> read_file
-    code |> build_code runtime packages modules (dir </> "dist" |> Some) name
+    build_code
+        {
+            workspace_root
+            runtime
+            packages
+            modules
+            output_dir = dir </> "dist" |> Some
+            name = full_path |> file_system.get_file_name_without_extension
+            code = full_path |> read_file
+        }
 
 #!markdown
 
@@ -424,7 +465,7 @@ inl get_workspace_cargo_toml_content { workspace_root } : string =
     inl workspace_root = workspace_root |> file_system.normalize_path
     $'$"[workspace]"'
     +#. $'$"resolver = \\\"2\\\""'
-    +#. $'$"members = [\\\"packages/*\\\"]"'
+    +#. $'$"members = [\\\"packages/Rust/*\\\"]"'
     +#. $'$""'
     +#. $'$"[workspace.dependencies.fable_library_rust]"'
     +#. $'$"path = \\\"{!workspace_root}/lib/rust/fable/fable_modules/fable-library-rust\\\""'
@@ -457,6 +498,23 @@ inl get_cargo_toml_content { hash_hex deps } : string =
 
 #!markdown
 
+### get_empty_cargo_toml_content
+
+#!spiral
+
+inl get_empty_cargo_toml_content () =
+    inl guid = date_time.now () |> date_time.new_guid_from_date_time |> sm'.obj_to_string
+    $'$"[package]"'
+    +#. $'$"name = \\\"spiral_builder_{!guid}\\\""'
+    +#. $'$"version = \\\"0.0.1\\\""'
+    +#. $'$"edition = \\\"2021\\\""'
+    +#. $'$""'
+    +#. $'$"[[bin]]"'
+    +#. $'$"name = \\\"spiral_builder_{!guid}\\\""'
+    +#. $'$"path = \\\"spiral_builder.rs\\\""'
+
+#!markdown
+
 ### process_rust
 
 #!spiral
@@ -475,40 +533,33 @@ inl process_rust { fs_path deps trace_level } =
 
     inl workspace_name = "spiral_builder"
 
-    inl fsproj_path =
-        code
-        |> persist_code_project
-            [ "Fable.Core" ]
-            []
-            workspace_name
-            (hash_hex |> Some)
+    inl workspace_root_external = file_system.get_workspace_root_external ()
+    inl workspace_root = workspace_root_external |> resultm.box |> resultm.unwrap_or_else id
 
-    inl package_dir = fsproj_path |> file_system.get_directory_name
+    inl package_dir =
+        get_package_dir { workspace_root name = workspace_name; target = Some Rust; hash = Some hash_hex }
+
+    inl fsproj_path =
+        persist_code_project
+            {
+                workspace_root
+                package_dir
+                packages = [ "Fable.Core" ]
+                modules = []
+                name = workspace_name
+                code
+            }
+
+    inl workspace_dir = package_dir </> "../../.."
+    inl workspace_cargo_toml_path = workspace_dir </> "Cargo.toml"
+
+    if workspace_cargo_toml_path |> file_system.file_exists |> not
+    then get_empty_cargo_toml_content () |> file_system.write_all_text workspace_cargo_toml_path
 
     inl cargo_toml_path = package_dir </> "Cargo.toml"
 
-    inl workspace_dir = package_dir </> "../.."
-    inl workspace_cargo_toml_path = workspace_dir </> "Cargo.toml"
-
-    inl empty_cargo_toml_content () =
-        inl guid = date_time.now () |> date_time.new_guid_from_date_time |> sm'.obj_to_string
-        $'$"[package]"'
-        +#. $'$"name = \\\"spiral_builder_{!guid}\\\""'
-        +#. $'$"version = \\\"0.0.1\\\""'
-        +#. $'$"edition = \\\"2021\\\""'
-        +#. $'$""'
-        +#. $'$"[[bin]]"'
-        +#. $'$"name = \\\"spiral_builder_{!guid}\\\""'
-        +#. $'$"path = \\\"spiral_builder.{!extension}\\\""'
-
     if cargo_toml_path |> file_system.file_exists |> not
-    then empty_cargo_toml_content () |> file_system.write_all_text cargo_toml_path
-
-    if workspace_cargo_toml_path |> file_system.file_exists |> not
-    then empty_cargo_toml_content () |> file_system.write_all_text workspace_cargo_toml_path
-
-    inl workspace_root_external = file_system.get_workspace_root_external ()
-    inl workspace_root = workspace_root_external |> resultm.box |> resultm.unwrap_or_else id
+    then get_empty_cargo_toml_content () |> file_system.write_all_text cargo_toml_path
 
     inl lib_link_target_path = workspace_root </> "lib/rust/fable/fable_modules/fable-library-rust"
     inl lib_link_path = package_dir </> "fable_modules/fable-library-rust"
@@ -590,7 +641,7 @@ inl process_rust { fs_path deps trace_level } =
                             |> file_system.create_dir
                             |> ignore
 
-                            empty_cargo_toml_content ()
+                            get_empty_cargo_toml_content ()
                             |> file_system.write_all_text missing_toml_path
                         return ()
             |> retry_fn' 3u8
@@ -829,18 +880,23 @@ inl process_typescript { fs_path deps trace_level } =
 
     inl workspace_name = "spiral_builder"
 
-    inl fsproj_path =
-        code
-        |> persist_code_project
-            [ "Fable.Core" ]
-            []
-            workspace_name
-            (hash_hex |> Some)
-
-    inl package_dir = fsproj_path |> file_system.get_directory_name
-
     inl workspace_root_external = file_system.get_workspace_root_external ()
     inl workspace_root = workspace_root_external |> resultm.box |> resultm.unwrap_or_else id
+
+    inl package_dir =
+        get_package_dir
+            { workspace_root name = workspace_name; target = Some TypeScript; hash = Some hash_hex }
+
+    inl fsproj_path =
+        persist_code_project
+            {
+                workspace_root
+                package_dir
+                packages = [ "Fable.Core" ]
+                modules = []
+                name = workspace_name
+                code
+            }
 
     inl lib_path = workspace_root </> "lib/typescript/fable/fable_modules"
 
@@ -1053,23 +1109,27 @@ inl process_python { fs_path deps trace_level } =
 
     inl workspace_name = "spiral_builder"
 
-    inl fsproj_path =
-        code
-        |> persist_code_project
-            [ "Fable.Core" ]
-            []
-            workspace_name
-            (hash_hex |> Some)
-
-    inl package_dir = fsproj_path |> file_system.get_directory_name
-
     inl workspace_root_external = file_system.get_workspace_root_external ()
     inl workspace_root = workspace_root_external |> resultm.box |> resultm.unwrap_or_else id
 
+    inl package_dir =
+        get_package_dir { workspace_root name = workspace_name; target = Some Python; hash = Some hash_hex }
+
+    inl fsproj_path =
+        persist_code_project
+            {
+                workspace_root
+                package_dir
+                packages = [ "Fable.Core" ]
+                modules = []
+                name = workspace_name
+                code
+            }
+
     inl lib_path = workspace_root </> "lib/python/fable/fable_modules"
 
-    inl lib_link_target_path = lib_path </> $'$"fable-library-{!extension}"'
-    inl lib_link_path = package_dir </> $'$"fable_modules/fable-library"'
+    inl lib_link_target_path = lib_path </> $'$"fable_library"'
+    inl lib_link_path = package_dir </> $'$"fable_modules/fable_library"'
 
     lib_link_path |> file_system.link_directory lib_link_target_path
 

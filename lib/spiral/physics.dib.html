@@ -8822,9 +8822,16 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:03 <span class="ansi-red-intense-fg">critical</span> #1 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:03 <span class="ansi-red-intense-fg">critical</span> #2 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+<pre>00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
+00:00:02 <span class="ansi-red-intense-fg">critical</span> #1 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -9686,9 +9693,16 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:03 <span class="ansi-red-intense-fg">critical</span> #3 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:03 <span class="ansi-red-intense-fg">critical</span> #4 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+<pre>00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
+00:00:02 <span class="ansi-red-intense-fg">critical</span> #2 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -10744,8 +10758,15 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:03 <span class="ansi-red-intense-fg">critical</span> #5 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:03 <span class="ansi-red-intense-fg">critical</span> #6 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:03 <span class="ansi-red-intense-fg">critical</span> #3 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -10948,9 +10969,16 @@ assert_eq / actual: 0.2 / expected: 0.2
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:07 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:04 <span class="ansi-red-intense-fg">critical</span> #7 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:04 <span class="ansi-red-intense-fg">critical</span> #8 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+<pre>00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
+00:00:03 <span class="ansi-red-intense-fg">critical</span> #4 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -12341,8 +12369,15 @@ assert_approx_eq / actual: -1.0 / expected: -1.0
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:09 <span class="ansi-blue-intense-fg">  debug</span> #5 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:06 <span class="ansi-red-intense-fg">critical</span> #9 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:06 <span class="ansi-red-intense-fg">critical</span> #10 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:06 <span class="ansi-red-intense-fg">critical</span> #5 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -12494,9 +12529,16 @@ assert_approx_eq / actual: -1.0 / expected: -1.0
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:10 <span class="ansi-blue-intense-fg">  debug</span> #6 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:07 <span class="ansi-red-intense-fg">critical</span> #11 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:07 <span class="ansi-red-intense-fg">critical</span> #12 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+<pre>00:00:09 <span class="ansi-blue-intense-fg">  debug</span> #6 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
+00:00:06 <span class="ansi-red-intense-fg">critical</span> #6 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -12838,8 +12880,15 @@ assert_approx_eq / actual: -1.0 / expected: -1.0
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:10 <span class="ansi-blue-intense-fg">  debug</span> #7 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:07 <span class="ansi-red-intense-fg">critical</span> #13 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:07 <span class="ansi-red-intense-fg">critical</span> #14 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:07 <span class="ansi-red-intense-fg">critical</span> #7 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -14934,8 +14983,15 @@ assert_approx_eq / actual: -1.0 / expected: -1.0
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:11 <span class="ansi-blue-intense-fg">  debug</span> #8 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:08 <span class="ansi-red-intense-fg">critical</span> #15 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:08 <span class="ansi-red-intense-fg">critical</span> #16 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:08 <span class="ansi-red-intense-fg">critical</span> #8 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -15670,8 +15726,15 @@ assert_approx_eq / actual: -1.0 / expected: -1.0
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:11 <span class="ansi-blue-intense-fg">  debug</span> #9 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:09 <span class="ansi-red-intense-fg">critical</span> #17 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:09 <span class="ansi-red-intense-fg">critical</span> #18 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:08 <span class="ansi-red-intense-fg">critical</span> #9 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -16327,8 +16390,15 @@ assert_approx_eq / actual: -1.0 / expected: -1.0
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:12 <span class="ansi-blue-intense-fg">  debug</span> #10 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:09 <span class="ansi-red-intense-fg">critical</span> #19 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:09 <span class="ansi-red-intense-fg">critical</span> #20 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:09 <span class="ansi-red-intense-fg">critical</span> #10 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -17643,8 +17713,15 @@ assert_eq / actual: struct (8.0, 2894.789039, 2894.789039) / expected: struct (8
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:20 <span class="ansi-blue-intense-fg">  debug</span> #11 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:17 <span class="ansi-red-intense-fg">critical</span> #21 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:17 <span class="ansi-red-intense-fg">critical</span> #22 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:17 <span class="ansi-red-intense-fg">critical</span> #11 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -19080,8 +19157,15 @@ assert_eq / actual: struct (8.0, 2894.789039, 2894.789039) / expected: struct (8
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:21 <span class="ansi-blue-intense-fg">  debug</span> #12 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:18 <span class="ansi-red-intense-fg">critical</span> #23 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:18 <span class="ansi-red-intense-fg">critical</span> #24 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:18 <span class="ansi-red-intense-fg">critical</span> #12 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -19722,8 +19806,15 @@ assert_eq / actual: struct (8.0, 2894.789039, 2894.789039) / expected: struct (8
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:22 <span class="ansi-blue-intense-fg">  debug</span> #13 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:19 <span class="ansi-red-intense-fg">critical</span> #25 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:19 <span class="ansi-red-intense-fg">critical</span> #26 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:19 <span class="ansi-red-intense-fg">critical</span> #13 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -21310,8 +21401,15 @@ assert_eq / actual: struct (8.0, 2894.789039, 2894.789039) / expected: struct (8
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:23 <span class="ansi-blue-intense-fg">  debug</span> #14 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:20 <span class="ansi-red-intense-fg">critical</span> #27 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:20 <span class="ansi-red-intense-fg">critical</span> #28 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:20 <span class="ansi-red-intense-fg">critical</span> #14 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -21589,8 +21687,15 @@ assert_eq / actual: struct (8.0, 2894.789039, 2894.789039) / expected: struct (8
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:23 <span class="ansi-blue-intense-fg">  debug</span> #15 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:20 <span class="ansi-red-intense-fg">critical</span> #29 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:20 <span class="ansi-red-intense-fg">critical</span> #30 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:21 <span class="ansi-red-intense-fg">critical</span> #15 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -23198,8 +23303,15 @@ assert_eq / actual: struct (8.0, 2894.789039, 2894.789039) / expected: struct (8
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:25 <span class="ansi-blue-intense-fg">  debug</span> #16 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:22 <span class="ansi-red-intense-fg">critical</span> #31 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:22 <span class="ansi-red-intense-fg">critical</span> #32 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:22 <span class="ansi-red-intense-fg">critical</span> #16 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
@@ -32918,203 +33030,665 @@ table th {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #17 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #33 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #34 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #17 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #18 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #35 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #36 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #18 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #19 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #37 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #38 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #19 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #20 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #39 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #40 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #20 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #21 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #41 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #42 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #21 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #22 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #43 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #44 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #22 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #23 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #45 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #46 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #23 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #24 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #47 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #48 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #24 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #25 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #49 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #50 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #25 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #26 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #51 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #52 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #26 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #27 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #53 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #54 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #27 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #28 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #55 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #56 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #28 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #29 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #57 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #58 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #29 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #30 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #59 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #60 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #30 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #31 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #61 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #62 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #31 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #32 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #63 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #64 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #32 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #33 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #65 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #66 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #33 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #34 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #67 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #68 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #34 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #35 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #69 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #70 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #35 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #36 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #71 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #72 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #36 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #37 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #73 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #74 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #37 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #38 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #75 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #76 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #38 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #39 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #77 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #78 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #39 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #40 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #79 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #80 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #40 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #41 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #81 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #82 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #41 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #42 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #83 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #84 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #42 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #43 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #85 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #86 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #43 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #44 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #87 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #88 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #44 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #45 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #89 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #90 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #45 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #46 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #91 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #92 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #46 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #47 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #93 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #94 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #47 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #48 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #95 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #96 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #48 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #49 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #97 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #98 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #49 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #50 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #99 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #100 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #50 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #51 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #101 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #102 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #51 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #52 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #103 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #104 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #52 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #53 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #105 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #106 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #53 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #54 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #107 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #108 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #54 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #55 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #109 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #110 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #55 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #56 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #111 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #112 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #56 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #57 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #113 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #114 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #57 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #58 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #115 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #116 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #58 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #59 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #117 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #118 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #59 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #60 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #119 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #120 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #60 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #61 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #121 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #122 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #61 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #62 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #123 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #124 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #62 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #63 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #125 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #126 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #63 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #64 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #127 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #128 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #64 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #65 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #129 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #130 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #65 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #66 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #131 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #132 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #66 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #67 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #133 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #134 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #67 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #68 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #135 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #136 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #68 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #69 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #137 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #138 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #69 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #70 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #139 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #140 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #70 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #71 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #141 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #142 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #71 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #72 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #143 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #144 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #72 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #73 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #145 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #146 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #73 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #74 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #147 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #148 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #74 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #75 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #149 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #150 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #75 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #76 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #151 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #152 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #76 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #77 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #153 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #154 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #77 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #78 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #155 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #156 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #78 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #79 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #157 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #158 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #79 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #80 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #159 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #160 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #80 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #81 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #161 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #162 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #81 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 00:00:29 <span class="ansi-blue-intense-fg">  debug</span> #82 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #163 runWithTimeoutStrict / async error / ex: System.Exception: Option does not have a value. / timeout: 10000
-00:00:26 <span class="ansi-red-intense-fg">critical</span> #164 runWithTimeoutStrict / task error / ex: System.AggregateException: One or more errors occurred. (Option does not have a value.) / timeout: 10000
+00:00:26 <span class="ansi-red-intense-fg">critical</span> #82 runWithTimeoutAsync** / ex: System.Exception: Option does not have a value.
+   at FSI_0015.method11@4517.Invoke(Unit unitVar)
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvoke[T,TResult](AsyncActivation`1 ctxt, TResult result1, FSharpFunc`2 part2) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 510
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.FSharp.Control.AsyncResult`1.Commit() in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 454
+   at &lt;StartupCode$FSharp-Core&gt;.$Async.AwaitAndBindChildResult@1972-6.Invoke(Boolean ok) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 1974
+   at Microsoft.FSharp.Control.AsyncPrimitives.CallThenInvokeNoHijackCheck[a,b](AsyncActivation`1 ctxt, b result1, FSharpFunc`2 userCode) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 528
+   at Microsoft.FSharp.Control.Trampoline.Execute(FSharpFunc`2 firstAction) in D:\a\_work\1\s\src\FSharp.Core\async.fs:line 112 / timeout: 10000
 </pre>
 </div>
 </div>
