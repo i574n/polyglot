@@ -1645,22 +1645,6 @@ types ()
 
 #!markdown
 
-### write_all_text
-
-#!spiral
-
-inl write_all_text (path : string) (text : string) : () =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            inl text = join text
-            $'System.IO.File.WriteAllText (!path, !text)'
-        | Rust (Native) => fun () =>
-            open rust_operators
-            !\\((path, text), $'"std::fs::write(&*$0, &*$1).unwrap()"')
-        | _ => fun () => null ()
-
-#!markdown
-
 ## main
 
 #!spiral

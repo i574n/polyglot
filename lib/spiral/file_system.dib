@@ -1253,37 +1253,6 @@ inl file_delete (path : string) : () =
 
 #!markdown
 
-## rust
-
-#!markdown
-
-### file_exists_content
-
-#!spiral
-
-let file_exists_content path content : bool =
-    run_target function
-        | Rust (Native) => fun () =>
-            if path |> file_exists |> not
-            then false
-            else
-                inl existing_content = path |> read_all_text
-                content = existing_content
-        | _ => fun () => null ()
-
-#!markdown
-
-### write_all_text_exists
-
-#!spiral
-
-let write_all_text_exists path contents =
-    inl exists' = contents |> file_exists_content path
-    if not exists'
-    then contents |> write_all_text path
-
-#!markdown
-
 ## fsharp
 
 #!markdown
@@ -1561,6 +1530,40 @@ let link_directory target_path path =
 
     if path |> directory_exists |> not then
         path |> directory_create_symbolic_link target_path
+
+#!markdown
+
+## rust
+
+#!markdown
+
+### file_exists_content
+
+#!spiral
+
+let file_exists_content path content : bool =
+    run_target function
+        | Rust (Native) => fun () =>
+            if path |> file_exists |> not
+            then false
+            else
+                inl existing_content = path |> read_all_text
+                content = existing_content
+        | _ => fun () => null ()
+
+#!markdown
+
+### write_all_text_exists
+
+#!spiral
+
+let write_all_text_exists path contents =
+    inl exists' = contents |> file_exists_content path
+    if not exists' then
+        inl dir = path |> get_directory_name
+        if dir |> directory_exists |> not
+        then dir |> create_dir |> ignore
+        contents |> write_all_text path
 
 #!markdown
 

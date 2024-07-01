@@ -539,18 +539,6 @@ inl process_rust { fs_path deps trace_level } =
     inl package_dir =
         get_package_dir { workspace_root name = workspace_name; target = Some Rust; hash = Some hash_hex }
 
-    inl workspace_dir = package_dir </> "../../.."
-    inl workspace_cargo_toml_path = workspace_dir </> "Cargo.toml"
-
-    if workspace_cargo_toml_path |> file_system.file_exists |> not
-    then get_empty_cargo_toml_content () |> file_system.write_all_text workspace_cargo_toml_path
-
-    inl cargo_toml_path = package_dir </> "Cargo.toml"
-
-    if cargo_toml_path |> file_system.file_exists |> not then
-        package_dir |> file_system.create_dir |> ignore
-        get_empty_cargo_toml_content () |> file_system.write_all_text cargo_toml_path
-
     inl fsproj_path =
         persist_code_project
             {
@@ -561,6 +549,17 @@ inl process_rust { fs_path deps trace_level } =
                 name = workspace_name
                 code
             }
+
+    inl workspace_dir = package_dir </> "../../.."
+    inl workspace_cargo_toml_path = workspace_dir </> "Cargo.toml"
+
+    if workspace_cargo_toml_path |> file_system.file_exists |> not
+    then get_empty_cargo_toml_content () |> file_system.write_all_text workspace_cargo_toml_path
+
+    inl cargo_toml_path = package_dir </> "Cargo.toml"
+
+    if cargo_toml_path |> file_system.file_exists |> not
+    then get_empty_cargo_toml_content () |> file_system.write_all_text cargo_toml_path
 
     inl lib_link_target_path = workspace_root </> "lib/rust/fable/fable_modules/fable-library-rust"
     inl lib_link_path = package_dir </> "fable_modules/fable-library-rust"
