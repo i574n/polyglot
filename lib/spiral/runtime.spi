@@ -566,7 +566,7 @@ let execute_with_options_async (options : execution_options) : _ (i32 * string) 
                     fun () => { options }
 
                 inl utf8 = sm'.encoding_utf8 ()
-                inl arguments = arguments |> optionm.value
+                inl arguments = arguments |> optionm'.default_value ""
 
                 $'let start_info = System.Diagnostics.ProcessStartInfo ('
                 $'  Arguments = !arguments,'

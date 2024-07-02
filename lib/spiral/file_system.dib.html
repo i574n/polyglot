@@ -9685,7 +9685,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_f2742df0f5e5eefcfba17c19b2ec6967bf389d948aee87a7bf4d904931c1a4ad\20240701-1319-1610-9315-0000006940a9" / expected: '\\'
+assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_f2742df0f5e5eefcfba17c19b2ec6967bf389d948aee87a7bf4d904931c1a4ad\20240701-1749-4289-9815-000000515c61" / expected: '\\'
 </pre>
 </div>
 </div>
@@ -9693,7 +9693,7 @@ assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20240701-1319-1667-6768-600400b5b1fd" / expected: '\\'
+assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20240701-1749-4324-2401-20030008d1d6" / expected: '\\'
 </pre>
 </div>
 </div>
@@ -10440,7 +10440,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="rust">rust<a class="anchor-link" href="#rust">¶</a></h2>
+<h2 id="fsharp">fsharp<a class="anchor-link" href="#fsharp">¶</a></h2>
 </div>
 </div>
 </div>
@@ -10451,83 +10451,11 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="file_exists_content">file_exists_content<a class="anchor-link" href="#file_exists_content">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=177">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">file_exists_content</span> <span class="n">path</span> <span class="n">content</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="k">if</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">file_exists</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-            <span class="n">then</span> <span class="n">false</span>
-            <span class="k">else</span>
-                <span class="n">inl</span> <span class="n">existing_content</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">read_all_text</span>
-                <span class="n">content</span> <span class="o">=</span> <span class="n">existing_content</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=178">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="write_all_text_exists">write_all_text_exists<a class="anchor-link" href="#write_all_text_exists">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=179">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">write_all_text_exists</span> <span class="n">path</span> <span class="n">contents</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">exists</span><span class="s1">' = contents |&gt; file_exists_content path</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="s1">'</span>
-    <span class="n">then</span> <span class="n">contents</span> <span class="o">|&gt;</span> <span class="n">write_all_text</span> <span class="n">path</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=180">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="fsharp">fsharp<a class="anchor-link" href="#fsharp">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=181">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="file_exists_content_async">file_exists_content_async<a class="anchor-link" href="#file_exists_content_async">¶</a></h3>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=182">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=177">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10553,7 +10481,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=183">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=178">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10563,7 +10491,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=184">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=179">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10583,7 +10511,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=185">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=180">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10593,7 +10521,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=186">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=181">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10627,7 +10555,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=187">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=182">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10637,7 +10565,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=188">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=183">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10667,7 +10595,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=189">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=184">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10703,14 +10631,14 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 20L / expected: 20L
+<pre>assert_eq / actual: 1L / expected: 1L
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=190">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=185">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10720,7 +10648,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=191">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=186">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10737,7 +10665,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=192">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=187">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10748,7 +10676,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=193">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=188">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10758,7 +10686,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=194">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=189">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10805,7 +10733,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=195">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=190">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10815,7 +10743,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=196">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=191">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10831,7 +10759,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=197">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=192">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10865,7 +10793,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=198">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=193">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10897,7 +10825,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_79aa2bb3243bce9eba7cf5cba34e122cd4c376a4590d1dc85b01b8e14dcb4fff\20240701-1321-5040-8722-000000ee20eb }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_79aa2bb3243bce9eba7cf5cba34e122cd4c376a4590d1dc85b01b8e14dcb4fff\20240701-1751-1424-6096-000000114794 }
 assert_eq / actual: true / expected: true
 assert_eq / actual: false / expected: false
 </pre>
@@ -10905,7 +10833,7 @@ assert_eq / actual: false / expected: false
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=199">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=194">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10986,7 +10914,7 @@ assert_eq / actual: false / expected: false
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #9 _3
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #10 5
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #11 6
-assert_between / actual: 126L / expected: struct (50L, 180L)
+assert_between / actual: 124L / expected: struct (50L, 180L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -10994,7 +10922,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=200">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=195">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11004,7 +10932,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=201">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=196">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11021,7 +10949,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=202">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=197">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11031,7 +10959,7 @@ assert_eq / actual: true / expected: true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=203">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=198">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11053,6 +10981,81 @@ assert_eq / actual: true / expected: true
 
     <span class="k">if</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">directory_exists</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="n">then</span>
         <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">directory_create_symbolic_link</span> <span class="n">target_path</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=199">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="rust">rust<a class="anchor-link" href="#rust">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=200">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="file_exists_content">file_exists_content<a class="anchor-link" href="#file_exists_content">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=201">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">file_exists_content</span> <span class="n">path</span> <span class="n">content</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="k">if</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">file_exists</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+            <span class="n">then</span> <span class="n">false</span>
+            <span class="k">else</span>
+                <span class="n">inl</span> <span class="n">existing_content</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">read_all_text</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="n">existing_content</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=202">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="write_all_text_exists">write_all_text_exists<a class="anchor-link" href="#write_all_text_exists">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=203">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">write_all_text_exists</span> <span class="n">path</span> <span class="n">contents</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">exists</span><span class="s1">' = contents |&gt; file_exists_content path</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="s1">' then</span>
+        <span class="n">inl</span> <span class="nb">dir</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">get_directory_name</span>
+        <span class="k">if</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="n">directory_exists</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+        <span class="n">then</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="n">create_dir</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+        <span class="n">contents</span> <span class="o">|&gt;</span> <span class="n">write_all_text</span> <span class="n">path</span>
 </pre></div>
 </div>
 </div>
@@ -11221,8 +11224,8 @@ assert_eq / actual: true / expected: true
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 4
 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #7 file_system.wait_for_file_access / { path = test.txt; retry = 100; ex = System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\613830ed-016e-d959-8d21-02dc1c63c252\test.txt' because it is being used by another process. }
-00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #8 _3
-00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #9 _4
+00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #8 _3
+00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #9 _4
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #10 _5
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #11 _6
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #12 5
