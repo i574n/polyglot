@@ -66,22 +66,6 @@ mod module_b7a9935b {
             US0_0(num_complex::Complex<f64>),
             US0_1,
         }
-        impl Math::US0 {
-            pub fn get_IsUS0_0(this_: &MutCell<Math::US0>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS0_1(this_: &MutCell<Math::US0>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Math::US0 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -91,22 +75,6 @@ mod module_b7a9935b {
         pub enum UH0 {
             UH0_0,
             UH0_1(f64, LrcPtr<Math::UH0>),
-        }
-        impl Math::UH0 {
-            pub fn get_IsUH0_0(this_: LrcPtr<Math::UH0>, unitArg: ()) -> bool {
-                if let Math::UH0::UH0_0 = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUH0_1(this_: LrcPtr<Math::UH0>, unitArg: ()) -> bool {
-                if let Math::UH0::UH0_1(this__1_0, this__1_1) = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Math::UH0 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

@@ -1,8 +1,7 @@
-from __future__ import annotations
 from collections.abc import Callable
 from typing import Any
 from fable_modules.fable_library.reflection import (TypeInfo, union_type)
-from fable_modules.fable_library.types import (Array, Union, FSharpRef)
+from fable_modules.fable_library.types import (Array, Union)
 
 def _expr117() -> TypeInfo:
     return union_type("Platform.US0", [], US0, lambda: [[], [], []])
@@ -39,78 +38,6 @@ class US1(Union):
 
 
 US1_reflection = _expr118
-
-def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US0__get_IsUS0_1(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US0__get_IsUS0_2(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 2:
-        return True
-
-    else: 
-        return False
-
-
-
-def US1__get_IsUS1_0(this: FSharpRef[US1], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US1__get_IsUS1_1(this: FSharpRef[US1], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US1__get_IsUS1_2(this: FSharpRef[US1], unit_arg: None) -> bool:
-    if this.tag == 2:
-        return True
-
-    else: 
-        return False
-
-
-
-def US1__get_IsUS1_3(this: FSharpRef[US1], unit_arg: None) -> bool:
-    if this.tag == 3:
-        return True
-
-    else: 
-        return False
-
-
-
-def US1__get_IsUS1_4(this: FSharpRef[US1], unit_arg: None) -> bool:
-    if this.tag == 4:
-        return True
-
-    else: 
-        return False
-
-
 
 def closure0(unit_var: None, unit_var_1: None) -> bool:
     _v0: bool | None = None

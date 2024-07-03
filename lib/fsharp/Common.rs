@@ -25,46 +25,6 @@ pub mod Polyglot {
             Warning,
             Critical,
         }
-        impl Polyglot::Common::TraceLevel {
-            pub fn get_IsVerbose(this_: LrcPtr<Polyglot::Common::TraceLevel>, unitArg: ()) -> bool {
-                if let Polyglot::Common::TraceLevel::Verbose = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsDebug(this_: LrcPtr<Polyglot::Common::TraceLevel>, unitArg: ()) -> bool {
-                if let Polyglot::Common::TraceLevel::Debug = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsInfo(this_: LrcPtr<Polyglot::Common::TraceLevel>, unitArg: ()) -> bool {
-                if let Polyglot::Common::TraceLevel::Info = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsWarning(this_: LrcPtr<Polyglot::Common::TraceLevel>, unitArg: ()) -> bool {
-                if let Polyglot::Common::TraceLevel::Warning = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsCritical(
-                this_: LrcPtr<Polyglot::Common::TraceLevel>,
-                unitArg: (),
-            ) -> bool {
-                if let Polyglot::Common::TraceLevel::Critical = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Polyglot::Common::TraceLevel {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())

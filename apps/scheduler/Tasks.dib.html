@@ -8096,7 +8096,8 @@ assert_string_contains / actual: "01" / expected: "UH2_1("01", US1_0(US0_0), UH1
 assert_string_contains / actual: 01 / expected: UH2_1 (01, US1_0 US0_0, UH1_0, UH2_1 (02, US1_0 US0_0, UH1_0, UH2_1 (03, US1_0 US0_0, UH1_0, UH2_0)))
 
 .py output:
-assert_string_contains / actual: 01 / expected: UH2_1 (01, US1_0 US0_0, UH1_0, UH2_1 (02, US1_0 US0_0, UH1_0, UH2_1 (03, US1_0 US0_0, UH1_0, UH2_0)))
+assert_string_contains / actual: 01 / expected: UH2_1 ("01", US1_0 US0_0, UH1_0, UH2_1 ("02", US1_0 US0_0, UH1_0, UH2_1 ("03", US1_0 US0_0, UH1_0, UH2_0)))
+
 </pre>
 </div>
 </div>
@@ -8154,6 +8155,7 @@ assert_eq / actual: 01 / expected: 01
 
 .py output:
 assert_eq / actual: 01 / expected: 01
+
 </pre>
 </div>
 </div>

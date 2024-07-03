@@ -1,4 +1,4 @@
-import { FSharpRef, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
+import { Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
 import { value, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 
@@ -84,78 +84,6 @@ export class US1<Tag extends keyof US1_$cases> extends Union<Tag, US1_$cases[Tag
 
 export function US1_$reflection(): TypeInfo {
     return union_type("Platform.US1", [], US1, () => [[["f0_0", US0_$reflection()]], [["f1_0", US0_$reflection()]], [["f2_0", US0_$reflection()]], [["f3_0", US0_$reflection()]], [["f4_0", US0_$reflection()]]]);
-}
-
-export function US0__get_IsUS0_0(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US0__get_IsUS0_1(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 1) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US0__get_IsUS0_2(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 2) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US1__get_IsUS1_0(this$: FSharpRef<US1_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US1__get_IsUS1_1(this$: FSharpRef<US1_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 1) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US1__get_IsUS1_2(this$: FSharpRef<US1_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 2) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US1__get_IsUS1_3(this$: FSharpRef<US1_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 3) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US1__get_IsUS1_4(this$: FSharpRef<US1_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 4) {
-        return true;
-    }
-    else {
-        return false;
-    }
 }
 
 export function closure0(unitVar: void, unitVar_1: void): boolean {

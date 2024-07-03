@@ -47,22 +47,6 @@ pub mod Sm {
         UH0_0,
         UH0_1(char, LrcPtr<Sm::UH0>),
     }
-    impl Sm::UH0 {
-        pub fn get_IsUH0_0(this_: LrcPtr<Sm::UH0>, unitArg: ()) -> bool {
-            if let Sm::UH0::UH0_0 = this_.as_ref() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUH0_1(this_: LrcPtr<Sm::UH0>, unitArg: ()) -> bool {
-            if let Sm::UH0::UH0_1(this__1_0, this__1_1) = this_.as_ref() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Sm::UH0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())

@@ -200,141 +200,6 @@ class Mut4(Record):
 
 Mut4_reflection = _expr22
 
-def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US0__get_IsUS0_1(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US0__get_IsUS0_2(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 2:
-        return True
-
-    else: 
-        return False
-
-
-
-def US0__get_IsUS0_3(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 3:
-        return True
-
-    else: 
-        return False
-
-
-
-def US0__get_IsUS0_4(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 4:
-        return True
-
-    else: 
-        return False
-
-
-
-def US1__get_IsUS1_0(this: FSharpRef[US1], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US1__get_IsUS1_1(this: FSharpRef[US1], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US2__get_IsUS2_0(this: FSharpRef[US2], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US2__get_IsUS2_1(this: FSharpRef[US2], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US3__get_IsUS3_0(this: FSharpRef[US3], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US3__get_IsUS3_1(this: FSharpRef[US3], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US4__get_IsUS4_0(this: FSharpRef[US4], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US4__get_IsUS4_1(this: FSharpRef[US4], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US5__get_IsUS5_0(this: FSharpRef[US5], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US5__get_IsUS5_1(this: FSharpRef[US5], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
 def method0(__unit: None=None) -> str:
     return "TRACE_LEVEL"
 
@@ -547,11 +412,11 @@ def closure10(v0_1: US0, v1_1: Callable[[], str], v2_1: Callable[[], tuple[int, 
 
     _v96.contents = x_2
     v101: US2 = default_arg(_v96.contents, US2(1))
-    def _arrow50(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
+    def _arrow58(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
         v108: Any = create(op_subtraction(ticks_1(now()), v101.fields[0]))
         return create_1(1, 1, 1, hours(v108), minutes(v108), seconds(v108), milliseconds(v108))
 
-    x_3: str = to_string(_arrow50() if (v101.tag == 0) else now(), method10())
+    x_3: str = to_string(_arrow58() if (v101.tag == 0) else now(), method10())
     _v10 = x_3
     v152: str
     if _v10 is None:

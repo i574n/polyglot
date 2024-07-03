@@ -65,24 +65,6 @@ export function Mut1_$reflection(): TypeInfo {
     return record_type("Sm.Mut1", [], Mut1, () => [["l0", int32_type]]);
 }
 
-export function UH0__get_IsUH0_0(this$: UH0_$union, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === /* UH0_0 */ 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function UH0__get_IsUH0_1(this$: UH0_$union, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === /* UH0_1 */ 1) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
 export function closure1(v0_1: string, v1_1: string): boolean {
     return v1_1.indexOf(v0_1) >= 0;
 }

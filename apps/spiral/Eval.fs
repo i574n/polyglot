@@ -100,6 +100,9 @@ module Eval =
     /// ## allCodeReal
     let mutable allCodeReal = ""
 
+    /// ## traceToggle
+    let mutable traceToggle = false
+
     /// ## getParentProcessId
     let getParentProcessId () =
         if SpiralPlatform.is_windows () |> not
@@ -614,13 +617,17 @@ module Eval =
                 |> Option.defaultValue def
 
             let printCode = "print_code" |> boolArg false
+            let isTraceToggle = "trace_toggle" |> boolArg false
             let isTrace = "trace" |> boolArg false
             let isCache = "cache" |> boolArg false
             let isReal = "real" |> boolArg false
 
+            if isTraceToggle
+            then traceToggle <- not traceToggle
+
             let oldLevel = get_trace_level ()
             let traceLevel =
-                if isTrace
+                if isTrace || traceToggle
                 then Verbose
                 else Info
             traceLevel
@@ -781,6 +788,14 @@ module Eval =
                                             code
                                             |> List.filter ((<>) "")
                                             |> String.concat "\n\n"
+
+                                        let code =
+                                            if builderCommands.Length > 0 && eval.Length = 0
+                                            then code
+                                            elif code |> SpiralSm.contains "\n\n\n"
+                                            then $"{code}\n\n"
+                                            else $"{code}\n"
+
                                         let code =
                                             if printCode
                                             then $"\"\"\"{code}\n\n\n\"\"\""

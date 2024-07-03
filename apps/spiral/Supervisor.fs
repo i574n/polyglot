@@ -290,14 +290,14 @@ module Supervisor =
                 |> Async.runWithTimeoutAsync timeout
                 |> Async.StartChild
 
-            do! Async.Sleep 60
+            // do! Async.Sleep 60
 
             let fullPathUri = fullPath |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
 
             let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
             let! _fileOpenResult = fileOpenObj |> sendObj serverPort
 
-            do! Async.Sleep 60
+            // do! Async.Sleep 60
 
             let backendId =
                 match backend with

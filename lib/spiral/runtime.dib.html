@@ -7875,6 +7875,8 @@ assert_eq' / actual: ['n', '--o', '--p', 'q', '--r', 's:/t u/v.w', '--x', 'y:/z.
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #11 testing._assert_fn / { input = l "m n:\o.p" }
 assert_eq' / actual: ['l', 'm n:\\o.p'] / expected: ['l', 'm n:\\o.p']
+
+
 </pre>
 </div>
 </div>
@@ -8076,22 +8078,24 @@ assert_eq' / actual: ('', US1_1) / expected: ('', US1_1)
 assert_eq' / actual: ('/a/b/c', US1_1) / expected: ('/a/b/c', US1_1)
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 testing._assert_fn / { input = d e.f }
-assert_eq' / actual: ('d', US1_0 e.f) / expected: ('d', US1_0 e.f)
+assert_eq' / actual: ('d', US1_0 "e.f") / expected: ('d', US1_0 "e.f")
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 testing._assert_fn / { input = ..\..\g.h i.j k.l }
-assert_eq' / actual: ('../../g.h', US1_0 (i.j k.l)) / expected: ('../../g.h', US1_0 (i.j k.l))
+assert_eq' / actual: ('../../g.h', US1_0 ("i.j k.l")) / expected: ('../../g.h', US1_0 ("i.j k.l"))
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 testing._assert_fn / { input = m:\n\o.p "q.r s.t" }
-assert_eq' / actual: ('m:/n/o.p', US1_0 ("q.r s.t")) / expected: ('m:/n/o.p', US1_0 ("q.r s.t"))
+assert_eq' / actual: ('m:/n/o.p', US1_0 (""q.r s.t"")) / expected: ('m:/n/o.p', US1_0 (""q.r s.t""))
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 testing._assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
-assert_eq' / actual: ('../../u v/w.x', US1_0 ("y z.a" b.c)) / expected: ('../../u v/w.x', US1_0 ("y z.a" b.c))
+assert_eq' / actual: ('../../u v/w.x', US1_0 (""y z.a" b.c")) / expected: ('../../u v/w.x', US1_0 (""y z.a" b.c"))
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 testing._assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
-assert_eq' / actual: ('../../d e.f', US1_0 (-g \\"h i\\")) / expected: ('../../d e.f', US1_0 (-g \\"h i\\"))
+assert_eq' / actual: ('../../d e.f', US1_0 ("-g \\"h i\\"")) / expected: ('../../d e.f', US1_0 ("-g \\"h i\\""))
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 testing._assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
-assert_eq' / actual: ('../../j', US1_0 (k.l -m \\"n o\\")) / expected: ('../../j', US1_0 (k.l -m \\"n o\\"))
+assert_eq' / actual: ('../../j', US1_0 ("k.l -m \\"n o\\"")) / expected: ('../../j', US1_0 ("k.l -m \\"n o\\""))
+
+
 </pre>
 </div>
 </div>
