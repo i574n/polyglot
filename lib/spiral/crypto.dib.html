@@ -7769,8 +7769,8 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options_async / { options = { command = pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/dotnet-repl/9ca8b18d-ee77-4684-ad12-21e1354945fc/test.txt' -Algorithm SHA256).Hash"; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #2 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
-00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options_async / { exit_code = 0; output_length = 64 }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options_async / { exit_code = 0; output_length = 64 }
 assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 </pre>
 </div>
@@ -7817,10 +7817,10 @@ assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805dac
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_004721009037410b152b35f20512d85df1c757800a7f53bb907b8148cb2daccb\ba0aa16a-6c5a-be3f-b526-70110c680e36 }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_004721009037410b152b35f20512d85df1c757800a7f53bb907b8148cb2daccb/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"]; options = { command = pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_004721009037410b152b35f20512d85df1c757800a7f53bb907b8148cb2daccb/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 64 }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_11b15ac10a9607fcc26d04955188062d551a2cff96e9caa54865c9f2cf3f1527\ba0aa16a-6c5a-be3f-b526-70110c680e36 }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_11b15ac10a9607fcc26d04955188062d551a2cff96e9caa54865c9f2cf3f1527/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"]; options = { command = pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_11b15ac10a9607fcc26d04955188062d551a2cff96e9caa54865c9f2cf3f1527/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 64 }
 assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 </pre>
 </div>
@@ -8465,6 +8465,8 @@ assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852
 .py output:
 assert_eq / actual: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b / expected: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
 assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 / expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+
 </pre>
 </div>
 </div>
@@ -8557,6 +8559,8 @@ assert_eq / actual: 19273 / expected: 19273
 .py output:
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 crypto.hash_to_port / { first_letter_code = 48; hash_part = 01ba4719; combined_value = 18249 }
 assert_eq / actual: 19273 / expected: 19273
+
+
 </pre>
 </div>
 </div>

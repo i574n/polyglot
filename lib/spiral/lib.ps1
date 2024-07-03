@@ -17,8 +17,10 @@ function FixRust {
     }
 }
 
-function TsVersion {
-    "4.17.0"
+function GetFableVersion {
+    $versions = Get-ChildItem -Path "$HOME/.nuget/packages/fable" -Directory
+    $latest = $versions | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+    $latest.Name
 }
 
 function FixTypeScript {
@@ -28,7 +30,7 @@ function FixTypeScript {
     )
     process {
         $text `
-            -replace "\./fable_modules/fable-library-ts.$(TsVersion)/", "./deps/Fable/src/fable-library-ts/" `
+            -replace "\./fable_modules/fable-library-ts\.[\d\.]+/", "./deps/Fable/src/fable-library-ts/" `
             -replace "from `"\./deps/", "from `"../../polyglot/deps/"
     }
 }

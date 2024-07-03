@@ -38,39 +38,38 @@ Write-Output "path: $path"
 
 $path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/Map.js"
 (Get-Content $path) `
-    -replace "\(`"\./fable_modules/fable-library-ts.$(TsVersion)/", "(`"./" `
+    -replace "\(`"\./fable_modules/fable-library-ts\.[\d\.]+/", "(`"./" `
     | Set-Content $path
 
 $path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/List.js"
 (Get-Content $path) `
-    -replace "\(`"\./fable_modules/fable-library-ts.$(TsVersion)/", "(`"./" `
+    -replace "\(`"\./fable_modules/fable-library-ts\.[\d\.]+/", "(`"./" `
     | Set-Content $path
 
 $path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/Array.js"
 (Get-Content $path) `
-    -replace "\(`"\./fable_modules/fable-library-ts.$(TsVersion)/", "(`"./" `
+    -replace "\(`"\./fable_modules/fable-library-ts\.[\d\.]+/", "(`"./" `
     | Set-Content $path
 
 $path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/Double.js"
 (Get-Content $path) `
-    -replace "\(`"\./fable_modules/fable-library-ts.$(TsVersion)/", "(`"./" `
+    -replace "\(`"\./fable_modules/fable-library-ts\.[\d\.]+/", "(`"./" `
     | Set-Content $path
 
 $path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/Seq.js"
 (Get-Content $path) `
-    -replace "\(`"\./fable_modules/fable-library-ts.$(TsVersion)/", "(`"./" `
+    -replace "\(`"\./fable_modules/fable-library-ts\.[\d\.]+/", "(`"./" `
     | Set-Content $path
 
 $path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/FSharp.Core.js"
 (Get-Content $path) `
-    -replace "\(`"\./fable_modules/fable-library-ts.$(TsVersion)/", "(`"./" `
+    -replace "\(`"\./fable_modules/fable-library-ts\.[\d\.]+/", "(`"./" `
     | Set-Content $path
 
 $path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/System.Text.js"
 (Get-Content $path) `
-    -replace "\(`"\./fable_modules/fable-library-ts.$(TsVersion)/", "(`"./" `
+    -replace "\(`"\./fable_modules/fable-library-ts\.[\d\.]+/", "(`"./" `
     | Set-Content $path
-
 
 $dir = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/lib"
 New-Item $dir -ItemType Directory -Force | Out-Null

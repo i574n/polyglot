@@ -110,43 +110,6 @@ pub mod Runtime {
         US0_3,
         US0_4,
     }
-    impl Runtime::US0 {
-        pub fn get_IsUS0_0(this_: &MutCell<Runtime::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS0_1(this_: &MutCell<Runtime::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS0_2(this_: &MutCell<Runtime::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS0_3(this_: &MutCell<Runtime::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS0_4(this_: &MutCell<Runtime::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Runtime::US0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -193,22 +156,6 @@ pub mod Runtime {
         US1_0(Runtime::US0),
         US1_1,
     }
-    impl Runtime::US1 {
-        pub fn get_IsUS1_0(this_: &MutCell<Runtime::US1>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS1_1(this_: &MutCell<Runtime::US1>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Runtime::US1 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -219,22 +166,6 @@ pub mod Runtime {
         US2_0(i64),
         US2_1,
     }
-    impl Runtime::US2 {
-        pub fn get_IsUS2_0(this_: &MutCell<Runtime::US2>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS2_1(this_: &MutCell<Runtime::US2>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Runtime::US2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -244,22 +175,6 @@ pub mod Runtime {
     pub enum US3 {
         US3_0(string),
         US3_1,
-    }
-    impl Runtime::US3 {
-        pub fn get_IsUS3_0(this_: &MutCell<Runtime::US3>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS3_1(this_: &MutCell<Runtime::US3>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Runtime::US3 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -280,22 +195,6 @@ pub mod Runtime {
         US4_0(string, Runtime::US3),
         US4_1(string),
     }
-    impl Runtime::US4 {
-        pub fn get_IsUS4_0(this_: &MutCell<Runtime::US4>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS4_1(this_: &MutCell<Runtime::US4>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Runtime::US4 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -305,22 +204,6 @@ pub mod Runtime {
     pub enum US5 {
         US5_0(char, string, LrcPtr<StringBuilder>, i32, i32),
         US5_1(string),
-    }
-    impl Runtime::US5 {
-        pub fn get_IsUS5_0(this_: &MutCell<Runtime::US5>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS5_1(this_: &MutCell<Runtime::US5>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Runtime::US5 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -341,22 +224,6 @@ pub mod Runtime {
         UH0_0,
         UH0_1(char, LrcPtr<Runtime::UH0>),
     }
-    impl Runtime::UH0 {
-        pub fn get_IsUH0_0(this_: LrcPtr<Runtime::UH0>, unitArg: ()) -> bool {
-            if let Runtime::UH0::UH0_0 = this_.as_ref() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUH0_1(this_: LrcPtr<Runtime::UH0>, unitArg: ()) -> bool {
-            if let Runtime::UH0::UH0_1(this__1_0, this__1_1) = this_.as_ref() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Runtime::UH0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -370,22 +237,6 @@ pub mod Runtime {
             LrcPtr<Runtime::UH1>,
         ),
     }
-    impl Runtime::UH1 {
-        pub fn get_IsUH1_0(this_: LrcPtr<Runtime::UH1>, unitArg: ()) -> bool {
-            if let Runtime::UH1::UH1_0 = this_.as_ref() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUH1_1(this_: LrcPtr<Runtime::UH1>, unitArg: ()) -> bool {
-            if let Runtime::UH1::UH1_1(this__1_0, this__1_1) = this_.as_ref() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Runtime::UH1 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -395,22 +246,6 @@ pub mod Runtime {
     pub enum US6 {
         US6_0(string, string, LrcPtr<StringBuilder>, i32, i32),
         US6_1(string),
-    }
-    impl Runtime::US6 {
-        pub fn get_IsUS6_0(this_: &MutCell<Runtime::US6>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS6_1(this_: &MutCell<Runtime::US6>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Runtime::US6 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -422,22 +257,6 @@ pub mod Runtime {
         US7_0(char),
         US7_1,
     }
-    impl Runtime::US7 {
-        pub fn get_IsUS7_0(this_: &MutCell<Runtime::US7>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS7_1(this_: &MutCell<Runtime::US7>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Runtime::US7 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -447,22 +266,6 @@ pub mod Runtime {
     pub enum US8 {
         US8_0(string, LrcPtr<StringBuilder>, i32, i32),
         US8_1(string),
-    }
-    impl Runtime::US8 {
-        pub fn get_IsUS8_0(this_: &MutCell<Runtime::US8>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS8_1(this_: &MutCell<Runtime::US8>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Runtime::US8 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -481,22 +284,6 @@ pub mod Runtime {
         ),
         US9_1(string),
     }
-    impl Runtime::US9 {
-        pub fn get_IsUS9_0(this_: &MutCell<Runtime::US9>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS9_1(this_: &MutCell<Runtime::US9>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Runtime::US9 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -506,22 +293,6 @@ pub mod Runtime {
     pub enum US10 {
         US10_0(Runtime::US7, string, LrcPtr<StringBuilder>, i32, i32),
         US10_1(string),
-    }
-    impl Runtime::US10 {
-        pub fn get_IsUS10_0(this_: &MutCell<Runtime::US10>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS10_1(this_: &MutCell<Runtime::US10>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Runtime::US10 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -533,22 +304,6 @@ pub mod Runtime {
         US11_0(Runtime::US3, string, LrcPtr<StringBuilder>, i32, i32),
         US11_1(string),
     }
-    impl Runtime::US11 {
-        pub fn get_IsUS11_0(this_: &MutCell<Runtime::US11>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS11_1(this_: &MutCell<Runtime::US11>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Runtime::US11 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -559,22 +314,6 @@ pub mod Runtime {
         US12_0(Func1<(i32, string, bool), Arc<Async<()>>>),
         US12_1,
     }
-    impl Runtime::US12 {
-        pub fn get_IsUS12_0(this_: &MutCell<Runtime::US12>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS12_1(this_: &MutCell<Runtime::US12>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Runtime::US12 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -584,22 +323,6 @@ pub mod Runtime {
     pub enum US13 {
         US13_0(CancellationToken),
         US13_1,
-    }
-    impl Runtime::US13 {
-        pub fn get_IsUS13_0(this_: &MutCell<Runtime::US13>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS13_1(this_: &MutCell<Runtime::US13>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Runtime::US13 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -626,22 +349,6 @@ pub mod Runtime {
         US14_0(Array<string>),
         US14_1(string),
     }
-    impl Runtime::US14 {
-        pub fn get_IsUS14_0(this_: &MutCell<Runtime::US14>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS14_1(this_: &MutCell<Runtime::US14>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Runtime::US14 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -651,22 +358,6 @@ pub mod Runtime {
     pub enum UH2 {
         UH2_0,
         UH2_1(string, LrcPtr<Runtime::UH2>),
-    }
-    impl Runtime::UH2 {
-        pub fn get_IsUH2_0(this_: LrcPtr<Runtime::UH2>, unitArg: ()) -> bool {
-            if let Runtime::UH2::UH2_0 = this_.as_ref() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUH2_1(this_: LrcPtr<Runtime::UH2>, unitArg: ()) -> bool {
-            if let Runtime::UH2::UH2_1(this__1_0, this__1_1) = this_.as_ref() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Runtime::UH2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -684,22 +375,6 @@ pub mod Runtime {
         ),
         US15_1(string),
     }
-    impl Runtime::US15 {
-        pub fn get_IsUS15_0(this_: &MutCell<Runtime::US15>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS15_1(this_: &MutCell<Runtime::US15>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Runtime::US15 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -712,22 +387,6 @@ pub mod Runtime {
             Func1<(string, LrcPtr<StringBuilder>, i32, i32), Runtime::US6>,
             LrcPtr<Runtime::UH3>,
         ),
-    }
-    impl Runtime::UH3 {
-        pub fn get_IsUH3_0(this_: LrcPtr<Runtime::UH3>, unitArg: ()) -> bool {
-            if let Runtime::UH3::UH3_0 = this_.as_ref() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUH3_1(this_: LrcPtr<Runtime::UH3>, unitArg: ()) -> bool {
-            if let Runtime::UH3::UH3_1(this__1_0, this__1_1) = this_.as_ref() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Runtime::UH3 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

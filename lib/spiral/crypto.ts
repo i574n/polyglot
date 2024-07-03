@@ -234,105 +234,6 @@ export function Mut5_$reflection(): TypeInfo {
     return record_type("Crypto.Mut5", [], Mut5, () => [["l0", string_type]]);
 }
 
-export function US0__get_IsUS0_0(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US0__get_IsUS0_1(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 1) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US0__get_IsUS0_2(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 2) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US0__get_IsUS0_3(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 3) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US0__get_IsUS0_4(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 4) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US1__get_IsUS1_0(this$: FSharpRef<US1_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US1__get_IsUS1_1(this$: FSharpRef<US1_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 1) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US2__get_IsUS2_0(this$: FSharpRef<US2_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US2__get_IsUS2_1(this$: FSharpRef<US2_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 1) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US3__get_IsUS3_0(this$: FSharpRef<US3_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US3__get_IsUS3_1(this$: FSharpRef<US3_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 1) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
 export function method1(v0_1: int32, v1_1: Mut0): boolean {
     return v1_1.l0 < v0_1;
 }
@@ -591,7 +492,7 @@ export function method3(v0_1: US0_$union, v1_1: (() => string), v2: (() => [int3
 export function closure1(unitVar: void, v0_1: string): uint16 {
     let v3: int32;
     const value: string = v0_1[0];
-    v3 = value.charCodeAt(0);
+    v3 = ~~value.charCodeAt(0);
     const v4: string = v0_1.slice(0, 7 + 1);
     let v8: uint16;
     const value_1: int32 = (parse(v4, 511, false, 32, 16) + v3) | 0;

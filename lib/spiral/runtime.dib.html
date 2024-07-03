@@ -7875,6 +7875,8 @@ assert_eq' / actual: ['n', '--o', '--p', 'q', '--r', 's:/t u/v.w', '--x', 'y:/z.
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #11 testing._assert_fn / { input = l "m n:\o.p" }
 assert_eq' / actual: ['l', 'm n:\\o.p'] / expected: ['l', 'm n:\\o.p']
+
+
 </pre>
 </div>
 </div>
@@ -8076,22 +8078,24 @@ assert_eq' / actual: ('', US1_1) / expected: ('', US1_1)
 assert_eq' / actual: ('/a/b/c', US1_1) / expected: ('/a/b/c', US1_1)
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 testing._assert_fn / { input = d e.f }
-assert_eq' / actual: ('d', US1_0 e.f) / expected: ('d', US1_0 e.f)
+assert_eq' / actual: ('d', US1_0 "e.f") / expected: ('d', US1_0 "e.f")
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 testing._assert_fn / { input = ..\..\g.h i.j k.l }
-assert_eq' / actual: ('../../g.h', US1_0 (i.j k.l)) / expected: ('../../g.h', US1_0 (i.j k.l))
+assert_eq' / actual: ('../../g.h', US1_0 ("i.j k.l")) / expected: ('../../g.h', US1_0 ("i.j k.l"))
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 testing._assert_fn / { input = m:\n\o.p "q.r s.t" }
-assert_eq' / actual: ('m:/n/o.p', US1_0 ("q.r s.t")) / expected: ('m:/n/o.p', US1_0 ("q.r s.t"))
+assert_eq' / actual: ('m:/n/o.p', US1_0 (""q.r s.t"")) / expected: ('m:/n/o.p', US1_0 (""q.r s.t""))
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 testing._assert_fn / { input = "..\..\u v\w.x" "y z.a" b.c }
-assert_eq' / actual: ('../../u v/w.x', US1_0 ("y z.a" b.c)) / expected: ('../../u v/w.x', US1_0 ("y z.a" b.c))
+assert_eq' / actual: ('../../u v/w.x', US1_0 (""y z.a" b.c")) / expected: ('../../u v/w.x', US1_0 (""y z.a" b.c"))
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 testing._assert_fn / { input = "..\..\d e.f" -g \\"h i\\" }
-assert_eq' / actual: ('../../d e.f', US1_0 (-g \\"h i\\")) / expected: ('../../d e.f', US1_0 (-g \\"h i\\"))
+assert_eq' / actual: ('../../d e.f', US1_0 ("-g \\"h i\\"")) / expected: ('../../d e.f', US1_0 ("-g \\"h i\\""))
 
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #8 testing._assert_fn / { input = ..\..\j k.l -m \\"n o\\" }
-assert_eq' / actual: ('../../j', US1_0 (k.l -m \\"n o\\")) / expected: ('../../j', US1_0 (k.l -m \\"n o\\"))
+assert_eq' / actual: ('../../j', US1_0 ("k.l -m \\"n o\\"")) / expected: ('../../j', US1_0 ("k.l -m \\"n o\\""))
+
+
 </pre>
 </div>
 </div>
@@ -10560,7 +10564,7 @@ assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: st
                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">options</span> <span class="p">}</span>
 
                 <span class="n">inl</span> <span class="n">utf8</span> <span class="o">=</span> <span class="n">sm</span><span class="s1">'.encoding_utf8 ()</span>
-                <span class="n">inl</span> <span class="n">arguments</span> <span class="o">=</span> <span class="n">arguments</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
+                <span class="n">inl</span> <span class="n">arguments</span> <span class="o">=</span> <span class="n">arguments</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value ""</span>
 
                 <span class="err">$</span><span class="s1">'let start_info = System.Diagnostics.ProcessStartInfo ('</span>
                 <span class="err">$</span><span class="s1">'  Arguments = !arguments,'</span>
@@ -10766,14 +10770,14 @@ assert_eq' / actual: struct ("../../j", US1_0 "k.l -m \\"n o\\"") / expected: st
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options_async / { options = { command = pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\76793606-813b-88ad-7791-7ce2871edce9\test.txt"; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = None } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 ! <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\76793606-813b-88ad-7791-7ce2871edce9\test.txt' because it does not exist.</span>
-00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options_async / { exit_code = 1; output_length = 197 }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options_async / { exit_code = 1; output_length = 197 }
 assert_eq / actual: 1 / expected: 1
 assert_string_contains / actual: "not exist" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Get-Content: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\76793606-813b-88ad-7791-7ce2871edce9\test.txt' because it does not exist.</span>"
-00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options_async / { options = { command = cat "test.txt"; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options_async / { options = { command = cat "test.txt"; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some
   "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\76793606-813b-88ad-7791-7ce2871edce9" } }
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #6 runtime.execute_with_options_async / { exit_code = 0; output_length = 22 }
-00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #7 runtime.execute_with_options_async / { options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Content test.txt"; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 runtime.execute_with_options_async / { exit_code = 0; output_length = 22 }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #7 runtime.execute_with_options_async / { options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Content test.txt"; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some
   "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\76793606-813b-88ad-7791-7ce2871edce9" } }
 00:00:01 <span class="ansi-black-intense-fg">verbose</span> #8 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #9 runtime.execute_with_options_async / { exit_code = 0; output_length = 22 }
@@ -11273,18 +11277,18 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_fcf8cce2794b671e40c4e626d1a2a27b7596ceb0fe5315543f9576eee12290df\9242780b-ce0e-9155-5e07-f6ee5667aa16 }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_fcf8cce2794b671e40c4e626d1a2a27b7596ceb0fe5315543f9576eee12290df/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"]; options = { command = pwsh -c "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_fcf8cce2794b671e40c4e626d1a2a27b7596ceb0fe5315543f9576eee12290df/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_fcf8cce2794b671e40c4e626d1a2a27b7596ceb0fe5315543f9576eee12290df\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / { exit_code = 1; std_trace_length = 312 }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_bc5ab635ddf13f38e349bc62037175158148e634689e79de73319b24d564929b\9242780b-ce0e-9155-5e07-f6ee5667aa16 }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_bc5ab635ddf13f38e349bc62037175158148e634689e79de73319b24d564929b/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"]; options = { command = pwsh -c "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_bc5ab635ddf13f38e349bc62037175158148e634689e79de73319b24d564929b/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_bc5ab635ddf13f38e349bc62037175158148e634689e79de73319b24d564929b\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / { exit_code = 1; std_trace_length = 312 }
 assert_eq / actual: 1 / expected: 1
-assert_string_contains / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_fcf8cce2794b671e40c4e626d1a2a27b7596ceb0fe5315543f9576eee12290df\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>"
-00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #5 runtime.execute_with_options / { file_name = cat; arguments = ["test.txt"]; options = { command = cat "test.txt"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some("C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_fcf8cce2794b671e40c4e626d1a2a27b7596ceb0fe5315543f9576eee12290df\9242780b-ce0e-9155-5e07-f6ee5667aa16") } }
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #7 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
-00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #8 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"]; options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some("C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_fcf8cce2794b671e40c4e626d1a2a27b7596ceb0fe5315543f9576eee12290df\9242780b-ce0e-9155-5e07-f6ee5667aa16") } }
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:02 <span class="ansi-black-intense-fg">verbose</span> #10 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
+assert_string_contains / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_bc5ab635ddf13f38e349bc62037175158148e634689e79de73319b24d564929b\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>"
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 runtime.execute_with_options / { file_name = cat; arguments = ["test.txt"]; options = { command = cat "test.txt"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some("C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_bc5ab635ddf13f38e349bc62037175158148e634689e79de73319b24d564929b\9242780b-ce0e-9155-5e07-f6ee5667aa16") } }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #7 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #8 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"]; options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some("C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_bc5ab635ddf13f38e349bc62037175158148e634689e79de73319b24d564929b\9242780b-ce0e-9155-5e07-f6ee5667aa16") } }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #10 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
 assert_eq / actual: 0 / expected: 0
 assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
 </pre>

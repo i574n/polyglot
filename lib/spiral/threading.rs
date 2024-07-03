@@ -40,22 +40,6 @@ pub mod Threading {
         US0_0(CancellationToken),
         US0_1,
     }
-    impl Threading::US0 {
-        pub fn get_IsUS0_0(this_: &MutCell<Threading::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS0_1(this_: &MutCell<Threading::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Threading::US0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())

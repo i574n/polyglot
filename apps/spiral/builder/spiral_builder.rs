@@ -219,43 +219,6 @@ mod module_7e2cd9e0 {
             US0_3,
             US0_4,
         }
-        impl Spiral_builder::US0 {
-            pub fn get_IsUS0_0(this_: &MutCell<Spiral_builder::US0>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS0_1(this_: &MutCell<Spiral_builder::US0>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS0_2(this_: &MutCell<Spiral_builder::US0>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS0_3(this_: &MutCell<Spiral_builder::US0>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS0_4(this_: &MutCell<Spiral_builder::US0>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US0 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -302,22 +265,6 @@ mod module_7e2cd9e0 {
             US1_0(Spiral_builder::US0),
             US1_1,
         }
-        impl Spiral_builder::US1 {
-            pub fn get_IsUS1_0(this_: &MutCell<Spiral_builder::US1>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS1_1(this_: &MutCell<Spiral_builder::US1>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US1 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -328,22 +275,6 @@ mod module_7e2cd9e0 {
             US2_0(i64),
             US2_1,
         }
-        impl Spiral_builder::US2 {
-            pub fn get_IsUS2_0(this_: &MutCell<Spiral_builder::US2>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS2_1(this_: &MutCell<Spiral_builder::US2>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US2 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -353,22 +284,6 @@ mod module_7e2cd9e0 {
         pub enum US3 {
             US3_0(string),
             US3_1,
-        }
-        impl Spiral_builder::US3 {
-            pub fn get_IsUS3_0(this_: &MutCell<Spiral_builder::US3>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS3_1(this_: &MutCell<Spiral_builder::US3>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US3 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -389,22 +304,6 @@ mod module_7e2cd9e0 {
             US4_0(std::string::String, clap::ArgMatches),
             US4_1,
         }
-        impl Spiral_builder::US4 {
-            pub fn get_IsUS4_0(this_: &MutCell<Spiral_builder::US4>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS4_1(this_: &MutCell<Spiral_builder::US4>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US4 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -414,22 +313,6 @@ mod module_7e2cd9e0 {
         pub enum US5 {
             US5_0(std::string::String),
             US5_1,
-        }
-        impl Spiral_builder::US5 {
-            pub fn get_IsUS5_0(this_: &MutCell<Spiral_builder::US5>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS5_1(this_: &MutCell<Spiral_builder::US5>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US5 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -441,22 +324,6 @@ mod module_7e2cd9e0 {
             US8_0,
             US8_1,
         }
-        impl Spiral_builder::US8 {
-            pub fn get_IsUS8_0(this_: &MutCell<Spiral_builder::US8>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS8_1(this_: &MutCell<Spiral_builder::US8>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US8 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -466,22 +333,6 @@ mod module_7e2cd9e0 {
         pub enum US7 {
             US7_0(Spiral_builder::US8),
             US7_1,
-        }
-        impl Spiral_builder::US7 {
-            pub fn get_IsUS7_0(this_: &MutCell<Spiral_builder::US7>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS7_1(this_: &MutCell<Spiral_builder::US7>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US7 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -493,22 +344,6 @@ mod module_7e2cd9e0 {
             US6_0(Spiral_builder::US7),
             US6_1,
         }
-        impl Spiral_builder::US6 {
-            pub fn get_IsUS6_0(this_: &MutCell<Spiral_builder::US6>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS6_1(this_: &MutCell<Spiral_builder::US6>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US6 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -518,22 +353,6 @@ mod module_7e2cd9e0 {
         pub enum US9 {
             US9_0(Vec<std::string::String>),
             US9_1,
-        }
-        impl Spiral_builder::US9 {
-            pub fn get_IsUS9_0(this_: &MutCell<Spiral_builder::US9>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS9_1(this_: &MutCell<Spiral_builder::US9>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US9 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -545,29 +364,6 @@ mod module_7e2cd9e0 {
             US10_0,
             US10_1,
             US10_2,
-        }
-        impl Spiral_builder::US10 {
-            pub fn get_IsUS10_0(this_: &MutCell<Spiral_builder::US10>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS10_1(this_: &MutCell<Spiral_builder::US10>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS10_2(this_: &MutCell<Spiral_builder::US10>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US10 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -582,43 +378,6 @@ mod module_7e2cd9e0 {
             US11_3(Spiral_builder::US10),
             US11_4(Spiral_builder::US10),
         }
-        impl Spiral_builder::US11 {
-            pub fn get_IsUS11_0(this_: &MutCell<Spiral_builder::US11>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS11_1(this_: &MutCell<Spiral_builder::US11>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS11_2(this_: &MutCell<Spiral_builder::US11>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS11_3(this_: &MutCell<Spiral_builder::US11>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS11_4(this_: &MutCell<Spiral_builder::US11>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US11 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -628,22 +387,6 @@ mod module_7e2cd9e0 {
         pub enum US12 {
             US12_0(string),
             US12_1(string),
-        }
-        impl Spiral_builder::US12 {
-            pub fn get_IsUS12_0(this_: &MutCell<Spiral_builder::US12>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS12_1(this_: &MutCell<Spiral_builder::US12>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US12 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -655,22 +398,6 @@ mod module_7e2cd9e0 {
             US13_0,
             US13_1(std::string::String),
         }
-        impl Spiral_builder::US13 {
-            pub fn get_IsUS13_0(this_: &MutCell<Spiral_builder::US13>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS13_1(this_: &MutCell<Spiral_builder::US13>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US13 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -681,22 +408,6 @@ mod module_7e2cd9e0 {
             US14_0(string, Spiral_builder::US3),
             US14_1(string),
         }
-        impl Spiral_builder::US14 {
-            pub fn get_IsUS14_0(this_: &MutCell<Spiral_builder::US14>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS14_1(this_: &MutCell<Spiral_builder::US14>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US14 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -706,22 +417,6 @@ mod module_7e2cd9e0 {
         pub enum US15 {
             US15_0(char, string, LrcPtr<StringBuilder>, i32, i32),
             US15_1(string),
-        }
-        impl Spiral_builder::US15 {
-            pub fn get_IsUS15_0(this_: &MutCell<Spiral_builder::US15>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS15_1(this_: &MutCell<Spiral_builder::US15>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US15 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -742,22 +437,6 @@ mod module_7e2cd9e0 {
             UH0_0,
             UH0_1(char, LrcPtr<Spiral_builder::UH0>),
         }
-        impl Spiral_builder::UH0 {
-            pub fn get_IsUH0_0(this_: LrcPtr<Spiral_builder::UH0>, unitArg: ()) -> bool {
-                if let Spiral_builder::UH0::UH0_0 = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUH0_1(this_: LrcPtr<Spiral_builder::UH0>, unitArg: ()) -> bool {
-                if let Spiral_builder::UH0::UH0_1(this__1_0, this__1_1) = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::UH0 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -771,22 +450,6 @@ mod module_7e2cd9e0 {
                 LrcPtr<Spiral_builder::UH1>,
             ),
         }
-        impl Spiral_builder::UH1 {
-            pub fn get_IsUH1_0(this_: LrcPtr<Spiral_builder::UH1>, unitArg: ()) -> bool {
-                if let Spiral_builder::UH1::UH1_0 = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUH1_1(this_: LrcPtr<Spiral_builder::UH1>, unitArg: ()) -> bool {
-                if let Spiral_builder::UH1::UH1_1(this__1_0, this__1_1) = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::UH1 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -796,22 +459,6 @@ mod module_7e2cd9e0 {
         pub enum US16 {
             US16_0(string, string, LrcPtr<StringBuilder>, i32, i32),
             US16_1(string),
-        }
-        impl Spiral_builder::US16 {
-            pub fn get_IsUS16_0(this_: &MutCell<Spiral_builder::US16>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS16_1(this_: &MutCell<Spiral_builder::US16>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US16 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -823,22 +470,6 @@ mod module_7e2cd9e0 {
             US17_0(char),
             US17_1,
         }
-        impl Spiral_builder::US17 {
-            pub fn get_IsUS17_0(this_: &MutCell<Spiral_builder::US17>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS17_1(this_: &MutCell<Spiral_builder::US17>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US17 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -848,22 +479,6 @@ mod module_7e2cd9e0 {
         pub enum US18 {
             US18_0(string, LrcPtr<StringBuilder>, i32, i32),
             US18_1(string),
-        }
-        impl Spiral_builder::US18 {
-            pub fn get_IsUS18_0(this_: &MutCell<Spiral_builder::US18>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS18_1(this_: &MutCell<Spiral_builder::US18>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US18 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -882,22 +497,6 @@ mod module_7e2cd9e0 {
             ),
             US19_1(string),
         }
-        impl Spiral_builder::US19 {
-            pub fn get_IsUS19_0(this_: &MutCell<Spiral_builder::US19>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS19_1(this_: &MutCell<Spiral_builder::US19>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US19 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -914,22 +513,6 @@ mod module_7e2cd9e0 {
             ),
             US20_1(string),
         }
-        impl Spiral_builder::US20 {
-            pub fn get_IsUS20_0(this_: &MutCell<Spiral_builder::US20>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS20_1(this_: &MutCell<Spiral_builder::US20>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US20 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -939,22 +522,6 @@ mod module_7e2cd9e0 {
         pub enum US21 {
             US21_0(Spiral_builder::US3, string, LrcPtr<StringBuilder>, i32, i32),
             US21_1(string),
-        }
-        impl Spiral_builder::US21 {
-            pub fn get_IsUS21_0(this_: &MutCell<Spiral_builder::US21>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS21_1(this_: &MutCell<Spiral_builder::US21>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US21 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -966,22 +533,6 @@ mod module_7e2cd9e0 {
             US22_0(Array<string>),
             US22_1(string),
         }
-        impl Spiral_builder::US22 {
-            pub fn get_IsUS22_0(this_: &MutCell<Spiral_builder::US22>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS22_1(this_: &MutCell<Spiral_builder::US22>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US22 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -991,22 +542,6 @@ mod module_7e2cd9e0 {
         pub enum UH2 {
             UH2_0,
             UH2_1(string, LrcPtr<Spiral_builder::UH2>),
-        }
-        impl Spiral_builder::UH2 {
-            pub fn get_IsUH2_0(this_: LrcPtr<Spiral_builder::UH2>, unitArg: ()) -> bool {
-                if let Spiral_builder::UH2::UH2_0 = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUH2_1(this_: LrcPtr<Spiral_builder::UH2>, unitArg: ()) -> bool {
-                if let Spiral_builder::UH2::UH2_1(this__1_0, this__1_1) = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::UH2 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1024,22 +559,6 @@ mod module_7e2cd9e0 {
             ),
             US23_1(string),
         }
-        impl Spiral_builder::US23 {
-            pub fn get_IsUS23_0(this_: &MutCell<Spiral_builder::US23>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS23_1(this_: &MutCell<Spiral_builder::US23>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US23 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -1053,22 +572,6 @@ mod module_7e2cd9e0 {
                 LrcPtr<Spiral_builder::UH3>,
             ),
         }
-        impl Spiral_builder::UH3 {
-            pub fn get_IsUH3_0(this_: LrcPtr<Spiral_builder::UH3>, unitArg: ()) -> bool {
-                if let Spiral_builder::UH3::UH3_0 = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUH3_1(this_: LrcPtr<Spiral_builder::UH3>, unitArg: ()) -> bool {
-                if let Spiral_builder::UH3::UH3_1(this__1_0, this__1_1) = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::UH3 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -1078,22 +581,6 @@ mod module_7e2cd9e0 {
         pub enum US24 {
             US24_0(std::sync::Arc<std::sync::Mutex<Option<std::process::Child>>>),
             US24_1(std::string::String),
-        }
-        impl Spiral_builder::US24 {
-            pub fn get_IsUS24_0(this_: &MutCell<Spiral_builder::US24>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS24_1(this_: &MutCell<Spiral_builder::US24>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US24 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1111,22 +598,6 @@ mod module_7e2cd9e0 {
             ),
             US25_1,
         }
-        impl Spiral_builder::US25 {
-            pub fn get_IsUS25_0(this_: &MutCell<Spiral_builder::US25>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS25_1(this_: &MutCell<Spiral_builder::US25>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US25 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -1136,22 +607,6 @@ mod module_7e2cd9e0 {
         pub enum US26 {
             US26_0(std::string::String),
             US26_1(std::string::String),
-        }
-        impl Spiral_builder::US26 {
-            pub fn get_IsUS26_0(this_: &MutCell<Spiral_builder::US26>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS26_1(this_: &MutCell<Spiral_builder::US26>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US26 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1163,22 +618,6 @@ mod module_7e2cd9e0 {
             US27_0(Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>),
             US27_1,
         }
-        impl Spiral_builder::US27 {
-            pub fn get_IsUS27_0(this_: &MutCell<Spiral_builder::US27>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS27_1(this_: &MutCell<Spiral_builder::US27>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US27 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -1188,22 +627,6 @@ mod module_7e2cd9e0 {
         pub enum US28 {
             US28_0(std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>),
             US28_1,
-        }
-        impl Spiral_builder::US28 {
-            pub fn get_IsUS28_0(this_: &MutCell<Spiral_builder::US28>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS28_1(this_: &MutCell<Spiral_builder::US28>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US28 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1215,22 +638,6 @@ mod module_7e2cd9e0 {
             US29_0(std::process::Output),
             US29_1(std::string::String),
         }
-        impl Spiral_builder::US29 {
-            pub fn get_IsUS29_0(this_: &MutCell<Spiral_builder::US29>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS29_1(this_: &MutCell<Spiral_builder::US29>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US29 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -1240,22 +647,6 @@ mod module_7e2cd9e0 {
         pub enum US30 {
             US30_0(i32),
             US30_1,
-        }
-        impl Spiral_builder::US30 {
-            pub fn get_IsUS30_0(this_: &MutCell<Spiral_builder::US30>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS30_1(this_: &MutCell<Spiral_builder::US30>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US30 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1267,22 +658,6 @@ mod module_7e2cd9e0 {
             US31_0(Func1<(i32, string, bool), Arc<Async<()>>>),
             US31_1,
         }
-        impl Spiral_builder::US31 {
-            pub fn get_IsUS31_0(this_: &MutCell<Spiral_builder::US31>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS31_1(this_: &MutCell<Spiral_builder::US31>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US31 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -1292,22 +667,6 @@ mod module_7e2cd9e0 {
         pub enum US32 {
             US32_0(CancellationToken),
             US32_1,
-        }
-        impl Spiral_builder::US32 {
-            pub fn get_IsUS32_0(this_: &MutCell<Spiral_builder::US32>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS32_1(this_: &MutCell<Spiral_builder::US32>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US32 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1330,22 +689,6 @@ mod module_7e2cd9e0 {
             US33_0(chrono::DateTime<chrono::Utc>),
             US33_1,
         }
-        impl Spiral_builder::US33 {
-            pub fn get_IsUS33_0(this_: &MutCell<Spiral_builder::US33>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS33_1(this_: &MutCell<Spiral_builder::US33>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US33 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -1355,22 +698,6 @@ mod module_7e2cd9e0 {
         pub enum US34 {
             US34_0(i32, string),
             US34_1(i32, string),
-        }
-        impl Spiral_builder::US34 {
-            pub fn get_IsUS34_0(this_: &MutCell<Spiral_builder::US34>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS34_1(this_: &MutCell<Spiral_builder::US34>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US34 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1382,22 +709,6 @@ mod module_7e2cd9e0 {
             US35_0(std::collections::HashMap<string, string>),
             US35_1,
         }
-        impl Spiral_builder::US35 {
-            pub fn get_IsUS35_0(this_: &MutCell<Spiral_builder::US35>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS35_1(this_: &MutCell<Spiral_builder::US35>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US35 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -1408,22 +719,6 @@ mod module_7e2cd9e0 {
             US36_0(Spiral_builder::US3),
             US36_1,
         }
-        impl Spiral_builder::US36 {
-            pub fn get_IsUS36_0(this_: &MutCell<Spiral_builder::US36>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS36_1(this_: &MutCell<Spiral_builder::US36>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US36 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -1433,23 +728,6 @@ mod module_7e2cd9e0 {
         pub enum UH4 {
             UH4_0,
             UH4_1(string, bool, LrcPtr<Spiral_builder::UH4>),
-        }
-        impl Spiral_builder::UH4 {
-            pub fn get_IsUH4_0(this_: LrcPtr<Spiral_builder::UH4>, unitArg: ()) -> bool {
-                if let Spiral_builder::UH4::UH4_0 = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUH4_1(this_: LrcPtr<Spiral_builder::UH4>, unitArg: ()) -> bool {
-                if let Spiral_builder::UH4::UH4_1(this__1_0, this__1_1, this__1_2) = this_.as_ref()
-                {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::UH4 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1462,29 +740,6 @@ mod module_7e2cd9e0 {
             US37_1,
             US37_2,
         }
-        impl Spiral_builder::US37 {
-            pub fn get_IsUS37_0(this_: &MutCell<Spiral_builder::US37>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS37_1(this_: &MutCell<Spiral_builder::US37>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS37_2(this_: &MutCell<Spiral_builder::US37>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US37 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -1494,22 +749,6 @@ mod module_7e2cd9e0 {
         pub enum US38 {
             US38_0(std::fs::FileType),
             US38_1(std::string::String),
-        }
-        impl Spiral_builder::US38 {
-            pub fn get_IsUS38_0(this_: &MutCell<Spiral_builder::US38>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS38_1(this_: &MutCell<Spiral_builder::US38>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::US38 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -1521,22 +760,6 @@ mod module_7e2cd9e0 {
             US39_0(async_walkdir::DirEntry),
             US39_1(std::string::String),
         }
-        impl Spiral_builder::US39 {
-            pub fn get_IsUS39_0(this_: &MutCell<Spiral_builder::US39>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS39_1(this_: &MutCell<Spiral_builder::US39>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US39 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -1547,22 +770,6 @@ mod module_7e2cd9e0 {
             US40_0(string, string),
             US40_1,
         }
-        impl Spiral_builder::US40 {
-            pub fn get_IsUS40_0(this_: &MutCell<Spiral_builder::US40>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUS40_1(this_: &MutCell<Spiral_builder::US40>, unitArg: ()) -> bool {
-                if unreachable!() {
-                    true
-                } else {
-                    false
-                }
-            }
-        }
         impl core::fmt::Display for Spiral_builder::US40 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
@@ -1572,23 +779,6 @@ mod module_7e2cd9e0 {
         pub enum UH5 {
             UH5_0,
             UH5_1(string, string, LrcPtr<Spiral_builder::UH5>),
-        }
-        impl Spiral_builder::UH5 {
-            pub fn get_IsUH5_0(this_: LrcPtr<Spiral_builder::UH5>, unitArg: ()) -> bool {
-                if let Spiral_builder::UH5::UH5_0 = this_.as_ref() {
-                    true
-                } else {
-                    false
-                }
-            }
-            pub fn get_IsUH5_1(this_: LrcPtr<Spiral_builder::UH5>, unitArg: ()) -> bool {
-                if let Spiral_builder::UH5::UH5_1(this__1_0, this__1_1, this__1_2) = this_.as_ref()
-                {
-                    true
-                } else {
-                    false
-                }
-            }
         }
         impl core::fmt::Display for Spiral_builder::UH5 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

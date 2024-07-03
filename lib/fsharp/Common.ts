@@ -55,51 +55,6 @@ export function TraceLevel_$reflection(): TypeInfo {
     return union_type("Polyglot.Common.TraceLevel", [], TraceLevel, () => [[], [], [], [], []]);
 }
 
-export function TraceLevel__get_IsVerbose(this$: TraceLevel_$union, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === /* Verbose */ 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function TraceLevel__get_IsDebug(this$: TraceLevel_$union, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === /* Debug */ 1) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function TraceLevel__get_IsInfo(this$: TraceLevel_$union, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === /* Info */ 2) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function TraceLevel__get_IsWarning(this$: TraceLevel_$union, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === /* Warning */ 3) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function TraceLevel__get_IsCritical(this$: TraceLevel_$union, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === /* Critical */ 4) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
 /**
  * ## trace
  */

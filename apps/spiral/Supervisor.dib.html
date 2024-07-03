@@ -8206,14 +8206,14 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeoutAsync</span> <span class="n">timeout</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
 
-        <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">60</span>
+        <span class="o">//</span> <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">60</span>
 
         <span class="n">let</span> <span class="n">fullPathUri</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">normalize_path</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">new_file_uri</span>
 
         <span class="n">let</span> <span class="n">fileOpenObj</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span> <span class="n">FileOpen</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">fullPathUri</span><span class="p">;</span> <span class="n">spiText</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|</span><span class="p">}</span> <span class="o">|</span><span class="p">}</span>
         <span class="n">let</span><span class="o">!</span><span class="w"> </span><span class="nv">_fileOpenResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>fileOpenObj<span class="w"> </span><span class="p">|</span>&gt;<span class="w"> </span>sendObj<span class="w"> </span>serverPort
 
-        <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">60</span>
+        <span class="o">//</span> <span class="n">do</span><span class="o">!</span><span class="w"> </span>Async.Sleep<span class="w"> </span><span class="m">60</span>
 
         <span class="n">let</span> <span class="n">backendId</span> <span class="o">=</span>
             <span class="k">match</span> <span class="n">backend</span> <span class="k">with</span>

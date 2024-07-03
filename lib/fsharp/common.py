@@ -27,51 +27,6 @@ class TraceLevel(Union):
 
 TraceLevel_reflection = _expr211
 
-def TraceLevel__get_IsVerbose(this: TraceLevel, unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def TraceLevel__get_IsDebug(this: TraceLevel, unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def TraceLevel__get_IsInfo(this: TraceLevel, unit_arg: None) -> bool:
-    if this.tag == 2:
-        return True
-
-    else: 
-        return False
-
-
-
-def TraceLevel__get_IsWarning(this: TraceLevel, unit_arg: None) -> bool:
-    if this.tag == 3:
-        return True
-
-    else: 
-        return False
-
-
-
-def TraceLevel__get_IsCritical(this: TraceLevel, unit_arg: None) -> bool:
-    if this.tag == 4:
-        return True
-
-    else: 
-        return False
-
-
-
 def to_trace_level(_arg: TraceLevel) -> US0:
     if _arg.tag == 1:
         return US0(1)

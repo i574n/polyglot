@@ -11,29 +11,6 @@ pub mod Platform {
         US0_1,
         US0_2,
     }
-    impl Platform::US0 {
-        pub fn get_IsUS0_0(this_: &MutCell<Platform::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS0_1(this_: &MutCell<Platform::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS0_2(this_: &MutCell<Platform::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Platform::US0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -46,43 +23,6 @@ pub mod Platform {
         US1_2(Platform::US0),
         US1_3(Platform::US0),
         US1_4(Platform::US0),
-    }
-    impl Platform::US1 {
-        pub fn get_IsUS1_0(this_: &MutCell<Platform::US1>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS1_1(this_: &MutCell<Platform::US1>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS1_2(this_: &MutCell<Platform::US1>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS1_3(this_: &MutCell<Platform::US1>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS1_4(this_: &MutCell<Platform::US1>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Platform::US1 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

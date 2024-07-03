@@ -13115,7 +13115,8 @@ and method112 (v0 : string, v1 : System.Threading.CancellationToken option, v2 :
     let v48 : string =
         match v30 with
         | US3_1 -> (* None *)
-            failwith<string> "Option does not have a value."
+            let v46 : string = ""
+            v46
         | US3_0(v45) -> (* Some *)
             v45
     let start_info = System.Diagnostics.ProcessStartInfo (

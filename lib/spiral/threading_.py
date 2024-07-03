@@ -4,7 +4,7 @@ from typing import Any
 from fable_modules.fable_library.async_builder import CancellationToken
 from fable_modules.fable_library.option import (some, value as value_1)
 from fable_modules.fable_library.reflection import (TypeInfo, class_type, union_type)
-from fable_modules.fable_library.types import (Array, Union, FSharpRef)
+from fable_modules.fable_library.types import (Array, Union)
 from fable_modules.fable_library.util import IDisposable
 
 def _expr93() -> TypeInfo:
@@ -43,24 +43,6 @@ class US0(Union):
 
 
 US0_reflection = _expr94
-
-def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US0__get_IsUS0_1(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
 
 def closure1(v0_1: Any, unit_var: None) -> None:
     _v1: None | None = None

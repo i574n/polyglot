@@ -51,24 +51,6 @@ class Mut1(Record):
 
 Mut1_reflection = _expr2
 
-def UH0__get_IsUH0_0(this: UH0, unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def UH0__get_IsUH0_1(this: UH0, unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
 def closure1(v0_1: str, v1_1: str) -> bool:
     return v1_1.find(v0_1) >= 0
 
@@ -519,81 +501,81 @@ def slice(x: int) -> Callable[[int, str], str]:
     return v6(x)
 
 
-def _arrow51(v: str) -> Callable[[str], Array[str]]:
+def _arrow50(v: str) -> Callable[[str], Array[str]]:
     return closure19(None, v)
 
 
-v7: Callable[[str, str], Array[str]] = _arrow51
+v7: Callable[[str, str], Array[str]] = _arrow50
 
 def split(x: str) -> Callable[[str], Array[str]]:
     return v7(x)
 
 
-def _arrow52(v: Array[str]) -> Callable[[str], Array[str]]:
+def _arrow51(v: Array[str]) -> Callable[[str], Array[str]]:
     return closure21(None, v)
 
 
-v8: Callable[[Array[str], str], Array[str]] = _arrow52
+v8: Callable[[Array[str], str], Array[str]] = _arrow51
 
 def split_string(x: Array[str]) -> Callable[[str], Array[str]]:
     return v8(x)
 
 
-def _arrow53(v: str) -> Callable[[str], bool]:
+def _arrow52(v: str) -> Callable[[str], bool]:
     return closure23(None, v)
 
 
-v9: Callable[[str, str], bool] = _arrow53
+v9: Callable[[str, str], bool] = _arrow52
 
 def starts_with(x: str) -> Callable[[str], bool]:
     return v9(x)
 
 
-def _arrow54(v: int) -> Callable[[int, str], str]:
+def _arrow53(v: int) -> Callable[[int, str], str]:
     return closure25(None, v)
 
 
-v10: Callable[[int, int, str], str] = _arrow54
+v10: Callable[[int, int, str], str] = _arrow53
 
 def substring(x: int) -> Callable[[int, str], str]:
     return v10(x)
 
 
-def _arrow55(v: str) -> str:
+def _arrow54(v: str) -> str:
     return closure28(None, v)
 
 
-v11: Callable[[str], str] = _arrow55
+v11: Callable[[str], str] = _arrow54
 
 def to_lower(x: str) -> str:
     return v11(x)
 
 
-def _arrow56(v: str) -> str:
+def _arrow55(v: str) -> str:
     return closure29(None, v)
 
 
-v12: Callable[[str], str] = _arrow56
+v12: Callable[[str], str] = _arrow55
 
 def to_upper(x: str) -> str:
     return v12(x)
 
 
-def _arrow57(v: str) -> str:
+def _arrow56(v: str) -> str:
     return closure30(None, v)
 
 
-v13: Callable[[str], str] = _arrow57
+v13: Callable[[str], str] = _arrow56
 
 def trim(x: str) -> str:
     return v13(x)
 
 
-def _arrow58(v: Array[str]) -> Callable[[str], str]:
+def _arrow57(v: Array[str]) -> Callable[[str], str]:
     return closure31(None, v)
 
 
-v14: Callable[[Array[str], str], str] = _arrow58
+v14: Callable[[Array[str], str], str] = _arrow57
 
 def trim_end(x: Array[str]) -> Callable[[str], str]:
     return v14(x)

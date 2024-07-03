@@ -15,7 +15,7 @@ from fable_modules.fable_library.option import (some, value as value_2, default_
 from fable_modules.fable_library.reflection import (TypeInfo, int32_type, record_type, union_type, int64_type, string_type, unit_type, lambda_type, bool_type)
 from fable_modules.fable_library.string_ import (pad_left, trim_end, trim_start)
 from fable_modules.fable_library.time_span import (create, hours, minutes, seconds, milliseconds)
-from fable_modules.fable_library.types import (int64, Record, Array, Union, FSharpRef, uint16)
+from fable_modules.fable_library.types import (int64, Record, Array, Union, uint16, FSharpRef)
 from fable_modules.fable_library.util import (create_atom, to_enumerable, compare)
 
 class ICryptoCreateHash(Protocol):
@@ -169,105 +169,6 @@ class Mut5(Record):
     l0: str
 
 Mut5_reflection = _expr85
-
-def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US0__get_IsUS0_1(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US0__get_IsUS0_2(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 2:
-        return True
-
-    else: 
-        return False
-
-
-
-def US0__get_IsUS0_3(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 3:
-        return True
-
-    else: 
-        return False
-
-
-
-def US0__get_IsUS0_4(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 4:
-        return True
-
-    else: 
-        return False
-
-
-
-def US1__get_IsUS1_0(this: FSharpRef[US1], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US1__get_IsUS1_1(this: FSharpRef[US1], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US2__get_IsUS2_0(this: FSharpRef[US2], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US2__get_IsUS2_1(this: FSharpRef[US2], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US3__get_IsUS3_0(this: FSharpRef[US3], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US3__get_IsUS3_1(this: FSharpRef[US3], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
 
 def method1(v0_1: int, v1_1: Mut0) -> bool:
     return v1_1.l0 < v0_1
@@ -590,7 +491,7 @@ def method3(v0_1: US0, v1_1: Callable[[], str], v2: Callable[[], tuple[int, str,
 
 
 def closure1(unit_var: None, v0_1: str) -> uint16:
-    v3: int = char_code_at(v0_1[0], 0) or 0
+    v3: int = int(char_code_at(v0_1[0], 0)) or 0
     v4: str = v0_1[0:7 + 1]
     v8: uint16
     value_1: int = (parse(v4, 511, False, 32, 16) + v3) or 0

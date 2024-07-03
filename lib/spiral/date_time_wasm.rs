@@ -30,22 +30,6 @@ pub mod Date_time {
         US0_0(chrono::DateTime<chrono::Utc>),
         US0_1,
     }
-    impl Date_time::US0 {
-        pub fn get_IsUS0_0(this_: &MutCell<Date_time::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS0_1(this_: &MutCell<Date_time::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
     impl core::fmt::Display for Date_time::US0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
@@ -55,22 +39,6 @@ pub mod Date_time {
     pub enum US1 {
         US1_0(string),
         US1_1,
-    }
-    impl Date_time::US1 {
-        pub fn get_IsUS1_0(this_: &MutCell<Date_time::US1>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS1_1(this_: &MutCell<Date_time::US1>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Date_time::US1 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -82,29 +50,6 @@ pub mod Date_time {
         US2_0,
         US2_1,
         US2_2,
-    }
-    impl Date_time::US2 {
-        pub fn get_IsUS2_0(this_: &MutCell<Date_time::US2>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS2_1(this_: &MutCell<Date_time::US2>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS2_2(this_: &MutCell<Date_time::US2>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Date_time::US2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -118,43 +63,6 @@ pub mod Date_time {
         US3_2(Date_time::US2),
         US3_3(Date_time::US2),
         US3_4(Date_time::US2),
-    }
-    impl Date_time::US3 {
-        pub fn get_IsUS3_0(this_: &MutCell<Date_time::US3>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS3_1(this_: &MutCell<Date_time::US3>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS3_2(this_: &MutCell<Date_time::US3>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS3_3(this_: &MutCell<Date_time::US3>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS3_4(this_: &MutCell<Date_time::US3>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Date_time::US3 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

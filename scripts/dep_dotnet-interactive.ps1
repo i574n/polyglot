@@ -1,5 +1,6 @@
 param(
     $fast,
+    $pack,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -8,10 +9,12 @@ $ErrorActionPreference = "Stop"
 
 
 Set-Location (New-Item "../deps" -ItemType Directory -Force)
-git clone --recurse-submodules https://github.com/i574n/interactive.git dotnet-interactive
+git clone --recurse-submodules https://github.com/i574n/dotnet-interactive.git
 { git pull } | Invoke-Block -Location dotnet-interactive
 
-$path = "$HOME/.nuget/packages/microsoft.dotnet-interactive"
+Set-Location $ScriptDir
+
+$path = "$HOME/.nuget/packages/i574n.dotnet-interactive-i574n"
 $tools = Get-LastSortedItem -Path $path -Filter "tools"
 $netVersion = Get-LastSortedItem -Path $tools.FullName -Filter "any"
 
@@ -42,3 +45,7 @@ if (!$fast) {
 { dotnet build -c Release "../deps/dotnet-interactive/src/dotnet-interactive/dotnet-interactive.csproj" } | Invoke-Block
 
 Copy-Item "../deps/dotnet-interactive/artifacts/bin/dotnet-interactive/Release/net9.0/**" $netVersion -Recurse -Force
+
+if ($pack) {
+    { dotnet pack -c Release /p:Version=0.1.0 } | Invoke-Block -Location ../deps/dotnet-interactive/src/dotnet-interactive
+}

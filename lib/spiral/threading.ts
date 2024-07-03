@@ -1,6 +1,6 @@
 import { defaultOf, IDisposable } from "../../deps/Fable/src/fable-library-ts/Util.js";
 import { union_type, class_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { FSharpRef, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
+import { Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { value as value_1, some, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 
 export class Disposable implements IDisposable {
@@ -50,24 +50,6 @@ export class US0<Tag extends keyof US0_$cases> extends Union<Tag, US0_$cases[Tag
 
 export function US0_$reflection(): TypeInfo {
     return union_type("Threading.US0", [], US0, () => [[["f0_0", class_type("System.Threading.CancellationToken")]], []]);
-}
-
-export function US0__get_IsUS0_0(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US0__get_IsUS0_1(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if ((this$ as any)['tag'] === 1) {
-        return true;
-    }
-    else {
-        return false;
-    }
 }
 
 export function closure1(v0_1: any, unitVar: void): void {

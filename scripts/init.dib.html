@@ -7575,7 +7575,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">rustup</span> <span class="n">update</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">rustup</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">update</span>
 </pre></div>
 </div>
 </div>
@@ -7589,28 +7589,9 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">info: syncing channel updates for 'nightly-x86_64-pc-windows-msvc'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: latest update on 2024-04-08, rust version 1.79.0-nightly (9d5cdf75a 2024-04-07)</span>
-<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'cargo'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'clippy'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rust-docs'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rust-std'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rustc'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rustfmt'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'cargo'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'clippy'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rust-docs'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rust-std'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rustc'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rustfmt'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: installing component 'cargo'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: installing component 'clippy'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rust-docs'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rust-std'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rustc'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rustfmt'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: checking for self-update</span>
 
-  nightly-x86_64-pc-windows-msvc updated - rustc 1.79.0-nightly (9d5cdf75a 2024-04-07) (from rustc 1.79.0-nightly (4fd4797c2 2024-04-03))
+  nightly-x86_64-pc-windows-msvc unchanged - rustc 1.81.0-nightly (cf2df68d1 2024-07-01)
 
 <span class="ansi-red-intense-fg ansi-bold">info: cleaning up downloads &amp; tmp directories</span>
 </pre>
@@ -7626,7 +7607,35 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">cargo</span><span class="o">-</span><span class="n">outdated</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="o">--</span><span class="n">git</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">i574n</span><span class="o">/</span><span class="n">cargo</span><span class="o">-</span><span class="n">outdated</span><span class="o">.</span><span class="n">git</span> <span class="o">--</span><span class="n">locked</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre><span class="ansi-red-intense-fg ansi-bold">    Updating git repository `https://github.com/i574n/cargo-outdated.git`</span>
+<span class="ansi-red-intense-fg ansi-bold">     Ignored package `cargo-outdated v0.15.0 (https://github.com/i574n/cargo-outdated.git#6ee2f109)` is already installed, use --force to override</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">sccache</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
 </pre></div>
 </div>
 </div>
@@ -7640,13 +7649,361 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">    Updating crates.io index</span>
-<span class="ansi-red-intense-fg ansi-bold">     Ignored package `cargo-outdated v0.15.0` is already installed, use --force to override</span>
+<span class="ansi-red-intense-fg ansi-bold"> Downloading crates ...</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded sccache v0.8.1</span>
+<span class="ansi-red-intense-fg ansi-bold">  Installing sccache v0.8.1</span>
+<span class="ansi-red-intense-fg ansi-bold">    Updating crates.io index</span>
+<span class="ansi-red-intense-fg ansi-bold">     Locking 338 packages to latest compatible versions</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding addr2line v0.22.0 (latest: v0.23.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding base64 v0.21.7 (latest: v0.22.1)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding bitflags v1.3.2 (latest: v2.6.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding env_logger v0.10.2 (latest: v0.11.3)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding flume v0.10.14 (latest: v0.11.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding foreign-types v0.3.2 (latest: v0.5.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding foreign-types-shared v0.1.1 (latest: v0.3.1)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding generic-array v0.14.7 (latest: v1.0.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding gimli v0.29.0 (latest: v0.30.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding h2 v0.3.26 (latest: v0.4.5)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding heck v0.4.1 (latest: v0.5.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding hermit-abi v0.3.9 (latest: v0.4.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding hostname v0.3.1 (latest: v0.4.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding http v0.2.12 (latest: v1.1.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding http-body v0.4.6 (latest: v1.0.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding hyper v0.14.29 (latest: v1.4.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding hyper-rustls v0.24.2 (latest: v0.27.2)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding hyper-tls v0.5.0 (latest: v0.6.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding idna v0.4.0 (latest: v1.0.2)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding idna v0.5.0 (latest: v1.0.2)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding linux-raw-sys v0.4.14 (latest: v0.6.4)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding mio v0.8.11 (latest: v1.0.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding object v0.32.2 (latest: v0.36.1)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding opendal v0.45.1 (latest: v0.47.1)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding quick-error v1.2.3 (latest: v2.0.1)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding quick-xml v0.31.0 (latest: v0.35.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding redis v0.23.3 (latest: v0.25.4)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding redox_syscall v0.4.1 (latest: v0.5.2)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding reqsign v0.14.9 (latest: v0.15.2)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding reqwest v0.11.27 (latest: v0.12.5)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding rust-ini v0.20.0 (latest: v0.21.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding rustls v0.21.12 (latest: v0.23.10)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding rustls-native-certs v0.6.3 (latest: v0.7.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding rustls-pemfile v1.0.4 (latest: v2.1.2)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding rustls-webpki v0.101.7 (latest: v0.102.4)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding ruzstd v0.5.0 (latest: v0.7.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding socket2 v0.4.10 (latest: v0.5.7)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding sync_wrapper v0.1.2 (latest: v1.0.1)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding system-configuration v0.5.1 (latest: v0.6.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding system-configuration-sys v0.5.0 (latest: v0.6.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding tokio-rustls v0.24.1 (latest: v0.26.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding tokio-serde v0.8.0 (latest: v0.9.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding vte v0.11.1 (latest: v0.13.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding wasi v0.11.0+wasi-snapshot-preview1 (latest: v0.13.1+wasi-0.2.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding webpki-roots v0.25.4 (latest: v0.26.3)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding windows-core v0.52.0 (latest: v0.57.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding windows-sys v0.48.0 (latest: v0.52.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding windows-targets v0.48.5 (latest: v0.52.5)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding windows_aarch64_gnullvm v0.48.5 (latest: v0.52.5)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding windows_aarch64_msvc v0.48.5 (latest: v0.52.5)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding windows_i686_gnu v0.48.5 (latest: v0.52.5)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding windows_i686_msvc v0.48.5 (latest: v0.52.5)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding windows_x86_64_gnu v0.48.5 (latest: v0.52.5)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding windows_x86_64_gnullvm v0.48.5 (latest: v0.52.5)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding windows_x86_64_msvc v0.48.5 (latest: v0.52.5)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding winreg v0.50.0 (latest: v0.52.0)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding winsafe v0.0.19 (latest: v0.0.21)</span>
+<span class="ansi-red-intense-fg ansi-bold">      Adding zip v0.6.6 (latest: v2.1.3)</span>
+<span class="ansi-red-intense-fg ansi-bold"> Downloading crates ...</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded http-body-util v0.1.2</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded vte_generate_state_changes v0.1.2</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded bb8 v0.8.5</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded hyper-util v0.1.6</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded hyper v1.4.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling cfg-if v1.0.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling proc-macro2 v1.0.86</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling unicode-ident v1.0.12</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling autocfg v1.3.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling windows_x86_64_msvc v0.52.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling scopeguard v1.2.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling once_cell v1.19.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling windows_x86_64_msvc v0.48.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling jobserver v0.1.31</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling getrandom v0.2.15</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling bytes v1.6.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling cc v1.0.104</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pin-project-lite v0.2.14</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling version_check v0.9.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling windows-targets v0.52.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling lock_api v0.4.12</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling windows-targets v0.48.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling windows-sys v0.52.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling windows-sys v0.48.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling typenum v1.17.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling generic-array v0.14.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling futures-core v0.3.30</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling quote v1.0.36</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling memchr v2.7.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling syn v2.0.68</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling smallvec v1.13.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling futures-sink v0.3.30</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling parking_lot_core v0.9.10</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling num_cpus v1.16.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling itoa v1.0.11</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling slab v0.4.9</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling parking_lot v0.12.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling futures-channel v0.3.30</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pin-utils v0.1.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling futures-io v0.3.30</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling futures-task v0.3.30</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling crypto-common v0.1.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling spin v0.9.8</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling const-oid v0.9.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rand_core v0.6.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling serde v1.0.203</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling log v0.4.22</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling block-buffer v0.10.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling fnv v1.0.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling subtle v2.6.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling ring v0.17.8</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling libm v0.2.8</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling digest v0.10.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling block-padding v0.3.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling num-traits v0.2.19</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling winapi v0.3.9</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling hashbrown v0.14.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling ppv-lite86 v0.2.17</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tracing-core v0.1.32</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rand_chacha v0.3.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling inout v0.1.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling untrusted v0.9.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tinyvec_macros v0.1.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tinyvec v1.6.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling cipher v0.4.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rand v0.8.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling cpufeatures v0.2.12</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling thiserror v1.0.61</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling socket2 v0.5.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling httparse v1.9.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling crunchy v0.2.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling equivalent v1.0.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling indexmap v2.2.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling unicode-normalization v0.1.23</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tiny-keccak v2.0.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling base64ct v1.6.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling mio v0.8.11</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling percent-encoding v2.3.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling unicode-bidi v0.3.15</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling zeroize v1.8.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling form_urlencoded v1.2.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pem-rfc7468 v0.7.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling schannel v0.1.23</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling num-integer v0.1.46</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling hmac v0.12.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tokio-macros v2.3.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling futures-macro v0.3.30</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling serde_derive v1.0.203</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tracing-attributes v0.1.27</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling thiserror-impl v1.0.61</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pin-project-internal v1.1.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling http v0.2.12</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tokio v1.38.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling futures-util v0.3.30</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tracing v0.1.40</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling byteorder v1.5.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling httpdate v1.0.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rustls v0.21.12</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pin-project v1.1.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rustls-webpki v0.101.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling sct v0.7.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pbkdf2 v0.12.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling async-trait v0.1.80</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling der v0.7.9</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling idna v0.5.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling sha2 v0.10.8</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling salsa20 v0.10.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tower-service v0.3.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling try-lock v0.2.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling native-tls v0.2.12</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling ryu v1.0.18</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling base64 v0.21.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling want v0.3.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling scrypt v0.11.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling spki v0.7.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling url v2.5.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling const-random-macro v0.1.16</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling http-body v0.4.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling aes v0.8.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tokio-util v0.7.11</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling cbc v0.1.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling heck v0.4.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling num-conv v0.1.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling match_cfg v0.1.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling ipconfig v0.3.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling h2 v0.3.26</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling serde_json v1.0.120</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pkg-config v0.3.30</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling time-core v0.1.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling powerfmt v0.2.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling utf8parse v0.2.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling deranged v0.3.11</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling time-macros v0.2.18</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling hostname v0.3.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling enum-as-inner v0.6.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling zstd-sys v2.0.11+zstd.1.5.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tokio-rustls v0.24.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pkcs5 v0.7.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling const-random v0.1.18</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rustls-pemfile v1.0.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling idna v0.4.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling winreg v0.50.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling backtrace v0.3.73</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling linked-hash-map v0.5.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling quick-error v1.2.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling widestring v1.1.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling ipnet v2.9.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling num-bigint-dig v0.8.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling data-encoding v2.6.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling time v0.3.36</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling hickory-proto v0.24.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling hyper v0.14.29</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling resolv-conf v0.7.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling lru-cache v0.1.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pkcs8 v0.10.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rustls-native-certs v0.6.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tokio-native-tls v0.3.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling toml_datetime v0.6.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling serde_spanned v0.6.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling dlv-list v0.5.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling num-bigint v0.4.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling num-iter v0.1.45</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling winapi-util v0.1.8</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling http v1.1.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling lazy_static v1.5.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling crc32fast v1.4.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling base64 v0.22.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling anyhow v1.0.86</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling adler v1.0.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling anstyle v1.0.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling crc16 v0.4.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling winnow v0.6.13</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rustc-demangle v0.1.24</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling anstyle-wincon v3.0.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling miniz_oxide v0.7.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling simple_asn1 v0.6.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling toml_edit v0.22.14</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pem v3.0.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling http-body v1.0.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling ordered-multimap v0.7.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling hyper-rustls v0.24.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling hyper-tls v0.5.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling hickory-resolver v0.24.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pkcs1 v0.7.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling serde_urlencoded v0.7.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling anstyle-parse v0.2.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling futures-executor v0.3.30</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling anstyle-query v1.1.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling home v0.5.9</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling signature v2.2.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling aho-corasick v1.1.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling encoding_rs v0.8.34</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling mime v0.3.17</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling is_terminal_polyfill v1.70.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling zstd-safe v7.1.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling regex-syntax v0.8.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling static_assertions v1.1.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling colorchoice v1.0.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling webpki-roots v0.25.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling fastrand v2.1.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling sync_wrapper v0.1.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling reqwest v0.11.27</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling anstream v0.6.14</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling regex-automata v0.4.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling twox-hash v1.6.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling toml v0.8.14</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rsa v0.9.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling futures v0.3.30</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rust-ini v0.20.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling jsonwebtoken v9.3.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling flate2 v1.0.30</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling quick-xml v0.31.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling combine v4.6.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tokio-retry v0.3.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling derive_more v0.99.18</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling socket2 v0.4.10</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling terminal_size v0.3.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling chrono v0.4.38</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling sha1 v0.10.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling blake3 v1.5.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling vte_generate_state_changes v0.1.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling fs-err v2.11.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling nanorand v0.7.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling option-ext v0.2.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling sha1_smol v1.0.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling strsim v0.11.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling semver v1.0.23</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling arc-swap v1.7.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling hex v0.4.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling heck v0.5.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling libc v0.2.155</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling clap_lex v0.7.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling clap_derive v4.5.8</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling clap_builder v4.5.8</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling reqsign v0.14.9</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling ruzstd v0.5.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling redis v0.23.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling flume v0.10.14</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling dirs-sys v0.4.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling vte v0.11.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling regex v1.10.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling backon v0.4.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling hyper v1.4.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling termcolor v1.4.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling same-file v1.0.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling uuid v1.9.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling bb8 v0.8.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling core_affinity v0.8.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling filetime v0.2.23</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling is-terminal v0.4.12</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling md-5 v0.10.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling either v1.13.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling humantime v2.1.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling flagset v0.4.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling arrayvec v0.7.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling arrayref v0.3.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling constant_time_eq v0.3.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tower-layer v0.3.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling winsafe v0.0.19</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling opendal v0.45.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tower v0.4.13</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling env_logger v0.10.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tar v0.4.41</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling gzp v0.11.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling walkdir v2.5.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling hyper-util v0.1.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling clap v4.5.8</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling strip-ansi-escapes v0.2.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling zstd v0.13.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling directories v5.0.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling object v0.32.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling which v6.0.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tempfile v3.10.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling http-body-util v0.1.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling zip v0.6.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling bincode v1.3.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tokio-serde v0.8.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling retry v2.0.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling number_prefix v0.4.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling ar v0.9.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling memmap2 v0.9.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling sccache v0.8.1</span>
+<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 17m 12s</span>
+<span class="ansi-red-intense-fg ansi-bold">   Replacing C:\Users\i574n\scoop\persist\rustup\.cargo\bin\sccache.exe</span>
+<span class="ansi-red-intense-fg ansi-bold">    Replaced package `sccache v0.8.0` with `sccache v0.8.1` (executable `sccache.exe`)</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7668,13 +8025,114 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">    Updating crates.io index</span>
-<span class="ansi-red-intense-fg ansi-bold">     Ignored package `wasm-pack v0.12.1` is already installed, use --force to override</span>
+<span class="ansi-red-intense-fg ansi-bold"> Downloading crates ...</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded wasm-pack v0.13.0</span>
+<span class="ansi-red-intense-fg ansi-bold">  Installing wasm-pack v0.13.0</span>
+<span class="ansi-red-intense-fg ansi-bold">    Updating crates.io index</span>
+<span class="ansi-red-intense-fg ansi-bold">    Updating crates.io index</span>
+<span class="ansi-red-intense-fg ansi-bold"> Downloading crates ...</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded cmake v0.1.50</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded human-panic v1.2.3</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded displaydoc v0.2.5</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded fs4 v0.6.6</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded deflate64 v0.1.8</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded crc-catalog v2.4.0</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded path-clean v1.0.1</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded lzma-rs v0.3.0</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded crc v3.2.1</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded num_enum v0.7.2</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded num_enum_derive v0.7.2</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded zip v1.1.4</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded zip_next v1.1.1</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded binary-install v0.4.0</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded libz-ng-sys v1.1.15</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling proc-macro2 v1.0.86</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling jobserver v0.1.31</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling once_cell v1.19.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling unicode-ident v1.0.12</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling windows_x86_64_msvc v0.52.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling cfg-if v1.0.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling serde v1.0.203</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling typenum v1.17.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling version_check v0.9.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pkg-config v0.3.30</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling cc v1.0.104</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling windows-targets v0.52.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling libc v0.2.155</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling equivalent v1.0.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling windows-sys v0.52.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling generic-array v0.14.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling subtle v2.6.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling log v0.4.22</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling hashbrown v0.14.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling quote v1.0.36</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling syn v2.0.68</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling autocfg v1.3.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling cmake v0.1.50</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling indexmap v2.2.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling getrandom v0.2.15</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling toml_datetime v0.6.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling winnow v0.5.40</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling crypto-common v0.1.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling block-buffer v0.10.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling winapi v0.3.9</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling digest v0.10.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling crc32fast v1.4.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling zstd-safe v7.1.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tinyvec_macros v0.1.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling adler v1.0.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling windows_x86_64_msvc v0.48.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling thiserror v1.0.61</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling miniz_oxide v0.7.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling zstd-sys v2.0.11+zstd.1.5.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling ring v0.17.8</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling libz-ng-sys v1.1.15</span>
+<span class="ansi-red-intense-fg ansi-bold">error: failed to run custom build command for `libz-ng-sys v1.1.15`</span>
+
+<span class="ansi-red-intense-fg ansi-bold">Caused by:</span>
+<span class="ansi-red-intense-fg ansi-bold">  process didn't exit successfully: `C:\Users\i574n\AppData\Local\Temp\cargo-installHWCNW0\release\build\libz-ng-sys-931167cd034ef85d\build-script-build_zng` (exit code: 101)</span>
+<span class="ansi-red-intense-fg ansi-bold">  --- stdout</span>
+<span class="ansi-red-intense-fg ansi-bold">  CMAKE_TOOLCHAIN_FILE_x86_64-pc-windows-msvc = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  CMAKE_TOOLCHAIN_FILE_x86_64_pc_windows_msvc = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  HOST_CMAKE_TOOLCHAIN_FILE = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  CMAKE_TOOLCHAIN_FILE = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  CMAKE_GENERATOR_x86_64-pc-windows-msvc = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  CMAKE_GENERATOR_x86_64_pc_windows_msvc = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  HOST_CMAKE_GENERATOR = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  CMAKE_GENERATOR = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  CMAKE_PREFIX_PATH_x86_64-pc-windows-msvc = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  CMAKE_PREFIX_PATH_x86_64_pc_windows_msvc = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  HOST_CMAKE_PREFIX_PATH = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  CMAKE_PREFIX_PATH = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  CMAKE_x86_64-pc-windows-msvc = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  CMAKE_x86_64_pc_windows_msvc = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  HOST_CMAKE = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  CMAKE = None</span>
+<span class="ansi-red-intense-fg ansi-bold">  running: "cmake" "C:\\Users\\i574n\\scoop\\persist\\rustup\\.cargo\\registry\\src\\index.crates.io-6f17d22bba15001f\\libz-ng-sys-1.1.15\\src/zlib-ng" "-G" "Visual Studio 17 2022" "-Thost=x64" "-Ax64" "-DBUILD_SHARED_LIBS=OFF" "-DZLIB_COMPAT=OFF" "-DZLIB_ENABLE_TESTS=OFF" "-DWITH_GZFILEOP=ON" "-DCMAKE_INSTALL_PREFIX=C:\\Users\\i574n\\AppData\\Local\\Temp\\cargo-installHWCNW0\\release\\build\\libz-ng-sys-9586ea2184239dd8\\out" "-DCMAKE_C_FLAGS= -nologo -MD -Brepro" "-DCMAKE_C_FLAGS_RELEASE= -nologo -MD -Brepro" "-DCMAKE_CXX_FLAGS= -nologo -MD -Brepro" "-DCMAKE_CXX_FLAGS_RELEASE= -nologo -MD -Brepro" "-DCMAKE_ASM_FLAGS= -nologo -MD -Brepro" "-DCMAKE_ASM_FLAGS_RELEASE= -nologo -MD -Brepro" "-DCMAKE_BUILD_TYPE=Release"</span>
+
+<span class="ansi-red-intense-fg ansi-bold">  --- stderr</span>
+<span class="ansi-red-intense-fg ansi-bold">  thread 'main' panicked at C:\Users\i574n\scoop\persist\rustup\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cmake-0.1.50\src\lib.rs:1098:5:</span>
+
+<span class="ansi-red-intense-fg ansi-bold">  failed to execute command: program not found</span>
+<span class="ansi-red-intense-fg ansi-bold">  is `cmake` not installed?</span>
+
+<span class="ansi-red-intense-fg ansi-bold">  build script failed, must exit now</span>
+<span class="ansi-red-intense-fg ansi-bold">  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace</span>
+<span class="ansi-red-intense-fg ansi-bold">warning: build failed, waiting for other jobs to finish...</span>
+<span class="ansi-red-intense-fg ansi-bold">error: failed to compile `wasm-pack v0.13.0`, intermediate artifacts can be found at `C:\Users\i574n\AppData\Local\Temp\cargo-installHWCNW0`.</span>
+<span class="ansi-red-intense-fg ansi-bold">To reuse those artifacts with a future compilation, set the environment variable `CARGO_TARGET_DIR` to that path.</span>
+
+# Invoke-Block / $retry: 1/1 / $Location:  / Get-Location: C:\home\git\polyglot\scripts / $OnError: Continue / $exitcode: 101 / $EnvVars: {
+  "PATH": "C:\\Users\\i574n\\scoop\\apps\\pwsh\\current;C:\\Program Files\\NVIDIA\\CUDNN\\v9.1\\bin;C:\\ProgramData\\scoop\\shims;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\dotnet\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\Perforce;C:\\Users\\i574n\\scoop\\apps\\vscode-insiders\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\elixir\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\python\\current\\Scripts;C:\\Users\\i574n\\scoop\\apps\\rustup\\current\\.cargo\\bin;C:\\Users\\i574n\\scoop\\apps\\latex\\current\\texmfs\\install\\miktex\\bin\\x64;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk-preview\\current;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk\\current;C:\\Users\\i574n\\scoop\\apps\\gsudo\\current;C:\\Users\\i574n\\scoop\\apps\\python\\current;C:\\Users\\i574n\\scoop\\apps\\nircmd\\current;C:\\Users\\i574n\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\i574n/scoop/buckets/mold/home/windows/path;C:\\Users\\i574n/scoop/persist/rustup/.cargo/bin;C:\\Users\\i574n/scoop/apps/nvm/current/nodejs/nodejs;C:\\Users\\i574n/scoop/apps/cygwin/current/root/bin;C:\\Users\\i574n\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\i574n\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\i574n\\.bun\\bin;C:\\Users\\i574n\\.dotnet\\tools;C:\\Users\\i574n\\scoop\\shims;C:\\Users\\i574n\\.fly\\bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin"
+} / $Error: '' / $ScriptBlock:
+'cargo +nightly install wasm-pack --locked'
+
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7682,7 +8140,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">trunk</span> <span class="o">--</span><span class="n">version</span> <span class="mf">0.19.1</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">trunk</span> <span class="o">--</span><span class="n">version</span> <span class="mf">0.20.2</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
 </pre></div>
 </div>
 </div>
@@ -7695,13 +8153,13 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-red-intense-fg ansi-bold">     Ignored package `trunk v0.19.1` is already installed, use --force to override</span>
+<pre><span class="ansi-red-intense-fg ansi-bold">     Ignored package `trunk v0.20.2` is already installed, use --force to override</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7723,13 +8181,96 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">    Updating git repository `https://github.com/bram209/leptosfmt.git`</span>
-<span class="ansi-red-intense-fg ansi-bold">     Ignored package `leptosfmt v0.1.18 (https://github.com/bram209/leptosfmt.git#7fec90b2)` is already installed, use --force to override</span>
+<span class="ansi-red-intense-fg ansi-bold">    Updating git submodule `https://github.com/bram209/prettyplease.git`</span>
+<span class="ansi-red-intense-fg ansi-bold">  Installing leptosfmt v0.1.18 (https://github.com/bram209/leptosfmt.git#926b642b)</span>
+<span class="ansi-red-intense-fg ansi-bold">    Updating crates.io index</span>
+<span class="ansi-red-intense-fg ansi-bold"> Downloading crates ...</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded similar v2.5.0</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded itertools v0.13.0</span>
+<span class="ansi-red-intense-fg ansi-bold">  Downloaded rustywind_core v0.1.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling proc-macro2 v1.0.85</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling unicode-ident v1.0.12</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling version_check v0.9.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling windows_x86_64_msvc v0.52.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling serde v1.0.203</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling crossbeam-utils v0.8.20</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling memchr v2.7.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling anstyle v1.0.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling windows-targets v0.52.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling regex-syntax v0.8.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling proc-macro-error-attr v1.0.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling windows-sys v0.52.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling proc-macro-error v1.0.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling aho-corasick v1.1.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling proc-macro2-diagnostics v0.10.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling quote v1.0.36</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling syn v2.0.66</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling ahash v0.8.11</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling utf8parse v0.2.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling cfg-if v1.0.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling once_cell v1.19.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling either v1.12.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling thiserror v1.0.61</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling eyre v0.6.12</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling regex-automata v0.4.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling getrandom v0.2.15</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling anstyle-parse v0.2.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling anstyle-wincon v3.0.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling anstyle-query v1.1.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling crossbeam-epoch v0.9.18</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling indenter v0.3.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling equivalent v1.0.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling hashbrown v0.14.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling colorchoice v1.0.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling leptosfmt-prettyplease v0.1.18 (C:\Users\i574n\scoop\persist\rustup\.cargo\git\checkouts\leptosfmt-e22a3f497dc21d3f\926b642\prettyplease)</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rayon-core v1.12.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling yansi v1.0.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling libc v0.2.155</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling zerocopy v0.7.34</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling is_terminal_polyfill v1.70.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling anstream v0.6.14</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling serde_derive v1.0.203</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling thiserror-impl v1.0.61</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling syn_derive v0.1.8</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling regex v1.10.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling indexmap v2.2.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling crossbeam-deque v0.8.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling itertools v0.13.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling heck v0.5.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling clap_lex v0.7.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling anyhow v1.0.86</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling strsim v0.11.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling leptosfmt-pretty-printer v0.1.18 (C:\Users\i574n\scoop\persist\rustup\.cargo\git\checkouts\leptosfmt-e22a3f497dc21d3f\926b642\printer)</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling str_indices v0.4.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling winnow v0.5.40</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling crop v0.3.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rustywind_core v0.1.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling clap_builder v4.5.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling clap_derive v4.5.5</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling serde_spanned v0.6.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling toml_datetime v0.6.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling toml_edit v0.19.15</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rstml v0.11.2</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling lazy_static v1.4.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling unicode-width v0.1.13</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling encode_unicode v0.3.6</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling console v0.15.8</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling toml v0.7.8</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling leptosfmt-formatter v0.1.18 (C:\Users\i574n\scoop\persist\rustup\.cargo\git\checkouts\leptosfmt-e22a3f497dc21d3f\926b642\formatter)</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling clap v4.5.7</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rayon v1.10.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling glob v0.3.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling similar v2.5.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling leptosfmt v0.1.18 (C:\Users\i574n\scoop\persist\rustup\.cargo\git\checkouts\leptosfmt-e22a3f497dc21d3f\926b642\cli)</span>
+<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 3m 31s</span>
+<span class="ansi-red-intense-fg ansi-bold">   Replacing C:\Users\i574n\scoop\persist\rustup\.cargo\bin\leptosfmt.exe</span>
+<span class="ansi-red-intense-fg ansi-bold">    Replaced package `leptosfmt v0.1.18 (https://github.com/bram209/leptosfmt.git#7fec90b2)` with `leptosfmt v0.1.18 (https://github.com/bram209/leptosfmt.git#926b642b)` (executable `leptosfmt.exe`)</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7737,125 +8278,15 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="n">esbuild</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!(</span>Search-Command<span class="w"> </span><span class="s2">"nix"</span><span class="o">))</span><span class="w"> </span><span class="o">{</span>
+    <span class="p">{</span> <span class="o">~/.</span><span class="n">bun</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bunx</span> <span class="o">--</span><span class="n">bun</span> <span class="n">playwright</span><span class="o">@</span><span class="mf">1.44.0</span> <span class="n">install</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-added 2 packages in 5s
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="nd">@chialab</span><span class="o">/</span><span class="n">rna</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-added 21 packages in 21s
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="nd">@chialab</span><span class="o">/</span><span class="n">rna</span><span class="o">-</span><span class="n">bundler</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-added 20 packages in 2s
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="nd">@playwright</span><span class="o">/</span><span class="n">test</span><span class="o">@</span><span class="mf">1.42.1</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-added 3 packages in 8s
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">npx</span> <span class="o">-</span><span class="n">y</span> <span class="n">playwright</span><span class="o">@</span><span class="mf">1.42.1</span> <span class="n">install</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7869,7 +8300,7 @@ added 3 packages in 8s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7883,7 +8314,7 @@ added 3 packages in 8s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7905,7 +8336,9 @@ added 3 packages in 8s
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-# Invoke-Block / $Retry: 1 / $Location:  / $OnError: Continue / $exitcode: 0 / $EnvVars: null / $Error: 'Cannot find a variable with the name 'PackageManagementProvider'. Cannot find a variable with the name 'SourceLocation'.' / $ScriptBlock:
+# Invoke-Block / $retry: 1/1 / $Location:  / Get-Location: C:\home\git\polyglot\scripts / $OnError: Continue / $exitcode: 0 / $EnvVars: {
+  "PATH": "C:\\Users\\i574n\\scoop\\apps\\pwsh\\current;C:\\Program Files\\NVIDIA\\CUDNN\\v9.1\\bin;C:\\ProgramData\\scoop\\shims;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\dotnet\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\Perforce;C:\\Users\\i574n\\scoop\\apps\\vscode-insiders\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\elixir\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\python\\current\\Scripts;C:\\Users\\i574n\\scoop\\apps\\rustup\\current\\.cargo\\bin;C:\\Users\\i574n\\scoop\\apps\\latex\\current\\texmfs\\install\\miktex\\bin\\x64;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk-preview\\current;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk\\current;C:\\Users\\i574n\\scoop\\apps\\gsudo\\current;C:\\Users\\i574n\\scoop\\apps\\python\\current;C:\\Users\\i574n\\scoop\\apps\\nircmd\\current;C:\\Users\\i574n\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\i574n/scoop/buckets/mold/home/windows/path;C:\\Users\\i574n/scoop/persist/rustup/.cargo/bin;C:\\Users\\i574n/scoop/apps/nvm/current/nodejs/nodejs;C:\\Users\\i574n/scoop/apps/cygwin/current/root/bin;C:\\Users\\i574n\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\i574n\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\i574n\\.bun\\bin;C:\\Users\\i574n\\.dotnet\\tools;C:\\Users\\i574n\\scoop\\shims;C:\\Users\\i574n\\.fly\\bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin"
+} / $Error: 'Cannot find a variable with the name 'PackageManagementProvider'. Cannot find a variable with the name 'SourceLocation'.' / $ScriptBlock:
 'Set-PSRepository -Name PSGallery -InstallationPolicy Trusted'
 
 </pre>
@@ -7913,34 +8346,7 @@ added 3 packages in 8s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">Install</span><span class="o">-</span><span class="n">Module</span> <span class="o">-</span><span class="n">Name</span> <span class="n">PSToml</span> <span class="o">-</span><span class="n">Scope</span> <span class="n">CurrentUser</span> <span class="o">-</span><span class="n">WhatIf</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>What if: Performing the operation "Install-Module" on target "Version '0.3.1' of module 'PSToml'".
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7961,7 +8367,7 @@ added 3 packages in 8s
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-red-intense-fg ansi-bold">bun install v1.1.0 (5903a614)</span>
+<pre><span class="ansi-red-intense-fg ansi-bold">bun install v1.1.7 (b0b7db5c)</span>
 
 Checked 4 installs across 5 packages (no changes) [46.00ms]
 </pre>
@@ -7969,7 +8375,7 @@ Checked 4 installs across 5 packages (no changes) [46.00ms]
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8002,13 +8408,13 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:35.16
+Time Elapsed 00:00:03.53
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8030,32 +8436,31 @@ Time Elapsed 00:00:35.16
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>path: ../deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/
-<span class="ansi-red-intense-fg ansi-bold">bun install v1.1.0 (5903a614)</span>
+<span class="ansi-red-intense-fg ansi-bold">bun install v1.1.7 (b0b7db5c)</span>
 
-Checked 139 installs across 160 packages (no changes) [855.00ms]
-<span class="ansi-red-intense-fg ansi-bold">(node:10816) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.</span>
-<span class="ansi-red-intense-fg ansi-bold">(Use `node --trace-deprecation ...` to show where the warning was created)</span>
+Checked 193 installs across 219 packages (no changes) [171.00ms]
 Executing prepublish script 'npm run vscode:prepublish'...
 
-&gt; spiral-lang-vscode@2.4.21 vscode:prepublish
+&gt; spiral-lang-vscode-i574n@2.11.4 vscode:prepublish
 &gt; npm run esbuild-base -- --minify
 
 
-&gt; spiral-lang-vscode@2.4.21 esbuild-base
+&gt; spiral-lang-vscode-i574n@2.11.4 esbuild-base
 &gt; esbuild ./src/index.ts --bundle --outfile=out/index.js --external:vscode --format=cjs --platform=node --minify
 
 
 <span class="ansi-red-intense-fg ansi-bold">  out\index.js  1.1mb ⚠️</span>
 
-<span class="ansi-red-intense-fg ansi-bold">⚡ Done in 497ms</span>
- DONE  Packaged: C:\home\git\polyglot\deps\The-Spiral-Language\VS Code Plugin\spiral-lang-vscode-2.4.21.vsix (390 files, 5.76MB)
-Copying extension to C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\mrakgr.spiral-lang-vscode-2.4.21
+<span class="ansi-red-intense-fg ansi-bold">⚡ Done in 160ms</span>
+ DONE  Packaged: C:\home\git\polyglot\deps\The-Spiral-Language\VS Code Plugin\spiral-lang-vscode-i574n-2.11.4.vsix (382 files, 5.6MB)
+Skipping copying extension to C:\Users\i574n/.vscode/extensions
+Skipping copying extension to C:\Users\i574n/scoop/persist/vscode/data/extensions
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8078,7 +8483,7 @@ Copying extension to C:\Users\i574n\scoop\persist\vscode-insiders\data\extension
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">fatal: destination path 'Fable' already exists and is not an empty directory.</span>
 Already up to date.
-Tool path: C:\Users\i574n\.nuget\packages\fable\4.13.0\tools\net6.0\any
+Tool path: C:\Users\i574n\.nuget\packages\fable\4.19.3\tools\net6.0\any
 MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
   Determining projects to restore...
   All projects are up-to-date for restore.
@@ -8086,8 +8491,8 @@ C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101
 C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.AST\Fable.AST.fsproj]
 C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Rust\AST\Rust.AST.fsproj]
 C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Fable.Transforms.fsproj]
-  Rust.AST -&gt; C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Rust\AST\bin\Release\netstandard2.0\Rust.AST.dll
   Fable.AST -&gt; C:\home\git\polyglot\deps\Fable\src\Fable.AST\bin\Release\netstandard2.0\Fable.AST.dll
+  Rust.AST -&gt; C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Rust\AST\bin\Release\netstandard2.0\Rust.AST.dll
 C:\Program Files\dotnet\sdk\9.0.100-preview.1.24101.2\Microsoft.Common.CurrentVersion.targets(2401,5): warning MSB3277: Found conflicts between different versions of "System.Memory" that could not be resolved. [C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Fable.Transforms.fsproj]
 C:\Program Files\dotnet\sdk\9.0.100-preview.1.24101.2\Microsoft.Common.CurrentVersion.targets(2401,5): warning MSB3277: There was a conflict between "System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" and "System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51". [C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Fable.Transforms.fsproj]
 C:\Program Files\dotnet\sdk\9.0.100-preview.1.24101.2\Microsoft.Common.CurrentVersion.targets(2401,5): warning MSB3277:     "System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was chosen because it was primary and "System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was not. [C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Fable.Transforms.fsproj]
@@ -8119,7 +8524,7 @@ C:\Program Files\dotnet\sdk\9.0.100-preview.1.24101.2\Microsoft.Common.CurrentVe
     1 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:02.62
+Time Elapsed 00:01:21.58
 fable.dll path: C:\home\git\polyglot\deps\Fable\src\Fable.Cli\bin\Release\net9.0\fable.dll
 Lib path: C:\Users\i574n\.nuget\packages\fable.core\4.3.0\lib\netstandard2.0
 MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
@@ -8132,13 +8537,13 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.22
+Time Elapsed 00:00:06.61
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8161,73 +8566,51 @@ Time Elapsed 00:00:01.22
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">fatal: destination path 'hyperui' already exists and is not an empty directory.</span>
 Already up to date.
-yarn install v1.22.19
-<span class="ansi-red-intense-fg ansi-bold">warning package-lock.json found. Your project contains lock files generated by tools other than Yarn. It is advised not to mix package managers in order to avoid resolution inconsistencies caused by unsynchronized lock files. To clear this warning, remove package-lock.json.</span>
-[1/4] Resolving packages...
-success Already up-to-date.
-Done in 0.44s.
-yarn run v1.22.19
-$ next build
-   ▲ Next.js 14.1.4
+<span class="ansi-red-intense-fg ansi-bold">bun install v1.1.7 (b0b7db5c)</span>
+
+Checked 708 installs across 635 packages (no changes) [6.83s]
+<span class="ansi-red-intense-fg ansi-bold">$ next build</span>
+  ▲ Next.js 14.2.3
 
    Creating an optimized production build ...
  ✓ Compiled successfully
    Linting and checking validity of types ...
+
+./src/components/Announcement.jsx
+35:6  Warning: React Hook useEffect has a missing dependency: 'promotionProducts'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
    Collecting page data ...
-   Generating static pages (0/8) ...
-
-   Generating static pages (2/8) 
-
-   Generating static pages (4/8) 
-
-   Generating static pages (6/8) 
-
- ✓ Generating static pages (8/8) 
+   Generating static pages (0/11) ...
+   Generating static pages (2/11) 
+   Generating static pages (5/11) 
+   Generating static pages (8/11) 
+ ✓ Generating static pages (11/11)
    Finalizing page optimization ...
    Collecting build traces ...
 
 Route (app)                                Size     First Load JS
-┌ ○ /                                      180 B          91.3 kB
-├ ○ /_not-found                            0 B                0 B
-├ ● /[components]/[category]               180 B          91.3 kB
-├ ● /[components]/[category]/[collection]  3.79 kB         105 kB
-├ ● /about/[slug]                          2.63 kB          87 kB
+┌ ○ /                                      178 B            94 kB
+├ ○ /_not-found                            140 B          87.2 kB
+├ ● /[components]/[category]               178 B            94 kB
+├ ● /[components]/[category]/[collection]  4.08 kB         102 kB
+├ ● /about/[slug]                          3.2 kB         90.3 kB
+├ ○ /api/products                          0 B                0 B
 ├ ○ /api/search                            0 B                0 B
-├ ○ /blog                                  180 B          91.3 kB
-├ ● /blog/[slug]                           3.04 kB        97.9 kB
+├ ○ /blog                                  177 B            94 kB
+├ ● /blog/[slug]                           3.43 kB         101 kB
 ├ ○ /robots.txt                            0 B                0 B
+├ ○ /shop                                  1.27 kB        88.3 kB
 └ ○ /sitemap.xml                           0 B                0 B
-+ First Load JS shared by all              84.4 kB
-  ├ chunks/69-e2c27963538a19c9.js          29 kB
-  ├ chunks/fd9d1056-c6fa962edfe9fed9.js    53.4 kB
-  └ other shared chunks (total)            1.96 kB
++ First Load JS shared by all              87.1 kB
+  ├ chunks/23-560b6f74da37f254.js          31.5 kB
+  ├ chunks/fd9d1056-50bd1f2db165ce37.js    53.7 kB
+  └ other shared chunks (total)            1.94 kB
 
 
 ○  (Static)  prerendered as static content
 ●  (SSG)     prerendered as static HTML (uses getStaticProps)
 
-$ npm run css
-
-&gt; css
-&gt; npm run css:components &amp;&amp; npm run css:blogs
-
-
-&gt; css:components
-&gt; npx tailwindcss -i src/styles/components.css -o public/components.css -m
-
-
-<span class="ansi-red-intense-fg ansi-bold">Rebuilding...</span>
-
-<span class="ansi-red-intense-fg ansi-bold">Done in 5250ms.</span>
-
-&gt; css:blogs
-&gt; npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m
-
-
-<span class="ansi-red-intense-fg ansi-bold">Rebuilding...</span>
-
-<span class="ansi-red-intense-fg ansi-bold">Done in 642ms.</span>
-Done in 83.57s.
 </pre>
 </div>
 </div>

@@ -7,7 +7,7 @@ from fable_modules.fable_library.long import parse as parse_1
 from fable_modules.fable_library.reflection import (TypeInfo, class_type, union_type, string_type)
 from fable_modules.fable_library.string_ import (replace, pad_left)
 from fable_modules.fable_library.time_span import (hours, to_string as to_string_1)
-from fable_modules.fable_library.types import (Array, Union, FSharpRef, uint8, int64)
+from fable_modules.fable_library.types import (Array, Union, uint8, int64)
 from fable_modules.fable_library.util import int64_to_string
 
 def _expr98() -> TypeInfo:
@@ -82,119 +82,11 @@ class US3(Union):
 
 US3_reflection = _expr101
 
-def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US0__get_IsUS0_1(this: FSharpRef[US0], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US1__get_IsUS1_0(this: FSharpRef[US1], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US1__get_IsUS1_1(this: FSharpRef[US1], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US2__get_IsUS2_0(this: FSharpRef[US2], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US2__get_IsUS2_1(this: FSharpRef[US2], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US2__get_IsUS2_2(this: FSharpRef[US2], unit_arg: None) -> bool:
-    if this.tag == 2:
-        return True
-
-    else: 
-        return False
-
-
-
-def US3__get_IsUS3_0(this: FSharpRef[US3], unit_arg: None) -> bool:
-    if this.tag == 0:
-        return True
-
-    else: 
-        return False
-
-
-
-def US3__get_IsUS3_1(this: FSharpRef[US3], unit_arg: None) -> bool:
-    if this.tag == 1:
-        return True
-
-    else: 
-        return False
-
-
-
-def US3__get_IsUS3_2(this: FSharpRef[US3], unit_arg: None) -> bool:
-    if this.tag == 2:
-        return True
-
-    else: 
-        return False
-
-
-
-def US3__get_IsUS3_3(this: FSharpRef[US3], unit_arg: None) -> bool:
-    if this.tag == 3:
-        return True
-
-    else: 
-        return False
-
-
-
-def US3__get_IsUS3_4(this: FSharpRef[US3], unit_arg: None) -> bool:
-    if this.tag == 4:
-        return True
-
-    else: 
-        return False
-
-
-
-def method1(v0_1: chrono_DateTime_1[chrono_Utc]) -> chrono_DateTime_1[chrono_Utc]:
+def method1(v0_1: chrono_date_time_1[chrono_utc]) -> chrono_date_time_1[chrono_utc]:
     return v0_1
 
 
-def method2(v0_1: chrono_DateTime_1[chrono_Local]) -> chrono_DateTime_1[chrono_Local]:
+def method2(v0_1: chrono_date_time_1[chrono_local]) -> chrono_date_time_1[chrono_local]:
     return v0_1
 
 
