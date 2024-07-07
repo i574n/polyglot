@@ -1,26 +1,12 @@
 param(
     $fast,
+    $init,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ./core.ps1
 
-
-if (!(Search-Command "rustup")) {
-    if ($IsWindows) {
-        $rustupExePath = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "rustup-init.exe"
-        Invoke-WebRequest -Uri "https://win.rustup.rs/x86_64" -OutFile $rustupExePath -ErrorAction Stop
-        Start-Process -FilePath $rustupExePath -Wait
-    } else {
-        $rustupScriptPath = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "rustup.sh"
-        Invoke-WebRequest -Uri "https://sh.rustup.rs" -OutFile $rustupScriptPath -ErrorAction Stop
-        /bin/sh $rustupScriptPath -y
-        $env:PATH = "~/.cargo/bin:$env:PATH"
-    }
-}
-rustup install nightly
-rustup default nightly
 
 function Search-DotnetSdk($version) {
     $sdks = & dotnet --list-sdks
@@ -31,7 +17,6 @@ function Search-DotnetSdk($version) {
     }
     return $false
 }
-
 
 if (!(Search-Command "nix")) {
     if (!$IsWindows) {
@@ -59,6 +44,25 @@ if (!(Search-Command "nix")) {
     mkdir -p ~/.bun/bin
     ln -s /run/current-system/sw/bin/bun ~/.bun/bin/bun
     ln -s /run/current-system/sw/bin/bunx ~/.bun/bin/bunx
+}
+
+if (!(Search-Command "rustup")) {
+    if ($IsWindows) {
+        $rustupExePath = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "rustup-init.exe"
+        Invoke-WebRequest -Uri "https://win.rustup.rs/x86_64" -OutFile $rustupExePath -ErrorAction Stop
+        Start-Process -FilePath $rustupExePath -Wait
+    } else {
+        $rustupScriptPath = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "rustup.sh"
+        Invoke-WebRequest -Uri "https://sh.rustup.rs" -OutFile $rustupScriptPath -ErrorAction Stop
+        /bin/sh $rustupScriptPath -y
+        $env:PATH = "~/.cargo/bin:$env:PATH"
+    }
+}
+rustup install nightly
+rustup default nightly
+
+if ($init) {
+    exit
 }
 
 dotnet tool restore
