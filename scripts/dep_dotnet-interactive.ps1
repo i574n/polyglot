@@ -47,5 +47,5 @@ if (!$fast) {
 Copy-Item "../deps/dotnet-interactive/artifacts/bin/dotnet-interactive/Release/net9.0/**" $netVersion -Recurse -Force
 
 if ($pack) {
-    { dotnet pack -c Release /p:Version=0.1.0 } | Invoke-Block -Location ../deps/dotnet-interactive/src/dotnet-interactive
+    { dotnet pack -c Release /p:Version=0.1.1 } | Invoke-Block -Location ../deps/dotnet-interactive/src/dotnet-interactive
 }

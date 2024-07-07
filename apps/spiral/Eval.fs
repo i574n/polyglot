@@ -289,7 +289,7 @@ module Eval =
             let lastTopLevelIndex, _ =
                 (lines |> Array.indexed, (None, false))
                 ||> Array.foldBack (fun (i, line) (lastTopLevelIndex, finished) ->
-                    trace Verbose (fun () -> $"Eval.prepareSpi / i: {i} / line: '{line}' / lastTopLevelIndex: {lastTopLevelIndex} / finished: {finished}") _locals
+                    // trace Verbose (fun () -> $"Eval.prepareSpiral / i: {i} / line: '{line}' / lastTopLevelIndex: {lastTopLevelIndex} / finished: {finished}") _locals
                     match line with
                     | _ when finished -> lastTopLevelIndex, true
                     | "" -> lastTopLevelIndex, false
@@ -659,7 +659,7 @@ module Eval =
 
                     trace Verbose
                         (fun () -> $"Eval.eval")
-                        (fun () -> $"cellCode: {cellCode |> SpiralSm.ellipsis_end 400} / lastTopLevelIndex: {lastTopLevelIndex} / builderCommands: %A{builderCommands} / buildBackends: %A{buildBackends} / isReal: {isReal} / {_locals ()}")
+                        (fun () -> $"lastTopLevelIndex: {lastTopLevelIndex} / builderCommands: %A{builderCommands} / buildBackends: %A{buildBackends} / isReal: {isReal} / {_locals ()}")
 
                     let! buildCodeResults =
                         buildBackends

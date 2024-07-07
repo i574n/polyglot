@@ -27,5 +27,16 @@
     "seccomp=unconfined",
     "--env-file",
     "${localWorkspaceFolder}/.devcontainer/.env"
-  ]
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "i574n.spiral-lang-vscode-i574n",
+        "i574n.dotnet-interactive-vscode-i574n"
+      ],
+      "settings": {
+        "notebook.lineNumbers": "on"
+      }
+    }
+  }
 }

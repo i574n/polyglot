@@ -262,7 +262,7 @@ module Supervisor =
                 ((None, [], 0), outputSeq)
                 ||> FSharp.Control.AsyncSeq.scan (
                     fun (outputContentResult, errors, typeErrorCount) (outputContent, error) ->
-                        trace Debug (fun () -> $"Supervisor.buildFile / AsyncSeq.scan / outputContent: {outputContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 400} / errors: {errors |> serializeObj} / outputContentResult: {outputContentResult} / typeErrorCount: {typeErrorCount} / retry: {retry} / error: {error} / path: {path}") _locals
+                        trace Debug (fun () -> $"Supervisor.buildFile / AsyncSeq.scan / outputContent:\n{outputContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 300} / errors: {errors |> serializeObj} / outputContentResult: {outputContentResult} / typeErrorCount: {typeErrorCount} / retry: {retry} / error: {error} / path: {path}") _locals
                         match outputContent, error with
                         | Some outputContent, None -> Some outputContent, errors, typeErrorCount
                         | None, Some (_, FatalError "File main has a type error somewhere in its path.") ->
@@ -273,7 +273,7 @@ module Supervisor =
                         | _ -> outputContentResult, errors, typeErrorCount
                 )
                 |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (outputContent, errors, typeErrorCount) ->
-                    trace Debug (fun () -> $"Supervisor.buildFile / takeWhileInclusive / outputContent: {outputContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 400} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount} / retry: {retry} / path: {path}") _locals
+                    trace Debug (fun () -> $"Supervisor.buildFile / takeWhileInclusive / outputContent:\n{outputContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 300} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount} / retry: {retry} / path: {path}") _locals
         #if INTERACTIVE
                     let errorWait = 2
         #else
