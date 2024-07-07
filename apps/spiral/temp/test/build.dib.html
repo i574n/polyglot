@@ -7741,11 +7741,11 @@ a.anchor-link {
 00:00:07 <span class="ansi-black-intense-fg">verbose</span> #74 &gt; &gt;
 00:00:07 <span class="ansi-black-intense-fg">verbose</span> #75 &gt; &gt; inl main () =
 00:00:07 <span class="ansi-black-intense-fg">verbose</span> #76 &gt; &gt;     $'!main ()' : ()
-00:00:08 <span class="ansi-black-intense-fg">verbose</span> #77 &gt; &gt;
-00:00:08 <span class="ansi-black-intense-fg">verbose</span> #78 &gt; &gt; <span class="ansi-green-fg">╭─[ 1.37s - stdout ]───────────────────────────────────────────────────────────╮</span>
-00:00:08 <span class="ansi-black-intense-fg">verbose</span> #79 &gt; &gt; <span class="ansi-green-fg">│</span> [|US5_0 (US4_0 (US0_0, US1_1, US2_1, US3_0))|]                               <span class="ansi-green-fg">│</span>
-00:00:08 <span class="ansi-black-intense-fg">verbose</span> #80 &gt; &gt; <span class="ansi-green-fg">│</span>                                                                              <span class="ansi-green-fg">│</span>
-00:00:08 <span class="ansi-black-intense-fg">verbose</span> #81 &gt; &gt; <span class="ansi-green-fg">╰──────────────────────────────────────────────────────────────────────────────╯</span>
+00:00:09 <span class="ansi-black-intense-fg">verbose</span> #77 &gt; &gt;
+00:00:09 <span class="ansi-black-intense-fg">verbose</span> #78 &gt; &gt; <span class="ansi-green-fg">╭─[ 1.19s - stdout ]───────────────────────────────────────────────────────────╮</span>
+00:00:09 <span class="ansi-black-intense-fg">verbose</span> #79 &gt; &gt; <span class="ansi-green-fg">│</span> [|US5_0 (US4_0 (US0_0, US1_1, US2_1, US3_0))|]                               <span class="ansi-green-fg">│</span>
+00:00:09 <span class="ansi-black-intense-fg">verbose</span> #80 &gt; &gt; <span class="ansi-green-fg">│</span>                                                                              <span class="ansi-green-fg">│</span>
+00:00:09 <span class="ansi-black-intense-fg">verbose</span> #81 &gt; &gt; <span class="ansi-green-fg">╰──────────────────────────────────────────────────────────────────────────────╯</span>
 00:00:09 <span class="ansi-black-intense-fg">verbose</span> #82 &gt; &gt;
 00:00:09 <span class="ansi-black-intense-fg">verbose</span> #83 &gt; &gt; <span style="color: rgb(135,135,175)">── fsharp ──────────────────────────────────────────────────────────────────────</span>
 00:00:09 <span class="ansi-black-intense-fg">verbose</span> #84 &gt; &gt; type PhonologicalFeature =
@@ -7879,103 +7879,103 @@ a.anchor-link {
 00:00:09 <span class="ansi-black-intense-fg">verbose</span> #212 &gt; &gt;
 00:00:09 <span class="ansi-black-intense-fg">verbose</span> #213 &gt; &gt; type LanguageModel =
 00:00:09 <span class="ansi-black-intense-fg">verbose</span> #214 &gt; &gt;     | Model of discourse: Discourse
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #215 &gt; &gt;
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #216 &gt; &gt; <span style="color: rgb(135,135,175)">── fsharp ──────────────────────────────────────────────────────────────────────</span>
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #217 &gt; &gt; let testEnglish =
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #218 &gt; &gt;     Model(
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #219 &gt; &gt;         DiscourseUnit [[
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #220 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #221 &gt; &gt; Voiced, Some(HalfLong))));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #222 &gt; &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #223 &gt; &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #224 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #225 &gt; &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #226 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #227 &gt; &gt; Voiceless, Some(HalfLong))));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #228 &gt; &gt;             LanguageElement (Morphological (RootFeature "I"));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #229 &gt; &gt;             LanguageElement (Morphological (RootFeature "see"));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #230 &gt; &gt;             LanguageElement (Morphological (RootFeature "a"));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #231 &gt; &gt;             LanguageElement (Morphological (RootFeature "cat"));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #232 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #233 &gt; &gt; ([[RootFeature "I"]], Pronoun)]])));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #234 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #235 &gt; &gt; ([[RootFeature "see"]], Verb)]])));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #236 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #237 &gt; &gt; ([[RootFeature "a"; RootFeature "cat"]], Noun)]])));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #238 &gt; &gt;             LanguageElement (Semantic (Meaning "Perception act of a feline by
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #239 &gt; &gt; the speaker"));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #240 &gt; &gt;             LanguageElement (Pragmatic (UseContext "Statement of an action being
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #241 &gt; &gt; observed"))
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #242 &gt; &gt;         ]]
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #243 &gt; &gt;     )
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #244 &gt; &gt;
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #245 &gt; &gt; let testPortuguese =
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #246 &gt; &gt;     Model(
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #247 &gt; &gt;         DiscourseUnit [[
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #248 &gt; &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #249 &gt; &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #250 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #251 &gt; &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #252 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Mid, Back, Rounded,
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #253 &gt; &gt; Some(LevelTone 3), Some(Primary), Some(Short))));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #254 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #255 &gt; &gt; Voiceless, Some(HalfLong))));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #256 &gt; &gt;             LanguageElement (Morphological (RootFeature "Eu"));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #257 &gt; &gt;             LanguageElement (Morphological (RootFeature "ver" |&gt; ignore;
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #258 &gt; &gt; AffixFeature (Suffix, "o")));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #259 &gt; &gt;             LanguageElement (Morphological (RootFeature "um"));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #260 &gt; &gt;             LanguageElement (Morphological (RootFeature "gato"));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #261 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #262 &gt; &gt; ([[RootFeature "Eu"]], Pronoun)]])));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #263 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #264 &gt; &gt; ([[RootFeature "vejo"]], Verb)]])));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #265 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #266 &gt; &gt; ([[RootFeature "um"; RootFeature "gato"]], Noun)]])));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #267 &gt; &gt;             LanguageElement (Semantic (Meaning "Ação de percepção de um felino
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #268 &gt; &gt; pelo falante"));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #269 &gt; &gt;             LanguageElement (Pragmatic (UseContext "Declaração de uma ação sendo
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #270 &gt; &gt; observada"))
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #271 &gt; &gt;         ]]
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #272 &gt; &gt;     )
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #273 &gt; &gt;
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #274 &gt; &gt; let testKorean =
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #275 &gt; &gt;     Model(
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #276 &gt; &gt;         DiscourseUnit [[
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #277 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #278 &gt; &gt; Voiced, Some(Short))));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #279 &gt; &gt;             LanguageElement (Phonological (VowelFeature (High, Back, Rounded,
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #280 &gt; &gt; None, None, Some(Short))));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #281 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Mid, Front, Unrounded,
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #282 &gt; &gt; None, None, Some(Long))));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #283 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Bilabial, Plosive,
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #284 &gt; &gt; Voiceless, Some(Short))));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #285 &gt; &gt;             LanguageElement (Morphological (RootFeature "나"));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #286 &gt; &gt;             LanguageElement (Morphological (RootFeature "보다"));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #287 &gt; &gt;             LanguageElement (Morphological (AffixFeature (Suffix, "아")));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #288 &gt; &gt;             LanguageElement (Morphological (RootFeature "고양이"));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #289 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #290 &gt; &gt; ([[RootFeature "나"]], Pronoun)]])));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #291 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #292 &gt; &gt; ([[RootFeature "보다"; AffixFeature (Suffix, "아")]], Verb)]])));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #293 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #294 &gt; &gt; ([[RootFeature "고양이"]], Noun)]])));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #295 &gt; &gt;             LanguageElement (Semantic (Meaning "화자에 의한 고양이의 관찰
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #296 &gt; &gt; 행위"));
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #297 &gt; &gt;             LanguageElement (Pragmatic (UseContext "관찰되고 있는 행동의 진술"))
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #298 &gt; &gt;         ]]
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #299 &gt; &gt;     )
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #300 &gt; &gt;
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #301 &gt; &gt; <span style="color: rgb(135,135,175)">── markdown ────────────────────────────────────────────────────────────────────</span>
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #302 &gt; &gt; <span style="color: rgb(135,135,175)">╭──────────────────────────────────────────────────────────────────────────────╮</span>
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #303 &gt; &gt; <span style="color: rgb(135,135,175)">│</span> ## main                                                                      <span style="color: rgb(135,135,175)">│</span>
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #304 &gt; &gt; <span style="color: rgb(135,135,175)">╰──────────────────────────────────────────────────────────────────────────────╯</span>
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #305 &gt; &gt;
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #306 &gt; &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #307 &gt; &gt; inl main (_args : array_base string) =
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #308 &gt; &gt;     0i32
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #309 &gt; &gt;
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #310 &gt; &gt; inl main () =
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #311 &gt; &gt;     $'let main args = !main args' : ()
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #215 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #216 &gt; &gt; <span style="color: rgb(135,135,175)">── fsharp ──────────────────────────────────────────────────────────────────────</span>
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #217 &gt; &gt; let testEnglish =
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #218 &gt; &gt;     Model(
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #219 &gt; &gt;         DiscourseUnit [[
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #220 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #221 &gt; &gt; Voiced, Some(HalfLong))));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #222 &gt; &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #223 &gt; &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #224 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #225 &gt; &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #226 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #227 &gt; &gt; Voiceless, Some(HalfLong))));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #228 &gt; &gt;             LanguageElement (Morphological (RootFeature "I"));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #229 &gt; &gt;             LanguageElement (Morphological (RootFeature "see"));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #230 &gt; &gt;             LanguageElement (Morphological (RootFeature "a"));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #231 &gt; &gt;             LanguageElement (Morphological (RootFeature "cat"));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #232 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #233 &gt; &gt; ([[RootFeature "I"]], Pronoun)]])));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #234 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #235 &gt; &gt; ([[RootFeature "see"]], Verb)]])));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #236 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #237 &gt; &gt; ([[RootFeature "a"; RootFeature "cat"]], Noun)]])));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #238 &gt; &gt;             LanguageElement (Semantic (Meaning "Perception act of a feline by
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #239 &gt; &gt; the speaker"));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #240 &gt; &gt;             LanguageElement (Pragmatic (UseContext "Statement of an action being
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #241 &gt; &gt; observed"))
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #242 &gt; &gt;         ]]
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #243 &gt; &gt;     )
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #244 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #245 &gt; &gt; let testPortuguese =
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #246 &gt; &gt;     Model(
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #247 &gt; &gt;         DiscourseUnit [[
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #248 &gt; &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #249 &gt; &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #250 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #251 &gt; &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #252 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Mid, Back, Rounded,
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #253 &gt; &gt; Some(LevelTone 3), Some(Primary), Some(Short))));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #254 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #255 &gt; &gt; Voiceless, Some(HalfLong))));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #256 &gt; &gt;             LanguageElement (Morphological (RootFeature "Eu"));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #257 &gt; &gt;             LanguageElement (Morphological (RootFeature "ver" |&gt; ignore;
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #258 &gt; &gt; AffixFeature (Suffix, "o")));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #259 &gt; &gt;             LanguageElement (Morphological (RootFeature "um"));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #260 &gt; &gt;             LanguageElement (Morphological (RootFeature "gato"));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #261 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #262 &gt; &gt; ([[RootFeature "Eu"]], Pronoun)]])));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #263 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #264 &gt; &gt; ([[RootFeature "vejo"]], Verb)]])));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #265 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #266 &gt; &gt; ([[RootFeature "um"; RootFeature "gato"]], Noun)]])));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #267 &gt; &gt;             LanguageElement (Semantic (Meaning "Ação de percepção de um felino
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #268 &gt; &gt; pelo falante"));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #269 &gt; &gt;             LanguageElement (Pragmatic (UseContext "Declaração de uma ação sendo
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #270 &gt; &gt; observada"))
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #271 &gt; &gt;         ]]
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #272 &gt; &gt;     )
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #273 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #274 &gt; &gt; let testKorean =
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #275 &gt; &gt;     Model(
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #276 &gt; &gt;         DiscourseUnit [[
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #277 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #278 &gt; &gt; Voiced, Some(Short))));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #279 &gt; &gt;             LanguageElement (Phonological (VowelFeature (High, Back, Rounded,
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #280 &gt; &gt; None, None, Some(Short))));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #281 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Mid, Front, Unrounded,
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #282 &gt; &gt; None, None, Some(Long))));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #283 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Bilabial, Plosive,
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #284 &gt; &gt; Voiceless, Some(Short))));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #285 &gt; &gt;             LanguageElement (Morphological (RootFeature "나"));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #286 &gt; &gt;             LanguageElement (Morphological (RootFeature "보다"));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #287 &gt; &gt;             LanguageElement (Morphological (AffixFeature (Suffix, "아")));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #288 &gt; &gt;             LanguageElement (Morphological (RootFeature "고양이"));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #289 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #290 &gt; &gt; ([[RootFeature "나"]], Pronoun)]])));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #291 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #292 &gt; &gt; ([[RootFeature "보다"; AffixFeature (Suffix, "아")]], Verb)]])));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #293 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #294 &gt; &gt; ([[RootFeature "고양이"]], Noun)]])));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #295 &gt; &gt;             LanguageElement (Semantic (Meaning "화자에 의한 고양이의 관찰
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #296 &gt; &gt; 행위"));
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #297 &gt; &gt;             LanguageElement (Pragmatic (UseContext "관찰되고 있는 행동의 진술"))
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #298 &gt; &gt;         ]]
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #299 &gt; &gt;     )
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #300 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #301 &gt; &gt; <span style="color: rgb(135,135,175)">── markdown ────────────────────────────────────────────────────────────────────</span>
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #302 &gt; &gt; <span style="color: rgb(135,135,175)">╭──────────────────────────────────────────────────────────────────────────────╮</span>
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #303 &gt; &gt; <span style="color: rgb(135,135,175)">│</span> ## main                                                                      <span style="color: rgb(135,135,175)">│</span>
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #304 &gt; &gt; <span style="color: rgb(135,135,175)">╰──────────────────────────────────────────────────────────────────────────────╯</span>
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #305 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #306 &gt; &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #307 &gt; &gt; inl main (_args : array_base string) =
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #308 &gt; &gt;     0i32
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #309 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #310 &gt; &gt; inl main () =
+00:00:10 <span class="ansi-black-intense-fg">verbose</span> #311 &gt; &gt;     $'let main args = !main args' : ()
 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #312 &gt; &gt;
 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #313 &gt; &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #314 &gt; &gt; inl app () =
@@ -7990,20 +7990,20 @@ a.anchor-link {
 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #323 &gt; &gt;     |&gt; ignore
 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #324 &gt; &gt;
 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #325 &gt; &gt;     print_static "&lt;/test&gt;"
-00:00:10 <span class="ansi-black-intense-fg">verbose</span> #326 &gt; 00:00:09 <span class="ansi-black-intense-fg">verbose</span> #3 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 11263 }
-00:00:10 <span class="ansi-black-intense-fg">verbose</span> #327 &gt; 00:00:09 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options / { file_name = jupyter; arguments = ["nbconvert", "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb", "--to", "html", "--HTMLExporter.theme=dark"]; options = { command = jupyter nbconvert "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb" --to html --HTMLExporter.theme=dark; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:11 <span class="ansi-black-intense-fg">verbose</span> #328 &gt; 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #5 ! [NbConvertApp] Converting notebook /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb to html
-00:00:11 <span class="ansi-black-intense-fg">verbose</span> #329 &gt; 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #6 ! /opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
-00:00:11 <span class="ansi-black-intense-fg">verbose</span> #330 &gt; 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #7 !   validate(nb)
-00:00:11 <span class="ansi-black-intense-fg">verbose</span> #331 &gt; 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #8 ! /opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/nbconvert/filters/highlight.py:71: UserWarning: IPython3 lexer unavailable, falling back on Python 3
-00:00:11 <span class="ansi-black-intense-fg">verbose</span> #332 &gt; 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #9 !   return _pygments_highlight(
-00:00:11 <span class="ansi-black-intense-fg">verbose</span> #333 &gt; 00:00:11 <span class="ansi-black-intense-fg">verbose</span> #10 ! [NbConvertApp] Writing 318991 bytes to /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html
-00:00:11 <span class="ansi-black-intense-fg">verbose</span> #334 &gt; 00:00:11 <span class="ansi-black-intense-fg">verbose</span> #11 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 914 }
-00:00:11 <span class="ansi-black-intense-fg">verbose</span> #335 &gt; 00:00:11 <span class="ansi-blue-intense-fg">  debug</span> #12 spiral_builder.run / dib / jupyter nbconvert / { exit_code = 0; jupyter_result_length = 914 }
-00:00:11 <span class="ansi-black-intense-fg">verbose</span> #336 &gt; 00:00:11 <span class="ansi-blue-intense-fg">  debug</span> #13 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "$counter = 1; $path = '/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"]; options = { command = pwsh -c "$counter = 1; $path = '/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:12 <span class="ansi-black-intense-fg">verbose</span> #337 &gt; 00:00:11 <span class="ansi-black-intense-fg">verbose</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
-00:00:12 <span class="ansi-black-intense-fg">verbose</span> #338 &gt; 00:00:11 <span class="ansi-blue-intense-fg">  debug</span> #15 spiral_builder.run / dib / html cell ids / { exit_code = 0; pwsh_replace_html_result_length = 0 }
-00:00:12 <span class="ansi-black-intense-fg">verbose</span> #339 &gt; 00:00:11 <span class="ansi-blue-intense-fg">  debug</span> #16 spiral_builder.run / dib / { exit_code = 0; result_length = 12236 }
+00:00:11 <span class="ansi-black-intense-fg">verbose</span> #326 &gt; 00:00:10 <span class="ansi-black-intense-fg">verbose</span> #3 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 11263 }
+00:00:11 <span class="ansi-black-intense-fg">verbose</span> #327 &gt; 00:00:10 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options / { file_name = jupyter; arguments = ["nbconvert", "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb", "--to", "html", "--HTMLExporter.theme=dark"]; options = { command = jupyter nbconvert "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb" --to html --HTMLExporter.theme=dark; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:11 <span class="ansi-black-intense-fg">verbose</span> #328 &gt; 00:00:11 <span class="ansi-black-intense-fg">verbose</span> #5 ! [NbConvertApp] Converting notebook /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb to html
+00:00:11 <span class="ansi-black-intense-fg">verbose</span> #329 &gt; 00:00:11 <span class="ansi-black-intense-fg">verbose</span> #6 ! /opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+00:00:11 <span class="ansi-black-intense-fg">verbose</span> #330 &gt; 00:00:11 <span class="ansi-black-intense-fg">verbose</span> #7 !   validate(nb)
+00:00:12 <span class="ansi-black-intense-fg">verbose</span> #331 &gt; 00:00:11 <span class="ansi-black-intense-fg">verbose</span> #8 ! /opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/nbconvert/filters/highlight.py:71: UserWarning: IPython3 lexer unavailable, falling back on Python 3
+00:00:12 <span class="ansi-black-intense-fg">verbose</span> #332 &gt; 00:00:11 <span class="ansi-black-intense-fg">verbose</span> #9 !   return _pygments_highlight(
+00:00:12 <span class="ansi-black-intense-fg">verbose</span> #333 &gt; 00:00:11 <span class="ansi-black-intense-fg">verbose</span> #10 ! [NbConvertApp] Writing 318991 bytes to /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html
+00:00:12 <span class="ansi-black-intense-fg">verbose</span> #334 &gt; 00:00:12 <span class="ansi-black-intense-fg">verbose</span> #11 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 914 }
+00:00:12 <span class="ansi-black-intense-fg">verbose</span> #335 &gt; 00:00:12 <span class="ansi-blue-intense-fg">  debug</span> #12 spiral_builder.run / dib / jupyter nbconvert / { exit_code = 0; jupyter_result_length = 914 }
+00:00:12 <span class="ansi-black-intense-fg">verbose</span> #336 &gt; 00:00:12 <span class="ansi-blue-intense-fg">  debug</span> #13 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "$counter = 1; $path = '/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"]; options = { command = pwsh -c "$counter = 1; $path = '/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:12 <span class="ansi-black-intense-fg">verbose</span> #337 &gt; 00:00:12 <span class="ansi-black-intense-fg">verbose</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
+00:00:12 <span class="ansi-black-intense-fg">verbose</span> #338 &gt; 00:00:12 <span class="ansi-blue-intense-fg">  debug</span> #15 spiral_builder.run / dib / html cell ids / { exit_code = 0; pwsh_replace_html_result_length = 0 }
+00:00:12 <span class="ansi-black-intense-fg">verbose</span> #339 &gt; 00:00:12 <span class="ansi-blue-intense-fg">  debug</span> #16 spiral_builder.run / dib / { exit_code = 0; result_length = 12236 }
 00:00:12 <span class="ansi-blue-intense-fg">  debug</span> #340 runtime.execute_with_options_async / { exit_code = 0; output_length = 15733 }
 00:00:12 <span class="ansi-blue-intense-fg">  debug</span> #1 main / executeCommand / exitCode: 0 / command: ../../../../workspace/target/release/spiral_builder dib --path test.dib --retries 3
 </pre>
@@ -8161,7 +8161,7 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-white-fg">Fable 4.19.3: F# to Rust compiler (status: alpha)
 </span><span class="ansi-white-fg">
-Thanks to the contributor! @ritcoder
+Thanks to the contributor! @NickDarvey
 </span><span class="ansi-white-fg">Stand with Ukraine! https://standwithukraine.com.ua/
 
 </span><span class="ansi-white-fg">Parsing test.fsproj...
@@ -8174,15 +8174,15 @@ Thanks to the contributor! @ritcoder
   Restoring /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.fable-temp.csproj
   Starting restore process.
   Total time taken: 0 milliseconds
-  Restored /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.fable-temp.csproj (in 293 ms).
+  Restored /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.fable-temp.csproj (in 343 ms).
 </span><span class="ansi-white-fg">.&gt; dotnet restore /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.fsproj
   Determining projects to restore...
-  Restored /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.fsproj (in 253 ms).
-</span><span class="ansi-white-fg">Project and references (1 source files) parsed in 4569ms
+  Restored /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.fsproj (in 280 ms).
+</span><span class="ansi-white-fg">Project and references (1 source files) parsed in 5022ms
 
 </span><span class="ansi-white-fg">Started Fable compilation...
 </span><span class="ansi-white-fg">
-Fable compilation finished in 997ms
+Fable compilation finished in 1034ms
 
 </span><span class="ansi-yellow-fg">./test.fsx(7,0): (7,2) warning FABLE: For Rust, support for F# static and module do bindings is disabled by default. It can be enabled with the 'static_do_bindings' feature. Use at your own risk!
 </span></pre>
@@ -8286,37 +8286,43 @@ Fable compilation finished in 997ms
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_core v0.6.4
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> linux-raw-sys v0.4.14
+<pre><span class="ansi-green-intense-fg ansi-bold">   Compiling</span> linux-raw-sys v0.4.14
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_core v0.6.4
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> num-traits v0.2.19
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> syn v2.0.68
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_chacha v0.3.1
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> libm v0.2.8
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rustix v0.38.34
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> wait-timeout v0.2.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-vec v0.6.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> quick-error v1.2.3
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-vec v0.6.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-set v0.5.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand v0.8.5
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_xorshift v0.3.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> unarray v0.1.4
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> memchr v2.7.4
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> lazy_static v1.5.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fable_library_rust v0.1.0 (/home/runner/work/polyglot/polyglot/lib/rust/fable/fable_modules/fable-library-rust)
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> tempfile v3.10.1
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> thiserror-impl v1.0.61
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> nom v7.1.3
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_xorshift v0.3.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> lazy_static v1.5.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> memchr v2.7.4
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rusty-fork v0.3.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> unarray v0.1.4
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> proptest v1.4.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> nom v7.1.3
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> thiserror-impl v1.0.61
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fable_library_rust v0.1.0 (/home/runner/work/polyglot/polyglot/lib/rust/fable/fable_modules/fable-library-rust)
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> thiserror v1.0.61
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> spiral_temp_test v0.0.1 (/home/runner/work/polyglot/polyglot/apps/spiral/temp/test)
+<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">: enum `Item` is never used</span>
+  <span class="ansi-blue-intense-fg ansi-bold">--&gt; </span>/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/./main.rs:16:6
+   <span class="ansi-blue-intense-fg ansi-bold">|</span>
+<span class="ansi-blue-intense-fg ansi-bold">16</span> <span class="ansi-blue-intense-fg ansi-bold">|</span> enum Item {
+   <span class="ansi-blue-intense-fg ansi-bold">|</span>      <span class="ansi-yellow-intense-fg ansi-bold">^^^^</span>
+   <span class="ansi-blue-intense-fg ansi-bold">|</span>
+   <span class="ansi-blue-intense-fg ansi-bold">= </span><span class="ansi-bold">note</span>: `#[warn(dead_code)]` on by default
+
 <span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">: struct `Cart` is never constructed</span>
   <span class="ansi-blue-intense-fg ansi-bold">--&gt; </span>/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/./main.rs:41:8
    <span class="ansi-blue-intense-fg ansi-bold">|</span>
 <span class="ansi-blue-intense-fg ansi-bold">41</span> <span class="ansi-blue-intense-fg ansi-bold">|</span> struct Cart {
    <span class="ansi-blue-intense-fg ansi-bold">|</span>        <span class="ansi-yellow-intense-fg ansi-bold">^^^^</span>
-   <span class="ansi-blue-intense-fg ansi-bold">|</span>
-   <span class="ansi-blue-intense-fg ansi-bold">= </span><span class="ansi-bold">note</span>: `#[warn(dead_code)]` on by default
 
 <span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">: associated items `new`, `add_item`, and `remove_item` are never used</span>
   <span class="ansi-blue-intense-fg ansi-bold">--&gt; </span>/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/./main.rs:46:8
@@ -8380,8 +8386,8 @@ Fable compilation finished in 997ms
 <span class="ansi-blue-intense-fg ansi-bold">201</span> <span class="ansi-blue-intense-fg ansi-bold">|</span> fn parse_expression(input: &amp;str) -&gt; IResult&lt;&amp;str, SpiralToken&gt; {
     <span class="ansi-blue-intense-fg ansi-bold">|</span>    <span class="ansi-yellow-intense-fg ansi-bold">^^^^^^^^^^^^^^^^</span>
 
-<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> `spiral_temp_test` (bin "spiral_temp_test") generated 10 warnings
-<span class="ansi-green-intense-fg ansi-bold">    Finished</span> `release` profile [optimized] target(s) in 9.41s
+<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> `spiral_temp_test` (bin "spiral_temp_test") generated 11 warnings
+<span class="ansi-green-intense-fg ansi-bold">    Finished</span> `release` profile [optimized] target(s) in 9.48s
 </pre>
 </div>
 </div>
@@ -8423,17 +8429,17 @@ Fable compilation finished in 997ms
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> linux-raw-sys v0.4.14
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fastrand v2.1.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> wait-timeout v0.2.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-vec v0.6.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> quick-error v1.2.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fnv v1.0.7
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-vec v0.6.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> num-traits v0.2.19
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand v0.8.5
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rustix v0.38.34
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-set v0.5.3
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rustix v0.38.34
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_xorshift v0.3.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> unarray v0.1.4
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> memchr v2.7.4
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> minimal-lexical v0.2.1
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> unarray v0.1.4
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fable_library_rust v0.1.0 (/home/runner/work/polyglot/polyglot/lib/rust/fable/fable_modules/fable-library-rust)
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> nom v7.1.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> thiserror v1.0.61
@@ -8441,7 +8447,7 @@ Fable compilation finished in 997ms
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rusty-fork v0.3.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> proptest v1.4.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> spiral_temp_test v0.0.1 (/home/runner/work/polyglot/polyglot/apps/spiral/temp/test)
-<span class="ansi-green-intense-fg ansi-bold">    Finished</span> `release` profile [optimized] target(s) in 14.45s
+<span class="ansi-green-intense-fg ansi-bold">    Finished</span> `release` profile [optimized] target(s) in 15.55s
 <span class="ansi-green-intense-fg ansi-bold">     Running</span> unittests main.rs (/home/runner/work/polyglot/polyglot/workspace/target/release/deps/spiral_temp_test-8d84aef3d33f9780)
 
 running 3 tests
@@ -8452,262 +8458,262 @@ test adding_and_then_removing_an_item_from_the_cart_leaves_the_cart_unchanged ..
 successes:
 
 ---- prop_parse_format_idempotent stdout ----
-input=StringLiteral("8aAre*Uyhw")
-input=Comment("q74{N")
-input=Identifier("n")
-input=Comment("D/{\\cuQ:K\\8t?Wy`o$XQG")
-input=Operator("(")
 input=Operator("=")
-input=Comment("$^z$$e[*{@P\"\\] ~z.~@")
-input=Identifier("LbSzXKHP34rkn7UVmC42GiL7ms667")
+input=Comment("\\w&lt;0eZ+K$\\B")
+input=Integer(-8613672974173280156)
+input=Comment("qg\"MTO{p&gt;\\{'v `")
+input=Identifier("c282ulnqb980o99WGxd5g")
+input=Integer(-1091126477028013064)
+input=Integer(-4266536850299209659)
+input=Identifier("baD")
+input=Integer(-607350488262687854)
+input=Integer(-3725181488691249648)
+input=Identifier("lEpNJ2eD8")
+input=Identifier("y5k968625U3tPNC3cwuZUG")
+input=Integer(-1633013261764929475)
+input=Integer(1638601961035734322)
+input=Comment("C/~$6")
+input=Comment("5 =|8'")
+input=Identifier("xcxDUrIxJhggpqI5ZFEi1VNWzD0")
+input=Identifier("GD5ycaH")
+input=StringLiteral("{#ooLKwXGwjwX`{[%:jxQpK`")
+input=StringLiteral("(KQV@{B%GN/X%'`3jb")
+input=StringLiteral("")
+input=Integer(-6454081889850917307)
+input=Operator("=")
+input=Integer(-3357023395525696405)
+input=Identifier("x")
+input=Identifier("Y")
+input=Identifier("Vf4jZ4Wgyovag8i3Im9YDTiqQQTGW")
+input=Integer(-1510647379913204847)
+input=Comment("q$E':h`O&amp;8/R[16*J&lt;?_6.*\\")
+input=StringLiteral("f;`d.RrtD/_gb")
+input=Identifier("l")
+input=Comment("P3z'%2K&amp;Tk_aQ")
+input=Operator(")")
+input=Integer(8414180688543937404)
+input=Comment("u=66I")
+input=Integer(4099501559065344302)
+input=Integer(7711242199189295622)
+input=Identifier("pyOvJ5IM41d7Fpkv7G3D3")
+input=Identifier("zah03vBYpVEWrQIAR71FEM")
+input=Comment("ik{U 9D%J!\\(=g! GRB7}Nh Eb*)")
+input=Operator(")")
+input=StringLiteral("3L_`=v&lt;UySY~u'V%:/p,(qZ:HS2M")
+input=StringLiteral("")
 input=Operator("+")
-input=Integer(5830464588761842596)
+input=Comment("`?$*=&gt;*:F7.s:Tez:1&lt;c&amp;&gt;h]\\\\'Z/oO")
+input=Operator("+")
+input=Integer(-7906058382500982605)
+input=Comment("cb@.`Fs")
+input=StringLiteral("De_f #")
+input=Operator("=")
+input=Comment("$*???#JEm\\;%'J%^&lt;I84VZ")
+input=Operator("/")
+input=Identifier("yG2")
+input=Comment("R\"~?y*{k")
+input=Integer(-5020288549775493994)
 input=Comment("")
-input=StringLiteral("'o}&amp;")
-input=Identifier("HxgDgBHxPn89lXA6JFjj580HGYAyC")
-input=Integer(8085589090570515367)
-input=StringLiteral("$j$~{jA&gt;O:O%Uvd:2&amp;ZN&amp;`j1X")
-input=StringLiteral("YSSaV;ioMm&amp;_Hr")
-input=Comment("B.$V7WGY&amp;r7GV334:~")
+input=Integer(-8974737685235908670)
+input=Integer(-3372659309027435382)
+input=Operator("-")
+input=Comment("Ioe%\\Ox*d.xx*Eo7I5#d&amp;\"Rx")
+input=Integer(5370498317872274192)
+input=Integer(3667424522214040171)
+input=Operator("*")
+input=StringLiteral(":Z~7~")
+input=Identifier("hSN0joGEtp")
+input=StringLiteral("1K")
+input=Identifier("yV7G3U8SYBTtt0Lqthk2gpE57XDT9bvEX")
+input=StringLiteral("V&lt;lPk`H)NC%yd=/%WjP{x")
+input=Identifier("zSvL9fYDG6K0AQ1nwXUUlqUk3t9")
+input=StringLiteral("T/%Lh:',*FMa9/?(O)&lt;ap")
+input=StringLiteral("+*d!&amp;=/i1[bt-j|%H=")
+input=Integer(-3168643444527163691)
+input=Operator("-")
+input=Identifier("fRh8XaM7I9g9ayacsb5U0W4rXI")
+input=Identifier("wtBZbUnMXP4Z75ct7t2RA0LZ9tL0A")
+input=Identifier("t2ptnEpl4y71uX4sEIhcr6V9je")
+input=StringLiteral("W[r/")
+input=StringLiteral("r{b%G8")
+input=Comment("BS;+`X=.iO&lt;u?w\\$*d?='`")
+input=Comment("_v/A [VW")
+input=StringLiteral("U.&lt;HhKJ")
+input=Integer(3747360219257128429)
+input=Comment("KT3v*`")
+input=Comment("&lt;W`L7.zR8`/jr9(\"h=]")
+input=StringLiteral("'")
+input=StringLiteral("M%&lt;%b?m*?6.Jq.j=AC.*dw:")
+input=Identifier("uyw7pRoc9KzNil7tSS2vN")
+input=Integer(9197865037431067078)
+input=Operator("(")
+input=Operator("+")
+input=StringLiteral("::&lt;A")
+input=Identifier("Qw5Sgkg8V")
+input=Identifier("AwyhLODlgt")
+input=Operator(")")
+input=StringLiteral("$ /,7")
+input=StringLiteral("q`&amp;&amp;Y=8R?%#|&amp;8b+^l&amp;#:3,.'9B97|fi")
+input=Identifier("CrX8oqH77OPW5aAjC")
+input=Identifier("jbnDdScrs8H9K0rJP")
+input=Operator("(")
+input=Comment("\"\":&lt;.=/`kS'")
+input=Identifier("Zi95Am5K8grR")
+input=Comment("yXI")
+input=Identifier("gV1uhuMkUA6eK9YXnlnh88NP551kAPS")
+input=Integer(7838853812907922661)
+input=Operator("(")
+input=Comment("L==3v*\"(\"1Wo")
+input=Comment("`Q'uVoNm")
+input=Comment("&amp;^t&amp;xH\"J:U]N%`z/3-1 uxo")
+input=Operator(")")
+input=StringLiteral("qJ:,qmm*Z8*#;")
+input=Operator("(")
+input=Operator(")")
+input=Comment("0W3N")
+input=Operator("*")
+input=Integer(7087350479871782115)
+input=StringLiteral("#")
+input=Identifier("Z12y1CO29bcL3IobKwtl")
+input=Operator("=")
+input=Integer(1376001481202355992)
+input=Identifier("S20cxad9JjOR49cwN7iC7hG4mZUFh9qCU")
+input=Comment("%=G5&lt;\\Q3,K\\}\\=&amp;Z$=")
+input=Operator("+")
+input=StringLiteral("QhJpF{yw'Zm'q.*d")
+input=Comment("|%+`J,WN.^HcOPsO&amp;?!?5O\"\"")
+input=Identifier("cK3b399ovuY0PUt")
+input=StringLiteral("Ii:/")
+input=Identifier("sb5E2X24GqI2vI")
+input=Identifier("cMX")
+input=Comment("F?_G$Krp{}P&gt; .M:F[\\&amp;")
+input=StringLiteral("/")
+input=StringLiteral("={.O{")
+input=StringLiteral("`a#Btu!y&gt;f;nJ}!&lt;,")
+input=StringLiteral("&lt;.jZ@.CTlnuTt%0")
+input=Identifier("pPcSTZ4O9y3G9k5W3t3HJNYQ9")
+input=StringLiteral(";8 kL")
+input=StringLiteral(":2zj`~Cn=")
+input=Integer(3460889851122550632)
+input=Operator("*")
+input=Identifier("C3H07R577a81b")
+input=Identifier("V9u27KdZc0mXNkXy")
+input=Operator("+")
+input=StringLiteral("'&lt;}T68e.%&amp;]XQ[&lt;'iJ%")
+input=Identifier("nZ3OuUbwYKZC6La")
+input=Operator("=")
+input=StringLiteral("%/IR")
+input=Identifier("Z0hNM908JxrbobBQc90T90zBcS9jI4")
+input=StringLiteral("i&amp;UeFrav&lt;")
+input=Integer(-113198402104315047)
+input=Operator("(")
+input=Operator("-")
+input=Integer(-1941583001223916364)
+input=Operator("/")
+input=Identifier("v8KjmYFeh7R8zUHd")
+input=Integer(1537262355911089372)
+input=Identifier("Z9RLbO9MF4V1xqlWmDej2Ue")
+input=StringLiteral("vKDIX/NV}YQQ1p%=/")
+input=StringLiteral("f?$U:0s&amp;ekL5q{Gj")
+input=Operator("/")
+input=Identifier("kbo5l4X4")
+input=Integer(6896700422675809380)
+input=Comment("U\\KE2P~',|o:y2&amp;hP!.19m)]*n'x")
+input=Identifier("Y4XTFQq8meb3XSpBSNOC8oXNedm2Uw")
+input=StringLiteral("'oOS:'&lt;Y0s{&lt;*")
+input=Operator("/")
+input=Integer(7406494194833395138)
+input=StringLiteral("M!]p*pd-?;|_.pvq`sSP.9Fg/k.3TO")
+input=Integer(-8684857151304946896)
+input=Comment("`|oh")
+input=Operator("/")
+input=StringLiteral("J*yxjGz=aW37``9`&amp;")
+input=Integer(1575873714136069130)
+input=Operator("(")
+input=Integer(-2177797859880696635)
+input=Comment(" *q}*je:%{WNF&lt;Rzs&amp;~")
+input=Identifier("tQuw81e48495dh39Xy7")
+input=StringLiteral("$?98rXN1-&amp;=.}Mo=S.5")
+input=Comment("w:&lt;e`/J*:'&amp;")
+input=Operator("*")
+input=Identifier("K9KOL5")
+input=Comment("qmX")
+input=Identifier("MNM45dOXnBV3b9Et4ieeRmjQj2")
+input=StringLiteral("G9;{SE_n0AN[ Vx{K*mHs6Ap=")
+input=Integer(-3875293012612411222)
+input=Operator("+")
+input=Comment("Wp'+7,{{ O:+y&gt;:fP?:Tj}j&lt;:m`u-")
+input=Comment("S{p$v`@l/:\\{\"=d")
+input=StringLiteral("&gt;D.Q^{=Z&amp;&gt;FPA&lt;u")
+input=StringLiteral("K$wW*?RF;c00e:'")
+input=Identifier("ekVAtDA0d4G0Aw5n0n")
+input=Identifier("YyyLdOpUzdnBtahvGCDy")
+input=Operator("-")
+input=Operator("/")
+input=StringLiteral("!=R%_")
+input=Operator("/")
+input=StringLiteral("uW0")
+input=Integer(-3611225278297066189)
+input=Operator("/")
+input=Integer(-4788654845470208672)
+input=StringLiteral("'?zc=:.G")
+input=StringLiteral("Z$^FoQ=i.*GXnT{")
+input=Integer(5073137616139705005)
+input=StringLiteral("?A9Z/p&lt;5Ey$&amp;b+")
+input=Operator("(")
+input=Comment("e7*.F=;!/&gt;c")
+input=Operator(")")
+input=Integer(1987427503774719119)
+input=Identifier("IO31PK07tx2")
+input=Integer(2052037773630095696)
+input=Comment("\\`/$`tkV+-/ +p'^Z1`o:iX&amp;C6@O1?")
+input=Identifier("jgZnT0YJv5qBBP7cBA66fIrD45f9fbi")
+input=Comment(";io.9;&lt;jFC1_|v`&amp;d&amp;$|\"*e=\\|")
+input=Identifier("fqV83qRxRLhU9sHFX13")
+input=Identifier("uo3i270awCwp")
+input=Identifier("eg4XRxC2FWIA878w3gJi5")
+input=Integer(-235050209122114269)
+input=Identifier("aAKFdnD00EEqUDD")
+input=Identifier("rE2gNta3j7yOG8XVu3w5Z76bc")
+input=Comment(" M3h/3W&amp;D6Lr/j\\+w6\"LaOx-Y/?|=")
+input=Identifier("zhAP9HhaO90RnVJ")
+input=Comment(")SZ$%&gt;\"~%C`aO=0K&lt;|79&amp;?pH-/K%P?0]")
+input=Identifier("OXvh29Ik58yp4RKBfqh8MYv6zK")
+input=Identifier("h81Aett8gNzcN")
+input=StringLiteral("{&amp;-,w4+Gg={/'*%fEaD9-*&lt;?`|1.")
+input=Integer(5356322175676734733)
+input=Comment("/ bs'}")
+input=StringLiteral("&lt;qc8z1M=/%g?P*.:w7R xeIO/Pv")
+input=Operator("(")
+input=Operator("/")
+input=Identifier("HsacMZQo7fAF48E")
+input=Identifier("CBRa86c4wujQ4Drk2izyj3JtkPG")
+input=Comment(": } {c{p&amp;.$Z%+*H")
+input=Operator(")")
+input=Identifier("qqlU22Q")
+input=Comment("IA*/mzRBo=4&lt;yY}%a&amp;")
+input=StringLiteral("6 Q'&amp;D")
+input=Operator("/")
+input=StringLiteral("_'[_&lt;SCr$$N&amp;b.0n")
+input=Integer(-4638173764931719737)
+input=StringLiteral("${&amp;b;`!Y;r%}&lt;")
+input=Identifier("PMy8i67Esdp4KKTe")
+input=StringLiteral("$&lt;5G{-F8")
+input=Comment("t6/r8om\\'ZI6&lt;=")
+input=Comment("\"~.PUv/w79;${{Vd=#EX")
+input=Operator("/")
+input=Identifier("xTl405gWqfil2Oiy")
+input=Operator("/")
+input=Comment("7..n, ")
+input=Identifier("mk7Fw8tPIlX29Z9aeo4ou1")
+input=Comment("a3T2\\nBFJ/&gt;,Ej&amp;E!S'0')}`%&lt;A6*")
+input=Operator("/")
+input=Integer(8423655418518967468)
+input=Comment("^@;5ab")
+input=StringLiteral("=C}+")
+input=Comment("h&lt;MM{\\* O")
+input=Comment("/?J/,T/}o&amp;rU&amp;c?.NPH)*Y#")
 input=StringLiteral("$")
-input=Operator("*")
-input=Operator("+")
-input=Integer(325352109380140030)
-input=Integer(3838031942746431574)
-input=Comment("e|cDsJa'0")
-input=Integer(2465225642356343099)
-input=Integer(-2830112483753450740)
-input=Integer(4363067637415698696)
-input=Operator("/")
-input=Integer(-8147269572565681946)
-input=Integer(-7524168263184134933)
-input=StringLiteral("1*`HiV$")
-input=Identifier("B1CUBg08XFufY8hjd6S6ME0WBCQd0sV")
-input=StringLiteral("c`/8&amp;:$y5c'~.NsWfsIK")
-input=StringLiteral("")
-input=Identifier("sVe6jwps51mb0")
-input=Operator("=")
-input=StringLiteral("?T?&amp;n=aK")
-input=Identifier("C5zxHQ34ICGwGkHEaEdBWAnA")
-input=Comment("$/cqw%E/\\k")
-input=Identifier("o007ca4gD9KSJrLuCRCfDw")
-input=Operator("*")
-input=StringLiteral("F**[")
-input=Integer(-5592463314936078141)
-input=Comment("?%!aY'mp9MO-P%&gt;Q@/}3=1?toaB")
-input=Comment("Jv=N\\zN*!=\"`CX/''@\"%vD,?")
-input=Integer(2502172005327234186)
-input=StringLiteral("-Z%&lt;Hug &amp;|%&lt;W+*m")
-input=Operator("(")
-input=Integer(-6720503031648586211)
-input=Operator("(")
-input=Operator("/")
-input=Operator("=")
-input=Comment("vmL./6U~$4o%\\/by?|@G Xkly4B`B")
-input=Operator(")")
-input=StringLiteral("BC8~%$%L&amp;")
-input=StringLiteral("$w-.ZKg.1'-I`fU%")
-input=Operator(")")
-input=Identifier("uPX8S9Evp99lzx8g5d8ubzeD0V")
-input=Integer(-3806732338902680715)
-input=Operator("*")
-input=Identifier("i10fvt5fRqPEW3H86aact5pc")
-input=Comment("L//")
-input=Operator("-")
-input=StringLiteral("k")
-input=Identifier("Pq1T1NEqK")
-input=Identifier("ETSgt6ftBKrX")
-input=Operator("-")
-input=Identifier("a7FwdvP34zXxhQGCkAlZajMY")
-input=Identifier("zQDEN9")
-input=Operator(")")
-input=Integer(3258567524415901989)
-input=Operator("-")
-input=StringLiteral("S3T&amp;w3*JHj4??*`hyP2")
-input=Integer(8179834075009254461)
-input=Comment("/\"%/'1x9Ye!&amp; =E{+XO;`uHZ&gt;ej\"")
-input=Comment("C\"*&amp;].")
-input=Operator("=")
-input=Integer(3402760990550772937)
-input=Operator("*")
-input=Integer(-8536906611993095333)
-input=StringLiteral("B/'&amp;3%Vnqrgr7.yM%|_?n")
-input=Integer(4341559343093538260)
-input=Identifier("WrjgqHgbcTV7zs4Ls5W")
-input=StringLiteral("&amp;y;`.Nh)Fe.&lt;(?.(=0W&amp;My`/L=e1Q")
-input=StringLiteral("Pk")
-input=Comment("4uWEW&lt;U")
-input=Operator("/")
-input=Operator(")")
-input=Operator("(")
-input=Operator("/")
-input=Integer(6776689451179149107)
-input=StringLiteral("j`H!=*%Zd1#:CbgRX{wH?.f80N")
-input=Operator("(")
-input=Operator("=")
-input=Identifier("Pf")
-input=Comment("&gt;=n&amp;.J%raM/R=@T$-l+=G.u.V$")
-input=Comment("y?*&amp;")
-input=Operator(")")
-input=Integer(748366207596184656)
-input=Operator("/")
-input=Comment("l;zsm&lt;B5[=)")
-input=StringLiteral("Eb{%MhP")
-input=Comment("2{/")
-input=Operator("-")
-input=Integer(-2712074894728300603)
-input=Comment("R``&gt;")
-input=Operator("=")
-input=Integer(1809158689907685398)
-input=StringLiteral("[J&amp;KIm_0%'0j$]s`A:*")
-input=Operator("(")
-input=Identifier("yHO9hyQv")
-input=Operator("+")
-input=StringLiteral("")
-input=StringLiteral("D`l5g=dr&gt;6s;V[")
-input=StringLiteral("|Ggw&gt;?")
-input=Operator(")")
-input=Integer(550616300652819183)
-input=Operator("=")
-input=Operator("=")
-input=Identifier("wl2Y9mS9DaHyw")
-input=Comment("Y")
-input=Identifier("h993977gtu77YU14Dp544Tk47LF")
-input=Integer(-4742779667388513473)
-input=Identifier("Dm2JX0PvR")
-input=Comment("{%")
-input=Comment("oG\\\"E*g`{Td")
-input=StringLiteral("M|'_5j 9!cD8Pm_`Q")
-input=Integer(-8733487841990923278)
-input=Operator(")")
-input=Integer(-7437039817587422072)
-input=StringLiteral("96")
-input=Operator("-")
-input=Integer(-6088637546137916470)
-input=Comment(":?_:jBKJ='&gt;1I`Fj\\oQ9t%&amp;WmZ1D1J")
-input=Integer(2441763200263880034)
-input=StringLiteral("=Vw*RAq'AAO*GCgs#i?E9")
-input=StringLiteral("")
-input=StringLiteral("V}&amp;##@Y:{V#*'?nxa0*Z")
-input=StringLiteral("[w5B?t")
-input=StringLiteral(",L-{;Gy{o'm{O*L")
-input=Identifier("MBMB3ENw4QTCsDjPmUiZKtUhhtbJhgQ1")
-input=Identifier("v3WaVw1I7ozaP1Nhu4f3z6Z7s2di")
-input=Comment("`\\%0B|P\\\"Of`")
-input=StringLiteral("vtkSVk2*&amp;B-/=.D:K")
-input=Comment("&amp;*v?UvXxo.C4PY")
-input=Comment("H$3iR/*uFEj..o&lt;O^.'m$$J&lt;&lt;(Xu`Y&amp;")
-input=Identifier("Rl1pBw")
-input=Comment("x-:\"{C&amp;'`l%;^`.bZ`\"/h%93Y'")
-input=StringLiteral(".wh0]SBXiR1&amp;f{u")
-input=StringLiteral("T'VO'RTRydI?$ul}i'B=eS")
-input=Operator("/")
-input=Comment("`LRPq|{)* `/,")
-input=Operator("+")
-input=StringLiteral("[Fnf")
-input=Integer(6637297912823566460)
-input=Comment("'Cd#")
-input=Comment("&lt;9QGJ=BB'\"]qI`!=S+1%")
-input=Operator("/")
-input=StringLiteral("e);SIi^!'l{`xN/'P`0Vm *+k&lt;&amp;IFh*")
-input=StringLiteral("4#Q")
-input=Identifier("Ta2e3D2uu3fY5gZc8dmMZNM")
-input=Comment(".NN9/\\\".MN*:9S:&amp;?Yn1p&gt;a&amp;cZ7\"@l")
-input=StringLiteral("G&lt;YR[&lt;2@{w=`")
-input=Operator("+")
-input=Operator("=")
-input=Operator("/")
-input=Integer(-1096165757467107783)
-input=Comment("_'\"Y+u:ul: ")
-input=Identifier("zF")
-input=Integer(335283401306478683)
-input=Operator("=")
-input=Identifier("MxizY4p8589RCuiv5g0Q4S6eW3pbr1xG")
-input=Comment("*$sBSD8; ")
-input=StringLiteral("f5!Ns*y=%'^=&amp;1T,9;GxE%P7")
-input=StringLiteral("M=^``=m&amp;j}9.0X]")
-input=Identifier("ZcpCnh1fnr5DzKil8lOfLXxYtOrkHu")
-input=Integer(-9101758002983689327)
-input=Operator("(")
-input=Comment(".vih'Jy[eCE&amp;\":&lt;g&amp;%c?7&lt;!Kd.$uo$")
-input=Comment("BM%`$X}m|[~./t`yXm`)&amp;OX#P")
-input=StringLiteral("T?S`!?.")
-input=Comment(".'b&lt;n'ok?xM&gt;0\"bpolt ]C*k")
-input=StringLiteral("*HK/^")
-input=Integer(343080304861803401)
-input=Comment("'ohkx MDR")
-input=Identifier("U0JJefUYe1I7SSbXV0sxl85DpJ1JLP1W")
-input=Integer(-5049424528094199537)
-input=Operator("*")
-input=Operator("+")
-input=Operator("-")
-input=Comment("zI62")
-input=StringLiteral("J$7*QYSrK*5D#l0GVpj;S'%&lt;J1&lt;k.%")
-input=Integer(-1836420921829347195)
-input=StringLiteral("3L{/&lt;&lt;d%X*&amp;6~$?*=w.ru2bh=K")
-input=Comment("Q/*&amp;,ah*-2?/kLC/*&amp;7F\"E;JNN&amp;EI]")
-input=Identifier("S1o52wq3T4tteE9j0")
-input=Identifier("h4ZC46")
-input=Operator("/")
-input=Operator("=")
-input=StringLiteral("h*}/D{L%/&amp;X]?f!wRSd'mT&amp;j")
-input=Integer(2292442818259935312)
-input=Comment("2L\"/T&lt;g$~@(G?kA~=@Z! 2/nt")
-input=Identifier("j56lFU745nEaM2KlZvaq")
-input=Operator("-")
-input=Comment(";?EB&amp;L/M'H{koTpt\"5k&lt;Ln?7K&amp;")
-input=Operator("(")
-input=Operator(")")
-input=Operator("+")
-input=Comment("{q.\":*'G!\\&lt;V5lcdBs;^kQ5H=/")
-input=Operator("/")
-input=Operator("-")
-input=Integer(-3911617693476012944)
-input=Identifier("ZBoSlL8iV8fWq2AGreVuy")
-input=Comment("1=T*D$=+Q+:D,l&amp;S+XSY?U-")
-input=Identifier("FVf6zxa")
-input=Operator("/")
-input=Comment("mo:")
-input=Integer(5149464071674750751)
-input=Comment(")M.sMs(`")
-input=StringLiteral("E={vX|BVM.Sg#N'%&amp;)%Z;R,&amp;'nVg")
-input=StringLiteral("&lt;^&amp;)j%''@8Xc:=$jMD,&amp;&amp;E")
-input=StringLiteral(",$Jvf//o)P*e$g%%1 *aKJ1I.&amp;=,{&lt;'")
-input=StringLiteral("W./eSi=T2].pb=E}o?:??_a?,")
-input=Comment("`C0@(=,%?Y&lt;2N")
-input=Identifier("OzoMYTpGu")
-input=Comment("2p?BA'Xhun'@G$")
-input=Identifier("VeQk35YFupwPZd")
-input=Identifier("sJ34F06urfCm2zZ")
-input=Identifier("a3GBUS4u3UOYYOhzYK")
-input=Operator("=")
-input=StringLiteral("$i0Oy? .{")
-input=Operator("(")
-input=Identifier("Lsohi9R2r1C9jK2iJm8Kbaj")
-input=Integer(4175249367423682954)
-input=StringLiteral("|?b)FFm{RTG&amp;s`.~.=-=")
-input=Comment("\\sQ?X:[W&amp;%m\"v+")
-input=Identifier("r4lv4vR7IjD")
-input=StringLiteral("?]^J?`ZwJt6]?")
-input=Identifier("i99AQzyTcvuFBvb0j95g")
-input=Identifier("rJSHe8b8KDCZL")
-input=Comment("F/|*O?")
-input=Integer(-8099698460669695953)
-input=Identifier("xrEyj1v49G13DCa4W")
-input=StringLiteral("KLEwtKSE:#8{L")
-input=Comment("G3=Ch&gt;*=M,+/.:h?_\\$^\"j$")
-input=StringLiteral("b3:}`w|`#R*,/[%cgo~{sM")
-input=Identifier("kzW3FYIuS85n0r7jqO69dPzo656R9cNt")
-input=Integer(6706951511320417063)
-input=StringLiteral("G%")
-input=Comment("S`(]i}:t7b-7{`.9Wi(VpLJt:22")
-input=Comment("u&amp;/88 ")
-input=Operator(")")
-input=Comment("*=&lt;{D{$%L:h6U")
-input=Integer(-589866094724529411)
-input=StringLiteral(";?%pY*~%_?")
-input=StringLiteral("om=TDGw7,$uHPVft&lt;h`")
-input=StringLiteral("wl13=``)`X'G&lt;JU=pk`~PF:")
 
 
 successes:
