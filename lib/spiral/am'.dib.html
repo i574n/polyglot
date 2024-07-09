@@ -7949,8 +7949,9 @@ assert_eq / actual: [|-1L; 0L; 1L; 2L|] / expected: [|-1L; 0L; 1L; 2L|]
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">init</span> <span class="n">n</span> <span class="p">:</span> <span class="n">a</span> <span class="nb">int</span> <span class="n">_</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">init</span> <span class="n">n</span> <span class="p">:</span> <span class="n">array_base</span> <span class="n">_</span> <span class="o">=</span>
     <span class="n">am</span><span class="o">.</span><span class="n">init</span> <span class="n">n</span> <span class="nb">id</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
 </pre></div>
 </div>
 </div>
@@ -8004,6 +8005,7 @@ assert_eq / actual: [|-1L; 0L; 1L; 2L|] / expected: [|-1L; 0L; 1L; 2L|]
 
 <span class="mi">10</span>
 <span class="o">|&gt;</span> <span class="n">init</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span>
 <span class="o">|&gt;</span> <span class="n">choose</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span> <span class="n">Some</span> <span class="n">x</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">a</span><span class="s1">' ;[ 0; 2; 4; 6; 8 ])</span>
 </pre></div>
@@ -8021,13 +8023,13 @@ assert_eq / actual: [|-1L; 0L; 1L; 2L|] / expected: [|-1L; 0L; 1L; 2L|]
 <pre>
 .py output (Cuda):
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/86db14e2b76093ff1f6c57717e545800f2c957996c6a8970a2d8d216166e80a8/main.py", line 240, in &lt;module&gt;</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/e667ef93c79676df1e4e35fa32d901443d29c922b75de5fde9cf2c820c0bd7fc/main.py", line 240, in &lt;module&gt;</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/86db14e2b76093ff1f6c57717e545800f2c957996c6a8970a2d8d216166e80a8/main.py", line 238, in main</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/e667ef93c79676df1e4e35fa32d901443d29c922b75de5fde9cf2c820c0bd7fc/main.py", line 238, in main</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/86db14e2b76093ff1f6c57717e545800f2c957996c6a8970a2d8d216166e80a8/main.py", line 155, in method0</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/e667ef93c79676df1e4e35fa32d901443d29c922b75de5fde9cf2c820c0bd7fc/main.py", line 155, in method0</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.empty(10,dtype=cp.int32)</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/cupy/_creation/basic.py", line 31, in empty</span>
@@ -8105,6 +8107,7 @@ assert_eq / actual: [|0; 2; 4; 6; 8|] / expected: [|0; 2; 4; 6; 8|]
 
 <span class="mi">10</span>
 <span class="o">|&gt;</span> <span class="n">init</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span>
 <span class="o">|&gt;</span> <span class="nb">sum</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">45</span>
 </pre></div>
@@ -8122,13 +8125,13 @@ assert_eq / actual: [|0; 2; 4; 6; 8|] / expected: [|0; 2; 4; 6; 8|]
 <pre>
 .py output (Cuda):
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/1d308ca1daea03e21a4f515114b0d37b079815df64a7b8031da5e21a1492b15d/main.py", line 124, in &lt;module&gt;</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/00ba87a4c69e81100d487b10d559eccb0c3bde9776b0d48bbee5114fe640c8a6/main.py", line 124, in &lt;module&gt;</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/1d308ca1daea03e21a4f515114b0d37b079815df64a7b8031da5e21a1492b15d/main.py", line 122, in main</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/00ba87a4c69e81100d487b10d559eccb0c3bde9776b0d48bbee5114fe640c8a6/main.py", line 122, in main</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/1d308ca1daea03e21a4f515114b0d37b079815df64a7b8031da5e21a1492b15d/main.py", line 77, in method0</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/00ba87a4c69e81100d487b10d559eccb0c3bde9776b0d48bbee5114fe640c8a6/main.py", line 77, in method0</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.empty(10,dtype=cp.int32)</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/cupy/_creation/basic.py", line 31, in empty</span>
@@ -8185,9 +8188,10 @@ assert_eq / actual: 45 / expected: 45
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">init_series</span> <span class="n">start</span> <span class="n">end</span> <span class="n">inc</span> <span class="p">:</span> <span class="n">a</span> <span class="nb">int</span> <span class="n">_</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">init_series</span> <span class="n">start</span> <span class="n">end</span> <span class="n">inc</span> <span class="p">:</span> <span class="n">array_base</span> <span class="n">_</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">total</span> <span class="o">=</span> <span class="n">conv</span> <span class="p">((</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">inc</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">am</span><span class="o">.</span><span class="n">init</span> <span class="n">total</span> <span class="p">(</span><span class="n">conv</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">inc</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span> <span class="n">start</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
 </pre></div>
 </div>
 </div>
@@ -8208,8 +8212,8 @@ assert_eq / actual: 45 / expected: 45
 <span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
-<span class="n">init_series</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mf">0.5</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="mi">0</span><span class="n">f64</span><span class="p">;</span> <span class="mf">0.5</span><span class="p">;</span> <span class="mi">1</span> <span class="p">])</span>
+<span class="n">init_series</span> <span class="mi">0</span> <span class="mi">4</span> <span class="mi">2</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ 0i32; 2; 4 ]</span>
 </pre></div>
 </div>
 </div>
@@ -8225,15 +8229,15 @@ assert_eq / actual: 45 / expected: 45
 <pre>
 .py output (Cuda):
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/b2c691a96afe77c13c3cdc65f3d9148e4e376592ddd24fdbf4641537d0208c08/main.py", line 145, in &lt;module&gt;</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6acaabb067a824d044967fcfa29f2875b0bf664b62330f88a2046f3879e7ee2f/main.py", line 101, in &lt;module&gt;</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/b2c691a96afe77c13c3cdc65f3d9148e4e376592ddd24fdbf4641537d0208c08/main.py", line 143, in main</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6acaabb067a824d044967fcfa29f2875b0bf664b62330f88a2046f3879e7ee2f/main.py", line 99, in main</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/b2c691a96afe77c13c3cdc65f3d9148e4e376592ddd24fdbf4641537d0208c08/main.py", line 96, in method0</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.empty(3,dtype=cp.float64)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6acaabb067a824d044967fcfa29f2875b0bf664b62330f88a2046f3879e7ee2f/main.py", line 67, in method0</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.empty(3,dtype=cp.int32)</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/cupy/_creation/basic.py", line 31, in empty</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return cupy.ndarray(shape, dtype, order=order)</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
@@ -8248,13 +8252,13 @@ assert_eq / actual: 45 / expected: 45
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
-assert_eq / actual: Array(MutCell([0.0, 0.5, 1.0])) / expected: Array(MutCell([0.0, 0.5, 1.0]))
+assert_eq' / actual: Array(MutCell([0, 2, 4])) / expected: Array(MutCell([0, 2, 4]))
 
 .ts output:
-assert_eq / actual: 0,0.5,1 / expected: 0,0.5,1
+assert_eq' / actual: 0,2,4 / expected: 0,2,4
 
 .py output:
-assert_eq / actual: [0.0, 0.5, 1.0] / expected: array('d', [0.0, 0.5, 1.0])
+assert_eq' / actual: [0, 2, 4] / expected: array('l', [0, 2, 4])
 
 </pre>
 </div>
@@ -8263,7 +8267,7 @@ assert_eq / actual: [0.0, 0.5, 1.0] / expected: array('d', [0.0, 0.5, 1.0])
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: [|0.0; 0.5; 1.0|] / expected: [|0.0; 0.5; 1.0|]
+assert_eq' / actual: [|0; 2; 4|] / expected: [|0; 2; 4|]
 </pre>
 </div>
 </div>
@@ -8343,6 +8347,7 @@ assert_eq / actual: [|0.0; 0.5; 1.0|] / expected: [|0.0; 0.5; 1.0|]
 
 <span class="mi">10</span>
 <span class="o">|&gt;</span> <span class="n">init</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span>
 <span class="o">|&gt;</span> <span class="n">last</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">9</span>
 </pre></div>
@@ -8360,13 +8365,13 @@ assert_eq / actual: [|0.0; 0.5; 1.0|] / expected: [|0.0; 0.5; 1.0|]
 <pre>
 .py output (Cuda):
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/3d2f1dfffb027e5ef224da061296450bc2881733bc19aa97071e4ce42ebac0f6/main.py", line 103, in &lt;module&gt;</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/e57f609868044da2d6943f0563ca75a2b123714e845aa54d90e564382626fe22/main.py", line 103, in &lt;module&gt;</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/3d2f1dfffb027e5ef224da061296450bc2881733bc19aa97071e4ce42ebac0f6/main.py", line 101, in main</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/e57f609868044da2d6943f0563ca75a2b123714e845aa54d90e564382626fe22/main.py", line 101, in main</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/3d2f1dfffb027e5ef224da061296450bc2881733bc19aa97071e4ce42ebac0f6/main.py", line 67, in method0</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/e57f609868044da2d6943f0563ca75a2b123714e845aa54d90e564382626fe22/main.py", line 67, in method0</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.empty(10,dtype=cp.int32)</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/cupy/_creation/basic.py", line 31, in empty</span>
@@ -8451,6 +8456,7 @@ assert_eq / actual: 9 / expected: 9
 
 <span class="mi">10</span>
 <span class="o">|&gt;</span> <span class="n">init</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span>
 <span class="o">|&gt;</span> <span class="n">try_pick</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">then</span> <span class="n">Some</span> <span class="n">x</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">5</span><span class="n">i32</span><span class="p">)</span>
 </pre></div>
@@ -8468,13 +8474,13 @@ assert_eq / actual: 9 / expected: 9
 <pre>
 .py output (Cuda):
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/38d1d73926cc63c79f5f4a3f7ca865198ee329a901c985f8ebfc2c23da35e411/main.py", line 157, in &lt;module&gt;</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/e18a5aaf095c27cd0d5baefdab60e7a6838ae0e0e084291078c4d72deb2f83a2/main.py", line 157, in &lt;module&gt;</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/38d1d73926cc63c79f5f4a3f7ca865198ee329a901c985f8ebfc2c23da35e411/main.py", line 155, in main</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/e18a5aaf095c27cd0d5baefdab60e7a6838ae0e0e084291078c4d72deb2f83a2/main.py", line 155, in main</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/38d1d73926cc63c79f5f4a3f7ca865198ee329a901c985f8ebfc2c23da35e411/main.py", line 83, in method0</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/e18a5aaf095c27cd0d5baefdab60e7a6838ae0e0e084291078c4d72deb2f83a2/main.py", line 83, in method0</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.empty(10,dtype=cp.int32)</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/cupy/_creation/basic.py", line 31, in empty</span>
@@ -8528,11 +8534,12 @@ assert_eq / actual: US0_0 5 / expected: US0_0 5
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">indexed</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">dim</span> <span class="p">{</span><span class="nb">int</span><span class="p">;</span> <span class="n">number</span><span class="p">}</span> <span class="n">dim</span><span class="s1">' {int; number} u </span><span class="si">{number}</span><span class="s1">. (ar : a dim t) : a dim'</span> <span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
-    <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">a</span> <span class="p">;[]),</span> <span class="n">ar</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">indexed</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span> <span class="p">{</span><span class="n">number</span><span class="p">}</span><span class="o">.</span> <span class="p">(</span><span class="n">ar</span> <span class="p">:</span> <span class="n">array_base</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">array_base</span> <span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
+    <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">a</span> <span class="p">;[]),</span> <span class="p">(</span><span class="n">a</span> <span class="n">ar</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span><span class="p">))</span>
     <span class="o">||&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span> <span class="n">x</span> <span class="o">=&gt;</span>
         <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">acc</span> <span class="o">++</span> <span class="n">a</span> <span class="p">;[</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span>
     <span class="o">|&gt;</span> <span class="n">snd</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
 </pre></div>
 </div>
 </div>
@@ -8554,8 +8561,9 @@ assert_eq / actual: US0_0 5 / expected: US0_0 5
 <span class="o">///</span><span class="err">!</span> <span class="n">python</span>
 
 <span class="n">am</span><span class="o">.</span><span class="n">init</span> <span class="mi">3</span><span class="n">i32</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
 <span class="o">|&gt;</span> <span class="n">indexed</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">a</span> <span class="p">;[</span><span class="mi">0</span><span class="n">i32</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="p">:</span> <span class="n">a</span> <span class="nb">int</span> <span class="n">_</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[0i32, 0; 1, 2; 2, 4]</span>
 </pre></div>
 </div>
 </div>
@@ -8569,13 +8577,13 @@ assert_eq / actual: US0_0 5 / expected: US0_0 5
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-assert_eq / actual: Array(MutCell([(0, 0), (1, 2), (2, 4)])) / expected: Array(MutCell([(0, 0), (1, 2), (2, 4)]))
+assert_eq' / actual: Array(MutCell([(0, 0), (1, 2), (2, 4)])) / expected: Array(MutCell([(0, 0), (1, 2), (2, 4)]))
 
 .ts output:
-assert_eq / actual: 0,0,1,2,2,4 / expected: 0,0,1,2,2,4
+assert_eq' / actual: 0,0,1,2,2,4 / expected: 0,0,1,2,2,4
 
 .py output:
-assert_eq / actual: [(0, 0), (1, 2), (2, 4)] / expected: [(0, 0), (1, 2), (2, 4)]
+assert_eq' / actual: [(0, 0), (1, 2), (2, 4)] / expected: [(0, 0), (1, 2), (2, 4)]
 
 </pre>
 </div>
@@ -8584,7 +8592,7 @@ assert_eq / actual: [(0, 0), (1, 2), (2, 4)] / expected: [(0, 0), (1, 2), (2, 4)
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: [|struct (0, 0); struct (1, 2); struct (2, 4)|] / expected: [|struct (0, 0); struct (1, 2); struct (2, 4)|]
+assert_eq' / actual: [|struct (0, 0); struct (1, 2); struct (2, 4)|] / expected: [|struct (0, 0); struct (1, 2); struct (2, 4)|]
 </pre>
 </div>
 </div>
@@ -8653,13 +8661,13 @@ assert_eq / actual: [|struct (0, 0); struct (1, 2); struct (2, 4)|] / expected: 
 <pre>
 .py output (Cuda):
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6f36c13abd2715ca201f237779ec95d5c324a8dd9ae9c7d2839776db97c4729a/main.py", line 367, in &lt;module&gt;</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/12c868edffe244a6da7e1a3bb8530a5d52e254317d80ad0f03312197f7a88281/main.py", line 367, in &lt;module&gt;</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6f36c13abd2715ca201f237779ec95d5c324a8dd9ae9c7d2839776db97c4729a/main.py", line 365, in main</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/12c868edffe244a6da7e1a3bb8530a5d52e254317d80ad0f03312197f7a88281/main.py", line 365, in main</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6f36c13abd2715ca201f237779ec95d5c324a8dd9ae9c7d2839776db97c4729a/main.py", line 108, in method0</span>
+<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/12c868edffe244a6da7e1a3bb8530a5d52e254317d80ad0f03312197f7a88281/main.py", line 108, in method0</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.array([1, 2, 3],dtype=cp.int32)</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/cupy/_creation/from_data.py", line 53, in array</span>
@@ -9738,7 +9746,7 @@ assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">average</span> <span class="n">forall</span> <span class="n">el</span> <span class="p">{</span><span class="n">number</span><span class="p">}</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="n">el</span><span class="p">)</span> <span class="p">:</span> <span class="n">el</span> <span class="o">=</span>
-    <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Array.average'</span>
+    <span class="err">$</span><span class="s1">'!a |&gt; Array.average'</span>
 </pre></div>
 </div>
 </div>
@@ -9764,7 +9772,7 @@ assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">distinct</span> <span class="n">forall</span> <span class="n">dim</span> <span class="n">el</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span> <span class="o">=</span>
-    <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Array.distinct'</span>
+    <span class="err">$</span><span class="s1">'!a |&gt; Array.distinct'</span>
 </pre></div>
 </div>
 </div>
@@ -9790,7 +9798,7 @@ assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">skip</span> <span class="n">forall</span> <span class="n">dim</span> <span class="n">el</span><span class="o">.</span> <span class="p">(</span><span class="n">n</span> <span class="p">:</span> <span class="n">dim</span><span class="p">)</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span> <span class="o">=</span>
-    <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Array.skip'</span> <span class="n">n</span>
+    <span class="err">$</span><span class="s1">'!a |&gt; Array.skip !n '</span>
 </pre></div>
 </div>
 </div>
@@ -9816,7 +9824,7 @@ assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">skip_while</span> <span class="n">forall</span> <span class="n">dim</span> <span class="n">el</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">)</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span> <span class="o">=</span>
-    <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Array.skipWhile'</span> <span class="n">fn</span>
+    <span class="err">$</span><span class="s1">'!a |&gt; Array.skipWhile !fn '</span>
 </pre></div>
 </div>
 </div>
@@ -9842,7 +9850,7 @@ assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_list</span><span class="s1">' forall dim t. (items : a dim t) : listm'</span><span class="o">.</span><span class="n">list</span><span class="s1">' t =</span>
-    <span class="n">items</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Array.toList'</span>
+    <span class="err">$</span><span class="s1">'!items |&gt; Array.toList'</span>
 </pre></div>
 </div>
 </div>
@@ -9858,7 +9866,7 @@ assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
+<span class="o">////</span><span class="err">!</span> <span class="n">cuda</span> <span class="o">//</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
 <span class="o">///</span><span class="err">!</span> <span class="n">python</span>
@@ -9879,35 +9887,7 @@ assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.py output (Cuda):
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">Traceback (most recent call last):</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/b86464383f03b2d5a2d9710b06ccfe33315a8dbc58404cac471c455bfa652c90/main.py", line 136, in &lt;module&gt;</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    if __name__ == '__main__': result = main(); None if result is None else print(result)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">                                        ^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/b86464383f03b2d5a2d9710b06ccfe33315a8dbc58404cac471c455bfa652c90/main.py", line 134, in main</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return method0()</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/b86464383f03b2d5a2d9710b06ccfe33315a8dbc58404cac471c455bfa652c90/main.py", line 69, in method0</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    v0 = cp.array([-3, 6],dtype=cp.int32)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/cupy/_creation/from_data.py", line 53, in array</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">    return _core.array(obj, dtype, copy, order, subok, ndmin, blocking)</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 2383, in cupy._core.core.array</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 2410, in cupy._core.core.array</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 2553, in cupy._core.core._array_default</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 135, in cupy._core.core.ndarray.__new__</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/_core/core.pyx", line 223, in cupy._core.core._ndarray_base._init</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 738, in cupy.cuda.memory.alloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1424, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/memory.pyx", line 1444, in cupy.cuda.memory.MemoryPool.malloc</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy/cuda/device.pyx", line 40, in cupy.cuda.device.get_device_id</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 202, in cupy_backends.cuda.api.runtime.getDevice</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status</span>
-<span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
-
-.rs output:
+<pre>.rs output:
 assert_eq / actual: UH0_1(-3, UH0_1(6, UH0_0)) / expected: UH0_1(-3, UH0_1(6, UH0_0))
 
 .ts output:
@@ -9949,7 +9929,7 @@ assert_eq / actual: UH0_1 (-3, UH0_1 (6, UH0_0)) / expected: UH0_1 (-3, UH0_1 (6
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">parallel_map</span> <span class="n">forall</span> <span class="n">dim</span> <span class="n">el</span> <span class="n">el</span><span class="s1">'. (fn : el -&gt; el'</span><span class="p">)</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span><span class="s1">' =</span>
-    <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Array.Parallel.map'</span> <span class="n">fn</span>
+    <span class="err">$</span><span class="s1">'!a |&gt; Array.Parallel.map !fn '</span>
 </pre></div>
 </div>
 </div>
@@ -10001,7 +9981,7 @@ assert_eq / actual: UH0_1 (-3, UH0_1 (6, UH0_0)) / expected: UH0_1 (-3, UH0_1 (6
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">sort_by</span> <span class="n">forall</span> <span class="n">dim</span> <span class="n">el</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">_</span><span class="p">)</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span> <span class="o">=</span>
-    <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Array.sortBy'</span> <span class="n">fn</span>
+    <span class="err">$</span><span class="s1">'!a |&gt; Array.sortBy !fn '</span>
 </pre></div>
 </div>
 </div>
@@ -10027,7 +10007,7 @@ assert_eq / actual: UH0_1 (-3, UH0_1 (6, UH0_0)) / expected: UH0_1 (-3, UH0_1 (6
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">sort</span> <span class="n">forall</span> <span class="n">dim</span> <span class="n">el</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span> <span class="o">=</span>
-    <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Array.sort'</span>
+    <span class="err">$</span><span class="s1">'!a |&gt; Array.sort'</span>
 </pre></div>
 </div>
 </div>
@@ -10053,7 +10033,7 @@ assert_eq / actual: UH0_1 (-3, UH0_1 (6, UH0_0)) / expected: UH0_1 (-3, UH0_1 (6
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">sort_descending</span> <span class="n">forall</span> <span class="n">dim</span> <span class="n">el</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span> <span class="o">=</span>
-    <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Array.sortDescending'</span>
+    <span class="err">$</span><span class="s1">'!a |&gt; Array.sortDescending'</span>
 </pre></div>
 </div>
 </div>
@@ -10078,8 +10058,8 @@ assert_eq / actual: UH0_1 (-3, UH0_1 (6, UH0_0)) / expected: UH0_1 (-3, UH0_1 (6
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">transpose</span> <span class="n">forall</span> <span class="n">dim</span> <span class="n">el</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="p">(</span><span class="n">a</span> <span class="n">dim</span> <span class="n">el</span><span class="p">))</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="p">(</span><span class="n">a</span> <span class="n">dim</span> <span class="n">el</span><span class="p">)</span> <span class="o">=</span>
-    <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Array.transpose'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">transpose</span> <span class="n">forall</span> <span class="n">el</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">array_base</span> <span class="p">(</span><span class="n">array_base</span> <span class="n">el</span><span class="p">))</span> <span class="p">:</span> <span class="n">array_base</span> <span class="p">(</span><span class="n">array_base</span> <span class="n">el</span><span class="p">)</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'!a |&gt; Array.transpose'</span>
 </pre></div>
 </div>
 </div>
@@ -10105,7 +10085,7 @@ assert_eq / actual: UH0_1 (-3, UH0_1 (6, UH0_0)) / expected: UH0_1 (-3, UH0_1 (6
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">try_item</span> <span class="n">forall</span> <span class="n">dim</span> <span class="n">el</span><span class="o">.</span> <span class="p">(</span><span class="n">i</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">el</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span> <span class="n">el</span> <span class="o">=</span>
-    <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Array.tryItem'</span> <span class="n">i</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
+    <span class="err">$</span><span class="s1">'!a |&gt; Array.tryItem !i '</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
 </pre></div>
 </div>
 </div>

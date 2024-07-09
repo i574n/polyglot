@@ -448,8 +448,7 @@ nominal utc = $'chrono_Utc'
 #!spiral
 
 inl naive_utc (date_time : date_time' utc) : naive_date_time =
-    inl date_time = join date_time
-    !\($'"!date_time.naive_utc()"')
+    !\\(date_time, $'"$0.naive_utc()"')
 
 #!markdown
 
@@ -459,7 +458,7 @@ inl naive_utc (date_time : date_time' utc) : naive_date_time =
 
 inl to_local (date_time : date_time' utc) : date_time' local =
     inl naive_date_time = date_time |> naive_utc
-    !\($'"chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &!naive_date_time)"')
+    !\\(naive_date_time, $'"chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &$0)"')
 
 #!markdown
 
@@ -479,9 +478,7 @@ inl from_timestamp_micros forall t {number; int}. (timestamp : t) : option (date
 #!spiral
 
 inl format' (format : string) (date_time : date_time' utc) : sm'.std_string =
-    inl format = #format
-    inl date_time = join date_time
-    !\($'"!date_time.format(!format).to_string()"')
+    !\\((date_time, #format), $'"$0.format($1).to_string()"')
 
 #!markdown
 
@@ -490,9 +487,7 @@ inl format' (format : string) (date_time : date_time' utc) : sm'.std_string =
 #!spiral
 
 inl format'' (format : string) (date_time : date_time' _) : sm'.std_string =
-    inl format = #format
-    inl date_time = join date_time
-    !\($'"!date_time.format(!format).to_string()"')
+    !\\((date_time, #format), $'"$0.format($1).to_string()"')
 
 #!markdown
 
@@ -622,22 +617,12 @@ now ()
 #!spiral
 
 //// test
-
-types ()
-inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
-min_value ()
-|> specify_date_kind Local
-|> date_time_guid_from_date_time (test_guid ())
-|> sm'.obj_to_string
-|> fun s => s |> _assert_eq' $'$"00010101-0000-0000-0000-0{!s.[25..29]}{!suffix}"'
-
-#!spiral
-
-//// test
+///! fsharp
 ///! rust -d chrono
 
-inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 types ()
+
+inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 min_value ()
 |> specify_date_kind Local
 |> date_time_guid_from_date_time (test_guid ())
@@ -647,6 +632,7 @@ min_value ()
 #!spiral
 
 //// test
+///! fsharp
 
 types ()
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)

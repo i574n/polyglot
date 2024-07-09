@@ -963,12 +963,13 @@ inl get_solutions () =
         // |> SpiralSm.concat " "
             inl input_length = input |> sm.length
             am.singleton 0i32
-            |> am.append (am'.init_series 1 (input_length - 1) 1)
-            |> am.map (fun i =>
+            |> am.append (am'.init_series 1 (input_length - 1) 1 |> fun x => a x : _ int _)
+            |> fun (a x) => x
+            |> am'.map_base fun i =>
                 inl a = input |> sm'.slice i (input_length - 1)
                 inl b = input |> sm'.slice 0 (i - 1)
                 a +. b
-            )
+            |> fun x => a x : _ int _
             |> seq.of_array
             |> sm'.concat " "
 
@@ -986,8 +987,9 @@ inl get_solutions () =
                 inl b = if i = 0 then "" else input |> sm'.slice 0 (i - 1)
                 a +. b
             )
-            |> listm.toArray
-            |> fun x => x : a i32 _
+            |> listm'.box
+            |> listm'.to_array'
+            |> fun x => a x : _ int _
             |> seq.of_array
             |> sm'.concat " "
 
@@ -1228,13 +1230,13 @@ inl rec binary_search_tests () =
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 1 None), (Some 0i32)
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 11 None), (Some 6i32)
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 12 None), None
-        ((am'.init_series 1i32 1000 1) |> arr_with_len 60 None), (Some 59)
+        ((am'.init_series 1i32 1000 1 |> fun x => a x : _ int _) |> arr_with_len 60 None), (Some 59)
 
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 6 (Some 7)), (Some 3i32)
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 1 (Some 7)), (Some 0i32)
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 11 (Some 7)), (Some 6i32)
         (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 12 (Some 7)), None
-        ((am'.init_series 1i32 1000 1) |> arr_with_len 60 (Some 100)), (Some 59)
+        ((am'.init_series 1i32 1000 1 |> fun x => a x : _ int _) |> arr_with_len 60 (Some 100)), (Some 59)
     ]
 
     inl solutions = get_solutions ()

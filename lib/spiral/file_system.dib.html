@@ -9685,7 +9685,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_476072502b218be3c7fa8812692f76723e57510d1e2fd4c923933f5e30ab8e7e/20240707-1830-2730-7769-0000003df10c" / expected: '/'
+assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_17da8ab5ef877788e064aadb8c1d581627d68b4f58498a40d47d8a535de9d2ba/20240709-0607-0759-3108-00000099e253" / expected: '/'
 
 </pre>
 </div>
@@ -9694,7 +9694,7 @@ assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_476072502b218b
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240707-1830-2763-6323-600000e672a6" / expected: '/'
+assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240709-0607-0793-9321-900000c858a0" / expected: '/'
 </pre>
 </div>
 </div>
@@ -10082,7 +10082,8 @@ assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240707-1830-276
     <span class="o">|&gt;</span> <span class="n">directory_info</span>
     <span class="o">|&gt;</span> <span class="n">directory_info_name</span>
 <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.distinct</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="s2">"polyglot"</span> <span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "polyglot" ]</span>
 </pre></div>
 </div>
 </div>
@@ -10095,7 +10096,7 @@ assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240707-1830-276
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: [|"polyglot"|] / expected: [|"polyglot"|]
+<pre>assert_eq' / actual: [|"polyglot"|] / expected: [|"polyglot"|]
 </pre>
 </div>
 </div>
@@ -10826,7 +10827,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_72a202bcb0e9f11353068248df49cd3a46800bc77f80058cdad6d638a977a30b/20240707-1830-5643-2282-000000c14cfd }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_2532ca8cefddcaf248135b38a5ea8ffee8c27ad3efa1437be1157d4d050e0b76/20240709-0607-3840-8863-0000007796c9 }
 assert_eq / actual: true / expected: true
 assert_eq / actual: false / expected: false
 </pre>
@@ -10906,8 +10907,8 @@ assert_eq / actual: false / expected: false
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 2
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 3
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #3 _1
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #4 3
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 4
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #7 5
@@ -11230,7 +11231,7 @@ assert_eq / actual: true / expected: true
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #12 5
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #13 6
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #14 7
-assert_between / actual: 166L / expected: struct (100L, 200L)
+assert_between / actual: 167L / expected: struct (100L, 200L)
 assert_eq / actual: "1" / expected: "1"
 assert_eq / actual: true / expected: true
 </pre>

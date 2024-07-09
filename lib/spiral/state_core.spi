@@ -283,9 +283,9 @@ inl use_database () =
     database
 
 let use_requests forall t u.
-    (requests : leptos.memo (a i32 networking.request))
+    (requests : leptos.memo (am'.vec networking.request))
     (map : u -> t)
-    : leptos.memo (a i32 (resultm.result' (optionm'.option' t) sm'.std_string))
+    : leptos.memo (am'.vec (resultm.result' (optionm'.option' t) sm'.std_string))
     =
     leptos.log $'"state_core.use_requests (1)"'
 
@@ -301,20 +301,19 @@ let use_requests forall t u.
 
     inl state_data_resource
         : leptos.resource
-            (optionm'.option' wasm.rexie * a i32 networking.request)
+            (optionm'.option' wasm.rexie * am'.vec networking.request)
             (resultm.result' (am'.vec (optionm'.option' (heap sm'.std_string))) sm'.std_string)
         =
         leptos.create_local_resource
             (2u8, 1u8)
             fun () =>
                 database |> leptos.resource_get, requests |> leptos.signal_get
-            fun database, (a requests) => join
+            fun database, requests => join
                 fun () =>
                     inl database_log = database |> sm'.format_debug
                     inl requests_log = requests |> sm'.format_ellipsis
                     leptos.log $'"state_core.use_requests (3) / state_data_resource create_local_resource / request : " + string !requests_log + " / database: " + string !database_log + ""'
                     requests
-                    |> am'.to_vec
                     |> am'.vec_map' fun request =>
                         fun () =>
                             match database |> optionm'.unbox with
@@ -337,7 +336,7 @@ let use_requests forall t u.
                     |> leptos.log_format fun log => $'"state_core.use_requests (4) / state_data_resource create_local_resource / result: " + string !log + ""'
                 |> async.future_init (2, 1) 1
 
-    inl state_data_memo : leptos.memo (optionm'.option' (resultm.result' (a i32 (optionm'.option' (heap sm'.std_string))) sm'.std_string)) =
+    inl state_data_memo : leptos.memo (optionm'.option' (resultm.result' (am'.vec (optionm'.option' (heap sm'.std_string))) sm'.std_string)) =
         leptos.create_memo fun () =>
             leptos.log $'"state_core.use_requests (5) / state_data_func"'
 
@@ -345,21 +344,18 @@ let use_requests forall t u.
             | Ok (Some _storage) =>
                 state_data_resource
                 |> leptos.resource_get
-                // |> optionm'.unbox
-                // |> optionm.map (resultm.unbox >> resultm.map (am'.from_vec >> am'.map_vec optionm'.unbox))
-                |> optionm'.map (resultm.map'' am'.from_vec)
             | _ => None |> optionm'.box
             |> leptos.log_format fun log => $'"state_core.use_requests (6) / state_data_func func0 / result: " + string !log + ""'
 
     inl json
         : leptos.resource
-            (a i32 networking.request * (optionm'.option' (resultm.result' (a i32 (optionm'.option' (heap sm'.std_string))) sm'.std_string)))
-            (resultm.result' (a i32 (optionm'.option' string)) sm'.std_string)
+            (am'.vec networking.request * (optionm'.option' (resultm.result' (am'.vec (optionm'.option' (heap sm'.std_string))) sm'.std_string)))
+            (resultm.result' (am'.vec (optionm'.option' string)) sm'.std_string)
         =
         leptos.create_local_resource
             (2u8, 1u8)
             fun () => requests |> leptos.signal_get, state_data_memo |> leptos.signal_get
-            fun (a requests, state_data) => join
+            fun (requests, state_data) => join
                 inl requests_log = requests |> sm'.format_ellipsis
                 leptos.log $'"state_core.use_requests (7) / json create_local_resource / requests: " + string !requests_log + ""'
                 fun () =>
@@ -368,21 +364,22 @@ let use_requests forall t u.
                         |> optionm'.unbox
                         |> optionm.map (
                             resultm.unbox
-                            >> resultm.map fun (a items) =>
-                                items |> am'.to_vec |> am'.vec_map' optionm'.unbox |> am'.from_vec : _ i32 _
+                            >> resultm.map fun items =>
+                                items |> am'.vec_map' optionm'.unbox
                         )
 
                     inl state_data_log = state_data |> sm'.format_ellipsis
                     leptos.log $'"state_core.use_requests (8) / result_memo / state_data: " + string !state_data_log + ""'
 
                     requests
-                    |> am'.to_vec
                     |> am'.vec_mapi fun i { url request_type body json auto_refresh } =>
                         fun () =>
                             inl state_data' =
                                 state_data
                                 |> optionm.map (resultm.map (
-                                    am'.try_item i
+                                    am'.from_vec
+                                    >> fun x => x : _ int _
+                                    >> am'.try_item i
                                     >> optionm'.flatten
                                     >> optionm.map fun x =>
                                         !x |> sm'.from_std_string
@@ -394,7 +391,7 @@ let use_requests forall t u.
                             inl should_fetch =
                                 match auto_refresh, state_data, state_data' with
                                 | true, _, _ => true
-                                | _, Some (Ok (a ;[])), _ => false
+                                | _, Some (Ok x), _ when (x |> am'.from_vec |> am'.length) = 0i32 => false
                                 | _, _, Some (Ok (None)) => true
                                 | _ => false
                             leptos.log $'"state_core.use_requests (9) / result memo / state_data: " + string !state_data_log + " / state_data\': " + string !state_data'_log + " / request: " + string !request_log + " / should_fetch: " + string !should_fetch + ""'
@@ -432,8 +429,6 @@ let use_requests forall t u.
                     |> async.try_join_all
                     |> async.try_await_all
                     |> resultm.try'
-                    |> am'.from_vec
-                    |> fun x => x : _ i32 _
                     |> Ok
                     |> resultm.box
                 |> async.future_init (3, 2) 1
@@ -446,9 +441,8 @@ let use_requests forall t u.
                 database_memo
                 |> leptos.signal_get_untracked
                 |> optionm'.unbox
-            inl (a requests) = requests |> leptos.signal_get_untracked
+            inl requests = requests |> leptos.signal_get_untracked
             requests
-            |> am'.to_vec
             |> am'.vec_map' fun ({ url } as request) =>
                 fun () =>
                     match database with
@@ -487,9 +481,7 @@ let use_requests forall t u.
                 |> optionm.map (
                     resultm.unbox
                     >> resultm.map (
-                        fun (a x) => x
-                        >> am'.to_vec
-                        >> am'.vec_map' optionm'.unbox
+                        am'.vec_map' optionm'.unbox
                         >> am'.from_vec
                         >> fun x => x : _ i32 _
                     )
@@ -503,22 +495,13 @@ let use_requests forall t u.
                 |> leptos.resource_get
                 |> optionm'.unbox
                 |> optionm.map resultm.unbox
-                |> optionm.map (
-                    resultm.map (
-                        fun (a x) => x
-                        >> am'.to_vec
-                        >> am'.vec_map' optionm'.unbox
-                        >> am'.from_vec
-                        >> fun x => x : _ i32 _
-                    )
-                )
-                |> optionm'.default_value (a ;[] |> Ok)
+                |> optionm.map (resultm.map (am'.vec_map' optionm'.unbox))
+                |> optionm'.default_value (;[] |> am'.to_vec |> Ok)
 
             json
             |> function
-            | Ok (a json) =>
+            | Ok json =>
                 json
-                |> am'.to_vec
                 |> am'.vec_map' fun json =>
                     match json with
                     | Some json =>
@@ -529,8 +512,6 @@ let use_requests forall t u.
             | Error error => ()
 
             requests
-            |> fun (a x) => x
-            |> am'.to_vec
             |> am'.vec_mapi fun i request =>
                 inl state_data =
                     state_data
@@ -552,6 +533,8 @@ let use_requests forall t u.
                     match json with
                     | Ok json =>
                         json
+                        |> am'.from_vec
+                        |> fun x => x : _ int _
                         |> am'.try_item i
                         |> optionm'.flatten
                     | Error error =>
@@ -569,7 +552,7 @@ let use_requests forall t u.
             |> am'.from_vec
             |> leptos.log_format fun log => $'"state_core.use_requests (18) / result_func func0 / result: " + string !log + ""'
 
-    inl result : leptos.memo (a i32 (resultm.result' (optionm'.option' t) sm'.std_string)) =
+    inl result : leptos.memo (am'.vec (resultm.result' (optionm'.option' t) sm'.std_string)) =
         leptos.create_memo fun () =>
             inl database_loading = database |> leptos.resource_loading |> leptos.signal_get
 
@@ -602,7 +585,6 @@ let use_requests forall t u.
             |> fun (a x) => x
             |> am'.to_vec
             |> am'.vec_map' (resultm.map'' (optionm'.map map))
-            |> am'.from_vec
             |> leptos.log_format fun log => $'"state_core.use_requests (20) / result func0 / result: " + string !log + ""'
 
     result

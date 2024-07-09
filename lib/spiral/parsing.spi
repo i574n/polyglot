@@ -53,7 +53,7 @@ inl inc c (parser_state s) =
 
 /// ### update
 inl update result s =
-    (s, result |> sm'.to_char_array |> am'.to_list' |> listm'.unbox)
+    (s, result |> sm'.to_char_array |> a |> (fun x => x : _ int _) |> am'.to_list' |> listm'.unbox)
     ||> listm.fold fun (parser_state s) c =>
         { s with
             position = s |> parser_state |> inc c

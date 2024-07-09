@@ -154,97 +154,53 @@ export function US3_$reflection(): TypeInfo {
     return union_type("Date_time.US3", [], US3, () => [[["f0_0", US2_$reflection()]], [["f1_0", US2_$reflection()]], [["f2_0", US2_$reflection()]], [["f3_0", US2_$reflection()]], [["f4_0", US2_$reflection()]]]);
 }
 
-export function method1(v0_1: any): any {
-    return v0_1;
-}
-
-export function method2(v0_1: any): any {
-    return v0_1;
-}
-
-export function method3(): string {
+export function method1(): string {
     return "hh:mm";
 }
 
-export function method4(): string {
+export function method2(): string {
     return "yyyyMMdd-HHmm-ssff-ffff-f";
 }
 
-export function method5(): string {
+export function method3(): string {
     return "hhmm";
 }
 
-export function method0(v0_1: string, v1_1: Date): string {
-    let _v2: Option<string> = undefined;
-    const v202: string = toString(v1_1, method4());
-    let _v203: Option<any> = undefined;
+export function method0(v0: string, v1: Date): string {
+    let _v4: Option<string> = undefined;
+    const v662: string = toString(v1, method2());
+    let _v671: Option<any> = undefined;
     const x: any = defaultOf();
-    _v203 = x;
-    let v211: any;
-    if (_v203 == null) {
-        throw new Error("base.run_target / _v203=None");
+    _v671 = x;
+    let v711: any;
+    if (_v671 == null) {
+        throw new Error("base.run_target / _v671=None");
     }
     else {
-        v211 = value_1(_v203);
+        v711 = value_1(_v671);
     }
-    let _v212: Option<number> = undefined;
+    let _v728: Option<number> = undefined;
     let x_2: number;
     throw new Error(`date_time.get_utc_offset / target: ${US3_US3_3(US2_US2_0())}`);
-    _v212 = x_2;
-    let v239: number;
-    if (_v212 == null) {
-        throw new Error("base.run_target / _v212=None");
+    _v728 = x_2;
+    let v827: number;
+    if (_v728 == null) {
+        throw new Error("base.run_target / _v728=None");
     }
     else {
-        v239 = value_1(_v212);
+        v827 = value_1(_v728);
     }
-    const v243: uint8 = (hours(v239) > 0) ? 1 : 0;
-    const v244: string = method5();
-    let _v245: Option<string> = undefined;
-    const x_4: string = toString_1(v239, "c", {});
-    _v245 = x_4;
-    const v253 = `${v243}${(_v245 == null) ? (() => {
-        throw new Error("base.run_target / _v245=None");
-    })() : value_1(_v245)}`;
-    const v255: string = v0_1;
-    const x_6: string = parse(`${v202}${v253}${v255.slice(v202.length + v253.length, v255.length)}`);
-    _v2 = x_6;
-    if (_v2 == null) {
-        throw new Error("base.run_target / _v2=None");
-    }
-    else {
-        return value_1(_v2);
-    }
-}
-
-export function closure1(v0_1: string, v1_1: Date): string {
-    return method0(v0_1, v1_1);
-}
-
-export function closure0(unitVar: void, v0_1: string): ((arg0: Date) => string) {
-    return (v: Date): string => closure1(v0_1, v);
-}
-
-export function closure5(v0_1: string, v1_1: string, v2_1: string): string {
-    return replace(v2_1, v0_1, v1_1);
-}
-
-export function closure4(v0_1: string, v1_1: string): ((arg0: string) => string) {
-    return (v: string): string => closure5(v0_1, v1_1, v);
-}
-
-export function closure3(unitVar: void, v0_1: string): ((arg0: string) => ((arg0: string) => string)) {
-    return (v: string): ((arg0: string) => string) => closure4(v0_1, v);
-}
-
-export function method6(): ((arg0: string) => ((arg0: string) => ((arg0: string) => string))) {
-    return (v: string): ((arg0: string) => ((arg0: string) => string)) => closure3(undefined, v);
-}
-
-export function closure2(unitVar: void, v0_1: string): Date {
-    let _v4: Option<Date> = undefined;
-    const x: Date = parse_1(method6()("-")("")(v0_1.slice(undefined, 24 + 1)));
-    _v4 = x;
+    const v848: uint8 = (hours(v827) > 0) ? 1 : 0;
+    const v849: string = method3();
+    let _v852: Option<string> = undefined;
+    const x_4: string = toString_1(v827, "c", {});
+    _v852 = x_4;
+    const v866 = `${v848}${(_v852 == null) ? (() => {
+        throw new Error("base.run_target / _v852=None");
+    })() : value_1(_v852)}`;
+    const v870: string = v0;
+    const x_6: string = parse(`${v662}${v866}${v870.slice(v662.length + v866.length, v870.length)}`);
+    _v4 = x_6;
     if (_v4 == null) {
         throw new Error("base.run_target / _v4=None");
     }
@@ -253,89 +209,125 @@ export function closure2(unitVar: void, v0_1: string): Date {
     }
 }
 
-export function closure7(v0_1: string, v1_1: int64): string {
-    const v3_1: string = v0_1;
-    const v6_1: string = padLeft(int64ToString(v1_1), 18, "0");
-    return parse(`${v6_1.slice(0, 7 + 1)}-${v6_1.slice(8, 11 + 1)}-${v6_1.slice(12, 15 + 1)}-${v6_1.slice(16, 17 + 1)}${v3_1.slice(21, v3_1.length)}`);
+export function closure1(v0: string, v1: Date): string {
+    return method0(v0, v1);
 }
 
-export function closure6(unitVar: void, v0_1: string): ((arg0: int64) => string) {
-    return (v: int64): string => closure7(v0_1, v);
+export function closure0(unitVar: void, v0: string): ((arg0: Date) => string) {
+    return (v: Date): string => closure1(v0, v);
 }
 
-export function closure8(unitVar: void, v0_1: string): int64 {
-    const v2_1: string = v0_1;
-    return toInt64(parse_2(`${v2_1.slice(0, 7 + 1)}${v2_1.slice(9, 12 + 1)}${v2_1.slice(14, 17 + 1)}${v2_1.slice(19, 20 + 1)}`, 511, false, 64));
+export function closure5(v0: string, v1: string, v2: string): string {
+    return replace(v2, v0, v1);
 }
 
-export function closure9(unitVar: void, v0_1: Date): string {
-    return method0(newGuid(), v0_1);
+export function closure4(v0: string, v1: string): ((arg0: string) => string) {
+    return (v: string): string => closure5(v0, v1, v);
 }
 
-export function closure10(unitVar: void, v0_1: int64): string {
-    const v4_1: string = newGuid();
-    const v7_1: string = padLeft(int64ToString(v0_1), 18, "0");
-    return parse(`${v7_1.slice(0, 7 + 1)}-${v7_1.slice(8, 11 + 1)}-${v7_1.slice(12, 15 + 1)}-${v7_1.slice(16, 17 + 1)}${v4_1.slice(21, v4_1.length)}`);
+export function closure3(unitVar: void, v0: string): ((arg0: string) => ((arg0: string) => string)) {
+    return (v: string): ((arg0: string) => string) => closure4(v0, v);
 }
 
-export function closure12(v0_1: string, v1_1: Date): string {
-    return toString(v1_1, v0_1);
+export function method4(): ((arg0: string) => ((arg0: string) => ((arg0: string) => string))) {
+    return (v: string): ((arg0: string) => ((arg0: string) => string)) => closure3(undefined, v);
 }
 
-export function closure11(unitVar: void, v0_1: string): ((arg0: Date) => string) {
-    return (v: Date): string => closure12(v0_1, v);
+export function closure2(unitVar: void, v0: string): Date {
+    let _v14: Option<Date> = undefined;
+    const x: Date = parse_1(method4()("-")("")(v0.slice(undefined, 24 + 1)));
+    _v14 = x;
+    if (_v14 == null) {
+        throw new Error("base.run_target / _v14=None");
+    }
+    else {
+        return value_1(_v14);
+    }
 }
 
-export function closure13(unitVar: void, v0_1: Date): string {
-    return toString(v0_1, "yyyy-MM-ddTHH-mm-ss.fff");
+export function closure7(v0: string, v1: int64): string {
+    const v5: string = v0;
+    const v24: string = padLeft(int64ToString(v1), 18, "0");
+    return parse(`${v24.slice(0, 7 + 1)}-${v24.slice(8, 11 + 1)}-${v24.slice(12, 15 + 1)}-${v24.slice(16, 17 + 1)}${v5.slice(21, v5.length)}`);
 }
 
-export const v0 = (v: string): ((arg0: Date) => string) => closure0(undefined, v);
+export function closure6(unitVar: void, v0: string): ((arg0: int64) => string) {
+    return (v: int64): string => closure7(v0, v);
+}
+
+export function closure8(unitVar: void, v0: string): int64 {
+    const v4: string = v0;
+    return toInt64(parse_2(`${v4.slice(0, 7 + 1)}${v4.slice(9, 12 + 1)}${v4.slice(14, 17 + 1)}${v4.slice(19, 20 + 1)}`, 511, false, 64));
+}
+
+export function closure9(unitVar: void, v0: Date): string {
+    return method0(newGuid(), v0);
+}
+
+export function closure10(unitVar: void, v0: int64): string {
+    const v14: string = newGuid();
+    const v33_1: string = padLeft(int64ToString(v0), 18, "0");
+    return parse(`${v33_1.slice(0, 7 + 1)}-${v33_1.slice(8, 11 + 1)}-${v33_1.slice(12, 15 + 1)}-${v33_1.slice(16, 17 + 1)}${v14.slice(21, v14.length)}`);
+}
+
+export function closure12(v0: string, v1: Date): string {
+    return toString(v1, v0);
+}
+
+export function closure11(unitVar: void, v0: string): ((arg0: Date) => string) {
+    return (v: Date): string => closure12(v0, v);
+}
+
+export function closure13(unitVar: void, v0: Date): string {
+    return toString(v0, "yyyy-MM-ddTHH-mm-ss.fff");
+}
+
+export const v30 = (v: string): ((arg0: Date) => string) => closure0(undefined, v);
 
 export function date_time_guid_from_date_time(x: string): ((arg0: Date) => string) {
-    return v0(x);
+    return v30(x);
 }
 
-export const v1 = (v: string): Date => closure2(undefined, v);
+export const v31 = (v: string): Date => closure2(undefined, v);
 
 export function date_time_from_guid(x: string): Date {
-    return v1(x);
+    return v31(x);
 }
 
-export const v2 = (v: string): ((arg0: int64) => string) => closure6(undefined, v);
+export const v32 = (v: string): ((arg0: int64) => string) => closure6(undefined, v);
 
 export function timestamp_guid_from_timestamp(x: string): ((arg0: int64) => string) {
-    return v2(x);
+    return v32(x);
 }
 
-export const v3 = (v: string): int64 => closure8(undefined, v);
+export const v33 = (v: string): int64 => closure8(undefined, v);
 
 export function timestamp_from_guid(x: string): int64 {
-    return v3(x);
+    return v33(x);
 }
 
-export const v4 = (v: Date): string => closure9(undefined, v);
+export const v34 = (v: Date): string => closure9(undefined, v);
 
 export function new_guid_from_date_time(x: Date): string {
-    return v4(x);
+    return v34(x);
 }
 
-export const v5 = (v: int64): string => closure10(undefined, v);
+export const v35 = (v: int64): string => closure10(undefined, v);
 
 export function new_guid_from_timestamp(x: int64): string {
-    return v5(x);
+    return v35(x);
 }
 
-export const v6 = (v: string): ((arg0: Date) => string) => closure11(undefined, v);
+export const v36 = (v: string): ((arg0: Date) => string) => closure11(undefined, v);
 
 export function format(x: string): ((arg0: Date) => string) {
-    return v6(x);
+    return v36(x);
 }
 
-export const v7 = (v: Date): string => closure13(undefined, v);
+export const v37 = (v: Date): string => closure13(undefined, v);
 
 export function format_iso8601(x: Date): string {
-    return v7(x);
+    return v37(x);
 }
 
 

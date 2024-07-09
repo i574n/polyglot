@@ -7618,8 +7618,8 @@ a.anchor-link {
 <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
 <span class="o">|&gt;</span> <span class="n">a</span>
 <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.sort_by snd</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (a ;[ "Native", Native; "Wasm", Wasm; "Contract", Contract ])</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "Native", Native; "Wasm", Wasm; "Contract", Contract ]</span>
 </pre></div>
 </div>
 </div>
@@ -7716,9 +7716,7 @@ assert_eq' / actual: [|struct ("Native", US0_0); struct ("Wasm", US0_1); struct 
 <span class="n">get_union_fields_untag</span> <span class="p">()</span>
 <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box</span>
 <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
-<span class="o">|&gt;</span> <span class="n">a</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (a ;[ "Native", Native; "Wasm", Wasm; "Contract", Contract ])</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "Native", Native; "Wasm", Wasm; "Contract", Contract ]</span>
 </pre></div>
 </div>
 </div>

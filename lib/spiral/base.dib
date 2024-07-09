@@ -56,11 +56,16 @@ inl use forall t. (x : t) : t =
 
 inl backend_switch forall t. x : t =
     real
+        inl backend key : t =
+            inl s = real_core.string_lit_to_symbol key
+            real_core.record_type_try_find `(`x) s
+                (forall v'. => (x s) ())
+                (fun () => $'' : t)
         !!!!BackendSwitch (
-            ("Fsharp", x.Fsharp ()),
-            ("Python", x.Python ()),
-            ("Cuda", x.Cuda ())
-        ) : t
+            ("Fsharp", backend "Fsharp"),
+            ("Python", backend "Python"),
+            ("Cuda", backend "Cuda")
+        )
 
 #!markdown
 

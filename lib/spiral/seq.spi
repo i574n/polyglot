@@ -211,7 +211,7 @@ inl of_array' forall dim t. (items : a dim t) : seq' t =
 
 inl of_array forall dim t. (items : a dim t) : seq' t =
     backend_switch {
-        Fsharp = fun () => items |> $'Seq.ofArray' : seq' t
+        Fsharp = fun () => $'!items |> Seq.ofArray' : seq' t
         Python = fun () => $'!items ' : seq' t
     }
 

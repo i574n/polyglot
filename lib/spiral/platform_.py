@@ -40,27 +40,27 @@ class US1(Union):
 US1_reflection = _expr118
 
 def closure0(unit_var: None, unit_var_1: None) -> bool:
-    _v0: bool | None = None
+    _v2: bool | None = None
     x: bool
     raise Exception(("platform.is_windows / target: " + str(US1(4, US0(0)))) + "")
-    _v0 = x
-    if _v0 is None:
-        raise Exception("base.run_target / _v0=None")
+    _v2 = x
+    if _v2 is None:
+        raise Exception("base.run_target / _v2=None")
 
     else: 
-        return _v0
+        return _v2
 
 
 
 def closure1(unit_var: None, unit_var_1: None) -> str:
-    _v0: bool | None = None
+    _v2: bool | None = None
     x: bool
     raise Exception(("platform.is_windows / target: " + str(US1(4, US0(0)))) + "")
-    _v0 = x
+    _v2 = x
     def _arrow119(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> bool:
-        raise Exception("base.run_target / _v0=None")
+        raise Exception("base.run_target / _v2=None")
 
-    if _arrow119() if (_v0 is None) else _v0:
+    if _arrow119() if (_v2 is None) else _v2:
         return ".exe"
 
     else: 

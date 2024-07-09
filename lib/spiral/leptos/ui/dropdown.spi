@@ -38,9 +38,9 @@ inl render props_fn : _ _ =
                 inl data =
                     props.data
                     |> optionm'.unbox
-                    |> optionm.map (leptos.signal_get >> am'.from_vec)
-                    |> optionm'.default_value (a ;[])
-                match data with
+                    |> optionm.map leptos.signal_get
+                    |> optionm'.default_value (;[] |> am'.to_vec)
+                match data |> am'.from_vec with
                 | (a ;[] : _ i32 _) =>
                     "No data"
                     |> error_label.render

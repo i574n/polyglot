@@ -1111,7 +1111,8 @@ a ;[ ".paket", false; "paket.dependencies", true ]
     |> directory_info
     |> directory_info_name
 |> am'.distinct
-|> _assert_eq (a ;[ "polyglot" ] : _ i32 _)
+|> fun (a x : _ int _) => x
+|> _assert_eq' ;[ "polyglot" ]
 
 #!spiral
 

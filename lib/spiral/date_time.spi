@@ -239,13 +239,12 @@ nominal utc = $'chrono_Utc'
 
 /// ### naive_utc
 inl naive_utc (date_time : date_time' utc) : naive_date_time =
-    inl date_time = join date_time
-    !\($'"!date_time.naive_utc()"')
+    !\\(date_time, $'"$0.naive_utc()"')
 
 /// ### to_local
 inl to_local (date_time : date_time' utc) : date_time' local =
     inl naive_date_time = date_time |> naive_utc
-    !\($'"chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &!naive_date_time)"')
+    !\\(naive_date_time, $'"chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &$0)"')
 
 /// ### from_timestamp_micros
 inl from_timestamp_micros forall t {number; int}. (timestamp : t) : option (date_time' utc) =
@@ -255,15 +254,11 @@ inl from_timestamp_micros forall t {number; int}. (timestamp : t) : option (date
 
 /// ### format'
 inl format' (format : string) (date_time : date_time' utc) : sm'.std_string =
-    inl format = #format
-    inl date_time = join date_time
-    !\($'"!date_time.format(!format).to_string()"')
+    !\\((date_time, #format), $'"$0.format($1).to_string()"')
 
 /// ### format''
 inl format'' (format : string) (date_time : date_time' _) : sm'.std_string =
-    inl format = #format
-    inl date_time = join date_time
-    !\($'"!date_time.format(!format).to_string()"')
+    !\\((date_time, #format), $'"$0.format($1).to_string()"')
 
 /// ### format_timestamp
 inl format_timestamp forall t {number; int}. (timestamp : t) =

@@ -7586,8 +7586,8 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">inl</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="n">f64</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series -3 3 0.01</span>
-<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">math</span><span class="o">.</span><span class="n">square</span>
+<span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series -3f64 3 0.01</span>
+<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.map_base math.square</span>
 <span class="s2">"square"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">,</span> <span class="p">;[</span> <span class="s2">"square"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">]</span>
 </pre></div>
 </div>
@@ -7941,9 +7941,9 @@ square
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">inl</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="n">f64</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series -10 10 0.1</span>
-<span class="n">inl</span> <span class="n">y_sin</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">sin</span>
-<span class="n">inl</span> <span class="n">y_cos</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">cos</span>
+<span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series -10f64 10 0.1</span>
+<span class="n">inl</span> <span class="n">y_sin</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.map_base sin</span>
+<span class="n">inl</span> <span class="n">y_cos</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.map_base cos</span>
 <span class="s2">"sin cos"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">,</span> <span class="p">;[</span> <span class="s2">"sin"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y_sin</span><span class="p">;</span> <span class="s2">"cos"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y_cos</span> <span class="p">]</span>
 </pre></div>
 </div>
@@ -8202,9 +8202,9 @@ cos
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:06 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; Creating /home/runner/work/polyglot/polyglot/target/plot/line_svg/92923048c2357a589255fc3a1ba8375e45c2d4a0a29d12fd266f7c935f7a46fa.svg
-00:00:06 <span class="ansi-blue-intense-fg">  debug</span> #6 runtime.execute_with_options_async / { exit_code = 0; output_length = 134 }
+<pre>00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #4 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
+00:00:05 <span class="ansi-black-intense-fg">verbose</span> #5 &gt; Creating /home/runner/work/polyglot/polyglot/target/plot/line_svg/92923048c2357a589255fc3a1ba8375e45c2d4a0a29d12fd266f7c935f7a46fa.svg
+00:00:05 <span class="ansi-blue-intense-fg">  debug</span> #6 runtime.execute_with_options_async / { exit_code = 0; output_length = 134 }
 </pre>
 </div>
 </div>
@@ -8223,8 +8223,8 @@ cos
 <span class="n">inl</span> <span class="n">y_pos</span> <span class="n">y0</span> <span class="n">vy0</span> <span class="n">ay</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">y0</span> <span class="o">+</span> <span class="n">vy0</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">ay</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">|&gt;</span> <span class="n">math</span><span class="o">.</span><span class="n">square</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
 
-<span class="n">inl</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="n">f64</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series 0 5 0.01</span>
-<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">y_pos</span> <span class="mi">0</span> <span class="mi">20</span> <span class="o">-</span><span class="mf">9.8</span><span class="p">)</span>
+<span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series 0f64 5 0.01</span>
+<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.map_base (y_pos 0 20 -9.8)</span>
 <span class="s2">"projectile motion"</span><span class="p">,</span> <span class="s2">"time (s)"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="p">;[</span> <span class="s2">"height of projectile (m)"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">]</span>
 </pre></div>
 </div>
@@ -8613,8 +8613,8 @@ assert_eq / actual: 0.2 / expected: 0.2
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series 0 4 0.1</span>
-<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">velocity_cf</span> <span class="mf">0.1</span><span class="n">f64</span> <span class="mf">0.6</span> <span class="p">[</span> <span class="mf">0.04</span><span class="p">;</span> <span class="o">-</span><span class="mf">0.08</span> <span class="p">])</span>
+<span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series 0f64 4 0.1</span>
+<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.map_base (velocity_cf 0.1f64 0.6 [ 0.04; -0.08 ])</span>
 <span class="s2">"car on an air track"</span><span class="p">,</span> <span class="s2">"time (s)"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="p">;[</span> <span class="s2">"velocity of car (m/s)"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">]</span>
 </pre></div>
 </div>
@@ -9107,8 +9107,9 @@ assert_approx_eq / actual: -1.0 / expected: -1.0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">integral</span><span class="s1">''</span> <span class="n">dt</span> <span class="p">:</span> <span class="n">integration</span> <span class="o">=</span>
-    <span class="n">fun</span> <span class="n">f</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span>
-        <span class="n">am</span><span class="s1">'.init_series (a + dt / 2) (b - dt / 2) dt</span>
+    <span class="n">fun</span> <span class="n">f</span> <span class="n">x</span> <span class="n">y</span> <span class="o">=&gt;</span>
+        <span class="n">am</span><span class="s1">'.init_series (x + dt / 2) (y - dt / 2) dt</span>
+        <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span>
         <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">f</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">dt</span><span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.sum</span>
 </pre></div>
@@ -9251,8 +9252,8 @@ assert_approx_eq / actual: -1.0 / expected: -1.0
     <span class="n">then</span> <span class="mi">10</span>
     <span class="k">else</span> <span class="mi">0</span>
 
-<span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series -5 45 0.1</span>
-<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">pedal_coast</span>
+<span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series -5f64 45 0.1</span>
+<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.map_base pedal_coast</span>
 <span class="s2">"child pedaling then coasting"</span><span class="p">,</span> <span class="s2">"time (s)"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="p">;[</span> <span class="s2">"force on bike (N)"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">]</span>
 </pre></div>
 </div>
@@ -9543,7 +9544,7 @@ force on bike (N)
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series -5 45 1</span>
-<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">position_ft</span> <span class="mf">0.1</span><span class="n">f64</span> <span class="mi">20</span> <span class="mi">0</span> <span class="mi">0</span> <span class="p">[</span> <span class="n">pedal_coast</span> <span class="p">])</span>
+<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.map_base (position_ft 0.1f64 20 0 0 [ pedal_coast ])</span>
 <span class="s2">"child pedaling then coasting"</span><span class="p">,</span> <span class="s2">"time (s)"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="p">;[</span> <span class="s2">"position of bike (m)"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">]</span>
 </pre></div>
 </div>
@@ -9835,9 +9836,9 @@ position of bike (m)
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:08 <span class="ansi-blue-intense-fg">  debug</span> #16 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:08 <span class="ansi-black-intense-fg">verbose</span> #17 &gt; Creating /home/runner/work/polyglot/polyglot/target/plot/line_svg/111e334258a3fc6398b55a8d561905d49cd0648a39dd06c1856b1cb0e8a9546c.svg
-00:00:08 <span class="ansi-blue-intense-fg">  debug</span> #18 runtime.execute_with_options_async / { exit_code = 0; output_length = 134 }
+<pre>00:00:07 <span class="ansi-blue-intense-fg">  debug</span> #16 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
+00:00:07 <span class="ansi-black-intense-fg">verbose</span> #17 &gt; Creating /home/runner/work/polyglot/polyglot/target/plot/line_svg/111e334258a3fc6398b55a8d561905d49cd0648a39dd06c1856b1cb0e8a9546c.svg
+00:00:07 <span class="ansi-blue-intense-fg">  debug</span> #18 runtime.execute_with_options_async / { exit_code = 0; output_length = 134 }
 </pre>
 </div>
 </div>
@@ -9903,7 +9904,7 @@ position of bike (m)
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series 0 60 0.5</span>
-<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">velocity_fv</span> <span class="mi">1</span> <span class="mi">70</span> <span class="mi">0</span><span class="n">f64</span> <span class="p">[</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">f_air</span> <span class="mi">2</span> <span class="mf">1.225</span> <span class="mf">0.6</span> <span class="p">])</span>
+<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.map_base (velocity_fv 1 70 0f64 [ fun _ =&gt; 100; f_air 2 1.225 0.6 ])</span>
 <span class="s2">"bike velocity"</span><span class="p">,</span> <span class="s2">"time (s)"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="p">;[</span> <span class="s2">"velocity of bike (m/s)"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">]</span>
 </pre></div>
 </div>
@@ -10275,7 +10276,7 @@ velocity of bike (m/s)
 <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series 0 100 0.1</span>
 <span class="n">inl</span> <span class="n">y</span> <span class="o">=</span>
     <span class="n">x</span>
-    <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span>
+    <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.map_base (</span>
         <span class="n">velocity_ftv</span> <span class="mf">0.1</span> <span class="mi">20</span> <span class="p">(</span><span class="n">dyn</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="p">[</span> <span class="n">fun</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">pedal_coast</span> <span class="n">t</span><span class="p">;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">f_air</span> <span class="mi">2</span> <span class="mf">1.225</span> <span class="mf">0.5</span> <span class="n">v</span> <span class="p">]</span>
     <span class="p">)</span>
 <span class="s2">"pedaling and coasting with air"</span><span class="p">,</span> <span class="s2">"time (s)"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="p">;[</span> <span class="s2">"velocity of bike (m/s)"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">]</span>
@@ -10685,8 +10686,8 @@ velocity of bike (m/s)
 <span class="n">inl</span> <span class="n">pingpong_position</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">position_ftxv</span> <span class="mf">0.001</span> <span class="mf">0.0027</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="p">(</span><span class="n">damped_ho_forces</span> <span class="p">())</span> <span class="n">t</span>
 
-<span class="n">inl</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="n">f64</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series 0 3 0.01</span>
-<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">pingpong_position</span>
+<span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series 0 3 0.01</span>
+<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.map_base pingpong_position</span>
 <span class="s2">"ping pong ball on a slinky"</span><span class="p">,</span> <span class="s2">"time (s)"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="p">;[</span> <span class="s2">"position (m)"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">]</span>
 </pre></div>
 </div>
@@ -11010,9 +11011,9 @@ position (m)
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:09 <span class="ansi-blue-intense-fg">  debug</span> #25 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:09 <span class="ansi-black-intense-fg">verbose</span> #26 &gt; Creating /home/runner/work/polyglot/polyglot/target/plot/line_svg/105ea7be2f329a89809543cbc25878ca2117d619b4ff6fdec5ae9a8079ac700b.svg
-00:00:09 <span class="ansi-blue-intense-fg">  debug</span> #27 runtime.execute_with_options_async / { exit_code = 0; output_length = 134 }
+<pre>00:00:08 <span class="ansi-blue-intense-fg">  debug</span> #25 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
+00:00:08 <span class="ansi-black-intense-fg">verbose</span> #26 &gt; Creating /home/runner/work/polyglot/polyglot/target/plot/line_svg/105ea7be2f329a89809543cbc25878ca2117d619b4ff6fdec5ae9a8079ac700b.svg
+00:00:08 <span class="ansi-blue-intense-fg">  debug</span> #27 runtime.execute_with_options_async / { exit_code = 0; output_length = 134 }
 </pre>
 </div>
 </div>
@@ -11032,7 +11033,7 @@ position (m)
     <span class="n">velocity_ftxv</span> <span class="mf">0.001</span> <span class="mf">0.0027</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="p">(</span><span class="n">damped_ho_forces</span> <span class="p">())</span> <span class="n">t</span>
 
 <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series 0 3 0.01</span>
-<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">pingpong_velocity</span>
+<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.map_base pingpong_velocity</span>
 <span class="s2">"ping pong ball on a slinky"</span><span class="p">,</span> <span class="s2">"time (s)"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="p">;[</span> <span class="s2">"velocity (m/s)"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">]</span>
 </pre></div>
 </div>
@@ -12514,8 +12515,8 @@ assert_eq / actual: struct (8.0, 2894.789039, 2894.789039) / expected: struct (8
     <span class="n">baseball_trajectory</span> <span class="n">dt</span> <span class="n">v0</span> <span class="n">theta_deg</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">y</span><span class="p">)</span> <span class="mi">0</span>
 
-<span class="n">inl</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="n">f64</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series 10 80 1</span>
-<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">baseball_range</span> <span class="mf">0.01</span> <span class="mi">45</span><span class="p">)</span>
+<span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">am</span><span class="s1">'.init_series 10 80 1</span>
+<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.map_base (baseball_range 0.01 45)</span>
 <span class="s2">"range for a baseball hit at 45 m/s"</span><span class="p">,</span>
 <span class="s2">"angle above horizontal (degrees)"</span><span class="p">,</span>
 <span class="s2">""</span><span class="p">,</span>
@@ -12985,9 +12986,9 @@ horizontal range (m)
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">st</span><span class="o">.</span><span class="n">time</span> <span class="o">/</span> <span class="n">year</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">c</span><span class="p">)</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.unzip</span>
 
-<span class="n">inl</span> <span class="n">newton_x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">newton_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
-<span class="n">inl</span> <span class="n">newton_y</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">newton_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
-<span class="n">inl</span> <span class="n">relativity_y</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">relativity_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+<span class="n">inl</span> <span class="n">newton_x</span> <span class="o">=</span> <span class="n">newton_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
+<span class="n">inl</span> <span class="n">newton_y</span> <span class="o">=</span> <span class="n">newton_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
+<span class="n">inl</span> <span class="n">relativity_y</span> <span class="o">=</span> <span class="n">relativity_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
 
 <span class="s2">"response to a constant force"</span><span class="p">,</span>
 <span class="s2">"time (years)"</span><span class="p">,</span>
@@ -13334,11 +13335,11 @@ relativistic
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">st</span><span class="o">.</span><span class="n">pos_vec</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">pos_vec</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.unzip</span>
 
-<span class="n">inl</span> <span class="n">newton_x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">newton_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
-<span class="n">inl</span> <span class="n">newton_y</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">newton_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+<span class="n">inl</span> <span class="n">newton_x</span> <span class="o">=</span> <span class="n">newton_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
+<span class="n">inl</span> <span class="n">newton_y</span> <span class="o">=</span> <span class="n">newton_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
 
-<span class="n">inl</span> <span class="n">relativity_x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">relativity_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
-<span class="n">inl</span> <span class="n">relativity_y</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">relativity_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+<span class="n">inl</span> <span class="n">relativity_x</span> <span class="o">=</span> <span class="n">relativity_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
+<span class="n">inl</span> <span class="n">relativity_y</span> <span class="o">=</span> <span class="n">relativity_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
 
 <span class="s2">"proton in a 1-t magnetic field"</span><span class="p">,</span>
 <span class="s2">"x (m)"</span><span class="p">,</span>
@@ -13901,11 +13902,11 @@ relativistic
     <span class="p">)</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.unzip</span>
 
-<span class="n">inl</span> <span class="n">time_ke_ec_x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">time_ke_ec_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
-<span class="n">inl</span> <span class="n">time_ke_ec_y</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">time_ke_ec_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+<span class="n">inl</span> <span class="n">time_ke_ec_x</span> <span class="o">=</span> <span class="n">time_ke_ec_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
+<span class="n">inl</span> <span class="n">time_ke_ec_y</span> <span class="o">=</span> <span class="n">time_ke_ec_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
 
-<span class="n">inl</span> <span class="n">time_ke_rk4_x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">time_ke_rk4_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
-<span class="n">inl</span> <span class="n">time_ke_rk4_y</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">time_ke_rk4_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+<span class="n">inl</span> <span class="n">time_ke_rk4_x</span> <span class="o">=</span> <span class="n">time_ke_rk4_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
+<span class="n">inl</span> <span class="n">time_ke_rk4_y</span> <span class="o">=</span> <span class="n">time_ke_rk4_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
 
 <span class="s2">"system kinetic energy versus time"</span><span class="p">,</span>
 <span class="s2">"time (s)"</span><span class="p">,</span>
@@ -14308,15 +14309,15 @@ runge-kutta 4
                 <span class="n">rs</span>
                 <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">r</span> <span class="o">=&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
                 <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.unzip</span>
-            <span class="n">inl</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
-            <span class="n">inl</span> <span class="n">y</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+            <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
+            <span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
             <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
         <span class="p">)</span>
-        <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span>
+        <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
 
     <span class="n">inl</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="n">i32</span>
 
-    <span class="n">inl</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">index</span> <span class="n">frames</span> <span class="n">n</span>
+    <span class="n">inl</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="n">frames</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.index n</span>
 
     <span class="s2">"wave"</span><span class="p">,</span>
     <span class="s2">"position (m)"</span><span class="p">,</span>
@@ -14850,11 +14851,11 @@ displacement (m)
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.choose id</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.unzip</span>
 
-<span class="n">inl</span> <span class="n">time_ke_ec_x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">time_ke_ec_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
-<span class="n">inl</span> <span class="n">time_ke_ec_y</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">time_ke_ec_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+<span class="n">inl</span> <span class="n">time_ke_ec_x</span> <span class="o">=</span> <span class="n">time_ke_ec_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
+<span class="n">inl</span> <span class="n">time_ke_ec_y</span> <span class="o">=</span> <span class="n">time_ke_ec_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
 
-<span class="n">inl</span> <span class="n">time_ke_rk4_x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">time_ke_rk4_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
-<span class="n">inl</span> <span class="n">time_ke_rk4_y</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">time_ke_rk4_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+<span class="n">inl</span> <span class="n">time_ke_rk4_x</span> <span class="o">=</span> <span class="n">time_ke_rk4_x</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
+<span class="n">inl</span> <span class="n">time_ke_rk4_y</span> <span class="o">=</span> <span class="n">time_ke_rk4_y</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
 
 <span class="s2">"system kinetic energy versus time"</span><span class="p">,</span>
 <span class="s2">"time (s)"</span><span class="p">,</span>
@@ -15231,8 +15232,8 @@ runge-kutta 4
                 <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">r</span> <span class="o">=&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
                 <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">from_list</span>
                 <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">unzip</span>
-            <span class="n">inl</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">to_list</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
-            <span class="n">inl</span> <span class="n">y</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span> <span class="o">=</span> <span class="n">y</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">to_list</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+            <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">to_list</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
+            <span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">to_list</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
             <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
         <span class="p">)</span>
 
@@ -15248,7 +15249,7 @@ runge-kutta 4
             <span class="p">]</span>
         <span class="p">)</span>
 
-    <span class="n">plots</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">to_list</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span>
+    <span class="n">plots</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">to_list</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box |&gt; listm'</span><span class="o">.</span><span class="n">to_array</span><span class="s1">'</span>
 </pre></div>
 </div>
 </div>
@@ -35838,10 +35839,10 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:22 <span class="ansi-blue-intense-fg">  debug</span> #46 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
-00:00:22 <span class="ansi-black-intense-fg">verbose</span> #47 &gt; Creating /home/runner/work/polyglot/polyglot/target/plot/line_svg/25b4386102d4e649cf36c315e80448a1fa116c091b0086111cf413562ef6255c.svg
-00:00:22 <span class="ansi-blue-intense-fg">  debug</span> #48 runtime.execute_with_options_async / { exit_code = 0; output_length = 134 }
-00:00:22 <span class="ansi-blue-intense-fg">  debug</span> #49 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
+<pre>00:00:23 <span class="ansi-blue-intense-fg">  debug</span> #46 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
+00:00:23 <span class="ansi-black-intense-fg">verbose</span> #47 &gt; Creating /home/runner/work/polyglot/polyglot/target/plot/line_svg/25b4386102d4e649cf36c315e80448a1fa116c091b0086111cf413562ef6255c.svg
+00:00:23 <span class="ansi-blue-intense-fg">  debug</span> #48 runtime.execute_with_options_async / { exit_code = 0; output_length = 134 }
+00:00:23 <span class="ansi-blue-intense-fg">  debug</span> #49 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }
 00:00:23 <span class="ansi-black-intense-fg">verbose</span> #50 &gt; Creating /home/runner/work/polyglot/polyglot/target/plot/line_svg/82069ab3443b2210137c4a51290d83dc81229748eec3a972a381c54f97272db6.svg
 00:00:23 <span class="ansi-blue-intense-fg">  debug</span> #51 runtime.execute_with_options_async / { exit_code = 0; output_length = 134 }
 00:00:23 <span class="ansi-blue-intense-fg">  debug</span> #52 runtime.execute_with_options_async / { options = { command = /home/runner/work/polyglot/polyglot/workspace/target/release/plot; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "/home/runner/work/polyglot/polyglot" } }

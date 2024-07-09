@@ -221,15 +221,15 @@ export function method2(): string {
     return "";
 }
 
-export function method1(v0_1: string): string {
-    let _v1: Option<string> = undefined;
-    const x: string = process.env[v0_1] ?? "";
-    _v1 = x;
-    if (_v1 == null) {
-        throw new Error("base.run_target / _v1=None");
+export function method1(v0: string): string {
+    let _v3: Option<string> = undefined;
+    const x: string = process.env[v0] ?? "";
+    _v3 = x;
+    if (_v3 == null) {
+        throw new Error("base.run_target / _v3=None");
     }
     else {
-        return value(_v1);
+        return value(_v3);
     }
 }
 
@@ -237,28 +237,28 @@ export function method3(): string {
     return "AUTOMATION";
 }
 
-export function closure1(unitVar: void, v0_1: string): void {
+export function closure1(unitVar: void, v0: string): void {
 }
 
-export function closure0(unitVar: void, v0_1: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] {
-    let v84: US1_$union, v92: US1_$union, v100: US1_$union, v108: US1_$union;
-    let _v1: Option<[US1_$union, US2_$union]> = undefined;
-    const v70: string = method1(method0());
-    const v76: US1_$union = ("Verbose" === v70) ? US1_US1_0(US0_US0_0()) : US1_US1_1();
-    const x = [(v76.tag === /* US1_0 */ 0) ? US1_US1_0(v76.fields[0]) : ((v84 = (("Debug" === v70) ? US1_US1_0(US0_US0_1()) : US1_US1_1()), (v84.tag === /* US1_0 */ 0) ? US1_US1_0(v84.fields[0]) : ((v92 = (("Info" === v70) ? US1_US1_0(US0_US0_2()) : US1_US1_1()), (v92.tag === /* US1_0 */ 0) ? US1_US1_0(v92.fields[0]) : ((v100 = (("Warning" === v70) ? US1_US1_0(US0_US0_3()) : US1_US1_1()), (v100.tag === /* US1_0 */ 0) ? US1_US1_0(v100.fields[0]) : ((v108 = (("Critical" === v70) ? US1_US1_0(US0_US0_4()) : US1_US1_1()), (v108.tag === /* US1_0 */ 0) ? US1_US1_0(v108.fields[0]) : US1_US1_1())))))))), (method1(method3()) === "True") ? US2_US2_0(getTicks(now())) : US2_US2_1()] as [US1_$union, US2_$union];
-    _v1 = x;
+export function closure0(unitVar: void, v0: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] {
+    let v102: US1_$union, v110: US1_$union, v118: US1_$union, v126: US1_$union;
+    let _v3: Option<[US1_$union, US2_$union]> = undefined;
+    const v88: string = method1(method0());
+    const v94: US1_$union = ("Verbose" === v88) ? US1_US1_0(US0_US0_0()) : US1_US1_1();
+    const x = [(v94.tag === /* US1_0 */ 0) ? US1_US1_0(v94.fields[0]) : ((v102 = (("Debug" === v88) ? US1_US1_0(US0_US0_1()) : US1_US1_1()), (v102.tag === /* US1_0 */ 0) ? US1_US1_0(v102.fields[0]) : ((v110 = (("Info" === v88) ? US1_US1_0(US0_US0_2()) : US1_US1_1()), (v110.tag === /* US1_0 */ 0) ? US1_US1_0(v110.fields[0]) : ((v118 = (("Warning" === v88) ? US1_US1_0(US0_US0_3()) : US1_US1_1()), (v118.tag === /* US1_0 */ 0) ? US1_US1_0(v118.fields[0]) : ((v126 = (("Critical" === v88) ? US1_US1_0(US0_US0_4()) : US1_US1_1()), (v126.tag === /* US1_0 */ 0) ? US1_US1_0(v126.fields[0]) : US1_US1_1())))))))), (method1(method3()) === "True") ? US2_US2_0(getTicks(now())) : US2_US2_1()] as [US1_$union, US2_$union];
+    _v3 = x;
     let patternInput: [US1_$union, US2_$union];
-    if (_v1 == null) {
-        throw new Error("base.run_target / _v1=None");
+    if (_v3 == null) {
+        throw new Error("base.run_target / _v3=None");
     }
     else {
-        patternInput = value(_v1);
+        patternInput = value(_v3);
     }
-    const v259: US2_$union = patternInput[1];
-    const v258: US1_$union = patternInput[0];
+    const v325: US2_$union = patternInput[1];
+    const v324: US1_$union = patternInput[0];
     return [new Mut0(0n), new Mut1((v: string): void => {
         closure1(undefined, v);
-    }), new Mut2(true), new Mut3((v258.tag === /* US1_0 */ 0) ? v258.fields[0] : v0_1), (v259.tag === /* US2_0 */ 0) ? v259.fields[0] : undefined] as [Mut0, Mut1, Mut2, Mut3, Option<int64>];
+    }), new Mut2(true), new Mut3((v324.tag === /* US1_0 */ 0) ? v324.fields[0] : v0), (v325.tag === /* US2_0 */ 0) ? v325.fields[0] : undefined] as [Mut0, Mut1, Mut2, Mut3, Option<int64>];
 }
 
 export function method5(): string {
@@ -277,155 +277,155 @@ export function method8(): string {
     return "\u001b[0m";
 }
 
-export function method9(v0_1: Mut4, v1_1: string): void {
-    const v2_1 = `${v1_1}`;
-    const v4: string = v0_1.l0 + v2_1;
-    v0_1.l0 = v4;
+export function method9(v0: Mut4, v1: string): void {
+    const v4 = `${v1}`;
+    const v12: string = v0.l0 + v4;
+    v0.l0 = v12;
 }
 
-export function closure5(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string), unitVar: void): string {
-    let v74: int64, v80: number;
+export function closure5(v0: US0_$union, v1: (() => string), v2: (() => string), unitVar: void): string {
+    let v368: int64, v392: number;
     if (State_trace_state() == null) {
         State_trace_state(closure0(undefined, US0_US0_0()));
     }
     const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value(State_trace_state());
-    const v9: Option<int64> = patternInput[4];
-    let _v10: Option<string> = undefined;
-    const _v68: FSharpRef<Option<US2_$union>> = new FSharpRef<Option<US2_$union>>(undefined);
+    const v18: Option<int64> = patternInput[4];
+    let _v35: Option<string> = undefined;
+    const _v333: FSharpRef<Option<US2_$union>> = new FSharpRef<Option<US2_$union>>(undefined);
     let x_2: Option<US2_$union>;
-    if (v9 == null) {
+    if (v18 == null) {
         x_2 = undefined;
     }
     else {
-        const x: int64 = value(v9);
+        const x: int64 = value(v18);
         x_2 = ((): US2_$union => US2_US2_0(x))();
     }
-    _v68.contents = x_2;
-    const v73: US2_$union = defaultArg(_v68.contents, US2_US2_1());
-    const x_3: string = toString((v73.tag === /* US2_0 */ 0) ? ((v74 = v73.fields[0], (v80 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v74))), create(1, 1, 1, hours(v80), minutes(v80), seconds(v80), milliseconds(v80))))) : now(), method7());
-    _v10 = x_3;
-    let v152: string;
-    if (_v10 == null) {
-        throw new Error("base.run_target / _v10=None");
+    _v333.contents = x_2;
+    const v360: US2_$union = defaultArg(_v333.contents, US2_US2_1());
+    const x_3: string = toString((v360.tag === /* US2_0 */ 0) ? ((v368 = v360.fields[0], (v392 = fromTicks(toInt64(op_Subtraction(getTicks(now()), v368))), create(1, 1, 1, hours(v392), minutes(v392), seconds(v392), milliseconds(v392))))) : now(), method7());
+    _v35 = x_3;
+    let v772: string;
+    if (_v35 == null) {
+        throw new Error("base.run_target / _v35=None");
     }
     else {
-        v152 = value(_v10);
+        v772 = value(_v35);
     }
-    const v159: US3_$union = (v0_1.tag === /* US0_0 */ 0) ? US3_US3_0("Verbose") : US3_US3_1();
-    let v208: US3_$union;
-    if (v159.tag === /* US3_0 */ 0) {
-        v208 = US3_US3_0(v159.fields[0]);
+    const v931: US3_$union = (v0.tag === /* US0_0 */ 0) ? US3_US3_0("Verbose") : US3_US3_1();
+    let v980: US3_$union;
+    if (v931.tag === /* US3_0 */ 0) {
+        v980 = US3_US3_0(v931.fields[0]);
     }
     else {
-        const v168: US3_$union = (v0_1.tag === /* US0_1 */ 1) ? US3_US3_0("Debug") : US3_US3_1();
-        if (v168.tag === /* US3_0 */ 0) {
-            v208 = US3_US3_0(v168.fields[0]);
+        const v940: US3_$union = (v0.tag === /* US0_1 */ 1) ? US3_US3_0("Debug") : US3_US3_1();
+        if (v940.tag === /* US3_0 */ 0) {
+            v980 = US3_US3_0(v940.fields[0]);
         }
         else {
-            const v177: US3_$union = (v0_1.tag === /* US0_2 */ 2) ? US3_US3_0("Info") : US3_US3_1();
-            if (v177.tag === /* US3_0 */ 0) {
-                v208 = US3_US3_0(v177.fields[0]);
+            const v949: US3_$union = (v0.tag === /* US0_2 */ 2) ? US3_US3_0("Info") : US3_US3_1();
+            if (v949.tag === /* US3_0 */ 0) {
+                v980 = US3_US3_0(v949.fields[0]);
             }
             else {
-                const v186: US3_$union = (v0_1.tag === /* US0_3 */ 3) ? US3_US3_0("Warning") : US3_US3_1();
-                if (v186.tag === /* US3_0 */ 0) {
-                    v208 = US3_US3_0(v186.fields[0]);
+                const v958: US3_$union = (v0.tag === /* US0_3 */ 3) ? US3_US3_0("Warning") : US3_US3_1();
+                if (v958.tag === /* US3_0 */ 0) {
+                    v980 = US3_US3_0(v958.fields[0]);
                 }
                 else {
-                    const v195: US3_$union = (v0_1.tag === /* US0_4 */ 4) ? US3_US3_0("Critical") : US3_US3_1();
-                    v208 = ((v195.tag === /* US3_0 */ 0) ? US3_US3_0(v195.fields[0]) : US3_US3_1());
+                    const v967: US3_$union = (v0.tag === /* US0_4 */ 4) ? US3_US3_0("Critical") : US3_US3_1();
+                    v980 = ((v967.tag === /* US3_0 */ 0) ? US3_US3_0(v967.fields[0]) : US3_US3_1());
                 }
             }
         }
     }
-    let v212: string;
-    if (v208.tag === /* US3_0 */ 0) {
-        v212 = v208.fields[0];
+    let v984: string;
+    if (v980.tag === /* US3_0 */ 0) {
+        v984 = v980.fields[0];
     }
     else {
         throw new Error("Option does not have a value.");
     }
-    const v215: string = padLeft(v212.toLocaleLowerCase(), 7, " ");
-    let _v216: Option<string> = undefined;
-    const x_5: string = (((v0_1.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0_1.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0_1.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0_1.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v215) + method8();
-    _v216 = x_5;
-    let v328: string;
-    if (_v216 == null) {
-        throw new Error("base.run_target / _v216=None");
+    const v997: string = padLeft(v984.toLocaleLowerCase(), 7, " ");
+    let _v1029: Option<string> = undefined;
+    const x_5: string = (((v0.tag === /* US0_1 */ 1) ? "\u001b[94m" : ((v0.tag === /* US0_2 */ 2) ? "\u001b[92m" : ((v0.tag === /* US0_0 */ 0) ? "\u001b[90m" : ((v0.tag === /* US0_3 */ 3) ? "\u001b[93m" : "\u001b[91m")))) + v997) + method8();
+    _v1029 = x_5;
+    let v1141: string;
+    if (_v1029 == null) {
+        throw new Error("base.run_target / _v1029=None");
     }
     else {
-        v328 = value(_v216);
+        v1141 = value(_v1029);
     }
-    const v329: int64 = patternInput[0].l0;
-    const v332: Mut4 = new Mut4("");
-    method9(v332, v2_1());
-    const v333: string = v332.l0;
-    return trimEnd(trimStart(`${v152} ${v328} #${v329} ${v1_1()} / ${v333}`, ...[]), ...[" ", "/"]);
+    const v1160: int64 = patternInput[0].l0;
+    const v1163: Mut4 = new Mut4("");
+    method9(v1163, v2());
+    const v1164: string = v1163.l0;
+    return trimEnd(trimStart(`${v772} ${v1141} #${v1160} ${v1()} / ${v1164}`, ...[]), ...[" ", "/"]);
 }
 
-export function method10(v0_1: US0_$union, v1_1: (() => string)): void {
-    const v2_1 = (v: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] => closure0(undefined, v);
+export function method10(v0: US0_$union, v1: (() => string)): void {
+    const v4 = (v: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] => closure0(undefined, v);
     if (State_trace_state() == null) {
-        State_trace_state(v2_1(US0_US0_0()));
+        State_trace_state(v4(US0_US0_0()));
     }
     const patternInput: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value(State_trace_state());
-    const v4: Mut0 = patternInput[0];
+    const v13: Mut0 = patternInput[0];
     if (State_trace_state() == null) {
-        State_trace_state(v2_1(US0_US0_0()));
+        State_trace_state(v4(US0_US0_0()));
     }
     const patternInput_1: [Mut0, Mut1, Mut2, Mut3, Option<int64>] = value(State_trace_state());
-    const v15: US0_$union = patternInput_1[3].l0;
-    if ((patternInput_1[2].l0 === false) ? false : (find<US0_$union, int32>(v0_1, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
+    const v61: US0_$union = patternInput_1[3].l0;
+    if ((patternInput_1[2].l0 === false) ? false : (find<US0_$union, int32>(v0, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
         Compare: compare,
-    })) >= find<US0_$union, int32>(v15, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
+    })) >= find<US0_$union, int32>(v61, ofSeq([[US0_US0_0(), 0] as [US0_$union, int32], [US0_US0_1(), 1] as [US0_$union, int32], [US0_US0_2(), 2] as [US0_$union, int32], [US0_US0_3(), 3] as [US0_$union, int32], [US0_US0_4(), 4] as [US0_$union, int32]], {
         Compare: compare,
     })))) {
-        const v23: int64 = toInt64(op_Addition(v4.l0, 1n));
-        v4.l0 = v23;
-        const v24 = `${v1_1()}`;
-        let _v25: Option<void> = undefined;
-        console.log(v24);
-        _v25 = some(undefined);
-        if (_v25 == null) {
-            throw new Error("base.run_target / _v25=None");
+        const v69: int64 = toInt64(op_Addition(v13.l0, 1n));
+        v13.l0 = v69;
+        const v72 = `${v1()}`;
+        let _v81: Option<void> = undefined;
+        console.log(v72);
+        _v81 = some(undefined);
+        if (_v81 == null) {
+            throw new Error("base.run_target / _v81=None");
         }
         else {
-            value(_v25);
+            value(_v81);
         }
-        patternInput[1].l0(v24);
+        patternInput[1].l0(v72);
     }
 }
 
-export function method4(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
-    method10(v0_1, (): string => closure5(v0_1, v1_1, v2_1, undefined));
+export function method4(v0: US0_$union, v1: (() => string), v2: (() => string)): void {
+    method10(v0, (): string => closure5(v0, v1, v2, undefined));
 }
 
-export function closure4(v0_1: US0_$union, v1_1: (() => string), v2_1: (() => string)): void {
-    method4(v0_1, v1_1, v2_1);
+export function closure4(v0: US0_$union, v1: (() => string), v2: (() => string)): void {
+    method4(v0, v1, v2);
 }
 
-export function closure3(v0_1: US0_$union, v1_1: (() => string)): ((arg0: (() => string)) => void) {
+export function closure3(v0: US0_$union, v1: (() => string)): ((arg0: (() => string)) => void) {
     return (v: (() => string)): void => {
-        closure4(v0_1, v1_1, v);
+        closure4(v0, v1, v);
     };
 }
 
-export function closure2(unitVar: void, v0_1: US0_$union): ((arg0: (() => string)) => ((arg0: (() => string)) => void)) {
-    return (v: (() => string)): ((arg0: (() => string)) => void) => closure3(v0_1, v);
+export function closure2(unitVar: void, v0: US0_$union): ((arg0: (() => string)) => ((arg0: (() => string)) => void)) {
+    return (v: (() => string)): ((arg0: (() => string)) => void) => closure3(v0, v);
 }
 
-export const v0 = (v: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] => closure0(undefined, v);
+export const v44 = (v: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] => closure0(undefined, v);
 
-export const v1: US0_$union = US0_US0_0();
+export const v45: US0_$union = US0_US0_0();
 
 if (State_trace_state() == null) {
-    State_trace_state(v0(v1));
+    State_trace_state(v44(v45));
 }
 
-export const v2 = (v: US0_$union): ((arg0: (() => string)) => ((arg0: (() => string)) => void)) => closure2(undefined, v);
+export const v51 = (v: US0_$union): ((arg0: (() => string)) => ((arg0: (() => string)) => void)) => closure2(undefined, v);
 
 export function trace(x: US0_$union): ((arg0: (() => string)) => ((arg0: (() => string)) => void)) {
-    return v2(x);
+    return v51(x);
 }
 
 

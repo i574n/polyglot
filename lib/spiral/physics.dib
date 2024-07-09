@@ -24,17 +24,17 @@ open testing
 
 //// test
 
-inl x : a _ f64 = am'.init_series -3 3 0.01
-inl y = x |> am.map math.square
+inl x = am'.init_series -3f64 3 0.01
+inl y = x |> am'.map_base math.square
 "square", "x", "y", ;[ "square", x, y ]
 
 #!spiral
 
 //// test
 
-inl x : a _ f64 = am'.init_series -10 10 0.1
-inl y_sin = x |> am.map sin
-inl y_cos = x |> am.map cos
+inl x = am'.init_series -10f64 10 0.1
+inl y_sin = x |> am'.map_base sin
+inl y_cos = x |> am'.map_base cos
 "sin cos", "x", "y", ;[ "sin", x, y_sin; "cos", x, y_cos ]
 
 #!spiral
@@ -44,8 +44,8 @@ inl y_cos = x |> am.map cos
 inl y_pos y0 vy0 ay t =
     y0 + vy0 * t + ay * (t |> math.square) / 2
 
-inl x : a _ f64 = am'.init_series 0 5 0.01
-inl y = x |> am.map (y_pos 0 20 -9.8)
+inl x = am'.init_series 0f64 5 0.01
+inl y = x |> am'.map_base (y_pos 0 20 -9.8)
 "projectile motion", "time (s)", "", ;[ "height of projectile (m)", x, y ]
 
 #!markdown
@@ -82,8 +82,8 @@ velocity_cf 0.1f64 0.6 [ 0.04; -0.08 ] 1
 
 //// test
 
-inl x = am'.init_series 0 4 0.1
-inl y = x |> am.map (velocity_cf 0.1f64 0.6 [ 0.04; -0.08 ])
+inl x = am'.init_series 0f64 4 0.1
+inl y = x |> am'.map_base (velocity_cf 0.1f64 0.6 [ 0.04; -0.08 ])
 "car on an air track", "time (s)", "", ;[ "velocity of car (m/s)", x, y ]
 
 #!markdown
@@ -165,8 +165,9 @@ integral' 0.1 math.square 0 1
 #!spiral
 
 inl integral'' dt : integration =
-    fun f a b =>
-        am'.init_series (a + dt / 2) (b - dt / 2) dt
+    fun f x y =>
+        am'.init_series (x + dt / 2) (y - dt / 2) dt
+        |> fun x => a x : _ int _
         |> am.map (f >> (*) dt)
         |> am'.sum
 
@@ -225,8 +226,8 @@ inl pedal_coast (t : time) : force =
     then 10
     else 0
 
-inl x = am'.init_series -5 45 0.1
-inl y = x |> am.map pedal_coast
+inl x = am'.init_series -5f64 45 0.1
+inl y = x |> am'.map_base pedal_coast
 "child pedaling then coasting", "time (s)", "", ;[ "force on bike (N)", x, y ]
 
 #!spiral
@@ -234,7 +235,7 @@ inl y = x |> am.map pedal_coast
 //// test
 
 inl x = am'.init_series -5 45 1
-inl y = x |> am.map (position_ft 0.1f64 20 0 0 [ pedal_coast ])
+inl y = x |> am'.map_base (position_ft 0.1f64 20 0 0 [ pedal_coast ])
 "child pedaling then coasting", "time (s)", "", ;[ "position of bike (m)", x, y ]
 
 #!markdown
@@ -264,7 +265,7 @@ inl f_air drag rho area v =
 //// test
 
 inl x = am'.init_series 0 60 0.5
-inl y = x |> am.map (velocity_fv 1 70 0f64 [ fun _ => 100; f_air 2 1.225 0.6 ])
+inl y = x |> am'.map_base (velocity_fv 1 70 0f64 [ fun _ => 100; f_air 2 1.225 0.6 ])
 "bike velocity", "time (s)", "", ;[ "velocity of bike (m/s)", x, y ]
 
 #!markdown
@@ -295,7 +296,7 @@ inl velocity_ftv dt m tv0 fs t =
 inl x = am'.init_series 0 100 0.1
 inl y =
     x
-    |> am.map (
+    |> am'.map_base (
         velocity_ftv 0.1 20 (dyn (0, 0)) [ fun (t, _) => pedal_coast t; fun (_, v) => f_air 2 1.225 0.5 v ]
     )
 "pedaling and coasting with air", "time (s)", "", ;[ "velocity of bike (m/s)", x, y ]
@@ -369,8 +370,8 @@ inl damped_ho_states () =
 inl pingpong_position t =
     position_ftxv 0.001 0.0027 (state_1d (0, 0.1, 0)) (damped_ho_forces ()) t
 
-inl x : a _ f64 = am'.init_series 0 3 0.01
-inl y = x |> am.map pingpong_position
+inl x = am'.init_series 0 3 0.01
+inl y = x |> am'.map_base pingpong_position
 "ping pong ball on a slinky", "time (s)", "", ;[ "position (m)", x, y ]
 
 #!spiral
@@ -381,7 +382,7 @@ inl pingpong_velocity t =
     velocity_ftxv 0.001 0.0027 (state_1d (0, 0.1, 0)) (damped_ho_forces ()) t
 
 inl x = am'.init_series 0 3 0.01
-inl y = x |> am.map pingpong_velocity
+inl y = x |> am'.map_base pingpong_velocity
 "ping pong ball on a slinky", "time (s)", "", ;[ "velocity (m/s)", x, y ]
 
 #!markdown
@@ -878,8 +879,8 @@ inl baseball_range dt v0 theta_deg =
     baseball_trajectory dt v0 theta_deg
     |> listm.fold (fun _ (y, _) => y) 0
 
-inl x : a _ f64 = am'.init_series 10 80 1
-inl y = x |> am.map (baseball_range 0.01 45)
+inl x = am'.init_series 10 80 1
+inl y = x |> am'.map_base (baseball_range 0.01 45)
 "range for a baseball hit at 45 m/s",
 "angle above horizontal (degrees)",
 "",
@@ -955,9 +956,9 @@ inl _, relativity_y =
     |> listm.map (fun (particle_state st) => st.time / year, st.velocity.x / c)
     |> listm'.unzip
 
-inl newton_x : a i32 _ = newton_x |> listm.toArray
-inl newton_y : a i32 _ = newton_y |> listm.toArray
-inl relativity_y : a i32 _ = relativity_y |> listm.toArray
+inl newton_x = newton_x |> listm'.box |> listm'.to_array'
+inl newton_y = newton_y |> listm'.box |> listm'.to_array'
+inl relativity_y = relativity_y |> listm'.box |> listm'.to_array'
 
 "response to a constant force",
 "time (years)",
@@ -1004,11 +1005,11 @@ inl relativity_x, relativity_y =
     |> listm.map (fun (particle_state st) => st.pos_vec.x, st.pos_vec.y)
     |> listm'.unzip
 
-inl newton_x : a i32 _ = newton_x |> listm.toArray
-inl newton_y : a i32 _ = newton_y |> listm.toArray
+inl newton_x = newton_x |> listm'.box |> listm'.to_array'
+inl newton_y = newton_y |> listm'.box |> listm'.to_array'
 
-inl relativity_x : a i32 _ = relativity_x |> listm.toArray
-inl relativity_y : a i32 _ = relativity_y |> listm.toArray
+inl relativity_x = relativity_x |> listm'.box |> listm'.to_array'
+inl relativity_y = relativity_y |> listm'.box |> listm'.to_array'
 
 "proton in a 1-t magnetic field",
 "x (m)",
@@ -1198,11 +1199,11 @@ inl time_ke_rk4_x, time_ke_rk4_y =
     )
     |> listm'.unzip
 
-inl time_ke_ec_x : a i32 _ = time_ke_ec_x |> listm.toArray
-inl time_ke_ec_y : a i32 _ = time_ke_ec_y |> listm.toArray
+inl time_ke_ec_x = time_ke_ec_x |> listm'.box |> listm'.to_array'
+inl time_ke_ec_y = time_ke_ec_y |> listm'.box |> listm'.to_array'
 
-inl time_ke_rk4_x : a i32 _ = time_ke_rk4_x |> listm.toArray
-inl time_ke_rk4_y : a i32 _ = time_ke_rk4_y |> listm.toArray
+inl time_ke_rk4_x = time_ke_rk4_x |> listm'.box |> listm'.to_array'
+inl time_ke_rk4_y = time_ke_rk4_y |> listm'.box |> listm'.to_array'
 
 "system kinetic energy versus time",
 "time (s)",
@@ -1291,15 +1292,15 @@ let main () =
                 rs
                 |> listm.map (fun r => r.x, r.y)
                 |> listm'.unzip
-            inl x : a i32 _ = x |> listm.toArray
-            inl y : a i32 _ = y |> listm.toArray
+            inl x = x |> listm'.box |> listm'.to_array'
+            inl y = y |> listm'.box |> listm'.to_array'
             x, y
         )
-        |> listm.toArray : a i32 _
+        |> listm'.box |> listm'.to_array'
 
     inl n = 0i32
 
-    inl x, y = index frames n
+    inl x, y = a frames |> am'.index n
 
     "wave",
     "position (m)",
@@ -1509,11 +1510,11 @@ inl time_ke_rk4_x, time_ke_rk4_y =
     |> listm'.choose id
     |> listm'.unzip
 
-inl time_ke_ec_x : a i32 _ = time_ke_ec_x |> listm.toArray
-inl time_ke_ec_y : a i32 _ = time_ke_ec_y |> listm.toArray
+inl time_ke_ec_x = time_ke_ec_x |> listm'.box |> listm'.to_array'
+inl time_ke_ec_y = time_ke_ec_y |> listm'.box |> listm'.to_array'
 
-inl time_ke_rk4_x : a i32 _ = time_ke_rk4_x |> listm.toArray
-inl time_ke_rk4_y : a i32 _ = time_ke_rk4_y |> listm.toArray
+inl time_ke_rk4_x = time_ke_rk4_x |> listm'.box |> listm'.to_array'
+inl time_ke_rk4_y = time_ke_rk4_y |> listm'.box |> listm'.to_array'
 
 "system kinetic energy versus time",
 "time (s)",
@@ -1585,8 +1586,8 @@ let main () =
                 |> listm.map (fun r => r.x, r.y)
                 |> stream.from_list
                 |> stream.unzip
-            inl x : a i32 _ = x |> stream.to_list |> listm.toArray
-            inl y : a i32 _ = y |> stream.to_list |> listm.toArray
+            inl x = x |> stream.to_list |> listm'.box |> listm'.to_array'
+            inl y = y |> stream.to_list |> listm'.box |> listm'.to_array'
             x, y
         )
 
@@ -1602,7 +1603,7 @@ let main () =
             ]
         )
 
-    plots |> stream.to_list |> listm.toArray : a i32 _
+    plots |> stream.to_list |> listm'.box |> listm'.to_array'
 
 #!markdown
 

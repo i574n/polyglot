@@ -211,37 +211,37 @@ pub mod Networking {
     pub fn method2() -> string {
         string("")
     }
-    pub fn method1(v0_1: string) -> string {
-        let _v1: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v33: Result<std::string::String, std::env::VarError> = std::env::var(&*v0_1);
-        let v35: bool = true;
-        let _result = v33.map(|x| {
+    pub fn method1(v0: string) -> string {
+        let _v3: MutCell<Option<string>> = MutCell::new(None::<string>);
+        let v35: Result<std::string::String, std::env::VarError> = std::env::var(&*v0);
+        let v37: bool = true;
+        let _result = v35.map(|x| {
             //;
-            let v37: std::string::String = x;
-            let v39: string = fable_library_rust::String_::fromString(v37);
-            let v41: bool = true;
-            v39
+            let v39: std::string::String = x;
+            let v41: string = fable_library_rust::String_::fromString(v39);
+            let v43: bool = true;
+            v41
         });
-        let v43: Result<string, std::env::VarError> = _result;
-        let v44: string = Networking::method2();
+        let v45_1: Result<string, std::env::VarError> = _result;
+        let v46: string = Networking::method2();
         {
-            let x: string = v43.unwrap_or(v44);
-            _v1.set(Some(x))
+            let x: string = v45_1.unwrap_or(v46);
+            _v3.set(Some(x))
         }
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
         }
     }
     pub fn method3() -> string {
         string("AUTOMATION")
     }
-    pub fn closure1(unitVar: (), v0_1: string) {
+    pub fn closure1(unitVar: (), v0: string) {
         ();
     }
     pub fn closure0(
         unitVar: (),
-        v0_1: Networking::US0,
+        v0: Networking::US0,
     ) -> (
         LrcPtr<Networking::Mut0>,
         LrcPtr<Networking::Mut1>,
@@ -249,16 +249,16 @@ pub mod Networking {
         LrcPtr<Networking::Mut3>,
         Option<i64>,
     ) {
-        let _v1: MutCell<Option<(Networking::US1, Networking::US2)>> =
+        let _v3: MutCell<Option<(Networking::US1, Networking::US2)>> =
             MutCell::new(None::<(Networking::US1, Networking::US2)>);
-        _v1.set(Some((Networking::US1::US1_1, Networking::US2::US2_1)));
+        _v3.set(Some((Networking::US1::US1_1, Networking::US2::US2_1)));
         {
-            let patternInput: (Networking::US1, Networking::US2) = match &_v1.get().clone() {
-                None => panic!("{}", string("base.run_target / _v1=None"),),
-                Some(_v1_0_0) => _v1_0_0.clone(),
+            let patternInput: (Networking::US1, Networking::US2) = match &_v3.get().clone() {
+                None => panic!("{}", string("base.run_target / _v3=None"),),
+                Some(_v3_0_0) => _v3_0_0.clone(),
             };
-            let v259: Networking::US2 = patternInput.1.clone();
-            let v258: Networking::US1 = patternInput.0.clone();
+            let v325: Networking::US2 = patternInput.1.clone();
+            let v324: Networking::US1 = patternInput.0.clone();
             (
                 LrcPtr::new(Networking::Mut0 {
                     l0: MutCell::new(0_i64),
@@ -270,16 +270,16 @@ pub mod Networking {
                     l0: MutCell::new(true),
                 }),
                 LrcPtr::new(Networking::Mut3 {
-                    l0: MutCell::new(match &v258 {
-                        Networking::US1::US1_0(v258_0_0) => match &v258 {
+                    l0: MutCell::new(match &v324 {
+                        Networking::US1::US1_0(v324_0_0) => match &v324 {
                             Networking::US1::US1_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
-                        _ => v0_1,
+                        _ => v0,
                     }),
                 }),
-                match &v259 {
-                    Networking::US2::US2_0(v259_0_0) => Some(match &v259 {
+                match &v325 {
+                    Networking::US2::US2_0(v325_0_0) => Some(match &v325 {
                         Networking::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
@@ -291,8 +291,8 @@ pub mod Networking {
     pub fn closure4(unitVar: (), unitVar_1: ()) -> string {
         string("networking.test_port_open")
     }
-    pub fn closure5(v0_1: i32, v1_1: string, unitVar: ()) -> (i32, string) {
-        (v0_1, v1_1)
+    pub fn closure5(v0: i32, v1: string, unitVar: ()) -> (i32, string) {
+        (v0, v1)
     }
     pub fn method5() -> string {
         string("hh:mm:ss")
@@ -306,37 +306,37 @@ pub mod Networking {
     pub fn method8() -> string {
         string("\u{001b}[0m")
     }
-    pub fn method10(v0_1: LrcPtr<Networking::Mut4>, v1_1: string) {
-        let v2_1: string = sprintf!("{}", v1_1);
-        let v4_1: string = append(v0_1.l0.get().clone(), v2_1);
-        v0_1.l0.set(v4_1);
+    pub fn method10(v0: LrcPtr<Networking::Mut4>, v1: string) {
+        let v4: string = sprintf!("{}", v1);
+        let v12: string = append(v0.l0.get().clone(), v4);
+        v0.l0.set(v12);
         ()
     }
-    pub fn method11(v0_1: LrcPtr<Networking::Mut4>) {
+    pub fn method11(v0: LrcPtr<Networking::Mut4>) {
         ();
     }
-    pub fn method12(v0_1: LrcPtr<Networking::Mut4>, v1_1: i32) {
-        let v2_1: string = sprintf!("{}", v1_1);
-        let v4_1: string = append(v0_1.l0.get().clone(), v2_1);
-        v0_1.l0.set(v4_1);
+    pub fn method12(v0: LrcPtr<Networking::Mut4>, v1: i32) {
+        let v4: string = sprintf!("{}", v1);
+        let v12: string = append(v0.l0.get().clone(), v4);
+        v0.l0.set(v12);
         ()
     }
-    pub fn method9(v0_1: LrcPtr<Networking::Mut4>, v1_1: i32, v2_1: string) {
-        Networking::method10(v0_1.clone(), string("{ "));
-        Networking::method11(v0_1.clone());
-        Networking::method10(v0_1.clone(), string("port"));
-        Networking::method10(v0_1.clone(), string(" = "));
-        Networking::method12(v0_1.clone(), v1_1);
-        Networking::method10(v0_1.clone(), string("; "));
-        Networking::method10(v0_1.clone(), string("ex"));
-        Networking::method10(v0_1.clone(), string(" = "));
-        Networking::method10(v0_1.clone(), v2_1);
-        Networking::method10(v0_1, string(" }"))
+    pub fn method9(v0: LrcPtr<Networking::Mut4>, v1: i32, v2: string) {
+        Networking::method10(v0.clone(), string("{ "));
+        Networking::method11(v0.clone());
+        Networking::method10(v0.clone(), string("port"));
+        Networking::method10(v0.clone(), string(" = "));
+        Networking::method12(v0.clone(), v1);
+        Networking::method10(v0.clone(), string("; "));
+        Networking::method10(v0.clone(), string("ex"));
+        Networking::method10(v0.clone(), string(" = "));
+        Networking::method10(v0.clone(), v2);
+        Networking::method10(v0, string(" }"))
     }
     pub fn closure6(
-        v0_1: Networking::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(i32, string)>,
+        v0: Networking::US0,
+        v1: Func0<string>,
+        v2: Func0<(i32, string)>,
         unitVar: (),
     ) -> string {
         if Networking::State::trace_state().get().clone().is_none() {
@@ -351,17 +351,17 @@ pub mod Networking {
                 LrcPtr<Networking::Mut3>,
                 Option<i64>,
             ) = getValue(Networking::State::trace_state().get().clone());
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
             {
                 let x: string = Networking::method6();
-                _v10.set(Some(x))
+                _v35.set(Some(x))
             }
             {
-                let v152: string = match &_v10.get().clone() {
-                    None => panic!("{}", string("base.run_target / _v10=None"),),
-                    Some(_v10_0_0) => _v10_0_0.clone(),
+                let v772: string = match &_v35.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v35=None"),),
+                    Some(_v35_0_0) => _v35_0_0.clone(),
                 };
-                let v159: Networking::US3 = if if let Networking::US0::US0_0 = &v0_1 {
+                let v931: Networking::US3 = if if let Networking::US0::US0_0 = &v0 {
                     true
                 } else {
                     false
@@ -370,13 +370,13 @@ pub mod Networking {
                 } else {
                     Networking::US3::US3_1
                 };
-                let v208: Networking::US3 = match &v159 {
-                    Networking::US3::US3_0(v159_0_0) => Networking::US3::US3_0(match &v159 {
+                let v980: Networking::US3 = match &v931 {
+                    Networking::US3::US3_0(v931_0_0) => Networking::US3::US3_0(match &v931 {
                         Networking::US3::US3_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v168: Networking::US3 = if if let Networking::US0::US0_1 = &v0_1 {
+                        let v940: Networking::US3 = if if let Networking::US0::US0_1 = &v0 {
                             true
                         } else {
                             false
@@ -385,16 +385,15 @@ pub mod Networking {
                         } else {
                             Networking::US3::US3_1
                         };
-                        match &v168 {
-                            Networking::US3::US3_0(v168_0_0) => {
-                                Networking::US3::US3_0(match &v168 {
+                        match &v940 {
+                            Networking::US3::US3_0(v940_0_0) => {
+                                Networking::US3::US3_0(match &v940 {
                                     Networking::US3::US3_0(x) => x.clone(),
                                     _ => unreachable!(),
                                 })
                             }
                             _ => {
-                                let v177: Networking::US3 = if if let Networking::US0::US0_2 = &v0_1
-                                {
+                                let v949: Networking::US3 = if if let Networking::US0::US0_2 = &v0 {
                                     true
                                 } else {
                                     false
@@ -403,16 +402,16 @@ pub mod Networking {
                                 } else {
                                     Networking::US3::US3_1
                                 };
-                                match &v177 {
-                                    Networking::US3::US3_0(v177_0_0) => {
-                                        Networking::US3::US3_0(match &v177 {
+                                match &v949 {
+                                    Networking::US3::US3_0(v949_0_0) => {
+                                        Networking::US3::US3_0(match &v949 {
                                             Networking::US3::US3_0(x) => x.clone(),
                                             _ => unreachable!(),
                                         })
                                     }
                                     _ => {
-                                        let v186: Networking::US3 =
-                                            if if let Networking::US0::US0_3 = &v0_1 {
+                                        let v958: Networking::US3 =
+                                            if if let Networking::US0::US0_3 = &v0 {
                                                 true
                                             } else {
                                                 false
@@ -421,16 +420,16 @@ pub mod Networking {
                                             } else {
                                                 Networking::US3::US3_1
                                             };
-                                        match &v186 {
-                                            Networking::US3::US3_0(v186_0_0) => {
-                                                Networking::US3::US3_0(match &v186 {
+                                        match &v958 {
+                                            Networking::US3::US3_0(v958_0_0) => {
+                                                Networking::US3::US3_0(match &v958 {
                                                     Networking::US3::US3_0(x) => x.clone(),
                                                     _ => unreachable!(),
                                                 })
                                             }
                                             _ => {
-                                                let v195: Networking::US3 =
-                                                    if if let Networking::US0::US0_4 = &v0_1 {
+                                                let v967: Networking::US3 =
+                                                    if if let Networking::US0::US0_4 = &v0 {
                                                         true
                                                     } else {
                                                         false
@@ -439,9 +438,9 @@ pub mod Networking {
                                                     } else {
                                                         Networking::US3::US3_1
                                                     };
-                                                match &v195 {
-                                                    Networking::US3::US3_0(v195_0_0) => {
-                                                        Networking::US3::US3_0(match &v195 {
+                                                match &v967 {
+                                                    Networking::US3::US3_0(v967_0_0) => {
+                                                        Networking::US3::US3_0(match &v967 {
                                                             Networking::US3::US3_0(x) => x.clone(),
                                                             _ => unreachable!(),
                                                         })
@@ -456,9 +455,9 @@ pub mod Networking {
                         }
                     }
                 };
-                let v215: string = padLeft(
-                    toLower(match &v208 {
-                        Networking::US3::US3_0(v208_0_0) => match &v208 {
+                let v997: string = padLeft(
+                    toLower(match &v980 {
+                        Networking::US3::US3_0(v980_0_0) => match &v980 {
                             Networking::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -467,42 +466,42 @@ pub mod Networking {
                     7_i32,
                     ' ',
                 );
-                let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v279: &str = match &v0_1 {
+                let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v1092: &str = match &v0 {
                     Networking::US0::US0_1 => inline_colorization::color_bright_blue,
                     Networking::US0::US0_2 => inline_colorization::color_bright_green,
                     Networking::US0::US0_0 => inline_colorization::color_bright_black,
                     Networking::US0::US0_3 => inline_colorization::color_yellow,
                     _ => inline_colorization::color_bright_red,
                 };
-                let v281: &str = &*v215;
-                let v283: &str = inline_colorization::color_reset;
-                let v285: string = string("format!(\"{v279}{v281}{v283}\")");
-                let v286: std::string::String = format!("{v279}{v281}{v283}");
+                let v1094: &str = &*v997;
+                let v1096: &str = inline_colorization::color_reset;
+                let v1098: string = string("format!(\"{v1092}{v1094}{v1096}\")");
+                let v1099: std::string::String = format!("{v1092}{v1094}{v1096}");
                 {
-                    let x_2: string = fable_library_rust::String_::fromString(v286);
-                    _v216.set(Some(x_2))
+                    let x_2: string = fable_library_rust::String_::fromString(v1099);
+                    _v1029.set(Some(x_2))
                 }
                 {
-                    let v328: string = match &_v216.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v216=None"),),
-                        Some(_v216_0_0) => _v216_0_0.clone(),
+                    let v1141: string = match &_v1029.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v1029=None"),),
+                        Some(_v1029_0_0) => _v1029_0_0.clone(),
                     };
-                    let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                    let patternInput_1: (i32, string) = v2_1();
-                    let v333: LrcPtr<Networking::Mut4> = LrcPtr::new(Networking::Mut4 {
+                    let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                    let patternInput_1: (i32, string) = v2();
+                    let v1164: LrcPtr<Networking::Mut4> = LrcPtr::new(Networking::Mut4 {
                         l0: MutCell::new(string("")),
                     });
                     Networking::method9(
-                        v333.clone(),
+                        v1164.clone(),
                         patternInput_1.0.clone(),
                         patternInput_1.1.clone(),
                     );
                     {
-                        let v334: string = v333.l0.get().clone();
+                        let v1165: string = v1164.l0.get().clone();
                         trimEndChars(
                             trimStartChars(
-                                sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v334),
+                                sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1165),
                                 toArray(empty::<char>()),
                             ),
                             toArray(ofArray(new_array(&[' ', '/']))),
@@ -512,8 +511,8 @@ pub mod Networking {
             }
         }
     }
-    pub fn method13(v0_1: Networking::US0, v1_1: Func0<string>) {
-        fn v2_1(
+    pub fn method13(v0: Networking::US0, v1: Func0<string>) {
+        fn v4(
             v: Networking::US0,
         ) -> (
             LrcPtr<Networking::Mut0>,
@@ -525,7 +524,7 @@ pub mod Networking {
             Networking::closure0((), v)
         }
         if Networking::State::trace_state().get().clone().is_none() {
-            Networking::State::trace_state().set(Some(v2_1(Networking::US0::US0_0)));
+            Networking::State::trace_state().set(Some(v4(Networking::US0::US0_0)));
         }
         {
             let patternInput: (
@@ -535,9 +534,9 @@ pub mod Networking {
                 LrcPtr<Networking::Mut3>,
                 Option<i64>,
             ) = getValue(Networking::State::trace_state().get().clone());
-            let v4_1: LrcPtr<Networking::Mut0> = patternInput.0.clone();
+            let v13: LrcPtr<Networking::Mut0> = patternInput.0.clone();
             if Networking::State::trace_state().get().clone().is_none() {
-                Networking::State::trace_state().set(Some(v2_1(Networking::US0::US0_0)));
+                Networking::State::trace_state().set(Some(v4(Networking::US0::US0_0)));
             }
             {
                 let patternInput_1: (
@@ -547,12 +546,12 @@ pub mod Networking {
                     LrcPtr<Networking::Mut3>,
                     Option<i64>,
                 ) = getValue(Networking::State::trace_state().get().clone());
-                let v15: Networking::US0 = (patternInput_1.3.clone()).l0.get().clone();
+                let v61: Networking::US0 = (patternInput_1.3.clone()).l0.get().clone();
                 if if (patternInput_1.2.clone()).l0.get().clone() == false {
                     false
                 } else {
                     find(
-                        v0_1,
+                        v0,
                         ofSeq(ofList(ofArray(new_array(&[
                             LrcPtr::new((Networking::US0::US0_0, 0_i32)),
                             LrcPtr::new((Networking::US0::US0_1, 1_i32)),
@@ -561,7 +560,7 @@ pub mod Networking {
                             LrcPtr::new((Networking::US0::US0_4, 4_i32)),
                         ])))),
                     ) >= find(
-                        v15,
+                        v61,
                         ofSeq(ofList(ofArray(new_array(&[
                             LrcPtr::new((Networking::US0::US0_0, 0_i32)),
                             LrcPtr::new((Networking::US0::US0_1, 1_i32)),
@@ -571,75 +570,75 @@ pub mod Networking {
                         ])))),
                     )
                 } {
-                    let v23: i64 = v4_1.l0.get().clone() + 1_i64;
-                    v4_1.l0.set(v23);
+                    let v69: i64 = v13.l0.get().clone() + 1_i64;
+                    v13.l0.set(v69);
                     {
-                        let v24: string = sprintf!("{}", v1_1());
-                        let _v25: MutCell<Option<()>> = MutCell::new(None::<()>);
-                        println!("{}", v24.clone());
-                        _v25.set(Some(()));
-                        match &_v25.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v25=None"),),
-                            Some(_v25_0_0) => _v25_0_0.clone(),
+                        let v72: string = sprintf!("{}", v1());
+                        let _v81: MutCell<Option<()>> = MutCell::new(None::<()>);
+                        println!("{}", v72.clone());
+                        _v81.set(Some(()));
+                        match &_v81.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v81=None"),),
+                            Some(_v81_0_0) => _v81_0_0.clone(),
                         }
-                        ((patternInput.1.clone()).l0.get().clone())(v24)
+                        ((patternInput.1.clone()).l0.get().clone())(v72)
                     }
                 }
             }
         }
     }
-    pub fn method4(v0_1: Networking::US0, v1_1: Func0<string>, v2_1: Func0<(i32, string)>) {
+    pub fn method4(v0: Networking::US0, v1: Func0<string>, v2: Func0<(i32, string)>) {
         Networking::method13(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || Networking::closure6(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || Networking::closure6(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
-    pub fn closure3(v0_1: string, v1_1: i32) -> Arc<Async<bool>> {
-        let _v2: MutCell<Option<Arc<Async<bool>>>> = MutCell::new(None::<Arc<Async<bool>>>);
+    pub fn closure3(v0: string, v1: i32) -> Arc<Async<bool>> {
+        let _v4: MutCell<Option<Arc<Async<bool>>>> = MutCell::new(None::<Arc<Async<bool>>>);
         {
             let x: Arc<Async<bool>> = defaultOf();
-            _v2.set(Some(x))
+            _v4.set(Some(x))
         }
-        match &_v2.get().clone() {
-            None => panic!("{}", string("base.run_target / _v2=None"),),
-            Some(_v2_0_0) => _v2_0_0.clone(),
+        match &_v4.get().clone() {
+            None => panic!("{}", string("base.run_target / _v4=None"),),
+            Some(_v4_0_0) => _v4_0_0.clone(),
         }
     }
-    pub fn closure2(unitVar: (), v0_1: string) -> Func1<i32, Arc<Async<bool>>> {
+    pub fn closure2(unitVar: (), v0: string) -> Func1<i32, Arc<Async<bool>>> {
         Func1::new({
-            let v0_1 = v0_1.clone();
-            move |v: i32| Networking::closure3(v0_1.clone(), v)
+            let v0 = v0.clone();
+            move |v: i32| Networking::closure3(v0.clone(), v)
         })
     }
-    pub fn closure10(unitVar: (), v0_1: bool) -> Networking::US5 {
-        Networking::US5::US5_0(v0_1)
+    pub fn closure10(unitVar: (), v0: bool) -> Networking::US5 {
+        Networking::US5::US5_0(v0)
     }
-    pub fn closure11(unitVar: (), v0_1: LrcPtr<Exception>) -> Networking::US5 {
-        Networking::US5::US5_1(v0_1)
+    pub fn closure11(unitVar: (), v0: LrcPtr<Exception>) -> Networking::US5 {
+        Networking::US5::US5_1(v0)
     }
     pub fn closure12(unitVar: (), unitVar_1: ()) -> string {
         string("async.run_with_timeout_async")
     }
-    pub fn closure13(v0_1: i32, unitVar: ()) -> i32 {
-        v0_1
+    pub fn closure13(v0: i32, unitVar: ()) -> i32 {
+        v0
     }
-    pub fn method15(v0_1: LrcPtr<Networking::Mut4>, v1_1: i32) {
-        Networking::method10(v0_1.clone(), string("{ "));
-        Networking::method11(v0_1.clone());
-        Networking::method10(v0_1.clone(), string("timeout"));
-        Networking::method10(v0_1.clone(), string(" = "));
-        Networking::method12(v0_1.clone(), v1_1);
-        Networking::method10(v0_1, string(" }"))
+    pub fn method15(v0: LrcPtr<Networking::Mut4>, v1: i32) {
+        Networking::method10(v0.clone(), string("{ "));
+        Networking::method11(v0.clone());
+        Networking::method10(v0.clone(), string("timeout"));
+        Networking::method10(v0.clone(), string(" = "));
+        Networking::method12(v0.clone(), v1);
+        Networking::method10(v0, string(" }"))
     }
     pub fn closure14(
-        v0_1: Networking::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<i32>,
+        v0: Networking::US0,
+        v1: Func0<string>,
+        v2: Func0<i32>,
         unitVar: (),
     ) -> string {
         if Networking::State::trace_state().get().clone().is_none() {
@@ -654,17 +653,17 @@ pub mod Networking {
                 LrcPtr<Networking::Mut3>,
                 Option<i64>,
             ) = getValue(Networking::State::trace_state().get().clone());
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
             {
                 let x: string = Networking::method6();
-                _v10.set(Some(x))
+                _v35.set(Some(x))
             }
             {
-                let v152: string = match &_v10.get().clone() {
-                    None => panic!("{}", string("base.run_target / _v10=None"),),
-                    Some(_v10_0_0) => _v10_0_0.clone(),
+                let v772: string = match &_v35.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v35=None"),),
+                    Some(_v35_0_0) => _v35_0_0.clone(),
                 };
-                let v159: Networking::US3 = if if let Networking::US0::US0_0 = &v0_1 {
+                let v931: Networking::US3 = if if let Networking::US0::US0_0 = &v0 {
                     true
                 } else {
                     false
@@ -673,13 +672,13 @@ pub mod Networking {
                 } else {
                     Networking::US3::US3_1
                 };
-                let v208: Networking::US3 = match &v159 {
-                    Networking::US3::US3_0(v159_0_0) => Networking::US3::US3_0(match &v159 {
+                let v980: Networking::US3 = match &v931 {
+                    Networking::US3::US3_0(v931_0_0) => Networking::US3::US3_0(match &v931 {
                         Networking::US3::US3_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v168: Networking::US3 = if if let Networking::US0::US0_1 = &v0_1 {
+                        let v940: Networking::US3 = if if let Networking::US0::US0_1 = &v0 {
                             true
                         } else {
                             false
@@ -688,16 +687,15 @@ pub mod Networking {
                         } else {
                             Networking::US3::US3_1
                         };
-                        match &v168 {
-                            Networking::US3::US3_0(v168_0_0) => {
-                                Networking::US3::US3_0(match &v168 {
+                        match &v940 {
+                            Networking::US3::US3_0(v940_0_0) => {
+                                Networking::US3::US3_0(match &v940 {
                                     Networking::US3::US3_0(x) => x.clone(),
                                     _ => unreachable!(),
                                 })
                             }
                             _ => {
-                                let v177: Networking::US3 = if if let Networking::US0::US0_2 = &v0_1
-                                {
+                                let v949: Networking::US3 = if if let Networking::US0::US0_2 = &v0 {
                                     true
                                 } else {
                                     false
@@ -706,16 +704,16 @@ pub mod Networking {
                                 } else {
                                     Networking::US3::US3_1
                                 };
-                                match &v177 {
-                                    Networking::US3::US3_0(v177_0_0) => {
-                                        Networking::US3::US3_0(match &v177 {
+                                match &v949 {
+                                    Networking::US3::US3_0(v949_0_0) => {
+                                        Networking::US3::US3_0(match &v949 {
                                             Networking::US3::US3_0(x) => x.clone(),
                                             _ => unreachable!(),
                                         })
                                     }
                                     _ => {
-                                        let v186: Networking::US3 =
-                                            if if let Networking::US0::US0_3 = &v0_1 {
+                                        let v958: Networking::US3 =
+                                            if if let Networking::US0::US0_3 = &v0 {
                                                 true
                                             } else {
                                                 false
@@ -724,16 +722,16 @@ pub mod Networking {
                                             } else {
                                                 Networking::US3::US3_1
                                             };
-                                        match &v186 {
-                                            Networking::US3::US3_0(v186_0_0) => {
-                                                Networking::US3::US3_0(match &v186 {
+                                        match &v958 {
+                                            Networking::US3::US3_0(v958_0_0) => {
+                                                Networking::US3::US3_0(match &v958 {
                                                     Networking::US3::US3_0(x) => x.clone(),
                                                     _ => unreachable!(),
                                                 })
                                             }
                                             _ => {
-                                                let v195: Networking::US3 =
-                                                    if if let Networking::US0::US0_4 = &v0_1 {
+                                                let v967: Networking::US3 =
+                                                    if if let Networking::US0::US0_4 = &v0 {
                                                         true
                                                     } else {
                                                         false
@@ -742,9 +740,9 @@ pub mod Networking {
                                                     } else {
                                                         Networking::US3::US3_1
                                                     };
-                                                match &v195 {
-                                                    Networking::US3::US3_0(v195_0_0) => {
-                                                        Networking::US3::US3_0(match &v195 {
+                                                match &v967 {
+                                                    Networking::US3::US3_0(v967_0_0) => {
+                                                        Networking::US3::US3_0(match &v967 {
                                                             Networking::US3::US3_0(x) => x.clone(),
                                                             _ => unreachable!(),
                                                         })
@@ -759,9 +757,9 @@ pub mod Networking {
                         }
                     }
                 };
-                let v215: string = padLeft(
-                    toLower(match &v208 {
-                        Networking::US3::US3_0(v208_0_0) => match &v208 {
+                let v997: string = padLeft(
+                    toLower(match &v980 {
+                        Networking::US3::US3_0(v980_0_0) => match &v980 {
                             Networking::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -770,37 +768,37 @@ pub mod Networking {
                     7_i32,
                     ' ',
                 );
-                let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v279: &str = match &v0_1 {
+                let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v1092: &str = match &v0 {
                     Networking::US0::US0_1 => inline_colorization::color_bright_blue,
                     Networking::US0::US0_2 => inline_colorization::color_bright_green,
                     Networking::US0::US0_0 => inline_colorization::color_bright_black,
                     Networking::US0::US0_3 => inline_colorization::color_yellow,
                     _ => inline_colorization::color_bright_red,
                 };
-                let v281: &str = &*v215;
-                let v283: &str = inline_colorization::color_reset;
-                let v285: string = string("format!(\"{v279}{v281}{v283}\")");
-                let v286: std::string::String = format!("{v279}{v281}{v283}");
+                let v1094: &str = &*v997;
+                let v1096: &str = inline_colorization::color_reset;
+                let v1098: string = string("format!(\"{v1092}{v1094}{v1096}\")");
+                let v1099: std::string::String = format!("{v1092}{v1094}{v1096}");
                 {
-                    let x_2: string = fable_library_rust::String_::fromString(v286);
-                    _v216.set(Some(x_2))
+                    let x_2: string = fable_library_rust::String_::fromString(v1099);
+                    _v1029.set(Some(x_2))
                 }
                 {
-                    let v328: string = match &_v216.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v216=None"),),
-                        Some(_v216_0_0) => _v216_0_0.clone(),
+                    let v1141: string = match &_v1029.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v1029=None"),),
+                        Some(_v1029_0_0) => _v1029_0_0.clone(),
                     };
-                    let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                    let v332: LrcPtr<Networking::Mut4> = LrcPtr::new(Networking::Mut4 {
+                    let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                    let v1163: LrcPtr<Networking::Mut4> = LrcPtr::new(Networking::Mut4 {
                         l0: MutCell::new(string("")),
                     });
-                    Networking::method15(v332.clone(), v2_1());
+                    Networking::method15(v1163.clone(), v2());
                     {
-                        let v333: string = v332.l0.get().clone();
+                        let v1164: string = v1163.l0.get().clone();
                         trimEndChars(
                             trimStartChars(
-                                sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v333),
+                                sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1164),
                                 toArray(empty::<char>()),
                             ),
                             toArray(ofArray(new_array(&[' ', '/']))),
@@ -810,50 +808,50 @@ pub mod Networking {
             }
         }
     }
-    pub fn method14(v0_1: Networking::US0, v1_1: Func0<string>, v2_1: Func0<i32>) {
+    pub fn method14(v0: Networking::US0, v1: Func0<string>, v2: Func0<i32>) {
         Networking::method13(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || Networking::closure14(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || Networking::closure14(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
     pub fn closure15(unitVar: (), unitVar_1: ()) -> string {
         string("async.run_with_timeout_async**")
     }
-    pub fn closure16(v0_1: i32, v1_1: LrcPtr<Exception>, unitVar: ()) -> (i32, string) {
-        let _v2: MutCell<Option<string>> = MutCell::new(None::<string>);
+    pub fn closure16(v0: i32, v1: LrcPtr<Exception>, unitVar: ()) -> (i32, string) {
+        let _v4: MutCell<Option<string>> = MutCell::new(None::<string>);
         {
-            let x: string = sprintf!("{:?}", v1_1);
-            _v2.set(Some(x))
+            let x: string = sprintf!("{:?}", v1);
+            _v4.set(Some(x))
         }
         (
-            v0_1,
-            match &_v2.get().clone() {
-                None => panic!("{}", string("base.run_target / _v2=None"),),
-                Some(_v2_0_0) => _v2_0_0.clone(),
+            v0,
+            match &_v4.get().clone() {
+                None => panic!("{}", string("base.run_target / _v4=None"),),
+                Some(_v4_0_0) => _v4_0_0.clone(),
             },
         )
     }
-    pub fn method17(v0_1: LrcPtr<Networking::Mut4>, v1_1: i32, v2_1: string) {
-        Networking::method10(v0_1.clone(), string("{ "));
-        Networking::method11(v0_1.clone());
-        Networking::method10(v0_1.clone(), string("timeout"));
-        Networking::method10(v0_1.clone(), string(" = "));
-        Networking::method12(v0_1.clone(), v1_1);
-        Networking::method10(v0_1.clone(), string("; "));
-        Networking::method10(v0_1.clone(), string("ex"));
-        Networking::method10(v0_1.clone(), string(" = "));
-        Networking::method10(v0_1.clone(), v2_1);
-        Networking::method10(v0_1, string(" }"))
+    pub fn method17(v0: LrcPtr<Networking::Mut4>, v1: i32, v2: string) {
+        Networking::method10(v0.clone(), string("{ "));
+        Networking::method11(v0.clone());
+        Networking::method10(v0.clone(), string("timeout"));
+        Networking::method10(v0.clone(), string(" = "));
+        Networking::method12(v0.clone(), v1);
+        Networking::method10(v0.clone(), string("; "));
+        Networking::method10(v0.clone(), string("ex"));
+        Networking::method10(v0.clone(), string(" = "));
+        Networking::method10(v0.clone(), v2);
+        Networking::method10(v0, string(" }"))
     }
     pub fn closure17(
-        v0_1: Networking::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(i32, string)>,
+        v0: Networking::US0,
+        v1: Func0<string>,
+        v2: Func0<(i32, string)>,
         unitVar: (),
     ) -> string {
         if Networking::State::trace_state().get().clone().is_none() {
@@ -868,17 +866,17 @@ pub mod Networking {
                 LrcPtr<Networking::Mut3>,
                 Option<i64>,
             ) = getValue(Networking::State::trace_state().get().clone());
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
             {
                 let x: string = Networking::method6();
-                _v10.set(Some(x))
+                _v35.set(Some(x))
             }
             {
-                let v152: string = match &_v10.get().clone() {
-                    None => panic!("{}", string("base.run_target / _v10=None"),),
-                    Some(_v10_0_0) => _v10_0_0.clone(),
+                let v772: string = match &_v35.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v35=None"),),
+                    Some(_v35_0_0) => _v35_0_0.clone(),
                 };
-                let v159: Networking::US3 = if if let Networking::US0::US0_0 = &v0_1 {
+                let v931: Networking::US3 = if if let Networking::US0::US0_0 = &v0 {
                     true
                 } else {
                     false
@@ -887,13 +885,13 @@ pub mod Networking {
                 } else {
                     Networking::US3::US3_1
                 };
-                let v208: Networking::US3 = match &v159 {
-                    Networking::US3::US3_0(v159_0_0) => Networking::US3::US3_0(match &v159 {
+                let v980: Networking::US3 = match &v931 {
+                    Networking::US3::US3_0(v931_0_0) => Networking::US3::US3_0(match &v931 {
                         Networking::US3::US3_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v168: Networking::US3 = if if let Networking::US0::US0_1 = &v0_1 {
+                        let v940: Networking::US3 = if if let Networking::US0::US0_1 = &v0 {
                             true
                         } else {
                             false
@@ -902,16 +900,15 @@ pub mod Networking {
                         } else {
                             Networking::US3::US3_1
                         };
-                        match &v168 {
-                            Networking::US3::US3_0(v168_0_0) => {
-                                Networking::US3::US3_0(match &v168 {
+                        match &v940 {
+                            Networking::US3::US3_0(v940_0_0) => {
+                                Networking::US3::US3_0(match &v940 {
                                     Networking::US3::US3_0(x) => x.clone(),
                                     _ => unreachable!(),
                                 })
                             }
                             _ => {
-                                let v177: Networking::US3 = if if let Networking::US0::US0_2 = &v0_1
-                                {
+                                let v949: Networking::US3 = if if let Networking::US0::US0_2 = &v0 {
                                     true
                                 } else {
                                     false
@@ -920,16 +917,16 @@ pub mod Networking {
                                 } else {
                                     Networking::US3::US3_1
                                 };
-                                match &v177 {
-                                    Networking::US3::US3_0(v177_0_0) => {
-                                        Networking::US3::US3_0(match &v177 {
+                                match &v949 {
+                                    Networking::US3::US3_0(v949_0_0) => {
+                                        Networking::US3::US3_0(match &v949 {
                                             Networking::US3::US3_0(x) => x.clone(),
                                             _ => unreachable!(),
                                         })
                                     }
                                     _ => {
-                                        let v186: Networking::US3 =
-                                            if if let Networking::US0::US0_3 = &v0_1 {
+                                        let v958: Networking::US3 =
+                                            if if let Networking::US0::US0_3 = &v0 {
                                                 true
                                             } else {
                                                 false
@@ -938,16 +935,16 @@ pub mod Networking {
                                             } else {
                                                 Networking::US3::US3_1
                                             };
-                                        match &v186 {
-                                            Networking::US3::US3_0(v186_0_0) => {
-                                                Networking::US3::US3_0(match &v186 {
+                                        match &v958 {
+                                            Networking::US3::US3_0(v958_0_0) => {
+                                                Networking::US3::US3_0(match &v958 {
                                                     Networking::US3::US3_0(x) => x.clone(),
                                                     _ => unreachable!(),
                                                 })
                                             }
                                             _ => {
-                                                let v195: Networking::US3 =
-                                                    if if let Networking::US0::US0_4 = &v0_1 {
+                                                let v967: Networking::US3 =
+                                                    if if let Networking::US0::US0_4 = &v0 {
                                                         true
                                                     } else {
                                                         false
@@ -956,9 +953,9 @@ pub mod Networking {
                                                     } else {
                                                         Networking::US3::US3_1
                                                     };
-                                                match &v195 {
-                                                    Networking::US3::US3_0(v195_0_0) => {
-                                                        Networking::US3::US3_0(match &v195 {
+                                                match &v967 {
+                                                    Networking::US3::US3_0(v967_0_0) => {
+                                                        Networking::US3::US3_0(match &v967 {
                                                             Networking::US3::US3_0(x) => x.clone(),
                                                             _ => unreachable!(),
                                                         })
@@ -973,9 +970,9 @@ pub mod Networking {
                         }
                     }
                 };
-                let v215: string = padLeft(
-                    toLower(match &v208 {
-                        Networking::US3::US3_0(v208_0_0) => match &v208 {
+                let v997: string = padLeft(
+                    toLower(match &v980 {
+                        Networking::US3::US3_0(v980_0_0) => match &v980 {
                             Networking::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -984,42 +981,42 @@ pub mod Networking {
                     7_i32,
                     ' ',
                 );
-                let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v279: &str = match &v0_1 {
+                let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v1092: &str = match &v0 {
                     Networking::US0::US0_1 => inline_colorization::color_bright_blue,
                     Networking::US0::US0_2 => inline_colorization::color_bright_green,
                     Networking::US0::US0_0 => inline_colorization::color_bright_black,
                     Networking::US0::US0_3 => inline_colorization::color_yellow,
                     _ => inline_colorization::color_bright_red,
                 };
-                let v281: &str = &*v215;
-                let v283: &str = inline_colorization::color_reset;
-                let v285: string = string("format!(\"{v279}{v281}{v283}\")");
-                let v286: std::string::String = format!("{v279}{v281}{v283}");
+                let v1094: &str = &*v997;
+                let v1096: &str = inline_colorization::color_reset;
+                let v1098: string = string("format!(\"{v1092}{v1094}{v1096}\")");
+                let v1099: std::string::String = format!("{v1092}{v1094}{v1096}");
                 {
-                    let x_2: string = fable_library_rust::String_::fromString(v286);
-                    _v216.set(Some(x_2))
+                    let x_2: string = fable_library_rust::String_::fromString(v1099);
+                    _v1029.set(Some(x_2))
                 }
                 {
-                    let v328: string = match &_v216.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v216=None"),),
-                        Some(_v216_0_0) => _v216_0_0.clone(),
+                    let v1141: string = match &_v1029.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v1029=None"),),
+                        Some(_v1029_0_0) => _v1029_0_0.clone(),
                     };
-                    let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                    let patternInput_1: (i32, string) = v2_1();
-                    let v333: LrcPtr<Networking::Mut4> = LrcPtr::new(Networking::Mut4 {
+                    let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                    let patternInput_1: (i32, string) = v2();
+                    let v1164: LrcPtr<Networking::Mut4> = LrcPtr::new(Networking::Mut4 {
                         l0: MutCell::new(string("")),
                     });
                     Networking::method17(
-                        v333.clone(),
+                        v1164.clone(),
                         patternInput_1.0.clone(),
                         patternInput_1.1.clone(),
                     );
                     {
-                        let v334: string = v333.l0.get().clone();
+                        let v1165: string = v1164.l0.get().clone();
                         trimEndChars(
                             trimStartChars(
-                                sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v334),
+                                sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1165),
                                 toArray(empty::<char>()),
                             ),
                             toArray(ofArray(new_array(&[' ', '/']))),
@@ -1029,105 +1026,92 @@ pub mod Networking {
             }
         }
     }
-    pub fn method16(v0_1: Networking::US0, v1_1: Func0<string>, v2_1: Func0<(i32, string)>) {
+    pub fn method16(v0: Networking::US0, v1: Func0<string>, v2: Func0<(i32, string)>) {
         Networking::method13(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || Networking::closure17(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || Networking::closure17(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
-    pub fn closure9(v0_1: i32, v1_1: string, v2_1: i32) -> Arc<Async<bool>> {
-        let _v3: MutCell<Option<Arc<Async<bool>>>> = MutCell::new(None::<Arc<Async<bool>>>);
+    pub fn closure9(v0: i32, v1: string, v2: i32) -> Arc<Async<bool>> {
+        let _v5: MutCell<Option<Arc<Async<bool>>>> = MutCell::new(None::<Arc<Async<bool>>>);
         {
             let x: Arc<Async<bool>> = defaultOf();
-            _v3.set(Some(x))
+            _v5.set(Some(x))
         }
-        match &_v3.get().clone() {
-            None => panic!("{}", string("base.run_target / _v3=None"),),
-            Some(_v3_0_0) => _v3_0_0.clone(),
+        match &_v5.get().clone() {
+            None => panic!("{}", string("base.run_target / _v5=None"),),
+            Some(_v5_0_0) => _v5_0_0.clone(),
         }
     }
-    pub fn closure8(v0_1: i32, v1_1: string) -> Func1<i32, Arc<Async<bool>>> {
+    pub fn closure8(v0: i32, v1: string) -> Func1<i32, Arc<Async<bool>>> {
         Func1::new({
-            let v0_1 = v0_1.clone();
-            let v1_1 = v1_1.clone();
-            move |v: i32| Networking::closure9(v0_1, v1_1.clone(), v)
+            let v0 = v0.clone();
+            let v1 = v1.clone();
+            move |v: i32| Networking::closure9(v0, v1.clone(), v)
         })
     }
-    pub fn closure7(unitVar: (), v0_1: i32) -> Func1<string, Func1<i32, Arc<Async<bool>>>> {
+    pub fn closure7(unitVar: (), v0: i32) -> Func1<string, Func1<i32, Arc<Async<bool>>>> {
         Func1::new({
-            let v0_1 = v0_1.clone();
-            move |v: string| Networking::closure8(v0_1, v)
+            let v0 = v0.clone();
+            move |v: string| Networking::closure8(v0, v)
         })
     }
     pub fn closure22(unitVar: (), unitVar_1: ()) -> string {
         string("networking.wait_for_port_access")
     }
     pub fn closure23(
-        v0_1: Option<i32>,
-        v1_1: bool,
-        v2_1: i32,
-        v3_1: i64,
+        v0: Option<i32>,
+        v1: bool,
+        v2: i32,
+        v3: i64,
         unitVar: (),
     ) -> (i32, i64, Option<i32>, bool) {
-        (v2_1, v3_1, v0_1, v1_1)
+        (v2, v3, v0, v1)
     }
-    pub fn method21(v0_1: LrcPtr<Networking::Mut4>, v1_1: i64) {
-        let v2_1: string = sprintf!("{}", v1_1);
-        let v4_1: string = append(v0_1.l0.get().clone(), v2_1);
-        v0_1.l0.set(v4_1);
+    pub fn method21(v0: LrcPtr<Networking::Mut4>, v1: i64) {
+        let v4: string = sprintf!("{}", v1);
+        let v12: string = append(v0.l0.get().clone(), v4);
+        v0.l0.set(v12);
         ()
     }
-    pub fn method22(v0_1: LrcPtr<Networking::Mut4>, v1_1: Option<i32>) {
-        Networking::method10(v0_1, sprintf!("{:?}", v1_1));
+    pub fn method22(v0: LrcPtr<Networking::Mut4>, v1: Option<i32>) {
+        Networking::method10(v0, sprintf!("{:?}", v1));
     }
-    pub fn method23(v0_1: LrcPtr<Networking::Mut4>, v1_1: bool) {
-        let v5_1: string = sprintf!(
-            "{}",
-            if v1_1 {
-                string("true")
-            } else {
-                string("false")
-            }
-        );
-        let v7: string = append(v0_1.l0.get().clone(), v5_1);
-        v0_1.l0.set(v7);
+    pub fn method23(v0: LrcPtr<Networking::Mut4>, v1: bool) {
+        let v7: string = sprintf!("{}", if v1 { string("true") } else { string("false") });
+        let v15: string = append(v0.l0.get().clone(), v7);
+        v0.l0.set(v15);
         ()
     }
-    pub fn method20(
-        v0_1: LrcPtr<Networking::Mut4>,
-        v1_1: i32,
-        v2_1: i64,
-        v3_1: Option<i32>,
-        v4_1: bool,
-    ) {
-        Networking::method10(v0_1.clone(), string("{ "));
-        Networking::method11(v0_1.clone());
-        Networking::method10(v0_1.clone(), string("port"));
-        Networking::method10(v0_1.clone(), string(" = "));
-        Networking::method12(v0_1.clone(), v1_1);
-        Networking::method10(v0_1.clone(), string("; "));
-        Networking::method10(v0_1.clone(), string("retry"));
-        Networking::method10(v0_1.clone(), string(" = "));
-        Networking::method21(v0_1.clone(), v2_1);
-        Networking::method10(v0_1.clone(), string("; "));
-        Networking::method10(v0_1.clone(), string("timeout"));
-        Networking::method10(v0_1.clone(), string(" = "));
-        Networking::method22(v0_1.clone(), v3_1);
-        Networking::method10(v0_1.clone(), string("; "));
-        Networking::method10(v0_1.clone(), string("status"));
-        Networking::method10(v0_1.clone(), string(" = "));
-        Networking::method23(v0_1.clone(), v4_1);
-        Networking::method10(v0_1, string(" }"))
+    pub fn method20(v0: LrcPtr<Networking::Mut4>, v1: i32, v2: i64, v3: Option<i32>, v4: bool) {
+        Networking::method10(v0.clone(), string("{ "));
+        Networking::method11(v0.clone());
+        Networking::method10(v0.clone(), string("port"));
+        Networking::method10(v0.clone(), string(" = "));
+        Networking::method12(v0.clone(), v1);
+        Networking::method10(v0.clone(), string("; "));
+        Networking::method10(v0.clone(), string("retry"));
+        Networking::method10(v0.clone(), string(" = "));
+        Networking::method21(v0.clone(), v2);
+        Networking::method10(v0.clone(), string("; "));
+        Networking::method10(v0.clone(), string("timeout"));
+        Networking::method10(v0.clone(), string(" = "));
+        Networking::method22(v0.clone(), v3);
+        Networking::method10(v0.clone(), string("; "));
+        Networking::method10(v0.clone(), string("status"));
+        Networking::method10(v0.clone(), string(" = "));
+        Networking::method23(v0.clone(), v4);
+        Networking::method10(v0, string(" }"))
     }
     pub fn closure24(
-        v0_1: Networking::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(i32, i64, Option<i32>, bool)>,
+        v0: Networking::US0,
+        v1: Func0<string>,
+        v2: Func0<(i32, i64, Option<i32>, bool)>,
         unitVar: (),
     ) -> string {
         if Networking::State::trace_state().get().clone().is_none() {
@@ -1142,17 +1126,17 @@ pub mod Networking {
                 LrcPtr<Networking::Mut3>,
                 Option<i64>,
             ) = getValue(Networking::State::trace_state().get().clone());
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
             {
                 let x: string = Networking::method6();
-                _v10.set(Some(x))
+                _v35.set(Some(x))
             }
             {
-                let v152: string = match &_v10.get().clone() {
-                    None => panic!("{}", string("base.run_target / _v10=None"),),
-                    Some(_v10_0_0) => _v10_0_0.clone(),
+                let v772: string = match &_v35.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v35=None"),),
+                    Some(_v35_0_0) => _v35_0_0.clone(),
                 };
-                let v159: Networking::US3 = if if let Networking::US0::US0_0 = &v0_1 {
+                let v931: Networking::US3 = if if let Networking::US0::US0_0 = &v0 {
                     true
                 } else {
                     false
@@ -1161,13 +1145,13 @@ pub mod Networking {
                 } else {
                     Networking::US3::US3_1
                 };
-                let v208: Networking::US3 = match &v159 {
-                    Networking::US3::US3_0(v159_0_0) => Networking::US3::US3_0(match &v159 {
+                let v980: Networking::US3 = match &v931 {
+                    Networking::US3::US3_0(v931_0_0) => Networking::US3::US3_0(match &v931 {
                         Networking::US3::US3_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v168: Networking::US3 = if if let Networking::US0::US0_1 = &v0_1 {
+                        let v940: Networking::US3 = if if let Networking::US0::US0_1 = &v0 {
                             true
                         } else {
                             false
@@ -1176,16 +1160,15 @@ pub mod Networking {
                         } else {
                             Networking::US3::US3_1
                         };
-                        match &v168 {
-                            Networking::US3::US3_0(v168_0_0) => {
-                                Networking::US3::US3_0(match &v168 {
+                        match &v940 {
+                            Networking::US3::US3_0(v940_0_0) => {
+                                Networking::US3::US3_0(match &v940 {
                                     Networking::US3::US3_0(x) => x.clone(),
                                     _ => unreachable!(),
                                 })
                             }
                             _ => {
-                                let v177: Networking::US3 = if if let Networking::US0::US0_2 = &v0_1
-                                {
+                                let v949: Networking::US3 = if if let Networking::US0::US0_2 = &v0 {
                                     true
                                 } else {
                                     false
@@ -1194,16 +1177,16 @@ pub mod Networking {
                                 } else {
                                     Networking::US3::US3_1
                                 };
-                                match &v177 {
-                                    Networking::US3::US3_0(v177_0_0) => {
-                                        Networking::US3::US3_0(match &v177 {
+                                match &v949 {
+                                    Networking::US3::US3_0(v949_0_0) => {
+                                        Networking::US3::US3_0(match &v949 {
                                             Networking::US3::US3_0(x) => x.clone(),
                                             _ => unreachable!(),
                                         })
                                     }
                                     _ => {
-                                        let v186: Networking::US3 =
-                                            if if let Networking::US0::US0_3 = &v0_1 {
+                                        let v958: Networking::US3 =
+                                            if if let Networking::US0::US0_3 = &v0 {
                                                 true
                                             } else {
                                                 false
@@ -1212,16 +1195,16 @@ pub mod Networking {
                                             } else {
                                                 Networking::US3::US3_1
                                             };
-                                        match &v186 {
-                                            Networking::US3::US3_0(v186_0_0) => {
-                                                Networking::US3::US3_0(match &v186 {
+                                        match &v958 {
+                                            Networking::US3::US3_0(v958_0_0) => {
+                                                Networking::US3::US3_0(match &v958 {
                                                     Networking::US3::US3_0(x) => x.clone(),
                                                     _ => unreachable!(),
                                                 })
                                             }
                                             _ => {
-                                                let v195: Networking::US3 =
-                                                    if if let Networking::US0::US0_4 = &v0_1 {
+                                                let v967: Networking::US3 =
+                                                    if if let Networking::US0::US0_4 = &v0 {
                                                         true
                                                     } else {
                                                         false
@@ -1230,9 +1213,9 @@ pub mod Networking {
                                                     } else {
                                                         Networking::US3::US3_1
                                                     };
-                                                match &v195 {
-                                                    Networking::US3::US3_0(v195_0_0) => {
-                                                        Networking::US3::US3_0(match &v195 {
+                                                match &v967 {
+                                                    Networking::US3::US3_0(v967_0_0) => {
+                                                        Networking::US3::US3_0(match &v967 {
                                                             Networking::US3::US3_0(x) => x.clone(),
                                                             _ => unreachable!(),
                                                         })
@@ -1247,9 +1230,9 @@ pub mod Networking {
                         }
                     }
                 };
-                let v215: string = padLeft(
-                    toLower(match &v208 {
-                        Networking::US3::US3_0(v208_0_0) => match &v208 {
+                let v997: string = padLeft(
+                    toLower(match &v980 {
+                        Networking::US3::US3_0(v980_0_0) => match &v980 {
                             Networking::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -1258,44 +1241,44 @@ pub mod Networking {
                     7_i32,
                     ' ',
                 );
-                let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let v279: &str = match &v0_1 {
+                let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v1092: &str = match &v0 {
                     Networking::US0::US0_1 => inline_colorization::color_bright_blue,
                     Networking::US0::US0_2 => inline_colorization::color_bright_green,
                     Networking::US0::US0_0 => inline_colorization::color_bright_black,
                     Networking::US0::US0_3 => inline_colorization::color_yellow,
                     _ => inline_colorization::color_bright_red,
                 };
-                let v281: &str = &*v215;
-                let v283: &str = inline_colorization::color_reset;
-                let v285: string = string("format!(\"{v279}{v281}{v283}\")");
-                let v286: std::string::String = format!("{v279}{v281}{v283}");
+                let v1094: &str = &*v997;
+                let v1096: &str = inline_colorization::color_reset;
+                let v1098: string = string("format!(\"{v1092}{v1094}{v1096}\")");
+                let v1099: std::string::String = format!("{v1092}{v1094}{v1096}");
                 {
-                    let x_2: string = fable_library_rust::String_::fromString(v286);
-                    _v216.set(Some(x_2))
+                    let x_2: string = fable_library_rust::String_::fromString(v1099);
+                    _v1029.set(Some(x_2))
                 }
                 {
-                    let v328: string = match &_v216.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v216=None"),),
-                        Some(_v216_0_0) => _v216_0_0.clone(),
+                    let v1141: string = match &_v1029.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v1029=None"),),
+                        Some(_v1029_0_0) => _v1029_0_0.clone(),
                     };
-                    let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                    let patternInput_1: (i32, i64, Option<i32>, bool) = v2_1();
-                    let v335: LrcPtr<Networking::Mut4> = LrcPtr::new(Networking::Mut4 {
+                    let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                    let patternInput_1: (i32, i64, Option<i32>, bool) = v2();
+                    let v1166: LrcPtr<Networking::Mut4> = LrcPtr::new(Networking::Mut4 {
                         l0: MutCell::new(string("")),
                     });
                     Networking::method20(
-                        v335.clone(),
+                        v1166.clone(),
                         patternInput_1.0.clone(),
                         patternInput_1.1.clone(),
                         patternInput_1.2.clone(),
                         patternInput_1.3.clone(),
                     );
                     {
-                        let v336: string = v335.l0.get().clone();
+                        let v1167: string = v1166.l0.get().clone();
                         trimEndChars(
                             trimStartChars(
-                                sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v336),
+                                sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1167),
                                 toArray(empty::<char>()),
                             ),
                             toArray(ofArray(new_array(&[' ', '/']))),
@@ -1306,30 +1289,62 @@ pub mod Networking {
         }
     }
     pub fn method19(
-        v0_1: Networking::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(i32, i64, Option<i32>, bool)>,
+        v0: Networking::US0,
+        v1: Func0<string>,
+        v2: Func0<(i32, i64, Option<i32>, bool)>,
     ) {
         Networking::method13(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || Networking::closure24(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || Networking::closure24(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
-    pub fn method18(
-        v0_1: Option<i32>,
-        v1_1: bool,
-        v2_1: string,
-        v3_1: i32,
-        v4_1: i64,
-    ) -> Arc<Async<i64>> {
-        let _v5: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
+    pub fn method18(v0: Option<i32>, v1: bool, v2: string, v3: i32, v4: i64) -> Arc<Async<i64>> {
+        let _v7: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
         {
             let x: Arc<Async<i64>> = defaultOf();
+            _v7.set(Some(x))
+        }
+        match &_v7.get().clone() {
+            None => panic!("{}", string("base.run_target / _v7=None"),),
+            Some(_v7_0_0) => _v7_0_0.clone(),
+        }
+    }
+    pub fn closure21(v0: Option<i32>, v1: bool, v2: string, v3: i32) -> Arc<Async<i64>> {
+        Networking::method18(v0, v1, v2, v3, 0_i64)
+    }
+    pub fn closure20(v0: Option<i32>, v1: bool, v2: string) -> Func1<i32, Arc<Async<i64>>> {
+        Func1::new({
+            let v0 = v0.clone();
+            let v1 = v1.clone();
+            let v2 = v2.clone();
+            move |v: i32| Networking::closure21(v0.clone(), v1, v2.clone(), v)
+        })
+    }
+    pub fn closure19(v0: Option<i32>, v1: bool) -> Func1<string, Func1<i32, Arc<Async<i64>>>> {
+        Func1::new({
+            let v0 = v0.clone();
+            let v1 = v1.clone();
+            move |v: string| Networking::closure20(v0.clone(), v1, v)
+        })
+    }
+    pub fn closure18(
+        unitVar: (),
+        v0: Option<i32>,
+    ) -> Func1<bool, Func1<string, Func1<i32, Arc<Async<i64>>>>> {
+        Func1::new({
+            let v0 = v0.clone();
+            move |v: bool| Networking::closure19(v0.clone(), v)
+        })
+    }
+    pub fn method24(v0: Option<i32>, v1: string, v2: i32) -> Arc<Async<i32>> {
+        let _v5: MutCell<Option<Arc<Async<i32>>>> = MutCell::new(None::<Arc<Async<i32>>>);
+        {
+            let x: Arc<Async<i32>> = defaultOf();
             _v5.set(Some(x))
         }
         match &_v5.get().clone() {
@@ -1337,61 +1352,23 @@ pub mod Networking {
             Some(_v5_0_0) => _v5_0_0.clone(),
         }
     }
-    pub fn closure21(v0_1: Option<i32>, v1_1: bool, v2_1: string, v3_1: i32) -> Arc<Async<i64>> {
-        Networking::method18(v0_1, v1_1, v2_1, v3_1, 0_i64)
+    pub fn closure27(v0: Option<i32>, v1: string, v2: i32) -> Arc<Async<i32>> {
+        Networking::method24(v0, v1, v2)
     }
-    pub fn closure20(v0_1: Option<i32>, v1_1: bool, v2_1: string) -> Func1<i32, Arc<Async<i64>>> {
+    pub fn closure26(v0: Option<i32>, v1: string) -> Func1<i32, Arc<Async<i32>>> {
         Func1::new({
-            let v0_1 = v0_1.clone();
-            let v1_1 = v1_1.clone();
-            let v2_1 = v2_1.clone();
-            move |v: i32| Networking::closure21(v0_1.clone(), v1_1, v2_1.clone(), v)
+            let v0 = v0.clone();
+            let v1 = v1.clone();
+            move |v: i32| Networking::closure27(v0.clone(), v1.clone(), v)
         })
     }
-    pub fn closure19(v0_1: Option<i32>, v1_1: bool) -> Func1<string, Func1<i32, Arc<Async<i64>>>> {
+    pub fn closure25(unitVar: (), v0: Option<i32>) -> Func1<string, Func1<i32, Arc<Async<i32>>>> {
         Func1::new({
-            let v0_1 = v0_1.clone();
-            let v1_1 = v1_1.clone();
-            move |v: string| Networking::closure20(v0_1.clone(), v1_1, v)
+            let v0 = v0.clone();
+            move |v: string| Networking::closure26(v0.clone(), v)
         })
     }
-    pub fn closure18(
-        unitVar: (),
-        v0_1: Option<i32>,
-    ) -> Func1<bool, Func1<string, Func1<i32, Arc<Async<i64>>>>> {
-        Func1::new({
-            let v0_1 = v0_1.clone();
-            move |v: bool| Networking::closure19(v0_1.clone(), v)
-        })
-    }
-    pub fn method24(v0_1: Option<i32>, v1_1: string, v2_1: i32) -> Arc<Async<i32>> {
-        let _v3: MutCell<Option<Arc<Async<i32>>>> = MutCell::new(None::<Arc<Async<i32>>>);
-        {
-            let x: Arc<Async<i32>> = defaultOf();
-            _v3.set(Some(x))
-        }
-        match &_v3.get().clone() {
-            None => panic!("{}", string("base.run_target / _v3=None"),),
-            Some(_v3_0_0) => _v3_0_0.clone(),
-        }
-    }
-    pub fn closure27(v0_1: Option<i32>, v1_1: string, v2_1: i32) -> Arc<Async<i32>> {
-        Networking::method24(v0_1, v1_1, v2_1)
-    }
-    pub fn closure26(v0_1: Option<i32>, v1_1: string) -> Func1<i32, Arc<Async<i32>>> {
-        Func1::new({
-            let v0_1 = v0_1.clone();
-            let v1_1 = v1_1.clone();
-            move |v: i32| Networking::closure27(v0_1.clone(), v1_1.clone(), v)
-        })
-    }
-    pub fn closure25(unitVar: (), v0_1: Option<i32>) -> Func1<string, Func1<i32, Arc<Async<i32>>>> {
-        Func1::new({
-            let v0_1 = v0_1.clone();
-            move |v: string| Networking::closure26(v0_1.clone(), v)
-        })
-    }
-    pub fn v0() -> Func1<
+    pub fn v44() -> Func1<
         Networking::US0,
         (
             LrcPtr<Networking::Mut0>,
@@ -1401,7 +1378,7 @@ pub mod Networking {
             Option<i64>,
         ),
     > {
-        static v0: OnceInit<
+        static v44: OnceInit<
             Func1<
                 Networking::US0,
                 (
@@ -1413,55 +1390,55 @@ pub mod Networking {
                 ),
             >,
         > = OnceInit::new();
-        v0.get_or_init(|| Func1::new(move |v: Networking::US0| Networking::closure0((), v)))
+        v44.get_or_init(|| Func1::new(move |v: Networking::US0| Networking::closure0((), v)))
             .clone()
     }
-    pub fn v1() -> Networking::US0 {
-        static v1: OnceInit<Networking::US0> = OnceInit::new();
-        v1.get_or_init(|| Networking::US0::US0_0).clone()
+    pub fn v45() -> Networking::US0 {
+        static v45: OnceInit<Networking::US0> = OnceInit::new();
+        v45.get_or_init(|| Networking::US0::US0_0).clone()
     }
     on_startup!(
         if Networking::State::trace_state().get().clone().is_none() {
-            Networking::State::trace_state().set(Some((Networking::v0())(Networking::v1())));
+            Networking::State::trace_state().set(Some((Networking::v44())(Networking::v45())));
         }
     );
-    pub fn v2() -> Func1<string, Func1<i32, Arc<Async<bool>>>> {
-        static v2: OnceInit<Func1<string, Func1<i32, Arc<Async<bool>>>>> = OnceInit::new();
-        v2.get_or_init(|| Func1::new(move |v: string| Networking::closure2((), v)))
+    pub fn v51() -> Func1<string, Func1<i32, Arc<Async<bool>>>> {
+        static v51: OnceInit<Func1<string, Func1<i32, Arc<Async<bool>>>>> = OnceInit::new();
+        v51.get_or_init(|| Func1::new(move |v: string| Networking::closure2((), v)))
             .clone()
     }
     pub fn test_port_open(x: string) -> Func1<i32, Arc<Async<bool>>> {
-        (Networking::v2())(x)
+        (Networking::v51())(x)
     }
-    pub fn v3() -> Func1<i32, Func1<string, Func1<i32, Arc<Async<bool>>>>> {
-        static v3: OnceInit<Func1<i32, Func1<string, Func1<i32, Arc<Async<bool>>>>>> =
+    pub fn v52() -> Func1<i32, Func1<string, Func1<i32, Arc<Async<bool>>>>> {
+        static v52: OnceInit<Func1<i32, Func1<string, Func1<i32, Arc<Async<bool>>>>>> =
             OnceInit::new();
-        v3.get_or_init(|| Func1::new(move |v: i32| Networking::closure7((), v)))
+        v52.get_or_init(|| Func1::new(move |v: i32| Networking::closure7((), v)))
             .clone()
     }
     pub fn test_port_open_timeout(x: i32) -> Func1<string, Func1<i32, Arc<Async<bool>>>> {
-        (Networking::v3())(x)
+        (Networking::v52())(x)
     }
-    pub fn v4() -> Func1<Option<i32>, Func1<bool, Func1<string, Func1<i32, Arc<Async<i64>>>>>> {
-        static v4: OnceInit<
+    pub fn v53() -> Func1<Option<i32>, Func1<bool, Func1<string, Func1<i32, Arc<Async<i64>>>>>> {
+        static v53: OnceInit<
             Func1<Option<i32>, Func1<bool, Func1<string, Func1<i32, Arc<Async<i64>>>>>>,
         > = OnceInit::new();
-        v4.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure18((), v)))
+        v53.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure18((), v)))
             .clone()
     }
     pub fn wait_for_port_access(
         x: Option<i32>,
     ) -> Func1<bool, Func1<string, Func1<i32, Arc<Async<i64>>>>> {
-        (Networking::v4())(x)
+        (Networking::v53())(x)
     }
-    pub fn v5() -> Func1<Option<i32>, Func1<string, Func1<i32, Arc<Async<i32>>>>> {
-        static v5: OnceInit<Func1<Option<i32>, Func1<string, Func1<i32, Arc<Async<i32>>>>>> =
+    pub fn v54() -> Func1<Option<i32>, Func1<string, Func1<i32, Arc<Async<i32>>>>> {
+        static v54: OnceInit<Func1<Option<i32>, Func1<string, Func1<i32, Arc<Async<i32>>>>>> =
             OnceInit::new();
-        v5.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure25((), v)))
+        v54.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure25((), v)))
             .clone()
     }
     pub fn get_available_port(x: Option<i32>) -> Func1<string, Func1<i32, Arc<Async<i32>>>> {
-        (Networking::v5())(x)
+        (Networking::v54())(x)
     }
     on_startup!(());
 }

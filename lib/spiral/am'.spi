@@ -59,8 +59,9 @@ inl collect forall t r. (fn : t -> a int r) (items : a int t) : a int r =
     |> am.fold (++) (a ;[])
 
 /// ### init
-inl init n : a int _ =
+inl init n : array_base _ =
     am.init n id
+    |> fun (a x : _ int _) => x
 
 /// ### choose
 inl choose f l =
@@ -76,9 +77,10 @@ inl sum a =
     a |> am.fold (+) 0
 
 /// ### init_series
-inl init_series start end inc : a int _ =
+inl init_series start end inc : array_base _ =
     inl total = conv ((end - start) / inc) + 1
     am.init total (conv >> (*) inc >> (+) start)
+    |> fun (a x : _ int _) => x
 
 /// ### head
 inl head (ar : a _ _) =
@@ -102,11 +104,12 @@ inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
         | None => x |> fn
 
 /// ### indexed
-inl indexed forall t dim {int; number} dim' {int; number} u {number}. (ar : a dim t) : a dim' (u * t) =
-    ((0, a ;[]), ar)
+inl indexed forall t u {number}. (ar : array_base t) : array_base (u * t) =
+    ((0, a ;[]), (a ar : _ int _))
     ||> am.fold fun (i, acc) x =>
         i + 1, acc ++ a ;[i, x]
     |> snd
+    |> fun (a x : _ int _) => x
 
 /// ### slice
 inl slice forall dim {int; number} el. from nearTo s : a dim el =
@@ -328,27 +331,27 @@ inl new_vec forall t. (items : list t) : vec t =
 
 /// ### average
 inl average forall el {number}. (a : a _ el) : el =
-    a |> $'Array.average'
+    $'!a |> Array.average'
 
 /// ### distinct
 inl distinct forall dim el. (a : a dim el) : a dim el =
-    a |> $'Array.distinct'
+    $'!a |> Array.distinct'
 
 /// ### skip
 inl skip forall dim el. (n : dim) (a : a dim el) : a dim el =
-    a |> $'Array.skip' n
+    $'!a |> Array.skip !n '
 
 /// ### skip_while
 inl skip_while forall dim el. (fn : el -> bool) (a : a dim el) : a dim el =
-    a |> $'Array.skipWhile' fn
+    $'!a |> Array.skipWhile !fn '
 
 /// ### to_list'
 inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
-    items |> $'Array.toList'
+    $'!items |> Array.toList'
 
 /// ### parallel_map
 inl parallel_map forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
-    a |> $'Array.Parallel.map' fn
+    $'!a |> Array.Parallel.map !fn '
 
 /// ### map'
 inl map' forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
@@ -356,20 +359,20 @@ inl map' forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
 
 /// ### sort_by
 inl sort_by forall dim el. (fn : el -> _) (a : a dim el) : a dim el =
-    a |> $'Array.sortBy' fn
+    $'!a |> Array.sortBy !fn '
 
 /// ### sort
 inl sort forall dim el. (a : a dim el) : a dim el =
-    a |> $'Array.sort'
+    $'!a |> Array.sort'
 
 /// ### sort_descending
 inl sort_descending forall dim el. (a : a dim el) : a dim el =
-    a |> $'Array.sortDescending'
+    $'!a |> Array.sortDescending'
 
 /// ### transpose
-inl transpose forall dim el. (a : a dim (a dim el)) : a dim (a dim el) =
-    a |> $'Array.transpose'
+inl transpose forall el. (a : array_base (array_base el)) : array_base (array_base el) =
+    $'!a |> Array.transpose'
 
 /// ### try_item
 inl try_item forall dim el. (i : i32) (a : a dim el) : option el =
-    a |> $'Array.tryItem' i |> optionm'.unbox
+    $'!a |> Array.tryItem !i ' |> optionm'.unbox
