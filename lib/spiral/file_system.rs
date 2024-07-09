@@ -349,37 +349,37 @@ pub mod File_system {
     pub fn method2() -> string {
         string("")
     }
-    pub fn method1(v0_1: string) -> string {
-        let _v1: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v3_1: Result<std::string::String, std::env::VarError> = std::env::var(&*v0_1);
-        let v5_1: bool = true;
-        let _result = v3_1.map(|x| {
+    pub fn method1(v0: string) -> string {
+        let _v3: MutCell<Option<string>> = MutCell::new(None::<string>);
+        let v5: Result<std::string::String, std::env::VarError> = std::env::var(&*v0);
+        let v7: bool = true;
+        let _result = v5.map(|x| {
             //;
-            let v7_1: std::string::String = x;
-            let v9_1: string = fable_library_rust::String_::fromString(v7_1);
-            let v11_1: bool = true;
-            v9_1
+            let v9: std::string::String = x;
+            let v11: string = fable_library_rust::String_::fromString(v9);
+            let v13: bool = true;
+            v11
         });
-        let v13_1: Result<string, std::env::VarError> = _result;
-        let v14_1: string = File_system::method2();
+        let v15: Result<string, std::env::VarError> = _result;
+        let v16: string = File_system::method2();
         {
-            let x: string = v13_1.unwrap_or(v14_1);
-            _v1.set(Some(x))
+            let x: string = v15.unwrap_or(v16);
+            _v3.set(Some(x))
         }
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
         }
     }
     pub fn method3() -> string {
         string("AUTOMATION")
     }
-    pub fn closure1(unitVar: (), v0_1: string) {
+    pub fn closure1(unitVar: (), v0: string) {
         ();
     }
     pub fn closure0(
         unitVar: (),
-        v0_1: File_system::US0,
+        v0: File_system::US0,
     ) -> (
         LrcPtr<File_system::Mut0>,
         LrcPtr<File_system::Mut1>,
@@ -387,72 +387,72 @@ pub mod File_system {
         LrcPtr<File_system::Mut3>,
         Option<i64>,
     ) {
-        let _v1: MutCell<Option<(File_system::US1, File_system::US2)>> =
+        let _v3: MutCell<Option<(File_system::US1, File_system::US2)>> =
             MutCell::new(None::<(File_system::US1, File_system::US2)>);
-        let v3_1: string = File_system::method1(File_system::method0());
-        let v9_1: File_system::US1 = if string("Verbose") == v3_1.clone() {
+        let v5: string = File_system::method1(File_system::method0());
+        let v11: File_system::US1 = if string("Verbose") == v5.clone() {
             File_system::US1::US1_0(File_system::US0::US0_0)
         } else {
             File_system::US1::US1_1
         };
         {
             let x: (File_system::US1, File_system::US2) = (
-                match &v9_1 {
-                    File_system::US1::US1_0(v9_1_0_0) => File_system::US1::US1_0(match &v9_1 {
+                match &v11 {
+                    File_system::US1::US1_0(v11_0_0) => File_system::US1::US1_0(match &v11 {
                         File_system::US1::US1_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
                     _ => {
-                        let v17_1: File_system::US1 = if string("Debug") == v3_1.clone() {
+                        let v19: File_system::US1 = if string("Debug") == v5.clone() {
                             File_system::US1::US1_0(File_system::US0::US0_1)
                         } else {
                             File_system::US1::US1_1
                         };
-                        match &v17_1 {
-                            File_system::US1::US1_0(v17_1_0_0) => {
-                                File_system::US1::US1_0(match &v17_1 {
+                        match &v19 {
+                            File_system::US1::US1_0(v19_0_0) => {
+                                File_system::US1::US1_0(match &v19 {
                                     File_system::US1::US1_0(x) => x.clone(),
                                     _ => unreachable!(),
                                 })
                             }
                             _ => {
-                                let v25: File_system::US1 = if string("Info") == v3_1.clone() {
+                                let v27: File_system::US1 = if string("Info") == v5.clone() {
                                     File_system::US1::US1_0(File_system::US0::US0_2)
                                 } else {
                                     File_system::US1::US1_1
                                 };
-                                match &v25 {
-                                    File_system::US1::US1_0(v25_0_0) => {
-                                        File_system::US1::US1_0(match &v25 {
+                                match &v27 {
+                                    File_system::US1::US1_0(v27_0_0) => {
+                                        File_system::US1::US1_0(match &v27 {
                                             File_system::US1::US1_0(x) => x.clone(),
                                             _ => unreachable!(),
                                         })
                                     }
                                     _ => {
-                                        let v33: File_system::US1 =
-                                            if string("Warning") == v3_1.clone() {
+                                        let v35: File_system::US1 =
+                                            if string("Warning") == v5.clone() {
                                                 File_system::US1::US1_0(File_system::US0::US0_3)
                                             } else {
                                                 File_system::US1::US1_1
                                             };
-                                        match &v33 {
-                                            File_system::US1::US1_0(v33_0_0) => {
-                                                File_system::US1::US1_0(match &v33 {
+                                        match &v35 {
+                                            File_system::US1::US1_0(v35_0_0) => {
+                                                File_system::US1::US1_0(match &v35 {
                                                     File_system::US1::US1_0(x) => x.clone(),
                                                     _ => unreachable!(),
                                                 })
                                             }
                                             _ => {
-                                                let v41: File_system::US1 = if string("Critical")
-                                                    == v3_1.clone()
+                                                let v43: File_system::US1 = if string("Critical")
+                                                    == v5.clone()
                                                 {
                                                     File_system::US1::US1_0(File_system::US0::US0_4)
                                                 } else {
                                                     File_system::US1::US1_1
                                                 };
-                                                match &v41 {
-                                                    File_system::US1::US1_0(v41_0_0) => {
-                                                        File_system::US1::US1_0(match &v41 {
+                                                match &v43 {
+                                                    File_system::US1::US1_0(v43_0_0) => {
+                                                        File_system::US1::US1_0(match &v43 {
                                                             File_system::US1::US1_0(x) => x.clone(),
                                                             _ => unreachable!(),
                                                         })
@@ -476,15 +476,15 @@ pub mod File_system {
                     File_system::US2::US2_1
                 },
             );
-            _v1.set(Some(x))
+            _v3.set(Some(x))
         }
         {
-            let patternInput: (File_system::US1, File_system::US2) = match &_v1.get().clone() {
-                None => panic!("{}", string("base.run_target / _v1=None"),),
-                Some(_v1_0_0) => _v1_0_0.clone(),
+            let patternInput: (File_system::US1, File_system::US2) = match &_v3.get().clone() {
+                None => panic!("{}", string("base.run_target / _v3=None"),),
+                Some(_v3_0_0) => _v3_0_0.clone(),
             };
-            let v259: File_system::US2 = patternInput.1.clone();
-            let v258: File_system::US1 = patternInput.0.clone();
+            let v325: File_system::US2 = patternInput.1.clone();
+            let v324: File_system::US1 = patternInput.0.clone();
             (
                 LrcPtr::new(File_system::Mut0 {
                     l0: MutCell::new(0_i64),
@@ -496,16 +496,16 @@ pub mod File_system {
                     l0: MutCell::new(true),
                 }),
                 LrcPtr::new(File_system::Mut3 {
-                    l0: MutCell::new(match &v258 {
-                        File_system::US1::US1_0(v258_0_0) => match &v258 {
+                    l0: MutCell::new(match &v324 {
+                        File_system::US1::US1_0(v324_0_0) => match &v324 {
                             File_system::US1::US1_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
-                        _ => v0_1,
+                        _ => v0,
                     }),
                 }),
-                match &v259 {
-                    File_system::US2::US2_0(v259_0_0) => Some(match &v259 {
+                match &v325 {
+                    File_system::US2::US2_0(v325_0_0) => Some(match &v325 {
                         File_system::US2::US2_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
@@ -514,75 +514,75 @@ pub mod File_system {
             )
         }
     }
-    pub fn method6(v0_1: string) -> string {
-        v0_1
+    pub fn method6(v0: string) -> string {
+        v0
     }
-    pub fn method7(v0_1: string) -> bool {
-        let _v1: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-        let v3_1: &str = &*v0_1;
-        let v5_1: std::string::String = String::from(v3_1);
-        let v7_1: std::path::PathBuf = std::path::PathBuf::from(v5_1);
+    pub fn method7(v0: string) -> bool {
+        let _v3: MutCell<Option<bool>> = MutCell::new(None::<bool>);
+        let v5: &str = &*v0;
+        let v7: std::string::String = String::from(v5);
+        let v9: std::path::PathBuf = std::path::PathBuf::from(v7);
         {
-            let x: bool = if v7_1.clone().exists() {
+            let x: bool = if v9.clone().exists() {
                 true
             } else {
-                if v7_1.clone().is_dir() {
+                if v9.clone().is_dir() {
                     true
                 } else {
-                    v7_1.is_symlink()
+                    v9.is_symlink()
                 }
             };
-            _v1.set(Some(x))
+            _v3.set(Some(x))
         }
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
         }
     }
-    pub fn method5(v0_1: bool, v1_1: string) {
-        let _v2: MutCell<Option<()>> = MutCell::new(None::<()>);
-        let v3_1: string = File_system::method6(v1_1);
-        if File_system::method7(v3_1.clone()) {
-            if v0_1 {
-                std::fs::remove_dir_all(&*v3_1.clone()).unwrap();
+    pub fn method5(v0: bool, v1: string) {
+        let _v4: MutCell<Option<()>> = MutCell::new(None::<()>);
+        let v5: string = File_system::method6(v1);
+        if File_system::method7(v5.clone()) {
+            if v0 {
+                std::fs::remove_dir_all(&*v5.clone()).unwrap();
                 ()
             } else {
-                std::fs::remove_dir(&*v3_1).unwrap();
+                std::fs::remove_dir(&*v5).unwrap();
                 ()
             };
         }
-        _v2.set(Some(()));
-        match &_v2.get().clone() {
-            None => panic!("{}", string("base.run_target / _v2=None"),),
-            Some(_v2_0_0) => _v2_0_0.clone(),
+        _v4.set(Some(()));
+        match &_v4.get().clone() {
+            None => panic!("{}", string("base.run_target / _v4=None"),),
+            Some(_v4_0_0) => _v4_0_0.clone(),
         }
         ()
     }
     pub fn closure3(unitVar: (), unitVar_1: ()) -> string {
         string("file_system.delete_directory_async")
     }
-    pub fn method8(v0_1: string) -> string {
-        let _v1: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v3_1: &str = &*v0_1;
-        let v5_1: std::string::String = String::from(v3_1);
-        let v7_1: std::path::PathBuf = std::path::PathBuf::from(v5_1);
-        let v9_1: Option<&std::ffi::OsStr> = v7_1.file_name();
-        let v11_1: &std::ffi::OsStr = v9_1.unwrap();
-        let v13_1: std::ffi::OsString = v11_1.to_os_string();
-        let v15_1: Option<&str> = v13_1.to_str();
-        let v17_1: &str = v15_1.unwrap();
-        let v19_1: std::string::String = String::from(v17_1);
+    pub fn method8(v0: string) -> string {
+        let _v3: MutCell<Option<string>> = MutCell::new(None::<string>);
+        let v5: &str = &*v0;
+        let v7: std::string::String = String::from(v5);
+        let v9: std::path::PathBuf = std::path::PathBuf::from(v7);
+        let v11: Option<&std::ffi::OsStr> = v9.file_name();
+        let v13: &std::ffi::OsStr = v11.unwrap();
+        let v15: std::ffi::OsString = v13.to_os_string();
+        let v17: Option<&str> = v15.to_str();
+        let v19: &str = v17.unwrap();
+        let v21: std::string::String = String::from(v19);
         {
-            let x: string = fable_library_rust::String_::fromString(v19_1);
-            _v1.set(Some(x))
+            let x: string = fable_library_rust::String_::fromString(v21);
+            _v3.set(Some(x))
         }
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
         }
     }
-    pub fn closure4(v0_1: string, v1_1: string, unitVar: ()) -> (string, string) {
-        (v1_1, File_system::method8(v0_1))
+    pub fn closure4(v0: string, v1: string, unitVar: ()) -> (string, string) {
+        (v1, File_system::method8(v0))
     }
     pub fn method10() -> string {
         string("hh:mm:ss")
@@ -596,31 +596,31 @@ pub mod File_system {
     pub fn method13() -> string {
         string("\u{001b}[0m")
     }
-    pub fn method15(v0_1: LrcPtr<File_system::Mut4>, v1_1: string) {
-        let v2_1: string = sprintf!("{}", v1_1);
-        let v4_1: string = append(v0_1.l0.get().clone(), v2_1);
-        v0_1.l0.set(v4_1);
+    pub fn method15(v0: LrcPtr<File_system::Mut4>, v1: string) {
+        let v4: string = sprintf!("{}", v1);
+        let v12: string = append(v0.l0.get().clone(), v4);
+        v0.l0.set(v12);
         ()
     }
-    pub fn method16(v0_1: LrcPtr<File_system::Mut4>) {
+    pub fn method16(v0: LrcPtr<File_system::Mut4>) {
         ();
     }
-    pub fn method14(v0_1: LrcPtr<File_system::Mut4>, v1_1: string, v2_1: string) {
-        File_system::method15(v0_1.clone(), string("{ "));
-        File_system::method16(v0_1.clone());
-        File_system::method15(v0_1.clone(), string("ex"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v1_1);
-        File_system::method15(v0_1.clone(), string("; "));
-        File_system::method15(v0_1.clone(), string("path"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v2_1);
-        File_system::method15(v0_1, string(" }"))
+    pub fn method14(v0: LrcPtr<File_system::Mut4>, v1: string, v2: string) {
+        File_system::method15(v0.clone(), string("{ "));
+        File_system::method16(v0.clone());
+        File_system::method15(v0.clone(), string("ex"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v1);
+        File_system::method15(v0.clone(), string("; "));
+        File_system::method15(v0.clone(), string("path"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v2);
+        File_system::method15(v0, string(" }"))
     }
     pub fn closure5(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(string, string)>,
+        v0: File_system::US0,
+        v1: Func0<string>,
+        v2: Func0<(string, string)>,
         unitVar: (),
     ) -> string {
         if File_system::State::trace_state().get().clone().is_none() {
@@ -635,32 +635,32 @@ pub mod File_system {
                 LrcPtr<File_system::Mut3>,
                 Option<i64>,
             ) = getValue(File_system::State::trace_state().get().clone());
-            let v9_1: Option<i64> = patternInput.4.clone();
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let _v11: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
+            let v18: Option<i64> = patternInput.4.clone();
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v38: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
             {
-                let x_2: Option<File_system::US2> = match &v9_1 {
+                let x_2: Option<File_system::US2> = match &v18 {
                     None => None::<File_system::US2>,
-                    Some(v9_1_0_0) => {
-                        let x: i64 = v9_1_0_0.clone();
+                    Some(v18_0_0) => {
+                        let x: i64 = v18_0_0.clone();
                         Some((Func0::new({
                             let x = x.clone();
                             move || File_system::US2::US2_0(x)
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v38.set(x_2)
             }
             {
-                let v16_1: File_system::US2 =
-                    defaultValue(File_system::US2::US2_1, _v11.get().clone());
-                let v35: DateTime = match &v16_1 {
-                    File_system::US2::US2_0(v16_1_0_0) => {
-                        let v23: TimeSpan = TimeSpan::new_ticks(
+                let v65: File_system::US2 =
+                    defaultValue(File_system::US2::US2_1, _v38.get().clone());
+                let v163: DateTime = match &v65 {
+                    File_system::US2::US2_0(v65_0_0) => {
+                        let v97_1: TimeSpan = TimeSpan::new_ticks(
                             {
                                 let _arg: DateTime = DateTime::now();
                                 _arg.ticks()
-                            } - match &v16_1 {
+                            } - match &v65 {
                                 File_system::US2::US2_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -669,10 +669,10 @@ pub mod File_system {
                             1_i32,
                             1_i32,
                             1_i32,
-                            v23.hours(),
-                            v23.minutes(),
-                            v23.seconds(),
-                            v23.milliseconds(),
+                            v97_1.hours(),
+                            v97_1.minutes(),
+                            v97_1.seconds(),
+                            v97_1.milliseconds(),
                         )
                     }
                     _ => DateTime::now(),
@@ -680,16 +680,16 @@ pub mod File_system {
                 {
                     let x_3: string = {
                         let provider: string = File_system::method10();
-                        v35.toString(provider)
+                        v163.toString(provider)
                     };
-                    _v10.set(Some(x_3))
+                    _v35.set(Some(x_3))
                 }
                 {
-                    let v152: string = match &_v10.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v10=None"),),
-                        Some(_v10_0_0) => _v10_0_0.clone(),
+                    let v772: string = match &_v35.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v35=None"),),
+                        Some(_v35_0_0) => _v35_0_0.clone(),
                     };
-                    let v159: File_system::US3 = if if let File_system::US0::US0_0 = &v0_1 {
+                    let v931: File_system::US3 = if if let File_system::US0::US0_0 = &v0 {
                         true
                     } else {
                         false
@@ -698,13 +698,13 @@ pub mod File_system {
                     } else {
                         File_system::US3::US3_1
                     };
-                    let v208: File_system::US3 = match &v159 {
-                        File_system::US3::US3_0(v159_0_0) => File_system::US3::US3_0(match &v159 {
+                    let v980: File_system::US3 = match &v931 {
+                        File_system::US3::US3_0(v931_0_0) => File_system::US3::US3_0(match &v931 {
                             File_system::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         }),
                         _ => {
-                            let v168: File_system::US3 = if if let File_system::US0::US0_1 = &v0_1 {
+                            let v940: File_system::US3 = if if let File_system::US0::US0_1 = &v0 {
                                 true
                             } else {
                                 false
@@ -713,16 +713,16 @@ pub mod File_system {
                             } else {
                                 File_system::US3::US3_1
                             };
-                            match &v168 {
-                                File_system::US3::US3_0(v168_0_0) => {
-                                    File_system::US3::US3_0(match &v168 {
+                            match &v940 {
+                                File_system::US3::US3_0(v940_0_0) => {
+                                    File_system::US3::US3_0(match &v940 {
                                         File_system::US3::US3_0(x) => x.clone(),
                                         _ => unreachable!(),
                                     })
                                 }
                                 _ => {
-                                    let v177: File_system::US3 =
-                                        if if let File_system::US0::US0_2 = &v0_1 {
+                                    let v949: File_system::US3 =
+                                        if if let File_system::US0::US0_2 = &v0 {
                                             true
                                         } else {
                                             false
@@ -731,16 +731,16 @@ pub mod File_system {
                                         } else {
                                             File_system::US3::US3_1
                                         };
-                                    match &v177 {
-                                        File_system::US3::US3_0(v177_0_0) => {
-                                            File_system::US3::US3_0(match &v177 {
+                                    match &v949 {
+                                        File_system::US3::US3_0(v949_0_0) => {
+                                            File_system::US3::US3_0(match &v949 {
                                                 File_system::US3::US3_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
                                         }
                                         _ => {
-                                            let v186: File_system::US3 =
-                                                if if let File_system::US0::US0_3 = &v0_1 {
+                                            let v958: File_system::US3 =
+                                                if if let File_system::US0::US0_3 = &v0 {
                                                     true
                                                 } else {
                                                     false
@@ -749,16 +749,16 @@ pub mod File_system {
                                                 } else {
                                                     File_system::US3::US3_1
                                                 };
-                                            match &v186 {
-                                                File_system::US3::US3_0(v186_0_0) => {
-                                                    File_system::US3::US3_0(match &v186 {
+                                            match &v958 {
+                                                File_system::US3::US3_0(v958_0_0) => {
+                                                    File_system::US3::US3_0(match &v958 {
                                                         File_system::US3::US3_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     })
                                                 }
                                                 _ => {
-                                                    let v195: File_system::US3 =
-                                                        if if let File_system::US0::US0_4 = &v0_1 {
+                                                    let v967: File_system::US3 =
+                                                        if if let File_system::US0::US0_4 = &v0 {
                                                             true
                                                         } else {
                                                             false
@@ -769,9 +769,9 @@ pub mod File_system {
                                                         } else {
                                                             File_system::US3::US3_1
                                                         };
-                                                    match &v195 {
-                                                        File_system::US3::US3_0(v195_0_0) => {
-                                                            File_system::US3::US3_0(match &v195 {
+                                                    match &v967 {
+                                                        File_system::US3::US3_0(v967_0_0) => {
+                                                            File_system::US3::US3_0(match &v967 {
                                                                 File_system::US3::US3_0(x) => {
                                                                     x.clone()
                                                                 }
@@ -788,9 +788,9 @@ pub mod File_system {
                             }
                         }
                     };
-                    let v215: string = padLeft(
-                        toLower(match &v208 {
-                            File_system::US3::US3_0(v208_0_0) => match &v208 {
+                    let v997: string = padLeft(
+                        toLower(match &v980 {
+                            File_system::US3::US3_0(v980_0_0) => match &v980 {
                                 File_system::US3::US3_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -799,42 +799,42 @@ pub mod File_system {
                         7_i32,
                         ' ',
                     );
-                    let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v231: &str = match &v0_1 {
+                    let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v1044: &str = match &v0 {
                         File_system::US0::US0_1 => inline_colorization::color_bright_blue,
                         File_system::US0::US0_2 => inline_colorization::color_bright_green,
                         File_system::US0::US0_0 => inline_colorization::color_bright_black,
                         File_system::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v233: &str = &*v215;
-                    let v235: &str = inline_colorization::color_reset;
-                    let v237: string = string("format!(\"{v231}{v233}{v235}\")");
-                    let v238: std::string::String = format!("{v231}{v233}{v235}");
+                    let v1046: &str = &*v997;
+                    let v1048: &str = inline_colorization::color_reset;
+                    let v1050: string = string("format!(\"{v1044}{v1046}{v1048}\")");
+                    let v1051: std::string::String = format!("{v1044}{v1046}{v1048}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v238);
-                        _v216.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v1051);
+                        _v1029.set(Some(x_5))
                     }
                     {
-                        let v328: string = match &_v216.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v216=None"),),
-                            Some(_v216_0_0) => _v216_0_0.clone(),
+                        let v1141: string = match &_v1029.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v1029=None"),),
+                            Some(_v1029_0_0) => _v1029_0_0.clone(),
                         };
-                        let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                        let patternInput_1: (string, string) = v2_1();
-                        let v333: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
+                        let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                        let patternInput_1: (string, string) = v2();
+                        let v1164: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
                             l0: MutCell::new(string("")),
                         });
                         File_system::method14(
-                            v333.clone(),
+                            v1164.clone(),
                             patternInput_1.0.clone(),
                             patternInput_1.1.clone(),
                         );
                         {
-                            let v334: string = v333.l0.get().clone();
+                            let v1165: string = v1164.l0.get().clone();
                             trimEndChars(
                                 trimStartChars(
-                                    sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v334),
+                                    sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1165),
                                     toArray(empty::<char>()),
                                 ),
                                 toArray(ofArray(new_array(&[' ', '/']))),
@@ -845,8 +845,8 @@ pub mod File_system {
             }
         }
     }
-    pub fn method17(v0_1: File_system::US0, v1_1: Func0<string>) {
-        fn v2_1(
+    pub fn method17(v0: File_system::US0, v1: Func0<string>) {
+        fn v4(
             v: File_system::US0,
         ) -> (
             LrcPtr<File_system::Mut0>,
@@ -858,7 +858,7 @@ pub mod File_system {
             File_system::closure0((), v)
         }
         if File_system::State::trace_state().get().clone().is_none() {
-            File_system::State::trace_state().set(Some(v2_1(File_system::US0::US0_0)));
+            File_system::State::trace_state().set(Some(v4(File_system::US0::US0_0)));
         }
         {
             let patternInput: (
@@ -868,9 +868,9 @@ pub mod File_system {
                 LrcPtr<File_system::Mut3>,
                 Option<i64>,
             ) = getValue(File_system::State::trace_state().get().clone());
-            let v4_1: LrcPtr<File_system::Mut0> = patternInput.0.clone();
+            let v13: LrcPtr<File_system::Mut0> = patternInput.0.clone();
             if File_system::State::trace_state().get().clone().is_none() {
-                File_system::State::trace_state().set(Some(v2_1(File_system::US0::US0_0)));
+                File_system::State::trace_state().set(Some(v4(File_system::US0::US0_0)));
             }
             {
                 let patternInput_1: (
@@ -880,12 +880,12 @@ pub mod File_system {
                     LrcPtr<File_system::Mut3>,
                     Option<i64>,
                 ) = getValue(File_system::State::trace_state().get().clone());
-                let v15_1: File_system::US0 = (patternInput_1.3.clone()).l0.get().clone();
+                let v61: File_system::US0 = (patternInput_1.3.clone()).l0.get().clone();
                 if if (patternInput_1.2.clone()).l0.get().clone() == false {
                     false
                 } else {
                     find(
-                        v0_1,
+                        v0,
                         ofSeq(ofList(ofArray(new_array(&[
                             LrcPtr::new((File_system::US0::US0_0, 0_i32)),
                             LrcPtr::new((File_system::US0::US0_1, 1_i32)),
@@ -894,7 +894,7 @@ pub mod File_system {
                             LrcPtr::new((File_system::US0::US0_4, 4_i32)),
                         ])))),
                     ) >= find(
-                        v15_1,
+                        v61,
                         ofSeq(ofList(ofArray(new_array(&[
                             LrcPtr::new((File_system::US0::US0_0, 0_i32)),
                             LrcPtr::new((File_system::US0::US0_1, 1_i32)),
@@ -904,334 +904,35 @@ pub mod File_system {
                         ])))),
                     )
                 } {
-                    let v23: i64 = v4_1.l0.get().clone() + 1_i64;
-                    v4_1.l0.set(v23);
+                    let v69: i64 = v13.l0.get().clone() + 1_i64;
+                    v13.l0.set(v69);
                     {
-                        let v24: string = sprintf!("{}", v1_1());
-                        let _v25: MutCell<Option<()>> = MutCell::new(None::<()>);
-                        println!("{}", v24.clone());
-                        _v25.set(Some(()));
-                        match &_v25.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v25=None"),),
-                            Some(_v25_0_0) => _v25_0_0.clone(),
+                        let v72: string = sprintf!("{}", v1());
+                        let _v81: MutCell<Option<()>> = MutCell::new(None::<()>);
+                        println!("{}", v72.clone());
+                        _v81.set(Some(()));
+                        match &_v81.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v81=None"),),
+                            Some(_v81_0_0) => _v81_0_0.clone(),
                         }
-                        ((patternInput.1.clone()).l0.get().clone())(v24)
+                        ((patternInput.1.clone()).l0.get().clone())(v72)
                     }
                 }
             }
         }
     }
-    pub fn method9(v0_1: File_system::US0, v1_1: Func0<string>, v2_1: Func0<(string, string)>) {
+    pub fn method9(v0: File_system::US0, v1: Func0<string>, v2: Func0<(string, string)>) {
         File_system::method17(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || File_system::closure5(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || File_system::closure5(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
-    pub fn method4(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
-        let _v2: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
-        {
-            let x: Arc<Async<i64>> = defaultOf();
-            _v2.set(Some(x))
-        }
-        match &_v2.get().clone() {
-            None => panic!("{}", string("base.run_target / _v2=None"),),
-            Some(_v2_0_0) => _v2_0_0.clone(),
-        }
-    }
-    pub fn closure2(unitVar: (), v0_1: string) -> Arc<Async<i64>> {
-        let _v1: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
-        {
-            let x: Arc<Async<i64>> = defaultOf();
-            _v1.set(Some(x))
-        }
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
-        }
-    }
-    pub fn closure8(unitVar: (), unitVar_1: ()) -> string {
-        string("file_system.wait_for_file_access")
-    }
-    pub fn closure9(v0_1: string, v1_1: i64, v2_1: string, unitVar: ()) -> (string, i64, string) {
-        (File_system::method8(v0_1), v1_1, v2_1)
-    }
-    pub fn method21(v0_1: LrcPtr<File_system::Mut4>, v1_1: i64) {
-        let v2_1: string = sprintf!("{}", v1_1);
-        let v4_1: string = append(v0_1.l0.get().clone(), v2_1);
-        v0_1.l0.set(v4_1);
-        ()
-    }
-    pub fn method20(v0_1: LrcPtr<File_system::Mut4>, v1_1: string, v2_1: i64, v3_1: string) {
-        File_system::method15(v0_1.clone(), string("{ "));
-        File_system::method16(v0_1.clone());
-        File_system::method15(v0_1.clone(), string("path"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v1_1);
-        File_system::method15(v0_1.clone(), string("; "));
-        File_system::method15(v0_1.clone(), string("retry"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method21(v0_1.clone(), v2_1);
-        File_system::method15(v0_1.clone(), string("; "));
-        File_system::method15(v0_1.clone(), string("ex"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v3_1);
-        File_system::method15(v0_1, string(" }"))
-    }
-    pub fn closure10(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(string, i64, string)>,
-        unitVar: (),
-    ) -> string {
-        if File_system::State::trace_state().get().clone().is_none() {
-            File_system::State::trace_state()
-                .set(Some(File_system::closure0((), File_system::US0::US0_0)));
-        }
-        {
-            let patternInput: (
-                LrcPtr<File_system::Mut0>,
-                LrcPtr<File_system::Mut1>,
-                LrcPtr<File_system::Mut2>,
-                LrcPtr<File_system::Mut3>,
-                Option<i64>,
-            ) = getValue(File_system::State::trace_state().get().clone());
-            let v9_1: Option<i64> = patternInput.4.clone();
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let _v11: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
-            {
-                let x_2: Option<File_system::US2> = match &v9_1 {
-                    None => None::<File_system::US2>,
-                    Some(v9_1_0_0) => {
-                        let x: i64 = v9_1_0_0.clone();
-                        Some((Func0::new({
-                            let x = x.clone();
-                            move || File_system::US2::US2_0(x)
-                        }))())
-                    }
-                };
-                _v11.set(x_2)
-            }
-            {
-                let v16_1: File_system::US2 =
-                    defaultValue(File_system::US2::US2_1, _v11.get().clone());
-                let v35: DateTime = match &v16_1 {
-                    File_system::US2::US2_0(v16_1_0_0) => {
-                        let v23: TimeSpan = TimeSpan::new_ticks(
-                            {
-                                let _arg: DateTime = DateTime::now();
-                                _arg.ticks()
-                            } - match &v16_1 {
-                                File_system::US2::US2_0(x) => x.clone(),
-                                _ => unreachable!(),
-                            },
-                        );
-                        DateTime::new_ymdhms_milli(
-                            1_i32,
-                            1_i32,
-                            1_i32,
-                            v23.hours(),
-                            v23.minutes(),
-                            v23.seconds(),
-                            v23.milliseconds(),
-                        )
-                    }
-                    _ => DateTime::now(),
-                };
-                {
-                    let x_3: string = {
-                        let provider: string = File_system::method10();
-                        v35.toString(provider)
-                    };
-                    _v10.set(Some(x_3))
-                }
-                {
-                    let v152: string = match &_v10.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v10=None"),),
-                        Some(_v10_0_0) => _v10_0_0.clone(),
-                    };
-                    let v159: File_system::US3 = if if let File_system::US0::US0_0 = &v0_1 {
-                        true
-                    } else {
-                        false
-                    } {
-                        File_system::US3::US3_0(string("Verbose"))
-                    } else {
-                        File_system::US3::US3_1
-                    };
-                    let v208: File_system::US3 = match &v159 {
-                        File_system::US3::US3_0(v159_0_0) => File_system::US3::US3_0(match &v159 {
-                            File_system::US3::US3_0(x) => x.clone(),
-                            _ => unreachable!(),
-                        }),
-                        _ => {
-                            let v168: File_system::US3 = if if let File_system::US0::US0_1 = &v0_1 {
-                                true
-                            } else {
-                                false
-                            } {
-                                File_system::US3::US3_0(string("Debug"))
-                            } else {
-                                File_system::US3::US3_1
-                            };
-                            match &v168 {
-                                File_system::US3::US3_0(v168_0_0) => {
-                                    File_system::US3::US3_0(match &v168 {
-                                        File_system::US3::US3_0(x) => x.clone(),
-                                        _ => unreachable!(),
-                                    })
-                                }
-                                _ => {
-                                    let v177: File_system::US3 =
-                                        if if let File_system::US0::US0_2 = &v0_1 {
-                                            true
-                                        } else {
-                                            false
-                                        } {
-                                            File_system::US3::US3_0(string("Info"))
-                                        } else {
-                                            File_system::US3::US3_1
-                                        };
-                                    match &v177 {
-                                        File_system::US3::US3_0(v177_0_0) => {
-                                            File_system::US3::US3_0(match &v177 {
-                                                File_system::US3::US3_0(x) => x.clone(),
-                                                _ => unreachable!(),
-                                            })
-                                        }
-                                        _ => {
-                                            let v186: File_system::US3 =
-                                                if if let File_system::US0::US0_3 = &v0_1 {
-                                                    true
-                                                } else {
-                                                    false
-                                                } {
-                                                    File_system::US3::US3_0(string("Warning"))
-                                                } else {
-                                                    File_system::US3::US3_1
-                                                };
-                                            match &v186 {
-                                                File_system::US3::US3_0(v186_0_0) => {
-                                                    File_system::US3::US3_0(match &v186 {
-                                                        File_system::US3::US3_0(x) => x.clone(),
-                                                        _ => unreachable!(),
-                                                    })
-                                                }
-                                                _ => {
-                                                    let v195: File_system::US3 =
-                                                        if if let File_system::US0::US0_4 = &v0_1 {
-                                                            true
-                                                        } else {
-                                                            false
-                                                        } {
-                                                            File_system::US3::US3_0(string(
-                                                                "Critical",
-                                                            ))
-                                                        } else {
-                                                            File_system::US3::US3_1
-                                                        };
-                                                    match &v195 {
-                                                        File_system::US3::US3_0(v195_0_0) => {
-                                                            File_system::US3::US3_0(match &v195 {
-                                                                File_system::US3::US3_0(x) => {
-                                                                    x.clone()
-                                                                }
-                                                                _ => unreachable!(),
-                                                            })
-                                                        }
-                                                        _ => File_system::US3::US3_1,
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    };
-                    let v215: string = padLeft(
-                        toLower(match &v208 {
-                            File_system::US3::US3_0(v208_0_0) => match &v208 {
-                                File_system::US3::US3_0(x) => x.clone(),
-                                _ => unreachable!(),
-                            },
-                            _ => panic!("{}", string("Option does not have a value."),),
-                        }),
-                        7_i32,
-                        ' ',
-                    );
-                    let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v231: &str = match &v0_1 {
-                        File_system::US0::US0_1 => inline_colorization::color_bright_blue,
-                        File_system::US0::US0_2 => inline_colorization::color_bright_green,
-                        File_system::US0::US0_0 => inline_colorization::color_bright_black,
-                        File_system::US0::US0_3 => inline_colorization::color_yellow,
-                        _ => inline_colorization::color_bright_red,
-                    };
-                    let v233: &str = &*v215;
-                    let v235: &str = inline_colorization::color_reset;
-                    let v237: string = string("format!(\"{v231}{v233}{v235}\")");
-                    let v238: std::string::String = format!("{v231}{v233}{v235}");
-                    {
-                        let x_5: string = fable_library_rust::String_::fromString(v238);
-                        _v216.set(Some(x_5))
-                    }
-                    {
-                        let v328: string = match &_v216.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v216=None"),),
-                            Some(_v216_0_0) => _v216_0_0.clone(),
-                        };
-                        let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                        let patternInput_1: (string, i64, string) = v2_1();
-                        let v334: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
-                            l0: MutCell::new(string("")),
-                        });
-                        File_system::method20(
-                            v334.clone(),
-                            patternInput_1.0.clone(),
-                            patternInput_1.1.clone(),
-                            patternInput_1.2.clone(),
-                        );
-                        {
-                            let v335: string = v334.l0.get().clone();
-                            trimEndChars(
-                                trimStartChars(
-                                    sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v335),
-                                    toArray(empty::<char>()),
-                                ),
-                                toArray(ofArray(new_array(&[' ', '/']))),
-                            )
-                        }
-                    }
-                }
-            }
-        }
-    }
-    pub fn method19(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(string, i64, string)>,
-    ) {
-        File_system::method17(
-            v0_1.clone(),
-            Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || File_system::closure10(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
-            }),
-        );
-    }
-    pub fn method18(
-        v0_1: string,
-        v1_1: File_system::US8,
-        v2_1: File_system::US7,
-        v3_1: i64,
-    ) -> Arc<Async<i64>> {
+    pub fn method4(v0: string, v1: i64) -> Arc<Async<i64>> {
         let _v4: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
         {
             let x: Arc<Async<i64>> = defaultOf();
@@ -1242,191 +943,49 @@ pub mod File_system {
             Some(_v4_0_0) => _v4_0_0.clone(),
         }
     }
-    pub fn closure7(v0_1: File_system::US6, v1_1: string) -> Arc<Async<i64>> {
-        let _v2: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
+    pub fn closure2(unitVar: (), v0: string) -> Arc<Async<i64>> {
+        let _v3: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
         {
             let x: Arc<Async<i64>> = defaultOf();
-            _v2.set(Some(x))
-        }
-        match &_v2.get().clone() {
-            None => panic!("{}", string("base.run_target / _v2=None"),),
-            Some(_v2_0_0) => _v2_0_0.clone(),
-        }
-    }
-    pub fn closure6(unitVar: (), v0_1: File_system::US6) -> Func1<string, Arc<Async<i64>>> {
-        Func1::new({
-            let v0_1 = v0_1.clone();
-            move |v: string| File_system::closure7(v0_1.clone(), v)
-        })
-    }
-    pub fn method22(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
-        let _v2: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
-        {
-            let x: Arc<Async<i64>> = defaultOf();
-            _v2.set(Some(x))
-        }
-        match &_v2.get().clone() {
-            None => panic!("{}", string("base.run_target / _v2=None"),),
-            Some(_v2_0_0) => _v2_0_0.clone(),
-        }
-    }
-    pub fn closure11(unitVar: (), v0_1: string) -> Arc<Async<i64>> {
-        let _v1: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
-        {
-            let x: Arc<Async<i64>> = defaultOf();
-            _v1.set(Some(x))
-        }
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
-        }
-    }
-    pub fn closure12(unitVar: (), v0_1: string) -> Arc<Async<string>> {
-        let _v1: MutCell<Option<Arc<Async<string>>>> = MutCell::new(None::<Arc<Async<string>>>);
-        {
-            let x: Arc<Async<string>> = defaultOf();
-            _v1.set(Some(x))
-        }
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
-        }
-    }
-    pub fn method24(v0_1: string) -> bool {
-        let _v1: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-        let v3_1: &str = &*v0_1;
-        let v5_1: std::string::String = String::from(v3_1);
-        let v7_1: std::path::PathBuf = std::path::PathBuf::from(v5_1);
-        {
-            let x: bool = if v7_1.clone().exists() {
-                v7_1.is_file()
-            } else {
-                false
-            };
-            _v1.set(Some(x))
-        }
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
-        }
-    }
-    pub fn method25(v0_1: Vec<u8>) -> Vec<u8> {
-        v0_1
-    }
-    pub fn method23(v0_1: string, v1_1: string) -> bool {
-        let _v2: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-        {
-            let x_4: bool = if File_system::method24(v0_1.clone()) == false {
-                false
-            } else {
-                let _v5: MutCell<Option<string>> = MutCell::new(None::<string>);
-                let _v6: MutCell<Option<Vec<u8>>> = MutCell::new(None::<Vec<u8>>);
-                {
-                    let x: Vec<u8> = std::fs::read(&*v0_1).unwrap();
-                    _v6.set(Some(x))
-                }
-                {
-                    let v17_1: Vec<u8> = File_system::method25(match &_v6.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v6=None"),),
-                        Some(_v6_0_0) => _v6_0_0.clone(),
-                    });
-                    let v19_1: Result<std::string::String, std::string::FromUtf8Error> =
-                        std::string::String::from_utf8(v17_1);
-                    let v21: std::string::String = v19_1.unwrap();
-                    {
-                        let x_2: string = fable_library_rust::String_::fromString(v21);
-                        _v5.set(Some(x_2))
-                    }
-                    v1_1 == match &_v5.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v5=None"),),
-                        Some(_v5_0_0) => _v5_0_0.clone(),
-                    }
-                }
-            };
-            _v2.set(Some(x_4))
-        }
-        match &_v2.get().clone() {
-            None => panic!("{}", string("base.run_target / _v2=None"),),
-            Some(_v2_0_0) => _v2_0_0.clone(),
-        }
-    }
-    pub fn closure14(v0_1: string, v1_1: string) -> bool {
-        File_system::method23(v0_1, v1_1)
-    }
-    pub fn closure13(unitVar: (), v0_1: string) -> Func1<string, bool> {
-        Func1::new({
-            let v0_1 = v0_1.clone();
-            move |v: string| File_system::closure14(v0_1.clone(), v)
-        })
-    }
-    pub fn closure16(v0_1: string, v1_1: string) -> Arc<Async<()>> {
-        let _v2: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
-        {
-            let x: Arc<Async<()>> = defaultOf();
-            _v2.set(Some(x))
-        }
-        match &_v2.get().clone() {
-            None => panic!("{}", string("base.run_target / _v2=None"),),
-            Some(_v2_0_0) => _v2_0_0.clone(),
-        }
-    }
-    pub fn closure15(unitVar: (), v0_1: string) -> Func1<string, Arc<Async<()>>> {
-        Func1::new({
-            let v0_1 = v0_1.clone();
-            move |v: string| File_system::closure16(v0_1.clone(), v)
-        })
-    }
-    pub fn closure18(v0_1: string, v1_1: string) -> Arc<Async<()>> {
-        let _v2: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
-        {
-            let x: Arc<Async<()>> = defaultOf();
-            _v2.set(Some(x))
-        }
-        match &_v2.get().clone() {
-            None => panic!("{}", string("base.run_target / _v2=None"),),
-            Some(_v2_0_0) => _v2_0_0.clone(),
-        }
-    }
-    pub fn closure17(unitVar: (), v0_1: string) -> Func1<string, Arc<Async<()>>> {
-        Func1::new({
-            let v0_1 = v0_1.clone();
-            move |v: string| File_system::closure18(v0_1.clone(), v)
-        })
-    }
-    pub fn closure20(unitVar: (), unitVar_1: ()) -> string {
-        string("delete_file_async")
-    }
-    pub fn closure21(v0_1: string, v1_1: LrcPtr<Exception>, unitVar: ()) -> (string, string) {
-        let v2_1: string = File_system::method8(v0_1);
-        let _v3: MutCell<Option<string>> = MutCell::new(None::<string>);
-        {
-            let x: string = sprintf!("{:?}", v1_1);
             _v3.set(Some(x))
         }
-        (
-            v2_1,
-            match &_v3.get().clone() {
-                None => panic!("{}", string("base.run_target / _v3=None"),),
-                Some(_v3_0_0) => _v3_0_0.clone(),
-            },
-        )
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
+        }
     }
-    pub fn method28(v0_1: LrcPtr<File_system::Mut4>, v1_1: string, v2_1: string) {
-        File_system::method15(v0_1.clone(), string("{ "));
-        File_system::method16(v0_1.clone());
-        File_system::method15(v0_1.clone(), string("path"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v1_1);
-        File_system::method15(v0_1.clone(), string("; "));
-        File_system::method15(v0_1.clone(), string("ex"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v2_1);
-        File_system::method15(v0_1, string(" }"))
+    pub fn closure8(unitVar: (), unitVar_1: ()) -> string {
+        string("file_system.wait_for_file_access")
     }
-    pub fn closure22(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(string, string)>,
+    pub fn closure9(v0: string, v1: i64, v2: string, unitVar: ()) -> (string, i64, string) {
+        (File_system::method8(v0), v1, v2)
+    }
+    pub fn method21(v0: LrcPtr<File_system::Mut4>, v1: i64) {
+        let v4: string = sprintf!("{}", v1);
+        let v12: string = append(v0.l0.get().clone(), v4);
+        v0.l0.set(v12);
+        ()
+    }
+    pub fn method20(v0: LrcPtr<File_system::Mut4>, v1: string, v2: i64, v3: string) {
+        File_system::method15(v0.clone(), string("{ "));
+        File_system::method16(v0.clone());
+        File_system::method15(v0.clone(), string("path"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v1);
+        File_system::method15(v0.clone(), string("; "));
+        File_system::method15(v0.clone(), string("retry"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method21(v0.clone(), v2);
+        File_system::method15(v0.clone(), string("; "));
+        File_system::method15(v0.clone(), string("ex"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v3);
+        File_system::method15(v0, string(" }"))
+    }
+    pub fn closure10(
+        v0: File_system::US0,
+        v1: Func0<string>,
+        v2: Func0<(string, i64, string)>,
         unitVar: (),
     ) -> string {
         if File_system::State::trace_state().get().clone().is_none() {
@@ -1441,32 +1000,32 @@ pub mod File_system {
                 LrcPtr<File_system::Mut3>,
                 Option<i64>,
             ) = getValue(File_system::State::trace_state().get().clone());
-            let v9_1: Option<i64> = patternInput.4.clone();
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let _v11: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
+            let v18: Option<i64> = patternInput.4.clone();
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v38: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
             {
-                let x_2: Option<File_system::US2> = match &v9_1 {
+                let x_2: Option<File_system::US2> = match &v18 {
                     None => None::<File_system::US2>,
-                    Some(v9_1_0_0) => {
-                        let x: i64 = v9_1_0_0.clone();
+                    Some(v18_0_0) => {
+                        let x: i64 = v18_0_0.clone();
                         Some((Func0::new({
                             let x = x.clone();
                             move || File_system::US2::US2_0(x)
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v38.set(x_2)
             }
             {
-                let v16_1: File_system::US2 =
-                    defaultValue(File_system::US2::US2_1, _v11.get().clone());
-                let v35: DateTime = match &v16_1 {
-                    File_system::US2::US2_0(v16_1_0_0) => {
-                        let v23: TimeSpan = TimeSpan::new_ticks(
+                let v65: File_system::US2 =
+                    defaultValue(File_system::US2::US2_1, _v38.get().clone());
+                let v163: DateTime = match &v65 {
+                    File_system::US2::US2_0(v65_0_0) => {
+                        let v97_1: TimeSpan = TimeSpan::new_ticks(
                             {
                                 let _arg: DateTime = DateTime::now();
                                 _arg.ticks()
-                            } - match &v16_1 {
+                            } - match &v65 {
                                 File_system::US2::US2_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -1475,10 +1034,10 @@ pub mod File_system {
                             1_i32,
                             1_i32,
                             1_i32,
-                            v23.hours(),
-                            v23.minutes(),
-                            v23.seconds(),
-                            v23.milliseconds(),
+                            v97_1.hours(),
+                            v97_1.minutes(),
+                            v97_1.seconds(),
+                            v97_1.milliseconds(),
                         )
                     }
                     _ => DateTime::now(),
@@ -1486,16 +1045,16 @@ pub mod File_system {
                 {
                     let x_3: string = {
                         let provider: string = File_system::method10();
-                        v35.toString(provider)
+                        v163.toString(provider)
                     };
-                    _v10.set(Some(x_3))
+                    _v35.set(Some(x_3))
                 }
                 {
-                    let v152: string = match &_v10.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v10=None"),),
-                        Some(_v10_0_0) => _v10_0_0.clone(),
+                    let v772: string = match &_v35.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v35=None"),),
+                        Some(_v35_0_0) => _v35_0_0.clone(),
                     };
-                    let v159: File_system::US3 = if if let File_system::US0::US0_0 = &v0_1 {
+                    let v931: File_system::US3 = if if let File_system::US0::US0_0 = &v0 {
                         true
                     } else {
                         false
@@ -1504,13 +1063,13 @@ pub mod File_system {
                     } else {
                         File_system::US3::US3_1
                     };
-                    let v208: File_system::US3 = match &v159 {
-                        File_system::US3::US3_0(v159_0_0) => File_system::US3::US3_0(match &v159 {
+                    let v980: File_system::US3 = match &v931 {
+                        File_system::US3::US3_0(v931_0_0) => File_system::US3::US3_0(match &v931 {
                             File_system::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         }),
                         _ => {
-                            let v168: File_system::US3 = if if let File_system::US0::US0_1 = &v0_1 {
+                            let v940: File_system::US3 = if if let File_system::US0::US0_1 = &v0 {
                                 true
                             } else {
                                 false
@@ -1519,16 +1078,16 @@ pub mod File_system {
                             } else {
                                 File_system::US3::US3_1
                             };
-                            match &v168 {
-                                File_system::US3::US3_0(v168_0_0) => {
-                                    File_system::US3::US3_0(match &v168 {
+                            match &v940 {
+                                File_system::US3::US3_0(v940_0_0) => {
+                                    File_system::US3::US3_0(match &v940 {
                                         File_system::US3::US3_0(x) => x.clone(),
                                         _ => unreachable!(),
                                     })
                                 }
                                 _ => {
-                                    let v177: File_system::US3 =
-                                        if if let File_system::US0::US0_2 = &v0_1 {
+                                    let v949: File_system::US3 =
+                                        if if let File_system::US0::US0_2 = &v0 {
                                             true
                                         } else {
                                             false
@@ -1537,16 +1096,16 @@ pub mod File_system {
                                         } else {
                                             File_system::US3::US3_1
                                         };
-                                    match &v177 {
-                                        File_system::US3::US3_0(v177_0_0) => {
-                                            File_system::US3::US3_0(match &v177 {
+                                    match &v949 {
+                                        File_system::US3::US3_0(v949_0_0) => {
+                                            File_system::US3::US3_0(match &v949 {
                                                 File_system::US3::US3_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
                                         }
                                         _ => {
-                                            let v186: File_system::US3 =
-                                                if if let File_system::US0::US0_3 = &v0_1 {
+                                            let v958: File_system::US3 =
+                                                if if let File_system::US0::US0_3 = &v0 {
                                                     true
                                                 } else {
                                                     false
@@ -1555,16 +1114,16 @@ pub mod File_system {
                                                 } else {
                                                     File_system::US3::US3_1
                                                 };
-                                            match &v186 {
-                                                File_system::US3::US3_0(v186_0_0) => {
-                                                    File_system::US3::US3_0(match &v186 {
+                                            match &v958 {
+                                                File_system::US3::US3_0(v958_0_0) => {
+                                                    File_system::US3::US3_0(match &v958 {
                                                         File_system::US3::US3_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     })
                                                 }
                                                 _ => {
-                                                    let v195: File_system::US3 =
-                                                        if if let File_system::US0::US0_4 = &v0_1 {
+                                                    let v967: File_system::US3 =
+                                                        if if let File_system::US0::US0_4 = &v0 {
                                                             true
                                                         } else {
                                                             false
@@ -1575,9 +1134,9 @@ pub mod File_system {
                                                         } else {
                                                             File_system::US3::US3_1
                                                         };
-                                                    match &v195 {
-                                                        File_system::US3::US3_0(v195_0_0) => {
-                                                            File_system::US3::US3_0(match &v195 {
+                                                    match &v967 {
+                                                        File_system::US3::US3_0(v967_0_0) => {
+                                                            File_system::US3::US3_0(match &v967 {
                                                                 File_system::US3::US3_0(x) => {
                                                                     x.clone()
                                                                 }
@@ -1594,9 +1153,9 @@ pub mod File_system {
                             }
                         }
                     };
-                    let v215: string = padLeft(
-                        toLower(match &v208 {
-                            File_system::US3::US3_0(v208_0_0) => match &v208 {
+                    let v997: string = padLeft(
+                        toLower(match &v980 {
+                            File_system::US3::US3_0(v980_0_0) => match &v980 {
                                 File_system::US3::US3_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -1605,42 +1164,43 @@ pub mod File_system {
                         7_i32,
                         ' ',
                     );
-                    let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v231: &str = match &v0_1 {
+                    let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v1044: &str = match &v0 {
                         File_system::US0::US0_1 => inline_colorization::color_bright_blue,
                         File_system::US0::US0_2 => inline_colorization::color_bright_green,
                         File_system::US0::US0_0 => inline_colorization::color_bright_black,
                         File_system::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v233: &str = &*v215;
-                    let v235: &str = inline_colorization::color_reset;
-                    let v237: string = string("format!(\"{v231}{v233}{v235}\")");
-                    let v238: std::string::String = format!("{v231}{v233}{v235}");
+                    let v1046: &str = &*v997;
+                    let v1048: &str = inline_colorization::color_reset;
+                    let v1050: string = string("format!(\"{v1044}{v1046}{v1048}\")");
+                    let v1051: std::string::String = format!("{v1044}{v1046}{v1048}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v238);
-                        _v216.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v1051);
+                        _v1029.set(Some(x_5))
                     }
                     {
-                        let v328: string = match &_v216.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v216=None"),),
-                            Some(_v216_0_0) => _v216_0_0.clone(),
+                        let v1141: string = match &_v1029.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v1029=None"),),
+                            Some(_v1029_0_0) => _v1029_0_0.clone(),
                         };
-                        let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                        let patternInput_1: (string, string) = v2_1();
-                        let v333: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
+                        let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                        let patternInput_1: (string, i64, string) = v2();
+                        let v1165: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
                             l0: MutCell::new(string("")),
                         });
-                        File_system::method28(
-                            v333.clone(),
+                        File_system::method20(
+                            v1165.clone(),
                             patternInput_1.0.clone(),
                             patternInput_1.1.clone(),
+                            patternInput_1.2.clone(),
                         );
                         {
-                            let v334: string = v333.l0.get().clone();
+                            let v1166: string = v1165.l0.get().clone();
                             trimEndChars(
                                 trimStartChars(
-                                    sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v334),
+                                    sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1166),
                                     toArray(empty::<char>()),
                                 ),
                                 toArray(ofArray(new_array(&[' ', '/']))),
@@ -1651,78 +1211,218 @@ pub mod File_system {
             }
         }
     }
-    pub fn method27(v0_1: File_system::US0, v1_1: Func0<string>, v2_1: Func0<(string, string)>) {
+    pub fn method19(v0: File_system::US0, v1: Func0<string>, v2: Func0<(string, i64, string)>) {
         File_system::method17(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || File_system::closure22(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || File_system::closure10(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
-    pub fn method26(v0_1: string, v1_1: i64) -> Arc<Async<i64>> {
-        let _v2: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
+    pub fn method18(
+        v0: string,
+        v1: File_system::US8,
+        v2: File_system::US7,
+        v3: i64,
+    ) -> Arc<Async<i64>> {
+        let _v6: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
         {
             let x: Arc<Async<i64>> = defaultOf();
-            _v2.set(Some(x))
+            _v6.set(Some(x))
         }
-        match &_v2.get().clone() {
-            None => panic!("{}", string("base.run_target / _v2=None"),),
-            Some(_v2_0_0) => _v2_0_0.clone(),
+        match &_v6.get().clone() {
+            None => panic!("{}", string("base.run_target / _v6=None"),),
+            Some(_v6_0_0) => _v6_0_0.clone(),
         }
     }
-    pub fn closure19(unitVar: (), v0_1: string) -> Arc<Async<i64>> {
-        let _v1: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
+    pub fn closure7(v0: File_system::US6, v1: string) -> Arc<Async<i64>> {
+        let _v4: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
         {
             let x: Arc<Async<i64>> = defaultOf();
-            _v1.set(Some(x))
+            _v4.set(Some(x))
         }
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
+        match &_v4.get().clone() {
+            None => panic!("{}", string("base.run_target / _v4=None"),),
+            Some(_v4_0_0) => _v4_0_0.clone(),
         }
     }
-    pub fn closure25(unitVar: (), unitVar_1: ()) -> string {
-        string("move_file_async")
+    pub fn closure6(unitVar: (), v0: File_system::US6) -> Func1<string, Arc<Async<i64>>> {
+        Func1::new({
+            let v0 = v0.clone();
+            move |v: string| File_system::closure7(v0.clone(), v)
+        })
     }
-    pub fn closure26(
-        v0_1: string,
-        v1_1: string,
-        v2_1: LrcPtr<Exception>,
-        unitVar: (),
-    ) -> (string, string, LrcPtr<Exception>) {
-        (File_system::method8(v1_1), File_system::method8(v0_1), v2_1)
+    pub fn method22(v0: string, v1: i64) -> Arc<Async<i64>> {
+        let _v4: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
+        {
+            let x: Arc<Async<i64>> = defaultOf();
+            _v4.set(Some(x))
+        }
+        match &_v4.get().clone() {
+            None => panic!("{}", string("base.run_target / _v4=None"),),
+            Some(_v4_0_0) => _v4_0_0.clone(),
+        }
     }
-    pub fn method32(v0_1: LrcPtr<File_system::Mut4>, v1_1: LrcPtr<Exception>) {
-        File_system::method15(v0_1, sprintf!("{:?}", v1_1));
+    pub fn closure11(unitVar: (), v0: string) -> Arc<Async<i64>> {
+        let _v3: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
+        {
+            let x: Arc<Async<i64>> = defaultOf();
+            _v3.set(Some(x))
+        }
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
+        }
     }
-    pub fn method31(
-        v0_1: LrcPtr<File_system::Mut4>,
-        v1_1: string,
-        v2_1: string,
-        v3_1: LrcPtr<Exception>,
-    ) {
-        File_system::method15(v0_1.clone(), string("{ "));
-        File_system::method16(v0_1.clone());
-        File_system::method15(v0_1.clone(), string("old_path"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v1_1);
-        File_system::method15(v0_1.clone(), string("; "));
-        File_system::method15(v0_1.clone(), string("new_path"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v2_1);
-        File_system::method15(v0_1.clone(), string("; "));
-        File_system::method15(v0_1.clone(), string("ex"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method32(v0_1.clone(), v3_1);
-        File_system::method15(v0_1, string(" }"))
+    pub fn closure12(unitVar: (), v0: string) -> Arc<Async<string>> {
+        let _v3: MutCell<Option<Arc<Async<string>>>> = MutCell::new(None::<Arc<Async<string>>>);
+        {
+            let x: Arc<Async<string>> = defaultOf();
+            _v3.set(Some(x))
+        }
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
+        }
     }
-    pub fn closure27(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(string, string, LrcPtr<Exception>)>,
+    pub fn method24(v0: string) -> bool {
+        let _v3: MutCell<Option<bool>> = MutCell::new(None::<bool>);
+        let v5: &str = &*v0;
+        let v7: std::string::String = String::from(v5);
+        let v9: std::path::PathBuf = std::path::PathBuf::from(v7);
+        {
+            let x: bool = if v9.clone().exists() {
+                v9.is_file()
+            } else {
+                false
+            };
+            _v3.set(Some(x))
+        }
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
+        }
+    }
+    pub fn method25(v0: Vec<u8>) -> Vec<u8> {
+        v0
+    }
+    pub fn method23(v0: string, v1: string) -> bool {
+        let _v4: MutCell<Option<bool>> = MutCell::new(None::<bool>);
+        {
+            let x_4: bool = if File_system::method24(v0.clone()) == false {
+                false
+            } else {
+                let _v9: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let _v12: MutCell<Option<Vec<u8>>> = MutCell::new(None::<Vec<u8>>);
+                {
+                    let x: Vec<u8> = std::fs::read(&*v0).unwrap();
+                    _v12.set(Some(x))
+                }
+                {
+                    let v69: Vec<u8> = File_system::method25(match &_v12.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v12=None"),),
+                        Some(_v12_0_0) => _v12_0_0.clone(),
+                    });
+                    let v71: Result<std::string::String, std::string::FromUtf8Error> =
+                        std::string::String::from_utf8(v69);
+                    let v73: std::string::String = v71.unwrap();
+                    {
+                        let x_2: string = fable_library_rust::String_::fromString(v73);
+                        _v9.set(Some(x_2))
+                    }
+                    v1 == match &_v9.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v9=None"),),
+                        Some(_v9_0_0) => _v9_0_0.clone(),
+                    }
+                }
+            };
+            _v4.set(Some(x_4))
+        }
+        match &_v4.get().clone() {
+            None => panic!("{}", string("base.run_target / _v4=None"),),
+            Some(_v4_0_0) => _v4_0_0.clone(),
+        }
+    }
+    pub fn closure14(v0: string, v1: string) -> bool {
+        File_system::method23(v0, v1)
+    }
+    pub fn closure13(unitVar: (), v0: string) -> Func1<string, bool> {
+        Func1::new({
+            let v0 = v0.clone();
+            move |v: string| File_system::closure14(v0.clone(), v)
+        })
+    }
+    pub fn closure16(v0: string, v1: string) -> Arc<Async<()>> {
+        let _v4: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
+        {
+            let x: Arc<Async<()>> = defaultOf();
+            _v4.set(Some(x))
+        }
+        match &_v4.get().clone() {
+            None => panic!("{}", string("base.run_target / _v4=None"),),
+            Some(_v4_0_0) => _v4_0_0.clone(),
+        }
+    }
+    pub fn closure15(unitVar: (), v0: string) -> Func1<string, Arc<Async<()>>> {
+        Func1::new({
+            let v0 = v0.clone();
+            move |v: string| File_system::closure16(v0.clone(), v)
+        })
+    }
+    pub fn closure18(v0: string, v1: string) -> Arc<Async<()>> {
+        let _v4: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
+        {
+            let x: Arc<Async<()>> = defaultOf();
+            _v4.set(Some(x))
+        }
+        match &_v4.get().clone() {
+            None => panic!("{}", string("base.run_target / _v4=None"),),
+            Some(_v4_0_0) => _v4_0_0.clone(),
+        }
+    }
+    pub fn closure17(unitVar: (), v0: string) -> Func1<string, Arc<Async<()>>> {
+        Func1::new({
+            let v0 = v0.clone();
+            move |v: string| File_system::closure18(v0.clone(), v)
+        })
+    }
+    pub fn closure20(unitVar: (), unitVar_1: ()) -> string {
+        string("delete_file_async")
+    }
+    pub fn closure21(v0: string, v1: LrcPtr<Exception>, unitVar: ()) -> (string, string) {
+        let v2: string = File_system::method8(v0);
+        let _v5: MutCell<Option<string>> = MutCell::new(None::<string>);
+        {
+            let x: string = sprintf!("{:?}", v1);
+            _v5.set(Some(x))
+        }
+        (
+            v2,
+            match &_v5.get().clone() {
+                None => panic!("{}", string("base.run_target / _v5=None"),),
+                Some(_v5_0_0) => _v5_0_0.clone(),
+            },
+        )
+    }
+    pub fn method28(v0: LrcPtr<File_system::Mut4>, v1: string, v2: string) {
+        File_system::method15(v0.clone(), string("{ "));
+        File_system::method16(v0.clone());
+        File_system::method15(v0.clone(), string("path"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v1);
+        File_system::method15(v0.clone(), string("; "));
+        File_system::method15(v0.clone(), string("ex"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v2);
+        File_system::method15(v0, string(" }"))
+    }
+    pub fn closure22(
+        v0: File_system::US0,
+        v1: Func0<string>,
+        v2: Func0<(string, string)>,
         unitVar: (),
     ) -> string {
         if File_system::State::trace_state().get().clone().is_none() {
@@ -1737,32 +1437,32 @@ pub mod File_system {
                 LrcPtr<File_system::Mut3>,
                 Option<i64>,
             ) = getValue(File_system::State::trace_state().get().clone());
-            let v9_1: Option<i64> = patternInput.4.clone();
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let _v11: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
+            let v18: Option<i64> = patternInput.4.clone();
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v38: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
             {
-                let x_2: Option<File_system::US2> = match &v9_1 {
+                let x_2: Option<File_system::US2> = match &v18 {
                     None => None::<File_system::US2>,
-                    Some(v9_1_0_0) => {
-                        let x: i64 = v9_1_0_0.clone();
+                    Some(v18_0_0) => {
+                        let x: i64 = v18_0_0.clone();
                         Some((Func0::new({
                             let x = x.clone();
                             move || File_system::US2::US2_0(x)
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v38.set(x_2)
             }
             {
-                let v16_1: File_system::US2 =
-                    defaultValue(File_system::US2::US2_1, _v11.get().clone());
-                let v35: DateTime = match &v16_1 {
-                    File_system::US2::US2_0(v16_1_0_0) => {
-                        let v23: TimeSpan = TimeSpan::new_ticks(
+                let v65: File_system::US2 =
+                    defaultValue(File_system::US2::US2_1, _v38.get().clone());
+                let v163: DateTime = match &v65 {
+                    File_system::US2::US2_0(v65_0_0) => {
+                        let v97_1: TimeSpan = TimeSpan::new_ticks(
                             {
                                 let _arg: DateTime = DateTime::now();
                                 _arg.ticks()
-                            } - match &v16_1 {
+                            } - match &v65 {
                                 File_system::US2::US2_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -1771,10 +1471,10 @@ pub mod File_system {
                             1_i32,
                             1_i32,
                             1_i32,
-                            v23.hours(),
-                            v23.minutes(),
-                            v23.seconds(),
-                            v23.milliseconds(),
+                            v97_1.hours(),
+                            v97_1.minutes(),
+                            v97_1.seconds(),
+                            v97_1.milliseconds(),
                         )
                     }
                     _ => DateTime::now(),
@@ -1782,16 +1482,16 @@ pub mod File_system {
                 {
                     let x_3: string = {
                         let provider: string = File_system::method10();
-                        v35.toString(provider)
+                        v163.toString(provider)
                     };
-                    _v10.set(Some(x_3))
+                    _v35.set(Some(x_3))
                 }
                 {
-                    let v152: string = match &_v10.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v10=None"),),
-                        Some(_v10_0_0) => _v10_0_0.clone(),
+                    let v772: string = match &_v35.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v35=None"),),
+                        Some(_v35_0_0) => _v35_0_0.clone(),
                     };
-                    let v159: File_system::US3 = if if let File_system::US0::US0_0 = &v0_1 {
+                    let v931: File_system::US3 = if if let File_system::US0::US0_0 = &v0 {
                         true
                     } else {
                         false
@@ -1800,13 +1500,13 @@ pub mod File_system {
                     } else {
                         File_system::US3::US3_1
                     };
-                    let v208: File_system::US3 = match &v159 {
-                        File_system::US3::US3_0(v159_0_0) => File_system::US3::US3_0(match &v159 {
+                    let v980: File_system::US3 = match &v931 {
+                        File_system::US3::US3_0(v931_0_0) => File_system::US3::US3_0(match &v931 {
                             File_system::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         }),
                         _ => {
-                            let v168: File_system::US3 = if if let File_system::US0::US0_1 = &v0_1 {
+                            let v940: File_system::US3 = if if let File_system::US0::US0_1 = &v0 {
                                 true
                             } else {
                                 false
@@ -1815,16 +1515,16 @@ pub mod File_system {
                             } else {
                                 File_system::US3::US3_1
                             };
-                            match &v168 {
-                                File_system::US3::US3_0(v168_0_0) => {
-                                    File_system::US3::US3_0(match &v168 {
+                            match &v940 {
+                                File_system::US3::US3_0(v940_0_0) => {
+                                    File_system::US3::US3_0(match &v940 {
                                         File_system::US3::US3_0(x) => x.clone(),
                                         _ => unreachable!(),
                                     })
                                 }
                                 _ => {
-                                    let v177: File_system::US3 =
-                                        if if let File_system::US0::US0_2 = &v0_1 {
+                                    let v949: File_system::US3 =
+                                        if if let File_system::US0::US0_2 = &v0 {
                                             true
                                         } else {
                                             false
@@ -1833,16 +1533,16 @@ pub mod File_system {
                                         } else {
                                             File_system::US3::US3_1
                                         };
-                                    match &v177 {
-                                        File_system::US3::US3_0(v177_0_0) => {
-                                            File_system::US3::US3_0(match &v177 {
+                                    match &v949 {
+                                        File_system::US3::US3_0(v949_0_0) => {
+                                            File_system::US3::US3_0(match &v949 {
                                                 File_system::US3::US3_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
                                         }
                                         _ => {
-                                            let v186: File_system::US3 =
-                                                if if let File_system::US0::US0_3 = &v0_1 {
+                                            let v958: File_system::US3 =
+                                                if if let File_system::US0::US0_3 = &v0 {
                                                     true
                                                 } else {
                                                     false
@@ -1851,16 +1551,16 @@ pub mod File_system {
                                                 } else {
                                                     File_system::US3::US3_1
                                                 };
-                                            match &v186 {
-                                                File_system::US3::US3_0(v186_0_0) => {
-                                                    File_system::US3::US3_0(match &v186 {
+                                            match &v958 {
+                                                File_system::US3::US3_0(v958_0_0) => {
+                                                    File_system::US3::US3_0(match &v958 {
                                                         File_system::US3::US3_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     })
                                                 }
                                                 _ => {
-                                                    let v195: File_system::US3 =
-                                                        if if let File_system::US0::US0_4 = &v0_1 {
+                                                    let v967: File_system::US3 =
+                                                        if if let File_system::US0::US0_4 = &v0 {
                                                             true
                                                         } else {
                                                             false
@@ -1871,9 +1571,9 @@ pub mod File_system {
                                                         } else {
                                                             File_system::US3::US3_1
                                                         };
-                                                    match &v195 {
-                                                        File_system::US3::US3_0(v195_0_0) => {
-                                                            File_system::US3::US3_0(match &v195 {
+                                                    match &v967 {
+                                                        File_system::US3::US3_0(v967_0_0) => {
+                                                            File_system::US3::US3_0(match &v967 {
                                                                 File_system::US3::US3_0(x) => {
                                                                     x.clone()
                                                                 }
@@ -1890,9 +1590,9 @@ pub mod File_system {
                             }
                         }
                     };
-                    let v215: string = padLeft(
-                        toLower(match &v208 {
-                            File_system::US3::US3_0(v208_0_0) => match &v208 {
+                    let v997: string = padLeft(
+                        toLower(match &v980 {
+                            File_system::US3::US3_0(v980_0_0) => match &v980 {
                                 File_system::US3::US3_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -1901,43 +1601,334 @@ pub mod File_system {
                         7_i32,
                         ' ',
                     );
-                    let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v231: &str = match &v0_1 {
+                    let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v1044: &str = match &v0 {
                         File_system::US0::US0_1 => inline_colorization::color_bright_blue,
                         File_system::US0::US0_2 => inline_colorization::color_bright_green,
                         File_system::US0::US0_0 => inline_colorization::color_bright_black,
                         File_system::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v233: &str = &*v215;
-                    let v235: &str = inline_colorization::color_reset;
-                    let v237: string = string("format!(\"{v231}{v233}{v235}\")");
-                    let v238: std::string::String = format!("{v231}{v233}{v235}");
+                    let v1046: &str = &*v997;
+                    let v1048: &str = inline_colorization::color_reset;
+                    let v1050: string = string("format!(\"{v1044}{v1046}{v1048}\")");
+                    let v1051: std::string::String = format!("{v1044}{v1046}{v1048}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v238);
-                        _v216.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v1051);
+                        _v1029.set(Some(x_5))
                     }
                     {
-                        let v328: string = match &_v216.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v216=None"),),
-                            Some(_v216_0_0) => _v216_0_0.clone(),
+                        let v1141: string = match &_v1029.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v1029=None"),),
+                            Some(_v1029_0_0) => _v1029_0_0.clone(),
                         };
-                        let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                        let patternInput_1: (string, string, LrcPtr<Exception>) = v2_1();
-                        let v334: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
+                        let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                        let patternInput_1: (string, string) = v2();
+                        let v1164: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
+                            l0: MutCell::new(string("")),
+                        });
+                        File_system::method28(
+                            v1164.clone(),
+                            patternInput_1.0.clone(),
+                            patternInput_1.1.clone(),
+                        );
+                        {
+                            let v1165: string = v1164.l0.get().clone();
+                            trimEndChars(
+                                trimStartChars(
+                                    sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1165),
+                                    toArray(empty::<char>()),
+                                ),
+                                toArray(ofArray(new_array(&[' ', '/']))),
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+    pub fn method27(v0: File_system::US0, v1: Func0<string>, v2: Func0<(string, string)>) {
+        File_system::method17(
+            v0.clone(),
+            Func0::new({
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || File_system::closure22(v0.clone(), v1.clone(), v2.clone(), ())
+            }),
+        );
+    }
+    pub fn method26(v0: string, v1: i64) -> Arc<Async<i64>> {
+        let _v4: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
+        {
+            let x: Arc<Async<i64>> = defaultOf();
+            _v4.set(Some(x))
+        }
+        match &_v4.get().clone() {
+            None => panic!("{}", string("base.run_target / _v4=None"),),
+            Some(_v4_0_0) => _v4_0_0.clone(),
+        }
+    }
+    pub fn closure19(unitVar: (), v0: string) -> Arc<Async<i64>> {
+        let _v3: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
+        {
+            let x: Arc<Async<i64>> = defaultOf();
+            _v3.set(Some(x))
+        }
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
+        }
+    }
+    pub fn closure25(unitVar: (), unitVar_1: ()) -> string {
+        string("move_file_async")
+    }
+    pub fn closure26(
+        v0: string,
+        v1: string,
+        v2: LrcPtr<Exception>,
+        unitVar: (),
+    ) -> (string, string, LrcPtr<Exception>) {
+        (File_system::method8(v1), File_system::method8(v0), v2)
+    }
+    pub fn method32(v0: LrcPtr<File_system::Mut4>, v1: LrcPtr<Exception>) {
+        File_system::method15(v0, sprintf!("{:?}", v1));
+    }
+    pub fn method31(v0: LrcPtr<File_system::Mut4>, v1: string, v2: string, v3: LrcPtr<Exception>) {
+        File_system::method15(v0.clone(), string("{ "));
+        File_system::method16(v0.clone());
+        File_system::method15(v0.clone(), string("old_path"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v1);
+        File_system::method15(v0.clone(), string("; "));
+        File_system::method15(v0.clone(), string("new_path"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v2);
+        File_system::method15(v0.clone(), string("; "));
+        File_system::method15(v0.clone(), string("ex"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method32(v0.clone(), v3);
+        File_system::method15(v0, string(" }"))
+    }
+    pub fn closure27(
+        v0: File_system::US0,
+        v1: Func0<string>,
+        v2: Func0<(string, string, LrcPtr<Exception>)>,
+        unitVar: (),
+    ) -> string {
+        if File_system::State::trace_state().get().clone().is_none() {
+            File_system::State::trace_state()
+                .set(Some(File_system::closure0((), File_system::US0::US0_0)));
+        }
+        {
+            let patternInput: (
+                LrcPtr<File_system::Mut0>,
+                LrcPtr<File_system::Mut1>,
+                LrcPtr<File_system::Mut2>,
+                LrcPtr<File_system::Mut3>,
+                Option<i64>,
+            ) = getValue(File_system::State::trace_state().get().clone());
+            let v18: Option<i64> = patternInput.4.clone();
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v38: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
+            {
+                let x_2: Option<File_system::US2> = match &v18 {
+                    None => None::<File_system::US2>,
+                    Some(v18_0_0) => {
+                        let x: i64 = v18_0_0.clone();
+                        Some((Func0::new({
+                            let x = x.clone();
+                            move || File_system::US2::US2_0(x)
+                        }))())
+                    }
+                };
+                _v38.set(x_2)
+            }
+            {
+                let v65: File_system::US2 =
+                    defaultValue(File_system::US2::US2_1, _v38.get().clone());
+                let v163: DateTime = match &v65 {
+                    File_system::US2::US2_0(v65_0_0) => {
+                        let v97_1: TimeSpan = TimeSpan::new_ticks(
+                            {
+                                let _arg: DateTime = DateTime::now();
+                                _arg.ticks()
+                            } - match &v65 {
+                                File_system::US2::US2_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            },
+                        );
+                        DateTime::new_ymdhms_milli(
+                            1_i32,
+                            1_i32,
+                            1_i32,
+                            v97_1.hours(),
+                            v97_1.minutes(),
+                            v97_1.seconds(),
+                            v97_1.milliseconds(),
+                        )
+                    }
+                    _ => DateTime::now(),
+                };
+                {
+                    let x_3: string = {
+                        let provider: string = File_system::method10();
+                        v163.toString(provider)
+                    };
+                    _v35.set(Some(x_3))
+                }
+                {
+                    let v772: string = match &_v35.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v35=None"),),
+                        Some(_v35_0_0) => _v35_0_0.clone(),
+                    };
+                    let v931: File_system::US3 = if if let File_system::US0::US0_0 = &v0 {
+                        true
+                    } else {
+                        false
+                    } {
+                        File_system::US3::US3_0(string("Verbose"))
+                    } else {
+                        File_system::US3::US3_1
+                    };
+                    let v980: File_system::US3 = match &v931 {
+                        File_system::US3::US3_0(v931_0_0) => File_system::US3::US3_0(match &v931 {
+                            File_system::US3::US3_0(x) => x.clone(),
+                            _ => unreachable!(),
+                        }),
+                        _ => {
+                            let v940: File_system::US3 = if if let File_system::US0::US0_1 = &v0 {
+                                true
+                            } else {
+                                false
+                            } {
+                                File_system::US3::US3_0(string("Debug"))
+                            } else {
+                                File_system::US3::US3_1
+                            };
+                            match &v940 {
+                                File_system::US3::US3_0(v940_0_0) => {
+                                    File_system::US3::US3_0(match &v940 {
+                                        File_system::US3::US3_0(x) => x.clone(),
+                                        _ => unreachable!(),
+                                    })
+                                }
+                                _ => {
+                                    let v949: File_system::US3 =
+                                        if if let File_system::US0::US0_2 = &v0 {
+                                            true
+                                        } else {
+                                            false
+                                        } {
+                                            File_system::US3::US3_0(string("Info"))
+                                        } else {
+                                            File_system::US3::US3_1
+                                        };
+                                    match &v949 {
+                                        File_system::US3::US3_0(v949_0_0) => {
+                                            File_system::US3::US3_0(match &v949 {
+                                                File_system::US3::US3_0(x) => x.clone(),
+                                                _ => unreachable!(),
+                                            })
+                                        }
+                                        _ => {
+                                            let v958: File_system::US3 =
+                                                if if let File_system::US0::US0_3 = &v0 {
+                                                    true
+                                                } else {
+                                                    false
+                                                } {
+                                                    File_system::US3::US3_0(string("Warning"))
+                                                } else {
+                                                    File_system::US3::US3_1
+                                                };
+                                            match &v958 {
+                                                File_system::US3::US3_0(v958_0_0) => {
+                                                    File_system::US3::US3_0(match &v958 {
+                                                        File_system::US3::US3_0(x) => x.clone(),
+                                                        _ => unreachable!(),
+                                                    })
+                                                }
+                                                _ => {
+                                                    let v967: File_system::US3 =
+                                                        if if let File_system::US0::US0_4 = &v0 {
+                                                            true
+                                                        } else {
+                                                            false
+                                                        } {
+                                                            File_system::US3::US3_0(string(
+                                                                "Critical",
+                                                            ))
+                                                        } else {
+                                                            File_system::US3::US3_1
+                                                        };
+                                                    match &v967 {
+                                                        File_system::US3::US3_0(v967_0_0) => {
+                                                            File_system::US3::US3_0(match &v967 {
+                                                                File_system::US3::US3_0(x) => {
+                                                                    x.clone()
+                                                                }
+                                                                _ => unreachable!(),
+                                                            })
+                                                        }
+                                                        _ => File_system::US3::US3_1,
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+                    let v997: string = padLeft(
+                        toLower(match &v980 {
+                            File_system::US3::US3_0(v980_0_0) => match &v980 {
+                                File_system::US3::US3_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            },
+                            _ => panic!("{}", string("Option does not have a value."),),
+                        }),
+                        7_i32,
+                        ' ',
+                    );
+                    let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v1044: &str = match &v0 {
+                        File_system::US0::US0_1 => inline_colorization::color_bright_blue,
+                        File_system::US0::US0_2 => inline_colorization::color_bright_green,
+                        File_system::US0::US0_0 => inline_colorization::color_bright_black,
+                        File_system::US0::US0_3 => inline_colorization::color_yellow,
+                        _ => inline_colorization::color_bright_red,
+                    };
+                    let v1046: &str = &*v997;
+                    let v1048: &str = inline_colorization::color_reset;
+                    let v1050: string = string("format!(\"{v1044}{v1046}{v1048}\")");
+                    let v1051: std::string::String = format!("{v1044}{v1046}{v1048}");
+                    {
+                        let x_5: string = fable_library_rust::String_::fromString(v1051);
+                        _v1029.set(Some(x_5))
+                    }
+                    {
+                        let v1141: string = match &_v1029.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v1029=None"),),
+                            Some(_v1029_0_0) => _v1029_0_0.clone(),
+                        };
+                        let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                        let patternInput_1: (string, string, LrcPtr<Exception>) = v2();
+                        let v1165: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
                             l0: MutCell::new(string("")),
                         });
                         File_system::method31(
-                            v334.clone(),
+                            v1165.clone(),
                             patternInput_1.0.clone(),
                             patternInput_1.1.clone(),
                             patternInput_1.2.clone(),
                         );
                         {
-                            let v335: string = v334.l0.get().clone();
+                            let v1166: string = v1165.l0.get().clone();
                             trimEndChars(
                                 trimStartChars(
-                                    sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v335),
+                                    sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1166),
                                     toArray(empty::<char>()),
                                 ),
                                 toArray(ofArray(new_array(&[' ', '/']))),
@@ -1949,53 +1940,53 @@ pub mod File_system {
         }
     }
     pub fn method30(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(string, string, LrcPtr<Exception>)>,
+        v0: File_system::US0,
+        v1: Func0<string>,
+        v2: Func0<(string, string, LrcPtr<Exception>)>,
     ) {
         File_system::method17(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || File_system::closure27(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || File_system::closure27(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
-    pub fn method29(v0_1: string, v1_1: string, v2_1: i64) -> Arc<Async<i64>> {
-        let _v3: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
+    pub fn method29(v0: string, v1: string, v2: i64) -> Arc<Async<i64>> {
+        let _v5: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
         {
             let x: Arc<Async<i64>> = defaultOf();
-            _v3.set(Some(x))
+            _v5.set(Some(x))
         }
-        match &_v3.get().clone() {
-            None => panic!("{}", string("base.run_target / _v3=None"),),
-            Some(_v3_0_0) => _v3_0_0.clone(),
+        match &_v5.get().clone() {
+            None => panic!("{}", string("base.run_target / _v5=None"),),
+            Some(_v5_0_0) => _v5_0_0.clone(),
         }
     }
-    pub fn closure24(v0_1: string, v1_1: string) -> Arc<Async<i64>> {
-        let _v2: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
+    pub fn closure24(v0: string, v1: string) -> Arc<Async<i64>> {
+        let _v4: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
         {
             let x: Arc<Async<i64>> = defaultOf();
-            _v2.set(Some(x))
+            _v4.set(Some(x))
         }
-        match &_v2.get().clone() {
-            None => panic!("{}", string("base.run_target / _v2=None"),),
-            Some(_v2_0_0) => _v2_0_0.clone(),
+        match &_v4.get().clone() {
+            None => panic!("{}", string("base.run_target / _v4=None"),),
+            Some(_v4_0_0) => _v4_0_0.clone(),
         }
     }
-    pub fn closure23(unitVar: (), v0_1: string) -> Func1<string, Arc<Async<i64>>> {
+    pub fn closure23(unitVar: (), v0: string) -> Func1<string, Arc<Async<i64>>> {
         Func1::new({
-            let v0_1 = v0_1.clone();
-            move |v: string| File_system::closure24(v0_1.clone(), v)
+            let v0 = v0.clone();
+            move |v: string| File_system::closure24(v0.clone(), v)
         })
     }
-    pub fn closure29(unitVar: (), v0_1: i64) -> File_system::US9 {
-        File_system::US9::US9_0(v0_1)
+    pub fn closure29(unitVar: (), v0: i64) -> File_system::US9 {
+        File_system::US9::US9_0(v0)
     }
-    pub fn closure30(unitVar: (), v0_1: LrcPtr<Exception>) -> File_system::US9 {
-        File_system::US9::US9_1(v0_1)
+    pub fn closure30(unitVar: (), v0: LrcPtr<Exception>) -> File_system::US9 {
+        File_system::US9::US9_1(v0)
     }
     pub fn closure31(unitVar: (), unitVar_1: ()) -> string {
         string("async.run_with_timeout_async")
@@ -2003,24 +1994,24 @@ pub mod File_system {
     pub fn closure32(unitVar: (), unitVar_1: ()) -> i32 {
         1000_i32
     }
-    pub fn method36(v0_1: LrcPtr<File_system::Mut4>, v1_1: i32) {
-        let v2_1: string = sprintf!("{}", v1_1);
-        let v4_1: string = append(v0_1.l0.get().clone(), v2_1);
-        v0_1.l0.set(v4_1);
+    pub fn method36(v0: LrcPtr<File_system::Mut4>, v1: i32) {
+        let v4: string = sprintf!("{}", v1);
+        let v12: string = append(v0.l0.get().clone(), v4);
+        v0.l0.set(v12);
         ()
     }
-    pub fn method35(v0_1: LrcPtr<File_system::Mut4>, v1_1: i32) {
-        File_system::method15(v0_1.clone(), string("{ "));
-        File_system::method16(v0_1.clone());
-        File_system::method15(v0_1.clone(), string("timeout"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method36(v0_1.clone(), v1_1);
-        File_system::method15(v0_1, string(" }"))
+    pub fn method35(v0: LrcPtr<File_system::Mut4>, v1: i32) {
+        File_system::method15(v0.clone(), string("{ "));
+        File_system::method16(v0.clone());
+        File_system::method15(v0.clone(), string("timeout"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method36(v0.clone(), v1);
+        File_system::method15(v0, string(" }"))
     }
     pub fn closure33(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<i32>,
+        v0: File_system::US0,
+        v1: Func0<string>,
+        v2: Func0<i32>,
         unitVar: (),
     ) -> string {
         if File_system::State::trace_state().get().clone().is_none() {
@@ -2035,32 +2026,32 @@ pub mod File_system {
                 LrcPtr<File_system::Mut3>,
                 Option<i64>,
             ) = getValue(File_system::State::trace_state().get().clone());
-            let v9_1: Option<i64> = patternInput.4.clone();
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let _v11: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
+            let v18: Option<i64> = patternInput.4.clone();
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v38: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
             {
-                let x_2: Option<File_system::US2> = match &v9_1 {
+                let x_2: Option<File_system::US2> = match &v18 {
                     None => None::<File_system::US2>,
-                    Some(v9_1_0_0) => {
-                        let x: i64 = v9_1_0_0.clone();
+                    Some(v18_0_0) => {
+                        let x: i64 = v18_0_0.clone();
                         Some((Func0::new({
                             let x = x.clone();
                             move || File_system::US2::US2_0(x)
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v38.set(x_2)
             }
             {
-                let v16_1: File_system::US2 =
-                    defaultValue(File_system::US2::US2_1, _v11.get().clone());
-                let v35: DateTime = match &v16_1 {
-                    File_system::US2::US2_0(v16_1_0_0) => {
-                        let v23: TimeSpan = TimeSpan::new_ticks(
+                let v65: File_system::US2 =
+                    defaultValue(File_system::US2::US2_1, _v38.get().clone());
+                let v163: DateTime = match &v65 {
+                    File_system::US2::US2_0(v65_0_0) => {
+                        let v97_1: TimeSpan = TimeSpan::new_ticks(
                             {
                                 let _arg: DateTime = DateTime::now();
                                 _arg.ticks()
-                            } - match &v16_1 {
+                            } - match &v65 {
                                 File_system::US2::US2_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -2069,10 +2060,10 @@ pub mod File_system {
                             1_i32,
                             1_i32,
                             1_i32,
-                            v23.hours(),
-                            v23.minutes(),
-                            v23.seconds(),
-                            v23.milliseconds(),
+                            v97_1.hours(),
+                            v97_1.minutes(),
+                            v97_1.seconds(),
+                            v97_1.milliseconds(),
                         )
                     }
                     _ => DateTime::now(),
@@ -2080,16 +2071,16 @@ pub mod File_system {
                 {
                     let x_3: string = {
                         let provider: string = File_system::method10();
-                        v35.toString(provider)
+                        v163.toString(provider)
                     };
-                    _v10.set(Some(x_3))
+                    _v35.set(Some(x_3))
                 }
                 {
-                    let v152: string = match &_v10.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v10=None"),),
-                        Some(_v10_0_0) => _v10_0_0.clone(),
+                    let v772: string = match &_v35.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v35=None"),),
+                        Some(_v35_0_0) => _v35_0_0.clone(),
                     };
-                    let v159: File_system::US3 = if if let File_system::US0::US0_0 = &v0_1 {
+                    let v931: File_system::US3 = if if let File_system::US0::US0_0 = &v0 {
                         true
                     } else {
                         false
@@ -2098,13 +2089,13 @@ pub mod File_system {
                     } else {
                         File_system::US3::US3_1
                     };
-                    let v208: File_system::US3 = match &v159 {
-                        File_system::US3::US3_0(v159_0_0) => File_system::US3::US3_0(match &v159 {
+                    let v980: File_system::US3 = match &v931 {
+                        File_system::US3::US3_0(v931_0_0) => File_system::US3::US3_0(match &v931 {
                             File_system::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         }),
                         _ => {
-                            let v168: File_system::US3 = if if let File_system::US0::US0_1 = &v0_1 {
+                            let v940: File_system::US3 = if if let File_system::US0::US0_1 = &v0 {
                                 true
                             } else {
                                 false
@@ -2113,16 +2104,16 @@ pub mod File_system {
                             } else {
                                 File_system::US3::US3_1
                             };
-                            match &v168 {
-                                File_system::US3::US3_0(v168_0_0) => {
-                                    File_system::US3::US3_0(match &v168 {
+                            match &v940 {
+                                File_system::US3::US3_0(v940_0_0) => {
+                                    File_system::US3::US3_0(match &v940 {
                                         File_system::US3::US3_0(x) => x.clone(),
                                         _ => unreachable!(),
                                     })
                                 }
                                 _ => {
-                                    let v177: File_system::US3 =
-                                        if if let File_system::US0::US0_2 = &v0_1 {
+                                    let v949: File_system::US3 =
+                                        if if let File_system::US0::US0_2 = &v0 {
                                             true
                                         } else {
                                             false
@@ -2131,16 +2122,16 @@ pub mod File_system {
                                         } else {
                                             File_system::US3::US3_1
                                         };
-                                    match &v177 {
-                                        File_system::US3::US3_0(v177_0_0) => {
-                                            File_system::US3::US3_0(match &v177 {
+                                    match &v949 {
+                                        File_system::US3::US3_0(v949_0_0) => {
+                                            File_system::US3::US3_0(match &v949 {
                                                 File_system::US3::US3_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
                                         }
                                         _ => {
-                                            let v186: File_system::US3 =
-                                                if if let File_system::US0::US0_3 = &v0_1 {
+                                            let v958: File_system::US3 =
+                                                if if let File_system::US0::US0_3 = &v0 {
                                                     true
                                                 } else {
                                                     false
@@ -2149,16 +2140,16 @@ pub mod File_system {
                                                 } else {
                                                     File_system::US3::US3_1
                                                 };
-                                            match &v186 {
-                                                File_system::US3::US3_0(v186_0_0) => {
-                                                    File_system::US3::US3_0(match &v186 {
+                                            match &v958 {
+                                                File_system::US3::US3_0(v958_0_0) => {
+                                                    File_system::US3::US3_0(match &v958 {
                                                         File_system::US3::US3_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     })
                                                 }
                                                 _ => {
-                                                    let v195: File_system::US3 =
-                                                        if if let File_system::US0::US0_4 = &v0_1 {
+                                                    let v967: File_system::US3 =
+                                                        if if let File_system::US0::US0_4 = &v0 {
                                                             true
                                                         } else {
                                                             false
@@ -2169,9 +2160,9 @@ pub mod File_system {
                                                         } else {
                                                             File_system::US3::US3_1
                                                         };
-                                                    match &v195 {
-                                                        File_system::US3::US3_0(v195_0_0) => {
-                                                            File_system::US3::US3_0(match &v195 {
+                                                    match &v967 {
+                                                        File_system::US3::US3_0(v967_0_0) => {
+                                                            File_system::US3::US3_0(match &v967 {
                                                                 File_system::US3::US3_0(x) => {
                                                                     x.clone()
                                                                 }
@@ -2188,9 +2179,9 @@ pub mod File_system {
                             }
                         }
                     };
-                    let v215: string = padLeft(
-                        toLower(match &v208 {
-                            File_system::US3::US3_0(v208_0_0) => match &v208 {
+                    let v997: string = padLeft(
+                        toLower(match &v980 {
+                            File_system::US3::US3_0(v980_0_0) => match &v980 {
                                 File_system::US3::US3_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -2199,37 +2190,37 @@ pub mod File_system {
                         7_i32,
                         ' ',
                     );
-                    let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v231: &str = match &v0_1 {
+                    let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v1044: &str = match &v0 {
                         File_system::US0::US0_1 => inline_colorization::color_bright_blue,
                         File_system::US0::US0_2 => inline_colorization::color_bright_green,
                         File_system::US0::US0_0 => inline_colorization::color_bright_black,
                         File_system::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v233: &str = &*v215;
-                    let v235: &str = inline_colorization::color_reset;
-                    let v237: string = string("format!(\"{v231}{v233}{v235}\")");
-                    let v238: std::string::String = format!("{v231}{v233}{v235}");
+                    let v1046: &str = &*v997;
+                    let v1048: &str = inline_colorization::color_reset;
+                    let v1050: string = string("format!(\"{v1044}{v1046}{v1048}\")");
+                    let v1051: std::string::String = format!("{v1044}{v1046}{v1048}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v238);
-                        _v216.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v1051);
+                        _v1029.set(Some(x_5))
                     }
                     {
-                        let v328: string = match &_v216.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v216=None"),),
-                            Some(_v216_0_0) => _v216_0_0.clone(),
+                        let v1141: string = match &_v1029.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v1029=None"),),
+                            Some(_v1029_0_0) => _v1029_0_0.clone(),
                         };
-                        let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                        let v332: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
+                        let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                        let v1163: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
                             l0: MutCell::new(string("")),
                         });
-                        File_system::method35(v332.clone(), v2_1());
+                        File_system::method35(v1163.clone(), v2());
                         {
-                            let v333: string = v332.l0.get().clone();
+                            let v1164: string = v1163.l0.get().clone();
                             trimEndChars(
                                 trimStartChars(
-                                    sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v333),
+                                    sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1164),
                                     toArray(empty::<char>()),
                                 ),
                                 toArray(ofArray(new_array(&[' ', '/']))),
@@ -2240,50 +2231,50 @@ pub mod File_system {
             }
         }
     }
-    pub fn method34(v0_1: File_system::US0, v1_1: Func0<string>, v2_1: Func0<i32>) {
+    pub fn method34(v0: File_system::US0, v1: Func0<string>, v2: Func0<i32>) {
         File_system::method17(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || File_system::closure33(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || File_system::closure33(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
     pub fn closure34(unitVar: (), unitVar_1: ()) -> string {
         string("async.run_with_timeout_async**")
     }
-    pub fn closure35(v0_1: LrcPtr<Exception>, unitVar: ()) -> (i32, string) {
-        let _v1: MutCell<Option<string>> = MutCell::new(None::<string>);
+    pub fn closure35(v0: LrcPtr<Exception>, unitVar: ()) -> (i32, string) {
+        let _v3: MutCell<Option<string>> = MutCell::new(None::<string>);
         {
-            let x: string = sprintf!("{:?}", v0_1);
-            _v1.set(Some(x))
+            let x: string = sprintf!("{:?}", v0);
+            _v3.set(Some(x))
         }
         (
             1000_i32,
-            match &_v1.get().clone() {
-                None => panic!("{}", string("base.run_target / _v1=None"),),
-                Some(_v1_0_0) => _v1_0_0.clone(),
+            match &_v3.get().clone() {
+                None => panic!("{}", string("base.run_target / _v3=None"),),
+                Some(_v3_0_0) => _v3_0_0.clone(),
             },
         )
     }
-    pub fn method38(v0_1: LrcPtr<File_system::Mut4>, v1_1: i32, v2_1: string) {
-        File_system::method15(v0_1.clone(), string("{ "));
-        File_system::method16(v0_1.clone());
-        File_system::method15(v0_1.clone(), string("timeout"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method36(v0_1.clone(), v1_1);
-        File_system::method15(v0_1.clone(), string("; "));
-        File_system::method15(v0_1.clone(), string("ex"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v2_1);
-        File_system::method15(v0_1, string(" }"))
+    pub fn method38(v0: LrcPtr<File_system::Mut4>, v1: i32, v2: string) {
+        File_system::method15(v0.clone(), string("{ "));
+        File_system::method16(v0.clone());
+        File_system::method15(v0.clone(), string("timeout"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method36(v0.clone(), v1);
+        File_system::method15(v0.clone(), string("; "));
+        File_system::method15(v0.clone(), string("ex"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v2);
+        File_system::method15(v0, string(" }"))
     }
     pub fn closure36(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(i32, string)>,
+        v0: File_system::US0,
+        v1: Func0<string>,
+        v2: Func0<(i32, string)>,
         unitVar: (),
     ) -> string {
         if File_system::State::trace_state().get().clone().is_none() {
@@ -2298,32 +2289,32 @@ pub mod File_system {
                 LrcPtr<File_system::Mut3>,
                 Option<i64>,
             ) = getValue(File_system::State::trace_state().get().clone());
-            let v9_1: Option<i64> = patternInput.4.clone();
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let _v11: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
+            let v18: Option<i64> = patternInput.4.clone();
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v38: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
             {
-                let x_2: Option<File_system::US2> = match &v9_1 {
+                let x_2: Option<File_system::US2> = match &v18 {
                     None => None::<File_system::US2>,
-                    Some(v9_1_0_0) => {
-                        let x: i64 = v9_1_0_0.clone();
+                    Some(v18_0_0) => {
+                        let x: i64 = v18_0_0.clone();
                         Some((Func0::new({
                             let x = x.clone();
                             move || File_system::US2::US2_0(x)
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v38.set(x_2)
             }
             {
-                let v16_1: File_system::US2 =
-                    defaultValue(File_system::US2::US2_1, _v11.get().clone());
-                let v35: DateTime = match &v16_1 {
-                    File_system::US2::US2_0(v16_1_0_0) => {
-                        let v23: TimeSpan = TimeSpan::new_ticks(
+                let v65: File_system::US2 =
+                    defaultValue(File_system::US2::US2_1, _v38.get().clone());
+                let v163: DateTime = match &v65 {
+                    File_system::US2::US2_0(v65_0_0) => {
+                        let v97_1: TimeSpan = TimeSpan::new_ticks(
                             {
                                 let _arg: DateTime = DateTime::now();
                                 _arg.ticks()
-                            } - match &v16_1 {
+                            } - match &v65 {
                                 File_system::US2::US2_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -2332,10 +2323,10 @@ pub mod File_system {
                             1_i32,
                             1_i32,
                             1_i32,
-                            v23.hours(),
-                            v23.minutes(),
-                            v23.seconds(),
-                            v23.milliseconds(),
+                            v97_1.hours(),
+                            v97_1.minutes(),
+                            v97_1.seconds(),
+                            v97_1.milliseconds(),
                         )
                     }
                     _ => DateTime::now(),
@@ -2343,16 +2334,16 @@ pub mod File_system {
                 {
                     let x_3: string = {
                         let provider: string = File_system::method10();
-                        v35.toString(provider)
+                        v163.toString(provider)
                     };
-                    _v10.set(Some(x_3))
+                    _v35.set(Some(x_3))
                 }
                 {
-                    let v152: string = match &_v10.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v10=None"),),
-                        Some(_v10_0_0) => _v10_0_0.clone(),
+                    let v772: string = match &_v35.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v35=None"),),
+                        Some(_v35_0_0) => _v35_0_0.clone(),
                     };
-                    let v159: File_system::US3 = if if let File_system::US0::US0_0 = &v0_1 {
+                    let v931: File_system::US3 = if if let File_system::US0::US0_0 = &v0 {
                         true
                     } else {
                         false
@@ -2361,13 +2352,13 @@ pub mod File_system {
                     } else {
                         File_system::US3::US3_1
                     };
-                    let v208: File_system::US3 = match &v159 {
-                        File_system::US3::US3_0(v159_0_0) => File_system::US3::US3_0(match &v159 {
+                    let v980: File_system::US3 = match &v931 {
+                        File_system::US3::US3_0(v931_0_0) => File_system::US3::US3_0(match &v931 {
                             File_system::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         }),
                         _ => {
-                            let v168: File_system::US3 = if if let File_system::US0::US0_1 = &v0_1 {
+                            let v940: File_system::US3 = if if let File_system::US0::US0_1 = &v0 {
                                 true
                             } else {
                                 false
@@ -2376,16 +2367,16 @@ pub mod File_system {
                             } else {
                                 File_system::US3::US3_1
                             };
-                            match &v168 {
-                                File_system::US3::US3_0(v168_0_0) => {
-                                    File_system::US3::US3_0(match &v168 {
+                            match &v940 {
+                                File_system::US3::US3_0(v940_0_0) => {
+                                    File_system::US3::US3_0(match &v940 {
                                         File_system::US3::US3_0(x) => x.clone(),
                                         _ => unreachable!(),
                                     })
                                 }
                                 _ => {
-                                    let v177: File_system::US3 =
-                                        if if let File_system::US0::US0_2 = &v0_1 {
+                                    let v949: File_system::US3 =
+                                        if if let File_system::US0::US0_2 = &v0 {
                                             true
                                         } else {
                                             false
@@ -2394,16 +2385,16 @@ pub mod File_system {
                                         } else {
                                             File_system::US3::US3_1
                                         };
-                                    match &v177 {
-                                        File_system::US3::US3_0(v177_0_0) => {
-                                            File_system::US3::US3_0(match &v177 {
+                                    match &v949 {
+                                        File_system::US3::US3_0(v949_0_0) => {
+                                            File_system::US3::US3_0(match &v949 {
                                                 File_system::US3::US3_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
                                         }
                                         _ => {
-                                            let v186: File_system::US3 =
-                                                if if let File_system::US0::US0_3 = &v0_1 {
+                                            let v958: File_system::US3 =
+                                                if if let File_system::US0::US0_3 = &v0 {
                                                     true
                                                 } else {
                                                     false
@@ -2412,16 +2403,16 @@ pub mod File_system {
                                                 } else {
                                                     File_system::US3::US3_1
                                                 };
-                                            match &v186 {
-                                                File_system::US3::US3_0(v186_0_0) => {
-                                                    File_system::US3::US3_0(match &v186 {
+                                            match &v958 {
+                                                File_system::US3::US3_0(v958_0_0) => {
+                                                    File_system::US3::US3_0(match &v958 {
                                                         File_system::US3::US3_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     })
                                                 }
                                                 _ => {
-                                                    let v195: File_system::US3 =
-                                                        if if let File_system::US0::US0_4 = &v0_1 {
+                                                    let v967: File_system::US3 =
+                                                        if if let File_system::US0::US0_4 = &v0 {
                                                             true
                                                         } else {
                                                             false
@@ -2432,9 +2423,9 @@ pub mod File_system {
                                                         } else {
                                                             File_system::US3::US3_1
                                                         };
-                                                    match &v195 {
-                                                        File_system::US3::US3_0(v195_0_0) => {
-                                                            File_system::US3::US3_0(match &v195 {
+                                                    match &v967 {
+                                                        File_system::US3::US3_0(v967_0_0) => {
+                                                            File_system::US3::US3_0(match &v967 {
                                                                 File_system::US3::US3_0(x) => {
                                                                     x.clone()
                                                                 }
@@ -2451,9 +2442,9 @@ pub mod File_system {
                             }
                         }
                     };
-                    let v215: string = padLeft(
-                        toLower(match &v208 {
-                            File_system::US3::US3_0(v208_0_0) => match &v208 {
+                    let v997: string = padLeft(
+                        toLower(match &v980 {
+                            File_system::US3::US3_0(v980_0_0) => match &v980 {
                                 File_system::US3::US3_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -2462,42 +2453,42 @@ pub mod File_system {
                         7_i32,
                         ' ',
                     );
-                    let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v231: &str = match &v0_1 {
+                    let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v1044: &str = match &v0 {
                         File_system::US0::US0_1 => inline_colorization::color_bright_blue,
                         File_system::US0::US0_2 => inline_colorization::color_bright_green,
                         File_system::US0::US0_0 => inline_colorization::color_bright_black,
                         File_system::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v233: &str = &*v215;
-                    let v235: &str = inline_colorization::color_reset;
-                    let v237: string = string("format!(\"{v231}{v233}{v235}\")");
-                    let v238: std::string::String = format!("{v231}{v233}{v235}");
+                    let v1046: &str = &*v997;
+                    let v1048: &str = inline_colorization::color_reset;
+                    let v1050: string = string("format!(\"{v1044}{v1046}{v1048}\")");
+                    let v1051: std::string::String = format!("{v1044}{v1046}{v1048}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v238);
-                        _v216.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v1051);
+                        _v1029.set(Some(x_5))
                     }
                     {
-                        let v328: string = match &_v216.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v216=None"),),
-                            Some(_v216_0_0) => _v216_0_0.clone(),
+                        let v1141: string = match &_v1029.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v1029=None"),),
+                            Some(_v1029_0_0) => _v1029_0_0.clone(),
                         };
-                        let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                        let patternInput_1: (i32, string) = v2_1();
-                        let v333: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
+                        let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                        let patternInput_1: (i32, string) = v2();
+                        let v1164: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
                             l0: MutCell::new(string("")),
                         });
                         File_system::method38(
-                            v333.clone(),
+                            v1164.clone(),
                             patternInput_1.0.clone(),
                             patternInput_1.1.clone(),
                         );
                         {
-                            let v334: string = v333.l0.get().clone();
+                            let v1165: string = v1164.l0.get().clone();
                             trimEndChars(
                                 trimStartChars(
-                                    sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v334),
+                                    sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1165),
                                     toArray(empty::<char>()),
                                 ),
                                 toArray(ofArray(new_array(&[' ', '/']))),
@@ -2508,39 +2499,39 @@ pub mod File_system {
             }
         }
     }
-    pub fn method37(v0_1: File_system::US0, v1_1: Func0<string>, v2_1: Func0<(i32, string)>) {
+    pub fn method37(v0: File_system::US0, v1: Func0<string>, v2: Func0<(i32, string)>) {
         File_system::method17(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || File_system::closure36(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || File_system::closure36(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
     pub fn closure37(unitVar: (), unitVar_1: ()) -> string {
         string("read_all_text_retry_async")
     }
-    pub fn closure38(v0_1: i64, v1_1: string, unitVar: ()) -> (i64, string) {
-        (v0_1, v1_1)
+    pub fn closure38(v0: i64, v1: string, unitVar: ()) -> (i64, string) {
+        (v0, v1)
     }
-    pub fn method40(v0_1: LrcPtr<File_system::Mut4>, v1_1: i64, v2_1: string) {
-        File_system::method15(v0_1.clone(), string("{ "));
-        File_system::method16(v0_1.clone());
-        File_system::method15(v0_1.clone(), string("retry"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method21(v0_1.clone(), v1_1);
-        File_system::method15(v0_1.clone(), string("; "));
-        File_system::method15(v0_1.clone(), string("ex"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v2_1);
-        File_system::method15(v0_1, string(" }"))
+    pub fn method40(v0: LrcPtr<File_system::Mut4>, v1: i64, v2: string) {
+        File_system::method15(v0.clone(), string("{ "));
+        File_system::method16(v0.clone());
+        File_system::method15(v0.clone(), string("retry"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method21(v0.clone(), v1);
+        File_system::method15(v0.clone(), string("; "));
+        File_system::method15(v0.clone(), string("ex"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v2);
+        File_system::method15(v0, string(" }"))
     }
     pub fn closure39(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(i64, string)>,
+        v0: File_system::US0,
+        v1: Func0<string>,
+        v2: Func0<(i64, string)>,
         unitVar: (),
     ) -> string {
         if File_system::State::trace_state().get().clone().is_none() {
@@ -2555,32 +2546,32 @@ pub mod File_system {
                 LrcPtr<File_system::Mut3>,
                 Option<i64>,
             ) = getValue(File_system::State::trace_state().get().clone());
-            let v9_1: Option<i64> = patternInput.4.clone();
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let _v11: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
+            let v18: Option<i64> = patternInput.4.clone();
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v38: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
             {
-                let x_2: Option<File_system::US2> = match &v9_1 {
+                let x_2: Option<File_system::US2> = match &v18 {
                     None => None::<File_system::US2>,
-                    Some(v9_1_0_0) => {
-                        let x: i64 = v9_1_0_0.clone();
+                    Some(v18_0_0) => {
+                        let x: i64 = v18_0_0.clone();
                         Some((Func0::new({
                             let x = x.clone();
                             move || File_system::US2::US2_0(x)
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v38.set(x_2)
             }
             {
-                let v16_1: File_system::US2 =
-                    defaultValue(File_system::US2::US2_1, _v11.get().clone());
-                let v35: DateTime = match &v16_1 {
-                    File_system::US2::US2_0(v16_1_0_0) => {
-                        let v23: TimeSpan = TimeSpan::new_ticks(
+                let v65: File_system::US2 =
+                    defaultValue(File_system::US2::US2_1, _v38.get().clone());
+                let v163: DateTime = match &v65 {
+                    File_system::US2::US2_0(v65_0_0) => {
+                        let v97_1: TimeSpan = TimeSpan::new_ticks(
                             {
                                 let _arg: DateTime = DateTime::now();
                                 _arg.ticks()
-                            } - match &v16_1 {
+                            } - match &v65 {
                                 File_system::US2::US2_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -2589,10 +2580,10 @@ pub mod File_system {
                             1_i32,
                             1_i32,
                             1_i32,
-                            v23.hours(),
-                            v23.minutes(),
-                            v23.seconds(),
-                            v23.milliseconds(),
+                            v97_1.hours(),
+                            v97_1.minutes(),
+                            v97_1.seconds(),
+                            v97_1.milliseconds(),
                         )
                     }
                     _ => DateTime::now(),
@@ -2600,16 +2591,16 @@ pub mod File_system {
                 {
                     let x_3: string = {
                         let provider: string = File_system::method10();
-                        v35.toString(provider)
+                        v163.toString(provider)
                     };
-                    _v10.set(Some(x_3))
+                    _v35.set(Some(x_3))
                 }
                 {
-                    let v152: string = match &_v10.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v10=None"),),
-                        Some(_v10_0_0) => _v10_0_0.clone(),
+                    let v772: string = match &_v35.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v35=None"),),
+                        Some(_v35_0_0) => _v35_0_0.clone(),
                     };
-                    let v159: File_system::US3 = if if let File_system::US0::US0_0 = &v0_1 {
+                    let v931: File_system::US3 = if if let File_system::US0::US0_0 = &v0 {
                         true
                     } else {
                         false
@@ -2618,13 +2609,13 @@ pub mod File_system {
                     } else {
                         File_system::US3::US3_1
                     };
-                    let v208: File_system::US3 = match &v159 {
-                        File_system::US3::US3_0(v159_0_0) => File_system::US3::US3_0(match &v159 {
+                    let v980: File_system::US3 = match &v931 {
+                        File_system::US3::US3_0(v931_0_0) => File_system::US3::US3_0(match &v931 {
                             File_system::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         }),
                         _ => {
-                            let v168: File_system::US3 = if if let File_system::US0::US0_1 = &v0_1 {
+                            let v940: File_system::US3 = if if let File_system::US0::US0_1 = &v0 {
                                 true
                             } else {
                                 false
@@ -2633,16 +2624,16 @@ pub mod File_system {
                             } else {
                                 File_system::US3::US3_1
                             };
-                            match &v168 {
-                                File_system::US3::US3_0(v168_0_0) => {
-                                    File_system::US3::US3_0(match &v168 {
+                            match &v940 {
+                                File_system::US3::US3_0(v940_0_0) => {
+                                    File_system::US3::US3_0(match &v940 {
                                         File_system::US3::US3_0(x) => x.clone(),
                                         _ => unreachable!(),
                                     })
                                 }
                                 _ => {
-                                    let v177: File_system::US3 =
-                                        if if let File_system::US0::US0_2 = &v0_1 {
+                                    let v949: File_system::US3 =
+                                        if if let File_system::US0::US0_2 = &v0 {
                                             true
                                         } else {
                                             false
@@ -2651,16 +2642,16 @@ pub mod File_system {
                                         } else {
                                             File_system::US3::US3_1
                                         };
-                                    match &v177 {
-                                        File_system::US3::US3_0(v177_0_0) => {
-                                            File_system::US3::US3_0(match &v177 {
+                                    match &v949 {
+                                        File_system::US3::US3_0(v949_0_0) => {
+                                            File_system::US3::US3_0(match &v949 {
                                                 File_system::US3::US3_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
                                         }
                                         _ => {
-                                            let v186: File_system::US3 =
-                                                if if let File_system::US0::US0_3 = &v0_1 {
+                                            let v958: File_system::US3 =
+                                                if if let File_system::US0::US0_3 = &v0 {
                                                     true
                                                 } else {
                                                     false
@@ -2669,16 +2660,16 @@ pub mod File_system {
                                                 } else {
                                                     File_system::US3::US3_1
                                                 };
-                                            match &v186 {
-                                                File_system::US3::US3_0(v186_0_0) => {
-                                                    File_system::US3::US3_0(match &v186 {
+                                            match &v958 {
+                                                File_system::US3::US3_0(v958_0_0) => {
+                                                    File_system::US3::US3_0(match &v958 {
                                                         File_system::US3::US3_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     })
                                                 }
                                                 _ => {
-                                                    let v195: File_system::US3 =
-                                                        if if let File_system::US0::US0_4 = &v0_1 {
+                                                    let v967: File_system::US3 =
+                                                        if if let File_system::US0::US0_4 = &v0 {
                                                             true
                                                         } else {
                                                             false
@@ -2689,9 +2680,9 @@ pub mod File_system {
                                                         } else {
                                                             File_system::US3::US3_1
                                                         };
-                                                    match &v195 {
-                                                        File_system::US3::US3_0(v195_0_0) => {
-                                                            File_system::US3::US3_0(match &v195 {
+                                                    match &v967 {
+                                                        File_system::US3::US3_0(v967_0_0) => {
+                                                            File_system::US3::US3_0(match &v967 {
                                                                 File_system::US3::US3_0(x) => {
                                                                     x.clone()
                                                                 }
@@ -2708,9 +2699,9 @@ pub mod File_system {
                             }
                         }
                     };
-                    let v215: string = padLeft(
-                        toLower(match &v208 {
-                            File_system::US3::US3_0(v208_0_0) => match &v208 {
+                    let v997: string = padLeft(
+                        toLower(match &v980 {
+                            File_system::US3::US3_0(v980_0_0) => match &v980 {
                                 File_system::US3::US3_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -2719,42 +2710,42 @@ pub mod File_system {
                         7_i32,
                         ' ',
                     );
-                    let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v231: &str = match &v0_1 {
+                    let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v1044: &str = match &v0 {
                         File_system::US0::US0_1 => inline_colorization::color_bright_blue,
                         File_system::US0::US0_2 => inline_colorization::color_bright_green,
                         File_system::US0::US0_0 => inline_colorization::color_bright_black,
                         File_system::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v233: &str = &*v215;
-                    let v235: &str = inline_colorization::color_reset;
-                    let v237: string = string("format!(\"{v231}{v233}{v235}\")");
-                    let v238: std::string::String = format!("{v231}{v233}{v235}");
+                    let v1046: &str = &*v997;
+                    let v1048: &str = inline_colorization::color_reset;
+                    let v1050: string = string("format!(\"{v1044}{v1046}{v1048}\")");
+                    let v1051: std::string::String = format!("{v1044}{v1046}{v1048}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v238);
-                        _v216.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v1051);
+                        _v1029.set(Some(x_5))
                     }
                     {
-                        let v328: string = match &_v216.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v216=None"),),
-                            Some(_v216_0_0) => _v216_0_0.clone(),
+                        let v1141: string = match &_v1029.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v1029=None"),),
+                            Some(_v1029_0_0) => _v1029_0_0.clone(),
                         };
-                        let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                        let patternInput_1: (i64, string) = v2_1();
-                        let v333: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
+                        let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                        let patternInput_1: (i64, string) = v2();
+                        let v1164: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
                             l0: MutCell::new(string("")),
                         });
                         File_system::method40(
-                            v333.clone(),
+                            v1164.clone(),
                             patternInput_1.0.clone(),
                             patternInput_1.1.clone(),
                         );
                         {
-                            let v334: string = v333.l0.get().clone();
+                            let v1165: string = v1164.l0.get().clone();
                             trimEndChars(
                                 trimStartChars(
-                                    sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v334),
+                                    sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1165),
                                     toArray(empty::<char>()),
                                 ),
                                 toArray(ofArray(new_array(&[' ', '/']))),
@@ -2765,232 +2756,187 @@ pub mod File_system {
             }
         }
     }
-    pub fn method39(v0_1: File_system::US0, v1_1: Func0<string>, v2_1: Func0<(i64, string)>) {
+    pub fn method39(v0: File_system::US0, v1: Func0<string>, v2: Func0<(i64, string)>) {
         File_system::method17(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || File_system::closure39(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || File_system::closure39(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
-    pub fn method33(v0_1: string, v1_1: i64) -> Arc<Async<Option<string>>> {
-        let _v2: MutCell<Option<Arc<Async<Option<string>>>>> =
+    pub fn method33(v0: string, v1: i64) -> Arc<Async<Option<string>>> {
+        let _v4: MutCell<Option<Arc<Async<Option<string>>>>> =
             MutCell::new(None::<Arc<Async<Option<string>>>>);
         {
             let x: Arc<Async<Option<string>>> = defaultOf();
-            _v2.set(Some(x))
+            _v4.set(Some(x))
         }
-        match &_v2.get().clone() {
-            None => panic!("{}", string("base.run_target / _v2=None"),),
-            Some(_v2_0_0) => _v2_0_0.clone(),
+        match &_v4.get().clone() {
+            None => panic!("{}", string("base.run_target / _v4=None"),),
+            Some(_v4_0_0) => _v4_0_0.clone(),
         }
     }
-    pub fn closure28(unitVar: (), v0_1: string) -> Arc<Async<Option<string>>> {
-        let _v1: MutCell<Option<Arc<Async<Option<string>>>>> =
+    pub fn closure28(unitVar: (), v0: string) -> Arc<Async<Option<string>>> {
+        let _v3: MutCell<Option<Arc<Async<Option<string>>>>> =
             MutCell::new(None::<Arc<Async<Option<string>>>>);
         {
             let x: Arc<Async<Option<string>>> = defaultOf();
-            _v1.set(Some(x))
+            _v3.set(Some(x))
         }
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
         }
     }
-    pub fn method43(v0_1: chrono::DateTime<chrono::Utc>) -> chrono::DateTime<chrono::Utc> {
-        v0_1
-    }
-    pub fn method44(v0_1: chrono::DateTime<chrono::Local>) -> chrono::DateTime<chrono::Local> {
-        v0_1
-    }
-    pub fn method45() -> string {
+    pub fn method43() -> string {
         string("hh:mm")
     }
-    pub fn method46() -> string {
+    pub fn method44() -> string {
         string("yyyyMMdd-HHmm-ssff-ffff-f")
     }
-    pub fn method47() -> string {
+    pub fn method45() -> string {
         string("hhmm")
     }
-    pub fn method42(v0_1: Guid, v1_1: DateTime) -> Guid {
-        let _v2: MutCell<Option<Guid>> = MutCell::new(None::<Guid>);
-        let v5_1: DateTime = {
+    pub fn method42(v0: Guid, v1: DateTime) -> Guid {
+        let _v4: MutCell<Option<Guid>> = MutCell::new(None::<Guid>);
+        let v17: DateTime = {
             let _arg: DateTime =
                 DateTime::new_ymdhms_kind(1970_i32, 1_i32, 1_i32, 0_i32, 0_i32, 0_i32, 1_i32);
             _arg.toUniversalTime()
         };
-        let v15_1: i64 = ({
+        let v57: i64 = ({
             let _arg_2: DateTime = {
-                let _arg_1: DateTime = DateTime::specifyKind(v1_1, 2_i32);
+                let _arg_1: DateTime = DateTime::specifyKind(v1, 2_i32);
                 _arg_1.toUniversalTime()
             };
             _arg_2.ticks()
-        } - v5_1.ticks())
+        } - v17.ticks())
             / 10_i64;
-        let v17_1: Option<chrono::DateTime<chrono::Utc>> =
-            chrono::DateTime::from_timestamp_micros(v15_1);
-        let _v18: LrcPtr<MutCell<Option<File_system::US11>>> = refCell(None::<File_system::US11>);
+        let v59: Option<chrono::DateTime<chrono::Utc>> =
+            chrono::DateTime::from_timestamp_micros(v57);
+        let _v62: LrcPtr<MutCell<Option<File_system::US11>>> = refCell(None::<File_system::US11>);
         {
-            let x_2: Option<File_system::US11> = match &v17_1 {
+            let x_2: Option<File_system::US11> = match &v59 {
                 None => None::<File_system::US11>,
-                Some(v17_1_0_0) => {
-                    let x: chrono::DateTime<chrono::Utc> = v17_1_0_0.clone();
+                Some(v59_0_0) => {
+                    let x: chrono::DateTime<chrono::Utc> = v59_0_0.clone();
                     Some((Func0::new({
                         let x = x.clone();
                         move || File_system::US11::US11_0(x.clone())
                     }))())
                 }
             };
-            _v18.set(x_2)
+            _v62.set(x_2)
         }
         {
-            let v23: File_system::US11 =
-                defaultValue(File_system::US11::US11_1, _v18.get().clone());
-            let v42: File_system::US3 = match &v23 {
-                File_system::US11::US11_0(v23_0_0) => {
-                    let v25: chrono::DateTime<chrono::Utc> = File_system::method43(match &v23 {
+            let v89: File_system::US11 =
+                defaultValue(File_system::US11::US11_1, _v62.get().clone());
+            let v113: File_system::US3 = match &v89 {
+                File_system::US11::US11_0(v89_0_0) => {
+                    let v99_1: chrono::NaiveDateTime = match &v89 {
                         File_system::US11::US11_0(x) => x.clone(),
                         _ => unreachable!(),
-                    });
-                    let v27: chrono::NaiveDateTime = v25.naive_utc();
-                    let v29: chrono::DateTime<chrono::Local> =
-                        chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &v27);
-                    let v31: string = string("r#\"%Y%m%d-%H%M-%S%f\"#");
-                    let v32: &str = r#"%Y%m%d-%H%M-%S%f"#;
-                    let v33: chrono::DateTime<chrono::Local> = File_system::method44(v29);
-                    let v35: std::string::String = v33.format(v32).to_string();
-                    let v37: string = fable_library_rust::String_::fromString(v35);
+                    }
+                    .naive_utc();
+                    let v101_1: chrono::DateTime<chrono::Local> =
+                        chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &v99_1);
+                    let v103_1: string = string("r#\"%Y%m%d-%H%M-%S%f\"#");
+                    let v104_1: &str = r#"%Y%m%d-%H%M-%S%f"#;
+                    let v106_1: std::string::String = v101_1.format(v104_1).to_string();
+                    let v108_1: string = fable_library_rust::String_::fromString(v106_1);
                     File_system::US3::US3_0(sprintf!(
                         "{}-{}-{}",
-                        getSlice(v37.clone(), Some(0_i32), Some(17_i32)),
-                        getSlice(v37.clone(), Some(18_i32), Some(21_i32)),
-                        getCharAt(v37, 22_i32)
+                        getSlice(v108_1.clone(), Some(0_i32), Some(17_i32)),
+                        getSlice(v108_1.clone(), Some(18_i32), Some(21_i32)),
+                        getCharAt(v108_1, 22_i32)
                     ))
                 }
                 _ => File_system::US3::US3_1,
             };
-            let v46: string = match &v42 {
-                File_system::US3::US3_0(v42_0_0) => match &v42 {
+            let v117: string = match &v113 {
+                File_system::US3::US3_0(v113_0_0) => match &v113 {
                     File_system::US3::US3_0(x) => x.clone(),
                     _ => unreachable!(),
                 },
                 _ => string(""),
             };
-            let _v47: MutCell<Option<LrcPtr<TimeZoneInfo>>> =
+            let _v120: MutCell<Option<LrcPtr<TimeZoneInfo>>> =
                 MutCell::new(None::<LrcPtr<TimeZoneInfo>>);
             {
                 let x_3: LrcPtr<TimeZoneInfo> = 0i64.into();
-                _v47.set(Some(x_3))
+                _v120.set(Some(x_3))
             }
             {
-                let v55: LrcPtr<TimeZoneInfo> = match &_v47.get().clone() {
-                    None => panic!("{}", string("base.run_target / _v47=None"),),
-                    Some(_v47_0_0) => _v47_0_0.clone(),
+                let v160: LrcPtr<TimeZoneInfo> = match &_v120.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v120=None"),),
+                    Some(_v120_0_0) => _v120_0_0.clone(),
                 };
-                let _v56: MutCell<Option<TimeSpan>> = MutCell::new(None::<TimeSpan>);
-                _v56.set(Some(zero));
+                let _v177: MutCell<Option<TimeSpan>> = MutCell::new(None::<TimeSpan>);
+                _v177.set(Some(zero));
                 {
-                    let v83: TimeSpan = match &_v56.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v56=None"),),
-                        Some(_v56_0_0) => _v56_0_0.clone(),
+                    let v276: TimeSpan = match &_v177.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v177=None"),),
+                        Some(_v177_0_0) => _v177_0_0.clone(),
                     };
-                    let v87: u8 = if v83.hours() > 0_i32 { 1_u8 } else { 0_u8 };
-                    let v88: string = File_system::method45();
-                    let _v89: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v297: u8 = if v276.hours() > 0_i32 { 1_u8 } else { 0_u8 };
+                    let v298: string = File_system::method43();
+                    let _v301: MutCell<Option<string>> = MutCell::new(None::<string>);
                     {
-                        let x_7: string = v83.to_string(v88);
-                        _v89.set(Some(x_7))
+                        let x_7: string = v276.to_string(v298);
+                        _v301.set(Some(x_7))
                     }
                     {
-                        let v96: string = match &_v89.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v89=None"),),
-                            Some(_v89_0_0) => _v89_0_0.clone(),
+                        let v308: string = match &_v301.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v301=None"),),
+                            Some(_v301_0_0) => _v301_0_0.clone(),
                         };
-                        let v97: string = sprintf!(
+                        let v315: string = sprintf!(
                             "{}{}{}",
-                            v87,
-                            getSlice(v96.clone(), Some(0_i32), Some(1_i32)),
-                            getSlice(v96, Some(3_i32), Some(4_i32))
+                            v297,
+                            getSlice(v308.clone(), Some(0_i32), Some(1_i32)),
+                            getSlice(v308, Some(3_i32), Some(4_i32))
                         );
                         {
                             let x_9: Guid = parse(sprintf!(
                                 "{}{}{}",
-                                v46.clone(),
-                                v97.clone(),
+                                v117.clone(),
+                                v315.clone(),
                                 getSlice(
-                                    toString(v0_1),
-                                    Some(length(v46) + length(v97)),
+                                    toString(v0),
+                                    Some(length(v117) + length(v315)),
                                     None::<i32>
                                 )
                             ));
-                            _v2.set(Some(x_9))
+                            _v4.set(Some(x_9))
                         }
-                        match &_v2.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v2=None"),),
-                            Some(_v2_0_0) => _v2_0_0.clone(),
+                        match &_v4.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v4=None"),),
+                            Some(_v4_0_0) => _v4_0_0.clone(),
                         }
                     }
                 }
             }
         }
     }
-    pub fn method49() -> string {
-        let _v0: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v2_1: std::path::PathBuf = std::env::temp_dir();
-        let v4_1: std::path::Display = v2_1.display();
-        let _v5: MutCell<Option<std::string::String>> = MutCell::new(None::<std::string::String>);
-        {
-            let x: std::string::String = format!("{}", v4_1);
-            _v5.set(Some(x))
-        }
-        {
-            let v15_1: std::string::String = match &_v5.get().clone() {
-                None => panic!("{}", string("base.run_target / _v5=None"),),
-                Some(_v5_0_0) => _v5_0_0.clone(),
-            };
-            {
-                let x_2: string = fable_library_rust::String_::fromString(v15_1);
-                _v0.set(Some(x_2))
-            }
-            match &_v0.get().clone() {
-                None => panic!("{}", string("base.run_target / _v0=None"),),
-                Some(_v0_0_0) => _v0_0_0.clone(),
-            }
-        }
-    }
-    pub fn method50() -> string {
-        string("!create_temp_path_")
-    }
-    pub fn method53(v0_1: string) -> string {
-        v0_1
-    }
-    pub fn method52(v0_1: string, v1_1: string) -> (string, string) {
-        (v1_1, File_system::method53(v0_1))
-    }
-    pub fn method51(v0_1: string, v1_1: string) -> string {
+    pub fn method47() -> string {
         let _v2: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v4_1: &str = &*v0_1;
-        let v6_1: std::string::String = String::from(v4_1);
-        let v8_1: std::path::PathBuf = std::path::PathBuf::from(v6_1);
-        let v10_1: &str = &*v1_1;
-        let v12_1: std::string::String = String::from(v10_1);
-        let v14_1: std::path::PathBuf = v8_1.join(v12_1);
-        let v16_1: std::path::Display = v14_1.display();
-        let _v17: MutCell<Option<std::string::String>> = MutCell::new(None::<std::string::String>);
+        let v4: std::path::PathBuf = std::env::temp_dir();
+        let v6: std::path::Display = v4.display();
+        let _v9: MutCell<Option<std::string::String>> = MutCell::new(None::<std::string::String>);
         {
-            let x: std::string::String = format!("{}", v16_1);
-            _v17.set(Some(x))
+            let x: std::string::String = format!("{}", v6);
+            _v9.set(Some(x))
         }
         {
-            let v27: std::string::String = match &_v17.get().clone() {
-                None => panic!("{}", string("base.run_target / _v17=None"),),
-                Some(_v17_0_0) => _v17_0_0.clone(),
+            let v43: std::string::String = match &_v9.get().clone() {
+                None => panic!("{}", string("base.run_target / _v9=None"),),
+                Some(_v9_0_0) => _v9_0_0.clone(),
             };
             {
-                let x_2: string = fable_library_rust::String_::fromString(v27);
+                let x_2: string = fable_library_rust::String_::fromString(v43);
                 _v2.set(Some(x_2))
             }
             match &_v2.get().clone() {
@@ -2999,104 +2945,142 @@ pub mod File_system {
             }
         }
     }
-    pub fn method55() -> string {
+    pub fn method48() -> string {
+        string("!create_temp_path_")
+    }
+    pub fn method51(v0: string) -> string {
+        v0
+    }
+    pub fn method50(v0: string, v1: string) -> (string, string) {
+        (v1, File_system::method51(v0))
+    }
+    pub fn method49(v0: string, v1: string) -> string {
+        let _v4: MutCell<Option<string>> = MutCell::new(None::<string>);
+        let v6: &str = &*v0;
+        let v8: std::string::String = String::from(v6);
+        let v10: std::path::PathBuf = std::path::PathBuf::from(v8);
+        let v12: &str = &*v1;
+        let v14: std::string::String = String::from(v12);
+        let v16: std::path::PathBuf = v10.join(v14);
+        let v18: std::path::Display = v16.display();
+        let _v21: MutCell<Option<std::string::String>> = MutCell::new(None::<std::string::String>);
+        {
+            let x: std::string::String = format!("{}", v18);
+            _v21.set(Some(x))
+        }
+        {
+            let v55: std::string::String = match &_v21.get().clone() {
+                None => panic!("{}", string("base.run_target / _v21=None"),),
+                Some(_v21_0_0) => _v21_0_0.clone(),
+            };
+            {
+                let x_2: string = fable_library_rust::String_::fromString(v55);
+                _v4.set(Some(x_2))
+            }
+            match &_v4.get().clone() {
+                None => panic!("{}", string("base.run_target / _v4=None"),),
+                Some(_v4_0_0) => _v4_0_0.clone(),
+            }
+        }
+    }
+    pub fn method53() -> string {
         string("CARGO_PKG_NAME")
     }
-    pub fn method54() -> string {
-        let _v0: MutCell<Option<string>> = MutCell::new(None::<string>);
+    pub fn method52() -> string {
+        let _v2: MutCell<Option<string>> = MutCell::new(None::<string>);
         {
-            let x: string = File_system::method1(File_system::method55());
-            _v0.set(Some(x))
+            let x: string = File_system::method1(File_system::method53());
+            _v2.set(Some(x))
         }
-        match &_v0.get().clone() {
-            None => panic!("{}", string("base.run_target / _v0=None"),),
-            Some(_v0_0_0) => _v0_0_0.clone(),
+        match &_v2.get().clone() {
+            None => panic!("{}", string("base.run_target / _v2=None"),),
+            Some(_v2_0_0) => _v2_0_0.clone(),
         }
     }
-    pub fn method48(v0_1: Guid) -> string {
-        let _v1: MutCell<Option<string>> = MutCell::new(None::<string>);
+    pub fn method46(v0: Guid) -> string {
+        let _v3: MutCell<Option<string>> = MutCell::new(None::<string>);
         {
-            let x: string = File_system::method51(
-                File_system::method51(
-                    File_system::method51(File_system::method49(), File_system::method50()),
-                    File_system::method54(),
+            let x: string = File_system::method49(
+                File_system::method49(
+                    File_system::method49(File_system::method47(), File_system::method48()),
+                    File_system::method52(),
                 ),
-                toString(v0_1),
+                toString(v0),
             );
-            _v1.set(Some(x))
+            _v3.set(Some(x))
         }
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
         }
     }
     pub fn method41() -> string {
-        let _v0: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v1_1: DateTime = DateTime::now();
+        let _v2: MutCell<Option<string>> = MutCell::new(None::<string>);
+        let v5: DateTime = DateTime::now();
         {
-            let x: string = File_system::method48(File_system::method42(new_guid(), v1_1));
-            _v0.set(Some(x))
+            let x: string = File_system::method46(File_system::method42(new_guid(), v5));
+            _v2.set(Some(x))
         }
-        match &_v0.get().clone() {
-            None => panic!("{}", string("base.run_target / _v0=None"),),
-            Some(_v0_0_0) => _v0_0_0.clone(),
+        match &_v2.get().clone() {
+            None => panic!("{}", string("base.run_target / _v2=None"),),
+            Some(_v2_0_0) => _v2_0_0.clone(),
         }
     }
     pub fn closure40(unitVar: (), unitVar_1: ()) -> string {
         File_system::method41()
     }
-    pub fn method57(v0_1: string) -> string {
-        v0_1
+    pub fn method55(v0: string) -> string {
+        v0
     }
-    pub fn closure42(unitVar: (), v0_1: std::io::Error) -> std::string::String {
-        let _v1: MutCell<Option<std::string::String>> = MutCell::new(None::<std::string::String>);
+    pub fn closure42(unitVar: (), v0: std::io::Error) -> std::string::String {
+        let _v3: MutCell<Option<std::string::String>> = MutCell::new(None::<std::string::String>);
         {
-            let x: std::string::String = format!("{}", v0_1);
-            _v1.set(Some(x))
+            let x: std::string::String = format!("{}", v0);
+            _v3.set(Some(x))
         }
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
         }
     }
-    pub fn method58() -> Func1<std::io::Error, std::string::String> {
+    pub fn method56() -> Func1<std::io::Error, std::string::String> {
         Func1::new(move |v: std::io::Error| File_system::closure42((), v))
     }
     pub fn closure43(unitVar: (), unitVar_1: ()) -> File_system::US12 {
         File_system::US12::US12_0
     }
-    pub fn closure44(unitVar: (), v0_1: std::string::String) -> File_system::US12 {
-        File_system::US12::US12_1(v0_1)
+    pub fn closure44(unitVar: (), v0: std::string::String) -> File_system::US12 {
+        File_system::US12::US12_1(v0)
     }
     pub fn closure45(unitVar: (), unitVar_1: ()) -> string {
         string("file_system.create_dir")
     }
     pub fn closure46(
-        v0_1: string,
-        v1_1: std::string::String,
+        v0: string,
+        v1: std::string::String,
         unitVar: (),
     ) -> (string, std::string::String) {
-        (v0_1, v1_1)
+        (v0, v1)
     }
-    pub fn method61(v0_1: LrcPtr<File_system::Mut4>, v1_1: std::string::String) {
-        File_system::method15(v0_1, sprintf!("{:?}", v1_1));
+    pub fn method59(v0: LrcPtr<File_system::Mut4>, v1: std::string::String) {
+        File_system::method15(v0, sprintf!("{:?}", v1));
     }
-    pub fn method60(v0_1: LrcPtr<File_system::Mut4>, v1_1: string, v2_1: std::string::String) {
-        File_system::method15(v0_1.clone(), string("{ "));
-        File_system::method16(v0_1.clone());
-        File_system::method15(v0_1.clone(), string("dir"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v1_1);
-        File_system::method15(v0_1.clone(), string("; "));
-        File_system::method15(v0_1.clone(), string("error"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method61(v0_1.clone(), v2_1);
-        File_system::method15(v0_1, string(" }"))
+    pub fn method58(v0: LrcPtr<File_system::Mut4>, v1: string, v2: std::string::String) {
+        File_system::method15(v0.clone(), string("{ "));
+        File_system::method16(v0.clone());
+        File_system::method15(v0.clone(), string("dir"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v1);
+        File_system::method15(v0.clone(), string("; "));
+        File_system::method15(v0.clone(), string("error"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method59(v0.clone(), v2);
+        File_system::method15(v0, string(" }"))
     }
     pub fn closure47(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(string, std::string::String)>,
+        v0: File_system::US0,
+        v1: Func0<string>,
+        v2: Func0<(string, std::string::String)>,
         unitVar: (),
     ) -> string {
         if File_system::State::trace_state().get().clone().is_none() {
@@ -3111,32 +3095,32 @@ pub mod File_system {
                 LrcPtr<File_system::Mut3>,
                 Option<i64>,
             ) = getValue(File_system::State::trace_state().get().clone());
-            let v9_1: Option<i64> = patternInput.4.clone();
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let _v11: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
+            let v18: Option<i64> = patternInput.4.clone();
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v38: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
             {
-                let x_2: Option<File_system::US2> = match &v9_1 {
+                let x_2: Option<File_system::US2> = match &v18 {
                     None => None::<File_system::US2>,
-                    Some(v9_1_0_0) => {
-                        let x: i64 = v9_1_0_0.clone();
+                    Some(v18_0_0) => {
+                        let x: i64 = v18_0_0.clone();
                         Some((Func0::new({
                             let x = x.clone();
                             move || File_system::US2::US2_0(x)
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v38.set(x_2)
             }
             {
-                let v16_1: File_system::US2 =
-                    defaultValue(File_system::US2::US2_1, _v11.get().clone());
-                let v35: DateTime = match &v16_1 {
-                    File_system::US2::US2_0(v16_1_0_0) => {
-                        let v23: TimeSpan = TimeSpan::new_ticks(
+                let v65: File_system::US2 =
+                    defaultValue(File_system::US2::US2_1, _v38.get().clone());
+                let v163: DateTime = match &v65 {
+                    File_system::US2::US2_0(v65_0_0) => {
+                        let v97_1: TimeSpan = TimeSpan::new_ticks(
                             {
                                 let _arg: DateTime = DateTime::now();
                                 _arg.ticks()
-                            } - match &v16_1 {
+                            } - match &v65 {
                                 File_system::US2::US2_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -3145,10 +3129,10 @@ pub mod File_system {
                             1_i32,
                             1_i32,
                             1_i32,
-                            v23.hours(),
-                            v23.minutes(),
-                            v23.seconds(),
-                            v23.milliseconds(),
+                            v97_1.hours(),
+                            v97_1.minutes(),
+                            v97_1.seconds(),
+                            v97_1.milliseconds(),
                         )
                     }
                     _ => DateTime::now(),
@@ -3156,16 +3140,16 @@ pub mod File_system {
                 {
                     let x_3: string = {
                         let provider: string = File_system::method10();
-                        v35.toString(provider)
+                        v163.toString(provider)
                     };
-                    _v10.set(Some(x_3))
+                    _v35.set(Some(x_3))
                 }
                 {
-                    let v152: string = match &_v10.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v10=None"),),
-                        Some(_v10_0_0) => _v10_0_0.clone(),
+                    let v772: string = match &_v35.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v35=None"),),
+                        Some(_v35_0_0) => _v35_0_0.clone(),
                     };
-                    let v159: File_system::US3 = if if let File_system::US0::US0_0 = &v0_1 {
+                    let v931: File_system::US3 = if if let File_system::US0::US0_0 = &v0 {
                         true
                     } else {
                         false
@@ -3174,13 +3158,13 @@ pub mod File_system {
                     } else {
                         File_system::US3::US3_1
                     };
-                    let v208: File_system::US3 = match &v159 {
-                        File_system::US3::US3_0(v159_0_0) => File_system::US3::US3_0(match &v159 {
+                    let v980: File_system::US3 = match &v931 {
+                        File_system::US3::US3_0(v931_0_0) => File_system::US3::US3_0(match &v931 {
                             File_system::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         }),
                         _ => {
-                            let v168: File_system::US3 = if if let File_system::US0::US0_1 = &v0_1 {
+                            let v940: File_system::US3 = if if let File_system::US0::US0_1 = &v0 {
                                 true
                             } else {
                                 false
@@ -3189,16 +3173,16 @@ pub mod File_system {
                             } else {
                                 File_system::US3::US3_1
                             };
-                            match &v168 {
-                                File_system::US3::US3_0(v168_0_0) => {
-                                    File_system::US3::US3_0(match &v168 {
+                            match &v940 {
+                                File_system::US3::US3_0(v940_0_0) => {
+                                    File_system::US3::US3_0(match &v940 {
                                         File_system::US3::US3_0(x) => x.clone(),
                                         _ => unreachable!(),
                                     })
                                 }
                                 _ => {
-                                    let v177: File_system::US3 =
-                                        if if let File_system::US0::US0_2 = &v0_1 {
+                                    let v949: File_system::US3 =
+                                        if if let File_system::US0::US0_2 = &v0 {
                                             true
                                         } else {
                                             false
@@ -3207,16 +3191,16 @@ pub mod File_system {
                                         } else {
                                             File_system::US3::US3_1
                                         };
-                                    match &v177 {
-                                        File_system::US3::US3_0(v177_0_0) => {
-                                            File_system::US3::US3_0(match &v177 {
+                                    match &v949 {
+                                        File_system::US3::US3_0(v949_0_0) => {
+                                            File_system::US3::US3_0(match &v949 {
                                                 File_system::US3::US3_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
                                         }
                                         _ => {
-                                            let v186: File_system::US3 =
-                                                if if let File_system::US0::US0_3 = &v0_1 {
+                                            let v958: File_system::US3 =
+                                                if if let File_system::US0::US0_3 = &v0 {
                                                     true
                                                 } else {
                                                     false
@@ -3225,16 +3209,16 @@ pub mod File_system {
                                                 } else {
                                                     File_system::US3::US3_1
                                                 };
-                                            match &v186 {
-                                                File_system::US3::US3_0(v186_0_0) => {
-                                                    File_system::US3::US3_0(match &v186 {
+                                            match &v958 {
+                                                File_system::US3::US3_0(v958_0_0) => {
+                                                    File_system::US3::US3_0(match &v958 {
                                                         File_system::US3::US3_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     })
                                                 }
                                                 _ => {
-                                                    let v195: File_system::US3 =
-                                                        if if let File_system::US0::US0_4 = &v0_1 {
+                                                    let v967: File_system::US3 =
+                                                        if if let File_system::US0::US0_4 = &v0 {
                                                             true
                                                         } else {
                                                             false
@@ -3245,9 +3229,9 @@ pub mod File_system {
                                                         } else {
                                                             File_system::US3::US3_1
                                                         };
-                                                    match &v195 {
-                                                        File_system::US3::US3_0(v195_0_0) => {
-                                                            File_system::US3::US3_0(match &v195 {
+                                                    match &v967 {
+                                                        File_system::US3::US3_0(v967_0_0) => {
+                                                            File_system::US3::US3_0(match &v967 {
                                                                 File_system::US3::US3_0(x) => {
                                                                     x.clone()
                                                                 }
@@ -3264,9 +3248,9 @@ pub mod File_system {
                             }
                         }
                     };
-                    let v215: string = padLeft(
-                        toLower(match &v208 {
-                            File_system::US3::US3_0(v208_0_0) => match &v208 {
+                    let v997: string = padLeft(
+                        toLower(match &v980 {
+                            File_system::US3::US3_0(v980_0_0) => match &v980 {
                                 File_system::US3::US3_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -3275,42 +3259,42 @@ pub mod File_system {
                         7_i32,
                         ' ',
                     );
-                    let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v231: &str = match &v0_1 {
+                    let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v1044: &str = match &v0 {
                         File_system::US0::US0_1 => inline_colorization::color_bright_blue,
                         File_system::US0::US0_2 => inline_colorization::color_bright_green,
                         File_system::US0::US0_0 => inline_colorization::color_bright_black,
                         File_system::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v233: &str = &*v215;
-                    let v235: &str = inline_colorization::color_reset;
-                    let v237: string = string("format!(\"{v231}{v233}{v235}\")");
-                    let v238: std::string::String = format!("{v231}{v233}{v235}");
+                    let v1046: &str = &*v997;
+                    let v1048: &str = inline_colorization::color_reset;
+                    let v1050: string = string("format!(\"{v1044}{v1046}{v1048}\")");
+                    let v1051: std::string::String = format!("{v1044}{v1046}{v1048}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v238);
-                        _v216.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v1051);
+                        _v1029.set(Some(x_5))
                     }
                     {
-                        let v328: string = match &_v216.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v216=None"),),
-                            Some(_v216_0_0) => _v216_0_0.clone(),
+                        let v1141: string = match &_v1029.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v1029=None"),),
+                            Some(_v1029_0_0) => _v1029_0_0.clone(),
                         };
-                        let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                        let patternInput_1: (string, std::string::String) = v2_1();
-                        let v333: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
+                        let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                        let patternInput_1: (string, std::string::String) = v2();
+                        let v1164: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
                             l0: MutCell::new(string("")),
                         });
-                        File_system::method60(
-                            v333.clone(),
+                        File_system::method58(
+                            v1164.clone(),
                             patternInput_1.0.clone(),
                             patternInput_1.1.clone(),
                         );
                         {
-                            let v334: string = v333.l0.get().clone();
+                            let v1165: string = v1164.l0.get().clone();
                             trimEndChars(
                                 trimStartChars(
-                                    sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v334),
+                                    sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1165),
                                     toArray(empty::<char>()),
                                 ),
                                 toArray(ofArray(new_array(&[' ', '/']))),
@@ -3321,39 +3305,39 @@ pub mod File_system {
             }
         }
     }
-    pub fn method59(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(string, std::string::String)>,
+    pub fn method57(
+        v0: File_system::US0,
+        v1: Func0<string>,
+        v2: Func0<(string, std::string::String)>,
     ) {
         File_system::method17(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || File_system::closure47(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || File_system::closure47(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
     pub fn closure48(unitVar: (), unitVar_1: ()) -> string {
         string("file_system.create_dir")
     }
-    pub fn closure49(v0_1: string, unitVar: ()) -> string {
-        v0_1
+    pub fn closure49(v0: string, unitVar: ()) -> string {
+        v0
     }
-    pub fn method63(v0_1: LrcPtr<File_system::Mut4>, v1_1: string) {
-        File_system::method15(v0_1.clone(), string("{ "));
-        File_system::method16(v0_1.clone());
-        File_system::method15(v0_1.clone(), string("dir"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v1_1);
-        File_system::method15(v0_1, string(" }"))
+    pub fn method61(v0: LrcPtr<File_system::Mut4>, v1: string) {
+        File_system::method15(v0.clone(), string("{ "));
+        File_system::method16(v0.clone());
+        File_system::method15(v0.clone(), string("dir"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v1);
+        File_system::method15(v0, string(" }"))
     }
     pub fn closure50(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<string>,
+        v0: File_system::US0,
+        v1: Func0<string>,
+        v2: Func0<string>,
         unitVar: (),
     ) -> string {
         if File_system::State::trace_state().get().clone().is_none() {
@@ -3368,32 +3352,32 @@ pub mod File_system {
                 LrcPtr<File_system::Mut3>,
                 Option<i64>,
             ) = getValue(File_system::State::trace_state().get().clone());
-            let v9_1: Option<i64> = patternInput.4.clone();
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let _v11: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
+            let v18: Option<i64> = patternInput.4.clone();
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v38: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
             {
-                let x_2: Option<File_system::US2> = match &v9_1 {
+                let x_2: Option<File_system::US2> = match &v18 {
                     None => None::<File_system::US2>,
-                    Some(v9_1_0_0) => {
-                        let x: i64 = v9_1_0_0.clone();
+                    Some(v18_0_0) => {
+                        let x: i64 = v18_0_0.clone();
                         Some((Func0::new({
                             let x = x.clone();
                             move || File_system::US2::US2_0(x)
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v38.set(x_2)
             }
             {
-                let v16_1: File_system::US2 =
-                    defaultValue(File_system::US2::US2_1, _v11.get().clone());
-                let v35: DateTime = match &v16_1 {
-                    File_system::US2::US2_0(v16_1_0_0) => {
-                        let v23: TimeSpan = TimeSpan::new_ticks(
+                let v65: File_system::US2 =
+                    defaultValue(File_system::US2::US2_1, _v38.get().clone());
+                let v163: DateTime = match &v65 {
+                    File_system::US2::US2_0(v65_0_0) => {
+                        let v97_1: TimeSpan = TimeSpan::new_ticks(
                             {
                                 let _arg: DateTime = DateTime::now();
                                 _arg.ticks()
-                            } - match &v16_1 {
+                            } - match &v65 {
                                 File_system::US2::US2_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -3402,10 +3386,10 @@ pub mod File_system {
                             1_i32,
                             1_i32,
                             1_i32,
-                            v23.hours(),
-                            v23.minutes(),
-                            v23.seconds(),
-                            v23.milliseconds(),
+                            v97_1.hours(),
+                            v97_1.minutes(),
+                            v97_1.seconds(),
+                            v97_1.milliseconds(),
                         )
                     }
                     _ => DateTime::now(),
@@ -3413,16 +3397,16 @@ pub mod File_system {
                 {
                     let x_3: string = {
                         let provider: string = File_system::method10();
-                        v35.toString(provider)
+                        v163.toString(provider)
                     };
-                    _v10.set(Some(x_3))
+                    _v35.set(Some(x_3))
                 }
                 {
-                    let v152: string = match &_v10.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v10=None"),),
-                        Some(_v10_0_0) => _v10_0_0.clone(),
+                    let v772: string = match &_v35.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v35=None"),),
+                        Some(_v35_0_0) => _v35_0_0.clone(),
                     };
-                    let v159: File_system::US3 = if if let File_system::US0::US0_0 = &v0_1 {
+                    let v931: File_system::US3 = if if let File_system::US0::US0_0 = &v0 {
                         true
                     } else {
                         false
@@ -3431,13 +3415,13 @@ pub mod File_system {
                     } else {
                         File_system::US3::US3_1
                     };
-                    let v208: File_system::US3 = match &v159 {
-                        File_system::US3::US3_0(v159_0_0) => File_system::US3::US3_0(match &v159 {
+                    let v980: File_system::US3 = match &v931 {
+                        File_system::US3::US3_0(v931_0_0) => File_system::US3::US3_0(match &v931 {
                             File_system::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         }),
                         _ => {
-                            let v168: File_system::US3 = if if let File_system::US0::US0_1 = &v0_1 {
+                            let v940: File_system::US3 = if if let File_system::US0::US0_1 = &v0 {
                                 true
                             } else {
                                 false
@@ -3446,16 +3430,16 @@ pub mod File_system {
                             } else {
                                 File_system::US3::US3_1
                             };
-                            match &v168 {
-                                File_system::US3::US3_0(v168_0_0) => {
-                                    File_system::US3::US3_0(match &v168 {
+                            match &v940 {
+                                File_system::US3::US3_0(v940_0_0) => {
+                                    File_system::US3::US3_0(match &v940 {
                                         File_system::US3::US3_0(x) => x.clone(),
                                         _ => unreachable!(),
                                     })
                                 }
                                 _ => {
-                                    let v177: File_system::US3 =
-                                        if if let File_system::US0::US0_2 = &v0_1 {
+                                    let v949: File_system::US3 =
+                                        if if let File_system::US0::US0_2 = &v0 {
                                             true
                                         } else {
                                             false
@@ -3464,16 +3448,16 @@ pub mod File_system {
                                         } else {
                                             File_system::US3::US3_1
                                         };
-                                    match &v177 {
-                                        File_system::US3::US3_0(v177_0_0) => {
-                                            File_system::US3::US3_0(match &v177 {
+                                    match &v949 {
+                                        File_system::US3::US3_0(v949_0_0) => {
+                                            File_system::US3::US3_0(match &v949 {
                                                 File_system::US3::US3_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
                                         }
                                         _ => {
-                                            let v186: File_system::US3 =
-                                                if if let File_system::US0::US0_3 = &v0_1 {
+                                            let v958: File_system::US3 =
+                                                if if let File_system::US0::US0_3 = &v0 {
                                                     true
                                                 } else {
                                                     false
@@ -3482,16 +3466,16 @@ pub mod File_system {
                                                 } else {
                                                     File_system::US3::US3_1
                                                 };
-                                            match &v186 {
-                                                File_system::US3::US3_0(v186_0_0) => {
-                                                    File_system::US3::US3_0(match &v186 {
+                                            match &v958 {
+                                                File_system::US3::US3_0(v958_0_0) => {
+                                                    File_system::US3::US3_0(match &v958 {
                                                         File_system::US3::US3_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     })
                                                 }
                                                 _ => {
-                                                    let v195: File_system::US3 =
-                                                        if if let File_system::US0::US0_4 = &v0_1 {
+                                                    let v967: File_system::US3 =
+                                                        if if let File_system::US0::US0_4 = &v0 {
                                                             true
                                                         } else {
                                                             false
@@ -3502,9 +3486,9 @@ pub mod File_system {
                                                         } else {
                                                             File_system::US3::US3_1
                                                         };
-                                                    match &v195 {
-                                                        File_system::US3::US3_0(v195_0_0) => {
-                                                            File_system::US3::US3_0(match &v195 {
+                                                    match &v967 {
+                                                        File_system::US3::US3_0(v967_0_0) => {
+                                                            File_system::US3::US3_0(match &v967 {
                                                                 File_system::US3::US3_0(x) => {
                                                                     x.clone()
                                                                 }
@@ -3521,9 +3505,9 @@ pub mod File_system {
                             }
                         }
                     };
-                    let v215: string = padLeft(
-                        toLower(match &v208 {
-                            File_system::US3::US3_0(v208_0_0) => match &v208 {
+                    let v997: string = padLeft(
+                        toLower(match &v980 {
+                            File_system::US3::US3_0(v980_0_0) => match &v980 {
                                 File_system::US3::US3_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -3532,37 +3516,37 @@ pub mod File_system {
                         7_i32,
                         ' ',
                     );
-                    let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v231: &str = match &v0_1 {
+                    let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v1044: &str = match &v0 {
                         File_system::US0::US0_1 => inline_colorization::color_bright_blue,
                         File_system::US0::US0_2 => inline_colorization::color_bright_green,
                         File_system::US0::US0_0 => inline_colorization::color_bright_black,
                         File_system::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v233: &str = &*v215;
-                    let v235: &str = inline_colorization::color_reset;
-                    let v237: string = string("format!(\"{v231}{v233}{v235}\")");
-                    let v238: std::string::String = format!("{v231}{v233}{v235}");
+                    let v1046: &str = &*v997;
+                    let v1048: &str = inline_colorization::color_reset;
+                    let v1050: string = string("format!(\"{v1044}{v1046}{v1048}\")");
+                    let v1051: std::string::String = format!("{v1044}{v1046}{v1048}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v238);
-                        _v216.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v1051);
+                        _v1029.set(Some(x_5))
                     }
                     {
-                        let v328: string = match &_v216.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v216=None"),),
-                            Some(_v216_0_0) => _v216_0_0.clone(),
+                        let v1141: string = match &_v1029.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v1029=None"),),
+                            Some(_v1029_0_0) => _v1029_0_0.clone(),
                         };
-                        let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                        let v332: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
+                        let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                        let v1163: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
                             l0: MutCell::new(string("")),
                         });
-                        File_system::method63(v332.clone(), v2_1());
+                        File_system::method61(v1163.clone(), v2());
                         {
-                            let v333: string = v332.l0.get().clone();
+                            let v1164: string = v1163.l0.get().clone();
                             trimEndChars(
                                 trimStartChars(
-                                    sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v333),
+                                    sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1164),
                                     toArray(empty::<char>()),
                                 ),
                                 toArray(ofArray(new_array(&[' ', '/']))),
@@ -3573,54 +3557,54 @@ pub mod File_system {
             }
         }
     }
-    pub fn method62(v0_1: File_system::US0, v1_1: Func0<string>, v2_1: Func0<string>) {
+    pub fn method60(v0: File_system::US0, v1: Func0<string>, v2: Func0<string>) {
         File_system::method17(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || File_system::closure50(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || File_system::closure50(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
-    pub fn closure51(v0_1: string, unitVar: ()) {
-        File_system::method5(true, v0_1);
+    pub fn closure51(v0: string, unitVar: ()) {
+        File_system::method5(true, v0);
     }
-    pub fn method64(v0_1: string) -> Func0<()> {
+    pub fn method62(v0: string) -> Func0<()> {
         Func0::new({
-            let v0_1 = v0_1.clone();
-            move || File_system::closure51(v0_1.clone(), ())
+            let v0 = v0.clone();
+            move || File_system::closure51(v0.clone(), ())
         })
     }
-    pub fn method65(v0_1: string) -> Func0<()> {
+    pub fn method63(v0: string) -> Func0<()> {
         Func0::new({
-            let v0_1 = v0_1.clone();
-            move || File_system::closure51(v0_1.clone(), ())
+            let v0 = v0.clone();
+            move || File_system::closure51(v0.clone(), ())
         })
     }
     pub fn closure52(unitVar: (), unitVar_1: ()) -> string {
         string("file_system.create_dir")
     }
-    pub fn closure53(v0_1: string, v1_1: string, unitVar: ()) -> (string, string) {
-        (v0_1, v1_1)
+    pub fn closure53(v0: string, v1: string, unitVar: ()) -> (string, string) {
+        (v0, v1)
     }
-    pub fn method67(v0_1: LrcPtr<File_system::Mut4>, v1_1: string, v2_1: string) {
-        File_system::method15(v0_1.clone(), string("{ "));
-        File_system::method16(v0_1.clone());
-        File_system::method15(v0_1.clone(), string("dir"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v1_1);
-        File_system::method15(v0_1.clone(), string("; "));
-        File_system::method15(v0_1.clone(), string("result"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v2_1);
-        File_system::method15(v0_1, string(" }"))
+    pub fn method65(v0: LrcPtr<File_system::Mut4>, v1: string, v2: string) {
+        File_system::method15(v0.clone(), string("{ "));
+        File_system::method16(v0.clone());
+        File_system::method15(v0.clone(), string("dir"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v1);
+        File_system::method15(v0.clone(), string("; "));
+        File_system::method15(v0.clone(), string("result"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v2);
+        File_system::method15(v0, string(" }"))
     }
     pub fn closure54(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<(string, string)>,
+        v0: File_system::US0,
+        v1: Func0<string>,
+        v2: Func0<(string, string)>,
         unitVar: (),
     ) -> string {
         if File_system::State::trace_state().get().clone().is_none() {
@@ -3635,32 +3619,32 @@ pub mod File_system {
                 LrcPtr<File_system::Mut3>,
                 Option<i64>,
             ) = getValue(File_system::State::trace_state().get().clone());
-            let v9_1: Option<i64> = patternInput.4.clone();
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let _v11: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
+            let v18: Option<i64> = patternInput.4.clone();
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v38: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
             {
-                let x_2: Option<File_system::US2> = match &v9_1 {
+                let x_2: Option<File_system::US2> = match &v18 {
                     None => None::<File_system::US2>,
-                    Some(v9_1_0_0) => {
-                        let x: i64 = v9_1_0_0.clone();
+                    Some(v18_0_0) => {
+                        let x: i64 = v18_0_0.clone();
                         Some((Func0::new({
                             let x = x.clone();
                             move || File_system::US2::US2_0(x)
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v38.set(x_2)
             }
             {
-                let v16_1: File_system::US2 =
-                    defaultValue(File_system::US2::US2_1, _v11.get().clone());
-                let v35: DateTime = match &v16_1 {
-                    File_system::US2::US2_0(v16_1_0_0) => {
-                        let v23: TimeSpan = TimeSpan::new_ticks(
+                let v65: File_system::US2 =
+                    defaultValue(File_system::US2::US2_1, _v38.get().clone());
+                let v163: DateTime = match &v65 {
+                    File_system::US2::US2_0(v65_0_0) => {
+                        let v97_1: TimeSpan = TimeSpan::new_ticks(
                             {
                                 let _arg: DateTime = DateTime::now();
                                 _arg.ticks()
-                            } - match &v16_1 {
+                            } - match &v65 {
                                 File_system::US2::US2_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -3669,10 +3653,10 @@ pub mod File_system {
                             1_i32,
                             1_i32,
                             1_i32,
-                            v23.hours(),
-                            v23.minutes(),
-                            v23.seconds(),
-                            v23.milliseconds(),
+                            v97_1.hours(),
+                            v97_1.minutes(),
+                            v97_1.seconds(),
+                            v97_1.milliseconds(),
                         )
                     }
                     _ => DateTime::now(),
@@ -3680,16 +3664,16 @@ pub mod File_system {
                 {
                     let x_3: string = {
                         let provider: string = File_system::method10();
-                        v35.toString(provider)
+                        v163.toString(provider)
                     };
-                    _v10.set(Some(x_3))
+                    _v35.set(Some(x_3))
                 }
                 {
-                    let v152: string = match &_v10.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v10=None"),),
-                        Some(_v10_0_0) => _v10_0_0.clone(),
+                    let v772: string = match &_v35.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v35=None"),),
+                        Some(_v35_0_0) => _v35_0_0.clone(),
                     };
-                    let v159: File_system::US3 = if if let File_system::US0::US0_0 = &v0_1 {
+                    let v931: File_system::US3 = if if let File_system::US0::US0_0 = &v0 {
                         true
                     } else {
                         false
@@ -3698,13 +3682,13 @@ pub mod File_system {
                     } else {
                         File_system::US3::US3_1
                     };
-                    let v208: File_system::US3 = match &v159 {
-                        File_system::US3::US3_0(v159_0_0) => File_system::US3::US3_0(match &v159 {
+                    let v980: File_system::US3 = match &v931 {
+                        File_system::US3::US3_0(v931_0_0) => File_system::US3::US3_0(match &v931 {
                             File_system::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         }),
                         _ => {
-                            let v168: File_system::US3 = if if let File_system::US0::US0_1 = &v0_1 {
+                            let v940: File_system::US3 = if if let File_system::US0::US0_1 = &v0 {
                                 true
                             } else {
                                 false
@@ -3713,16 +3697,16 @@ pub mod File_system {
                             } else {
                                 File_system::US3::US3_1
                             };
-                            match &v168 {
-                                File_system::US3::US3_0(v168_0_0) => {
-                                    File_system::US3::US3_0(match &v168 {
+                            match &v940 {
+                                File_system::US3::US3_0(v940_0_0) => {
+                                    File_system::US3::US3_0(match &v940 {
                                         File_system::US3::US3_0(x) => x.clone(),
                                         _ => unreachable!(),
                                     })
                                 }
                                 _ => {
-                                    let v177: File_system::US3 =
-                                        if if let File_system::US0::US0_2 = &v0_1 {
+                                    let v949: File_system::US3 =
+                                        if if let File_system::US0::US0_2 = &v0 {
                                             true
                                         } else {
                                             false
@@ -3731,16 +3715,16 @@ pub mod File_system {
                                         } else {
                                             File_system::US3::US3_1
                                         };
-                                    match &v177 {
-                                        File_system::US3::US3_0(v177_0_0) => {
-                                            File_system::US3::US3_0(match &v177 {
+                                    match &v949 {
+                                        File_system::US3::US3_0(v949_0_0) => {
+                                            File_system::US3::US3_0(match &v949 {
                                                 File_system::US3::US3_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
                                         }
                                         _ => {
-                                            let v186: File_system::US3 =
-                                                if if let File_system::US0::US0_3 = &v0_1 {
+                                            let v958: File_system::US3 =
+                                                if if let File_system::US0::US0_3 = &v0 {
                                                     true
                                                 } else {
                                                     false
@@ -3749,16 +3733,16 @@ pub mod File_system {
                                                 } else {
                                                     File_system::US3::US3_1
                                                 };
-                                            match &v186 {
-                                                File_system::US3::US3_0(v186_0_0) => {
-                                                    File_system::US3::US3_0(match &v186 {
+                                            match &v958 {
+                                                File_system::US3::US3_0(v958_0_0) => {
+                                                    File_system::US3::US3_0(match &v958 {
                                                         File_system::US3::US3_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     })
                                                 }
                                                 _ => {
-                                                    let v195: File_system::US3 =
-                                                        if if let File_system::US0::US0_4 = &v0_1 {
+                                                    let v967: File_system::US3 =
+                                                        if if let File_system::US0::US0_4 = &v0 {
                                                             true
                                                         } else {
                                                             false
@@ -3769,9 +3753,9 @@ pub mod File_system {
                                                         } else {
                                                             File_system::US3::US3_1
                                                         };
-                                                    match &v195 {
-                                                        File_system::US3::US3_0(v195_0_0) => {
-                                                            File_system::US3::US3_0(match &v195 {
+                                                    match &v967 {
+                                                        File_system::US3::US3_0(v967_0_0) => {
+                                                            File_system::US3::US3_0(match &v967 {
                                                                 File_system::US3::US3_0(x) => {
                                                                     x.clone()
                                                                 }
@@ -3788,9 +3772,9 @@ pub mod File_system {
                             }
                         }
                     };
-                    let v215: string = padLeft(
-                        toLower(match &v208 {
-                            File_system::US3::US3_0(v208_0_0) => match &v208 {
+                    let v997: string = padLeft(
+                        toLower(match &v980 {
+                            File_system::US3::US3_0(v980_0_0) => match &v980 {
                                 File_system::US3::US3_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -3799,42 +3783,42 @@ pub mod File_system {
                         7_i32,
                         ' ',
                     );
-                    let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v231: &str = match &v0_1 {
+                    let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v1044: &str = match &v0 {
                         File_system::US0::US0_1 => inline_colorization::color_bright_blue,
                         File_system::US0::US0_2 => inline_colorization::color_bright_green,
                         File_system::US0::US0_0 => inline_colorization::color_bright_black,
                         File_system::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v233: &str = &*v215;
-                    let v235: &str = inline_colorization::color_reset;
-                    let v237: string = string("format!(\"{v231}{v233}{v235}\")");
-                    let v238: std::string::String = format!("{v231}{v233}{v235}");
+                    let v1046: &str = &*v997;
+                    let v1048: &str = inline_colorization::color_reset;
+                    let v1050: string = string("format!(\"{v1044}{v1046}{v1048}\")");
+                    let v1051: std::string::String = format!("{v1044}{v1046}{v1048}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v238);
-                        _v216.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v1051);
+                        _v1029.set(Some(x_5))
                     }
                     {
-                        let v328: string = match &_v216.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v216=None"),),
-                            Some(_v216_0_0) => _v216_0_0.clone(),
+                        let v1141: string = match &_v1029.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v1029=None"),),
+                            Some(_v1029_0_0) => _v1029_0_0.clone(),
                         };
-                        let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                        let patternInput_1: (string, string) = v2_1();
-                        let v333: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
+                        let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                        let patternInput_1: (string, string) = v2();
+                        let v1164: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
                             l0: MutCell::new(string("")),
                         });
-                        File_system::method67(
-                            v333.clone(),
+                        File_system::method65(
+                            v1164.clone(),
                             patternInput_1.0.clone(),
                             patternInput_1.1.clone(),
                         );
                         {
-                            let v334: string = v333.l0.get().clone();
+                            let v1165: string = v1164.l0.get().clone();
                             trimEndChars(
                                 trimStartChars(
-                                    sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v334),
+                                    sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1165),
                                     toArray(empty::<char>()),
                                 ),
                                 toArray(ofArray(new_array(&[' ', '/']))),
@@ -3845,91 +3829,91 @@ pub mod File_system {
             }
         }
     }
-    pub fn method66(v0_1: File_system::US0, v1_1: Func0<string>, v2_1: Func0<(string, string)>) {
+    pub fn method64(v0: File_system::US0, v1: Func0<string>, v2: Func0<(string, string)>) {
         File_system::method17(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || File_system::closure54(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || File_system::closure54(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
-    pub fn closure55(v0_1: string, unitVar: ()) {
-        let _v1: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
+    pub fn closure55(v0: string, unitVar: ()) {
+        let _v3: MutCell<Option<Arc<Async<i64>>>> = MutCell::new(None::<Arc<Async<i64>>>);
         {
             let x: Arc<Async<i64>> = defaultOf();
-            _v1.set(Some(x))
+            _v3.set(Some(x))
         }
         {
-            let v9_1: Arc<Async<i64>> = match &_v1.get().clone() {
-                None => panic!("{}", string("base.run_target / _v1=None"),),
-                Some(_v1_0_0) => _v1_0_0.clone(),
+            let v51: Arc<Async<i64>> = match &_v3.get().clone() {
+                None => panic!("{}", string("base.run_target / _v3=None"),),
+                Some(_v3_0_0) => _v3_0_0.clone(),
             };
-            let _v10: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
+            let _v68: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
             {
                 let x_2: Arc<Async<()>> = defaultOf();
-                _v10.set(Some(x_2))
+                _v68.set(Some(x_2))
             }
             {
-                let v18_1: Arc<Async<()>> = match &_v10.get().clone() {
-                    None => panic!("{}", string("base.run_target / _v10=None"),),
-                    Some(_v10_0_0) => _v10_0_0.clone(),
+                let v116: Arc<Async<()>> = match &_v68.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v68=None"),),
+                    Some(_v68_0_0) => _v68_0_0.clone(),
                 };
-                let _v19: MutCell<Option<()>> = MutCell::new(None::<()>);
+                let _v133: MutCell<Option<()>> = MutCell::new(None::<()>);
                 defaultOf::<()>();
-                _v19.set(Some(()));
-                match &_v19.get().clone() {
-                    None => panic!("{}", string("base.run_target / _v19=None"),),
-                    Some(_v19_0_0) => _v19_0_0.clone(),
+                _v133.set(Some(()));
+                match &_v133.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v133=None"),),
+                    Some(_v133_0_0) => _v133_0_0.clone(),
                 }
                 ()
             }
         }
     }
-    pub fn method68(v0_1: string) -> Func0<()> {
+    pub fn method66(v0: string) -> Func0<()> {
         Func0::new({
-            let v0_1 = v0_1.clone();
-            move || File_system::closure55(v0_1.clone(), ())
+            let v0 = v0.clone();
+            move || File_system::closure55(v0.clone(), ())
         })
     }
-    pub fn method69(v0_1: string) -> Func0<()> {
+    pub fn method67(v0: string) -> Func0<()> {
         Func0::new({
-            let v0_1 = v0_1.clone();
-            move || File_system::closure55(v0_1.clone(), ())
+            let v0 = v0.clone();
+            move || File_system::closure55(v0.clone(), ())
         })
     }
-    pub fn method56(v0_1: string) -> LrcPtr<dyn IDisposable> {
-        let _v1: MutCell<Option<LrcPtr<dyn IDisposable>>> =
+    pub fn method54(v0: string) -> LrcPtr<dyn IDisposable> {
+        let _v3: MutCell<Option<LrcPtr<dyn IDisposable>>> =
             MutCell::new(None::<LrcPtr<dyn IDisposable>>);
-        let v2_1: string = File_system::method57(v0_1);
-        let v4_1: Result<(), std::io::Error> = std::fs::create_dir_all(&*v2_1.clone());
-        let v5_1 = File_system::method58();
-        let v7_1: Result<(), std::string::String> = v4_1.map_err(|x| v5_1(x));
-        let v10_1: File_system::US12 = match &v7_1 {
-            Err(v7_1_1_0) => File_system::closure44((), v7_1_1_0.clone()),
+        let v4: string = File_system::method55(v0);
+        let v6: Result<(), std::io::Error> = std::fs::create_dir_all(&*v4.clone());
+        let v7 = File_system::method56();
+        let v9: Result<(), std::string::String> = v6.map_err(|x| v7(x));
+        let v12: File_system::US12 = match &v9 {
+            Err(v9_1_0) => File_system::closure44((), v9_1_0.clone()),
             _ => File_system::closure43((), ()),
         };
-        match &v10_1 {
-            File_system::US12::US12_0 => File_system::method62(
+        match &v12 {
+            File_system::US12::US12_0 => File_system::method60(
                 File_system::US0::US0_0,
                 Func0::new(move || File_system::closure48((), ())),
                 Func0::new({
-                    let v2_1 = v2_1.clone();
-                    move || File_system::closure49(v2_1.clone(), ())
+                    let v4 = v4.clone();
+                    move || File_system::closure49(v4.clone(), ())
                 }),
             ),
-            File_system::US12::US12_1(v10_1_1_0) => File_system::method59(
+            File_system::US12::US12_1(v12_1_0) => File_system::method57(
                 File_system::US0::US0_4,
                 Func0::new(move || File_system::closure45((), ())),
                 Func0::new({
-                    let v10_1 = v10_1.clone();
-                    let v2_1 = v2_1.clone();
+                    let v12 = v12.clone();
+                    let v4 = v4.clone();
                     move || {
                         File_system::closure46(
-                            v2_1.clone(),
-                            match &v10_1 {
+                            v4.clone(),
+                            match &v12 {
                                 File_system::US12::US12_1(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -3940,97 +3924,97 @@ pub mod File_system {
             ),
         }
         {
-            let _v18: MutCell<Option<LrcPtr<dyn IDisposable>>> =
+            let _v22: MutCell<Option<LrcPtr<dyn IDisposable>>> =
                 MutCell::new(None::<LrcPtr<dyn IDisposable>>);
-            let v19_1 = File_system::method64(v2_1.clone());
+            let v23 = File_system::method62(v4.clone());
             {
                 let x_1: LrcPtr<dyn IDisposable> = interface_cast!(
                     File_system::Disposable::_ctor__3A5B6456(Func0::new({
-                        let v19_1 = v19_1.clone();
-                        move || v19_1.clone()()
+                        let v23 = v23.clone();
+                        move || v23.clone()()
                     })),
                     Lrc<dyn IDisposable>,
                 );
-                _v18.set(Some(x_1))
+                _v22.set(Some(x_1))
             }
             {
-                let x_3: LrcPtr<dyn IDisposable> = match &_v18.get().clone() {
-                    None => panic!("{}", string("base.run_target / _v18=None"),),
-                    Some(_v18_0_0) => _v18_0_0.clone(),
+                let x_3: LrcPtr<dyn IDisposable> = match &_v22.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v22=None"),),
+                    Some(_v22_0_0) => _v22_0_0.clone(),
                 };
-                _v1.set(Some(x_3))
+                _v3.set(Some(x_3))
             }
-            match &_v1.get().clone() {
-                None => panic!("{}", string("base.run_target / _v1=None"),),
-                Some(_v1_0_0) => _v1_0_0.clone(),
+            match &_v3.get().clone() {
+                None => panic!("{}", string("base.run_target / _v3=None"),),
+                Some(_v3_0_0) => _v3_0_0.clone(),
             }
         }
     }
     pub fn closure41(unitVar: (), unitVar_1: ()) -> (string, LrcPtr<dyn IDisposable>) {
-        let v0_1: string = File_system::method41();
-        (v0_1.clone(), File_system::method56(v0_1))
+        let v0: string = File_system::method41();
+        (v0.clone(), File_system::method54(v0))
     }
-    pub fn method70(v0_1: string) -> Guid {
-        let _v1: MutCell<Option<Guid>> = MutCell::new(None::<Guid>);
-        let v2_1: string = padLeft(v0_1, 32_i32, '0');
+    pub fn method68(v0: string) -> Guid {
+        let _v3: MutCell<Option<Guid>> = MutCell::new(None::<Guid>);
+        let v6: string = padLeft(v0, 32_i32, '0');
         {
             let x: Guid = parse(sprintf!(
                 "{}-{}-{}-{}-{}",
-                getSlice(v2_1.clone(), Some(0_i32), Some(7_i32)),
-                getSlice(v2_1.clone(), Some(8_i32), Some(11_i32)),
-                getSlice(v2_1.clone(), Some(12_i32), Some(15_i32)),
-                getSlice(v2_1.clone(), Some(16_i32), Some(19_i32)),
-                getSlice(v2_1, Some(20_i32), Some(31_i32))
+                getSlice(v6.clone(), Some(0_i32), Some(7_i32)),
+                getSlice(v6.clone(), Some(8_i32), Some(11_i32)),
+                getSlice(v6.clone(), Some(12_i32), Some(15_i32)),
+                getSlice(v6.clone(), Some(16_i32), Some(19_i32)),
+                getSlice(v6, Some(20_i32), Some(31_i32))
             ));
-            _v1.set(Some(x))
+            _v3.set(Some(x))
         }
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
         }
     }
-    pub fn closure56(unitVar: (), v0_1: string) -> (string, LrcPtr<dyn IDisposable>) {
-        let v2_1: string = File_system::method48(File_system::method70(v0_1));
-        (v2_1.clone(), File_system::method56(v2_1))
+    pub fn closure56(unitVar: (), v0: string) -> (string, LrcPtr<dyn IDisposable>) {
+        let v2: string = File_system::method46(File_system::method68(v0));
+        (v2.clone(), File_system::method54(v2))
     }
     pub fn closure57(unitVar: (), unitVar_1: ()) -> string {
         string("C:\\home\\git\\polyglot\\lib\\spiral")
     }
-    pub fn method72() -> string {
+    pub fn method70() -> string {
         string("")
     }
-    pub fn method73(v0_1: string) -> string {
-        v0_1
+    pub fn method71(v0: string) -> string {
+        v0
     }
-    pub fn method74() -> string {
+    pub fn method72() -> string {
         string("^\\\\\\\\\\?\\\\")
     }
-    pub fn method71(v0_1: string) -> string {
-        if v0_1.clone() == string("") {
+    pub fn method69(v0: string) -> string {
+        if v0.clone() == string("") {
             string("")
         } else {
-            let v4_1: string = File_system::method72();
-            let _v5: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let v6_1: string = File_system::method73(v0_1);
-            let v9_1: Result<regex::Regex, regex::Error> =
+            let v4: string = File_system::method70();
+            let _v7: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let v8: string = File_system::method71(v0);
+            let v11: Result<regex::Regex, regex::Error> =
                 regex::Regex::new(&string("^\\\\\\\\\\?\\\\"));
-            let v11_1: regex::Regex = v9_1.unwrap();
-            let v13_1: std::borrow::Cow<str> = v11_1.replace_all(&v6_1, &*v4_1);
-            let v15_1: std::string::String = String::from(v13_1);
+            let v13: regex::Regex = v11.unwrap();
+            let v15: std::borrow::Cow<str> = v13.replace_all(&v8, &*v4);
+            let v17: std::string::String = String::from(v15);
             {
-                let x: string = fable_library_rust::String_::fromString(v15_1);
-                _v5.set(Some(x))
+                let x: string = fable_library_rust::String_::fromString(v17);
+                _v7.set(Some(x))
             }
             {
-                let v24: string = match &_v5.get().clone() {
-                    None => panic!("{}", string("base.run_target / _v5=None"),),
-                    Some(_v5_0_0) => _v5_0_0.clone(),
+                let v58: string = match &_v7.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v7=None"),),
+                    Some(_v7_0_0) => _v7_0_0.clone(),
                 };
                 replace(
                     sprintf!(
                         "{}{}",
-                        toLower(ofChar(getCharAt(v24.clone(), 0_i32))),
-                        getSlice(v24, Some(1_i32), None::<i32>)
+                        toLower(ofChar(getCharAt(v58.clone(), 0_i32))),
+                        getSlice(v58, Some(1_i32), None::<i32>)
                     ),
                     string("\\"),
                     string("/"),
@@ -4038,42 +4022,42 @@ pub mod File_system {
             }
         }
     }
-    pub fn closure58(unitVar: (), v0_1: string) -> string {
-        File_system::method71(v0_1)
+    pub fn closure58(unitVar: (), v0: string) -> string {
+        File_system::method69(v0)
     }
-    pub fn closure59(unitVar: (), v0_1: string) -> string {
-        sprintf!("file:///{}", trimStartChars(v0_1, toArray(singleton('/'))))
+    pub fn closure59(unitVar: (), v0: string) -> string {
+        sprintf!("file:///{}", trimStartChars(v0, toArray(singleton('/'))))
     }
-    pub fn method77(v0_1: string) -> Option<string> {
-        let _v1: MutCell<Option<File_system::US3>> = MutCell::new(None::<File_system::US3>);
-        let v3_1: &str = &*v0_1;
-        let v5_1: std::string::String = String::from(v3_1);
-        let v7_1: std::path::PathBuf = std::path::PathBuf::from(v5_1);
-        let v9_1: Option<std::path::PathBuf> = v7_1.parent().map(std::path::PathBuf::from);
-        let v11_1: std::path::PathBuf = v9_1?;
-        let v13_1: std::path::Display = v11_1.display();
-        let _v14: MutCell<Option<std::string::String>> = MutCell::new(None::<std::string::String>);
+    pub fn method75(v0: string) -> Option<string> {
+        let _v3: MutCell<Option<File_system::US3>> = MutCell::new(None::<File_system::US3>);
+        let v5: &str = &*v0;
+        let v7: std::string::String = String::from(v5);
+        let v9: std::path::PathBuf = std::path::PathBuf::from(v7);
+        let v11: Option<std::path::PathBuf> = v9.parent().map(std::path::PathBuf::from);
+        let v13: std::path::PathBuf = v11?;
+        let v15: std::path::Display = v13.display();
+        let _v18: MutCell<Option<std::string::String>> = MutCell::new(None::<std::string::String>);
         {
-            let x: std::string::String = format!("{}", v13_1);
-            _v14.set(Some(x))
+            let x: std::string::String = format!("{}", v15);
+            _v18.set(Some(x))
         }
         {
-            let v24: std::string::String = match &_v14.get().clone() {
-                None => panic!("{}", string("base.run_target / _v14=None"),),
-                Some(_v14_0_0) => _v14_0_0.clone(),
+            let v52: std::string::String = match &_v18.get().clone() {
+                None => panic!("{}", string("base.run_target / _v18=None"),),
+                Some(_v18_0_0) => _v18_0_0.clone(),
             };
             {
                 let x_2: File_system::US3 =
-                    File_system::US3::US3_0(fable_library_rust::String_::fromString(v24));
-                _v1.set(Some(x_2))
+                    File_system::US3::US3_0(fable_library_rust::String_::fromString(v52));
+                _v3.set(Some(x_2))
             }
             {
-                let v51: File_system::US3 = match &_v1.get().clone() {
-                    None => panic!("{}", string("base.run_target / _v1=None"),),
-                    Some(_v1_0_0) => _v1_0_0.clone(),
+                let v189: File_system::US3 = match &_v3.get().clone() {
+                    None => panic!("{}", string("base.run_target / _v3=None"),),
+                    Some(_v3_0_0) => _v3_0_0.clone(),
                 };
-                match &v51 {
-                    File_system::US3::US3_0(v51_0_0) => Some(match &v51 {
+                match &v189 {
+                    File_system::US3::US3_0(v189_0_0) => Some(match &v189 {
                         File_system::US3::US3_0(x) => x.clone(),
                         _ => unreachable!(),
                     }),
@@ -4082,94 +4066,94 @@ pub mod File_system {
             }
         }
     }
-    pub fn closure61(unitVar: (), v0_1: string) -> Option<string> {
-        File_system::method77(v0_1)
+    pub fn closure61(unitVar: (), v0: string) -> Option<string> {
+        File_system::method75(v0)
     }
-    pub fn method76() -> Func1<string, Option<string>> {
+    pub fn method74() -> Func1<string, Option<string>> {
         Func1::new(move |v: string| File_system::closure61((), v))
     }
-    pub fn method78(v0_1: string, v1_1: string, v2_1: string) -> File_system::US13 {
-        let v0_1: MutCell<string> = MutCell::new(v0_1.clone());
-        let v1_1: MutCell<string> = MutCell::new(v1_1.clone());
-        let v2_1: MutCell<string> = MutCell::new(v2_1.clone());
-        '_method78: loop {
-            break '_method78 (if File_system::method7(File_system::method51(
-                v2_1.get().clone(),
-                v0_1.get().clone(),
+    pub fn method76(v0: string, v1: string, v2: string) -> File_system::US13 {
+        let v0: MutCell<string> = MutCell::new(v0.clone());
+        let v1: MutCell<string> = MutCell::new(v1.clone());
+        let v2: MutCell<string> = MutCell::new(v2.clone());
+        '_method76: loop {
+            break '_method76 (if File_system::method7(File_system::method49(
+                v2.get().clone(),
+                v0.get().clone(),
             )) {
-                File_system::US13::US13_0(v2_1.get().clone())
+                File_system::US13::US13_0(v2.get().clone())
             } else {
-                let v7_1: Option<string> = (File_system::method76())(v2_1.get().clone());
-                let _v8: LrcPtr<MutCell<Option<File_system::US3>>> =
+                let v7: Option<string> = (File_system::method74())(v2.get().clone());
+                let _v10: LrcPtr<MutCell<Option<File_system::US3>>> =
                     refCell(None::<File_system::US3>);
                 {
-                    let x_2: Option<File_system::US3> = match &v7_1 {
+                    let x_2: Option<File_system::US3> = match &v7 {
                         None => None::<File_system::US3>,
-                        Some(v7_1_0_0) => {
-                            let x: string = v7_1_0_0.clone();
+                        Some(v7_0_0) => {
+                            let x: string = v7_0_0.clone();
                             Some((Func0::new({
                                 let x = x.clone();
                                 move || File_system::US3::US3_0(x.clone())
                             }))())
                         }
                     };
-                    _v8.set(x_2)
+                    _v10.set(x_2)
                 }
                 {
-                    let v13_1: File_system::US3 =
-                        defaultValue(File_system::US3::US3_1, _v8.get().clone());
-                    match &v13_1 {
-                        File_system::US3::US3_0(v13_1_0_0) => {
-                            let v0_1_temp: string = v0_1.get().clone();
-                            let v1_1_temp: string = v1_1.get().clone();
-                            let v2_1_temp: string = match &v13_1 {
+                    let v37: File_system::US3 =
+                        defaultValue(File_system::US3::US3_1, _v10.get().clone());
+                    match &v37 {
+                        File_system::US3::US3_0(v37_0_0) => {
+                            let v0_temp: string = v0.get().clone();
+                            let v1_temp: string = v1.get().clone();
+                            let v2_temp: string = match &v37 {
                                 File_system::US3::US3_0(x) => x.clone(),
                                 _ => unreachable!(),
                             };
-                            v0_1.set(v0_1_temp);
-                            v1_1.set(v1_1_temp);
-                            v2_1.set(v2_1_temp);
-                            continue '_method78;
+                            v0.set(v0_temp);
+                            v1.set(v1_temp);
+                            v2.set(v2_temp);
+                            continue '_method76;
                         }
                         _ => File_system::US13::US13_1(sprintf!(
                             "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
                             string("dir"),
-                            v0_1.get().clone(),
-                            v1_1.get().clone(),
-                            v2_1.get().clone()
+                            v0.get().clone(),
+                            v1.get().clone(),
+                            v2.get().clone()
                         )),
                     }
                 }
             });
         }
     }
-    pub fn method75(v0_1: string, v1_1: string) -> File_system::US13 {
-        if File_system::method7(File_system::method51(v1_1.clone(), v0_1.clone())) {
-            File_system::US13::US13_0(v1_1.clone())
+    pub fn method73(v0: string, v1: string) -> File_system::US13 {
+        if File_system::method7(File_system::method49(v1.clone(), v0.clone())) {
+            File_system::US13::US13_0(v1.clone())
         } else {
-            let v6_1: Option<string> = (File_system::method76())(v1_1.clone());
-            let _v7: LrcPtr<MutCell<Option<File_system::US3>>> = refCell(None::<File_system::US3>);
+            let v6: Option<string> = (File_system::method74())(v1.clone());
+            let _v9: LrcPtr<MutCell<Option<File_system::US3>>> = refCell(None::<File_system::US3>);
             {
-                let x_2: Option<File_system::US3> = match &v6_1 {
+                let x_2: Option<File_system::US3> = match &v6 {
                     None => None::<File_system::US3>,
-                    Some(v6_1_0_0) => {
-                        let x: string = v6_1_0_0.clone();
+                    Some(v6_0_0) => {
+                        let x: string = v6_0_0.clone();
                         Some((Func0::new({
                             let x = x.clone();
                             move || File_system::US3::US3_0(x.clone())
                         }))())
                     }
                 };
-                _v7.set(x_2)
+                _v9.set(x_2)
             }
             {
-                let v12_1: File_system::US3 =
-                    defaultValue(File_system::US3::US3_1, _v7.get().clone());
-                match &v12_1 {
-                    File_system::US3::US3_0(v12_1_0_0) => File_system::method78(
-                        v0_1.clone(),
-                        v1_1.clone(),
-                        match &v12_1 {
+                let v36: File_system::US3 =
+                    defaultValue(File_system::US3::US3_1, _v9.get().clone());
+                match &v36 {
+                    File_system::US3::US3_0(v36_0_0) => File_system::method76(
+                        v0.clone(),
+                        v1.clone(),
+                        match &v36 {
                             File_system::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         },
@@ -4177,9 +4161,9 @@ pub mod File_system {
                     _ => File_system::US13::US13_1(sprintf!(
                         "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
                         string("dir"),
-                        v0_1.clone(),
-                        v1_1.clone(),
-                        v1_1.clone()
+                        v0.clone(),
+                        v1.clone(),
+                        v1.clone()
                     )),
                 }
             }
@@ -4188,21 +4172,21 @@ pub mod File_system {
     pub fn closure62(unitVar: (), unitVar_1: ()) -> string {
         string("file_system.get_workspace_root")
     }
-    pub fn closure63(v0_1: string, unitVar: ()) -> string {
-        v0_1
+    pub fn closure63(v0: string, unitVar: ()) -> string {
+        v0
     }
-    pub fn method80(v0_1: LrcPtr<File_system::Mut4>, v1_1: string) {
-        File_system::method15(v0_1.clone(), string("{ "));
-        File_system::method16(v0_1.clone());
-        File_system::method15(v0_1.clone(), string("error"));
-        File_system::method15(v0_1.clone(), string(" = "));
-        File_system::method15(v0_1.clone(), v1_1);
-        File_system::method15(v0_1, string(" }"))
+    pub fn method78(v0: LrcPtr<File_system::Mut4>, v1: string) {
+        File_system::method15(v0.clone(), string("{ "));
+        File_system::method16(v0.clone());
+        File_system::method15(v0.clone(), string("error"));
+        File_system::method15(v0.clone(), string(" = "));
+        File_system::method15(v0.clone(), v1);
+        File_system::method15(v0, string(" }"))
     }
     pub fn closure64(
-        v0_1: File_system::US0,
-        v1_1: Func0<string>,
-        v2_1: Func0<string>,
+        v0: File_system::US0,
+        v1: Func0<string>,
+        v2: Func0<string>,
         unitVar: (),
     ) -> string {
         if File_system::State::trace_state().get().clone().is_none() {
@@ -4217,32 +4201,32 @@ pub mod File_system {
                 LrcPtr<File_system::Mut3>,
                 Option<i64>,
             ) = getValue(File_system::State::trace_state().get().clone());
-            let v9_1: Option<i64> = patternInput.4.clone();
-            let _v10: MutCell<Option<string>> = MutCell::new(None::<string>);
-            let _v11: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
+            let v18: Option<i64> = patternInput.4.clone();
+            let _v35: MutCell<Option<string>> = MutCell::new(None::<string>);
+            let _v38: LrcPtr<MutCell<Option<File_system::US2>>> = refCell(None::<File_system::US2>);
             {
-                let x_2: Option<File_system::US2> = match &v9_1 {
+                let x_2: Option<File_system::US2> = match &v18 {
                     None => None::<File_system::US2>,
-                    Some(v9_1_0_0) => {
-                        let x: i64 = v9_1_0_0.clone();
+                    Some(v18_0_0) => {
+                        let x: i64 = v18_0_0.clone();
                         Some((Func0::new({
                             let x = x.clone();
                             move || File_system::US2::US2_0(x)
                         }))())
                     }
                 };
-                _v11.set(x_2)
+                _v38.set(x_2)
             }
             {
-                let v16_1: File_system::US2 =
-                    defaultValue(File_system::US2::US2_1, _v11.get().clone());
-                let v35: DateTime = match &v16_1 {
-                    File_system::US2::US2_0(v16_1_0_0) => {
-                        let v23: TimeSpan = TimeSpan::new_ticks(
+                let v65: File_system::US2 =
+                    defaultValue(File_system::US2::US2_1, _v38.get().clone());
+                let v163: DateTime = match &v65 {
+                    File_system::US2::US2_0(v65_0_0) => {
+                        let v97_1: TimeSpan = TimeSpan::new_ticks(
                             {
                                 let _arg: DateTime = DateTime::now();
                                 _arg.ticks()
-                            } - match &v16_1 {
+                            } - match &v65 {
                                 File_system::US2::US2_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -4251,10 +4235,10 @@ pub mod File_system {
                             1_i32,
                             1_i32,
                             1_i32,
-                            v23.hours(),
-                            v23.minutes(),
-                            v23.seconds(),
-                            v23.milliseconds(),
+                            v97_1.hours(),
+                            v97_1.minutes(),
+                            v97_1.seconds(),
+                            v97_1.milliseconds(),
                         )
                     }
                     _ => DateTime::now(),
@@ -4262,16 +4246,16 @@ pub mod File_system {
                 {
                     let x_3: string = {
                         let provider: string = File_system::method10();
-                        v35.toString(provider)
+                        v163.toString(provider)
                     };
-                    _v10.set(Some(x_3))
+                    _v35.set(Some(x_3))
                 }
                 {
-                    let v152: string = match &_v10.get().clone() {
-                        None => panic!("{}", string("base.run_target / _v10=None"),),
-                        Some(_v10_0_0) => _v10_0_0.clone(),
+                    let v772: string = match &_v35.get().clone() {
+                        None => panic!("{}", string("base.run_target / _v35=None"),),
+                        Some(_v35_0_0) => _v35_0_0.clone(),
                     };
-                    let v159: File_system::US3 = if if let File_system::US0::US0_0 = &v0_1 {
+                    let v931: File_system::US3 = if if let File_system::US0::US0_0 = &v0 {
                         true
                     } else {
                         false
@@ -4280,13 +4264,13 @@ pub mod File_system {
                     } else {
                         File_system::US3::US3_1
                     };
-                    let v208: File_system::US3 = match &v159 {
-                        File_system::US3::US3_0(v159_0_0) => File_system::US3::US3_0(match &v159 {
+                    let v980: File_system::US3 = match &v931 {
+                        File_system::US3::US3_0(v931_0_0) => File_system::US3::US3_0(match &v931 {
                             File_system::US3::US3_0(x) => x.clone(),
                             _ => unreachable!(),
                         }),
                         _ => {
-                            let v168: File_system::US3 = if if let File_system::US0::US0_1 = &v0_1 {
+                            let v940: File_system::US3 = if if let File_system::US0::US0_1 = &v0 {
                                 true
                             } else {
                                 false
@@ -4295,16 +4279,16 @@ pub mod File_system {
                             } else {
                                 File_system::US3::US3_1
                             };
-                            match &v168 {
-                                File_system::US3::US3_0(v168_0_0) => {
-                                    File_system::US3::US3_0(match &v168 {
+                            match &v940 {
+                                File_system::US3::US3_0(v940_0_0) => {
+                                    File_system::US3::US3_0(match &v940 {
                                         File_system::US3::US3_0(x) => x.clone(),
                                         _ => unreachable!(),
                                     })
                                 }
                                 _ => {
-                                    let v177: File_system::US3 =
-                                        if if let File_system::US0::US0_2 = &v0_1 {
+                                    let v949: File_system::US3 =
+                                        if if let File_system::US0::US0_2 = &v0 {
                                             true
                                         } else {
                                             false
@@ -4313,16 +4297,16 @@ pub mod File_system {
                                         } else {
                                             File_system::US3::US3_1
                                         };
-                                    match &v177 {
-                                        File_system::US3::US3_0(v177_0_0) => {
-                                            File_system::US3::US3_0(match &v177 {
+                                    match &v949 {
+                                        File_system::US3::US3_0(v949_0_0) => {
+                                            File_system::US3::US3_0(match &v949 {
                                                 File_system::US3::US3_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
                                         }
                                         _ => {
-                                            let v186: File_system::US3 =
-                                                if if let File_system::US0::US0_3 = &v0_1 {
+                                            let v958: File_system::US3 =
+                                                if if let File_system::US0::US0_3 = &v0 {
                                                     true
                                                 } else {
                                                     false
@@ -4331,16 +4315,16 @@ pub mod File_system {
                                                 } else {
                                                     File_system::US3::US3_1
                                                 };
-                                            match &v186 {
-                                                File_system::US3::US3_0(v186_0_0) => {
-                                                    File_system::US3::US3_0(match &v186 {
+                                            match &v958 {
+                                                File_system::US3::US3_0(v958_0_0) => {
+                                                    File_system::US3::US3_0(match &v958 {
                                                         File_system::US3::US3_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     })
                                                 }
                                                 _ => {
-                                                    let v195: File_system::US3 =
-                                                        if if let File_system::US0::US0_4 = &v0_1 {
+                                                    let v967: File_system::US3 =
+                                                        if if let File_system::US0::US0_4 = &v0 {
                                                             true
                                                         } else {
                                                             false
@@ -4351,9 +4335,9 @@ pub mod File_system {
                                                         } else {
                                                             File_system::US3::US3_1
                                                         };
-                                                    match &v195 {
-                                                        File_system::US3::US3_0(v195_0_0) => {
-                                                            File_system::US3::US3_0(match &v195 {
+                                                    match &v967 {
+                                                        File_system::US3::US3_0(v967_0_0) => {
+                                                            File_system::US3::US3_0(match &v967 {
                                                                 File_system::US3::US3_0(x) => {
                                                                     x.clone()
                                                                 }
@@ -4370,9 +4354,9 @@ pub mod File_system {
                             }
                         }
                     };
-                    let v215: string = padLeft(
-                        toLower(match &v208 {
-                            File_system::US3::US3_0(v208_0_0) => match &v208 {
+                    let v997: string = padLeft(
+                        toLower(match &v980 {
+                            File_system::US3::US3_0(v980_0_0) => match &v980 {
                                 File_system::US3::US3_0(x) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -4381,37 +4365,37 @@ pub mod File_system {
                         7_i32,
                         ' ',
                     );
-                    let _v216: MutCell<Option<string>> = MutCell::new(None::<string>);
-                    let v231: &str = match &v0_1 {
+                    let _v1029: MutCell<Option<string>> = MutCell::new(None::<string>);
+                    let v1044: &str = match &v0 {
                         File_system::US0::US0_1 => inline_colorization::color_bright_blue,
                         File_system::US0::US0_2 => inline_colorization::color_bright_green,
                         File_system::US0::US0_0 => inline_colorization::color_bright_black,
                         File_system::US0::US0_3 => inline_colorization::color_yellow,
                         _ => inline_colorization::color_bright_red,
                     };
-                    let v233: &str = &*v215;
-                    let v235: &str = inline_colorization::color_reset;
-                    let v237: string = string("format!(\"{v231}{v233}{v235}\")");
-                    let v238: std::string::String = format!("{v231}{v233}{v235}");
+                    let v1046: &str = &*v997;
+                    let v1048: &str = inline_colorization::color_reset;
+                    let v1050: string = string("format!(\"{v1044}{v1046}{v1048}\")");
+                    let v1051: std::string::String = format!("{v1044}{v1046}{v1048}");
                     {
-                        let x_5: string = fable_library_rust::String_::fromString(v238);
-                        _v216.set(Some(x_5))
+                        let x_5: string = fable_library_rust::String_::fromString(v1051);
+                        _v1029.set(Some(x_5))
                     }
                     {
-                        let v328: string = match &_v216.get().clone() {
-                            None => panic!("{}", string("base.run_target / _v216=None"),),
-                            Some(_v216_0_0) => _v216_0_0.clone(),
+                        let v1141: string = match &_v1029.get().clone() {
+                            None => panic!("{}", string("base.run_target / _v1029=None"),),
+                            Some(_v1029_0_0) => _v1029_0_0.clone(),
                         };
-                        let v329: i64 = (patternInput.0.clone()).l0.get().clone();
-                        let v332: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
+                        let v1160: i64 = (patternInput.0.clone()).l0.get().clone();
+                        let v1163: LrcPtr<File_system::Mut4> = LrcPtr::new(File_system::Mut4 {
                             l0: MutCell::new(string("")),
                         });
-                        File_system::method80(v332.clone(), v2_1());
+                        File_system::method78(v1163.clone(), v2());
                         {
-                            let v333: string = v332.l0.get().clone();
+                            let v1164: string = v1163.l0.get().clone();
                             trimEndChars(
                                 trimStartChars(
-                                    sprintf!("{} {} #{} {} / {}", v152, v328, v329, v1_1(), v333),
+                                    sprintf!("{} {} #{} {} / {}", v772, v1141, v1160, v1(), v1164),
                                     toArray(empty::<char>()),
                                 ),
                                 toArray(ofArray(new_array(&[' ', '/']))),
@@ -4422,58 +4406,58 @@ pub mod File_system {
             }
         }
     }
-    pub fn method79(v0_1: File_system::US0, v1_1: Func0<string>, v2_1: Func0<string>) {
+    pub fn method77(v0: File_system::US0, v1: Func0<string>, v2: Func0<string>) {
         File_system::method17(
-            v0_1.clone(),
+            v0.clone(),
             Func0::new({
-                let v0_1 = v0_1.clone();
-                let v1_1 = v1_1.clone();
-                let v2_1 = v2_1.clone();
-                move || File_system::closure64(v0_1.clone(), v1_1.clone(), v2_1.clone(), ())
+                let v0 = v0.clone();
+                let v1 = v1.clone();
+                let v2 = v2.clone();
+                move || File_system::closure64(v0.clone(), v1.clone(), v2.clone(), ())
             }),
         );
     }
-    pub fn method81() -> string {
-        let _v0: MutCell<Option<string>> = MutCell::new(None::<string>);
-        let v2_1: Result<std::path::PathBuf, std::io::Error> = std::env::current_dir();
-        let v4_1: std::path::PathBuf = v2_1.unwrap();
-        let v6_1: std::path::Display = v4_1.display();
-        let _v7: MutCell<Option<std::string::String>> = MutCell::new(None::<std::string::String>);
+    pub fn method79() -> string {
+        let _v2: MutCell<Option<string>> = MutCell::new(None::<string>);
+        let v4: Result<std::path::PathBuf, std::io::Error> = std::env::current_dir();
+        let v6: std::path::PathBuf = v4.unwrap();
+        let v8: std::path::Display = v6.display();
+        let _v11: MutCell<Option<std::string::String>> = MutCell::new(None::<std::string::String>);
         {
-            let x: std::string::String = format!("{}", v6_1);
-            _v7.set(Some(x))
+            let x: std::string::String = format!("{}", v8);
+            _v11.set(Some(x))
         }
         {
-            let v17_1: std::string::String = match &_v7.get().clone() {
-                None => panic!("{}", string("base.run_target / _v7=None"),),
-                Some(_v7_0_0) => _v7_0_0.clone(),
+            let v45: std::string::String = match &_v11.get().clone() {
+                None => panic!("{}", string("base.run_target / _v11=None"),),
+                Some(_v11_0_0) => _v11_0_0.clone(),
             };
             {
-                let x_2: string = fable_library_rust::String_::fromString(v17_1);
-                _v0.set(Some(x_2))
+                let x_2: string = fable_library_rust::String_::fromString(v45);
+                _v2.set(Some(x_2))
             }
-            match &_v0.get().clone() {
-                None => panic!("{}", string("base.run_target / _v0=None"),),
-                Some(_v0_0_0) => _v0_0_0.clone(),
+            match &_v2.get().clone() {
+                None => panic!("{}", string("base.run_target / _v2=None"),),
+                Some(_v2_0_0) => _v2_0_0.clone(),
             }
         }
     }
     pub fn closure60(unitVar: (), unitVar_1: ()) -> string {
-        let v4_1: File_system::US13 = File_system::method75(
-            File_system::method51(string("polyglot"), string(".devcontainer")),
+        let v4: File_system::US13 = File_system::method73(
+            File_system::method49(string("polyglot"), string(".devcontainer")),
             string("C:\\home\\git\\polyglot\\lib\\spiral"),
         );
-        let v13_1: File_system::US3 = match &v4_1 {
-            File_system::US13::US13_0(v4_1_0_0) => File_system::US3::US3_0(v4_1_0_0.clone()),
-            File_system::US13::US13_1(v4_1_1_0) => {
-                File_system::method79(
+        let v13: File_system::US3 = match &v4 {
+            File_system::US13::US13_0(v4_0_0) => File_system::US3::US3_0(v4_0_0.clone()),
+            File_system::US13::US13_1(v4_1_0) => {
+                File_system::method77(
                     File_system::US0::US0_3,
                     Func0::new(move || File_system::closure62((), ())),
                     Func0::new({
-                        let v4_1 = v4_1.clone();
+                        let v4 = v4.clone();
                         move || {
                             File_system::closure63(
-                                match &v4_1 {
+                                match &v4 {
                                     File_system::US13::US13_1(x) => x.clone(),
                                     _ => unreachable!(),
                                 },
@@ -4485,30 +4469,28 @@ pub mod File_system {
                 File_system::US3::US3_1
             }
         };
-        let v29: File_system::US3 = match &v13_1 {
-            File_system::US3::US3_0(v13_1_0_0) => File_system::US3::US3_0(match &v13_1 {
+        let v29: File_system::US3 = match &v13 {
+            File_system::US3::US3_0(v13_0_0) => File_system::US3::US3_0(match &v13 {
                 File_system::US3::US3_0(x) => x.clone(),
                 _ => unreachable!(),
             }),
             _ => {
-                let v16_1: string = File_system::method81();
-                let v18_1: File_system::US13 = File_system::method75(
-                    File_system::method51(string("polyglot"), string(".devcontainer")),
-                    v16_1,
+                let v16: string = File_system::method79();
+                let v18: File_system::US13 = File_system::method73(
+                    File_system::method49(string("polyglot"), string(".devcontainer")),
+                    v16,
                 );
-                match &v18_1 {
-                    File_system::US13::US13_0(v18_1_0_0) => {
-                        File_system::US3::US3_0(v18_1_0_0.clone())
-                    }
-                    File_system::US13::US13_1(v18_1_1_0) => {
-                        File_system::method79(
+                match &v18 {
+                    File_system::US13::US13_0(v18_0_0) => File_system::US3::US3_0(v18_0_0.clone()),
+                    File_system::US13::US13_1(v18_1_0) => {
+                        File_system::method77(
                             File_system::US0::US0_3,
                             Func0::new(move || File_system::closure62((), ())),
                             Func0::new({
-                                let v18_1 = v18_1.clone();
+                                let v18 = v18.clone();
                                 move || {
                                     File_system::closure63(
-                                        match &v18_1 {
+                                        match &v18 {
                                             File_system::US13::US13_1(x) => x.clone(),
                                             _ => unreachable!(),
                                         },
@@ -4522,7 +4504,7 @@ pub mod File_system {
                 }
             }
         };
-        File_system::method51(
+        File_system::method49(
             match &v29 {
                 File_system::US3::US3_0(v29_0_0) => match &v29 {
                     File_system::US3::US3_0(x) => x.clone(),
@@ -4533,19 +4515,19 @@ pub mod File_system {
             string("polyglot"),
         )
     }
-    pub fn method82(v0_1: string) {
-        let _v1: MutCell<Option<()>> = MutCell::new(None::<()>);
-        _v1.set(Some(()));
-        match &_v1.get().clone() {
-            None => panic!("{}", string("base.run_target / _v1=None"),),
-            Some(_v1_0_0) => _v1_0_0.clone(),
+    pub fn method80(v0: string) {
+        let _v3: MutCell<Option<()>> = MutCell::new(None::<()>);
+        _v3.set(Some(()));
+        match &_v3.get().clone() {
+            None => panic!("{}", string("base.run_target / _v3=None"),),
+            Some(_v3_0_0) => _v3_0_0.clone(),
         }
         ()
     }
-    pub fn closure66(unitVar: (), v0_1: string) {
-        File_system::method82(v0_1);
+    pub fn closure66(unitVar: (), v0: string) {
+        File_system::method80(v0);
     }
-    pub fn closure65(unitVar: (), v0_1: bool) {
+    pub fn closure65(unitVar: (), v0: bool) {
         if File_system::State::trace_state().get().clone().is_none() {
             File_system::State::trace_state()
                 .set(Some(File_system::closure0((), File_system::US0::US0_0)));
@@ -4558,25 +4540,25 @@ pub mod File_system {
                 LrcPtr<File_system::Mut3>,
                 Option<i64>,
             ) = getValue(File_system::State::trace_state().get().clone());
-            let v10_1 = if v0_1 {
+            let v33 = if v0 {
                 Func1::new(move |v_1: string| File_system::closure66((), v_1))
             } else {
                 Func1::new(move |v_2: string| File_system::closure1((), v_2))
             };
-            (patternInput.1.clone()).l0.set(v10_1);
+            (patternInput.1.clone()).l0.set(v33);
             ()
         }
     }
-    pub fn closure68(v0_1: string, v1_1: string) -> string {
-        File_system::method51(v0_1, v1_1)
+    pub fn closure68(v0: string, v1: string) -> string {
+        File_system::method49(v0, v1)
     }
-    pub fn closure67(unitVar: (), v0_1: string) -> Func1<string, string> {
+    pub fn closure67(unitVar: (), v0: string) -> Func1<string, string> {
         Func1::new({
-            let v0_1 = v0_1.clone();
-            move |v: string| File_system::closure68(v0_1.clone(), v)
+            let v0 = v0.clone();
+            move |v: string| File_system::closure68(v0.clone(), v)
         })
     }
-    pub fn v0() -> Func1<
+    pub fn v86() -> Func1<
         File_system::US0,
         (
             LrcPtr<File_system::Mut0>,
@@ -4586,7 +4568,7 @@ pub mod File_system {
             Option<i64>,
         ),
     > {
-        static v0: OnceInit<
+        static v86: OnceInit<
             Func1<
                 File_system::US0,
                 (
@@ -4598,170 +4580,170 @@ pub mod File_system {
                 ),
             >,
         > = OnceInit::new();
-        v0.get_or_init(|| Func1::new(move |v: File_system::US0| File_system::closure0((), v)))
+        v86.get_or_init(|| Func1::new(move |v: File_system::US0| File_system::closure0((), v)))
             .clone()
     }
-    pub fn v1() -> File_system::US0 {
-        static v1: OnceInit<File_system::US0> = OnceInit::new();
-        v1.get_or_init(|| File_system::US0::US0_0).clone()
+    pub fn v87() -> File_system::US0 {
+        static v87: OnceInit<File_system::US0> = OnceInit::new();
+        v87.get_or_init(|| File_system::US0::US0_0).clone()
     }
     on_startup!(
         if File_system::State::trace_state().get().clone().is_none() {
-            File_system::State::trace_state().set(Some((File_system::v0())(File_system::v1())));
+            File_system::State::trace_state().set(Some((File_system::v86())(File_system::v87())));
         }
     );
-    pub fn v2() -> Func1<string, Arc<Async<i64>>> {
-        static v2: OnceInit<Func1<string, Arc<Async<i64>>>> = OnceInit::new();
-        v2.get_or_init(|| Func1::new(move |v: string| File_system::closure2((), v)))
+    pub fn v93() -> Func1<string, Arc<Async<i64>>> {
+        static v93: OnceInit<Func1<string, Arc<Async<i64>>>> = OnceInit::new();
+        v93.get_or_init(|| Func1::new(move |v: string| File_system::closure2((), v)))
             .clone()
     }
     pub fn delete_directory_async(x: string) -> Arc<Async<i64>> {
-        (File_system::v2())(x)
+        (File_system::v93())(x)
     }
-    pub fn v3() -> Func1<File_system::US6, Func1<string, Arc<Async<i64>>>> {
-        static v3: OnceInit<Func1<File_system::US6, Func1<string, Arc<Async<i64>>>>> =
+    pub fn v94() -> Func1<File_system::US6, Func1<string, Arc<Async<i64>>>> {
+        static v94: OnceInit<Func1<File_system::US6, Func1<string, Arc<Async<i64>>>>> =
             OnceInit::new();
-        v3.get_or_init(|| Func1::new(move |v: File_system::US6| File_system::closure6((), v)))
+        v94.get_or_init(|| Func1::new(move |v: File_system::US6| File_system::closure6((), v)))
             .clone()
     }
     pub fn wait_for_file_access(x: File_system::US6) -> Func1<string, Arc<Async<i64>>> {
-        (File_system::v3())(x)
+        (File_system::v94())(x)
     }
-    pub fn v4() -> Func1<string, Arc<Async<i64>>> {
-        static v4: OnceInit<Func1<string, Arc<Async<i64>>>> = OnceInit::new();
-        v4.get_or_init(|| Func1::new(move |v: string| File_system::closure11((), v)))
+    pub fn v95() -> Func1<string, Arc<Async<i64>>> {
+        static v95: OnceInit<Func1<string, Arc<Async<i64>>>> = OnceInit::new();
+        v95.get_or_init(|| Func1::new(move |v: string| File_system::closure11((), v)))
             .clone()
     }
     pub fn wait_for_file_access_read(x: string) -> Arc<Async<i64>> {
-        (File_system::v4())(x)
+        (File_system::v95())(x)
     }
-    pub fn v5() -> Func1<string, Arc<Async<string>>> {
-        static v5: OnceInit<Func1<string, Arc<Async<string>>>> = OnceInit::new();
-        v5.get_or_init(|| Func1::new(move |v: string| File_system::closure12((), v)))
+    pub fn v96() -> Func1<string, Arc<Async<string>>> {
+        static v96: OnceInit<Func1<string, Arc<Async<string>>>> = OnceInit::new();
+        v96.get_or_init(|| Func1::new(move |v: string| File_system::closure12((), v)))
             .clone()
     }
     pub fn read_all_text_async(x: string) -> Arc<Async<string>> {
-        (File_system::v5())(x)
+        (File_system::v96())(x)
     }
-    pub fn v6() -> Func1<string, Func1<string, bool>> {
-        static v6: OnceInit<Func1<string, Func1<string, bool>>> = OnceInit::new();
-        v6.get_or_init(|| Func1::new(move |v: string| File_system::closure13((), v)))
+    pub fn v97() -> Func1<string, Func1<string, bool>> {
+        static v97: OnceInit<Func1<string, Func1<string, bool>>> = OnceInit::new();
+        v97.get_or_init(|| Func1::new(move |v: string| File_system::closure13((), v)))
             .clone()
     }
     pub fn file_exists_content(x: string) -> Func1<string, bool> {
-        (File_system::v6())(x)
+        (File_system::v97())(x)
     }
-    pub fn v7() -> Func1<string, Func1<string, Arc<Async<()>>>> {
-        static v7: OnceInit<Func1<string, Func1<string, Arc<Async<()>>>>> = OnceInit::new();
-        v7.get_or_init(|| Func1::new(move |v: string| File_system::closure15((), v)))
+    pub fn v98() -> Func1<string, Func1<string, Arc<Async<()>>>> {
+        static v98: OnceInit<Func1<string, Func1<string, Arc<Async<()>>>>> = OnceInit::new();
+        v98.get_or_init(|| Func1::new(move |v: string| File_system::closure15((), v)))
             .clone()
     }
     pub fn write_all_text_async(x: string) -> Func1<string, Arc<Async<()>>> {
-        (File_system::v7())(x)
+        (File_system::v98())(x)
     }
-    pub fn v8() -> Func1<string, Func1<string, Arc<Async<()>>>> {
-        static v8: OnceInit<Func1<string, Func1<string, Arc<Async<()>>>>> = OnceInit::new();
-        v8.get_or_init(|| Func1::new(move |v: string| File_system::closure17((), v)))
+    pub fn v99() -> Func1<string, Func1<string, Arc<Async<()>>>> {
+        static v99: OnceInit<Func1<string, Func1<string, Arc<Async<()>>>>> = OnceInit::new();
+        v99.get_or_init(|| Func1::new(move |v: string| File_system::closure17((), v)))
             .clone()
     }
     pub fn write_all_text_exists(x: string) -> Func1<string, Arc<Async<()>>> {
-        (File_system::v8())(x)
+        (File_system::v99())(x)
     }
-    pub fn v9() -> Func1<string, Arc<Async<i64>>> {
-        static v9: OnceInit<Func1<string, Arc<Async<i64>>>> = OnceInit::new();
-        v9.get_or_init(|| Func1::new(move |v: string| File_system::closure19((), v)))
+    pub fn v100() -> Func1<string, Arc<Async<i64>>> {
+        static v100: OnceInit<Func1<string, Arc<Async<i64>>>> = OnceInit::new();
+        v100.get_or_init(|| Func1::new(move |v: string| File_system::closure19((), v)))
             .clone()
     }
     pub fn delete_file_async(x: string) -> Arc<Async<i64>> {
-        (File_system::v9())(x)
+        (File_system::v100())(x)
     }
-    pub fn v10() -> Func1<string, Func1<string, Arc<Async<i64>>>> {
-        static v10: OnceInit<Func1<string, Func1<string, Arc<Async<i64>>>>> = OnceInit::new();
-        v10.get_or_init(|| Func1::new(move |v: string| File_system::closure23((), v)))
+    pub fn v101() -> Func1<string, Func1<string, Arc<Async<i64>>>> {
+        static v101: OnceInit<Func1<string, Func1<string, Arc<Async<i64>>>>> = OnceInit::new();
+        v101.get_or_init(|| Func1::new(move |v: string| File_system::closure23((), v)))
             .clone()
     }
     pub fn move_file_async(x: string) -> Func1<string, Arc<Async<i64>>> {
-        (File_system::v10())(x)
+        (File_system::v101())(x)
     }
-    pub fn v11() -> Func1<string, Arc<Async<Option<string>>>> {
-        static v11: OnceInit<Func1<string, Arc<Async<Option<string>>>>> = OnceInit::new();
-        v11.get_or_init(|| Func1::new(move |v: string| File_system::closure28((), v)))
+    pub fn v102() -> Func1<string, Arc<Async<Option<string>>>> {
+        static v102: OnceInit<Func1<string, Arc<Async<Option<string>>>>> = OnceInit::new();
+        v102.get_or_init(|| Func1::new(move |v: string| File_system::closure28((), v)))
             .clone()
     }
     pub fn read_all_text_retry_async(x: string) -> Arc<Async<Option<string>>> {
-        (File_system::v11())(x)
+        (File_system::v102())(x)
     }
-    pub fn v12() -> Func0<string> {
-        static v12: OnceInit<Func0<string>> = OnceInit::new();
-        v12.get_or_init(|| Func0::new(move || File_system::closure40((), ())))
+    pub fn v103() -> Func0<string> {
+        static v103: OnceInit<Func0<string>> = OnceInit::new();
+        v103.get_or_init(|| Func0::new(move || File_system::closure40((), ())))
             .clone()
     }
     pub fn create_temp_path() -> string {
-        (File_system::v12())()
+        (File_system::v103())()
     }
-    pub fn v13() -> Func0<(string, LrcPtr<dyn IDisposable>)> {
-        static v13: OnceInit<Func0<(string, LrcPtr<dyn IDisposable>)>> = OnceInit::new();
-        v13.get_or_init(|| Func0::new(move || File_system::closure41((), ())))
+    pub fn v104() -> Func0<(string, LrcPtr<dyn IDisposable>)> {
+        static v104: OnceInit<Func0<(string, LrcPtr<dyn IDisposable>)>> = OnceInit::new();
+        v104.get_or_init(|| Func0::new(move || File_system::closure41((), ())))
             .clone()
     }
     pub fn create_temp_dir() -> (string, LrcPtr<dyn IDisposable>) {
-        (File_system::v13())()
+        (File_system::v104())()
     }
-    pub fn v14() -> Func1<string, (string, LrcPtr<dyn IDisposable>)> {
-        static v14: OnceInit<Func1<string, (string, LrcPtr<dyn IDisposable>)>> = OnceInit::new();
-        v14.get_or_init(|| Func1::new(move |v: string| File_system::closure56((), v)))
+    pub fn v105() -> Func1<string, (string, LrcPtr<dyn IDisposable>)> {
+        static v105: OnceInit<Func1<string, (string, LrcPtr<dyn IDisposable>)>> = OnceInit::new();
+        v105.get_or_init(|| Func1::new(move |v: string| File_system::closure56((), v)))
             .clone()
     }
     pub fn create_temp_dir_(x: string) -> (string, LrcPtr<dyn IDisposable>) {
-        (File_system::v14())(x)
+        (File_system::v105())(x)
     }
-    pub fn v15() -> Func0<string> {
-        static v15: OnceInit<Func0<string>> = OnceInit::new();
-        v15.get_or_init(|| Func0::new(move || File_system::closure57((), ())))
+    pub fn v106() -> Func0<string> {
+        static v106: OnceInit<Func0<string>> = OnceInit::new();
+        v106.get_or_init(|| Func0::new(move || File_system::closure57((), ())))
             .clone()
     }
     pub fn get_source_directory() -> string {
-        (File_system::v15())()
+        (File_system::v106())()
     }
-    pub fn v16() -> Func1<string, string> {
-        static v16: OnceInit<Func1<string, string>> = OnceInit::new();
-        v16.get_or_init(|| Func1::new(move |v: string| File_system::closure58((), v)))
+    pub fn v107() -> Func1<string, string> {
+        static v107: OnceInit<Func1<string, string>> = OnceInit::new();
+        v107.get_or_init(|| Func1::new(move |v: string| File_system::closure58((), v)))
             .clone()
     }
     pub fn normalize_path(x: string) -> string {
-        (File_system::v16())(x)
+        (File_system::v107())(x)
     }
-    pub fn v17() -> Func1<string, string> {
-        static v17: OnceInit<Func1<string, string>> = OnceInit::new();
-        v17.get_or_init(|| Func1::new(move |v: string| File_system::closure59((), v)))
+    pub fn v108() -> Func1<string, string> {
+        static v108: OnceInit<Func1<string, string>> = OnceInit::new();
+        v108.get_or_init(|| Func1::new(move |v: string| File_system::closure59((), v)))
             .clone()
     }
     pub fn new_file_uri(x: string) -> string {
-        (File_system::v17())(x)
+        (File_system::v108())(x)
     }
-    pub fn v18() -> Func0<string> {
-        static v18: OnceInit<Func0<string>> = OnceInit::new();
-        v18.get_or_init(|| Func0::new(move || File_system::closure60((), ())))
+    pub fn v109() -> Func0<string> {
+        static v109: OnceInit<Func0<string>> = OnceInit::new();
+        v109.get_or_init(|| Func0::new(move || File_system::closure60((), ())))
             .clone()
     }
     pub fn get_workspace_root() -> string {
-        (File_system::v18())()
+        (File_system::v109())()
     }
-    pub fn v19() -> Func1<bool, ()> {
-        static v19: OnceInit<Func1<bool, ()>> = OnceInit::new();
-        v19.get_or_init(|| Func1::new(move |v: bool| File_system::closure65((), v)))
+    pub fn v110() -> Func1<bool, ()> {
+        static v110: OnceInit<Func1<bool, ()>> = OnceInit::new();
+        v110.get_or_init(|| Func1::new(move |v: bool| File_system::closure65((), v)))
             .clone()
     }
     pub fn init_trace_file(x: bool) {
-        (File_system::v19())(x);
+        (File_system::v110())(x);
     }
-    pub fn v20() -> Func1<string, Func1<string, string>> {
-        static v20: OnceInit<Func1<string, Func1<string, string>>> = OnceInit::new();
-        v20.get_or_init(|| Func1::new(move |v: string| File_system::closure67((), v)))
+    pub fn v111() -> Func1<string, Func1<string, string>> {
+        static v111: OnceInit<Func1<string, Func1<string, string>>> = OnceInit::new();
+        v111.get_or_init(|| Func1::new(move |v: string| File_system::closure67((), v)))
             .clone()
     }
     pub fn op_LessDivideGreater(x: string) -> Func1<string, string> {
-        (File_system::v20())(x)
+        (File_system::v111())(x)
     }
     on_startup!(());
 }

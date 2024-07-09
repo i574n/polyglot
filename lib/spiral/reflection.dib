@@ -49,8 +49,8 @@ get_union_fields ()
 |> listm'.to_array'
 |> a
 |> am'.sort_by snd
-|> fun x => x : a i32 _
-|> _assert_eq' (a ;[ "Native", Native; "Wasm", Wasm; "Contract", Contract ])
+|> fun (a x : _ int _) => x
+|> _assert_eq' ;[ "Native", Native; "Wasm", Wasm; "Contract", Contract ]
 
 #!markdown
 
@@ -91,9 +91,7 @@ inl get_union_fields_untag forall union_type. () : list (string * union_type) =
 get_union_fields_untag ()
 |> listm'.box
 |> listm'.to_array'
-|> a
-|> fun x => x : a i32 _
-|> _assert_eq' (a ;[ "Native", Native; "Wasm", Wasm; "Contract", Contract ])
+|> _assert_eq' ;[ "Native", Native; "Wasm", Wasm; "Contract", Contract ]
 
 #!markdown
 

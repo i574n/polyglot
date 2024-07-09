@@ -87,26 +87,26 @@ export function US1_$reflection(): TypeInfo {
 }
 
 export function closure0(unitVar: void, unitVar_1: void): boolean {
-    let _v0: Option<boolean> = undefined;
+    let _v2: Option<boolean> = undefined;
     let x: boolean;
     throw new Error(`platform.is_windows / target: ${US1_US1_3(US0_US0_0())}`);
-    _v0 = x;
-    if (_v0 == null) {
-        throw new Error("base.run_target / _v0=None");
+    _v2 = x;
+    if (_v2 == null) {
+        throw new Error("base.run_target / _v2=None");
     }
     else {
-        return value(_v0);
+        return value(_v2);
     }
 }
 
 export function closure1(unitVar: void, unitVar_1: void): string {
-    let _v0: Option<boolean> = undefined;
+    let _v2: Option<boolean> = undefined;
     let x: boolean;
     throw new Error(`platform.is_windows / target: ${US1_US1_3(US0_US0_0())}`);
-    _v0 = x;
-    if ((_v0 == null) ? (() => {
-        throw new Error("base.run_target / _v0=None");
-    })() : value(_v0)) {
+    _v2 = x;
+    if ((_v2 == null) ? (() => {
+        throw new Error("base.run_target / _v2=None");
+    })() : value(_v2)) {
         return ".exe";
     }
     else {

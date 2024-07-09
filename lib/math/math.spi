@@ -28,12 +28,10 @@ inl complex forall t. ((re : t), (im : t)) : complex t =
 
 /// ## complex_sin
 inl re forall t. (c : complex t) : t =
-    inl c = join c
-    !\($'"!c.re"')
+    !\\(c, $'"$0.re"')
 
 inl im forall t. (c : complex t) : t =
-    inl c = join c
-    !\($'"!c.im"')
+    !\\(c, $'"$0.im"')
 
 inl complex_unbox forall t. (c : complex t) =
     re c, im c
@@ -41,14 +39,14 @@ inl complex_unbox forall t. (c : complex t) =
 inl (~.^) c = complex c
 
 inl complex_eq forall t. (a : complex t) (b : complex t) : bool =
-    !\($'"!a == !b"')
+    !\\((a, b), $'"$0 == $1"')
 
 inl (.=) a b = complex_eq a b
 
 instance equable complex t = complex_eq
 
 inl complex_add forall t. (a : complex t) (b : complex t) : complex t =
-    !\($'"!a + !b"')
+    !\\((a, b), $'"$0 + $1"')
 
 inl (.+) a b = complex_add a b
 
@@ -63,28 +61,26 @@ inl complex_mult forall t. (a : complex t) (b : complex t) : complex t =
 inl (.*) a b = complex_mult a b
 
 inl complex_div forall t. (a : complex t) (b : complex t) : complex t =
-    !\($'"!a / !b"')
+    !\\((a, b), $'"$0 / $1"')
 
 inl (./) a b = complex_div a b
 
 inl powc forall t. (s : complex t) (c : complex t) : complex t =
-    inl c = join c
-    inl s = join s
-    !\($'"num_complex::Complex::powc(!c, !s)"')
+    !\\((c, s), $'"num_complex::Complex::powc($0, $1)"')
 
 inl (.**) a b = powc b a
 
 inl complex_sin forall t. (c : complex t) : complex t =
-    !\($'"!c.sin()"')
+    !\\(c, $'"$0.sin()"')
 
 inl conj forall t. (c : complex t) : complex t =
-    !\($'"!c.conj()"')
+    !\\(c, $'"$0.conj()"')
 
 /// ## zeta
 inl zeta log (gamma : complex f64 -> complex f64) (s : complex f64) : complex f64 =
     inl rec zeta count gamma s =
         if log then
-            !\\(s, $'"println\!(\\\"zeta / count: {:?} / s: {:?}\\\", !count, $0)"')
+            !\\((count, s), $'"println\!(\\\"zeta / count: {:?} / s: {:?}\\\", $0, $1)"')
         if re s > 1 then
             (.^(0, 0), (am.init 10000i32 id : a i32 _))
             ||> am.fold fun acc n =>
@@ -335,8 +331,8 @@ inl test_behavior_near_origin___ log = run_test log (6u8, 5u8) fun zeta, gamma =
 
 /// ## test_imaginary_axis
 inl test_imaginary_axis log = run_test log (3u8, 2u8) fun zeta, gamma =>
-    (join a ;[10; 20; 30; 40; 50; 60; 70; 80; 90; 100] : _ i32 _)
-    |> am.iter fun s =>
+    (join [10; 20; 30; 40; 50; 60; 70; 80; 90; 100])
+    |> listm.iter fun s =>
         inl s = .^(0, s)
         inl result = zeta s
         result |> re |> _assert_ne 0
@@ -344,29 +340,27 @@ inl test_imaginary_axis log = run_test log (3u8, 2u8) fun zeta, gamma =>
 
 /// ## test_critical_strip
 inl test_critical_strip log = run_test log (3u8, 2u8) fun zeta, gamma =>
-    ;[
+    (join [
         .^(0.5, 14.134725)
         .^(0.75, 20.5)
         .^(1.25, 30.1)
         .^(0.25, 40.0)
         .^(1.0, 50.0)
-    ]
-    |> fun x => a x : _ i32 _
-    |> am.iter fun s =>
+    ])
+    |> listm.iter fun s =>
         inl result = zeta s
         result |> re |> _assert_ne 0
         result |> im |> _assert_ne 0
 
 /// ## test_reflection_formula_for_specific_value
 inl test_reflection_formula_for_specific_value log = run_test log (3u8, 2u8) fun zeta, gamma =>
-    ;[
+    (join [
         .^(3, 4)
         .^(2.5, -3.5)
         .^(1.5, 2.5)
         .^(0.5, 14.134725)
-    ]
-    |> fun x => a x : _ i32 _
-    |> am.iter fun s =>
+    ])
+    |> listm.iter fun s =>
         inl lhs = zeta s
         inl reflection_coefficient =
             (.^(2, 0) .** s)
@@ -382,14 +376,14 @@ inl test_reflection_formula_for_specific_value log = run_test log (3u8, 2u8) fun
 
 /// ## test_euler_product_formula
 inl test_euler_product_formula log = run_test log (3u8, 2u8) fun zeta, gamma =>
-    inl s_values = ;[2; 2.5; 3; 3.5; 4; 4.5; 5]
-    inl primes = ;[2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47; 53; 59; 61; 67; 71]
-    (a s_values : _ i32 _)
-    |> am.iter fun s_re =>
+    inl s_values = join [2; 2.5; 3; 3.5; 4; 4.5; 5]
+    inl primes = join [2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47; 53; 59; 61; 67; 71]
+    s_values
+    |> listm.iter fun s_re =>
         inl s = .^(s_re, 0)
         inl product =
-            (1, (a primes : _ i32 _))
-            ||> am.fold fun acc x =>
+            (1, primes)
+            ||> listm.fold fun acc x =>
                 acc * 1 / (1 - x ** -s_re)
 
         inl result = zeta s

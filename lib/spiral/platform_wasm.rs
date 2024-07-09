@@ -30,25 +30,25 @@ pub mod Platform {
         }
     }
     pub fn closure0(unitVar: (), unitVar_1: ()) -> bool {
-        let _v0: MutCell<Option<bool>> = MutCell::new(None::<bool>);
+        let _v2: MutCell<Option<bool>> = MutCell::new(None::<bool>);
         {
             let x: bool = cfg!(windows);
-            _v0.set(Some(x))
+            _v2.set(Some(x))
         }
-        match &_v0.get().clone() {
-            None => panic!("{}", string("base.run_target / _v0=None"),),
-            Some(_v0_0_0) => _v0_0_0.clone(),
+        match &_v2.get().clone() {
+            None => panic!("{}", string("base.run_target / _v2=None"),),
+            Some(_v2_0_0) => _v2_0_0.clone(),
         }
     }
     pub fn closure1(unitVar: (), unitVar_1: ()) -> string {
-        let _v0: MutCell<Option<bool>> = MutCell::new(None::<bool>);
+        let _v2: MutCell<Option<bool>> = MutCell::new(None::<bool>);
         {
             let x: bool = cfg!(windows);
-            _v0.set(Some(x))
+            _v2.set(Some(x))
         }
-        if match &_v0.get().clone() {
-            None => panic!("{}", string("base.run_target / _v0=None"),),
-            Some(_v0_0_0) => _v0_0_0.clone(),
+        if match &_v2.get().clone() {
+            None => panic!("{}", string("base.run_target / _v2=None"),),
+            Some(_v2_0_0) => _v2_0_0.clone(),
         } {
             string(".exe")
         } else {

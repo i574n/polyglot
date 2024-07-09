@@ -9685,7 +9685,8 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_f2742df0f5e5eefcfba17c19b2ec6967bf389d948aee87a7bf4d904931c1a4ad\20240701-1749-4289-9815-000000515c61" / expected: '\\'
+assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_c24dbacf776a0b9ea1995e9a8c45df7291ac3d6753a3acd95babfad266126a23\20240708-2224-2602-4951-000000546b5e" / expected: '\\'
+
 </pre>
 </div>
 </div>
@@ -9693,7 +9694,7 @@ assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20240701-1749-4324-2401-20030008d1d6" / expected: '\\'
+assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\20240708-2224-2663-6334-600300787e39" / expected: '\\'
 </pre>
 </div>
 </div>
@@ -10081,7 +10082,8 @@ assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\
     <span class="o">|&gt;</span> <span class="n">directory_info</span>
     <span class="o">|&gt;</span> <span class="n">directory_info_name</span>
 <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.distinct</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="s2">"polyglot"</span> <span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ "polyglot" ]</span>
 </pre></div>
 </div>
 </div>
@@ -10094,7 +10096,7 @@ assert_contains / actual: "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: [|"polyglot"|] / expected: [|"polyglot"|]
+<pre>assert_eq' / actual: [|"polyglot"|] / expected: [|"polyglot"|]
 </pre>
 </div>
 </div>
@@ -10631,7 +10633,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 1L / expected: 1L
+<pre>assert_eq / actual: 8L / expected: 8L
 </pre>
 </div>
 </div>
@@ -10825,7 +10827,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_79aa2bb3243bce9eba7cf5cba34e122cd4c376a4590d1dc85b01b8e14dcb4fff\20240701-1751-1424-6096-000000114794 }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_c15e6e39f5e796ab2430d1c034e5fa5c89185a5f394e26128bff4b74a3d9244d\20240708-2224-5627-3231-0000004fd3fb }
 assert_eq / actual: true / expected: true
 assert_eq / actual: false / expected: false
 </pre>
@@ -10914,7 +10916,7 @@ assert_eq / actual: false / expected: false
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #9 _3
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #10 5
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #11 6
-assert_between / actual: 124L / expected: struct (50L, 180L)
+assert_between / actual: 117L / expected: struct (50L, 180L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -11224,14 +11226,14 @@ assert_eq / actual: true / expected: true
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #5 _2
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #6 4
 00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #7 file_system.wait_for_file_access / { path = test.txt; retry = 100; ex = System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\613830ed-016e-d959-8d21-02dc1c63c252\test.txt' because it is being used by another process. }
-00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #8 _3
-00:00:01 <span class="ansi-blue-intense-fg">  debug</span> #9 _4
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #8 _3
+00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #9 _4
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #10 _5
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #11 _6
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #12 5
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #13 6
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #14 7
-assert_between / actual: 128L / expected: struct (50L, 180L)
+assert_between / actual: 119L / expected: struct (50L, 180L)
 assert_eq / actual: "1" / expected: "1"
 assert_eq / actual: true / expected: true
 </pre>
@@ -11447,7 +11449,7 @@ assert_eq / actual: true / expected: true
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #11 6
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #12 7
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #13 8
-assert_between / actual: 128L / expected: struct (50L, 200L)
+assert_between / actual: 122L / expected: struct (50L, 200L)
 assert_between / actual: 0L / expected: struct (0L, 0L)
 assert_eq / actual: "0" / expected: "0"
 assert_eq / actual: true / expected: true
@@ -11584,7 +11586,7 @@ assert_eq / actual: true / expected: true
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #9 _3
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #10 5
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #11 6
-assert_between / actual: 128L / expected: struct (50L, 180L)
+assert_between / actual: 121L / expected: struct (50L, 180L)
 assert_eq / actual: true / expected: true
 </pre>
 </div>

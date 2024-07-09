@@ -7780,8 +7780,10 @@ a.anchor-link {
 
 <span class="n">types</span> <span class="p">()</span>
 <span class="n">am</span><span class="s1">'.init_series 0i32 2 1</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span>
 <span class="o">|&gt;</span> <span class="nb">enumerate</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (a ;[ convert 0i32, 0; convert 1i32, 1; convert 2i32, 2 ])</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="nb">int</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[ convert 0i32, 0; convert 1i32, 1; convert 2i32, 2 ]</span>
 </pre></div>
 </div>
 </div>

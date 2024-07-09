@@ -52,48 +52,48 @@ export function US0_$reflection(): TypeInfo {
     return union_type("Threading.US0", [], US0, () => [[["f0_0", class_type("System.Threading.CancellationToken")]], []]);
 }
 
-export function closure1(v0_1: any, unitVar: void): void {
-    let _v1: Option<void> = undefined;
+export function closure1(v0: any, unitVar: void): void {
+    let _v3: Option<void> = undefined;
     defaultOf();
-    _v1 = some(undefined);
-    if (_v1 == null) {
-        throw new Error("base.run_target / _v1=None");
+    _v3 = some(undefined);
+    if (_v3 == null) {
+        throw new Error("base.run_target / _v3=None");
     }
     else {
-        value_1(_v1);
+        value_1(_v3);
     }
 }
 
-export function method0(v0_1: any): (() => void) {
+export function method0(v0: any): (() => void) {
     return (): void => {
-        closure1(v0_1, undefined);
+        closure1(v0, undefined);
     };
 }
 
-export function method1(v0_1: any): (() => void) {
+export function method1(v0: any): (() => void) {
     return (): void => {
-        closure1(v0_1, undefined);
+        closure1(v0, undefined);
     };
 }
 
-export function closure0(unitVar: void, v0_1: Option<any>): [any, IDisposable] {
-    let _v1: Option<[any, IDisposable]> = undefined;
+export function closure0(unitVar: void, v0: Option<any>): [any, IDisposable] {
+    let _v3: Option<[any, IDisposable]> = undefined;
     const patternInput: [any, IDisposable] = defaultOf();
-    _v1 = ([patternInput[0], patternInput[1]] as [any, IDisposable]);
+    _v3 = ([patternInput[0], patternInput[1]] as [any, IDisposable]);
     let patternInput_1: [any, IDisposable];
-    if (_v1 == null) {
-        throw new Error("base.run_target / _v1=None");
+    if (_v3 == null) {
+        throw new Error("base.run_target / _v3=None");
     }
     else {
-        patternInput_1 = value_1(_v1);
+        patternInput_1 = value_1(_v3);
     }
     return [patternInput_1[0], patternInput_1[1]] as [any, IDisposable];
 }
 
-export const v0 = (v: Option<any>): [any, IDisposable] => closure0(undefined, v);
+export const v6 = (v: Option<any>): [any, IDisposable] => closure0(undefined, v);
 
 export function new_disposable_token(x: Option<any>): [any, IDisposable] {
-    return v0(x);
+    return v6(x);
 }
 
 

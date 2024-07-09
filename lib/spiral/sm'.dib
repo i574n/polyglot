@@ -112,12 +112,22 @@ inl index i (str : string) : char =
 
 #!markdown
 
+### length
+
+#!spiral
+
+inl length forall dim {int}. (input : string) : dim =
+    input |> sm.length
+
+#!markdown
+
 ### to_char_array
 
 #!spiral
 
-inl to_char_array (str : string) : a int char =
-    am.init (str |> sm.length) (fun i => str |> index i)
+inl to_char_array (str : string) : array_base char =
+    am.init (str |> length) (fun i => str |> index i)
+    |> fun (a x : _ int _) => x
 
 #!spiral
 
@@ -125,16 +135,7 @@ inl to_char_array (str : string) : a int char =
 
 "abc"
 |> to_char_array
-|> _assert_eq (a ;[ 'a'; 'b'; 'c' ])
-
-#!markdown
-
-### length
-
-#!spiral
-
-inl length forall dim {int}. (input : string) : dim =
-    input |> sm.length
+|> _assert_eq' ;[ 'a'; 'b'; 'c' ]
 
 #!markdown
 
@@ -180,9 +181,9 @@ inl slice from to s : string =
 //// real
 
 inl format_debug forall t. (x : t) : string =
-    backend_switch `string `string {
-        Fsharp = fun () => $'$"%A{!x}"' : string
-        Python = fun () => $'f"{!x}"' : string
+    backend_switch `string `({}) {
+        Fsharp = (fun () => $'$"%A{!x}"' : string) : () -> string
+        Python = (fun () => $'f"{!x}"' : string) : () -> string
     }
 
 #!spiral
@@ -236,15 +237,19 @@ inl real_format forall t. (x : t) : string =
         let rec write x =
             inl p ((a : string), b) =
                 inl s : string =
-                    backend_switch `string `string {
-                        Fsharp = fun () =>
-                            match b with
-                            | (_ : f32) | (_ : f64) => $'$"%+.6f{!b}"' : string
-                            | _ => $'$"{!b}"' : string
-                        Python = fun () =>
-                            match b with
-                            | (_ : f32) | (_ : f64) => $'"{:.6f}".format(!b)' : string
-                            | _ => $'!b ' : string
+                    backend_switch `string `({}) {
+                        Fsharp =
+                            (fun () =>
+                                match b with
+                                | (_ : f32) | (_ : f64) => $'$"%+.6f{!b}"' : string
+                                | _ => $'$"{!b}"' : string
+                            ) : () -> string
+                        Python =
+                            (fun () =>
+                                match b with
+                                | (_ : f32) | (_ : f64) => $'"{:.6f}".format(!b)' : string
+                                | _ => $'!b ' : string
+                            ) : () -> string
                     }
                 result <- (+.) `string ((~*) `string result) s
 

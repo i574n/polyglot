@@ -143,8 +143,9 @@ inl collect forall t r. (fn : t -> a int r) (items : a int t) : a int r =
 
 #!spiral
 
-inl init n : a int _ =
+inl init n : array_base _ =
     am.init n id
+    |> fun (a x : _ int _) => x
 
 #!markdown
 
@@ -171,6 +172,7 @@ inl choose f l =
 
 10
 |> init
+|> fun x => a x : _ int _
 |> choose (fun x => if x % 2 = 0 then Some x else None)
 |> _assert_eq (a' ;[ 0; 2; 4; 6; 8 ])
 
@@ -194,6 +196,7 @@ inl sum a =
 
 10
 |> init
+|> fun x => a x : _ int _
 |> sum
 |> _assert_eq 45
 
@@ -203,9 +206,10 @@ inl sum a =
 
 #!spiral
 
-inl init_series start end inc : a int _ =
+inl init_series start end inc : array_base _ =
     inl total = conv ((end - start) / inc) + 1
     am.init total (conv >> (*) inc >> (+) start)
+    |> fun (a x : _ int _) => x
 
 #!spiral
 
@@ -216,8 +220,8 @@ inl init_series start end inc : a int _ =
 ///! typescript
 ///! python
 
-init_series 0 1 0.5
-|> _assert_eq (a ;[ 0f64; 0.5; 1 ])
+init_series 0 4 2
+|> _assert_eq' ;[ 0i32; 2; 4 ]
 
 #!markdown
 
@@ -253,6 +257,7 @@ inl last (ar : a _ _) =
 
 10
 |> init
+|> fun x => a x : _ int _
 |> last
 |> _assert_eq 9
 
@@ -280,6 +285,7 @@ inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
 
 10
 |> init
+|> fun x => a x : _ int _
 |> try_pick (fun x => if x = 5i32 then Some x else None)
 |> _assert_eq (Some 5i32)
 
@@ -289,11 +295,12 @@ inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
 
 #!spiral
 
-inl indexed forall t dim {int; number} dim' {int; number} u {number}. (ar : a dim t) : a dim' (u * t) =
-    ((0, a ;[]), ar)
+inl indexed forall t u {number}. (ar : array_base t) : array_base (u * t) =
+    ((0, a ;[]), (a ar : _ int _))
     ||> am.fold fun (i, acc) x =>
         i + 1, acc ++ a ;[i, x]
     |> snd
+    |> fun (a x : _ int _) => x
 
 #!spiral
 
@@ -305,8 +312,9 @@ inl indexed forall t dim {int; number} dim' {int; number} u {number}. (ar : a di
 ///! python
 
 am.init 3i32 ((*) 2)
+|> fun (a x : _ int _) => x
 |> indexed
-|> _assert_eq (a ;[0i32, 0; 1, 2; 2, 4] : a int _)
+|> _assert_eq' ;[0i32, 0; 1, 2; 2, 4]
 
 #!markdown
 
@@ -737,7 +745,7 @@ sm'.types ()
 #!spiral
 
 inl average forall el {number}. (a : a _ el) : el =
-    a |> $'Array.average'
+    $'!a |> Array.average'
 
 #!markdown
 
@@ -746,7 +754,7 @@ inl average forall el {number}. (a : a _ el) : el =
 #!spiral
 
 inl distinct forall dim el. (a : a dim el) : a dim el =
-    a |> $'Array.distinct'
+    $'!a |> Array.distinct'
 
 #!markdown
 
@@ -755,7 +763,7 @@ inl distinct forall dim el. (a : a dim el) : a dim el =
 #!spiral
 
 inl skip forall dim el. (n : dim) (a : a dim el) : a dim el =
-    a |> $'Array.skip' n
+    $'!a |> Array.skip !n '
 
 #!markdown
 
@@ -764,7 +772,7 @@ inl skip forall dim el. (n : dim) (a : a dim el) : a dim el =
 #!spiral
 
 inl skip_while forall dim el. (fn : el -> bool) (a : a dim el) : a dim el =
-    a |> $'Array.skipWhile' fn
+    $'!a |> Array.skipWhile !fn '
 
 #!markdown
 
@@ -773,13 +781,13 @@ inl skip_while forall dim el. (fn : el -> bool) (a : a dim el) : a dim el =
 #!spiral
 
 inl to_list' forall dim t. (items : a dim t) : listm'.list' t =
-    items |> $'Array.toList'
+    $'!items |> Array.toList'
 
 #!spiral
 
 //// test
 ///! fsharp
-///! cuda
+////! cuda //
 ///! rust
 ///! typescript
 ///! python
@@ -796,7 +804,7 @@ a' ;[ -3i32; 6 ]
 #!spiral
 
 inl parallel_map forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
-    a |> $'Array.Parallel.map' fn
+    $'!a |> Array.Parallel.map !fn '
 
 #!markdown
 
@@ -814,7 +822,7 @@ inl map' forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
 #!spiral
 
 inl sort_by forall dim el. (fn : el -> _) (a : a dim el) : a dim el =
-    a |> $'Array.sortBy' fn
+    $'!a |> Array.sortBy !fn '
 
 #!markdown
 
@@ -823,7 +831,7 @@ inl sort_by forall dim el. (fn : el -> _) (a : a dim el) : a dim el =
 #!spiral
 
 inl sort forall dim el. (a : a dim el) : a dim el =
-    a |> $'Array.sort'
+    $'!a |> Array.sort'
 
 #!markdown
 
@@ -832,7 +840,7 @@ inl sort forall dim el. (a : a dim el) : a dim el =
 #!spiral
 
 inl sort_descending forall dim el. (a : a dim el) : a dim el =
-    a |> $'Array.sortDescending'
+    $'!a |> Array.sortDescending'
 
 #!markdown
 
@@ -840,8 +848,8 @@ inl sort_descending forall dim el. (a : a dim el) : a dim el =
 
 #!spiral
 
-inl transpose forall dim el. (a : a dim (a dim el)) : a dim (a dim el) =
-    a |> $'Array.transpose'
+inl transpose forall el. (a : array_base (array_base el)) : array_base (array_base el) =
+    $'!a |> Array.transpose'
 
 #!markdown
 
@@ -850,4 +858,4 @@ inl transpose forall dim el. (a : a dim (a dim el)) : a dim (a dim el) =
 #!spiral
 
 inl try_item forall dim el. (i : i32) (a : a dim el) : option el =
-    a |> $'Array.tryItem' i |> optionm'.unbox
+    $'!a |> Array.tryItem !i ' |> optionm'.unbox

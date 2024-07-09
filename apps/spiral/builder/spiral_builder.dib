@@ -675,6 +675,9 @@ inl process_rust { fs_path deps trace_level } =
                     "\\s\\sdefaultOf\\(\\);"
                     " defaultOf::<()>();"
                 |> sm'.replace
+                    "::Slice'_"
+                    "::Slice__"
+                |> sm'.replace
                     ("defaultOf()" +. !\($'"\\\",\\\".into()"'))
                     "defaultOf::<std::sync::Arc<dyn IDisposable>>(),"
                 |> sm'.replace

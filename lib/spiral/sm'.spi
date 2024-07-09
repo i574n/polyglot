@@ -46,13 +46,14 @@ inl symbol_to_string forall t {symbol}. (x : t) : string =
 inl index i (str : string) : char =
     sm.index str i
 
-/// ### to_char_array
-inl to_char_array (str : string) : a int char =
-    am.init (str |> sm.length) (fun i => str |> index i)
-
 /// ### length
 inl length forall dim {int}. (input : string) : dim =
     input |> sm.length
+
+/// ### to_char_array
+inl to_char_array (str : string) : array_base char =
+    am.init (str |> length) (fun i => str |> index i)
+    |> fun (a x : _ int _) => x
 
 /// ### to_char_list
 inl to_char_list (str : string) : list char =

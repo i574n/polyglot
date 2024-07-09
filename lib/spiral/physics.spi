@@ -43,8 +43,9 @@ inl integral' dt : integration =
         |> listm'.sum
 
 inl integral'' dt : integration =
-    fun f a b =>
-        am'.init_series (a + dt / 2) (b - dt / 2) dt
+    fun f x y =>
+        am'.init_series (x + dt / 2) (y - dt / 2) dt
+        |> fun x => a x : _ int _
         |> am.map (f >> (*) dt)
         |> am'.sum
 

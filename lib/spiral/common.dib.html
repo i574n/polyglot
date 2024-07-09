@@ -7905,13 +7905,13 @@ and method0 () : unit =
             true
         else
             method2(v4)
-    let v7 : string = "assert_eq"
-    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{15}"
-    let v9 : (string -&gt; unit) = System.Console.WriteLine
-    v9 v8
-    let v10 : bool = v6 = false
-    if v10 then
-        failwith&lt;unit&gt; v8
+    let v9 : string = "assert_eq"
+    let v10 : string = $"{v9} / actual: %A{v3} / expected: %A{15}"
+    let v19 : (string -&gt; unit) = System.Console.WriteLine
+    v19 v10
+    let v24 : bool = v6 = false
+    if v24 then
+        failwith&lt;unit&gt; v10
 method0()
 
 
@@ -7926,7 +7926,7 @@ method0()
 #![allow(unused_macros)]
 #![allow(unused_parens)]
 #![allow(unused_variables)]
-mod module_f29b7f7c {
+mod module_1586508e {
     pub mod Spiral_builder {
         use super::*;
         use fable_library_rust::Native_::on_startup;
@@ -7947,21 +7947,21 @@ mod module_f29b7f7c {
             } else {
                 Spiral_builder::method2(v4)
             };
-            let v8: string = sprintf!(
+            let v10: string = sprintf!(
                 "{} / actual: {:?} / expected: {:?}",
                 string("assert_eq"),
                 v3,
                 15_i32
             );
-            printfn!("{0}", v8.clone());
+            printfn!("{0}", v10.clone());
             if v6 == false {
-                panic!("{}", v8,);
+                panic!("{}", v10,);
             }
         }
         on_startup!(Spiral_builder::method0());
     }
 }
-pub use module_f29b7f7c::*;
+pub use module_1586508e::*;
 
 pub fn main() -&gt; Result&lt;(), String&gt; {
     Ok(())
@@ -7983,10 +7983,10 @@ export function method0(): void {
     const v3: int32 = (((9 + method1()) + 2) + 1) | 0;
     const v4: boolean = v3 === 15;
     const v6: boolean = v4 ? true : method2(v4);
-    const v8: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]));
-    console.log(v8);
+    const v10: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]));
+    console.log(v10);
     if (v6 === false) {
-        throw new Error(v8);
+        throw new Error(v10);
     }
 }
 
@@ -8011,10 +8011,10 @@ def method0(__unit: None=None) -&gt; None:
     v3: int = (((9 + method1()) + 2) + 1) or 0
     v4: bool = v3 == 15
     v6: bool = True if v4 else method2(v4)
-    v8: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]))
-    print(v8)
+    v10: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]))
+    print(v10)
     if v6 == False:
-        raise Exception(v8)
+        raise Exception(v10)
 
 
 
@@ -8097,17 +8097,17 @@ def method0() -&gt; None:
     else:
         v6 = method2(v4)
     del v4
-    v7 = "assert_eq"
-    v8 = f"{v7} / actual: {v3} / expected: {15}"
-    del v3, v7
-    print(v8)
-    v9 = v6 == False
+    v13 = "assert_eq"
+    v14 = f"{v13} / actual: {v3} / expected: {15}"
+    del v3, v13
+    print(v14)
+    v25 = v6 == False
     del v6
-    if v9:
-        del v9
-        raise Exception(v8)
+    if v25:
+        del v25
+        raise Exception(v14)
     else:
-        del v8, v9
+        del v14, v25
         return 
 def main():
     return method0()
@@ -8188,17 +8188,17 @@ def method0() -&gt; None:
     else:
         v6 = method2(v4)
     del v4
-    v7 = "assert_eq"
-    v8 = f"{v7} / actual: {v3} / expected: {15}"
-    del v3, v7
-    print(v8)
-    v9 = v6 == False
+    v13 = "assert_eq"
+    v14 = f"{v13} / actual: {v3} / expected: {15}"
+    del v3, v13
+    print(v14)
+    v25 = v6 == False
     del v6
-    if v9:
-        del v9
-        raise Exception(v8)
+    if v25:
+        del v25
+        raise Exception(v14)
     else:
-        del v8, v9
+        del v14, v25
         return 
 def main():
     return method0()
@@ -8283,13 +8283,13 @@ and method0 () : unit =
             true
         else
             method3(v5)
-    let v8 : string = "assert_eq"
-    let v9 : string = $"{v8} / actual: %A{v4} / expected: %A{15}"
-    let v10 : (string -&gt; unit) = System.Console.WriteLine
-    v10 v9
-    let v11 : bool = v7 = false
-    if v11 then
-        failwith&lt;unit&gt; v9
+    let v10 : string = "assert_eq"
+    let v11 : string = $"{v10} / actual: %A{v4} / expected: %A{15}"
+    let v20 : (string -&gt; unit) = System.Console.WriteLine
+    v20 v11
+    let v25 : bool = v7 = false
+    if v25 then
+        failwith&lt;unit&gt; v11
 method0()
 
 
@@ -8304,7 +8304,7 @@ method0()
 #![allow(unused_macros)]
 #![allow(unused_parens)]
 #![allow(unused_variables)]
-mod module_a5e6b5ab {
+mod module_357ff3b3 {
     pub mod Spiral_builder {
         use super::*;
         use fable_library_rust::Native_::on_startup;
@@ -8328,21 +8328,21 @@ mod module_a5e6b5ab {
             } else {
                 Spiral_builder::method3(v5)
             };
-            let v9: string = sprintf!(
+            let v11: string = sprintf!(
                 "{} / actual: {:?} / expected: {:?}",
                 string("assert_eq"),
                 v4,
                 15_i32
             );
-            printfn!("{0}", v9.clone());
+            printfn!("{0}", v11.clone());
             if v7 == false {
-                panic!("{}", v9,);
+                panic!("{}", v11,);
             }
         }
         on_startup!(Spiral_builder::method0());
     }
 }
-pub use module_a5e6b5ab::*;
+pub use module_357ff3b3::*;
 
 pub fn main() -&gt; Result&lt;(), String&gt; {
     Ok(())
@@ -8368,10 +8368,10 @@ export function method0(): void {
     const v4: int32 = ((method2(method1(), 9) + 2) + 1) | 0;
     const v5: boolean = v4 === 15;
     const v7: boolean = v5 ? true : method3(v5);
-    const v9: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v4, 15]));
-    console.log(v9);
+    const v11: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v4, 15]));
+    console.log(v11);
     if (v7 === false) {
-        throw new Error(v9);
+        throw new Error(v11);
     }
 }
 
@@ -8400,10 +8400,10 @@ def method0(__unit: None=None) -&gt; None:
     v4: int = ((method2(method1(), 9) + 2) + 1) or 0
     v5: bool = v4 == 15
     v7: bool = True if v5 else method3(v5)
-    v9: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v4, 15]))
-    print(v9)
+    v11: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v4, 15]))
+    print(v11)
     if v7 == False:
-        raise Exception(v9)
+        raise Exception(v11)
 
 
 
@@ -8491,17 +8491,17 @@ def method0() -&gt; None:
     else:
         v7 = method3(v5)
     del v5
-    v8 = "assert_eq"
-    v9 = f"{v8} / actual: {v4} / expected: {15}"
-    del v4, v8
-    print(v9)
-    v10 = v7 == False
+    v14 = "assert_eq"
+    v15 = f"{v14} / actual: {v4} / expected: {15}"
+    del v4, v14
+    print(v15)
+    v26 = v7 == False
     del v7
-    if v10:
-        del v10
-        raise Exception(v9)
+    if v26:
+        del v26
+        raise Exception(v15)
     else:
-        del v9, v10
+        del v15, v26
         return 
 def main():
     return method0()
@@ -8587,17 +8587,17 @@ def method0() -&gt; None:
     else:
         v7 = method3(v5)
     del v5
-    v8 = "assert_eq"
-    v9 = f"{v8} / actual: {v4} / expected: {15}"
-    del v4, v8
-    print(v9)
-    v10 = v7 == False
+    v14 = "assert_eq"
+    v15 = f"{v14} / actual: {v4} / expected: {15}"
+    del v4, v14
+    print(v15)
+    v26 = v7 == False
     del v7
-    if v10:
-        del v10
-        raise Exception(v9)
+    if v26:
+        del v26
+        raise Exception(v15)
     else:
-        del v9, v10
+        del v15, v26
         return 
 def main():
     return method0()
@@ -8711,13 +8711,13 @@ and method0 () : unit =
             true
         else
             method3(v4)
-    let v7 : string = "assert_eq"
-    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{15}"
-    let v9 : (string -&gt; unit) = System.Console.WriteLine
-    v9 v8
-    let v10 : bool = v6 = false
-    if v10 then
-        failwith&lt;unit&gt; v8
+    let v9 : string = "assert_eq"
+    let v10 : string = $"{v9} / actual: %A{v3} / expected: %A{15}"
+    let v19 : (string -&gt; unit) = System.Console.WriteLine
+    v19 v10
+    let v24 : bool = v6 = false
+    if v24 then
+        failwith&lt;unit&gt; v10
 method0()
 
 
@@ -8732,7 +8732,7 @@ method0()
 #![allow(unused_macros)]
 #![allow(unused_parens)]
 #![allow(unused_variables)]
-mod module_f6d91a6c {
+mod module_14108a7f {
     pub mod Spiral_builder {
         use super::*;
         use fable_library_rust::Native_::on_startup;
@@ -8756,21 +8756,21 @@ mod module_f6d91a6c {
             } else {
                 Spiral_builder::method3(v4)
             };
-            let v8: string = sprintf!(
+            let v10: string = sprintf!(
                 "{} / actual: {:?} / expected: {:?}",
                 string("assert_eq"),
                 v3,
                 15_i32
             );
-            printfn!("{0}", v8.clone());
+            printfn!("{0}", v10.clone());
             if v6 == false {
-                panic!("{}", v8,);
+                panic!("{}", v10,);
             }
         }
         on_startup!(Spiral_builder::method0());
     }
 }
-pub use module_f6d91a6c::*;
+pub use module_14108a7f::*;
 
 pub fn main() -&gt; Result&lt;(), String&gt; {
     Ok(())
@@ -8796,10 +8796,10 @@ export function method0(): void {
     const v3: int32 = ((method2(method1()) + 2) + 1) | 0;
     const v4: boolean = v3 === 15;
     const v6: boolean = v4 ? true : method3(v4);
-    const v8: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]));
-    console.log(v8);
+    const v10: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]));
+    console.log(v10);
     if (v6 === false) {
-        throw new Error(v8);
+        throw new Error(v10);
     }
 }
 
@@ -8828,10 +8828,10 @@ def method0(__unit: None=None) -&gt; None:
     v3: int = ((method2(method1()) + 2) + 1) or 0
     v4: bool = v3 == 15
     v6: bool = True if v4 else method3(v4)
-    v8: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]))
-    print(v8)
+    v10: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]))
+    print(v10)
     if v6 == False:
-        raise Exception(v8)
+        raise Exception(v10)
 
 
 
@@ -8918,17 +8918,17 @@ def method0() -&gt; None:
     else:
         v6 = method3(v4)
     del v4
-    v7 = "assert_eq"
-    v8 = f"{v7} / actual: {v3} / expected: {15}"
-    del v3, v7
-    print(v8)
-    v9 = v6 == False
+    v13 = "assert_eq"
+    v14 = f"{v13} / actual: {v3} / expected: {15}"
+    del v3, v13
+    print(v14)
+    v25 = v6 == False
     del v6
-    if v9:
-        del v9
-        raise Exception(v8)
+    if v25:
+        del v25
+        raise Exception(v14)
     else:
-        del v8, v9
+        del v14, v25
         return 
 def main():
     return method0()
@@ -9013,17 +9013,17 @@ def method0() -&gt; None:
     else:
         v6 = method3(v4)
     del v4
-    v7 = "assert_eq"
-    v8 = f"{v7} / actual: {v3} / expected: {15}"
-    del v3, v7
-    print(v8)
-    v9 = v6 == False
+    v13 = "assert_eq"
+    v14 = f"{v13} / actual: {v3} / expected: {15}"
+    del v3, v13
+    print(v14)
+    v25 = v6 == False
     del v6
-    if v9:
-        del v9
-        raise Exception(v8)
+    if v25:
+        del v25
+        raise Exception(v14)
     else:
-        del v8, v9
+        del v14, v25
         return 
 def main():
     return method0()
