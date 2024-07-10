@@ -19,20 +19,6 @@ open testing
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    ()
-
-#!spiral
-
-inl types () =
-    types ()
-
-#!markdown
-
 ## fparsec
 
 #!spiral

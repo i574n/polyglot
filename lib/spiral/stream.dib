@@ -18,24 +18,6 @@ open testing
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs_io::DecodeReaderBytes<$0, $1>\")>]\n#endif\ntype encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::BufReader<$0>\")>]\n#endif\ntype std_io_BufReader<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Cursor<$0>\")>]\n#endif\ntype std_io_Cursor<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>]\n#endif\ntype std_io_Error = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Lines<$0>\")>]\n#endif\ntype std_io_Lines<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::io::BufReader<$0>\")>]\n#endif\ntype tokio_io_BufReader<'T> = class end"
-        Python = fun () => ()
-    }
-
-#!markdown
-
 ## stream
 
 #!markdown
@@ -471,7 +453,11 @@ listm.init 10i32 id
 
 #!spiral
 
-nominal io_error = $'std_io_Error'
+nominal io_error =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>]\n#endif\ntype std_io_Error = class end"
+        $'' : $'std_io_Error'
+    )
 
 #!markdown
 
@@ -479,7 +465,16 @@ nominal io_error = $'std_io_Error'
 
 #!spiral
 
-nominal buf_reader t = $'std_io_BufReader<`t>'
+nominal buf_reader t =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::BufReader<$0>\")>]\n#endif\ntype std_io_BufReader<'T> = class end"
+                ) : () -> ()
+        }
+        $'' : $'std_io_BufReader<`t>'
+    )
 
 #!markdown
 
@@ -487,7 +482,16 @@ nominal buf_reader t = $'std_io_BufReader<`t>'
 
 #!spiral
 
-nominal cursor t = $'std_io_Cursor<`t>'
+nominal cursor t =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Cursor<$0>\")>]\n#endif\ntype std_io_Cursor<'T> = class end"
+                ) : () -> ()
+        }
+        $'' : $'std_io_Cursor<`t>'
+    )
 
 #!markdown
 
@@ -495,7 +499,11 @@ nominal cursor t = $'std_io_Cursor<`t>'
 
 #!spiral
 
-nominal async_buf_reader t = $'tokio_io_BufReader<`t>'
+nominal async_buf_reader t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::io::BufReader<$0>\")>]\n#endif\ntype tokio_io_BufReader<'T> = class end"
+        $'' : $'tokio_io_BufReader<`t>'
+    )
 
 #!markdown
 
@@ -521,7 +529,11 @@ inl new_cursor forall t. (x : t) : cursor t =
 
 #!spiral
 
-nominal lines t = $'std_io_Lines<`t>'
+nominal lines t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Lines<$0>\")>]\n#endif\ntype std_io_Lines<'T> = class end"
+        $'' : $'std_io_Lines<`t>'
+    )
 
 #!markdown
 
@@ -538,7 +550,11 @@ inl buf_read_lines forall t. (buf_reader : buf_reader t) : lines (buf_reader t) 
 
 #!spiral
 
-nominal decode_reader_bytes t u = $'encoding_rs_io_DecodeReaderBytes<`t, `u>'
+nominal decode_reader_bytes t u =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs_io::DecodeReaderBytes<$0, $1>\")>]\n#endif\ntype encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end"
+        $'' : $'encoding_rs_io_DecodeReaderBytes<`t, `u>'
+    )
 
 #!markdown
 

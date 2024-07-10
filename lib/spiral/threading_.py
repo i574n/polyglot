@@ -44,7 +44,7 @@ class US0(Union):
 
 US0_reflection = _expr94
 
-def closure1(v0: Any, unit_var: None) -> None:
+def closure1(v0_1: Any, unit_var: None) -> None:
     _v3: None | None = None
     _v3 = some(None)
     if _v3 is None:
@@ -55,21 +55,21 @@ def closure1(v0: Any, unit_var: None) -> None:
 
 
 
-def method0(v0: Any) -> Callable[[], None]:
-    def _arrow95(__unit: None=None, v0: Any=v0) -> None:
-        closure1(v0, None)
+def method0(v0_1: Any) -> Callable[[], None]:
+    def _arrow95(__unit: None=None, v0_1: Any=v0_1) -> None:
+        closure1(v0_1, None)
 
     return _arrow95
 
 
-def method1(v0: Any) -> Callable[[], None]:
-    def _arrow96(__unit: None=None, v0: Any=v0) -> None:
-        closure1(v0, None)
+def method1(v0_1: Any) -> Callable[[], None]:
+    def _arrow96(__unit: None=None, v0_1: Any=v0_1) -> None:
+        closure1(v0_1, None)
 
     return _arrow96
 
 
-def closure0(unit_var: None, v0: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
+def closure0(unit_var: None, v0_1: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
     _v3: tuple[CancellationToken, IDisposable] | None = None
     pattern_input: tuple[CancellationToken, IDisposable] = None
     _v3 = (pattern_input[0], pattern_input[1])
@@ -87,9 +87,9 @@ def _arrow97(v: CancellationToken | None=None) -> tuple[CancellationToken, IDisp
     return closure0(None, v)
 
 
-v6: Callable[[CancellationToken | None], tuple[CancellationToken, IDisposable]] = _arrow97
+v0: Callable[[CancellationToken | None], tuple[CancellationToken, IDisposable]] = _arrow97
 
 def new_disposable_token(x: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
-    return v6(x)
+    return v0(x)
 
 

@@ -283,7 +283,7 @@ export function method9(v0: Mut4, v1: string): void {
     v0.l0 = v12;
 }
 
-export function closure5(v0: US0_$union, v1: (() => string), v2: (() => string), unitVar: void): string {
+export function closure5(v0: US0_$union, v1: (() => string), v2_1: (() => string), unitVar: void): string {
     let v368: int64, v392: number;
     if (State_trace_state() == null) {
         State_trace_state(closure0(undefined, US0_US0_0()));
@@ -358,7 +358,7 @@ export function closure5(v0: US0_$union, v1: (() => string), v2: (() => string),
     }
     const v1160: int64 = patternInput[0].l0;
     const v1163: Mut4 = new Mut4("");
-    method9(v1163, v2());
+    method9(v1163, v2_1());
     const v1164: string = v1163.l0;
     return trimEnd(trimStart(`${v772} ${v1141} #${v1160} ${v1()} / ${v1164}`, ...[]), ...[" ", "/"]);
 }
@@ -396,12 +396,12 @@ export function method10(v0: US0_$union, v1: (() => string)): void {
     }
 }
 
-export function method4(v0: US0_$union, v1: (() => string), v2: (() => string)): void {
-    method10(v0, (): string => closure5(v0, v1, v2, undefined));
+export function method4(v0: US0_$union, v1: (() => string), v2_1: (() => string)): void {
+    method10(v0, (): string => closure5(v0, v1, v2_1, undefined));
 }
 
-export function closure4(v0: US0_$union, v1: (() => string), v2: (() => string)): void {
-    method4(v0, v1, v2);
+export function closure4(v0: US0_$union, v1: (() => string), v2_1: (() => string)): void {
+    method4(v0, v1, v2_1);
 }
 
 export function closure3(v0: US0_$union, v1: (() => string)): ((arg0: (() => string)) => void) {
@@ -414,18 +414,18 @@ export function closure2(unitVar: void, v0: US0_$union): ((arg0: (() => string))
     return (v: (() => string)): ((arg0: (() => string)) => void) => closure3(v0, v);
 }
 
-export const v44 = (v: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] => closure0(undefined, v);
+export const v2 = (v: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] => closure0(undefined, v);
 
-export const v45: US0_$union = US0_US0_0();
+export const v3: US0_$union = US0_US0_0();
 
 if (State_trace_state() == null) {
-    State_trace_state(v44(v45));
+    State_trace_state(v2(v3));
 }
 
-export const v51 = (v: US0_$union): ((arg0: (() => string)) => ((arg0: (() => string)) => void)) => closure2(undefined, v);
+export const v9 = (v: US0_$union): ((arg0: (() => string)) => ((arg0: (() => string)) => void)) => closure2(undefined, v);
 
 export function trace(x: US0_$union): ((arg0: (() => string)) => ((arg0: (() => string)) => void)) {
-    return v51(x);
+    return v9(x);
 }
 
 

@@ -407,8 +407,8 @@ export function method8(): string {
 
 export function method10(v0: Mut4, v1: string): void {
     const v4 = `${v1}`;
-    const v12: string = v0.l0 + v4;
-    v0.l0 = v12;
+    const v12_1: string = v0.l0 + v4;
+    v0.l0 = v12_1;
 }
 
 export function method11(v0: Mut4): void {
@@ -416,11 +416,11 @@ export function method11(v0: Mut4): void {
 
 export function method12(v0: Mut4, v1: int32): void {
     const v4 = `${v1}`;
-    const v12: string = v0.l0 + v4;
-    v0.l0 = v12;
+    const v12_1: string = v0.l0 + v4;
+    v0.l0 = v12_1;
 }
 
-export function method9(v0: Mut4, v1: int32, v2: string): void {
+export function method9(v0: Mut4, v1: int32, v2_1: string): void {
     method10(v0, "{ ");
     method11(v0);
     method10(v0, "port");
@@ -429,11 +429,11 @@ export function method9(v0: Mut4, v1: int32, v2: string): void {
     method10(v0, "; ");
     method10(v0, "ex");
     method10(v0, " = ");
-    method10(v0, v2);
+    method10(v0, v2_1);
     method10(v0, " }");
 }
 
-export function closure6(v0: US0_$union, v1: (() => string), v2: (() => [int32, string]), unitVar: void): string {
+export function closure6(v0: US0_$union, v1: (() => string), v2_1: (() => [int32, string]), unitVar: void): string {
     let v368: int64, v392: number;
     if (State_trace_state() == null) {
         State_trace_state(closure0(undefined, US0_US0_0()));
@@ -507,7 +507,7 @@ export function closure6(v0: US0_$union, v1: (() => string), v2: (() => [int32, 
         v1141 = value_1(_v1029);
     }
     const v1160: int64 = patternInput[0].l0;
-    const patternInput_1: [int32, string] = v2();
+    const patternInput_1: [int32, string] = v2_1();
     const v1164: Mut4 = new Mut4("");
     method9(v1164, patternInput_1[0], patternInput_1[1]);
     const v1165: string = v1164.l0;
@@ -547,8 +547,8 @@ export function method13(v0: US0_$union, v1: (() => string)): void {
     }
 }
 
-export function method4(v0: US0_$union, v1: (() => string), v2: (() => [int32, string])): void {
-    method13(v0, (): string => closure6(v0, v1, v2, undefined));
+export function method4(v0: US0_$union, v1: (() => string), v2_1: (() => [int32, string])): void {
+    method13(v0, (): string => closure6(v0, v1, v2_1, undefined));
 }
 
 export function closure3(v0: string, v1: int32): any {
@@ -592,7 +592,7 @@ export function method15(v0: Mut4, v1: int32): void {
     method10(v0, " }");
 }
 
-export function closure14(v0: US0_$union, v1: (() => string), v2: (() => int32), unitVar: void): string {
+export function closure14(v0: US0_$union, v1: (() => string), v2_1: (() => int32), unitVar: void): string {
     let v368: int64, v392: number;
     if (State_trace_state() == null) {
         State_trace_state(closure0(undefined, US0_US0_0()));
@@ -667,13 +667,13 @@ export function closure14(v0: US0_$union, v1: (() => string), v2: (() => int32),
     }
     const v1160: int64 = patternInput[0].l0;
     const v1163: Mut4 = new Mut4("");
-    method15(v1163, v2());
+    method15(v1163, v2_1());
     const v1164: string = v1163.l0;
     return trimEnd(trimStart(`${v772} ${v1141} #${v1160} ${v1()} / ${v1164}`, ...[]), ...[" ", "/"]);
 }
 
-export function method14(v0: US0_$union, v1: (() => string), v2: (() => int32)): void {
-    method13(v0, (): string => closure14(v0, v1, v2, undefined));
+export function method14(v0: US0_$union, v1: (() => string), v2_1: (() => int32)): void {
+    method13(v0, (): string => closure14(v0, v1, v2_1, undefined));
 }
 
 export function closure15(unitVar: void, unitVar_1: void): string {
@@ -689,7 +689,7 @@ export function closure16(v0: int32, v1: Error, unitVar: void): [int32, string] 
     })() : value_1(_v4)] as [int32, string];
 }
 
-export function method17(v0: Mut4, v1: int32, v2: string): void {
+export function method17(v0: Mut4, v1: int32, v2_1: string): void {
     method10(v0, "{ ");
     method11(v0);
     method10(v0, "timeout");
@@ -698,11 +698,11 @@ export function method17(v0: Mut4, v1: int32, v2: string): void {
     method10(v0, "; ");
     method10(v0, "ex");
     method10(v0, " = ");
-    method10(v0, v2);
+    method10(v0, v2_1);
     method10(v0, " }");
 }
 
-export function closure17(v0: US0_$union, v1: (() => string), v2: (() => [int32, string]), unitVar: void): string {
+export function closure17(v0: US0_$union, v1: (() => string), v2_1: (() => [int32, string]), unitVar: void): string {
     let v368: int64, v392: number;
     if (State_trace_state() == null) {
         State_trace_state(closure0(undefined, US0_US0_0()));
@@ -776,18 +776,18 @@ export function closure17(v0: US0_$union, v1: (() => string), v2: (() => [int32,
         v1141 = value_1(_v1029);
     }
     const v1160: int64 = patternInput[0].l0;
-    const patternInput_1: [int32, string] = v2();
+    const patternInput_1: [int32, string] = v2_1();
     const v1164: Mut4 = new Mut4("");
     method17(v1164, patternInput_1[0], patternInput_1[1]);
     const v1165: string = v1164.l0;
     return trimEnd(trimStart(`${v772} ${v1141} #${v1160} ${v1()} / ${v1165}`, ...[]), ...[" ", "/"]);
 }
 
-export function method16(v0: US0_$union, v1: (() => string), v2: (() => [int32, string])): void {
-    method13(v0, (): string => closure17(v0, v1, v2, undefined));
+export function method16(v0: US0_$union, v1: (() => string), v2_1: (() => [int32, string])): void {
+    method13(v0, (): string => closure17(v0, v1, v2_1, undefined));
 }
 
-export function closure9(v0: int32, v1: string, v2: int32): any {
+export function closure9(v0: int32, v1: string, v2_1: int32): any {
     let _v5: Option<any> = undefined;
     const x: any = defaultOf();
     _v5 = x;
@@ -811,14 +811,14 @@ export function closure22(unitVar: void, unitVar_1: void): string {
     return "networking.wait_for_port_access";
 }
 
-export function closure23(v0: Option<int32>, v1: boolean, v2: int32, v3: int64, unitVar: void): [int32, int64, Option<int32>, boolean] {
-    return [v2, v3, v0, v1] as [int32, int64, Option<int32>, boolean];
+export function closure23(v0: Option<int32>, v1: boolean, v2_1: int32, v3_1: int64, unitVar: void): [int32, int64, Option<int32>, boolean] {
+    return [v2_1, v3_1, v0, v1] as [int32, int64, Option<int32>, boolean];
 }
 
 export function method21(v0: Mut4, v1: int64): void {
     const v4 = `${v1}`;
-    const v12: string = v0.l0 + v4;
-    v0.l0 = v12;
+    const v12_1: string = v0.l0 + v4;
+    v0.l0 = v12_1;
 }
 
 export function method22(v0: Mut4, v1: Option<int32>): void {
@@ -831,7 +831,7 @@ export function method23(v0: Mut4, v1: boolean): void {
     v0.l0 = v15;
 }
 
-export function method20(v0: Mut4, v1: int32, v2: int64, v3: Option<int32>, v4: boolean): void {
+export function method20(v0: Mut4, v1: int32, v2_1: int64, v3_1: Option<int32>, v4: boolean): void {
     method10(v0, "{ ");
     method11(v0);
     method10(v0, "port");
@@ -840,11 +840,11 @@ export function method20(v0: Mut4, v1: int32, v2: int64, v3: Option<int32>, v4: 
     method10(v0, "; ");
     method10(v0, "retry");
     method10(v0, " = ");
-    method21(v0, v2);
+    method21(v0, v2_1);
     method10(v0, "; ");
     method10(v0, "timeout");
     method10(v0, " = ");
-    method22(v0, v3);
+    method22(v0, v3_1);
     method10(v0, "; ");
     method10(v0, "status");
     method10(v0, " = ");
@@ -852,7 +852,7 @@ export function method20(v0: Mut4, v1: int32, v2: int64, v3: Option<int32>, v4: 
     method10(v0, " }");
 }
 
-export function closure24(v0: US0_$union, v1: (() => string), v2: (() => [int32, int64, Option<int32>, boolean]), unitVar: void): string {
+export function closure24(v0: US0_$union, v1: (() => string), v2_1: (() => [int32, int64, Option<int32>, boolean]), unitVar: void): string {
     let v368: int64, v392: number;
     if (State_trace_state() == null) {
         State_trace_state(closure0(undefined, US0_US0_0()));
@@ -926,18 +926,18 @@ export function closure24(v0: US0_$union, v1: (() => string), v2: (() => [int32,
         v1141 = value_1(_v1029);
     }
     const v1160: int64 = patternInput[0].l0;
-    const patternInput_1: [int32, int64, Option<int32>, boolean] = v2();
+    const patternInput_1: [int32, int64, Option<int32>, boolean] = v2_1();
     const v1166: Mut4 = new Mut4("");
     method20(v1166, patternInput_1[0], patternInput_1[1], patternInput_1[2], patternInput_1[3]);
     const v1167: string = v1166.l0;
     return trimEnd(trimStart(`${v772} ${v1141} #${v1160} ${v1()} / ${v1167}`, ...[]), ...[" ", "/"]);
 }
 
-export function method19(v0: US0_$union, v1: (() => string), v2: (() => [int32, int64, Option<int32>, boolean])): void {
-    method13(v0, (): string => closure24(v0, v1, v2, undefined));
+export function method19(v0: US0_$union, v1: (() => string), v2_1: (() => [int32, int64, Option<int32>, boolean])): void {
+    method13(v0, (): string => closure24(v0, v1, v2_1, undefined));
 }
 
-export function method18(v0: Option<int32>, v1: boolean, v2: string, v3: int32, v4: int64): any {
+export function method18(v0: Option<int32>, v1: boolean, v2_1: string, v3_1: int32, v4: int64): any {
     let _v7: Option<any> = undefined;
     const x: any = defaultOf();
     _v7 = x;
@@ -949,12 +949,12 @@ export function method18(v0: Option<int32>, v1: boolean, v2: string, v3: int32, 
     }
 }
 
-export function closure21(v0: Option<int32>, v1: boolean, v2: string, v3: int32): any {
-    return method18(v0, v1, v2, v3, 0n);
+export function closure21(v0: Option<int32>, v1: boolean, v2_1: string, v3_1: int32): any {
+    return method18(v0, v1, v2_1, v3_1, 0n);
 }
 
-export function closure20(v0: Option<int32>, v1: boolean, v2: string): ((arg0: int32) => any) {
-    return (v: int32): any => closure21(v0, v1, v2, v);
+export function closure20(v0: Option<int32>, v1: boolean, v2_1: string): ((arg0: int32) => any) {
+    return (v: int32): any => closure21(v0, v1, v2_1, v);
 }
 
 export function closure19(v0: Option<int32>, v1: boolean): ((arg0: string) => ((arg0: int32) => any)) {
@@ -965,7 +965,7 @@ export function closure18(unitVar: void, v0: Option<int32>): ((arg0: boolean) =>
     return (v: boolean): ((arg0: string) => ((arg0: int32) => any)) => closure19(v0, v);
 }
 
-export function method24(v0: Option<int32>, v1: string, v2: int32): any {
+export function method24(v0: Option<int32>, v1: string, v2_1: int32): any {
     let _v5: Option<any> = undefined;
     const x: any = defaultOf();
     _v5 = x;
@@ -977,8 +977,8 @@ export function method24(v0: Option<int32>, v1: string, v2: int32): any {
     }
 }
 
-export function closure27(v0: Option<int32>, v1: string, v2: int32): any {
-    return method24(v0, v1, v2);
+export function closure27(v0: Option<int32>, v1: string, v2_1: int32): any {
+    return method24(v0, v1, v2_1);
 }
 
 export function closure26(v0: Option<int32>, v1: string): ((arg0: int32) => any) {
@@ -989,36 +989,36 @@ export function closure25(unitVar: void, v0: Option<int32>): ((arg0: string) => 
     return (v: string): ((arg0: int32) => any) => closure26(v0, v);
 }
 
-export const v44 = (v: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] => closure0(undefined, v);
+export const v2 = (v: US0_$union): [Mut0, Mut1, Mut2, Mut3, Option<int64>] => closure0(undefined, v);
 
-export const v45: US0_$union = US0_US0_0();
+export const v3: US0_$union = US0_US0_0();
 
 if (State_trace_state() == null) {
-    State_trace_state(v44(v45));
+    State_trace_state(v2(v3));
 }
 
-export const v51 = (v: string): ((arg0: int32) => any) => closure2(undefined, v);
+export const v9 = (v: string): ((arg0: int32) => any) => closure2(undefined, v);
 
 export function test_port_open(x: string): ((arg0: int32) => any) {
-    return v51(x);
+    return v9(x);
 }
 
-export const v52 = (v: int32): ((arg0: string) => ((arg0: int32) => any)) => closure7(undefined, v);
+export const v10 = (v: int32): ((arg0: string) => ((arg0: int32) => any)) => closure7(undefined, v);
 
 export function test_port_open_timeout(x: int32): ((arg0: string) => ((arg0: int32) => any)) {
-    return v52(x);
+    return v10(x);
 }
 
-export const v53 = (v: Option<int32>): ((arg0: boolean) => ((arg0: string) => ((arg0: int32) => any))) => closure18(undefined, v);
+export const v11 = (v: Option<int32>): ((arg0: boolean) => ((arg0: string) => ((arg0: int32) => any))) => closure18(undefined, v);
 
 export function wait_for_port_access(x: Option<int32>): ((arg0: boolean) => ((arg0: string) => ((arg0: int32) => any))) {
-    return v53(x);
+    return v11(x);
 }
 
-export const v54 = (v: Option<int32>): ((arg0: string) => ((arg0: int32) => any)) => closure25(undefined, v);
+export const v12 = (v: Option<int32>): ((arg0: string) => ((arg0: int32) => any)) => closure25(undefined, v);
 
 export function get_available_port(x: Option<int32>): ((arg0: string) => ((arg0: int32) => any)) {
-    return v54(x);
+    return v12(x);
 }
 
 

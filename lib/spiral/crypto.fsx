@@ -1,431 +1,51 @@
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("core::any::Any")>]
-#endif
-type core_any_Any = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("_")>]
-#endif
-type core_ops_Try<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>]
-#endif
-type Func0<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Func1<$0, $1>")>]
-#endif
-type Func0<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Box<$0>")>]
-#endif
-type Box<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("dyn $0")>]
-#endif
-type Dyn<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Send")>]
-#endif
-type Send<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>]
-#endif
-type Fn<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn()")>]
-#endif
-type FnUnit = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>]
-#endif
-type FnOnce<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn($0)")>]
-#endif
-type ActionFn<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")>]
-#endif
-type ActionFn2<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("impl $0")>]
-#endif
-type Impl<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("mut $0")>]
-#endif
-type Mut<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("&$0")>]
-#endif
-type Ref<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0 + $1")>]
-#endif
-type LifetimeJoin<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("'static")>]
-#endif
-type StaticLifetime = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0")>]
-#endif
-type LifetimeRef<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0 $1")>]
-#endif
-type Lifetime<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("MutCell<$0>")>]
-#endif
-type MutCell<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::any::Any")>]
-#endif
-type std_any_Any = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow<$0>")>]
-#endif
-type std_borrow_Cow<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell<$0>")>]
-#endif
-type std_cell_RefCell<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin<$0>")>]
-#endif
-type std_pin_Pin<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc<$0>")>]
-#endif
-type std_rc_Rc<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak<$0>")>]
-#endif
-type std_rc_Weak<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::collections::HashMap<$0, $1>")>]
-#endif
-type std_collections_HashMap<'K, 'V> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::collections::BTreeMap<$0, $1>")>]
-#endif
-type std_collections_BTreeMap<'K, 'V> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("[$0]")>]
-#endif
-type Slice<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("_")>]
-#endif
-type Slice'<'T> = class end
-#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("Vec<$0>")>]
 #endif
 type Vec<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("str")>]
-#endif
-type Str = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")>]
-#endif
-type base64_DecodeError = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")>]
-#endif
-type borsh_io_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("encoding_rs::Encoding")>]
-#endif
-type encoding_rs_Encoding = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")>]
-#endif
-type js_sys_JsString = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")>]
-#endif
-type serde_json_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")>]
-#endif
-type serde_json_Value = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")>]
-#endif
-type serde_wasm_bindgen_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")>]
-#endif
-type std_ffi_OsStr = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")>]
-#endif
-type std_ffi_OsString = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::fmt::Display<$0>")>]
-#endif
-type std_fmt_Display<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")>]
-#endif
-type std_str_Utf8Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::string::FromUtf8Error")>]
-#endif
-type std_string_FromUtf8Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
-#endif
-type std_string_String = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::slice::Windows<$0>")>]
-#endif
-type std_slice_Windows<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Regex")>]
-#endif
-type regex_Regex = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Captures<$0>")>]
-#endif
-type regex_Captures<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::CaptureMatches")>]
-#endif
-type regex_CaptureMatches = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::CaptureNames")>]
-#endif
-type regex_CaptureNames = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Match")>]
-#endif
-type regex_Match = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Error")>]
-#endif
-type regex_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle<$0>")>]
-#endif
-type std_thread_JoinHandle<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc<$0>")>]
-#endif
-type std_sync_Arc<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex<$0>")>]
-#endif
-type std_sync_Mutex<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard<$0>")>]
-#endif
-type std_sync_MutexGuard<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError<$0>")>]
-#endif
-type std_sync_PoisonError<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver<$0>")>]
-#endif
-type std_sync_mpsc_Receiver<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::SendError<$0>")>]
-#endif
-type std_sync_mpsc_SendError<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender<$0>")>]
-#endif
-type std_sync_mpsc_Sender<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("chrono::DateTime<$0>")>]
-#endif
-type chrono_DateTime<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("chrono::Local")>]
-#endif
-type chrono_Local = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("chrono::NaiveDateTime")>]
-#endif
-type chrono_NaiveDateTime = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("chrono::Utc")>]
-#endif
-type chrono_Utc = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::time::Duration")>]
-#endif
-type std_time_Duration = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::fs::File")>]
-#endif
-type std_fs_File = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")>]
-#endif
-type std_fs_FileType = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::path::Display")>]
-#endif
-type std_path_Display = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::path::Path")>]
-#endif
-type std_path_Path = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::path::PathBuf")>]
-#endif
-type std_path_PathBuf = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("async_walkdir::DirEntry")>]
-#endif
-type async_walkdir_DirEntry = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("async_walkdir::Error")>]
-#endif
-type async_walkdir_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("async_walkdir::Filtering")>]
-#endif
-type async_walkdir_Filtering = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("async_walkdir::WalkDir")>]
-#endif
-type async_walkdir_WalkDir = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::env::VarError")>]
-#endif
-type std_env_VarError = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("encoding_rs_io::DecodeReaderBytes<$0, $1>")>]
-#endif
-type encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader<$0>")>]
-#endif
-type std_io_BufReader<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::io::Cursor<$0>")>]
 #endif
 type std_io_Cursor<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::io::Error")>]
+[<Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader<$0>")>]
 #endif
-type std_io_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::io::Lines<$0>")>]
-#endif
-type std_io_Lines<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("tokio::io::BufReader<$0>")>]
-#endif
-type tokio_io_BufReader<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("clap::Arg")>]
-#endif
-type clap_Arg = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("clap::ArgAction")>]
-#endif
-type clap_ArgAction = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("clap::Command")>]
-#endif
-type clap_Command = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("clap::ArgMatches")>]
-#endif
-type clap_ArgMatches = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("clap::builder::ValueRange")>]
-#endif
-type clap_builder_ValueRange = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("clap::builder::ValueParser")>]
-#endif
-type clap_builder_ValueParser = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("clap::builder::PossibleValue")>]
-#endif
-type clap_builder_PossibleValue = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::Child")>]
-#endif
-type std_process_Child = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStderr")>]
-#endif
-type std_process_ChildStderr = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdout")>]
-#endif
-type std_process_ChildStdout = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::ChildStdin")>]
-#endif
-type std_process_ChildStdin = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::Command")>]
-#endif
-type std_process_Command = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::ExitStatus")>]
-#endif
-type std_process_ExitStatus = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::Output")>]
-#endif
-type std_process_Output = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::process::Stdio")>]
-#endif
-type std_process_Stdio = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("futures::future::JoinAll<$0>")>]
-#endif
-type futures_future_JoinAll<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>]
-#endif
-type futures_future_TryJoinAll<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map<$0, _>")>]
-#endif
-type rayon_iter_Map<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter<$0>")>]
-#endif
-type rayon_vec_IntoIter<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>]
-#endif
-type std_future_Future<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("tokio::prelude::stream::Fuse<$0>")>]
-#endif
-type futures_future_Fuse<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("tokio::task::JoinHandle<$0>")>]
-#endif
-type tokio_task_JoinHandle<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("tokio_stream::StreamExt")>]
-#endif
-type tokio_stream_StreamExt = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("core::iter::Fuse<$0>")>]
-#endif
-type core_iter_Fuse<'T> = class end
+type std_io_BufReader<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("sha2::Sha256")>]
 #endif
 type sha2_Sha256 = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("_")>]
+#endif
+type Slice'<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("&$0")>]
+#endif
+type Ref<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
+#endif
+type std_string_String = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::io::Error")>]
+#endif
+type std_io_Error = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("[$0]")>]
+#endif
+type Slice<'T> = class end
 type ICryptoCreateHash = abstract createHash: x: string -> obj
 type IHashlibSha256 = abstract sha256: x: unit -> obj
 module State = let mutable trace_state = None
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::env::VarError")>]
+#endif
+type std_env_VarError = class end
 type IOsEnviron = abstract environ: x: unit -> obj
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("str")>]
+#endif
+type Str = class end
 type Mut0 = {mutable l0 : int32}
 and [<Struct>] US0 =
     | US0_0
@@ -1771,8 +1391,8 @@ and closure1 () (v0 : string) : uint16 =
     let v12 : uint16 = v8 % 48128us
     let v13 : uint16 = v12 + 1024us
     v13
-let v234 : (string -> string) = closure0()
-let hash_text x = v234 x
-let v235 : (string -> uint16) = closure1()
-let hash_to_port x = v235 x
+let v0 : (string -> string) = closure0()
+let hash_text x = v0 x
+let v1 : (string -> uint16) = closure1()
+let hash_to_port x = v1 x
 ()

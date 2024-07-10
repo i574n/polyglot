@@ -7573,80 +7573,12 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="types">types<a class="anchor-link" href="#types">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">backend_switch</span> <span class="p">{</span>
-        <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">str</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type Str = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">base64::DecodeError</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type base64_DecodeError = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">borsh::io::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type borsh_io_Error = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">encoding_rs::Encoding</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type encoding_rs_Encoding = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">js_sys::JsString</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type js_sys_JsString = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">serde_json::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type serde_json_Error = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">serde_json::Value</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type serde_json_Value = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">serde_wasm_bindgen::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type serde_wasm_bindgen_Error = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::ffi::OsStr</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_ffi_OsStr = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::ffi::OsString</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_ffi_OsString = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::fmt::Display&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_fmt_Display&lt;'T&gt; = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::str::Utf8Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_str_Utf8Error = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::string::FromUtf8Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_string_FromUtf8Error = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::string::String</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_string_String = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::slice::Windows&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_slice_Windows&lt;'T&gt; = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">regex::Regex</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type regex_Regex = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">regex::Captures&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type regex_Captures&lt;'T&gt; = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">regex::CaptureMatches</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type regex_CaptureMatches = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">regex::CaptureNames</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type regex_CaptureNames = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">regex::Match</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type regex_Match = class end"</span>
-            <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">regex::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type regex_Error = class end"</span>
-        <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">rust</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
-    <span class="n">mapm</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
-    <span class="n">am</span><span class="s1">'.types ()</span>
-    <span class="n">types</span> <span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="sm'">sm'<a class="anchor-link" href="#sm'">¶</a></h2>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7656,7 +7588,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7678,7 +7610,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7693,7 +7625,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7724,7 +7656,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7758,7 +7690,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7768,7 +7700,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7784,7 +7716,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7794,7 +7726,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7810,7 +7742,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7820,7 +7752,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7836,7 +7768,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7868,7 +7800,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7878,7 +7810,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7893,7 +7825,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7925,7 +7857,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7935,7 +7867,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7951,7 +7883,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7961,7 +7893,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7977,7 +7909,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7987,7 +7919,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8007,7 +7939,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8022,7 +7954,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8054,7 +7986,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8064,7 +7996,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8085,7 +8017,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8095,7 +8027,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8112,7 +8044,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8122,7 +8054,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8197,7 +8129,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8207,7 +8139,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8222,7 +8154,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8259,7 +8191,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8269,7 +8201,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8286,7 +8218,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8331,7 +8263,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8341,7 +8273,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8358,7 +8290,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8403,7 +8335,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8413,7 +8345,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=47">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8432,7 +8364,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8442,8 +8374,6 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 <span class="o">///!</span><span class="w"> </span>rust
-
-<span class="n">types</span> <span class="p">()</span>
 
 <span class="p">[</span>
     <span class="s2">"1"</span>
@@ -8479,7 +8409,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8489,7 +8419,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8506,7 +8436,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8543,7 +8473,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8554,7 +8484,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8564,7 +8494,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=54">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8580,7 +8510,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8590,7 +8520,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=56">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8606,7 +8536,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8616,7 +8546,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=58">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8632,7 +8562,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8642,7 +8572,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=60">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=57">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8661,7 +8591,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8671,7 +8601,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=62">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8690,7 +8620,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=63">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8700,7 +8630,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=64">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=61">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8721,7 +8651,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=65">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8731,7 +8661,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=66">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=63">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8746,7 +8676,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=64">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8778,7 +8708,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=68">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8788,7 +8718,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=69">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=66">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8804,7 +8734,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=70">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8814,7 +8744,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=71">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=68">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8830,7 +8760,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=72">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8840,7 +8770,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=73">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=70">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8856,7 +8786,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=74">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=71">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8866,7 +8796,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=75">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=72">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8885,7 +8815,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=73">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8895,7 +8825,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=77">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=74">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8911,7 +8841,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=78">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=75">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8921,7 +8851,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=79">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=76">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8937,7 +8867,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=80">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=77">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8947,7 +8877,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=81">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=78">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8965,7 +8895,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=82">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8975,7 +8905,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=83">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=80">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8992,7 +8922,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=84">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=81">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9002,7 +8932,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=85">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=82">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9019,7 +8949,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=86">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=83">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9029,7 +8959,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=87">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=84">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9046,7 +8976,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=88">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9056,7 +8986,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=89">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=86">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9073,7 +9003,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=87">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9083,7 +9013,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=91">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=88">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9099,7 +9029,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=92">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=89">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9109,7 +9039,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=93">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=90">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9130,7 +9060,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=91">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9140,7 +9070,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=95">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=92">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9164,7 +9094,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=96">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=93">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9174,7 +9104,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=97">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=94">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9198,7 +9128,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=98">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=95">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9208,7 +9138,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=99">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=96">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9224,7 +9154,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=100">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=97">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9234,7 +9164,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=101">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=98">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9250,7 +9180,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=102">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=99">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9260,7 +9190,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=103">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=100">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9276,7 +9206,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=104">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=101">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9286,7 +9216,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=105">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=102">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9302,7 +9232,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=106">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=103">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9312,7 +9242,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=107">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=104">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9330,7 +9260,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=108">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=105">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9340,7 +9270,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=109">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=106">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9356,7 +9286,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=110">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=107">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9366,7 +9296,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=111">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=108">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9381,7 +9311,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=112">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=109">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9391,7 +9321,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=113">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=110">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9407,7 +9337,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=114">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=111">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9417,7 +9347,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=115">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=112">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9433,7 +9363,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=116">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=113">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9443,7 +9373,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=117">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=114">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9459,7 +9389,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=118">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=115">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9470,7 +9400,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=119">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=116">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9480,7 +9410,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=120">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=117">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9488,14 +9418,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">display</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_fmt_Display&lt;`t&gt;'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">display</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::fmt::Display&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_fmt_Display&lt;'T&gt; = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'std_fmt_Display&lt;`t&gt;'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=121">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=118">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9505,7 +9439,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=122">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=119">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9513,14 +9447,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="nb">str</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'Str'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="nb">str</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">str</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type Str = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'Str'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=123">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=120">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9530,7 +9468,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=124">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=121">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9538,14 +9476,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">base64_decode_error</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'base64_DecodeError'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">base64_decode_error</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">base64::DecodeError</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type base64_DecodeError = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'base64_DecodeError'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=125">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=122">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9555,7 +9497,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=126">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=123">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9563,14 +9505,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">borsh_io_error</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'borsh_io_Error'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">borsh_io_error</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">borsh::io::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type borsh_io_Error = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'borsh_io_Error'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=127">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=124">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9580,7 +9526,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=128">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=125">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9588,14 +9534,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">utf8_error</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_str_Utf8Error'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">utf8_error</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::str::Utf8Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_str_Utf8Error = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'std_str_Utf8Error'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=129">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=126">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9605,7 +9555,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=130">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=127">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9613,14 +9563,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">from_utf8_error</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_string_FromUtf8Error'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">from_utf8_error</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::string::FromUtf8Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_string_FromUtf8Error = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'std_string_FromUtf8Error'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=131">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=128">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9630,7 +9584,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=132">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=129">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9638,14 +9592,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">json_value</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'serde_json_Value'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">json_value</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">serde_json::Value</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type serde_json_Value = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'serde_json_Value'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=133">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=130">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9655,7 +9613,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=134">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=131">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9663,14 +9621,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">json_error</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'serde_json_Error'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">json_error</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">serde_json::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type serde_json_Error = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'serde_json_Error'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=135">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=132">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9680,7 +9642,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=136">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=133">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9688,14 +9650,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">serde_wasm_bindgen_error</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'serde_wasm_bindgen_Error'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">serde_wasm_bindgen_error</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">serde_wasm_bindgen::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type serde_wasm_bindgen_Error = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'serde_wasm_bindgen_Error'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=137">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=134">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9705,7 +9671,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=138">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=135">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9713,14 +9679,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">js_string</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'js_sys_JsString'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">js_string</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">js_sys::JsString</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type js_sys_JsString = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'js_sys_JsString'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=139">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=136">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9730,7 +9700,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=140">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=137">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9738,14 +9708,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">os_str</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_ffi_OsStr'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">os_str</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::ffi::OsStr</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_ffi_OsStr = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'std_ffi_OsStr'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=141">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=138">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9755,7 +9729,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=142">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=139">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9763,14 +9737,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">os_string</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_ffi_OsString'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">os_string</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::ffi::OsString</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_ffi_OsString = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'std_ffi_OsString'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=143">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=140">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9780,7 +9758,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=144">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=141">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9788,14 +9766,23 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">std_string</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_string_String'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">std_string</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="n">backend_switch</span> <span class="err">`</span><span class="p">(())</span> <span class="err">`</span><span class="p">({})</span> <span class="p">{</span>
+            <span class="n">Fsharp</span> <span class="o">=</span>
+                <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::string::String</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_string_String = class end"</span>
+                <span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">()</span>
+        <span class="p">}</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'std_string_String'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=145">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=142">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9805,7 +9792,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=146">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=143">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9813,7 +9800,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">raw_string_literal</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">raw_string_literal</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span> <span class="o">=</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"r#\\"" + !s + "\\"#"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -9821,7 +9808,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=147">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=144">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9831,7 +9818,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=148">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=145">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9847,7 +9834,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=149">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=146">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9857,7 +9844,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=150">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=147">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9873,7 +9860,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=151">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=148">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9883,7 +9870,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=152">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=149">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9899,7 +9886,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=153">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=150">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9909,7 +9896,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=154">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=151">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9917,7 +9904,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">include_str</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">include_str</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span> <span class="o">=</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"include_str\!(\\\"" + !path + "\\\")"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -9925,7 +9912,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=155">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=152">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9935,7 +9922,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=156">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=153">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9943,7 +9930,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_str</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_str</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span> <span class="o">=</span>
     <span class="o">//</span> <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"fable_library_rust::String_::LrcStr::as_str(&amp;$0)"'</span><span class="o">)</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"&amp;*$0"'</span><span class="o">)</span>
 </pre></div>
@@ -9952,7 +9939,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=157">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=154">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9962,7 +9949,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=158">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=155">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9978,7 +9965,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=159">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=156">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9988,7 +9975,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=160">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=157">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9996,7 +9983,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">ref_to_std_string</span> <span class="p">(</span><span class="nb">str</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str) : std_string =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">ref_to_std_string</span> <span class="p">(</span><span class="nb">str</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">(</span>str,<span class="w"> </span><span class="s1">$'"String::from($0)"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -10004,7 +9991,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=161">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=158">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10014,7 +10001,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=162">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=159">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10030,7 +10017,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=163">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=160">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10040,7 +10027,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=164">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=161">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10056,7 +10043,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=165">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=162">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10066,7 +10053,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=166">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=163">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10074,7 +10061,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_str_std</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_str_std</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span> <span class="o">=</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"$0.as_str()"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -10082,7 +10069,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=167">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=164">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10092,7 +10079,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=168">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=165">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10108,7 +10095,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=169">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=166">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10118,7 +10105,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=170">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=167">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10126,7 +10113,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">os_string_as_ref</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">os_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' os_str =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">os_string_as_ref</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">os_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">os_str</span> <span class="o">=</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"$0.as_ref()"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -10134,7 +10121,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=171">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=168">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10144,7 +10131,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=172">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=169">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10152,7 +10139,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_os_string</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' os_str) : os_string =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_os_string</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">os_str</span><span class="p">)</span> <span class="p">:</span> <span class="n">os_string</span> <span class="o">=</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"$0.to_os_string()"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -10160,7 +10147,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=173">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=170">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10170,7 +10157,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=174">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=171">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10178,7 +10165,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">os_to_str</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">os_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str) =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">os_to_str</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">os_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span><span class="p">)</span> <span class="o">=</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">(</span>s,<span class="w"> </span><span class="s1">$'"$0.to_str()"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -10186,7 +10173,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=175">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=172">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10196,7 +10183,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=176">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=173">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10217,7 +10204,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=177">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=174">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10227,7 +10214,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=178">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=175">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10246,7 +10233,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=179">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=176">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10256,7 +10243,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=180">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=177">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10275,7 +10262,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=181">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=178">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10285,7 +10272,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=182">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=179">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10304,7 +10291,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=183">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=180">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10314,7 +10301,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=184">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=181">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10333,7 +10320,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=185">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=182">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10343,7 +10330,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=186">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=183">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10359,7 +10346,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=187">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=184">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10369,7 +10356,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=188">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=185">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10385,7 +10372,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=189">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=186">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10395,7 +10382,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=190">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=187">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10403,14 +10390,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">regex</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'regex_Regex'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">regex</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">regex::Regex</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type regex_Regex = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'regex_Regex'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=191">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=188">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10420,7 +10411,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=192">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=189">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10428,14 +10419,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">regex_error</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'regex_Error'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">regex_error</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">regex::Error</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type regex_Error = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'regex_Error'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=193">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=190">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10445,7 +10440,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=194">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=191">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10461,7 +10456,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=195">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=192">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10471,7 +10466,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=196">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=193">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10479,14 +10474,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">regex_captures</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'regex_Captures&lt;`t&gt;'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">regex_captures</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">regex::Captures&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type regex_Captures&lt;'T&gt; = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'regex_Captures&lt;`t&gt;'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=197">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=194">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10496,7 +10495,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=198">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=195">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10504,14 +10503,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">regex_capture_matches</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'regex_CaptureMatches'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">regex_capture_matches</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">regex::CaptureMatches</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type regex_CaptureMatches = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'regex_CaptureMatches'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=199">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=196">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10521,7 +10524,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=200">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=197">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10529,7 +10532,11 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">regex_capture_names</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'regex_CaptureNames'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">regex_capture_names</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">regex::CaptureNames</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type regex_CaptureNames = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'regex_CaptureNames'</span>
+    <span class="p">)</span>
 
 <span class="n">inl</span> <span class="n">regex_capture_names</span> <span class="p">(</span><span class="n">regex</span> <span class="p">:</span> <span class="n">regex</span><span class="p">)</span> <span class="p">:</span> <span class="n">regex_capture_names</span> <span class="o">=</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">(</span>regex,<span class="w"> </span><span class="s1">$'$"$0.capture_names()"'</span><span class="o">)</span>
@@ -10539,7 +10546,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=201">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=198">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10549,7 +10556,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=202">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=199">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10557,14 +10564,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">match</span><span class="s1">' = $'</span><span class="n">regex_Match</span><span class="s1">'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">match</span><span class="s1">' =</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">regex::Match</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type regex_Match = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'regex_Match'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=203">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=200">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10574,7 +10585,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=204">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=201">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10590,7 +10601,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=205">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=202">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10600,7 +10611,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=206">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=203">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10650,7 +10661,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=207">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=204">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10661,7 +10672,6 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 <span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>regex
 
-<span class="n">types</span> <span class="p">()</span>
 <span class="s2">"fable-library-ts</span><span class="se">\\</span><span class="s2">.(?&lt;a&gt;[</span><span class="se">\\</span><span class="s2">d.]+)$"</span>
 <span class="o">|&gt;</span> <span class="n">new_regex</span>
 <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
@@ -10695,7 +10705,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=208">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=205">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10705,7 +10715,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=209">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=206">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10729,7 +10739,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=210">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=207">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10739,7 +10749,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=211">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=208">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10755,7 +10765,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=212">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=209">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10765,7 +10775,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=213">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=210">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10784,7 +10794,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=214">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=211">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10794,7 +10804,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=215">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=212">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10814,7 +10824,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=216">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=213">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10824,7 +10834,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=217">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=214">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10842,7 +10852,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=218">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=215">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10852,7 +10862,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=219">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=216">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10868,7 +10878,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=220">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=217">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10878,7 +10888,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=221">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=218">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10886,7 +10896,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">strip_prefix</span> <span class="p">(</span><span class="n">prefix</span> <span class="p">:</span> <span class="n">char</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' str) =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">strip_prefix</span> <span class="p">(</span><span class="n">prefix</span> <span class="p">:</span> <span class="n">char</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">std_string</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">join</span> <span class="n">s</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!s.strip_prefix(!prefix)"'</span><span class="o">)</span>
 </pre></div>
@@ -10895,7 +10905,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=222">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=219">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10905,7 +10915,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=223">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=220">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10913,7 +10923,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">str_from_utf8</span> <span class="p">(</span><span class="nb">bytes</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' (am'</span><span class="o">.</span><span class="n">slice</span> <span class="n">u8</span><span class="p">))</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (rust.ref'</span> <span class="nb">str</span><span class="p">)</span> <span class="n">utf8_error</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">str_from_utf8</span> <span class="p">(</span><span class="nb">bytes</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.slice u8)) : resultm.result'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="nb">str</span><span class="p">)</span> <span class="n">utf8_error</span> <span class="o">=</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">(</span>bytes,<span class="w"> </span><span class="s1">$'"std::str::from_utf8($0)"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -10921,7 +10931,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=224">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=221">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10931,7 +10941,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=225">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=222">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10948,7 +10958,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=226">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=223">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10958,7 +10968,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=227">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=224">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10985,7 +10995,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=228">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=225">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10995,7 +11005,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=229">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=226">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11003,14 +11013,18 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">encoding</span><span class="s1">' = $'</span><span class="n">encoding_rs_Encoding</span><span class="s1">'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">encoding</span><span class="s1">' =</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">encoding_rs::Encoding</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type encoding_rs_Encoding = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'encoding_rs_Encoding'</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=230">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=227">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11020,7 +11034,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=231">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=228">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11028,7 +11042,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">encoding_utf8</span><span class="s1">' () : rust.ref'</span> <span class="n">encoding</span><span class="s1">' =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">encoding_utf8</span><span class="s1">' () : rust.ref encoding'</span> <span class="o">=</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"encoding_rs::UTF_8"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -11036,7 +11050,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=232">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=229">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11046,7 +11060,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=233">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=230">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11054,7 +11068,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">encoding_1252</span><span class="s1">' () : rust.ref'</span> <span class="n">encoding</span><span class="s1">' =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">encoding_1252</span><span class="s1">' () : rust.ref encoding'</span> <span class="o">=</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"encoding_rs::WINDOWS_1252"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -11062,7 +11076,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=234">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=231">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11072,7 +11086,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=235">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=232">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11080,7 +11094,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">encoding_encode</span><span class="s1">' (encoding : rust.ref'</span> <span class="n">encoding</span><span class="s1">') (text : string) : rust.cow (am'</span><span class="o">.</span><span class="n">slice</span> <span class="n">u8</span><span class="p">)</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">encoding_encode</span><span class="s1">' (encoding : rust.ref encoding'</span><span class="p">)</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">cow</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.slice u8) =</span>
     <span class="o">!</span><span class="se">\\</span><span class="o">((</span>encoding,<span class="w"> </span>text<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"$0.encode(&amp;*$1).0"'</span><span class="o">)</span>
 </pre></div>
 </div>
@@ -11088,7 +11102,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=236">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=233">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11098,7 +11112,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=237">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=234">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11114,7 +11128,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=238">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=235">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11124,7 +11138,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=239">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=236">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11132,7 +11146,11 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">windows</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_slice_Windows&lt;`t&gt;'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">windows</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">`</span><span class="p">(</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::slice::Windows&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;]</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">type std_slice_Windows&lt;'T&gt; = class end"</span>
+        <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'std_slice_Windows&lt;`t&gt;'</span>
+    <span class="p">)</span>
 
 <span class="n">inl</span> <span class="n">windows</span> <span class="p">(</span><span class="nb">len</span> <span class="p">:</span> <span class="n">unativeint</span><span class="p">)</span> <span class="p">(</span><span class="n">source</span> <span class="p">:</span> <span class="n">am</span><span class="s1">'.vec u8) : windows u8 =</span>
     <span class="n">inl</span> <span class="n">source</span> <span class="o">=</span> <span class="n">source</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">new_box</span> <span class="o">|&gt;</span> <span class="n">rust</span><span class="o">.</span><span class="n">box_leak</span>
@@ -11146,7 +11164,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=240">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=237">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11156,7 +11174,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=241">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=238">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11180,7 +11198,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=242">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=239">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11190,7 +11208,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=243">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=240">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11211,7 +11229,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=244">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=241">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11221,7 +11239,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=245">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=242">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11229,7 +11247,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_bytes</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' (am'</span><span class="o">.</span><span class="n">slice</span> <span class="n">u8</span><span class="p">)</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">as_bytes</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.slice u8) =</span>
     <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="n">join</span> <span class="n">text</span>
     <span class="o">!</span><span class="se">\(</span><span class="s1">$'"!text.as_bytes()"'</span><span class="o">)</span>
 </pre></div>
@@ -11238,7 +11256,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=246">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=243">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11249,7 +11267,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=247">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=244">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11259,7 +11277,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=248">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=245">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11282,7 +11300,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=249">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=246">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11293,7 +11311,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=250">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=247">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11303,7 +11321,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=251">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=248">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11322,7 +11340,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=252">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=249">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11332,7 +11350,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=253">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=250">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11359,7 +11377,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=254">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=251">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11369,7 +11387,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=255">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=252">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11386,7 +11404,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=256">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=253">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11446,7 +11464,7 @@ assert_eq / actual: "System.Exception: test" / expected: "System.Exception: test
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=257">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=254">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11456,7 +11474,7 @@ assert_eq / actual: "System.Exception: test" / expected: "System.Exception: test
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=258">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=255">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11479,7 +11497,7 @@ assert_eq / actual: "System.Exception: test" / expected: "System.Exception: test
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=259">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=256">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11489,7 +11507,7 @@ assert_eq / actual: "System.Exception: test" / expected: "System.Exception: test
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=260">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=257">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11508,7 +11526,7 @@ assert_eq / actual: "System.Exception: test" / expected: "System.Exception: test
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=261">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=258">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11518,7 +11536,7 @@ assert_eq / actual: "System.Exception: test" / expected: "System.Exception: test
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=262">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=259">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11544,7 +11562,7 @@ assert_eq / actual: "System.Exception: test" / expected: "System.Exception: test
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=263">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=260">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11586,7 +11604,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=264">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=261">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11596,7 +11614,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=265">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=262">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11614,7 +11632,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=266">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=263">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11624,7 +11642,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=267">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=264">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11650,7 +11668,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=268">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=265">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11681,7 +11699,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=269">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=266">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11692,7 +11710,6 @@ assert_eq / actual: "12...67" / expected: "12...67"
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 <span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>regex
 
-<span class="n">types</span> <span class="p">()</span>
 <span class="s2">" 123"</span>
 <span class="o">|&gt;</span> <span class="n">replace_regex</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">s</span><span class="se">\\</span><span class="s2">w2"</span> <span class="s2">""</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"3"</span>
@@ -11714,7 +11731,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=270">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=267">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11725,7 +11742,6 @@ assert_eq / actual: "12...67" / expected: "12...67"
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 <span class="o">///!</span><span class="w"> </span>rust<span class="w"> </span>-d<span class="w"> </span>regex
 
-<span class="n">types</span> <span class="p">()</span>
 <span class="s2">"    let main args =</span><span class="se">\n</span><span class="s2">        ()</span><span class="se">\n</span><span class="s2">"</span>
 <span class="o">|&gt;</span> <span class="n">replace_regex</span> <span class="err">$</span><span class="s1">'@@"(?P&lt;a&gt; *)(?P&lt;b&gt;let</span><span class="se">\\</span><span class="s1">s+main</span><span class="se">\\</span><span class="s1">s+.*?</span><span class="se">\\</span><span class="s1">s*=)"'</span> <span class="s2">"$a[&lt;EntryPoint&gt;]</span><span class="se">\n</span><span class="s2">$a$b"</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"    [&lt;EntryPoint&gt;]</span><span class="se">\n</span><span class="s2">    let main args =</span><span class="se">\n</span><span class="s2">        ()</span><span class="se">\n</span><span class="s2">"</span>
@@ -11754,7 +11770,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=271">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=268">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11764,7 +11780,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=272">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=269">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11773,7 +11789,6 @@ assert_eq / actual: "12...67" / expected: "12...67"
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">types</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let contains x = !contains x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let ends_with x = !ends_with x'</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s1">'let pad_left x = !pad_left x'</span> <span class="p">:</span> <span class="p">()</span>
@@ -11807,7 +11822,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=273">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=270">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11818,7 +11833,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=274">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=271">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11828,7 +11843,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=275">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=272">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

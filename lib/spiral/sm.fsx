@@ -1,211 +1,23 @@
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("core::any::Any")>]
+[<Fable.Core.Erase; Fable.Core.Emit("regex::Regex")>]
 #endif
-type core_any_Any = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("_")>]
-#endif
-type core_ops_Try<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>]
-#endif
-type Func0<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Func1<$0, $1>")>]
-#endif
-type Func0<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Box<$0>")>]
-#endif
-type Box<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("dyn $0")>]
-#endif
-type Dyn<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Send")>]
-#endif
-type Send<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>]
-#endif
-type Fn<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn()")>]
-#endif
-type FnUnit = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>]
-#endif
-type FnOnce<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn($0)")>]
-#endif
-type ActionFn<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")>]
-#endif
-type ActionFn2<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("impl $0")>]
-#endif
-type Impl<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("mut $0")>]
-#endif
-type Mut<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("&$0")>]
-#endif
-type Ref<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0 + $1")>]
-#endif
-type LifetimeJoin<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("'static")>]
-#endif
-type StaticLifetime = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0")>]
-#endif
-type LifetimeRef<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0 $1")>]
-#endif
-type Lifetime<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("MutCell<$0>")>]
-#endif
-type MutCell<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::any::Any")>]
-#endif
-type std_any_Any = class end
+type regex_Regex = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow<$0>")>]
 #endif
 type std_borrow_Cow<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell<$0>")>]
-#endif
-type std_cell_RefCell<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin<$0>")>]
-#endif
-type std_pin_Pin<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc<$0>")>]
-#endif
-type std_rc_Rc<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak<$0>")>]
-#endif
-type std_rc_Weak<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::collections::HashMap<$0, $1>")>]
-#endif
-type std_collections_HashMap<'K, 'V> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::collections::BTreeMap<$0, $1>")>]
-#endif
-type std_collections_BTreeMap<'K, 'V> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("[$0]")>]
-#endif
-type Slice<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("_")>]
-#endif
-type Slice'<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Vec<$0>")>]
-#endif
-type Vec<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("str")>]
-#endif
-type Str = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")>]
-#endif
-type base64_DecodeError = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")>]
-#endif
-type borsh_io_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("encoding_rs::Encoding")>]
-#endif
-type encoding_rs_Encoding = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")>]
-#endif
-type js_sys_JsString = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")>]
-#endif
-type serde_json_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")>]
-#endif
-type serde_json_Value = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")>]
-#endif
-type serde_wasm_bindgen_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")>]
-#endif
-type std_ffi_OsStr = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")>]
-#endif
-type std_ffi_OsString = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::fmt::Display<$0>")>]
-#endif
-type std_fmt_Display<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")>]
-#endif
-type std_str_Utf8Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::string::FromUtf8Error")>]
-#endif
-type std_string_FromUtf8Error = class end
-#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
 #endif
 type std_string_String = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::slice::Windows<$0>")>]
-#endif
-type std_slice_Windows<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Regex")>]
-#endif
-type regex_Regex = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Captures<$0>")>]
-#endif
-type regex_Captures<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::CaptureMatches")>]
-#endif
-type regex_CaptureMatches = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::CaptureNames")>]
-#endif
-type regex_CaptureNames = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Match")>]
-#endif
-type regex_Match = class end
-#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("regex::Error")>]
 #endif
 type regex_Error = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("str")>]
+#endif
+type Str = class end
 type UH0 =
     | UH0_0
     | UH0_1 of char * UH0
@@ -565,50 +377,50 @@ and closure48 () (v0 : string) : (char []) =
         v3.l0 <- v7
         ()
     v2
-let v24 : (string -> (string -> bool)) = closure0()
-let contains x = v24 x
-let v25 : (string -> (string -> bool)) = closure2()
-let ends_with x = v25 x
-let v26 : (int32 -> (char -> (string -> string))) = closure4()
-let pad_left x = v26 x
-let v27 : (int32 -> (char -> (string -> string))) = closure7()
-let pad_right x = v27 x
-let v28 : (string -> (string -> (string -> string))) = closure10()
-let replace x = v28 x
-let v29 : (string -> (string -> (string -> string))) = closure13()
-let replace_regex x = v29 x
-let v30 : (int32 -> (int32 -> (string -> string))) = closure16()
-let slice x = v30 x
-let v31 : (string -> (string -> (string []))) = closure19()
-let split x = v31 x
-let v32 : ((string []) -> (string -> (string []))) = closure21()
-let split_string x = v32 x
-let v33 : (string -> (string -> bool)) = closure23()
-let starts_with x = v33 x
-let v34 : (int32 -> (int32 -> (string -> string))) = closure25()
-let substring x = v34 x
-let v35 : (string -> string) = closure28()
-let to_lower x = v35 x
-let v36 : (string -> string) = closure29()
-let to_upper x = v36 x
-let v37 : (string -> string) = closure30()
-let trim x = v37 x
-let v38 : ((char []) -> (string -> string)) = closure31()
-let trim_end x = v38 x
-let v39 : ((char []) -> (string -> string)) = closure35()
-let trim_start x = v39 x
-let v40 : (int32 -> (string -> string)) = closure37()
-let ellipsis x = v40 x
-let v41 : (int64 -> (string -> string)) = closure39()
-let ellipsis_end x = v41 x
-let v42 : (exn -> string) = closure41()
-let format_exception x = v42 x
-let v43 : (string -> ((string []) -> string)) = closure42()
-let concat_array_trailing x = v43 x
-let v44 : (string -> (string seq -> string)) = closure44()
-let concat x = v44 x
-let v45 : (string -> ((string []) -> string)) = closure46()
-let join' x = v45 x
-let v46 : (string -> (char [])) = closure48()
-let to_char_array x = v46 x
+let v0 : (string -> (string -> bool)) = closure0()
+let contains x = v0 x
+let v1 : (string -> (string -> bool)) = closure2()
+let ends_with x = v1 x
+let v2 : (int32 -> (char -> (string -> string))) = closure4()
+let pad_left x = v2 x
+let v3 : (int32 -> (char -> (string -> string))) = closure7()
+let pad_right x = v3 x
+let v4 : (string -> (string -> (string -> string))) = closure10()
+let replace x = v4 x
+let v5 : (string -> (string -> (string -> string))) = closure13()
+let replace_regex x = v5 x
+let v6 : (int32 -> (int32 -> (string -> string))) = closure16()
+let slice x = v6 x
+let v7 : (string -> (string -> (string []))) = closure19()
+let split x = v7 x
+let v8 : ((string []) -> (string -> (string []))) = closure21()
+let split_string x = v8 x
+let v9 : (string -> (string -> bool)) = closure23()
+let starts_with x = v9 x
+let v10 : (int32 -> (int32 -> (string -> string))) = closure25()
+let substring x = v10 x
+let v11 : (string -> string) = closure28()
+let to_lower x = v11 x
+let v12 : (string -> string) = closure29()
+let to_upper x = v12 x
+let v13 : (string -> string) = closure30()
+let trim x = v13 x
+let v14 : ((char []) -> (string -> string)) = closure31()
+let trim_end x = v14 x
+let v15 : ((char []) -> (string -> string)) = closure35()
+let trim_start x = v15 x
+let v16 : (int32 -> (string -> string)) = closure37()
+let ellipsis x = v16 x
+let v17 : (int64 -> (string -> string)) = closure39()
+let ellipsis_end x = v17 x
+let v18 : (exn -> string) = closure41()
+let format_exception x = v18 x
+let v19 : (string -> ((string []) -> string)) = closure42()
+let concat_array_trailing x = v19 x
+let v20 : (string -> (string seq -> string)) = closure44()
+let concat x = v20 x
+let v21 : (string -> ((string []) -> string)) = closure46()
+let join' x = v21 x
+let v22 : (string -> (char [])) = closure48()
+let to_char_array x = v22 x
 ()

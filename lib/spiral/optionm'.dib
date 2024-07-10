@@ -361,7 +361,7 @@ inl take forall t. (x : option' t) : option' t =
 
 #!spiral
 
-inl take_ref forall t. (x : rust.ref' (option' t)) : option' t =
+inl take_ref forall t. (x : rust.ref (option' t)) : option' t =
     (!\\(x, $'"true; let mut !x = !x"') : bool) |> ignore
     !\\(x, $'"Option::take(&mut $0)"')
 
@@ -371,7 +371,7 @@ inl take_ref forall t. (x : rust.ref' (option' t)) : option' t =
 
 #!spiral
 
-inl take_ref_mut forall t. (x : rust.ref' (rust.mut' (option' t))) : option' t =
+inl take_ref_mut forall t. (x : rust.ref (rust.mut' (option' t))) : option' t =
     !\\(x, $'"Option::take($0)"')
 
 #!markdown
@@ -380,7 +380,7 @@ inl take_ref_mut forall t. (x : rust.ref' (rust.mut' (option' t))) : option' t =
 
 #!spiral
 
-inl as_ref forall t. (x : rust.ref' (option' t)) : option' (rust.ref' t) =
+inl as_ref forall t. (x : rust.ref (option' t)) : option' (rust.ref t) =
     !\\(x, $'"$0.as_ref()"')
 
 #!markdown
@@ -389,7 +389,7 @@ inl as_ref forall t. (x : rust.ref' (option' t)) : option' (rust.ref' t) =
 
 #!spiral
 
-inl as_mut forall t. (x : rust.ref' (rust.mut' (option' t))) : option' (rust.ref' (rust.mut' t)) =
+inl as_mut forall t. (x : rust.ref (rust.mut' (option' t))) : option' (rust.ref (rust.mut' t)) =
     !\\(x, $'"$0.as_mut()"')
 
 #!markdown
@@ -433,7 +433,6 @@ inl rc_into_inner forall t. (x : rust.rc t) : option' t =
 //// test
 ///! rust
 
-types ()
 rust.new_rc 0i32
 |> rc_into_inner
 |> unbox

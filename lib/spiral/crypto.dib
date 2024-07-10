@@ -19,32 +19,6 @@ open file_system_operators
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"sha2::Sha256\")>]\n#endif\ntype sha2_Sha256 = class end"
-        Python = fun () => ()
-    }
-
-#!spiral
-
-inl types () =
-    sm'.types ()
-    am'.types ()
-    threading.types ()
-    rust.types ()
-    date_time.types ()
-    file_system.types ()
-    stream.types ()
-    runtime.types ()
-    types ()
-
-#!markdown
-
 ## fsharp
 
 #!markdown
@@ -92,8 +66,6 @@ inl get_file_hash' (path : string) : result string string =
 
 //// test
 
-types ()
-
 inl file_name = "test.txt"
 inl text = "\n"
 
@@ -114,8 +86,6 @@ path
 
 //// test
 ///! rust -d chrono encoding_rs encoding_rs_io regex sha2
-
-types ()
 
 inl file_name = "test.txt"
 inl text = "\n"
@@ -139,7 +109,16 @@ disposable |> use |> ignore
 
 #!spiral
 
-nominal sha256' = $'sha2_Sha256'
+nominal sha256' =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"sha2::Sha256\")>]\n#endif\ntype sha2_Sha256 = class end"
+                ) : () -> ()
+        }
+        $'' : $'sha2_Sha256'
+    )
 
 #!markdown
 
@@ -157,7 +136,7 @@ inl new_sha256 () : sha256' =
 
 #!spiral
 
-inl hasher_update forall el dim. (slice : rust.ref' (am'.slice' el dim)) (hasher : sha256') : () =
+inl hasher_update forall el dim. (slice : rust.ref (am'.slice' el dim)) (hasher : sha256') : () =
     !\($'"sha2::Digest::update(&mut !hasher, !slice)"')
 
 #!markdown
@@ -166,7 +145,7 @@ inl hasher_update forall el dim. (slice : rust.ref' (am'.slice' el dim)) (hasher
 
 #!spiral
 
-inl hasher_finalize (hasher : sha256') : rust.ref' (am'.slice u8) =
+inl hasher_finalize (hasher : sha256') : rust.ref (am'.slice u8) =
     !\($'"&sha2::Digest::finalize(!hasher)"')
 
 #!markdown
@@ -230,8 +209,6 @@ inl get_file_hash (path : string) =
 //// test
 ///! rust -d chrono regex sha2
 
-types ()
-
 inl file_name = join "test.txt"
 inl text = "\n"
 
@@ -254,8 +231,6 @@ disposable |> use |> ignore
 
 //// test
 ///! rust -d chrono regex sha2
-
-types ()
 
 inl file_name = join "test.txt"
 inl text = ""
@@ -418,8 +393,6 @@ let hash_text (~input : string) =
 ///! typescript
 ///! python
 
-types ()
-
 "\n"
 |> hash_text
 |> _assert_eq "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
@@ -452,7 +425,6 @@ inl hash_to_port (text : string) : u16 =
 ///! typescript
 ///! python
 
-types ()
 "\n"
 |> hash_text
 |> hash_to_port
@@ -465,6 +437,5 @@ types ()
 #!spiral
 
 inl main () =
-    types ()
     $'let hash_text x = !hash_text x' : ()
     $'let hash_to_port x = !hash_to_port x' : ()

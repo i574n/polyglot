@@ -228,7 +228,7 @@ def method2(__unit: None=None) -> str:
 
 def method1(v0: str) -> str:
     _v3: str | None = None
-    v54_1: IOsEnviron = os
+    v54: IOsEnviron = os
     v56: Any = v54.environ
     _v66: (str | None) | None = None
     x: str | None = v56.get(v0)
@@ -340,8 +340,8 @@ def method8(__unit: None=None) -> str:
 
 
 def method10(v0: Mut4, v1: str) -> None:
-    v12: str = v0.l0 + (("" + v1) + "")
-    v0.l0 = v12
+    v12_1: str = v0.l0 + (("" + v1) + "")
+    v0.l0 = v12_1
 
 
 def method11(v0: Mut4) -> None:
@@ -349,11 +349,11 @@ def method11(v0: Mut4) -> None:
 
 
 def method12(v0: Mut4, v1: int) -> None:
-    v12: str = v0.l0 + (("" + str(v1)) + "")
-    v0.l0 = v12
+    v12_1: str = v0.l0 + (("" + str(v1)) + "")
+    v0.l0 = v12_1
 
 
-def method9(v0: Mut4, v1: int, v2: str) -> None:
+def method9(v0: Mut4, v1: int, v2_1: str) -> None:
     method10(v0, "{ ")
     method11(v0)
     method10(v0, "port")
@@ -362,11 +362,11 @@ def method9(v0: Mut4, v1: int, v2: str) -> None:
     method10(v0, "; ")
     method10(v0, "ex")
     method10(v0, " = ")
-    method10(v0, v2)
+    method10(v0, v2_1)
     method10(v0, " }")
 
 
-def closure6(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, str]], unit_var: None) -> str:
+def closure6(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, str]], unit_var: None) -> str:
     if State_trace_state() is None:
         State_trace_state(closure0(None, US0(0)))
 
@@ -380,14 +380,14 @@ def closure6(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, str]], 
 
     else: 
         x: int64 = v18
-        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2, unit_var: Any=unit_var) -> US2:
+        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> US2:
             return US2(0, x)
 
         x_2 = x_1(None)
 
     _v480.contents = x_2
     v507: US2 = default_arg(_v480.contents, US2(1))
-    def _arrow136(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2, unit_var: Any=unit_var) -> Any:
+    def _arrow136(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
         v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
         return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
 
@@ -446,7 +446,7 @@ def closure6(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, str]], 
         v1141 = _v1029
 
     v1160: int64 = pattern_input[0].l0
-    pattern_input_1: tuple[int, str] = v2(None)
+    pattern_input_1: tuple[int, str] = v2_1(None)
     v1164: Mut4 = Mut4("")
     method9(v1164, pattern_input_1[0], pattern_input_1[1])
     v1165: str = v1164.l0
@@ -494,11 +494,11 @@ def method13(v0: US0, v1: Callable[[], str]) -> None:
 
 
 
-def method4(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, str]]) -> None:
-    def v3(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2) -> str:
-        return closure6(v0, v1, v2, None)
+def method4(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, str]]) -> None:
+    def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
+        return closure6(v0, v1, v2_1, None)
 
-    method13(v0, v3)
+    method13(v0, v3_1)
 
 
 def closure3(v0: str, v1: int) -> Async[bool]:
@@ -544,7 +544,7 @@ def method15(v0: Mut4, v1: int) -> None:
     method10(v0, " }")
 
 
-def closure14(v0: US0, v1: Callable[[], str], v2: Callable[[], int], unit_var: None) -> str:
+def closure14(v0: US0, v1: Callable[[], str], v2_1: Callable[[], int], unit_var: None) -> str:
     if State_trace_state() is None:
         State_trace_state(closure0(None, US0(0)))
 
@@ -558,14 +558,14 @@ def closure14(v0: US0, v1: Callable[[], str], v2: Callable[[], int], unit_var: N
 
     else: 
         x: int64 = v18
-        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2, unit_var: Any=unit_var) -> US2:
+        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> US2:
             return US2(0, x)
 
         x_2 = x_1(None)
 
     _v480.contents = x_2
     v507: US2 = default_arg(_v480.contents, US2(1))
-    def _arrow140(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2, unit_var: Any=unit_var) -> Any:
+    def _arrow140(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
         v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
         return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
 
@@ -625,16 +625,16 @@ def closure14(v0: US0, v1: Callable[[], str], v2: Callable[[], int], unit_var: N
 
     v1160: int64 = pattern_input[0].l0
     v1163: Mut4 = Mut4("")
-    method15(v1163, v2(None))
+    method15(v1163, v2_1(None))
     v1164: str = v1163.l0
     return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1164) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method14(v0: US0, v1: Callable[[], str], v2: Callable[[], int]) -> None:
-    def v3(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2) -> str:
-        return closure14(v0, v1, v2, None)
+def method14(v0: US0, v1: Callable[[], str], v2_1: Callable[[], int]) -> None:
+    def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
+        return closure14(v0, v1, v2_1, None)
 
-    method13(v0, v3)
+    method13(v0, v3_1)
 
 
 def closure15(unit_var: None, unit_var_1: None) -> str:
@@ -651,7 +651,7 @@ def closure16(v0: int, v1: Exception, unit_var: None) -> tuple[int, str]:
     return (v0, _arrow141() if (_v4 is None) else _v4)
 
 
-def method17(v0: Mut4, v1: int, v2: str) -> None:
+def method17(v0: Mut4, v1: int, v2_1: str) -> None:
     method10(v0, "{ ")
     method11(v0)
     method10(v0, "timeout")
@@ -660,11 +660,11 @@ def method17(v0: Mut4, v1: int, v2: str) -> None:
     method10(v0, "; ")
     method10(v0, "ex")
     method10(v0, " = ")
-    method10(v0, v2)
+    method10(v0, v2_1)
     method10(v0, " }")
 
 
-def closure17(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, str]], unit_var: None) -> str:
+def closure17(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, str]], unit_var: None) -> str:
     if State_trace_state() is None:
         State_trace_state(closure0(None, US0(0)))
 
@@ -678,14 +678,14 @@ def closure17(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, str]],
 
     else: 
         x: int64 = v18
-        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2, unit_var: Any=unit_var) -> US2:
+        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> US2:
             return US2(0, x)
 
         x_2 = x_1(None)
 
     _v480.contents = x_2
     v507: US2 = default_arg(_v480.contents, US2(1))
-    def _arrow142(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2, unit_var: Any=unit_var) -> Any:
+    def _arrow142(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
         v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
         return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
 
@@ -744,21 +744,21 @@ def closure17(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, str]],
         v1141 = _v1029
 
     v1160: int64 = pattern_input[0].l0
-    pattern_input_1: tuple[int, str] = v2(None)
+    pattern_input_1: tuple[int, str] = v2_1(None)
     v1164: Mut4 = Mut4("")
     method17(v1164, pattern_input_1[0], pattern_input_1[1])
     v1165: str = v1164.l0
     return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1165) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method16(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, str]]) -> None:
-    def v3(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2) -> str:
-        return closure17(v0, v1, v2, None)
+def method16(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, str]]) -> None:
+    def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
+        return closure17(v0, v1, v2_1, None)
 
-    method13(v0, v3)
+    method13(v0, v3_1)
 
 
-def closure9(v0: int, v1: str, v2: int) -> Async[bool]:
+def closure9(v0: int, v1: str, v2_1: int) -> Async[bool]:
     _v5: Async[bool] | None = None
     _v5 = None
     if _v5 is None:
@@ -787,13 +787,13 @@ def closure22(unit_var: None, unit_var_1: None) -> str:
     return "networking.wait_for_port_access"
 
 
-def closure23(v0: int | None, v1: bool, v2: int, v3: int64, unit_var: None) -> tuple[int, int64, int | None, bool]:
-    return (v2, v3, v0, v1)
+def closure23(v0: int | None, v1: bool, v2_1: int, v3_1: int64, unit_var: None) -> tuple[int, int64, int | None, bool]:
+    return (v2_1, v3_1, v0, v1)
 
 
 def method21(v0: Mut4, v1: int64) -> None:
-    v12: str = v0.l0 + (("" + str(v1)) + "")
-    v0.l0 = v12
+    v12_1: str = v0.l0 + (("" + str(v1)) + "")
+    v0.l0 = v12_1
 
 
 def method22(v0: Mut4, v1: int | None=None) -> None:
@@ -806,7 +806,7 @@ def method23(v0: Mut4, v1: bool) -> None:
     v0.l0 = v15
 
 
-def method20(v0: Mut4, v1: int, v2: int64, v3: int | None, v4: bool) -> None:
+def method20(v0: Mut4, v1: int, v2_1: int64, v3_1: int | None, v4: bool) -> None:
     method10(v0, "{ ")
     method11(v0)
     method10(v0, "port")
@@ -815,11 +815,11 @@ def method20(v0: Mut4, v1: int, v2: int64, v3: int | None, v4: bool) -> None:
     method10(v0, "; ")
     method10(v0, "retry")
     method10(v0, " = ")
-    method21(v0, v2)
+    method21(v0, v2_1)
     method10(v0, "; ")
     method10(v0, "timeout")
     method10(v0, " = ")
-    method22(v0, v3)
+    method22(v0, v3_1)
     method10(v0, "; ")
     method10(v0, "status")
     method10(v0, " = ")
@@ -827,7 +827,7 @@ def method20(v0: Mut4, v1: int, v2: int64, v3: int | None, v4: bool) -> None:
     method10(v0, " }")
 
 
-def closure24(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, int64, int | None, bool]], unit_var: None) -> str:
+def closure24(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, int64, int | None, bool]], unit_var: None) -> str:
     if State_trace_state() is None:
         State_trace_state(closure0(None, US0(0)))
 
@@ -841,14 +841,14 @@ def closure24(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, int64,
 
     else: 
         x: int64 = v18
-        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2, unit_var: Any=unit_var) -> US2:
+        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> US2:
             return US2(0, x)
 
         x_2 = x_1(None)
 
     _v480.contents = x_2
     v507: US2 = default_arg(_v480.contents, US2(1))
-    def _arrow145(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2, unit_var: Any=unit_var) -> Any:
+    def _arrow145(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
         v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
         return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
 
@@ -907,21 +907,21 @@ def closure24(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, int64,
         v1141 = _v1029
 
     v1160: int64 = pattern_input[0].l0
-    pattern_input_1: tuple[int, int64, int | None, bool] = v2(None)
+    pattern_input_1: tuple[int, int64, int | None, bool] = v2_1(None)
     v1166: Mut4 = Mut4("")
     method20(v1166, pattern_input_1[0], pattern_input_1[1], pattern_input_1[2], pattern_input_1[3])
     v1167: str = v1166.l0
     return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1167) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
 
-def method19(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, int64, int | None, bool]]) -> None:
-    def v3(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2) -> str:
-        return closure24(v0, v1, v2, None)
+def method19(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, int64, int | None, bool]]) -> None:
+    def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
+        return closure24(v0, v1, v2_1, None)
 
-    method13(v0, v3)
+    method13(v0, v3_1)
 
 
-def method18(v0: int | None, v1: bool, v2: str, v3: int, v4: int64) -> Async[int64]:
+def method18(v0: int | None, v1: bool, v2_1: str, v3_1: int, v4: int64) -> Async[int64]:
     _v7: Async[int64] | None = None
     _v7 = None
     if _v7 is None:
@@ -932,13 +932,13 @@ def method18(v0: int | None, v1: bool, v2: str, v3: int, v4: int64) -> Async[int
 
 
 
-def closure21(v0: int | None, v1: bool, v2: str, v3: int) -> Async[int64]:
-    return method18(v0, v1, v2, v3, int64(0))
+def closure21(v0: int | None, v1: bool, v2_1: str, v3_1: int) -> Async[int64]:
+    return method18(v0, v1, v2_1, v3_1, int64(0))
 
 
-def closure20(v0: int | None, v1: bool, v2: str) -> Callable[[int], Async[int64]]:
-    def _arrow146(v: int, v0: Any=v0, v1: Any=v1, v2: Any=v2) -> Async[int64]:
-        return closure21(v0, v1, v2, v)
+def closure20(v0: int | None, v1: bool, v2_1: str) -> Callable[[int], Async[int64]]:
+    def _arrow146(v: int, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> Async[int64]:
+        return closure21(v0, v1, v2_1, v)
 
     return _arrow146
 
@@ -957,7 +957,7 @@ def closure18(unit_var: None, v0: int | None=None) -> Callable[[bool, str, int],
     return _arrow148
 
 
-def method24(v0: int | None, v1: str, v2: int) -> Async[int]:
+def method24(v0: int | None, v1: str, v2_1: int) -> Async[int]:
     _v5: Async[int] | None = None
     _v5 = None
     if _v5 is None:
@@ -968,8 +968,8 @@ def method24(v0: int | None, v1: str, v2: int) -> Async[int]:
 
 
 
-def closure27(v0: int | None, v1: str, v2: int) -> Async[int]:
-    return method24(v0, v1, v2)
+def closure27(v0: int | None, v1: str, v2_1: int) -> Async[int]:
+    return method24(v0, v1, v2_1)
 
 
 def closure26(v0: int | None, v1: str) -> Callable[[int], Async[int]]:
@@ -990,52 +990,52 @@ def _arrow151(v: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]:
     return closure0(None, v)
 
 
-v44: Callable[[US0], tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]] = _arrow151
+v2: Callable[[US0], tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]] = _arrow151
 
-v45: US0 = US0(0)
+v3: US0 = US0(0)
 
 
 if State_trace_state() is None:
-    State_trace_state(v44(v45))
+    State_trace_state(v2(v3))
 
 
 def _arrow152(v: str) -> Callable[[int], Async[bool]]:
     return closure2(None, v)
 
 
-v51: Callable[[str, int], Async[bool]] = _arrow152
+v9: Callable[[str, int], Async[bool]] = _arrow152
 
 def test_port_open(x: str) -> Callable[[int], Async[bool]]:
-    return v51(x)
+    return v9(x)
 
 
 def _arrow153(v: int) -> Callable[[str, int], Async[bool]]:
     return closure7(None, v)
 
 
-v52: Callable[[int, str, int], Async[bool]] = _arrow153
+v10: Callable[[int, str, int], Async[bool]] = _arrow153
 
 def test_port_open_timeout(x: int) -> Callable[[str, int], Async[bool]]:
-    return v52(x)
+    return v10(x)
 
 
 def _arrow154(v: int | None=None) -> Callable[[bool, str, int], Async[int64]]:
     return closure18(None, v)
 
 
-v53: Callable[[int | None, bool, str, int], Async[int64]] = _arrow154
+v11: Callable[[int | None, bool, str, int], Async[int64]] = _arrow154
 
 def wait_for_port_access(x: int | None=None) -> Callable[[bool, str, int], Async[int64]]:
-    return v53(x)
+    return v11(x)
 
 
 def _arrow155(v: int | None=None) -> Callable[[str, int], Async[int]]:
     return closure25(None, v)
 
 
-v54: Callable[[int | None, str, int], Async[int]] = _arrow155
+v12: Callable[[int | None, str, int], Async[int]] = _arrow155
 
 def get_available_port(x: int | None=None) -> Callable[[str, int], Async[int]]:
-    return v54(x)
+    return v12(x)
 
 

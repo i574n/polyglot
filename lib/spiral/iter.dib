@@ -18,15 +18,6 @@ open testing
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    ()
-
-#!markdown
-
 ## rust
 
 #!markdown
@@ -97,7 +88,6 @@ inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t
 //// test
 ///! rust
 
-types ()
 am'.init_series 0i32 2 1
 |> fun x => a x : _ int _
 |> enumerate

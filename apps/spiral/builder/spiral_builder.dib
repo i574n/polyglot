@@ -20,20 +20,6 @@ open testing
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    env.types ()
-    file_system.types ()
-    runtime.types ()
-    rust.types ()
-    sm'.types ()
-    crypto.types ()
-
-#!markdown
-
 ## get_args
 
 #!spiral
@@ -369,8 +355,6 @@ inl build_code { workspace_root runtime packages modules output_dir name code } 
 //// test
 ///! rust -d encoding_rs encoding_rs_io regex
 
-types ()
-
 build_code
     {
         workspace_root = file_system.get_workspace_root ()
@@ -387,8 +371,6 @@ build_code
 
 //// test
 ///! rust -d encoding_rs encoding_rs_io regex
-
-types ()
 
 build_code
     {
@@ -1646,8 +1628,6 @@ let rec run trace_level (matches : runtime.arg_matches) : async.future_pin (resu
 //// test
 ///! rust -d async-walkdir chrono clap encoding_rs encoding_rs_io futures rand rayon regex serde_json sha2 tokio['rt-multi-thread'] tokio-stream
 
-types ()
-
 inl file_name = "main.fs"
 inl code = "3 - 6 |> System.Console.WriteLine\n"
 
@@ -1690,8 +1670,6 @@ disposable |> use |> ignore
 
 //// test
 ///! rust -d async-walkdir chrono clap encoding_rs encoding_rs_io futures rand rayon regex serde_json sha2 tokio['rt-multi-thread'] tokio-stream
-
-types ()
 
 inl code = "3 - 6 |> System.Console.WriteLine\n"
 inl file_name = "main.fs"
@@ -1736,8 +1714,6 @@ disposable |> use |> ignore
 //// test
 ///! rust -d async-walkdir chrono clap encoding_rs encoding_rs_io futures rand rayon regex serde_json sha2 tokio['rt-multi-thread'] tokio-stream
 
-types ()
-
 inl file_name = "main.fs"
 inl code = "3 - 6 |> System.Console.WriteLine\n"
 
@@ -1780,8 +1756,6 @@ disposable |> use |> ignore
 
 //// test
 ///! rust -d async-walkdir chrono clap encoding_rs encoding_rs_io rand rayon regex serde_json sha2 tokio['rt-multi-thread'] tokio-stream
-
-types ()
 
 inl file_name = "test.dib"
 inl code =
@@ -1854,6 +1828,5 @@ inl main (args : array_base string) =
     0i32
 
 inl main () =
-    types ()
     $'let tests () = !tests ()' : ()
     $'let main args = !main args' : ()

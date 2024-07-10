@@ -14,17 +14,6 @@ open testing
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    env.types ()
-    rust.types ()
-    sm'.types ()
-
-#!markdown
-
 ## common
 
 #!markdown
@@ -288,7 +277,6 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
 ///! typescript
 ///! python
 
-types ()
 inl retry_fn_test = mut 0i32
 fun () =>
     retry_fn_test <- *retry_fn_test + 1
@@ -305,7 +293,6 @@ fun () =>
 ///! typescript
 ///! python
 
-types ()
 inl retry_fn_test = mut 0i32
 fun () =>
     if *retry_fn_test >= 2
@@ -428,11 +415,9 @@ fun () =>
 #!spiral
 
 inl main () =
-    types ()
     init_trace_state None
     inl new_disposable x : _ () = new_disposable x
     $'let new_disposable x = !new_disposable x' : ()
-
     inl retry_fn (r : i32) (x : () -> _) : optionm'.option' () = retry_fn r x |> optionm'.box
     $'let retry_fn x = !retry_fn x' : ()
     inl memoize (fn : () -> ()) : () -> () = memoize fn

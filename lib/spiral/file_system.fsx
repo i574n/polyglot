@@ -1,332 +1,80 @@
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::fs::File")>]
+[<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
 #endif
-type std_fs_File = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::fs::FileType")>]
-#endif
-type std_fs_FileType = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::path::Display")>]
-#endif
-type std_path_Display = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::path::Path")>]
-#endif
-type std_path_Path = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::path::PathBuf")>]
-#endif
-type std_path_PathBuf = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("async_walkdir::DirEntry")>]
-#endif
-type async_walkdir_DirEntry = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("async_walkdir::Error")>]
-#endif
-type async_walkdir_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("async_walkdir::Filtering")>]
-#endif
-type async_walkdir_Filtering = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("async_walkdir::WalkDir")>]
-#endif
-type async_walkdir_WalkDir = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("core::any::Any")>]
-#endif
-type core_any_Any = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("_")>]
-#endif
-type core_ops_Try<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>]
-#endif
-type Func0<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Func1<$0, $1>")>]
-#endif
-type Func0<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Box<$0>")>]
-#endif
-type Box<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("dyn $0")>]
-#endif
-type Dyn<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Send")>]
-#endif
-type Send<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>]
-#endif
-type Fn<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn()")>]
-#endif
-type FnUnit = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>]
-#endif
-type FnOnce<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn($0)")>]
-#endif
-type ActionFn<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")>]
-#endif
-type ActionFn2<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("impl $0")>]
-#endif
-type Impl<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("mut $0")>]
-#endif
-type Mut<'T> = class end
+type std_string_String = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("&$0")>]
 #endif
 type Ref<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0 + $1")>]
+[<Fable.Core.Erase; Fable.Core.Emit("std::path::PathBuf")>]
 #endif
-type LifetimeJoin<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("'static")>]
-#endif
-type StaticLifetime = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0")>]
-#endif
-type LifetimeRef<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0 $1")>]
-#endif
-type Lifetime<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("MutCell<$0>")>]
-#endif
-type MutCell<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::any::Any")>]
-#endif
-type std_any_Any = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow<$0>")>]
-#endif
-type std_borrow_Cow<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell<$0>")>]
-#endif
-type std_cell_RefCell<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin<$0>")>]
-#endif
-type std_pin_Pin<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc<$0>")>]
-#endif
-type std_rc_Rc<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak<$0>")>]
-#endif
-type std_rc_Weak<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::collections::HashMap<$0, $1>")>]
-#endif
-type std_collections_HashMap<'K, 'V> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::collections::BTreeMap<$0, $1>")>]
-#endif
-type std_collections_BTreeMap<'K, 'V> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("[$0]")>]
-#endif
-type Slice<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("_")>]
-#endif
-type Slice'<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Vec<$0>")>]
-#endif
-type Vec<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("str")>]
-#endif
-type Str = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")>]
-#endif
-type base64_DecodeError = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")>]
-#endif
-type borsh_io_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("encoding_rs::Encoding")>]
-#endif
-type encoding_rs_Encoding = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")>]
-#endif
-type js_sys_JsString = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")>]
-#endif
-type serde_json_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")>]
-#endif
-type serde_json_Value = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")>]
-#endif
-type serde_wasm_bindgen_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")>]
-#endif
-type std_ffi_OsStr = class end
+type std_path_PathBuf = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")>]
 #endif
 type std_ffi_OsString = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::fmt::Display<$0>")>]
+[<Fable.Core.Erase; Fable.Core.Emit("Vec<$0>")>]
 #endif
-type std_fmt_Display<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")>]
-#endif
-type std_str_Utf8Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::string::FromUtf8Error")>]
-#endif
-type std_string_FromUtf8Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
-#endif
-type std_string_String = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::slice::Windows<$0>")>]
-#endif
-type std_slice_Windows<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Regex")>]
-#endif
-type regex_Regex = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Captures<$0>")>]
-#endif
-type regex_Captures<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::CaptureMatches")>]
-#endif
-type regex_CaptureMatches = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::CaptureNames")>]
-#endif
-type regex_CaptureNames = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Match")>]
-#endif
-type regex_Match = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Error")>]
-#endif
-type regex_Error = class end
+type Vec<'T> = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("chrono::DateTime<$0>")>]
 #endif
 type chrono_DateTime<'T> = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("chrono::Local")>]
-#endif
-type chrono_Local = class end
-#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("chrono::NaiveDateTime")>]
 #endif
 type chrono_NaiveDateTime = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("chrono::Utc")>]
+[<Fable.Core.Erase; Fable.Core.Emit("std::path::Display")>]
 #endif
-type chrono_Utc = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::time::Duration")>]
-#endif
-type std_time_Duration = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::env::VarError")>]
-#endif
-type std_env_VarError = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("encoding_rs_io::DecodeReaderBytes<$0, $1>")>]
-#endif
-type encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::io::BufReader<$0>")>]
-#endif
-type std_io_BufReader<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::io::Cursor<$0>")>]
-#endif
-type std_io_Cursor<'T> = class end
+type std_path_Display = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("std::io::Error")>]
 #endif
 type std_io_Error = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::io::Lines<$0>")>]
+[<Fable.Core.Erase; Fable.Core.Emit("regex::Regex")>]
 #endif
-type std_io_Lines<'T> = class end
+type regex_Regex = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("tokio::io::BufReader<$0>")>]
+[<Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow<$0>")>]
 #endif
-type tokio_io_BufReader<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle<$0>")>]
-#endif
-type std_thread_JoinHandle<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc<$0>")>]
-#endif
-type std_sync_Arc<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex<$0>")>]
-#endif
-type std_sync_Mutex<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard<$0>")>]
-#endif
-type std_sync_MutexGuard<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError<$0>")>]
-#endif
-type std_sync_PoisonError<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver<$0>")>]
-#endif
-type std_sync_mpsc_Receiver<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::SendError<$0>")>]
-#endif
-type std_sync_mpsc_SendError<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender<$0>")>]
-#endif
-type std_sync_mpsc_Sender<'T> = class end
+type std_borrow_Cow<'T> = class end
 module State = let mutable trace_state = None
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::env::VarError")>]
+#endif
+type std_env_VarError = class end
 type IOsEnviron = abstract environ: x: unit -> obj
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("str")>]
+#endif
+type Str = class end
 type IFsExistsSync = abstract existsSync: path: string -> bool
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")>]
+#endif
+type std_ffi_OsStr = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::string::FromUtf8Error")>]
+#endif
+type std_string_FromUtf8Error = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("chrono::Utc")>]
+#endif
+type chrono_Utc = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("chrono::Local")>]
+#endif
+type chrono_Local = class end
 type IPathJoin = abstract join: [<System.ParamArray>] paths: string[] -> string
 type Disposable (f : unit -> unit) = interface System.IDisposable with member _.Dispose () = f ()
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("regex::Error")>]
+#endif
+type regex_Error = class end
 type IPathDirname = abstract dirname: path: string -> string
 type [<Struct>] US0 =
     | US0_0
@@ -11849,45 +11597,45 @@ and closure68 (v0 : string) (v1 : string) : string =
     method49(v0, v1)
 and closure67 () (v0 : string) : (string -> string) =
     closure68(v0)
-let v86 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
-let v87 : US0 = US0_0
-if State.trace_state.IsNone then State.trace_state <- v86 v87 |> Some
-let v93 : (string -> Async<int64>) = closure2()
-let delete_directory_async x = v93 x
-let v94 : (US6 -> (string -> Async<int64>)) = closure6()
-let wait_for_file_access x = v94 x
-let v95 : (string -> Async<int64>) = closure11()
-let wait_for_file_access_read x = v95 x
-let v96 : (string -> Async<string>) = closure12()
-let read_all_text_async x = v96 x
-let v97 : (string -> (string -> bool)) = closure13()
-let file_exists_content x = v97 x
-let v98 : (string -> (string -> Async<unit>)) = closure15()
-let write_all_text_async x = v98 x
-let v99 : (string -> (string -> Async<unit>)) = closure17()
-let write_all_text_exists x = v99 x
-let v100 : (string -> Async<int64>) = closure19()
-let delete_file_async x = v100 x
-let v101 : (string -> (string -> Async<int64>)) = closure23()
-let move_file_async x = v101 x
-let v102 : (string -> Async<string option>) = closure28()
-let read_all_text_retry_async x = v102 x
-let v103 : (unit -> string) = closure40()
-let create_temp_path () = v103 ()
-let v104 : (unit -> struct (string * System.IDisposable)) = closure41()
-let create_temp_dir () = v104 ()
-let v105 : (string -> struct (string * System.IDisposable)) = closure56()
-let create_temp_dir' x = v105 x
-let v106 : (unit -> string) = closure57()
-let get_source_directory () = v106 ()
-let v107 : (string -> string) = closure58()
-let normalize_path x = v107 x
-let v108 : (string -> string) = closure59()
-let new_file_uri x = v108 x
-let v109 : (unit -> string) = closure60()
-let get_workspace_root () = v109 ()
-let v110 : (bool -> unit) = closure65()
-let init_trace_file x = v110 x
-let v111 : (string -> (string -> string)) = closure67()
-let (</>) x = v111 x
+let v2 : (US0 -> struct (Mut0 * Mut1 * Mut2 * Mut3 * int64 option)) = closure0()
+let v3 : US0 = US0_0
+if State.trace_state.IsNone then State.trace_state <- v2 v3 |> Some
+let v9 : (string -> Async<int64>) = closure2()
+let delete_directory_async x = v9 x
+let v10 : (US6 -> (string -> Async<int64>)) = closure6()
+let wait_for_file_access x = v10 x
+let v11 : (string -> Async<int64>) = closure11()
+let wait_for_file_access_read x = v11 x
+let v12 : (string -> Async<string>) = closure12()
+let read_all_text_async x = v12 x
+let v13 : (string -> (string -> bool)) = closure13()
+let file_exists_content x = v13 x
+let v14 : (string -> (string -> Async<unit>)) = closure15()
+let write_all_text_async x = v14 x
+let v15 : (string -> (string -> Async<unit>)) = closure17()
+let write_all_text_exists x = v15 x
+let v16 : (string -> Async<int64>) = closure19()
+let delete_file_async x = v16 x
+let v17 : (string -> (string -> Async<int64>)) = closure23()
+let move_file_async x = v17 x
+let v18 : (string -> Async<string option>) = closure28()
+let read_all_text_retry_async x = v18 x
+let v19 : (unit -> string) = closure40()
+let create_temp_path () = v19 ()
+let v20 : (unit -> struct (string * System.IDisposable)) = closure41()
+let create_temp_dir () = v20 ()
+let v21 : (string -> struct (string * System.IDisposable)) = closure56()
+let create_temp_dir' x = v21 x
+let v22 : (unit -> string) = closure57()
+let get_source_directory () = v22 ()
+let v23 : (string -> string) = closure58()
+let normalize_path x = v23 x
+let v24 : (string -> string) = closure59()
+let new_file_uri x = v24 x
+let v25 : (unit -> string) = closure60()
+let get_workspace_root () = v25 ()
+let v26 : (bool -> unit) = closure65()
+let init_trace_file x = v26 x
+let v27 : (string -> (string -> string)) = closure67()
+let (</>) x = v27 x
 ()

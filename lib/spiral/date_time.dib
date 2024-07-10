@@ -19,31 +19,6 @@ open testing
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::DateTime<$0>\")>]\n#endif\ntype chrono_DateTime<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Local\")>]\n#endif\ntype chrono_Local = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::NaiveDateTime\")>]\n#endif\ntype chrono_NaiveDateTime = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Utc\")>]\n#endif\ntype chrono_Utc = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::time::Duration\")>]\n#endif\ntype std_time_Duration = class end"
-        Python = fun () =>
-            global "import datetime"
-            global "import timeit"
-    }
-
-#!spiral
-
-inl types () =
-    sm'.types ()
-    types ()
-
-#!markdown
-
 ## date_time
 
 #!markdown
@@ -87,7 +62,17 @@ inl test_guid () =
 
 #!spiral
 
-nominal date_time = $"backend_switch `({ Fsharp : $"System.DateTime"; Python : $"datetime.datetime" })"
+nominal date_time_python =
+    `(
+        global "import datetime"
+        $'' : $'datetime.datetime'
+    )
+type date_time_switch =
+    {
+        Fsharp : $'System.DateTime'
+        Python : date_time_python
+    }
+nominal date_time = $'backend_switch `(date_time_switch)'
 
 #!markdown
 
@@ -379,7 +364,17 @@ inl utc_now () : date_time =
 
 #!spiral
 
-nominal stopwatch = $"backend_switch `({ Fsharp : $'System.Diagnostics.Stopwatch'; Python : $'timeit.default_timer' })"
+nominal stopwatch_python =
+    `(
+        global "import timeit"
+        $'' : $'timeit.default_timer'
+    )
+type stopwatch_switch =
+    {
+        Fsharp : $'System.Diagnostics.Stopwatch'
+        Python : stopwatch_python
+    }
+nominal stopwatch = $'backend_switch `(stopwatch_switch)'
 
 inl stopwatch () : stopwatch =
     backend_switch {
@@ -407,7 +402,11 @@ inl stopwatch_start (stopwatch : stopwatch) : () =
 
 #!spiral
 
-nominal duration = $'std_time_Duration'
+nominal duration =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::time::Duration\")>]\n#endif\ntype std_time_Duration = class end"
+        $'' : $'std_time_Duration'
+    )
 
 #!markdown
 
@@ -415,7 +414,11 @@ nominal duration = $'std_time_Duration'
 
 #!spiral
 
-nominal date_time' t = $'chrono_DateTime<`t>'
+nominal date_time' t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::DateTime<$0>\")>]\n#endif\ntype chrono_DateTime<'T> = class end"
+        $'' : $'chrono_DateTime<`t>'
+    )
 
 #!markdown
 
@@ -423,7 +426,11 @@ nominal date_time' t = $'chrono_DateTime<`t>'
 
 #!spiral
 
-nominal local = $'chrono_Local'
+nominal local =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Local\")>]\n#endif\ntype chrono_Local = class end"
+        $'' : $'chrono_Local'
+    )
 
 #!markdown
 
@@ -431,7 +438,11 @@ nominal local = $'chrono_Local'
 
 #!spiral
 
-nominal naive_date_time = $'chrono_NaiveDateTime'
+nominal naive_date_time =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::NaiveDateTime\")>]\n#endif\ntype chrono_NaiveDateTime = class end"
+        $'' : $'chrono_NaiveDateTime'
+    )
 
 #!markdown
 
@@ -439,7 +450,11 @@ nominal naive_date_time = $'chrono_NaiveDateTime'
 
 #!spiral
 
-nominal utc = $'chrono_Utc'
+nominal utc =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Utc\")>]\n#endif\ntype chrono_Utc = class end"
+        $'' : $'chrono_Utc'
+    )
 
 #!markdown
 
@@ -597,7 +612,6 @@ let date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
 
 //// test
 
-types ()
 now () |> to_universal_time |> date_time_guid_from_date_time (test_guid ()) |> sm'.obj_to_string
 |> console.write_line
 
@@ -606,7 +620,6 @@ now () |> to_universal_time |> date_time_guid_from_date_time (test_guid ()) |> s
 //// test
 ///! rust -d chrono
 
-types ()
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 now ()
 |> to_universal_time
@@ -620,8 +633,6 @@ now ()
 ///! fsharp
 ///! rust -d chrono
 
-types ()
-
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 min_value ()
 |> specify_date_kind Local
@@ -634,7 +645,6 @@ min_value ()
 //// test
 ///! fsharp
 
-types ()
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 max_value ()
 |> specify_date_kind Utc
@@ -648,7 +658,6 @@ max_value ()
 //// test
 ///! rust -d chrono
 
-types ()
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 max_value ()
 |> specify_date_kind Utc
@@ -674,7 +683,6 @@ unix_epoch ()
 //// test
 ///! rust -d chrono
 
-types ()
 inl suffix = test_guid () |> sm'.obj_to_string |> sm'.range (am'.End fun x => x - 6i32) (am'.End id)
 unix_epoch ()
 |> specify_date_kind Utc
@@ -815,7 +823,6 @@ utc_now ()
 #!spiral
 
 inl main () =
-    types ()
     $'let date_time_guid_from_date_time x = !date_time_guid_from_date_time x' : ()
     $'let date_time_from_guid x = !date_time_from_guid x' : ()
     $'let timestamp_guid_from_timestamp x = !timestamp_guid_from_timestamp x' : ()

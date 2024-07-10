@@ -1,22 +1,21 @@
 /// # mapm
 open rust_operators
 
-/// ## types
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::HashMap<$0, $1>\")>]\n#endif\ntype std_collections_HashMap<'K, 'V> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::BTreeMap<$0, $1>\")>]\n#endif\ntype std_collections_BTreeMap<'K, 'V> = class end"
-        Python = fun () => ()
-    }
-
 /// ## rust
 
 /// ### hash_map
-nominal hash_map k v = $'std_collections_HashMap<`k, `v>'
+nominal hash_map k v =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::HashMap<$0, $1>\")>]\n#endif\ntype std_collections_HashMap<'K, 'V> = class end"
+        $'' : $'std_collections_HashMap<`k, `v>'
+    )
 
 /// ### b_tree_map
-nominal b_tree_map k v = $'std_collections_BTreeMap<`k, `v>'
+nominal b_tree_map k v =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::BTreeMap<$0, $1>\")>]\n#endif\ntype std_collections_BTreeMap<'K, 'V> = class end"
+        $'' : $'std_collections_BTreeMap<`k, `v>'
+    )
 
 /// ### new_hash_map
 inl new_hash_map () : hash_map _ _ =

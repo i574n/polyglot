@@ -14,19 +14,6 @@ open testing
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    backend_switch {
-        Fsharp = fun () => ()
-        Python = fun () =>
-            global "import uuid"
-    }
-
-#!markdown
-
 ## guid
 
 #!markdown
@@ -35,7 +22,17 @@ inl types () =
 
 #!spiral
 
-nominal guid = $"backend_switch `({ Fsharp : $"System.Guid"; Python : $"uuid.UUID" })"
+nominal guid_python =
+    `(
+        global "import uuid"
+        $'' : $'uuid.UUID'
+    )
+type guid_switch =
+    {
+        Fsharp : $'System.Guid'
+        Python : guid_python
+    }
+nominal guid = $'backend_switch `(guid_switch)'
 
 #!markdown
 
@@ -85,8 +82,6 @@ let hash_guid (~hash : string) : hash_guid =
 ///! rust
 ///! typescript
 ///! python
-
-types ()
 
 ""
 |> hash_guid

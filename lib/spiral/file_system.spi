@@ -2,31 +2,6 @@
 open sm'_operators
 open rust_operators
 
-/// ## types
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::File\")>]\n#endif\ntype std_fs_File = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::FileType\")>]\n#endif\ntype std_fs_FileType = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Display\")>]\n#endif\ntype std_path_Display = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>]\n#endif\ntype std_path_Path = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::PathBuf\")>]\n#endif\ntype std_path_PathBuf = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::DirEntry\")>]\n#endif\ntype async_walkdir_DirEntry = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Error\")>]\n#endif\ntype async_walkdir_Error = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Filtering\")>]\n#endif\ntype async_walkdir_Filtering = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::WalkDir\")>]\n#endif\ntype async_walkdir_WalkDir = class end"
-        Python = fun () => ()
-    }
-
-inl types () =
-    types ()
-    date_time.types ()
-    env.types ()
-    rust.types ()
-    sm'.types ()
-    stream.types ()
-    threading.types ()
-
 /// ## fsharp
 
 /// ### file_mode
@@ -169,12 +144,25 @@ inl get_source_directory () =
 /// ## rust
 
 /// ### display
-nominal display = $'std_path_Display'
+nominal display =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Display\")>]\n#endif\ntype std_path_Display = class end"
+        $'' : $'std_path_Display'
+    )
 
 /// ### path
-nominal path = $'std_path_Path'
-nominal path = $'std_path_Path'
-nominal path_buf = $'std_path_PathBuf'
+nominal path =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>]\n#endif\ntype std_path_Path = class end"
+        $'' : $'std_path_Path'
+    )
+
+/// ### path_buf
+nominal path_buf =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::PathBuf\")>]\n#endif\ntype std_path_PathBuf = class end"
+        $'' : $'std_path_PathBuf'
+    )
 
 /// ### new_path_buf
 inl new_path_buf (path : sm'.std_string) : path_buf =
@@ -197,7 +185,7 @@ inl path_buf_strip_prefix (s : string) (path_buf : path_buf) : path_buf =
     !\\((path_buf, s |> sm'.to_std_string), $'"$0.strip_prefix($1).unwrap().to_path_buf()"')
 
 /// ### path_display
-inl path_display (path : rust.ref' path) : display =
+inl path_display (path : rust.ref path) : display =
     open rust_operators
     !\\(path, $'"$0.display()"')
 
@@ -207,7 +195,7 @@ inl path_buf_display (path_buf : path_buf) : display =
     !\\(path_buf, $'"$0.display()"')
 
 /// ### path_buf_file_name
-inl path_buf_file_name (path : path_buf) : optionm'.option' (rust.ref' sm'.os_str) =
+inl path_buf_file_name (path : path_buf) : optionm'.option' (rust.ref sm'.os_str) =
     open rust_operators
     !\($'"!path.file_name()"')
 
@@ -237,13 +225,25 @@ inl path_buf_parent (path_buf : path_buf) : optionm'.option' path_buf =
     !\\(path_buf, $'"$0.parent().map(std::path::PathBuf::from)"')
 
 /// ### dir_entry
-nominal dir_entry = $'async_walkdir_DirEntry'
+nominal dir_entry =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::DirEntry\")>]\n#endif\ntype async_walkdir_DirEntry = class end"
+        $'' : $'async_walkdir_DirEntry'
+    )
 
 /// ### walk_dir
-nominal walk_dir = $'async_walkdir_WalkDir'
+nominal walk_dir =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::WalkDir\")>]\n#endif\ntype async_walkdir_WalkDir = class end"
+        $'' : $'async_walkdir_WalkDir'
+    )
 
 /// ### async_walkdir_filtering
-nominal async_walkdir_filtering = $'async_walkdir_Filtering'
+nominal async_walkdir_filtering =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Filtering\")>]\n#endif\ntype async_walkdir_Filtering = class end"
+        $'' : $'async_walkdir_Filtering'
+    )
 
 /// ### filtering
 union filtering =
@@ -252,7 +252,11 @@ union filtering =
     | Continue
 
 /// ### async_walkdir_error
-nominal async_walkdir_error = $'async_walkdir_Error'
+nominal async_walkdir_error =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Error\")>]\n#endif\ntype async_walkdir_Error = class end"
+        $'' : $'async_walkdir_Error'
+    )
 
 /// ### stream_filter_map
 inl stream_filter_map forall t.
@@ -284,7 +288,11 @@ inl walk_dir_filter (fn : dir_entry -> async.future_pin_send filtering) (walk_di
     !\\((walk_dir, fn), $'"async_walkdir::WalkDir::filter($0, |x| $1(x))"')
 
 /// ### file_type
-nominal file_type = $'std_fs_FileType'
+nominal file_type =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::FileType\")>]\n#endif\ntype std_fs_FileType = class end"
+        $'' : $'std_fs_FileType'
+    )
 
 /// ### dir_entry_file_type
 inl dir_entry_file_type (dir_entry : dir_entry) : async.future_pin_send (resultm.result' file_type stream.io_error) =
@@ -297,7 +305,11 @@ inl file_type_is_dir (file_type : file_type) : bool =
     !\($'"std::fs::FileType::is_dir(&!file_type)"')
 
 /// ### file
-nominal file = $'std_fs_File'
+nominal file =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::File\")>]\n#endif\ntype std_fs_File = class end"
+        $'' : $'std_fs_File'
+    )
 
 /// ### file_open
 inl file_open (path : string) : resultm.result' file stream.io_error =
@@ -977,7 +989,6 @@ inl delete_file_async path : _ i64 =
 
 /// ## main
 inl main () =
-    types ()
     init_trace_state None
     $'let delete_directory_async x = !delete_directory_async x' : ()
     $'let wait_for_file_access x = !wait_for_file_access x' : ()

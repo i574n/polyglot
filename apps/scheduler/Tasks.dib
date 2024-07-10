@@ -14,16 +14,6 @@ open testing
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    rust.types ()
-    sm'.types ()
-
-#!markdown
-
 ## task_name
 
 #!spiral
@@ -236,7 +226,6 @@ inl get_tasks () : list task_template =
 ///! typescript
 ///! python
 
-types ()
 get_tasks ()
 |> sm'.format_debug
 |> _assert_string_contains "01"

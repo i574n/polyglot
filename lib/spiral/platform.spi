@@ -1,9 +1,6 @@
 /// # platform
 open rust_operators
 
-inl types () =
-    ()
-
 /// ## fsharp
 
 /// ### os_platform
@@ -66,6 +63,5 @@ inl get_executable_suffix () =
 
 /// ## main
 inl main () =
-    types ()
     $'let is_windows () = !is_windows ()' : ()
     $'let get_executable_suffix () = !get_executable_suffix ()' : ()

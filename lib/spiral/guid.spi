@@ -1,17 +1,19 @@
 /// # guid
 
-/// ## types
-inl types () =
-    backend_switch {
-        Fsharp = fun () => ()
-        Python = fun () =>
-            global "import uuid"
-    }
-
 /// ## guid
 
 /// ### guid
-nominal guid = $"backend_switch `({ Fsharp : $"System.Guid"; Python : $"uuid.UUID" })"
+nominal guid_python =
+    `(
+        global "import uuid"
+        $'' : $'uuid.UUID'
+    )
+type guid_switch =
+    {
+        Fsharp : $'System.Guid'
+        Python : guid_python
+    }
+nominal guid = $'backend_switch `(guid_switch)'
 
 /// ### new_guid
 inl new_guid (x : string) : guid =

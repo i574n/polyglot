@@ -1,19 +1,6 @@
 /// # stream
 open rust_operators
 
-/// ## types
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs_io::DecodeReaderBytes<$0, $1>\")>]\n#endif\ntype encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::BufReader<$0>\")>]\n#endif\ntype std_io_BufReader<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Cursor<$0>\")>]\n#endif\ntype std_io_Cursor<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>]\n#endif\ntype std_io_Error = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Lines<$0>\")>]\n#endif\ntype std_io_Lines<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::io::BufReader<$0>\")>]\n#endif\ntype tokio_io_BufReader<'T> = class end"
-        Python = fun () => ()
-    }
-
 /// ## stream
 
 /// ### stream
@@ -195,16 +182,42 @@ inl unzip s =
 /// ## rust
 
 /// ### io_error
-nominal io_error = $'std_io_Error'
+nominal io_error =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>]\n#endif\ntype std_io_Error = class end"
+        $'' : $'std_io_Error'
+    )
 
 /// ### buf_reader
-nominal buf_reader t = $'std_io_BufReader<`t>'
+nominal buf_reader t =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::BufReader<$0>\")>]\n#endif\ntype std_io_BufReader<'T> = class end"
+                ) : () -> ()
+        }
+        $'' : $'std_io_BufReader<`t>'
+    )
 
 /// ### cursor
-nominal cursor t = $'std_io_Cursor<`t>'
+nominal cursor t =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Cursor<$0>\")>]\n#endif\ntype std_io_Cursor<'T> = class end"
+                ) : () -> ()
+        }
+        $'' : $'std_io_Cursor<`t>'
+    )
 
 /// ### async_buf_reader
-nominal async_buf_reader t = $'tokio_io_BufReader<`t>'
+nominal async_buf_reader t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::io::BufReader<$0>\")>]\n#endif\ntype tokio_io_BufReader<'T> = class end"
+        $'' : $'tokio_io_BufReader<`t>'
+    )
 
 /// ### new_buf_reader
 inl new_buf_reader forall t. (x : t) : buf_reader t =
@@ -215,14 +228,22 @@ inl new_cursor forall t. (x : t) : cursor t =
     !\($'"std::io::Cursor::new(!x)"')
 
 /// ### lines
-nominal lines t = $'std_io_Lines<`t>'
+nominal lines t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Lines<$0>\")>]\n#endif\ntype std_io_Lines<'T> = class end"
+        $'' : $'std_io_Lines<`t>'
+    )
 
 /// ### buf_read_lines
 inl buf_read_lines forall t. (buf_reader : buf_reader t) : lines (buf_reader t) =
     !\($'"std::io::BufRead::lines(!buf_reader)"')
 
 /// ### decode_reader_bytes
-nominal decode_reader_bytes t u = $'encoding_rs_io_DecodeReaderBytes<`t, `u>'
+nominal decode_reader_bytes t u =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"encoding_rs_io::DecodeReaderBytes<$0, $1>\")>]\n#endif\ntype encoding_rs_io_DecodeReaderBytes<'T, 'U> = class end"
+        $'' : $'encoding_rs_io_DecodeReaderBytes<`t, `u>'
+    )
 
 /// ### decode_reader_bytes_build
 inl decode_reader_bytes_build forall t. (x : t) : decode_reader_bytes t (am'.vec u8) =

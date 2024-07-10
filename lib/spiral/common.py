@@ -258,7 +258,7 @@ def closure0(unit_var: None, v0: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, int64 | N
     _v3: tuple[US1, US2] | None = None
     v167: str = method1(method0())
     v173: US1 = US1(0, US0(0)) if ("Verbose" == v167) else US1(1)
-    def _arrow34(__unit: None=None, unit_var: Any=unit_var, v0: Any=v0) -> US1:
+    def _arrow32(__unit: None=None, unit_var: Any=unit_var, v0: Any=v0) -> US1:
         v181: US1 = US1(0, US0(1)) if ("Debug" == v167) else US1(1)
         if v181.tag == 0:
             return US1(0, v181.fields[0])
@@ -280,7 +280,7 @@ def closure0(unit_var: None, v0: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, int64 | N
 
 
 
-    x: tuple[US1, US2] = (US1(0, v173.fields[0]) if (v173.tag == 0) else _arrow34(), US2(0, ticks_1(now())) if (method1(method3()) == "True") else US2(1))
+    x: tuple[US1, US2] = (US1(0, v173.fields[0]) if (v173.tag == 0) else _arrow32(), US2(0, ticks_1(now())) if (method1(method3()) == "True") else US2(1))
     _v3 = x
     pattern_input: tuple[US1, US2]
     if _v3 is None:
@@ -308,11 +308,11 @@ def method5(v0: Callable[[], None]) -> Callable[[], None]:
 def closure2(unit_var: None, v0: Callable[[], None]) -> IDisposable:
     _v3: IDisposable | None = None
     v12: Callable[[], None] = method5(v0)
-    class ObjectExpr39(IDisposable):
+    class ObjectExpr36(IDisposable):
         def Dispose(self, __unit: None=None, unit_var: Any=unit_var, v0: Any=v0) -> None:
             v12(None)
 
-    x: IDisposable = ObjectExpr39()
+    x: IDisposable = ObjectExpr36()
     _v3 = x
     if _v3 is None:
         raise Exception("base.run_target / _v3=None")
@@ -326,8 +326,8 @@ def closure5(unit_var: None, v0: US4) -> US5:
     return US5(0, v0)
 
 
-def closure6(v0: int, v1: Callable[[], None], v2: int, unit_var: None) -> US4:
-    if v2 < v0:
+def closure6(v0: int, v1: Callable[[], None], v2_1: int, unit_var: None) -> US4:
+    if v2_1 < v0:
         v1(None)
         return US4(0)
 
@@ -378,7 +378,7 @@ def method16(v0: Mut4, v1: Exception) -> None:
     method13(v0, to_text(interpolate("%A%P()", [v1])))
 
 
-def method12(v0: Mut4, v1: int, v2: Exception) -> None:
+def method12(v0: Mut4, v1: int, v2_1: Exception) -> None:
     method13(v0, "{ ")
     method14(v0)
     method13(v0, "retry")
@@ -387,11 +387,11 @@ def method12(v0: Mut4, v1: int, v2: Exception) -> None:
     method13(v0, "; ")
     method13(v0, "ex")
     method13(v0, " = ")
-    method16(v0, v2)
+    method16(v0, v2_1)
     method13(v0, " }")
 
 
-def closure10(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, Exception]], unit_var: None) -> str:
+def closure10(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, Exception]], unit_var: None) -> str:
     if State_trace_state() is None:
         State_trace_state(closure0(None, US0(0)))
 
@@ -405,18 +405,18 @@ def closure10(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, Except
 
     else: 
         x: int64 = v18
-        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2, unit_var: Any=unit_var) -> US2:
+        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> US2:
             return US2(0, x)
 
         x_2 = x_1(None)
 
     _v480.contents = x_2
     v507: US2 = default_arg(_v480.contents, US2(1))
-    def _arrow52(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2, unit_var: Any=unit_var) -> Any:
+    def _arrow56(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
         v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
         return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
 
-    x_3: str = to_string(_arrow52() if (v507.tag == 0) else now(), method10())
+    x_3: str = to_string(_arrow56() if (v507.tag == 0) else now(), method10())
     _v35 = x_3
     v772: str
     if _v35 is None:
@@ -471,7 +471,7 @@ def closure10(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, Except
         v1141 = _v1029
 
     v1160: int64 = pattern_input[0].l0
-    pattern_input_1: tuple[int, Exception] = v2(None)
+    pattern_input_1: tuple[int, Exception] = v2_1(None)
     v1164: Mut4 = Mut4("")
     method12(v1164, pattern_input_1[0], pattern_input_1[1])
     v1165: str = v1164.l0
@@ -519,50 +519,50 @@ def method17(v0: US0, v1: Callable[[], str]) -> None:
 
 
 
-def method7(v0: US0, v1: Callable[[], str], v2: Callable[[], tuple[int, Exception]]) -> None:
-    def v3(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2) -> str:
-        return closure10(v0, v1, v2, None)
+def method7(v0: US0, v1: Callable[[], str], v2_1: Callable[[], tuple[int, Exception]]) -> None:
+    def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
+        return closure10(v0, v1, v2_1, None)
 
-    method17(v0, v3)
+    method17(v0, v3_1)
 
 
 def closure7(v0: int, v1: Exception) -> US5:
-    def v3(__unit: None=None, v0: Any=v0, v1: Any=v1) -> str:
+    def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1) -> str:
         return closure8(None, None)
 
     def v4(__unit: None=None, v0: Any=v0, v1: Any=v1) -> tuple[int, Exception]:
         return closure9(v0, v1, None)
 
-    method7(US0(3), v3, v4)
+    method7(US0(3), v3_1, v4)
     return US5(1)
 
 
-def method6(v0_mut: int, v1_mut: Callable[[], None], v2_mut: int) -> US4:
+def method6(v0_mut: int, v1_mut: Callable[[], None], v2_1_mut: int) -> US4:
     while True:
-        (v0, v1, v2) = (v0_mut, v1_mut, v2_mut)
+        (v0, v1, v2_1) = (v0_mut, v1_mut, v2_1_mut)
         result: FSharpRef[US5] = FSharpRef(US5(1))
         try: 
-            result.contents = closure5(None, closure6(v0, v1, v2, None))
+            result.contents = closure5(None, closure6(v0, v1, v2_1, None))
 
         except Exception as ex:
-            result.contents = closure7(v2, ex)
+            result.contents = closure7(v2_1, ex)
 
-        v9: US5 = result.contents
-        if v9.tag == 0:
-            return v9.fields[0]
+        v9_1: US5 = result.contents
+        if v9_1.tag == 0:
+            return v9_1.fields[0]
 
         else: 
             v0_mut = v0
             v1_mut = v1
-            v2_mut = v2 + 1
+            v2_1_mut = v2_1 + 1
             continue
 
         break
 
 
 def closure4(v0: int, v1: Callable[[], None]) -> None | None:
-    v3: US4 = method6(v0, v1, 0)
-    if v3.tag == 0:
+    v3_1: US4 = method6(v0, v1, 0)
+    if v3_1.tag == 0:
         return some(None)
 
     else: 
@@ -571,10 +571,10 @@ def closure4(v0: int, v1: Callable[[], None]) -> None | None:
 
 
 def closure3(unit_var: None, v0: int) -> Callable[[Callable[[], None]], None | None]:
-    def _arrow69(v: Callable[[], None], unit_var: Any=unit_var, v0: Any=v0) -> None | None:
+    def _arrow80(v: Callable[[], None], unit_var: Any=unit_var, v0: Any=v0) -> None | None:
         return closure4(v0, v)
 
-    return _arrow69
+    return _arrow80
 
 
 def method18(v0: Callable[[], None]) -> Callable[[], None]:
@@ -587,56 +587,56 @@ def closure12(v0: Any, unit_var: None) -> None:
 
 def closure11(unit_var: None, v0: Callable[[], None]) -> Callable[[], None]:
     v1: Callable[[], None] = method18(v0)
-    def _arrow70(__unit: None=None, unit_var: Any=unit_var, v0: Any=v0) -> None:
+    def _arrow81(__unit: None=None, unit_var: Any=unit_var, v0: Any=v0) -> None:
         v1(None)
 
-    v4: Any = Lazy(_arrow70)
-    def _arrow71(__unit: None=None, unit_var: Any=unit_var, v0: Any=v0) -> None:
+    v4: Any = Lazy(_arrow81)
+    def _arrow83(__unit: None=None, unit_var: Any=unit_var, v0: Any=v0) -> None:
         closure12(v4, None)
 
-    return _arrow71
+    return _arrow83
 
 
-def _arrow72(v: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]:
+def _arrow84(v: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]:
     return closure0(None, v)
 
 
-v38: Callable[[US0], tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]] = _arrow72
+v2: Callable[[US0], tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]] = _arrow84
 
-v39: US0 = US0(0)
+v3: US0 = US0(0)
 
 
 if State_trace_state() is None:
-    State_trace_state(v38(v39))
+    State_trace_state(v2(v3))
 
 
-def _arrow73(v: Callable[[], None]) -> IDisposable:
+def _arrow85(v: Callable[[], None]) -> IDisposable:
     return closure2(None, v)
 
 
-v45: Callable[[Callable[[], None]], IDisposable] = _arrow73
+v9: Callable[[Callable[[], None]], IDisposable] = _arrow85
 
 def new_disposable(x: Callable[[], None]) -> IDisposable:
-    return v45(x)
+    return v9(x)
 
 
-def _arrow74(v: int) -> Callable[[Callable[[], None]], None | None]:
+def _arrow86(v: int) -> Callable[[Callable[[], None]], None | None]:
     return closure3(None, v)
 
 
-v46: Callable[[int, Callable[[], None]], None | None] = _arrow74
+v10: Callable[[int, Callable[[], None]], None | None] = _arrow86
 
 def retry_fn(x: int) -> Callable[[Callable[[], None]], None | None]:
-    return v46(x)
+    return v10(x)
 
 
-def _arrow75(v: Callable[[], None]) -> Callable[[], None]:
+def _arrow87(v: Callable[[], None]) -> Callable[[], None]:
     return closure11(None, v)
 
 
-v47: Callable[[Callable[[], None], None], None] = _arrow75
+v11: Callable[[Callable[[], None], None], None] = _arrow87
 
 def memoize(x: Callable[[], None]) -> Callable[[], None]:
-    return v47(x)
+    return v11(x)
 
 

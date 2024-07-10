@@ -9,7 +9,7 @@ pub mod Async_ {
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::String_::string;
     type CancellationToken = ();
-    pub fn closure0(unitVar: (), v0: CancellationToken) -> Arc<Async<CancellationToken>> {
+    pub fn closure0(unitVar: (), v0_1: CancellationToken) -> Arc<Async<CancellationToken>> {
         let _v3: MutCell<Option<Arc<Async<CancellationToken>>>> =
             MutCell::new(None::<Arc<Async<CancellationToken>>>);
         {
@@ -21,16 +21,16 @@ pub mod Async_ {
             Some(_v3_0_0) => _v3_0_0.clone(),
         }
     }
-    pub fn v6() -> Func1<CancellationToken, Arc<Async<CancellationToken>>> {
-        static v6: OnceInit<Func1<CancellationToken, Arc<Async<CancellationToken>>>> =
+    pub fn v0() -> Func1<CancellationToken, Arc<Async<CancellationToken>>> {
+        static v0: OnceInit<Func1<CancellationToken, Arc<Async<CancellationToken>>>> =
             OnceInit::new();
-        v6.get_or_init(|| Func1::new(move |v: CancellationToken| Async_::closure0((), v)))
+        v0.get_or_init(|| Func1::new(move |v: CancellationToken| Async_::closure0((), v)))
             .clone()
     }
     pub fn merge_cancellation_token_with_default_async(
         x: CancellationToken,
     ) -> Arc<Async<CancellationToken>> {
-        (Async_::v6())(x)
+        (Async_::v0())(x)
     }
     on_startup!(());
 }

@@ -1,7 +1,7 @@
 from collections.abc import Callable
 from fable_modules.fable_library.async_builder import (CancellationToken, Async)
 
-def closure0(unit_var: None, v0: CancellationToken) -> Async[CancellationToken]:
+def closure0(unit_var: None, v0_1: CancellationToken) -> Async[CancellationToken]:
     _v3: Async[CancellationToken] | None = None
     _v3 = None
     if _v3 is None:
@@ -12,13 +12,13 @@ def closure0(unit_var: None, v0: CancellationToken) -> Async[CancellationToken]:
 
 
 
-def _arrow92(v: CancellationToken) -> Async[CancellationToken]:
+def _arrow73(v: CancellationToken) -> Async[CancellationToken]:
     return closure0(None, v)
 
 
-v6: Callable[[CancellationToken], Async[CancellationToken]] = _arrow92
+v0: Callable[[CancellationToken], Async[CancellationToken]] = _arrow73
 
 def merge_cancellation_token_with_default_async(x: CancellationToken) -> Async[CancellationToken]:
-    return v6(x)
+    return v0(x)
 
 

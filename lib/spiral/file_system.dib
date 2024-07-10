@@ -19,38 +19,6 @@ open testing
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::File\")>]\n#endif\ntype std_fs_File = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::FileType\")>]\n#endif\ntype std_fs_FileType = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Display\")>]\n#endif\ntype std_path_Display = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>]\n#endif\ntype std_path_Path = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::PathBuf\")>]\n#endif\ntype std_path_PathBuf = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::DirEntry\")>]\n#endif\ntype async_walkdir_DirEntry = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Error\")>]\n#endif\ntype async_walkdir_Error = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Filtering\")>]\n#endif\ntype async_walkdir_Filtering = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::WalkDir\")>]\n#endif\ntype async_walkdir_WalkDir = class end"
-        Python = fun () => ()
-    }
-
-#!spiral
-
-inl types () =
-    types ()
-    date_time.types ()
-    env.types ()
-    rust.types ()
-    sm'.types ()
-    stream.types ()
-    threading.types ()
-
-#!markdown
-
 ## fsharp
 
 #!markdown
@@ -289,7 +257,11 @@ get_source_directory ()
 
 #!spiral
 
-nominal display = $'std_path_Display'
+nominal display =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Display\")>]\n#endif\ntype std_path_Display = class end"
+        $'' : $'std_path_Display'
+    )
 
 #!markdown
 
@@ -297,9 +269,23 @@ nominal display = $'std_path_Display'
 
 #!spiral
 
-nominal path = $'std_path_Path'
-nominal path = $'std_path_Path'
-nominal path_buf = $'std_path_PathBuf'
+nominal path =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>]\n#endif\ntype std_path_Path = class end"
+        $'' : $'std_path_Path'
+    )
+
+#!markdown
+
+### path_buf
+
+#!spiral
+
+nominal path_buf =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::PathBuf\")>]\n#endif\ntype std_path_PathBuf = class end"
+        $'' : $'std_path_PathBuf'
+    )
 
 #!markdown
 
@@ -347,7 +333,7 @@ inl path_buf_strip_prefix (s : string) (path_buf : path_buf) : path_buf =
 
 #!spiral
 
-inl path_display (path : rust.ref' path) : display =
+inl path_display (path : rust.ref path) : display =
     open rust_operators
     !\\(path, $'"$0.display()"')
 
@@ -367,7 +353,7 @@ inl path_buf_display (path_buf : path_buf) : display =
 
 #!spiral
 
-inl path_buf_file_name (path : path_buf) : optionm'.option' (rust.ref' sm'.os_str) =
+inl path_buf_file_name (path : path_buf) : optionm'.option' (rust.ref sm'.os_str) =
     open rust_operators
     !\($'"!path.file_name()"')
 
@@ -427,7 +413,11 @@ inl path_buf_parent (path_buf : path_buf) : optionm'.option' path_buf =
 
 #!spiral
 
-nominal dir_entry = $'async_walkdir_DirEntry'
+nominal dir_entry =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::DirEntry\")>]\n#endif\ntype async_walkdir_DirEntry = class end"
+        $'' : $'async_walkdir_DirEntry'
+    )
 
 #!markdown
 
@@ -435,7 +425,11 @@ nominal dir_entry = $'async_walkdir_DirEntry'
 
 #!spiral
 
-nominal walk_dir = $'async_walkdir_WalkDir'
+nominal walk_dir =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::WalkDir\")>]\n#endif\ntype async_walkdir_WalkDir = class end"
+        $'' : $'async_walkdir_WalkDir'
+    )
 
 #!markdown
 
@@ -443,7 +437,11 @@ nominal walk_dir = $'async_walkdir_WalkDir'
 
 #!spiral
 
-nominal async_walkdir_filtering = $'async_walkdir_Filtering'
+nominal async_walkdir_filtering =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Filtering\")>]\n#endif\ntype async_walkdir_Filtering = class end"
+        $'' : $'async_walkdir_Filtering'
+    )
 
 #!markdown
 
@@ -462,7 +460,11 @@ union filtering =
 
 #!spiral
 
-nominal async_walkdir_error = $'async_walkdir_Error'
+nominal async_walkdir_error =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::Error\")>]\n#endif\ntype async_walkdir_Error = class end"
+        $'' : $'async_walkdir_Error'
+    )
 
 #!markdown
 
@@ -514,7 +516,11 @@ inl walk_dir_filter (fn : dir_entry -> async.future_pin_send filtering) (walk_di
 
 #!spiral
 
-nominal file_type = $'std_fs_FileType'
+nominal file_type =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::FileType\")>]\n#endif\ntype std_fs_FileType = class end"
+        $'' : $'std_fs_FileType'
+    )
 
 #!markdown
 
@@ -542,7 +548,11 @@ inl file_type_is_dir (file_type : file_type) : bool =
 
 #!spiral
 
-nominal file = $'std_fs_File'
+nominal file =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::fs::File\")>]\n#endif\ntype std_fs_File = class end"
+        $'' : $'std_fs_File'
+    )
 
 #!markdown
 
@@ -846,7 +856,6 @@ let get_full_path (path : string) : string =
 //// test
 ///! rust -d regex
 
-types ()
 "."
 |> get_full_path
 |> sm'.to_std_string
@@ -861,7 +870,6 @@ types ()
 //// test
 ///! rust -d regex
 
-types ()
 "dir/.././._file"
 |> get_full_path
 |> _assert_eq (get_current_directory () </> "._file")
@@ -901,7 +909,6 @@ let create_temp_path () =
 ///! fsharp
 ///! rust -d chrono
 
-types ()
 create_temp_path ()
 |> _assert_contains (directory_separator_char ())
 
@@ -1119,7 +1126,6 @@ a ;[ ".paket", false; "paket.dependencies", true ]
 //// test
 ///! rust
 
-types ()
 a ;[ ".paket", false; "paket.dependencies", true ]
 |> am.map fun (file, is_file) =>
     fun () =>
@@ -1231,7 +1237,6 @@ inl new_file_uri (path : string) : string =
 //// test
 ///! rust -d regex
 
-types ()
 @"\\?\C:\test"
 |> normalize_path
 |> new_file_uri
@@ -1347,7 +1352,6 @@ inl get_count dir : i64 =
     inl files = dir |> directory_get_files
     a files |> am'.length
 
-types ()
 inl trace_dir = get_workspace_root () </> "target/trace"
 trace_dir |> create_directory |> ignore
 
@@ -1426,7 +1430,6 @@ inl create_temp_dir () =
 
 //// test
 
-types ()
 inl path, disposable = create_temp_dir ()
 disposable |> use |> ignore
 path
@@ -1438,7 +1441,6 @@ path
 //// test
 ///! rust -d chrono
 
-types ()
 inl path, disposable = create_temp_dir ()
 path
 |> directory_exists
@@ -1469,7 +1471,6 @@ inl lock_directory path =
         () |> return
     |> async.new_async
 
-types ()
 inl temp_dir, disposable = create_temp_dir ()
 disposable |> use |> ignore
 inl path = temp_dir </> "test"
@@ -1638,8 +1639,6 @@ inl lock_file path =
         trace Debug (fun () => "_6") id
     |> async.new_async
 
-types ()
-
 inl file_name = "test.txt"
 inl text = "0"
 
@@ -1767,7 +1766,6 @@ inl lock_file path =
         trace Debug (fun () => "_3") id
     |> async.new_async
 
-types ()
 fun () =>
     inl file_name = "test.txt"
     inl text = "0"
@@ -1862,7 +1860,6 @@ inl lock_file path =
         trace Debug (fun () => "_3") id
     |> async.new_async
 
-types ()
 fun () =>
     inl file_name = "test.txt"
     inl text = "0"
@@ -1907,7 +1904,6 @@ fun () =>
 #!spiral
 
 inl main () =
-    types ()
     init_trace_state None
     $'let delete_directory_async x = !delete_directory_async x' : ()
     $'let wait_for_file_access x = !wait_for_file_access x' : ()

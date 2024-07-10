@@ -1,35 +1,3 @@
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("futures::future::JoinAll<$0>")>]
-#endif
-type futures_future_JoinAll<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>]
-#endif
-type futures_future_TryJoinAll<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("rayon::iter::Map<$0, _>")>]
-#endif
-type rayon_iter_Map<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("rayon::vec::IntoIter<$0>")>]
-#endif
-type rayon_vec_IntoIter<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>]
-#endif
-type std_future_Future<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("tokio::prelude::stream::Fuse<$0>")>]
-#endif
-type futures_future_Fuse<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("tokio::task::JoinHandle<$0>")>]
-#endif
-type tokio_task_JoinHandle<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("tokio_stream::StreamExt")>]
-#endif
-type tokio_stream_StreamExt = class end
 let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Threading.CancellationToken> =
     let v3 : bool = true
     let mutable _v3 : Async<System.Threading.CancellationToken> option = None 
@@ -107,6 +75,6 @@ let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Thr
     |> fun x -> _v3 <- Some x
     let v121 : Async<System.Threading.CancellationToken> = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
     v121
-let v6 : (System.Threading.CancellationToken -> Async<System.Threading.CancellationToken>) = closure0()
-let merge_cancellation_token_with_default_async x = v6 x
+let v0 : (System.Threading.CancellationToken -> Async<System.Threading.CancellationToken>) = closure0()
+let merge_cancellation_token_with_default_async x = v0 x
 ()

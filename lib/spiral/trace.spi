@@ -1,12 +1,5 @@
 /// # trace
 
-/// ## types
-inl types () =
-    env.types ()
-    guid.types ()
-    rust.types ()
-    sm'.types ()
-
 /// ## trace
 
 /// ### trace_level
@@ -153,7 +146,7 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
             run_target function
             | Rust _ => fun () =>
                 open rust_operators
-                inl color : rust.ref' sm'.str =
+                inl color : rust.ref sm'.str =
                     match level with
                     | Verbose => !\($'"inline_colorization::color_bright_black"')
                     | Debug => !\($'"inline_colorization::color_bright_blue"')
@@ -161,7 +154,7 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
                     | Warning => !\($'"inline_colorization::color_yellow"')
                     | Critical => !\($'"inline_colorization::color_bright_red"')
                 inl level_str = level_str |> sm'.as_str
-                inl color_reset : rust.ref' sm'.str = !\($'"inline_colorization::color_reset"')
+                inl color_reset : rust.ref sm'.str = !\($'"inline_colorization::color_reset"')
                 $'"\\\"{!color}{!level_str}{!color_reset}\\\""'
                 |> sm'.format''
                 |> sm'.from_std_string
@@ -187,7 +180,6 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
 
 /// ## main
 inl main () =
-    types ()
     init_trace_state None
     inl trace level text_fn (locals : () -> string) = trace level text_fn locals
     $'let trace x = !trace x' : ()

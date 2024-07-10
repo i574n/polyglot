@@ -52,7 +52,7 @@ export function US0_$reflection(): TypeInfo {
     return union_type("Threading.US0", [], US0, () => [[["f0_0", class_type("System.Threading.CancellationToken")]], []]);
 }
 
-export function closure1(v0: any, unitVar: void): void {
+export function closure1(v0_1: any, unitVar: void): void {
     let _v3: Option<void> = undefined;
     defaultOf();
     _v3 = some(undefined);
@@ -64,19 +64,19 @@ export function closure1(v0: any, unitVar: void): void {
     }
 }
 
-export function method0(v0: any): (() => void) {
+export function method0(v0_1: any): (() => void) {
     return (): void => {
-        closure1(v0, undefined);
+        closure1(v0_1, undefined);
     };
 }
 
-export function method1(v0: any): (() => void) {
+export function method1(v0_1: any): (() => void) {
     return (): void => {
-        closure1(v0, undefined);
+        closure1(v0_1, undefined);
     };
 }
 
-export function closure0(unitVar: void, v0: Option<any>): [any, IDisposable] {
+export function closure0(unitVar: void, v0_1: Option<any>): [any, IDisposable] {
     let _v3: Option<[any, IDisposable]> = undefined;
     const patternInput: [any, IDisposable] = defaultOf();
     _v3 = ([patternInput[0], patternInput[1]] as [any, IDisposable]);
@@ -90,10 +90,10 @@ export function closure0(unitVar: void, v0: Option<any>): [any, IDisposable] {
     return [patternInput_1[0], patternInput_1[1]] as [any, IDisposable];
 }
 
-export const v6 = (v: Option<any>): [any, IDisposable] => closure0(undefined, v);
+export const v0 = (v: Option<any>): [any, IDisposable] => closure0(undefined, v);
 
 export function new_disposable_token(x: Option<any>): [any, IDisposable] {
-    return v6(x);
+    return v0(x);
 }
 
 

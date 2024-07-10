@@ -177,8 +177,8 @@ pub mod Trace {
         let v7: bool = true;
         let _result = v5.map(|x| {
             //;
-            let v9: std::string::String = x;
-            let v11: string = fable_library_rust::String_::fromString(v9);
+            let v9_1: std::string::String = x;
+            let v11: string = fable_library_rust::String_::fromString(v9_1);
             let v13: bool = true;
             v11
         });
@@ -348,7 +348,7 @@ pub mod Trace {
         v0.l0.set(v12);
         ()
     }
-    pub fn closure5(v0: Trace::US0, v1: Func0<string>, v2: Func0<string>, unitVar: ()) -> string {
+    pub fn closure5(v0: Trace::US0, v1: Func0<string>, v2_1: Func0<string>, unitVar: ()) -> string {
         if Trace::State::trace_state().get().clone().is_none() {
             Trace::State::trace_state().set(Some(Trace::closure0((), Trace::US0::US0_0)));
         }
@@ -541,7 +541,7 @@ pub mod Trace {
                         let v1163: LrcPtr<Trace::Mut4> = LrcPtr::new(Trace::Mut4 {
                             l0: MutCell::new(string("")),
                         });
-                        Trace::method9(v1163.clone(), v2());
+                        Trace::method9(v1163.clone(), v2_1());
                         {
                             let v1164: string = v1163.l0.get().clone();
                             trimEndChars(
@@ -633,19 +633,19 @@ pub mod Trace {
             }
         }
     }
-    pub fn method4(v0: Trace::US0, v1: Func0<string>, v2: Func0<string>) {
+    pub fn method4(v0: Trace::US0, v1: Func0<string>, v2_1: Func0<string>) {
         Trace::method10(
             v0.clone(),
             Func0::new({
                 let v0 = v0.clone();
                 let v1 = v1.clone();
-                let v2 = v2.clone();
-                move || Trace::closure5(v0.clone(), v1.clone(), v2.clone(), ())
+                let v2_1 = v2_1.clone();
+                move || Trace::closure5(v0.clone(), v1.clone(), v2_1.clone(), ())
             }),
         );
     }
-    pub fn closure4(v0: Trace::US0, v1: Func0<string>, v2: Func0<string>) {
-        Trace::method4(v0, v1, v2);
+    pub fn closure4(v0: Trace::US0, v1: Func0<string>, v2_1: Func0<string>) {
+        Trace::method4(v0, v1, v2_1);
     }
     pub fn closure3(v0: Trace::US0, v1: Func0<string>) -> Func1<Func0<string>, ()> {
         Func1::new({
@@ -660,7 +660,7 @@ pub mod Trace {
             move |v: Func0<string>| Trace::closure3(v0.clone(), v)
         })
     }
-    pub fn v44() -> Func1<
+    pub fn v2() -> Func1<
         Trace::US0,
         (
             LrcPtr<Trace::Mut0>,
@@ -670,7 +670,7 @@ pub mod Trace {
             Option<i64>,
         ),
     > {
-        static v44: OnceInit<
+        static v2: OnceInit<
             Func1<
                 Trace::US0,
                 (
@@ -682,24 +682,24 @@ pub mod Trace {
                 ),
             >,
         > = OnceInit::new();
-        v44.get_or_init(|| Func1::new(move |v: Trace::US0| Trace::closure0((), v)))
+        v2.get_or_init(|| Func1::new(move |v: Trace::US0| Trace::closure0((), v)))
             .clone()
     }
-    pub fn v45() -> Trace::US0 {
-        static v45: OnceInit<Trace::US0> = OnceInit::new();
-        v45.get_or_init(|| Trace::US0::US0_0).clone()
+    pub fn v3() -> Trace::US0 {
+        static v3: OnceInit<Trace::US0> = OnceInit::new();
+        v3.get_or_init(|| Trace::US0::US0_0).clone()
     }
     on_startup!(if Trace::State::trace_state().get().clone().is_none() {
-        Trace::State::trace_state().set(Some((Trace::v44())(Trace::v45())));
+        Trace::State::trace_state().set(Some((Trace::v2())(Trace::v3())));
     });
-    pub fn v51() -> Func1<Trace::US0, Func1<Func0<string>, Func1<Func0<string>, ()>>> {
-        static v51: OnceInit<Func1<Trace::US0, Func1<Func0<string>, Func1<Func0<string>, ()>>>> =
+    pub fn v9() -> Func1<Trace::US0, Func1<Func0<string>, Func1<Func0<string>, ()>>> {
+        static v9: OnceInit<Func1<Trace::US0, Func1<Func0<string>, Func1<Func0<string>, ()>>>> =
             OnceInit::new();
-        v51.get_or_init(|| Func1::new(move |v: Trace::US0| Trace::closure2((), v)))
+        v9.get_or_init(|| Func1::new(move |v: Trace::US0| Trace::closure2((), v)))
             .clone()
     }
     pub fn trace(x: Trace::US0) -> Func1<Func0<string>, Func1<Func0<string>, ()>> {
-        (Trace::v51())(x)
+        (Trace::v9())(x)
     }
     on_startup!(());
 }
