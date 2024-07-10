@@ -2,77 +2,81 @@
 open testing
 open rust_operators
 
-inl types () =
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"num_complex::Complex<$0>\")>]\n#endif\ntype num_complex_Complex<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::types::PyModule\")>]\n#endif\ntype pyo3_types_PyModule = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Bound<$0>\")>]\n#endif\ntype pyo3_Bound<'T> = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Python\")>]\n#endif\ntype pyo3_Python = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::PyAny\")>]\n#endif\ntype pyo3_PyAny = class end"
-    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::PyErr\")>]\n#endif\ntype pyo3_PyErr = class end"
-
-inl types () =
-    rust.types ()
-    sm'.types ()
-    types ()
-
 /// ## complex
-nominal complex t = $'num_complex_Complex<`t>'
-nominal bound t = $'pyo3_Bound<`t>'
-nominal python = $'pyo3_Python'
-nominal pymodule = $'pyo3_types_PyModule'
-nominal pyany = $'pyo3_PyAny'
-nominal pyerr = $'pyo3_PyErr'
+nominal complex t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"num_complex::Complex<$0>\")>]\n#endif\ntype num_complex_Complex<'T> = class end"
+        $'' : $'num_complex_Complex<`t>'
+    )
 
 inl complex forall t. ((re : t), (im : t)) : complex t =
     !\\((re, im), $'"num_complex::Complex::new($0, $1)"')
 
-/// ## complex_sin
+/// ## re
 inl re forall t. (c : complex t) : t =
     !\\(c, $'"$0.re"')
 
+/// ## im
 inl im forall t. (c : complex t) : t =
     !\\(c, $'"$0.im"')
 
+/// ## complex_unbox
 inl complex_unbox forall t. (c : complex t) =
     re c, im c
 
+/// ## (~.^)
 inl (~.^) c = complex c
 
+/// ## complex_eq
 inl complex_eq forall t. (a : complex t) (b : complex t) : bool =
     !\\((a, b), $'"$0 == $1"')
 
+/// ## (.=)
 inl (.=) a b = complex_eq a b
 
+/// ## equable complex
 instance equable complex t = complex_eq
 
+/// ## complex_add
 inl complex_add forall t. (a : complex t) (b : complex t) : complex t =
     !\\((a, b), $'"$0 + $1"')
 
+/// ## (.+)
 inl (.+) a b = complex_add a b
 
+/// ## complex_sub
 inl complex_sub forall t. (a : complex t) (b : complex t) : complex t =
     !\\((a, b), $'"$0 - $1"')
 
+/// ## (.-)
 inl (.-) a b = complex_sub a b
 
+/// ## complex_mult
 inl complex_mult forall t. (a : complex t) (b : complex t) : complex t =
     !\\((a, b), $'"$0 * $1"')
 
+/// ## (.*)
 inl (.*) a b = complex_mult a b
 
+/// ## complex_div
 inl complex_div forall t. (a : complex t) (b : complex t) : complex t =
     !\\((a, b), $'"$0 / $1"')
 
+/// ## (./)
 inl (./) a b = complex_div a b
 
+/// ## powc
 inl powc forall t. (s : complex t) (c : complex t) : complex t =
     !\\((c, s), $'"num_complex::Complex::powc($0, $1)"')
 
+/// ## (.**)
 inl (.**) a b = powc b a
 
+/// ## complex_sin
 inl complex_sin forall t. (c : complex t) : complex t =
     !\\(c, $'"$0.sin()"')
 
+/// ## conj
 inl conj forall t. (c : complex t) : complex t =
     !\\(c, $'"$0.conj()"')
 
@@ -100,6 +104,41 @@ inl zeta log (gamma : complex f64 -> complex f64) (s : complex f64) : complex f6
                 .^(2, 0) .* (.^(pi, 0) .** s) .* sin_term .* gamma_term .* mirror_term
             reflection_formula
     join zeta 0i32 gamma s
+
+/// ## bound
+nominal bound t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Bound<$0>\")>]\n#endif\ntype pyo3_Bound<'T> = class end"
+        $'' : $'pyo3_Bound<`t>'
+    )
+
+/// ## python
+nominal python =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Python\")>]\n#endif\ntype pyo3_Python = class end"
+        $'' : $'pyo3_Python'
+    )
+
+/// ## pymodule
+nominal pymodule =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::types::PyModule\")>]\n#endif\ntype pyo3_types_PyModule = class end"
+        $'' : $'pyo3_types_PyModule'
+    )
+
+/// ## pyany
+nominal pyany =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::PyAny\")>]\n#endif\ntype pyo3_PyAny = class end"
+        $'' : $'pyo3_PyAny'
+    )
+
+/// ## pyerr
+nominal pyerr =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::PyErr\")>]\n#endif\ntype pyo3_PyErr = class end"
+        $'' : $'pyo3_PyErr'
+    )
 
 /// ## eval
 inl module_from_code (py : python) (code : string) : _ (bound pymodule) _ =
@@ -440,6 +479,5 @@ inl main (_args : array_base string) =
     0i32
 
 inl main () =
-    types ()
     $'let tests () = !tests ()' : ()
     $'let main args = !main args' : ()

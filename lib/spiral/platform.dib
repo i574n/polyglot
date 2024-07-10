@@ -16,11 +16,6 @@ open rust_operators
 
 open testing
 
-#!spiral
-
-inl types () =
-    ()
-
 #!markdown
 
 ## fsharp
@@ -128,6 +123,5 @@ get_executable_suffix ()
 #!spiral
 
 inl main () =
-    types ()
     $'let is_windows () = !is_windows ()' : ()
     $'let get_executable_suffix () = !get_executable_suffix ()' : ()

@@ -1,35 +1,3 @@
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::thread::JoinHandle<$0>")>]
-#endif
-type std_thread_JoinHandle<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc<$0>")>]
-#endif
-type std_sync_Arc<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Mutex<$0>")>]
-#endif
-type std_sync_Mutex<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::MutexGuard<$0>")>]
-#endif
-type std_sync_MutexGuard<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::PoisonError<$0>")>]
-#endif
-type std_sync_PoisonError<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Receiver<$0>")>]
-#endif
-type std_sync_mpsc_Receiver<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::SendError<$0>")>]
-#endif
-type std_sync_mpsc_SendError<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::sync::mpsc::Sender<$0>")>]
-#endif
-type std_sync_mpsc_Sender<'T> = class end
 type Disposable (f : unit -> unit) = interface System.IDisposable with member _.Dispose () = f ()
 type [<Struct>] US0 =
     | US0_0 of f0_0 : System.Threading.CancellationToken
@@ -168,6 +136,6 @@ and closure0 () (v0 : System.Threading.CancellationToken option) : struct (Syste
     |> fun x -> _v3 <- Some x
     let struct (v133 : System.Threading.CancellationToken, v134 : System.IDisposable) = match _v3 with Some x -> x | None -> failwith "base.run_target / _v3=None"
     struct (v133, v134)
-let v6 : (System.Threading.CancellationToken option -> struct (System.Threading.CancellationToken * System.IDisposable)) = closure0()
-let new_disposable_token x = v6 x
+let v0 : (System.Threading.CancellationToken option -> struct (System.Threading.CancellationToken * System.IDisposable)) = closure0()
+let new_disposable_token x = v0 x
 ()

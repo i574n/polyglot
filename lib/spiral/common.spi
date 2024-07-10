@@ -1,11 +1,5 @@
 /// # common
 
-/// ## types
-inl types () =
-    env.types ()
-    rust.types ()
-    sm'.types ()
-
 /// ## common
 
 /// ### (:>)
@@ -145,11 +139,9 @@ inl new_disposable (fn : () -> ()) : disposable _ =
 
 /// ## main
 inl main () =
-    types ()
     init_trace_state None
     inl new_disposable x : _ () = new_disposable x
     $'let new_disposable x = !new_disposable x' : ()
-
     inl retry_fn (r : i32) (x : () -> _) : optionm'.option' () = retry_fn r x |> optionm'.box
     $'let retry_fn x = !retry_fn x' : ()
     inl memoize (fn : () -> ()) : () -> () = memoize fn

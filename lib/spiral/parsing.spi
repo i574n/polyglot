@@ -2,13 +2,6 @@
 open rust_operators
 open sm'_operators
 
-/// ## types
-inl types () =
-    ()
-
-inl types () =
-    types ()
-
 /// ## fparsec
 
 /// ## parsing

@@ -20,54 +20,6 @@ open file_system_operators
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Arg\")>]\n#endif\ntype clap_Arg = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::ArgAction\")>]\n#endif\ntype clap_ArgAction = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Command\")>]\n#endif\ntype clap_Command = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::ArgMatches\")>]\n#endif\ntype clap_ArgMatches = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::builder::ValueRange\")>]\n#endif\ntype clap_builder_ValueRange = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::builder::ValueParser\")>]\n#endif\ntype clap_builder_ValueParser = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::builder::PossibleValue\")>]\n#endif\ntype clap_builder_PossibleValue = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Child\")>]\n#endif\ntype std_process_Child = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStderr\")>]\n#endif\ntype std_process_ChildStderr = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdout\")>]\n#endif\ntype std_process_ChildStdout = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdin\")>]\n#endif\ntype std_process_ChildStdin = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Command\")>]\n#endif\ntype std_process_Command = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ExitStatus\")>]\n#endif\ntype std_process_ExitStatus = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Output\")>]\n#endif\ntype std_process_Output = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Stdio\")>]\n#endif\ntype std_process_Stdio = class end"
-        Python = fun () =>
-            global "import gc"
-    }
-
-#!spiral
-
-inl types () =
-    types ()
-    am'.types ()
-    async.types ()
-    env.types ()
-    rust.types ()
-    seq.types ()
-    sm'.types ()
-    threading.types ()
-
-#!spiral
-
-//// test
-
-inl types () =
-    file_system.types ()
-    types ()
-
-#!markdown
-
 ## runtime
 
 #!markdown
@@ -220,7 +172,11 @@ type execution_line =
 
 #!spiral
 
-nominal process_child = $'std_process_Child'
+nominal process_child =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Child\")>]\n#endif\ntype std_process_Child = class end"
+        $'' : $'std_process_Child'
+    )
 
 #!markdown
 
@@ -228,11 +184,15 @@ nominal process_child = $'std_process_Child'
 
 #!spiral
 
-nominal process_child_stdin = $'std_process_ChildStdin'
+nominal process_child_stdin =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdin\")>]\n#endif\ntype std_process_ChildStdin = class end"
+        $'' : $'std_process_ChildStdin'
+    )
 
 inl process_child_stdin
-    (child : rust.ref' (rust.mut' process_child))
-    : rust.ref' (rust.mut' (optionm'.option' process_child_stdin))
+    (child : rust.ref (rust.mut' process_child))
+    : rust.ref (rust.mut' (optionm'.option' process_child_stdin))
     =
     !\\(child, $'"&mut $0.stdin"')
 
@@ -279,11 +239,15 @@ inl execution_options (fn : execution_options -> execution_options) : execution_
 
 #!spiral
 
-nominal process_child_stderr = $'std_process_ChildStderr'
+nominal process_child_stderr =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStderr\")>]\n#endif\ntype std_process_ChildStderr = class end"
+        $'' : $'std_process_ChildStderr'
+    )
 
 inl process_child_stderr
-    (child : rust.ref' (rust.mut' process_child))
-    : rust.ref' (rust.mut' (optionm'.option' process_child_stderr))
+    (child : rust.ref (rust.mut' process_child))
+    : rust.ref (rust.mut' (optionm'.option' process_child_stderr))
     =
     !\($'"&mut !child.stderr"')
 
@@ -293,11 +257,15 @@ inl process_child_stderr
 
 #!spiral
 
-nominal process_child_stdout = $'std_process_ChildStdout'
+nominal process_child_stdout =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ChildStdout\")>]\n#endif\ntype std_process_ChildStdout = class end"
+        $'' : $'std_process_ChildStdout'
+    )
 
 inl process_child_stdout
-    (child : rust.ref' (rust.mut' process_child))
-    : rust.ref' (rust.mut' (optionm'.option' process_child_stdout))
+    (child : rust.ref (rust.mut' process_child))
+    : rust.ref (rust.mut' (optionm'.option' process_child_stdout))
     =
     !\($'"&mut !child.stdout"')
 
@@ -307,7 +275,11 @@ inl process_child_stdout
 
 #!spiral
 
-nominal process_command = $'std_process_Command'
+nominal process_command =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Command\")>]\n#endif\ntype std_process_Command = class end"
+        $'' : $'std_process_Command'
+    )
 
 #!markdown
 
@@ -315,7 +287,11 @@ nominal process_command = $'std_process_Command'
 
 #!spiral
 
-nominal process_stdio = $'std_process_Stdio'
+nominal process_stdio =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Stdio\")>]\n#endif\ntype std_process_Stdio = class end"
+        $'' : $'std_process_Stdio'
+    )
 
 #!markdown
 
@@ -323,7 +299,11 @@ nominal process_stdio = $'std_process_Stdio'
 
 #!spiral
 
-nominal process_output = $'std_process_Output'
+nominal process_output =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::Output\")>]\n#endif\ntype std_process_Output = class end"
+        $'' : $'std_process_Output'
+    )
 
 #!markdown
 
@@ -331,7 +311,11 @@ nominal process_output = $'std_process_Output'
 
 #!spiral
 
-nominal process_exit_status = $'std_process_ExitStatus'
+nominal process_exit_status =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::process::ExitStatus\")>]\n#endif\ntype std_process_ExitStatus = class end"
+        $'' : $'std_process_ExitStatus'
+    )
 
 #!markdown
 
@@ -398,7 +382,7 @@ inl process_stdio_piped () : process_stdio =
 
 #!spiral
 
-inl process_command_args (args : am'.vec sm'.std_string) (c : process_command) : rust.ref' (rust.mut' process_command) =
+inl process_command_args (args : am'.vec sm'.std_string) (c : process_command) : rust.ref (rust.mut' process_command) =
     (!\($'"true; let mut !c = !c"') : bool) |> ignore
     !\\((c, args), $'"std::process::Command::args(&mut $0, &*$1)"')
 
@@ -408,7 +392,7 @@ inl process_command_args (args : am'.vec sm'.std_string) (c : process_command) :
 
 #!spiral
 
-inl process_command_stdout (stdio : process_stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+inl process_command_stdout (stdio : process_stdio) (c : rust.ref (rust.mut' process_command)) : rust.ref (rust.mut' process_command) =
     !\\(c, $'"std::process::Command::stdout($0, std::process::Stdio::piped())"')
 
 #!markdown
@@ -417,7 +401,7 @@ inl process_command_stdout (stdio : process_stdio) (c : rust.ref' (rust.mut' pro
 
 #!spiral
 
-inl process_command_stderr (stdio : process_stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+inl process_command_stderr (stdio : process_stdio) (c : rust.ref (rust.mut' process_command)) : rust.ref (rust.mut' process_command) =
     !\\(c, $'"std::process::Command::stderr($0, std::process::Stdio::piped())"')
 
 #!markdown
@@ -426,7 +410,7 @@ inl process_command_stderr (stdio : process_stdio) (c : rust.ref' (rust.mut' pro
 
 #!spiral
 
-inl process_command_stdin (stdio : process_stdio) (c : rust.ref' (rust.mut' process_command)) : rust.ref' (rust.mut' process_command) =
+inl process_command_stdin (stdio : process_stdio) (c : rust.ref (rust.mut' process_command)) : rust.ref (rust.mut' process_command) =
     !\\(c, $'"std::process::Command::stdin($0, std::process::Stdio::piped())"')
 
 #!markdown
@@ -437,8 +421,8 @@ inl process_command_stdin (stdio : process_stdio) (c : rust.ref' (rust.mut' proc
 
 inl process_command_current_dir
     (dir : string)
-    (c : rust.ref' (rust.mut' process_command))
-    : rust.ref' (rust.mut' process_command)
+    (c : rust.ref (rust.mut' process_command))
+    : rust.ref (rust.mut' process_command)
     =
     !\\(dir, $'"std::process::Command::current_dir(!c, &*$0)"')
 
@@ -451,8 +435,8 @@ inl process_command_current_dir
 inl process_command_env
     (key : string)
     (value : string)
-    (c : rust.ref' (rust.mut' process_command))
-    : rust.ref' (rust.mut' process_command)
+    (c : rust.ref (rust.mut' process_command))
+    : rust.ref (rust.mut' process_command)
     =
     !\\((key, value), $'"std::process::Command::env(!c, &*$0, &*$1)"')
 
@@ -463,7 +447,7 @@ inl process_command_env
 #!spiral
 
 inl process_command_spawn
-    (c : rust.ref' (rust.mut' process_command))
+    (c : rust.ref (rust.mut' process_command))
     : resultm.result' process_child stream.io_error
     =
     !\\(c, $'"std::process::Command::spawn($0)"')
@@ -543,7 +527,11 @@ inl stdio_line
 
 #!spiral
 
-nominal command = $'clap_Command'
+nominal command =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Command\")>]\n#endif\ntype clap_Command = class end"
+        $'' : $'clap_Command'
+    )
 
 #!markdown
 
@@ -559,7 +547,6 @@ inl new_command (s : rust.static_ref sm'.str) : command =
 //// test
 ///! rust -d clap
 
-types ()
 ##"command"
 |> new_command
 |> sm'.format_pretty'
@@ -572,7 +559,11 @@ types ()
 
 #!spiral
 
-nominal arg = $'clap_Arg'
+nominal arg =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Arg\")>]\n#endif\ntype clap_Arg = class end"
+        $'' : $'clap_Arg'
+    )
 
 #!markdown
 
@@ -588,7 +579,6 @@ inl new_arg (s : rust.static_ref sm'.str) : arg =
 //// test
 ///! rust -d clap
 
-types ()
 ##"arg"
 |> new_arg
 |> sm'.format_pretty'
@@ -656,7 +646,11 @@ inl arg_num_args (value : i32) (arg : arg) : arg =
 
 #!spiral
 
-nominal value_range = $'clap_builder_ValueRange'
+nominal value_range =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::builder::ValueRange\")>]\n#endif\ntype clap_builder_ValueRange = class end"
+        $'' : $'clap_builder_ValueRange'
+    )
 
 #!markdown
 
@@ -702,7 +696,11 @@ inl arg_value_name (value : string) (arg : arg) : arg =
 
 #!spiral
 
-nominal value_parser = $'clap_builder_ValueParser'
+nominal value_parser =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::builder::ValueParser\")>]\n#endif\ntype clap_builder_ValueParser = class end"
+        $'' : $'clap_builder_ValueParser'
+    )
 
 #!markdown
 
@@ -710,7 +708,11 @@ nominal value_parser = $'clap_builder_ValueParser'
 
 #!spiral
 
-nominal possible_value = $'clap_builder_PossibleValue'
+nominal possible_value =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::builder::PossibleValue\")>]\n#endif\ntype clap_builder_PossibleValue = class end"
+        $'' : $'clap_builder_PossibleValue'
+    )
 
 #!markdown
 
@@ -754,7 +756,11 @@ inl arg_value_parser (values : value_parser) (arg : arg) : arg =
 
 #!spiral
 
-nominal arg_action' = $'clap_ArgAction'
+nominal arg_action' =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::ArgAction\")>]\n#endif\ntype clap_ArgAction = class end"
+        $'' : $'clap_ArgAction'
+    )
 
 union arg_action =
     | Set
@@ -797,7 +803,11 @@ inl arg_index (value : i32) (arg : arg) : arg =
 
 #!spiral
 
-nominal arg_matches = $'clap_ArgMatches'
+nominal arg_matches =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"clap::ArgMatches\")>]\n#endif\ntype clap_ArgMatches = class end"
+        $'' : $'clap_ArgMatches'
+    )
 
 #!markdown
 
@@ -1252,8 +1262,6 @@ inl execute_async command =
 
 //// test
 
-types ()
-
 inl content = "╭─[ 你好，世界！こんにちは世界！ ]─╮"
 fun () =>
     inl file_name = "test.txt"
@@ -1300,7 +1308,6 @@ fun () =>
 
 //// test
 
-file_system.types ()
 fun () =>
     inl file_name = "test.txt"
     inl text = "0"
@@ -1375,7 +1382,11 @@ inl current_process_kill () =
 inl gc_collect () =
     run_target function
         | Fsharp _ => fun () => $'System.GC.Collect' () : ()
-        | Python _ => fun () => ($'gc.collect()' : int) |> ignore
+        | Python _ => fun () =>
+            backend_switch {
+                Python = fun () => global "import gc"
+            }
+            ($'gc.collect()' : int) |> ignore
         | _ => fun () => ()
 
 #!markdown
@@ -1615,8 +1626,6 @@ inl execute command =
 //// test
 ///! rust -d chrono encoding_rs encoding_rs_io regex sha2
 
-types ()
-
 inl content = "╭─[ 你好，世界！こんにちは世界！ ]─╮"
 
 inl file_name = join "test.txt"
@@ -1673,7 +1682,6 @@ let execute_retry retries options =
 #!spiral
 
 inl main () =
-    types ()
     init_trace_state None
     $'let current_process_kill () = !current_process_kill ()' : ()
     $'let execute_async x = !execute_async x' : ()

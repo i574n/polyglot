@@ -91,25 +91,25 @@ mod module_b7a9935b {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
         }
-        pub fn method2(v0: i32, v1: LrcPtr<Math::Mut0>) -> bool {
-            v1.l0.get().clone() < v0
+        pub fn method2(v0_1: i32, v1_1: LrcPtr<Math::Mut0>) -> bool {
+            v1_1.l0.get().clone() < v0_1
         }
-        pub fn method3(v0: num_complex::Complex<f64>) -> num_complex::Complex<f64> {
-            v0
+        pub fn method3(v0_1: num_complex::Complex<f64>) -> num_complex::Complex<f64> {
+            v0_1
         }
-        pub fn method6(v0: i32, v1: LrcPtr<Math::Mut1>) -> bool {
-            v1.l0.get().clone() < v0
+        pub fn method6(v0_1: i32, v1_1: LrcPtr<Math::Mut1>) -> bool {
+            v1_1.l0.get().clone() < v0_1
         }
-        pub fn method5(v0: Array<string>) -> string {
-            let v1: i32 = count(v0.clone());
+        pub fn method5(v0_1: Array<string>) -> string {
+            let v1_1: i32 = count(v0_1.clone());
             let v3: LrcPtr<Math::Mut1> = LrcPtr::new(Math::Mut1 {
                 l0: MutCell::new(0_i32),
                 l1: MutCell::new(string("")),
             });
-            while Math::method6(v1, v3.clone()) {
+            while Math::method6(v1_1, v3.clone()) {
                 let v5: i32 = v3.l0.get().clone();
                 let v9: string = append(
-                    append(append(v3.l1.get().clone(), v0[v5].clone()), string("\n")),
+                    append(append(v3.l1.get().clone(), v0_1[v5].clone()), string("\n")),
                     string(""),
                 );
                 let v10: i32 = v5 + 1_i32;
@@ -119,14 +119,14 @@ mod module_b7a9935b {
             }
             v3.l1.get().clone()
         }
-        pub fn method7(v0: pyo3::Python) -> pyo3::Python {
-            v0
+        pub fn method7(v0_1: pyo3::Python) -> pyo3::Python {
+            v0_1
         }
-        pub fn closure1(unitVar: (), v0: pyo3::PyErr) -> std::string::String {
+        pub fn closure1(unitVar: (), v0_1: pyo3::PyErr) -> std::string::String {
             let _v3: MutCell<Option<std::string::String>> =
                 MutCell::new(None::<std::string::String>);
             {
-                let x: std::string::String = format!("{}", v0);
+                let x: std::string::String = format!("{}", v0_1);
                 _v3.set(Some(x))
             }
             match &_v3.get().clone() {
@@ -141,15 +141,15 @@ mod module_b7a9935b {
             string("fn")
         }
         pub fn method10(
-            v0: pyo3::Bound<pyo3::types::PyModule>,
+            v0_1: pyo3::Bound<pyo3::types::PyModule>,
         ) -> pyo3::Bound<pyo3::types::PyModule> {
-            v0
+            v0_1
         }
-        pub fn closure2(unitVar: (), v0: pyo3::PyErr) -> std::string::String {
+        pub fn closure2(unitVar: (), v0_1: pyo3::PyErr) -> std::string::String {
             let _v3: MutCell<Option<std::string::String>> =
                 MutCell::new(None::<std::string::String>);
             {
-                let x: std::string::String = format!("{}", v0);
+                let x: std::string::String = format!("{}", v0_1);
                 _v3.set(Some(x))
             }
             match &_v3.get().clone() {
@@ -166,14 +166,14 @@ mod module_b7a9935b {
         ) -> LrcPtr<(bool, LrcPtr<(f64, f64)>)> {
             LrcPtr::new((v0_, v0__1))
         }
-        pub fn method13(v0: pyo3::Bound<pyo3::PyAny>) -> pyo3::Bound<pyo3::PyAny> {
-            v0
+        pub fn method13(v0_1: pyo3::Bound<pyo3::PyAny>) -> pyo3::Bound<pyo3::PyAny> {
+            v0_1
         }
-        pub fn closure3(unitVar: (), v0: pyo3::PyErr) -> std::string::String {
+        pub fn closure3(unitVar: (), v0_1: pyo3::PyErr) -> std::string::String {
             let _v3: MutCell<Option<std::string::String>> =
                 MutCell::new(None::<std::string::String>);
             {
-                let x: std::string::String = format!("{}", v0);
+                let x: std::string::String = format!("{}", v0_1);
                 _v3.set(Some(x))
             }
             match &_v3.get().clone() {
@@ -184,14 +184,14 @@ mod module_b7a9935b {
         pub fn method14() -> Func1<pyo3::PyErr, std::string::String> {
             Func1::new(move |v: pyo3::PyErr| Math::closure3((), v))
         }
-        pub fn method15(v0: pyo3::Bound<pyo3::PyAny>) -> pyo3::Bound<pyo3::PyAny> {
-            v0
+        pub fn method15(v0_1: pyo3::Bound<pyo3::PyAny>) -> pyo3::Bound<pyo3::PyAny> {
+            v0_1
         }
-        pub fn closure4(unitVar: (), v0: pyo3::PyErr) -> std::string::String {
+        pub fn closure4(unitVar: (), v0_1: pyo3::PyErr) -> std::string::String {
             let _v3: MutCell<Option<std::string::String>> =
                 MutCell::new(None::<std::string::String>);
             {
-                let x: std::string::String = format!("{}", v0);
+                let x: std::string::String = format!("{}", v0_1);
                 _v3.set(Some(x))
             }
             match &_v3.get().clone() {
@@ -203,8 +203,8 @@ mod module_b7a9935b {
             Func1::new(move |v: pyo3::PyErr| Math::closure4((), v))
         }
         pub fn method4(
-            v0: pyo3::Python,
-            v1: string,
+            v0_1: pyo3::Python,
+            v1_1: string,
             v2: num_complex::Complex<f64>,
         ) -> Result<num_complex::Complex<f64>, std::string::String> {
             let v13: string =
@@ -237,7 +237,7 @@ mod module_b7a9935b {
                                           string("    s = complex(*s)"),
                                           string("    try:"),
                                           string("        if log: sys.settrace(trace_calls)"),
-                                          v1, string("        if log:"),
+                                          v1_1, string("        if log:"),
                                           string("            sys.settrace(None)"),
                                           sprintf!("            print(f\'{} / result: {{s}} / count: {{count}}\', flush=True)",
                                                    string("zeta_")),
@@ -247,7 +247,7 @@ mod module_b7a9935b {
                                           string("    return (s.real, s.imag)")]));
             let v42: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
                 LrcPtr::new((false, LrcPtr::new((v2.clone().re, v2.im))));
-            let v43: pyo3::Python = Math::method7(v0);
+            let v43: pyo3::Python = Math::method7(v0_1);
             let v45: &str = &*v36;
             let v47: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
                 pyo3::types::PyModule::from_code_bound(v43, v45, "", "");
@@ -281,15 +281,15 @@ mod module_b7a9935b {
                 patternInput.1.clone(),
             ))
         }
-        pub fn method18(v0: LrcPtr<Math::Mut0>) -> bool {
-            v0.l0.get().clone() < 10000_i32
+        pub fn method18(v0_1: LrcPtr<Math::Mut0>) -> bool {
+            v0_1.l0.get().clone() < 10000_i32
         }
-        pub fn method19(v0: i32, v1: LrcPtr<Math::Mut2>) -> bool {
-            v1.l0.get().clone() < v0
+        pub fn method19(v0_1: i32, v1_1: LrcPtr<Math::Mut2>) -> bool {
+            v1_1.l0.get().clone() < v0_1
         }
         pub fn method20(
-            v0: pyo3::Python,
-            v1: string,
+            v0_1: pyo3::Python,
+            v1_1: string,
             v2: num_complex::Complex<f64>,
         ) -> Result<num_complex::Complex<f64>, std::string::String> {
             let v13: string =
@@ -322,7 +322,7 @@ mod module_b7a9935b {
                                           string("    s = complex(*s)"),
                                           string("    try:"),
                                           string("        if log: sys.settrace(trace_calls)"),
-                                          v1, string("        if log:"),
+                                          v1_1, string("        if log:"),
                                           string("            sys.settrace(None)"),
                                           sprintf!("            print(f\'{} / result: {{s}} / count: {{count}}\', flush=True)",
                                                    string("gamma_")),
@@ -332,7 +332,7 @@ mod module_b7a9935b {
                                           string("    return (s.real, s.imag)")]));
             let v42: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
                 LrcPtr::new((false, LrcPtr::new((v2.clone().re, v2.im))));
-            let v43: pyo3::Python = Math::method7(v0);
+            let v43: pyo3::Python = Math::method7(v0_1);
             let v45: &str = &*v36;
             let v47: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
                 pyo3::types::PyModule::from_code_bound(v43, v45, "", "");
@@ -367,11 +367,11 @@ mod module_b7a9935b {
             ))
         }
         pub fn method17(
-            v0: pyo3::Python,
-            v1: num_complex::Complex<f64>,
+            v0_1: pyo3::Python,
+            v1_1: num_complex::Complex<f64>,
         ) -> num_complex::Complex<f64> {
-            println!("zeta / count: {:?} / s: {:?}", 0_i32, v1.clone());
-            if v1.clone().re > 1.0_f64 {
+            println!("zeta / count: {:?} / s: {:?}", 0_i32, v1_1.clone());
+            if v1_1.clone().re > 1.0_f64 {
                 let v7: num_complex::Complex<f64> = num_complex::Complex::new(0.0_f64, 0.0_f64);
                 let v8: Array<i32> = new_init(&0_i32, 10000_i32);
                 let v9: LrcPtr<Math::Mut0> = LrcPtr::new(Math::Mut0 {
@@ -402,12 +402,12 @@ mod module_b7a9935b {
                         let v24: num_complex::Complex<f64> =
                             num_complex::Complex::new(v22, 0.0_f64);
                         let v26: num_complex::Complex<f64> =
-                            num_complex::Complex::powc(v24, v1.clone());
+                            num_complex::Complex::powc(v24, v1_1.clone());
                         let v28: num_complex::Complex<f64> = v20 / v26;
-                        let v30_1: num_complex::Complex<f64> = v17 + v28;
-                        let v31_1: i32 = v16 + 1_i32;
-                        v14.l0.set(v31_1);
-                        v14.l1.set(v30_1);
+                        let v30: num_complex::Complex<f64> = v17 + v28;
+                        let v31: i32 = v16 + 1_i32;
+                        v14.l0.set(v31);
+                        v14.l1.set(v30);
                         ()
                     }
                     v14.l1.get().clone()
@@ -415,9 +415,9 @@ mod module_b7a9935b {
             } else {
                 let v34: num_complex::Complex<f64> = num_complex::Complex::new(1.0_f64, 0.0_f64);
                 let v39: Result<num_complex::Complex<f64>, std::string::String> = Math::method20(
-                    v0.clone(),
+                    v0_1.clone(),
                     string("        s = mpmath.gamma(s)"),
-                    Math::method3(v34 - v1.clone()),
+                    Math::method3(v34 - v1_1.clone()),
                 );
                 let v41: Option<num_complex::Complex<f64>> = v39.ok();
                 let _v44: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
@@ -448,13 +448,13 @@ mod module_b7a9935b {
                     };
                     let v89: num_complex::Complex<f64> =
                         num_complex::Complex::new(3.141592653589793_f64, 0.0_f64);
-                    let v91: num_complex::Complex<f64> = v89 * v1.clone();
+                    let v91: num_complex::Complex<f64> = v89 * v1_1.clone();
                     let v93: num_complex::Complex<f64> =
                         num_complex::Complex::new(2.0_f64, 0.0_f64);
                     let v95: num_complex::Complex<f64> = v91 / v93;
                     let v97: num_complex::Complex<f64> = v95.sin();
-                    let v100: f64 = 1.0_f64 - v1.clone().re;
-                    let v103: f64 = -v1.clone().im;
+                    let v100: f64 = 1.0_f64 - v1_1.clone().re;
+                    let v103: f64 = -v1_1.clone().im;
                     let v105: num_complex::Complex<f64> = num_complex::Complex::new(v100, v103);
                     let v611: num_complex::Complex<f64> = if v105.clone().re <= 1.0_f64 {
                         num_complex::Complex::new(0.0_f64, 0.0_f64)
@@ -507,7 +507,7 @@ mod module_b7a9935b {
                                 num_complex::Complex::new(1.0_f64, 0.0_f64);
                             let v148: Result<num_complex::Complex<f64>, std::string::String> =
                                 Math::method20(
-                                    v0.clone(),
+                                    v0_1.clone(),
                                     string("        s = mpmath.gamma(s)"),
                                     Math::method3(v143 - v105.clone()),
                                 );
@@ -608,7 +608,7 @@ mod module_b7a9935b {
                                             num_complex::Complex<f64>,
                                             std::string::String,
                                         > = Math::method20(
-                                            v0.clone(),
+                                            v0_1.clone(),
                                             string("        s = mpmath.gamma(s)"),
                                             Math::method3(v252 - v214.clone()),
                                         );
@@ -731,7 +731,7 @@ mod module_b7a9935b {
                                                         num_complex::Complex<f64>,
                                                         std::string::String,
                                                     > = Math::method20(
-                                                        v0.clone(),
+                                                        v0_1.clone(),
                                                         string("        s = mpmath.gamma(s)"),
                                                         Math::method3(v361 - v323.clone()),
                                                     );
@@ -897,7 +897,7 @@ mod module_b7a9935b {
                                                                     let v475:
                                                                                         Result<num_complex::Complex<f64>,
                                                                                                std::string::String> =
-                                                                                    Math::method20(v0,
+                                                                                    Math::method20(v0_1,
                                                                                                    string("        s = mpmath.gamma(s)"),
                                                                                                    Math::method3(v470 - v432.clone()));
                                                                     let v477: Option<
@@ -1074,7 +1074,7 @@ mod module_b7a9935b {
                     let v615: num_complex::Complex<f64> =
                         num_complex::Complex::new(3.141592653589793_f64, 0.0_f64);
                     let v617: num_complex::Complex<f64> =
-                        num_complex::Complex::powc(v615, v1.clone());
+                        num_complex::Complex::powc(v615, v1_1.clone());
                     let v619: num_complex::Complex<f64> = v613 * v617;
                     let v621: num_complex::Complex<f64> = v619 * v97;
                     let v623: num_complex::Complex<f64> = v621 * v87;
@@ -1082,10 +1082,10 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method21(v0: bool) -> bool {
-            v0
+        pub fn method21(v0_1: bool) -> bool {
+            v0_1
         }
-        pub fn method1(v0: pyo3::Python) {
+        pub fn method1(v0_1: pyo3::Python) {
             let v5: Array<(num_complex::Complex<f64>, f64)> = new_array(&[
                 (
                     num_complex::Complex::new(2.0_f64, 0.0_f64),
@@ -1105,11 +1105,11 @@ mod module_b7a9935b {
                 let patternInput: (num_complex::Complex<f64>, f64) = v5[v9].clone();
                 let v10: num_complex::Complex<f64> = patternInput.0.clone();
                 let v14: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
-                    v0.clone(),
+                    v0_1.clone(),
                     string("        s = mpmath.zeta(s)"),
                     Math::method3(v10.clone()),
                 );
-                let v15: num_complex::Complex<f64> = Math::method17(v0.clone(), v10);
+                let v15: num_complex::Complex<f64> = Math::method17(v0_1.clone(), v10);
                 let v17: Option<num_complex::Complex<f64>> = v14.ok();
                 let _v20: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                 {
@@ -1176,8 +1176,8 @@ mod module_b7a9935b {
             }
             ()
         }
-        pub fn method22(v0: Result<(), pyo3::PyErr>) -> Result<(), pyo3::PyErr> {
-            v0
+        pub fn method22(v0_1: Result<(), pyo3::PyErr>) -> Result<(), pyo3::PyErr> {
+            v0_1
         }
         pub fn method0() {
             pyo3::prepare_freethreaded_python();
@@ -1199,14 +1199,14 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method24(v0: pyo3::Python) {
+        pub fn method24(v0_1: pyo3::Python) {
             let v2: num_complex::Complex<f64> = num_complex::Complex::new(2.0_f64, -2.0_f64);
             let v5: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
-                v0.clone(),
+                v0_1.clone(),
                 string("        s = mpmath.zeta(s)"),
                 Math::method3(v2.clone()),
             );
-            let v6: num_complex::Complex<f64> = Math::method17(v0, v2);
+            let v6: num_complex::Complex<f64> = Math::method17(v0_1, v2);
             let v8: Option<num_complex::Complex<f64>> = v5.ok();
             let _v11: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
             {
@@ -1311,15 +1311,15 @@ mod module_b7a9935b {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    LrcPtr::new(Math::UH0::UH0_1(-40.0_f64,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 LrcPtr::new(Math::UH0::UH0_0)))))))))))))))))))))))))))))))))))))))))
         }
-        pub fn method28(v0: pyo3::Python, v1: LrcPtr<Math::UH0>) {
-            let v0: MutCell<pyo3::Python> = MutCell::new(v0.clone());
-            let v1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1.clone());
+        pub fn method28(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>) {
+            let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
+            let v1_1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1_1.clone());
             '_method28: loop {
-                break '_method28 (match v1.get().clone().as_ref() {
+                break '_method28 (match v1_1.get().clone().as_ref() {
                     Math::UH0::UH0_0 => (),
-                    Math::UH0::UH0_1(v1_1_0, v1_1_1) => {
+                    Math::UH0::UH0_1(v1_1_1_0, v1_1_1_1) => {
                         let v5: num_complex::Complex<f64> = num_complex::Complex::new(
-                            match v1.get().clone().as_ref() {
+                            match v1_1.get().clone().as_ref() {
                                 Math::UH0::UH0_1(x, _) => x.clone(),
                                 _ => unreachable!(),
                             },
@@ -1327,11 +1327,11 @@ mod module_b7a9935b {
                         );
                         let v8: Result<num_complex::Complex<f64>, std::string::String> =
                             Math::method4(
-                                v0.get().clone(),
+                                v0_1.get().clone(),
                                 string("        s = mpmath.zeta(s)"),
                                 Math::method3(v5.clone()),
                             );
-                        let v9: num_complex::Complex<f64> = Math::method17(v0.get().clone(), v5);
+                        let v9: num_complex::Complex<f64> = Math::method17(v0_1.get().clone(), v5);
                         let v11: Option<num_complex::Complex<f64>> = v8.ok();
                         let _v14: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                         {
@@ -1388,14 +1388,14 @@ mod module_b7a9935b {
                                     panic!("{}", v88,);
                                 }
                                 {
-                                    let v0_temp: pyo3::Python = v0.get().clone();
-                                    let v1_temp: LrcPtr<Math::UH0> = match v1.get().clone().as_ref()
-                                    {
-                                        Math::UH0::UH0_1(_, x) => x.clone(),
-                                        _ => unreachable!(),
-                                    };
-                                    v0.set(v0_temp);
-                                    v1.set(v1_temp);
+                                    let v0_1_temp: pyo3::Python = v0_1.get().clone();
+                                    let v1_1_temp: LrcPtr<Math::UH0> =
+                                        match v1_1.get().clone().as_ref() {
+                                            Math::UH0::UH0_1(_, x) => x.clone(),
+                                            _ => unreachable!(),
+                                        };
+                                    v0_1.set(v0_1_temp);
+                                    v1_1.set(v1_1_temp);
                                     continue '_method28;
                                 }
                             }
@@ -1404,8 +1404,8 @@ mod module_b7a9935b {
                 });
             }
         }
-        pub fn method26(v0: pyo3::Python) {
-            Math::method28(v0, Math::method27());
+        pub fn method26(v0_1: pyo3::Python) {
+            Math::method28(v0_1, Math::method27());
         }
         pub fn method25() {
             pyo3::prepare_freethreaded_python();
@@ -1427,7 +1427,7 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method30(v0: pyo3::Python) {
+        pub fn method30(v0_1: pyo3::Python) {
             let v13: Array<num_complex::Complex<f64>> = new_array(&[
                 num_complex::Complex::new(0.5_f64, 14.134725_f64),
                 num_complex::Complex::new(0.5_f64, 21.02204_f64),
@@ -1444,11 +1444,11 @@ mod module_b7a9935b {
                 let v17: i32 = v15.l0.get().clone();
                 let v18: num_complex::Complex<f64> = v13[v17].clone();
                 let v21: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
-                    v0.clone(),
+                    v0_1.clone(),
                     string("        s = mpmath.zeta(s)"),
                     Math::method3(v18.clone()),
                 );
-                let v22: num_complex::Complex<f64> = Math::method17(v0.clone(), v18);
+                let v22: num_complex::Complex<f64> = Math::method17(v0_1.clone(), v18);
                 let v24: Option<num_complex::Complex<f64>> = v21.ok();
                 let _v27: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                 {
@@ -1537,24 +1537,24 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method32(v0: pyo3::Python) {
-            let v1: Array<f64> = new_array(&[
+        pub fn method32(v0_1: pyo3::Python) {
+            let v1_1: Array<f64> = new_array(&[
                 2.0_f64, 3.0_f64, 4.0_f64, 5.0_f64, 10.0_f64, 20.0_f64, 50.0_f64,
             ]);
-            let v2: i32 = count(v1.clone());
+            let v2: i32 = count(v1_1.clone());
             let v3: LrcPtr<Math::Mut0> = LrcPtr::new(Math::Mut0 {
                 l0: MutCell::new(0_i32),
             });
             while Math::method2(v2, v3.clone()) {
                 let v5: i32 = v3.l0.get().clone();
-                let v6: f64 = v1[v5].clone();
+                let v6: f64 = v1_1[v5].clone();
                 let v8: num_complex::Complex<f64> = num_complex::Complex::new(v6, 0.0_f64);
                 let v11: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
-                    v0.clone(),
+                    v0_1.clone(),
                     string("        s = mpmath.zeta(s)"),
                     Math::method3(v8.clone()),
                 );
-                let v12: num_complex::Complex<f64> = Math::method17(v0.clone(), v8);
+                let v12: num_complex::Complex<f64> = Math::method17(v0_1.clone(), v8);
                 let v14: Option<num_complex::Complex<f64>> = v11.ok();
                 let _v17: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                 {
@@ -1639,14 +1639,14 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method34(v0: pyo3::Python) {
+        pub fn method34(v0_1: pyo3::Python) {
             let v2: num_complex::Complex<f64> = num_complex::Complex::new(1.0_f64, 0.0_f64);
             let v5: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
-                v0.clone(),
+                v0_1.clone(),
                 string("        s = mpmath.zeta(s)"),
                 Math::method3(v2.clone()),
             );
-            let v6: num_complex::Complex<f64> = Math::method17(v0, v2);
+            let v6: num_complex::Complex<f64> = Math::method17(v0_1, v2);
             let v8: Option<num_complex::Complex<f64>> = v5.ok();
             let _v11: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
             {
@@ -1724,14 +1724,14 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method36(v0: pyo3::Python) {
+        pub fn method36(v0_1: pyo3::Python) {
             let v2: num_complex::Complex<f64> = num_complex::Complex::new(2.0_f64, 10.0_f64);
             let v5: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
-                v0.clone(),
+                v0_1.clone(),
                 string("        s = mpmath.zeta(s)"),
                 Math::method3(v2.clone()),
             );
-            let v6: num_complex::Complex<f64> = Math::method17(v0.clone(), v2.clone());
+            let v6: num_complex::Complex<f64> = Math::method17(v0_1.clone(), v2.clone());
             let v8: Option<num_complex::Complex<f64>> = v5.ok();
             let _v11: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
             {
@@ -1763,11 +1763,11 @@ mod module_b7a9935b {
                 let v59: f64 = -v2.im;
                 let v61: num_complex::Complex<f64> = num_complex::Complex::new(v56, v59);
                 let v64: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
-                    v0.clone(),
+                    v0_1.clone(),
                     string("        s = mpmath.zeta(s)"),
                     Math::method3(v61.clone()),
                 );
-                let v65: num_complex::Complex<f64> = Math::method17(v0, v61);
+                let v65: num_complex::Complex<f64> = Math::method17(v0_1, v61);
                 let v67: Option<num_complex::Complex<f64>> = v64.ok();
                 let _v70: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                 {
@@ -1849,14 +1849,14 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method38(v0: pyo3::Python) {
+        pub fn method38(v0_1: pyo3::Python) {
             let v2: num_complex::Complex<f64> = num_complex::Complex::new(0.01_f64, 0.01_f64);
             let v5: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
-                v0.clone(),
+                v0_1.clone(),
                 string("        s = mpmath.zeta(s)"),
                 Math::method3(v2.clone()),
             );
-            let v6: num_complex::Complex<f64> = Math::method17(v0, v2);
+            let v6: num_complex::Complex<f64> = Math::method17(v0_1, v2);
             let v8: Option<num_complex::Complex<f64>> = v5.ok();
             let _v11: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
             {
@@ -1967,27 +1967,27 @@ mod module_b7a9935b {
                 )),
             ))
         }
-        pub fn method42(v0: pyo3::Python, v1: LrcPtr<Math::UH0>) {
-            let v0: MutCell<pyo3::Python> = MutCell::new(v0.clone());
-            let v1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1.clone());
+        pub fn method42(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>) {
+            let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
+            let v1_1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1_1.clone());
             '_method42: loop {
-                break '_method42 (match v1.get().clone().as_ref() {
+                break '_method42 (match v1_1.get().clone().as_ref() {
                     Math::UH0::UH0_0 => (),
-                    Math::UH0::UH0_1(v1_1_0, v1_1_1) => {
+                    Math::UH0::UH0_1(v1_1_1_0, v1_1_1_1) => {
                         let v5: num_complex::Complex<f64> = num_complex::Complex::new(
                             0.0_f64,
-                            match v1.get().clone().as_ref() {
+                            match v1_1.get().clone().as_ref() {
                                 Math::UH0::UH0_1(x, _) => x.clone(),
                                 _ => unreachable!(),
                             },
                         );
                         let v8: Result<num_complex::Complex<f64>, std::string::String> =
                             Math::method4(
-                                v0.get().clone(),
+                                v0_1.get().clone(),
                                 string("        s = mpmath.zeta(s)"),
                                 Math::method3(v5.clone()),
                             );
-                        let v9: num_complex::Complex<f64> = Math::method17(v0.get().clone(), v5);
+                        let v9: num_complex::Complex<f64> = Math::method17(v0_1.get().clone(), v5);
                         let v11: Option<num_complex::Complex<f64>> = v8.ok();
                         let _v14: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                         {
@@ -2044,14 +2044,14 @@ mod module_b7a9935b {
                                     panic!("{}", v104,);
                                 }
                                 {
-                                    let v0_temp: pyo3::Python = v0.get().clone();
-                                    let v1_temp: LrcPtr<Math::UH0> = match v1.get().clone().as_ref()
-                                    {
-                                        Math::UH0::UH0_1(_, x) => x.clone(),
-                                        _ => unreachable!(),
-                                    };
-                                    v0.set(v0_temp);
-                                    v1.set(v1_temp);
+                                    let v0_1_temp: pyo3::Python = v0_1.get().clone();
+                                    let v1_1_temp: LrcPtr<Math::UH0> =
+                                        match v1_1.get().clone().as_ref() {
+                                            Math::UH0::UH0_1(_, x) => x.clone(),
+                                            _ => unreachable!(),
+                                        };
+                                    v0_1.set(v0_1_temp);
+                                    v1_1.set(v1_1_temp);
                                     continue '_method42;
                                 }
                             }
@@ -2060,8 +2060,8 @@ mod module_b7a9935b {
                 });
             }
         }
-        pub fn method40(v0: pyo3::Python) {
-            Math::method42(v0, Math::method41());
+        pub fn method40(v0_1: pyo3::Python) {
+            Math::method42(v0_1, Math::method41());
         }
         pub fn method39() {
             pyo3::prepare_freethreaded_python();
@@ -2101,24 +2101,24 @@ mod module_b7a9935b {
                 )),
             ))
         }
-        pub fn method46(v0: pyo3::Python, v1: LrcPtr<Math::UH1>) {
-            let v0: MutCell<pyo3::Python> = MutCell::new(v0.clone());
-            let v1: MutCell<LrcPtr<Math::UH1>> = MutCell::new(v1.clone());
+        pub fn method46(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH1>) {
+            let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
+            let v1_1: MutCell<LrcPtr<Math::UH1>> = MutCell::new(v1_1.clone());
             '_method46: loop {
-                break '_method46 (match v1.get().clone().as_ref() {
+                break '_method46 (match v1_1.get().clone().as_ref() {
                     Math::UH1::UH1_0 => (),
-                    Math::UH1::UH1_1(v1_1_0, v1_1_1) => {
-                        let v2: num_complex::Complex<f64> = match v1.get().clone().as_ref() {
+                    Math::UH1::UH1_1(v1_1_1_0, v1_1_1_1) => {
+                        let v2: num_complex::Complex<f64> = match v1_1.get().clone().as_ref() {
                             Math::UH1::UH1_1(x, _) => x.clone(),
                             _ => unreachable!(),
                         };
                         let v6: Result<num_complex::Complex<f64>, std::string::String> =
                             Math::method4(
-                                v0.get().clone(),
+                                v0_1.get().clone(),
                                 string("        s = mpmath.zeta(s)"),
                                 Math::method3(v2.clone()),
                             );
-                        let v7: num_complex::Complex<f64> = Math::method17(v0.get().clone(), v2);
+                        let v7: num_complex::Complex<f64> = Math::method17(v0_1.get().clone(), v2);
                         let v9: Option<num_complex::Complex<f64>> = v6.ok();
                         let _v12: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                         {
@@ -2175,14 +2175,14 @@ mod module_b7a9935b {
                                     panic!("{}", v102,);
                                 }
                                 {
-                                    let v0_temp: pyo3::Python = v0.get().clone();
-                                    let v1_temp: LrcPtr<Math::UH1> = match v1.get().clone().as_ref()
-                                    {
-                                        Math::UH1::UH1_1(_, x) => x.clone(),
-                                        _ => unreachable!(),
-                                    };
-                                    v0.set(v0_temp);
-                                    v1.set(v1_temp);
+                                    let v0_1_temp: pyo3::Python = v0_1.get().clone();
+                                    let v1_1_temp: LrcPtr<Math::UH1> =
+                                        match v1_1.get().clone().as_ref() {
+                                            Math::UH1::UH1_1(_, x) => x.clone(),
+                                            _ => unreachable!(),
+                                        };
+                                    v0_1.set(v0_1_temp);
+                                    v1_1.set(v1_1_temp);
                                     continue '_method46;
                                 }
                             }
@@ -2191,8 +2191,8 @@ mod module_b7a9935b {
                 });
             }
         }
-        pub fn method44(v0: pyo3::Python) {
-            Math::method46(v0, Math::method45());
+        pub fn method44(v0_1: pyo3::Python) {
+            Math::method46(v0_1, Math::method45());
         }
         pub fn method43() {
             pyo3::prepare_freethreaded_python();
@@ -2229,25 +2229,25 @@ mod module_b7a9935b {
                 )),
             ))
         }
-        pub fn method50(v0: pyo3::Python, v1: LrcPtr<Math::UH1>) {
-            let v0: MutCell<pyo3::Python> = MutCell::new(v0.clone());
-            let v1: MutCell<LrcPtr<Math::UH1>> = MutCell::new(v1.clone());
+        pub fn method50(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH1>) {
+            let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
+            let v1_1: MutCell<LrcPtr<Math::UH1>> = MutCell::new(v1_1.clone());
             '_method50: loop {
-                break '_method50 (match v1.get().clone().as_ref() {
+                break '_method50 (match v1_1.get().clone().as_ref() {
                     Math::UH1::UH1_0 => (),
-                    Math::UH1::UH1_1(v1_1_0, v1_1_1) => {
-                        let v2: num_complex::Complex<f64> = match v1.get().clone().as_ref() {
+                    Math::UH1::UH1_1(v1_1_1_0, v1_1_1_1) => {
+                        let v2: num_complex::Complex<f64> = match v1_1.get().clone().as_ref() {
                             Math::UH1::UH1_1(x, _) => x.clone(),
                             _ => unreachable!(),
                         };
                         let v6: Result<num_complex::Complex<f64>, std::string::String> =
                             Math::method4(
-                                v0.get().clone(),
+                                v0_1.get().clone(),
                                 string("        s = mpmath.zeta(s)"),
                                 Math::method3(v2.clone()),
                             );
                         let v7: num_complex::Complex<f64> =
-                            Math::method17(v0.get().clone(), v2.clone());
+                            Math::method17(v0_1.get().clone(), v2.clone());
                         let v9: Option<num_complex::Complex<f64>> = v6.ok();
                         let _v12: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                         {
@@ -2300,7 +2300,7 @@ mod module_b7a9935b {
                                 num_complex::Complex::new(1.0_f64, 0.0_f64);
                             let v88: Result<num_complex::Complex<f64>, std::string::String> =
                                 Math::method20(
-                                    v0.get().clone(),
+                                    v0_1.get().clone(),
                                     string("        s = mpmath.gamma(s)"),
                                     Math::method3(v83 - v2.clone()),
                                 );
@@ -2341,12 +2341,12 @@ mod module_b7a9935b {
                                     num_complex::Complex::new(v141, v144);
                                 let v149: Result<num_complex::Complex<f64>, std::string::String> =
                                     Math::method4(
-                                        v0.get().clone(),
+                                        v0_1.get().clone(),
                                         string("        s = mpmath.zeta(s)"),
                                         Math::method3(v146.clone()),
                                     );
                                 let v150: num_complex::Complex<f64> =
-                                    Math::method17(v0.get().clone(), v146);
+                                    Math::method17(v0_1.get().clone(), v146);
                                 let v152: Option<num_complex::Complex<f64>> = v149.ok();
                                 let _v155: LrcPtr<MutCell<Option<Math::US0>>> =
                                     refCell(None::<Math::US0>);
@@ -2411,14 +2411,14 @@ mod module_b7a9935b {
                                             panic!("{}", v243,);
                                         }
                                         {
-                                            let v0_temp: pyo3::Python = v0.get().clone();
-                                            let v1_temp: LrcPtr<Math::UH1> =
-                                                match v1.get().clone().as_ref() {
+                                            let v0_1_temp: pyo3::Python = v0_1.get().clone();
+                                            let v1_1_temp: LrcPtr<Math::UH1> =
+                                                match v1_1.get().clone().as_ref() {
                                                     Math::UH1::UH1_1(_, x) => x.clone(),
                                                     _ => unreachable!(),
                                                 };
-                                            v0.set(v0_temp);
-                                            v1.set(v1_temp);
+                                            v0_1.set(v0_1_temp);
+                                            v1_1.set(v1_1_temp);
                                             continue '_method50;
                                         }
                                     }
@@ -2429,8 +2429,8 @@ mod module_b7a9935b {
                 });
             }
         }
-        pub fn method48(v0: pyo3::Python) {
-            Math::method50(v0, Math::method49());
+        pub fn method48(v0_1: pyo3::Python) {
+            Math::method50(v0_1, Math::method49());
         }
         pub fn method47() {
             pyo3::prepare_freethreaded_python();
@@ -2499,30 +2499,30 @@ mod module_b7a9935b {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    LrcPtr::new(Math::UH0::UH0_1(71.0_f64,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 LrcPtr::new(Math::UH0::UH0_0)))))))))))))))))))))))))))))))))))))))))
         }
-        pub fn method56(v0: f64, v1: LrcPtr<Math::UH0>, v2: f64) -> f64 {
-            let v0: MutCell<f64> = MutCell::new(v0);
-            let v1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1.clone());
+        pub fn method56(v0_1: f64, v1_1: LrcPtr<Math::UH0>, v2: f64) -> f64 {
+            let v0_1: MutCell<f64> = MutCell::new(v0_1);
+            let v1_1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1_1.clone());
             let v2: MutCell<f64> = MutCell::new(v2);
             '_method56: loop {
-                break '_method56 (match v1.get().clone().as_ref() {
+                break '_method56 (match v1_1.get().clone().as_ref() {
                     Math::UH0::UH0_0 => v2.get().clone(),
-                    Math::UH0::UH0_1(v1_1_0, v1_1_1) => {
-                        let v5: f64 = -v0.get().clone();
+                    Math::UH0::UH0_1(v1_1_1_0, v1_1_1_1) => {
+                        let v5: f64 = -v0_1.get().clone();
                         {
-                            let v0_temp: f64 = v0.get().clone();
-                            let v1_temp: LrcPtr<Math::UH0> = match v1.get().clone().as_ref() {
+                            let v0_1_temp: f64 = v0_1.get().clone();
+                            let v1_1_temp: LrcPtr<Math::UH0> = match v1_1.get().clone().as_ref() {
                                 Math::UH0::UH0_1(_, x) => x.clone(),
                                 _ => unreachable!(),
                             };
                             let v2_temp: f64 = v2.get().clone()
                                 / (1.0_f64
-                                    - match v1.get().clone().as_ref() {
+                                    - match v1_1.get().clone().as_ref() {
                                         Math::UH0::UH0_1(x, _) => x.clone(),
                                         _ => unreachable!(),
                                     }
                                     .powf(v5));
-                            v0.set(v0_temp);
-                            v1.set(v1_temp);
+                            v0_1.set(v0_1_temp);
+                            v1_1.set(v1_1_temp);
                             v2.set(v2_temp);
                             continue '_method56;
                         }
@@ -2530,9 +2530,9 @@ mod module_b7a9935b {
                 });
             }
         }
-        pub fn method55(v0: pyo3::Python, v1: LrcPtr<Math::UH0>, v2: LrcPtr<Math::UH0>) {
-            let v0: MutCell<pyo3::Python> = MutCell::new(v0.clone());
-            let v1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1.clone());
+        pub fn method55(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>, v2: LrcPtr<Math::UH0>) {
+            let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
+            let v1_1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1_1.clone());
             let v2: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v2.clone());
             '_method55: loop {
                 break '_method55 (match v2.get().clone().as_ref() {
@@ -2543,14 +2543,14 @@ mod module_b7a9935b {
                             _ => unreachable!(),
                         };
                         let v6: num_complex::Complex<f64> = num_complex::Complex::new(v3, 0.0_f64);
-                        let v8: f64 = Math::method56(v3, v1.get().clone(), 1.0_f64);
+                        let v8: f64 = Math::method56(v3, v1_1.get().clone(), 1.0_f64);
                         let v11: Result<num_complex::Complex<f64>, std::string::String> =
                             Math::method4(
-                                v0.get().clone(),
+                                v0_1.get().clone(),
                                 string("        s = mpmath.zeta(s)"),
                                 Math::method3(v6.clone()),
                             );
-                        let v12: num_complex::Complex<f64> = Math::method17(v0.get().clone(), v6);
+                        let v12: num_complex::Complex<f64> = Math::method17(v0_1.get().clone(), v6);
                         let v14: Option<num_complex::Complex<f64>> = v11.ok();
                         let _v17: LrcPtr<MutCell<Option<Math::US0>>> = refCell(None::<Math::US0>);
                         {
@@ -2609,15 +2609,15 @@ mod module_b7a9935b {
                                     panic!("{}", v95,);
                                 }
                                 {
-                                    let v0_temp: pyo3::Python = v0.get().clone();
-                                    let v1_temp: LrcPtr<Math::UH0> = v1.get().clone();
+                                    let v0_1_temp: pyo3::Python = v0_1.get().clone();
+                                    let v1_1_temp: LrcPtr<Math::UH0> = v1_1.get().clone();
                                     let v2_temp: LrcPtr<Math::UH0> = match v2.get().clone().as_ref()
                                     {
                                         Math::UH0::UH0_1(_, x) => x.clone(),
                                         _ => unreachable!(),
                                     };
-                                    v0.set(v0_temp);
-                                    v1.set(v1_temp);
+                                    v0_1.set(v0_1_temp);
+                                    v1_1.set(v1_1_temp);
                                     v2.set(v2_temp);
                                     continue '_method55;
                                 }
@@ -2627,9 +2627,9 @@ mod module_b7a9935b {
                 });
             }
         }
-        pub fn method52(v0: pyo3::Python) {
-            let v1: LrcPtr<Math::UH0> = Math::method53();
-            Math::method55(v0, Math::method54(), v1)
+        pub fn method52(v0_1: pyo3::Python) {
+            let v1_1: LrcPtr<Math::UH0> = Math::method53();
+            Math::method55(v0_1, Math::method54(), v1_1)
         }
         pub fn method51() {
             pyo3::prepare_freethreaded_python();
@@ -2652,7 +2652,7 @@ mod module_b7a9935b {
             }
         }
         pub fn closure0(unitVar: (), unitVar_1: ()) {
-            let v1: bool = true;
+            let v1_1: bool = true;
             () //;
         } /* /*;
           {
@@ -2811,28 +2811,28 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn closure5(unitVar: (), v0: Array<string>) -> i32 {
+        pub fn closure5(unitVar: (), v0_1: Array<string>) -> i32 {
             {
                 let value: string = sprintf!("value: {}", 1_i32);
                 printfn!("{0}", value)
             }
             0_i32
         }
-        pub fn v30() -> Func0<()> {
-            static v30: OnceInit<Func0<()>> = OnceInit::new();
-            v30.get_or_init(|| Func0::new(move || Math::closure0((), ())))
+        pub fn v0() -> Func0<()> {
+            static v0: OnceInit<Func0<()>> = OnceInit::new();
+            v0.get_or_init(|| Func0::new(move || Math::closure0((), ())))
                 .clone()
         }
         pub fn tests() {
-            (Math::v30())();
+            (Math::v0())();
         }
-        pub fn v31() -> Func1<Array<string>, i32> {
-            static v31: OnceInit<Func1<Array<string>, i32>> = OnceInit::new();
-            v31.get_or_init(|| Func1::new(move |v: Array<string>| Math::closure5((), v)))
+        pub fn v1() -> Func1<Array<string>, i32> {
+            static v1: OnceInit<Func1<Array<string>, i32>> = OnceInit::new();
+            v1.get_or_init(|| Func1::new(move |v: Array<string>| Math::closure5((), v)))
                 .clone()
         }
         pub fn main(args: Array<string>) -> i32 {
-            (Math::v31())(args)
+            (Math::v1())(args)
         }
     }
 }

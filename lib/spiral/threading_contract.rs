@@ -45,7 +45,7 @@ pub mod Threading {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    pub fn closure1(v0: LrcPtr<CancellationTokenSource>, unitVar: ()) {
+    pub fn closure1(v0_1: LrcPtr<CancellationTokenSource>, unitVar: ()) {
         let _v3: MutCell<Option<()>> = MutCell::new(None::<()>);
         defaultOf::<()>();
         _v3.set(Some(()));
@@ -55,21 +55,21 @@ pub mod Threading {
         }
         ()
     }
-    pub fn method0(v0: LrcPtr<CancellationTokenSource>) -> Func0<()> {
+    pub fn method0(v0_1: LrcPtr<CancellationTokenSource>) -> Func0<()> {
         Func0::new({
-            let v0 = v0.clone();
-            move || Threading::closure1(v0.clone(), ())
+            let v0_1 = v0_1.clone();
+            move || Threading::closure1(v0_1.clone(), ())
         })
     }
-    pub fn method1(v0: LrcPtr<CancellationTokenSource>) -> Func0<()> {
+    pub fn method1(v0_1: LrcPtr<CancellationTokenSource>) -> Func0<()> {
         Func0::new({
-            let v0 = v0.clone();
-            move || Threading::closure1(v0.clone(), ())
+            let v0_1 = v0_1.clone();
+            move || Threading::closure1(v0_1.clone(), ())
         })
     }
     pub fn closure0(
         unitVar: (),
-        v0: Option<CancellationToken>,
+        v0_1: Option<CancellationToken>,
     ) -> (CancellationToken, LrcPtr<dyn IDisposable>) {
         let _v3: MutCell<Option<(CancellationToken, LrcPtr<dyn IDisposable>)>> =
             MutCell::new(None::<(CancellationToken, LrcPtr<dyn IDisposable>)>);
@@ -85,11 +85,11 @@ pub mod Threading {
             (patternInput_1.0.clone(), patternInput_1.1.clone())
         }
     }
-    pub fn v6() -> Func1<Option<CancellationToken>, (CancellationToken, LrcPtr<dyn IDisposable>)> {
-        static v6: OnceInit<
+    pub fn v0() -> Func1<Option<CancellationToken>, (CancellationToken, LrcPtr<dyn IDisposable>)> {
+        static v0: OnceInit<
             Func1<Option<CancellationToken>, (CancellationToken, LrcPtr<dyn IDisposable>)>,
         > = OnceInit::new();
-        v6.get_or_init(|| {
+        v0.get_or_init(|| {
             Func1::new(move |v: Option<CancellationToken>| Threading::closure0((), v))
         })
         .clone()
@@ -97,7 +97,7 @@ pub mod Threading {
     pub fn new_disposable_token(
         x: Option<CancellationToken>,
     ) -> (CancellationToken, LrcPtr<dyn IDisposable>) {
-        (Threading::v6())(x)
+        (Threading::v0())(x)
     }
     on_startup!(());
 }

@@ -1,231 +1,31 @@
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("core::any::Any")>]
-#endif
-type core_any_Any = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("_")>]
-#endif
-type core_ops_Try<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>]
-#endif
-type Func0<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Func1<$0, $1>")>]
-#endif
-type Func0<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Box<$0>")>]
-#endif
-type Box<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("dyn $0")>]
-#endif
-type Dyn<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Send")>]
-#endif
-type Send<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>]
-#endif
-type Fn<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn()")>]
-#endif
-type FnUnit = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>]
-#endif
-type FnOnce<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn($0)")>]
-#endif
-type ActionFn<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")>]
-#endif
-type ActionFn2<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("impl $0")>]
-#endif
-type Impl<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("mut $0")>]
-#endif
-type Mut<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("&$0")>]
-#endif
-type Ref<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0 + $1")>]
-#endif
-type LifetimeJoin<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("'static")>]
-#endif
-type StaticLifetime = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0")>]
-#endif
-type LifetimeRef<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("$0 $1")>]
-#endif
-type Lifetime<'T, 'U> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("MutCell<$0>")>]
-#endif
-type MutCell<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::any::Any")>]
-#endif
-type std_any_Any = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::borrow::Cow<$0>")>]
-#endif
-type std_borrow_Cow<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell<$0>")>]
-#endif
-type std_cell_RefCell<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin<$0>")>]
-#endif
-type std_pin_Pin<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc<$0>")>]
-#endif
-type std_rc_Rc<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak<$0>")>]
-#endif
-type std_rc_Weak<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::collections::HashMap<$0, $1>")>]
-#endif
-type std_collections_HashMap<'K, 'V> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::collections::BTreeMap<$0, $1>")>]
-#endif
-type std_collections_BTreeMap<'K, 'V> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("[$0]")>]
-#endif
-type Slice<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("_")>]
-#endif
-type Slice'<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("Vec<$0>")>]
-#endif
-type Vec<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("str")>]
-#endif
-type Str = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")>]
-#endif
-type base64_DecodeError = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")>]
-#endif
-type borsh_io_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("encoding_rs::Encoding")>]
-#endif
-type encoding_rs_Encoding = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")>]
-#endif
-type js_sys_JsString = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")>]
-#endif
-type serde_json_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")>]
-#endif
-type serde_json_Value = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")>]
-#endif
-type serde_wasm_bindgen_Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")>]
-#endif
-type std_ffi_OsStr = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")>]
-#endif
-type std_ffi_OsString = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::fmt::Display<$0>")>]
-#endif
-type std_fmt_Display<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")>]
-#endif
-type std_str_Utf8Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::string::FromUtf8Error")>]
-#endif
-type std_string_FromUtf8Error = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
-#endif
-type std_string_String = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::slice::Windows<$0>")>]
-#endif
-type std_slice_Windows<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Regex")>]
-#endif
-type regex_Regex = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Captures<$0>")>]
-#endif
-type regex_Captures<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::CaptureMatches")>]
-#endif
-type regex_CaptureMatches = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::CaptureNames")>]
-#endif
-type regex_CaptureNames = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Match")>]
-#endif
-type regex_Match = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("regex::Error")>]
-#endif
-type regex_Error = class end
-#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("chrono::DateTime<$0>")>]
 #endif
 type chrono_DateTime<'T> = class end
-#if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("chrono::Local")>]
-#endif
-type chrono_Local = class end
 #if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("chrono::NaiveDateTime")>]
 #endif
 type chrono_NaiveDateTime = class end
 #if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("&$0")>]
+#endif
+type Ref<'T> = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>]
+#endif
+type std_string_String = class end
+#if FABLE_COMPILER
 [<Fable.Core.Erase; Fable.Core.Emit("chrono::Utc")>]
 #endif
 type chrono_Utc = class end
 #if FABLE_COMPILER
-[<Fable.Core.Erase; Fable.Core.Emit("std::time::Duration")>]
+[<Fable.Core.Erase; Fable.Core.Emit("chrono::Local")>]
 #endif
-type std_time_Duration = class end
+type chrono_Local = class end
+#if FABLE_COMPILER
+[<Fable.Core.Erase; Fable.Core.Emit("str")>]
+#endif
+type Str = class end
 type [<Struct>] US0 =
     | US0_0 of f0_0 : chrono_DateTime<chrono_Utc>
     | US0_1
@@ -1237,20 +1037,20 @@ and closure13 () (v0 : System.DateTime) : string =
     let v5 : (string -> string) = v0.ToString
     let v6 : string = "yyyy-MM-ddTHH-mm-ss.fff"
     v5 v6
-let v30 : (System.Guid -> (System.DateTime -> System.Guid)) = closure0()
-let date_time_guid_from_date_time x = v30 x
-let v31 : (System.Guid -> System.DateTime) = closure2()
-let date_time_from_guid x = v31 x
-let v32 : (System.Guid -> (int64 -> System.Guid)) = closure6()
-let timestamp_guid_from_timestamp x = v32 x
-let v33 : (System.Guid -> int64) = closure8()
-let timestamp_from_guid x = v33 x
-let v34 : (System.DateTime -> System.Guid) = closure9()
-let new_guid_from_date_time x = v34 x
-let v35 : (int64 -> System.Guid) = closure10()
-let new_guid_from_timestamp x = v35 x
-let v36 : (string -> (System.DateTime -> string)) = closure11()
-let format x = v36 x
-let v37 : (System.DateTime -> string) = closure13()
-let format_iso8601 x = v37 x
+let v0 : (System.Guid -> (System.DateTime -> System.Guid)) = closure0()
+let date_time_guid_from_date_time x = v0 x
+let v1 : (System.Guid -> System.DateTime) = closure2()
+let date_time_from_guid x = v1 x
+let v2 : (System.Guid -> (int64 -> System.Guid)) = closure6()
+let timestamp_guid_from_timestamp x = v2 x
+let v3 : (System.Guid -> int64) = closure8()
+let timestamp_from_guid x = v3 x
+let v4 : (System.DateTime -> System.Guid) = closure9()
+let new_guid_from_date_time x = v4 x
+let v5 : (int64 -> System.Guid) = closure10()
+let new_guid_from_timestamp x = v5 x
+let v6 : (string -> (System.DateTime -> string)) = closure11()
+let format x = v6 x
+let v7 : (System.DateTime -> string) = closure13()
+let format_iso8601 x = v7 x
 ()

@@ -1,10 +1,5 @@
 /// ## Tasks (Polyglot)
 
-/// ## types
-inl types () =
-    rust.types ()
-    sm'.types ()
-
 /// ## task_name
 nominal task_name = string
 

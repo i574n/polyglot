@@ -263,7 +263,7 @@ def method9(v0: Mut4, v1: str) -> None:
     v0.l0 = v12
 
 
-def closure5(v0: US0, v1: Callable[[], str], v2: Callable[[], str], unit_var: None) -> str:
+def closure5(v0: US0, v1: Callable[[], str], v2_1: Callable[[], str], unit_var: None) -> str:
     if State_trace_state() is None:
         State_trace_state(closure0(None, US0(0)))
 
@@ -277,14 +277,14 @@ def closure5(v0: US0, v1: Callable[[], str], v2: Callable[[], str], unit_var: No
 
     else: 
         x: int64 = v18
-        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2, unit_var: Any=unit_var) -> US2:
+        def x_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> US2:
             return US2(0, x)
 
         x_2 = x_1(None)
 
     _v480.contents = x_2
     v507: US2 = default_arg(_v480.contents, US2(1))
-    def _arrow222(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2, unit_var: Any=unit_var) -> Any:
+    def _arrow222(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1, unit_var: Any=unit_var) -> Any:
         v539: Any = create(op_subtraction(ticks_1(now()), v507.fields[0]))
         return create_1(1, 1, 1, hours(v539), minutes(v539), seconds(v539), milliseconds(v539))
 
@@ -344,7 +344,7 @@ def closure5(v0: US0, v1: Callable[[], str], v2: Callable[[], str], unit_var: No
 
     v1160: int64 = pattern_input[0].l0
     v1163: Mut4 = Mut4("")
-    method9(v1163, v2(None))
+    method9(v1163, v2_1(None))
     v1164: str = v1163.l0
     return trim_end(trim_start(((((((((("" + v772) + " ") + v1141) + " #") + str(v1160)) + " ") + v1(None)) + " / ") + v1164) + "", *to_array(empty())), *to_array(of_array([" ", "/"])))
 
@@ -390,15 +390,15 @@ def method10(v0: US0, v1: Callable[[], str]) -> None:
 
 
 
-def method4(v0: US0, v1: Callable[[], str], v2: Callable[[], str]) -> None:
-    def v3(__unit: None=None, v0: Any=v0, v1: Any=v1, v2: Any=v2) -> str:
-        return closure5(v0, v1, v2, None)
+def method4(v0: US0, v1: Callable[[], str], v2_1: Callable[[], str]) -> None:
+    def v3_1(__unit: None=None, v0: Any=v0, v1: Any=v1, v2_1: Any=v2_1) -> str:
+        return closure5(v0, v1, v2_1, None)
 
-    method10(v0, v3)
+    method10(v0, v3_1)
 
 
-def closure4(v0: US0, v1: Callable[[], str], v2: Callable[[], str]) -> None:
-    method4(v0, v1, v2)
+def closure4(v0: US0, v1: Callable[[], str], v2_1: Callable[[], str]) -> None:
+    method4(v0, v1, v2_1)
 
 
 def closure3(v0: US0, v1: Callable[[], str]) -> Callable[[Callable[[], str]], None]:
@@ -419,22 +419,22 @@ def _arrow227(v: US0) -> tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]:
     return closure0(None, v)
 
 
-v44: Callable[[US0], tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]] = _arrow227
+v2: Callable[[US0], tuple[Mut0, Mut1, Mut2, Mut3, int64 | None]] = _arrow227
 
-v45: US0 = US0(0)
+v3: US0 = US0(0)
 
 
 if State_trace_state() is None:
-    State_trace_state(v44(v45))
+    State_trace_state(v2(v3))
 
 
 def _arrow228(v: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
     return closure2(None, v)
 
 
-v51: Callable[[US0, Callable[[], str], Callable[[], str]], None] = _arrow228
+v9: Callable[[US0, Callable[[], str], Callable[[], str]], None] = _arrow228
 
 def trace(x: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
-    return v51(x)
+    return v9(x)
 
 

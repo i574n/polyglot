@@ -14,19 +14,6 @@ open testing
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::iter::Fuse<$0>\")>]\n#endif\ntype core_iter_Fuse<'T> = class end"
-        Python = fun () => ()
-    }
-
-#!markdown
-
 ## seq
 
 #!markdown
@@ -641,4 +628,8 @@ inl rev'' forall t u. (items : t) : seq' u =
 
 #!spiral
 
-nominal fuse t = $'core_iter_Fuse<`t>'
+nominal fuse t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::iter::Fuse<$0>\")>]\n#endif\ntype core_iter_Fuse<'T> = class end"
+        $'' : $'core_iter_Fuse<`t>'
+    )

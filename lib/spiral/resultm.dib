@@ -291,7 +291,7 @@ inl map_or_else forall t e u v. (fn : e -> v) (fn2 : u -> v) (source : result' t
 
 #!spiral
 
-inl as_ref forall t e. (source : result' t e) : result' (rust.ref' t) (rust.ref' e) =
+inl as_ref forall t e. (source : result' t e) : result' (rust.ref t) (rust.ref e) =
     !\($'"!source.as_ref()"')
 
 #!markdown
@@ -300,7 +300,7 @@ inl as_ref forall t e. (source : result' t e) : result' (rust.ref' t) (rust.ref'
 
 #!spiral
 
-inl as_ref' forall t e. (source : rust.ref' (result' t e)) : result' (rust.ref' t) (rust.ref' e) =
+inl as_ref' forall t e. (source : rust.ref (result' t e)) : result' (rust.ref t) (rust.ref e) =
     !\($'"!source.as_ref()"')
 
 #!markdown
@@ -318,7 +318,7 @@ inl unwrap_or' forall t u. (default : t) (x : result' t u) : t =
 
 #!spiral
 
-inl expect forall t u. (error : rust.ref' string) (x : result' t u) : t =
+inl expect forall t u. (error : rust.ref string) (x : result' t u) : t =
     !\($'"!x.expect(&!error)"')
 
 #!markdown
@@ -362,7 +362,6 @@ inl rc_try_unwrap forall t. (x : rust.rc t) : result' t (rust.rc t) =
 //// test
 ///! rust
 
-types ()
 rust.new_rc true
 |> rc_try_unwrap
 |> unbox

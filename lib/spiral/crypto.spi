@@ -1,25 +1,6 @@
 /// # crypto
 open rust_operators
 
-/// ## types
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"sha2::Sha256\")>]\n#endif\ntype sha2_Sha256 = class end"
-        Python = fun () => ()
-    }
-
-inl types () =
-    sm'.types ()
-    am'.types ()
-    threading.types ()
-    rust.types ()
-    date_time.types ()
-    file_system.types ()
-    stream.types ()
-    runtime.types ()
-    types ()
-
 /// ## fsharp
 
 /// ### sha256
@@ -47,7 +28,16 @@ inl get_file_hash' (path : string) : result string string =
     else result |> Error
 
 /// ### sha256'
-nominal sha256' = $'sha2_Sha256'
+nominal sha256' =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"sha2::Sha256\")>]\n#endif\ntype sha2_Sha256 = class end"
+                ) : () -> ()
+        }
+        $'' : $'sha2_Sha256'
+    )
 
 /// ### new_sha256
 inl new_sha256 () : sha256' =
@@ -55,11 +45,11 @@ inl new_sha256 () : sha256' =
     !\($'"result"')
 
 /// ### hasher_update
-inl hasher_update forall el dim. (slice : rust.ref' (am'.slice' el dim)) (hasher : sha256') : () =
+inl hasher_update forall el dim. (slice : rust.ref (am'.slice' el dim)) (hasher : sha256') : () =
     !\($'"sha2::Digest::update(&mut !hasher, !slice)"')
 
 /// ### hasher_finalize
-inl hasher_finalize (hasher : sha256') : rust.ref' (am'.slice u8) =
+inl hasher_finalize (hasher : sha256') : rust.ref (am'.slice u8) =
     !\($'"&sha2::Digest::finalize(!hasher)"')
 
 /// ### hash_read
@@ -209,6 +199,5 @@ inl hash_to_port (text : string) : u16 =
 
 /// ## main
 inl main () =
-    types ()
     $'let hash_text x = !hash_text x' : ()
     $'let hash_to_port x = !hash_to_port x' : ()

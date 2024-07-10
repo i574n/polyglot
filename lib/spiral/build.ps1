@@ -33,6 +33,8 @@ if (!$fast) {
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path reflection.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path base.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path iter.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path wasm.dib --retries 3" `
+            --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path leptos/leptos.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path util.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path platform.dib --retries 3" `
             --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path stream.dib --retries 3" `
@@ -49,7 +51,7 @@ if (!$fast) {
     } | Invoke-Block
 }
 
-{ . ../../apps/parser/dist/DibParser$(_exe) testing.dib spi async.dib spi runtime.dib spi trace.dib spi threading.dib spi networking.dib spi crypto.dib spi common.dib spi base.dib spi resultm.dib spi iter.dib spi env.dib spi parsing.dib spi console.dib spi date_time.dib spi file_system.dib spi guid.dib spi math.dib spi mapm.dib spi "optionm'.dib" spi "am'.dib" spi "sm'.dib" spi "sm'.dib" spir "listm'.dib" spi reflection.dib spi python.dib spi typescript.dib spi benchmark.dib spi stream.dib spi seq.dib spi util.dib spi platform.dib spi rust.dib spi physics.dib spi } | Invoke-Block
+{ . ../../apps/parser/dist/DibParser$(_exe) testing.dib spi async.dib spi runtime.dib spi trace.dib spi threading.dib spi networking.dib spi crypto.dib spi common.dib spi base.dib spi resultm.dib spi iter.dib spi env.dib spi parsing.dib spi console.dib spi date_time.dib spi file_system.dib spi guid.dib spi math.dib spi mapm.dib spi "optionm'.dib" spi "am'.dib" spi "sm'.dib" spi "sm'.dib" spir "listm'.dib" spi reflection.dib spi python.dib spi typescript.dib spi benchmark.dib spi stream.dib spi seq.dib spi util.dib spi platform.dib spi rust.dib spi physics.dib spi leptos/leptos.dib spi wasm.dib spi } | Invoke-Block
 
 { . ../../apps/spiral/dist/Supervisor$(_exe) --parallel --build-file async.spi async_.fsx --build-file runtime.spi runtime.fsx --build-file trace.spi trace.fsx --build-file threading.spi threading.fsx --build-file networking.spi networking.fsx --build-file crypto.spi crypto.fsx --build-file common.spi common.fsx --build-file date_time.spi date_time.fsx --build-file platform.spi platform.fsx --build-file file_system.spi file_system.fsx --build-file guid.spi guid.fsx --build-file "sm'.spi" sm.fsx } | Invoke-Block -Retries 3
 

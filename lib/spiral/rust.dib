@@ -14,134 +14,136 @@ open testing
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::any::Any\")>]\n#endif\ntype core_any_Any = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype core_ops_Try<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func0<$0>\")>]\n#endif\ntype Func0<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func1<$0, $1>\")>]\n#endif\ntype Func0<'T, 'U> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>]\n#endif\ntype Box<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>]\n#endif\ntype Dyn<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Send\")>]\n#endif\ntype Send<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>]\n#endif\ntype Fn<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn()\")>]\n#endif\ntype FnUnit = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>]\n#endif\ntype FnOnce<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0)\")>]\n#endif\ntype ActionFn<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0, $1)\")>]\n#endif\ntype ActionFn2<'T, 'U> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>]\n#endif\ntype Impl<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>]\n#endif\ntype Mut<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>]\n#endif\ntype Ref<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0 + $1\")>]\n#endif\ntype LifetimeJoin<'T, 'U> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"'static\")>]\n#endif\ntype StaticLifetime = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0\")>]\n#endif\ntype LifetimeRef<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0 $1\")>]\n#endif\ntype Lifetime<'T, 'U> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"MutCell<$0>\")>]\n#endif\ntype MutCell<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::any::Any\")>]\n#endif\ntype std_any_Any = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::borrow::Cow<$0>\")>]\n#endif\ntype std_borrow_Cow<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::cell::RefCell<$0>\")>]\n#endif\ntype std_cell_RefCell<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>]\n#endif\ntype std_pin_Pin<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>]\n#endif\ntype std_rc_Rc<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Weak<$0>\")>]\n#endif\ntype std_rc_Weak<'T> = class end"
-        Python = fun () => ()
-    }
-
-#!spiral
-
-inl types () =
-    types ()
-
-#!markdown
-
 ## rust
 
 #!markdown
 
-###
+### any
 
 #!spiral
 
-nominal any = $'core_any_Any'
+nominal any =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"core::any::Any\")>]\n#endif\ntype core_any_Any = class end"
+        $'' : $'core_any_Any'
+    )
 
 #!markdown
 
-###
+### try
 
 #!spiral
 
-nominal try t = $'core_ops_Try<`t>'
+nominal try t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype core_ops_Try<'T> = class end"
+        $'' : $'core_ops_Try<`t>'
+    )
 
 #!markdown
 
-###
+### cow
 
 #!spiral
 
-nominal cow t = $'std_borrow_Cow<`t>'
+nominal cow t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::borrow::Cow<$0>\")>]\n#endif\ntype std_borrow_Cow<'T> = class end"
+        $'' : $'std_borrow_Cow<`t>'
+    )
 
 #!markdown
 
-###
+### ref_cell
 
 #!spiral
 
-nominal ref_cell t = $'std_cell_RefCell<`t>'
+nominal ref_cell t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::cell::RefCell<$0>\")>]\n#endif\ntype std_cell_RefCell<'T> = class end"
+        $'' : $'std_cell_RefCell<`t>'
+    )
 
 #!markdown
 
-###
+### rc
 
 #!spiral
 
-nominal rc t = $'std_rc_Rc<`t>'
+nominal rc t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>]\n#endif\ntype std_rc_Rc<'T> = class end"
+        $'' : $'std_rc_Rc<`t>'
+    )
 
 #!markdown
 
-###
+### lifetime_ref
 
 #!spiral
 
-nominal lifetime_join' (t : * -> *) u = $'LifetimeRef<`(t u)>'
+nominal lifetime_ref (t : * -> *) u =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0\")>]\n#endif\ntype LifetimeRef<'T> = class end"
+        $'' : $'LifetimeRef<`(t u)>'
+    )
 
 #!markdown
 
-###
+### lifetime_join
 
 #!spiral
 
-nominal lifetime_join t u = $'LifetimeJoin<`t, `u>'
+nominal lifetime_join t u =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0 + $1\")>]\n#endif\ntype LifetimeJoin<'T, 'U> = class end"
+        $'' : $'LifetimeJoin<`t, `u>'
+    )
 
 #!markdown
 
-###
+### lifetime
 
 #!spiral
 
-nominal lifetime t u = $'Lifetime<`t, `u>'
+nominal lifetime t u =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"$0 $1\")>]\n#endif\ntype Lifetime<'T, 'U> = class end"
+        $'' : $'Lifetime<`t, `u>'
+    )
 
 #!markdown
 
-###
+### static_lifetime
 
 #!spiral
 
-nominal static_lifetime = $'StaticLifetime'
+nominal static_lifetime =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"'static\")>]\n#endif\ntype StaticLifetime = class end"
+        $'' : $'StaticLifetime'
+    )
 
 #!markdown
 
-###
+### ref
 
 #!spiral
 
-nominal ref t = $'Ref<`t>'
+nominal ref t =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>]\n#endif\ntype Ref<'T> = class end"
+                ) : () -> ()
+        }
+        $'' : $'Ref<`t>'
+    )
 
 #!markdown
 
-###
+### static_ref
 
 #!spiral
 
@@ -149,95 +151,139 @@ nominal static_ref t = ref (lifetime static_lifetime t)
 
 #!markdown
 
-###
+### weak_rc
 
 #!spiral
 
-nominal weak_rc t = $'std_rc_Weak<`t>'
+nominal weak_rc t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Weak<$0>\")>]\n#endif\ntype std_rc_Weak<'T> = class end"
+        $'' : $'std_rc_Weak<`t>'
+    )
 
 #!markdown
 
-###
+### box
 
 #!spiral
 
-nominal box t = $'Box<`t>'
+nominal box t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>]\n#endif\ntype Box<'T> = class end"
+        $'' : $'Box<`t>'
+    )
 
 #!markdown
 
-###
+### mut_cell
 
 #!spiral
 
-nominal mut_cell t = $'MutCell<`t>'
+nominal mut_cell t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"MutCell<$0>\")>]\n#endif\ntype MutCell<'T> = class end"
+        $'' : $'MutCell<`t>'
+    )
 
 #!markdown
 
-###
+### pin
 
 #!spiral
 
-nominal pin t = $'std_pin_Pin<`t>'
+nominal pin t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>]\n#endif\ntype std_pin_Pin<'T> = class end"
+        $'' : $'std_pin_Pin<`t>'
+    )
 
 #!markdown
 
-###
+### dyn'
 
 #!spiral
 
-nominal dyn' t = $'Dyn<`t>'
+nominal dyn' t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>]\n#endif\ntype Dyn<'T> = class end"
+        $'' : $'Dyn<`t>'
+    )
 
 #!markdown
 
-###
+### fn'
 
 #!spiral
 
-nominal fn' t = $'Fn<`t>'
+nominal fn' t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>]\n#endif\ntype Fn<'T> = class end"
+        $'' : $'Fn<`t>'
+    )
 
 #!markdown
 
-###
+### action_fn
 
 #!spiral
 
-nominal action_fn t = $'ActionFn<`t>'
+nominal action_fn t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0)\")>]\n#endif\ntype ActionFn<'T> = class end"
+        $'' : $'ActionFn<`t>'
+    )
 
 #!markdown
 
-###
+### action_fn2
 
 #!spiral
 
-nominal action_fn2 t u = $'ActionFn2<`t, `u>'
+nominal action_fn2 t u =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0, $1)\")>]\n#endif\ntype ActionFn2<'T, 'U> = class end"
+        $'' : $'ActionFn2<`t, `u>'
+    )
 
 #!markdown
 
-###
+### fn_once
 
 #!spiral
 
-nominal fn_once t = $'FnOnce<`t>'
+nominal fn_once t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>]\n#endif\ntype FnOnce<'T> = class end"
+        $'' : $'FnOnce<`t>'
+    )
 
 #!markdown
 
-###
+### fn_unit
 
 #!spiral
 
-nominal fn_unit = $'FnUnit'
+nominal fn_unit =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Fn()\")>]\n#endif\ntype FnUnit = class end"
+        $'' : $'FnUnit'
+    )
 
 #!markdown
 
-###
+### func0
 
 #!spiral
 
-nominal func0 t = $'Func0<`t>'
+nominal func0 t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func0<$0>\")>]\n#endif\ntype Func0<'T> = class end"
+        $'' : $'Func0<`t>'
+    )
 
 #!markdown
 
-###
+### func1
 
 #!spiral
 
@@ -245,40 +291,46 @@ nominal func1 t u =
     `(
         typecase t with
         | () => `func0 `u
-        | _ => $'' : $'Func0<`t, `u>'
+        | _ =>
+            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Func1<$0, $1>\")>]\n#endif\ntype Func0<'T, 'U> = class end"
+            $'' : $'Func0<`t, `u>'
     )
 
 #!markdown
 
-###
+### impl
 
 #!spiral
 
-nominal impl t = $'Impl<`t>'
+nominal impl t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>]\n#endif\ntype Impl<'T> = class end"
+        $'' : $'Impl<`t>'
+    )
 
 #!markdown
 
-###
+### mut'
 
 #!spiral
 
-nominal mut' t = $'Mut<`t>'
+nominal mut' t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>]\n#endif\ntype Mut<'T> = class end"
+        $'' : $'Mut<`t>'
+    )
 
 #!markdown
 
-###
+### send
 
 #!spiral
 
-nominal ref' t = $'Ref<`t>'
-
-#!markdown
-
-###
-
-#!spiral
-
-nominal send t = lifetime_join t $'Send<`t>'
+nominal send t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Send\")>]\n#endif\ntype Send<'T> = class end"
+        $'' : lifetime_join t $'Send<`t>'
+    )
 
 #!markdown
 
@@ -287,8 +339,7 @@ nominal send t = lifetime_join t $'Send<`t>'
 #!spiral
 
 inl emit_expr forall a t. (args : a) (code : string) : t =
-    real
-        $'Fable.Core.RustInterop.emitRustExpr !args !code ' : t
+    $'Fable.Core.RustInterop.emitRustExpr !args !code '
 
 #!markdown
 
@@ -388,8 +439,7 @@ inl rc_unwrap_or_clone forall t. (x : rc t) : t =
 #!spiral
 
 inl rc_downgrade forall t. (x : rc t) : weak_rc t =
-    inl x = join x
-    !\($'"std::rc::Rc::downgrade(&!x)"')
+    !\\(x, $'"std::rc::Rc::downgrade(&$0)"')
 
 #!markdown
 
@@ -398,8 +448,7 @@ inl rc_downgrade forall t. (x : rc t) : weak_rc t =
 #!spiral
 
 inl new_ref_cell forall t. (x : t) : ref_cell t =
-    inl x = join x
-    !\($'"std::cell::RefCell::new(!x)"')
+    !\\(x, $'"std::cell::RefCell::new($0)"')
 
 #!markdown
 
@@ -408,8 +457,7 @@ inl new_ref_cell forall t. (x : t) : ref_cell t =
 #!spiral
 
 inl ref_cell_borrow forall t. (x : rc (ref_cell t)) : t =
-    inl x = join x
-    !\($'"*std::cell::RefCell::borrow(&std::rc::Rc::clone(&!x))"')
+    !\\(x, $'"*std::cell::RefCell::borrow(&std::rc::Rc::clone(&$0))"')
 
 #!markdown
 
@@ -418,8 +466,7 @@ inl ref_cell_borrow forall t. (x : rc (ref_cell t)) : t =
 #!spiral
 
 inl ref_cell_borrow_mut forall t. (x : rc (ref_cell t)) : mut' t =
-    inl x = join x
-    !\($'"*std::cell::RefCell::borrow_mut(&std::rc::Rc::clone(&!x))"')
+    !\\(x, $'"*std::cell::RefCell::borrow_mut(&std::rc::Rc::clone(&$0))"')
 
 #!markdown
 
@@ -444,7 +491,7 @@ inl to_mut forall t. (x : t) : t =
 
 #!spiral
 
-inl ref_map forall t u. (fn : t -> u) (x : ref' t) : ref' u =
+inl ref_map forall t u. (fn : t -> u) (x : ref t) : ref u =
     !\($'"!fn(!x)"')
 
 #!markdown
@@ -453,7 +500,7 @@ inl ref_map forall t u. (fn : t -> u) (x : ref' t) : ref' u =
 
 #!spiral
 
-inl ref_invoke forall t u. (fn : t -> u) (ref : ref' t) : u =
+inl ref_invoke forall t u. (fn : t -> u) (ref : ref t) : u =
     !\\(fn, $'"$0(!ref.clone())"')
 
 #!markdown
@@ -462,7 +509,7 @@ inl ref_invoke forall t u. (fn : t -> u) (ref : ref' t) : u =
 
 #!spiral
 
-inl cow_as_ref forall t. (s : cow t) : ref' t =
+inl cow_as_ref forall t. (s : cow t) : ref t =
     !\\(s, $'"$0.as_ref()"')
 
 #!markdown
@@ -491,8 +538,7 @@ inl box_fn forall t. (x : () -> ()) : box t =
 #!spiral
 
 inl box_pin forall t. (x : t) : pin (box t) =
-    inl x = join x
-    !\($'"Box::pin(!x)"')
+    !\\(x, $'"Box::pin($0)"')
 
 #!markdown
 
@@ -500,7 +546,7 @@ inl box_pin forall t. (x : t) : pin (box t) =
 
 #!spiral
 
-inl to_ref forall t. (x : t) : ref' t =
+inl to_ref forall t. (x : t) : ref t =
     !\\(x, $'"&$0"')
 
 #!markdown
@@ -509,7 +555,7 @@ inl to_ref forall t. (x : t) : ref' t =
 
 #!spiral
 
-inl deref forall t. (ref : ref' t) : t =
+inl deref forall t. (ref : ref t) : t =
     !\\(ref, $'"*$0"')
 
 #!markdown
@@ -519,8 +565,7 @@ inl deref forall t. (ref : ref' t) : t =
 #!spiral
 
 inl ops_deref forall t. (ref : t) : t =
-    inl ref = join ref
-    !\($'"core::ops::Deref::deref(&!ref)"')
+    !\\(ref, $'"core::ops::Deref::deref(&$0)"')
 
 #!markdown
 
@@ -556,7 +601,7 @@ inl move forall t. (fn : () -> t) : func0 t =
 
 #!spiral
 
-inl to_static_ref_unbox forall t. (x : ref' t) : static_ref t =
+inl to_static_ref_unbox forall t. (x : ref t) : static_ref t =
     x |> unbox
 
 #!markdown
@@ -565,7 +610,7 @@ inl to_static_ref_unbox forall t. (x : ref' t) : static_ref t =
 
 #!spiral
 
-inl from_static_ref_unbox forall t. (x : static_ref t) : ref' t =
+inl from_static_ref_unbox forall t. (x : static_ref t) : ref t =
     x |> unbox
 
 #!markdown

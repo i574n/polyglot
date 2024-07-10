@@ -1,7 +1,7 @@
 import { value as value_1, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
 import { defaultOf } from "../../deps/Fable/src/fable-library-ts/Util.js";
 
-export function closure0(unitVar: void, v0: any): any {
+export function closure0(unitVar: void, v0_1: any): any {
     let _v3: Option<any> = undefined;
     const x: any = defaultOf();
     _v3 = x;
@@ -13,10 +13,10 @@ export function closure0(unitVar: void, v0: any): any {
     }
 }
 
-export const v6 = (v: any): any => closure0(undefined, v);
+export const v0 = (v: any): any => closure0(undefined, v);
 
 export function merge_cancellation_token_with_default_async(x: any): any {
-    return v6(x);
+    return v0(x);
 }
 
 

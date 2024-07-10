@@ -1,10 +1,6 @@
 /// # iter
 open rust_operators
 
-/// ## types
-inl types () =
-    ()
-
 /// ## rust
 
 /// ### iter_enumerate

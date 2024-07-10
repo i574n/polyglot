@@ -1,0 +1,2025 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
+
+#!markdown
+
+# leptos
+
+#!spiral
+
+open rust_operators
+open sm'_operators
+
+#!markdown
+
+### a'
+
+#!spiral
+
+nominal a' =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::A\")>]\n#endif\ntype leptos_html_A = class end"
+        $'' : $'leptos_html_A'
+    )
+
+#!markdown
+
+### event
+
+#!spiral
+
+nominal event =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::Event\")>]\n#endif\ntype leptos_ev_Event = class end"
+        $'' : $'leptos_ev_Event'
+    )
+
+#!markdown
+
+### mouse_event
+
+#!spiral
+
+nominal mouse_event =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::MouseEvent\")>]\n#endif\ntype leptos_ev_MouseEvent = class end"
+        $'' : $'leptos_ev_MouseEvent'
+    )
+
+#!markdown
+
+### button
+
+#!spiral
+
+nominal button =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Button\")>]\n#endif\ntype leptos_html_Button = class end"
+        $'' : $'leptos_html_Button'
+    )
+
+#!markdown
+
+### details
+
+#!spiral
+
+nominal details =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Details\")>]\n#endif\ntype leptos_html_Details = class end"
+        $'' : $'leptos_html_Details'
+    )
+
+#!markdown
+
+### dd
+
+#!spiral
+
+nominal dd =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dd\")>]\n#endif\ntype leptos_html_Dd = class end"
+        $'' : $'leptos_html_Dd'
+    )
+
+#!markdown
+
+### div
+
+#!spiral
+
+nominal div =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Div\")>]\n#endif\ntype leptos_html_Div = class end"
+        $'' : $'leptos_html_Div'
+    )
+
+#!markdown
+
+### dl
+
+#!spiral
+
+nominal dl =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dl\")>]\n#endif\ntype leptos_html_Dl = class end"
+        $'' : $'leptos_html_Dl'
+    )
+
+#!markdown
+
+### dt
+
+#!spiral
+
+nominal dt =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dt\")>]\n#endif\ntype leptos_html_Dt = class end"
+        $'' : $'leptos_html_Dt'
+    )
+
+#!markdown
+
+### footer
+
+#!spiral
+
+nominal footer =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Footer\")>]\n#endif\ntype leptos_html_Footer = class end"
+        $'' : $'leptos_html_Footer'
+    )
+
+#!markdown
+
+### header
+
+#!spiral
+
+nominal header =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Header\")>]\n#endif\ntype leptos_html_Header = class end"
+        $'' : $'leptos_html_Header'
+    )
+
+#!markdown
+
+### input
+
+#!spiral
+
+nominal input =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Input\")>]\n#endif\ntype leptos_html_Input = class end"
+        $'' : $'leptos_html_Input'
+    )
+
+#!markdown
+
+### label
+
+#!spiral
+
+nominal label =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Label\")>]\n#endif\ntype leptos_html_Label = class end"
+        $'' : $'leptos_html_Label'
+    )
+
+#!markdown
+
+### main
+
+#!spiral
+
+nominal main =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Main\")>]\n#endif\ntype leptos_html_Main = class end"
+        $'' : $'leptos_html_Main'
+    )
+
+#!markdown
+
+### nav
+
+#!spiral
+
+nominal nav =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Nav\")>]\n#endif\ntype leptos_html_Nav = class end"
+        $'' : $'leptos_html_Nav'
+    )
+
+#!markdown
+
+### option'
+
+#!spiral
+
+nominal option' =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Option_\")>]\n#endif\ntype leptos_html_Option = class end"
+        $'' : $'leptos_html_Option'
+    )
+
+#!markdown
+
+### pre
+
+#!spiral
+
+nominal pre =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Pre\")>]\n#endif\ntype leptos_html_Pre = class end"
+        $'' : $'leptos_html_Pre'
+    )
+
+#!markdown
+
+### select
+
+#!spiral
+
+nominal select =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Select\")>]\n#endif\ntype leptos_html_Select = class end"
+        $'' : $'leptos_html_Select'
+    )
+
+#!markdown
+
+### span
+
+#!spiral
+
+nominal span =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Span\")>]\n#endif\ntype leptos_html_Span = class end"
+        $'' : $'leptos_html_Span'
+    )
+
+#!markdown
+
+### summary
+
+#!spiral
+
+nominal summary =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Summary\")>]\n#endif\ntype leptos_html_Summary = class end"
+        $'' : $'leptos_html_Summary'
+    )
+
+#!markdown
+
+### table
+
+#!spiral
+
+nominal table =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Table\")>]\n#endif\ntype leptos_html_Table = class end"
+        $'' : $'leptos_html_Table'
+    )
+
+#!markdown
+
+### thead
+
+#!spiral
+
+nominal thead =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Thead\")>]\n#endif\ntype leptos_html_Thead = class end"
+        $'' : $'leptos_html_Thead'
+    )
+
+#!markdown
+
+### tbody
+
+#!spiral
+
+nominal tbody =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Tbody\")>]\n#endif\ntype leptos_html_Tbody = class end"
+        $'' : $'leptos_html_Tbody'
+    )
+
+#!markdown
+
+### tr
+
+#!spiral
+
+nominal tr =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Tr\")>]\n#endif\ntype leptos_html_Tr = class end"
+        $'' : $'leptos_html_Tr'
+    )
+
+#!markdown
+
+### th
+
+#!spiral
+
+nominal th =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Th\")>]\n#endif\ntype leptos_html_Th = class end"
+        $'' : $'leptos_html_Th'
+    )
+
+#!markdown
+
+### td
+
+#!spiral
+
+nominal td =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Td\")>]\n#endif\ntype leptos_html_Td = class end"
+        $'' : $'leptos_html_Td'
+    )
+
+#!markdown
+
+### svg
+
+#!spiral
+
+nominal svg =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Svg\")>]\n#endif\ntype leptos_svg_Svg = class end"
+        $'' : $'leptos_svg_Svg'
+    )
+
+#!markdown
+
+### path
+
+#!spiral
+
+nominal path =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Path\")>]\n#endif\ntype leptos_svg_Path = class end"
+        $'' : $'leptos_svg_Path'
+    )
+
+#!markdown
+
+### circle
+
+#!spiral
+
+nominal circle =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Circle\")>]\n#endif\ntype leptos_svg_Circle = class end"
+        $'' : $'leptos_svg_Circle'
+    )
+
+#!markdown
+
+### rect
+
+#!spiral
+
+nominal rect =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Rect\")>]\n#endif\ntype leptos_svg_Rect = class end"
+        $'' : $'leptos_svg_Rect'
+    )
+
+#!markdown
+
+### animate
+
+#!spiral
+
+nominal animate =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Animate\")>]\n#endif\ntype leptos_svg_Animate = class end"
+        $'' : $'leptos_svg_Animate'
+    )
+
+#!markdown
+
+### action
+
+#!spiral
+
+nominal action t u =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Action<$0, $1>\")>]\n#endif\ntype leptos_Action<'T, 'U> = class end"
+        $'' : $'leptos_Action<`t, `u>'
+    )
+
+#!markdown
+
+### for
+
+#!spiral
+
+nominal for =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::For\")>]\n#endif\ntype leptos_For = class end"
+        $'' : $'leptos_For'
+    )
+
+#!markdown
+
+### show
+
+#!spiral
+
+nominal show =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Show\")>]\n#endif\ntype leptos_Show = class end"
+        $'' : $'leptos_Show'
+    )
+
+#!markdown
+
+### fragment
+
+#!spiral
+
+nominal fragment =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Fragment\")>]\n#endif\ntype leptos_Fragment = class end"
+        $'' : $'leptos_Fragment'
+    )
+
+#!markdown
+
+### interval_handle
+
+#!spiral
+
+nominal interval_handle =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::helpers::IntervalHandle\")>]\n#endif\ntype leptos_dom_IntervalHandle = class end"
+        $'' : $'leptos_dom_IntervalHandle'
+    )
+
+#!markdown
+
+### text
+
+#!spiral
+
+nominal text =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Text\")>]\n#endif\ntype leptos_dom_Text = class end"
+        $'' : $'leptos_dom_Text'
+    )
+
+#!markdown
+
+### transparent
+
+#!spiral
+
+nominal transparent =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Transparent\")>]\n#endif\ntype leptos_dom_Transparent = class end"
+        $'' : $'leptos_dom_Transparent'
+    )
+
+#!markdown
+
+### route
+
+#!spiral
+
+nominal route =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Route\")>]\n#endif\ntype leptos_router_Route = class end"
+        $'' : $'leptos_router_Route'
+    )
+
+#!markdown
+
+### route_definition
+
+#!spiral
+
+nominal route_definition =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::RouteDefinition\")>]\n#endif\ntype leptos_router_RouteDefinition = class end"
+        $'' : $'leptos_router_RouteDefinition'
+    )
+
+#!markdown
+
+### router
+
+#!spiral
+
+nominal router =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Router\")>]\n#endif\ntype leptos_router_Router = class end"
+        $'' : $'leptos_router_Router'
+    )
+
+#!markdown
+
+### routes
+
+#!spiral
+
+nominal routes =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Routes\")>]\n#endif\ntype leptos_router_Routes = class end"
+        $'' : $'leptos_router_Routes'
+    )
+
+#!markdown
+
+### html_element
+
+#!spiral
+
+nominal html_element t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::HtmlElement<$0>\")>]\n#endif\ntype leptos_HtmlElement<'T> = class end"
+        $'' : $'leptos_HtmlElement<`t>'
+    )
+
+#!markdown
+
+### into_view
+
+#!spiral
+
+nominal into_view =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::IntoView\")>]\n#endif\ntype leptos_IntoView = class end"
+        $'' : $'leptos_IntoView'
+    )
+
+#!markdown
+
+### location
+
+#!spiral
+
+nominal location =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Location\")>]\n#endif\ntype leptos_router_Location = class end"
+        $'' : $'leptos_router_Location'
+    )
+
+#!markdown
+
+### navigate_options
+
+#!spiral
+
+nominal navigate_options =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::NavigateOptions\")>]\n#endif\ntype leptos_router_NavigateOptions = class end"
+        $'' : $'leptos_router_NavigateOptions'
+    )
+
+#!markdown
+
+### url
+
+#!spiral
+
+nominal url =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Url\")>]\n#endif\ntype leptos_router_Url = class end"
+        $'' : $'leptos_router_Url'
+    )
+
+#!markdown
+
+### memo
+
+#!spiral
+
+nominal memo t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Memo<$0>\")>]\n#endif\ntype leptos_Memo<'T> = class end"
+        $'' : $'leptos_Memo<`t>'
+    )
+
+#!markdown
+
+### rw_signal
+
+#!spiral
+
+nominal rw_signal t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::RwSignal<$0>\")>]\n#endif\ntype leptos_RwSignal<'T> = class end"
+        $'' : $'leptos_RwSignal<`t>'
+    )
+
+#!markdown
+
+### signal
+
+#!spiral
+
+nominal signal t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Signal<$0>\")>]\n#endif\ntype leptos_Signal<'T> = class end"
+        $'' : $'leptos_Signal<`t>'
+    )
+
+#!markdown
+
+### read_signal
+
+#!spiral
+
+nominal read_signal t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ReadSignal<$0>\")>]\n#endif\ntype leptos_ReadSignal<'T> = class end"
+        $'' : $'leptos_ReadSignal<`t>'
+    )
+
+#!markdown
+
+### write_signal
+
+#!spiral
+
+nominal write_signal t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::WriteSignal<$0>\")>]\n#endif\ntype leptos_WriteSignal<'T> = class end"
+        $'' : $'leptos_WriteSignal<`t>'
+    )
+
+#!markdown
+
+### resource
+
+#!spiral
+
+nominal resource t u =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Resource<$0, $1>\")>]\n#endif\ntype leptos_Resource<'T, 'U> = class end"
+        $'' : $'leptos_Resource<`t, `u>'
+    )
+
+#!markdown
+
+### view
+
+#!spiral
+
+nominal view =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::View\")>]\n#endif\ntype leptos_View = class end"
+        $'' : $'leptos_View'
+    )
+
+#!markdown
+
+### signal_get
+
+#!spiral
+
+prototype signal_get signal t : signal t -> t
+
+#!markdown
+
+### signal_get_untracked
+
+#!spiral
+
+prototype signal_get_untracked signal t : signal t -> t
+
+#!markdown
+
+### signal_update
+
+#!spiral
+
+prototype signal_update signal t : (t -> t) -> signal t -> ()
+
+#!markdown
+
+### signal_set
+
+#!spiral
+
+prototype signal_set signal t : t -> signal t -> ()
+
+#!markdown
+
+### log_string
+
+#!spiral
+
+inl log_string (text : string) =
+    (!\($'@@"true; leptos::logging::log\!(""" + !text + @@""");"') : bool) |> ignore
+
+#!markdown
+
+### log
+
+#!spiral
+
+inl log (text : string) =
+    (!\\(text, $'@@$"true; leptos::logging::log\!(""{{}}"", $0)"') : bool) |> ignore
+
+#!markdown
+
+### log_debug
+
+#!spiral
+
+inl log_debug (text : string) =
+    (!\\(text, $'@@$"true; leptos::logging::log\!(""{{:?}}"", $0)"') : bool) |> ignore
+
+#!markdown
+
+### log_pretty
+
+#!spiral
+
+inl log_pretty (text : string) =
+    (!\\(text, $'@@$"true; leptos::logging::log\!(""{{:#?}}"", $0)"') : bool) |> ignore
+
+#!markdown
+
+### log_format
+
+#!spiral
+
+inl log_format fn obj =
+    inl obj_log = obj |> sm'.format_debug
+    inl text = fn obj_log |> sm'.ellipsis_end 200
+    log text
+    obj
+
+#!markdown
+
+### mount_to_body
+
+#!spiral
+
+inl mount_to_body (view_fn : () -> rust.impl into_view) : () =
+    (!\\(view_fn, $'"true; leptos::mount_to_body(|| $0());"') : bool) |> ignore
+
+#!markdown
+
+### view_vec_to_fragment
+
+#!spiral
+
+inl view_vec_to_fragment (view : am'.vec view) : fragment =
+    !\\(view, $'"leptos::Fragment::new($0)"')
+
+#!markdown
+
+### view_array_to_fragment
+
+#!spiral
+
+inl view_array_to_fragment (view : array_base view) : fragment =
+    view |> am'.to_vec |> view_vec_to_fragment
+
+#!markdown
+
+### element_to_view
+
+#!spiral
+
+inl element_to_view (view : html_element _) : view =
+    !\\(view, $'"leptos::IntoView::into_view($0)"')
+
+#!markdown
+
+### view_to_fragment
+
+#!spiral
+
+inl view_to_fragment (view : view) : fragment =
+    ;[view] |> view_array_to_fragment
+
+#!markdown
+
+### fragment_to_view
+
+#!spiral
+
+inl fragment_to_view (fragment : fragment) : view =
+    !\\(fragment, $'"leptos::IntoView::into_view($0)"')
+
+#!markdown
+
+### element_to_fragment
+
+#!spiral
+
+inl element_to_fragment (view : html_element _) : fragment =
+    view
+    |> element_to_view
+    |> view_to_fragment
+
+#!markdown
+
+### (~:>) fragment
+
+#!spiral
+
+instance (~:>) fragment = fun x =>
+    real
+        typecase t with
+        | array_base (html_element ~el) =>
+            inl x = am'.to_vec `(html_element el) x
+            inl x = am'.vec_map' `(html_element el) `view (element_to_view `el) x
+            inl x : a i32 view = am'.from_vec `i32 `view x
+            inl (a x) = x
+            view_array_to_fragment x
+        | array_base view => view_array_to_fragment x
+        | _ => x
+
+#!markdown
+
+### (~:>) view
+
+#!spiral
+
+instance (~:>) view = fun x =>
+    real
+        typecase t with
+        | html_element _ => element_to_view x
+        | _ => x
+
+#!markdown
+
+### view_trait_to_element
+
+#!spiral
+
+inl view_trait_to_element (view : rust.impl into_view) : html_element _ =
+    $'!view |> unbox'
+
+#!markdown
+
+### view_trait_to_route_definition
+
+#!spiral
+
+inl view_trait_to_route_definition (view : rust.impl into_view) : route_definition =
+    $'!view |> unbox'
+
+#!markdown
+
+### to_element_view
+
+#!spiral
+
+inl to_element_view (view : html_element _) : rust.impl into_view =
+    $'!view |> unbox'
+
+#!markdown
+
+### to_view_trait
+
+#!spiral
+
+inl to_view_trait (view : view) : rust.impl into_view =
+    $'!view |> unbox'
+
+#!markdown
+
+### to_fragment_unbox
+
+#!spiral
+
+inl to_fragment_unbox view : fragment =
+    $'!view |> unbox'
+
+#!markdown
+
+### from_fragment_unbox
+
+#!spiral
+
+inl from_fragment_unbox (fragment : fragment) =
+    $'!fragment |> unbox'
+
+#!markdown
+
+### element_to_view_trait
+
+#!spiral
+
+inl element_to_view_trait (macro : html_element _) : rust.impl into_view =
+    !\($'"leptos::view\! { {!macro} }"')
+
+#!markdown
+
+### macro_to_view_trait
+
+#!spiral
+
+inl macro_to_view_trait (macro : string) : rust.impl into_view =
+    !\($'"leptos::view\! { " + !macro + " }"')
+
+#!markdown
+
+### macro_to_fragment
+
+#!spiral
+
+inl macro_to_fragment (macro : string) : fragment =
+    !\($'"leptos::view\! { " + !macro + " }"')
+
+#!markdown
+
+### new_transparent
+
+#!spiral
+
+inl new_transparent x : transparent =
+    !\\(x, $'"leptos::leptos_dom::Transparent::new($0)"')
+
+#!markdown
+
+### closure_to_view
+
+#!spiral
+
+inl closure_to_view (closure : rust.func0 view) : view =
+    !\\(closure, $'"leptos::IntoView::into_view(move || $0())"')
+
+#!markdown
+
+### batch
+
+#!spiral
+
+inl batch (fn : () -> ()) : () =
+    (!\\(fn, $'"true; leptos::batch(move || $0());"') : bool) |> ignore
+
+#!markdown
+
+### closure_to_fragment
+
+#!spiral
+
+inl closure_to_fragment (closure : rust.func0 fragment) : fragment =
+    !\\(closure, $'"leptos::IntoView::into_view(move || $0())"')
+    |> view_to_fragment
+
+#!markdown
+
+### array_to_view
+
+#!spiral
+
+inl array_to_view (view : a _ view) : view =
+    !\\(view, $'"leptos::CollectView::collect_view($0.to_vec())"')
+
+#!markdown
+
+### to_fragment
+
+#!spiral
+
+inl to_fragment x : fragment =
+    $'!x |> unbox'
+
+#!markdown
+
+### text_to_view
+
+#!spiral
+
+inl text_to_view (text : text) : view =
+    !\\(text, $'"leptos::IntoView::into_view($0)"')
+
+#!markdown
+
+### text_to_fragment
+
+#!spiral
+
+inl text_to_fragment (text : text) : fragment =
+    text
+    |> text_to_view
+    |> view_to_fragment
+
+#!markdown
+
+### macro_to_view
+
+#!spiral
+
+inl macro_to_view (macro : string) : view =
+    !\($'"leptos::IntoView::into_view(leptos::view\! { " + !macro + " })"')
+
+#!markdown
+
+### transparent_to_view
+
+#!spiral
+
+inl transparent_to_view (transparent : transparent) : view =
+    !\\(transparent, $'"leptos::IntoView::into_view($0)"')
+
+#!markdown
+
+### transparent_to_fragment
+
+#!spiral
+
+inl transparent_to_fragment (transparent : transparent) : fragment =
+    transparent
+    |> transparent_to_view
+    |> view_to_fragment
+
+#!markdown
+
+### macro_to_element
+
+#!spiral
+
+inl macro_to_element (view : string) : html_element _ =
+    view |> macro_to_view_trait |> view_trait_to_element
+
+#!markdown
+
+### transparents_fragment
+
+#!spiral
+
+inl transparents_fragment (items : array_base transparent) : fragment =
+    inl items = items |> am'.to_vec
+    !\\((items, transparent_to_view), $'"$0.iter().map(|x| $1(x.clone())).collect::<leptos::Fragment>()"')
+
+#!markdown
+
+### views_to_view
+
+#!spiral
+
+inl views_to_view (items : array_base view) : view =
+    inl items = join items
+    items
+    // |> fun x => a (join x) : a u64 _
+    |> fun x => a x : a u64 _
+    |> array_to_view
+
+#!markdown
+
+### new_text
+
+#!spiral
+
+inl new_text (text : string) : text =
+    inl text = text |> sm'.to_std_string
+    !\\(text, $'"leptos::html::text($0)"')
+
+#!markdown
+
+### text_view
+
+#!spiral
+
+inl text_view (text : string) : view =
+    text
+    |> new_text
+    |> text_to_view
+
+#!markdown
+
+### text_fragment
+
+#!spiral
+
+inl text_fragment (text : string) : fragment =
+    text
+    |> text_view
+    |> view_to_fragment
+
+#!markdown
+
+### provide_meta_context
+
+#!spiral
+
+inl provide_meta_context () =
+    (!\($'"true; leptos_meta::provide_meta_context()"') : bool) |> ignore
+
+#!markdown
+
+### provide_context
+
+#!spiral
+
+inl provide_context forall t. (x : t) =
+    (!\\(x, $'$"true; leptos::provide_context::<std::sync::Arc<`t>>($0)"') : bool) |> ignore
+
+#!markdown
+
+### create_signal
+
+#!spiral
+
+inl create_signal forall t. (value : t) : read_signal t * write_signal t =
+    !\\(value, $'$"leptos::create_signal($0)"')
+
+#!markdown
+
+### create_rw_signal
+
+#!spiral
+
+inl create_rw_signal forall t. (value : t) : rw_signal t =
+    !\\(value, $'$"leptos::create_rw_signal($0)"')
+
+#!markdown
+
+### read_only
+
+#!spiral
+
+inl read_only forall t. (value : rw_signal t) : read_signal t =
+    !\\(value, $'$"leptos::RwSignal::read_only(&$0)"')
+
+#!markdown
+
+### write_only
+
+#!spiral
+
+inl write_only forall t. (value : rw_signal t) : write_signal t =
+    !\\(value, $'$"leptos::RwSignal::write_only(&$0)"')
+
+#!markdown
+
+### typecheck_signal
+
+#!spiral
+
+inl typecheck_signal forall (t : * -> *) u. (signal : t u) : () =
+    real
+        typecase t with
+        | signal => ()
+        | rw_signal => ()
+        | read_signal => ()
+        | write_signal => ()
+        | memo => ()
+        | _ => error_type `(()) ("invalid signal", ``(t u))
+
+#!markdown
+
+### memo_get'
+
+#!spiral
+
+inl memo_get' forall t. (memo : memo t) : t =
+    !\\(memo, $'$"$0()"')
+
+#!markdown
+
+### signal_get'
+
+#!spiral
+
+inl signal_get' forall (t : * -> *) u. (signal : t u) : u =
+    signal |> typecheck_signal
+    !\\(signal, $'$"leptos::SignalGet::get(&$0)"')
+
+#!markdown
+
+### signal_get signal
+
+#!spiral
+
+instance signal_get signal = signal_get'
+
+#!markdown
+
+### signal_get rw_signal
+
+#!spiral
+
+instance signal_get rw_signal = signal_get'
+
+#!markdown
+
+### signal_get read_signal
+
+#!spiral
+
+instance signal_get read_signal = signal_get'
+
+#!markdown
+
+### signal_get memo
+
+#!spiral
+
+instance signal_get memo = memo_get'
+
+#!markdown
+
+### signal_update'
+
+#!spiral
+
+inl signal_update' forall (t : * -> *) u. (fn : u -> u) (signal : t u) : () =
+    signal |> typecheck_signal
+    (!\\((signal, fn), $'"true; leptos::SignalUpdate::update(&$0, |x| { *x = $1(x.clone()) });"') : bool) |> ignore
+
+#!markdown
+
+### signal_update rw_signal
+
+#!spiral
+
+instance signal_update rw_signal = signal_update'
+
+#!markdown
+
+### signal_update write_signal
+
+#!spiral
+
+instance signal_update write_signal = signal_update'
+
+#!markdown
+
+### signal_get_untracked'
+
+#!spiral
+
+inl signal_get_untracked' forall (t : * -> *) u. (signal : t u) : u =
+    signal |> typecheck_signal
+    !\\(signal, $'$"leptos::SignalGetUntracked::get_untracked(&$0)"')
+
+#!markdown
+
+### signal_get_untracked rw_signal
+
+#!spiral
+
+instance signal_get_untracked rw_signal = signal_get_untracked'
+
+#!markdown
+
+### signal_get_untracked read_signal
+
+#!spiral
+
+instance signal_get_untracked read_signal = signal_get_untracked'
+
+#!markdown
+
+### signal_get_untracked memo
+
+#!spiral
+
+instance signal_get_untracked memo = signal_get_untracked'
+
+#!markdown
+
+### signal_set'
+
+#!spiral
+
+inl signal_set' forall (t : * -> *) u. (value : u) (signal : t u) =
+    signal |> typecheck_signal
+    (!\\((signal, value), $'$"true; leptos::SignalSet::set(&$0, $1);"') : bool) |> ignore
+
+#!markdown
+
+### signal_set rw_signal
+
+#!spiral
+
+instance signal_set rw_signal = signal_set'
+
+#!markdown
+
+### signal_set write_signal
+
+#!spiral
+
+instance signal_set write_signal = signal_set'
+
+#!markdown
+
+### create_local_resource
+
+#!spiral
+
+inl create_local_resource forall t u.
+    closure_fix
+    (source : () -> t)
+    (fetcher : t -> async.future_pin u)
+    : resource t u
+    =
+    // inl fetcher x = rust.move fun () =>
+    //    fetcher x
+    // inl fetcher = join fetcher
+    // !\($'"leptos::create_local_resource(move || !source(), move |x| async move { !fetcher(x)().await })"')
+
+    // ---
+
+    // inl fn x = async.new_future fun () =>
+    //     inl x' = fetcher x
+    //     x' |> async.await
+
+    // !\\((source, fn), $'"leptos::create_local_resource(move || $0(), |x| async move { $1(x).await })"')
+
+
+    join
+        !\\(source, $'"let __result = leptos::create_local_resource(move || $0(), |x| async move { //"')
+
+        inl x = !\($'"x"')
+        inl x' = fetcher x
+        inl x' = join x'
+        inl x' = x' |> async.await
+
+        x' |> rust.fix_closure closure_fix
+
+        !\($'"__result"')
+
+#!markdown
+
+### create_resource
+
+#!spiral
+
+// inl create_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =
+//     inl source = join source
+//     !\\(fetcher, $'"leptos::create_resource(move || !source(), |x| async move { $0(x).await })"')
+
+#!markdown
+
+### create_action
+
+#!spiral
+
+inl create_action forall t u. (action_fn : t -> async.future_pin u) : action t u =
+    !\\(action_fn, $'"leptos::create_action(move |value: &std::sync::Arc<`t>| $0(value.clone()))"')
+
+#!markdown
+
+### action_dispatch
+
+#!spiral
+
+inl action_dispatch forall t u. (value : heap t) (action : action (heap t) u) : () =
+    (!\\((action, value), $'"true; leptos::Action::dispatch(&$0, $1.clone())"') : bool) |> ignore
+
+#!markdown
+
+### action_input
+
+#!spiral
+
+inl action_input forall t u. (action : action (heap t) u) : rw_signal (optionm'.option' t) =
+    !\\(action, $'"leptos::Action::input(&$0)"')
+
+#!markdown
+
+### action_pending
+
+#!spiral
+
+inl action_pending forall t u. (action : action (heap t) u) : read_signal bool =
+    !\\(action, $'"leptos::Action::pending(&$0)"')
+
+#!markdown
+
+### action_value
+
+#!spiral
+
+inl action_value forall t u. (action : action (heap t) u) : rw_signal (optionm'.option' u) =
+    !\\(action, $'"leptos::Action::value(&$0)"')
+
+#!markdown
+
+### use_context
+
+#!spiral
+
+inl use_context forall t. () : optionm'.option' t =
+    !\($'"leptos::use_context::<std::sync::Arc<`t>>()"')
+
+#!markdown
+
+### resource_loading
+
+#!spiral
+
+inl resource_loading forall t u. (resource : resource t u) : signal bool =
+    !\\(resource, $'$"leptos::Resource::loading(&$0)"')
+
+#!markdown
+
+### resource_get
+
+#!spiral
+
+inl resource_get forall t u. (resource : resource t u) : optionm'.option' u =
+    !\\(resource, $'$"leptos::SignalGet::get(&$0)"')
+
+#!markdown
+
+### resource_with
+
+#!spiral
+
+inl resource_with forall t u v. (resource : resource t u) (fn : optionm'.option' u -> v) : v =
+    !\\((resource, fn), $'$"leptos::SignalWith::with(&$0, |x| $1(x.clone()))"')
+
+#!markdown
+
+### create_effect
+
+#!spiral
+
+inl create_effect (fn : () -> ()) : () =
+    inl fn = fn |> rust.emit
+    (!\($'"true; leptos::create_effect(move |_| { !fn(()) })"') : bool) |> ignore
+
+#!markdown
+
+### create_effect'
+
+#!spiral
+
+inl create_effect' forall t. (fn : optionm'.option' t -> t) : () =
+    (!\\(fn, $'"true; leptos::create_effect(move |x| { $0(x) })"') : bool) |> ignore
+
+#!markdown
+
+### interval_handle_clear
+
+#!spiral
+
+inl interval_handle_clear (interval_handle : interval_handle) =
+    (!\\(interval_handle, $'$"true; leptos::leptos_dom::helpers::IntervalHandle::clear(&$0)"') : bool) |> ignore
+
+#!markdown
+
+### set_interval_with_handle
+
+#!spiral
+
+inl set_interval_with_handle
+    (fn : () -> ())
+    (interval_millis : date_time.duration)
+    : resultm.result' interval_handle wasm.js_value
+    =
+    !\\((fn, interval_millis), $'$"leptos::set_interval_with_handle(move || $0(), $1)"')
+
+#!markdown
+
+### create_memo
+
+#!spiral
+
+inl create_memo forall t. (fn : () -> t) : memo t =
+    inl fn = fn |> rust.emit
+    !\($'"leptos::create_memo(move |_| { !fn(()) })"')
+
+#!markdown
+
+### window
+
+#!spiral
+
+let window () : wasm.window =
+    !\($'"leptos::leptos_dom::window()"')
+
+#!markdown
+
+### bool_prop
+
+#!spiral
+
+inl bool_prop (prop : string) (fn : () -> bool) : string =
+    inl fn = join fn
+    $'"" + !prop + "={move || !fn()}"'
+
+#!markdown
+
+### concat_props
+
+#!spiral
+
+inl concat_props props =
+    ("", props)
+    ||> listm.fold fun acc (x : string) =>
+        $'" " + !x + !acc + ""'
+
+#!markdown
+
+### move_to_fragment
+
+#!spiral
+
+inl move_to_fragment fn =
+    rust.move fn
+    |> closure_to_fragment
+
+#!markdown
+
+### tag_raw
+
+#!spiral
+
+inl tag_raw tag props children =
+    inl tag : string = tag
+    inl props = props |> concat_props
+    inl children = join children
+    inl children = fun () => children |> move_to_fragment
+    inl children : () -> fragment = join children
+    $'"<" + !tag + " " + !props + ">{!children()}</" + !tag + ">"'
+
+#!markdown
+
+### tag_element
+
+#!spiral
+
+inl tag_element tag props children : html_element _ =
+    inl children = join children
+    tag_raw tag props children
+    |> macro_to_element
+
+#!markdown
+
+### tag_closed_raw
+
+#!spiral
+
+inl tag_closed_raw tag props =
+    inl tag : string = tag
+    inl props = props |> concat_props
+    $'"<" + !tag + " " + !props + " />"'
+
+#!markdown
+
+### tag_closed
+
+#!spiral
+
+inl tag_closed tag props : html_element _ =
+    tag_closed_raw tag props
+    |> macro_to_element
+
+#!markdown
+
+### for
+
+#!spiral
+
+inl for props : view =
+    tag_closed_raw "leptos::For" props
+    |> macro_to_view
+
+#!markdown
+
+### for
+
+#!spiral
+
+inl for forall t u (signal : * -> *).
+    (signal : signal (am'.vec t))
+    (key_fn : t -> u)
+    (children' : t -> fragment)
+    : view
+    =
+    inl signal = join signal
+    signal |> typecheck_signal
+    inl key_fn = join key_fn
+    inl children' = join children'
+    for [
+        $'"each=!signal"'
+        $'"key=move |x| !key_fn(x.to_owned())"'
+        $'"let:x"'
+        $'"children=move |x| !children'(x)"'
+    ]
+
+#!markdown
+
+### show
+
+#!spiral
+
+inl show props : view =
+    tag_closed_raw "leptos::Show" props
+    |> macro_to_view
+
+#!markdown
+
+### show
+
+#!spiral
+
+inl show (when_fn : () -> bool) (fallback : () -> view) (children : () -> fragment) : view =
+    inl when_fn = join when_fn
+    inl when_fn = join when_fn
+    inl fallback = join fallback
+    inl children = join children
+    show [
+        $'"when=move || !when_fn()"'
+        $'"fallback=move || !fallback()"'
+        $'"children=std::rc::Rc::new(move || !children())"'
+    ]
+
+#!markdown
+
+### use_location
+
+#!spiral
+
+inl use_location () : location =
+    !\($'"leptos_router::use_location()"')
+
+#!markdown
+
+### use_navigate
+
+#!spiral
+
+inl use_navigate () : string -> () =
+    inl navigate : threading.arc (rust.dyn' (rust.action_fn2 (rust.ref sm'.str) navigate_options)) =
+        !\($'"std::sync::Arc::new(leptos_router::use_navigate())"')
+    fun url =>
+        inl url = url |> sm'.as_str
+        !\\(navigate, $'"$0(!url, Default::default())"')
+
+#!markdown
+
+### location_hash
+
+#!spiral
+
+inl location_hash (location : location) : memo sm'.std_string =
+    !\\(location, $'"$0.hash"')
+
+#!markdown
+
+### location_pathname
+
+#!spiral
+
+inl location_pathname (location : location) : memo sm'.std_string =
+    !\\(location, $'"$0.pathname"')
+
+#!markdown
+
+### location_search
+
+#!spiral
+
+inl location_search (location : location) : memo sm'.std_string =
+    !\\(location, $'"$0.search"')
+
+#!markdown
+
+### url_try_from
+
+#!spiral
+
+inl url_try_from (s : rust.ref sm'.str) : resultm.result' url sm'.std_string =
+    !\\(s, $'"leptos_router::Url::try_from($0)"')
+
+#!markdown
+
+### url_pathname
+
+#!spiral
+
+inl url_pathname (url : url) : sm'.std_string =
+    !\\(url, $'"$0.pathname"')
+
+#!markdown
+
+### use_url
+
+#!spiral
+
+inl use_url () =
+    inl location = use_location ()
+
+    create_memo fun () =>
+        inl url_pathname = location |> location_pathname |> signal_get |> sm'.from_std_string
+        inl url_search = location |> location_search |> signal_get |> sm'.from_std_string
+        inl url_search =
+            if url_search = ""
+            then ""
+            else $'$"?{!url_search}"'
+        url_pathname +. url_search
+
+#!markdown
+
+### route
+
+#!spiral
+
+inl route path view children : view =
+    inl path = join path
+    inl path = path |> sm'.to_std_string
+    inl view : () -> fragment = join view
+    inl children : () -> fragment = join children
+    tag_closed_raw "leptos_router::Route" [
+        $'"path=!path"'
+        $'"view=move || !view()"'
+        $'"children=Box::new(move || !children())"'
+    ]
+    |> macro_to_view
+
+#!markdown
+
+### router
+
+#!spiral
+
+inl router children : view =
+    inl children () =
+        children ()
+    inl children : () -> fragment = join children
+    tag_closed_raw "leptos_router::Router" [
+        $'"children=Box::new(move || !children())"'
+    ]
+    |> macro_to_view
+
+#!markdown
+
+### routes
+
+#!spiral
+
+inl routes children : view =
+    inl children : () -> fragment = children |> rust.emit
+    tag_closed_raw "leptos_router::Routes" [
+        $'"children=Box::new(move || !children(()))"'
+    ]
+    |> macro_to_view
+
+#!markdown
+
+### a'
+
+#!spiral
+
+inl a' props children : _ a' =
+    tag_element "a" props children
+
+#!markdown
+
+### button
+
+#!spiral
+
+inl button props children : _ button =
+    tag_element "button" props children
+
+#!markdown
+
+### details
+
+#!spiral
+
+inl details props children : _ details =
+    tag_element "details" props children
+
+#!markdown
+
+### div
+
+#!spiral
+
+inl div props children : _ div =
+    tag_element "div" props children
+
+#!markdown
+
+### footer
+
+#!spiral
+
+inl footer props children : _ footer =
+    tag_element "footer" props children
+
+#!markdown
+
+### header
+
+#!spiral
+
+inl header props children : _ header =
+    tag_element "header" props children
+
+#!markdown
+
+### label
+
+#!spiral
+
+inl label props children : _ label =
+    tag_element "label" props children
+
+#!markdown
+
+### main
+
+#!spiral
+
+inl main props children : _ main =
+    tag_element "main" props children
+
+inl main' () = ()
+
+#!markdown
+
+### nav
+
+#!spiral
+
+inl nav props children : _ nav =
+    tag_element "nav" props children
+
+#!markdown
+
+### option'
+
+#!spiral
+
+inl option' props children : _ option' =
+    tag_element "option" props children
+
+#!markdown
+
+### option'
+
+#!spiral
+
+inl option' select children : _ option' =
+    inl select : () -> bool = join select
+    option' [
+        $'"select=!select()"'
+
+    ] fun () =>
+        children |> new_text |> text_to_fragment
+
+#!markdown
+
+### pre
+
+#!spiral
+
+inl pre props children : _ pre =
+    tag_element "pre" props children
+
+#!markdown
+
+### select
+
+#!spiral
+
+inl select props children : _ select =
+    tag_element "select" props children
+
+#!markdown
+
+### span
+
+#!spiral
+
+inl span props children : _ span =
+    tag_element "span" props children
+
+#!markdown
+
+### summary
+
+#!spiral
+
+inl summary props children : _ summary =
+    tag_element "summary" props children
+
+#!markdown
+
+### table
+
+#!spiral
+
+inl table props children : _ table =
+    tag_element "table" props children
+
+#!markdown
+
+### thead
+
+#!spiral
+
+inl thead props children : _ thead =
+    tag_element "thead" props children
+
+#!markdown
+
+### tbody
+
+#!spiral
+
+inl tbody props children : _ tbody =
+    tag_element "tbody" props children
+
+#!markdown
+
+### tr
+
+#!spiral
+
+inl tr props children : _ tr =
+    tag_element "tr" props children
+
+#!markdown
+
+### th
+
+#!spiral
+
+inl th props children : _ th =
+    tag_element "th" props children
+
+#!markdown
+
+### td
+
+#!spiral
+
+inl td props children : _ td =
+    tag_element "td" props children
+
+#!markdown
+
+### svg
+
+#!spiral
+
+inl svg props children : _ svg =
+    tag_element "svg" props children
+
+#!markdown
+
+### path
+
+#!spiral
+
+inl path props : _ path =
+    tag_element "path" props (fun () => ;[] |> view_array_to_fragment)
+
+#!markdown
+
+### circle
+
+#!spiral
+
+inl circle props : _ circle =
+    tag_element "circle" props (fun () => ;[] |> view_array_to_fragment)
+
+#!markdown
+
+### rect
+
+#!spiral
+
+inl rect props children : _ rect =
+    tag_element "rect" props children
+
+#!markdown
+
+### animate
+
+#!spiral
+
+inl animate props : _ animate =
+    tag_element "animate" props (fun () => ;[] |> view_array_to_fragment)
+
+#!markdown
+
+### input
+
+#!spiral
+
+inl input props : _ input =
+    tag_closed "input" props
+
+#!markdown
+
+### dd
+
+#!spiral
+
+inl dd props children : _ dd =
+    tag_element "dd" props children
+
+#!markdown
+
+### dl
+
+#!spiral
+
+inl dl props children : _ dl =
+    tag_element "dl" props children
+
+#!markdown
+
+### dt
+
+#!spiral
+
+inl dt props children : _ dt =
+    tag_element "dt" props children

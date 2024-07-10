@@ -148,20 +148,20 @@ inl take forall t. (x : option' t) : option' t =
     !\\(x, $'"Option::take(&mut $0)"')
 
 /// ### take_ref
-inl take_ref forall t. (x : rust.ref' (option' t)) : option' t =
+inl take_ref forall t. (x : rust.ref (option' t)) : option' t =
     (!\\(x, $'"true; let mut !x = !x"') : bool) |> ignore
     !\\(x, $'"Option::take(&mut $0)"')
 
 /// ### take_ref_mut
-inl take_ref_mut forall t. (x : rust.ref' (rust.mut' (option' t))) : option' t =
+inl take_ref_mut forall t. (x : rust.ref (rust.mut' (option' t))) : option' t =
     !\\(x, $'"Option::take($0)"')
 
 /// ### as_ref
-inl as_ref forall t. (x : rust.ref' (option' t)) : option' (rust.ref' t) =
+inl as_ref forall t. (x : rust.ref (option' t)) : option' (rust.ref t) =
     !\\(x, $'"$0.as_ref()"')
 
 /// ### as_mut
-inl as_mut forall t. (x : rust.ref' (rust.mut' (option' t))) : option' (rust.ref' (rust.mut' t)) =
+inl as_mut forall t. (x : rust.ref (rust.mut' (option' t))) : option' (rust.ref (rust.mut' t)) =
     !\\(x, $'"$0.as_mut()"')
 
 /// ### unwrap_or

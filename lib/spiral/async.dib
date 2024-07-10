@@ -18,26 +18,6 @@ open rust_operators
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::JoinAll<$0>\")>]\n#endif\ntype futures_future_JoinAll<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>]\n#endif\ntype futures_future_TryJoinAll<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::iter::Map<$0, _>\")>]\n#endif\ntype rayon_iter_Map<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::vec::IntoIter<$0>\")>]\n#endif\ntype rayon_vec_IntoIter<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>]\n#endif\ntype std_future_Future<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::prelude::stream::Fuse<$0>\")>]\n#endif\ntype futures_future_Fuse<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::task::JoinHandle<$0>\")>]\n#endif\ntype tokio_task_JoinHandle<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio_stream::StreamExt\")>]\n#endif\ntype tokio_stream_StreamExt = class end"
-        Python = fun () => ()
-    }
-
-#!markdown
-
 ## rust
 
 #!markdown
@@ -46,7 +26,11 @@ inl types () =
 
 #!spiral
 
-nominal future t = $'std_future_Future<`t>'
+nominal future t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>]\n#endif\ntype std_future_Future<'T> = class end"
+        $'' : $'std_future_Future<`t>'
+    )
 
 #!markdown
 
@@ -117,7 +101,11 @@ inl block_on_send forall t. (fn : future_pin_send t) : t =
 
 #!spiral
 
-nominal stream_ext = $'tokio_stream_StreamExt'
+nominal stream_ext =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio_stream::StreamExt\")>]\n#endif\ntype tokio_stream_StreamExt = class end"
+        $'' : $'tokio_stream_StreamExt'
+    )
 
 #!markdown
 
@@ -125,7 +113,11 @@ nominal stream_ext = $'tokio_stream_StreamExt'
 
 #!spiral
 
-nominal join_handle t = $'tokio_task_JoinHandle<`t>'
+nominal join_handle t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::task::JoinHandle<$0>\")>]\n#endif\ntype tokio_task_JoinHandle<'T> = class end"
+        $'' : $'tokio_task_JoinHandle<`t>'
+    )
 
 #!markdown
 
@@ -142,7 +134,11 @@ inl spawn forall t. (fn : future_pin_send t) : join_handle t =
 
 #!spiral
 
-nominal try_join_all t = $'futures_future_TryJoinAll<`t>'
+nominal try_join_all t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>]\n#endif\ntype futures_future_TryJoinAll<'T> = class end"
+        $'' : $'futures_future_TryJoinAll<`t>'
+    )
 
 inl try_join_all forall t. (x : am'.vec (future_pin (resultm.result' t sm'.std_string))) : try_join_all (future_pin (resultm.result' t sm'.std_string)) =
     inl x = join x
@@ -154,7 +150,17 @@ inl try_join_all forall t. (x : am'.vec (future_pin (resultm.result' t sm'.std_s
 
 #!spiral
 
-nominal fuse t = $'futures_future_Fuse<`t>'
+nominal fuse t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"tokio::prelude::stream::Fuse<$0>\")>]\n#endif\ntype tokio_prelude_stream_Fuse<'T> = class end"
+        $'' : $'tokio_prelude_stream_Fuse<`t>'
+    )
+
+#!markdown
+
+### future_fuse
+
+#!spiral
 
 inl future_fuse forall t. (x : future_pin t) : fuse (future_pin t) =
     !\($'"futures::future::FutureExt::fuse(!x)"')
@@ -165,7 +171,11 @@ inl future_fuse forall t. (x : future_pin t) : fuse (future_pin t) =
 
 #!spiral
 
-nominal join_all t = $'futures_future_JoinAll<`t>'
+nominal join_all t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::JoinAll<$0>\")>]\n#endif\ntype futures_future_JoinAll<'T> = class end"
+        $'' : $'futures_future_JoinAll<`t>'
+    )
 
 inl join_all forall t. (x : am'.vec (future_pin t)) : join_all (future_pin t) =
     inl x = join x
@@ -250,7 +260,11 @@ inl await_send forall t. (x : future_pin_send t) : t =
 
 #!spiral
 
-nominal into_iter t = $'rayon_vec_IntoIter<`t>'
+nominal into_iter t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::vec::IntoIter<$0>\")>]\n#endif\ntype rayon_vec_IntoIter<'T> = class end"
+        $'' : $'rayon_vec_IntoIter<`t>'
+    )
 
 #!markdown
 
@@ -276,7 +290,11 @@ inl par_iter forall t. (x : am'.vec t) : into_iter t =
 
 #!spiral
 
-nominal iter_map t u = $'rayon_iter_Map<`t>'
+nominal iter_map t u =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"rayon::iter::Map<$0, _>\")>]\n#endif\ntype rayon_iter_Map<'T> = class end"
+        $'' : $'rayon_iter_Map<`t>'
+    )
 
 #!markdown
 
@@ -771,5 +789,4 @@ inl await_value_task_unit (task : value_task) : async () =
 #!spiral
 
 inl main () =
-    types ()
     $'let merge_cancellation_token_with_default_async x = !merge_cancellation_token_with_default_async x' : ()

@@ -18,29 +18,6 @@ open testing
 
 #!markdown
 
-## types
-
-#!spiral
-
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Error\")>]\n#endif\ntype reqwest_Error = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::RequestBuilder\")>]\n#endif\ntype reqwest_RequestBuilder = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Response\")>]\n#endif\ntype reqwest_Response = class end"
-        Python = fun () => ()
-    }
-
-#!spiral
-
-inl types () =
-    types ()
-    env.types ()
-    rust.types ()
-    sm'.types ()
-
-#!markdown
-
 ## rust
 
 #!markdown
@@ -49,7 +26,11 @@ inl types () =
 
 #!spiral
 
-nominal reqwest_response = $'reqwest_Response'
+nominal reqwest_response =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Response\")>]\n#endif\ntype reqwest_Response = class end"
+        $'' : $'reqwest_Response'
+    )
 
 #!markdown
 
@@ -57,7 +38,11 @@ nominal reqwest_response = $'reqwest_Response'
 
 #!spiral
 
-nominal reqwest_error = $'reqwest_Error'
+nominal reqwest_error =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Error\")>]\n#endif\ntype reqwest_Error = class end"
+        $'' : $'reqwest_Error'
+    )
 
 #!markdown
 
@@ -65,7 +50,11 @@ nominal reqwest_error = $'reqwest_Error'
 
 #!spiral
 
-nominal request_builder = $'reqwest_RequestBuilder'
+nominal request_builder =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::RequestBuilder\")>]\n#endif\ntype reqwest_RequestBuilder = class end"
+        $'' : $'reqwest_RequestBuilder'
+    )
 
 #!markdown
 
@@ -555,7 +544,6 @@ fun () =>
 #!spiral
 
 inl main () =
-    types ()
     init_trace_state None
     $'let test_port_open x = !test_port_open x' : ()
     $'let test_port_open_timeout x = !test_port_open_timeout x' : ()

@@ -1,16 +1,6 @@
 /// # am'
 open rust_operators
 
-/// ## types
-inl types () =
-    backend_switch {
-        Fsharp = fun () =>
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>]\n#endif\ntype Slice<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype Slice'<'T> = class end"
-            global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>]\n#endif\ntype Vec<'T> = class end"
-        Python = fun () => ()
-    }
-
 /// ## am'
 
 /// ### length
@@ -133,7 +123,16 @@ inl range start end s =
 /// ## rust
 
 /// ### vec
-nominal vec t = $'Vec<`t>'
+nominal vec t =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>]\n#endif\ntype Vec<'T> = class end"
+                ) : () -> ()
+        }
+        $'' : $'Vec<`t>'
+    )
 
 /// ### from_vec
 inl from_vec forall dim el. (vec : vec el) : a dim el =
@@ -264,10 +263,23 @@ inl vec_chunks forall t. (n : i32) (vec : vec t) : vec (vec t) =
     !\\(vec, $'"$0.chunks(!n).map(|x| x.into_iter().map(|x| x.clone()).collect::<Vec<_>>()).collect::<Vec<_>>()"')
 
 /// ### slice
-nominal slice t = $'Slice<`t>'
+nominal slice t =
+    `(
+        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>]\n#endif\ntype Slice<'T> = class end"
+        $'' : $'Slice<`t>'
+    )
 
 /// ### slice'
-nominal slice' el dim = $'Slice\'<`el>'
+nominal slice' el dim =
+    `(
+        backend_switch `(()) `({}) {
+            Fsharp =
+                (fun () =>
+                    global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"_\")>]\n#endif\ntype Slice'<'T> = class end"
+                ) : () -> ()
+        }
+        $'' : $'Slice\'<`el>'
+    )
 
 /// ### slice_singleton
 inl slice_singleton forall dim el. (x : option el) : slice' el dim =
@@ -283,7 +295,7 @@ inl slice_length forall t dim. (x : slice' t dim) : unativeint =
     !\($'"!x.len()"')
 
 /// ### slice_range
-inl slice_range forall t dim. (start : range t) (end : range t) (s : slice' t dim) : rust.ref' (slice' t dim) =
+inl slice_range forall t dim. (start : range t) (end : range t) (s : slice' t dim) : rust.ref (slice' t dim) =
     inl len = s |> slice_length
     inl start, (end : unativeint) =
         match start, end with
@@ -298,12 +310,12 @@ inl new_slice forall el dim. (el : el) : slice' el dim =
     !\\(el, $'"[$0; @dim]"')
 
 /// ### as_slice
-inl as_slice forall t. (x : array_base t) : rust.ref' (slice t) =
+inl as_slice forall t. (x : array_base t) : rust.ref (slice t) =
     inl x = x |> to_vec
     !\($'"!x.as_slice()"')
 
 /// ### slice_to_vec
-inl slice_to_vec forall t. (slice : rust.ref' (slice t)) : vec t =
+inl slice_to_vec forall t. (slice : rust.ref (slice t)) : vec t =
     !\\(slice, $'"$0.iter().map(|x| *x).collect::<Vec<_>>()"')
 
 /// ### any
