@@ -7544,6 +7544,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">sm</span><span class="s1">'_operators</span>
+<span class="nb">open</span> <span class="n">rust</span>
 <span class="nb">open</span> <span class="n">rust_operators</span>
 </pre></div>
 </div>
@@ -8216,7 +8217,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_path_buf</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">sm</span><span class="s1">'.std_string) : path_buf =</span>
-    <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::path::PathBuf::from($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8243,7 +8243,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_from</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">box</span> <span class="n">path</span><span class="p">)</span> <span class="p">:</span> <span class="n">path_buf</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::path::PathBuf::from($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8270,7 +8269,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_join</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">path_buf</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="n">path_buf</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="err">!</span>\\<span class="p">((</span><span class="n">path_buf</span><span class="p">,</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string), $'</span><span class="s2">"$0.join($1)"</span><span class="s1">')</span>
 </pre></div>
 </div>
@@ -8297,7 +8295,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_strip_prefix</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">path_buf</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="n">path_buf</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="err">!</span>\\<span class="p">((</span><span class="n">path_buf</span><span class="p">,</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string), $'</span><span class="s2">"$0.strip_prefix($1).unwrap().to_path_buf()"</span><span class="s1">')</span>
 </pre></div>
 </div>
@@ -8324,7 +8321,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_display</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">path</span><span class="p">)</span> <span class="p">:</span> <span class="n">display</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.display()"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8351,7 +8347,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_display</span> <span class="p">(</span><span class="n">path_buf</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="n">display</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="err">!</span>\\<span class="p">(</span><span class="n">path_buf</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.display()"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8378,7 +8373,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_file_name</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">sm</span><span class="s1">'.os_str) =</span>
-    <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!path.file_name()"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8405,7 +8399,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_exists</span> <span class="p">(</span><span class="n">path_buf</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="err">!</span>\\<span class="p">(</span><span class="n">path_buf</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.exists()"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8432,7 +8425,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_is_dir</span> <span class="p">(</span><span class="n">path_buf</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="err">!</span>\\<span class="p">(</span><span class="n">path_buf</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.is_dir()"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8459,7 +8451,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_is_file</span> <span class="p">(</span><span class="n">path_buf</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="err">!</span>\\<span class="p">(</span><span class="n">path_buf</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.is_file()"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8486,7 +8477,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_is_symlink</span> <span class="p">(</span><span class="n">path_buf</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="err">!</span>\\<span class="p">(</span><span class="n">path_buf</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.is_symlink()"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8513,7 +8503,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_parent</span> <span class="p">(</span><span class="n">path_buf</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">path_buf</span> <span class="o">=</span>
-    <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="err">!</span>\\<span class="p">(</span><span class="n">path_buf</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.parent().map(std::path::PathBuf::from)"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8995,7 +8984,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">read_link</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' path_buf stream.io_error =</span>
-    <span class="nb">open</span> <span class="n">rust_operators</span>
     <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::fs::read_link(&amp;*$0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -9116,7 +9104,6 @@ a.anchor-link {
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::env::temp_dir()"'</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">path_buf_display</span>
             <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format'</span>
@@ -9152,7 +9139,6 @@ a.anchor-link {
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="n">inl</span> <span class="n">path_buf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string |&gt; new_path_buf</span>
             <span class="err">!</span>\\<span class="p">(</span><span class="n">path_buf</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.file_name()"'</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unwrap</span>
@@ -9188,7 +9174,6 @@ a.anchor-link {
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="n">inl</span> <span class="n">path_buf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string |&gt; new_path_buf</span>
             <span class="err">!</span>\\<span class="p">(</span><span class="n">path_buf</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.file_stem()"'</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unwrap</span>
@@ -9223,7 +9208,6 @@ a.anchor-link {
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="n">inl</span> <span class="n">path_buf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string |&gt; new_path_buf</span>
             <span class="err">!</span>\\<span class="p">(</span><span class="n">path_buf</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.parent()"'</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unwrap</span>
@@ -9260,7 +9244,6 @@ a.anchor-link {
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="n">inl</span> <span class="n">path_buf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string |&gt; new_path_buf</span>
             <span class="err">!</span>\\<span class="p">(</span><span class="n">path_buf</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.extension()"'</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unwrap</span>
@@ -9294,7 +9277,6 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">directory_separator_char</span> <span class="p">()</span> <span class="p">:</span> <span class="n">char</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::path::MAIN_SEPARATOR"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'System.IO.Path.DirectorySeparatorChar'</span>
@@ -9326,7 +9308,6 @@ a.anchor-link {
     <span class="n">run_target</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span> <span class="o">|</span> <span class="n">Wasm</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="n">inl</span> <span class="n">current_dir</span> <span class="o">=</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::env::current_dir()"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' path_buf stream.io_error</span>
             <span class="n">current_dir</span>
             <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
@@ -9427,7 +9408,6 @@ a.anchor-link {
             <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Path.GetFullPath'</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">join</span> <span class="n">path</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="n">inl</span> <span class="n">path_buf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string |&gt; new_path_buf</span>
             <span class="k">if</span> <span class="n">path_buf</span> <span class="o">|&gt;</span> <span class="n">path_buf_exists</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="n">then</span>
                 <span class="n">inl</span> <span class="n">current_dir</span> <span class="o">=</span> <span class="n">get_current_directory</span> <span class="p">()</span>
@@ -9682,7 +9662,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_2aa52ae045c29e9ed2649ce430a889eb804178fea2b6664cf9ef62446fd3d2f7/20240710-1314-4946-3064-000000e1354a" / expected: '/'
+assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_2aa52ae045c29e9ed2649ce430a889eb804178fea2b6664cf9ef62446fd3d2f7/20240715-0617-0158-4890-000000258edb" / expected: '/'
 
 </pre>
 </div>
@@ -9691,7 +9671,7 @@ assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_2aa52ae045c29e
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240710-1314-4974-7418-700000f916e0" / expected: '/'
+assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240715-0617-0188-8835-8000005babb5" / expected: '/'
 </pre>
 </div>
 </div>
@@ -9806,7 +9786,6 @@ assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240710-1314-497
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'System.IO.File.Copy (!old_path, !new_path, true)'</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="n">inl</span> <span class="n">new_path</span> <span class="o">=</span> <span class="n">join</span> <span class="n">new_path</span>
             <span class="err">!</span>\\<span class="p">(</span><span class="n">old_path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::fs::copy(&amp;*$0, &amp;*!new_path)"'</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">u64</span> <span class="n">stream</span><span class="o">.</span><span class="n">io_error</span>
@@ -9881,7 +9860,6 @@ assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240710-1314-497
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">join</span> <span class="n">path</span>
             <span class="k">if</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">directory_exists</span> <span class="n">then</span>
-                <span class="nb">open</span> <span class="n">rust_operators</span>
                 <span class="k">if</span> <span class="n">recursive</span>
                 <span class="n">then</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::fs::remove_dir_all(&amp;*$0).unwrap()"'</span><span class="p">)</span>
                 <span class="k">else</span> <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::fs::remove_dir(&amp;*$0).unwrap()"'</span><span class="p">)</span>
@@ -9916,7 +9894,6 @@ assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240710-1314-497
             <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="n">join</span> <span class="n">text</span>
             <span class="err">$</span><span class="s1">'System.IO.File.WriteAllText (!path, !text)'</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="err">!</span>\\<span class="p">((</span><span class="n">path</span><span class="p">,</span> <span class="n">text</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"std::fs::write(&amp;*$0, &amp;*$1).unwrap()"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -9949,7 +9926,6 @@ assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240710-1314-497
             <span class="err">$</span><span class="s1">'!path |&gt; System.IO.File.ReadAllBytes'</span>
             <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.to_vec</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::fs::read(&amp;*$0).unwrap()"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -10017,7 +9993,6 @@ assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20240710-1314-497
             <span class="p">(</span><span class="err">$</span><span class="s1">'System.IO.Directory.CreateSymbolicLink (!path, !target)'</span> <span class="p">:</span> <span class="n">file_system_info</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">ignore</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="n">platform</span><span class="o">.</span><span class="n">run_platform</span> <span class="n">function</span>
                 <span class="o">|</span> <span class="n">Windows</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">((</span><span class="n">target</span><span class="p">,</span> <span class="n">path</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"std::os::windows::fs::symlink_dir(&amp;*$0, &amp;*$1).unwrap()"'</span><span class="p">)</span>
                 <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">!</span>\\<span class="p">((</span><span class="n">target</span><span class="p">,</span> <span class="n">path</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"std::os::unix::fs::symlink(&amp;*$0, &amp;*$1).unwrap()"'</span><span class="p">)</span>
@@ -10422,7 +10397,6 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.File.Delete'</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
             <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::fs::remove_file(&amp;*$0).unwrap()"'</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
@@ -10819,7 +10793,7 @@ assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_ae01ce950308410eb4f720ac916f36e7c13991f46fb0a8dd09c490097c67e115/20240710-1315-1912-3493-000000aeba4a }
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_ae01ce950308410eb4f720ac916f36e7c13991f46fb0a8dd09c490097c67e115/20240715-0617-3109-0496-00000092e1f4 }
 assert_eq / actual: true / expected: true
 assert_eq / actual: false / expected: false
 </pre>

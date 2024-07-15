@@ -1,4 +1,5 @@
 /// # sm'
+open rust
 open rust_operators
 open real_sm'
 

@@ -1,4 +1,5 @@
 /// # wasm
+open rust
 open rust_operators
 
 /// ### rexie

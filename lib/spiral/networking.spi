@@ -1,5 +1,5 @@
 /// # networking
-open rust_operators
+open rust.rust_operators
 
 /// ## rust
 

@@ -1,6 +1,7 @@
 open sm'_operators
 open svg
 open leptos
+open rust
 
 type props =
     {

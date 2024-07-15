@@ -23,7 +23,7 @@ class IOsEnviron(Protocol):
         ...
 
 
-def _expr212() -> TypeInfo:
+def _expr210() -> TypeInfo:
     return union_type("Trace.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -39,9 +39,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr212
+US0_reflection = _expr210
 
-def _expr213() -> TypeInfo:
+def _expr211() -> TypeInfo:
     return record_type("Trace.Mut0", [], Mut0, lambda: [("l0", int64_type)])
 
 
@@ -49,9 +49,9 @@ def _expr213() -> TypeInfo:
 class Mut0(Record):
     l0: int64
 
-Mut0_reflection = _expr213
+Mut0_reflection = _expr211
 
-def _expr214() -> TypeInfo:
+def _expr212() -> TypeInfo:
     return record_type("Trace.Mut1", [], Mut1, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -59,9 +59,9 @@ def _expr214() -> TypeInfo:
 class Mut1(Record):
     l0: Callable[[str], None]
 
-Mut1_reflection = _expr214
+Mut1_reflection = _expr212
 
-def _expr215() -> TypeInfo:
+def _expr213() -> TypeInfo:
     return record_type("Trace.Mut2", [], Mut2, lambda: [("l0", bool_type)])
 
 
@@ -69,9 +69,9 @@ def _expr215() -> TypeInfo:
 class Mut2(Record):
     l0: bool
 
-Mut2_reflection = _expr215
+Mut2_reflection = _expr213
 
-def _expr216() -> TypeInfo:
+def _expr215() -> TypeInfo:
     return record_type("Trace.Mut3", [], Mut3, lambda: [("l0", US0_reflection())])
 
 
@@ -79,9 +79,9 @@ def _expr216() -> TypeInfo:
 class Mut3(Record):
     l0: US0
 
-Mut3_reflection = _expr216
+Mut3_reflection = _expr215
 
-def _expr217() -> TypeInfo:
+def _expr216() -> TypeInfo:
     return union_type("Trace.US1", [], US1, lambda: [[("f0_0", US0_reflection())], []])
 
 
@@ -97,7 +97,7 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr217
+US1_reflection = _expr216
 
 def _expr218() -> TypeInfo:
     return union_type("Trace.US2", [], US2, lambda: [[("f0_0", int64_type)], []])

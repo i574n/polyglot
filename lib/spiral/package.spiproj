@@ -3,8 +3,9 @@ packages:
 modules:
     am'_prototypes-
     base-
-    rust
-    rust_operators
+    rust/
+        rust
+        rust_operators
     typescript
     typescript_operators
     python
@@ -25,6 +26,8 @@ modules:
     sm'_operators
     console
     reflection
+    rust/
+        testing
     guid
     parsing
     platform

@@ -1,4 +1,4 @@
-open rust_operators
+open rust.rust_operators
 
 inl storage_get forall t. (key : string) (storage : wasm.storage) : result (option t) wasm.js_value =
     inl storage = join storage

@@ -1,5 +1,5 @@
 /// # stream
-open rust_operators
+open rust.rust_operators
 
 /// ## stream
 

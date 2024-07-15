@@ -1,4 +1,5 @@
 /// # optionm'
+open rust
 open rust_operators
 
 /// ## optionm'

@@ -7891,7 +7891,8 @@ assert_eq / actual: true / expected: true
             <span class="p">}</span>
         <span class="n">run_target</span> <span class="n">function</span>
             <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                <span class="nb">open</span> <span class="n">rust_operators</span>
+                <span class="nb">open</span> <span class="n">rust</span>
+                <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
                 <span class="err">!</span>\\<span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="err">$</span><span class="s1">'\@"println\!(""</span><span class="si">{}</span><span class="s1">"", $0)"'</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                 <span class="n">backend_switch</span> <span class="p">{</span>
@@ -7957,7 +7958,8 @@ assert_eq / actual: true / expected: true
         <span class="n">inl</span> <span class="n">level_str</span> <span class="o">=</span>
             <span class="n">run_target</span> <span class="n">function</span>
             <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                <span class="nb">open</span> <span class="n">rust_operators</span>
+                <span class="nb">open</span> <span class="n">rust</span>
+                <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
                 <span class="n">inl</span> <span class="n">color</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span> <span class="n">sm</span><span class="s1">'.str =</span>
                     <span class="k">match</span> <span class="n">level</span> <span class="k">with</span>
                     <span class="o">|</span> <span class="n">Verbose</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"inline_colorization::color_bright_black"'</span><span class="p">)</span>
