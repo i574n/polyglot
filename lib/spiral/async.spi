@@ -1,4 +1,5 @@
 /// # async
+open rust
 open rust_operators
 
 /// ## rust

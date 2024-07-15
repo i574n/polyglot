@@ -8,7 +8,7 @@
 
 #!spiral
 
-open rust_operators
+open rust.rust_operators
 open sm'_operators
 
 #!spiral
@@ -544,7 +544,7 @@ inl duration_from_millis (ms : u64) : duration =
 inl time_zone_local () : time_zone_info =
     run_target function
         | Rust (Native) => fun () =>
-            open rust_operators
+            open rust.rust_operators
             !\($'"0i64.into()"')
         | Fsharp _ => fun () =>
             $'System.TimeZoneInfo.Local'

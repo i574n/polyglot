@@ -318,7 +318,7 @@ inl random' forall t. (min : t) (max : t) : t =
         | Rust (Contract) => fun () =>
             failwith "common.random' / target=Rust(Contract)"
         | Rust _ => fun () =>
-            open rust_operators
+            open rust.rust_operators
             !\\((min, max), $'"rand::Rng::gen_range(&mut rand::thread_rng(), $0..$1)"')
         | _ => fun () =>
             random () |> random_next (i32 min) (i32 max) |> convert

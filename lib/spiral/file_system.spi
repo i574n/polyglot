@@ -1,5 +1,6 @@
 /// # file_system
 open sm'_operators
+open rust
 open rust_operators
 
 /// ## fsharp
@@ -166,62 +167,50 @@ nominal path_buf =
 
 /// ### new_path_buf
 inl new_path_buf (path : sm'.std_string) : path_buf =
-    open rust_operators
     !\\(path, $'"std::path::PathBuf::from($0)"')
 
 /// ### path_buf_from
 inl path_buf_from (path : rust.box path) : path_buf =
-    open rust_operators
     !\\(path, $'"std::path::PathBuf::from($0)"')
 
 /// ### path_buf_join
 inl path_buf_join (s : string) (path_buf : path_buf) : path_buf =
-    open rust_operators
     !\\((path_buf, s |> sm'.to_std_string), $'"$0.join($1)"')
 
 /// ### path_buf_strip_prefix
 inl path_buf_strip_prefix (s : string) (path_buf : path_buf) : path_buf =
-    open rust_operators
     !\\((path_buf, s |> sm'.to_std_string), $'"$0.strip_prefix($1).unwrap().to_path_buf()"')
 
 /// ### path_display
 inl path_display (path : rust.ref path) : display =
-    open rust_operators
     !\\(path, $'"$0.display()"')
 
 /// ### path_buf_display
 inl path_buf_display (path_buf : path_buf) : display =
-    open rust_operators
     !\\(path_buf, $'"$0.display()"')
 
 /// ### path_buf_file_name
 inl path_buf_file_name (path : path_buf) : optionm'.option' (rust.ref sm'.os_str) =
-    open rust_operators
     !\($'"!path.file_name()"')
 
 /// ### path_buf_exists
 inl path_buf_exists (path_buf : path_buf) : bool =
-    open rust_operators
     !\\(path_buf, $'"$0.exists()"')
 
 /// ### path_buf_is_dir
 inl path_buf_is_dir (path_buf : path_buf) : bool =
-    open rust_operators
     !\\(path_buf, $'"$0.is_dir()"')
 
 /// ### path_buf_is_file
 inl path_buf_is_file (path_buf : path_buf) : bool =
-    open rust_operators
     !\\(path_buf, $'"$0.is_file()"')
 
 /// ### path_buf_is_symlink
 inl path_buf_is_symlink (path_buf : path_buf) : bool =
-    open rust_operators
     !\\(path_buf, $'"$0.is_symlink()"')
 
 /// ### path_buf_parent
 inl path_buf_parent (path_buf : path_buf) : optionm'.option' path_buf =
-    open rust_operators
     !\\(path_buf, $'"$0.parent().map(std::path::PathBuf::from)"')
 
 /// ### dir_entry
@@ -329,7 +318,6 @@ inl create_dir_all (path : string) : resultm.result' () stream.io_error =
 
 /// ### read_link
 inl read_link (path : string) : resultm.result' path_buf stream.io_error =
-    open rust_operators
     !\\(path, $'"std::fs::read_link(&*$0)"')
 
 /// ## typescript
@@ -366,7 +354,6 @@ let get_temp_path () : string =
     run_target function
         | Rust (Contract) => fun () => null ()
         | Rust (Native) => fun () =>
-            open rust_operators
             !\($'"std::env::temp_dir()"')
             |> path_buf_display
             |> sm'.format'
@@ -380,7 +367,6 @@ let get_file_name (path : string) : string =
     run_target function
         | Rust (Contract) => fun () => null ()
         | Rust (Native) => fun () =>
-            open rust_operators
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             !\\(path_buf, $'"$0.file_name()"')
             |> optionm'.unwrap
@@ -394,7 +380,6 @@ let get_file_name_without_extension (path : string) : string =
     run_target function
         | Rust (Contract) => fun () => null ()
         | Rust (Native) => fun () =>
-            open rust_operators
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             !\\(path_buf, $'"$0.file_stem()"')
             |> optionm'.unwrap
@@ -407,7 +392,6 @@ let get_directory_name (path : string) : string =
     run_target function
         | Rust (Contract) => fun () => null ()
         | Rust (Native) => fun () =>
-            open rust_operators
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             !\\(path_buf, $'"$0.parent()"')
             |> optionm'.unwrap
@@ -422,7 +406,6 @@ let get_extension (path : string) : string =
     run_target function
         | Rust (Contract) => fun () => null ()
         | Rust (Native) => fun () =>
-            open rust_operators
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             !\\(path_buf, $'"$0.extension()"')
             |> optionm'.unwrap
@@ -434,7 +417,6 @@ let get_extension (path : string) : string =
 let directory_separator_char () : char =
     run_target function
         | Rust (Native) => fun () =>
-            open rust_operators
             !\($'"std::path::MAIN_SEPARATOR"')
         | _ => fun () =>
             $'System.IO.Path.DirectorySeparatorChar'
@@ -444,7 +426,6 @@ let get_current_directory () : string =
     run_target function
         | Rust (Contract | Wasm) => fun () => null ()
         | Rust (Native) => fun () =>
-            open rust_operators
             inl current_dir = !\($'"std::env::current_dir()"') : resultm.result' path_buf stream.io_error
             current_dir
             |> resultm.unwrap'
@@ -471,7 +452,6 @@ let get_full_path (path : string) : string =
             path |> $'System.IO.Path.GetFullPath'
         | Rust (Native) => fun () =>
             inl path = join path
-            open rust_operators
             inl path_buf = path |> sm'.to_std_string |> new_path_buf
             if path_buf |> path_buf_exists |> not then
                 inl current_dir = get_current_directory ()
@@ -565,7 +545,6 @@ let file_copy (new_path : string) (old_path : string) : () =
         | Fsharp (Native) => fun () =>
             $'System.IO.File.Copy (!old_path, !new_path, true)'
         | Rust (Native) => fun () =>
-            open rust_operators
             inl new_path = join new_path
             !\\(old_path, $'"std::fs::copy(&*$0, &*!new_path)"')
             |> fun x => x : _ u64 stream.io_error
@@ -596,7 +575,6 @@ let directory_delete recursive (path : string) : () =
         | Rust (Native) => fun () =>
             inl path = join path
             if path |> directory_exists then
-                open rust_operators
                 if recursive
                 then !\\(path, $'"std::fs::remove_dir_all(&*$0).unwrap()"')
                 else !\\(path, $'"std::fs::remove_dir(&*$0).unwrap()"')
@@ -609,7 +587,6 @@ inl write_all_text (path : string) (text : string) : () =
             inl text = join text
             $'System.IO.File.WriteAllText (!path, !text)'
         | Rust (Native) => fun () =>
-            open rust_operators
             !\\((path, text), $'"std::fs::write(&*$0, &*$1).unwrap()"')
         | _ => fun () => null ()
 
@@ -620,7 +597,6 @@ inl read_all_bytes (path : string) : am'.vec u8 =
             $'!path |> System.IO.File.ReadAllBytes'
             |> am'.to_vec
         | Rust (Native) => fun () =>
-            open rust_operators
             !\\(path, $'"std::fs::read(&*$0).unwrap()"')
         | _ => fun () => null ()
 
@@ -644,7 +620,6 @@ inl directory_create_symbolic_link (target : string) (path : string) : () =
             ($'System.IO.Directory.CreateSymbolicLink (!path, !target)' : file_system_info)
             |> ignore
         | Rust (Native) => fun () =>
-            open rust_operators
             platform.run_platform function
                 | Windows => fun () => !\\((target, path), $'"std::os::windows::fs::symlink_dir(&*$0, &*$1).unwrap()"')
                 | _ => fun () => !\\((target, path), $'"std::os::unix::fs::symlink(&*$0, &*$1).unwrap()"')
@@ -710,7 +685,6 @@ inl file_delete (path : string) : () =
         | Fsharp (Native) => fun () =>
             path |> $'System.IO.File.Delete'
         | Rust (Native) => fun () =>
-            open rust_operators
             !\\(path, $'"std::fs::remove_file(&*$0).unwrap()"')
         | _ => fun () => null ()
 

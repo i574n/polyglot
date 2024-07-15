@@ -1,4 +1,4 @@
-open rust_operators
+open rust.rust_operators
 open sm'_operators
 open leptos
 

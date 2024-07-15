@@ -1,5 +1,6 @@
 open sm'_operators
 open leptos
+open rust
 
 inl render forall t. (class : () -> string) props getter setter : _ input =
     inl getter : () -> t = join getter

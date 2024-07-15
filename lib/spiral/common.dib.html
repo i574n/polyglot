@@ -9451,7 +9451,7 @@ assert_eq' / actual: US0_0 2 / expected: US0_0 2
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">failwith</span> <span class="s2">"common.random' / target=Rust(Contract)"</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="nb">open</span> <span class="n">rust_operators</span>
+            <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
             <span class="o">!</span><span class="se">\\</span><span class="o">((</span>min,<span class="w"> </span>max<span class="o">)</span>,<span class="w"> </span><span class="s1">$'"rand::Rng::gen_range(&amp;mut rand::thread_rng(), $0..$1)"'</span><span class="o">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">random</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">random_next</span> <span class="p">(</span><span class="n">i32</span> <span class="nb">min</span><span class="p">)</span> <span class="p">(</span><span class="n">i32</span> <span class="nb">max</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">convert</span>

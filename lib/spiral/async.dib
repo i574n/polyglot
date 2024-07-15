@@ -14,6 +14,7 @@ open testing
 
 #!spiral
 
+open rust
 open rust_operators
 
 #!markdown

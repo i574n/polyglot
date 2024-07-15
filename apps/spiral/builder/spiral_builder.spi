@@ -1,6 +1,7 @@
 /// # spiral_builder
 open file_system_operators
-open rust_operators
+open rust.rust_operators
+open rust
 open sm'_operators
 
 /// ## get_args
@@ -1452,13 +1453,13 @@ let rec run trace_level (matches : runtime.arg_matches) : async.future_pin (resu
 
 /// ## tests
 inl tests () =
-    rust.run_tests [
-        "verify_app", fun _ =>
+    testing.run_tests {
+        verify_app = fun (_ : string) =>
             get_command () |> runtime.command_debug_assert
-    ]
+    }
 
 /// ## main
-///! 
+///! _
 
 inl main (args : array_base string) =
     inl trace_state = get_trace_state_or_init None

@@ -1,5 +1,6 @@
 open sm'_operators
 open leptos
+open rust
 
 inl render (class : () -> string) : _ svg =
     inl class = class |> rust.emit

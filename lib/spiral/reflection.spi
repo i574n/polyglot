@@ -60,11 +60,21 @@ inl union_to_string forall t. (x : t) : string =
 /// ### nameof
 inl nameof forall t. (x : t) : string =
     real
-        inl result : string =
-            real_core.record_type_fold_back
-                fun key =>
-                    forall value. _ =>
-                        real_sm'.symbol_to_string `(`key)
-                `t
-                ""
-        result
+        real_core.record_type_fold_back
+            fun key =>
+                forall value. _ =>
+                    real_sm'.symbol_to_string `(`key)
+            `t
+            ""
+
+/// ### get_record_fields
+inl get_record_fields forall t u. (x : t) : list (string * u) =
+    real
+        real_core.record_type_fold_back
+            fun key =>
+                forall u'. acc =>
+                    inl k = real_sm'.symbol_to_string `(`key)
+                    inl v = x key
+                    (::) `(string * u') (k, v) acc
+            `t
+            (Nil `(string * u))

@@ -1,4 +1,5 @@
 /// # crypto
+open rust
 open rust_operators
 
 /// ## fsharp

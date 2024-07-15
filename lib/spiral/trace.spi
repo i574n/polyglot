@@ -101,7 +101,8 @@ let rec trace_raw level fn =
             }
         run_target function
             | Rust _ => fun () =>
-                open rust_operators
+                open rust
+                open rust.rust_operators
                 !\\(text, $'\@"println\!(""{}"", $0)"')
             | _ => fun () =>
                 backend_switch {
@@ -145,7 +146,8 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
         inl level_str =
             run_target function
             | Rust _ => fun () =>
-                open rust_operators
+                open rust
+                open rust.rust_operators
                 inl color : rust.ref sm'.str =
                     match level with
                     | Verbose => !\($'"inline_colorization::color_bright_black"')
