@@ -7572,7 +7572,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="run_tests">run_tests<a class="anchor-link" href="#run_tests">¶</a></h3>
+<h3 id="run_tests'">run_tests'<a class="anchor-link" href="#run_tests'">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7584,7 +7584,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run_tests</span> <span class="n">tests</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run_tests</span><span class="s1">' tests =</span>
     <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"true; () //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 
     <span class="n">inl</span> <span class="n">fields</span> <span class="o">=</span> <span class="n">reflection</span><span class="o">.</span><span class="n">get_record_fields</span> <span class="n">tests</span>
@@ -7593,7 +7593,7 @@ a.anchor-link {
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="o">=&gt;</span>
         <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"} /* /*"'</span><span class="p">)</span>
         <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"*/ #[test] fn " + !name + "() { //"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-        <span class="n">fn</span> <span class="n">name</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+        <span class="n">fn</span> <span class="n">name</span>
 
     <span class="n">fields</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span>
@@ -7603,7 +7603,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7612,9 +7612,8 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">encoding_rs</span> <span class="n">encoding_rs_io</span>
 
-<span class="n">inl</span> <span class="n">run</span> <span class="p">()</span> <span class="o">=</span>
+<span class="n">inl</span> <span class="n">run</span> <span class="n">test</span> <span class="o">=</span>
     <span class="k">if</span> <span class="n">env</span><span class="o">.</span><span class="n">get_environment_variable</span> <span class="s2">"TEST"</span> <span class="o">=</span> <span class="s2">"1"</span>
     <span class="n">then</span> <span class="p">()</span>
     <span class="k">else</span>
@@ -7628,13 +7627,28 @@ a.anchor-link {
             <span class="n">exit_code</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span><span class="n">i32</span>
             <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">_assert_string_contains</span> <span class="s2">"test result: ok. 1 passed; 0 failed; 0 ignored;"</span>
 
-    <span class="n">inl</span> <span class="n">tests</span> <span class="p">()</span> <span class="o">=</span>
-        <span class="n">run_tests</span> <span class="p">{</span>
-            <span class="n">a</span> <span class="o">=</span> <span class="n">_assert_eq</span> <span class="s2">"a"</span>
-        <span class="p">}</span>
-    <span class="err">$</span><span class="s1">'let tests () = !tests ()'</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s1">'let tests () = !test ()'</span> <span class="p">:</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">encoding_rs</span> <span class="n">encoding_rs_io</span>
 
-<span class="n">run</span> <span class="p">()</span>
+<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_tests</span><span class="s1">' {</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">_assert_eq</span> <span class="s2">"a"</span>
+    <span class="p">}</span>
+<span class="o">|&gt;</span> <span class="n">run</span>
 </pre></div>
 </div>
 </div>
@@ -7649,7 +7663,7 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options / { file_name = cargo; arguments = ["+nightly", "test", "--", "--show-output"]; options = { command = cargo +nightly test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some("/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/3670d56ab7003a583a3d8e0676ee1b237de70d5d34d9ad78fef1e4f45f3b5b37") } }
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 ! <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> spiral_builder_3670d56ab7003a583a3d8e0676ee1b237de70d5d34d9ad78fef1e4f45f3b5b37 v0.0.1 (/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/3670d56ab7003a583a3d8e0676ee1b237de70d5d34d9ad78fef1e4f45f3b5b37)
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #3 ! <span class="ansi-green-intense-fg ansi-bold">    Finished</span> `test` profile [unoptimized + debuginfo] target(s) in 1.21s
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #3 ! <span class="ansi-green-intense-fg ansi-bold">    Finished</span> `test` profile [unoptimized + debuginfo] target(s) in 1.22s
 00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 ! <span class="ansi-green-intense-fg ansi-bold">     Running</span> unittests spiral_builder.rs (/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/target/debug/deps/spiral_builder_3670d56ab7003a583a3d8e0676ee1b237de70d5d34d9ad78fef1e4f45f3b5b37-6edce84fe7e466a4)
 00:00:01 <span class="ansi-black-intense-fg">verbose</span> #5 &gt;
 00:00:01 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; running 1 test
@@ -7669,7 +7683,7 @@ a.anchor-link {
 00:00:01 <span class="ansi-black-intense-fg">verbose</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 942 }
 assert_eq / actual: 0 / expected: 0
 assert_string_contains / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-green-intense-bg ansi-bold ansi-underline">   Compiling</span> spiral_builder_3670d56ab7003a583a3d8e0676ee1b237de70d5d34d9ad78fef1e4f45f3b5b37 v0.0.1 (/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/3670d56ab7003a583a3d8e0676ee1b237de70d5d34d9ad78fef1e4f45f3b5b37)
-<span class="ansi-default-inverse-fg ansi-green-intense-bg ansi-bold ansi-underline">    Finished</span> `test` profile [unoptimized + debuginfo] target(s) in 1.21s
+<span class="ansi-default-inverse-fg ansi-green-intense-bg ansi-bold ansi-underline">    Finished</span> `test` profile [unoptimized + debuginfo] target(s) in 1.22s
 <span class="ansi-default-inverse-fg ansi-green-intense-bg ansi-bold ansi-underline">     Running</span> unittests spiral_builder.rs (/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/target/debug/deps/spiral_builder_3670d56ab7003a583a3d8e0676ee1b237de70d5d34d9ad78fef1e4f45f3b5b37-6edce84fe7e466a4)
 
 running 1 test
@@ -7679,6 +7693,214 @@ successes:
 
 ---- module_7e2cd9e0::Spiral_builder::a stdout ----
 assert_eq / actual: "a" / expected: "a"
+
+
+successes:
+    module_7e2cd9e0::Spiral_builder::a
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="run_tests">run_tests<a class="anchor-link" href="#run_tests">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run_tests</span> <span class="n">tests</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">real</span>
+        <span class="n">inl</span> <span class="n">tests</span> <span class="o">=</span>
+            <span class="n">real_core</span><span class="o">.</span><span class="n">record_map</span>
+                <span class="n">fun</span> <span class="p">{</span> <span class="n">key</span> <span class="n">value</span> <span class="p">}</span> <span class="o">=&gt;</span>
+                    <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">value</span> <span class="p">())</span> <span class="p">:</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="p">()</span>
+                <span class="n">tests</span>
+        <span class="n">run_tests</span><span class="s1">' `(`tests) tests</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">encoding_rs</span> <span class="n">encoding_rs_io</span>
+
+<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_tests</span> <span class="p">{</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"a"</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"a"</span>
+    <span class="p">}</span>
+<span class="o">|&gt;</span> <span class="n">run</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options / { file_name = cargo; arguments = ["+nightly", "test", "--", "--show-output"]; options = { command = cargo +nightly test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some("/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/c8ef3a091baa45c744a7d832eced3956eb83f0b5a78e44f8ee9a7adb2b9ee2cc") } }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 ! <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> spiral_builder_c8ef3a091baa45c744a7d832eced3956eb83f0b5a78e44f8ee9a7adb2b9ee2cc v0.0.1 (/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/c8ef3a091baa45c744a7d832eced3956eb83f0b5a78e44f8ee9a7adb2b9ee2cc)
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #3 ! <span class="ansi-green-intense-fg ansi-bold">    Finished</span> `test` profile [unoptimized + debuginfo] target(s) in 1.22s
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 ! <span class="ansi-green-intense-fg ansi-bold">     Running</span> unittests spiral_builder.rs (/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/target/debug/deps/spiral_builder_c8ef3a091baa45c744a7d832eced3956eb83f0b5a78e44f8ee9a7adb2b9ee2cc-6e48e22c728a908e)
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #5 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; running 1 test
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; test module_7e2cd9e0::Spiral_builder::a ... ok
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #8 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; successes:
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #10 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; ---- module_7e2cd9e0::Spiral_builder::a stdout ----
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #12 &gt; assert_eq / actual: "a" / expected: "a"
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #14 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #15 &gt; successes:
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;     module_7e2cd9e0::Spiral_builder::a
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #17 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #18 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #19 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 942 }
+assert_eq / actual: 0 / expected: 0
+assert_string_contains / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-green-intense-bg ansi-bold ansi-underline">   Compiling</span> spiral_builder_c8ef3a091baa45c744a7d832eced3956eb83f0b5a78e44f8ee9a7adb2b9ee2cc v0.0.1 (/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/c8ef3a091baa45c744a7d832eced3956eb83f0b5a78e44f8ee9a7adb2b9ee2cc)
+<span class="ansi-default-inverse-fg ansi-green-intense-bg ansi-bold ansi-underline">    Finished</span> `test` profile [unoptimized + debuginfo] target(s) in 1.22s
+<span class="ansi-default-inverse-fg ansi-green-intense-bg ansi-bold ansi-underline">     Running</span> unittests spiral_builder.rs (/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/target/debug/deps/spiral_builder_c8ef3a091baa45c744a7d832eced3956eb83f0b5a78e44f8ee9a7adb2b9ee2cc-6e48e22c728a908e)
+
+running 1 test
+test module_7e2cd9e0::Spiral_builder::a ... ok
+
+successes:
+
+---- module_7e2cd9e0::Spiral_builder::a stdout ----
+assert_eq / actual: "a" / expected: "a"
+
+
+successes:
+    module_7e2cd9e0::Spiral_builder::a
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="run_tests_log">run_tests_log<a class="anchor-link" href="#run_tests_log">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run_tests_log</span> <span class="n">tests</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">real</span>
+        <span class="n">inl</span> <span class="n">tests</span> <span class="o">=</span>
+            <span class="n">real_core</span><span class="o">.</span><span class="n">record_map</span>
+                <span class="n">fun</span> <span class="p">{</span> <span class="n">key</span> <span class="n">value</span> <span class="p">}</span> <span class="o">=&gt;</span>
+                    <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">value</span> <span class="n">false</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">()</span>
+                <span class="n">tests</span>
+        <span class="n">run_tests</span> <span class="err">`</span><span class="p">(</span><span class="err">`</span><span class="n">tests</span><span class="p">)</span> <span class="n">tests</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">encoding_rs</span> <span class="n">encoding_rs_io</span>
+
+<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">run_tests_log</span> <span class="p">{</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">_assert_eq</span> <span class="n">false</span>
+    <span class="p">}</span>
+<span class="o">|&gt;</span> <span class="n">run</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options / { file_name = cargo; arguments = ["+nightly", "test", "--", "--show-output"]; options = { command = cargo +nightly test -- --show-output; cancellation_token = None; environment_variables = Array(MutCell([("TEST", "1")])); on_line = None; stdin = None; trace = true; working_directory = Some("/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/dc791a8300cd41fcab532f813a4782c2226308f1402655530256b8a7e002e8d1") } }
+00:00:00 <span class="ansi-black-intense-fg">verbose</span> #2 ! <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> spiral_builder_dc791a8300cd41fcab532f813a4782c2226308f1402655530256b8a7e002e8d1 v0.0.1 (/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/dc791a8300cd41fcab532f813a4782c2226308f1402655530256b8a7e002e8d1)
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #3 ! <span class="ansi-green-intense-fg ansi-bold">    Finished</span> `test` profile [unoptimized + debuginfo] target(s) in 1.21s
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 ! <span class="ansi-green-intense-fg ansi-bold">     Running</span> unittests spiral_builder.rs (/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/target/debug/deps/spiral_builder_dc791a8300cd41fcab532f813a4782c2226308f1402655530256b8a7e002e8d1-7f97f8a7c739c5f3)
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #5 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #6 &gt; running 1 test
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #7 &gt; test module_7e2cd9e0::Spiral_builder::a ... ok
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #8 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #9 &gt; successes:
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #10 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #11 &gt; ---- module_7e2cd9e0::Spiral_builder::a stdout ----
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #12 &gt; assert_eq / actual: false / expected: false
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #13 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #14 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #15 &gt; successes:
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #16 &gt;     module_7e2cd9e0::Spiral_builder::a
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #17 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #18 &gt; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #19 &gt;
+00:00:01 <span class="ansi-black-intense-fg">verbose</span> #20 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 946 }
+assert_eq / actual: 0 / expected: 0
+assert_string_contains / actual: "test result: ok. 1 passed; 0 failed; 0 ignored;" / expected: "<span class="ansi-default-inverse-fg ansi-green-intense-bg ansi-bold ansi-underline">   Compiling</span> spiral_builder_dc791a8300cd41fcab532f813a4782c2226308f1402655530256b8a7e002e8d1 v0.0.1 (/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/packages/Rust/dc791a8300cd41fcab532f813a4782c2226308f1402655530256b8a7e002e8d1)
+<span class="ansi-default-inverse-fg ansi-green-intense-bg ansi-bold ansi-underline">    Finished</span> `test` profile [unoptimized + debuginfo] target(s) in 1.21s
+<span class="ansi-default-inverse-fg ansi-green-intense-bg ansi-bold ansi-underline">     Running</span> unittests spiral_builder.rs (/home/runner/work/polyglot/polyglot/target/spiral_builder/spiral_builder/target/debug/deps/spiral_builder_dc791a8300cd41fcab532f813a4782c2226308f1402655530256b8a7e002e8d1-7f97f8a7c739c5f3)
+
+running 1 test
+test module_7e2cd9e0::Spiral_builder::a ... ok
+
+successes:
+
+---- module_7e2cd9e0::Spiral_builder::a stdout ----
+assert_eq / actual: false / expected: false
 
 
 successes:

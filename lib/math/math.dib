@@ -840,47 +840,24 @@ graph TD
 #!spiral
 
 inl tests () =
-    testing.run_tests {
-        test_zeta_at_known_values_ = fun (_ : string) =>
-            test_zeta_at_known_values_ false
-
-        test_zeta_at_2_minus2 = fun (_ : string) =>
-            test_zeta_at_2_minus2 false
-
-        test_trivial_zero_at_negative_even___ = fun (_ : string) =>
-            test_trivial_zero_at_negative_even___ false
-
-        test_non_trivial_zero___ = fun (_ : string) =>
-            test_non_trivial_zero___ false
-
-        test_real_part_greater_than_one___ = fun (_ : string) =>
-            test_real_part_greater_than_one___ false
-
-        test_zeta_at_1___ = fun (_ : string) =>
-            test_zeta_at_1___ false
-
-        test_symmetry_across_real_axis___ = fun (_ : string) =>
-            test_symmetry_across_real_axis___ false
-
-        test_behavior_near_origin___ = fun (_ : string) =>
-            test_behavior_near_origin___ false
-
-        test_imaginary_axis = fun (_ : string) =>
-            test_imaginary_axis false
-
-        test_critical_strip = fun (_ : string) =>
-            test_critical_strip false
-
-        test_reflection_formula_for_specific_value = fun (_ : string) =>
-            test_reflection_formula_for_specific_value false
-
-        test_euler_product_formula = fun (_ : string) =>
-            test_euler_product_formula false
+    testing.run_tests_log {
+        test_zeta_at_known_values_
+        test_zeta_at_2_minus2
+        test_trivial_zero_at_negative_even___
+        test_non_trivial_zero___
+        test_real_part_greater_than_one___
+        test_zeta_at_1___
+        test_symmetry_across_real_axis___
+        test_behavior_near_origin___
+        test_imaginary_axis
+        test_critical_strip
+        test_reflection_formula_for_specific_value
+        test_euler_product_formula
     }
 
 #!spiral
 
-///! 
+///! _
 
 inl main (_args : array_base string) =
     inl value = 1i32

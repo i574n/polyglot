@@ -2500,104 +2500,104 @@ and method51 () : unit =
     Fable.Core.RustInterop.emitRustExpr v14 v15 
     ()
 and closure0 () () : unit =
-    let v0 : string = "true; () //"
-    let v1 : bool = Fable.Core.RustInterop.emitRustExpr () v0 
-    let v2 : string = "} /* /*"
-    Fable.Core.RustInterop.emitRustExpr () v2 
-    let v3 : string = "test_zeta_at_known_values_"
-    let v4 : string = $"*/ #[test] fn " + v3 + "() { //"
-    let v5 : bool = Fable.Core.RustInterop.emitRustExpr () v4 
-    method0()
-    let v6 : string = "} /* /*"
-    Fable.Core.RustInterop.emitRustExpr () v6 
-    let v7 : string = "test_zeta_at_2_minus2"
-    let v8 : string = $"*/ #[test] fn " + v7 + "() { //"
-    let v9 : bool = Fable.Core.RustInterop.emitRustExpr () v8 
-    method23()
-    let v10 : string = "} /* /*"
-    Fable.Core.RustInterop.emitRustExpr () v10 
-    let v11 : string = "test_trivial_zero_at_negative_even___"
-    let v12 : string = $"*/ #[test] fn " + v11 + "() { //"
-    let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    method25()
-    let v14 : string = "} /* /*"
-    Fable.Core.RustInterop.emitRustExpr () v14 
-    let v15 : string = "test_non_trivial_zero___"
-    let v16 : string = $"*/ #[test] fn " + v15 + "() { //"
-    let v17 : bool = Fable.Core.RustInterop.emitRustExpr () v16 
-    method29()
-    let v18 : string = "} /* /*"
-    Fable.Core.RustInterop.emitRustExpr () v18 
-    let v19 : string = "test_real_part_greater_than_one___"
-    let v20 : string = $"*/ #[test] fn " + v19 + "() { //"
-    let v21 : bool = Fable.Core.RustInterop.emitRustExpr () v20 
-    method31()
-    let v22 : string = "} /* /*"
-    Fable.Core.RustInterop.emitRustExpr () v22 
-    let v23 : string = "test_zeta_at_1___"
-    let v24 : string = $"*/ #[test] fn " + v23 + "() { //"
+    let v24 : string = "true; () //"
     let v25 : bool = Fable.Core.RustInterop.emitRustExpr () v24 
-    method33()
     let v26 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v26 
-    let v27 : string = "test_symmetry_across_real_axis___"
+    let v27 : string = "test_zeta_at_known_values_"
     let v28 : string = $"*/ #[test] fn " + v27 + "() { //"
     let v29 : bool = Fable.Core.RustInterop.emitRustExpr () v28 
-    method35()
+    method0()
     let v30 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v30 
-    let v31 : string = "test_behavior_near_origin___"
+    let v31 : string = "test_zeta_at_2_minus2"
     let v32 : string = $"*/ #[test] fn " + v31 + "() { //"
     let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
-    method37()
+    method23()
     let v34 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v34 
-    let v35 : string = "test_imaginary_axis"
+    let v35 : string = "test_trivial_zero_at_negative_even___"
     let v36 : string = $"*/ #[test] fn " + v35 + "() { //"
     let v37 : bool = Fable.Core.RustInterop.emitRustExpr () v36 
-    method39()
+    method25()
     let v38 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v38 
-    let v39 : string = "test_critical_strip"
+    let v39 : string = "test_non_trivial_zero___"
     let v40 : string = $"*/ #[test] fn " + v39 + "() { //"
     let v41 : bool = Fable.Core.RustInterop.emitRustExpr () v40 
-    method43()
+    method29()
     let v42 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v42 
-    let v43 : string = "test_reflection_formula_for_specific_value"
+    let v43 : string = "test_real_part_greater_than_one___"
     let v44 : string = $"*/ #[test] fn " + v43 + "() { //"
     let v45 : bool = Fable.Core.RustInterop.emitRustExpr () v44 
-    method47()
+    method31()
     let v46 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v46 
-    let v47 : string = "test_euler_product_formula"
+    let v47 : string = "test_zeta_at_1___"
     let v48 : string = $"*/ #[test] fn " + v47 + "() { //"
     let v49 : bool = Fable.Core.RustInterop.emitRustExpr () v48 
-    method51()
-    let v50 : string = "{ //"
+    method33()
+    let v50 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v50 
-    let v51 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v51 
-    let v52 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v52 
-    let v53 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v53 
-    let v54 : string = "{ //"
+    let v51 : string = "test_symmetry_across_real_axis___"
+    let v52 : string = $"*/ #[test] fn " + v51 + "() { //"
+    let v53 : bool = Fable.Core.RustInterop.emitRustExpr () v52 
+    method35()
+    let v54 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v54 
-    let v55 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v55 
-    let v56 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v56 
-    let v57 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v57 
-    let v58 : string = "{ //"
+    let v55 : string = "test_behavior_near_origin___"
+    let v56 : string = $"*/ #[test] fn " + v55 + "() { //"
+    let v57 : bool = Fable.Core.RustInterop.emitRustExpr () v56 
+    method37()
+    let v58 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v58 
-    let v59 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v59 
-    let v60 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v60 
-    let v61 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v61 
+    let v59 : string = "test_imaginary_axis"
+    let v60 : string = $"*/ #[test] fn " + v59 + "() { //"
+    let v61 : bool = Fable.Core.RustInterop.emitRustExpr () v60 
+    method39()
+    let v62 : string = "} /* /*"
+    Fable.Core.RustInterop.emitRustExpr () v62 
+    let v63 : string = "test_critical_strip"
+    let v64 : string = $"*/ #[test] fn " + v63 + "() { //"
+    let v65 : bool = Fable.Core.RustInterop.emitRustExpr () v64 
+    method43()
+    let v66 : string = "} /* /*"
+    Fable.Core.RustInterop.emitRustExpr () v66 
+    let v67 : string = "test_reflection_formula_for_specific_value"
+    let v68 : string = $"*/ #[test] fn " + v67 + "() { //"
+    let v69 : bool = Fable.Core.RustInterop.emitRustExpr () v68 
+    method47()
+    let v70 : string = "} /* /*"
+    Fable.Core.RustInterop.emitRustExpr () v70 
+    let v71 : string = "test_euler_product_formula"
+    let v72 : string = $"*/ #[test] fn " + v71 + "() { //"
+    let v73 : bool = Fable.Core.RustInterop.emitRustExpr () v72 
+    method51()
+    let v74 : string = "{ //"
+    Fable.Core.RustInterop.emitRustExpr () v74 
+    let v75 : string = "{ //"
+    Fable.Core.RustInterop.emitRustExpr () v75 
+    let v76 : string = "{ //"
+    Fable.Core.RustInterop.emitRustExpr () v76 
+    let v77 : string = "{ //"
+    Fable.Core.RustInterop.emitRustExpr () v77 
+    let v78 : string = "{ //"
+    Fable.Core.RustInterop.emitRustExpr () v78 
+    let v79 : string = "{ //"
+    Fable.Core.RustInterop.emitRustExpr () v79 
+    let v80 : string = "{ //"
+    Fable.Core.RustInterop.emitRustExpr () v80 
+    let v81 : string = "{ //"
+    Fable.Core.RustInterop.emitRustExpr () v81 
+    let v82 : string = "{ //"
+    Fable.Core.RustInterop.emitRustExpr () v82 
+    let v83 : string = "{ //"
+    Fable.Core.RustInterop.emitRustExpr () v83 
+    let v84 : string = "{ //"
+    Fable.Core.RustInterop.emitRustExpr () v84 
+    let v85 : string = "{ //"
+    Fable.Core.RustInterop.emitRustExpr () v85 
     ()
 and closure5 () (v0 : (string [])) : int32 =
     let v1 : string = $"value: {1}"

@@ -1034,17 +1034,17 @@ mod module_7e2cd9e0 {
             clap::Command::subcommand(v454, v505)
         }
         pub fn closure0(unitVar: (), unitVar_1: ()) {
-            let v1_1: bool = true;
+            let v2: bool = true;
             () //;
         } /* /*;
           {
-              let v4: string = string("*/ #[test] fn verify_app() { //");
-              let v5: bool = */
+              let v5: string = string("*/ #[test] fn verify_app() { //");
+              let v6: bool = */
         #[test]
         fn verify_app() {
             //;
-            let v6: clap::Command = Spiral_builder::method0();
-            clap::Command::debug_assert(v6);
+            let v7: clap::Command = Spiral_builder::method0();
+            clap::Command::debug_assert(v7);
             {
                 //;
                 ()

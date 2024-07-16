@@ -18,11 +18,11 @@ open testing
 
 #!markdown
 
-### run_tests
+### run_tests'
 
 #!spiral
 
-inl run_tests tests =
+inl run_tests' tests =
     (!\($'"true; () //"') : bool) |> ignore
 
     inl fields = reflection.get_record_fields tests
@@ -31,7 +31,7 @@ inl run_tests tests =
     |> listm.iter fun name, (fn : string -> ()) =>
         !\($'"} /* /*"')
         (!\($'$"*/ #[test] fn " + !name + "() { //"') : bool) |> ignore
-        fn name |> ignore
+        fn name
 
     fields
     |> listm.iter fun _ =>
@@ -40,9 +40,8 @@ inl run_tests tests =
 #!spiral
 
 //// test
-///! rust -d encoding_rs encoding_rs_io
 
-inl run () =
+inl run test =
     if env.get_environment_variable "TEST" = "1"
     then ()
     else
@@ -56,10 +55,67 @@ inl run () =
             exit_code |> _assert_eq 0i32
             result |> _assert_string_contains "test result: ok. 1 passed; 0 failed; 0 ignored;"
 
-    inl tests () =
-        run_tests {
-            a = _assert_eq "a"
-        }
-    $'let tests () = !tests ()' : ()
+    $'let tests () = !test ()' : ()
 
-run ()
+#!spiral
+
+//// test
+///! rust -d encoding_rs encoding_rs_io
+
+fun () =>
+    run_tests' {
+        a = _assert_eq "a"
+    }
+|> run
+
+#!markdown
+
+### run_tests
+
+#!spiral
+
+inl run_tests tests : () =
+    real
+        inl tests =
+            real_core.record_map
+                fun { key value } =>
+                    (fun _ => value ()) : string -> ()
+                tests
+        run_tests' `(`tests) tests
+
+#!spiral
+
+//// test
+///! rust -d encoding_rs encoding_rs_io
+
+fun () =>
+    run_tests {
+        a = fun () => "a" |> _assert_eq "a"
+    }
+|> run
+
+#!markdown
+
+### run_tests_log
+
+#!spiral
+
+inl run_tests_log tests : () =
+    real
+        inl tests =
+            real_core.record_map
+                fun { key value } =>
+                    (fun _ => value false) : () -> ()
+                tests
+        run_tests `(`tests) tests
+
+#!spiral
+
+//// test
+///! rust -d encoding_rs encoding_rs_io
+
+fun () =>
+    run_tests_log {
+        a = _assert_eq false
+    }
+|> run
