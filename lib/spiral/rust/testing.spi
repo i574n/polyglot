@@ -1,8 +1,8 @@
 /// # rust/testing
 open rust.rust_operators
 
-/// ### run_tests
-inl run_tests tests =
+/// ### run_tests'
+inl run_tests' tests =
     (!\($'"true; () //"') : bool) |> ignore
 
     inl fields = reflection.get_record_fields tests
@@ -11,8 +11,28 @@ inl run_tests tests =
     |> listm.iter fun name, (fn : string -> ()) =>
         !\($'"} /* /*"')
         (!\($'$"*/ #[test] fn " + !name + "() { //"') : bool) |> ignore
-        fn name |> ignore
+        fn name
 
     fields
     |> listm.iter fun _ =>
         !\($'"{ //"') : ()
+
+/// ### run_tests
+inl run_tests tests : () =
+    real
+        inl tests =
+            real_core.record_map
+                fun { key value } =>
+                    (fun _ => value ()) : string -> ()
+                tests
+        run_tests' `(`tests) tests
+
+/// ### run_tests_log
+inl run_tests_log tests : () =
+    real
+        inl tests =
+            real_core.record_map
+                fun { key value } =>
+                    (fun _ => value false) : () -> ()
+                tests
+        run_tests `(`tests) tests

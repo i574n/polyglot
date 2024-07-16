@@ -880,18 +880,18 @@ let rec method0 () : clap_Command =
     let v507 : clap_Command = Fable.Core.RustInterop.emitRustExpr v454 v506 
     v507
 and closure0 () () : unit =
-    let v0 : string = "true; () //"
-    let v1 : bool = Fable.Core.RustInterop.emitRustExpr () v0 
-    let v2 : string = "} /* /*"
-    Fable.Core.RustInterop.emitRustExpr () v2 
-    let v3 : string = "verify_app"
-    let v4 : string = $"*/ #[test] fn " + v3 + "() { //"
-    let v5 : bool = Fable.Core.RustInterop.emitRustExpr () v4 
-    let v6 : clap_Command = method0()
-    let v7 : string = "clap::Command::debug_assert($0)"
-    Fable.Core.RustInterop.emitRustExpr v6 v7 
-    let v8 : string = "{ //"
-    Fable.Core.RustInterop.emitRustExpr () v8 
+    let v1 : string = "true; () //"
+    let v2 : bool = Fable.Core.RustInterop.emitRustExpr () v1 
+    let v3 : string = "} /* /*"
+    Fable.Core.RustInterop.emitRustExpr () v3 
+    let v4 : string = "verify_app"
+    let v5 : string = $"*/ #[test] fn " + v4 + "() { //"
+    let v6 : bool = Fable.Core.RustInterop.emitRustExpr () v5 
+    let v7 : clap_Command = method0()
+    let v8 : string = "clap::Command::debug_assert($0)"
+    Fable.Core.RustInterop.emitRustExpr v7 v8 
+    let v9 : string = "{ //"
+    Fable.Core.RustInterop.emitRustExpr () v9 
     ()
 and method1 () : string =
     let v0 : string = "TRACE_LEVEL"

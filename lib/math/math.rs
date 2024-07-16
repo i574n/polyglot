@@ -2652,13 +2652,13 @@ mod module_b7a9935b {
             }
         }
         pub fn closure0(unitVar: (), unitVar_1: ()) {
-            let v1_1: bool = true;
+            let v25: bool = true;
             () //;
         } /* /*;
           {
-              let v4: string =
+              let v28: string =
                   string("*/ #[test] fn test_zeta_at_known_values_() { //");
-              let v5: bool =
+              let v29: bool =
                   */
         #[test]
         fn test_zeta_at_known_values_() {
@@ -2666,18 +2666,19 @@ mod module_b7a9935b {
             Math::method0();
         } /* /*;
           {
-              let v8: string =
+              let v32: string =
                   string("*/ #[test] fn test_zeta_at_2_minus2() { //");
-              let v9: bool = */
+              let v33: bool =
+                  */
         #[test]
         fn test_zeta_at_2_minus2() {
             //;
             Math::method23();
         } /* /*;
           {
-              let v12: string =
+              let v36: string =
                   string("*/ #[test] fn test_trivial_zero_at_negative_even___() { //");
-              let v13: bool =
+              let v37: bool =
                   */
         #[test]
         fn test_trivial_zero_at_negative_even___() {
@@ -2685,9 +2686,9 @@ mod module_b7a9935b {
             Math::method25();
         } /* /*;
           {
-              let v16: string =
+              let v40: string =
                   string("*/ #[test] fn test_non_trivial_zero___() { //");
-              let v17: bool =
+              let v41: bool =
                   */
         #[test]
         fn test_non_trivial_zero___() {
@@ -2695,9 +2696,9 @@ mod module_b7a9935b {
             Math::method29();
         } /* /*;
           {
-              let v20: string =
+              let v44: string =
                   string("*/ #[test] fn test_real_part_greater_than_one___() { //");
-              let v21: bool =
+              let v45: bool =
                   */
         #[test]
         fn test_real_part_greater_than_one___() {
@@ -2705,9 +2706,9 @@ mod module_b7a9935b {
             Math::method31();
         } /* /*;
           {
-              let v24: string =
+              let v48: string =
                   string("*/ #[test] fn test_zeta_at_1___() { //");
-              let v25: bool =
+              let v49: bool =
                   */
         #[test]
         fn test_zeta_at_1___() {
@@ -2715,9 +2716,9 @@ mod module_b7a9935b {
             Math::method33();
         } /* /*;
           {
-              let v28: string =
+              let v52: string =
                   string("*/ #[test] fn test_symmetry_across_real_axis___() { //");
-              let v29: bool =
+              let v53: bool =
                   */
         #[test]
         fn test_symmetry_across_real_axis___() {
@@ -2725,9 +2726,9 @@ mod module_b7a9935b {
             Math::method35();
         } /* /*;
           {
-              let v32: string =
+              let v56: string =
                   string("*/ #[test] fn test_behavior_near_origin___() { //");
-              let v33: bool =
+              let v57: bool =
                   */
         #[test]
         fn test_behavior_near_origin___() {
@@ -2735,9 +2736,9 @@ mod module_b7a9935b {
             Math::method37();
         } /* /*;
           {
-              let v36: string =
+              let v60: string =
                   string("*/ #[test] fn test_imaginary_axis() { //");
-              let v37: bool =
+              let v61: bool =
                   */
         #[test]
         fn test_imaginary_axis() {
@@ -2745,9 +2746,9 @@ mod module_b7a9935b {
             Math::method39();
         } /* /*;
           {
-              let v40: string =
+              let v64: string =
                   string("*/ #[test] fn test_critical_strip() { //");
-              let v41: bool =
+              let v65: bool =
                   */
         #[test]
         fn test_critical_strip() {
@@ -2755,9 +2756,9 @@ mod module_b7a9935b {
             Math::method43();
         } /* /*;
           {
-              let v44: string =
+              let v68: string =
                   string("*/ #[test] fn test_reflection_formula_for_specific_value() { //");
-              let v45: bool =
+              let v69: bool =
                   */
         #[test]
         fn test_reflection_formula_for_specific_value() {
@@ -2765,9 +2766,9 @@ mod module_b7a9935b {
             Math::method47();
         } /* /*;
           {
-              let v48: string =
+              let v72: string =
                   string("*/ #[test] fn test_euler_product_formula() { //");
-              let v49: bool =
+              let v73: bool =
                   */
         #[test]
         fn test_euler_product_formula() {
