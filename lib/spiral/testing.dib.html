@@ -7553,7 +7553,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="__expect">__expect<a class="anchor-link" href="#__expect">¶</a></h3>
+<h3 id="testing_trace">testing_trace<a class="anchor-link" href="#testing_trace">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7565,21 +7565,11 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__expect</span> <span class="n">fn</span> <span class="n">log</span> <span class="n">name</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span> <span class="n">a</span> <span class="n">b</span>
-    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span>
-        <span class="n">result</span> <span class="o">||</span> <span class="n">join</span> <span class="n">result</span>
-    <span class="k">if</span> <span class="n">log</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-    <span class="n">then</span> <span class="s2">"__expect"</span>
-    <span class="k">else</span>
-        <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span>
-            <span class="n">backend_switch</span> <span class="p">{</span>
-                <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"{!name} / actual: %A</span><span class="si">{!a}</span><span class="s1"> / expected: %A{!b}"'</span> <span class="p">:</span> <span class="n">string</span>
-                <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"{!name} / actual: </span><span class="si">{!a}</span><span class="s1"> / expected: {!b}"'</span> <span class="p">:</span> <span class="n">string</span>
-            <span class="p">}</span>
-        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
-        <span class="n">text</span>
-    <span class="o">|&gt;</span> <span class="k">assert</span> <span class="n">result</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">testing_trace</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Console</span>
+    <span class="o">|</span> <span class="n">Trace</span>
+    <span class="o">|</span> <span class="n">TraceRaw</span>
+    <span class="o">|</span> <span class="n">Silent</span>
 </pre></div>
 </div>
 </div>
@@ -7592,7 +7582,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="__assert_approx_eq">__assert_approx_eq<a class="anchor-link" href="#__assert_approx_eq">¶</a></h3>
+<h3 id="__expect">__expect<a class="anchor-link" href="#__expect">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7604,14 +7594,69 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__assert_approx_eq</span> <span class="n">log</span> <span class="n">e</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span> <span class="nb">abs</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">e</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">defaultWith</span> <span class="mf">0.00000001</span><span class="p">))</span> <span class="n">log</span> <span class="s2">"assert_approx_eq"</span> <span class="n">b</span> <span class="n">a</span>
-<span class="n">inl</span> <span class="n">_assert_approx_eq</span> <span class="n">e</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_approx_eq</span> <span class="n">true</span> <span class="n">e</span> <span class="n">b</span> <span class="n">a</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">__expect</span> <span class="n">fn</span> <span class="n">trace</span><span class="s1">' name b a =</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span> <span class="n">a</span> <span class="n">b</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span>
+        <span class="n">result</span> <span class="o">||</span> <span class="n">join</span> <span class="n">result</span>
+    <span class="n">inl</span> <span class="n">get_raw_text</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="n">backend_switch</span> <span class="p">{</span>
+            <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"{!name} / actual: %A</span><span class="si">{!a}</span><span class="s1"> / expected: %A{!b}"'</span> <span class="p">:</span> <span class="n">string</span>
+            <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"{!name} / actual: </span><span class="si">{!a}</span><span class="s1"> / expected: {!b}"'</span> <span class="p">:</span> <span class="n">string</span>
+        <span class="p">}</span>
+    <span class="k">match</span> <span class="n">trace</span><span class="s1">' with</span>
+    <span class="o">|</span> <span class="n">Console</span> <span class="o">=&gt;</span>
+        <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="n">get_raw_text</span> <span class="p">()</span>
+        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+        <span class="n">text</span>
+    <span class="o">|</span> <span class="n">Trace</span> <span class="o">=&gt;</span>
+        <span class="n">trace</span> <span class="n">Info</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">name</span><span class="p">)</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">b</span> <span class="p">}</span>
+        <span class="n">get_raw_text</span> <span class="p">()</span>
+    <span class="o">|</span> <span class="n">TraceRaw</span> <span class="o">=&gt;</span>
+        <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span> <span class="n">get_raw_text</span> <span class="p">()</span>
+        <span class="n">trace_raw</span> <span class="n">Info</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">text</span>
+        <span class="n">text</span>
+    <span class="o">|</span> <span class="n">Silent</span> <span class="o">=&gt;</span> <span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">__expect</span> <span class="p">}</span>
+    <span class="o">|&gt;</span> <span class="k">assert</span> <span class="n">result</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="__assert_approx_eq">__assert_approx_eq<a class="anchor-link" href="#__assert_approx_eq">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">__assert_approx_eq</span> <span class="n">trace</span> <span class="n">e</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__expect</span>
+        <span class="p">(</span><span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span> <span class="nb">abs</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">e</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">defaultWith</span> <span class="mf">0.00000001</span><span class="p">))</span>
+        <span class="n">trace</span>
+        <span class="p">(</span><span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">__assert_approx_eq</span> <span class="p">})</span>
+        <span class="n">b</span>
+        <span class="n">a</span>
+
+<span class="n">inl</span> <span class="n">_assert_approx_eq</span> <span class="n">e</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__assert_approx_eq</span> <span class="n">Console</span> <span class="n">e</span> <span class="n">b</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7641,16 +7686,16 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.py output (Cuda):
-assert_approx_eq / actual: 12.345 / expected: 12.345
+__assert_approx_eq / actual: 12.345 / expected: 12.345
 
 .rs output:
-assert_approx_eq / actual: 12.345 / expected: 12.345
+__assert_approx_eq / actual: 12.345 / expected: 12.345
 
 .ts output:
-assert_approx_eq / actual: 12.345 / expected: 12.345
+__assert_approx_eq / actual: 12.345 / expected: 12.345
 
 .py output:
-assert_approx_eq / actual: 12.345 / expected: 12.345
+__assert_approx_eq / actual: 12.345 / expected: 12.345
 
 </pre>
 </div>
@@ -7659,13 +7704,13 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_approx_eq / actual: 12.345 / expected: 12.345
+__assert_approx_eq / actual: 12.345 / expected: 12.345
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7674,9 +7719,10 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span>
 
 <span class="mi">1</span><span class="n">f64</span>
-<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">2</span>
+<span class="o">|&gt;</span> <span class="n">__assert_approx_eq</span> <span class="n">Console</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -7689,13 +7735,20 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_approx_eq / actual: 1.0 / expected: 2.0
+<pre>let rec method0 () : unit =
+    let v2 : string = "__assert_approx_eq"
+    let v3 : string = $"{v2} / actual: %A{1.0} / expected: %A{2.0}"
+    v3 |&gt; System.Console.WriteLine
+    ()
+method0()
+
+__assert_approx_eq / actual: 1.0 / expected: 2.0
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7704,6 +7757,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span>
 
 <span class="p">(</span><span class="n">dyn</span> <span class="mi">1</span><span class="n">f64</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">2</span>
@@ -7719,34 +7773,34 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_approx_eq / actual: 1.0 / expected: 2.0
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : float = 1.0
+    let v1 : float = 2.0 - v0
+    let v2 : float =  -v1
+    let v3 : bool = v1 &gt;= v2
+    let v4 : float =
+        if v3 then
+            v1
+        else
+            v2
+    let v5 : bool = v4 &lt; 3.0
+    let v7 : bool =
+        if v5 then
+            true
+        else
+            method1(v5)
+    let v10 : string = "__assert_approx_eq"
+    let v11 : string = $"{v10} / actual: %A{v0} / expected: %A{2.0}"
+    v11 |&gt; System.Console.WriteLine
+    let v24 : bool = v7 = false
+    if v24 then
+        failwith&lt;unit&gt; v11
+method0()
+
+__assert_approx_eq / actual: 1.0 / expected: 2.0
 </pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="__assert_eq">__assert_eq<a class="anchor-link" href="#__assert_eq">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__assert_eq</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">=</span><span class="p">)</span> <span class="n">log</span> <span class="s2">"assert_eq"</span> <span class="n">b</span> <span class="n">a</span>
-<span class="n">inl</span> <span class="n">_assert_eq</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_eq</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
-</pre></div>
 </div>
 </div>
 </div>
@@ -7758,7 +7812,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="__assert_eq'">__assert_eq'<a class="anchor-link" href="#__assert_eq'">¶</a></h3>
+<h3 id="__assert_eq">__assert_eq<a class="anchor-link" href="#__assert_eq">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7770,8 +7824,11 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__assert_eq</span><span class="s1">' log b a = __expect (=.) log "assert_eq'</span><span class="s2">" b a</span>
-<span class="n">inl</span> <span class="n">_assert_eq</span><span class="s1">' b a = __assert_eq'</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">__assert_eq</span> <span class="n">trace</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__expect</span> <span class="p">(</span><span class="o">=</span><span class="p">)</span> <span class="n">trace</span> <span class="p">(</span><span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">__assert_eq</span> <span class="p">})</span> <span class="n">b</span> <span class="n">a</span>
+
+<span class="n">inl</span> <span class="n">_assert_eq</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__assert_eq</span> <span class="n">Console</span> <span class="n">b</span> <span class="n">a</span>
 </pre></div>
 </div>
 </div>
@@ -7784,7 +7841,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="__assert_ne">__assert_ne<a class="anchor-link" href="#__assert_ne">¶</a></h3>
+<h3 id="__assert_eq'">__assert_eq'<a class="anchor-link" href="#__assert_eq'">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7796,8 +7853,11 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__assert_ne</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&lt;&gt;.</span><span class="p">)</span> <span class="n">log</span> <span class="s2">"assert_ne"</span> <span class="n">b</span> <span class="n">a</span>
-<span class="n">inl</span> <span class="n">_assert_ne</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_ne</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">__assert_eq</span><span class="s1">' trace b a =</span>
+    <span class="n">__expect</span> <span class="p">(</span><span class="o">=.</span><span class="p">)</span> <span class="n">trace</span> <span class="p">(</span><span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">__assert_eq</span><span class="s1">' }) b a</span>
+
+<span class="n">inl</span> <span class="n">_assert_eq</span><span class="s1">' b a =</span>
+    <span class="n">__assert_eq</span><span class="s1">' Console b a</span>
 </pre></div>
 </div>
 </div>
@@ -7810,7 +7870,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="__assert_gt">__assert_gt<a class="anchor-link" href="#__assert_gt">¶</a></h3>
+<h3 id="__assert_ne">__assert_ne<a class="anchor-link" href="#__assert_ne">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7822,8 +7882,11 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__assert_gt</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&gt;</span><span class="p">)</span> <span class="n">log</span> <span class="s2">"assert_gt"</span> <span class="n">b</span> <span class="n">a</span>
-<span class="n">inl</span> <span class="n">_assert_gt</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_gt</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">__assert_ne</span> <span class="n">trace</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__expect</span> <span class="p">(</span><span class="o">&lt;&gt;.</span><span class="p">)</span> <span class="n">trace</span> <span class="p">(</span><span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">__assert_ne</span> <span class="p">})</span> <span class="n">b</span> <span class="n">a</span>
+
+<span class="n">inl</span> <span class="n">_assert_ne</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__assert_ne</span> <span class="n">Console</span> <span class="n">b</span> <span class="n">a</span>
 </pre></div>
 </div>
 </div>
@@ -7836,7 +7899,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="__assert_ge">__assert_ge<a class="anchor-link" href="#__assert_ge">¶</a></h3>
+<h3 id="__assert_gt">__assert_gt<a class="anchor-link" href="#__assert_gt">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7848,8 +7911,11 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__assert_ge</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&gt;=</span><span class="p">)</span> <span class="n">log</span> <span class="s2">"assert_ge"</span> <span class="n">b</span> <span class="n">a</span>
-<span class="n">inl</span> <span class="n">_assert_ge</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_ge</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">__assert_gt</span> <span class="n">trace</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__expect</span> <span class="p">(</span><span class="o">&gt;</span><span class="p">)</span> <span class="n">trace</span> <span class="p">(</span><span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">__assert_gt</span> <span class="p">})</span> <span class="n">b</span> <span class="n">a</span>
+
+<span class="n">inl</span> <span class="n">_assert_gt</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__assert_gt</span> <span class="n">Console</span> <span class="n">b</span> <span class="n">a</span>
 </pre></div>
 </div>
 </div>
@@ -7862,7 +7928,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="__assert_lt">__assert_lt<a class="anchor-link" href="#__assert_lt">¶</a></h3>
+<h3 id="__assert_ge">__assert_ge<a class="anchor-link" href="#__assert_ge">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7874,8 +7940,11 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__assert_lt</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&lt;</span><span class="p">)</span> <span class="n">log</span> <span class="s2">"assert_lt"</span> <span class="n">b</span> <span class="n">a</span>
-<span class="n">inl</span> <span class="n">_assert_lt</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_lt</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">__assert_ge</span> <span class="n">trace</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__expect</span> <span class="p">(</span><span class="o">&gt;=</span><span class="p">)</span> <span class="n">trace</span> <span class="p">(</span><span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">__assert_ge</span> <span class="p">})</span> <span class="n">b</span> <span class="n">a</span>
+
+<span class="n">inl</span> <span class="n">_assert_ge</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__assert_ge</span> <span class="n">Console</span> <span class="n">b</span> <span class="n">a</span>
 </pre></div>
 </div>
 </div>
@@ -7888,7 +7957,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="__assert_le">__assert_le<a class="anchor-link" href="#__assert_le">¶</a></h3>
+<h3 id="__assert_lt">__assert_lt<a class="anchor-link" href="#__assert_lt">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7900,8 +7969,11 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__assert_le</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&lt;=</span><span class="p">)</span> <span class="n">log</span> <span class="s2">"assert_le"</span> <span class="n">b</span> <span class="n">a</span>
-<span class="n">inl</span> <span class="n">_assert_le</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_le</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">__assert_lt</span> <span class="n">trace</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__expect</span> <span class="p">(</span><span class="o">&lt;</span><span class="p">)</span> <span class="n">trace</span> <span class="p">(</span><span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">__assert_lt</span> <span class="p">})</span> <span class="n">b</span> <span class="n">a</span>
+
+<span class="n">inl</span> <span class="n">_assert_lt</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__assert_lt</span> <span class="n">Console</span> <span class="n">b</span> <span class="n">a</span>
 </pre></div>
 </div>
 </div>
@@ -7914,7 +7986,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="__assert_string_contains">__assert_string_contains<a class="anchor-link" href="#__assert_string_contains">¶</a></h3>
+<h3 id="__assert_le">__assert_le<a class="anchor-link" href="#__assert_le">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7926,8 +7998,11 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__assert_string_contains</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="n">sm</span><span class="s1">'.contains log "assert_string_contains" a b</span>
-<span class="n">inl</span> <span class="n">_assert_string_contains</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_string_contains</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">__assert_le</span> <span class="n">trace</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__expect</span> <span class="p">(</span><span class="o">&lt;=</span><span class="p">)</span> <span class="n">trace</span> <span class="p">(</span><span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">__assert_le</span> <span class="p">})</span> <span class="n">b</span> <span class="n">a</span>
+
+<span class="n">inl</span> <span class="n">_assert_le</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__assert_le</span> <span class="n">Console</span> <span class="n">b</span> <span class="n">a</span>
 </pre></div>
 </div>
 </div>
@@ -7940,7 +8015,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="__assert_between">__assert_between<a class="anchor-link" href="#__assert_between">¶</a></h3>
+<h3 id="__assert_string_contains">__assert_string_contains<a class="anchor-link" href="#__assert_string_contains">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7952,19 +8027,28 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__assert_between</span> <span class="n">log</span> <span class="n">a</span> <span class="n">b</span> <span class="n">actual</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">assert_between</span> <span class="n">actual</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span>
-        <span class="n">__assert_ge</span> <span class="n">false</span> <span class="n">a</span> <span class="n">actual</span>
-        <span class="n">__assert_le</span> <span class="n">false</span> <span class="n">b</span> <span class="n">actual</span>
-        <span class="n">true</span>
-    <span class="n">__expect</span> <span class="n">assert_between</span> <span class="n">log</span> <span class="s2">"assert_between"</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="n">actual</span>
-<span class="n">inl</span> <span class="n">_assert_between</span> <span class="n">a</span> <span class="n">b</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">__assert_between</span> <span class="n">true</span> <span class="n">a</span> <span class="n">b</span> <span class="n">actual</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">__assert_string_contains</span> <span class="n">trace</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__expect</span> <span class="n">sm</span><span class="s1">'.contains trace (reflection.nameof { __assert_string_contains }) a b</span>
+
+<span class="n">inl</span> <span class="n">_assert_string_contains</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__assert_string_contains</span> <span class="n">Console</span> <span class="n">b</span> <span class="n">a</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=28">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="__assert_between">__assert_between<a class="anchor-link" href="#__assert_between">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7972,7 +8056,29 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">_assert_fn</span> <span class="n">fn</span> <span class="nb">list</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">__assert_between</span> <span class="n">trace</span> <span class="n">a</span> <span class="n">b</span> <span class="n">actual</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">assert_between</span> <span class="n">actual</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span>
+        <span class="n">__assert_ge</span> <span class="n">Silent</span> <span class="n">a</span> <span class="n">actual</span>
+        <span class="n">__assert_le</span> <span class="n">Silent</span> <span class="n">b</span> <span class="n">actual</span>
+        <span class="n">true</span>
+    <span class="n">__expect</span> <span class="n">assert_between</span> <span class="n">trace</span> <span class="p">(</span><span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">__assert_between</span> <span class="p">})</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="n">actual</span>
+
+<span class="n">inl</span> <span class="n">_assert_between</span> <span class="n">a</span> <span class="n">b</span> <span class="n">actual</span> <span class="o">=</span>
+    <span class="n">__assert_between</span> <span class="n">Console</span> <span class="n">a</span> <span class="n">b</span> <span class="n">actual</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">_assert_fn</span> <span class="n">fn</span> <span class="nb">list</span> <span class="o">=</span>
     <span class="nb">list</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">rev</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="nb">input</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=&gt;</span> <span class="n">join</span>
@@ -7981,18 +8087,20 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
         <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">get</span>
         <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="n">expected</span><span class="s1">' = join expected</span>
+            <span class="n">inl</span> <span class="n">name</span> <span class="o">=</span> <span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">_assert_fn</span> <span class="p">}</span>
             <span class="k">try</span>
                 <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                     <span class="n">console</span><span class="o">.</span><span class="n">write_line</span> <span class="s2">""</span>
                     <span class="n">trace</span> <span class="n">Verbose</span>
-                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"testing._assert_fn"'</span>
+                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">name</span>
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nb">input</span> <span class="p">}</span>
                     <span class="n">x</span>
                     <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' expected'</span>
                     <span class="n">true</span>
                 <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
                     <span class="n">trace</span> <span class="n">Critical</span>
-                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"testing._assert_fn / error"'</span>
+                        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                            <span class="err">$</span><span class="s1">'$"{!name} / error"'</span>
                         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">ex</span> <span class="n">expected</span> <span class="p">}</span>
                     <span class="n">Some</span> <span class="n">false</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
@@ -8006,7 +8114,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8017,7 +8125,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8027,7 +8135,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8035,7 +8143,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">__assert_contains</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="n">log</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="n">a</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">__assert_contains</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">trace</span> <span class="p">:</span> <span class="n">testing_trace</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">u</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">__expect</span>
         <span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span>
             <span class="n">a</span>
@@ -8043,15 +8151,54 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
             <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">listm</span><span class="s1">'.list'</span> <span class="n">t</span>
             <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'List.tryFind'</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="n">b</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
-            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">t</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">&lt;&gt;</span> <span class="kc">None</span>
-        <span class="n">log</span> <span class="s2">"assert_contains"</span> <span class="n">b</span> <span class="n">a</span>
-<span class="n">inl</span> <span class="n">_assert_contains</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_contains</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
+            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">option</span> <span class="n">t</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">&lt;&gt;</span> <span class="kc">None</span>
+        <span class="n">trace</span>
+        <span class="o">//</span> <span class="n">TODO</span><span class="p">:</span> <span class="n">forall</span> <span class="n">nameof</span> <span class="p">(</span><span class="n">Cannot</span> <span class="n">dyn</span> <span class="n">a</span> <span class="n">forall</span> <span class="n">into</span> <span class="n">a</span> <span class="n">runtime</span> <span class="n">var</span><span class="o">.</span><span class="p">)</span>
+        <span class="o">//</span> <span class="n">Metavars</span> <span class="n">that</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span> <span class="n">enclosing</span> <span class="n">function</span><span class="s1">'s signature are not allowed. They need to be values.</span>
+        <span class="o">//</span> <span class="n">Got</span><span class="p">:</span> <span class="p">{</span><span class="n">__assert_contains</span> <span class="p">:</span> <span class="n">testing_trace</span> <span class="o">-&gt;</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">()}</span> <span class="o">-&gt;</span> <span class="n">string</span>
+        <span class="o">//</span> <span class="p">(</span><span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">__assert_contains</span> <span class="p">})</span>
+        <span class="s2">"__assert_contains"</span>
+        <span class="n">b</span>
+        <span class="n">a</span>
+
+<span class="n">inl</span> <span class="n">_assert_contains</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="n">__assert_contains</span> <span class="n">Console</span> <span class="n">b</span> <span class="n">a</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="p">;[</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span><span class="p">;</span> <span class="s2">"c"</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_assert_contains</span> <span class="s2">"b"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>__assert_contains / actual: [|"a"; "b"; "c"|] / expected: "b"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8075,14 +8222,14 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_contains / actual: "abcd" / expected: 'b'
+<pre>__assert_contains / actual: "abcd" / expected: 'b'
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8092,7 +8239,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8110,7 +8257,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8120,7 +8267,7 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8128,8 +8275,9 @@ assert_approx_eq / actual: 12.345 / expected: 12.345
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">print_and_return</span> <span class="n">x</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'printfn $"print_and_return / x: {!x}"'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">print_and_return</span> <span class="n">x</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">name</span> <span class="o">=</span> <span class="n">reflection</span><span class="o">.</span><span class="n">nameof</span> <span class="p">{</span> <span class="n">print_and_return</span> <span class="p">}</span>
+    <span class="err">$</span><span class="s1">'printfn $"{!name} / x: {!x}"'</span>
     <span class="n">x</span>
 </pre></div>
 </div>

@@ -653,21 +653,21 @@ inl fix_closure' (depth : u8 * u8) x =
         else loop text (acc +. text) (n - 1)
     inl a = depth |> fst |> loop "}" ""
     inl b = depth |> snd |> loop "{" ""
-    $'"!x " + !a + "); " + !b + " //"'
+    $'"!x " + !a + "); " + !b + " // rust.fix_closure\'"'
 
 #!spiral
 
 //// test
 
 fix_closure' (3, 2) 0i32
-|> _assert_eq "0 }}}); {{ //"
+|> _assert_eq "0 }}}); {{ // rust.fix_closure'"
 
 #!spiral
 
 //// test
 
 fix_closure' (0, 0) ()
-|> _assert_eq "() );  //"
+|> _assert_eq "() );  // rust.fix_closure\'"
 
 #!markdown
 
@@ -706,7 +706,7 @@ inl loop (depth : i32) (fn : () -> ()) : () =
 #!spiral
 
 inl capture forall t. (fn : () -> t) : t =
-    (!\($'"true; let _result = (|| { //"') : bool) |> ignore
+    (!\($'"true; let _result = (|| { // rust.capture"') : bool) |> ignore
     (!\\(fn (), $'"true; $0 })()"') : bool) |> ignore
     !\($'"_result"')
 
@@ -717,6 +717,6 @@ inl capture forall t. (fn : () -> t) : t =
 #!spiral
 
 inl capture_move forall t. (fn : () -> t) : t =
-    (!\($'"true; let _result = (move || { //"') : bool) |> ignore
+    (!\($'"true; let _result = (move || { // rust.capture_move"') : bool) |> ignore
     (!\\(fn (), $'"true; $0 })()"') : bool) |> ignore
     !\($'"_result"')

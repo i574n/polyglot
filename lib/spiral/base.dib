@@ -93,34 +93,51 @@ union target =
 
 #!markdown
 
-### run_target
+### run_target_args
 
 #!spiral
 
-inl run_target forall t. (fn : target -> (() -> t)) : t =
+inl run_target_args forall t u. (args : () -> u) (fn : target -> (u -> t)) : t =
+    inl args = args () |> dyn
     backend_switch {
         Fsharp = fun () =>
             inl result = dyn true
             $'let mutable _!result : `t option = None '
             $'\n#if FABLE_COMPILER || WASM || CONTRACT'
             $'\n#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT'
-            fn (Rust Native) () |> emit_unit
+            inl target = Rust Native
+            fn target args |> emit_unit
             $'#endif\n#if FABLE_COMPILER_RUST && WASM'
-            fn (Rust Wasm) () |> emit_unit
+            inl target = Rust Wasm
+            fn target args |> emit_unit
             $'#endif\n#if FABLE_COMPILER_RUST && CONTRACT'
-            fn (Rust Contract) () |> emit_unit
+            inl target = Rust Contract
+            fn target args |> emit_unit
             $'#endif\n#if FABLE_COMPILER_TYPESCRIPT'
-            fn (TypeScript Native) () |> emit_unit
+            inl target = TypeScript Native
+            fn target args |> emit_unit
             $'#endif\n#if FABLE_COMPILER_PYTHON'
-            fn (Python Native) () |> emit_unit
+            inl target = Python Native
+            fn target args |> emit_unit
             $'#endif\n#else'
-            fn (Fsharp Native) () |> emit_unit
+            inl target = Fsharp Native
+            fn target args |> emit_unit
             $'#endif'
             $'|> fun x -> _!result <- Some x'
             $'match _!result with Some x -> x | None -> failwith "base.run_target / _!result=None"' : t
         Python = fun () =>
-            fn (Cuda Native) ()
+            inl target = Cuda Native
+            fn target args
     }
+
+#!markdown
+
+### run_target
+
+#!spiral
+
+inl run_target forall t. (fn : target -> (() -> t)) : t =
+    run_target_args id fn
 
 #!spiral
 

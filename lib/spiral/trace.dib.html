@@ -7613,10 +7613,22 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">read_state</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span> <span class="o">|</span> <span class="n">Wasm</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Wasm</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="p">{</span>
                 <span class="n">trace_level</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="n">repl_start</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="p">}</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="p">{</span>
+                <span class="n">trace_level</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">repl_start</span> <span class="o">=</span>
+                    <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
+                    <span class="n">inl</span> <span class="n">automation</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_environment_variable_comptime</span> <span class="s2">"AUTOMATION"</span>
+                    <span class="k">if</span> <span class="n">automation</span> <span class="o">&lt;&gt;.</span> <span class="s2">"True"</span>
+                    <span class="n">then</span> <span class="kc">None</span>
+                    <span class="k">else</span>
+                        <span class="n">inl</span> <span class="n">timestamp</span> <span class="p">:</span> <span class="n">u64</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"near_sdk::env::block_timestamp()"'</span><span class="o">)</span>
+                        <span class="n">timestamp</span> <span class="o">|&gt;</span> <span class="n">i64</span> <span class="o">|&gt;</span> <span class="n">Some</span>
             <span class="p">}</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="p">{</span>
@@ -7816,31 +7828,31 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .py output (Cuda):
-assert_eq / actual: True / expected: True
-assert_eq / actual: True / expected: True
-assert_eq / actual: False / expected: False
-assert_eq / actual: True / expected: True
+__assert_eq / actual: True / expected: True
+__assert_eq / actual: True / expected: True
+__assert_eq / actual: False / expected: False
+__assert_eq / actual: True / expected: True
 
 
 .rs output:
-assert_eq / actual: true / expected: true
-assert_eq / actual: true / expected: true
-assert_eq / actual: false / expected: false
-assert_eq / actual: true / expected: true
+__assert_eq / actual: true / expected: true
+__assert_eq / actual: true / expected: true
+__assert_eq / actual: false / expected: false
+__assert_eq / actual: true / expected: true
 
 
 .ts output:
-assert_eq / actual: true / expected: true
-assert_eq / actual: true / expected: true
-assert_eq / actual: false / expected: false
-assert_eq / actual: true / expected: true
+__assert_eq / actual: true / expected: true
+__assert_eq / actual: true / expected: true
+__assert_eq / actual: false / expected: false
+__assert_eq / actual: true / expected: true
 
 
 .py output:
-assert_eq / actual: true / expected: true
-assert_eq / actual: true / expected: true
-assert_eq / actual: false / expected: false
-assert_eq / actual: true / expected: true
+__assert_eq / actual: true / expected: true
+__assert_eq / actual: true / expected: true
+__assert_eq / actual: false / expected: false
+__assert_eq / actual: true / expected: true
 
 
 </pre>
@@ -7850,10 +7862,10 @@ assert_eq / actual: true / expected: true
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: true / expected: true
-assert_eq / actual: true / expected: true
-assert_eq / actual: false / expected: false
-assert_eq / actual: true / expected: true
+__assert_eq / actual: true / expected: true
+__assert_eq / actual: true / expected: true
+__assert_eq / actual: false / expected: false
+__assert_eq / actual: true / expected: true
 </pre>
 </div>
 </div>
@@ -7889,10 +7901,12 @@ assert_eq / actual: true / expected: true
                 <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"</span><span class="si">%s</span><span class="s1">{!fn ()}"'</span> <span class="p">:</span> <span class="n">string</span>
                 <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">fn</span> <span class="p">()</span> <span class="p">:</span> <span class="n">string</span>
             <span class="p">}</span>
+        <span class="nb">open</span> <span class="n">rust</span>
+        <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
         <span class="n">run_target</span> <span class="n">function</span>
+            <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                <span class="o">!</span><span class="se">\\</span><span class="o">(</span>text,<span class="w"> </span><span class="s1">$'$"near_sdk::log\!(\\\"{{}}\\\", $0)"'</span><span class="o">)</span>
             <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                <span class="nb">open</span> <span class="n">rust</span>
-                <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
                 <span class="o">!</span><span class="se">\\</span><span class="o">(</span>text,<span class="w"> </span><span class="s1">$'\@"println\!(""{}"", $0)"'</span><span class="o">)</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                 <span class="n">backend_switch</span> <span class="p">{</span>
@@ -7931,7 +7945,21 @@ assert_eq / actual: true / expected: true
         <span class="n">inl</span> <span class="n">time</span> <span class="o">=</span>
             <span class="n">run_target</span> <span class="n">fun</span> <span class="n">target</span> <span class="o">=&gt;</span>
                 <span class="k">match</span> <span class="n">target</span> <span class="k">with</span>
-                <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="s2">""</span>
+                <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Contract</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                    <span class="nb">open</span> <span class="n">rust</span><span class="o">.</span><span class="n">rust_operators</span>
+                    <span class="nb">open</span> <span class="n">rust</span>
+                    <span class="n">inl</span> <span class="n">timestamp</span> <span class="p">:</span> <span class="n">u64</span> <span class="o">=</span> <span class="o">!</span><span class="se">\(</span><span class="s1">$'$"near_sdk::env::block_timestamp()"'</span><span class="o">)</span>
+                    <span class="n">inl</span> <span class="n">timestamp</span> <span class="o">=</span>
+                        <span class="k">match</span> <span class="n">trace_state</span><span class="o">.</span><span class="n">repl_start</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
+                        <span class="o">|</span> <span class="n">Some</span> <span class="n">repl_start</span> <span class="o">=&gt;</span> <span class="n">timestamp</span> <span class="o">-</span> <span class="n">u64</span> <span class="n">repl_start</span>
+                        <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">timestamp</span>
+                    <span class="n">inl</span> <span class="n">timestamp_s</span> <span class="o">=</span> <span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1_000_000_000</span>
+                    <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">timestamp_s</span> <span class="o">%</span> <span class="mi">60</span>
+                    <span class="n">inl</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">timestamp_s</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">%</span> <span class="mi">60</span>
+                    <span class="n">inl</span> <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">timestamp_s</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">%</span> <span class="mi">24</span>
+                    <span class="n">inl</span> <span class="nb">str</span> <span class="p">:</span> <span class="n">sm</span><span class="s1">'.std_string =</span>
+                        <span class="o">!</span><span class="se">\\</span><span class="o">((</span>h,<span class="w"> </span>m,<span class="w"> </span>s<span class="o">)</span>,<span class="w"> </span><span class="s1">$'$"format\!(\\\"{{:02}}:{{:02}}:{{:02}}\\\", $0, $1, $2)"'</span><span class="o">)</span>
+                    <span class="nb">str</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
                 <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                     <span class="k">match</span> <span class="n">trace_state</span><span class="o">.</span><span class="n">repl_start</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
                     <span class="o">|</span> <span class="n">Some</span> <span class="n">repl_start</span> <span class="o">=&gt;</span>
@@ -8032,25 +8060,25 @@ assert_eq / actual: true / expected: true
 .py output (Cuda):
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
-assert_eq / actual: 2 / expected: 2
+__assert_eq / actual: 2 / expected: 2
 
 
 .rs output:
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
-assert_eq / actual: 2 / expected: 2
+__assert_eq / actual: 2 / expected: 2
 
 
 .ts output:
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
-assert_eq / actual: 2 / expected: 2
+__assert_eq / actual: 2 / expected: 2
 
 
 .py output:
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
-assert_eq / actual: 2 / expected: 2
+__assert_eq / actual: 2 / expected: 2
 
 
 </pre>
@@ -8062,7 +8090,7 @@ assert_eq / actual: 2 / expected: 2
 <pre>.fsx output:
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 test1
 00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 test2
-assert_eq / actual: 2L / expected: 2L
+__assert_eq / actual: 2L / expected: 2L
 </pre>
 </div>
 </div>

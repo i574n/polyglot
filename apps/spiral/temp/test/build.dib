@@ -91,7 +91,7 @@ dotnet fable --optimize --lang rs --extension .rs
 
 #!pwsh
 
-cargo fmt --
+cargo +nightly fmt --
 
 #!markdown
 

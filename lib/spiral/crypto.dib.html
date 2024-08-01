@@ -7717,7 +7717,7 @@ a.anchor-link {
 <pre>00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #1 runtime.execute_with_options_async / { options = { command = pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/dotnet-repl/9ca8b18d-ee77-4684-ad12-21e1354945fc/test.txt' -Algorithm SHA256).Hash"; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = None } }
 00:00:02 <span class="ansi-black-intense-fg">verbose</span> #2 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
 00:00:02 <span class="ansi-blue-intense-fg">  debug</span> #3 runtime.execute_with_options_async / { exit_code = 0; output_length = 64 }
-assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+__assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 </pre>
 </div>
 </div>
@@ -7761,11 +7761,11 @@ assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805dac
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_8cad16b782405fa47d1b6ab76c01c93c07ba1081d81e0bc1ae94ac7e42a75b20\ba0aa16a-6c5a-be3f-b526-70110c680e36 }
-00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_8cad16b782405fa47d1b6ab76c01c93c07ba1081d81e0bc1ae94ac7e42a75b20/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"]; options = { command = pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_8cad16b782405fa47d1b6ab76c01c93c07ba1081d81e0bc1ae94ac7e42a75b20/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
-00:00:01 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 64 }
-assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_d2576cf47227dd936cf37389102663cff84d8e4cab453e03d04a13d6c08bd0dd\ba0aa16a-6c5a-be3f-b526-70110c680e36 }
+00:00:00 <span class="ansi-blue-intense-fg">  debug</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_d2576cf47227dd936cf37389102663cff84d8e4cab453e03d04a13d6c08bd0dd/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"]; options = { command = pwsh -c "(Get-FileHash 'c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_builder_d2576cf47227dd936cf37389102663cff84d8e4cab453e03d04a13d6c08bd0dd/ba0aa16a-6c5a-be3f-b526-70110c680e36/test.txt' -Algorithm SHA256).Hash"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #3 &gt; 01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B
+00:00:02 <span class="ansi-black-intense-fg">verbose</span> #4 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 64 }
+__assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 </pre>
 </div>
 </div>
@@ -8014,8 +8014,8 @@ assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805dac
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_ce370a231afc896b0abe06700e7b83df82e3c0b613e95d3b6cdeffad35dda535\ba0aa16a-6c5a-be3f-b526-70110c680e36 }
-assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_4f49fc39a32432e1a565730718ec65cafd282d4156aa900e669dd2ea8d035db3\ba0aa16a-6c5a-be3f-b526-70110c680e36 }
+__assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
 </pre>
 </div>
 </div>
@@ -8060,8 +8060,8 @@ assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805dac
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_a1903d6f8a57477b37d7d84edd21e67990aacf26f0029bc6d25392a47ef73334\c0e26dac-4cb1-4b09-be07-ff616700f056 }
-assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+<pre>00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_builder_9f1ce484cbc629e32a2b8a419f47fe105128d1f3562070a7c708805b9862dd1e\c0e26dac-4cb1-4b09-be07-ff616700f056 }
+__assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 </pre>
 </div>
 </div>
@@ -8395,23 +8395,23 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .py output (Cuda):
-assert_eq / actual: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b / expected: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 / expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+__assert_eq / actual: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b / expected: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+__assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 / expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 
 
-.rs output:
-assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
-assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+.rs output (rust -d sha2):
+__assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+__assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
 
 .ts output:
-assert_eq / actual: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b / expected: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 / expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+__assert_eq / actual: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b / expected: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+__assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 / expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 
 
 .py output:
-assert_eq / actual: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b / expected: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 / expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+__assert_eq / actual: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b / expected: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+__assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 / expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 
 
 </pre>
@@ -8421,8 +8421,8 @@ assert_eq / actual: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
-assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+__assert_eq / actual: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b" / expected: "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+__assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" / expected: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 </pre>
 </div>
 </div>
@@ -8492,19 +8492,19 @@ assert_eq / actual: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b785
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-.rs output:
+.rs output (rust -d sha2):
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 crypto.hash_to_port / { first_letter_code = 48; hash_part = 01ba4719; combined_value = 18249 }
-assert_eq / actual: 19273 / expected: 19273
+__assert_eq / actual: 19273 / expected: 19273
 
 
 .ts output:
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 crypto.hash_to_port / { first_letter_code = 48; hash_part = 01ba4719; combined_value = 18249 }
-assert_eq / actual: 19273 / expected: 19273
+__assert_eq / actual: 19273 / expected: 19273
 
 
 .py output:
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 crypto.hash_to_port / { first_letter_code = 48; hash_part = 01ba4719; combined_value = 18249 }
-assert_eq / actual: 19273 / expected: 19273
+__assert_eq / actual: 19273 / expected: 19273
 
 
 </pre>
@@ -8515,7 +8515,7 @@ assert_eq / actual: 19273 / expected: 19273
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
 00:00:00 <span class="ansi-black-intense-fg">verbose</span> #1 crypto.hash_to_port / { first_letter_code = 48; hash_part = 01ba4719; combined_value = 18249 }
-assert_eq / actual: 19273us / expected: 19273us
+__assert_eq / actual: 19273us / expected: 19273us
 </pre>
 </div>
 </div>

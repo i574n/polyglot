@@ -8,8 +8,11 @@ repository.workspace = true
 
 [lib]
 crate-type = ["cdylib"]
+# path = "chat_contract.rs"
 
 [dependencies]
+inline_colorization = { workspace = true }
+fable_library_rust = { workspace = true }
 borsh = "~1.5"
 multibase = "~0.9"
 near-sdk = "~5.1"

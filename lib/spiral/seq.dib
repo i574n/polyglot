@@ -536,6 +536,10 @@ inl of_array' forall dim t. (items : a dim t) : seq' t =
 (a ;[ "a"; "b" ] : _ i32 _)
 |> of_array'
 
+#!markdown
+
+### of_array
+
 #!spiral
 
 inl of_array forall dim t. (items : a dim t) : seq' t =
@@ -550,6 +554,24 @@ inl of_array forall dim t. (items : a dim t) : seq' t =
 
 (a ;[ "a"; "b" ] : _ i32 _)
 |> of_array
+
+#!markdown
+
+### of_array_base
+
+#!spiral
+
+inl of_array_base forall t. (items : array_base t) : seq' t =
+    a items
+    |> fun x => x : _ int _
+    |> of_array
+
+#!spiral
+
+//// test
+
+;[ "a"; "b" ]
+|> of_array_base
 
 #!markdown
 

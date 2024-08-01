@@ -339,7 +339,7 @@ inl fix_closure' (depth : u8 * u8) x =
         else loop text (acc +. text) (n - 1)
     inl a = depth |> fst |> loop "}" ""
     inl b = depth |> snd |> loop "{" ""
-    $'"!x " + !a + "); " + !b + " //"'
+    $'"!x " + !a + "); " + !b + " // rust.fix_closure\'"'
 
 /// ### fix_closure
 inl fix_closure depth x =
@@ -363,12 +363,12 @@ inl loop (depth : i32) (fn : () -> ()) : () =
 
 /// ### capture
 inl capture forall t. (fn : () -> t) : t =
-    (!\($'"true; let _result = (|| { //"') : bool) |> ignore
+    (!\($'"true; let _result = (|| { // rust.capture"') : bool) |> ignore
     (!\\(fn (), $'"true; $0 })()"') : bool) |> ignore
     !\($'"_result"')
 
 /// ### capture_move
 inl capture_move forall t. (fn : () -> t) : t =
-    (!\($'"true; let _result = (move || { //"') : bool) |> ignore
+    (!\($'"true; let _result = (move || { // rust.capture_move"') : bool) |> ignore
     (!\\(fn (), $'"true; $0 })()"') : bool) |> ignore
     !\($'"_result"')

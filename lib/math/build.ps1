@@ -33,7 +33,7 @@ $targetDir = GetTargetDir $projectName
     | FixRust `
     | Set-Content "$projectName.rs"
 
-cargo fmt --
+cargo +nightly fmt --
 
 { cargo +nightly test --release } | Invoke-Block
 

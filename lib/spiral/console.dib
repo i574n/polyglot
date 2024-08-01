@@ -32,7 +32,7 @@ nominal console_color = $'System.ConsoleColor'
 
 inl reset_color () : () =
     run_target function
-        | Fsharp => fun () => $'System.Console.ResetColor' ()
+        | Fsharp => fun () => $'System.Console.ResetColor ()'
         | _ => fun () => ()
 
 #!markdown
@@ -58,7 +58,7 @@ inl set_foreground_color (color : console_color) : () =
 
 inl write_line obj : () =
     backend_switch {
-        Fsharp = fun () => obj |> $'System.Console.WriteLine' : ()
+        Fsharp = fun () => $'!obj |> System.Console.WriteLine' : ()
         Python = fun () => $'print(!obj)' : ()
     }
 
@@ -72,7 +72,7 @@ inl write forall t. (x : t) : () =
     inl s = x |> sm'.format
     backend_switch {
         Python = fun () => $'print(!s, end="")' : ()
-        Fsharp = fun () => s |> $'System.Console.Write' : ()
+        Fsharp = fun () => $'!s |> System.Console.Write' : ()
     }
 
 #!markdown

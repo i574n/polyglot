@@ -8,7 +8,7 @@ dotnet fable `
 . "$PSScriptRoot/../cli/build.ps1"
 . "$PSScriptRoot/../../target/release/cli" PostFsxRsBuild -- --rs-path="$PSScriptRoot/proxy.rs"
 
-cargo fmt
+cargo +nightly fmt --
 
 echo "fn main(){}" >> "$PSScriptRoot/proxy.rs"
 

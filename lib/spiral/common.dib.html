@@ -7657,16 +7657,16 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.py output (Cuda):
-assert_eq / actual: 1 / expected: 1
+__assert_eq / actual: 1 / expected: 1
 
 .rs output:
-assert_eq / actual: 1 / expected: 1
+__assert_eq / actual: 1 / expected: 1
 
 .ts output:
-assert_eq / actual: 1 / expected: 1
+__assert_eq / actual: 1 / expected: 1
 
 .py output:
-assert_eq / actual: 1 / expected: 1
+__assert_eq / actual: 1 / expected: 1
 
 </pre>
 </div>
@@ -7675,7 +7675,7 @@ assert_eq / actual: 1 / expected: 1
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: 1 / expected: 1
+__assert_eq / actual: 1 / expected: 1
 </pre>
 </div>
 </div>
@@ -7738,16 +7738,16 @@ assert_eq / actual: 1 / expected: 1
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.py output (Cuda):
-assert_eq / actual: (2, 1) / expected: (2, 1)
+__assert_eq / actual: (2, 1) / expected: (2, 1)
 
 .rs output:
-assert_eq / actual: (2, 1) / expected: (2, 1)
+__assert_eq / actual: (2, 1) / expected: (2, 1)
 
 .ts output:
-assert_eq / actual: 2,1 / expected: 2,1
+__assert_eq / actual: 2,1 / expected: 2,1
 
 .py output:
-assert_eq / actual: (2, 1) / expected: (2, 1)
+__assert_eq / actual: (2, 1) / expected: (2, 1)
 
 </pre>
 </div>
@@ -7756,7 +7756,7 @@ assert_eq / actual: (2, 1) / expected: (2, 1)
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: struct (2, 1) / expected: struct (2, 1)
+__assert_eq / actual: struct (2, 1) / expected: struct (2, 1)
 </pre>
 </div>
 </div>
@@ -7842,16 +7842,16 @@ assert_eq / actual: struct (2, 1) / expected: struct (2, 1)
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.py output (Cuda):
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 
 .rs output:
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 
 .ts output:
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 
 .py output:
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 
 
 
@@ -7877,12 +7877,11 @@ and method0 () : unit =
             true
         else
             method2(v4)
-    let v9 : string = "assert_eq"
+    let v9 : string = "__assert_eq"
     let v10 : string = $"{v9} / actual: %A{v3} / expected: %A{15}"
-    let v19 : (string -&gt; unit) = System.Console.WriteLine
-    v19 v10
-    let v24 : bool = v6 = false
-    if v24 then
+    v10 |&gt; System.Console.WriteLine
+    let v23 : bool = v6 = false
+    if v23 then
         failwith&lt;unit&gt; v10
 method0()
 
@@ -7898,7 +7897,7 @@ method0()
 #![allow(unused_macros)]
 #![allow(unused_parens)]
 #![allow(unused_variables)]
-mod module_1586508e {
+mod module_8b19fa5b {
     pub mod Spiral_builder {
         use super::*;
         use fable_library_rust::Native_::on_startup;
@@ -7921,7 +7920,7 @@ mod module_1586508e {
             };
             let v10: string = sprintf!(
                 "{} / actual: {:?} / expected: {:?}",
-                string("assert_eq"),
+                string("__assert_eq"),
                 v3,
                 15_i32
             );
@@ -7933,7 +7932,7 @@ mod module_1586508e {
         on_startup!(Spiral_builder::method0());
     }
 }
-pub use module_1586508e::*;
+pub use module_8b19fa5b::*;
 
 pub fn main() -&gt; Result&lt;(), String&gt; {
     Ok(())
@@ -7955,7 +7954,7 @@ export function method0(): void {
     const v3: int32 = (((9 + method1()) + 2) + 1) | 0;
     const v4: boolean = v3 === 15;
     const v6: boolean = v4 ? true : method2(v4);
-    const v10: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]));
+    const v10: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v3, 15]));
     console.log(v10);
     if (v6 === false) {
         throw new Error(v10);
@@ -7983,7 +7982,7 @@ def method0(__unit: None=None) -&gt; None:
     v3: int = (((9 + method1()) + 2) + 1) or 0
     v4: bool = v3 == 15
     v6: bool = True if v4 else method2(v4)
-    v10: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]))
+    v10: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v3, 15]))
     print(v10)
     if v6 == False:
         raise Exception(v10)
@@ -8069,17 +8068,17 @@ def method0() -&gt; None:
     else:
         v6 = method2(v4)
     del v4
-    v13 = "assert_eq"
+    v13 = "__assert_eq"
     v14 = f"{v13} / actual: {v3} / expected: {15}"
     del v3, v13
     print(v14)
-    v25 = v6 == False
+    v24 = v6 == False
     del v6
-    if v25:
-        del v25
+    if v24:
+        del v24
         raise Exception(v14)
     else:
-        del v14, v25
+        del v14, v24
         return 
 def main():
     return method0()
@@ -8160,17 +8159,17 @@ def method0() -&gt; None:
     else:
         v6 = method2(v4)
     del v4
-    v13 = "assert_eq"
+    v13 = "__assert_eq"
     v14 = f"{v13} / actual: {v3} / expected: {15}"
     del v3, v13
     print(v14)
-    v25 = v6 == False
+    v24 = v6 == False
     del v6
-    if v25:
-        del v25
+    if v24:
+        del v24
         raise Exception(v14)
     else:
-        del v14, v25
+        del v14, v24
         return 
 def main():
     return method0()
@@ -8178,7 +8177,7 @@ def main():
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 
 .fsx output:
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 </pre>
 </div>
 </div>
@@ -8216,16 +8215,16 @@ assert_eq / actual: 15 / expected: 15
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.py output (Cuda):
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 
 .rs output:
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 
 .ts output:
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 
 .py output:
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 
 
 
@@ -8255,12 +8254,11 @@ and method0 () : unit =
             true
         else
             method3(v5)
-    let v10 : string = "assert_eq"
+    let v10 : string = "__assert_eq"
     let v11 : string = $"{v10} / actual: %A{v4} / expected: %A{15}"
-    let v20 : (string -&gt; unit) = System.Console.WriteLine
-    v20 v11
-    let v25 : bool = v7 = false
-    if v25 then
+    v11 |&gt; System.Console.WriteLine
+    let v24 : bool = v7 = false
+    if v24 then
         failwith&lt;unit&gt; v11
 method0()
 
@@ -8276,7 +8274,7 @@ method0()
 #![allow(unused_macros)]
 #![allow(unused_parens)]
 #![allow(unused_variables)]
-mod module_357ff3b3 {
+mod module_bfe53ddb {
     pub mod Spiral_builder {
         use super::*;
         use fable_library_rust::Native_::on_startup;
@@ -8302,7 +8300,7 @@ mod module_357ff3b3 {
             };
             let v11: string = sprintf!(
                 "{} / actual: {:?} / expected: {:?}",
-                string("assert_eq"),
+                string("__assert_eq"),
                 v4,
                 15_i32
             );
@@ -8314,7 +8312,7 @@ mod module_357ff3b3 {
         on_startup!(Spiral_builder::method0());
     }
 }
-pub use module_357ff3b3::*;
+pub use module_bfe53ddb::*;
 
 pub fn main() -&gt; Result&lt;(), String&gt; {
     Ok(())
@@ -8340,7 +8338,7 @@ export function method0(): void {
     const v4: int32 = ((method2(method1(), 9) + 2) + 1) | 0;
     const v5: boolean = v4 === 15;
     const v7: boolean = v5 ? true : method3(v5);
-    const v11: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v4, 15]));
+    const v11: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v4, 15]));
     console.log(v11);
     if (v7 === false) {
         throw new Error(v11);
@@ -8372,7 +8370,7 @@ def method0(__unit: None=None) -&gt; None:
     v4: int = ((method2(method1(), 9) + 2) + 1) or 0
     v5: bool = v4 == 15
     v7: bool = True if v5 else method3(v5)
-    v11: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v4, 15]))
+    v11: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v4, 15]))
     print(v11)
     if v7 == False:
         raise Exception(v11)
@@ -8463,17 +8461,17 @@ def method0() -&gt; None:
     else:
         v7 = method3(v5)
     del v5
-    v14 = "assert_eq"
+    v14 = "__assert_eq"
     v15 = f"{v14} / actual: {v4} / expected: {15}"
     del v4, v14
     print(v15)
-    v26 = v7 == False
+    v25 = v7 == False
     del v7
-    if v26:
-        del v26
+    if v25:
+        del v25
         raise Exception(v15)
     else:
-        del v15, v26
+        del v15, v25
         return 
 def main():
     return method0()
@@ -8559,17 +8557,17 @@ def method0() -&gt; None:
     else:
         v7 = method3(v5)
     del v5
-    v14 = "assert_eq"
+    v14 = "__assert_eq"
     v15 = f"{v14} / actual: {v4} / expected: {15}"
     del v4, v14
     print(v15)
-    v26 = v7 == False
+    v25 = v7 == False
     del v7
-    if v26:
-        del v26
+    if v25:
+        del v25
         raise Exception(v15)
     else:
-        del v15, v26
+        del v15, v25
         return 
 def main():
     return method0()
@@ -8577,7 +8575,7 @@ def main():
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 
 .fsx output:
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 </pre>
 </div>
 </div>
@@ -8645,16 +8643,16 @@ assert_eq / actual: 15 / expected: 15
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.py output (Cuda):
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 
 .rs output:
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 
 .ts output:
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 
 .py output:
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 
 
 
@@ -8683,12 +8681,11 @@ and method0 () : unit =
             true
         else
             method3(v4)
-    let v9 : string = "assert_eq"
+    let v9 : string = "__assert_eq"
     let v10 : string = $"{v9} / actual: %A{v3} / expected: %A{15}"
-    let v19 : (string -&gt; unit) = System.Console.WriteLine
-    v19 v10
-    let v24 : bool = v6 = false
-    if v24 then
+    v10 |&gt; System.Console.WriteLine
+    let v23 : bool = v6 = false
+    if v23 then
         failwith&lt;unit&gt; v10
 method0()
 
@@ -8704,7 +8701,7 @@ method0()
 #![allow(unused_macros)]
 #![allow(unused_parens)]
 #![allow(unused_variables)]
-mod module_14108a7f {
+mod module_4ed7274b {
     pub mod Spiral_builder {
         use super::*;
         use fable_library_rust::Native_::on_startup;
@@ -8730,7 +8727,7 @@ mod module_14108a7f {
             };
             let v10: string = sprintf!(
                 "{} / actual: {:?} / expected: {:?}",
-                string("assert_eq"),
+                string("__assert_eq"),
                 v3,
                 15_i32
             );
@@ -8742,7 +8739,7 @@ mod module_14108a7f {
         on_startup!(Spiral_builder::method0());
     }
 }
-pub use module_14108a7f::*;
+pub use module_4ed7274b::*;
 
 pub fn main() -&gt; Result&lt;(), String&gt; {
     Ok(())
@@ -8768,7 +8765,7 @@ export function method0(): void {
     const v3: int32 = ((method2(method1()) + 2) + 1) | 0;
     const v4: boolean = v3 === 15;
     const v6: boolean = v4 ? true : method3(v4);
-    const v10: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]));
+    const v10: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v3, 15]));
     console.log(v10);
     if (v6 === false) {
         throw new Error(v10);
@@ -8800,7 +8797,7 @@ def method0(__unit: None=None) -&gt; None:
     v3: int = ((method2(method1()) + 2) + 1) or 0
     v4: bool = v3 == 15
     v6: bool = True if v4 else method3(v4)
-    v10: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["assert_eq", v3, 15]))
+    v10: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v3, 15]))
     print(v10)
     if v6 == False:
         raise Exception(v10)
@@ -8890,17 +8887,17 @@ def method0() -&gt; None:
     else:
         v6 = method3(v4)
     del v4
-    v13 = "assert_eq"
+    v13 = "__assert_eq"
     v14 = f"{v13} / actual: {v3} / expected: {15}"
     del v3, v13
     print(v14)
-    v25 = v6 == False
+    v24 = v6 == False
     del v6
-    if v25:
-        del v25
+    if v24:
+        del v24
         raise Exception(v14)
     else:
-        del v14, v25
+        del v14, v24
         return 
 def main():
     return method0()
@@ -8985,17 +8982,17 @@ def method0() -&gt; None:
     else:
         v6 = method3(v4)
     del v4
-    v13 = "assert_eq"
+    v13 = "__assert_eq"
     v14 = f"{v13} / actual: {v3} / expected: {15}"
     del v3, v13
     print(v14)
-    v25 = v6 == False
+    v24 = v6 == False
     del v6
-    if v25:
-        del v25
+    if v24:
+        del v24
         raise Exception(v14)
     else:
-        del v14, v25
+        del v14, v24
         return 
 def main():
     return method0()
@@ -9003,7 +9000,7 @@ def main():
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 
 .fsx output:
-assert_eq / actual: 15 / expected: 15
+__assert_eq / actual: 15 / expected: 15
 </pre>
 </div>
 </div>
@@ -9321,13 +9318,13 @@ assert_eq / actual: 15 / expected: 15
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-assert_eq' / actual: US0_0(1) / expected: US0_0(1)
+__assert_eq' / actual: US0_0(1) / expected: US0_0(1)
 
 .ts output:
-assert_eq' / actual: US0_0 1 / expected: US0_0 1
+__assert_eq' / actual: US0_0 1 / expected: US0_0 1
 
 .py output:
-assert_eq' / actual: US0_0 1 / expected: US0_0 1
+__assert_eq' / actual: US0_0 1 / expected: US0_0 1
 
 </pre>
 </div>
@@ -9336,7 +9333,7 @@ assert_eq' / actual: US0_0 1 / expected: US0_0 1
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq' / actual: US0_0 1 / expected: US0_0 1
+__assert_eq' / actual: US0_0 1 / expected: US0_0 1
 </pre>
 </div>
 </div>
@@ -9382,19 +9379,19 @@ assert_eq' / actual: US0_0 1 / expected: US0_0 1
 .rs output:
 00:00:00 <span class="ansi-yellow-fg">warning</span> #1 common.retry_fn / { retry = 0; ex = Exception { message: "test" } }
 00:00:00 <span class="ansi-yellow-fg">warning</span> #2 common.retry_fn / { retry = 1; ex = Exception { message: "test" } }
-assert_eq' / actual: US0_0(2) / expected: US0_0(2)
+__assert_eq' / actual: US0_0(2) / expected: US0_0(2)
 
 
 .ts output:
 00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / { retry = 0; ex = Error: test }
 00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / { retry = 1; ex = Error: test }
-assert_eq' / actual: US0_0 2 / expected: US0_0 2
+__assert_eq' / actual: US0_0 2 / expected: US0_0 2
 
 
 .py output:
 00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #1 common.retry_fn / { retry = 0; ex = test }
 00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / { retry = 1; ex = test }
-assert_eq' / actual: US0_0 2 / expected: US0_0 2
+__assert_eq' / actual: US0_0 2 / expected: US0_0 2
 
 
 </pre>
@@ -9410,7 +9407,7 @@ assert_eq' / actual: US0_0 2 / expected: US0_0 2
 00:00:00 <span class="ansi-yellow-intense-fg">warning</span> #2 common.retry_fn / { retry = 1; ex = System.Exception: test
    at FSI_0031.closure1(Mut0 v0, Int32 v1, Unit unitVar2)
    at FSI_0031.method1(Mut0 v0, Int32 v1) }
-assert_eq' / actual: US0_0 2 / expected: US0_0 2
+__assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </pre>
 </div>
 </div>
@@ -9535,16 +9532,16 @@ assert_eq' / actual: US0_0 2 / expected: US0_0 2
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.py output (Cuda):
-assert_eq / actual: 1 / expected: 1
+__assert_eq / actual: 1 / expected: 1
 
 .rs output:
-assert_eq / actual: 1 / expected: 1
+__assert_eq / actual: 1 / expected: 1
 
 .ts output:
-assert_eq / actual: 1 / expected: 1
+__assert_eq / actual: 1 / expected: 1
 
 .py output:
-assert_eq / actual: 1 / expected: 1
+__assert_eq / actual: 1 / expected: 1
 
 </pre>
 </div>
@@ -9553,7 +9550,7 @@ assert_eq / actual: 1 / expected: 1
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: 1 / expected: 1
+__assert_eq / actual: 1 / expected: 1
 </pre>
 </div>
 </div>
@@ -9592,7 +9589,7 @@ assert_eq / actual: 1 / expected: 1
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 1 / expected: 1
+<pre>__assert_eq / actual: 1 / expected: 1
 </pre>
 </div>
 </div>
@@ -9630,7 +9627,7 @@ assert_eq / actual: 1 / expected: 1
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 1 / expected: 1
+<pre>__assert_eq / actual: 1 / expected: 1
 </pre>
 </div>
 </div>
@@ -9667,7 +9664,7 @@ assert_eq / actual: 1 / expected: 1
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 0 / expected: 0
+<pre>__assert_eq / actual: 0 / expected: 0
 </pre>
 </div>
 </div>

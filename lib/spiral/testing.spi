@@ -2,69 +2,118 @@
 
 /// ## testing
 
+/// ### testing_trace
+union testing_trace =
+    | Console
+    | Trace
+    | TraceRaw
+    | Silent
+
 /// ### __expect
-inl __expect fn log name b a =
+inl rec __expect fn trace' name b a =
     inl result = fn a b
     inl result =
         result || join result
-    if log |> not
-    then "__expect"
-    else
-        inl text =
-            backend_switch {
-                Fsharp = fun () => $'$"{!name} / actual: %A{!a} / expected: %A{!b}"' : string
-                Python = fun () => $'f"{!name} / actual: {!a} / expected: {!b}"' : string
-            }
+    inl get_raw_text () =
+        backend_switch {
+            Fsharp = fun () => $'$"{!name} / actual: %A{!a} / expected: %A{!b}"' : string
+            Python = fun () => $'f"{!name} / actual: {!a} / expected: {!b}"' : string
+        }
+    match trace' with
+    | Console =>
+        inl text = get_raw_text ()
         text |> console.write_line
         text
+    | Trace =>
+        trace Info (fun () => name) fun () => { actual = a; expected = b }
+        get_raw_text ()
+    | TraceRaw =>
+        inl text = get_raw_text ()
+        trace_raw Info fun () => text
+        text
+    | Silent => reflection.nameof { __expect }
     |> assert result
 
 /// ### __assert_approx_eq
-inl __assert_approx_eq log e b a = __expect (fun a b => abs (b - a) < (e |> optionm.defaultWith 0.00000001)) log "assert_approx_eq" b a
-inl _assert_approx_eq e b a = __assert_approx_eq true e b a
+inl rec __assert_approx_eq trace e b a =
+    __expect
+        (fun a b => abs (b - a) < (e |> optionm.defaultWith 0.00000001))
+        trace
+        (reflection.nameof { __assert_approx_eq })
+        b
+        a
+
+inl _assert_approx_eq e b a =
+    __assert_approx_eq Console e b a
 
 /// ### __assert_eq
-inl __assert_eq log b a = __expect (=) log "assert_eq" b a
-inl _assert_eq b a = __assert_eq true b a
+inl rec __assert_eq trace b a =
+    __expect (=) trace (reflection.nameof { __assert_eq }) b a
+
+inl _assert_eq b a =
+    __assert_eq Console b a
 
 /// ### __assert_eq'
-inl __assert_eq' log b a = __expect (=.) log "assert_eq'" b a
-inl _assert_eq' b a = __assert_eq' true b a
+inl rec __assert_eq' trace b a =
+    __expect (=.) trace (reflection.nameof { __assert_eq' }) b a
+
+inl _assert_eq' b a =
+    __assert_eq' Console b a
 
 /// ### __assert_ne
-inl __assert_ne log b a = __expect (<>.) log "assert_ne" b a
-inl _assert_ne b a = __assert_ne true b a
+inl rec __assert_ne trace b a =
+    __expect (<>.) trace (reflection.nameof { __assert_ne }) b a
+
+inl _assert_ne b a =
+    __assert_ne Console b a
 
 /// ### __assert_gt
-inl __assert_gt log b a = __expect (>) log "assert_gt" b a
-inl _assert_gt b a = __assert_gt true b a
+inl rec __assert_gt trace b a =
+    __expect (>) trace (reflection.nameof { __assert_gt }) b a
+
+inl _assert_gt b a =
+    __assert_gt Console b a
 
 /// ### __assert_ge
-inl __assert_ge log b a = __expect (>=) log "assert_ge" b a
-inl _assert_ge b a = __assert_ge true b a
+inl rec __assert_ge trace b a =
+    __expect (>=) trace (reflection.nameof { __assert_ge }) b a
+
+inl _assert_ge b a =
+    __assert_ge Console b a
 
 /// ### __assert_lt
-inl __assert_lt log b a = __expect (<) log "assert_lt" b a
-inl _assert_lt b a = __assert_lt true b a
+inl rec __assert_lt trace b a =
+    __expect (<) trace (reflection.nameof { __assert_lt }) b a
+
+inl _assert_lt b a =
+    __assert_lt Console b a
 
 /// ### __assert_le
-inl __assert_le log b a = __expect (<=) log "assert_le" b a
-inl _assert_le b a = __assert_le true b a
+inl rec __assert_le trace b a =
+    __expect (<=) trace (reflection.nameof { __assert_le }) b a
+
+inl _assert_le b a =
+    __assert_le Console b a
 
 /// ### __assert_string_contains
-inl __assert_string_contains log b a = __expect sm'.contains log "assert_string_contains" a b
-inl _assert_string_contains b a = __assert_string_contains true b a
+inl rec __assert_string_contains trace b a =
+    __expect sm'.contains trace (reflection.nameof { __assert_string_contains }) a b
+
+inl _assert_string_contains b a =
+    __assert_string_contains Console b a
 
 /// ### __assert_between
-inl __assert_between log a b actual =
+inl rec __assert_between trace a b actual =
     inl assert_between actual (a, b) =
-        __assert_ge false a actual
-        __assert_le false b actual
+        __assert_ge Silent a actual
+        __assert_le Silent b actual
         true
-    __expect assert_between log "assert_between" (a, b) actual
-inl _assert_between a b actual = __assert_between true a b actual
+    __expect assert_between trace (reflection.nameof { __assert_between }) (a, b) actual
 
-inl _assert_fn fn list =
+inl _assert_between a b actual =
+    __assert_between Console a b actual
+
+inl rec _assert_fn fn list =
     list
     |> listm.rev
     |> listm.map fun input, expected => join
@@ -73,18 +122,20 @@ inl _assert_fn fn list =
         |> resultm.get
         |> fun x =>
             inl expected' = join expected
+            inl name = reflection.nameof { _assert_fn }
             try
                 fun () =>
                     console.write_line ""
                     trace Verbose
-                        fun () => $'$"testing._assert_fn"'
+                        fun () => name
                         fun () => { input }
                     x
                     |> _assert_eq' expected'
                     true
                 fun ex =>
                     trace Critical
-                        fun () => $'$"testing._assert_fn / error"'
+                        fun () =>
+                            $'$"{!name} / error"'
                         fun () => { ex expected }
                     Some false
             |> optionm.value
@@ -96,7 +147,7 @@ inl _assert_fn fn list =
 /// ## fsharp
 
 /// ### __assert_contains
-inl __assert_contains forall t. log (b : t) a =
+inl rec __assert_contains forall t u. (trace : testing_trace) (b : t) (a : u) : () =
     __expect
         fun a b =>
             a
@@ -104,9 +155,18 @@ inl __assert_contains forall t. log (b : t) a =
             |> fun x => x : listm'.list' t
             |> $'List.tryFind' ((=) b)
             |> optionm'.unbox
-            |> fun (x : _ t) => x <> None
-        log "assert_contains" b a
-inl _assert_contains b a = __assert_contains true b a
+            |> fun (x : option t) => x <> None
+        trace
+        // TODO: forall nameof (Cannot dyn a forall into a runtime var.)
+        // Metavars that are not part of the enclosing function's signature are not allowed. They need to be values.
+        // Got: {__assert_contains : testing_trace -> _ -> _ -> ()} -> string
+        // (reflection.nameof { __assert_contains })
+        "__assert_contains"
+        b
+        a
+
+inl _assert_contains b a =
+    __assert_contains Console b a
 
 /// ### _throws
 inl _throws (fn : () -> ()) : option exn =
@@ -115,6 +175,7 @@ inl _throws (fn : () -> ()) : option exn =
     $'try !fn (); !none with ex -> ex |> !some '
 
 /// ### print_and_return
-inl print_and_return x =
-    $'printfn $"print_and_return / x: {!x}"'
+inl rec print_and_return x =
+    inl name = reflection.nameof { print_and_return }
+    $'printfn $"{!name} / x: {!x}"'
     x

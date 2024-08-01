@@ -167,3 +167,60 @@ inl get_record_fields forall t u. (x : t) : list (string * u) =
 { a = "1"; b = "2" }
 |> get_record_fields
 |> _assert_eq' [ "a", "1"; "b", "2" ]
+
+#!markdown
+
+### get_functions_types
+
+#!spiral
+
+inl get_functions_types forall t {record}. (fns : t) =
+    real
+        inl get_function_type forall t. =
+            inl args forall t {record}. : list (string * string) =
+                real_core.record_type_fold_back
+                    fun key =>
+                        forall v. acc =>
+                            inl k = real_sm'.symbol_to_string `(`key)
+                            inl v = $'"`v"' : string
+                            (::) `(string * string) (k, v) acc
+                    `t
+                    (Nil `(string * string))
+
+            typecase t with
+            | ~t -> ~u => args `t, ($'"`u"' : string)
+
+        real_core.record_type_fold_back
+            fun key =>
+                forall v. acc =>
+                    inl k = real_sm'.symbol_to_string `(`key)
+                    inl args, result = get_function_type `v
+                    (::) `(string * (list (string * string) * string)) (k, (args, result)) acc
+            `(`fns)
+            (Nil `(string * (list (string * string) * string)))
+    |> fun x => x : list (string * (list (string * string) * string))
+
+#!spiral
+
+//// test
+
+inl one ({ a } : { a : i32 }) : i32 = a + 1
+inl two ({ a b } : { a : i32; b : i32 }) : i32 = a + b + 2
+inl fns = { one two }
+
+fns
+|> get_functions_types
+|> listm.map fun (name, args, result) => name, (args |> listm'.box |> listm'.to_array', result)
+|> listm'.box
+|> listm'.to_array'
+|> sm'.format
+|> _assert_eq' (
+    [
+        "one", ["a", "int32"], "int32"
+        "two", ["a", "int32"; "b", "int32"], "int32"
+    ]
+    |> listm.map fun (name, args, result) => name, (args |> listm'.box |> listm'.to_array', result)
+    |> listm'.box
+    |> listm'.to_array'
+    |> sm'.format
+)

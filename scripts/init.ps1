@@ -25,7 +25,7 @@ if (!(Search-Command "nix")) {
         }
 
         if (!(Test-Path "~/.bun/bin/bun")) {
-            curl -fsSL https://bun.sh/install | bash
+            curl -sSL https://bun.sh/install | bash
             $env:PATH = "~/.bun/bin:$env:PATH"
         }
 

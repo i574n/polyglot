@@ -7822,13 +7822,13 @@ a.anchor-link {
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
-assert_eq / actual: Array(MutCell([-1, 0, 1, 2])) / expected: Array(MutCell([-1, 0, 1, 2]))
+__assert_eq / actual: Array(MutCell([-1, 0, 1, 2])) / expected: Array(MutCell([-1, 0, 1, 2]))
 
 .ts output:
-assert_eq / actual: -1,0,1,2 / expected: -1,0,1,2
+__assert_eq / actual: -1,0,1,2 / expected: -1,0,1,2
 
 .py output:
-assert_eq / actual: [-1, 0, 1, 2] / expected: array('q', [-1, 0, 1, 2])
+__assert_eq / actual: [-1, 0, 1, 2] / expected: array('q', [-1, 0, 1, 2])
 
 </pre>
 </div>
@@ -7837,7 +7837,7 @@ assert_eq / actual: [-1, 0, 1, 2] / expected: array('q', [-1, 0, 1, 2])
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: [|-1L; 0L; 1L; 2L|] / expected: [|-1L; 0L; 1L; 2L|]
+__assert_eq / actual: [|-1L; 0L; 1L; 2L|] / expected: [|-1L; 0L; 1L; 2L|]
 </pre>
 </div>
 </div>
@@ -8015,10 +8015,10 @@ assert_eq / actual: [|-1L; 0L; 1L; 2L|] / expected: [|-1L; 0L; 1L; 2L|]
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .ts output:
-assert_eq / actual: 0,2,4,6,8 / expected: 0,2,4,6,8
+__assert_eq / actual: 0,2,4,6,8 / expected: 0,2,4,6,8
 
 .py output:
-assert_eq / actual: [0, 2, 4, 6, 8] / expected: array('l', [0, 2, 4, 6, 8])
+__assert_eq / actual: [0, 2, 4, 6, 8] / expected: array('l', [0, 2, 4, 6, 8])
 
 </pre>
 </div>
@@ -8027,7 +8027,7 @@ assert_eq / actual: [0, 2, 4, 6, 8] / expected: array('l', [0, 2, 4, 6, 8])
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: [|0; 2; 4; 6; 8|] / expected: [|0; 2; 4; 6; 8|]
+__assert_eq / actual: [|0; 2; 4; 6; 8|] / expected: [|0; 2; 4; 6; 8|]
 </pre>
 </div>
 </div>
@@ -8117,13 +8117,13 @@ assert_eq / actual: [|0; 2; 4; 6; 8|] / expected: [|0; 2; 4; 6; 8|]
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
-assert_eq / actual: 45 / expected: 45
+__assert_eq / actual: 45 / expected: 45
 
 .ts output:
-assert_eq / actual: 45 / expected: 45
+__assert_eq / actual: 45 / expected: 45
 
 .py output:
-assert_eq / actual: 45 / expected: 45
+__assert_eq / actual: 45 / expected: 45
 
 </pre>
 </div>
@@ -8132,7 +8132,7 @@ assert_eq / actual: 45 / expected: 45
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: 45 / expected: 45
+__assert_eq / actual: 45 / expected: 45
 </pre>
 </div>
 </div>
@@ -8221,13 +8221,13 @@ assert_eq / actual: 45 / expected: 45
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
-assert_eq' / actual: Array(MutCell([0, 2, 4])) / expected: Array(MutCell([0, 2, 4]))
+__assert_eq' / actual: Array(MutCell([0, 2, 4])) / expected: Array(MutCell([0, 2, 4]))
 
 .ts output:
-assert_eq' / actual: 0,2,4 / expected: 0,2,4
+__assert_eq' / actual: 0,2,4 / expected: 0,2,4
 
 .py output:
-assert_eq' / actual: [0, 2, 4] / expected: array('l', [0, 2, 4])
+__assert_eq' / actual: [0, 2, 4] / expected: array('l', [0, 2, 4])
 
 </pre>
 </div>
@@ -8236,7 +8236,7 @@ assert_eq' / actual: [0, 2, 4] / expected: array('l', [0, 2, 4])
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq' / actual: [|0; 2; 4|] / expected: [|0; 2; 4|]
+__assert_eq' / actual: [|0; 2; 4|] / expected: [|0; 2; 4|]
 </pre>
 </div>
 </div>
@@ -8357,13 +8357,13 @@ assert_eq' / actual: [|0; 2; 4|] / expected: [|0; 2; 4|]
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .rs output:
-assert_eq / actual: 9 / expected: 9
+__assert_eq / actual: 9 / expected: 9
 
 .ts output:
-assert_eq / actual: 9 / expected: 9
+__assert_eq / actual: 9 / expected: 9
 
 .py output:
-assert_eq / actual: 9 / expected: 9
+__assert_eq / actual: 9 / expected: 9
 
 </pre>
 </div>
@@ -8372,7 +8372,7 @@ assert_eq / actual: 9 / expected: 9
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: 9 / expected: 9
+__assert_eq / actual: 9 / expected: 9
 </pre>
 </div>
 </div>
@@ -8466,10 +8466,10 @@ assert_eq / actual: 9 / expected: 9
 <span class="ansi-default-inverse-fg ansi-default-inverse-bg ansi-underline">cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version</span>
 
 .ts output:
-assert_eq / actual: US0_0 5 / expected: US0_0 5
+__assert_eq / actual: US0_0 5 / expected: US0_0 5
 
 .py output:
-assert_eq / actual: US0_0 5 / expected: US0_0 5
+__assert_eq / actual: US0_0 5 / expected: US0_0 5
 
 </pre>
 </div>
@@ -8478,7 +8478,7 @@ assert_eq / actual: US0_0 5 / expected: US0_0 5
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: US0_0 5 / expected: US0_0 5
+__assert_eq / actual: US0_0 5 / expected: US0_0 5
 </pre>
 </div>
 </div>
@@ -8546,13 +8546,13 @@ assert_eq / actual: US0_0 5 / expected: US0_0 5
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-assert_eq' / actual: Array(MutCell([(0, 0), (1, 2), (2, 4)])) / expected: Array(MutCell([(0, 0), (1, 2), (2, 4)]))
+__assert_eq' / actual: Array(MutCell([(0, 0), (1, 2), (2, 4)])) / expected: Array(MutCell([(0, 0), (1, 2), (2, 4)]))
 
 .ts output:
-assert_eq' / actual: 0,0,1,2,2,4 / expected: 0,0,1,2,2,4
+__assert_eq' / actual: 0,0,1,2,2,4 / expected: 0,0,1,2,2,4
 
 .py output:
-assert_eq' / actual: [(0, 0), (1, 2), (2, 4)] / expected: [(0, 0), (1, 2), (2, 4)]
+__assert_eq' / actual: [(0, 0), (1, 2), (2, 4)] / expected: [(0, 0), (1, 2), (2, 4)]
 
 </pre>
 </div>
@@ -8561,7 +8561,7 @@ assert_eq' / actual: [(0, 0), (1, 2), (2, 4)] / expected: [(0, 0), (1, 2), (2, 4
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq' / actual: [|struct (0, 0); struct (1, 2); struct (2, 4)|] / expected: [|struct (0, 0); struct (1, 2); struct (2, 4)|]
+__assert_eq' / actual: [|struct (0, 0); struct (1, 2); struct (2, 4)|] / expected: [|struct (0, 0); struct (1, 2); struct (2, 4)|]
 </pre>
 </div>
 </div>
@@ -8657,30 +8657,30 @@ assert_eq' / actual: [|struct (0, 0); struct (1, 2); struct (2, 4)|] / expected:
 
 
 .rs output:
-assert_eq / actual: Array(MutCell([])) / expected: Array(MutCell([]))
-assert_eq / actual: Array(MutCell([1])) / expected: Array(MutCell([1]))
-assert_eq / actual: Array(MutCell([])) / expected: Array(MutCell([]))
-assert_eq / actual: Array(MutCell([2])) / expected: Array(MutCell([2]))
-assert_eq / actual: Array(MutCell([])) / expected: Array(MutCell([]))
-assert_eq / actual: Array(MutCell([1, 2])) / expected: Array(MutCell([1, 2]))
+__assert_eq / actual: Array(MutCell([])) / expected: Array(MutCell([]))
+__assert_eq / actual: Array(MutCell([1])) / expected: Array(MutCell([1]))
+__assert_eq / actual: Array(MutCell([])) / expected: Array(MutCell([]))
+__assert_eq / actual: Array(MutCell([2])) / expected: Array(MutCell([2]))
+__assert_eq / actual: Array(MutCell([])) / expected: Array(MutCell([]))
+__assert_eq / actual: Array(MutCell([1, 2])) / expected: Array(MutCell([1, 2]))
 
 
 .ts output:
-assert_eq / actual:  / expected: 
-assert_eq / actual: 1 / expected: 1
-assert_eq / actual:  / expected: 
-assert_eq / actual: 2 / expected: 2
-assert_eq / actual:  / expected: 
-assert_eq / actual: 1,2 / expected: 1,2
+__assert_eq / actual:  / expected: 
+__assert_eq / actual: 1 / expected: 1
+__assert_eq / actual:  / expected: 
+__assert_eq / actual: 2 / expected: 2
+__assert_eq / actual:  / expected: 
+__assert_eq / actual: 1,2 / expected: 1,2
 
 
 .py output:
-assert_eq / actual: [] / expected: array('l')
-assert_eq / actual: [1] / expected: array('l', [1])
-assert_eq / actual: [] / expected: array('l')
-assert_eq / actual: [2] / expected: array('l', [2])
-assert_eq / actual: [] / expected: array('l')
-assert_eq / actual: [1, 2] / expected: array('l', [1, 2])
+__assert_eq / actual: [] / expected: array('l')
+__assert_eq / actual: [1] / expected: array('l', [1])
+__assert_eq / actual: [] / expected: array('l')
+__assert_eq / actual: [2] / expected: array('l', [2])
+__assert_eq / actual: [] / expected: array('l')
+__assert_eq / actual: [1, 2] / expected: array('l', [1, 2])
 
 
 </pre>
@@ -8690,12 +8690,12 @@ assert_eq / actual: [1, 2] / expected: array('l', [1, 2])
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: [||] / expected: [||]
-assert_eq / actual: [|1|] / expected: [|1|]
-assert_eq / actual: [||] / expected: [||]
-assert_eq / actual: [|2|] / expected: [|2|]
-assert_eq / actual: [||] / expected: [||]
-assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
+__assert_eq / actual: [||] / expected: [||]
+__assert_eq / actual: [|1|] / expected: [|1|]
+__assert_eq / actual: [||] / expected: [||]
+__assert_eq / actual: [|2|] / expected: [|2|]
+__assert_eq / actual: [||] / expected: [||]
+__assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 </pre>
 </div>
 </div>
@@ -9698,7 +9698,7 @@ assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "[0, 1]" / expected: "[0, 1]"
+<pre>__assert_eq / actual: "[0, 1]" / expected: "[0, 1]"
 </pre>
 </div>
 </div>
@@ -9877,13 +9877,13 @@ assert_eq / actual: [|1; 2|] / expected: [|1; 2|]
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-assert_eq / actual: UH0_1(-3, UH0_1(6, UH0_0)) / expected: UH0_1(-3, UH0_1(6, UH0_0))
+__assert_eq / actual: UH0_1(-3, UH0_1(6, UH0_0)) / expected: UH0_1(-3, UH0_1(6, UH0_0))
 
 .ts output:
-assert_eq / actual: UH0_1 (-3, UH0_1 (6, UH0_0)) / expected: UH0_1 (-3, UH0_1 (6, UH0_0))
+__assert_eq / actual: UH0_1 (-3, UH0_1 (6, UH0_0)) / expected: UH0_1 (-3, UH0_1 (6, UH0_0))
 
 .py output:
-assert_eq / actual: UH0_1 (-3, UH0_1 (6, UH0_0)) / expected: UH0_1 (-3, UH0_1 (6, UH0_0))
+__assert_eq / actual: UH0_1 (-3, UH0_1 (6, UH0_0)) / expected: UH0_1 (-3, UH0_1 (6, UH0_0))
 
 </pre>
 </div>
@@ -9892,7 +9892,7 @@ assert_eq / actual: UH0_1 (-3, UH0_1 (6, UH0_0)) / expected: UH0_1 (-3, UH0_1 (6
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: UH0_1 (-3, UH0_1 (6, UH0_0)) / expected: UH0_1 (-3, UH0_1 (6, UH0_0))
+__assert_eq / actual: UH0_1 (-3, UH0_1 (6, UH0_0)) / expected: UH0_1 (-3, UH0_1 (6, UH0_0))
 </pre>
 </div>
 </div>

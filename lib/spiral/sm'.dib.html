@@ -7651,7 +7651,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "test" / expected: "test"
+<pre>__assert_eq / actual: "test" / expected: "test"
 </pre>
 </div>
 </div>
@@ -7684,7 +7684,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "test" / expected: "test"
+<pre>__assert_eq / actual: "test" / expected: "test"
 </pre>
 </div>
 </div>
@@ -7794,7 +7794,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq' / actual: [|'a'; 'b'; 'c'|] / expected: [|'a'; 'b'; 'c'|]
+<pre>__assert_eq' / actual: [|'a'; 'b'; 'c'|] / expected: [|'a'; 'b'; 'c'|]
 </pre>
 </div>
 </div>
@@ -7851,7 +7851,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0))) / expected: UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
+<pre>__assert_eq / actual: UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0))) / expected: UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 </pre>
 </div>
 </div>
@@ -7980,7 +7980,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "struct ("1", "2", "3")" / expected: "struct ("1", "2", "3")"
+<pre>__assert_eq / actual: "struct ("1", "2", "3")" / expected: "struct ("1", "2", "3")"
 </pre>
 </div>
 </div>
@@ -8082,7 +8082,7 @@ a.anchor-link {
                             <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                                 <span class="k">match</span> <span class="n">b</span> <span class="k">with</span>
                                 <span class="o">|</span> <span class="p">(</span><span class="n">_</span> <span class="p">:</span> <span class="n">f32</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">_</span> <span class="p">:</span> <span class="n">f64</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'"</span><span class="si">{:.6f}</span><span class="s1">".format(!b)'</span> <span class="p">:</span> <span class="n">string</span>
-                                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!b '</span> <span class="p">:</span> <span class="n">string</span>
+                                <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'f"{!b}"'</span> <span class="p">:</span> <span class="n">string</span>
                             <span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">string</span>
                     <span class="p">}</span>
                 <span class="n">result</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="o">+.</span><span class="p">)</span> <span class="err">`</span><span class="n">string</span> <span class="p">((</span><span class="o">~*</span><span class="p">)</span> <span class="err">`</span><span class="n">string</span> <span class="n">result</span><span class="p">)</span> <span class="n">s</span>
@@ -8185,7 +8185,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "1, 2, UH0_1 ("3", UH0_1 ("4", UH0_0)), { b = 5; c = 6; a = 7 }" / expected: "1, 2, UH0_1 ("3", UH0_1 ("4", UH0_0)), { b = 5; c = 6; a = 7 }"
+<pre>__assert_eq / actual: "1, 2, UH0_1 ("3", UH0_1 ("4", UH0_0)), { b = 5; c = 6; a = 7 }" / expected: "1, 2, UH0_1 ("3", UH0_1 ("4", UH0_0)), { b = 5; c = 6; a = 7 }"
 </pre>
 </div>
 </div>
@@ -8251,7 +8251,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: 1
+<pre>__assert_eq / actual: 1
 2
 3
  / expected: 1
@@ -8323,7 +8323,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "1
+<pre>__assert_eq / actual: "1
 2
 3
 " / expected: "1
@@ -8397,7 +8397,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "1
+<pre>__assert_eq / actual: "1
 2
 3
 " / expected: "1
@@ -8466,8 +8466,8 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "12..." / expected: "12..."
-assert_eq / actual: "1234..." / expected: "1234..."
+<pre>__assert_eq / actual: "12..." / expected: "12..."
+__assert_eq / actual: "1234..." / expected: "1234..."
 </pre>
 </div>
 </div>
@@ -8702,7 +8702,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "123   " / expected: "123   "
+<pre>__assert_eq / actual: "123   " / expected: "123   "
 </pre>
 </div>
 </div>
@@ -10699,7 +10699,7 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "[[("", ""), ("a", "4.17.0")]]" / expected: "[[("", ""), ("a", "4.17.0")]]"
+<pre>__assert_eq / actual: "[[("", ""), ("a", "4.17.0")]]" / expected: "[[("", ""), ("a", "4.17.0")]]"
 </pre>
 </div>
 </div>
@@ -11443,13 +11443,13 @@ assert_eq / actual: "1234..." / expected: "1234..."
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-assert_eq / actual: "Exception { message: "test" }" / expected: "Exception { message: "test" }"
+__assert_eq / actual: "Exception { message: "test" }" / expected: "Exception { message: "test" }"
 
 .ts output:
-assert_eq / actual: Error: test / expected: Error: test
+__assert_eq / actual: Error: test / expected: Error: test
 
 .py output:
-assert_eq / actual: test / expected: test
+__assert_eq / actual: test / expected: test
 
 </pre>
 </div>
@@ -11458,7 +11458,7 @@ assert_eq / actual: test / expected: test
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-assert_eq / actual: "System.Exception: test" / expected: "System.Exception: test"
+__assert_eq / actual: "System.Exception: test" / expected: "System.Exception: test"
 </pre>
 </div>
 </div>
@@ -11596,9 +11596,9 @@ assert_eq / actual: "System.Exception: test" / expected: "System.Exception: test
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "1...5" / expected: "1...5"
-assert_eq / actual: "12...5" / expected: "12...5"
-assert_eq / actual: "12...67" / expected: "12...67"
+<pre>__assert_eq / actual: "1...5" / expected: "1...5"
+__assert_eq / actual: "12...5" / expected: "12...5"
+__assert_eq / actual: "12...67" / expected: "12...67"
 </pre>
 </div>
 </div>
@@ -11694,7 +11694,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "3" / expected: "3"
+<pre>__assert_eq / actual: "3" / expected: "3"
 </pre>
 </div>
 </div>
@@ -11726,7 +11726,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "3" / expected: "3"
+<pre>__assert_eq / actual: "3" / expected: "3"
 </pre>
 </div>
 </div>
@@ -11758,7 +11758,7 @@ assert_eq / actual: "12...67" / expected: "12...67"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>assert_eq / actual: "    [&lt;EntryPoint&gt;]
+<pre>__assert_eq / actual: "    [&lt;EntryPoint&gt;]
     let main args =
         ()
 " / expected: "    [&lt;EntryPoint&gt;]

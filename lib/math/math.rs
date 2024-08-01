@@ -1142,7 +1142,7 @@ mod module_b7a9935b {
                     let v68: bool = if v66 { true } else { Math::method21(v66) };
                     let v72: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
-                        string("assert_eq"),
+                        string("__assert_eq"),
                         v65,
                         0.0_f64
                     );
@@ -1151,24 +1151,24 @@ mod module_b7a9935b {
                         panic!("{}", v72,);
                     }
                     {
-                        let v89: f64 = v63.re - patternInput.1.clone();
-                        let v90: f64 = -v89;
-                        let v92: f64 = if v89 >= v90 { v89 } else { v90 };
-                        let v93: bool = v92 < 0.0001_f64;
-                        let v95: bool = if v93 { true } else { Math::method21(v93) };
-                        let v99: string = sprintf!(
+                        let v88: f64 = v63.re - patternInput.1.clone();
+                        let v89: f64 = -v88;
+                        let v91: f64 = if v88 >= v89 { v88 } else { v89 };
+                        let v92: bool = v91 < 0.0001_f64;
+                        let v94: bool = if v92 { true } else { Math::method21(v92) };
+                        let v98: string = sprintf!(
                             "{} / actual: {:?} / expected: {:?}",
-                            string("assert_lt"),
-                            v92,
+                            string("__assert_lt"),
+                            v91,
                             0.0001_f64
                         );
-                        printfn!("{0}", v99.clone());
-                        if v95 == false {
-                            panic!("{}", v99,);
+                        printfn!("{0}", v98.clone());
+                        if v94 == false {
+                            panic!("{}", v98,);
                         }
                         {
-                            let v114: i32 = v9 + 1_i32;
-                            v7.l0.set(v114);
+                            let v112: i32 = v9 + 1_i32;
+                            v7.l0.set(v112);
                             ()
                         }
                     }
@@ -1186,12 +1186,12 @@ mod module_b7a9935b {
                 Math::method1(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("v5 }}); { //");
+                    let v12: string = string("v5 }}); { // rust.fix_closure\'");
                     v5
                 }
             });
             {
-                //;
+                // rust.fix_closure';
                 {
                     let v14: Result<(), pyo3::PyErr> = __result;
                     v14.unwrap();
@@ -1241,7 +1241,7 @@ mod module_b7a9935b {
                 let v63: bool = if v61 { true } else { Math::method21(v61) };
                 let v67: string = sprintf!(
                     "{} / actual: {:?} / expected: {:?}",
-                    string("assert_lt"),
+                    string("__assert_lt"),
                     v60,
                     0.001_f64
                 );
@@ -1250,20 +1250,20 @@ mod module_b7a9935b {
                     panic!("{}", v67,);
                 }
                 {
-                    let v84: f64 = v54.im - 0.275_f64;
-                    let v85: f64 = -v84;
-                    let v87: f64 = if v84 >= v85 { v84 } else { v85 };
-                    let v88: bool = v87 < 0.001_f64;
-                    let v90: bool = if v88 { true } else { Math::method21(v88) };
-                    let v93: string = sprintf!(
+                    let v83: f64 = v54.im - 0.275_f64;
+                    let v84: f64 = -v83;
+                    let v86: f64 = if v83 >= v84 { v83 } else { v84 };
+                    let v87: bool = v86 < 0.001_f64;
+                    let v89: bool = if v87 { true } else { Math::method21(v87) };
+                    let v92: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
-                        string("assert_lt"),
-                        v87,
+                        string("__assert_lt"),
+                        v86,
                         0.001_f64
                     );
-                    printfn!("{0}", v93.clone());
-                    if v90 == false {
-                        panic!("{}", v93,);
+                    printfn!("{0}", v92.clone());
+                    if v89 == false {
+                        panic!("{}", v92,);
                     }
                 }
             }
@@ -1275,12 +1275,12 @@ mod module_b7a9935b {
                 Math::method24(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("v5 }}); { //");
+                    let v12: string = string("v5 }}); { // rust.fix_closure\'");
                     v5
                 }
             });
             {
-                //;
+                // rust.fix_closure';
                 {
                     let v14: Result<(), pyo3::PyErr> = __result;
                     v14.unwrap();
@@ -1365,7 +1365,7 @@ mod module_b7a9935b {
                             let v62: bool = if v60 { true } else { Math::method21(v60) };
                             let v66: string = sprintf!(
                                 "{} / actual: {:?} / expected: {:?}",
-                                string("assert_eq"),
+                                string("__assert_eq"),
                                 v59,
                                 0.0_f64
                             );
@@ -1374,18 +1374,18 @@ mod module_b7a9935b {
                                 panic!("{}", v66,);
                             }
                             {
-                                let v82: f64 = v57.im;
-                                let v83: bool = v82 == 0.0_f64;
-                                let v85: bool = if v83 { true } else { Math::method21(v83) };
-                                let v88: string = sprintf!(
+                                let v81: f64 = v57.im;
+                                let v82: bool = v81 == 0.0_f64;
+                                let v84: bool = if v82 { true } else { Math::method21(v82) };
+                                let v87: string = sprintf!(
                                     "{} / actual: {:?} / expected: {:?}",
-                                    string("assert_eq"),
-                                    v82,
+                                    string("__assert_eq"),
+                                    v81,
                                     0.0_f64
                                 );
-                                printfn!("{0}", v88.clone());
-                                if v85 == false {
-                                    panic!("{}", v88,);
+                                printfn!("{0}", v87.clone());
+                                if v84 == false {
+                                    panic!("{}", v87,);
                                 }
                                 {
                                     let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -1414,12 +1414,12 @@ mod module_b7a9935b {
                 Math::method26(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("v5 }}); { //");
+                    let v12: string = string("v5 }}); { // rust.fix_closure\'");
                     v5
                 }
             });
             {
-                //;
+                // rust.fix_closure';
                 {
                     let v14: Result<(), pyo3::PyErr> = __result;
                     v14.unwrap();
@@ -1483,7 +1483,7 @@ mod module_b7a9935b {
                     let v78: bool = if v76 { true } else { Math::method21(v76) };
                     let v82: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
-                        string("assert_lt"),
+                        string("__assert_lt"),
                         v75,
                         0.0001_f64
                     );
@@ -1492,24 +1492,24 @@ mod module_b7a9935b {
                         panic!("{}", v82,);
                     }
                     {
-                        let v98: f64 = v70.im;
-                        let v99: f64 = -v98;
-                        let v101: f64 = if v98 >= v99 { v98 } else { v99 };
-                        let v102: bool = v101 < 0.0001_f64;
-                        let v104: bool = if v102 { true } else { Math::method21(v102) };
-                        let v107: string = sprintf!(
+                        let v97: f64 = v70.im;
+                        let v98: f64 = -v97;
+                        let v100: f64 = if v97 >= v98 { v97 } else { v98 };
+                        let v101: bool = v100 < 0.0001_f64;
+                        let v103: bool = if v101 { true } else { Math::method21(v101) };
+                        let v106: string = sprintf!(
                             "{} / actual: {:?} / expected: {:?}",
-                            string("assert_lt"),
-                            v101,
+                            string("__assert_lt"),
+                            v100,
                             0.0001_f64
                         );
-                        printfn!("{0}", v107.clone());
-                        if v104 == false {
-                            panic!("{}", v107,);
+                        printfn!("{0}", v106.clone());
+                        if v103 == false {
+                            panic!("{}", v106,);
                         }
                         {
-                            let v122: i32 = v17 + 1_i32;
-                            v15.l0.set(v122);
+                            let v120: i32 = v17 + 1_i32;
+                            v15.l0.set(v120);
                             ()
                         }
                     }
@@ -1524,12 +1524,12 @@ mod module_b7a9935b {
                 Math::method30(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("v5 }}); { //");
+                    let v12: string = string("v5 }}); { // rust.fix_closure\'");
                     v5
                 }
             });
             {
-                //;
+                // rust.fix_closure';
                 {
                     let v14: Result<(), pyo3::PyErr> = __result;
                     v14.unwrap();
@@ -1587,7 +1587,7 @@ mod module_b7a9935b {
                     let v65: bool = if v63 { true } else { Math::method21(v63) };
                     let v69: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
-                        string("assert_gt"),
+                        string("__assert_gt"),
                         v62,
                         0.0_f64
                     );
@@ -1596,22 +1596,22 @@ mod module_b7a9935b {
                         panic!("{}", v69,);
                     }
                     {
-                        let v85: f64 = v60.im;
-                        let v86: bool = v85 == 0.0_f64;
-                        let v88: bool = if v86 { true } else { Math::method21(v86) };
-                        let v92: string = sprintf!(
+                        let v84: f64 = v60.im;
+                        let v85: bool = v84 == 0.0_f64;
+                        let v87: bool = if v85 { true } else { Math::method21(v85) };
+                        let v91: string = sprintf!(
                             "{} / actual: {:?} / expected: {:?}",
-                            string("assert_eq"),
-                            v85,
+                            string("__assert_eq"),
+                            v84,
                             0.0_f64
                         );
-                        printfn!("{0}", v92.clone());
-                        if v88 == false {
-                            panic!("{}", v92,);
+                        printfn!("{0}", v91.clone());
+                        if v87 == false {
+                            panic!("{}", v91,);
                         }
                         {
-                            let v107: i32 = v5 + 1_i32;
-                            v3.l0.set(v107);
+                            let v105: i32 = v5 + 1_i32;
+                            v3.l0.set(v105);
                             ()
                         }
                     }
@@ -1626,12 +1626,12 @@ mod module_b7a9935b {
                 Math::method32(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("v5 }}); { //");
+                    let v12: string = string("v5 }}); { // rust.fix_closure\'");
                     v5
                 }
             });
             {
-                //;
+                // rust.fix_closure';
                 {
                     let v14: Result<(), pyo3::PyErr> = __result;
                     v14.unwrap();
@@ -1679,7 +1679,7 @@ mod module_b7a9935b {
                 let v59: bool = if v57 { true } else { Math::method21(v57) };
                 let v63: string = sprintf!(
                     "{} / actual: {:?} / expected: {:?}",
-                    string("assert_eq"),
+                    string("__assert_eq"),
                     v56,
                     f64::INFINITY
                 );
@@ -1688,18 +1688,18 @@ mod module_b7a9935b {
                     panic!("{}", v63,);
                 }
                 {
-                    let v79: f64 = v54.im;
-                    let v80: bool = v79 == 0.0_f64;
-                    let v82: bool = if v80 { true } else { Math::method21(v80) };
-                    let v85: string = sprintf!(
+                    let v78: f64 = v54.im;
+                    let v79: bool = v78 == 0.0_f64;
+                    let v81: bool = if v79 { true } else { Math::method21(v79) };
+                    let v84: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
-                        string("assert_eq"),
-                        v79,
+                        string("__assert_eq"),
+                        v78,
                         0.0_f64
                     );
-                    printfn!("{0}", v85.clone());
-                    if v82 == false {
-                        panic!("{}", v85,);
+                    printfn!("{0}", v84.clone());
+                    if v81 == false {
+                        panic!("{}", v84,);
                     }
                 }
             }
@@ -1711,12 +1711,12 @@ mod module_b7a9935b {
                 Math::method34(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("v5 }}); { //");
+                    let v12: string = string("v5 }}); { // rust.fix_closure\'");
                     v5
                 }
             });
             {
-                //;
+                // rust.fix_closure';
                 {
                     let v14: Result<(), pyo3::PyErr> = __result;
                     v14.unwrap();
@@ -1802,7 +1802,7 @@ mod module_b7a9935b {
                     let v122: bool = if v120 { true } else { Math::method21(v120) };
                     let v126: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
-                        string("assert_eq"),
+                        string("__assert_eq"),
                         v117,
                         v119
                     );
@@ -1811,19 +1811,19 @@ mod module_b7a9935b {
                         panic!("{}", v126,);
                     }
                     {
-                        let v142: f64 = v54.im;
-                        let v144: f64 = v115.im;
-                        let v145: bool = v142 == v144;
-                        let v147: bool = if v145 { true } else { Math::method21(v145) };
-                        let v150: string = sprintf!(
+                        let v141: f64 = v54.im;
+                        let v143: f64 = v115.im;
+                        let v144: bool = v141 == v143;
+                        let v146: bool = if v144 { true } else { Math::method21(v144) };
+                        let v149: string = sprintf!(
                             "{} / actual: {:?} / expected: {:?}",
-                            string("assert_eq"),
-                            v142,
-                            v144
+                            string("__assert_eq"),
+                            v141,
+                            v143
                         );
-                        printfn!("{0}", v150.clone());
-                        if v147 == false {
-                            panic!("{}", v150,);
+                        printfn!("{0}", v149.clone());
+                        if v146 == false {
+                            panic!("{}", v149,);
                         }
                     }
                 }
@@ -1836,12 +1836,12 @@ mod module_b7a9935b {
                 Math::method36(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("v5 }}); { //");
+                    let v12: string = string("v5 }}); { // rust.fix_closure\'");
                     v5
                 }
             });
             {
-                //;
+                // rust.fix_closure';
                 {
                     let v14: Result<(), pyo3::PyErr> = __result;
                     v14.unwrap();
@@ -1889,7 +1889,7 @@ mod module_b7a9935b {
                 let v59: bool = if v57 { true } else { Math::method21(v57) };
                 let v63: string = sprintf!(
                     "{} / actual: {:?} / expected: {:?}",
-                    string("assert_lt"),
+                    string("__assert_lt"),
                     v56,
                     f64::INFINITY
                 );
@@ -1898,18 +1898,18 @@ mod module_b7a9935b {
                     panic!("{}", v63,);
                 }
                 {
-                    let v79: f64 = v54.im;
-                    let v80: bool = v79 < f64::INFINITY;
-                    let v82: bool = if v80 { true } else { Math::method21(v80) };
-                    let v85: string = sprintf!(
+                    let v78: f64 = v54.im;
+                    let v79: bool = v78 < f64::INFINITY;
+                    let v81: bool = if v79 { true } else { Math::method21(v79) };
+                    let v84: string = sprintf!(
                         "{} / actual: {:?} / expected: {:?}",
-                        string("assert_lt"),
-                        v79,
+                        string("__assert_lt"),
+                        v78,
                         f64::INFINITY
                     );
-                    printfn!("{0}", v85.clone());
-                    if v82 == false {
-                        panic!("{}", v85,);
+                    printfn!("{0}", v84.clone());
+                    if v81 == false {
+                        panic!("{}", v84,);
                     }
                 }
             }
@@ -1921,12 +1921,12 @@ mod module_b7a9935b {
                 Math::method38(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("v5 }}); { //");
+                    let v12: string = string("v5 }}); { // rust.fix_closure\'");
                     v5
                 }
             });
             {
-                //;
+                // rust.fix_closure';
                 {
                     let v14: Result<(), pyo3::PyErr> = __result;
                     v14.unwrap();
@@ -2021,7 +2021,7 @@ mod module_b7a9935b {
                             let v70: bool = if v62 { true } else { Math::method21(v62) };
                             let v74: string = sprintf!(
                                 "{} / actual: {:?} / expected: {:?}",
-                                string("assert_ne"),
+                                string("__assert_ne"),
                                 v59,
                                 0.0_f64
                             );
@@ -2030,18 +2030,18 @@ mod module_b7a9935b {
                                 panic!("{}", v74,);
                             }
                             {
-                                let v90: f64 = v57.im;
-                                let v93: bool = v90 != 0.0_f64;
-                                let v101: bool = if v93 { true } else { Math::method21(v93) };
-                                let v104: string = sprintf!(
+                                let v89: f64 = v57.im;
+                                let v92: bool = v89 != 0.0_f64;
+                                let v100: bool = if v92 { true } else { Math::method21(v92) };
+                                let v103: string = sprintf!(
                                     "{} / actual: {:?} / expected: {:?}",
-                                    string("assert_ne"),
-                                    v90,
+                                    string("__assert_ne"),
+                                    v89,
                                     0.0_f64
                                 );
-                                printfn!("{0}", v104.clone());
-                                if v101 == false {
-                                    panic!("{}", v104,);
+                                printfn!("{0}", v103.clone());
+                                if v100 == false {
+                                    panic!("{}", v103,);
                                 }
                                 {
                                     let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -2070,12 +2070,12 @@ mod module_b7a9935b {
                 Math::method40(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("v5 }}); { //");
+                    let v12: string = string("v5 }}); { // rust.fix_closure\'");
                     v5
                 }
             });
             {
-                //;
+                // rust.fix_closure';
                 {
                     let v14: Result<(), pyo3::PyErr> = __result;
                     v14.unwrap();
@@ -2152,7 +2152,7 @@ mod module_b7a9935b {
                             let v68: bool = if v60 { true } else { Math::method21(v60) };
                             let v72: string = sprintf!(
                                 "{} / actual: {:?} / expected: {:?}",
-                                string("assert_ne"),
+                                string("__assert_ne"),
                                 v57,
                                 0.0_f64
                             );
@@ -2161,18 +2161,18 @@ mod module_b7a9935b {
                                 panic!("{}", v72,);
                             }
                             {
-                                let v88: f64 = v55.im;
-                                let v91: bool = v88 != 0.0_f64;
-                                let v99: bool = if v91 { true } else { Math::method21(v91) };
-                                let v102: string = sprintf!(
+                                let v87: f64 = v55.im;
+                                let v90: bool = v87 != 0.0_f64;
+                                let v98: bool = if v90 { true } else { Math::method21(v90) };
+                                let v101: string = sprintf!(
                                     "{} / actual: {:?} / expected: {:?}",
-                                    string("assert_ne"),
-                                    v88,
+                                    string("__assert_ne"),
+                                    v87,
                                     0.0_f64
                                 );
-                                printfn!("{0}", v102.clone());
-                                if v99 == false {
-                                    panic!("{}", v102,);
+                                printfn!("{0}", v101.clone());
+                                if v98 == false {
+                                    panic!("{}", v101,);
                                 }
                                 {
                                     let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -2201,12 +2201,12 @@ mod module_b7a9935b {
                 Math::method44(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("v5 }}); { //");
+                    let v12: string = string("v5 }}); { // rust.fix_closure\'");
                     v5
                 }
             });
             {
-                //;
+                // rust.fix_closure';
                 {
                     let v14: Result<(), pyo3::PyErr> = __result;
                     v14.unwrap();
@@ -2385,7 +2385,7 @@ mod module_b7a9935b {
                                     let v211: bool = if v209 { true } else { Math::method21(v209) };
                                     let v215: string = sprintf!(
                                         "{} / actual: {:?} / expected: {:?}",
-                                        string("assert_lt"),
+                                        string("__assert_lt"),
                                         v208,
                                         0.0001_f64
                                     );
@@ -2394,21 +2394,21 @@ mod module_b7a9935b {
                                         panic!("{}", v215,);
                                     }
                                     {
-                                        let v234: f64 = v55.im - v200.im;
-                                        let v235: f64 = -v234;
-                                        let v237: f64 = if v234 >= v235 { v234 } else { v235 };
-                                        let v238: bool = v237 < 0.0001_f64;
-                                        let v240: bool =
-                                            if v238 { true } else { Math::method21(v238) };
-                                        let v243: string = sprintf!(
+                                        let v233: f64 = v55.im - v200.im;
+                                        let v234: f64 = -v233;
+                                        let v236: f64 = if v233 >= v234 { v233 } else { v234 };
+                                        let v237: bool = v236 < 0.0001_f64;
+                                        let v239: bool =
+                                            if v237 { true } else { Math::method21(v237) };
+                                        let v242: string = sprintf!(
                                             "{} / actual: {:?} / expected: {:?}",
-                                            string("assert_lt"),
-                                            v237,
+                                            string("__assert_lt"),
+                                            v236,
                                             0.0001_f64
                                         );
-                                        printfn!("{0}", v243.clone());
-                                        if v240 == false {
-                                            panic!("{}", v243,);
+                                        printfn!("{0}", v242.clone());
+                                        if v239 == false {
+                                            panic!("{}", v242,);
                                         }
                                         {
                                             let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -2439,12 +2439,12 @@ mod module_b7a9935b {
                 Math::method48(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("v5 }}); { //");
+                    let v12: string = string("v5 }}); { // rust.fix_closure\'");
                     v5
                 }
             });
             {
-                //;
+                // rust.fix_closure';
                 {
                     let v14: Result<(), pyo3::PyErr> = __result;
                     v14.unwrap();
@@ -2586,7 +2586,7 @@ mod module_b7a9935b {
                             let v69: bool = if v67 { true } else { Math::method21(v67) };
                             let v73: string = sprintf!(
                                 "{} / actual: {:?} / expected: {:?}",
-                                string("assert_lt"),
+                                string("__assert_lt"),
                                 v66,
                                 0.01_f64
                             );
@@ -2595,18 +2595,18 @@ mod module_b7a9935b {
                                 panic!("{}", v73,);
                             }
                             {
-                                let v89: f64 = v60.im;
-                                let v90: bool = v89 < 0.01_f64;
-                                let v92: bool = if v90 { true } else { Math::method21(v90) };
-                                let v95: string = sprintf!(
+                                let v88: f64 = v60.im;
+                                let v89: bool = v88 < 0.01_f64;
+                                let v91: bool = if v89 { true } else { Math::method21(v89) };
+                                let v94: string = sprintf!(
                                     "{} / actual: {:?} / expected: {:?}",
-                                    string("assert_lt"),
-                                    v89,
+                                    string("__assert_lt"),
+                                    v88,
                                     0.01_f64
                                 );
-                                printfn!("{0}", v95.clone());
-                                if v92 == false {
-                                    panic!("{}", v95,);
+                                printfn!("{0}", v94.clone());
+                                if v91 == false {
+                                    panic!("{}", v94,);
                                 }
                                 {
                                     let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -2638,12 +2638,12 @@ mod module_b7a9935b {
                 Math::method52(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
-                    let v12: string = string("v5 }}); { //");
+                    let v12: string = string("v5 }}); { // rust.fix_closure\'");
                     v5
                 }
             });
             {
-                //;
+                // rust.fix_closure';
                 {
                     let v14: Result<(), pyo3::PyErr> = __result;
                     v14.unwrap();

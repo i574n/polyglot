@@ -13,10 +13,22 @@ union trace_level =
 /// ### read_state
 inl read_state () =
     run_target function
-        | Rust (Contract | Wasm) => fun () =>
+        | Rust (Wasm) => fun () =>
             {
                 trace_level = None
                 repl_start = None
+            }
+        | Rust (Contract) => fun () =>
+            {
+                trace_level = None
+                repl_start =
+                    open rust.rust_operators
+                    inl automation = env.get_environment_variable_comptime "AUTOMATION"
+                    if automation <>. "True"
+                    then None
+                    else
+                        inl timestamp : u64 = !\($'$"near_sdk::env::block_timestamp()"')
+                        timestamp |> i64 |> Some
             }
         | _ => fun () =>
             {
@@ -99,10 +111,12 @@ let rec trace_raw level fn =
                 Fsharp = fun () => $'$"%s{!fn ()}"' : string
                 Python = fun () => fn () : string
             }
+        open rust
+        open rust.rust_operators
         run_target function
+            | Rust (Contract) => fun () =>
+                !\\(text, $'$"near_sdk::log\!(\\\"{{}}\\\", $0)"')
             | Rust _ => fun () =>
-                open rust
-                open rust.rust_operators
                 !\\(text, $'\@"println\!(""{}"", $0)"')
             | _ => fun () =>
                 backend_switch {
@@ -119,7 +133,21 @@ let trace (level : trace_level) (text_fn : () -> string) (locals : () -> _) =
         inl time =
             run_target fun target =>
                 match target with
-                | Rust (Contract) => fun () => join ""
+                | Rust (Contract) => fun () =>
+                    open rust.rust_operators
+                    open rust
+                    inl timestamp : u64 = !\($'$"near_sdk::env::block_timestamp()"')
+                    inl timestamp =
+                        match trace_state.repl_start |> optionm'.unbox with
+                        | Some repl_start => timestamp - u64 repl_start
+                        | None => timestamp
+                    inl timestamp_s = timestamp / 1_000_000_000
+                    inl s = timestamp_s % 60
+                    inl m = (timestamp_s / 60) % 60
+                    inl h = (timestamp_s / 3600) % 24
+                    inl str : sm'.std_string =
+                        !\\((h, m, s), $'$"format\!(\\\"{{:02}}:{{:02}}:{{:02}}\\\", $0, $1, $2)"')
+                    str |> sm'.from_std_string
                 | _ => fun () =>
                     match trace_state.repl_start |> optionm'.unbox with
                     | Some repl_start =>

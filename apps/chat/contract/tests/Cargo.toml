@@ -10,6 +10,5 @@ repository.workspace = true
 serde_json = { workspace = true }
 tokio = { workspace = true }
 anyhow = "~1.0"
-near-workspaces = { version = "~0.10", features = ["experimental", "unstable"] }
-
-[dev-dependencies]
+near-workspaces = { version = "~0.11", features = ["experimental", "unstable"] }
+near-sandbox-utils = { version = "~0.9", features = ["global_install"] }
