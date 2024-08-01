@@ -48,9 +48,9 @@ if (!$SkipPreBuild) {
         ($IsWindows ? "std::os::windows::fs::symlink_dir" :"std::os::unix::fs::symlink") `
     | Set-Content "$projectName.rs"
 
-cargo +nightly fmt --
+cargo fmt --
 
 if (!$fast) {
-    { cargo +nightly test --release -- --show-output } | Invoke-Block
+    { cargo test --release -- --show-output } | Invoke-Block
 }
-{ cargo +nightly build --release } | Invoke-Block -OnError Continue
+{ cargo build --release } | Invoke-Block -OnError Continue

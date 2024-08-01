@@ -91,7 +91,7 @@ dotnet fable --optimize --lang rs --extension .rs
 
 #!pwsh
 
-cargo +nightly fmt --
+cargo fmt --
 
 #!markdown
 
@@ -103,7 +103,7 @@ cargo +nightly fmt --
 
 #!pwsh
 
-cargo +nightly build --release
+cargo build --release
 
 #!markdown
 
@@ -111,7 +111,7 @@ cargo +nightly build --release
 
 #!pwsh
 
-{ cargo +nightly test --release -- --show-output } | Invoke-Block
+{ cargo test --release -- --show-output } | Invoke-Block
 
 #!markdown
 

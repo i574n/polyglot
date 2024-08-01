@@ -34,9 +34,9 @@ $targetDir = GetTargetDir $projectName
     | FixRust `
     | Set-Content "$projectName.rs"
 
-cargo +nightly fmt --
+cargo fmt --
 
-{ cargo +nightly build --release --target wasm32-unknown-unknown } | Invoke-Block
+{ cargo build --release --target wasm32-unknown-unknown } | Invoke-Block
 New-Item dist -ItemType Directory -Force | Out-Null
 Copy-Item ../../../workspace/target/wasm32-unknown-unknown/release/chat_contract.wasm dist/chat.wasm -Force
 

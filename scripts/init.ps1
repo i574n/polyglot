@@ -58,8 +58,8 @@ if (!(Search-Command "rustup")) {
         $env:PATH = "~/.cargo/bin:$env:PATH"
     }
 }
-rustup install nightly
-rustup default nightly
+rustup install nightly-2024-07-14
+rustup default nightly-2024-07-14
 
 if ($init) {
     exit

@@ -655,7 +655,7 @@ inl process_rust { fs_path deps trace_level runtime } =
             fun () =>
                 inl exit_code, result =
                     execution_options fun x => { x with
-                        command = $'$"cargo +nightly fmt --manifest-path \\\"{!cargo_toml_path}\\\" --"'
+                        command = $'$"cargo fmt --manifest-path \\\"{!cargo_toml_path}\\\" --"'
                         working_directory = workspace_root_external |> resultm.box |> resultm.ok'
                     }
                     |> execute_with_options
@@ -770,8 +770,8 @@ inl process_rust { fs_path deps trace_level runtime } =
 
         inl command =
             if runtime <> None
-            then $'$"cargo +nightly build --release --target wasm32-unknown-unknown --manifest-path \\\"{!cargo_toml_path}\\\""'
-            else $'$"cargo +nightly run --manifest-path \\\"{!cargo_toml_path}\\\""'
+            then $'$"cargo build --release --target wasm32-unknown-unknown --manifest-path \\\"{!cargo_toml_path}\\\""'
+            else $'$"cargo run --manifest-path \\\"{!cargo_toml_path}\\\""'
         inl environment_variables =
             if runtime <> None
             then ;[]
@@ -842,7 +842,7 @@ inl process_rust { fs_path deps trace_level runtime } =
             else
                 inl wasm_path : string =
                     $'$"target/spiral_builder/{!workspace_name}/target/wasm32-unknown-unknown/release/spiral_builder_{!hash_hex}.wasm"'
-                
+
                 inl command =
                     inl invoke_block_path = "scripts/invoke-block.ps1"
                     inl spiral_wasm_path = "workspace/target/release/spiral_wasm"

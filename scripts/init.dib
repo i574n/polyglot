@@ -9,35 +9,35 @@
 
 #!pwsh
 
-# rustup +nightly component add clippy rust-src rustfmt
+# rustup component add clippy rust-src rustfmt
 
 #!pwsh
 
-# rustup +nightly target add wasm32-unknown-unknown
+# rustup target add wasm32-unknown-unknown
 
 #!pwsh
 
-rustup +nightly update
+rustup update
 
 #!pwsh
 
-{ cargo +nightly install --git https://github.com/i574n/cargo-outdated.git --locked } | Invoke-Block -OnError Continue
+{ cargo install --git https://github.com/i574n/cargo-outdated.git --locked } | Invoke-Block -OnError Continue
 
 #!pwsh
 
-{ cargo +nightly install sccache } | Invoke-Block -OnError Continue
+{ cargo install sccache } | Invoke-Block -OnError Continue
 
 #!pwsh
 
-{ cargo +nightly install wasm-pack --locked } | Invoke-Block -OnError Continue
+{ cargo install wasm-pack --locked } | Invoke-Block -OnError Continue
 
 #!pwsh
 
-{ cargo +nightly install trunk --version 0.20.2 } | Invoke-Block -OnError Continue
+{ cargo install trunk --version 0.20.2 } | Invoke-Block -OnError Continue
 
 #!pwsh
 
-{ cargo +nightly install --git https://github.com/bram209/leptosfmt.git --locked } | Invoke-Block -OnError Continue
+{ cargo install --git https://github.com/bram209/leptosfmt.git --locked } | Invoke-Block -OnError Continue
 
 #!pwsh
 

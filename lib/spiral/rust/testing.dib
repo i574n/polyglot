@@ -26,7 +26,7 @@ inl run_tests' tests =
     (!\($'"true; () //"') : bool) |> ignore
 
     inl fields = reflection.get_record_fields tests
-    
+
     fields
     |> listm.iter fun name, (fn : string -> ()) =>
         !\($'"} /* /*"')
@@ -46,7 +46,7 @@ inl run test =
     then ()
     else
         runtime.execution_options fun x => { x with
-            command = "cargo +nightly test -- --show-output"
+            command = "cargo test -- --show-output"
             working_directory = file_system.get_source_directory () |> Some |> optionm'.box
             environment_variables = ;[ "TEST", "1" ]
         }

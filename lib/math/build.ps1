@@ -33,9 +33,9 @@ $targetDir = GetTargetDir $projectName
     | FixRust `
     | Set-Content "$projectName.rs"
 
-cargo +nightly fmt --
+cargo fmt --
 
-{ cargo +nightly test --release } | Invoke-Block
+{ cargo test --release } | Invoke-Block
 
 if ($env:CI) {
     Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore

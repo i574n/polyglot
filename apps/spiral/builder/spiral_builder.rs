@@ -14011,10 +14011,8 @@ mod module_7e2cd9e0 {
             let v2: MutCell<u8> = MutCell::new(v2);
             '_method175: loop {
                 break '_method175 ({
-                    let v8: string = sprintf!(
-                        "cargo +nightly fmt --manifest-path \"{}\" --",
-                        v1_1.get().clone()
-                    );
+                    let v8: string =
+                        sprintf!("cargo fmt --manifest-path \"{}\" --", v1_1.get().clone());
                     let v14: Result<string, string> = match &v0_1.get().clone() {
                         Spiral_builder::US12::US12_0(v0_1_0_0) => {
                             Ok::<string, string>(v0_1_0_0.clone())
@@ -20263,10 +20261,10 @@ mod module_7e2cd9e0 {
                                                                                                                                    !=
                                                                                                                                    true
                                                                                                                                {
-                                                                                                                                sprintf!("cargo +nightly build --release --target wasm32-unknown-unknown --manifest-path \"{}\"",
+                                                                                                                                sprintf!("cargo build --release --target wasm32-unknown-unknown --manifest-path \"{}\"",
                                                                                                                                          v1900.clone())
                                                                                                                             } else {
-                                                                                                                                sprintf!("cargo +nightly run --manifest-path \"{}\"",
+                                                                                                                                sprintf!("cargo run --manifest-path \"{}\"",
                                                                                                                                          v1900)
                                                                                                                             };
                                                                                                                         let v2672:

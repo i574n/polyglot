@@ -21627,7 +21627,7 @@ and method175 (v0 : US12, v1 : string, v2 : uint8) : struct (int32 * string) =
     let v5 : (struct (int32 * string * bool) -> Async<unit>) option = None
     let v6 : (std_sync_Arc<std_sync_Mutex<std_process_ChildStdin>> -> unit) option = None
     let v7 : string option = None
-    let v8 : string = $"cargo +nightly fmt --manifest-path \"{v1}\" --"
+    let v8 : string = $"cargo fmt --manifest-path \"{v1}\" --"
     let v14 : Result<string, string> =
         match v0 with
         | US12_1(v11) -> (* Error *)
@@ -30284,10 +30284,10 @@ pwsh_replace_html_result: {v958}"
                                         let v2657 : bool = v2656 <> true
                                         let v2660 : string =
                                             if v2657 then
-                                                let v2658 : string = $"cargo +nightly build --release --target wasm32-unknown-unknown --manifest-path \"{v1900}\""
+                                                let v2658 : string = $"cargo build --release --target wasm32-unknown-unknown --manifest-path \"{v1900}\""
                                                 v2658
                                             else
-                                                let v2659 : string = $"cargo +nightly run --manifest-path \"{v1900}\""
+                                                let v2659 : string = $"cargo run --manifest-path \"{v1900}\""
                                                 v2659
                                         let v2662 : bool =
                                             match v1429 with
